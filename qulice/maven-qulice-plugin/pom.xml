@@ -54,25 +54,31 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>3.0.2</version> <!-- 22 Aug 2011 -->
+            <version since="22 Aug 2011">3.0.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-project</artifactId>
-            <version>2.2.1</version> <!-- 22 Aug 2011 -->
+            <version since="22 Aug 2011">3.0-alpha-2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-artifact</artifactId>
+            <version since="22 Aug 2011">3.0.3</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-testing</groupId>
             <artifactId>maven-plugin-testing-harness</artifactId>
-            <version>2.0-alpha-1</version> <!-- 17 Mar 2011 -->
+            <version since="22 Aug 2011">2.0-alpha-1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>5.4</version> <!-- 22 Aug 2011 -->
+            <version since="22 Aug 2011">5.4</version>
             <exclusions>
                 <exclusion>
                     <!-- MCHECKSTYLE-156 -->
@@ -80,6 +86,11 @@
                     <artifactId>tools</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <!-- other details are in parent pom.xml -->
         </dependency>
     </dependencies>
 
