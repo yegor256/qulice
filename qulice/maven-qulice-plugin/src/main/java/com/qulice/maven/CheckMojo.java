@@ -1,6 +1,4 @@
-<?xml version="1.0"?>
-<!--
- *
+/**
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -28,35 +26,45 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.maven;
+
+import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.project.MavenProject;
+
+/**
+ * Check the project and find all possible violations.
  *
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.qulice.plugin</groupId>
-    <artifactId>many-violations</artifactId>
-    <version qulice="yes">1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>many-violations</name>
+ * @goal check
+ * @phase verify
+ * @threadSafe
+ */
+public final class CheckMojo extends AbstractMojo {
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.qulice</groupId>
-                <artifactId>maven-qulice-plugin</artifactId>
-                <version qulice="yes">1.0-SNAPSHOT</version>
-                <configuration>
-                    <!-- ... to be continued ... -->
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    /**
+     * Maven project, to be injected by Maven itself.
+     * @parameter expression="${project}"
+     * @required
+     */
+    private MavenProject project;
 
-</project>
+    /**
+     * Set Maven Project (used mostly for unit testing).
+     * @param proj The project to set
+     */
+    public final void setProject(final MavenProject proj) {
+        this.project = proj;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final void execute() throws MojoExecutionException {
+        this.getLog().info("Checking..");
+    }
+
+}

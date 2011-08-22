@@ -1,6 +1,4 @@
-<?xml version="1.0"?>
-<!--
- *
+/**
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -28,35 +26,32 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
+ */
+package com.qulice.maven;
+
+import org.apache.maven.plugin.testing.AbstractMojoTestCase;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.junit.*;
+
+/**
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.qulice.plugin</groupId>
-    <artifactId>many-violations</artifactId>
-    <version qulice="yes">1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
-    <name>many-violations</name>
+ */
+public class CheckMojoTest extends AbstractMojoTestCase {
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.qulice</groupId>
-                <artifactId>maven-qulice-plugin</artifactId>
-                <version qulice="yes">1.0-SNAPSHOT</version>
-                <configuration>
-                    <!-- ... to be continued ... -->
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    @Test
+    public void testMojoGoal() throws Exception {
+        final CheckMojo mojo = this.mojo();
+        // mojo.execute();
+    }
 
-</project>
+    private CheckMojo mojo() throws Exception {
+        // final File pom = ResourceLoader.find("pom.xml");
+        // ReaderMojo mojo = (ReaderMojo) this.lookupMojo("check", pom);
+        // this.assertNotNull(mojo);
+        // mojo.setProject(MavenHelper.project());
+        // return mojo;
+        return null;
+    }
+
+}

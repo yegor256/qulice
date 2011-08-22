@@ -83,4 +83,45 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-invoker-plugin</artifactId>
+                <version since="22 Mar 2011">1.5</version>
+                <configuration>
+                    <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
+                    <debug>false</debug>
+                    <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+                    <noLog>true</noLog>
+                    <!--
+                    With this construct you can exclude certain IT projects.
+                    <pomExcludes>
+                        <pomExclude>many-violations/pom.xml</pomExclude>
+                        <pomExclude>*/pom.xml</pomExclude>
+                    </pomExcludes>
+                    -->
+                    <pomIncludes>
+                        <pomInclude>*/pom.xml</pomInclude>
+                    </pomIncludes>
+                    <postBuildHookScript>verify</postBuildHookScript>
+                    <preBuildHookScript>setup</preBuildHookScript>
+                    <projectsDirectory>src/it</projectsDirectory>
+                    <settingsFile>${basedir}/src/it/settings.xml</settingsFile>
+                    <showErrors>true</showErrors>
+                    <showVersion>true</showVersion>
+                    <streamLogs>true</streamLogs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-test</id>
+                        <goals>
+                            <goal>install</goal>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
