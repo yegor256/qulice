@@ -194,7 +194,6 @@ public final class CheckstyleValidator extends AbstractValidator {
                 )
             );
         }
-        System.out.println(file);
         return file.getPath();
     }
 

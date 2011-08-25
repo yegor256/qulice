@@ -31,6 +31,7 @@ package com.qulice.maven;
 
 import java.io.File;
 import java.util.Properties;
+import org.apache.commons.io.FileUtils;
 import org.apache.maven.model.Build;
 import org.apache.maven.project.MavenProject;
 import org.junit.*;
@@ -63,6 +64,7 @@ public class CheckstyleValidatorTest {
         final Validator validator = new CheckstyleValidator();
         final Properties config = new Properties();
         final File license = temp.newFile("license.txt");
+        FileUtils.writeStringToFile(license, "/** license */\n");
         config.setProperty("license", "file:" + license.getPath());
         validator.validate(project, config);
     }

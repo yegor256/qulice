@@ -37,50 +37,73 @@
     "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 <module name="Checker">
 
-    <!-- Checks that each Java package has a Javadoc file used for commenting. -->
+    <!--
+    Checks that each Java package has a Javadoc file
+    used for commenting.
+    -->
     <module name="JavadocPackage"/>
 
-    <!-- Checks whether files end with a new line. -->
+    <!--
+    Checks whether files end with a new line.
+    -->
     <module name="NewlineAtEndOfFile"/>
 
-    <!-- Checks that property files contain the same keys. -->
+    <!--
+    Checks that property files contain the same keys.
+    -->
     <module name="Translation"/>
 
+    <!--
+    Maximum number of lines in any .java file is limited.
+    -->
     <module name="FileLength">
         <property name="max" value="500"/>
     </module>
 
-    <!-- Following interprets the header file as regular expressions. -->
-    <!-- <module name="RegexpHeader"/>  -->
-
+    <!--
+    TAB chars are not allowed anywhere.
+    -->
     <module name="FileTabCharacter">
         <property name="eachLine" value="true"/>
     </module>
 
+    <!--
+    Trailing spaces are not allowed anywhere.
+    -->
     <module name="RegexpSingleline">
         <property name="format" value="\s+$"/>
         <property name="message" value="Line has trailing spaces."/>
     </module>
 
+    <!--
+    C++ style inline comment is not allowed.
+    -->
     <module name="RegexpSingleline">
         <property name="format" value="/\*.*\*/"/>
         <property name="message" value="This kind of comment is not allowed."/>
     </module>
 
+    <!--
+    Two consecutive empty lines are not allowed.
+    -->
     <module name="RegexpMultiline">
         <property name="format" value="\r?\n[ \t\x0B\f]*\r?\n[ \t\x0B\f]*\r?\n"/>
         <property name="fileExtensions" value="java"/>
         <property name="message" value="Two consecutive empty lines"/>
     </module>
 
-    <!-- Regexp for PDD todo tags -->
+    <!--
+    Regexp for PDD todo tags formatting.
+    -->
     <module name="RegexpMultiline">
         <property name="format" value="^ +\* @todo A#[\w\d:\-]+!?(:[0-9]+hrs?)? [A-Z][^\n]+$\n(^ +\*  [^ ][^\n]*$\n)*\n"/>
         <property name="fileExtensions" value="java"/>
         <property name="message" value="Wrong format of @todo tag"/>
     </module>
 
-    <!-- JavaDoc regexp checks -->
+    <!--
+    JavaDoc regexp checks
+    -->
     <module name="RegexpSingleline">
         <property name="format" value="\* +@return +[^A-Z]"/>
         <property name="fileExtensions" value="java"/>
@@ -107,14 +130,19 @@
         <property name="headerFile" value="${header.file}"/>
     </module>
 
-    <!-- to enable suppressions -->
+    <!--
+    Enable suppressions
+    -->
     <module name="SuppressWithNearbyCommentFilter">
         <property name="commentFormat" value="@checkstyle (\w+) \((\d+) lines?\)"/>
         <property name="checkFormat" value="$1"/>
         <property name="influenceFormat" value="$2"/>
     </module>
 
-    <module name="com.expinia.tk.checkstyle.SvnPropertiesCheck"/>
+    <!--
+    Check SVN properties.
+    -->
+    <module name="com.qulice.checkstyle.SvnPropertiesCheck"/>
 
     <module name="TreeWalker">
 

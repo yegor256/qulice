@@ -30,11 +30,6 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @version $Id$
- *
- * Release management is done with oss.sonatype.org Nexus platform. Every
- * time you want to make a new release of the product use the
- * instructions from this page:
- * @link http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -90,6 +85,12 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
+            <!-- other details are in parent pom.xml -->
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <scope>test</scope>
             <!-- other details are in parent pom.xml -->
         </dependency>
     </dependencies>
