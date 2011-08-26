@@ -127,7 +127,7 @@
 
     <!-- Checks for Header -->
     <module name="Header">
-        <property name="headerFile" value="${header.file}"/>
+        <property name="header" value="${header}"/>
     </module>
 
     <!--
@@ -139,13 +139,7 @@
         <property name="influenceFormat" value="$2"/>
     </module>
 
-    <!--
-    Check SVN properties.
-    -->
-    <module name="com.qulice.checkstyle.SvnPropertiesCheck"/>
-
     <module name="TreeWalker">
-
         <property name="cacheFile" value="${cache.file}" />
 
         <!-- to enable suppressions -->
@@ -308,8 +302,18 @@
         <module name="WhitespaceAfter"/>
         <module name="WhitespaceAround"/>
 
-        <module name="com.expinia.tk.checkstyle.EmptyLineInMethodCheck"/>
-        <module name="com.expinia.tk.checkstyle.JavadocTagCheck"/>
+        <!--
+        Our custom checkers.
+        -->
+        <module name="com.qulice.checkstyle.EmptyLinesCheck"/>
+        <module name="com.qulice.checkstyle.JavadocTagsCheck"/>
     </module>
-    <module name="com.expinia.tk.checkstyle.TodoFormatCheck"/>
+
+    <!--
+    Our custom checkers.
+    -->
+    <module name="com.qulice.checkstyle.SvnPropertiesCheck"/>
+    <module name="com.qulice.checkstyle.PuzzleFormatCheck"/>
+    <module name="com.qulice.checkstyle.ImportCohesionCheck"/>
+
 </module>

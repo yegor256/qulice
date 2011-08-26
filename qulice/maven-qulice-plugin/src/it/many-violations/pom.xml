@@ -39,6 +39,19 @@
     <packaging>jar</packaging>
     <name>many-violations</name>
 
+    <properties>
+        <dir>${build.output.directory}</dir>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version since="22 Aug 2011">3.0.3</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

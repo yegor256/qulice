@@ -47,6 +47,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.qulice</groupId>
+            <artifactId>qulice-checkstyle</artifactId>
+            <version qulice="yes">1.0-SNAPSHOT</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
             <version since="22 Aug 2011">3.0.3</version>
@@ -90,7 +96,6 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <scope>test</scope>
             <!-- other details are in parent pom.xml -->
         </dependency>
     </dependencies>

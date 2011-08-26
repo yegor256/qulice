@@ -57,9 +57,32 @@ import static org.mockito.Mockito.*;
 @PrepareForTest({ SvnPropertiesCheck.class, ProcessBuilder.class })
 public class SvnPropertiesCheckTest {
 
+    private FileSetCheck check;
+
+    private MessageDispatcher dispatcher;
+
+    @Before
+    public void mockProcessBuilder() throws Exception {
+        PowerMockito.mockStatic(ProcessBuilder.class);
+    }
+
+    @Before
+    public void prepareCheck() throws Exception {
+        this.dispatcher = mock(MessageDispatcher.class);
+        final Configuration config = mock(Configuration.class);
+        doReturn(new String[]{}).when(config).getAttributeNames();
+        doReturn(new Configuration[]{}).when(config).getChildren();
+        doReturn(
+            new ImmutableSortedMap.Builder<String,String>(Ordering.natural())
+            .build()
+        ).when(config).getMessages();
+        this.check = new SvnPropertiesCheck();
+        check.configure(config);
+        check.setMessageDispatcher(dispatcher);
+    }
+
     @Test
     public void testSimulatesSvnPropgetRequest() throws Exception {
-        PowerMockito.mockStatic(ProcessBuilder.class);
         final Map<String, String> props = new HashMap<String, String>();
         props.put("svn:keywords", "Id");
         props.put("svn:eol-style", "native");
@@ -71,24 +94,19 @@ public class SvnPropertiesCheckTest {
             final ProcessBuilder builder = PowerMockito.mock(ProcessBuilder.class);
             PowerMockito.doReturn(proc).when(builder).start();
             PowerMockito.whenNew(ProcessBuilder.class)
-                .withArguments("svn", "propget", entry.getKey(), file.getPath())
-                .thenReturn(builder);
+                .withArguments(
+                    eq(SvnPropertiesCheck.SVN),
+                    eq(SvnPropertiesCheck.PROPGET),
+                    eq(entry.getKey()), eq(file.getPath())
+                ).thenReturn(builder);
         }
-        final MessageDispatcher dispatcher = mock(MessageDispatcher.class);
-        final FileSetCheck check = new SvnPropertiesCheck();
-        check.setMessageDispatcher(dispatcher);
-        check.init();
-        check.beginProcessing("UTF-8");
-        check.process(file, new ArrayList<String>());
-        check.finishProcessing();
-        check.destroy();
+        this.process(file);
         verify(dispatcher, times(0))
             .fireErrors(anyString(), (java.util.TreeSet) anyObject());
     }
 
     @Test
     public void testWithMissedSubversionProperties() throws Exception {
-        PowerMockito.mockStatic(ProcessBuilder.class);
         final File file = new File("bar.txt");
         final InputStream stream = IOUtils.toInputStream("");
         final Process proc = mock(Process.class);
@@ -96,60 +114,37 @@ public class SvnPropertiesCheckTest {
         final ProcessBuilder builder = PowerMockito.mock(ProcessBuilder.class);
         PowerMockito.doReturn(proc).when(builder).start();
         PowerMockito.whenNew(ProcessBuilder.class)
-            .withArguments(eq("svn"), eq("propget"),
+            .withArguments(
+                eq(SvnPropertiesCheck.SVN), eq(SvnPropertiesCheck.PROPGET),
                 anyString(), eq(file.getPath()))
             .thenReturn(builder);
-        final MessageDispatcher dispatcher = mock(MessageDispatcher.class);
-        final Configuration config = mock(Configuration.class);
-        doReturn(new String[]{}).when(config).getAttributeNames();
-        doReturn(new Configuration[]{}).when(config).getChildren();
-        doReturn(
-            new ImmutableSortedMap.Builder<String,String>(Ordering.natural())
-            .build()
-        ).when(config).getMessages();
-        final FileSetCheck check = new SvnPropertiesCheck();
-        check.configure(config);
-        check.setMessageDispatcher(dispatcher);
-        check.init();
-        check.beginProcessing("UTF-8");
-        check.process(file, new ArrayList<String>());
-        check.finishProcessing();
-        check.destroy();
+        this.process(file);
         verify(dispatcher)
             .fireErrors(anyString(), (java.util.TreeSet) anyObject());
     }
 
     @Test
     public void testWithIOExceptionInFile() throws Exception {
-        PowerMockito.mockStatic(ProcessBuilder.class);
-        final File file = new File("foo.txt");
-        final InputStream stream = IOUtils.toInputStream("");
-        final Process proc = mock(Process.class);
-        doReturn(stream).when(proc).getInputStream();
+        final File file = new File("failed.txt");
         final ProcessBuilder builder = PowerMockito.mock(ProcessBuilder.class);
-        PowerMockito.doReturn(proc).when(builder).start();
+        PowerMockito.doThrow(new java.io.IOException("oops"))
+            .when(builder).start();
         PowerMockito.whenNew(ProcessBuilder.class)
-            .withArguments(eq("svn"), eq("propget"),
+            .withArguments(
+                eq(SvnPropertiesCheck.SVN), eq(SvnPropertiesCheck.PROPGET),
                 anyString(), eq(file.getPath()))
             .thenReturn(builder);
-        final MessageDispatcher dispatcher = mock(MessageDispatcher.class);
-        final Configuration config = mock(Configuration.class);
-        doReturn(new String[]{}).when(config).getAttributeNames();
-        doReturn(new Configuration[]{}).when(config).getChildren();
-        doReturn(
-            new ImmutableSortedMap.Builder<String,String>(Ordering.natural())
-            .build()
-        ).when(config).getMessages();
-        final FileSetCheck check = new SvnPropertiesCheck();
-        check.configure(config);
-        check.setMessageDispatcher(dispatcher);
-        check.init();
-        check.beginProcessing("UTF-8");
-        check.process(file, new ArrayList<String>());
-        check.finishProcessing();
-        check.destroy();
+        this.process(file);
         verify(dispatcher)
             .fireErrors(anyString(), (java.util.TreeSet) anyObject());
+    }
+
+    private void process(final File file) {
+        this.check.init();
+        this.check.beginProcessing("UTF-8");
+        this.check.process(file, new ArrayList<String>());
+        this.check.finishProcessing();
+        this.check.destroy();
     }
 
 }

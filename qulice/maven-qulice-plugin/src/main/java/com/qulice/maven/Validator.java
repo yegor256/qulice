@@ -29,9 +29,7 @@
  */
 package com.qulice.maven;
 
-import java.util.Properties;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.project.MavenProject;
 
 /**
  * Validator.
@@ -42,12 +40,9 @@ import org.apache.maven.project.MavenProject;
 public interface Validator {
 
     /**
-     * Validate and report problems into log.
-     * @param project The project we're working in
-     * @param config Set of options provided in "configuration" section
+     * Validate and throw exception if some problems are found.
      * @throws MojoExecutionException In case of any violations found
      */
-    void validate(final MavenProject project, final Properties config)
-        throws MojoExecutionException;
+    void validate() throws MojoExecutionException;
 
 }

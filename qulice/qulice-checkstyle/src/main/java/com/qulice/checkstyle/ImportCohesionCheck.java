@@ -27,56 +27,68 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.project.MavenProject;
+import java.util.regex.Pattern;
 
 /**
- * Check the project and find all possible violations.
+ * Check if import lines are all together without any empty lines or comments.
  *
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- * @goal check
- * @phase verify
- * @threadSafe
  */
-public final class CheckMojo extends AbstractMojo {
+public final class ImportCohesionCheck extends AbstractFileSetCheck {
 
     /**
-     * Maven project, to be injected by Maven itself.
-     * @parameter expression="${project}"
-     * @required
+     * "import" keyword.
      */
-    private MavenProject project;
-
-    /**
-     * Set Maven Project (used mostly for unit testing).
-     * @param proj The project to set
-     */
-    public final void setProject(final MavenProject proj) {
-        this.project = proj;
-    }
+    private static final String IMPORT = "import ";
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public final void execute() throws MojoExecutionException {
-        this.getLog().info("Checking..");
-        final List<Validator> validators = new ArrayList<Validator>();
-        validators.add(
-            new CheckstyleValidator(project, this.getLog(), new Properties())
-        );
-        for (Validator validator : validators) {
-            this.getLog().debug(validator.getClass().getName() + " running...");
-            validator.validate();
+    public void processFiltered(final File file, final List<String> lines) {
+        boolean failure = false;
+        int first = -1;
+        int last = -1;
+        for (int pos = 0; pos < lines.size(); pos += 1) {
+            final String line = lines.get(pos);
+            if (line.startsWith(this.IMPORT)) {
+                if (first == -1) {
+                    first = pos;
+                }
+                last = pos;
+            }
         }
-        this.getLog().info("Done");
+        if (first != -1) {
+            if (!lines.get(first-1).equals("")) {
+                this.log(first, "Line before imports should be empty");
+                failure = true;
+            }
+            if (!lines.get(last+1).equals("")) {
+                this.log(last+2, "Line after imports should be empty");
+                failure = true;
+            }
+            for (int pos = first; pos < last; pos += 1) {
+                final String line = lines.get(pos);
+                if (!line.startsWith(this.IMPORT)) {
+                    this.log(
+                        pos + 1,
+                        "Empty line or comment between imports is not allowed"
+                    );
+                    failure = true;
+                }
+            }
+        }
+        if (failure) {
+            this.fireErrors(file.getPath());
+        }
     }
 
 }

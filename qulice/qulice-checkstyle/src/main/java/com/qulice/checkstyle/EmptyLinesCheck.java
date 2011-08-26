@@ -27,77 +27,56 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.checkstyle;
 
-import java.util.Properties;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.regex.Pattern;
 
 /**
- * Abstract validator.
+ * Check for empty lines inside methods and constructors.
  *
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public abstract class AbstractValidator implements Validator {
+public final class EmptyLinesCheck extends Check {
 
     /**
-     * Maven project.
+     * Pattern for empty line check.
      */
-    private final MavenProject project;
+    private static final Pattern PATTERN = Pattern.compile("^\\s*$");
 
     /**
-     * Maven log.
+     * {@inheritDoc}
      */
-    private final Log log;
-
-    /**
-     * Plugin configuration.
-     */
-    private final Properties config;
-
-    /**
-     * Public ctor.
-     * @param pjct The project we're working in
-     * @param mlog The Maven log
-     * @param cfg Set of options provided in "configuration" section
-     */
-    public AbstractValidator(final MavenProject pjct, final Log mlog,
-        final Properties cfg) {
-        this.project = pjct;
-        this.log = mlog;
-        this.config = cfg;
+    @Override
+    public int[] getDefaultTokens() {
+        return new int[] {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF
+        };
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public abstract void validate() throws MojoExecutionException;
-
-    /**
-     * Get maven project.
-     * @return The project
-     */
-    protected MavenProject project() {
-        return this.project;
-    }
-
-    /**
-     * Get Maven log.
-     * @return The log
-     */
-    protected Log log() {
-        return this.log;
-    }
-
-    /**
-     * Get plugin configuration properties.
-     * @return The props
-     */
-    protected Properties config() {
-        return this.config;
+    public void visitToken(final DetailAST ast) {
+        final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
+        if (opening != null) {
+            final DetailAST closing =
+                opening.findFirstToken(TokenTypes.RCURLY);
+            final int firstLine = opening.getLineNo();
+            final int lastLine = closing.getLineNo();
+            final String[] lines = this.getLines();
+            for (int line = firstLine; line < lastLine; line += 1) {
+                if (this.PATTERN.matcher(lines[line]).find()) {
+                    this.log(line+1, "Empty line inside method");
+                }
+            }
+        }
     }
 
 }

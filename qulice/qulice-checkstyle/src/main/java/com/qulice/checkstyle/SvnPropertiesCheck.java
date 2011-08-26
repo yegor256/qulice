@@ -42,10 +42,21 @@ import java.util.Map;
 /**
  * Check for required svn properties in java files.
  *
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id: CheckstyleValidatorTest.java 7 2011-08-22 20:13:42Z yegor256@yahoo.com $
  */
 public final class SvnPropertiesCheck extends AbstractFileSetCheck {
+
+    /**
+     * Svn executable command.
+     */
+    public static final String SVN = "svn";
+
+    /**
+     * Svn "propget" command.
+     */
+    public static final String PROPGET = "propget";
 
     /**
      * List of required values.
@@ -68,42 +79,59 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
     public void processFiltered(final File file, final List<String> lines) {
         BufferedReader reader = null;
         boolean failed = false;
+        for (Map.Entry<String, String> entry : required.entrySet()) {
+            final String value = this.read(file, entry.getKey());
+            if (value == null || value.isEmpty()) {
+                this.log(
+                    0,
+                    String.format(
+                        "Svn property '%s' is not set",
+                        entry.getKey()
+                    )
+                );
+                failed = true;
+            }
+            if (!entry.getValue().equals(value)) {
+                this.log(
+                    0,
+                    String.format(
+                        "Wrong svn property: %s='%s', should be: '%s'",
+                        entry.getKey(),
+                        value,
+                        entry.getValue()
+                    )
+                );
+                failed = true;
+            }
+        }
+        if (failed) {
+            this.fireErrors(file.getPath());
+        }
+    }
+
+    /**
+     * Read SVN property on the file.
+     * @param file The file
+     * @param name SVN property name
+     */
+    private String read(final File file, final String name) {
+        BufferedReader reader = null;
+        String value = null;
         try {
-            for (Map.Entry<String, String> entry : required.entrySet()) {
-                final ProcessBuilder builder = new ProcessBuilder(
-                    "svn",
-                    "propget",
-                    entry.getKey(),
-                    file.getPath()
-                );
-                builder.redirectErrorStream(true);
-                final Process proc = builder.start();
-                reader = new BufferedReader(
-                    new InputStreamReader(proc.getInputStream())
-                );
-                final String value = reader.readLine();
-                if (value == null || value.isEmpty()) {
-                    this.log(
-                        0,
-                        String.format(
-                            "Svn property '%s' is not set",
-                            entry.getKey()
-                        )
-                    );
-                    failed = true;
-                }
-                if (!entry.getValue().equals(value)) {
-                    this.log(
-                        0,
-                        String.format(
-                            "Wrong svn property: %s='%s', should be: '%s'",
-                            entry.getKey(),
-                            value,
-                            entry.getValue()
-                        )
-                    );
-                    failed = true;
-                }
+            final ProcessBuilder builder = new ProcessBuilder(
+                this.SVN,
+                this.PROPGET,
+                name,
+                file.getPath()
+            );
+            builder.redirectErrorStream(true);
+            final Process proc = builder.start();
+            reader = new BufferedReader(
+                new InputStreamReader(proc.getInputStream())
+            );
+            value = reader.readLine();
+            if (value == null) {
+                value = "";
             }
         } catch (java.io.IOException ex) {
             log(0, "Failed to execute 'svn': " + ex.getMessage());
@@ -111,17 +139,15 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
             if (reader != null) {
                 try {
                     reader.close();
-                } catch (java.io.IOException e) {
+                } catch (java.io.IOException ex) {
                     this.log(
                         0,
-                        "Failed to close 'svn' stream: " + e.getMessage()
+                        "Failed to close 'svn' stream: " + ex.getMessage()
                     );
                 }
             }
         }
-        if (failed) {
-            this.fireErrors(file.getPath());
-        }
+        return value;
     }
 
 }

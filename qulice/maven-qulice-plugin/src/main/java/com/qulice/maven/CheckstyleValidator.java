@@ -33,6 +33,8 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertyResolver;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import java.io.File;
@@ -41,8 +43,10 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import org.apache.commons.io.FileUtils;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.xml.sax.InputSource;
 
@@ -60,49 +64,69 @@ public final class CheckstyleValidator extends AbstractValidator {
     private static final String FILE_PREFIX = "file:";
 
     /**
+     * Public ctor.
+     * @param project The project we're working in
+     * @param log The Maven log
+     * @param config Set of options provided in "configuration" section
+     */
+    public CheckstyleValidator(final MavenProject project, final Log log,
+        final Properties config) {
+        super(project, log, config);
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
-    public void validate(final MavenProject project, final Properties config)
-        throws MojoExecutionException {
+    public void validate() throws MojoExecutionException {
         Checker checker;
         try {
             checker = new Checker();
         } catch (CheckstyleException ex) {
             throw new MojoExecutionException("Failed to create checker", ex);
         }
-        final InputSource src = new InputSource(
-            this.getClass().getResourceAsStream("checkstyle/checks.xml")
-        );
-        checker.setClassloader(this.classloader(project));
+        checker.setClassloader(this.classloader());
         checker.setModuleClassLoader(this.getClass().getClassLoader());
         try {
-            checker.configure(this.configuration(project, config));
+            checker.configure(this.configuration());
         } catch (CheckstyleException ex) {
             throw new MojoExecutionException("Failed to configure checker", ex);
         }
-        checker.process(this.files(project));
+        final Listener listener = new Listener();
+        checker.addListener(listener);
+        checker.process(this.files());
         checker.destroy();
+        final List<AuditEvent> events = listener.events();
+        if (!events.isEmpty()) {
+            for (AuditEvent event : events) {
+                this.log().error(
+                    String.format(
+                        "%s [%d]: %s",
+                        event.getFileName(),
+                        event.getLine(),
+                        event.getMessage()
+                    )
+                );
+            }
+            throw new MojoExecutionException("Checkstyle violations");
+        }
     }
 
     /**
      * Load checkstyle configuration.
-     * @param project The project
-     * @param config Configuration of plugin
      * @return The configuration just loaded
      * @see #validate(MavenProject,Properties)
      */
-    private Configuration configuration(final MavenProject project,
-        final Properties config) throws MojoExecutionException {
-        final Properties props = new Properties();
+    private Configuration configuration() throws MojoExecutionException {
         final File buildDir = new File(
-            project.getProperties().getProperty("project.build.directory")
+            this.project().getBuild().getOutputDirectory()
         );
+        final Properties props = new Properties();
         props.setProperty(
             "cache.file",
             new File(buildDir, "qulice-checkstyle.cache").getPath()
         );
-        props.setProperty("header.file", this.license(project, config));
+        props.setProperty("header", this.header());
         final InputSource src = new InputSource(
             this.getClass().getResourceAsStream("checkstyle/checks.xml")
         );
@@ -122,24 +146,22 @@ public final class CheckstyleValidator extends AbstractValidator {
 
     /**
      * Create classloader for checkstyle.
-     * @param project The project
      * @return The classloader
      * @see #validate(MavenProject,Properties)
      */
-    private ClassLoader classloader(final MavenProject project)
-        throws MojoExecutionException {
+    private ClassLoader classloader() throws MojoExecutionException {
         List<String> paths;
         try {
-            paths = project.getCompileClasspathElements();
+            paths = this.project().getCompileClasspathElements();
         } catch (DependencyResolutionRequiredException ex) {
             throw new MojoExecutionException("Failed to read classpath", ex);
         }
-        paths.add(project.getBuild().getOutputDirectory());
-        paths.add(project.getBuild().getTestOutputDirectory());
+        paths.add(this.project().getBuild().getTestOutputDirectory());
         final List<URL> urls = new ArrayList<URL>();
         for (String path : paths) {
             try {
                 urls.add(new File(path).toURI().toURL());
+                this.log().info(path);
             } catch (java.net.MalformedURLException ex) {
                 throw new MojoExecutionException("Failed to build URL", ex);
             }
@@ -149,34 +171,26 @@ public final class CheckstyleValidator extends AbstractValidator {
 
     /**
      * Get full list of files to process.
-     * @param project The project to process
      * @throws MojoExecutionException If something goes wrong
      * @see #validate(MavenProject,Properties)
      */
-    private List<File> files(final MavenProject project)
-        throws MojoExecutionException {
+    private List<File> files() throws MojoExecutionException {
         return new ArrayList<File>();
     }
 
     /**
-     * Find license file.
-     * @param project The project
-     * @param config Configuration of plugin
-     * @return The file absolute path
+     * Create header content, from file.
+     * @return The content of header
      * @see #configuration(MavenProject,Properties)
      */
-    private String license(final MavenProject project,
-        final Properties config) throws MojoExecutionException {
-        final String name = config.getProperty(
-            "license",
-            "/checkstyle/LICENSE.txt"
-        );
+    private String header() throws MojoExecutionException {
+        final String name = this.config().getProperty("license", "/LICENSE.txt");
         File file;
         if (name.startsWith(this.FILE_PREFIX)) {
             file = new File(name.substring(this.FILE_PREFIX.length()));
         } else {
-            final URL license = this.getClass().getResource(name);
-            if (license == null) {
+            final URL url = this.classloader().getResource(name);
+            if (url == null) {
                 throw new MojoExecutionException(
                     String.format(
                         "'%s' resource is not found in classpath",
@@ -184,7 +198,7 @@ public final class CheckstyleValidator extends AbstractValidator {
                     )
                 );
             }
-            file = new File(license.getFile());
+            file = new File(url.getFile());
         }
         if (!file.exists()) {
             throw new MojoExecutionException(
@@ -194,7 +208,71 @@ public final class CheckstyleValidator extends AbstractValidator {
                 )
             );
         }
-        return file.getPath();
+        String content;
+        try {
+            content = FileUtils.readFileToString(file).replace("\n", "\\n * ");
+        } catch (java.io.IOException ex) {
+            throw new MojoExecutionException("Failed to read header", ex);
+        }
+        return "/**\n * " + content + "\n */\n";
+    }
+
+    /**
+     * Listener of events.
+     */
+    private static final class Listener implements AuditListener {
+        /**
+         * Collection of events collected.
+         */
+        private final List<AuditEvent> events = new ArrayList<AuditEvent>();
+        /**
+         * Get all events.
+         */
+        public List<AuditEvent> events() {
+            return this.events;
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void auditStarted(final AuditEvent event) {
+            // intentionally empty
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void auditFinished(final AuditEvent event) {
+            // intentionally empty
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void fileStarted(final AuditEvent event) {
+            // intentionally empty
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void fileFinished(final AuditEvent event) {
+            // intentionally empty
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void addError(final AuditEvent event) {
+            this.events.add(event);
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void addException(final AuditEvent event, Throwable throwable) {
+            // intentionally empty
+        }
     }
 
 }
