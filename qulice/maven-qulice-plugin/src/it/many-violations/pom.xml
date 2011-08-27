@@ -59,6 +59,7 @@
                 <artifactId>maven-qulice-plugin</artifactId>
                 <version qulice="yes">1.0-SNAPSHOT</version>
                 <configuration>
+                    <license>file:./src/main/resources/LICENSE.txt</license>
                     <!-- ... to be continued ... -->
                 </configuration>
                 <executions>

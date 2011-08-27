@@ -63,6 +63,16 @@
             <artifactId>maven-project</artifactId>
             <version since="22 Aug 2011">3.0-alpha-2</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <!--
+                    This artifact is excluded from here because of a conflict
+                    with the same artifact (but newer) included by Checkstyle
+                    -->
+                    <groupId>com.google.code.google-collections</groupId>
+                    <artifactId>google-collect</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>

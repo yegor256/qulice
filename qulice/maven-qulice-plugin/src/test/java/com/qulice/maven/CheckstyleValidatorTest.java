@@ -33,6 +33,7 @@ import java.io.File;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.model.Build;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.junit.*;
@@ -51,25 +52,34 @@ public class CheckstyleValidatorTest {
     @Rule
     public TemporaryFolder temp = new TemporaryFolder();
 
-    @Ignore
-    @Test
-    public void testValidatesSetOfFiles() throws Exception {
-        final File folder = temp.newFolder("src");
+    private File folder;
+
+    private Validator validator;
+
+    @Before
+    public void prepareValidator() throws Exception {
+        this.folder = this.temp.newFolder("temp-src");
         final MavenProject project = mock(MavenProject.class);
         final Properties props = new Properties();
         doReturn(props).when(project).getProperties();
+        doReturn(new File(this.folder.getPath())).when(project).getBasedir();
         final Build build = mock(Build.class);
         doReturn(build).when(project).getBuild();
-        doReturn(folder.getPath()).when(build).getOutputDirectory();
-        doReturn(folder.getPath()).when(build).getTestOutputDirectory();
+        doReturn(this.folder.getPath()).when(build).getOutputDirectory();
+        doReturn(this.folder.getPath()).when(build).getTestOutputDirectory();
         final Properties config = new Properties();
         final File license = temp.newFile("license.txt");
         FileUtils.writeStringToFile(license, "license\n");
         config.setProperty("license", "file:" + license.getPath());
         final Log log = mock(Log.class);
-        final Validator validator =
-            new CheckstyleValidator(project, log, config);
-        validator.validate();
+        this.validator = new CheckstyleValidator(project, log, config);
+    }
+
+    @Test(expected = MojoFailureException.class)
+    public void testValidatesSetOfFiles() throws Exception {
+        final File java = new File(this.folder, "Main.java");
+        FileUtils.writeStringToFile(java, "public class Main { }");
+        this.validator.validate();
     }
 
 }

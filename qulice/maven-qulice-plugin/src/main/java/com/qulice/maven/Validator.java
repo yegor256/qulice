@@ -29,7 +29,7 @@
  */
 package com.qulice.maven;
 
-import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 
 /**
  * Validator.
@@ -41,8 +41,8 @@ public interface Validator {
 
     /**
      * Validate and throw exception if some problems are found.
-     * @throws MojoExecutionException In case of any violations found
+     * @throws MojoFailureException In case of any violations found
      */
-    void validate() throws MojoExecutionException;
+    void validate() throws MojoFailureException;
 
 }

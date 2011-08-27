@@ -44,8 +44,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
-import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.xml.sax.InputSource;
@@ -78,19 +81,19 @@ public final class CheckstyleValidator extends AbstractValidator {
      * {@inheritDoc}
      */
     @Override
-    public void validate() throws MojoExecutionException {
+    public void validate() throws MojoFailureException {
         Checker checker;
         try {
             checker = new Checker();
         } catch (CheckstyleException ex) {
-            throw new MojoExecutionException("Failed to create checker", ex);
+            throw new IllegalStateException("Failed to create checker", ex);
         }
         checker.setClassloader(this.classloader());
         checker.setModuleClassLoader(this.getClass().getClassLoader());
         try {
             checker.configure(this.configuration());
         } catch (CheckstyleException ex) {
-            throw new MojoExecutionException("Failed to configure checker", ex);
+            throw new IllegalStateException("Failed to configure checker", ex);
         }
         final Listener listener = new Listener();
         checker.addListener(listener);
@@ -99,16 +102,25 @@ public final class CheckstyleValidator extends AbstractValidator {
         final List<AuditEvent> events = listener.events();
         if (!events.isEmpty()) {
             for (AuditEvent event : events) {
+                final String check = event.getSourceName();
                 this.log().error(
                     String.format(
-                        "%s [%d]: %s",
-                        event.getFileName(),
+                        "%s[%d]: %s (%s)",
+                        event.getFileName().substring(
+                            this.project().getBasedir().toString().length()
+                        ),
                         event.getLine(),
-                        event.getMessage()
+                        event.getMessage(),
+                        check.substring(check.lastIndexOf('.') + 1)
                     )
                 );
             }
-            throw new MojoExecutionException("Checkstyle violations");
+            throw new MojoFailureException(
+                String.format(
+                    "%d Checkstyle violations (see log above)",
+                    events.size()
+                )
+            );
         }
     }
 
@@ -117,7 +129,7 @@ public final class CheckstyleValidator extends AbstractValidator {
      * @return The configuration just loaded
      * @see #validate(MavenProject,Properties)
      */
-    private Configuration configuration() throws MojoExecutionException {
+    private Configuration configuration() {
         final File buildDir = new File(
             this.project().getBuild().getOutputDirectory()
         );
@@ -139,7 +151,7 @@ public final class CheckstyleValidator extends AbstractValidator {
                 true
             );
         } catch (CheckstyleException ex) {
-            throw new MojoExecutionException("Failed to load config", ex);
+            throw new IllegalStateException("Failed to load config", ex);
         }
         return configuration;
     }
@@ -149,24 +161,22 @@ public final class CheckstyleValidator extends AbstractValidator {
      * @return The classloader
      * @see #validate(MavenProject,Properties)
      */
-    private ClassLoader classloader() throws MojoExecutionException {
-        List<String> paths;
+    private ClassLoader classloader() {
+        final List<String> paths = new ArrayList<String>();
         try {
-            paths = this.project().getCompileClasspathElements();
+            paths.addAll(this.project().getTestClasspathElements());
         } catch (DependencyResolutionRequiredException ex) {
-            throw new MojoExecutionException("Failed to read classpath", ex);
+            throw new IllegalStateException("Failed to read classpath", ex);
         }
-        paths.add(this.project().getBuild().getTestOutputDirectory());
         final List<URL> urls = new ArrayList<URL>();
         for (String path : paths) {
             try {
                 urls.add(new File(path).toURI().toURL());
-                this.log().info(path);
             } catch (java.net.MalformedURLException ex) {
-                throw new MojoExecutionException("Failed to build URL", ex);
+                throw new IllegalStateException("Failed to build URL", ex);
             }
         }
-        return new URLClassLoader((URL[]) urls.toArray(new URL[urls.size()]), null);
+        return new URLClassLoader(urls.toArray(new URL[] {}));
     }
 
     /**
@@ -174,8 +184,17 @@ public final class CheckstyleValidator extends AbstractValidator {
      * @throws MojoExecutionException If something goes wrong
      * @see #validate(MavenProject,Properties)
      */
-    private List<File> files() throws MojoExecutionException {
-        return new ArrayList<File>();
+    private List<File> files() {
+        final List<File> files = new ArrayList<File>();
+        final IOFileFilter filter = new WildcardFileFilter("*.java");
+        files.addAll(
+            FileUtils.listFiles(
+                this.project().getBasedir(),
+                filter,
+                DirectoryFileFilter.INSTANCE
+            )
+        );
+        return files;
     }
 
     /**
@@ -183,7 +202,7 @@ public final class CheckstyleValidator extends AbstractValidator {
      * @return The content of header
      * @see #configuration(MavenProject,Properties)
      */
-    private String header() throws MojoExecutionException {
+    private String header() {
         final String name = this.config().getProperty("license", "/LICENSE.txt");
         File file;
         if (name.startsWith(this.FILE_PREFIX)) {
@@ -191,7 +210,7 @@ public final class CheckstyleValidator extends AbstractValidator {
         } else {
             final URL url = this.classloader().getResource(name);
             if (url == null) {
-                throw new MojoExecutionException(
+                throw new IllegalStateException(
                     String.format(
                         "'%s' resource is not found in classpath",
                         name
@@ -201,7 +220,7 @@ public final class CheckstyleValidator extends AbstractValidator {
             file = new File(url.getFile());
         }
         if (!file.exists()) {
-            throw new MojoExecutionException(
+            throw new IllegalStateException(
                 String.format(
                     "File '%s' not found",
                     file.getPath()
@@ -212,7 +231,7 @@ public final class CheckstyleValidator extends AbstractValidator {
         try {
             content = FileUtils.readFileToString(file).replace("\n", "\\n * ");
         } catch (java.io.IOException ex) {
-            throw new MojoExecutionException("Failed to read header", ex);
+            throw new IllegalStateException("Failed to read header", ex);
         }
         return "/**\n * " + content + "\n */\n";
     }

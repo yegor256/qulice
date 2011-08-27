@@ -55,6 +55,13 @@ public final class CheckMojo extends AbstractMojo {
     private MavenProject project;
 
     /**
+     * Licence file location.
+     * @parameter expression="${qulice.license}" default="/LICENSE.txt"
+     * @required
+     */
+    private String license;
+
+    /**
      * Set Maven Project (used mostly for unit testing).
      * @param proj The project to set
      */
@@ -68,9 +75,11 @@ public final class CheckMojo extends AbstractMojo {
     @Override
     public final void execute() throws MojoExecutionException {
         this.getLog().info("Checking..");
+        final Properties props = new Properties();
+        props.setProperty("license", this.license);
         final List<Validator> validators = new ArrayList<Validator>();
         validators.add(
-            new CheckstyleValidator(project, this.getLog(), new Properties())
+            new CheckstyleValidator(project, this.getLog(), props)
         );
         for (Validator validator : validators) {
             this.getLog().debug(validator.getClass().getName() + " running...");

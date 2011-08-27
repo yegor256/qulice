@@ -30,7 +30,7 @@
 package com.qulice.maven;
 
 import java.util.Properties;
-import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 
@@ -74,7 +74,7 @@ public abstract class AbstractValidator implements Validator {
      * {@inheritDoc}
      */
     @Override
-    public abstract void validate() throws MojoExecutionException;
+    public abstract void validate() throws MojoFailureException;
 
     /**
      * Get maven project.
