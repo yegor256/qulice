@@ -44,9 +44,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
+import org.apache.commons.lang.StringUtils;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
@@ -164,7 +166,7 @@ public final class CheckstyleValidator extends AbstractValidator {
     private ClassLoader classloader() {
         final List<String> paths = new ArrayList<String>();
         try {
-            paths.addAll(this.project().getTestClasspathElements());
+            paths.addAll(this.project().getRuntimeClasspathElements());
         } catch (DependencyResolutionRequiredException ex) {
             throw new IllegalStateException("Failed to read classpath", ex);
         }
@@ -176,7 +178,12 @@ public final class CheckstyleValidator extends AbstractValidator {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
-        return new URLClassLoader(urls.toArray(new URL[] {}));
+        final URLClassLoader loader =
+            new URLClassLoader(urls.toArray(new URL[] {}), this.getClass().getClassLoader());
+        for (URL url : loader.getURLs()) {
+            this.log().info("Classpath: " + url);
+        }
+        return loader;
     }
 
     /**
@@ -203,12 +210,16 @@ public final class CheckstyleValidator extends AbstractValidator {
      * @see #configuration(MavenProject,Properties)
      */
     private String header() {
-        final String name = this.config().getProperty("license", "/LICENSE.txt");
-        File file;
+        final String name = this.config().getProperty("license", "LICENSE.txt");
+        URL url;
         if (name.startsWith(this.FILE_PREFIX)) {
-            file = new File(name.substring(this.FILE_PREFIX.length()));
+            try {
+                url = new URL(name);
+            } catch (java.net.MalformedURLException ex) {
+                throw new IllegalStateException("Invalid URL", ex);
+            }
         } else {
-            final URL url = this.classloader().getResource(name);
+            url = this.classloader().getResource(name);
             if (url == null) {
                 throw new IllegalStateException(
                     String.format(
@@ -217,23 +228,27 @@ public final class CheckstyleValidator extends AbstractValidator {
                     )
                 );
             }
-            file = new File(url.getFile());
-        }
-        if (!file.exists()) {
-            throw new IllegalStateException(
-                String.format(
-                    "File '%s' not found",
-                    file.getPath()
-                )
-            );
         }
         String content;
         try {
-            content = FileUtils.readFileToString(file).replace("\n", "\\n * ");
+            content = IOUtils.toString(url.openStream());
         } catch (java.io.IOException ex) {
             throw new IllegalStateException("Failed to read header", ex);
         }
-        return "/**\n * " + content + "\n */\n";
+        final StringBuilder builder = new StringBuilder();
+        builder.append("/**\n");
+        for (String line : StringUtils.splitPreserveAllTokens(content, '\n')) {
+            if (line.length() > 0) {
+                builder.append(" * " + line);
+            } else {
+                builder.append(" *");
+            }
+            builder.append("\n");
+        }
+        builder.append(" */\n");
+        final String license = builder.toString();
+        this.log().info("LICENSE found: " + url + "\n" + license);
+        return license;
     }
 
     /**

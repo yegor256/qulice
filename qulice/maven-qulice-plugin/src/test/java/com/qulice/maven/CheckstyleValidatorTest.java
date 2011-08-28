@@ -30,6 +30,10 @@
 package com.qulice.maven;
 
 import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.model.Build;
@@ -38,6 +42,8 @@ import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -45,6 +51,8 @@ import static org.mockito.Mockito.*;
  * @version $Id$
  */
 public class CheckstyleValidatorTest {
+
+    private static final String LICENSE_PROP = "license";
 
     /**
      * @checkstyle VisibilityModifier (3 lines)
@@ -54,32 +62,47 @@ public class CheckstyleValidatorTest {
 
     private File folder;
 
-    private Validator validator;
+    private MavenProject project;
 
     @Before
     public void prepareValidator() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
-        final MavenProject project = mock(MavenProject.class);
-        final Properties props = new Properties();
-        doReturn(props).when(project).getProperties();
+        this.project = mock(MavenProject.class);
         doReturn(new File(this.folder.getPath())).when(project).getBasedir();
         final Build build = mock(Build.class);
         doReturn(build).when(project).getBuild();
+        final List<String> paths = new ArrayList<String>();
+        paths.add(this.folder.getPath());
+        doReturn(paths).when(project).getTestClasspathElements();
+        doReturn(paths).when(project).getRuntimeClasspathElements();
         doReturn(this.folder.getPath()).when(build).getOutputDirectory();
         doReturn(this.folder.getPath()).when(build).getTestOutputDirectory();
-        final Properties config = new Properties();
-        final File license = temp.newFile("license.txt");
-        FileUtils.writeStringToFile(license, "license\n");
-        config.setProperty("license", "file:" + license.getPath());
-        final Log log = mock(Log.class);
-        this.validator = new CheckstyleValidator(project, log, config);
     }
 
     @Test(expected = MojoFailureException.class)
     public void testValidatesSetOfFiles() throws Exception {
+        final Properties config = new Properties();
+        final File license = this.temp.newFile("license.txt");
+        FileUtils.writeStringToFile(license, "license\n");
+        config.setProperty(this.LICENSE_PROP, "file:" + license.getPath());
+        final Log log = mock(Log.class);
+        final Validator validator =
+            new CheckstyleValidator(this.project, log, config);
         final File java = new File(this.folder, "Main.java");
         FileUtils.writeStringToFile(java, "public class Main { }");
-        this.validator.validate();
+        validator.validate();
+    }
+
+    @Test
+    public void testImmitatesLicenseInClasspath() throws Exception {
+        final File license = new File(this.folder, "my-license.txt");
+        FileUtils.writeStringToFile(license, "some non-important text\n");
+        final Properties config = new Properties();
+        config.setProperty(this.LICENSE_PROP, license.getName());
+        final Log log = mock(Log.class);
+        final Validator validator =
+            new CheckstyleValidator(this.project, log, config);
+        validator.validate();
     }
 
 }
