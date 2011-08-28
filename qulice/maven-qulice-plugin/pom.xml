@@ -54,7 +54,19 @@
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
+            <artifactId>maven-core</artifactId>
+            <version since="22 Aug 2011">3.0.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
+            <version since="22 Aug 2011">3.0.3</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-artifact</artifactId>
             <version since="22 Aug 2011">3.0.3</version>
             <scope>provided</scope>
         </dependency>
@@ -73,12 +85,6 @@
                     <artifactId>google-collect</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-artifact</artifactId>
-            <version since="22 Aug 2011">3.0.3</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-testing</groupId>
@@ -127,9 +133,9 @@
                 <version since="22 Mar 2011">1.5</version>
                 <configuration>
                     <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-                    <debug>false</debug>
+                    <debug>true</debug>
                     <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
-                    <noLog>true</noLog>
+                    <noLog>false</noLog>
                     <!--
                     With this construct you can exclude certain IT projects.
                     <pomExcludes>

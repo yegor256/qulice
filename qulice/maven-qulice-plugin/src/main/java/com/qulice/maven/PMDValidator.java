@@ -59,6 +59,23 @@ public final class PMDValidator extends AbstractValidator {
      */
     @Override
     public void validate() throws MojoFailureException {
+        final Properties props = new Properties();
+        props.put("targetJdk", "1.6");
+        props.put("includeTests", "true");
+        props.put("rulesets", new String[] { "pmd/ruleset.xml" });
+        props.put("targetDirectory",
+            this.project().getBuild().getOutputDirectory());
+        props.put("outputDirectory",
+            this.project().getBuild().getOutputDirectory());
+        props.put("compileSourceRoots",
+            this.project().getCompileSourceRoots());
+        props.put("testSourceRoots",
+            this.project().getTestCompileSourceRoots());
+        this.executor().execute(
+            "org.apache.maven.plugins:maven-pmd-plugin:2.5",
+            "pmd",
+            props
+        );
     }
 
 }

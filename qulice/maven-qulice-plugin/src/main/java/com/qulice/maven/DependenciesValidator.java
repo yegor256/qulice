@@ -29,26 +29,43 @@
  */
 package com.qulice.maven;
 
+import java.util.Properties;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugin.logging.Log;
+import org.apache.maven.project.MavenProject;
 
 /**
- * Validator.
+ * Validator of dependencies.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public interface Validator {
+public final class DependenciesValidator extends AbstractValidator {
 
     /**
-     * Validate and throw exception if some problems are found.
-     * @throws MojoFailureException In case of any violations found
+     * Public ctor.
+     * @param project The project we're working in
+     * @param log The Maven log
+     * @param config Set of options provided in "configuration" section
      */
-    void validate() throws MojoFailureException;
+    public DependenciesValidator(final MavenProject project, final Log log,
+        final Properties config) {
+        super(project, log, config);
+    }
 
     /**
-     * Inject MOJO executor.
-     * @param exec The executor of MOJOs
+     * {@inheritDoc}
      */
-    void inject(final MojoExecutor exec);
+    @Override
+    public void validate() throws MojoFailureException {
+        final Properties props = new Properties();
+        props.put("ignoreNonCompile", "true");
+        props.put("failOnWarning", "true");
+        this.executor().execute(
+            "org.apache.maven.plugins:maven-dependency-plugin:2.1",
+            "analyze-only",
+            props
+        );
+    }
 
 }

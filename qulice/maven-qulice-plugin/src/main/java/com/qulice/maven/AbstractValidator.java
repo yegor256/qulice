@@ -58,6 +58,11 @@ public abstract class AbstractValidator implements Validator {
     private final Properties config;
 
     /**
+     * Executor of MOJO-s.
+     */
+    private MojoExecutor executor;
+
+    /**
      * Public ctor.
      * @param pjct The project we're working in
      * @param mlog The Maven log
@@ -77,10 +82,18 @@ public abstract class AbstractValidator implements Validator {
     public abstract void validate() throws MojoFailureException;
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public final void inject(final MojoExecutor exec) {
+        this.executor = exec;
+    }
+
+    /**
      * Get maven project.
      * @return The project
      */
-    protected MavenProject project() {
+    protected final MavenProject project() {
         return this.project;
     }
 
@@ -88,7 +101,7 @@ public abstract class AbstractValidator implements Validator {
      * Get Maven log.
      * @return The log
      */
-    protected Log log() {
+    protected final Log log() {
         return this.log;
     }
 
@@ -96,8 +109,16 @@ public abstract class AbstractValidator implements Validator {
      * Get plugin configuration properties.
      * @return The props
      */
-    protected Properties config() {
+    protected final Properties config() {
         return this.config;
+    }
+
+    /**
+     * Get MOJO executor.
+     * @return The executor
+     */
+    protected final MojoExecutor executor() {
+        return this.executor;
     }
 
 }

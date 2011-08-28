@@ -32,7 +32,9 @@ package com.qulice.maven;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MavenPluginManager;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 
@@ -51,8 +53,24 @@ public final class CheckMojo extends AbstractMojo {
      * Maven project, to be injected by Maven itself.
      * @parameter expression="${project}"
      * @required
+     * @readonly
      */
     private MavenProject project;
+
+    /**
+     * Maven session, to be injected by Maven itself.
+     * @parameter expression="${session}"
+     * @required
+     * @readonly
+     */
+    private MavenSession session;
+
+    /**
+     * Maven plugin manager, to be injected by Maven itself.
+     * @component
+     * @required
+     */
+    private MavenPluginManager manager;
 
     /**
      * Shall we skip execution?
@@ -90,13 +108,18 @@ public final class CheckMojo extends AbstractMojo {
         props.setProperty("license", this.license);
         final List<Validator> validators = new ArrayList<Validator>();
         validators.add(
+            new DependenciesValidator(project, this.getLog(), props)
+        );
+        validators.add(
             new CheckstyleValidator(project, this.getLog(), props)
         );
         validators.add(
             new PMDValidator(project, this.getLog(), props)
         );
+        final MojoExecutor exec = new MojoExecutor(this.manager, this.session);
         for (Validator validator : validators) {
             this.getLog().debug(validator.getClass().getName() + " running...");
+            validator.inject(exec);
             validator.validate();
         }
         this.getLog().info("Done");
