@@ -103,7 +103,6 @@ public final class CheckMojo extends AbstractMojo {
             this.getLog().info("Execution skipped");
             return;
         }
-        this.getLog().info("Checking..");
         final Properties props = new Properties();
         props.setProperty("license", this.license);
         final List<Validator> validators = new ArrayList<Validator>();
@@ -122,7 +121,6 @@ public final class CheckMojo extends AbstractMojo {
             validator.inject(exec);
             validator.validate();
         }
-        this.getLog().info("Done");
     }
 
 }

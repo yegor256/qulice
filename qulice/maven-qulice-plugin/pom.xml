@@ -133,7 +133,7 @@
                 <version since="22 Mar 2011">1.5</version>
                 <configuration>
                     <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-                    <debug>true</debug>
+                    <debug>false</debug>
                     <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
                     <noLog>false</noLog>
                     <!--
