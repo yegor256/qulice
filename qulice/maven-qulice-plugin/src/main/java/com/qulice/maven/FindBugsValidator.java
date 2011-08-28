@@ -1,6 +1,4 @@
-<?xml version="1.0"?>
-<!--
- *
+/**
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -28,31 +26,47 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.maven;
+
+import java.io.File;
+import java.util.Properties;
+import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugin.logging.Log;
+import org.apache.maven.project.MavenProject;
+
+/**
+ * Validator with FindBugs.
  *
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+ */
+public final class FindBugsValidator extends AbstractValidator {
 
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.qulice.plugin</groupId>
-    <artifactId>mod-tk</artifactId>
-    <version>1.0</version>
-    <packaging>jar</packaging>
-    <name>mod-tk</name>
+    /**
+     * Public ctor.
+     * @param project The project we're working in
+     * @param log The Maven log
+     * @param config Set of options provided in "configuration" section
+     */
+    public FindBugsValidator(final MavenProject project, final Log log,
+        final Properties config) {
+        super(project, log, config);
+    }
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.qulice</groupId>
-                <artifactId>maven-qulice-plugin</artifactId>
-                <version qulice="yes">1.0-SNAPSHOT</version>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void validate() throws MojoFailureException {
+        final Properties props = new Properties();
+        props.put("failOnError", "false");
+        props.put("xmlOutput", "true");
+        this.executor().execute(
+            "org.codehaus.mojo:findbugs-maven-plugin:2.3.2",
+            "check",
+            props
+        );
+    }
 
-</project>
+}

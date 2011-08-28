@@ -118,9 +118,16 @@ public final class CheckMojo extends AbstractMojo {
         validators.add(
             new PMDValidator(project, this.getLog(), props)
         );
-        final MojoExecutor exec = new MojoExecutor(this.manager, this.session);
+        validators.add(
+            new FindBugsValidator(project, this.getLog(), props)
+        );
+        validators.add(
+            new CoberturaValidator(project, this.getLog(), props)
+        );
+        final MojoExecutor exec = new MojoExecutor(
+            this.manager, this.session, this.getLog()
+        );
         for (Validator validator : validators) {
-            this.getLog().debug(validator.getClass().getName() + " running...");
             validator.inject(exec);
             validator.validate();
         }

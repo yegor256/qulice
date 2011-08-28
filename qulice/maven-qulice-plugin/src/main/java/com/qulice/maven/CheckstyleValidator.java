@@ -124,6 +124,7 @@ public final class CheckstyleValidator extends AbstractValidator {
                 )
             );
         }
+        this.log().info("No Checkstyle violations found");
     }
 
     /**
@@ -181,7 +182,7 @@ public final class CheckstyleValidator extends AbstractValidator {
         final URLClassLoader loader =
             new URLClassLoader(urls.toArray(new URL[] {}), this.getClass().getClassLoader());
         for (URL url : loader.getURLs()) {
-            this.log().info("Classpath: " + url);
+            this.log().debug("Classpath: " + url);
         }
         return loader;
     }
@@ -247,7 +248,8 @@ public final class CheckstyleValidator extends AbstractValidator {
         }
         builder.append(" */\n");
         final String license = builder.toString();
-        this.log().info("LICENSE found: " + url + "\n" + license);
+        this.log().info("LICENSE found: " + url);
+        this.log().debug(license);
         return license;
     }
 

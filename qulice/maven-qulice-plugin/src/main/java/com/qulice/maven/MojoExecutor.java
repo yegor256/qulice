@@ -40,6 +40,7 @@ import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.descriptor.MojoDescriptor;
+import org.apache.maven.plugin.logging.Log;
 import org.codehaus.plexus.configuration.PlexusConfiguration;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
@@ -62,13 +63,21 @@ public final class MojoExecutor {
     private MavenSession session;
 
     /**
+     * Maven log.
+     */
+    private Log log;
+
+    /**
      * Public ctor.
      * @param mngr The manager
      * @param sesn Maven session
+     * @param mlog Maven log
      */
-    public MojoExecutor(final MavenPluginManager mngr, final MavenSession sesn) {
+    public MojoExecutor(final MavenPluginManager mngr, final MavenSession sesn,
+        final Log mlog) {
         this.manager = mngr;
         this.session = sesn;
+        this.log = mlog;
     }
 
     /**
@@ -130,6 +139,13 @@ public final class MojoExecutor {
         } catch (org.apache.maven.plugin.PluginContainerException ex) {
             throw new IllegalStateException("Plugin container failure", ex);
         }
+        this.log.info(
+            String.format(
+                "Calling %s:%s...",
+                coords,
+                goal
+            )
+        );
         try {
             mojo.execute();
         } catch (org.apache.maven.plugin.MojoExecutionException ex) {
