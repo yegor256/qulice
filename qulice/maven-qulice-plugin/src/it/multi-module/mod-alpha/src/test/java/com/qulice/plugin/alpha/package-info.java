@@ -28,25 +28,3 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.qulice.plugin.alpha;
-
-import org.junit.Assert;
-import org.junit.Test;
-
-/**
- * Simple test of the Main class.
- * @author Yegor Bugayenko (yegor@qulice.com)
- * @version $Id$
- */
-public final class MainTest {
-
-    /**
-     * Simple testing.
-     */
-    @Test
-    public void testSquare() {
-        final Main main = new Main();
-        final int square = main.square(1);
-        Assert.assertEquals(1, square);
-    }
-
-}
