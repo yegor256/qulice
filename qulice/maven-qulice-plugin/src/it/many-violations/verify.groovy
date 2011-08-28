@@ -33,11 +33,6 @@
  * Validate that the build really failed and violations were reported.
  */
 
-/*
-def report = new File(basedir, "target/qulice.xml");
-if (!report.exists()) {
-    throw new RuntimeException(
-        "Report was not generated at " + report
-    );
-}
-*/
+def log = new File(basedir, "build.log")
+assert log.text.contains("LICENSE found")
+assert log.text.contains("6 Checkstyle violations (see log above)")

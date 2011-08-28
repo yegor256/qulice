@@ -29,21 +29,20 @@
  */
 package com.qulice.plugin.alpha;
 
+import org.junit.Assert;
+import org.junit.Test;
+
 /**
- * Sample class.
- *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class Main {
+public class MainTest {
 
-    /**
-     * Calculate square of a number.
-     * @param num The number
-     * @return The square
-     */
-    public int square(final int num) {
-        return num * num;
+    @Test
+    public void testSquare() throws Exception {
+        final Main main = new Main();
+        final int square = main.square(1);
+        Assert.assertEquals(1, square);
     }
 
 }

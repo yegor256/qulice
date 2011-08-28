@@ -1,4 +1,5 @@
 /**
+ *
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -26,24 +27,12 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.plugin.alpha;
-
-/**
- * Sample class.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ *
+ * Validate that the build really failed and violations were reported.
  */
-public final class Main {
 
-    /**
-     * Calculate square of a number.
-     * @param num The number
-     * @return The square
-     */
-    public int square(final int num) {
-        return num * num;
-    }
-
-}
+def log = new File(basedir, "build.log")
+assert log.text.contains("Unused declared dependencies found")
+assert log.text.contains("Dependency problems found")
