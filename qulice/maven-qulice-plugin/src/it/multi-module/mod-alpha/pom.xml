@@ -31,37 +31,18 @@
  *
  * @version $Id$
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.qulice.plugin</groupId>
-    <artifactId>many-violations</artifactId>
-    <version>1.0</version>
+    <parent>
+        <groupId>com.qulice.plugin</groupId>
+        <artifactId>mod</artifactId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>mod-alpha</artifactId>
     <packaging>jar</packaging>
-    <name>many-violations</name>
-
-    <prerequisites>
-        <maven>3.0</maven>
-    </prerequisites>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.qulice</groupId>
-                <artifactId>maven-qulice-plugin</artifactId>
-                <version qulice="yes">1.0-SNAPSHOT</version>
-                <configuration>
-                    <license>file:./src/main/resources/LICENSE.txt</license>
-                    <!-- ... to be continued ... -->
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <name>mod-alpha</name>
 
 </project>

@@ -1,6 +1,4 @@
-<?xml version="1.0"?>
-<!--
- *
+/**
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -28,40 +26,22 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.plugin.alpha;
+
+/**
+ * Sample class.
  *
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.qulice.plugin</groupId>
-    <artifactId>many-violations</artifactId>
-    <version>1.0</version>
-    <packaging>jar</packaging>
-    <name>many-violations</name>
+ */
+public final class Main {
 
-    <prerequisites>
-        <maven>3.0</maven>
-    </prerequisites>
+    /**
+     * Sample method.
+     */
+    public void demo() {
+        // nothing here
+    }
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.qulice</groupId>
-                <artifactId>maven-qulice-plugin</artifactId>
-                <version qulice="yes">1.0-SNAPSHOT</version>
-                <configuration>
-                    <license>file:./src/main/resources/LICENSE.txt</license>
-                    <!-- ... to be continued ... -->
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-</project>
+}

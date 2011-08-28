@@ -29,39 +29,59 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @version $Id$
+ * @version $Id: pom.xml 10 2011-08-27 23:27:24Z yegor256@yahoo.com $
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.qulice.plugin</groupId>
-    <artifactId>many-violations</artifactId>
+    <artifactId>mod</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
-    <name>many-violations</name>
+    <packaging>pom</packaging>
+    <name>mod</name>
+
+    <modules>
+        <module>mod-tk</module>
+        <module>mod-alpha</module>
+    </modules>
 
     <prerequisites>
         <maven>3.0</maven>
     </prerequisites>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.qulice</groupId>
-                <artifactId>maven-qulice-plugin</artifactId>
-                <version qulice="yes">1.0-SNAPSHOT</version>
-                <configuration>
-                    <license>file:./src/main/resources/LICENSE.txt</license>
-                    <!-- ... to be continued ... -->
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <profiles>
+        <profile>
+            <id>quality-check</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.qulice</groupId>
+                        <artifactId>maven-qulice-plugin</artifactId>
+                        <version qulice="yes">1.0-SNAPSHOT</version>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.qulice.plugin</groupId>
+                                <artifactId>mod-tk</artifactId>
+                                <version>1.0</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>

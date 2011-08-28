@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 
 /**
@@ -55,8 +55,15 @@ public final class CheckMojo extends AbstractMojo {
     private MavenProject project;
 
     /**
+     * Shall we skip execution?
+     * @parameter expression="${qulice.skip}" default-value="false"
+     * @required
+     */
+    private boolean skip;
+
+    /**
      * Licence file location.
-     * @parameter expression="${qulice.license}" default="/LICENSE.txt"
+     * @parameter expression="${qulice.license}" default-value="/LICENSE.txt"
      * @required
      */
     private String license;
@@ -73,7 +80,11 @@ public final class CheckMojo extends AbstractMojo {
      * {@inheritDoc}
      */
     @Override
-    public final void execute() throws MojoExecutionException {
+    public final void execute() throws MojoFailureException {
+        if (this.skip) {
+            this.getLog().info("Execution skipped");
+            return;
+        }
         this.getLog().info("Checking..");
         final Properties props = new Properties();
         props.setProperty("license", this.license);
