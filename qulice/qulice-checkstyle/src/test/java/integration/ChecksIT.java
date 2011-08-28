@@ -67,6 +67,7 @@ public class ChecksIT {
         "ImportCohesionCheck",
         "JavadocTagsCheck",
         "PuzzleFormatCheck",
+        "CascadeIndentationCheck",
     };
 
     private final String dir;
