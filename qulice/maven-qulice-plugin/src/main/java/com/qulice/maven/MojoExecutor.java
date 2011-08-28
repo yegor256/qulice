@@ -129,7 +129,6 @@ public final class MojoExecutor {
             this.toXpp3Dom(descriptor.getMojoConfiguration())
         );
         final MojoExecution execution = new MojoExecution(descriptor, xpp);
-        // System.out.println("XPP:" + xpp.toString());
         Mojo mojo;
         try {
             mojo = this.manager
