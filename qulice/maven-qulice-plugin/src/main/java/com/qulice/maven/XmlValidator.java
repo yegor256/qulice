@@ -29,19 +29,18 @@
  */
 package com.qulice.maven;
 
-import java.io.File;
 import java.util.Properties;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 
 /**
- * Validator with PMD.
+ * Simple validator of XML files.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class PMDValidator extends AbstractValidator {
+public final class XmlValidator extends AbstractValidator {
 
     /**
      * Public ctor.
@@ -49,7 +48,7 @@ public final class PMDValidator extends AbstractValidator {
      * @param log The Maven log
      * @param config Set of options provided in "configuration" section
      */
-    public PMDValidator(final MavenProject project, final Log log,
+    public XmlValidator(final MavenProject project, final Log log,
         final Properties config) {
         super(project, log, config);
     }
@@ -60,21 +59,25 @@ public final class PMDValidator extends AbstractValidator {
     @Override
     public void validate() throws MojoFailureException {
         final Properties props = new Properties();
-        props.put("targetJdk", "1.6");
-        props.put("includeTests", "true");
-        props.put("rulesets",
-            new String[] { "com/qulice/maven/pmd/ruleset.xml" });
-        props.put("targetDirectory",
-            this.project().getBuild().getOutputDirectory());
-        props.put("outputDirectory",
-            this.project().getBuild().getOutputDirectory());
-        props.put("compileSourceRoots",
-            this.project().getCompileSourceRoots());
-        props.put("testSourceRoots",
-            this.project().getTestCompileSourceRoots());
+        final Properties sets = new Properties();
+        props.put("validationSets", sets);
+        final Properties set = new Properties();
+        sets.put("validationSet", set);
+        set.put("dir", this.project().getBasedir().getPath());
+        set.put("validating", "true");
+        set.put(
+            "includes",
+            new String[] {
+                ".xml",
+                ".xsl",
+                ".xsd",
+                ".html",
+                ".xhtml"
+            }
+        );
         this.executor().execute(
-            "org.apache.maven.plugins:maven-pmd-plugin:2.5",
-            "pmd",
+            "org.codehaus.mojo:xml-maven-plugin:1.0-beta-3-SNAPSHOT",
+            "validate",
             props
         );
     }

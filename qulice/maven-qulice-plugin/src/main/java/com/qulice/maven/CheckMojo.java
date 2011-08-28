@@ -110,6 +110,9 @@ public final class CheckMojo extends AbstractMojo {
             new DependenciesValidator(project, this.getLog(), props)
         );
         validators.add(
+            new XmlValidator(project, this.getLog(), props)
+        );
+        validators.add(
             new CheckstyleValidator(project, this.getLog(), props)
         );
         validators.add(
