@@ -30,7 +30,26 @@
 package com.qulice.maven;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Properties;
+import net.sourceforge.pmd.DataSource;
+import net.sourceforge.pmd.FileDataSource;
+import net.sourceforge.pmd.IRuleViolation;
+import net.sourceforge.pmd.PMD;
+import net.sourceforge.pmd.Report;
+import net.sourceforge.pmd.ReportListener;
+import net.sourceforge.pmd.RuleContext;
+import net.sourceforge.pmd.RuleSet;
+import net.sourceforge.pmd.RuleSetFactory;
+import net.sourceforge.pmd.SourceType;
+import net.sourceforge.pmd.renderers.Renderer;
+import net.sourceforge.pmd.stat.Metric;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
@@ -59,24 +78,118 @@ public final class PMDValidator extends AbstractValidator {
      */
     @Override
     public void validate() throws MojoFailureException {
-        final Properties props = new Properties();
-        props.put("targetJdk", "1.6");
-        props.put("includeTests", "true");
-        props.put("rulesets",
-            new String[] { "com/qulice/maven/pmd/ruleset.xml" });
-        props.put("targetDirectory",
-            this.project().getBuild().getOutputDirectory());
-        props.put("outputDirectory",
-            this.project().getBuild().getOutputDirectory());
-        props.put("compileSourceRoots",
-            this.project().getCompileSourceRoots());
-        props.put("testSourceRoots",
-            this.project().getTestCompileSourceRoots());
-        this.executor().execute(
-            "org.apache.maven.plugins:maven-pmd-plugin:2.5",
-            "pmd",
-            props
+        final RuleSetFactory factory = new RuleSetFactory();
+        factory.setMinimumPriority(0);
+        final PmdListener listener = new PmdListener();
+        final Report report = new Report();
+        report.addListener(listener);
+        final RuleContext context = new RuleContext();
+        context.setReport(report);
+        PMD.processFiles(
+            // thread count
+            1,
+            factory,
+            SourceType.JAVA_16,
+            this.files(),
+            context,
+            new ArrayList<Renderer>(),
+            // stressTestEnabled
+            true,
+            "com/qulice/maven/pmd/ruleset.xml",
+            // shortNamesEnabled
+            true,
+            ".",
+            "UTF-8",
+            "PMD",
+            this.getClass().getClassLoader()
         );
+        final List<IRuleViolation> violations = listener.violations();
+        if (!violations.isEmpty()) {
+            throw new MojoFailureException(
+                String.format(
+                    "%d PMD violations (see log above)",
+                    violations.size()
+                )
+            );
+        }
+        this.log().info("No PMD violations found");
+    }
+
+    /**
+     * Get full list of files to process.
+     * @see #validate()
+     */
+    private List<DataSource> files() {
+        final List<DataSource> sources = new ArrayList<DataSource>();
+        final IOFileFilter filter = new WildcardFileFilter("*.java");
+        final Collection<File> files = FileUtils.listFiles(
+            this.project().getBasedir(),
+            filter,
+            DirectoryFileFilter.INSTANCE
+        );
+        for (File file : files) {
+            sources.add(new FileDataSource(file));
+        }
+        this.log().debug(
+            String.format(
+                "%d files ready for PMD",
+                sources.size()
+            )
+        );
+        return sources;
+    }
+
+    /**
+     * Listener of PMD errors.
+     */
+    private final class PmdListener implements ReportListener {
+        /**
+         * List of violations.
+         */
+        private List<IRuleViolation> violations =
+            new ArrayList<IRuleViolation>();
+        /**
+         * Get list of violations.
+         * @return List of violations
+         */
+        public List<IRuleViolation> violations() {
+            return this.violations;
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void metricAdded(final Metric metric) {
+            PMDValidator.this.log().info(
+                String.format(
+                    "%s: %d %f %f %f %f %f",
+                    metric.getMetricName(),
+                    metric.getCount(),
+                    metric.getTotal(),
+                    metric.getLowValue(),
+                    metric.getHighValue(),
+                    metric.getAverage(),
+                    metric.getStandardDeviation()
+                )
+            );
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void ruleViolationAdded(final IRuleViolation violation) {
+            this.violations.add(violation);
+            PMDValidator.this.log().info(
+                String.format(
+                    "%s[%d-%d]: %s (%s)",
+                    violation.getFilename(),
+                    violation.getBeginLine(),
+                    violation.getEndLine(),
+                    violation.getDescription(),
+                    violation.getRule().getName()
+                )
+            );
+        }
     }
 
 }

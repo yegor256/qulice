@@ -103,20 +103,6 @@ public final class CheckstyleValidator extends AbstractValidator {
         checker.destroy();
         final List<AuditEvent> events = listener.events();
         if (!events.isEmpty()) {
-            for (AuditEvent event : events) {
-                final String check = event.getSourceName();
-                this.log().error(
-                    String.format(
-                        "%s[%d]: %s (%s)",
-                        event.getFileName().substring(
-                            this.project().getBasedir().toString().length()
-                        ),
-                        event.getLine(),
-                        event.getMessage(),
-                        check.substring(check.lastIndexOf('.') + 1)
-                    )
-                );
-            }
             throw new MojoFailureException(
                 String.format(
                     "%d Checkstyle violations (see log above)",
@@ -130,7 +116,7 @@ public final class CheckstyleValidator extends AbstractValidator {
     /**
      * Load checkstyle configuration.
      * @return The configuration just loaded
-     * @see #validate(MavenProject,Properties)
+     * @see #validate()
      */
     private Configuration configuration() {
         final File buildDir = new File(
@@ -162,7 +148,7 @@ public final class CheckstyleValidator extends AbstractValidator {
     /**
      * Create classloader for checkstyle.
      * @return The classloader
-     * @see #validate(MavenProject,Properties)
+     * @see #validate()
      */
     private ClassLoader classloader() {
         final List<String> paths = new ArrayList<String>();
@@ -189,8 +175,7 @@ public final class CheckstyleValidator extends AbstractValidator {
 
     /**
      * Get full list of files to process.
-     * @throws MojoExecutionException If something goes wrong
-     * @see #validate(MavenProject,Properties)
+     * @see #validate()
      */
     private List<File> files() {
         final List<File> files = new ArrayList<File>();
@@ -208,7 +193,7 @@ public final class CheckstyleValidator extends AbstractValidator {
     /**
      * Create header content, from file.
      * @return The content of header
-     * @see #configuration(MavenProject,Properties)
+     * @see #configuration()
      */
     private String header() {
         final String name = this.config().getProperty("license", "LICENSE.txt");
@@ -256,7 +241,7 @@ public final class CheckstyleValidator extends AbstractValidator {
     /**
      * Listener of events.
      */
-    private static final class Listener implements AuditListener {
+    private final class Listener implements AuditListener {
         /**
          * Collection of events collected.
          */
@@ -301,6 +286,19 @@ public final class CheckstyleValidator extends AbstractValidator {
         @Override
         public void addError(final AuditEvent event) {
             this.events.add(event);
+            final String check = event.getSourceName();
+            CheckstyleValidator.this.log().error(
+                String.format(
+                    "%s[%d]: %s (%s)",
+                    event.getFileName().substring(
+                        CheckstyleValidator.this.project().getBasedir()
+                            .toString().length()
+                    ),
+                    event.getLine(),
+                    event.getMessage(),
+                    check.substring(check.lastIndexOf('.') + 1)
+                )
+            );
         }
         /**
          * {@inheritDoc}

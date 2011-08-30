@@ -105,6 +105,11 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>pmd</groupId>
+            <artifactId>pmd-jdk14</artifactId>
+            <version since="30 Aug 2011">4.2.5</version>
+        </dependency>
+        <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <!-- other details are in parent pom.xml -->
