@@ -29,19 +29,18 @@
  */
 package com.qulice.maven;
 
-import java.io.File;
 import java.util.Properties;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 
 /**
- * Validates with Cobertura.
+ * Validate with maven-enforcer-plugin.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class CoberturaValidator extends AbstractValidator {
+public final class EnforcerValidator extends AbstractValidator {
 
     /**
      * Public ctor.
@@ -49,7 +48,7 @@ public final class CoberturaValidator extends AbstractValidator {
      * @param log The Maven log
      * @param config Set of options provided in "configuration" section
      */
-    public CoberturaValidator(final MavenProject project, final Log log,
+    public EnforcerValidator(final MavenProject project, final Log log,
         final Properties config) {
         super(project, log, config);
     }
@@ -60,24 +59,17 @@ public final class CoberturaValidator extends AbstractValidator {
     @Override
     public void validate() throws MojoFailureException {
         final Properties props = new Properties();
-        props.put("quiet", "false");
+        final Properties rules = new Properties();
+        props.put("rules", rules);
+        final Properties maven = new Properties();
+        rules.put("requireMavenVersion", maven);
+        maven.put("version", "3.0");
+        final Properties java = new Properties();
+        rules.put("requireJavaVersion", java);
+        java.put("version", "1.6");
         this.executor().execute(
-            "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
-            "instrument",
-            props
-        );
-        final Properties check = new Properties();
-        props.put("check", check);
-        check.put("haltOnFailure", "true");
-        check.put("lineRate", "60");
-        check.put("branchRate", "60");
-        check.put("packageLineRate", "70");
-        check.put("packageBranchRate", "70");
-        check.put("totalLineRate", "80");
-        check.put("totalBranchRate", "80");
-        this.executor().execute(
-            "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
-            "check",
+            "org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1",
+            "enforce",
             props
         );
     }

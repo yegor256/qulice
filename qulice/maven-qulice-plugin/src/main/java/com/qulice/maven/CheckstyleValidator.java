@@ -45,9 +45,6 @@ import java.util.List;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
-import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -171,23 +168,6 @@ public final class CheckstyleValidator extends AbstractValidator {
             this.log().debug("Classpath: " + url);
         }
         return loader;
-    }
-
-    /**
-     * Get full list of files to process.
-     * @see #validate()
-     */
-    private List<File> files() {
-        final List<File> files = new ArrayList<File>();
-        final IOFileFilter filter = new WildcardFileFilter("*.java");
-        files.addAll(
-            FileUtils.listFiles(
-                this.project().getBasedir(),
-                filter,
-                DirectoryFileFilter.INSTANCE
-            )
-        );
-        return files;
     }
 
     /**

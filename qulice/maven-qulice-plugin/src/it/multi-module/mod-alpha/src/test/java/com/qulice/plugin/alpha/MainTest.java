@@ -45,8 +45,9 @@ public final class MainTest {
     @Test
     public void testSquare() {
         final Main main = new Main();
-        final int square = main.square(1);
-        Assert.assertEquals(1, square);
+        Assert.assertEquals(1, main.square(1));
+        // @checkstyle MagicNumber (1 line)
+        Assert.assertEquals(4, main.square(2));
     }
 
 }

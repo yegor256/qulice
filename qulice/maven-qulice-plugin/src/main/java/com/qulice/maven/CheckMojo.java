@@ -107,6 +107,9 @@ public final class CheckMojo extends AbstractMojo {
         props.setProperty("license", this.license);
         final List<Validator> validators = new ArrayList<Validator>();
         validators.add(
+            new EnforcerValidator(project, this.getLog(), props)
+        );
+        validators.add(
             new DependenciesValidator(project, this.getLog(), props)
         );
         validators.add(
@@ -121,9 +124,10 @@ public final class CheckMojo extends AbstractMojo {
         validators.add(
             new FindBugsValidator(project, this.getLog(), props)
         );
-        validators.add(
-            new CoberturaValidator(project, this.getLog(), props)
-        );
+        // not working yet
+        // validators.add(
+        //     new CoberturaValidator(project, this.getLog(), props)
+        // );
         final MojoExecutor exec = new MojoExecutor(
             this.manager, this.session, this.getLog()
         );

@@ -47,9 +47,6 @@ import net.sourceforge.pmd.SourceType;
 import net.sourceforge.pmd.renderers.Renderer;
 import net.sourceforge.pmd.stat.Metric;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
-import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
@@ -90,7 +87,7 @@ public final class PMDValidator extends AbstractValidator {
             1,
             factory,
             SourceType.JAVA_16,
-            this.files(),
+            this.sources(),
             context,
             new ArrayList<Renderer>(),
             // stressTestEnabled
@@ -119,23 +116,11 @@ public final class PMDValidator extends AbstractValidator {
      * Get full list of files to process.
      * @see #validate()
      */
-    private List<DataSource> files() {
+    private List<DataSource> sources() {
         final List<DataSource> sources = new ArrayList<DataSource>();
-        final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final Collection<File> files = FileUtils.listFiles(
-            this.project().getBasedir(),
-            filter,
-            DirectoryFileFilter.INSTANCE
-        );
-        for (File file : files) {
+        for (File file : this.files()) {
             sources.add(new FileDataSource(file));
         }
-        this.log().debug(
-            String.format(
-                "%d files ready for PMD",
-                sources.size()
-            )
-        );
         return sources;
     }
 
