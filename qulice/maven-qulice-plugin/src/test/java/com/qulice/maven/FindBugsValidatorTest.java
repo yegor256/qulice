@@ -29,53 +29,63 @@
  */
 package com.qulice.maven;
 
-import edu.umd.cs.findbugs.BugCollectionBugReporter;
-import edu.umd.cs.findbugs.BugReporter;
-import edu.umd.cs.findbugs.FindBugs2;
-import edu.umd.cs.findbugs.Project;
 import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import org.apache.commons.io.FileUtils;
+import org.apache.maven.model.Build;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
+import org.junit.*;
+import org.junit.rules.TemporaryFolder;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.*;
 
 /**
- * Validator with FindBugs.
- *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class FindBugsValidator extends AbstractValidator {
+public class FindBugsValidatorTest {
 
     /**
-     * Public ctor.
-     * @param project The project we're working in
-     * @param log The Maven log
-     * @param config Set of options provided in "configuration" section
+     * @checkstyle VisibilityModifier (3 lines)
      */
-    public FindBugsValidator(final MavenProject project, final Log log,
-        final Properties config) {
-        super(project, log, config);
+    @Rule
+    public TemporaryFolder temp = new TemporaryFolder();
+
+    private File folder;
+
+    private MavenProject project;
+
+    @Before
+    public void prepareValidator() throws Exception {
+        this.folder = this.temp.newFolder("temp-src");
+        this.project = mock(MavenProject.class);
+        doReturn(new File(this.folder.getPath())).when(project).getBasedir();
+        final Build build = mock(Build.class);
+        doReturn(build).when(project).getBuild();
+        final List<String> paths = new ArrayList<String>();
+        paths.add(this.folder.getPath());
+        doReturn(paths).when(project).getTestClasspathElements();
+        doReturn(paths).when(project).getRuntimeClasspathElements();
+        doReturn(this.folder.getPath()).when(build).getOutputDirectory();
+        doReturn(this.folder.getPath()).when(build).getTestOutputDirectory();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void validate() throws MojoFailureException {
-        final Project project = new Project();
-        project.addSourceDir(this.project().getBuild().getOutputDirectory());
-        final BugReporter reporter = new BugCollectionBugReporter(project);
-        final FindBugs2 findbugs = new FindBugs2();
-        findbugs.setProject(project);
-        findbugs.setBugReporter(reporter);
-        try {
-            findbugs.execute();
-        } catch (java.io.IOException ex) {
-            throw new IllegalStateException(ex);
-        } catch (InterruptedException ex) {
-            throw new IllegalStateException(ex);
-        }
+    @Test(expected = MojoFailureException.class)
+    public void testValidatesSetOfFiles() throws Exception {
+        final Properties config = new Properties();
+        final Log log = mock(Log.class);
+        final Validator validator =
+            new FindBugsValidator(this.project, log, config);
+        final File java = new File(this.folder, "Main.java");
+        FileUtils.writeStringToFile(java, "class Main { int x = 0; }");
+        validator.validate();
     }
 
 }
