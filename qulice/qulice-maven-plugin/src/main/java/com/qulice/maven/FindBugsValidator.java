@@ -69,6 +69,10 @@ public final class FindBugsValidator extends AbstractValidator {
      */
     @Override
     public void validate() throws MojoFailureException {
+        if (!new File(this.project().getBuild().getOutputDirectory()).exists()) {
+            this.log().info("No classes, no FindBugs validation");
+            return;
+        }
         final Project project = new Project();
         final List<String> jars;
         try {
@@ -83,8 +87,6 @@ public final class FindBugsValidator extends AbstractValidator {
             }
         }
         project.addSourceDir(this.project().getBasedir().getPath());
-        // project.addFile("./target/classes/");
-        // project.addSourceDir("./src/main/java");
         final FindBugs2 findbugs = new FindBugs2();
         findbugs.setProject(project);
         final BugReporter reporter = new PrintingBugReporter();
