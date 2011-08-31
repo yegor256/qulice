@@ -130,17 +130,33 @@ public abstract class AbstractValidator implements Validator {
 
     /**
      * Get full list of files to process.
+     * @return List of files
      */
     protected final List<File> files() {
         final List<File> files = new ArrayList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
-        files.addAll(
-            FileUtils.listFiles(
-                this.project().getBasedir(),
-                filter,
-                DirectoryFileFilter.INSTANCE
-            )
-        );
+        final File sources =
+            new File(this.project().getBasedir(), "src/main/java");
+        if (sources.exists()) {
+            files.addAll(
+                FileUtils.listFiles(
+                    sources,
+                    filter,
+                    DirectoryFileFilter.INSTANCE
+                )
+            );
+        }
+        final File tests =
+            new File(this.project().getBasedir(), "src/test/java");
+        if (tests.exists()) {
+            files.addAll(
+                FileUtils.listFiles(
+                    tests,
+                    filter,
+                    DirectoryFileFilter.INSTANCE
+                )
+            );
+        }
         return files;
     }
 

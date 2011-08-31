@@ -181,19 +181,6 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>com.qulice</groupId>
-                        <artifactId>maven-qulice-plugin</artifactId>
-                        <version qulice="yes">1.0-SNAPSHOT</version>
-                        <executions>
-                            <execution>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
                         <!-- version and configuration is in pluginManagement section -->
                         <artifactId>maven-assembly-plugin</artifactId>
                         <version since="25 Aug 2011">2.2</version>

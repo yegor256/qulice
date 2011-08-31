@@ -75,6 +75,11 @@ public final class PMDValidator extends AbstractValidator {
      */
     @Override
     public void validate() throws MojoFailureException {
+        final List<DataSource> sources = this.sources();
+        if (sources.isEmpty()) {
+            this.log().info("No files to check with PMD");
+            return;
+        }
         final RuleSetFactory factory = new RuleSetFactory();
         factory.setMinimumPriority(0);
         final PmdListener listener = new PmdListener();
@@ -87,7 +92,7 @@ public final class PMDValidator extends AbstractValidator {
             1,
             factory,
             SourceType.JAVA_16,
-            this.sources(),
+            sources,
             context,
             new ArrayList<Renderer>(),
             // stressTestEnabled
@@ -109,7 +114,12 @@ public final class PMDValidator extends AbstractValidator {
                 )
             );
         }
-        this.log().info("No PMD violations found");
+        this.log().info(
+            String.format(
+                "No PMD violations found in %d files",
+                sources.size()
+            )
+        );
     }
 
     /**

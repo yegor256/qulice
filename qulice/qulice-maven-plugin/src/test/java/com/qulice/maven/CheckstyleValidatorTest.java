@@ -88,7 +88,8 @@ public class CheckstyleValidatorTest {
         final Log log = mock(Log.class);
         final Validator validator =
             new CheckstyleValidator(this.project, log, config);
-        final File java = new File(this.folder, "Main.java");
+        final File java = new File(this.folder, "src/main/java/Main.java");
+        java.getParentFile().mkdirs();
         FileUtils.writeStringToFile(java, "public class Main { }");
         validator.validate();
     }

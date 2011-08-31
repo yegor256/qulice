@@ -81,6 +81,11 @@ public final class CheckstyleValidator extends AbstractValidator {
      */
     @Override
     public void validate() throws MojoFailureException {
+        final List<File> files = this.files();
+        if (files.isEmpty()) {
+            this.log().info("No files to check with Checkstyle");
+            return;
+        }
         Checker checker;
         try {
             checker = new Checker();
@@ -96,7 +101,7 @@ public final class CheckstyleValidator extends AbstractValidator {
         }
         final Listener listener = new Listener();
         checker.addListener(listener);
-        checker.process(this.files());
+        checker.process(files);
         checker.destroy();
         final List<AuditEvent> events = listener.events();
         if (!events.isEmpty()) {
@@ -107,7 +112,12 @@ public final class CheckstyleValidator extends AbstractValidator {
                 )
             );
         }
-        this.log().info("No Checkstyle violations found");
+        this.log().info(
+            String.format(
+                "No Checkstyle violations found in %d files",
+                files.size()
+            )
+        );
     }
 
     /**
