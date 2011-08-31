@@ -52,39 +52,27 @@ import static org.mockito.Mockito.*;
  */
 public class FindBugsValidatorTest {
 
-    /**
-     * @checkstyle VisibilityModifier (3 lines)
-     */
-    @Rule
-    public TemporaryFolder temp = new TemporaryFolder();
-
-    private File folder;
-
-    private MavenProject project;
+    private Validator validator;
 
     @Before
-    public void prepareValidator() throws Exception {
-        this.folder = this.temp.newFolder("temp-src");
-        this.project = mock(MavenProject.class);
-        doReturn(new File(this.folder.getPath())).when(project).getBasedir();
+    public void prepare() throws Exception {
+        final MavenProject project = mock(MavenProject.class);
+        final File basedir = new File(".");
+        doReturn(new File(basedir.getPath())).when(project).getBasedir();
         final Build build = mock(Build.class);
         doReturn(build).when(project).getBuild();
+        final File classes = new File(basedir, "target/classes");
         final List<String> paths = new ArrayList<String>();
-        paths.add(this.folder.getPath());
-        doReturn(paths).when(project).getTestClasspathElements();
+        paths.add(classes.getPath());
         doReturn(paths).when(project).getRuntimeClasspathElements();
-        doReturn(this.folder.getPath()).when(build).getOutputDirectory();
-        doReturn(this.folder.getPath()).when(build).getTestOutputDirectory();
+        doReturn(classes.getPath()).when(build).getOutputDirectory();
+        final Properties config = new Properties();
+        final Log log = mock(Log.class);
+        this.validator = new FindBugsValidator(project, log, config);
     }
 
     @Test(expected = MojoFailureException.class)
     public void testValidatesSetOfFiles() throws Exception {
-        final Properties config = new Properties();
-        final Log log = mock(Log.class);
-        final Validator validator =
-            new FindBugsValidator(this.project, log, config);
-        final File java = new File(this.folder, "Main.java");
-        FileUtils.writeStringToFile(java, "class Main { int x = 0; }");
         validator.validate();
     }
 

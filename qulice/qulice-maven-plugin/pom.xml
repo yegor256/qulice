@@ -115,6 +115,13 @@
             <version since="30 Aug 2011">1.3.9</version>
         </dependency>
         <dependency>
+            <!-- Required for FindBugs -->
+            <groupId>xalan</groupId>
+            <artifactId>xalan</artifactId>
+            <version since="30 Aug 2011">2.7.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <!-- other details are in parent pom.xml -->

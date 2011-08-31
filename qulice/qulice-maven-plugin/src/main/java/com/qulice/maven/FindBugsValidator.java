@@ -29,12 +29,18 @@
  */
 package com.qulice.maven;
 
-import edu.umd.cs.findbugs.BugCollectionBugReporter;
 import edu.umd.cs.findbugs.BugReporter;
+import edu.umd.cs.findbugs.Detector;
+import edu.umd.cs.findbugs.DetectorFactoryCollection;
 import edu.umd.cs.findbugs.FindBugs2;
+import edu.umd.cs.findbugs.PrintingBugReporter;
 import edu.umd.cs.findbugs.Project;
+import edu.umd.cs.findbugs.TextUIProgressCallback;
+import edu.umd.cs.findbugs.config.UserPreferences;
 import java.io.File;
+import java.util.List;
 import java.util.Properties;
+import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
@@ -64,11 +70,34 @@ public final class FindBugsValidator extends AbstractValidator {
     @Override
     public void validate() throws MojoFailureException {
         final Project project = new Project();
-        project.addSourceDir(this.project().getBuild().getOutputDirectory());
-        final BugReporter reporter = new BugCollectionBugReporter(project);
+        final List<String> jars;
+        try {
+            jars = this.project().getRuntimeClasspathElements();
+        } catch (DependencyResolutionRequiredException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        for (String jar : jars) {
+            project.addFile(jar);
+            if (!jar.equals(this.project().getBuild().getOutputDirectory())) {
+                project.addAuxClasspathEntry(jar);
+            }
+        }
+        project.addSourceDir(this.project().getBasedir().getPath());
+        // project.addFile("./target/classes/");
+        // project.addSourceDir("./src/main/java");
         final FindBugs2 findbugs = new FindBugs2();
         findbugs.setProject(project);
+        final BugReporter reporter = new PrintingBugReporter();
+        reporter.getProjectStats().getProfiler().start(findbugs.getClass());
+        reporter.setPriorityThreshold(Detector.LOW_PRIORITY);
+        // reporter.setRankThreshold(0);
         findbugs.setBugReporter(reporter);
+        DetectorFactoryCollection.instance().ensureLoaded();
+        findbugs.setDetectorFactoryCollection(DetectorFactoryCollection.instance());
+        findbugs.setUserPreferences(UserPreferences.createDefaultUserPreferences());
+        findbugs.setNoClassOk(true);
+        findbugs.setScanNestedArchives(true);
+        // findbugs.setProgressCallback(new TextUIProgressCallback(System.out));
         try {
             findbugs.execute();
         } catch (java.io.IOException ex) {
@@ -76,6 +105,15 @@ public final class FindBugsValidator extends AbstractValidator {
         } catch (InterruptedException ex) {
             throw new IllegalStateException(ex);
         }
+        if (findbugs.getBugCount() > 0) {
+            throw new MojoFailureException(
+                String.format(
+                    "%d FindBugs violations (see log above)",
+                    findbugs.getBugCount()
+                )
+            );
+        }
+        this.log().info("No FindBugs violations found");
     }
 
 }
