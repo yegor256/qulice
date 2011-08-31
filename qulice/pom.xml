@@ -1,0 +1,571 @@
+<?xml version="1.0"?>
+<!--
+ *
+ * Copyright (c) 2011, Qulice.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @version $Id$
+ *
+ * Release management is done with oss.sonatype.org Nexus platform. Every
+ * time you want to make a new release of the product use the
+ * instructions from this page:
+ * @link http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html
+ -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.qulice</groupId>
+    <artifactId>qulice</artifactId>
+    <version qulice="yes">1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>qulice</name>
+
+    <modules>
+        <module>qulice-tk</module>
+        <module>qulice-checkstyle</module>
+        <module>qulice-maven-plugin</module>
+    </modules>
+
+    <description>
+        <![CDATA[
+        Quality control library
+        ]]>
+    </description>
+    <url>http://www.qulice.com</url>
+    <inceptionYear>2011</inceptionYear>
+
+    <organization>
+        <name>Qulice.com</name>
+        <url>http://www.qulice.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>BSD</name>
+            <url>http://www.qulice.com/LICENSE.txt</url>
+            <distribution>repo</distribution>
+            <comments>
+                <![CDATA[
+                This is free open source project, feel free to redistribute it
+                ]]>
+            </comments>
+        </license>
+    </licenses>
+
+    <mailingLists>
+        <mailingList>
+            <name>Qulice Discussions</name>
+            <subscribe>qulice@googlegroups.com</subscribe>
+            <unsubscribe>qulice@googlegroups.com</unsubscribe>
+            <post>qulice@googlegroups.com</post>
+            <archive>http://groups.google.com/group/qulice</archive>
+        </mailingList>
+    </mailingLists>
+
+    <developers>
+        <developer>
+            <id>1</id>
+            <name>Yegor Bugayenko</name>
+            <email>yegor@qulice.com</email>
+            <organization>Qulice.com</organization>
+            <organizationUrl>http://www.qulice.com</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>-7</timezone>
+        </developer>
+    </developers>
+
+    <issueManagement>
+        <system>trac</system>
+        <url>http://trac.qulice.com/qulice/</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>hudson</system>
+        <url>http://hudson.qulice.com/hudson/job/qulice</url>
+    </ciManagement>
+
+    <scm>
+        <connection>scm:svn:svn://svn.qulice.com/qulice/trunk/qulice</connection>
+        <developerConnection>scm:svn:svn://svn.qulice.com/qulice/trunk/qulice</developerConnection>
+        <url>http://svn.qulice.com/qulice/trunk/qulice</url>
+    </scm>
+
+    <distributionManagement>
+        <downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>sonatype.nexus</id>
+            <name>Sonatype OSS Repository (for releases)</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>sonatype.nexus</id>
+            <name>Sonatype OSS Repository (for snapshots)</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <site>
+            <!--
+            Deploying the site to Amazon S3. "qulice.s3" server details
+            are defined in "settings.xml" file, provided by continuous integration
+            server during build cycle.
+            -->
+            <id>qulice.s3</id>
+            <name>Qulice.com Project Site</name>
+            <url>s3://www.qulice.com/</url>
+        </site>
+    </distributionManagement>
+
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jdk.version>1.6</jdk.version>
+        <powermock.version>1.4.9</powermock.version>
+    </properties>
+    <repositories>
+        <!--
+        intentionally empty
+        @see http://www.sonatype.com/people/2009/02/why-putting-repositories-in-your-poms-is-a-bad-idea/
+        -->
+    </repositories>
+
+    <pluginRepositories>
+        <!--
+        intentionally empty
+        @see http://www.sonatype.com/people/2009/02/why-putting-repositories-in-your-poms-is-a-bad-idea/
+        -->
+    </pluginRepositories>
+
+    <profiles>
+        <profile>
+            <!--
+            Continuous integration specific settings.
+            -->
+            <id>ci</id>
+            <activation>
+                <property><name>ci</name></property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!-- version and configuration is in pluginManagement section -->
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version since="25 Aug 2011">2.2</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.qulice</groupId>
+                                <artifactId>qulice-tk</artifactId>
+                                <version qulice="yes">1.0-SNAPSHOT</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                                <configuration>
+                                    <descriptorRefs>
+                                        <!--
+                                        This descriptor is in qulice-tk sub-module, which is in classpath of
+                                        this plugin.
+                                        @see http://maven.apache.org/plugins/maven-assembly-plugin/examples/sharing-descriptors.html
+                                        -->
+                                        <descriptorRef>qulice-sources</descriptorRef>
+                                    </descriptorRefs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!--
+            Site for production deployment
+            -->
+            <id>site</id>
+            <activation>
+                <property><name>site</name></property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <configuration>
+                            <reportPlugins>
+                                <plugin>
+                                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                                    <version since="7 Nov 2010">2.2</version>
+                                    <configuration>
+                                        <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+                                        <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                                    </configuration>
+                                    <reportSets>
+                                        <reportSet>
+                                            <reports>
+                                                <report>cim</report>
+                                                <report>dependencies</report>
+                                                <report>issue-tracking</report>
+                                                <report>license</report>
+                                                <report>mailing-list</report>
+                                                <report>plugins</report>
+                                                <report>project-team</report>
+                                                <report>scm</report>
+                                                <report>summary</report>
+                                            </reports>
+                                        </reportSet>
+                                    </reportSets>
+                                </plugin>
+                                <plugin>
+                                    <groupId>org.codehaus.mojo</groupId>
+                                    <artifactId>taglist-maven-plugin</artifactId>
+                                    <version since="15 Nov 2010">2.4</version>
+                                    <configuration>
+                                        <tagListOptions>
+                                            <tagClasses>
+                                                <tagClass>
+                                                    <displayName>ToDo</displayName>
+                                                    <tags>
+                                                        <tag>
+                                                            <matchString>@todo</matchString>
+                                                            <matchType>exact</matchType>
+                                                        </tag>
+                                                    </tags>
+                                                </tagClass>
+                                            </tagClasses>
+                                        </tagListOptions>
+                                    </configuration>
+                                </plugin>
+                                <plugin>
+                                    <!--
+                                    API documentation builder. It will produce documentation
+                                    which is then to be used in site:site. It will be
+                                    located at target/site/apidocs.
+                                    -->
+                                    <artifactId>maven-javadoc-plugin</artifactId>
+                                    <version since="2 June 2011">2.8</version>
+                                    <configuration>
+                                        <failOnError>true</failOnError>
+                                        <windowtitle>
+                                            ${project.name} ${project.version} API
+                                        </windowtitle>
+                                        <quiet>true</quiet>
+                                        <tags>
+                                            <!--
+                                            Here we instruct plugin to use custom tag
+                                            @link http://maven.apache.org/plugins/maven-javadoc-plugin/examples/tag-configuration.html
+                                            -->
+                                            <tag>
+                                                <name>todo</name>
+                                                <placement>a</placement>
+                                                <head>To do:</head>
+                                            </tag>
+                                        </tags>
+                                        <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+                                        <docletArtifact>
+                                            <groupId>org.umlgraph</groupId>
+                                            <artifactId>doclet</artifactId>
+                                            <version>5.1</version>
+                                        </docletArtifact>
+                                        <additionalparam>
+                                            -views
+                                            -all
+                                        </additionalparam>
+                                        <useStandardDocletOptions>true</useStandardDocletOptions>
+                                    </configuration>
+                                    <reportSets>
+                                        <reportSet>
+                                            <id>html</id>
+                                            <reports>
+                                                <report>javadoc</report>
+                                            </reports>
+                                        </reportSet>
+                                    </reportSets>
+                                </plugin>
+                                <plugin>
+                                    <groupId>org.codehaus.mojo</groupId>
+                                    <artifactId>cobertura-maven-plugin</artifactId>
+                                </plugin>
+                                <plugin>
+                                    <groupId>org.codehaus.mojo</groupId>
+                                    <artifactId>jdepend-maven-plugin</artifactId>
+                                </plugin>
+                                <plugin>
+                                    <!-- version and configuration is in pluginManagement section -->
+                                    <groupId>com.rempl.plugins</groupId>
+                                    <artifactId>rempl-maven-plugin</artifactId>
+                                    <version since="25 Aug 2011">1.1.3</version>
+                                    <configuration>
+                                        <rom>src/rempl/rom.xml</rom>
+                                    </configuration>
+                                </plugin>
+                            </reportPlugins>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.qulice</groupId>
+                                <artifactId>qulice-tk</artifactId>
+                                <version qulice="yes">1.0-SNAPSHOT</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <id>attach-descriptor</id>
+                                <goals>
+                                    <goal>attach-descriptor</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!--
+            Sign artifacts before installation with GPG.
+            -->
+            <id>gpg</id>
+            <activation>
+                <property><name>gpg.keyname</name></property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <!--
+                        To GPG-sign the artifact before deployment to foreign
+                        repository. GPG keys have to be provided in CI
+                        environment, and published beforehand.
+                        @link http://www.sonatype.com/people/2010/01/how-to-generate-pgp-signatures-with-maven/
+                        -->
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version since="21 Dec 2010">1.1</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!--
+                We are using JUnit framework for unit test organization
+                and management. This framework is the most stable and mature
+                in the market. Other options considered: TestNG.
+                @link http://www.junit.org/
+                -->
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version since="28 Feb 2011">4.8.2</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <!--
+                Assertions and matchers for unit tests.
+                @link http://code.google.com/p/hamcrest/wiki/Tutorial
+                -->
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-all</artifactId>
+                <version since="6 Apr 2011">1.1</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <!--
+                Mockito is used as a mocking library during testing.
+                Other options: jMock.
+                @link http://www.mockito.org/
+                -->
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version since="9 Oct 2010">1.8.5</version>
+            </dependency>
+            <dependency>
+               <groupId>org.powermock</groupId>
+               <artifactId>powermock-core</artifactId>
+               <version>${powermock.version}</version>
+               <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-module-junit4</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-api-mockito</artifactId>
+                <version>${powermock.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version since="15 Oct 2010">2.5</version>
+            </dependency>
+            <dependency>
+                <!-- for file/stream manipulations -->
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version since="7 Mar 2011">2.0.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <resources>
+            <!--
+            Filter resources in "process-resources" phase
+            @link http://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html
+            -->
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <testResources>
+            <!--
+            Filter resources in "process-resources" phase
+            @link http://maven.apache.org/plugins/maven-resources-plugin/examples/filter.html
+            -->
+            <testResource>
+                <directory>${basedir}/src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+        <extensions>
+            <extension>
+                <!--
+                Artifacts deployment to Amazon Web Services, S3.
+                @see http://blog.cyclopsgroup.org/2011/06/publish-maven-site-with-amazon-s3-and.html
+                -->
+                <groupId>org.cyclopsgroup</groupId>
+                <artifactId>awss3-maven-wagon</artifactId>
+                <version>0.1</version>
+            </extension>
+        </extensions>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version since="15 May 2011">2.4.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version since="15 May 2011">2.6</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version since="15 May 2011">2.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version since="16 Mar 2011">2.1.2</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version since="15 May 2011">2.3.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version since="2 Dec 2010">2.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version since="15 May 2011">2.5</version>
+                </plugin>
+                <plugin>
+                    <!--
+                    Starts unit tests, protocols their results and creates
+                    a summary report. It is required to send testing protocol
+                    to the STDOUT as well, not only to the file.
+                    -->
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version since="15 May 2011">2.8.1</version>
+                    <configuration>
+                        <useFile>false</useFile>
+                        <runOrder>random</runOrder>
+                        <trimStackTrace>false</trimStackTrace>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version since="27 Oct 2010">2.3.2</version>
+                    <configuration>
+                        <source>${jdk.version}</source>
+                        <target>${jdk.version}</target>
+                        <optimize>true</optimize>
+                        <showWarnings>true</showWarnings>
+                        <showDeprecation>true</showDeprecation>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version since="28 Dec 2010">3.0-beta-3</version>
+                    <configuration>
+                        <reportPlugins>
+                            <!--
+                            Section is intentionally empty. Full list of plugins
+                            is configured in "CI" profile. We don't need all them
+                            during development, that's why they are not here.
+                            -->
+                        </reportPlugins>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <!-- intentionally empty -->
+        </plugins>
+    </build>
+
+    <reporting>
+        <!--
+        Rudimentary section, for Maven 2.0 plugins mostly.
+        -->
+        <excludeDefaults />
+    </reporting>
+
+</project>
