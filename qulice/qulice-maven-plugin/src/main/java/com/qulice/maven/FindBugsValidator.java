@@ -46,7 +46,7 @@ import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 
 /**
- * Validator with FindBugs.
+ * Validates source code and compiled binaris with FindBugs.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
@@ -92,14 +92,12 @@ public final class FindBugsValidator extends AbstractValidator {
         final BugReporter reporter = new PrintingBugReporter();
         reporter.getProjectStats().getProfiler().start(findbugs.getClass());
         reporter.setPriorityThreshold(Detector.LOW_PRIORITY);
-        // reporter.setRankThreshold(0);
         findbugs.setBugReporter(reporter);
         DetectorFactoryCollection.instance().ensureLoaded();
         findbugs.setDetectorFactoryCollection(DetectorFactoryCollection.instance());
         findbugs.setUserPreferences(UserPreferences.createDefaultUserPreferences());
         findbugs.setNoClassOk(true);
         findbugs.setScanNestedArchives(true);
-        // findbugs.setProgressCallback(new TextUIProgressCallback(System.out));
         try {
             findbugs.execute();
         } catch (java.io.IOException ex) {
