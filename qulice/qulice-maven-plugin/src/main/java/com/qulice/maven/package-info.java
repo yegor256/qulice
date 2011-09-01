@@ -27,4 +27,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
+/**
+ * Maven plugin.
+ *
+ * @author Yegor Bugayenko (yegor@qulice.com)
+ * @version $Id$
+ */
 package com.qulice.maven;
