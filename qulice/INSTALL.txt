@@ -102,6 +102,17 @@ How to release new version to Maven Central:
 
     7. Run "mvn -Dci -Daj -Pqulice deploy"
 
+        Make sure that you have this profile in ~/.m2/settings.xml:
+
+          <profile>
+            <id>qulice</id>
+            <properties>
+              <gpg.homedir>/code/gpg/qulice</gpg.homedir>
+              <gpg.keyname>...</gpg.keyname>
+              <gpg.passphrase>...</gpg.passphrase>
+            </properties>
+          </profile>
+
     8. Run "mvn nexus:staging-close"
 
     9. Run "mvn nexus:staging-promote" (target ID is "releases")
