@@ -40,5 +40,25 @@
 
 Introduction
 
-  TBD...
+  Use it like this in your Maven project:
 
++--
+<build>
+  <plugins>
+    <plugin>
+      <groupId>com.qulice</groupId>
+      <artifactId>qulice-maven-plugin</artifactId>
+      <version>0.1</version>
+      <executions>
+        <execution>
+          <goals>
+            <goal>check</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
++--
+
+  That's it. Your build will fail if you have quality problems.
