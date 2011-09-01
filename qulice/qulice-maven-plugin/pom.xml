@@ -39,7 +39,7 @@
     <parent>
         <groupId>com.qulice</groupId>
         <artifactId>qulice</artifactId>
-        <version qulice="yes">0.1</version>
+        <version qulice="yes">1.0-SNAPSHOT</version>
     </parent>
     <artifactId>qulice-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
@@ -49,7 +49,7 @@
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-checkstyle</artifactId>
-            <version qulice="yes">0.1</version>
+            <version qulice="yes">1.0-SNAPSHOT</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
