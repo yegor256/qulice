@@ -101,13 +101,14 @@ public class ChecksIT {
         for (String line : violations) {
             final String[] sectors = StringUtils.split(line, ":");
             final Integer pos = Integer.valueOf(sectors[0]);
+            final String needle = sectors[1].trim();
             assertThat(
-                collector.has(pos, sectors[1]),
+                collector.has(pos, needle),
                 describedAs(
                     String.format(
                         "Line no.%d ('%s') not reported by %s: '%s'",
                          pos,
-                         sectors[1],
+                         needle,
                          this.dir,
                          collector.summary()
                     ),

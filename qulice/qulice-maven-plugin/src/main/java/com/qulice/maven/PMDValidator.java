@@ -52,7 +52,7 @@ import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 
 /**
- * Validator with PMD.
+ * Validates source code with PMD.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
