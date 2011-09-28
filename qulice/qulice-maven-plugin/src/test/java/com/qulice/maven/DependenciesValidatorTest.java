@@ -99,6 +99,7 @@ public class DependenciesValidatorTest {
         new DependenciesValidator().validate(this.env);
     }
 
+    @Ignore
     @Test(expected = MojoFailureException.class)
     public void testValidatesWithDependencyProblems() throws Exception {
         final ProjectDependencyAnalysis analysis =
@@ -109,6 +110,22 @@ public class DependenciesValidatorTest {
         final Set<Artifact> unused = new HashSet<Artifact>();
         unused.add(mock(Artifact.class));
         doReturn(unused).when(analysis).getUsedUndeclaredArtifacts();
+        final Validator validator = new DependenciesValidator();
+        validator.validate(this.env);
+    }
+
+    @Test
+    public void testWithRuntimeScope() throws Exception {
+        final ProjectDependencyAnalysis analysis =
+            ((ProjectDependencyAnalyzer) ((PlexusContainer)
+            this.env.context().get(PlexusConstants.PLEXUS_KEY))
+            .lookup(ProjectDependencyAnalyzer.ROLE, "default"))
+            .analyze(this.env.project());
+        final Set<Artifact> unused = new HashSet<Artifact>();
+        final Artifact artifact = mock(Artifact.class);
+        unused.add(artifact);
+        doReturn(unused).when(analysis).getUnusedDeclaredArtifacts();
+        doReturn(Artifact.SCOPE_RUNTIME).when(artifact).getScope();
         final Validator validator = new DependenciesValidator();
         validator.validate(this.env);
     }

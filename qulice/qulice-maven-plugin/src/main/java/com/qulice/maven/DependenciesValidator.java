@@ -54,6 +54,11 @@ import org.codehaus.plexus.component.repository.exception.ComponentLookupExcepti
 public final class DependenciesValidator extends AbstractValidator {
 
     /**
+     * Separator between lines.
+     */
+    private static final String SEP = "\n\t";
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -64,19 +69,7 @@ public final class DependenciesValidator extends AbstractValidator {
             env.log().info("No dependency analysis in this project");
             return;
         }
-        ProjectDependencyAnalysis analysis;
-        try {
-            analysis = ((ProjectDependencyAnalyzer)
-            ((PlexusContainer) env.context().get(PlexusConstants.PLEXUS_KEY))
-            .lookup(ProjectDependencyAnalyzer.ROLE, "default"))
-            .analyze(env.project());
-        } catch (org.codehaus.plexus.context.ContextException ex) {
-            throw new IllegalStateException(ex);
-        } catch (ComponentLookupException ex) {
-            throw new IllegalStateException(ex);
-        } catch (ProjectDependencyAnalyzerException ex) {
-            throw new IllegalStateException(ex);
-        }
+        final ProjectDependencyAnalysis analysis = this.analyze(env);
         final List<String> unused = new ArrayList<String>();
         for (Object obj : analysis.getUnusedDeclaredArtifacts()) {
             final Artifact artifact = (Artifact) obj;
@@ -88,8 +81,9 @@ public final class DependenciesValidator extends AbstractValidator {
         if (unused.size() > 0) {
             env.log().warn(
                 String.format(
-                    "Unused declared dependencies found:\n   %s",
-                    StringUtils.join(unused, "\n   ")
+                    "Unused declared dependencies found:%s%s",
+                    this.SEP,
+                    StringUtils.join(unused, this.SEP)
                 )
             );
         }
@@ -100,19 +94,41 @@ public final class DependenciesValidator extends AbstractValidator {
         if (used.size() > 0) {
             env.log().warn(
                 String.format(
-                    "Used undeclared dependencies found:\n   %s",
-                    StringUtils.join(used, "\n   ")
+                    "Used undeclared dependencies found:%s%s",
+                    this.SEP,
+                    StringUtils.join(used, this.SEP)
                 )
             );
         }
         final Integer failures = used.size() + unused.size();
-        if (failures > 0) {
-            throw new MojoFailureException(
-                String.format(
-                    "%d dependency problem(s) found",
-                    failures
-                )
-            );
+        // if (failures > 0) {
+        //     throw new MojoFailureException(
+        //         String.format(
+        //             "%d dependency problem(s) found",
+        //             failures
+        //         )
+        //     );
+        // }
+        env.log().info("No dependency problems found");
+    }
+
+    /**
+     * Analyze the project.
+     * @param env The environment
+     * @return The result of analysis
+     */
+    private ProjectDependencyAnalysis analyze(final Environment env) {
+        try {
+            return ((ProjectDependencyAnalyzer)
+            ((PlexusContainer) env.context().get(PlexusConstants.PLEXUS_KEY))
+            .lookup(ProjectDependencyAnalyzer.ROLE, "default"))
+            .analyze(env.project());
+        } catch (org.codehaus.plexus.context.ContextException ex) {
+            throw new IllegalStateException(ex);
+        } catch (ComponentLookupException ex) {
+            throw new IllegalStateException(ex);
+        } catch (ProjectDependencyAnalyzerException ex) {
+            throw new IllegalStateException(ex);
         }
     }
 
