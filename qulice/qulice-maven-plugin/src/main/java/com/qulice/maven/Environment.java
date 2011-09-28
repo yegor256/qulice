@@ -36,62 +36,44 @@ import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MavenPluginManager;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
+import org.codehaus.plexus.context.ContextException;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Contextualizable;
 
 /**
- * Check the project and find all possible violations.
+ * Environment, passed from MOJO to validator.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- * @goal check
- * @phase verify
- * @threadSafe
  */
-public final class CheckMojo extends AbstractMojo implements Contextualizable {
+public final class Environment {
 
     /**
-     * Environment to pass to validators.
-     */
-    private Environment env = new Environment();
-
-    /**
-     * Maven project, to be injected by Maven itself.
-     * @parameter expression="${project}"
-     * @required
-     * @readonly
+     * Maven project.
      */
     private MavenProject project;
 
     /**
-     * Maven session, to be injected by Maven itself.
-     * @parameter expression="${session}"
-     * @required
-     * @readonly
+     * Plexus context.
      */
-    private MavenSession session;
+    private Context context;
 
     /**
-     * Maven plugin manager, to be injected by Maven itself.
-     * @component
-     * @required
+     * Log.
      */
-    private MavenPluginManager manager;
+    private Log log;
 
     /**
-     * Shall we skip execution?
-     * @parameter expression="${qulice.skip}" default-value="false"
-     * @required
+     * Plugin configuration.
      */
-    private boolean skip;
+    private final Properties properties = new Properties();
 
     /**
-     * Licence file location.
-     * @parameter expression="${qulice.license}" default-value="LICENSE.txt"
-     * @required
+     * MOJO executor.
      */
-    private String license;
+    private MojoExecutor mojoExecutor;
 
     /**
      * Set Maven Project (used mostly for unit testing).
@@ -102,40 +84,84 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
     }
 
     /**
-     * {@inheritDoc}
+     * Set context.
+     * @param ctx The context to set
      */
-    @Override
-    public void contextualize(final Context ctx) {
-        this.env.setContext(ctx);
+    public void setContext(final Context ctx) {
+        this.context = ctx;
     }
 
     /**
-     * {@inheritDoc}
+     * Set log.
+     * @param mlog The Maven log
      */
-    @Override
-    public final void execute() throws MojoFailureException {
-        if (this.skip) {
-            this.getLog().info("Execution skipped");
-            return;
-        }
-        final List<Validator> validators = new ArrayList<Validator>();
-        validators.add(new EnforcerValidator());
-        validators.add(new DependenciesValidator());
-        validators.add(new XmlValidator());
-        validators.add(new CheckstyleValidator());
-        validators.add(new PMDValidator());
-        validators.add(new FindBugsValidator());
-        // not working yet
-        // validators.add(new CoberturaValidator());
-        this.env.setProperty("license", this.license);
-        this.env.setProject(this.project);
-        this.env.setLog(this.getLog());
-        this.env.setMojoExecutor(
-            new MojoExecutor(this.manager, this.session, this.getLog())
-        );
-        for (Validator validator : validators) {
-            validator.validate(this.env);
-        }
+    public void setLog(final Log mlog) {
+        this.log = mlog;
+    }
+
+    /**
+     * Set executor.
+     * @param exec The executor
+     */
+    public void setMojoExecutor(final MojoExecutor exec) {
+        this.mojoExecutor = exec;
+    }
+
+    /**
+     * Set property.
+     * @param name Its name
+     * @param value Its value
+     */
+    public void setProperty(final String name, final String value) {
+        this.properties.setProperty(name, value);
+    }
+
+    /**
+     * Get project.
+     * @return The project
+     */
+    public MavenProject project() {
+        return this.project;
+    }
+
+    /**
+     * Get properties.
+     * @return The properties
+     */
+    public Properties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Get context.
+     * @return The context
+     */
+    public Context context() {
+        return this.context;
+    }
+
+    /**
+     * Get log.
+     * @return The log
+     */
+    public Log log() {
+        return this.log;
+    }
+
+    /**
+     * Get plugin configuration properties.
+     * @return The props
+     */
+    public Properties config() {
+        return this.properties;
+    }
+
+    /**
+     * Get MOJO executor.
+     * @return The executor
+     */
+    public MojoExecutor executor() {
+        return this.mojoExecutor;
     }
 
 }

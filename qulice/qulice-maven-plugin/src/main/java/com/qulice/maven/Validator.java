@@ -41,14 +41,9 @@ public interface Validator {
 
     /**
      * Validate and throw exception if some problems are found.
+     * @param env The environment to work with
      * @throws MojoFailureException In case of any violations found
      */
-    void validate() throws MojoFailureException;
-
-    /**
-     * Inject MOJO executor.
-     * @param exec The executor of MOJOs
-     */
-    void inject(final MojoExecutor exec);
+    void validate(final Environment env) throws MojoFailureException;
 
 }

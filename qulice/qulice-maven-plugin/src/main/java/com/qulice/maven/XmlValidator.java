@@ -43,27 +43,16 @@ import org.apache.maven.project.MavenProject;
 public final class XmlValidator extends AbstractValidator {
 
     /**
-     * Public ctor.
-     * @param project The project we're working in
-     * @param log The Maven log
-     * @param config Set of options provided in "configuration" section
-     */
-    public XmlValidator(final MavenProject project, final Log log,
-        final Properties config) {
-        super(project, log, config);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public void validate() throws MojoFailureException {
+    public void validate(final Environment env) throws MojoFailureException {
         final Properties props = new Properties();
         final Properties sets = new Properties();
         props.put("validationSets", sets);
         final Properties set = new Properties();
         sets.put("validationSet", set);
-        set.put("dir", this.project().getBasedir().getPath());
+        set.put("dir", env.project().getBasedir().getPath());
         set.put("validating", "true");
         set.put(
             "includes",
@@ -75,7 +64,7 @@ public final class XmlValidator extends AbstractValidator {
                 ".xhtml"
             }
         );
-        this.executor().execute(
+        env.executor().execute(
             "org.codehaus.mojo:xml-maven-plugin:1.0-beta-3-SNAPSHOT",
             "validate",
             props

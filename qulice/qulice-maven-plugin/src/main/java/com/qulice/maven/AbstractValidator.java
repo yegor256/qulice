@@ -50,93 +50,22 @@ import org.apache.maven.project.MavenProject;
 public abstract class AbstractValidator implements Validator {
 
     /**
-     * Maven project.
-     */
-    private final MavenProject project;
-
-    /**
-     * Maven log.
-     */
-    private final Log log;
-
-    /**
-     * Plugin configuration.
-     */
-    private final Properties config;
-
-    /**
-     * Executor of MOJO-s.
-     */
-    private MojoExecutor executor;
-
-    /**
-     * Public ctor.
-     * @param pjct The project we're working in
-     * @param mlog The Maven log
-     * @param cfg Set of options provided in "configuration" section
-     */
-    public AbstractValidator(final MavenProject pjct, final Log mlog,
-        final Properties cfg) {
-        this.project = pjct;
-        this.log = mlog;
-        this.config = cfg;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public abstract void validate() throws MojoFailureException;
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public final void inject(final MojoExecutor exec) {
-        this.executor = exec;
-    }
-
-    /**
-     * Get maven project.
-     * @return The project
-     */
-    protected final MavenProject project() {
-        return this.project;
-    }
-
-    /**
-     * Get Maven log.
-     * @return The log
-     */
-    protected final Log log() {
-        return this.log;
-    }
-
-    /**
-     * Get plugin configuration properties.
-     * @return The props
-     */
-    protected final Properties config() {
-        return this.config;
-    }
-
-    /**
-     * Get MOJO executor.
-     * @return The executor
-     */
-    protected final MojoExecutor executor() {
-        return this.executor;
-    }
+    public abstract void validate(final Environment env)
+        throws MojoFailureException;
 
     /**
      * Get full list of files to process.
+     * @param env The environmet
      * @return List of files
      */
-    protected final List<File> files() {
+    protected final List<File> files(final Environment env) {
         final List<File> files = new ArrayList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
         final File sources =
-            new File(this.project().getBasedir(), "src/main/java");
+            new File(env.project().getBasedir(), "src/main/java");
         if (sources.exists()) {
             files.addAll(
                 FileUtils.listFiles(
@@ -147,7 +76,7 @@ public abstract class AbstractValidator implements Validator {
             );
         }
         final File tests =
-            new File(this.project().getBasedir(), "src/test/java");
+            new File(env.project().getBasedir(), "src/test/java");
         if (tests.exists()) {
             files.addAll(
                 FileUtils.listFiles(

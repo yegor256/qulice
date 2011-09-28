@@ -44,24 +44,13 @@ import org.apache.maven.project.MavenProject;
 public final class CoberturaValidator extends AbstractValidator {
 
     /**
-     * Public ctor.
-     * @param project The project we're working in
-     * @param log The Maven log
-     * @param config Set of options provided in "configuration" section
-     */
-    public CoberturaValidator(final MavenProject project, final Log log,
-        final Properties config) {
-        super(project, log, config);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public void validate() throws MojoFailureException {
+    public void validate(final Environment env) throws MojoFailureException {
         final Properties props = new Properties();
         props.put("quiet", "false");
-        this.executor().execute(
+        env.executor().execute(
             "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
             "instrument",
             props
@@ -75,7 +64,7 @@ public final class CoberturaValidator extends AbstractValidator {
         check.put("packageBranchRate", "70");
         check.put("totalLineRate", "80");
         check.put("totalBranchRate", "80");
-        this.executor().execute(
+        env.executor().execute(
             "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
             "check",
             props

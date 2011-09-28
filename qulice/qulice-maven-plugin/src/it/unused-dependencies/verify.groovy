@@ -35,4 +35,4 @@
 
 def log = new File(basedir, "build.log")
 assert log.text.contains("Unused declared dependencies found")
-assert log.text.contains("Dependency problems found")
+assert log.text.contains("1 dependency problem(s) found")

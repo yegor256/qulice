@@ -62,12 +62,12 @@ public class CheckstyleValidatorTest {
 
     private File folder;
 
-    private MavenProject project;
+    private Environment env;
 
     @Before
-    public void prepareValidator() throws Exception {
+    public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
-        this.project = mock(MavenProject.class);
+        final MavenProject project = mock(MavenProject.class);
         doReturn(new File(this.folder.getPath())).when(project).getBasedir();
         final Build build = mock(Build.class);
         doReturn(build).when(project).getBuild();
@@ -77,6 +77,9 @@ public class CheckstyleValidatorTest {
         doReturn(paths).when(project).getRuntimeClasspathElements();
         doReturn(this.folder.getPath()).when(build).getOutputDirectory();
         doReturn(this.folder.getPath()).when(build).getTestOutputDirectory();
+        this.env = new Environment();
+        this.env.setProject(project);
+        this.env.setLog(mock(Log.class));
     }
 
     @Test(expected = MojoFailureException.class)
@@ -86,12 +89,11 @@ public class CheckstyleValidatorTest {
         FileUtils.writeStringToFile(license, "license\n");
         config.setProperty(this.LICENSE_PROP, "file:" + license.getPath());
         final Log log = mock(Log.class);
-        final Validator validator =
-            new CheckstyleValidator(this.project, log, config);
+        final Validator validator = new CheckstyleValidator();
         final File java = new File(this.folder, "src/main/java/Main.java");
         java.getParentFile().mkdirs();
         FileUtils.writeStringToFile(java, "public class Main { }");
-        validator.validate();
+        validator.validate(this.env);
     }
 
     @Test
@@ -101,9 +103,8 @@ public class CheckstyleValidatorTest {
         final Properties config = new Properties();
         config.setProperty(this.LICENSE_PROP, license.getName());
         final Log log = mock(Log.class);
-        final Validator validator =
-            new CheckstyleValidator(this.project, log, config);
-        validator.validate();
+        final Validator validator = new CheckstyleValidator();
+        validator.validate(this.env);
     }
 
 }

@@ -52,7 +52,7 @@ import static org.mockito.Mockito.*;
  */
 public class FindBugsValidatorTest {
 
-    private Validator validator;
+    private Environment env;
 
     @Before
     public void prepare() throws Exception {
@@ -66,14 +66,14 @@ public class FindBugsValidatorTest {
         paths.add(classes.getPath());
         doReturn(paths).when(project).getRuntimeClasspathElements();
         doReturn(classes.getPath()).when(build).getOutputDirectory();
-        final Properties config = new Properties();
-        final Log log = mock(Log.class);
-        this.validator = new FindBugsValidator(project, log, config);
+        this.env = new Environment();
+        this.env.setProject(project);
+        this.env.setLog(mock(Log.class));
     }
 
     @Test(expected = MojoFailureException.class)
     public void testValidatesSetOfFiles() throws Exception {
-        validator.validate();
+        new FindBugsValidator().validate(this.env);
     }
 
 }

@@ -29,10 +29,21 @@
  */
 package com.qulice.maven;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import org.apache.commons.lang.StringUtils;
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
+import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
+import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzerException;
+import org.codehaus.plexus.PlexusConstants;
+import org.codehaus.plexus.PlexusContainer;
+import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
 
 /**
  * Validator of dependencies.
@@ -43,29 +54,66 @@ import org.apache.maven.project.MavenProject;
 public final class DependenciesValidator extends AbstractValidator {
 
     /**
-     * Public ctor.
-     * @param project The project we're working in
-     * @param log The Maven log
-     * @param config Set of options provided in "configuration" section
-     */
-    public DependenciesValidator(final MavenProject project, final Log log,
-        final Properties config) {
-        super(project, log, config);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public void validate() throws MojoFailureException {
-        final Properties props = new Properties();
-        props.put("ignoreNonCompile", "true");
-        props.put("failOnWarning", "true");
-        this.executor().execute(
-            "org.apache.maven.plugins:maven-dependency-plugin:2.1",
-            "analyze-only",
-            props
-        );
+    public void validate(final Environment env) throws MojoFailureException {
+        final File output =
+            new File(env.project().getBuild().getOutputDirectory());
+        if (!output.exists() || env.project().getPackaging().equals("pom")) {
+            env.log().info("No dependency analysis in this project");
+            return;
+        }
+        ProjectDependencyAnalysis analysis;
+        try {
+            analysis = ((ProjectDependencyAnalyzer)
+            ((PlexusContainer) env.context().get(PlexusConstants.PLEXUS_KEY))
+            .lookup(ProjectDependencyAnalyzer.ROLE, "default"))
+            .analyze(env.project());
+        } catch (org.codehaus.plexus.context.ContextException ex) {
+            throw new IllegalStateException(ex);
+        } catch (ComponentLookupException ex) {
+            throw new IllegalStateException(ex);
+        } catch (ProjectDependencyAnalyzerException ex) {
+            throw new IllegalStateException(ex);
+        }
+        final List<String> unused = new ArrayList<String>();
+        for (Object obj : analysis.getUnusedDeclaredArtifacts()) {
+            final Artifact artifact = (Artifact) obj;
+            if (!artifact.getScope().equals(Artifact.SCOPE_COMPILE)) {
+                continue;
+            }
+            unused.add(artifact.toString());
+        }
+        if (unused.size() > 0) {
+            env.log().warn(
+                String.format(
+                    "Unused declared dependencies found:\n   %s",
+                    StringUtils.join(unused, "\n   ")
+                )
+            );
+        }
+        final List<String> used = new ArrayList<String>();
+        for (Object artifact : analysis.getUsedUndeclaredArtifacts()) {
+            used.add(((Artifact) artifact).toString());
+        }
+        if (used.size() > 0) {
+            env.log().warn(
+                String.format(
+                    "Used undeclared dependencies found:\n   %s",
+                    StringUtils.join(used, "\n   ")
+                )
+            );
+        }
+        final Integer failures = used.size() + unused.size();
+        if (failures > 0) {
+            throw new MojoFailureException(
+                String.format(
+                    "%d dependency problem(s) found",
+                    failures
+                )
+            );
+        }
     }
 
 }

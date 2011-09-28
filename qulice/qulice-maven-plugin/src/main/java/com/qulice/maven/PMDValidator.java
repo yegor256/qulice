@@ -60,29 +60,18 @@ import org.apache.maven.project.MavenProject;
 public final class PMDValidator extends AbstractValidator {
 
     /**
-     * Public ctor.
-     * @param project The project we're working in
-     * @param log The Maven log
-     * @param config Set of options provided in "configuration" section
-     */
-    public PMDValidator(final MavenProject project, final Log log,
-        final Properties config) {
-        super(project, log, config);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public void validate() throws MojoFailureException {
-        final List<DataSource> sources = this.sources();
+    public void validate(final Environment env) throws MojoFailureException {
+        final List<DataSource> sources = this.sources(env);
         if (sources.isEmpty()) {
-            this.log().info("No files to check with PMD");
+            env.log().info("No files to check with PMD");
             return;
         }
         final RuleSetFactory factory = new RuleSetFactory();
         factory.setMinimumPriority(0);
-        final PmdListener listener = new PmdListener();
+        final PmdListener listener = new PmdListener(env);
         final Report report = new Report();
         report.addListener(listener);
         final RuleContext context = new RuleContext();
@@ -114,7 +103,7 @@ public final class PMDValidator extends AbstractValidator {
                 )
             );
         }
-        this.log().info(
+        env.log().info(
             String.format(
                 "No PMD violations found in %d files",
                 sources.size()
@@ -124,11 +113,12 @@ public final class PMDValidator extends AbstractValidator {
 
     /**
      * Get full list of files to process.
+     * @param env The environment
      * @see #validate()
      */
-    private List<DataSource> sources() {
+    private List<DataSource> sources(final Environment env) {
         final List<DataSource> sources = new ArrayList<DataSource>();
-        for (File file : this.files()) {
+        for (File file : this.files(env)) {
             sources.add(new FileDataSource(file));
         }
         return sources;
@@ -139,10 +129,21 @@ public final class PMDValidator extends AbstractValidator {
      */
     private final class PmdListener implements ReportListener {
         /**
+         * Environment.
+         */
+        private final Environment env;
+        /**
          * List of violations.
          */
         private List<IRuleViolation> violations =
             new ArrayList<IRuleViolation>();
+        /**
+         * Public ctor.
+         * @param environ The environment
+         */
+        public PmdListener(final Environment environ) {
+            this.env = environ;
+        }
         /**
          * Get list of violations.
          * @return List of violations
@@ -155,7 +156,7 @@ public final class PMDValidator extends AbstractValidator {
          */
         @Override
         public void metricAdded(final Metric metric) {
-            PMDValidator.this.log().info(
+            this.env.log().info(
                 String.format(
                     "%s: %d %f %f %f %f %f",
                     metric.getMetricName(),
@@ -174,7 +175,7 @@ public final class PMDValidator extends AbstractValidator {
         @Override
         public void ruleViolationAdded(final IRuleViolation violation) {
             this.violations.add(violation);
-            PMDValidator.this.log().info(
+            this.env.log().info(
                 String.format(
                     "%s[%d-%d]: %s (%s)",
                     violation.getFilename(),
