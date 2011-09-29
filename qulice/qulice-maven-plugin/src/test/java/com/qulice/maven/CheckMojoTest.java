@@ -29,29 +29,83 @@
  */
 package com.qulice.maven;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.junit.*;
+import org.apache.maven.plugin.logging.Log;
+import org.apache.maven.project.MavenProject;
+import org.codehaus.plexus.context.Context;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ CheckMojo.class, ValidatorFactory.class })
 public class CheckMojoTest extends AbstractMojoTestCase {
 
     @Test
-    public void testMojoGoal() throws Exception {
-        final CheckMojo mojo = this.mojo();
-        // mojo.execute();
+    public void testSkipOption() throws Exception {
+        final CheckMojo mojo = new CheckMojo();
+        final Log log = Mockito.mock(Log.class);
+        mojo.setLog(log);
+        mojo.setSkip(true);
+        mojo.execute();
+        Mockito.verify(log).info("Execution skipped");
     }
 
-    private CheckMojo mojo() throws Exception {
-        // final File pom = ResourceLoader.find("pom.xml");
-        // ReaderMojo mojo = (ReaderMojo) this.lookupMojo("check", pom);
-        // this.assertNotNull(mojo);
-        // mojo.setProject(MavenHelper.project());
-        // return mojo;
-        return null;
+    @Test
+    public void testValidatingWorks() throws Exception {
+        PowerMockito.mockStatic(ValidatorFactory.class);
+        final ValidatorFactory factory =
+            PowerMockito.mock(ValidatorFactory.class);
+        final List<Validator> validators = new ArrayList<Validator>();
+        final CheckMojoTest.SpyValidator validator =
+            new CheckMojoTest.SpyValidator();
+        validators.add(validator);
+        Mockito.doReturn(validators).when(factory).all();
+        PowerMockito.whenNew(ValidatorFactory.class).withNoArguments()
+            .thenReturn(factory);
+        final CheckMojo mojo = new CheckMojo();
+        final MavenProject project = Mockito.mock(MavenProject.class);
+        mojo.setProject(project);
+        final Log log = Mockito.mock(Log.class);
+        mojo.setLog(log);
+        final String license = "file:./some-file.txt";
+        mojo.setLicense(license);
+        final Context context = Mockito.mock(Context.class);
+        mojo.contextualize(context);
+        mojo.execute();
+        Mockito.verify(factory).all();
+        final Environment env = validator.env();
+        MatcherAssert.assertThat(env, Matchers.notNullValue());
+        MatcherAssert.assertThat(env.project(), Matchers.equalTo(project));
+        MatcherAssert.assertThat(env.context(), Matchers.equalTo(context));
+        MatcherAssert.assertThat(
+            env.properties().getProperty("license"),
+            Matchers.equalTo(license)
+        );
+        MatcherAssert.assertThat(env.log(), Matchers.equalTo(log));
+    }
+
+    private static final class SpyValidator implements Validator {
+        private Environment env;
+        @Override
+        public void validate(final Environment environment) {
+            this.env = environment;
+        }
+        public Environment env() {
+            return this.env;
+        }
     }
 
 }

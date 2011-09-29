@@ -63,7 +63,7 @@ public class PMDValidatorTest {
     private Environment env;
 
     @Before
-    public void prepareValidator() throws Exception {
+    public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
         final MavenProject project = mock(MavenProject.class);
         doReturn(new File(this.folder.getPath())).when(project).getBasedir();

@@ -144,6 +144,21 @@
             <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-core</artifactId>
+            <!-- other details are in parent pom.xml -->
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <!-- other details are in parent pom.xml -->
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <!-- other details are in parent pom.xml -->
+        </dependency>
+        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <!-- other details are in parent pom.xml -->
@@ -181,11 +196,14 @@
                     With this construct you can exclude certain IT projects.
                     -->
                     <pomIncludes>
-                        <pomInclude>many-violations/pom.xml</pomInclude>
-                        <pomInclude>multi-module/pom.xml</pomInclude>
+                        <!-- <pomInclude>many-violations/pom.xml</pomInclude> -->
+                        <!-- <pomInclude>multi-module/pom.xml</pomInclude> -->
+                        <!-- <pomInclude>findbugs-violations/pom.xml</pomInclude> -->
                         <!--
                         @todo #8 This test is not working. I don't know what exactly is
                          going on. Seems like ASM is not working in maven-dependency-analyzer.
+                         I copied implementation from maven-dependency-plugin, almost
+                         literally.
                         -->
                         <!-- <pomInclude>unused-dependencies/pom.xml</pomInclude> -->
                     </pomIncludes>

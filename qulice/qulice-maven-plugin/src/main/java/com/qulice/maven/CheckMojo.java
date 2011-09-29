@@ -91,7 +91,7 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
      * @parameter expression="${qulice.license}" default-value="LICENSE.txt"
      * @required
      */
-    private String license;
+    private String license = "LICENSE.txt";
 
     /**
      * Set Maven Project (used mostly for unit testing).
@@ -99,6 +99,22 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
      */
     public void setProject(final MavenProject proj) {
         this.project = proj;
+    }
+
+    /**
+     * Set skip option (mostly for unit testing).
+     * @param skp The "skip" option
+     */
+    public void setSkip(final boolean skp) {
+        this.skip = skp;
+    }
+
+    /**
+     * Set license address.
+     * @param lcs The "license" option
+     */
+    public void setLicense(final String lcs) {
+        this.license = lcs;
     }
 
     /**
@@ -118,22 +134,13 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
             this.getLog().info("Execution skipped");
             return;
         }
-        final List<Validator> validators = new ArrayList<Validator>();
-        validators.add(new EnforcerValidator());
-        validators.add(new DependenciesValidator());
-        validators.add(new XmlValidator());
-        validators.add(new CheckstyleValidator());
-        validators.add(new PMDValidator());
-        validators.add(new FindBugsValidator());
-        // not working yet
-        // validators.add(new CoberturaValidator());
         this.env.setProperty("license", this.license);
         this.env.setProject(this.project);
         this.env.setLog(this.getLog());
         this.env.setMojoExecutor(
             new MojoExecutor(this.manager, this.session, this.getLog())
         );
-        for (Validator validator : validators) {
+        for (Validator validator : new ValidatorFactory().all()) {
             validator.validate(this.env);
         }
     }
