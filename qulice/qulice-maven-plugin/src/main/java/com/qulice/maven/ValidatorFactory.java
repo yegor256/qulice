@@ -29,46 +29,33 @@
  */
 package com.qulice.maven;
 
-import java.util.Properties;
-import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Simple validator of XML files.
+ * Factory of validators.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class XmlValidator extends AbstractValidator {
+final class ValidatorFactory {
 
     /**
-     * {@inheritDoc}
+     * Get a collection of validators.
+     * @return List of them
+     * @see CheckMojo#execute()
      */
-    @Override
-    public void validate(final Environment env) throws MojoFailureException {
-        final Properties props = new Properties();
-        final Properties sets = new Properties();
-        props.put("validationSets", sets);
-        final Properties set = new Properties();
-        sets.put("validationSet", set);
-        set.put("dir", env.project().getBasedir().getPath());
-        set.put("validating", "true");
-        set.put(
-            "includes",
-            new String[] {
-                ".xml",
-                ".xsl",
-                ".xsd",
-                ".html",
-                ".xhtml"
-            }
-        );
-        env.executor().execute(
-            "org.codehaus.mojo:xml-maven-plugin:1.0-beta-3-SNAPSHOT",
-            "validate",
-            props
-        );
+    public List<Validator> all() {
+        final List<Validator> validators = new ArrayList<Validator>();
+        validators.add(new EnforcerValidator());
+        validators.add(new DependenciesValidator());
+        validators.add(new XmlValidator());
+        validators.add(new CheckstyleValidator());
+        validators.add(new PMDValidator());
+        // validators.add(new FindBugsValidator());
+        // not working yet
+        // validators.add(new CoberturaValidator());
+        return validators;
     }
 
 }

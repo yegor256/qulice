@@ -58,15 +58,18 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
         for (int pos = 0; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);
             final int current = this.indentation(line);
-            final int diff = Math.abs(current - previous);
-            if (diff == 0) {
+            if (current == 0) {
                 continue;
             }
-            if (diff != this.DELTA) {
+            final int diff = current - previous;
+            if (diff > 0 && diff != this.DELTA) {
                 this.log(
                     pos + 1,
-                    "Should be indented by exactly " + this.DELTA + " spaces"
-                    + " (" + diff + " instead)"
+                    String.format(
+                        "Should be indented by %d spaces (%d instead)",
+                        previous + this.DELTA,
+                        current
+                    )
                 );
                 failure = true;
                 continue;

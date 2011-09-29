@@ -43,21 +43,10 @@ import org.apache.maven.project.MavenProject;
 public final class EnforcerValidator extends AbstractValidator {
 
     /**
-     * Public ctor.
-     * @param project The project we're working in
-     * @param log The Maven log
-     * @param config Set of options provided in "configuration" section
-     */
-    public EnforcerValidator(final MavenProject project, final Log log,
-        final Properties config) {
-        super(project, log, config);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public void validate() throws MojoFailureException {
+    public void validate(final Environment env) throws MojoFailureException {
         final Properties props = new Properties();
         final Properties rules = new Properties();
         props.put("rules", rules);
@@ -67,7 +56,7 @@ public final class EnforcerValidator extends AbstractValidator {
         final Properties java = new Properties();
         rules.put("requireJavaVersion", java);
         java.put("version", "1.6");
-        this.executor().execute(
+        env.executor().execute(
             "org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1",
             "enforce",
             props

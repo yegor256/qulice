@@ -54,39 +54,28 @@ import org.apache.maven.project.MavenProject;
 public final class FindBugsValidator extends AbstractValidator {
 
     /**
-     * Public ctor.
-     * @param project The project we're working in
-     * @param log The Maven log
-     * @param config Set of options provided in "configuration" section
-     */
-    public FindBugsValidator(final MavenProject project, final Log log,
-        final Properties config) {
-        super(project, log, config);
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
-    public void validate() throws MojoFailureException {
-        if (!new File(this.project().getBuild().getOutputDirectory()).exists()) {
-            this.log().info("No classes, no FindBugs validation");
+    public void validate(final Environment env) throws MojoFailureException {
+        if (!new File(env.project().getBuild().getOutputDirectory()).exists()) {
+            env.log().info("No classes, no FindBugs validation");
             return;
         }
         final Project project = new Project();
         final List<String> jars;
         try {
-            jars = this.project().getRuntimeClasspathElements();
+            jars = env.project().getRuntimeClasspathElements();
         } catch (DependencyResolutionRequiredException ex) {
             throw new IllegalArgumentException(ex);
         }
         for (String jar : jars) {
             project.addFile(jar);
-            if (!jar.equals(this.project().getBuild().getOutputDirectory())) {
+            if (!jar.equals(env.project().getBuild().getOutputDirectory())) {
                 project.addAuxClasspathEntry(jar);
             }
         }
-        project.addSourceDir(this.project().getBasedir().getPath());
+        project.addSourceDir(env.project().getBasedir().getPath());
         final FindBugs2 findbugs = new FindBugs2();
         findbugs.setProject(project);
         final BugReporter reporter = new PrintingBugReporter();
@@ -113,7 +102,7 @@ public final class FindBugsValidator extends AbstractValidator {
                 )
             );
         }
-        this.log().info("No FindBugs violations found");
+        env.log().info("No FindBugs violations found");
     }
 
 }

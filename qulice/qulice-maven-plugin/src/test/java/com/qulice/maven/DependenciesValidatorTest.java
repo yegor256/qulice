@@ -33,13 +33,21 @@ import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 import org.apache.commons.io.FileUtils;
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.model.Build;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
+import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
+import org.codehaus.plexus.PlexusConstants;
+import org.codehaus.plexus.PlexusContainer;
+import org.codehaus.plexus.context.Context;
 import org.junit.*;
 import org.junit.rules.TemporaryFolder;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -50,9 +58,7 @@ import static org.mockito.Mockito.*;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public class CheckstyleValidatorTest {
-
-    private static final String LICENSE_PROP = "license";
+public class DependenciesValidatorTest {
 
     /**
      * @checkstyle VisibilityModifier (3 lines)
@@ -69,41 +75,58 @@ public class CheckstyleValidatorTest {
         this.folder = this.temp.newFolder("temp-src");
         final MavenProject project = mock(MavenProject.class);
         doReturn(new File(this.folder.getPath())).when(project).getBasedir();
+        doReturn("jar").when(project).getPackaging();
         final Build build = mock(Build.class);
         doReturn(build).when(project).getBuild();
-        final List<String> paths = new ArrayList<String>();
-        paths.add(this.folder.getPath());
-        doReturn(paths).when(project).getTestClasspathElements();
-        doReturn(paths).when(project).getRuntimeClasspathElements();
         doReturn(this.folder.getPath()).when(build).getOutputDirectory();
-        doReturn(this.folder.getPath()).when(build).getTestOutputDirectory();
         this.env = new Environment();
         this.env.setProject(project);
         this.env.setLog(mock(Log.class));
+        final Context context = mock(Context.class);
+        this.env.setContext(context);
+        final PlexusContainer container = mock(PlexusContainer.class);
+        doReturn(container).when(context).get(anyString());
+        final ProjectDependencyAnalyzer analyzer =
+            mock(ProjectDependencyAnalyzer.class);
+        doReturn(analyzer).when(container).lookup(anyString(), anyString());
+        final ProjectDependencyAnalysis analysis =
+            mock(ProjectDependencyAnalysis.class);
+        doReturn(analysis).when(analyzer).analyze(project);
     }
 
+    @Test
+    public void testValidatesWithoutDependencyProblems() throws Exception {
+        new DependenciesValidator().validate(this.env);
+    }
+
+    @Ignore
     @Test(expected = MojoFailureException.class)
-    public void testValidatesSetOfFiles() throws Exception {
-        final Properties config = new Properties();
-        final File license = this.temp.newFile("license.txt");
-        FileUtils.writeStringToFile(license, "license\n");
-        config.setProperty(this.LICENSE_PROP, "file:" + license.getPath());
-        final Log log = mock(Log.class);
-        final Validator validator = new CheckstyleValidator();
-        final File java = new File(this.folder, "src/main/java/Main.java");
-        java.getParentFile().mkdirs();
-        FileUtils.writeStringToFile(java, "public class Main { }");
+    public void testValidatesWithDependencyProblems() throws Exception {
+        final ProjectDependencyAnalysis analysis =
+            ((ProjectDependencyAnalyzer) ((PlexusContainer)
+            this.env.context().get(PlexusConstants.PLEXUS_KEY))
+            .lookup(ProjectDependencyAnalyzer.ROLE, "default"))
+            .analyze(this.env.project());
+        final Set<Artifact> unused = new HashSet<Artifact>();
+        unused.add(mock(Artifact.class));
+        doReturn(unused).when(analysis).getUsedUndeclaredArtifacts();
+        final Validator validator = new DependenciesValidator();
         validator.validate(this.env);
     }
 
     @Test
-    public void testImmitatesLicenseInClasspath() throws Exception {
-        final File license = new File(this.folder, "my-license.txt");
-        FileUtils.writeStringToFile(license, "some non-important text\n");
-        final Properties config = new Properties();
-        config.setProperty(this.LICENSE_PROP, license.getName());
-        final Log log = mock(Log.class);
-        final Validator validator = new CheckstyleValidator();
+    public void testWithRuntimeScope() throws Exception {
+        final ProjectDependencyAnalysis analysis =
+            ((ProjectDependencyAnalyzer) ((PlexusContainer)
+            this.env.context().get(PlexusConstants.PLEXUS_KEY))
+            .lookup(ProjectDependencyAnalyzer.ROLE, "default"))
+            .analyze(this.env.project());
+        final Set<Artifact> unused = new HashSet<Artifact>();
+        final Artifact artifact = mock(Artifact.class);
+        unused.add(artifact);
+        doReturn(unused).when(analysis).getUnusedDeclaredArtifacts();
+        doReturn(Artifact.SCOPE_RUNTIME).when(artifact).getScope();
+        final Validator validator = new DependenciesValidator();
         validator.validate(this.env);
     }
 

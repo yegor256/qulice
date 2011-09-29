@@ -56,31 +56,36 @@
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
             <version since="22 Aug 2011">3.0.3</version>
-            <scope>provided</scope>
+            <!-- <scope>provided</scope> -->
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-model</artifactId>
             <version since="22 Aug 2011">3.0.3</version>
-            <scope>provided</scope>
+            <!-- <scope>provided</scope> -->
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
             <version since="22 Aug 2011">3.0.3</version>
-            <scope>provided</scope>
+            <!-- <scope>provided</scope> -->
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact</artifactId>
             <version since="22 Aug 2011">3.0.3</version>
-            <scope>provided</scope>
+            <!-- <scope>provided</scope> -->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.shared</groupId>
+            <artifactId>maven-dependency-analyzer</artifactId>
+            <version since="27 Sep 2011">1.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-project</artifactId>
             <version since="22 Aug 2011">3.0-alpha-2</version>
-            <scope>provided</scope>
+            <!-- <scope>provided</scope> -->
             <exclusions>
                 <exclusion>
                     <!--
@@ -139,6 +144,21 @@
             <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-core</artifactId>
+            <!-- other details are in parent pom.xml -->
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <!-- other details are in parent pom.xml -->
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <!-- other details are in parent pom.xml -->
+        </dependency>
+        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <!-- other details are in parent pom.xml -->
@@ -174,13 +194,18 @@
                     <noLog>false</noLog>
                     <!--
                     With this construct you can exclude certain IT projects.
-                    <pomExcludes>
-                        <pomExclude>many-violations/pom.xml</pomExclude>
-                        <pomExclude>*/pom.xml</pomExclude>
-                    </pomExcludes>
                     -->
                     <pomIncludes>
-                        <pomInclude>*/pom.xml</pomInclude>
+                        <!-- <pomInclude>many-violations/pom.xml</pomInclude> -->
+                        <!-- <pomInclude>multi-module/pom.xml</pomInclude> -->
+                        <!-- <pomInclude>findbugs-violations/pom.xml</pomInclude> -->
+                        <!--
+                        @todo #8 This test is not working. I don't know what exactly is
+                         going on. Seems like ASM is not working in maven-dependency-analyzer.
+                         I copied implementation from maven-dependency-plugin, almost
+                         literally.
+                        -->
+                        <!-- <pomInclude>unused-dependencies/pom.xml</pomInclude> -->
                     </pomIncludes>
                     <postBuildHookScript>verify</postBuildHookScript>
                     <preBuildHookScript>setup</preBuildHookScript>

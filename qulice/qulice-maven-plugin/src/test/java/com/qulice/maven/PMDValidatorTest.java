@@ -60,12 +60,12 @@ public class PMDValidatorTest {
 
     private File folder;
 
-    private MavenProject project;
+    private Environment env;
 
     @Before
-    public void prepareValidator() throws Exception {
+    public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
-        this.project = mock(MavenProject.class);
+        final MavenProject project = mock(MavenProject.class);
         doReturn(new File(this.folder.getPath())).when(project).getBasedir();
         final Build build = mock(Build.class);
         doReturn(build).when(project).getBuild();
@@ -75,17 +75,18 @@ public class PMDValidatorTest {
         doReturn(paths).when(project).getRuntimeClasspathElements();
         doReturn(this.folder.getPath()).when(build).getOutputDirectory();
         doReturn(this.folder.getPath()).when(build).getTestOutputDirectory();
+        this.env = new Environment();
+        this.env.setProject(project);
+        this.env.setLog(mock(Log.class));
     }
 
     @Ignore
     @Test(expected = MojoFailureException.class)
     public void testValidatesSetOfFiles() throws Exception {
-        final Properties config = new Properties();
-        final Log log = mock(Log.class);
-        final Validator validator = new PMDValidator(this.project, log, config);
+        final Validator validator = new PMDValidator();
         final File java = new File(this.folder, "Main.java");
         FileUtils.writeStringToFile(java, "class Main { int x = 0; }");
-        validator.validate();
+        validator.validate(this.env);
     }
 
 }
