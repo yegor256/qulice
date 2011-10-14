@@ -40,47 +40,65 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.io.IOUtils;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
 
 /**
+ * Test case for {@link SvnPropertiesCheck}.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ SvnPropertiesCheck.class, ProcessBuilder.class })
-public class SvnPropertiesCheckTest {
+public final class SvnPropertiesCheckTest {
 
+    /**
+     * The check we're testing.
+     */
     private FileSetCheck check;
 
+    /**
+     * Dispatcher of log messages.
+     */
     private MessageDispatcher dispatcher;
 
+    /**
+     * Prepare mocked process builder.
+     * @throws Exception If something goes wrong
+     */
     @Before
     public void mockProcessBuilder() throws Exception {
         PowerMockito.mockStatic(ProcessBuilder.class);
     }
 
+    /**
+     * Prepare check for testing.
+     * @throws Exception If something goes wrong
+     */
     @Before
     public void prepareCheck() throws Exception {
-        this.dispatcher = mock(MessageDispatcher.class);
-        final Configuration config = mock(Configuration.class);
-        doReturn(new String[]{}).when(config).getAttributeNames();
-        doReturn(new Configuration[]{}).when(config).getChildren();
-        doReturn(
-            new ImmutableSortedMap.Builder<String,String>(Ordering.natural())
-            .build()
+        this.dispatcher = Mockito.mock(MessageDispatcher.class);
+        final Configuration config = Mockito.mock(Configuration.class);
+        Mockito.doReturn(new String[]{}).when(config).getAttributeNames();
+        Mockito.doReturn(new Configuration[]{}).when(config).getChildren();
+        Mockito.doReturn(
+            new ImmutableSortedMap.Builder<String, String>(Ordering.natural())
+                .build()
         ).when(config).getMessages();
         this.check = new SvnPropertiesCheck();
-        check.configure(config);
-        check.setMessageDispatcher(dispatcher);
+        this.check.configure(config);
+        this.check.setMessageDispatcher(this.dispatcher);
     }
 
+    /**
+     * Let's simulate the property reading request.
+     * @throws Exception If something goes wrong
+     */
     @Test
     public void testSimulatesSvnPropgetRequest() throws Exception {
         final Map<String, String> props = new HashMap<String, String>();
@@ -89,40 +107,56 @@ public class SvnPropertiesCheckTest {
         final File file = new File("foo.txt");
         for (Map.Entry<String, String> entry : props.entrySet()) {
             final InputStream stream = IOUtils.toInputStream(entry.getValue());
-            final Process proc = mock(Process.class);
-            doReturn(stream).when(proc).getInputStream();
-            final ProcessBuilder builder = PowerMockito.mock(ProcessBuilder.class);
+            final Process proc = Mockito.mock(Process.class);
+            Mockito.doReturn(stream).when(proc).getInputStream();
+            final ProcessBuilder builder =
+                PowerMockito.mock(ProcessBuilder.class);
             PowerMockito.doReturn(proc).when(builder).start();
             PowerMockito.whenNew(ProcessBuilder.class)
                 .withArguments(
-                    eq(SvnPropertiesCheck.SVN),
-                    eq(SvnPropertiesCheck.PROPGET),
-                    eq(entry.getKey()), eq(file.getPath())
+                    Mockito.eq(SvnPropertiesCheck.SVN),
+                    Mockito.eq(SvnPropertiesCheck.PROPGET),
+                    Mockito.eq(entry.getKey()),
+                    Mockito.eq(file.getPath())
                 ).thenReturn(builder);
         }
         this.process(file);
-        verify(dispatcher, times(0))
-            .fireErrors(anyString(), (java.util.TreeSet) anyObject());
+        Mockito.verify(this.dispatcher, Mockito.times(0)).fireErrors(
+            Mockito.anyString(),
+            Mockito.any(java.util.TreeSet.class)
+        );
     }
 
+    /**
+     * Let's try with properties that are missed.
+     * @throws Exception If something goes wrong
+     */
     @Test
     public void testWithMissedSubversionProperties() throws Exception {
         final File file = new File("bar.txt");
         final InputStream stream = IOUtils.toInputStream("");
-        final Process proc = mock(Process.class);
-        doReturn(stream).when(proc).getInputStream();
+        final Process proc = Mockito.mock(Process.class);
+        Mockito.doReturn(stream).when(proc).getInputStream();
         final ProcessBuilder builder = PowerMockito.mock(ProcessBuilder.class);
         PowerMockito.doReturn(proc).when(builder).start();
         PowerMockito.whenNew(ProcessBuilder.class)
             .withArguments(
-                eq(SvnPropertiesCheck.SVN), eq(SvnPropertiesCheck.PROPGET),
-                anyString(), eq(file.getPath()))
-            .thenReturn(builder);
+                Mockito.eq(SvnPropertiesCheck.SVN),
+                Mockito.eq(SvnPropertiesCheck.PROPGET),
+                Mockito.anyString(),
+                Mockito.eq(file.getPath())
+            ).thenReturn(builder);
         this.process(file);
-        verify(dispatcher)
-            .fireErrors(anyString(), (java.util.TreeSet) anyObject());
+        Mockito.verify(this.dispatcher).fireErrors(
+            Mockito.anyString(),
+            Mockito.any(java.util.TreeSet.class)
+        );
     }
 
+    /**
+     * What if there is an exception.
+     * @throws Exception If something goes wrong
+     */
     @Test
     public void testWithIOExceptionInFile() throws Exception {
         final File file = new File("failed.txt");
@@ -131,14 +165,22 @@ public class SvnPropertiesCheckTest {
             .when(builder).start();
         PowerMockito.whenNew(ProcessBuilder.class)
             .withArguments(
-                eq(SvnPropertiesCheck.SVN), eq(SvnPropertiesCheck.PROPGET),
-                anyString(), eq(file.getPath()))
-            .thenReturn(builder);
+                Mockito.eq(SvnPropertiesCheck.SVN),
+                Mockito.eq(SvnPropertiesCheck.PROPGET),
+                Mockito.anyString(),
+                Mockito.eq(file.getPath())
+            ).thenReturn(builder);
         this.process(file);
-        verify(dispatcher)
-            .fireErrors(anyString(), (java.util.TreeSet) anyObject());
+        Mockito.verify(this.dispatcher).fireErrors(
+            Mockito.anyString(),
+            Mockito.any(java.util.TreeSet.class)
+        );
     }
 
+    /**
+     * Let's process one file.
+     * @param file The file to process
+     */
     private void process(final File file) {
         this.check.init();
         this.check.beginProcessing("UTF-8");

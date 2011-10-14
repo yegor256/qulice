@@ -30,10 +30,8 @@
 package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
@@ -68,8 +66,8 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
      */
     @Override
     public void init() {
-        required.put("svn:keywords", "Id");
-        required.put("svn:eol-style", "native");
+        this.required.put("svn:keywords", "Id");
+        this.required.put("svn:eol-style", "native");
     }
 
     /**
@@ -77,9 +75,8 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
      */
     @Override
     public void processFiltered(final File file, final List<String> lines) {
-        BufferedReader reader = null;
         boolean failed = false;
-        for (Map.Entry<String, String> entry : required.entrySet()) {
+        for (Map.Entry<String, String> entry : this.required.entrySet()) {
             final String value = this.read(file, entry.getKey());
             if (value == null || value.isEmpty()) {
                 this.log(
@@ -113,6 +110,7 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
      * Read SVN property on the file.
      * @param file The file
      * @param name SVN property name
+     * @return The value of the property
      */
     private String read(final File file, final String name) {
         BufferedReader reader = null;
@@ -134,7 +132,7 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
                 value = "";
             }
         } catch (java.io.IOException ex) {
-            log(0, "Failed to execute 'svn': " + ex.getMessage());
+            this.log(0, "Failed to execute 'svn': " + ex.getMessage());
         } finally {
             if (reader != null) {
                 try {

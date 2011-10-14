@@ -31,9 +31,7 @@ package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Check if import lines are all together without any empty lines or comments.
@@ -45,12 +43,13 @@ import java.util.regex.Pattern;
 public final class ImportCohesionCheck extends AbstractFileSetCheck {
 
     /**
-     * "import" keyword.
+     * The "import" keyword.
      */
     private static final String IMPORT = "import ";
 
     /**
      * {@inheritDoc}
+     * @checkstyle ExecutableStatementCount (42 lines)
      */
     @Override
     public void processFiltered(final File file, final List<String> lines) {
@@ -66,24 +65,25 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
                 last = pos;
             }
         }
-        if (first != -1) {
-            if (!lines.get(first-1).equals("")) {
-                this.log(first, "Line before imports should be empty");
+        if (first == -1) {
+            return;
+        }
+        if (!lines.get(first - 1).isEmpty()) {
+            this.log(first, "Line before imports should be empty");
+            failure = true;
+        }
+        if (!lines.get(last + 1).isEmpty()) {
+            this.log(last + 2, "Line after imports should be empty");
+            failure = true;
+        }
+        for (int pos = first; pos < last; pos += 1) {
+            final String line = lines.get(pos);
+            if (!line.startsWith(this.IMPORT)) {
+                this.log(
+                    pos + 1,
+                    "Empty line or comment between imports is not allowed"
+                );
                 failure = true;
-            }
-            if (!lines.get(last+1).equals("")) {
-                this.log(last+2, "Line after imports should be empty");
-                failure = true;
-            }
-            for (int pos = first; pos < last; pos += 1) {
-                final String line = lines.get(pos);
-                if (!line.startsWith(this.IMPORT)) {
-                    this.log(
-                        pos + 1,
-                        "Empty line or comment between imports is not allowed"
-                    );
-                    failure = true;
-                }
             }
         }
         if (failure) {

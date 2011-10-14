@@ -58,6 +58,7 @@ public final class JavadocTagsCheck extends Check {
     public void init() {
         this.tags.put(
             "author",
+            // @checkstyle LineLength (1 line)
             Pattern.compile("^([A-Z](\\.|[a-z]+) ){2,}\\([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\)$")
         );
         this.tags.put("version", Pattern.compile("^\\$Id.*\\$$"));
@@ -70,7 +71,7 @@ public final class JavadocTagsCheck extends Check {
     public int[] getDefaultTokens() {
         return new int[]{
             TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF
+            TokenTypes.INTERFACE_DEF,
         };
     }
 
@@ -100,6 +101,7 @@ public final class JavadocTagsCheck extends Check {
      * @param start Line number where comment starts.
      * @param end Line number where comment ends.
      * @param tag Name of the tag.
+     * @checkstyle ParameterNumber (3 lines)
      */
     private void matchTagFormat(final String[] lines, final int start,
         final int end, final String tag) {
@@ -139,16 +141,17 @@ public final class JavadocTagsCheck extends Check {
      * @param lines Lines to search for the tag.
      * @param start Starting line number.
      * @param end Ending line number.
-     * @param tagName Name of the tag to look for.
+     * @param tag Name of the tag to look for.
      * @return Line number with found tag or -1 otherwise.
+     * @checkstyle ParameterNumber (3 lines)
      */
     private int findTagLineNum(final String[] lines, final int start,
         final int end, final String tag) {
-        final String prefix = " * @" + tag + " ";
+        final String prefix = String.format(" * @%s ", tag);
         int found = -1;
         for (int pos = start; pos <= end; pos += 1) {
             final String line = lines[pos];
-            if (line.contains("@" + tag + " ")) {
+            if (line.contains(String.format("@%s ", tag))) {
                 if (!line.startsWith(prefix)) {
                     this.log(
                         start + pos + 1,
@@ -196,7 +199,7 @@ public final class JavadocTagsCheck extends Check {
     private int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
         int found = -1;
-        for (int pos = start-1; pos >= 0; pos -= 1) {
+        for (int pos = start - 1; pos >= 0; pos -= 1) {
             if (lines[pos].trim().equals(text)) {
                 found = pos;
                 break;

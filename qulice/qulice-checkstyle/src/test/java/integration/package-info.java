@@ -27,56 +27,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.checkstyle;
-
-import com.puppycrawl.tools.checkstyle.api.Check;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.regex.Pattern;
 
 /**
- * Check for empty lines inside methods and constructors.
+ * Integration tests.
  *
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class EmptyLinesCheck extends Check {
-
-    /**
-     * Pattern for empty line check.
-     */
-    private static final Pattern PATTERN = Pattern.compile("^\\s*$");
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int[] getDefaultTokens() {
-        return new int[] {
-            TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF,
-        };
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void visitToken(final DetailAST ast) {
-        final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
-        if (opening != null) {
-            final DetailAST closing =
-                opening.findFirstToken(TokenTypes.RCURLY);
-            final int firstLine = opening.getLineNo();
-            final int lastLine = closing.getLineNo();
-            final String[] lines = this.getLines();
-            for (int line = firstLine; line < lastLine; line += 1) {
-                if (this.PATTERN.matcher(lines[line]).find()) {
-                    this.log(line + 1, "Empty line inside method");
-                }
-            }
-        }
-    }
-
-}
+package integration;

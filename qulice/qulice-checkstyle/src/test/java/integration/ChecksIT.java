@@ -35,29 +35,29 @@ import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import java.io.File;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-import org.junit.*;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.xml.sax.InputSource;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
 
 /**
+ * Integration test case for all checkstyle checks.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id: SvnPropertiesCheckTest.java 8 2011-08-25 01:01:25Z yegor256@yahoo.com $
  */
 @RunWith(Parameterized.class)
-public class ChecksIT {
+public final class ChecksIT {
 
     /**
      * Directories where test scripts are located.
@@ -70,12 +70,23 @@ public class ChecksIT {
         "CascadeIndentationCheck",
     };
 
+    /**
+     * Current directory we're working with.
+     */
     private final String dir;
 
+    /**
+     * Public ctor.
+     * @param name The name of the check to work with
+     */
     public ChecksIT(final String name) {
         this.dir = "ChecksIT/" + name;
     }
 
+    /**
+     * Returns full list of checks.
+     * @return The list
+     */
     @Parameterized.Parameters
     public static Collection<Object[]> dirs() {
         final Collection<Object[]> dirs = new ArrayList<Object[]>();
@@ -85,16 +96,22 @@ public class ChecksIT {
         return dirs;
     }
 
+    /**
+     * Test checkstyle for true positive.
+     * @throws Exception If something goes wrong
+     */
     @Test
     public void testCheckstyleTruePositive() throws Exception {
-        final AuditListener listener = mock(AuditListener.class);
+        final AuditListener listener = Mockito.mock(AuditListener.class);
         final Collector collector = new ChecksIT.Collector();
-        doAnswer(collector).when(listener).addError((AuditEvent) anyObject());
+        Mockito.doAnswer(collector).when(listener)
+            .addError(Mockito.any(AuditEvent.class));
         this.check("/Invalid.java", listener);
         final String[] violations = StringUtils.split(
             IOUtils.toString(
-                this.getClass()
-                .getResourceAsStream(this.dir + "/violations.txt")
+                this.getClass().getResourceAsStream(
+                    String.format("%s/violations.txt", this.dir)
+                )
             ),
             "\n"
         );
@@ -102,36 +119,56 @@ public class ChecksIT {
             final String[] sectors = StringUtils.split(line, ":");
             final Integer pos = Integer.valueOf(sectors[0]);
             final String needle = sectors[1].trim();
-            assertThat(
+            MatcherAssert.assertThat(
                 collector.has(pos, needle),
-                describedAs(
+                Matchers.describedAs(
                     String.format(
                         "Line no.%d ('%s') not reported by %s: '%s'",
-                         pos,
-                         needle,
-                         this.dir,
-                         collector.summary()
+                        pos,
+                        needle,
+                        this.dir,
+                        collector.summary()
                     ),
-                    is(true)
+                    Matchers.is(true)
                 )
             );
         }
     }
 
+    /**
+     * Test checkstyle for true negative.
+     * @throws Exception If something goes wrong
+     */
     @Test
     public void testCheckstyleTrueNegative() throws Exception {
-        final AuditListener listener = mock(AuditListener.class);
+        final AuditListener listener = Mockito.mock(AuditListener.class);
         this.check("/Valid.java", listener);
-        verify(listener, times(0)).addError((AuditEvent) anyObject());
+        Mockito.verify(listener, Mockito.times(0))
+            .addError(Mockito.any(AuditEvent.class));
     }
 
+    /**
+     * Mocked collector of checkstyle events.
+     */
     private static class Collector implements Answer {
+        /**
+         * List of events received.
+         */
         private final List<AuditEvent> events = new ArrayList<AuditEvent>();
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public Object answer(final InvocationOnMock invocation) {
             this.events.add((AuditEvent) invocation.getArguments()[0]);
             return null;
         }
+        /**
+         * Do we have this message for this line?
+         * @param line The number of the line
+         * @param msg The message we're looking for
+         * @return This message was reported for the give line?
+         */
         public boolean has(final Integer line, final String msg) {
             for (AuditEvent event : this.events) {
                 if (event.getLine() == line && event.getMessage().equals(msg)) {
@@ -140,15 +177,31 @@ public class ChecksIT {
             }
             return false;
         }
+        /**
+         * Returns full summary.
+         * @return The test summary of all events
+         */
         public String summary() {
             final List<String> msgs = new ArrayList<String>();
             for (AuditEvent event : this.events) {
-                msgs.add(event.getLine() + ":" + event.getMessage());
+                msgs.add(
+                    String.format(
+                        "%s:%s",
+                        event.getLine(),
+                        event.getMessage()
+                    )
+                );
             }
             return StringUtils.join(msgs, "; ");
         }
     }
 
+    /**
+     * Check one file.
+     * @param name The name of the check
+     * @param listener The listener
+     * @throws Exception If something goes wrong inside
+     */
     private void check(final String name, final AuditListener listener)
         throws Exception {
         final Checker checker = new Checker();
