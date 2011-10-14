@@ -181,7 +181,6 @@
             <build>
                 <plugins>
                     <plugin>
-                        <!-- version and configuration is in pluginManagement section -->
                         <artifactId>maven-assembly-plugin</artifactId>
                         <version since="25 Aug 2011">2.2</version>
                         <dependencies>
@@ -206,6 +205,28 @@
                                         -->
                                         <descriptorRef>qulice-sources</descriptorRef>
                                     </descriptorRefs>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.qulice</groupId>
+                        <artifactId>qulice-maven-plugin</artifactId>
+                        <version since="13 Oct 2011">0.1.1</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.qulice</groupId>
+                                <artifactId>qulice-tk</artifactId>
+                                <version qulice="yes">1.0-SNAPSHOT</version>
+                            </dependency>
+                        </dependencies>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                                <configuration>
+                                    <license>LICENSE.txt</license>
                                 </configuration>
                             </execution>
                         </executions>

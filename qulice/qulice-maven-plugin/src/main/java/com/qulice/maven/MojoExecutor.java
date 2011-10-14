@@ -29,6 +29,7 @@
  */
 package com.qulice.maven;
 
+import com.ymock.util.Logger;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Properties;
@@ -40,7 +41,6 @@ import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.descriptor.MojoDescriptor;
-import org.apache.maven.plugin.logging.Log;
 import org.codehaus.plexus.configuration.PlexusConfiguration;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
@@ -63,21 +63,14 @@ public final class MojoExecutor {
     private MavenSession session;
 
     /**
-     * Maven log.
-     */
-    private Log log;
-
-    /**
      * Public ctor.
      * @param mngr The manager
      * @param sesn Maven session
-     * @param mlog Maven log
      */
-    public MojoExecutor(final MavenPluginManager mngr, final MavenSession sesn,
-        final Log mlog) {
+    public MojoExecutor(final MavenPluginManager mngr,
+        final MavenSession sesn) {
         this.manager = mngr;
         this.session = sesn;
-        this.log = mlog;
     }
 
     /**
@@ -94,6 +87,42 @@ public final class MojoExecutor {
         plugin.setGroupId(sectors[0]);
         plugin.setArtifactId(sectors[1]);
         plugin.setVersion(sectors[2]);
+        final MojoDescriptor descriptor = this.descriptor(plugin, goal);
+        try {
+            this.manager.setupPluginRealm(
+                descriptor.getPluginDescriptor(),
+                this.session,
+                this.getClass().getClassLoader(),
+                new java.util.ArrayList<String>(),
+                this.session.getTopLevelProject().getExtensionDependencyFilter()
+            );
+        } catch (org.apache.maven.plugin.PluginResolutionException ex) {
+            throw new IllegalStateException("Plugin resolution problem", ex);
+        } catch (org.apache.maven.plugin.PluginContainerException ex) {
+            throw new IllegalStateException("Can't setup realm", ex);
+        }
+        final Xpp3Dom xpp = Xpp3Dom.mergeXpp3Dom(
+            this.toXpp3Dom(config, "configuration"),
+            this.toXpp3Dom(descriptor.getMojoConfiguration())
+        );
+        final MojoExecution execution = new MojoExecution(descriptor, xpp);
+        final Mojo mojo = this.mojo(execution);
+        Logger.info(this, "Calling %s:%s...", coords, goal);
+        try {
+            mojo.execute();
+        } catch (org.apache.maven.plugin.MojoExecutionException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        this.manager.releaseMojo(mojo, execution);
+    }
+
+    /**
+     * Create descriptor.
+     * @param plugin The plugin
+     * @param goal Maven plugin goal to execute
+     * @return The descriptor
+     */
+    private MojoDescriptor descriptor(final Plugin plugin, final String goal) {
         MojoDescriptor descriptor;
         try {
             descriptor = this.manager.getMojoDescriptor(
@@ -111,24 +140,15 @@ public final class MojoExecutor {
         } catch (org.apache.maven.plugin.InvalidPluginDescriptorException ex) {
             throw new IllegalStateException("Invalid plugin descriptor", ex);
         }
-        try {
-            this.manager.setupPluginRealm(
-                descriptor.getPluginDescriptor(),
-                this.session,
-                this.getClass().getClassLoader(),
-                new java.util.ArrayList<String>(),
-                this.session.getTopLevelProject().getExtensionDependencyFilter()
-            );
-        } catch (org.apache.maven.plugin.PluginResolutionException ex) {
-            throw new IllegalStateException("Can't resolve plugin", ex);
-        } catch (org.apache.maven.plugin.PluginContainerException ex) {
-            throw new IllegalStateException("Can't setup realm", ex);
-        }
-        final Xpp3Dom xpp = Xpp3Dom.mergeXpp3Dom(
-            this.toXpp3Dom(config, "configuration"),
-            this.toXpp3Dom(descriptor.getMojoConfiguration())
-        );
-        final MojoExecution execution = new MojoExecution(descriptor, xpp);
+        return descriptor;
+    }
+
+    /**
+     * Create mojo.
+     * @param execution The execution
+     * @return The mojo
+     */
+    private Mojo mojo(final MojoExecution execution) {
         Mojo mojo;
         try {
             mojo = this.manager
@@ -138,19 +158,7 @@ public final class MojoExecutor {
         } catch (org.apache.maven.plugin.PluginContainerException ex) {
             throw new IllegalStateException("Plugin container failure", ex);
         }
-        this.log.info(
-            String.format(
-                "Calling %s:%s...",
-                coords,
-                goal
-            )
-        );
-        try {
-            mojo.execute();
-        } catch (org.apache.maven.plugin.MojoExecutionException ex) {
-            throw new IllegalArgumentException(ex);
-        }
-        this.manager.releaseMojo(mojo, execution);
+        return mojo;
     }
 
     /**

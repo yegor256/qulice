@@ -27,46 +27,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
-
-import java.util.Properties;
-import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * Simple validator of XML files.
+ * Integration tests.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class XmlValidator extends AbstractValidator {
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void validate(final Environment env) throws MojoFailureException {
-        final Properties props = new Properties();
-        final Properties sets = new Properties();
-        props.put("validationSets", sets);
-        final Properties set = new Properties();
-        sets.put("validationSet", set);
-        set.put("dir", env.project().getBasedir().getPath());
-        set.put("validating", "true");
-        set.put(
-            "includes",
-            new String[] {
-                ".xml",
-                ".xsl",
-                ".xsd",
-                ".html",
-                ".xhtml",
-            }
-        );
-        env.executor().execute(
-            "org.codehaus.mojo:xml-maven-plugin:1.0-beta-3-SNAPSHOT",
-            "validate",
-            props
-        );
-    }
-
-}
+package integration;

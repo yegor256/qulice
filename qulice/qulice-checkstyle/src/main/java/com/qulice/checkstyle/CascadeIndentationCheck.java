@@ -31,9 +31,7 @@ package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Check if indentation on every level has fixed number of spaces.

@@ -29,11 +29,10 @@
  */
 package com.qulice.maven;
 
+import com.ymock.util.Logger;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.Properties;
 import net.sourceforge.pmd.DataSource;
 import net.sourceforge.pmd.FileDataSource;
 import net.sourceforge.pmd.IRuleViolation;
@@ -41,15 +40,11 @@ import net.sourceforge.pmd.PMD;
 import net.sourceforge.pmd.Report;
 import net.sourceforge.pmd.ReportListener;
 import net.sourceforge.pmd.RuleContext;
-import net.sourceforge.pmd.RuleSet;
 import net.sourceforge.pmd.RuleSetFactory;
 import net.sourceforge.pmd.SourceType;
 import net.sourceforge.pmd.renderers.Renderer;
 import net.sourceforge.pmd.stat.Metric;
-import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
 
 /**
  * Validates source code with PMD.
@@ -66,12 +61,12 @@ public final class PMDValidator extends AbstractValidator {
     public void validate(final Environment env) throws MojoFailureException {
         final List<DataSource> sources = this.sources(env);
         if (sources.isEmpty()) {
-            env.log().info("No files to check with PMD");
+            Logger.info(this, "No files to check with PMD");
             return;
         }
         final RuleSetFactory factory = new RuleSetFactory();
         factory.setMinimumPriority(0);
-        final PmdListener listener = new PmdListener(env);
+        final PmdListener listener = new PmdListener();
         final Report report = new Report();
         report.addListener(listener);
         final RuleContext context = new RuleContext();
@@ -103,17 +98,17 @@ public final class PMDValidator extends AbstractValidator {
                 )
             );
         }
-        env.log().info(
-            String.format(
-                "No PMD violations found in %d files",
-                sources.size()
-            )
+        Logger.info(
+            this,
+            "No PMD violations found in %d files",
+            sources.size()
         );
     }
 
     /**
      * Get full list of files to process.
      * @param env The environment
+     * @return List of sources
      * @see #validate()
      */
     private List<DataSource> sources(final Environment env) {
@@ -129,21 +124,10 @@ public final class PMDValidator extends AbstractValidator {
      */
     private final class PmdListener implements ReportListener {
         /**
-         * Environment.
-         */
-        private final Environment env;
-        /**
          * List of violations.
          */
         private List<IRuleViolation> violations =
             new ArrayList<IRuleViolation>();
-        /**
-         * Public ctor.
-         * @param environ The environment
-         */
-        public PmdListener(final Environment environ) {
-            this.env = environ;
-        }
         /**
          * Get list of violations.
          * @return List of violations
@@ -156,17 +140,16 @@ public final class PMDValidator extends AbstractValidator {
          */
         @Override
         public void metricAdded(final Metric metric) {
-            this.env.log().info(
-                String.format(
-                    "%s: %d %f %f %f %f %f",
-                    metric.getMetricName(),
-                    metric.getCount(),
-                    metric.getTotal(),
-                    metric.getLowValue(),
-                    metric.getHighValue(),
-                    metric.getAverage(),
-                    metric.getStandardDeviation()
-                )
+            Logger.info(
+                this,
+                "%s: %d %f %f %f %f %f",
+                metric.getMetricName(),
+                metric.getCount(),
+                metric.getTotal(),
+                metric.getLowValue(),
+                metric.getHighValue(),
+                metric.getAverage(),
+                metric.getStandardDeviation()
             );
         }
         /**
@@ -175,15 +158,14 @@ public final class PMDValidator extends AbstractValidator {
         @Override
         public void ruleViolationAdded(final IRuleViolation violation) {
             this.violations.add(violation);
-            this.env.log().info(
-                String.format(
-                    "%s[%d-%d]: %s (%s)",
-                    violation.getFilename(),
-                    violation.getBeginLine(),
-                    violation.getEndLine(),
-                    violation.getDescription(),
-                    violation.getRule().getName()
-                )
+            Logger.info(
+                this,
+                "%s[%d-%d]: %s (%s)",
+                violation.getFilename(),
+                violation.getBeginLine(),
+                violation.getEndLine(),
+                violation.getDescription(),
+                violation.getRule().getName()
             );
         }
     }

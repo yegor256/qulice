@@ -30,8 +30,6 @@
 package com.qulice.maven;
 
 import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -40,55 +38,90 @@ import org.apache.maven.model.Build;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
+import org.mockito.Mockito;
+import org.slf4j.impl.StaticLoggerBinder;
 
 /**
+ * Test case for {@link CheckstyleValidator} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public class CheckstyleValidatorTest {
+public final class CheckstyleValidatorTest {
 
+    /**
+     * Name of property to set to change location of the license.
+     */
     private static final String LICENSE_PROP = "license";
 
     /**
+     * Temporary folder, set by JUnit framework automatically.
      * @checkstyle VisibilityModifier (3 lines)
      */
     @Rule
     public TemporaryFolder temp = new TemporaryFolder();
 
+    /**
+     * The folder where to test.
+     * @see #prepare()
+     */
     private File folder;
 
+    /**
+     * The environment.
+     * @see #prepare()
+     */
     private Environment env;
 
+    /**
+     * Forward SLF4J to Maven Log.
+     * @throws Exception If something is wrong inside
+     */
+    @BeforeClass
+    public static void initLogging() throws Exception {
+        final Log log = Mockito.mock(Log.class);
+        StaticLoggerBinder.getSingleton().setMavenLog(log);
+    }
+
+    /**
+     * Prepare the folder and environment for testing.
+     * @throws Exception If something wrong happens inside
+     */
     @Before
     public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
-        final MavenProject project = mock(MavenProject.class);
-        doReturn(new File(this.folder.getPath())).when(project).getBasedir();
-        final Build build = mock(Build.class);
-        doReturn(build).when(project).getBuild();
+        final MavenProject project = Mockito.mock(MavenProject.class);
+        Mockito.doReturn(new File(this.folder.getPath()))
+            .when(project).getBasedir();
+        final Build build = Mockito.mock(Build.class);
+        Mockito.doReturn(build).when(project).getBuild();
         final List<String> paths = new ArrayList<String>();
         paths.add(this.folder.getPath());
-        doReturn(paths).when(project).getTestClasspathElements();
-        doReturn(paths).when(project).getRuntimeClasspathElements();
-        doReturn(this.folder.getPath()).when(build).getOutputDirectory();
-        doReturn(this.folder.getPath()).when(build).getTestOutputDirectory();
+        Mockito.doReturn(paths).when(project).getTestClasspathElements();
+        Mockito.doReturn(paths).when(project).getRuntimeClasspathElements();
+        Mockito.doReturn(this.folder.getPath())
+            .when(build).getOutputDirectory();
+        Mockito.doReturn(this.folder.getPath())
+            .when(build).getTestOutputDirectory();
         this.env = new Environment();
         this.env.setProject(project);
-        this.env.setLog(mock(Log.class));
     }
 
+    /**
+     * Validate set of files with error inside.
+     * @throws Exception If something wrong happens inside
+     */
     @Test(expected = MojoFailureException.class)
     public void testValidatesSetOfFiles() throws Exception {
         final Properties config = new Properties();
         final File license = this.temp.newFile("license.txt");
         FileUtils.writeStringToFile(license, "license\n");
         config.setProperty(this.LICENSE_PROP, "file:" + license.getPath());
-        final Log log = mock(Log.class);
+        final Log log = Mockito.mock(Log.class);
         final Validator validator = new CheckstyleValidator();
         final File java = new File(this.folder, "src/main/java/Main.java");
         java.getParentFile().mkdirs();
@@ -96,13 +129,17 @@ public class CheckstyleValidatorTest {
         validator.validate(this.env);
     }
 
+    /**
+     * Immidate the license inside the classpath (validator has to find it).
+     * @throws Exception If something wrong happens inside
+     */
     @Test
     public void testImmitatesLicenseInClasspath() throws Exception {
         final File license = new File(this.folder, "my-license.txt");
         FileUtils.writeStringToFile(license, "some non-important text\n");
         final Properties config = new Properties();
         config.setProperty(this.LICENSE_PROP, license.getName());
-        final Log log = mock(Log.class);
+        final Log log = Mockito.mock(Log.class);
         final Validator validator = new CheckstyleValidator();
         validator.validate(this.env);
     }

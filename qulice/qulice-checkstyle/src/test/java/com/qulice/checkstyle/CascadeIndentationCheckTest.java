@@ -35,39 +35,52 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import org.apache.commons.lang.StringUtils;
-import org.junit.*;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
 
 /**
+ * Test case for {@link CascadeIndentationCheck}.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public class CascadeIndentationCheckTest {
+public final class CascadeIndentationCheckTest {
 
+    /**
+     * The check we're testing.
+     */
     private FileSetCheck check;
 
+    /**
+     * Message dispatcher to catch logging mechanism.
+     */
     private MessageDispatcher dispatcher;
 
+    /**
+     * Prepare the check before testing.
+     * @throws Exception If something goes wrong
+     */
     @Before
     public void prepareCheck() throws Exception {
-        this.dispatcher = mock(MessageDispatcher.class);
-        final Configuration config = mock(Configuration.class);
-        doReturn(new String[]{}).when(config).getAttributeNames();
-        doReturn(new Configuration[]{}).when(config).getChildren();
-        doReturn(
-            new ImmutableSortedMap.Builder<String,String>(Ordering.natural())
-            .build()
+        this.dispatcher = Mockito.mock(MessageDispatcher.class);
+        final Configuration config = Mockito.mock(Configuration.class);
+        Mockito.doReturn(new String[]{}).when(config).getAttributeNames();
+        Mockito.doReturn(new Configuration[]{}).when(config).getChildren();
+        Mockito.doReturn(
+            new ImmutableSortedMap.Builder<String, String>(Ordering.natural())
+                .build()
         ).when(config).getMessages();
         this.check = new CascadeIndentationCheck();
-        check.configure(config);
-        check.setMessageDispatcher(dispatcher);
+        this.check.configure(config);
+        this.check.setMessageDispatcher(this.dispatcher);
     }
 
+    /**
+     * Validate with correct indentation.
+     * @throws Exception If something goes wrong
+     */
     @Test
     public void testWithCorrectIndentation() throws Exception {
         this.process(
@@ -78,15 +91,21 @@ public class CascadeIndentationCheckTest {
             + "    }\n"
             + "}\n"
         );
-        verify(dispatcher, times(0))
-            .fireErrors(anyString(), (java.util.TreeSet) anyObject());
+        Mockito.verify(this.dispatcher, Mockito.times(0)).fireErrors(
+            Mockito.anyString(),
+            Mockito.any(java.util.TreeSet.class)
+        );
     }
 
+    /**
+     * Process one text block.
+     * @param text The text
+     */
     private void process(final String text) {
         this.check.init();
         this.check.beginProcessing("UTF-8");
         this.check.process(
-            mock(File.class),
+            Mockito.mock(File.class),
             Arrays.asList(StringUtils.split(text, "\n"))
         );
         this.check.finishProcessing();

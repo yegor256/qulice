@@ -55,7 +55,7 @@ public final class EmptyLinesCheck extends Check {
     public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.METHOD_DEF,
-            TokenTypes.CTOR_DEF
+            TokenTypes.CTOR_DEF,
         };
     }
 
@@ -73,7 +73,7 @@ public final class EmptyLinesCheck extends Check {
             final String[] lines = this.getLines();
             for (int line = firstLine; line < lastLine; line += 1) {
                 if (this.PATTERN.matcher(lines[line]).find()) {
-                    this.log(line+1, "Empty line inside method");
+                    this.log(line + 1, "Empty line inside method");
                 }
             }
         }

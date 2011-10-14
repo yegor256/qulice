@@ -28,16 +28,15 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.qulice.maven;
+// @checkstyle LineLength (15 lines)
 
+import com.ymock.util.Logger;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzerException;
@@ -65,8 +64,8 @@ public final class DependenciesValidator extends AbstractValidator {
     public void validate(final Environment env) throws MojoFailureException {
         final File output =
             new File(env.project().getBuild().getOutputDirectory());
-        if (!output.exists() || env.project().getPackaging().equals("pom")) {
-            env.log().info("No dependency analysis in this project");
+        if (!output.exists() || "pom".equals(env.project().getPackaging())) {
+            Logger.info(this, "No dependency analysis in this project");
             return;
         }
         final ProjectDependencyAnalysis analysis = this.analyze(env);
@@ -79,12 +78,11 @@ public final class DependenciesValidator extends AbstractValidator {
             unused.add(artifact.toString());
         }
         if (unused.size() > 0) {
-            env.log().warn(
-                String.format(
-                    "Unused declared dependencies found:%s%s",
-                    this.SEP,
-                    StringUtils.join(unused, this.SEP)
-                )
+            Logger.warn(
+                this,
+                "Unused declared dependencies found:%s%s",
+                this.SEP,
+                StringUtils.join(unused, this.SEP)
             );
         }
         final List<String> used = new ArrayList<String>();
@@ -92,24 +90,23 @@ public final class DependenciesValidator extends AbstractValidator {
             used.add(((Artifact) artifact).toString());
         }
         if (used.size() > 0) {
-            env.log().warn(
-                String.format(
-                    "Used undeclared dependencies found:%s%s",
-                    this.SEP,
-                    StringUtils.join(used, this.SEP)
-                )
+            Logger.warn(
+                this,
+                "Used undeclared dependencies found:%s%s",
+                this.SEP,
+                StringUtils.join(used, this.SEP)
             );
         }
         final Integer failures = used.size() + unused.size();
-        // if (failures > 0) {
-        //     throw new MojoFailureException(
-        //         String.format(
-        //             "%d dependency problem(s) found",
-        //             failures
-        //         )
-        //     );
-        // }
-        env.log().info("No dependency problems found");
+        if (failures > 0) {
+            throw new MojoFailureException(
+                String.format(
+                    "%d dependency problem(s) found",
+                    failures
+                )
+            );
+        }
+        Logger.info(this, "No dependency problems found");
     }
 
     /**
@@ -119,10 +116,12 @@ public final class DependenciesValidator extends AbstractValidator {
      */
     private ProjectDependencyAnalysis analyze(final Environment env) {
         try {
-            return ((ProjectDependencyAnalyzer)
-            ((PlexusContainer) env.context().get(PlexusConstants.PLEXUS_KEY))
-            .lookup(ProjectDependencyAnalyzer.ROLE, "default"))
-            .analyze(env.project());
+            return
+                ((ProjectDependencyAnalyzer)
+                    ((PlexusContainer)
+                        env.context().get(PlexusConstants.PLEXUS_KEY)
+                    ).lookup(ProjectDependencyAnalyzer.ROLE, "default")
+                ).analyze(env.project());
         } catch (org.codehaus.plexus.context.ContextException ex) {
             throw new IllegalStateException(ex);
         } catch (ComponentLookupException ex) {

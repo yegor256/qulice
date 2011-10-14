@@ -29,21 +29,18 @@
  */
 package com.qulice.maven;
 
+import com.ymock.util.Logger;
 import edu.umd.cs.findbugs.BugReporter;
 import edu.umd.cs.findbugs.Detector;
 import edu.umd.cs.findbugs.DetectorFactoryCollection;
 import edu.umd.cs.findbugs.FindBugs2;
 import edu.umd.cs.findbugs.PrintingBugReporter;
 import edu.umd.cs.findbugs.Project;
-import edu.umd.cs.findbugs.TextUIProgressCallback;
 import edu.umd.cs.findbugs.config.UserPreferences;
 import java.io.File;
 import java.util.List;
-import java.util.Properties;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
 
 /**
  * Validates source code and compiled binaris with FindBugs.
@@ -59,32 +56,22 @@ public final class FindBugsValidator extends AbstractValidator {
     @Override
     public void validate(final Environment env) throws MojoFailureException {
         if (!new File(env.project().getBuild().getOutputDirectory()).exists()) {
-            env.log().info("No classes, no FindBugs validation");
+            Logger.info(this, "No classes, no FindBugs validation");
             return;
         }
-        final Project project = new Project();
-        final List<String> jars;
-        try {
-            jars = env.project().getRuntimeClasspathElements();
-        } catch (DependencyResolutionRequiredException ex) {
-            throw new IllegalArgumentException(ex);
-        }
-        for (String jar : jars) {
-            project.addFile(jar);
-            if (!jar.equals(env.project().getBuild().getOutputDirectory())) {
-                project.addAuxClasspathEntry(jar);
-            }
-        }
-        project.addSourceDir(env.project().getBasedir().getPath());
         final FindBugs2 findbugs = new FindBugs2();
-        findbugs.setProject(project);
+        findbugs.setProject(this.project(env));
         final BugReporter reporter = new PrintingBugReporter();
         reporter.getProjectStats().getProfiler().start(findbugs.getClass());
         reporter.setPriorityThreshold(Detector.LOW_PRIORITY);
         findbugs.setBugReporter(reporter);
         DetectorFactoryCollection.instance().ensureLoaded();
-        findbugs.setDetectorFactoryCollection(DetectorFactoryCollection.instance());
-        findbugs.setUserPreferences(UserPreferences.createDefaultUserPreferences());
+        findbugs.setDetectorFactoryCollection(
+            DetectorFactoryCollection.instance()
+        );
+        findbugs.setUserPreferences(
+            UserPreferences.createDefaultUserPreferences()
+        );
         findbugs.setNoClassOk(true);
         findbugs.setScanNestedArchives(true);
         try {
@@ -102,7 +89,30 @@ public final class FindBugsValidator extends AbstractValidator {
                 )
             );
         }
-        env.log().info("No FindBugs violations found");
+        Logger.info(this, "No FindBugs violations found");
+    }
+
+    /**
+     * Create project.
+     * @param env Environment
+     * @return The project
+     */
+    private Project project(final Environment env) {
+        final Project project = new Project();
+        final List<String> jars;
+        try {
+            jars = env.project().getRuntimeClasspathElements();
+        } catch (DependencyResolutionRequiredException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        for (String jar : jars) {
+            project.addFile(jar);
+            if (!jar.equals(env.project().getBuild().getOutputDirectory())) {
+                project.addAuxClasspathEntry(jar);
+            }
+        }
+        project.addSourceDir(env.project().getBasedir().getPath());
+        return project;
     }
 
 }

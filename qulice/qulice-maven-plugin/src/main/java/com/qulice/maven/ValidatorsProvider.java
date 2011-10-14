@@ -33,12 +33,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Factory of validators.
+ * Provider of validators.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-final class ValidatorFactory {
+final class ValidatorsProvider {
 
     /**
      * Get a collection of validators.
@@ -52,6 +52,7 @@ final class ValidatorFactory {
         validators.add(new XmlValidator());
         validators.add(new CheckstyleValidator());
         validators.add(new PMDValidator());
+        // has some strange defect inside
         // validators.add(new FindBugsValidator());
         // not working yet
         // validators.add(new CoberturaValidator());

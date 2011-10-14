@@ -29,11 +29,8 @@
  */
 package com.qulice.maven;
 
-import java.io.File;
 import java.util.Properties;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
 
 /**
  * Validates with Cobertura.
@@ -45,6 +42,7 @@ public final class CoberturaValidator extends AbstractValidator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle MultipleStringLiterals (30 lines)
      */
     @Override
     public void validate(final Environment env) throws MojoFailureException {

@@ -41,6 +41,7 @@ import java.util.regex.Pattern;
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ * @checkstyle PuzzleFormat (200 lines)
  */
 public final class PuzzleFormatCheck extends AbstractFileSetCheck {
 
@@ -70,9 +71,11 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
     public void processFiltered(final File file, final List<String> lines) {
         boolean failure = false;
         for (int pos = 0; pos < lines.size(); pos += 1) {
-            String line = lines.get(pos);
+            final String line = lines.get(pos);
+            // @checkstyle PuzzleFormat (1 line)
             if (line.contains("@todo")) {
                 if (!this.FIRST.matcher(line).matches()) {
+                    // @checkstyle PuzzleFormat (1 line)
                     this.log(pos + 1, "@todo tag has wrong format");
                     failure = true;
                 }
@@ -89,6 +92,7 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
                 if (!this.isInsideJavadoc(lines, pos)) {
                     this.log(
                         pos + 1,
+                        // @checkstyle PuzzleFormat (1 line)
                         "@todo puzzles are allowed only in javadoc blocks"
                     );
                 }
@@ -106,8 +110,8 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
      * @return If the tag is inside the javadoc.
      */
     private boolean isInsideJavadoc(final List<String> lines, final int start) {
-        return this.hasMarker(lines, start, -1, "/**") &&
-            this.hasMarker(lines, start, 1, "*/");
+        return this.hasMarker(lines, start, -1, "/**")
+            && this.hasMarker(lines, start, 1, "*/");
     }
 
     /**
@@ -117,6 +121,7 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
      * @param direction In which direction to go
      * @param marker The marker to find
      * @return The marker is there?
+     * @checkstyle ParameterNumber (3 lines)
      */
     private boolean hasMarker(final List<String> lines, final int start,
         final int direction, final String marker) {
