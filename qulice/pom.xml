@@ -152,8 +152,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <jdk.version>1.6</jdk.version>
-        <powermock.version>1.4.9</powermock.version>
     </properties>
     <repositories>
         <!--
@@ -458,19 +456,19 @@
             <dependency>
                <groupId>org.powermock</groupId>
                <artifactId>powermock-core</artifactId>
-               <version>${powermock.version}</version>
+               <version since="14 Oct 2011">1.4.9</version>
                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.powermock</groupId>
                 <artifactId>powermock-module-junit4</artifactId>
-                <version>${powermock.version}</version>
+                <version since="14 Oct 2011">1.4.9</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.powermock</groupId>
                 <artifactId>powermock-api-mockito</artifactId>
-                <version>${powermock.version}</version>
+                <version since="14 Oct 2011">1.4.9</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -567,8 +565,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version since="27 Oct 2010">2.3.2</version>
                     <configuration>
-                        <source>${jdk.version}</source>
-                        <target>${jdk.version}</target>
+                        <source>1.6</source>
+                        <target>1.6</target>
                         <optimize>true</optimize>
                         <showWarnings>true</showWarnings>
                         <showDeprecation>true</showDeprecation>
