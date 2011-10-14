@@ -107,10 +107,13 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * Validate set of file to find violations.
+     * Validate set of files to find violations.
      * @throws Exception If something wrong happens inside
      * @todo #11 This validator doesn't work for some reason. Should be
-     *  fixed and properly tested.
+     *  fixed and properly tested. It should throw exception here since
+     *  the code contains a PMD violation: variable name is too short and
+     *  it shouldn't be initialized to zero since it's the default value
+     *  of type "int".
      */
     @Ignore
     @Test(expected = MojoFailureException.class)

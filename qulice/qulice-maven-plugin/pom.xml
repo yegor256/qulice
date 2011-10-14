@@ -208,8 +208,16 @@
                     With this construct you can exclude certain IT projects.
                     -->
                     <pomIncludes>
-                        <!-- <pomInclude>many-violations/pom.xml</pomInclude> -->
-                        <!-- <pomInclude>multi-module/pom.xml</pomInclude> -->
+                        <pomInclude>many-violations/pom.xml</pomInclude>
+                        <pomInclude>multi-module/pom.xml</pomInclude>
+                        <!--
+                        @todo #11 This check is disabled because findbugs doesn't work
+                         for some strange reason. Actually it works here, in this project,
+                         if you enable this test and enable FindBugsValidator in ValidatorsProvider
+                         collection. But then later if you use this plugin in some project
+                         it crashes the entire Maven execution. We need to solve this problem
+                         and enable findbugs!
+                        -->
                         <!-- <pomInclude>findbugs-violations/pom.xml</pomInclude> -->
                         <!--
                         @todo #8 This test is not working. I don't know what exactly is
