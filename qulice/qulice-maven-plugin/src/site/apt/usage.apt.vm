@@ -94,3 +94,38 @@ are met: no conditions.
  */
 +--
 
+* Multi-Module Setup
+
+  In a multi-module setup we recommend you to move all supplementary
+  resource (assemblies, XML configurations, etc) to a separate "tool kit"
+  sub-module. This module is the best place for <<<LICENSE.txt>>> file:
+
++--
+<build>
+  <plugins>
+    <plugin>
+      <groupId>com.qulice</groupId>
+      <artifactId>qulice-maven-plugin</artifactId>
+      <version>${project.version}</version>
+      <configuration>
+        <license>LICENSE.txt</license>
+      </configuration>
+      <dependencies>
+        <dependency>
+          <!-- this is your tool kit module -->
+          <groupId>com.example</groupId>
+          <artifactId>foo</artifactId>
+          <version>1.0-SNAPSHOT</version>
+        </dependency>
+      </dependencies>
+      <executions>
+        <execution>
+          <goals>
+            <goal>check</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
++--
