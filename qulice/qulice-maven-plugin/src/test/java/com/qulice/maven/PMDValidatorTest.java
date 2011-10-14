@@ -47,6 +47,7 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 
 /**
+ * Test case for {@link PMDValidator} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
@@ -58,10 +59,22 @@ public class PMDValidatorTest {
     @Rule
     public TemporaryFolder temp = new TemporaryFolder();
 
+    /**
+     * The folder to work in.
+     * @see #prepare()
+     */
     private File folder;
 
+    /**
+     * The environment to work with.
+     * @see #prepare()
+     */
     private Environment env;
 
+    /**
+     * Prepare the folder and the environment.
+     * @throws Exception If something wrong happens inside
+     */
     @Before
     public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
@@ -80,7 +93,11 @@ public class PMDValidatorTest {
         this.env.setLog(mock(Log.class));
     }
 
-    @Ignore
+    /**
+     * Validate set of file to find violations.
+     * @throws Exception If something wrong happens inside
+     */
+    // @Ignore
     @Test(expected = MojoFailureException.class)
     public void testValidatesSetOfFiles() throws Exception {
         final Validator validator = new PMDValidator();

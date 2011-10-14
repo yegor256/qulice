@@ -53,6 +53,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
+ * Test case for {@link FindbugsValidator} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
@@ -60,8 +61,16 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @PrepareForTest({ FindBugsValidator.class, FindBugs2.class })
 public class FindBugsValidatorTest {
 
+    /**
+     * The environment to work with.
+     * @see #prepare()
+     */
     private Environment env;
 
+    /**
+     * Prepare the environment.
+     * @throws Exception If something wrong happens inside
+     */
     @Before
     public void prepare() throws Exception {
         final MavenProject project = Mockito.mock(MavenProject.class);
@@ -80,6 +89,10 @@ public class FindBugsValidatorTest {
         this.env.setLog(Mockito.mock(Log.class));
     }
 
+    /**
+     * Absent violations should pass.
+     * @throws Exception If something wrong happens inside
+     */
     @Test
     public void testValidatesWithNoViolations() throws Exception {
         PowerMockito.mockStatic(FindBugs2.class);
@@ -89,6 +102,10 @@ public class FindBugsValidatorTest {
         new FindBugsValidator().validate(this.env);
     }
 
+    /**
+     * One violation should be found.
+     * @throws Exception If something wrong happens inside
+     */
     @Test(expected = MojoFailureException.class)
     public void testValidatesWithOneViolation() throws Exception {
         PowerMockito.mockStatic(FindBugs2.class);

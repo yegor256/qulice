@@ -55,6 +55,7 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 
 /**
+ * Test case for {@link DependenciesValidator} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
@@ -66,10 +67,22 @@ public class DependenciesValidatorTest {
     @Rule
     public TemporaryFolder temp = new TemporaryFolder();
 
+    /**
+     * The folder to work in.
+     * @see #prepare()
+     */
     private File folder;
 
+    /**
+     * The environment to work with.
+     * @see #prepare()
+     */
     private Environment env;
 
+    /**
+     * Prepare the folder and the environment.
+     * @throws Exception If something wrong happens inside
+     */
     @Before
     public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
@@ -94,12 +107,20 @@ public class DependenciesValidatorTest {
         doReturn(analysis).when(analyzer).analyze(project);
     }
 
+    /**
+     * Test without any dependency problems.
+     * @throws Exception If something wrong happens inside
+     */
     @Test
     public void testValidatesWithoutDependencyProblems() throws Exception {
         new DependenciesValidator().validate(this.env);
     }
 
-    @Ignore
+    /**
+     * We should find and identify dependency problems.
+     * @throws Exception If something wrong happens inside
+     */
+    // @Ignore
     @Test(expected = MojoFailureException.class)
     public void testValidatesWithDependencyProblems() throws Exception {
         final ProjectDependencyAnalysis analysis =
@@ -114,6 +135,10 @@ public class DependenciesValidatorTest {
         validator.validate(this.env);
     }
 
+    /**
+     * Dependencies in runtime scope should be ignored.
+     * @throws Exception If something wrong happens inside
+     */
     @Test
     public void testWithRuntimeScope() throws Exception {
         final ProjectDependencyAnalysis analysis =

@@ -47,11 +47,15 @@ import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 
 /**
+ * Test case for {@link CheckstyleValidator} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
 public class CheckstyleValidatorTest {
 
+    /**
+     * Name of property to set to change location of the license.
+     */
     private static final String LICENSE_PROP = "license";
 
     /**
@@ -60,10 +64,22 @@ public class CheckstyleValidatorTest {
     @Rule
     public TemporaryFolder temp = new TemporaryFolder();
 
+    /**
+     * The folder where to test.
+     * @see #prepare()
+     */
     private File folder;
 
+    /**
+     * The environment.
+     * @see #prepare()
+     */
     private Environment env;
 
+    /**
+     * Prepare the folder and environment for testing.
+     * @throws Exception If something wrong happens inside
+     */
     @Before
     public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
@@ -82,6 +98,10 @@ public class CheckstyleValidatorTest {
         this.env.setLog(mock(Log.class));
     }
 
+    /**
+     * Validate set of files with error inside.
+     * @throws Exception If something wrong happens inside
+     */
     @Test(expected = MojoFailureException.class)
     public void testValidatesSetOfFiles() throws Exception {
         final Properties config = new Properties();
@@ -96,6 +116,10 @@ public class CheckstyleValidatorTest {
         validator.validate(this.env);
     }
 
+    /**
+     * Immidate the license inside the classpath (validator has to find it).
+     * @throws Exception If something wrong happens inside
+     */
     @Test
     public void testImmitatesLicenseInClasspath() throws Exception {
         final File license = new File(this.folder, "my-license.txt");

@@ -46,6 +46,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
+ * Test case for {@link CheckMojo} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
@@ -53,6 +54,10 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @PrepareForTest({ CheckMojo.class, ValidatorFactory.class })
 public class CheckMojoTest extends AbstractMojoTestCase {
 
+    /**
+     * Skip option should work.
+     * @throws Exception If something wrong happens inside
+     */
     @Test
     public void testSkipOption() throws Exception {
         final CheckMojo mojo = new CheckMojo();
@@ -63,6 +68,10 @@ public class CheckMojoTest extends AbstractMojoTestCase {
         Mockito.verify(log).info("Execution skipped");
     }
 
+    /**
+     * Validation should happen.
+     * @throws Exception If something wrong happens inside
+     */
     @Test
     public void testValidatingWorks() throws Exception {
         PowerMockito.mockStatic(ValidatorFactory.class);
@@ -97,12 +106,25 @@ public class CheckMojoTest extends AbstractMojoTestCase {
         MatcherAssert.assertThat(env.log(), Matchers.equalTo(log));
     }
 
+    /**
+     * Simulator of validation.
+     */
     private static final class SpyValidator implements Validator {
+        /**
+         * Environment.
+         */
         private Environment env;
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public void validate(final Environment environment) {
             this.env = environment;
         }
+        /**
+         * Return the environment.
+         * @return The environment
+         */
         public Environment env() {
             return this.env;
         }
