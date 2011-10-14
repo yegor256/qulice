@@ -46,13 +46,19 @@ Introduction
 
   At the moment we integrate together:
 
-  * Maven dependency analysis
-  * maven-enforcer-plugin
-  * xml-maven-plugin
-  * Checkstyle
-  * PMD
-  * FindBugs
-  * Cobertura
+   * {{{http://maven.apache.org/plugins/maven-dependency-plugin/analyze-only-mojo.html}Maven dependency analysis}}
+
+   * {{{http://maven.apache.org/plugins/maven-enforcer-plugin/enforce-mojo.html}maven-enforcer-plugin}}
+
+   * {{{http://mojo.codehaus.org/xml-maven-plugin/validate-mojo.html}xml-maven-plugin}}
+
+   * {{{http://checkstyle.sourceforge.net/}Checkstyle}}
+
+   * {{{http://pmd.sourceforge.net/}PMD}}
+
+   * {{{http://findbugs.sourceforge.net/}FindBugs}}
+
+   * {{{http://cobertura.sourceforge.net/}Cobertura}}
 
   Read about {{{./qulice-maven-plugin/}qulice-maven-plugin}}.
 
