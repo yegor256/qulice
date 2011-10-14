@@ -31,25 +31,22 @@ package com.qulice.maven;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
-import com.puppycrawl.tools.checkstyle.PropertyResolver;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.ymock.util.Logger;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
 import org.xml.sax.InputSource;
 
 /**
@@ -72,7 +69,7 @@ public final class CheckstyleValidator extends AbstractValidator {
     public void validate(final Environment env) throws MojoFailureException {
         final List<File> files = this.files(env);
         if (files.isEmpty()) {
-            env.log().info("No files to check with Checkstyle");
+            Logger.info(this, "No files to check with Checkstyle");
             return;
         }
         Checker checker;
@@ -101,11 +98,10 @@ public final class CheckstyleValidator extends AbstractValidator {
                 )
             );
         }
-        env.log().info(
-            String.format(
-                "No Checkstyle violations found in %d files",
-                files.size()
-            )
+        Logger.info(
+            this,
+            "No Checkstyle violations found in %d files",
+            files.size()
         );
     }
 
@@ -163,10 +159,12 @@ public final class CheckstyleValidator extends AbstractValidator {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
-        final URLClassLoader loader =
-            new URLClassLoader(urls.toArray(new URL[] {}), this.getClass().getClassLoader());
+        final URLClassLoader loader = new URLClassLoader(
+            urls.toArray(new URL[] {}),
+            this.getClass().getClassLoader()
+        );
         for (URL url : loader.getURLs()) {
-            env.log().debug("Classpath: " + url);
+            Logger.debug(this, "Classpath: %s", url);
         }
         return loader;
     }
@@ -216,8 +214,8 @@ public final class CheckstyleValidator extends AbstractValidator {
         }
         builder.append(" */\n");
         final String license = builder.toString();
-        env.log().info("LICENSE found: " + url);
-        env.log().debug(license);
+        Logger.info(this, "LICENSE found: %s", url);
+        Logger.debug(this, license);
         return license;
     }
 
@@ -242,6 +240,7 @@ public final class CheckstyleValidator extends AbstractValidator {
         }
         /**
          * Get all events.
+         * @return List of events
          */
         public List<AuditEvent> events() {
             return this.events;
@@ -281,24 +280,23 @@ public final class CheckstyleValidator extends AbstractValidator {
         public void addError(final AuditEvent event) {
             this.events.add(event);
             final String check = event.getSourceName();
-            this.env.log().error(
-                String.format(
-                    "%s[%d]: %s (%s)",
-                    event.getFileName().substring(
-                        this.env.project().getBasedir()
-                            .toString().length()
-                    ),
-                    event.getLine(),
-                    event.getMessage(),
-                    check.substring(check.lastIndexOf('.') + 1)
-                )
+            Logger.error(
+                this,
+                "%s[%d]: %s (%s)",
+                event.getFileName().substring(
+                    this.env.project().getBasedir().toString().length()
+                ),
+                event.getLine(),
+                event.getMessage(),
+                check.substring(check.lastIndexOf('.') + 1)
             );
         }
         /**
          * {@inheritDoc}
          */
         @Override
-        public void addException(final AuditEvent event, Throwable throwable) {
+        public void addException(final AuditEvent event,
+            final Throwable throwable) {
             // intentionally empty
         }
     }

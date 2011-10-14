@@ -31,26 +31,21 @@ package com.qulice.maven;
 
 import edu.umd.cs.findbugs.FindBugs2;
 import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import org.apache.commons.io.FileUtils;
 import org.apache.maven.model.Build;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Test case for {@link FindbugsValidator} class.
@@ -59,13 +54,23 @@ import org.powermock.modules.junit4.PowerMockRunner;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ FindBugsValidator.class, FindBugs2.class })
-public class FindBugsValidatorTest {
+public final class FindBugsValidatorTest {
 
     /**
      * The environment to work with.
      * @see #prepare()
      */
     private Environment env;
+
+    /**
+     * Forward SLF4J to Maven Log.
+     * @throws Exception If something is wrong inside
+     */
+    @BeforeClass
+    public static void initLogging() throws Exception {
+        final Log log = Mockito.mock(Log.class);
+        StaticLoggerBinder.getSingleton().setMavenLog(log);
+    }
 
     /**
      * Prepare the environment.
@@ -86,7 +91,6 @@ public class FindBugsValidatorTest {
         Mockito.doReturn(classes.getPath()).when(build).getOutputDirectory();
         this.env = new Environment();
         this.env.setProject(project);
-        this.env.setLog(Mockito.mock(Log.class));
     }
 
     /**

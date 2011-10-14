@@ -31,8 +31,6 @@ package com.qulice.maven;
 
 import java.util.Properties;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
 
 /**
  * Validate with maven-enforcer-plugin.
@@ -44,6 +42,7 @@ public final class EnforcerValidator extends AbstractValidator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle MultipleStringLiterals (20 lines)
      */
     @Override
     public void validate(final Environment env) throws MojoFailureException {
@@ -55,6 +54,7 @@ public final class EnforcerValidator extends AbstractValidator {
         maven.put("version", "3.0");
         final Properties java = new Properties();
         rules.put("requireJavaVersion", java);
+        // @checkstyle MultipleStringLiterals (1 line)
         java.put("version", "1.6");
         env.executor().execute(
             "org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1",

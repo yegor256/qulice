@@ -31,8 +31,6 @@ package com.qulice.maven;
 
 import java.util.Properties;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
 
 /**
  * Simple validator of XML files.
@@ -61,7 +59,7 @@ public final class XmlValidator extends AbstractValidator {
                 ".xsl",
                 ".xsd",
                 ".html",
-                ".xhtml"
+                ".xhtml",
             }
         );
         env.executor().execute(

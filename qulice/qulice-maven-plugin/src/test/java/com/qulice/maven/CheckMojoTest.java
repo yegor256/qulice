@@ -31,9 +31,8 @@ package com.qulice.maven;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.maven.plugin.testing.AbstractMojoTestCase;
-import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
+import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
 import org.hamcrest.MatcherAssert;
@@ -51,8 +50,8 @@ import org.powermock.modules.junit4.PowerMockRunner;
  * @version $Id$
  */
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ CheckMojo.class, ValidatorFactory.class })
-public class CheckMojoTest extends AbstractMojoTestCase {
+@PrepareForTest({ CheckMojo.class, ValidatorsProvider.class })
+public final class CheckMojoTest extends AbstractMojoTestCase {
 
     /**
      * Skip option should work.
@@ -74,21 +73,20 @@ public class CheckMojoTest extends AbstractMojoTestCase {
      */
     @Test
     public void testValidatingWorks() throws Exception {
-        PowerMockito.mockStatic(ValidatorFactory.class);
-        final ValidatorFactory factory =
-            PowerMockito.mock(ValidatorFactory.class);
+        PowerMockito.mockStatic(ValidatorsProvider.class);
+        final ValidatorsProvider factory =
+            PowerMockito.mock(ValidatorsProvider.class);
         final List<Validator> validators = new ArrayList<Validator>();
         final CheckMojoTest.SpyValidator validator =
             new CheckMojoTest.SpyValidator();
         validators.add(validator);
         Mockito.doReturn(validators).when(factory).all();
-        PowerMockito.whenNew(ValidatorFactory.class).withNoArguments()
+        PowerMockito.whenNew(ValidatorsProvider.class).withNoArguments()
             .thenReturn(factory);
         final CheckMojo mojo = new CheckMojo();
         final MavenProject project = Mockito.mock(MavenProject.class);
         mojo.setProject(project);
-        final Log log = Mockito.mock(Log.class);
-        mojo.setLog(log);
+        mojo.setLog(Mockito.mock(Log.class));
         final String license = "file:./some-file.txt";
         mojo.setLicense(license);
         final Context context = Mockito.mock(Context.class);
@@ -103,7 +101,6 @@ public class CheckMojoTest extends AbstractMojoTestCase {
             env.properties().getProperty("license"),
             Matchers.equalTo(license)
         );
-        MatcherAssert.assertThat(env.log(), Matchers.equalTo(log));
     }
 
     /**

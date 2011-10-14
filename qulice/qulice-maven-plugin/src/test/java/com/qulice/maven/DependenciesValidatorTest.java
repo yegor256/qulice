@@ -30,14 +30,8 @@
 package com.qulice.maven;
 
 import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Properties;
 import java.util.Set;
-import org.apache.commons.io.FileUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.model.Build;
 import org.apache.maven.plugin.MojoFailureException;
@@ -48,20 +42,23 @@ import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
 import org.codehaus.plexus.PlexusConstants;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.context.Context;
-import org.junit.*;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.*;
+import org.mockito.Mockito;
+import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Test case for {@link DependenciesValidator} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public class DependenciesValidatorTest {
+public final class DependenciesValidatorTest {
 
     /**
+     * Temporary folder, set by JUnit framework automatically.
      * @checkstyle VisibilityModifier (3 lines)
      */
     @Rule
@@ -80,31 +77,43 @@ public class DependenciesValidatorTest {
     private Environment env;
 
     /**
+     * Forward SLF4J to Maven Log.
+     * @throws Exception If something is wrong inside
+     */
+    @BeforeClass
+    public static void initLogging() throws Exception {
+        final Log log = Mockito.mock(Log.class);
+        StaticLoggerBinder.getSingleton().setMavenLog(log);
+    }
+
+    /**
      * Prepare the folder and the environment.
      * @throws Exception If something wrong happens inside
      */
     @Before
     public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
-        final MavenProject project = mock(MavenProject.class);
-        doReturn(new File(this.folder.getPath())).when(project).getBasedir();
-        doReturn("jar").when(project).getPackaging();
-        final Build build = mock(Build.class);
-        doReturn(build).when(project).getBuild();
-        doReturn(this.folder.getPath()).when(build).getOutputDirectory();
+        final MavenProject project = Mockito.mock(MavenProject.class);
+        Mockito.doReturn(new File(this.folder.getPath()))
+            .when(project).getBasedir();
+        Mockito.doReturn("jar").when(project).getPackaging();
+        final Build build = Mockito.mock(Build.class);
+        Mockito.doReturn(build).when(project).getBuild();
+        Mockito.doReturn(this.folder.getPath()).when(build)
+            .getOutputDirectory();
         this.env = new Environment();
         this.env.setProject(project);
-        this.env.setLog(mock(Log.class));
-        final Context context = mock(Context.class);
+        final Context context = Mockito.mock(Context.class);
         this.env.setContext(context);
-        final PlexusContainer container = mock(PlexusContainer.class);
-        doReturn(container).when(context).get(anyString());
+        final PlexusContainer container = Mockito.mock(PlexusContainer.class);
+        Mockito.doReturn(container).when(context).get(Mockito.anyString());
         final ProjectDependencyAnalyzer analyzer =
-            mock(ProjectDependencyAnalyzer.class);
-        doReturn(analyzer).when(container).lookup(anyString(), anyString());
+            Mockito.mock(ProjectDependencyAnalyzer.class);
+        Mockito.doReturn(analyzer).when(container)
+            .lookup(Mockito.anyString(), Mockito.anyString());
         final ProjectDependencyAnalysis analysis =
-            mock(ProjectDependencyAnalysis.class);
-        doReturn(analysis).when(analyzer).analyze(project);
+            Mockito.mock(ProjectDependencyAnalysis.class);
+        Mockito.doReturn(analysis).when(analyzer).analyze(project);
     }
 
     /**
@@ -120,17 +129,12 @@ public class DependenciesValidatorTest {
      * We should find and identify dependency problems.
      * @throws Exception If something wrong happens inside
      */
-    // @Ignore
     @Test(expected = MojoFailureException.class)
     public void testValidatesWithDependencyProblems() throws Exception {
-        final ProjectDependencyAnalysis analysis =
-            ((ProjectDependencyAnalyzer) ((PlexusContainer)
-            this.env.context().get(PlexusConstants.PLEXUS_KEY))
-            .lookup(ProjectDependencyAnalyzer.ROLE, "default"))
-            .analyze(this.env.project());
+        final ProjectDependencyAnalysis analysis = this.analysis();
         final Set<Artifact> unused = new HashSet<Artifact>();
-        unused.add(mock(Artifact.class));
-        doReturn(unused).when(analysis).getUsedUndeclaredArtifacts();
+        unused.add(Mockito.mock(Artifact.class));
+        Mockito.doReturn(unused).when(analysis).getUsedUndeclaredArtifacts();
         final Validator validator = new DependenciesValidator();
         validator.validate(this.env);
     }
@@ -141,18 +145,28 @@ public class DependenciesValidatorTest {
      */
     @Test
     public void testWithRuntimeScope() throws Exception {
-        final ProjectDependencyAnalysis analysis =
-            ((ProjectDependencyAnalyzer) ((PlexusContainer)
-            this.env.context().get(PlexusConstants.PLEXUS_KEY))
-            .lookup(ProjectDependencyAnalyzer.ROLE, "default"))
-            .analyze(this.env.project());
+        final ProjectDependencyAnalysis analysis = this.analysis();
         final Set<Artifact> unused = new HashSet<Artifact>();
-        final Artifact artifact = mock(Artifact.class);
+        final Artifact artifact = Mockito.mock(Artifact.class);
         unused.add(artifact);
-        doReturn(unused).when(analysis).getUnusedDeclaredArtifacts();
-        doReturn(Artifact.SCOPE_RUNTIME).when(artifact).getScope();
+        Mockito.doReturn(unused).when(analysis).getUnusedDeclaredArtifacts();
+        Mockito.doReturn(Artifact.SCOPE_RUNTIME).when(artifact).getScope();
         final Validator validator = new DependenciesValidator();
         validator.validate(this.env);
+    }
+
+    /**
+     * Create "analysis" object.
+     * @return The object
+     * @throws Exception If something wrong happens inside
+     */
+    private ProjectDependencyAnalysis analysis() throws Exception {
+        return
+            ((ProjectDependencyAnalyzer)
+                ((PlexusContainer)
+                    this.env.context().get(PlexusConstants.PLEXUS_KEY)
+                ).lookup(ProjectDependencyAnalyzer.ROLE, "default")
+            ).analyze(this.env.project());
     }
 
 }

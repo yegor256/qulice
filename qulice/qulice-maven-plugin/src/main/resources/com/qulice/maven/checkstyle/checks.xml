@@ -215,8 +215,12 @@
         <module name="UnnecessaryParentheses"/>
 
         <!-- Checks for imports. -->
-        <module name="AvoidStarImport"/>
-        <module name="AvoidStaticImport"/>
+        <module name="AvoidStarImport">
+            <property name="excludes" value="org.hamcrest.Matchers.*"/>
+        </module>
+        <module name="AvoidStaticImport">
+            <property name="excludes" value="org.hamcrest.Matchers.*"/>
+        </module>
         <module name="IllegalImport"/>
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>

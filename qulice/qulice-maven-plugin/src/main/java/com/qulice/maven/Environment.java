@@ -29,18 +29,9 @@
  */
 package com.qulice.maven;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
-import org.apache.maven.execution.MavenSession;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MavenPluginManager;
-import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
-import org.codehaus.plexus.context.ContextException;
-import org.codehaus.plexus.personality.plexus.lifecycle.phase.Contextualizable;
 
 /**
  * Environment, passed from MOJO to validator.
@@ -59,11 +50,6 @@ public final class Environment {
      * Plexus context.
      */
     private Context context;
-
-    /**
-     * Log.
-     */
-    private Log log;
 
     /**
      * Plugin configuration.
@@ -89,14 +75,6 @@ public final class Environment {
      */
     public void setContext(final Context ctx) {
         this.context = ctx;
-    }
-
-    /**
-     * Set log.
-     * @param mlog The Maven log
-     */
-    public void setLog(final Log mlog) {
-        this.log = mlog;
     }
 
     /**
@@ -138,14 +116,6 @@ public final class Environment {
      */
     public Context context() {
         return this.context;
-    }
-
-    /**
-     * Get log.
-     * @return The log
-     */
-    public Log log() {
-        return this.log;
     }
 
     /**

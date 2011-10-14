@@ -53,6 +53,18 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <!-- Logging facility. -->
+            <groupId>com.ymock</groupId>
+            <artifactId>ymock-util</artifactId>
+            <version since="22 Sep 2011">1.0</version>
+        </dependency>
+        <dependency>
+            <!-- Forward all calls to SLF4J to Maven log. -->
+            <groupId>com.rempl.plugins</groupId>
+            <artifactId>rempl-maven-plugin</artifactId>
+            <version since="19 Sep 2011">1.1.3</version>
+        </dependency>
+        <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
             <version since="22 Aug 2011">3.0.3</version>

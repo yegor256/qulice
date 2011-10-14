@@ -33,12 +33,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Factory of validators.
+ * Provider of validators.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-final class ValidatorFactory {
+final class ValidatorsProvider {
 
     /**
      * Get a collection of validators.

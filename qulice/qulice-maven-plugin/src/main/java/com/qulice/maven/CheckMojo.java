@@ -29,9 +29,7 @@
  */
 package com.qulice.maven;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import com.ymock.util.Logger;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MavenPluginManager;
@@ -39,6 +37,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Contextualizable;
+import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Check the project and find all possible violations.
@@ -133,18 +132,18 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
      * {@inheritDoc}
      */
     @Override
-    public final void execute() throws MojoFailureException {
+    public void execute() throws MojoFailureException {
+        StaticLoggerBinder.getSingleton().setMavenLog(this.getLog());
         if (this.skip) {
-            this.getLog().info("Execution skipped");
+            Logger.info(this, "Execution skipped");
             return;
         }
         this.env.setProperty("license", this.license);
         this.env.setProject(this.project);
-        this.env.setLog(this.getLog());
         this.env.setMojoExecutor(
-            new MojoExecutor(this.manager, this.session, this.getLog())
+            new MojoExecutor(this.manager, this.session)
         );
-        for (Validator validator : new ValidatorFactory().all()) {
+        for (Validator validator : new ValidatorsProvider().all()) {
             validator.validate(this.env);
         }
     }

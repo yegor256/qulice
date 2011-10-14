@@ -29,6 +29,7 @@
  */
 package com.qulice.maven;
 
+import com.ymock.util.Logger;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Properties;
@@ -40,7 +41,6 @@ import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.descriptor.MojoDescriptor;
-import org.apache.maven.plugin.logging.Log;
 import org.codehaus.plexus.configuration.PlexusConfiguration;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
@@ -63,21 +63,14 @@ public final class MojoExecutor {
     private MavenSession session;
 
     /**
-     * Maven log.
-     */
-    private Log log;
-
-    /**
      * Public ctor.
      * @param mngr The manager
      * @param sesn Maven session
-     * @param mlog Maven log
      */
-    public MojoExecutor(final MavenPluginManager mngr, final MavenSession sesn,
-        final Log mlog) {
+    public MojoExecutor(final MavenPluginManager mngr,
+        final MavenSession sesn) {
         this.manager = mngr;
         this.session = sesn;
-        this.log = mlog;
     }
 
     /**
@@ -120,7 +113,7 @@ public final class MojoExecutor {
                 this.session.getTopLevelProject().getExtensionDependencyFilter()
             );
         } catch (org.apache.maven.plugin.PluginResolutionException ex) {
-            throw new IllegalStateException("Can't resolve plugin", ex);
+            throw new IllegalStateException("Plugin resolution problem", ex);
         } catch (org.apache.maven.plugin.PluginContainerException ex) {
             throw new IllegalStateException("Can't setup realm", ex);
         }
@@ -138,12 +131,11 @@ public final class MojoExecutor {
         } catch (org.apache.maven.plugin.PluginContainerException ex) {
             throw new IllegalStateException("Plugin container failure", ex);
         }
-        this.log.info(
-            String.format(
-                "Calling %s:%s...",
-                coords,
-                goal
-            )
+        Logger.info(
+            this,
+            "Calling %s:%s...",
+            coords,
+            goal
         );
         try {
             mojo.execute();
