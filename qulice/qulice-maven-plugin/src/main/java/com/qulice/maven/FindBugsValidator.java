@@ -59,22 +59,8 @@ public final class FindBugsValidator extends AbstractValidator {
             Logger.info(this, "No classes, no FindBugs validation");
             return;
         }
-        final Project project = new Project();
-        final List<String> jars;
-        try {
-            jars = env.project().getRuntimeClasspathElements();
-        } catch (DependencyResolutionRequiredException ex) {
-            throw new IllegalArgumentException(ex);
-        }
-        for (String jar : jars) {
-            project.addFile(jar);
-            if (!jar.equals(env.project().getBuild().getOutputDirectory())) {
-                project.addAuxClasspathEntry(jar);
-            }
-        }
-        project.addSourceDir(env.project().getBasedir().getPath());
         final FindBugs2 findbugs = new FindBugs2();
-        findbugs.setProject(project);
+        findbugs.setProject(this.project(env));
         final BugReporter reporter = new PrintingBugReporter();
         reporter.getProjectStats().getProfiler().start(findbugs.getClass());
         reporter.setPriorityThreshold(Detector.LOW_PRIORITY);
@@ -104,6 +90,29 @@ public final class FindBugsValidator extends AbstractValidator {
             );
         }
         Logger.info(this, "No FindBugs violations found");
+    }
+
+    /**
+     * Create project.
+     * @param env Environment
+     * @return The project
+     */
+    private Project project(final Environment env) {
+        final Project project = new Project();
+        final List<String> jars;
+        try {
+            jars = env.project().getRuntimeClasspathElements();
+        } catch (DependencyResolutionRequiredException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        for (String jar : jars) {
+            project.addFile(jar);
+            if (!jar.equals(env.project().getBuild().getOutputDirectory())) {
+                project.addAuxClasspathEntry(jar);
+            }
+        }
+        project.addSourceDir(env.project().getBasedir().getPath());
+        return project;
     }
 
 }

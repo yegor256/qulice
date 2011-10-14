@@ -70,6 +70,7 @@ public final class CheckMojoTest extends AbstractMojoTestCase {
     /**
      * Validation should happen.
      * @throws Exception If something wrong happens inside
+     * @checkstyle ExecutableStatementCount (30 lines)
      */
     @Test
     public void testValidatingWorks() throws Exception {

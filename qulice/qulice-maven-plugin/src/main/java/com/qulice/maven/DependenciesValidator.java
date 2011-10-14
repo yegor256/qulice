@@ -28,6 +28,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.qulice.maven;
+// @checkstyle LineLength (15 lines)
 
 import com.ymock.util.Logger;
 import java.io.File;

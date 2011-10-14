@@ -54,6 +54,7 @@ import org.xml.sax.InputSource;
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ * @checkstyle ClassDataAbstractionCoupling (260 lines)
  */
 public final class CheckstyleValidator extends AbstractValidator {
 
@@ -178,24 +179,7 @@ public final class CheckstyleValidator extends AbstractValidator {
     private String header(final Environment env) {
         final String name = env.properties()
             .getProperty("license", "LICENSE.txt");
-        URL url;
-        if (name.startsWith(this.FILE_PREFIX)) {
-            try {
-                url = new URL(name);
-            } catch (java.net.MalformedURLException ex) {
-                throw new IllegalStateException("Invalid URL", ex);
-            }
-        } else {
-            url = this.classloader(env).getResource(name);
-            if (url == null) {
-                throw new IllegalStateException(
-                    String.format(
-                        "'%s' resource is not found in classpath",
-                        name
-                    )
-                );
-            }
-        }
+        final URL url = this.toURL(env, name);
         String content;
         try {
             content = IOUtils.toString(url.openStream());
@@ -217,6 +201,35 @@ public final class CheckstyleValidator extends AbstractValidator {
         Logger.info(this, "LICENSE found: %s", url);
         Logger.debug(this, license);
         return license;
+    }
+
+    /**
+     * Convert file name to URL.
+     * @param env The environment
+     * @param name The name of file
+     * @return The URL
+     * @see #header(Environment)
+     */
+    private URL toURL(final Environment env, final String name) {
+        URL url;
+        if (name.startsWith(this.FILE_PREFIX)) {
+            try {
+                url = new URL(name);
+            } catch (java.net.MalformedURLException ex) {
+                throw new IllegalStateException("Invalid URL", ex);
+            }
+        } else {
+            url = this.classloader(env).getResource(name);
+            if (url == null) {
+                throw new IllegalStateException(
+                    String.format(
+                        "'%s' resource is not found in classpath",
+                        name
+                    )
+                );
+            }
+        }
+        return url;
     }
 
     /**

@@ -87,23 +87,7 @@ public final class MojoExecutor {
         plugin.setGroupId(sectors[0]);
         plugin.setArtifactId(sectors[1]);
         plugin.setVersion(sectors[2]);
-        MojoDescriptor descriptor;
-        try {
-            descriptor = this.manager.getMojoDescriptor(
-                plugin,
-                goal,
-                this.session.getTopLevelProject().getRemotePluginRepositories(),
-                this.session.getRepositorySession()
-            );
-        } catch (org.apache.maven.plugin.MojoNotFoundException ex) {
-            throw new IllegalStateException("Can't find MOJO", ex);
-        } catch (org.apache.maven.plugin.PluginResolutionException ex) {
-            throw new IllegalStateException("Can't resolve plugin", ex);
-        } catch (org.apache.maven.plugin.PluginDescriptorParsingException ex) {
-            throw new IllegalStateException("Can't parse descriptor", ex);
-        } catch (org.apache.maven.plugin.InvalidPluginDescriptorException ex) {
-            throw new IllegalStateException("Invalid plugin descriptor", ex);
-        }
+        final MojoDescriptor descriptor = this.descriptor(plugin, goal);
         try {
             this.manager.setupPluginRealm(
                 descriptor.getPluginDescriptor(),
@@ -122,6 +106,49 @@ public final class MojoExecutor {
             this.toXpp3Dom(descriptor.getMojoConfiguration())
         );
         final MojoExecution execution = new MojoExecution(descriptor, xpp);
+        final Mojo mojo = this.mojo(execution);
+        Logger.info(this, "Calling %s:%s...", coords, goal);
+        try {
+            mojo.execute();
+        } catch (org.apache.maven.plugin.MojoExecutionException ex) {
+            throw new IllegalArgumentException(ex);
+        }
+        this.manager.releaseMojo(mojo, execution);
+    }
+
+    /**
+     * Create descriptor.
+     * @param plugin The plugin
+     * @param goal Maven plugin goal to execute
+     * @return The descriptor
+     */
+    private MojoDescriptor descriptor(final Plugin plugin, final String goal) {
+        MojoDescriptor descriptor;
+        try {
+            descriptor = this.manager.getMojoDescriptor(
+                plugin,
+                goal,
+                this.session.getTopLevelProject().getRemotePluginRepositories(),
+                this.session.getRepositorySession()
+            );
+        } catch (org.apache.maven.plugin.MojoNotFoundException ex) {
+            throw new IllegalStateException("Can't find MOJO", ex);
+        } catch (org.apache.maven.plugin.PluginResolutionException ex) {
+            throw new IllegalStateException("Can't resolve plugin", ex);
+        } catch (org.apache.maven.plugin.PluginDescriptorParsingException ex) {
+            throw new IllegalStateException("Can't parse descriptor", ex);
+        } catch (org.apache.maven.plugin.InvalidPluginDescriptorException ex) {
+            throw new IllegalStateException("Invalid plugin descriptor", ex);
+        }
+        return descriptor;
+    }
+
+    /**
+     * Create mojo.
+     * @param execution The execution
+     * @return The mojo
+     */
+    private Mojo mojo(final MojoExecution execution) {
         Mojo mojo;
         try {
             mojo = this.manager
@@ -131,18 +158,7 @@ public final class MojoExecutor {
         } catch (org.apache.maven.plugin.PluginContainerException ex) {
             throw new IllegalStateException("Plugin container failure", ex);
         }
-        Logger.info(
-            this,
-            "Calling %s:%s...",
-            coords,
-            goal
-        );
-        try {
-            mojo.execute();
-        } catch (org.apache.maven.plugin.MojoExecutionException ex) {
-            throw new IllegalArgumentException(ex);
-        }
-        this.manager.releaseMojo(mojo, execution);
+        return mojo;
     }
 
     /**
