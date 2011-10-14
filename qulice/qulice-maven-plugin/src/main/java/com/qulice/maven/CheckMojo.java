@@ -83,13 +83,17 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
      * Shall we skip execution?
      * @parameter expression="${qulice.skip}" default-value="false"
      * @required
+     * @since 0.1
      */
     private boolean skip;
 
     /**
-     * Licence file location.
+     * Location of License file. If it is an absolute file name you should
+     * prepend it with "file:" prefix. Otherwise it is treated like a resource
+     * name and will be found in classpath (if available).
      * @parameter expression="${qulice.license}" default-value="LICENSE.txt"
      * @required
+     * @since 0.1
      */
     private String license = "LICENSE.txt";
 

@@ -52,6 +52,7 @@ final class ValidatorFactory {
         validators.add(new XmlValidator());
         validators.add(new CheckstyleValidator());
         validators.add(new PMDValidator());
+        // has some strange defect inside
         // validators.add(new FindBugsValidator());
         // not working yet
         // validators.add(new CoberturaValidator());

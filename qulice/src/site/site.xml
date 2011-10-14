@@ -58,6 +58,23 @@
         <head>
             <link href="/images/favicon.gif" rel="shortcut icon" />
             <link href="/css/qulice.css" rel="stylesheet" type="text/css" />
+            <link type="text/css"
+                href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css"
+                rel="stylesheet" />
+            <script type="text/javascript"
+                src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+            <script type="text/javascript"
+                src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
+            <script type="text/javascript">
+                //<![CDATA[
+                $(document).ready(
+                    function() {
+                        $("div#contentBox div.source pre").addClass("prettyprint");
+                        prettyPrint();
+                    }
+                );
+                //]]>
+            </script>
         </head>
         <breadcrumbs>
             <item name="qulice.com" href="http://www.qulice.com"/>
