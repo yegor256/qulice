@@ -39,7 +39,7 @@ import org.codehaus.plexus.context.Context;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class Environment {
+public final class MavenEnvironment implements Environment {
 
     /**
      * Maven project.
@@ -132,6 +132,35 @@ public final class Environment {
      */
     public MojoExecutor executor() {
         return this.mojoExecutor;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ClassLoader classloader() {
+        final List<String> paths = new ArrayList<String>();
+        try {
+            paths.addAll(env.project().getRuntimeClasspathElements());
+        } catch (DependencyResolutionRequiredException ex) {
+            throw new IllegalStateException("Failed to read classpath", ex);
+        }
+        final List<URL> urls = new ArrayList<URL>();
+        for (String path : paths) {
+            try {
+                urls.add(new File(path).toURI().toURL());
+            } catch (java.net.MalformedURLException ex) {
+                throw new IllegalStateException("Failed to build URL", ex);
+            }
+        }
+        final URLClassLoader loader = new URLClassLoader(
+            urls.toArray(new URL[] {}),
+            this.getClass().getClassLoader()
+        );
+        for (URL url : loader.getURLs()) {
+            Logger.debug(this, "Classpath: %s", url);
+        }
+        return loader;
     }
 
 }
