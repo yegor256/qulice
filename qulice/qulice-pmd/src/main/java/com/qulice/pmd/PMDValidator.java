@@ -27,8 +27,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.pmd;
 
+import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
 import java.io.File;
 import java.util.ArrayList;
@@ -44,7 +47,10 @@ import net.sourceforge.pmd.RuleSetFactory;
 import net.sourceforge.pmd.SourceType;
 import net.sourceforge.pmd.renderers.Renderer;
 import net.sourceforge.pmd.stat.Metric;
-import org.apache.maven.plugin.MojoFailureException;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 /**
  * Validates source code with PMD.
@@ -52,13 +58,13 @@ import org.apache.maven.plugin.MojoFailureException;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class PMDValidator extends AbstractValidator {
+public final class PMDValidator implements Validator {
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void validate(final Environment env) throws MojoFailureException {
+    public void validate(final Environment env) throws ValidationException {
         final List<DataSource> sources = this.sources(env);
         if (sources.isEmpty()) {
             Logger.info(this, "No files to check with PMD");
@@ -91,11 +97,9 @@ public final class PMDValidator extends AbstractValidator {
         );
         final List<IRuleViolation> violations = listener.violations();
         if (!violations.isEmpty()) {
-            throw new MojoFailureException(
-                String.format(
-                    "%d PMD violations (see log above)",
-                    violations.size()
-                )
+            throw new ValidationException(
+                "%d PMD violations (see log above)",
+                violations.size()
             );
         }
         Logger.info(
@@ -103,6 +107,37 @@ public final class PMDValidator extends AbstractValidator {
             "No PMD violations found in %d files",
             sources.size()
         );
+    }
+
+    /**
+     * Get full list of files to process.
+     * @param env The environmet
+     * @return List of files
+     */
+    protected final List<File> files(final Environment env) {
+        final List<File> files = new ArrayList<File>();
+        final IOFileFilter filter = new WildcardFileFilter("*.java");
+        final File sources = new File(env.basedir(), "src/main/java");
+        if (sources.exists()) {
+            files.addAll(
+                FileUtils.listFiles(
+                    sources,
+                    filter,
+                    DirectoryFileFilter.INSTANCE
+                )
+            );
+        }
+        final File tests = new File(env.basedir(), "src/test/java");
+        if (tests.exists()) {
+            files.addAll(
+                FileUtils.listFiles(
+                    tests,
+                    filter,
+                    DirectoryFileFilter.INSTANCE
+                )
+            );
+        }
+        return files;
     }
 
     /**
