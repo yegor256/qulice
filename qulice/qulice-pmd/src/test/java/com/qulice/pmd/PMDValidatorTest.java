@@ -33,11 +33,8 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
@@ -78,8 +75,8 @@ public final class PMDValidatorTest {
     public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
         this.env = Mockito.mock(Environment.class);
-        Mockito.doReturn(this.folder).when(env).basedir();
-        Mockito.doReturn(this.folder).when(env).tempdir();
+        Mockito.doReturn(this.folder).when(this.env).basedir();
+        Mockito.doReturn(this.folder).when(this.env).tempdir();
     }
 
     /**

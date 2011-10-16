@@ -42,15 +42,14 @@ import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
 import java.io.File;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.xml.sax.InputSource;
 
@@ -70,6 +69,7 @@ public final class CheckstyleValidator implements Validator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle RedundantThrows (3 lines)
      */
     @Override
     public void validate(final Environment env) throws ValidationException {
@@ -205,7 +205,7 @@ public final class CheckstyleValidator implements Validator {
      * @param env The environmet
      * @return List of files
      */
-    protected final List<File> files(final Environment env) {
+    private List<File> files(final Environment env) {
         final List<File> files = new ArrayList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
         final File sources = new File(env.basedir(), "src/main/java");

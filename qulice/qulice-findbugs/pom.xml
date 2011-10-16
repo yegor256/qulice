@@ -109,14 +109,14 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
             <version since="19 Sep 2011">1.6.2</version>
-            <scope>runtime</scope>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <!-- Use LOG4J logging facility for all loggings. -->
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version since="19 Sep 2011">1.2.16</version>
-            <scope>runtime</scope>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

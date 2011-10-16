@@ -31,13 +31,9 @@ package com.qulice.findbugs;
 
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
 import edu.umd.cs.findbugs.FindBugs2;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -68,8 +64,8 @@ public final class FindBugsValidatorTest {
     public void prepare() throws Exception {
         final File basedir = new File(".");
         this.env = Mockito.mock(Environment.class);
-        Mockito.doReturn(basedir).when(env).basedir();
-        Mockito.doReturn(basedir).when(env).outdir();
+        Mockito.doReturn(basedir).when(this.env).basedir();
+        Mockito.doReturn(basedir).when(this.env).outdir();
     }
 
     /**

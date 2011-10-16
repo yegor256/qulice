@@ -57,11 +57,13 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ * @checkstyle ClassDataAbstractionCoupling (300 lines)
  */
 public final class PMDValidator implements Validator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle RedundantThrows (3 lines)
      */
     @Override
     public void validate(final Environment env) throws ValidationException {
@@ -87,7 +89,7 @@ public final class PMDValidator implements Validator {
             new ArrayList<Renderer>(),
             // stressTestEnabled
             true,
-            "com/qulice/maven/pmd/ruleset.xml",
+            "com/qulice/pmd/ruleset.xml",
             // shortNamesEnabled
             true,
             ".",
@@ -114,7 +116,7 @@ public final class PMDValidator implements Validator {
      * @param env The environmet
      * @return List of files
      */
-    protected final List<File> files(final Environment env) {
+    private List<File> files(final Environment env) {
         final List<File> files = new ArrayList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
         final File sources = new File(env.basedir(), "src/main/java");

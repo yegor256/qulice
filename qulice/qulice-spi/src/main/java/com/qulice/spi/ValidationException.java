@@ -46,4 +46,12 @@ public final class ValidationException extends Exception {
         super(String.format(text, args));
     }
 
+    /**
+     * Public ctor.
+     * @param cause The cause of exception
+     */
+    public ValidationException(final Throwable cause) {
+        super(cause);
+    }
+
 }

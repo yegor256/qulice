@@ -41,7 +41,6 @@ import edu.umd.cs.findbugs.PrintingBugReporter;
 import edu.umd.cs.findbugs.Project;
 import edu.umd.cs.findbugs.config.UserPreferences;
 import java.io.File;
-import java.util.List;
 
 /**
  * Validates source code and compiled binaris with FindBugs.
@@ -53,6 +52,7 @@ public final class FindBugsValidator implements Validator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle RedundantThrows (3 lines)
      */
     @Override
     public void validate(final Environment env) throws ValidationException {

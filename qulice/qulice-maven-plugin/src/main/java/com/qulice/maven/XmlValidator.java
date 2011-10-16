@@ -29,8 +29,10 @@
  */
 package com.qulice.maven;
 
+import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 import java.util.Properties;
-import org.apache.maven.plugin.MojoFailureException;
 
 /**
  * Simple validator of XML files.
@@ -38,19 +40,20 @@ import org.apache.maven.plugin.MojoFailureException;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class XmlValidator extends AbstractValidator {
+public final class XmlValidator implements Validator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle RedundantThrows (3 lines)
      */
     @Override
-    public void validate(final Environment env) throws MojoFailureException {
+    public void validate(final Environment env) throws ValidationException {
         final Properties props = new Properties();
         final Properties sets = new Properties();
         props.put("validationSets", sets);
         final Properties set = new Properties();
         sets.put("validationSet", set);
-        set.put("dir", env.project().getBasedir().getPath());
+        set.put("dir", env.basedir().getPath());
         set.put("validating", "true");
         set.put(
             "includes",
@@ -62,7 +65,7 @@ public final class XmlValidator extends AbstractValidator {
                 ".xhtml",
             }
         );
-        env.executor().execute(
+        ((MavenEnvironment) env).executor().execute(
             "org.codehaus.mojo:xml-maven-plugin:1.0-beta-3-SNAPSHOT",
             "validate",
             props

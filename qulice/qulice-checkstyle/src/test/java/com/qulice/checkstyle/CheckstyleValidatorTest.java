@@ -33,12 +33,8 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -83,8 +79,8 @@ public final class CheckstyleValidatorTest {
     public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
         this.env = Mockito.mock(Environment.class);
-        Mockito.doReturn(this.folder).when(env).basedir();
-        Mockito.doReturn(this.folder).when(env).tempdir();
+        Mockito.doReturn(this.folder).when(this.env).basedir();
+        Mockito.doReturn(this.folder).when(this.env).tempdir();
     }
 
     /**
@@ -95,7 +91,7 @@ public final class CheckstyleValidatorTest {
     public void testValidatesSetOfFiles() throws Exception {
         final File license = this.temp.newFile("license.txt");
         FileUtils.writeStringToFile(license, "license\n");
-        Mockito.doReturn("file:" + license.getPath()).when(env)
+        Mockito.doReturn(this.toURL(license)).when(this.env)
             .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
         final Validator validator = new CheckstyleValidator();
         final File java = new File(this.folder, "src/main/java/Main.java");
@@ -112,10 +108,19 @@ public final class CheckstyleValidatorTest {
     public void testImmitatesLicenseInClasspath() throws Exception {
         final File license = new File(this.folder, "my-license.txt");
         FileUtils.writeStringToFile(license, "some non-important text\n");
-        Mockito.doReturn("file:" + license.getPath()).when(env)
+        Mockito.doReturn(this.toURL(license)).when(this.env)
             .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
         final Validator validator = new CheckstyleValidator();
         validator.validate(this.env);
+    }
+
+    /**
+     * Convert file name to URL.
+     * @param file The file
+     * @return The URL
+     */
+    private String toURL(final File file) {
+        return String.format("file:%s", file);
     }
 
 }

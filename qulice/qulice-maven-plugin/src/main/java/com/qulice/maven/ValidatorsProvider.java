@@ -29,6 +29,7 @@
  */
 package com.qulice.maven;
 
+import com.qulice.spi.Validator;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,10 +51,10 @@ final class ValidatorsProvider {
         validators.add(new EnforcerValidator());
         validators.add(new DependenciesValidator());
         validators.add(new XmlValidator());
-        validators.add(new CheckstyleValidator());
-        validators.add(new PMDValidator());
+        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
+        validators.add(new com.qulice.pmd.PMDValidator());
         // has some strange defect inside
-        // validators.add(new FindBugsValidator());
+        // validators.add(new com.qulice.findbugs.FindBugsValidator());
         // not working yet
         // validators.add(new CoberturaValidator());
         return validators;
