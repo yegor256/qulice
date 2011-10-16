@@ -27,55 +27,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.spi;
-
-import java.io.File;
-import java.util.Collection;
 
 /**
- * Environment.
+ * FindBugs validator.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public interface Environment {
-
-    /**
-     * Get project's basedir.
-     * @return The directory
-     */
-    File basedir();
-
-    /**
-     * Get directory to keep temporary files in.
-     * @return The directory
-     */
-    File tempdir();
-
-    /**
-     * Get directory where <tt>.class</tt> files are stored.
-     * @return The directory
-     */
-    File outdir();
-
-    /**
-     * Get parameter by name, and return default if it's not set.
-     * @param name The name of parameter
-     * @param value Default value to return as default
-     * @return The value
-     */
-    String param(final String name, final String value);
-
-    /**
-     * Get classloader for this project.
-     * @return The classloader
-     */
-    ClassLoader classloader();
-
-    /**
-     * Get list of paths in classpath.
-     * @return The collection of paths
-     */
-    Collection<File> classpath();
-
-}
+package com.qulice.findbugs;

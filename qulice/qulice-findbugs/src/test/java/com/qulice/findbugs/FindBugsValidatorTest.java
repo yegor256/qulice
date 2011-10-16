@@ -27,16 +27,15 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.findbugs;
 
+import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 import edu.umd.cs.findbugs.FindBugs2;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.maven.model.Build;
-import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -45,7 +44,6 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Test case for {@link FindbugsValidator} class.
@@ -63,34 +61,15 @@ public final class FindBugsValidatorTest {
     private Environment env;
 
     /**
-     * Forward SLF4J to Maven Log.
-     * @throws Exception If something is wrong inside
-     */
-    @BeforeClass
-    public static void initLogging() throws Exception {
-        final Log log = Mockito.mock(Log.class);
-        StaticLoggerBinder.getSingleton().setMavenLog(log);
-    }
-
-    /**
      * Prepare the environment.
      * @throws Exception If something wrong happens inside
      */
     @Before
     public void prepare() throws Exception {
-        final MavenProject project = Mockito.mock(MavenProject.class);
         final File basedir = new File(".");
-        Mockito.doReturn(new File(basedir.getPath()))
-            .when(project).getBasedir();
-        final Build build = Mockito.mock(Build.class);
-        Mockito.doReturn(build).when(project).getBuild();
-        final File classes = new File(basedir, "target/classes");
-        final List<String> paths = new ArrayList<String>();
-        paths.add(classes.getPath());
-        Mockito.doReturn(paths).when(project).getRuntimeClasspathElements();
-        Mockito.doReturn(classes.getPath()).when(build).getOutputDirectory();
-        this.env = new Environment();
-        this.env.setProject(project);
+        this.env = Mockito.mock(Environment.class);
+        Mockito.doReturn(basedir).when(env).basedir();
+        Mockito.doReturn(basedir).when(env).outdir();
     }
 
     /**
@@ -110,7 +89,7 @@ public final class FindBugsValidatorTest {
      * One violation should be found.
      * @throws Exception If something wrong happens inside
      */
-    @Test(expected = MojoFailureException.class)
+    @Test(expected = ValidationException.class)
     public void testValidatesWithOneViolation() throws Exception {
         PowerMockito.mockStatic(FindBugs2.class);
         final FindBugs2 findbugs = PowerMockito.mock(FindBugs2.class);
