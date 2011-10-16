@@ -29,6 +29,7 @@
  */
 package com.qulice.maven;
 
+import com.qulice.spi.ValidationException;
 import com.ymock.util.Logger;
 import java.util.Collection;
 import java.util.Map;
@@ -39,7 +40,6 @@ import org.apache.maven.model.Plugin;
 import org.apache.maven.plugin.MavenPluginManager;
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecution;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.descriptor.MojoDescriptor;
 import org.codehaus.plexus.configuration.PlexusConfiguration;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
@@ -78,10 +78,11 @@ public final class MojoExecutor {
      * @param coords Maven coordinates, e.g. "com.qulice:maven-qulice-plugin:1.0"
      * @param goal Maven plugin goal to execute
      * @param config The configuration to set
-     * @throws MojoFailureException If something is wrong inside
+     * @throws ValidationException If something is wrong inside
+     * @checkstyle RedundantThrows (4 lines)
      */
     public void execute(final String coords, final String goal,
-        final Properties config) throws MojoFailureException {
+        final Properties config) throws ValidationException {
         final Plugin plugin = new Plugin();
         final String[] sectors = StringUtils.split(coords, ':');
         plugin.setGroupId(sectors[0]);
@@ -112,6 +113,8 @@ public final class MojoExecutor {
             mojo.execute();
         } catch (org.apache.maven.plugin.MojoExecutionException ex) {
             throw new IllegalArgumentException(ex);
+        } catch (org.apache.maven.plugin.MojoFailureException ex) {
+            throw new ValidationException(ex);
         }
         this.manager.releaseMojo(mojo, execution);
     }

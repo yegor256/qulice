@@ -29,8 +29,10 @@
  */
 package com.qulice.maven;
 
+import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 import java.util.Properties;
-import org.apache.maven.plugin.MojoFailureException;
 
 /**
  * Validate with maven-enforcer-plugin.
@@ -38,14 +40,15 @@ import org.apache.maven.plugin.MojoFailureException;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class EnforcerValidator extends AbstractValidator {
+public final class EnforcerValidator implements Validator {
 
     /**
      * {@inheritDoc}
      * @checkstyle MultipleStringLiterals (20 lines)
+     * @checkstyle RedundantThrows (4 lines)
      */
     @Override
-    public void validate(final Environment env) throws MojoFailureException {
+    public void validate(final Environment env) throws ValidationException {
         final Properties props = new Properties();
         final Properties rules = new Properties();
         props.put("rules", rules);
@@ -56,7 +59,7 @@ public final class EnforcerValidator extends AbstractValidator {
         rules.put("requireJavaVersion", java);
         // @checkstyle MultipleStringLiterals (1 line)
         java.put("version", "1.6");
-        env.executor().execute(
+        ((MavenEnvironment) env).executor().execute(
             "org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1",
             "enforce",
             props

@@ -27,49 +27,55 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.spi;
 
-import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
-import java.util.Properties;
+import java.io.File;
+import java.util.Collection;
 
 /**
- * Validates with Cobertura.
+ * Environment.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class CoberturaValidator implements Validator {
+public interface Environment {
 
     /**
-     * {@inheritDoc}
-     * @checkstyle MultipleStringLiterals (30 lines)
-     * @checkstyle RedundantThrows (4 lines)
+     * Get project's basedir.
+     * @return The directory
      */
-    @Override
-    public void validate(final Environment env) throws ValidationException {
-        final Properties props = new Properties();
-        props.put("quiet", "false");
-        ((MavenEnvironment) env).executor().execute(
-            "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
-            "instrument",
-            props
-        );
-        final Properties check = new Properties();
-        props.put("check", check);
-        check.put("haltOnFailure", "true");
-        check.put("lineRate", "60");
-        check.put("branchRate", "60");
-        check.put("packageLineRate", "70");
-        check.put("packageBranchRate", "70");
-        check.put("totalLineRate", "80");
-        check.put("totalBranchRate", "80");
-        ((MavenEnvironment) env).executor().execute(
-            "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
-            "check",
-            props
-        );
-    }
+    File basedir();
+
+    /**
+     * Get directory to keep temporary files in.
+     * @return The directory
+     */
+    File tempdir();
+
+    /**
+     * Get directory where <tt>.class</tt> files are stored.
+     * @return The directory
+     */
+    File outdir();
+
+    /**
+     * Get parameter by name, and return default if it's not set.
+     * @param name The name of parameter
+     * @param value Default value to return as default
+     * @return The value
+     */
+    String param(final String name, final String value);
+
+    /**
+     * Get classloader for this project.
+     * @return The classloader
+     */
+    ClassLoader classloader();
+
+    /**
+     * Get list of paths in classpath.
+     * @return The collection of paths
+     */
+    Collection<File> classpath();
 
 }

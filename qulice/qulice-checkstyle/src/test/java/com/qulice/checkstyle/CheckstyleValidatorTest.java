@@ -27,24 +27,18 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.checkstyle;
 
+import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 import org.apache.commons.io.FileUtils;
-import org.apache.maven.model.Build;
-import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.project.MavenProject;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
-import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Test case for {@link CheckstyleValidator} class.
@@ -78,50 +72,27 @@ public final class CheckstyleValidatorTest {
     private Environment env;
 
     /**
-     * Forward SLF4J to Maven Log.
-     * @throws Exception If something is wrong inside
-     */
-    @BeforeClass
-    public static void initLogging() throws Exception {
-        final Log log = Mockito.mock(Log.class);
-        StaticLoggerBinder.getSingleton().setMavenLog(log);
-    }
-
-    /**
      * Prepare the folder and environment for testing.
      * @throws Exception If something wrong happens inside
      */
     @Before
     public void prepare() throws Exception {
         this.folder = this.temp.newFolder("temp-src");
-        final MavenProject project = Mockito.mock(MavenProject.class);
-        Mockito.doReturn(new File(this.folder.getPath()))
-            .when(project).getBasedir();
-        final Build build = Mockito.mock(Build.class);
-        Mockito.doReturn(build).when(project).getBuild();
-        final List<String> paths = new ArrayList<String>();
-        paths.add(this.folder.getPath());
-        Mockito.doReturn(paths).when(project).getTestClasspathElements();
-        Mockito.doReturn(paths).when(project).getRuntimeClasspathElements();
-        Mockito.doReturn(this.folder.getPath())
-            .when(build).getOutputDirectory();
-        Mockito.doReturn(this.folder.getPath())
-            .when(build).getTestOutputDirectory();
-        this.env = new Environment();
-        this.env.setProject(project);
+        this.env = Mockito.mock(Environment.class);
+        Mockito.doReturn(this.folder).when(this.env).basedir();
+        Mockito.doReturn(this.folder).when(this.env).tempdir();
     }
 
     /**
      * Validate set of files with error inside.
      * @throws Exception If something wrong happens inside
      */
-    @Test(expected = MojoFailureException.class)
+    @Test(expected = ValidationException.class)
     public void testValidatesSetOfFiles() throws Exception {
-        final Properties config = new Properties();
         final File license = this.temp.newFile("license.txt");
         FileUtils.writeStringToFile(license, "license\n");
-        config.setProperty(this.LICENSE_PROP, "file:" + license.getPath());
-        final Log log = Mockito.mock(Log.class);
+        Mockito.doReturn(this.toURL(license)).when(this.env)
+            .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
         final Validator validator = new CheckstyleValidator();
         final File java = new File(this.folder, "src/main/java/Main.java");
         java.getParentFile().mkdirs();
@@ -137,11 +108,19 @@ public final class CheckstyleValidatorTest {
     public void testImmitatesLicenseInClasspath() throws Exception {
         final File license = new File(this.folder, "my-license.txt");
         FileUtils.writeStringToFile(license, "some non-important text\n");
-        final Properties config = new Properties();
-        config.setProperty(this.LICENSE_PROP, license.getName());
-        final Log log = Mockito.mock(Log.class);
+        Mockito.doReturn(this.toURL(license)).when(this.env)
+            .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
         final Validator validator = new CheckstyleValidator();
         validator.validate(this.env);
+    }
+
+    /**
+     * Convert file name to URL.
+     * @param file The file
+     * @return The URL
+     */
+    private String toURL(final File file) {
+        return String.format("file:%s", file);
     }
 
 }

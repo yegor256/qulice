@@ -29,6 +29,8 @@
  */
 package com.qulice.maven;
 
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
@@ -53,7 +55,7 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
     /**
      * Environment to pass to validators.
      */
-    private Environment env = new Environment();
+    private MavenEnvironment env = new MavenEnvironment();
 
     /**
      * Maven project, to be injected by Maven itself.
@@ -144,7 +146,11 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
             new MojoExecutor(this.manager, this.session)
         );
         for (Validator validator : new ValidatorsProvider().all()) {
-            validator.validate(this.env);
+            try {
+                validator.validate(this.env);
+            } catch (ValidationException ex) {
+                throw new MojoFailureException("Failed", ex);
+            }
         }
     }
 

@@ -27,7 +27,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -36,17 +36,21 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
 import java.io.File;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.commons.lang.StringUtils;
-import org.apache.maven.artifact.DependencyResolutionRequiredException;
-import org.apache.maven.plugin.MojoFailureException;
 import org.xml.sax.InputSource;
 
 /**
@@ -56,7 +60,7 @@ import org.xml.sax.InputSource;
  * @version $Id$
  * @checkstyle ClassDataAbstractionCoupling (260 lines)
  */
-public final class CheckstyleValidator extends AbstractValidator {
+public final class CheckstyleValidator implements Validator {
 
     /**
      * Prefix to use before files.
@@ -65,9 +69,10 @@ public final class CheckstyleValidator extends AbstractValidator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle RedundantThrows (3 lines)
      */
     @Override
-    public void validate(final Environment env) throws MojoFailureException {
+    public void validate(final Environment env) throws ValidationException {
         final List<File> files = this.files(env);
         if (files.isEmpty()) {
             Logger.info(this, "No files to check with Checkstyle");
@@ -79,7 +84,7 @@ public final class CheckstyleValidator extends AbstractValidator {
         } catch (CheckstyleException ex) {
             throw new IllegalStateException("Failed to create checker", ex);
         }
-        checker.setClassloader(this.classloader(env));
+        checker.setClassloader(env.classloader());
         checker.setModuleClassLoader(this.getClass().getClassLoader());
         try {
             checker.configure(this.configuration(env));
@@ -92,11 +97,9 @@ public final class CheckstyleValidator extends AbstractValidator {
         checker.destroy();
         final List<AuditEvent> events = listener.events();
         if (!events.isEmpty()) {
-            throw new MojoFailureException(
-                String.format(
-                    "%d Checkstyle violations (see log above)",
-                    events.size()
-                )
+            throw new ValidationException(
+                "%d Checkstyle violations (see log above)",
+                events.size()
             );
         }
         Logger.info(
@@ -113,17 +116,14 @@ public final class CheckstyleValidator extends AbstractValidator {
      * @see #validate()
      */
     private Configuration configuration(final Environment env) {
-        final File buildDir = new File(
-            env.project().getBuild().getOutputDirectory()
-        );
         final Properties props = new Properties();
         props.setProperty(
             "cache.file",
-            new File(buildDir, "qulice-checkstyle.cache").getPath()
+            new File(env.tempdir(), "checkstyle/checkstyle.cache").getPath()
         );
         props.setProperty("header", this.header(env));
         final InputSource src = new InputSource(
-            this.getClass().getResourceAsStream("checkstyle/checks.xml")
+            this.getClass().getResourceAsStream("checks.xml")
         );
         Configuration configuration;
         try {
@@ -140,45 +140,13 @@ public final class CheckstyleValidator extends AbstractValidator {
     }
 
     /**
-     * Create classloader for checkstyle.
-     * @param env The environment
-     * @return The classloader
-     * @see #validate()
-     */
-    private ClassLoader classloader(final Environment env) {
-        final List<String> paths = new ArrayList<String>();
-        try {
-            paths.addAll(env.project().getRuntimeClasspathElements());
-        } catch (DependencyResolutionRequiredException ex) {
-            throw new IllegalStateException("Failed to read classpath", ex);
-        }
-        final List<URL> urls = new ArrayList<URL>();
-        for (String path : paths) {
-            try {
-                urls.add(new File(path).toURI().toURL());
-            } catch (java.net.MalformedURLException ex) {
-                throw new IllegalStateException("Failed to build URL", ex);
-            }
-        }
-        final URLClassLoader loader = new URLClassLoader(
-            urls.toArray(new URL[] {}),
-            this.getClass().getClassLoader()
-        );
-        for (URL url : loader.getURLs()) {
-            Logger.debug(this, "Classpath: %s", url);
-        }
-        return loader;
-    }
-
-    /**
      * Create header content, from file.
      * @param env The environment
      * @return The content of header
      * @see #configuration()
      */
     private String header(final Environment env) {
-        final String name = env.properties()
-            .getProperty("license", "LICENSE.txt");
+        final String name = env.param("license", "LICENSE.txt");
         final URL url = this.toURL(env, name);
         String content;
         try {
@@ -219,7 +187,7 @@ public final class CheckstyleValidator extends AbstractValidator {
                 throw new IllegalStateException("Invalid URL", ex);
             }
         } else {
-            url = this.classloader(env).getResource(name);
+            url = env.classloader().getResource(name);
             if (url == null) {
                 throw new IllegalStateException(
                     String.format(
@@ -230,6 +198,37 @@ public final class CheckstyleValidator extends AbstractValidator {
             }
         }
         return url;
+    }
+
+    /**
+     * Get full list of files to process.
+     * @param env The environmet
+     * @return List of files
+     */
+    private List<File> files(final Environment env) {
+        final List<File> files = new ArrayList<File>();
+        final IOFileFilter filter = new WildcardFileFilter("*.java");
+        final File sources = new File(env.basedir(), "src/main/java");
+        if (sources.exists()) {
+            files.addAll(
+                FileUtils.listFiles(
+                    sources,
+                    filter,
+                    DirectoryFileFilter.INSTANCE
+                )
+            );
+        }
+        final File tests = new File(env.basedir(), "src/test/java");
+        if (tests.exists()) {
+            files.addAll(
+                FileUtils.listFiles(
+                    tests,
+                    filter,
+                    DirectoryFileFilter.INSTANCE
+                )
+            );
+        }
+        return files;
     }
 
     /**
@@ -297,7 +296,7 @@ public final class CheckstyleValidator extends AbstractValidator {
                 this,
                 "%s[%d]: %s (%s)",
                 event.getFileName().substring(
-                    this.env.project().getBasedir().toString().length()
+                    this.env.basedir().toString().length()
                 ),
                 event.getLine(),
                 event.getMessage(),

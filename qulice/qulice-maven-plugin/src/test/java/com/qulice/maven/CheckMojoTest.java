@@ -29,6 +29,8 @@
  */
 package com.qulice.maven;
 
+import com.qulice.spi.Environment;
+import com.qulice.spi.Validator;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.maven.plugin.logging.Log;
@@ -96,10 +98,20 @@ public final class CheckMojoTest extends AbstractMojoTestCase {
         Mockito.verify(factory).all();
         final Environment env = validator.env();
         MatcherAssert.assertThat(env, Matchers.notNullValue());
-        MatcherAssert.assertThat(env.project(), Matchers.equalTo(project));
-        MatcherAssert.assertThat(env.context(), Matchers.equalTo(context));
         MatcherAssert.assertThat(
-            env.properties().getProperty("license"),
+            env,
+            Matchers.instanceOf(MavenEnvironment.class)
+        );
+        MatcherAssert.assertThat(
+            ((MavenEnvironment) env).project(),
+            Matchers.equalTo(project)
+        );
+        MatcherAssert.assertThat(
+            ((MavenEnvironment) env).context(),
+            Matchers.equalTo(context)
+        );
+        MatcherAssert.assertThat(
+            env.param("license", ""),
             Matchers.equalTo(license)
         );
     }

@@ -29,12 +29,13 @@
  */
 package com.qulice.maven;
 
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.model.Build;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
@@ -74,7 +75,7 @@ public final class DependenciesValidatorTest {
      * The environment to work with.
      * @see #prepare()
      */
-    private Environment env;
+    private MavenEnvironment env;
 
     /**
      * Forward SLF4J to Maven Log.
@@ -101,7 +102,7 @@ public final class DependenciesValidatorTest {
         Mockito.doReturn(build).when(project).getBuild();
         Mockito.doReturn(this.folder.getPath()).when(build)
             .getOutputDirectory();
-        this.env = new Environment();
+        this.env = new MavenEnvironment();
         this.env.setProject(project);
         final Context context = Mockito.mock(Context.class);
         this.env.setContext(context);
@@ -129,7 +130,7 @@ public final class DependenciesValidatorTest {
      * We should find and identify dependency problems.
      * @throws Exception If something wrong happens inside
      */
-    @Test(expected = MojoFailureException.class)
+    @Test(expected = ValidationException.class)
     public void testValidatesWithDependencyProblems() throws Exception {
         final ProjectDependencyAnalysis analysis = this.analysis();
         final Set<Artifact> unused = new HashSet<Artifact>();

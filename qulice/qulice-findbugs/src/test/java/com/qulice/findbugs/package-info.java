@@ -27,49 +27,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
-
-import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
-import java.util.Properties;
 
 /**
- * Validates with Cobertura.
+ * Tests of FindBugs validator.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class CoberturaValidator implements Validator {
-
-    /**
-     * {@inheritDoc}
-     * @checkstyle MultipleStringLiterals (30 lines)
-     * @checkstyle RedundantThrows (4 lines)
-     */
-    @Override
-    public void validate(final Environment env) throws ValidationException {
-        final Properties props = new Properties();
-        props.put("quiet", "false");
-        ((MavenEnvironment) env).executor().execute(
-            "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
-            "instrument",
-            props
-        );
-        final Properties check = new Properties();
-        props.put("check", check);
-        check.put("haltOnFailure", "true");
-        check.put("lineRate", "60");
-        check.put("branchRate", "60");
-        check.put("packageLineRate", "70");
-        check.put("packageBranchRate", "70");
-        check.put("totalLineRate", "80");
-        check.put("totalBranchRate", "80");
-        ((MavenEnvironment) env).executor().execute(
-            "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
-            "check",
-            props
-        );
-    }
-
-}
+package com.qulice.findbugs;

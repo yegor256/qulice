@@ -28,15 +28,16 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.qulice.maven;
-// @checkstyle LineLength (15 lines)
+// @checkstyle LineLength (20 lines)
 
+import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.maven.artifact.Artifact;
-import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzerException;
@@ -50,7 +51,7 @@ import org.codehaus.plexus.component.repository.exception.ComponentLookupExcepti
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class DependenciesValidator extends AbstractValidator {
+public final class DependenciesValidator implements Validator {
 
     /**
      * Separator between lines.
@@ -59,12 +60,13 @@ public final class DependenciesValidator extends AbstractValidator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle RedundantThrows (4 lines)
      */
     @Override
-    public void validate(final Environment env) throws MojoFailureException {
-        final File output =
-            new File(env.project().getBuild().getOutputDirectory());
-        if (!output.exists() || "pom".equals(env.project().getPackaging())) {
+    public void validate(final Environment environ) throws ValidationException {
+        final MavenEnvironment env = (MavenEnvironment) environ;
+        if (!env.outdir().exists()
+            || "pom".equals(env.project().getPackaging())) {
             Logger.info(this, "No dependency analysis in this project");
             return;
         }
@@ -99,11 +101,9 @@ public final class DependenciesValidator extends AbstractValidator {
         }
         final Integer failures = used.size() + unused.size();
         if (failures > 0) {
-            throw new MojoFailureException(
-                String.format(
-                    "%d dependency problem(s) found",
-                    failures
-                )
+            throw new ValidationException(
+                "%d dependency problem(s) found",
+                failures
             );
         }
         Logger.info(this, "No dependency problems found");
@@ -114,7 +114,7 @@ public final class DependenciesValidator extends AbstractValidator {
      * @param env The environment
      * @return The result of analysis
      */
-    private ProjectDependencyAnalysis analyze(final Environment env) {
+    private ProjectDependencyAnalysis analyze(final MavenEnvironment env) {
         try {
             return
                 ((ProjectDependencyAnalyzer)

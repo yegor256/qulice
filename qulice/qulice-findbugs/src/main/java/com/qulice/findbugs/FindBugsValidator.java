@@ -27,8 +27,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.findbugs;
 
+import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
 import edu.umd.cs.findbugs.BugReporter;
 import edu.umd.cs.findbugs.Detector;
@@ -38,9 +41,6 @@ import edu.umd.cs.findbugs.PrintingBugReporter;
 import edu.umd.cs.findbugs.Project;
 import edu.umd.cs.findbugs.config.UserPreferences;
 import java.io.File;
-import java.util.List;
-import org.apache.maven.artifact.DependencyResolutionRequiredException;
-import org.apache.maven.plugin.MojoFailureException;
 
 /**
  * Validates source code and compiled binaris with FindBugs.
@@ -48,15 +48,20 @@ import org.apache.maven.plugin.MojoFailureException;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class FindBugsValidator extends AbstractValidator {
+public final class FindBugsValidator implements Validator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle RedundantThrows (3 lines)
      */
     @Override
-    public void validate(final Environment env) throws MojoFailureException {
-        if (!new File(env.project().getBuild().getOutputDirectory()).exists()) {
-            Logger.info(this, "No classes, no FindBugs validation");
+    public void validate(final Environment env) throws ValidationException {
+        if (!env.outdir().exists()) {
+            Logger.info(
+                this,
+                "No classes at %s, no FindBugs validation",
+                env.outdir()
+            );
             return;
         }
         final FindBugs2 findbugs = new FindBugs2();
@@ -82,11 +87,9 @@ public final class FindBugsValidator extends AbstractValidator {
             throw new IllegalStateException(ex);
         }
         if (findbugs.getBugCount() > 0) {
-            throw new MojoFailureException(
-                String.format(
-                    "%d FindBugs violations (see log above)",
-                    findbugs.getBugCount()
-                )
+            throw new ValidationException(
+                "%d FindBugs violations (see log above)",
+                findbugs.getBugCount()
             );
         }
         Logger.info(this, "No FindBugs violations found");
@@ -99,19 +102,13 @@ public final class FindBugsValidator extends AbstractValidator {
      */
     private Project project(final Environment env) {
         final Project project = new Project();
-        final List<String> jars;
-        try {
-            jars = env.project().getRuntimeClasspathElements();
-        } catch (DependencyResolutionRequiredException ex) {
-            throw new IllegalArgumentException(ex);
-        }
-        for (String jar : jars) {
-            project.addFile(jar);
-            if (!jar.equals(env.project().getBuild().getOutputDirectory())) {
-                project.addAuxClasspathEntry(jar);
+        for (File jar : env.classpath()) {
+            project.addFile(jar.getPath());
+            if (!jar.equals(env.outdir())) {
+                project.addAuxClasspathEntry(jar.getPath());
             }
         }
-        project.addSourceDir(env.project().getBasedir().getPath());
+        project.addSourceDir(env.basedir().getPath());
         return project;
     }
 

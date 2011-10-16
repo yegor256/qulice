@@ -29,17 +29,26 @@
  */
 package com.qulice.maven;
 
+import com.qulice.spi.Environment;
+import com.ymock.util.Logger;
+import java.io.File;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Properties;
+import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
 
 /**
- * Environment, passed from MOJO to validator.
+ * Environment, passed from MOJO to validators.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class Environment {
+public final class MavenEnvironment implements Environment {
 
     /**
      * Maven project.
@@ -60,6 +69,81 @@ public final class Environment {
      * MOJO executor.
      */
     private MojoExecutor mojoExecutor;
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String param(final String name, final String value) {
+        final String val = this.properties.getProperty(name);
+        if (val == null) {
+            return value;
+        }
+        return val;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public File basedir() {
+        return this.project.getBasedir();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public File tempdir() {
+        return new File(this.project.getBuild().getOutputDirectory());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public File outdir() {
+        return new File(this.project.getBuild().getOutputDirectory());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Collection<File> classpath() {
+        final Collection<File> paths = new ArrayList<File>();
+        try {
+            for (String name : this.project.getRuntimeClasspathElements()) {
+                paths.add(new File(name));
+            }
+        } catch (DependencyResolutionRequiredException ex) {
+            throw new IllegalStateException("Failed to read classpath", ex);
+        }
+        return paths;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ClassLoader classloader() {
+        final List<URL> urls = new ArrayList<URL>();
+        for (File path : this.classpath()) {
+            try {
+                urls.add(path.toURI().toURL());
+            } catch (java.net.MalformedURLException ex) {
+                throw new IllegalStateException("Failed to build URL", ex);
+            }
+        }
+        final URLClassLoader loader = new URLClassLoader(
+            urls.toArray(new URL[] {}),
+            this.getClass().getClassLoader()
+        );
+        for (URL url : loader.getURLs()) {
+            Logger.debug(this, "Classpath: %s", url);
+        }
+        return loader;
+    }
 
     /**
      * Set Maven Project (used mostly for unit testing).

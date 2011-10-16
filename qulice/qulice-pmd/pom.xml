@@ -41,9 +41,9 @@
         <artifactId>qulice</artifactId>
         <version qulice="yes">1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>qulice-checkstyle</artifactId>
+    <artifactId>qulice-pmd</artifactId>
     <packaging>jar</packaging>
-    <name>qulice-checkstyle</name>
+    <name>qulice-pmd</name>
 
     <dependencies>
         <dependency>
@@ -58,29 +58,9 @@
             <version since="22 Sep 2011">1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version since="22 Aug 2011">5.4</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <!-- other details are in parent pom.xml -->
-        </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <!-- other details are in parent pom.xml -->
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <!-- other details are in parent pom.xml -->
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <!-- other details are in parent pom.xml -->
+            <groupId>pmd</groupId>
+            <artifactId>pmd-jdk14</artifactId>
+            <version since="30 Aug 2011">4.2.5</version>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -88,9 +68,9 @@
             <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
-           <groupId>org.powermock</groupId>
-           <artifactId>powermock-core</artifactId>
-           <!-- other details are in parent pom.xml -->
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-core</artifactId>
+            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
@@ -103,11 +83,19 @@
             <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
-            <!-- Checkstyle is using some classes from this lib -->
-            <groupId>com.google.collections</groupId>
-            <artifactId>google-collections</artifactId>
-            <version since="25 Aug 2011">1.0-rc5</version>
-            <scope>test</scope>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <!-- other details are in parent pom.xml -->
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <!-- other details are in parent pom.xml -->
+        </dependency>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <!-- Forward all calls to SLF4J to LOG4J. -->
@@ -124,31 +112,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version since="25 Aug 2011">2.9</version>
-                <executions>
-                    <execution>
-                        <id>integration-test</id>
-                        <goals>
-                            <goal>integration-test</goal>
-                        </goals>
-                        <configuration>
-                            <useFile>false</useFile>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>verify</id>
-                        <goals>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

@@ -27,63 +27,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
-import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.commons.io.filefilter.WildcardFileFilter;
-import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * Abstract validator.
+ * Service provider interface.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public abstract class AbstractValidator implements Validator {
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public abstract void validate(final Environment env)
-        throws MojoFailureException;
-
-    /**
-     * Get full list of files to process.
-     * @param env The environmet
-     * @return List of files
-     */
-    protected final List<File> files(final Environment env) {
-        final List<File> files = new ArrayList<File>();
-        final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final File sources =
-            new File(env.project().getBasedir(), "src/main/java");
-        if (sources.exists()) {
-            files.addAll(
-                FileUtils.listFiles(
-                    sources,
-                    filter,
-                    DirectoryFileFilter.INSTANCE
-                )
-            );
-        }
-        final File tests =
-            new File(env.project().getBasedir(), "src/test/java");
-        if (tests.exists()) {
-            files.addAll(
-                FileUtils.listFiles(
-                    tests,
-                    filter,
-                    DirectoryFileFilter.INSTANCE
-                )
-            );
-        }
-        return files;
-    }
-
-}
+package com.qulice.spi;
