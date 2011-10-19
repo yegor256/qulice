@@ -188,8 +188,7 @@
                     With this construct you can exclude certain IT projects.
                     -->
                     <pomIncludes>
-                        <pomInclude>many-violations/pom.xml</pomInclude>
-                        <pomInclude>multi-module/pom.xml</pomInclude>
+                        <pomInclude>checkstyle-violations/pom.xml</pomInclude>
                         <!--
                         @todo #11 This check is disabled because findbugs doesn't work
                          for some strange reason. Actually it works here, in this project,
@@ -205,7 +204,8 @@
                          I copied implementation from maven-dependency-plugin, almost
                          literally.
                         -->
-                        <!-- <pomInclude>unused-dependencies/pom.xml</pomInclude> -->
+                        <!-- <pomInclude>dependency-violations/pom.xml</pomInclude> -->
+                        <pomInclude>multi-module/pom.xml</pomInclude>
                     </pomIncludes>
                     <postBuildHookScript>verify</postBuildHookScript>
                     <preBuildHookScript>setup</preBuildHookScript>
