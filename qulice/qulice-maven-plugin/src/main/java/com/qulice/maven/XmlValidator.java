@@ -66,7 +66,7 @@ public final class XmlValidator implements Validator {
             }
         );
         ((MavenEnvironment) env).executor().execute(
-            "org.codehaus.mojo:xml-maven-plugin:1.0-beta-3-SNAPSHOT",
+            "org.codehaus.mojo:xml-maven-plugin:1.0-beta-3",
             "validate",
             props
         );
