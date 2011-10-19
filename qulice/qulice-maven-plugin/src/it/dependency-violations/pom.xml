@@ -37,14 +37,30 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.qulice.plugin</groupId>
-    <artifactId>many-violations</artifactId>
+    <artifactId>dependency-violations</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
-    <name>many-violations</name>
+    <name>dependency-violations</name>
 
-    <prerequisites>
-        <maven>3.0</maven>
-    </prerequisites>
+    <dependencies>
+        <dependency>
+            <!--
+            This dependency is never used in the project and Qulice has
+            to spot this problem and report it.
+            -->
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <!--
+            This dependency is used and qulice should not report about it.
+            -->
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -53,7 +69,7 @@
                 <artifactId>qulice-maven-plugin</artifactId>
                 <version qulice="yes">1.0-SNAPSHOT</version>
                 <configuration>
-                    <!-- ... to be continued ... -->
+                    <license>file:./license.txt</license>
                 </configuration>
                 <executions>
                     <execution>
