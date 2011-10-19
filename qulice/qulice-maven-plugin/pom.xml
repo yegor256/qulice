@@ -182,7 +182,12 @@
                 <configuration>
                     <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
                     <debug>false</debug>
-                    <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
+                    <!--
+                    It's kind of bug in invoker plugin: http://jira.codehaus.org/browse/MINVOKER-107
+                    Because of this defect we can't specify local repository
+                    here, but that would be a desired feature.
+                    -->
+                    <!-- <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath> -->
                     <noLog>false</noLog>
                     <!--
                     With this construct you can exclude certain IT projects.
