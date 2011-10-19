@@ -49,7 +49,8 @@ final class ValidatorsProvider {
     public List<Validator> all() {
         final List<Validator> validators = new ArrayList<Validator>();
         validators.add(new EnforcerValidator());
-        validators.add(new DependenciesValidator());
+        // doesn't work properly - always report a problem
+        // validators.add(new DependenciesValidator());
         validators.add(new XmlValidator());
         validators.add(new com.qulice.checkstyle.CheckstyleValidator());
         validators.add(new com.qulice.pmd.PMDValidator());
