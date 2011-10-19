@@ -48,7 +48,7 @@ Usage
     <plugin>
       <groupId>com.qulice</groupId>
       <artifactId>qulice-maven-plugin</artifactId>
-      <version>${project.version}</version>
+      <version>0.1.2</version>
       <configuration>
         <license>file:${basedir}/LICENSE.txt</license>
       </configuration>
@@ -115,7 +115,7 @@ are met: no conditions.
           <!-- this is your tool kit module -->
           <groupId>com.example</groupId>
           <artifactId>foo</artifactId>
-          <version>1.0-SNAPSHOT</version>
+          <version>0.1.2</version>
         </dependency>
       </dependencies>
       <executions>
@@ -125,6 +125,30 @@ are met: no conditions.
           </goals>
         </execution>
       </executions>
+    </plugin>
+  </plugins>
+</build>
++--
+
+* Cutting Edge Version
+
+  If you want to use current version of the product, you can do it with
+  this configuration in your <<<pom.xml>>>:
+
++--
+<pluginRepositories>
+  <pluginRepository>
+    <id>sonatype.snapshots</id>
+    <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+  </pluginRepository>
+</pluginRepositories>
+<build>
+  <plugins>
+    <plugin>
+      <groupId>com.qulice</groupId>
+      <artifactId>qulice-maven-plugin</artifactId>
+      <version>${project.version}</version>
+      [...]
     </plugin>
   </plugins>
 </build>
