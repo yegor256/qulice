@@ -51,7 +51,6 @@ final class ValidatorsProvider {
         validators.add(new EnforcerValidator());
         // doesn't work properly - always report a problem
         // validators.add(new DependenciesValidator());
-        validators.add(new XmlValidator());
         validators.add(new com.qulice.checkstyle.CheckstyleValidator());
         validators.add(new com.qulice.pmd.PMDValidator());
         // has some strange defect inside
