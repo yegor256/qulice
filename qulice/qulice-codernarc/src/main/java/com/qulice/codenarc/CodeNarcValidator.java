@@ -1,169 +1,81 @@
+/**
+ * Copyright (c) 2011, Qulice.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
 package com.qulice.codenarc;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.codenarc.CodeNarcRunner;
-import org.codenarc.analyzer.DirectorySourceAnalyzer;
-import org.codenarc.analyzer.FilesystemSourceAnalyzer;
-import org.codenarc.report.HtmlReportWriter;
-import org.codenarc.results.Results;
 
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
+import java.util.ArrayList;
+import java.util.List;
+import org.codenarc.CodeNarcRunner;
+import org.codenarc.analyzer.FilesystemSourceAnalyzer;
+import org.codenarc.report.HtmlReportWriter;
+import org.codenarc.results.Results;
 
 /**
  * Validates groovy source code with CodeNarc.
  *
  * @author Pavlo Shamrai (pshamrai@gmail.com)
- * @version $Id: 
- * 
+ * @version $Id: CodeNarcValidator.java 45 2011-10-25 14:34:27Z pshamrai@gmail.com $
+ *
  */
 
-public class CodeNarcValidator implements Validator{
-    
-	private static final String CODE_NARC_REPORT = "CodeNarc Report";
-	private static final String RULESETS_BASIC_XML = "rulesets/basic.xml";
-	private static final String INCLUDES = "**/*.groovy";
-	protected String ruleSetFiles;
-    protected String baseDir;
-    protected String includes;
-    protected String excludes;
-    protected String title;
-    protected List reports;
- 
-	public CodeNarcValidator() {
-		super();
-		reports = new ArrayList();
-	}
+public final class CodeNarcValidator implements Validator {
 
-
-	public CodeNarcValidator(String ruleSetFiles, String baseDir,
-			String includes, String excludes, String title, List reports) {
-		super();
-		this.ruleSetFiles = ruleSetFiles;
-		this.baseDir = baseDir;
-		this.includes = includes;
-		this.excludes = excludes;
-		this.title = title;
-		this.reports = reports;
-	}
-
-
-	@Override
-	public void validate(Environment env) throws ValidationException {
-	
-		setDefaults(env);
-		
-		FilesystemSourceAnalyzer sourceAnalyzer = new FilesystemSourceAnalyzer();
-		sourceAnalyzer.setBaseDirectory(baseDir);
-		sourceAnalyzer.setIncludes(includes);
-		sourceAnalyzer.setExcludes(excludes);
-		
-		
-		CodeNarcRunner codeNarcRunner = new CodeNarcRunner();
-		codeNarcRunner.setSourceAnalyzer(sourceAnalyzer);
-		codeNarcRunner.setRuleSetFiles(ruleSetFiles);
-		codeNarcRunner.setReportWriters(reports);
-		Results results = codeNarcRunner.execute();
-		
-		List violations = results.getViolations();
-		if(violations !=null && violations.size()>0){
-			throw new ValidationException("CodeNarc validation failure");
-		}
-		
-	}
-	
-	/**
-	 * Sets defaults values for baseDir,includes,ruleSetFiles and reports
-	 * @param env
-	 */
-    protected void setDefaults(Environment env) {
-        if (empty(baseDir)) {
-            baseDir = env.basedir().getAbsolutePath();
-        }
-        if (empty(includes)) {
-            includes = INCLUDES;
-        }
-        if (empty(ruleSetFiles)) {
-            ruleSetFiles = RULESETS_BASIC_XML;
-        }
-        
-        if(empty(title)){
-        	title = CODE_NARC_REPORT;
-        }
-        
-        if (reports.size() == 0) {
-        	HtmlReportWriter htmlReportWriter = new HtmlReportWriter();
-        	htmlReportWriter.setTitle(title);
-        	
-            reports.add(htmlReportWriter);
+    @Override
+    public void validate(final Environment env) throws ValidationException {
+        final List reports = new ArrayList();
+        final HtmlReportWriter htmlReportWriter =
+            new HtmlReportWriter();
+        htmlReportWriter.setTitle("CodeNarc Report");
+        reports.add(htmlReportWriter);
+        final FilesystemSourceAnalyzer sourceAnalyzer =
+            new FilesystemSourceAnalyzer();
+        sourceAnalyzer.setBaseDirectory(
+            env.basedir().getAbsolutePath()
+        );
+        sourceAnalyzer.setIncludes("**/*.groovy");
+        sourceAnalyzer.setExcludes(null);
+        final CodeNarcRunner codeNarcRunner = new CodeNarcRunner();
+        codeNarcRunner.setSourceAnalyzer(sourceAnalyzer);
+        codeNarcRunner.setRuleSetFiles(
+            "com/qulice/codenarc/"
+            + "StarterRuleSet-AllRulesByCategory.groovy.txt"
+        );
+        codeNarcRunner.setReportWriters(reports);
+        final Results results = codeNarcRunner.execute();
+        final List violations = results.getViolations();
+        if (violations != null && violations.size() > 0) {
+            throw new ValidationException(
+                "CodeNarc validation failure"
+            );
         }
     }
-
-    protected boolean empty(String str){
-    	return str==null || str.length()==0;
-    }
-
-    public String getRuleSetFiles() {
-		return ruleSetFiles;
-	}
-
-
-	public void setRuleSetFiles(String ruleSetFiles) {
-		this.ruleSetFiles = ruleSetFiles;
-	}
-
-
-	public String getBaseDir() {
-		return baseDir;
-	}
-
-
-	public void setBaseDir(String baseDir) {
-		this.baseDir = baseDir;
-	}
-
-
-	public String getIncludes() {
-		return includes;
-	}
-
-
-	public void setIncludes(String includes) {
-		this.includes = includes;
-	}
-
-
-	public String getExcludes() {
-		return excludes;
-	}
-
-
-	public void setExcludes(String excludes) {
-		this.excludes = excludes;
-	}
-
-
-	public String getTitle() {
-		return title;
-	}
-
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-
-	public List getReports() {
-		return reports;
-	}
-
-
-	public void setReports(List reports) {
-		this.reports = reports;
-	}
-
-    
 }

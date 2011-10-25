@@ -29,7 +29,7 @@
  */
 
 /**
- * CodeNarc validator.
+ * Tests of CodeNarc validator.
  *
  * @author Pavlo Shamrai (pshamrai@gmail.com)
  * @version $Id: package-info.java 45 2011-10-25 14:34:27Z pshamrai@gmail.com $
