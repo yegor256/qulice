@@ -182,12 +182,7 @@
                 <configuration>
                     <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
                     <debug>false</debug>
-                    <!--
-                    It's kind of bug in invoker plugin: http://jira.codehaus.org/browse/MINVOKER-107
-                    Because of this defect we can't specify local repository
-                    here, but that would be a desired feature.
-                    -->
-                    <!-- <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath> -->
+                    <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
                     <noLog>false</noLog>
                     <!--
                     With this construct you can exclude certain IT projects.
@@ -225,6 +220,41 @@
                         <id>integration-test</id>
                         <goals>
                             <goal>install</goal>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <!--
+                @todo #26 This is a workaround until they fix maven-invoker-plugin,
+                 see the ticket #26 for more information.
+                -->
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version since="26 Oct 2011">1.6</version>
+                <executions>
+                    <execution>
+                        <phase>pre-integration-test</phase>
+                        <configuration>
+                            <target>
+                                <copy verbose="true"
+                                    file="${basedir}/../pom.xml"
+                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice/${project.version}/qulice-${project.version}.pom"/>
+                                <copy verbose="true"
+                                    file="${com.qulice:qulice-checkstyle:jar}"
+                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-checkstyle/${project.version}/qulice-checkstyle-${project.version}.jar"/>
+                                <copy verbose="true"
+                                    file="${com.qulice:qulice-pmd:jar}"
+                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-pmd/${project.version}/qulice-pmd-${project.version}.jar"/>
+                                <copy verbose="true"
+                                    file="${com.qulice:qulice-findbugs:jar}"
+                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-findbugs/${project.version}/qulice-findbugs-${project.version}.jar"/>
+                                <copy verbose="true"
+                                    file="${com.qulice:qulice-spi:jar}"
+                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-spi/${project.version}/qulice-spi-${project.version}.jar"/>
+                            </target>
+                        </configuration>
+                        <goals>
                             <goal>run</goal>
                         </goals>
                     </execution>
