@@ -27,7 +27,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package integration;
+package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -57,7 +57,7 @@ import org.xml.sax.InputSource;
  * @version $Id: SvnPropertiesCheckTest.java 8 2011-08-25 01:01:25Z yegor256@yahoo.com $
  */
 @RunWith(Parameterized.class)
-public final class ChecksIT {
+public final class ChecksTest {
 
     /**
      * Directories where test scripts are located.
@@ -79,8 +79,8 @@ public final class ChecksIT {
      * Public ctor.
      * @param name The name of the check to work with
      */
-    public ChecksIT(final String name) {
-        this.dir = "ChecksIT/" + name;
+    public ChecksTest(final String name) {
+        this.dir = "ChecksTest/" + name;
     }
 
     /**
@@ -90,7 +90,7 @@ public final class ChecksIT {
     @Parameterized.Parameters
     public static Collection<Object[]> dirs() {
         final Collection<Object[]> dirs = new ArrayList<Object[]>();
-        for (String url : ChecksIT.DIRS) {
+        for (String url : ChecksTest.DIRS) {
             dirs.add(new Object[] {url});
         }
         return dirs;
@@ -103,7 +103,7 @@ public final class ChecksIT {
     @Test
     public void testCheckstyleTruePositive() throws Exception {
         final AuditListener listener = Mockito.mock(AuditListener.class);
-        final Collector collector = new ChecksIT.Collector();
+        final Collector collector = new ChecksTest.Collector();
         Mockito.doAnswer(collector).when(listener)
             .addError(Mockito.any(AuditEvent.class));
         this.check("/Invalid.java", listener);
