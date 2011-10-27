@@ -155,16 +155,17 @@ public final class CheckstyleValidator implements Validator {
             throw new IllegalStateException("Failed to read header", ex);
         }
         final StringBuilder builder = new StringBuilder();
-        builder.append("/**\n");
-        for (String line : StringUtils.splitPreserveAllTokens(content, '\n')) {
+        final String eol = System.getProperty("line.separator");
+        builder.append("/**").append(eol);
+        for (String line : StringUtils.splitPreserveAllTokens(content, eol)) {
             if (line.length() > 0) {
                 builder.append(" * " + line);
             } else {
                 builder.append(" *");
             }
-            builder.append("\n");
+            builder.append(eol);
         }
-        builder.append(" */\n");
+        builder.append(" */").append(eol);
         final String license = builder.toString();
         Logger.info(this, "LICENSE found: %s", url);
         Logger.debug(this, license);
