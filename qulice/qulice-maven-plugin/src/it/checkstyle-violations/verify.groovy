@@ -33,6 +33,6 @@
  * Validate that the build really failed and violations were reported.
  */
 
-def log = new File(basedir, "build.log")
-assert log.text.contains("LICENSE found")
-assert log.text.contains("6 Checkstyle violations (see log above)")
+def log = new File(basedir, 'build.log')
+assert log.text.contains('LICENSE found')
+assert log.text.contains('6 Checkstyle violations (see log above)')

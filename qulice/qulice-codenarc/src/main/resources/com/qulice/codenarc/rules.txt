@@ -82,13 +82,13 @@ ruleset {
     ReturnsNullInsteadOfEmptyCollection
     SimpleDateFormatMissingLocale
     ThrowExceptionFromFinallyBlock
-    
+
     // rulesets/braces.xml
     ElseBlockBraces
     ForStatementBraces
     IfStatementBraces
     WhileStatementBraces
-    
+
     // rulesets/concurrency.xml
     BusyWait
     DoubleCheckedLocking
@@ -115,7 +115,7 @@ ruleset {
     VolatileArrayField
     VolatileLongOrDoubleField
     WaitOutsideOfWhileLoop
-    
+
     // rulesets/design.xml
     AbstractClassWithPublicConstructor
     AbstractClassWithoutAbstractMethod
@@ -126,11 +126,11 @@ ruleset {
     ImplementationAsType
     PublicInstanceField
     StatelessSingleton
-    
+
     // rulesets/dry.xml
     DuplicateNumberLiteral
     DuplicateStringLiteral
-    
+
     // rulesets/exceptions.xml
     CatchArrayIndexOutOfBoundsException
     CatchError
@@ -150,7 +150,7 @@ ruleset {
     ThrowNullPointerException
     ThrowRuntimeException
     ThrowThrowable
-    
+
     // rulesets/formatting.xml
     BracesForClass
     BracesForForLoop
@@ -159,7 +159,7 @@ ruleset {
     BracesForTryCatchFinally
     ClassJavadoc
     LineLength
-    
+
     // rulesets/generic.xml
     IllegalClassReference
     IllegalPackageReference
@@ -167,7 +167,7 @@ ruleset {
     RequiredRegex
     RequiredString
     StatelessClass
-    
+
     // rulesets/grails.xml
     GrailsDomainHasEquals
     GrailsDomainHasToString
@@ -175,7 +175,7 @@ ruleset {
     GrailsServletContextReference
     GrailsSessionReference
     GrailsStatelessService
-    
+
     // rulesets/imports.xml
     DuplicateImport
     ImportFromSamePackage
@@ -183,13 +183,13 @@ ruleset {
     MisorderedStaticImports
     UnnecessaryGroovyImport
     UnusedImport
-    
+
     // rulesets/jdbc.xml
     DirectConnectionManagement
     JdbcConnectionReference
     JdbcResultSetReference
     JdbcStatementReference
-    
+
     // rulesets/junit.xml
     ChainedTest
     CoupledTestCase
@@ -211,7 +211,7 @@ ruleset {
     UseAssertSameInsteadOfAssertTrue
     UseAssertTrueInsteadOfAssertEquals
     UseAssertTrueInsteadOfNegation
-    
+
     // rulesets/logging.xml
     LoggerForDifferentClass
     LoggerWithWrongModifiers
@@ -221,7 +221,7 @@ ruleset {
     Println
     SystemErrPrint
     SystemOutPrint
-    
+
     // rulesets/naming.xml
     AbstractClassName
     ClassName
@@ -234,23 +234,22 @@ ruleset {
     ParameterName
     PropertyName
     VariableName
-    
+
     // rulesets/security.xml
     FileCreateTempFile
     InsecureRandom
-    JavaIoPackageAccess
     NonFinalPublicField
     NonFinalSubclassOfSensitiveInterface
     ObjectFinalize
     PublicFinalizeMethod
     SystemExit
     UnsafeArrayDeclaration
-    
+
     // rulesets/serialization.xml
     SerialPersistentFields
     SerialVersionUID
     SerializableClassMustDefineSerialVersionUID
-    
+
     // rulesets/size.xml
     AbcComplexity
     ClassSize
@@ -258,7 +257,7 @@ ruleset {
     MethodCount
     MethodSize
     NestedBlockDepth
-    
+
     // rulesets/unnecessary.xml
     UnnecessaryBigDecimalInstantiation
     UnnecessaryBigIntegerInstantiation
@@ -299,7 +298,7 @@ ruleset {
     UnnecessarySubstring
     UnnecessaryTernaryExpression
     UnnecessaryTransientModifier
-    
+
     // rulesets/unused.xml
     UnusedArray
     UnusedObject
@@ -307,6 +306,6 @@ ruleset {
     UnusedPrivateMethod
     UnusedPrivateMethodParameter
     UnusedVariable
-    
-    
+
+
 }

@@ -53,7 +53,7 @@ final class ValidatorsProvider {
         // validators.add(new DependenciesValidator());
         validators.add(new com.qulice.checkstyle.CheckstyleValidator());
         validators.add(new com.qulice.pmd.PMDValidator());
-        validators.add(new com.qulice.codenarc.CodenarcValidator());
+        validators.add(new com.qulice.codenarc.CodeNarcValidator());
         // has some strange defect inside
         // validators.add(new com.qulice.findbugs.FindBugsValidator());
         // not working yet

@@ -33,5 +33,5 @@
  * Validate that the build really failed and violations were reported.
  */
 
-def log = new File(basedir, "build.log")
-assert log.text.contains("Unused field: com.qulice.foo.Main.list  In Main.java")
+def log = new File(basedir, 'build.log')
+assert log.text.contains('Unused field: com.qulice.foo.Main.list  In Main.java')
