@@ -170,11 +170,6 @@
         intentionally empty
         @see http://www.sonatype.com/people/2009/02/why-putting-repositories-in-your-poms-is-a-bad-idea/
         -->
-        <pluginRepository>
-            <!-- it's a temporary measure, while the tool is in active development -->
-            <id>qulice.snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </pluginRepository>
     </pluginRepositories>
 
     <profiles>
