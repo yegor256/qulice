@@ -168,7 +168,7 @@ public final class CheckstyleValidator implements Validator {
         builder.append(" */").append(eol);
         final String license = builder.toString();
         Logger.info(this, "LICENSE found: %s", url);
-        Logger.debug(this, license);
+        Logger.debug(this, "LICENSE full text after parsing:\n%s", license);
         return license;
     }
 
