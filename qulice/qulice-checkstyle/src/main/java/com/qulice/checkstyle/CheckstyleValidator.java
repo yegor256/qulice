@@ -158,10 +158,9 @@ public final class CheckstyleValidator implements Validator {
         final String eol = System.getProperty("line.separator");
         builder.append("/**").append(eol);
         for (String line : StringUtils.splitPreserveAllTokens(content, eol)) {
+            builder.append(" *");
             if (line.length() > 0) {
-                builder.append(" * " + line);
-            } else {
-                builder.append(" *");
+                builder.append(" ").append(line);
             }
             builder.append(eol);
         }

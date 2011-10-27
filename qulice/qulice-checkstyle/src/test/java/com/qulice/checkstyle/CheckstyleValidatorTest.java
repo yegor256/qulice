@@ -135,7 +135,7 @@ public final class CheckstyleValidatorTest {
             + "package com.qulice.foo;\r\n"
             + "/**\r\n"
             + " * Simple class.\r\n"
-            + " * @version $Id$\r\n"
+            + " * @version $Id $\r\n"
             + " * @author John Doe (john@qulice.com)\r\n"
             + " */\r\n"
             + "public class Main { }\r\n"
@@ -162,7 +162,7 @@ public final class CheckstyleValidatorTest {
             + "package com.qulice.foo;\n"
             + "/**\n"
             + " * Just a simple class.\n"
-            + " * @version $Id$\n"
+            + " * @version $Id $\n"
             + " * @author Alex Doe (alex@qulice.com)\n"
             + " */\n"
             + "public class Main { }\n"
@@ -196,7 +196,8 @@ public final class CheckstyleValidatorTest {
         FileUtils.writeStringToFile(
             info,
             String.format(
-                "%s%s/**%s * Hm...%s@version $Id$%s * @author John Doe (j@qulice.com)%s */%spackage com.qulice.foo;%s",
+                // @checkstyle LineLength (1 line)
+                "%s%s/**%s * Hm...%s@version $Id $%s * @author John Doe (j@qulice.com)%s */%spackage com.qulice.foo;%s",
                 header, eol, eol, eol, eol, eol, eol, eol
             )
         );
