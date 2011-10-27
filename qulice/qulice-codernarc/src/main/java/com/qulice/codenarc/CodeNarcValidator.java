@@ -44,11 +44,12 @@ import org.codenarc.rule.Violation;
  *
  * @author Pavlo Shamrai (pshamrai@gmail.com)
  * @version $Id: CodeNarcValidator.java 45 2011-10-27 19:34:11Z pshamrai@gmail.com $
- *
  */
-
 public final class CodeNarcValidator implements Validator {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void validate(final Environment env) throws ValidationException {
         final FilesystemSourceAnalyzer sourceAnalyzer =
@@ -60,10 +61,7 @@ public final class CodeNarcValidator implements Validator {
         sourceAnalyzer.setExcludes(null);
         final CodeNarcRunner codeNarcRunner = new CodeNarcRunner();
         codeNarcRunner.setSourceAnalyzer(sourceAnalyzer);
-        codeNarcRunner.setRuleSetFiles(
-            "com/qulice/codenarc/"
-            + "StarterRuleSet-AllRulesByCategory.groovy.txt"
-        );
+        codeNarcRunner.setRuleSetFiles("com/qulice/codenarc/rules.txt");
         codeNarcRunner.setReportWriters(null);
         final Results results = codeNarcRunner.execute();
         final List<Violation> violations = results.getViolations();
@@ -81,14 +79,21 @@ public final class CodeNarcValidator implements Validator {
         );
     }
 
-        /**
-        * Log all violations.
-        *
-        * @param violations The list of violations
-        */
+    /**
+     * Log all violations.
+     * @param violations The list of violations
+     */
     private void logViolations(final List<Violation> violations) {
         for (Violation violation : violations) {
-            Logger.info(this, violation.toString());
+            Logger.error(
+                this,
+                "%s[%d]: %s (%s)",
+                "?",
+                violation.getLineNumber(),
+                violation.getMessage(),
+                violation.getRule().getName()
+            );
         }
     }
+
 }

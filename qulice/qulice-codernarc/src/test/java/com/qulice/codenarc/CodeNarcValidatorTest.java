@@ -95,7 +95,6 @@ public final class CodeNarcValidatorTest {
      * Validate set of files without violations.
      * @throws Exception If something wrong happens inside.
      */
-
     @Test
     public void testSuccessValidation() throws Exception {
         final Validator validator = new CodeNarcValidator();
