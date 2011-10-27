@@ -44,6 +44,7 @@ import org.mockito.Mockito;
  * Test case for {@link CheckstyleValidator} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ * @checkstyle MultipleStringLiterals (300 lines)
  */
 public final class CheckstyleValidatorTest {
 
@@ -97,6 +98,7 @@ public final class CheckstyleValidatorTest {
         final Validator validator = new CheckstyleValidator();
         FileUtils.writeStringToFile(
             this.java,
+            // @checkstyle RegexpSingleline (1 line)
             "/**\n * The license.\n */\n"
             + "package com.qulice.foo;\n"
             + "public class Main { }\n"
@@ -110,11 +112,7 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void testImmitatesLicenseInClasspath() throws Exception {
-        // final File license = this.build("/**\r\n * line 1\r\n */");
-        // Mockito.doReturn(this.toURL(license)).when(this.env)
-        //     .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
-        // final Validator validator = new CheckstyleValidator();
-        // validator.validate(this.env);
+        // not implemented yet
     }
 
     /**
@@ -181,7 +179,8 @@ public final class CheckstyleValidatorTest {
 
     /**
      * Create license and package-info.java close to the java file.
-     * @param lic The license in text
+     * @param line The line to put into the license
+     * @param eol What to use as end-of-line character
      * @return The location of LICENSE.txt
      * @throws Exception If something wrong happens inside
      */
@@ -192,11 +191,13 @@ public final class CheckstyleValidatorTest {
             this.java.getParentFile(), "package-info.java"
         );
         final String header =
+            // @checkstyle RegexpSingleline (1 line)
             String.format("/**%s * %s%s */", eol, line, eol, eol);
         FileUtils.writeStringToFile(
             info,
             String.format(
-                // @checkstyle LineLength (1 line)
+                // @checkstyle LineLength (2 lines)
+                // @checkstyle RegexpSingleline (1 line)
                 "%s%s/**%s * Hm...%s@version $Id $%s * @author John Doe (j@qulice.com)%s */%spackage com.qulice.foo;%s",
                 header, eol, eol, eol, eol, eol, eol, eol
             )
