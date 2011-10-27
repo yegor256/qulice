@@ -32,18 +32,18 @@ package com.qulice.codenarc;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import java.util.ArrayList;
+import com.ymock.util.Logger;
 import java.util.List;
 import org.codenarc.CodeNarcRunner;
 import org.codenarc.analyzer.FilesystemSourceAnalyzer;
-import org.codenarc.report.HtmlReportWriter;
 import org.codenarc.results.Results;
+import org.codenarc.rule.Violation;
 
 /**
  * Validates groovy source code with CodeNarc.
  *
  * @author Pavlo Shamrai (pshamrai@gmail.com)
- * @version $Id: CodeNarcValidator.java 45 2011-10-25 14:34:27Z pshamrai@gmail.com $
+ * @version $Id: CodeNarcValidator.java 45 2011-10-27 19:34:11Z pshamrai@gmail.com $
  *
  */
 
@@ -51,11 +51,6 @@ public final class CodeNarcValidator implements Validator {
 
     @Override
     public void validate(final Environment env) throws ValidationException {
-        final List reports = new ArrayList();
-        final HtmlReportWriter htmlReportWriter =
-            new HtmlReportWriter();
-        htmlReportWriter.setTitle("CodeNarc Report");
-        reports.add(htmlReportWriter);
         final FilesystemSourceAnalyzer sourceAnalyzer =
             new FilesystemSourceAnalyzer();
         sourceAnalyzer.setBaseDirectory(
@@ -69,13 +64,31 @@ public final class CodeNarcValidator implements Validator {
             "com/qulice/codenarc/"
             + "StarterRuleSet-AllRulesByCategory.groovy.txt"
         );
-        codeNarcRunner.setReportWriters(reports);
+        codeNarcRunner.setReportWriters(null);
         final Results results = codeNarcRunner.execute();
-        final List violations = results.getViolations();
-        if (violations != null && violations.size() > 0) {
+        final List<Violation> violations = results.getViolations();
+        this.logViolations(violations);
+        if (!violations.isEmpty()) {
             throw new ValidationException(
-                "CodeNarc validation failure"
+                "%d CodeNarc violations (see log above)",
+                violations.size()
             );
+        }
+        Logger.info(
+            this,
+            "No CodeNarc violations found in %d files",
+            results.getTotalNumberOfFiles(true)
+        );
+    }
+
+        /**
+        * Log all violations.
+        *
+        * @param violations The list of violations
+        */
+    private void logViolations(final List<Violation> violations) {
+        for (Violation violation : violations) {
+            Logger.info(this, violation.toString());
         }
     }
 }

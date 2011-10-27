@@ -30,6 +30,7 @@
 package com.qulice.codenarc;
 
 import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
@@ -42,7 +43,7 @@ import org.mockito.Mockito;
 /**
  * Test case for {@link CodeNarcValidator} class.
  * @author Pavlo Shamrai (pshamrai@gmail.com)
- * @version $Id: CodeNarcValidatorTest.java 45 2011-10-25 14:34:27Z pshamrai@gmail.com $
+ * @version $Id: CodeNarcValidatorTest.java 45 2011-10-27 19:34:11Z pshamrai@gmail.com $
  */
 public final class CodeNarcValidatorTest {
 
@@ -82,11 +83,24 @@ public final class CodeNarcValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
 
-    @Test
-    public void testValidatesSetOfFiles() throws Exception {
+    @Test(expected = ValidationException.class)
+    public void testFailValidation() throws Exception {
         final Validator validator = new CodeNarcValidator();
-        final File groovy = new File(this.folder, "Main.groovy");
-        FileUtils.writeStringToFile(groovy, "class Main { int x = 0 }");
+        final File groovy = new File(this.folder, "FailedMain.groovy");
+        FileUtils.writeStringToFile(groovy, "class failedMain { int x = 0 }");
+        validator.validate(this.env);
+    }
+
+    /**
+     * Validate set of files without violations.
+     * @throws Exception If something wrong happens inside.
+     */
+
+    @Test
+    public void testSuccessValidation() throws Exception {
+        final Validator validator = new CodeNarcValidator();
+        final File groovy = new File(this.folder, "SuccessMain.groovy");
+        FileUtils.writeStringToFile(groovy, "class SuccessMain { int x = 0 }");
         validator.validate(this.env);
     }
 
