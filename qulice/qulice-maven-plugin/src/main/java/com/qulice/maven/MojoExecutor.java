@@ -42,6 +42,7 @@ import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.plugin.descriptor.MojoDescriptor;
 import org.codehaus.plexus.configuration.PlexusConfiguration;
+import org.codehaus.plexus.configuration.PlexusConfigurationException;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
 /**
@@ -223,7 +224,11 @@ public final class MojoExecutor {
         final Xpp3Dom result = new Xpp3Dom(config.getName());
         result.setValue(config.getValue(null));
         for (String name : config.getAttributeNames()) {
-            result.setAttribute(name, config.getAttribute(name));
+            try {
+                result.setAttribute(name, config.getAttribute(name));
+            } catch (PlexusConfigurationException ex) {
+                throw new IllegalStateException("Can't setAttribute()", ex);
+            }
         }
         for (PlexusConfiguration child : config.getChildren()) {
             result.addChild(this.toXpp3Dom(child));
