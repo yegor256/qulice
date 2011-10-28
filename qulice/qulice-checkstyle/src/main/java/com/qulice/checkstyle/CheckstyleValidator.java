@@ -166,7 +166,7 @@ public final class CheckstyleValidator implements Validator {
         Logger.debug(
             this,
             "LICENSE full text after parsing:\n%s",
-            license.replaceAll("\\n", "N$0").replaceAll("\\r", "R$0")
+            license
         );
         return license;
     }

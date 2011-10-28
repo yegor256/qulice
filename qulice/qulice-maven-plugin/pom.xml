@@ -48,17 +48,17 @@
     <dependencies>
         <dependency>
             <groupId>com.qulice</groupId>
+            <artifactId>qulice-spi</artifactId>
+            <version qulice="yes">1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qulice</groupId>
             <artifactId>qulice-checkstyle</artifactId>
             <version qulice="yes">1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-pmd</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.qulice</groupId>
-            <artifactId>qulice-findbugs</artifactId>
             <version qulice="yes">1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -82,25 +82,25 @@
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
             <version since="22 Aug 2011">3.0.3</version>
-            <!-- <scope>provided</scope> -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-model</artifactId>
             <version since="22 Aug 2011">3.0.3</version>
-            <!-- <scope>provided</scope> -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
             <version since="22 Aug 2011">3.0.3</version>
-            <!-- <scope>provided</scope> -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact</artifactId>
             <version since="22 Aug 2011">3.0.3</version>
-            <!-- <scope>provided</scope> -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.shared</groupId>
@@ -110,18 +110,8 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-project</artifactId>
-            <version since="22 Aug 2011">3.0-alpha-2</version>
-            <!-- <scope>provided</scope> -->
-            <exclusions>
-                <exclusion>
-                    <!--
-                    This artifact is excluded from here because of a conflict
-                    with the same artifact (but newer) included by Checkstyle
-                    -->
-                    <groupId>com.google.code.google-collections</groupId>
-                    <artifactId>google-collect</artifactId>
-                </exclusion>
-            </exclusions>
+            <version since="27 Sep 2011">3.0-alpha-2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-testing</groupId>
@@ -134,6 +124,27 @@
                     <artifactId>junit</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version since="27 Sep 2011">2.0.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-container-default</artifactId>
+            <version since="27 Sep 2011">1.0-alpha-44</version>
+        </dependency>
+        <dependency>
+            <groupId>org.sonatype.sisu</groupId>
+            <artifactId>sisu-inject-plexus</artifactId>
+            <version since="27 Sep 2011">2.1.1</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -158,11 +169,6 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <!-- other details are in parent pom.xml -->
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
             <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
@@ -246,8 +252,8 @@
                                     file="${com.qulice:qulice-pmd:jar}"
                                     tofile="${project.build.directory}/local-repo/com/qulice/qulice-pmd/${project.version}/qulice-pmd-${project.version}.jar"/>
                                 <copy verbose="true"
-                                    file="${com.qulice:qulice-findbugs:jar}"
-                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-findbugs/${project.version}/qulice-findbugs-${project.version}.jar"/>
+                                    file="${com.qulice:qulice-codenarc:jar}"
+                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-codenarc/${project.version}/qulice-codenarc-${project.version}.jar"/>
                                 <copy verbose="true"
                                     file="${com.qulice:qulice-spi:jar}"
                                     tofile="${project.build.directory}/local-repo/com/qulice/qulice-spi/${project.version}/qulice-spi-${project.version}.jar"/>

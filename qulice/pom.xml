@@ -236,6 +236,27 @@
                         </executions>
                     </plugin>
                     <plugin>
+                        <!--
+                        @todo #33 This is a temporary measure, until
+                         qulice implements this validation. Once it's implemented
+                         in qulice - just remove this plugin from here.
+                        -->
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>analyze-only</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>analyze-only</goal>
+                                </goals>
+                                <configuration>
+                                    <ignoreNonCompile>true</ignoreNonCompile>
+                                    <failOnWarning>true</failOnWarning>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version since="18 Oct 2011">2.8</version>
                         <executions>
