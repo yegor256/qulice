@@ -33,8 +33,8 @@ Prerequisites
 
     To build the project you need the following:
 
-   JDK 1.6
-   Maven (>= 3.0.3)
+        - JDK 1.6
+        - Maven (>= 3.0.3)
 
 
 Continuous Integration Configuration
@@ -102,7 +102,7 @@ How to release new version to Maven Central:
 
     6. Delete local repo: "rm -rf ~/.m2/repository/com/qulice"
 
-    7. Run "mvn -Dci -Daj -Pqulice deploy"
+    7. Run "mvn -Dci -Pqulice clean deploy"
 
         Make sure that you have this profile in ~/.m2/settings.xml:
 
@@ -119,7 +119,9 @@ How to release new version to Maven Central:
 
     9. Run "mvn nexus:staging-promote" (target ID is "releases")
 
-    10. Copy your branch to tags: "svn cp ^/branches/ticketXX ^/tags/qulice-X.X.X"
+    10. Copy your branch to tags:
+
+        svn cp ^/branches/ticketXX ^/tags/qulice-X.X.X -m "refs #XX - qulice-0.1.5 released to Maven Central"
 
     11. Delete the branch
 
