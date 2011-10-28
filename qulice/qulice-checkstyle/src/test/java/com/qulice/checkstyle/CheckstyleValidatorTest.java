@@ -44,6 +44,7 @@ import org.mockito.Mockito;
  * Test case for {@link CheckstyleValidator} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ * @checkstyle MultipleStringLiterals (300 lines)
  */
 public final class CheckstyleValidatorTest {
 
@@ -60,10 +61,10 @@ public final class CheckstyleValidatorTest {
     public TemporaryFolder temp = new TemporaryFolder();
 
     /**
-     * The folder where to test.
+     * The file where to save java code.
      * @see #prepare()
      */
-    private File folder;
+    private File java;
 
     /**
      * The environment.
@@ -77,10 +78,12 @@ public final class CheckstyleValidatorTest {
      */
     @Before
     public void prepare() throws Exception {
-        this.folder = this.temp.newFolder("temp-src");
+        final File folder = this.temp.newFolder("temp-src");
         this.env = Mockito.mock(Environment.class);
-        Mockito.doReturn(this.folder).when(this.env).basedir();
-        Mockito.doReturn(this.folder).when(this.env).tempdir();
+        Mockito.doReturn(folder).when(this.env).basedir();
+        Mockito.doReturn(folder).when(this.env).tempdir();
+        this.java = new File(folder, "src/main/java/com/qulice/foo/Main.java");
+        this.java.getParentFile().mkdirs();
     }
 
     /**
@@ -89,14 +92,17 @@ public final class CheckstyleValidatorTest {
      */
     @Test(expected = ValidationException.class)
     public void testValidatesSetOfFiles() throws Exception {
-        final File license = this.temp.newFile("license.txt");
-        FileUtils.writeStringToFile(license, "license\n");
+        final File license = this.build("The license.", "\n");
         Mockito.doReturn(this.toURL(license)).when(this.env)
             .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
         final Validator validator = new CheckstyleValidator();
-        final File java = new File(this.folder, "src/main/java/Main.java");
-        java.getParentFile().mkdirs();
-        FileUtils.writeStringToFile(java, "public class Main { }");
+        FileUtils.writeStringToFile(
+            this.java,
+            // @checkstyle RegexpSingleline (1 line)
+            "/**\n * The license.\n *\n * The license.\n */\n"
+            + "package com.qulice.foo;\n"
+            + "public class Main { }\n"
+        );
         validator.validate(this.env);
     }
 
@@ -106,11 +112,63 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void testImmitatesLicenseInClasspath() throws Exception {
-        final File license = new File(this.folder, "my-license.txt");
-        FileUtils.writeStringToFile(license, "some non-important text\n");
+        // not implemented yet
+    }
+
+    /**
+     * Validate with Windows-style formatting.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void testWindowsEndsOfLine() throws Exception {
+        final File license = this.build("Line 1.", "\r\n");
         Mockito.doReturn(this.toURL(license)).when(this.env)
             .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
         final Validator validator = new CheckstyleValidator();
+        FileUtils.writeStringToFile(
+            this.java,
+            "/**\r\n"
+            + " * Line 1.\r\n"
+            + " *\r\n"
+            + " * Line 1.\r\n"
+            + " */\r\n"
+            + "package com.qulice.foo;\r\n"
+            + "/**\r\n"
+            + " * Simple class.\r\n"
+            + " * @version $Id $\r\n"
+            + " * @author John Doe (john@qulice.com)\r\n"
+            + " */\r\n"
+            + "public class Main { }\r\n"
+        );
+        validator.validate(this.env);
+    }
+
+    /**
+     * Validate with Windows-style formatting of the license and Linux-style
+     * formatting of the sources.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
+        final File license = this.build("Line 2.", "\r\n");
+        Mockito.doReturn(this.toURL(license)).when(this.env)
+            .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
+        final Validator validator = new CheckstyleValidator();
+        FileUtils.writeStringToFile(
+            this.java,
+            "/**\n"
+            + " * Line 2.\n"
+            + " *\n"
+            + " * Line 2.\n"
+            + " */\n"
+            + "package com.qulice.foo;\n"
+            + "/**\n"
+            + " * Just a simple class.\n"
+            + " * @version $Id $\n"
+            + " * @author Alex Doe (alex@qulice.com)\n"
+            + " */\n"
+            + "public class Main { }\n"
+        );
         validator.validate(this.env);
     }
 
@@ -121,6 +179,39 @@ public final class CheckstyleValidatorTest {
      */
     private String toURL(final File file) {
         return String.format("file:%s", file);
+    }
+
+    /**
+     * Create license and package-info.java close to the java file.
+     * @param line The line to put into the license
+     * @param eol What to use as end-of-line character
+     * @return The location of LICENSE.txt
+     * @throws Exception If something wrong happens inside
+     */
+    private File build(final String line, final String eol) throws Exception {
+        final File license = this.temp.newFile("LICENSE.txt");
+        FileUtils.writeStringToFile(
+            license,
+            String.format("%s%s%s%s", line, eol, eol, line)
+        );
+        final File info = new File(
+            this.java.getParentFile(), "package-info.java"
+        );
+        final String header = String.format(
+            // @checkstyle RegexpSingleline (1 line)
+            "/**%s * %s%s *%s * %s%s */",
+            eol, line, eol, eol, line, eol, eol
+        );
+        FileUtils.writeStringToFile(
+            info,
+            String.format(
+                // @checkstyle LineLength (2 lines)
+                // @checkstyle RegexpSingleline (1 line)
+                "%s%s/**%s * Hm...%s@version $Id $%s * @author John Doe (j@qulice.com)%s */%spackage com.qulice.foo;%s",
+                header, eol, eol, eol, eol, eol, eol, eol
+            )
+        );
+        return license;
     }
 
 }

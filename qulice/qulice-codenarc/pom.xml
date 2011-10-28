@@ -29,7 +29,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @version $Id$
+ * @version $Id: pom.xml 85 2011-10-16 19:23:27Z yegor256@yahoo.com $
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -41,9 +41,9 @@
         <artifactId>qulice</artifactId>
         <version qulice="yes">1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>qulice-pmd</artifactId>
+    <artifactId>qulice-codenarc</artifactId>
     <packaging>jar</packaging>
-    <name>qulice-pmd</name>
+    <name>qulice-codenarc</name>
 
     <dependencies>
         <dependency>
@@ -58,9 +58,9 @@
             <version since="22 Sep 2011">1.0</version>
         </dependency>
         <dependency>
-            <groupId>pmd</groupId>
-            <artifactId>pmd-jdk14</artifactId>
-            <version since="30 Aug 2011">4.2.5</version>
+            <groupId>org.codenarc</groupId>
+            <artifactId>CodeNarc</artifactId>
+            <version since="04 Aug 2011">0.15</version>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -88,13 +88,13 @@
             <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
             <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
