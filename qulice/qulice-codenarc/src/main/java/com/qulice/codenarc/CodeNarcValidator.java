@@ -53,11 +53,14 @@ public final class CodeNarcValidator implements Validator {
      */
     @Override
     public void validate(final Environment env) throws ValidationException {
+        final File src = new File(env.basedir(), "src");
+        if (!src.exists()) {
+            Logger.info(this, "No source, no codenarc validation required");
+            return;
+        }
         final FilesystemSourceAnalyzer sourceAnalyzer =
             new FilesystemSourceAnalyzer();
-        sourceAnalyzer.setBaseDirectory(
-            new File(env.basedir(), "src").getAbsolutePath()
-        );
+        sourceAnalyzer.setBaseDirectory(src.getAbsolutePath());
         sourceAnalyzer.setIncludes("**/*.groovy");
         sourceAnalyzer.setExcludes(null);
         final CodeNarcRunner codeNarcRunner = new CodeNarcRunner();
