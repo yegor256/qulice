@@ -99,7 +99,7 @@ public final class CheckstyleValidatorTest {
         FileUtils.writeStringToFile(
             this.java,
             // @checkstyle RegexpSingleline (1 line)
-            "/**\n * The license.\n * The license.\n */\n"
+            "/**\n * The license.\n *\n * The license.\n */\n"
             + "package com.qulice.foo;\n"
             + "public class Main { }\n"
         );
@@ -129,6 +129,7 @@ public final class CheckstyleValidatorTest {
             this.java,
             "/**\r\n"
             + " * Line 1.\r\n"
+            + " *\r\n"
             + " * Line 1.\r\n"
             + " */\r\n"
             + "package com.qulice.foo;\r\n"
@@ -157,6 +158,7 @@ public final class CheckstyleValidatorTest {
             this.java,
             "/**\n"
             + " * Line 2.\n"
+            + " *\n"
             + " * Line 2.\n"
             + " */\n"
             + "package com.qulice.foo;\n"
@@ -190,14 +192,16 @@ public final class CheckstyleValidatorTest {
         final File license = this.temp.newFile("LICENSE.txt");
         FileUtils.writeStringToFile(
             license,
-            String.format("%s%s%s", line, eol, line)
+            String.format("%s%s%s%s", line, eol, eol, line)
         );
         final File info = new File(
             this.java.getParentFile(), "package-info.java"
         );
-        final String header =
+        final String header = String.format(
             // @checkstyle RegexpSingleline (1 line)
-            String.format("/**%s * %s%s */", eol, line, eol, eol);
+            "/**%s * %s%s *%s * %s%s */",
+            eol, line, eol, eol, line, eol, eol
+        );
         FileUtils.writeStringToFile(
             info,
             String.format(

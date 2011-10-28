@@ -145,7 +145,8 @@ public final class CheckstyleValidator implements Validator {
         final URL url = this.toURL(env, name);
         String content;
         try {
-            content = IOUtils.toString(url.openStream());
+            content = IOUtils.toString(url.openStream()).replaceAll("\\r", "");
+            // content = IOUtils.toString(url.openStream());
         } catch (java.io.IOException ex) {
             throw new IllegalStateException("Failed to read license", ex);
         }
