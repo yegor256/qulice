@@ -63,11 +63,6 @@ import org.xml.sax.InputSource;
 public final class CheckstyleValidator implements Validator {
 
     /**
-     * Prefix to use before files.
-     */
-    private static final String FILE_PREFIX = "file:";
-
-    /**
      * {@inheritDoc}
      * @checkstyle RedundantThrows (3 lines)
      */
@@ -152,14 +147,14 @@ public final class CheckstyleValidator implements Validator {
         try {
             content = IOUtils.toString(url.openStream());
         } catch (java.io.IOException ex) {
-            throw new IllegalStateException("Failed to read header", ex);
+            throw new IllegalStateException("Failed to read license", ex);
         }
         final StringBuilder builder = new StringBuilder();
         final String eol = System.getProperty("line.separator");
         builder.append("/**").append(eol);
         for (String line : StringUtils.splitPreserveAllTokens(content, eol)) {
             builder.append(" *");
-            if (line.length() > 0) {
+            if (!line.isEmpty()) {
                 builder.append(" ").append(line);
             }
             builder.append(eol);
@@ -167,7 +162,11 @@ public final class CheckstyleValidator implements Validator {
         builder.append(" */").append(eol);
         final String license = builder.toString();
         Logger.info(this, "LICENSE found: %s", url);
-        Logger.debug(this, "LICENSE full text after parsing:\n%s", license);
+        Logger.debug(
+            this,
+            "LICENSE full text after parsing:\n%s",
+            license.replaceAll("\\n", "N$0").replaceAll("\\r", "R$0")
+        );
         return license;
     }
 
@@ -180,7 +179,7 @@ public final class CheckstyleValidator implements Validator {
      */
     private URL toURL(final Environment env, final String name) {
         URL url;
-        if (name.startsWith(this.FILE_PREFIX)) {
+        if (name.startsWith("file:")) {
             try {
                 url = new URL(name);
             } catch (java.net.MalformedURLException ex) {

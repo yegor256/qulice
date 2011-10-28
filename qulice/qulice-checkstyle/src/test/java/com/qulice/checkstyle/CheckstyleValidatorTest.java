@@ -99,7 +99,7 @@ public final class CheckstyleValidatorTest {
         FileUtils.writeStringToFile(
             this.java,
             // @checkstyle RegexpSingleline (1 line)
-            "/**\n * The license.\n */\n"
+            "/**\n * The license.\n * The license.\n */\n"
             + "package com.qulice.foo;\n"
             + "public class Main { }\n"
         );
@@ -129,6 +129,7 @@ public final class CheckstyleValidatorTest {
             this.java,
             "/**\r\n"
             + " * Line 1.\r\n"
+            + " * Line 1.\r\n"
             + " */\r\n"
             + "package com.qulice.foo;\r\n"
             + "/**\r\n"
@@ -148,14 +149,15 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
-        final File license = this.build("Line.", "\n");
+        final File license = this.build("Line 2.", "\r\n");
         Mockito.doReturn(this.toURL(license)).when(this.env)
             .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
         final Validator validator = new CheckstyleValidator();
         FileUtils.writeStringToFile(
             this.java,
             "/**\n"
-            + " * Line.\n"
+            + " * Line 2.\n"
+            + " * Line 2.\n"
             + " */\n"
             + "package com.qulice.foo;\n"
             + "/**\n"
@@ -186,7 +188,10 @@ public final class CheckstyleValidatorTest {
      */
     private File build(final String line, final String eol) throws Exception {
         final File license = this.temp.newFile("LICENSE.txt");
-        FileUtils.writeStringToFile(license, line);
+        FileUtils.writeStringToFile(
+            license,
+            String.format("%s%s%s", line, eol, line)
+        );
         final File info = new File(
             this.java.getParentFile(), "package-info.java"
         );
