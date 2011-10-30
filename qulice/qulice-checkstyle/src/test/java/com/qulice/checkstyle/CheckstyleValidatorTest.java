@@ -167,7 +167,7 @@ public final class CheckstyleValidatorTest {
             + " * @version $Id $\n"
             + " * @author Alex Doe (alex@qulice.com)\n"
             + " */\n"
-            + "public class Main { }\n"
+            + "public class Main { }\n\n"
         );
         validator.validate(this.env);
     }
