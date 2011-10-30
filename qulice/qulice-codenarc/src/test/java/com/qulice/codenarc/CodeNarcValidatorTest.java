@@ -55,10 +55,10 @@ public final class CodeNarcValidatorTest {
     public TemporaryFolder temp = new TemporaryFolder();
 
     /**
-     * The folder to work in.
+     * The folder to work in, to store sources.
      * @see #prepare()
      */
-    private File folder;
+    private File src;
 
     /**
      * The environment to work with.
@@ -72,10 +72,12 @@ public final class CodeNarcValidatorTest {
      */
     @Before
     public void prepare() throws Exception {
-        this.folder = this.temp.newFolder("temp-src");
+        final File basedir = this.temp.newFolder("basedir");
+        this.src = new File(basedir, "src");
+        this.src.mkdirs();
         this.env = Mockito.mock(Environment.class);
-        Mockito.doReturn(this.folder).when(this.env).basedir();
-        Mockito.doReturn(this.folder).when(this.env).tempdir();
+        Mockito.doReturn(basedir).when(this.env).basedir();
+        Mockito.doReturn(new File(basedir, "target")).when(this.env).tempdir();
     }
 
     /**
@@ -86,7 +88,7 @@ public final class CodeNarcValidatorTest {
     @Test(expected = ValidationException.class)
     public void testFailValidation() throws Exception {
         final Validator validator = new CodeNarcValidator();
-        final File groovy = new File(this.folder, "FailedMain.groovy");
+        final File groovy = new File(this.src, "FailedMain.groovy");
         FileUtils.writeStringToFile(groovy, "class failedMain { int x = 0 }");
         validator.validate(this.env);
     }
@@ -98,7 +100,7 @@ public final class CodeNarcValidatorTest {
     @Test
     public void testSuccessValidation() throws Exception {
         final Validator validator = new CodeNarcValidator();
-        final File groovy = new File(this.folder, "SuccessMain.groovy");
+        final File groovy = new File(this.src, "SuccessMain.groovy");
         FileUtils.writeStringToFile(groovy, "class SuccessMain { int x = 0 }");
         validator.validate(this.env);
     }

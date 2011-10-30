@@ -33,6 +33,7 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
+import java.io.File;
 import java.util.List;
 import org.codenarc.CodeNarcRunner;
 import org.codenarc.analyzer.FilesystemSourceAnalyzer;
@@ -52,11 +53,14 @@ public final class CodeNarcValidator implements Validator {
      */
     @Override
     public void validate(final Environment env) throws ValidationException {
+        final File src = new File(env.basedir(), "src");
+        if (!src.exists()) {
+            Logger.info(this, "No source, no codenarc validation required");
+            return;
+        }
         final FilesystemSourceAnalyzer sourceAnalyzer =
             new FilesystemSourceAnalyzer();
-        sourceAnalyzer.setBaseDirectory(
-            env.basedir().getAbsolutePath()
-        );
+        sourceAnalyzer.setBaseDirectory(src.getAbsolutePath());
         sourceAnalyzer.setIncludes("**/*.groovy");
         sourceAnalyzer.setExcludes(null);
         final CodeNarcRunner codeNarcRunner = new CodeNarcRunner();
