@@ -43,7 +43,7 @@ import org.mockito.Mockito;
 /**
  * Test case for {@link CodeNarcValidator} class.
  * @author Pavlo Shamrai (pshamrai@gmail.com)
- * @version $Id: CodeNarcValidatorTest.java 45 2011-10-27 19:34:11Z pshamrai@gmail.com $
+ * @version $Id$
  */
 public final class CodeNarcValidatorTest {
 
