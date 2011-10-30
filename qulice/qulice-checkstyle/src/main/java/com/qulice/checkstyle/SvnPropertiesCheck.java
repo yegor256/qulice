@@ -42,7 +42,7 @@ import java.util.Map;
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
- * @version $Id: CheckstyleValidatorTest.java 7 2011-08-22 20:13:42Z yegor256@yahoo.com $
+ * @version $Id$
  */
 public final class SvnPropertiesCheck extends AbstractFileSetCheck {
 

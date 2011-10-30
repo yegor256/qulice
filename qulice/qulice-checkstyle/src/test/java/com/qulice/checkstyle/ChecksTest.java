@@ -54,7 +54,7 @@ import org.xml.sax.InputSource;
 /**
  * Integration test case for all checkstyle checks.
  * @author Yegor Bugayenko (yegor@qulice.com)
- * @version $Id: SvnPropertiesCheckTest.java 8 2011-08-25 01:01:25Z yegor256@yahoo.com $
+ * @version $Id$
  */
 @RunWith(Parameterized.class)
 public final class ChecksTest {

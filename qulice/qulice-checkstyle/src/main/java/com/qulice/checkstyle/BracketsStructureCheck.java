@@ -55,7 +55,7 @@ import org.apache.commons.lang.StringUtils;
  *        "File %s not found", file);<br>
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id: BracketsStructureCheck.java 71 2011-10-14 20:41:40Z guard $
+ * @version $Id$
  */
 public final class BracketsStructureCheck extends AbstractFileSetCheck {
 
