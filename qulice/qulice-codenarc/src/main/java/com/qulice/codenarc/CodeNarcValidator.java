@@ -44,7 +44,7 @@ import org.codenarc.rule.Violation;
  * Validates groovy source code with CodeNarc.
  *
  * @author Pavlo Shamrai (pshamrai@gmail.com)
- * @version $Id: CodeNarcValidator.java 45 2011-10-27 19:34:11Z pshamrai@gmail.com $
+ * @version $Id$
  */
 public final class CodeNarcValidator implements Validator {
 
