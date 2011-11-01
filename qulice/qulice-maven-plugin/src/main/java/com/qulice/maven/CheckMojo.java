@@ -99,6 +99,11 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
     private String license = "LICENSE.txt";
 
     /**
+     * Number of nanoseconds in second.
+     */
+    private final long nano = 1000000000L;
+
+    /**
      * Set Maven Project (used mostly for unit testing).
      * @param proj The project to set
      */
@@ -145,6 +150,7 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
         this.env.setMojoExecutor(
             new MojoExecutor(this.manager, this.session)
         );
+        final long start = System.nanoTime();
         for (Validator validator : new ValidatorsProvider().all()) {
             try {
                 validator.validate(this.env);
@@ -152,6 +158,8 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
                 throw new MojoFailureException("Failed", ex);
             }
         }
+        // Calculate elapsed time in seconds.
+        final long time = (System.nanoTime() - start) / this.nano;
+        Logger.info(this, "Time elapsed on validation: " + time + " s.");
     }
-
 }
