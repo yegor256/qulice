@@ -29,9 +29,9 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import java.io.File;
-import java.util.List;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -57,7 +57,23 @@ import org.apache.commons.lang.StringUtils;
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
  */
-public final class BracketsStructureCheck extends AbstractFileSetCheck {
+public final class BracketsStructureCheck extends Check {
+    /**
+     * Opening bracket.
+     */
+    private static final String OPENING_BRACKET = "(";
+    /**
+     * Closing bracket.
+     */
+    private static final String CLOSING_BRACKET = ")";
+    /**
+     * Closing bracket with semicolon.
+     */
+    private static final String CLOSING_BRACKET_1 = ");";
+    /**
+     * Error message.
+     */
+    private static final String ERROR_MESSAGE = "Brackets structure is broken";
 
     /**
      * Creates new instance of <code>BracketsStructureCheck</code>.
@@ -65,25 +81,64 @@ public final class BracketsStructureCheck extends AbstractFileSetCheck {
     public BracketsStructureCheck() {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void processFiltered(final File file, final List<String> list) {
-        for (String fullLine : list) {
-            // Remove spaces from start and end of the line.
-            final String line = fullLine.trim();
-            // Count opening brackets.
-            final int start = StringUtils.countMatches(line, "(");
-            // Count closing brakcets.
-            final int end = StringUtils.countMatches(line, ")");
-            // Check that corresponding bracket is the last symbol on the line.
-            final int length = line.length();
-            int index = length;
-            if (start > end) {
-                index = line.lastIndexOf('(') + 1;
-            } else if (start < end) {
-                index = line.lastIndexOf(");") + 2;
+    public int[] getDefaultTokens() {
+        return new int[] {
+            TokenTypes.OBJBLOCK,
+        };
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void visitToken(final DetailAST ast) {
+        DetailAST declaration = ast.getFirstChild();
+        // Find all methods, constructors, static initializers.
+        while (null != declaration) {
+            if (TokenTypes.VARIABLE_DEF == declaration.getType()) {
+                continue;
             }
-            if (length != index) {
-                this.fireErrors(file.getPath());
+            // Retrieve body.
+            final DetailAST opening =
+                declaration.findFirstToken(TokenTypes.SLIST);
+            if (opening != null) {
+                final DetailAST closing =
+                    opening.findFirstToken(TokenTypes.RCURLY);
+                final int firstLine = opening.getLineNo();
+                final int lastLine = closing.getLineNo();
+                final String[] lines = this.getLines();
+                for (int i = firstLine; i < lastLine; i += 1) {
+                    // Check line.
+                    this.checkLine(lines[i], i + 1);
+                }
+            }
+            declaration = declaration.getNextSibling();
+        }
+    }
+
+    /**
+     * Checks input string to validate check rule.
+     * @param input String to be checked.
+     * @param number Line number of the input string.
+     */
+    private void checkLine(final String input, final int number) {
+        final String line = input.trim();
+        final int opened = StringUtils.countMatches(line, this.OPENING_BRACKET);
+        final int closed = StringUtils.countMatches(line, this.CLOSING_BRACKET);
+        if (opened > closed) {
+            if (!line.endsWith(this.OPENING_BRACKET)) {
+                this.log(number, this.ERROR_MESSAGE);
+            }
+        } else if (closed > opened) {
+            if (
+                !line.equals(this.CLOSING_BRACKET)
+                    && !line.equals(this.CLOSING_BRACKET_1)
+                ) {
+                this.log(number, this.ERROR_MESSAGE);
             }
         }
     }
