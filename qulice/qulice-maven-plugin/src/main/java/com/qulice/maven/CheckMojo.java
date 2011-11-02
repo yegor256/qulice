@@ -145,6 +145,7 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
         this.env.setMojoExecutor(
             new MojoExecutor(this.manager, this.session)
         );
+        final long start = System.nanoTime();
         for (Validator validator : new ValidatorsProvider().all()) {
             try {
                 validator.validate(this.env);
@@ -152,6 +153,12 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
                 throw new MojoFailureException("Failed", ex);
             }
         }
+        // Output elapsed time.
+        Logger.info(
+            this,
+            "Time elapsed on validation: %.2fs",
+            // @checkstyle MagicNumber (1 lines)
+            (double) (System.nanoTime() - start) / (1000L * 1000 * 1000)
+        );
     }
-
 }
