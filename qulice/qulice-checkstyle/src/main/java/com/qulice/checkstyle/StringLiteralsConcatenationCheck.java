@@ -29,94 +29,88 @@
  */
 package com.qulice.checkstyle;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Checks not using concatenation of string literals in any form.
- * 
- * I.e. the following is prohibited: <br/>
+ * Checks not using concatenation of string literals in any form. I.e. the
+ * following is prohibited: <br/>
  * String a = "done in " + time + " seconds"; <br/>
  * System.out.println("File not found: " + file); <br/>
  * x += "done";
+ * @author Dzmitry Petrushenka (dpetruha@gmail.com)
+ * @version $Id$
  */
 public final class StringLiteralsConcatenationCheck extends Check {
 
     /**
      * Error message.
      */
-    private static final String ERROR_MESSAGE = "Concatenation of string literals";
+    private static final String ERR_MSG = "Concatenation of string literals";
 
     /**
      * {@inheritDoc}
      */
     @Override
     public int[] getDefaultTokens() {
-	return new int[] { TokenTypes.OBJBLOCK };
+        return new int[] {TokenTypes.OBJBLOCK};
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void visitToken(DetailAST ast) {
-	for (DetailAST plusRootAst : findChildASTsOfType(ast, TokenTypes.PLUS, TokenTypes.PLUS_ASSIGN)) {
-	    if (plusRootAst.getChildCount(TokenTypes.STRING_LITERAL) > 0) {
-		log(plusRootAst, ERROR_MESSAGE);
-	    }
-	}
+    public void visitToken(final DetailAST ast) {
+        for (DetailAST plusRootAst : this.findChildASTsOfType(ast,
+            TokenTypes.PLUS, TokenTypes.PLUS_ASSIGN)) {
+            if (plusRootAst.getChildCount(TokenTypes.STRING_LITERAL) > 0) {
+                this.log(plusRootAst, this.ERR_MSG);
+            }
+        }
     }
 
     /**
      * Recursively traverse the <code>tree</code> and return all ASTs subtrees
      * matching any type from <code>types</code>.
-     * 
-     * @param tree
-     *            AST to traverse.
-     * @param types
-     *            token types to match against.
-     * @return all ASTs subtrees with token types matching any from
-     *         <code>types</code>.
-     * 
+     * @param tree AST to traverse.
+     * @param types Token types to match against.
+     * @return All ASTs subtrees with token types matching any from
+     * <code>types</code>.
      * @see TokenTypes
      */
-    private List<DetailAST> findChildASTsOfType(DetailAST tree, int... types) {
-	List<DetailAST> children = new ArrayList<DetailAST>();
-
-	DetailAST child = tree.getFirstChild();
-	while (child != null) {
-	    if (isOfType(child, types))
-		children.add(child);
-	    else {
-		children.addAll(findChildASTsOfType(child, types));
-	    }
-	    child = child.getNextSibling();
-	}
-	return children;
+    private List<DetailAST> findChildASTsOfType(final DetailAST tree,
+        final int... types) {
+        final List<DetailAST> children = new ArrayList<DetailAST>();
+        DetailAST child = tree.getFirstChild();
+        while (child != null) {
+            if (this.isOfType(child, types)) {
+                children.add(child);
+            } else {
+                children.addAll(this.findChildASTsOfType(child, types));
+            }
+            child = child.getNextSibling();
+        }
+        return children;
     }
 
     /**
      * Checks if this <code>ast</code> is of any type from <code>types</code>.
-     * 
-     * @param ast
-     *            AST to check.
-     * @param types
-     *            token types to match against.
-     * @return
+     * @param ast AST to check.
+     * @param types Token types to match against.
+     * @return True if of type, false otherwise.
      * @see TokenTypes
      */
-    private boolean isOfType(DetailAST ast, int[] types) {
-	boolean isOfType = false;
-	for (int type : types) {
-	    if (ast.getType() == type) {
-		isOfType = true;
-		break;
-	    }
-	}
-	return isOfType;
+    private boolean isOfType(final DetailAST ast, final int[] types) {
+        boolean isOfType = false;
+        for (int type : types) {
+            if (ast.getType() == type) {
+                isOfType = true;
+                break;
+            }
+        }
+        return isOfType;
     }
 }
