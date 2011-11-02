@@ -49,7 +49,7 @@ public final class StringLiteralsConcatenationCheck extends Check {
     /**
      * Error message.
      */
-    private static final String ERROR_MESSAGE = "yo";
+    private static final String ERROR_MESSAGE = "Concatenation of string literals";
 
     /**
      * {@inheritDoc}
