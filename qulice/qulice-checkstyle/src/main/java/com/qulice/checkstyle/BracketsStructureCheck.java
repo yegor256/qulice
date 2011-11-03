@@ -32,7 +32,6 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import org.apache.commons.lang.StringUtils;
 
 /**
  * Checks opening/closing brackets to be the last symbols on the line. So this
@@ -54,10 +53,14 @@ import org.apache.commons.lang.StringUtils;
  *      String.format(<br>
  *        "File %s not found", file);<br>
  *
+ * Note: Checks only method calls inside method bodies, constructors, static
+ * initializers, and instance initializers.
+ *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
  */
 public final class BracketsStructureCheck extends Check {
+
     /**
      * Opening bracket.
      */
@@ -86,7 +89,7 @@ public final class BracketsStructureCheck extends Check {
      */
     @Override
     public int[] getDefaultTokens() {
-        return new int[] {
+        return new int[]{
             TokenTypes.OBJBLOCK,
         };
     }
@@ -102,18 +105,20 @@ public final class BracketsStructureCheck extends Check {
             if (TokenTypes.VARIABLE_DEF == declaration.getType()) {
                 continue;
             }
-            // Retrieve body.
-            final DetailAST opening =
-                declaration.findFirstToken(TokenTypes.SLIST);
-            if (opening != null) {
-                final DetailAST closing =
-                    opening.findFirstToken(TokenTypes.RCURLY);
-                final int firstLine = opening.getLineNo();
-                final int lastLine = closing.getLineNo();
-                final String[] lines = this.getLines();
-                for (int i = firstLine; i < lastLine; i += 1) {
-                    // Check line.
-                    this.checkLine(lines[i], i + 1);
+            // Get method body.
+            final DetailAST list = declaration.findFirstToken(TokenTypes.SLIST);
+            if (null != list) {
+                // Retreive method statements.
+                DetailAST expression = list.findFirstToken(TokenTypes.EXPR);
+                while (null != expression) {
+                    // Find method calls.
+                    final DetailAST methodCall =
+                        expression.findFirstToken(TokenTypes.METHOD_CALL);
+                    if (null != methodCall) {
+                        this.checkMethod(methodCall);
+                    }
+                    // Get next statement.
+                    expression = expression.getNextSibling();
                 }
             }
             declaration = declaration.getNextSibling();
@@ -121,24 +126,27 @@ public final class BracketsStructureCheck extends Check {
     }
 
     /**
-     * Checks input string to validate check rule.
-     * @param input String to be checked.
-     * @param number Line number of the input string.
+     * Checks method call statement to satisfy the rule.
+     * @param methodCall Tree node, containing method call statement.
      */
-    private void checkLine(final String input, final int number) {
-        final String line = input.trim();
-        final int opened = StringUtils.countMatches(line, this.OPENING_BRACKET);
-        final int closed = StringUtils.countMatches(line, this.CLOSING_BRACKET);
-        if (opened > closed) {
-            if (!line.endsWith(this.OPENING_BRACKET)) {
-                this.log(number, this.ERROR_MESSAGE);
+    private void checkMethod(final DetailAST methodCall) {
+        // Find open and closing brackets of the method call.
+        final DetailAST closing = methodCall.findFirstToken(TokenTypes.RPAREN);
+        final int startLine = methodCall.getLineNo();
+        final int endLine = closing.getLineNo();
+        // If method call is split on several lines.
+        if (startLine != endLine) {
+            // Check that opening bracket is the last symbol on the line.
+            final DetailAST elist = methodCall.findFirstToken(TokenTypes.ELIST);
+            final int parametersLine = elist.getLineNo();
+            if (parametersLine == startLine) {
+                this.log(parametersLine, this.ERROR_MESSAGE);
             }
-        } else if (closed > opened) {
-            if (
-                !line.equals(this.CLOSING_BRACKET)
-                    && !line.equals(this.CLOSING_BRACKET_1)
-                ) {
-                this.log(number, this.ERROR_MESSAGE);
+            // Check that closing bracket is the only symbol on the line.
+            final DetailAST lastParameter = elist.getLastChild();
+            final int lastParameterLine = lastParameter.getLineNo();
+            if (lastParameterLine == endLine) {
+                this.log(lastParameterLine, this.ERROR_MESSAGE);
             }
         }
     }

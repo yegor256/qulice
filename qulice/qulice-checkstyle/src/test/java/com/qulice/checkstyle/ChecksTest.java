@@ -63,12 +63,12 @@ public final class ChecksTest {
      * Directories where test scripts are located.
      */
     private static final String[] DIRS = {
-        "BracketsStructureCheck",
         "EmptyLinesCheck",
         "ImportCohesionCheck",
         "JavadocTagsCheck",
         "PuzzleFormatCheck",
         "CascadeIndentationCheck",
+        "BracketsStructureCheck",
     };
 
     /**
