@@ -22,6 +22,28 @@ public final class Invalid {
         String text) {
     }
 */
+    // Check static declarations.
+    static {
+      String.format("File %s not found",
+        file);
+      String.format(
+        "File %s not found",
+        file);
+      String.format(
+        "File %s not found", file);
+    }
+    // Check instance declarations.
+    {
+      String.format("File %s not found",
+        file);
+      String.format(
+        "File %s not found",
+        file);
+      String.format(
+        "File %s not found", file);
+
+    }
+    // Check method declarations.
     public void main() {
       String.format("File %s not found",
         file);

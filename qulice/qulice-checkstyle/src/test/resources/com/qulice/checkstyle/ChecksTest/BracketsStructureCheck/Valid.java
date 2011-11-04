@@ -23,6 +23,31 @@ public final class Valid {
     ) {
     }
 */
+    // Check static declarations.
+    static {
+       String.format(
+        "File %s not found",
+        file
+      );
+      String.format(
+        "File %s not found", file
+      );
+      String.format("File %s not found", file);
+      String.format("File %s not found(", file);
+    }
+    // Check instance declarations.
+    {
+       String.format(
+        "File %s not found",
+        file
+      );
+      String.format(
+        "File %s not found", file
+      );
+      String.format("File %s not found", file);
+      String.format("File %s not found(", file);
+    }
+    // Check method declarations.
     public void main() {
        String.format(
         "File %s not found",

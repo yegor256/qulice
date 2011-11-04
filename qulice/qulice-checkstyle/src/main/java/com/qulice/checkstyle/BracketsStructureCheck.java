@@ -89,8 +89,10 @@ public final class BracketsStructureCheck extends Check {
      */
     @Override
     public int[] getDefaultTokens() {
-        return new int[]{
-            TokenTypes.OBJBLOCK,
+        return new int[] {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.INSTANCE_INIT,
         };
     }
 
@@ -99,29 +101,21 @@ public final class BracketsStructureCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        DetailAST declaration = ast.getFirstChild();
-        // Find all methods, constructors, static initializers.
-        while (null != declaration) {
-            if (TokenTypes.VARIABLE_DEF == declaration.getType()) {
-                continue;
-            }
-            // Get method body.
-            final DetailAST list = declaration.findFirstToken(TokenTypes.SLIST);
-            if (null != list) {
-                // Retreive method statements.
-                DetailAST expression = list.findFirstToken(TokenTypes.EXPR);
-                while (null != expression) {
-                    // Find method calls.
-                    final DetailAST methodCall =
-                        expression.findFirstToken(TokenTypes.METHOD_CALL);
-                    if (null != methodCall) {
-                        this.checkMethod(methodCall);
-                    }
-                    // Get next statement.
-                    expression = expression.getNextSibling();
+        // Get method body.
+        final DetailAST list = ast.findFirstToken(TokenTypes.SLIST);
+        if (null != list) {
+            // Retreive method statements.
+            DetailAST expression = list.findFirstToken(TokenTypes.EXPR);
+            while (null != expression) {
+                // Find method calls.
+                final DetailAST methodCall =
+                    expression.findFirstToken(TokenTypes.METHOD_CALL);
+                if (null != methodCall) {
+                    this.checkMethod(methodCall);
                 }
+                // Get next statement.
+                expression = expression.getNextSibling();
             }
-            declaration = declaration.getNextSibling();
         }
     }
 
