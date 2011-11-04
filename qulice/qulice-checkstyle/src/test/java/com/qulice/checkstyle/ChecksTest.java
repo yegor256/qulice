@@ -70,6 +70,7 @@ public final class ChecksTest {
         "JavadocTagsCheck",
         "PuzzleFormatCheck",
         "CascadeIndentationCheck",
+        "ConstantUsageCheck",
     };
 
     /**
