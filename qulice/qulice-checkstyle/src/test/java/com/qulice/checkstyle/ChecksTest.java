@@ -70,6 +70,7 @@ public final class ChecksTest {
         "PuzzleFormatCheck",
         "CascadeIndentationCheck",
         "BracketsStructureCheck",
+        "ConstantUsageCheck",
     };
 
     /**
