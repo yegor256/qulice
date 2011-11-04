@@ -64,12 +64,12 @@ public final class ChecksTest {
      */
     private static final String[] DIRS = {
         "StringLiteralsConcatenationCheck",
-        "BracketsStructureCheck",
         "EmptyLinesCheck",
         "ImportCohesionCheck",
         "JavadocTagsCheck",
         "PuzzleFormatCheck",
         "CascadeIndentationCheck",
+        "BracketsStructureCheck",
         "ConstantUsageCheck",
     };
 
