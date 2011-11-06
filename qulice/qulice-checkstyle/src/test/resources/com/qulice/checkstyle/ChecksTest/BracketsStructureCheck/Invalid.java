@@ -4,7 +4,7 @@
  */
 public final class Invalid {
 /*
-    @todo #123! Realize method and constructor declaration checking.
+    @todo #32!:1h Realize method and constructor declaration checking.
     public Invalid(String name,
      String value
      ) {
