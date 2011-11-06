@@ -72,6 +72,7 @@ public final class ChecksTest {
         "MultilineJavadocTagsCheck",
         "BracketsStructureCheck",
         "ConstantUsageCheck",
+        "JavadocLocationCheck",
     };
 
     /**
