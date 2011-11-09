@@ -33,10 +33,12 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
-import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -51,6 +53,7 @@ import net.sourceforge.pmd.RuleContext;
 import net.sourceforge.pmd.RuleSetFactory;
 import net.sourceforge.pmd.RuleSetNotFoundException;
 import net.sourceforge.pmd.RuleSets;
+import net.sourceforge.pmd.SourceType;
 import net.sourceforge.pmd.stat.Metric;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
@@ -161,22 +164,23 @@ public final class PMDValidator implements Validator {
             this.context.setSourceCodeFilename(fileName);
             this.context.setSourceCodeFile(new File(fileName));
             // Get input stream of the source file.
-            InputStream input = null;
+            Reader reader = null;
             try {
-                input = source.getInputStream();
+                final InputStream input = source.getInputStream();
+                reader = new InputStreamReader(input, "UTF8");
             } catch (IOException exception) {
                 throw new IllegalArgumentException(
                     "Cannot get input stream of the source : " + fileName
                 );
             }
-            final InputStream stream = new BufferedInputStream(input);
+            final BufferedReader buffer = new BufferedReader(reader);
             try {
                 // Process file.
                 this.pmd.processFile(
-                    stream,
-                    "UTF8",
+                    buffer,
                     this.ruleSets,
-                    this.context
+                    this.context,
+                    SourceType.JAVA_16
                 );
             } catch (PMDException exception) {
                 System.out.println(exception.getMessage());
