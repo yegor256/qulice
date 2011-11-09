@@ -96,20 +96,21 @@ public final class PMDValidator implements Validator {
      */
     @Override
     public void validate(final Environment env) throws ValidationException {
+        // Retreive source files to validate.
         final List<DataSource> sources = this.sources(env);
         if (sources.isEmpty()) {
             Logger.info(this, "No files to check with PMD");
             return;
         }
+        // Initialize PMD.
         this.initialization();
         this.pmd = new PMD();
+        // Get base path of the source files.
         final File base = env.basedir();
         final String path = base.getPath();
-        try {
-            this.validate(sources, path);
-        } catch (PMDException exception) {
-            Logger.error(this, exception.getMessage());
-        }
+        // Performs validation.
+        this.validate(sources, path);
+        // Report results.
         final List<IRuleViolation> violations =
             this.reportListener.violations();
         if (!violations.isEmpty()) {
@@ -129,16 +130,17 @@ public final class PMDValidator implements Validator {
      * Performs initialization.
      */
     private void initialization() {
+        // Read rules.
         final RuleSetFactory factory = new RuleSetFactory();
         factory.setMinimumPriority(this.PRIORITY);
         try {
             this.ruleSets = factory.createRuleSets(this.RULES);
         } catch (RuleSetNotFoundException exception) {
-            Logger.error(
-                this,
-                "Error while creating rules from : " + this.RULES
+            throw new IllegalArgumentException(
+                "Cannot read rules from : " + this.RULES
             );
         }
+        // Create report listener.
         this.reportListener = new PmdListener();
         final Report report = new Report();
         report.addListener(this.reportListener);
@@ -150,24 +152,39 @@ public final class PMDValidator implements Validator {
      * Performs validation of the input source files.
      * @param sources Input source files.
      * @param path Base path.
-     * @throws PMDException If error occurs while validating file.
      */
     private void validate(
-        final Collection<DataSource> sources,
-        final String path) throws PMDException {
+        final Collection<DataSource> sources, final String path) {
         for (DataSource source : sources) {
+            // Set source file.
             final String fileName = source.getNiceFileName(false, path);
             this.context.setSourceCodeFilename(fileName);
             this.context.setSourceCodeFile(new File(fileName));
+            // Get input stream of the source file.
             InputStream input = null;
             try {
                 input = source.getInputStream();
             } catch (IOException exception) {
-                Logger.error(this, exception.getMessage());
-                return;
+                throw new IllegalArgumentException(
+                    "Cannot get input stream of the source : " + fileName
+                );
             }
             final InputStream stream = new BufferedInputStream(input);
-            this.pmd.processFile(stream, "UTF8", this.ruleSets, this.context);
+            try {
+                // Process file.
+                this.pmd.processFile(
+                    stream,
+                    "UTF8",
+                    this.ruleSets,
+                    this.context
+                );
+            } catch (PMDException exception) {
+                System.out.println(exception.getMessage());
+                exception.printStackTrace();
+                throw new IllegalArgumentException(
+                    "Cannot parse file : " + fileName
+                );
+            }
         }
     }
 
