@@ -33,8 +33,15 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
 import org.apache.commons.io.FileUtils;
+import org.apache.log4j.spi.LoggingEvent;
+import org.apache.log4j.varia.NullAppender;
+import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -103,6 +110,57 @@ public final class CodeNarcValidatorTest {
         final File groovy = new File(this.src, "SuccessMain.groovy");
         FileUtils.writeStringToFile(groovy, "class SuccessMain { int x = 0 }");
         validator.validate(this.env);
+    }
+
+    /**
+     * Validate log message for filename existence.
+     * @todo #36! The test is ignored until filename will be added to codernarc validation log messages.
+     * @throws Exception
+     * @throws Exception If error message does not include filename.
+     */
+    @Test(expected = ValidationException.class)
+    @Ignore
+    public void testFilenameValidation() throws Exception {
+        final Validator validator = new CodeNarcValidator();
+        final File groovy = new File(this.src, "SecondMain.groovy");
+        FileUtils.writeStringToFile(groovy, "class secondMain { int x = 0 }");
+        final CodeNarcAppender codeNarcAppender = new CodeNarcAppender();
+        org.apache.log4j.Logger.getRootLogger().addAppender(codeNarcAppender);
+        try {
+            validator.validate(this.env);
+        } catch (ValidationException e) {
+            final List<String> messages = codeNarcAppender.getMessages();
+            final Pattern p = Pattern.compile("[a-zA-Z0-9_]+\\.groovy");
+            for (String message : messages) {
+                Assert.assertTrue(p.matcher(message).find());
+            }
+            throw e;
+        }
+    }
+
+    /**
+     * Appender for log verifying.
+     */
+    private class CodeNarcAppender extends NullAppender {
+
+        /**
+         * List of logged messages.
+         */
+        private List<String> messages = new ArrayList<String>();
+
+        @Override
+        public void doAppend(final LoggingEvent event) {
+            this.messages.add(event.getMessage().toString());
+        }
+
+        /**
+         * Get list of logged messages.
+         * @return The list of logged messages
+         */
+        public List<String> getMessages() {
+            return this.messages;
+        }
+
     }
 
 }
