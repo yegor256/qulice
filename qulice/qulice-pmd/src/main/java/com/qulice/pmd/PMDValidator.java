@@ -33,19 +33,27 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import net.sourceforge.pmd.DataSource;
 import net.sourceforge.pmd.FileDataSource;
 import net.sourceforge.pmd.IRuleViolation;
 import net.sourceforge.pmd.PMD;
+import net.sourceforge.pmd.PMDException;
 import net.sourceforge.pmd.Report;
 import net.sourceforge.pmd.ReportListener;
 import net.sourceforge.pmd.RuleContext;
 import net.sourceforge.pmd.RuleSetFactory;
+import net.sourceforge.pmd.RuleSetNotFoundException;
+import net.sourceforge.pmd.RuleSets;
 import net.sourceforge.pmd.SourceType;
-import net.sourceforge.pmd.renderers.Renderer;
 import net.sourceforge.pmd.stat.Metric;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
@@ -60,6 +68,30 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  * @checkstyle ClassDataAbstractionCoupling (300 lines)
  */
 public final class PMDValidator implements Validator {
+    /**
+     * Contains path to validation rules file.
+     */
+    private static final String RULES = "com/qulice/pmd/ruleset.xml";
+    /**
+     * Thread priority.
+     */
+    private static final int PRIORITY = 5;
+    /**
+     * PMD.
+     */
+    private PMD pmd;
+    /**
+     * Rule context.
+     */
+    private RuleContext context;
+    /**
+     * Rules.
+     */
+    private RuleSets ruleSets;
+    /**
+     * Report listener.
+     */
+    private PmdListener reportListener;
 
     /**
      * {@inheritDoc}
@@ -67,37 +99,23 @@ public final class PMDValidator implements Validator {
      */
     @Override
     public void validate(final Environment env) throws ValidationException {
+        // Retreive source files to validate.
         final List<DataSource> sources = this.sources(env);
         if (sources.isEmpty()) {
             Logger.info(this, "No files to check with PMD");
             return;
         }
-        final RuleSetFactory factory = new RuleSetFactory();
-        factory.setMinimumPriority(0);
-        final PmdListener listener = new PmdListener();
-        final Report report = new Report();
-        report.addListener(listener);
-        final RuleContext context = new RuleContext();
-        context.setReport(report);
-        PMD.processFiles(
-            // thread count
-            1,
-            factory,
-            SourceType.JAVA_16,
-            sources,
-            context,
-            new ArrayList<Renderer>(),
-            // stressTestEnabled
-            true,
-            "com/qulice/pmd/ruleset.xml",
-            // shortNamesEnabled
-            true,
-            ".",
-            "UTF-8",
-            "PMD",
-            this.getClass().getClassLoader()
-        );
-        final List<IRuleViolation> violations = listener.violations();
+        // Initialize PMD.
+        this.initialization();
+        this.pmd = new PMD();
+        // Get base path of the source files.
+        final File base = env.basedir();
+        final String path = base.getPath();
+        // Performs validation.
+        this.validate(sources, path);
+        // Report results.
+        final List<IRuleViolation> violations =
+            this.reportListener.violations();
         if (!violations.isEmpty()) {
             throw new ValidationException(
                 "%d PMD violations (see log above)",
@@ -112,14 +130,77 @@ public final class PMDValidator implements Validator {
     }
 
     /**
+     * Performs initialization.
+     */
+    private void initialization() {
+        // Read rules.
+        final RuleSetFactory factory = new RuleSetFactory();
+        factory.setMinimumPriority(this.PRIORITY);
+        try {
+            this.ruleSets = factory.createRuleSets(this.RULES);
+        } catch (RuleSetNotFoundException exception) {
+            throw new IllegalArgumentException(
+                "Cannot read rules from : " + this.RULES
+            );
+        }
+        // Create report listener.
+        this.reportListener = new PmdListener();
+        final Report report = new Report();
+        report.addListener(this.reportListener);
+        this.context = new RuleContext();
+        this.context.setReport(report);
+    }
+
+    /**
+     * Performs validation of the input source files.
+     * @param sources Input source files.
+     * @param path Base path.
+     */
+    private void validate(
+        final Collection<DataSource> sources, final String path) {
+        for (DataSource source : sources) {
+            // Set source file.
+            final String fileName = source.getNiceFileName(false, path);
+            this.context.setSourceCodeFilename(fileName);
+            this.context.setSourceCodeFile(new File(fileName));
+            // Get input stream of the source file.
+            Reader reader = null;
+            try {
+                final InputStream input = source.getInputStream();
+                reader = new InputStreamReader(input, "UTF8");
+            } catch (IOException exception) {
+                throw new IllegalArgumentException(
+                    "Cannot get input stream of the source : " + fileName
+                );
+            }
+            final BufferedReader buffer = new BufferedReader(reader);
+            try {
+                // Process file.
+                this.pmd.processFile(
+                    buffer,
+                    this.ruleSets,
+                    this.context,
+                    SourceType.JAVA_16
+                );
+            } catch (PMDException exception) {
+                System.out.println(exception.getMessage());
+                exception.printStackTrace();
+                throw new IllegalArgumentException(
+                    "Cannot parse file : " + fileName
+                );
+            }
+        }
+    }
+
+    /**
      * Get full list of files to process.
-     * @param env The environmet
+     * @param env The environment.
      * @return List of files
      */
     private List<File> files(final Environment env) {
         final List<File> files = new ArrayList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final File sources = new File(env.basedir(), "src/main/java");
+        final File sources = new File(env.basedir(), "");
         if (sources.exists()) {
             files.addAll(
                 FileUtils.listFiles(
@@ -160,11 +241,13 @@ public final class PMDValidator implements Validator {
      * Listener of PMD errors.
      */
     private final class PmdListener implements ReportListener {
+
         /**
          * List of violations.
          */
         private List<IRuleViolation> violations =
             new ArrayList<IRuleViolation>();
+
         /**
          * Get list of violations.
          * @return List of violations
@@ -172,6 +255,7 @@ public final class PMDValidator implements Validator {
         public List<IRuleViolation> violations() {
             return this.violations;
         }
+
         /**
          * {@inheritDoc}
          */
@@ -189,6 +273,7 @@ public final class PMDValidator implements Validator {
                 metric.getStandardDeviation()
             );
         }
+
         /**
          * {@inheritDoc}
          */
@@ -206,5 +291,4 @@ public final class PMDValidator implements Validator {
             );
         }
     }
-
 }

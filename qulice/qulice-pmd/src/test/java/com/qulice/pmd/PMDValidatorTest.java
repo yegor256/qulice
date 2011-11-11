@@ -35,7 +35,6 @@ import com.qulice.spi.Validator;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -81,14 +80,8 @@ public final class PMDValidatorTest {
 
     /**
      * Validate set of files to find violations.
-     * @throws Exception If something wrong happens inside
-     * @todo #11 This validator doesn't work for some reason. Should be
-     *  fixed and properly tested. It should throw exception here since
-     *  the code contains a PMD violation: variable name is too short and
-     *  it shouldn't be initialized to zero since it's the default value
-     *  of type "int".
+     * @throws Exception If something wrong happens inside.
      */
-    @Ignore
     @Test(expected = ValidationException.class)
     public void testValidatesSetOfFiles() throws Exception {
         final Validator validator = new PMDValidator();
@@ -96,5 +89,4 @@ public final class PMDValidatorTest {
         FileUtils.writeStringToFile(java, "class Main { int x = 0; }");
         validator.validate(this.env);
     }
-
 }
