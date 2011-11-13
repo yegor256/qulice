@@ -250,6 +250,9 @@
                                 <copy verbose="true"
                                     file="${com.qulice:qulice-spi:jar}"
                                     tofile="${project.build.directory}/local-repo/com/qulice/qulice-spi/${project.version}/qulice-spi-${project.version}.jar"/>
+                                <copy verbose="true"
+                                    file="${com.qulice:qulice-xml:jar}"
+                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-xml/${project.version}/qulice-xml-${project.version}.jar"/>
                             </target>
                         </configuration>
                         <goals>
