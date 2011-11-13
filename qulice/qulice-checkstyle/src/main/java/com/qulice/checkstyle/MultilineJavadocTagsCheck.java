@@ -80,24 +80,17 @@ public final class MultilineJavadocTagsCheck extends Check {
         int tagIndex = -1;
         for (int current = start; current <= end; current += 1) {
             final String line = lines[current];
-            // Find tagged line.
             if (line.contains("* @")) {
                 isTagged = true;
-                // Remember index of tag.
                 tagIndex = line.indexOf('@');
             } else {
-                // If current line has no tag.
-                // And one of the prevoius lines has tag.
                 if (isTagged) {
-                    // Find start index of text.
                     final int startComment = line.indexOf('*');
                     int startText = startComment + 1;
-                    // Skip spaces.
                     while ((startText < line.length())
                         && (line.charAt(startText) == ' ')) {
                         startText += 1;
                     }
-                    // Check the number of indents.
                     if (startText != (tagIndex + 1)) {
                         this.log(
                             current + 1,
@@ -138,13 +131,11 @@ public final class MultilineJavadocTagsCheck extends Check {
      */
     private int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
-        int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {
             if (lines[pos].trim().equals(text)) {
-                found = pos;
-                break;
+                return pos;
             }
         }
-        return found;
+        return -1;
     }
 }

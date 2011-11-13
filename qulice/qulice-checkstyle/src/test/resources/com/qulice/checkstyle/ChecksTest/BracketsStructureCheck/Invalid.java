@@ -4,7 +4,9 @@
  */
 public final class Invalid {
 /*
-    @todo #32!:1h Realize method and constructor declaration checking.
+    This doesn't work at the moment, see documentation of
+    BracketsStructureCheck class
+
     public Invalid(String name,
      String value
      ) {

@@ -167,7 +167,6 @@
         <module name="DesignForExtension"/>
         <module name="MutableException"/>
         <module name="ThrowsCount" />
-        <!-- <module name="InnerTypeLast"/>  absent in 5.0 -->
 
         <!-- Checks for common coding problems -->
         <module name="ArrayTrailingComma"/>
@@ -207,7 +206,6 @@
         <module name="ParameterAssignment"/>
         <module name="ExplicitInitialization"/>
         <module name="DefaultComesLast"/>
-        <!-- <module name="MissingCtor"/> -->
         <module name="FallThrough"/>
         <module name="MultipleStringLiterals"/>
         <module name="MultipleVariableDeclarations"/>
@@ -309,8 +307,13 @@
         <!--
         Our custom checkers.
         -->
+        <module name="com.qulice.checkstyle.BracketsStructureCheck"/>
         <module name="com.qulice.checkstyle.EmptyLinesCheck"/>
         <module name="com.qulice.checkstyle.JavadocTagsCheck"/>
+        <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
+        <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
+        <module name="com.qulice.checkstyle.StringLiteralsConcatenationCheck"/>
+        <module name="com.qulice.checkstyle.MultilineJavadocTagsCheck"/>
     </module>
 
     <!--

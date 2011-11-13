@@ -34,55 +34,40 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks opening/closing brackets to be the last symbols on the line. So this
- * will do:<br>
- *       String.format(<br>
- *        "File %s not found",<br>
- *        file<br>
- *      );<br>
- *      String.format(<br>
- *        "File %s not found", file<br>
- *      );<br>
- *      String.format("File %s not found", file);<br>
- * and this won't:<br>
- *      String.format("File %s not found",<br>
- *        file);<br>
- *      String.format(<br>
- *        "File %s not found",<br>
- *        file);<br>
- *      String.format(<br>
- *        "File %s not found", file);<br>
+ * Checks opening/closing brackets to be the last symbols on the line.
  *
- * Note: Checks only method calls inside method bodies, constructors, static
- * initializers, and instance initializers.
+ * <p>So this will do:
+ *
+ * <pre>
+ * String.format(
+ *   "File %s not found",
+ *   file
+ * );
+ * String.format(
+ *   "File %s not found", file
+ * );
+ * String.format("File %s not found", file);
+ *
+ * <p>and this won't:
+ *
+ * <pre>
+ * String.format("File %s not found",
+ *   file);
+ * String.format(
+ *   "File %s not found",
+ *   file);
+ * String.format(
+ *   "File %s not found", file);
+ * </pre>
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
+ * @todo #32!:1h Checks only method calls inside method bodies,
+ *  constructors, static initializers, and instance initializers. We should
+ *  extend its functionality and enable checking of all other language
+ *  constructs.
  */
 public final class BracketsStructureCheck extends Check {
-
-    /**
-     * Opening bracket.
-     */
-    private static final String OPENING_BRACKET = "(";
-    /**
-     * Closing bracket.
-     */
-    private static final String CLOSING_BRACKET = ")";
-    /**
-     * Closing bracket with semicolon.
-     */
-    private static final String CLOSING_BRACKET_1 = ");";
-    /**
-     * Error message.
-     */
-    private static final String ERROR_MESSAGE = "Brackets structure is broken";
-
-    /**
-     * Creates new instance of <code>BracketsStructureCheck</code>.
-     */
-    public BracketsStructureCheck() {
-    }
 
     /**
      * {@inheritDoc}
@@ -101,19 +86,15 @@ public final class BracketsStructureCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        // Get method body.
         final DetailAST list = ast.findFirstToken(TokenTypes.SLIST);
         if (null != list) {
-            // Retreive method statements.
             DetailAST expression = list.findFirstToken(TokenTypes.EXPR);
             while (null != expression) {
-                // Find method calls.
                 final DetailAST methodCall =
                     expression.findFirstToken(TokenTypes.METHOD_CALL);
                 if (null != methodCall) {
                     this.checkMethod(methodCall);
                 }
-                // Get next statement.
                 expression = expression.getNextSibling();
             }
         }
@@ -124,23 +105,19 @@ public final class BracketsStructureCheck extends Check {
      * @param methodCall Tree node, containing method call statement.
      */
     private void checkMethod(final DetailAST methodCall) {
-        // Find open and closing brackets of the method call.
         final DetailAST closing = methodCall.findFirstToken(TokenTypes.RPAREN);
         final int startLine = methodCall.getLineNo();
         final int endLine = closing.getLineNo();
-        // If method call is split on several lines.
         if (startLine != endLine) {
-            // Check that opening bracket is the last symbol on the line.
             final DetailAST elist = methodCall.findFirstToken(TokenTypes.ELIST);
             final int parametersLine = elist.getLineNo();
             if (parametersLine == startLine) {
-                this.log(parametersLine, this.ERROR_MESSAGE);
+                this.log(parametersLine, "Brackets structure is broken");
             }
-            // Check that closing bracket is the only symbol on the line.
             final DetailAST lastParameter = elist.getLastChild();
             final int lastParameterLine = lastParameter.getLineNo();
             if (lastParameterLine == endLine) {
-                this.log(lastParameterLine, this.ERROR_MESSAGE);
+                this.log(lastParameterLine, "Brackets structure broken");
             }
         }
     }

@@ -36,20 +36,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Checks not using concatenation of string literals in any form. I.e. the
- * following is prohibited: <br/>
- * String a = "done in " + time + " seconds"; <br/>
- * System.out.println("File not found: " + file); <br/>
+ * Checks for not using concatenation of string literals in any form.
+ *
+ * <p>The following is prohibited:
+ *
+ * <pre>
+ * String a = "done in " + time + " seconds";
+ * System.out.println("File not found: " + file);
  * x += "done";
+ * <pre>
+ *
  * @author Dzmitry Petrushenka (dpetruha@gmail.com)
  * @version $Id$
  */
 public final class StringLiteralsConcatenationCheck extends Check {
-
-    /**
-     * Error message.
-     */
-    private static final String ERR_MSG = "Concatenation of string literals";
 
     /**
      * {@inheritDoc}
@@ -64,10 +64,14 @@ public final class StringLiteralsConcatenationCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        for (DetailAST plusRootAst : this.findChildASTsOfType(ast,
-            TokenTypes.PLUS, TokenTypes.PLUS_ASSIGN)) {
-            if (plusRootAst.getChildCount(TokenTypes.STRING_LITERAL) > 0) {
-                this.log(plusRootAst, this.ERR_MSG);
+        final List<DetailAST> pluses = this.findChildASTsOfType(
+            ast,
+            TokenTypes.PLUS,
+            TokenTypes.PLUS_ASSIGN
+        );
+        for (DetailAST plus : pluses) {
+            if (plus.getChildCount(TokenTypes.STRING_LITERAL) > 0) {
+                this.log(plus, "Concatenation of string literals prohibited");
             }
         }
     }
@@ -78,7 +82,7 @@ public final class StringLiteralsConcatenationCheck extends Check {
      * @param tree AST to traverse.
      * @param types Token types to match against.
      * @return All ASTs subtrees with token types matching any from
-     * <code>types</code>.
+     *  <tt>types</tt>.
      * @see TokenTypes
      */
     private List<DetailAST> findChildASTsOfType(final DetailAST tree,
@@ -104,13 +108,11 @@ public final class StringLiteralsConcatenationCheck extends Check {
      * @see TokenTypes
      */
     private boolean isOfType(final DetailAST ast, final int[] types) {
-        boolean isOfType = false;
         for (int type : types) {
             if (ast.getType() == type) {
-                isOfType = true;
-                break;
+                return true;
             }
         }
-        return isOfType;
+        return false;
     }
 }

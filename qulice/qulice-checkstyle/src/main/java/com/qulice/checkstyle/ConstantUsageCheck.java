@@ -42,12 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class ConstantUsageCheck extends Check {
 
     /**
-     * Creates new instance of <code>ConstantUsageCheck</code>.
-     */
-    public ConstantUsageCheck() {
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
