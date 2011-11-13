@@ -195,7 +195,7 @@ public final class PMDValidator implements Validator {
     private List<File> files(final Environment env) {
         final List<File> files = new ArrayList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final File sources = new File(env.basedir(), "");
+        final File sources = new File(env.basedir(), "src/main/java");
         if (sources.exists()) {
             files.addAll(
                 FileUtils.listFiles(

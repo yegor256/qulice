@@ -58,7 +58,7 @@ public final class PMDValidatorTest {
      * The folder to work in.
      * @see #prepare()
      */
-    private File folder;
+    private File basedir;
 
     /**
      * The environment to work with.
@@ -72,10 +72,10 @@ public final class PMDValidatorTest {
      */
     @Before
     public void prepare() throws Exception {
-        this.folder = this.temp.newFolder("temp-src");
+        this.basedir = this.temp.newFolder("basedir");
         this.env = Mockito.mock(Environment.class);
-        Mockito.doReturn(this.folder).when(this.env).basedir();
-        Mockito.doReturn(this.folder).when(this.env).tempdir();
+        Mockito.doReturn(this.basedir).when(this.env).basedir();
+        Mockito.doReturn(this.basedir).when(this.env).tempdir();
     }
 
     /**
@@ -85,7 +85,8 @@ public final class PMDValidatorTest {
     @Test(expected = ValidationException.class)
     public void testValidatesSetOfFiles() throws Exception {
         final Validator validator = new PMDValidator();
-        final File java = new File(this.folder, "Main.java");
+        final File java = new File(this.basedir, "src/main/java/Main.java");
+        java.getParentFile().mkdirs();
         FileUtils.writeStringToFile(java, "class Main { int x = 0; }");
         validator.validate(this.env);
     }
