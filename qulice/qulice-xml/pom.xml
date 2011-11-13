@@ -41,9 +41,9 @@
         <artifactId>qulice</artifactId>
         <version qulice="yes">1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>qulice-checkstyle</artifactId>
+    <artifactId>qulice-xml</artifactId>
     <packaging>jar</packaging>
-    <name>qulice-checkstyle</name>
+    <name>qulice-xml</name>
 
     <dependencies>
         <dependency>
@@ -56,47 +56,20 @@
             <artifactId>ymock-util</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version since="22 Aug 2011">5.4</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-module-junit4</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.powermock</groupId>
-            <artifactId>powermock-api-mockito</artifactId>
-        </dependency>
-        <dependency>
-            <!-- Checkstyle is using some classes from this lib -->
-            <groupId>com.google.collections</groupId>
-            <artifactId>google-collections</artifactId>
-            <version since="25 Aug 2011">1.0-rc5</version>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

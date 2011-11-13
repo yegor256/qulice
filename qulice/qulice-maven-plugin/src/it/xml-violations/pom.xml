@@ -29,61 +29,34 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @version $Id$
+ * @version $Id: pom.xml 296 2011-11-13 13:53:00Z yegor256@yahoo.com $
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.qulice</groupId>
-        <artifactId>qulice</artifactId>
-        <version qulice="yes">1.0-SNAPSHOT</version>
-    </parent>
-    <artifactId>qulice-pmd</artifactId>
+    <groupId>com.qulice.plugin</groupId>
+    <artifactId>xml-violations</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
-    <name>qulice-pmd</name>
+    <name>xml-violations</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.qulice</groupId>
-            <artifactId>qulice-spi</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.ymock</groupId>
-            <artifactId>ymock-util</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>pmd</groupId>
-            <artifactId>pmd-jdk14</artifactId>
-            <version since="30 Aug 2011">4.2.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-        </dependency>
-    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.qulice</groupId>
+                <artifactId>qulice-maven-plugin</artifactId>
+                <version qulice="yes">1.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

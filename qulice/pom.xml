@@ -54,6 +54,7 @@
         <module>qulice-codenarc</module>
         <module>qulice-pmd</module>
         <module>qulice-findbugs</module>
+        <module>qulice-xml</module>
         <module>qulice-maven-plugin</module>
     </modules>
 
@@ -459,10 +460,10 @@
             </dependency>
             <dependency>
                 <!-- PowerMock unit testing framework -->
-               <groupId>org.powermock</groupId>
-               <artifactId>powermock-core</artifactId>
-               <version since="18 Oct 2011">1.4.9</version>
-               <scope>test</scope>
+                <groupId>org.powermock</groupId>
+                <artifactId>powermock-core</artifactId>
+                <version since="18 Oct 2011">1.4.9</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <!-- PowerMock unit testing framework -->
@@ -477,6 +478,26 @@
                 <artifactId>powermock-api-mockito</artifactId>
                 <version since="18 Oct 2011">1.4.9</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <!-- Forward all calls to LOG4J -->
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version since="19 Sep 2011">1.6.2</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <!-- LOG4J for testing -->
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version since="19 Sep 2011">1.2.16</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <!-- Logging facility. -->
+                <groupId>com.ymock</groupId>
+                <artifactId>ymock-util</artifactId>
+                <version since="22 Sep 2011">1.0</version>
             </dependency>
             <dependency>
                 <!-- Jakarta common lang-related utilities -->

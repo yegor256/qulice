@@ -52,10 +52,8 @@
             <version qulice="yes">1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <!-- Logging facility. -->
             <groupId>com.ymock</groupId>
             <artifactId>ymock-util</artifactId>
-            <version since="22 Sep 2011">1.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
@@ -72,46 +70,34 @@
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-core</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
-            <!-- Forward all calls to SLF4J to LOG4J. -->
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version since="19 Sep 2011">1.6.2</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
-            <!-- Use LOG4J logging facility for all loggings. -->
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version since="19 Sep 2011">1.2.16</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

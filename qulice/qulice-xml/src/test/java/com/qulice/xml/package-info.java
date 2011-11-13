@@ -27,39 +27,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
-
-import com.qulice.spi.Validator;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Provider of validators.
+ * XML formatting validator, tests.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-final class ValidatorsProvider {
-
-    /**
-     * Get a collection of validators.
-     * @return List of them
-     * @see CheckMojo#execute()
-     */
-    public List<Validator> all() {
-        final List<Validator> validators = new ArrayList<Validator>();
-        validators.add(new EnforcerValidator());
-        // doesn't work properly - always report a problem
-        // validators.add(new DependenciesValidator());
-        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
-        validators.add(new com.qulice.pmd.PMDValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        // has some strange defect inside
-        // validators.add(new com.qulice.findbugs.FindBugsValidator());
-        // not working yet
-        // validators.add(new CoberturaValidator());
-        return validators;
-    }
-
-}
+package com.qulice.xml;

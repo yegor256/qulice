@@ -94,15 +94,13 @@ How to release new version to Maven Central:
 
         find . -name "*.xml" -exec sed -i "" 's|\(\<version qulice\=\"yes\"\>\)1\.0\-SNAPSHOT\(\<\/version\>\)|\10.1.5\2|g' {} \;
 
-    4. Commit your changes
+    4. Commit your changes to SVN
 
     5. Read these pages:
         https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-8.ReleaseIt
         http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html
 
-    6. Delete local repo: "rm -rf ~/.m2/repository/com/qulice"
-
-    7. Run "mvn -Dci -Pqulice clean deploy"
+    6. Run "mvn -Dci -Pqulice clean deploy"
 
         Make sure that you have this profile in ~/.m2/settings.xml:
 
@@ -115,16 +113,19 @@ How to release new version to Maven Central:
             </properties>
           </profile>
 
-    8. Run "mvn nexus:staging-close"
+    7. Run "mvn nexus:staging-close"
 
-    9. Run "mvn nexus:staging-promote" (target ID is "releases")
+    8. Run "mvn nexus:staging-promote" (target ID is "releases")
 
-    10. Copy your branch to tags:
+    9. Copy your branch to tags:
 
         svn cp ^/branches/ticketXX ^/tags/qulice-X.X.X -m "refs #XX - qulice-0.1.5 released to Maven Central"
 
-    11. Delete the branch
+    10. Delete the branch or merge it back to trunk (if you did any changes). Don't
+        forget to revert back version number:
 
-    12. Close the ticket as "fixed"
+        find . -name "*.xml" -exec sed -i "" 's|\(\<version qulice\=\"yes\"\>\)0\.1\.5\(\<\/version\>\)|\11.0-SNAPSHOT\2|g' {} \;
+
+    11. Close the ticket as "fixed"
 
     That's it

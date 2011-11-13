@@ -67,10 +67,13 @@
             <version qulice="yes">1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <!-- Logging facility. -->
+            <groupId>com.qulice</groupId>
+            <artifactId>qulice-xml</artifactId>
+            <version qulice="yes">1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>com.ymock</groupId>
             <artifactId>ymock-util</artifactId>
-            <version since="22 Sep 2011">1.0</version>
         </dependency>
         <dependency>
             <!-- Forward all calls to SLF4J to Maven log. -->
@@ -140,37 +143,30 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-core</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-api-mockito</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
-            <!-- other details are in parent pom.xml -->
         </dependency>
     </dependencies>
 

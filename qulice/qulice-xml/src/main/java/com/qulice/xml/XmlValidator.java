@@ -27,39 +27,31 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.xml;
 
+import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import java.util.ArrayList;
-import java.util.List;
+import com.ymock.util.Logger;
 
 /**
- * Provider of validators.
+ * Validates XML files for formatting.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-final class ValidatorsProvider {
+public final class XmlValidator implements Validator {
 
     /**
-     * Get a collection of validators.
-     * @return List of them
-     * @see CheckMojo#execute()
+     * {@inheritDoc}
+     * @checkstyle RedundantThrows (3 lines)
      */
-    public List<Validator> all() {
-        final List<Validator> validators = new ArrayList<Validator>();
-        validators.add(new EnforcerValidator());
-        // doesn't work properly - always report a problem
-        // validators.add(new DependenciesValidator());
-        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
-        validators.add(new com.qulice.pmd.PMDValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        // has some strange defect inside
-        // validators.add(new com.qulice.findbugs.FindBugsValidator());
-        // not working yet
-        // validators.add(new CoberturaValidator());
-        return validators;
+    @Override
+    public void validate(final Environment env) throws ValidationException {
+        Logger.info(
+            this,
+            "Not implemented yet"
+        );
     }
 
 }
