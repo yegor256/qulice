@@ -1,5 +1,4 @@
 /**
- *
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -27,12 +26,24 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * @version $Id$
- *
- * Validate that the build really failed and violations were reported.
  */
+package com.qulice.foo;
 
-def log = new File(basedir, 'build.log')
-assert log.text.contains('LICENSE found')
-assert log.text.contains(' Checkstyle violations (see log above)')
+/**
+ * Sample class.
+ * @author Yegor Bugayenko (yegor@qulice.com)
+ * @version $Id: Main.java 18 2011-08-28 14:44:19Z yegor256@yahoo.com $
+ */
+public final class Violations {
+
+    /**
+     * Calculate square of a number.
+     * @param num The number
+     * @return The square
+     */
+    public int square(final int num) {
+        final Integer s = 1;
+        return num * s;
+    }
+
+}

@@ -69,22 +69,22 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  *  package. Checkstyle annotation should be removed (see above).
  */
 public final class PMDValidator implements Validator {
-    
+
     /**
      * PMD.
      */
     private final PMD pmd = new PMD();
-    
+
     /**
      * Rule context.
      */
     private final RuleContext context = new RuleContext();
-    
+
     /**
      * Rules.
      */
     private final RuleSets ruleSets;
-    
+
     /**
      * Report listener.
      */
@@ -253,17 +253,7 @@ public final class PMDValidator implements Validator {
          */
         @Override
         public void metricAdded(final Metric metric) {
-            Logger.info(
-                this,
-                "%s: %d %f %f %f %f %f",
-                metric.getMetricName(),
-                metric.getCount(),
-                metric.getTotal(),
-                metric.getLowValue(),
-                metric.getHighValue(),
-                metric.getAverage(),
-                metric.getStandardDeviation()
-            );
+            // ignore it
         }
         /**
          * {@inheritDoc}

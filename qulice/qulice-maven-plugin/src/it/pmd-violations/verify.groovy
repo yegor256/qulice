@@ -29,10 +29,8 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @version $Id$
- *
- * Validate that the build really failed and violations were reported.
  */
 
 def log = new File(basedir, 'build.log')
-assert log.text.contains('LICENSE found')
-assert log.text.contains(' Checkstyle violations (see log above)')
+assert log.text.contains(' PMD violations (see log above)')
+assert log.text.contains('Avoid variables with short names like s')

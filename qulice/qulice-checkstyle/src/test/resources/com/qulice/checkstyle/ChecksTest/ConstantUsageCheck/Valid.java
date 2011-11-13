@@ -12,6 +12,7 @@ public final class Invalid {
         System.out.println("Before start");
     }
     public int do1(int y) {
-        return y * NUMBER;
+        final Integer x = 5;
+        return y * NUMBER * x;
     }
 }
