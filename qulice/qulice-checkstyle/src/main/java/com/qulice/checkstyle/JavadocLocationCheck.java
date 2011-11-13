@@ -98,13 +98,11 @@ public final class JavadocLocationCheck extends Check {
      */
     private int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
-        int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {
             if (lines[pos].trim().equals(text)) {
-                found = pos;
-                break;
+                return pos;
             }
         }
-        return found;
+        return -1;
     }
 }

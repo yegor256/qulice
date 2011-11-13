@@ -114,8 +114,8 @@ public final class CodeNarcValidatorTest {
 
     /**
      * Validate log message for filename existence.
-     * @todo #36! The test is ignored until filename will be added to codernarc validation log messages.
-     * @throws Exception
+     * @todo #36! The test is ignored until filename will be added
+     *  to codernarc validation log messages.
      * @throws Exception If error message does not include filename.
      */
     @Test(expected = ValidationException.class)
@@ -128,13 +128,13 @@ public final class CodeNarcValidatorTest {
         org.apache.log4j.Logger.getRootLogger().addAppender(codeNarcAppender);
         try {
             validator.validate(this.env);
-        } catch (ValidationException e) {
+        } catch (ValidationException ex) {
             final List<String> messages = codeNarcAppender.getMessages();
             final Pattern p = Pattern.compile("[a-zA-Z0-9_]+\\.groovy");
             for (String message : messages) {
                 Assert.assertTrue(p.matcher(message).find());
             }
-            throw e;
+            throw ex;
         }
     }
 
@@ -142,17 +142,17 @@ public final class CodeNarcValidatorTest {
      * Appender for log verifying.
      */
     private class CodeNarcAppender extends NullAppender {
-
         /**
          * List of logged messages.
          */
         private List<String> messages = new ArrayList<String>();
-
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public void doAppend(final LoggingEvent event) {
             this.messages.add(event.getMessage().toString());
         }
-
         /**
          * Get list of logged messages.
          * @return The list of logged messages
@@ -160,7 +160,6 @@ public final class CodeNarcValidatorTest {
         public List<String> getMessages() {
             return this.messages;
         }
-
     }
 
 }

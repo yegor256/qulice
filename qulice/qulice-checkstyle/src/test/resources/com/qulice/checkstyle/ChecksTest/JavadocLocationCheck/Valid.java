@@ -5,19 +5,27 @@
 public final class Valid {
 
     /**
-     *
+     * Integer variable.
      */
     private int x = 0;
 
     /**
-     *
+     * Public ctor.
+     * @param num Some number
      */
-    public Valid() {}
+    @SuppressWarnings("test")
+    public Valid(final Integer num) {}
 
     /**
-     *
+     * Some other method.
+     * @param alpha Some number
+     * @param beta Some string
      */
-    public void method() {
+    @SuppressWarnings("test")
+    public void method(final int alpha, final String beta) {
+        int a = 5;
+        int b = 3;
+        assert a != b;
     }
 }
 /**
