@@ -43,7 +43,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.qulice</groupId>
     <artifactId>qulice</artifactId>
-    <version qulice="yes">1.0-SNAPSHOT</version>
+    <version qulice="yes">0.1.6</version>
     <packaging>pom</packaging>
     <name>qulice</name>
 
@@ -158,6 +158,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <releasedVersion>0.1.6</releasedVersion>
     </properties>
     <repositories>
         <!--
@@ -191,7 +192,7 @@
                             <dependency>
                                 <groupId>com.qulice</groupId>
                                 <artifactId>qulice-tk</artifactId>
-                                <version qulice="yes">1.0-SNAPSHOT</version>
+                                <version qulice="yes">0.1.6</version>
                             </dependency>
                         </dependencies>
                         <executions>
@@ -221,7 +222,7 @@
                             <dependency>
                                 <groupId>com.qulice</groupId>
                                 <artifactId>qulice-tk</artifactId>
-                                <version qulice="yes">1.0-SNAPSHOT</version>
+                                <version qulice="yes">0.1.6</version>
                             </dependency>
                         </dependencies>
                         <executions>
@@ -373,7 +374,7 @@
                             <dependency>
                                 <groupId>com.qulice</groupId>
                                 <artifactId>qulice-tk</artifactId>
-                                <version qulice="yes">1.0-SNAPSHOT</version>
+                                <version qulice="yes">0.1.6</version>
                             </dependency>
                         </dependencies>
                         <executions>

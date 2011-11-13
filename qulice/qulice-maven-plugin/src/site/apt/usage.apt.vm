@@ -48,7 +48,7 @@ Usage
     <plugin>
       <groupId>com.qulice</groupId>
       <artifactId>qulice-maven-plugin</artifactId>
-      <version>0.1.2</version>
+      <version>${releasedVersion}</version>
       <configuration>
         <license>file:${basedir}/LICENSE.txt</license>
       </configuration>
@@ -106,7 +106,7 @@ are met: no conditions.
     <plugin>
       <groupId>com.qulice</groupId>
       <artifactId>qulice-maven-plugin</artifactId>
-      <version>${project.version}</version>
+      <version>${releasedVersion}</version>
       <configuration>
         <license>LICENSE.txt</license>
       </configuration>
@@ -138,7 +138,7 @@ are met: no conditions.
 +--
 <pluginRepositories>
   <pluginRepository>
-    <id>sonatype.snapshots</id>
+    <id>qulice.snapshots</id>
     <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
   </pluginRepository>
 </pluginRepositories>
