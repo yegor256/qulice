@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   "File %s not found", file
  * );
  * String.format("File %s not found", file);
+ * </pre>
  *
  * <p>and this won't:
  *
@@ -62,7 +63,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
- * @todo #32!:1h Checks only method calls inside method bodies,
+ * @todo #32:1h! Checks only method calls inside method bodies,
  *  constructors, static initializers, and instance initializers. We should
  *  extend its functionality and enable checking of all other language
  *  constructs.

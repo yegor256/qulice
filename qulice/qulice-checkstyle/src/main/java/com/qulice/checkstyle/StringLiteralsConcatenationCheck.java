@@ -44,7 +44,7 @@ import java.util.List;
  * String a = "done in " + time + " seconds";
  * System.out.println("File not found: " + file);
  * x += "done";
- * <pre>
+ * </pre>
  *
  * @author Dzmitry Petrushenka (dpetruha@gmail.com)
  * @version $Id$
