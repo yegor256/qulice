@@ -56,9 +56,10 @@ public final class ConstantUsageCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        final DetailAST finalToken = modifiers.findFirstToken(TokenTypes.FINAL);
-        if (null == finalToken) {
+        if (!this.isField(ast)) {
+            return;
+        }
+        if (!this.isFinal(ast)) {
             return;
         }
         final DetailAST nameNode = ast.findFirstToken(TokenTypes.IDENT);
@@ -83,6 +84,29 @@ public final class ConstantUsageCheck extends Check {
         if (counter < 2) {
             this.log(line + 1, "Constant \"" + name + "\" used only once");
         }
+    }
+
+    /**
+     * Returns <code>true</code> if specified node has parent node of type
+     * <code>OBJBLOCK</code>.
+     * @param node Node to check.
+     * @return True if parent node is <code>OBJBLOCK</code>, else
+     * returns <code>false</code>.
+     */
+    private boolean isField(final DetailAST node) {
+        final DetailAST parent = node.getParent();
+        return TokenTypes.OBJBLOCK == parent.getType();
+    }
+
+    /**
+     * Returns true if specified node has modifiers of type <code>FINAL</code>.
+     * @param node Node to check.
+     * @return True if specified node contains modifiers of type
+     * <code>FINAL</code>, else returns <code>false</code>.
+     */
+    private boolean isFinal(final DetailAST node) {
+        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
+        return modifiers.branchContains(TokenTypes.FINAL);
     }
 
     /**
