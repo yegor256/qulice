@@ -33,6 +33,10 @@ public final class Valid {
  * only as a text resource in integration.ChecksIT.
  */
 interface I1 {
+    /**
+     * Integer variable.
+     */
+    private int x = 0;
 
 }
 
