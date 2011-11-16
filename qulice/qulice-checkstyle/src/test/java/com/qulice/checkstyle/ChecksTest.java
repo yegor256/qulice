@@ -61,14 +61,9 @@ public final class ChecksTest {
 
     /**
      * Directories where test scripts are located.
-     * @todo #45 MultilineJavadocTagsCheck check doesn't work, add it to the
-     *  list below in order to reproduce the problem
-     * @todo #45 ConstantUsageCheck check doesn't work, add it to the
-     *  list below in order to reproduce the problem
-     * @todo #45 JavadocLocationCheck check doesn't work, add it to the
-     *  list below in order to reproduce the problem
      */
     private static final String[] DIRS = {
+        "MultilineJavadocTagsCheck",
         "ConstantUsageCheck",
         "StringLiteralsConcatenationCheck",
         "EmptyLinesCheck",
