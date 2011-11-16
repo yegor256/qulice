@@ -61,6 +61,9 @@ public final class JavadocLocationCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
+        if (!this.isField(ast)) {
+            return;
+        }
         final String[] lines = this.getLines();
         final int current = ast.getLineNo();
         final int commentEnd = this.findCommentEnd(lines, current) + 1;
@@ -77,6 +80,22 @@ public final class JavadocLocationCheck extends Check {
         } else {
             this.log(0, "Problem finding javadoc");
         }
+    }
+
+    /**
+     * Checks input nodes: if specified node is variable method returns
+     * <code>false</code> if node is not a field. Otherwise it returns
+     * <code>true</code>.
+     * @param node Node to check.
+     * @return False if the specified node is a field, otherwise it returns
+     * <code>true</code>.
+     */
+    private boolean isField(final DetailAST node) {
+        if (TokenTypes.VARIABLE_DEF != node.getType()) {
+            return true;
+        }
+        final DetailAST parent = node.getParent();
+        return TokenTypes.OBJBLOCK == parent.getType();
     }
 
     /**

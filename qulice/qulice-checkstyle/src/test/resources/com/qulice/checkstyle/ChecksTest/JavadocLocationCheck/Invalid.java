@@ -31,5 +31,10 @@ public final class Invalid {
  */
 
 interface I1 {
+    /**
+     * Integer variable.
+     */
+
+    private int x = 0;
 
 }

@@ -69,6 +69,7 @@ public final class ChecksTest {
      *  list below in order to reproduce the problem
      */
     private static final String[] DIRS = {
+        "JavadocLocationCheck",
         "ConstantUsageCheck",
         "StringLiteralsConcatenationCheck",
         "EmptyLinesCheck",
