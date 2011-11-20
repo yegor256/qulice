@@ -366,7 +366,7 @@
                                     <artifactId>rempl-maven-plugin</artifactId>
                                     <version since="18 Oct 2011">1.1.3</version>
                                     <configuration>
-                                        <rom>src/rempl/rom.xml</rom>
+                                        <rom>${basedir}/src/rempl/rom.xml</rom>
                                     </configuration>
                                 </plugin>
                             </reportPlugins>

@@ -26,6 +26,11 @@ public final class Valid {
         int a = 5;
         int b = 3;
         assert a != b;
+        final Runnable runnable = new Runnable() {
+            @Override
+            void run() {
+            }
+        };
     }
 }
 /**

@@ -2,8 +2,9 @@
  * This is not a real Java class. It won't be compiled ever. It is used
  * only as a text resource in integration.ChecksIT.
  */
-public final class Invalid {
-    private final int NUMBER = 5;
+public final class Valid {
+    private static final Invalid INSTANCE = new Invalid();
+    private static final int NUMBER = 5;
     protected String NAME = "DDD";
     static {
         System.out.println(NUMBER);
