@@ -61,7 +61,7 @@ public final class MultilineJavadocTagsCheck extends Check {
         final int start = ast.getLineNo();
         final int commentStart = this.findCommentStart(lines, start) + 1;
         final int commentEnd = this.findCommentEnd(lines, start) - 1;
-        if ((commentEnd > commentStart) && (commentStart >= 0)) {
+        if ((commentEnd >= commentStart) && (commentStart >= 0)) {
             this.checkJavaDoc(lines, commentStart, commentEnd);
         } else {
             this.log(0, "Can't find method comment");
