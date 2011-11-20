@@ -62,6 +62,7 @@
 
     <rule ref="rulesets/controversial.xml">
         <exclude name="AtLeastOneConstructor"/>
+        <exclude name="AvoidFinalLocalVariable"/>
         <exclude name="AvoidLiteralsInIfCondition"/>
         <exclude name="DataflowAnomalyAnalysis"/>
     </rule>
