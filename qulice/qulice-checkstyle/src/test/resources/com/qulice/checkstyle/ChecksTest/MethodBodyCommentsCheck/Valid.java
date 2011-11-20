@@ -20,3 +20,13 @@ public final class Valid {
         this.a = b;
     }
 }
+
+/**
+ * Example with an interface.
+ */
+public interface ValidInterface {
+    /**
+     * Some method with no body
+     */
+    void method();
+}
