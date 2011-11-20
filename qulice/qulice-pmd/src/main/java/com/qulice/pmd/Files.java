@@ -49,12 +49,6 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
 public final class Files {
 
     /**
-     * Creates new instance of <code>Files</code>.
-     */
-    public Files() {
-    }
-
-    /**
      * Get full list of files to process.
      * @param environment The environment.
      * @return Collection of files.
@@ -62,7 +56,8 @@ public final class Files {
     private Collection<File> getFiles(final Environment environment) {
         final Collection<File> files = new LinkedList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final File sourcesDir = new File(environment.basedir(), "");
+        final File sourcesDir =
+            new File(environment.basedir(), "src/main/java");
         if (sourcesDir.exists()) {
             final Collection<File> sources = FileUtils.listFiles(
                 sourcesDir,

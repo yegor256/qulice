@@ -33,4 +33,4 @@
 
 def log = new File(basedir, 'build.log')
 assert log.text.contains(' PMD violations (see log above)')
-assert log.text.contains('Avoid variables with short names like s')
+assert log.text.contains("Avoid unused private fields such as 'var'")

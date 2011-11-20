@@ -57,12 +57,6 @@ public final class PMDValidator implements Validator {
     private final SourceValidator validator = new SourceValidator();
 
     /**
-     * Public ctor.
-     */
-    public PMDValidator() {
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
