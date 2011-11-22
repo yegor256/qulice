@@ -60,6 +60,9 @@ public final class MethodBodyCommentsCheck extends Check {
     public void visitToken(final DetailAST ast) {
         final int start = ast.getLineNo();
         final DetailAST list = ast.findFirstToken(TokenTypes.SLIST);
+        if (null == list) {
+            return;
+        }
         final DetailAST closingNode = list.findFirstToken(TokenTypes.RCURLY);
         final int end = closingNode.getLineNo() - 1;
         final String[] lines = this.getLines();
