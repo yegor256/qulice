@@ -42,6 +42,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class ConstantUsageCheck extends Check {
 
     /**
+     * Size of text buffer.
+     */
+    private static final int BUFFER_SIZE = 64;
+
+    /**
      * {@inheritDoc}
      */
     @Override
@@ -75,15 +80,34 @@ public final class ConstantUsageCheck extends Check {
             }
             final DetailAST assign = variable.findFirstToken(TokenTypes.ASSIGN);
             final DetailAST expression = assign.findFirstToken(TokenTypes.EXPR);
-            final DetailAST value = expression.getFirstChild();
-            final String text = this.trim(value.getText());
+            final String text = this.getText(expression);
             if (text.contains(name)) {
                 counter = counter + 1;
             }
         }
         if (counter < 2) {
-            this.log(line + 1, "Constant \"" + name + "\" used only once");
+            this.log(line, "Constant \"" + name + "\" used only once");
         }
+    }
+
+    /**
+     * Returns text representation of the specified node, including it's
+     * children.
+     * @param node Node, containing text.
+     * @return Text representation of the node.
+     */
+    private String getText(final DetailAST node) {
+        if (0 == node.getChildCount()) {
+            return node.getText();
+        }
+        final StringBuilder result = new StringBuilder(this.BUFFER_SIZE);
+        DetailAST child = node.getFirstChild();
+        while (null != child) {
+            final String text = this.getText(child);
+            result.append(text);
+            child = child.getNextSibling();
+        }
+        return result.toString();
     }
 
     /**
@@ -110,16 +134,6 @@ public final class ConstantUsageCheck extends Check {
     }
 
     /**
-     * Removes start and end quotes from the input string.
-     * @param text Input string.
-     * @return String without quotes.
-     */
-    private String trim(final String text) {
-        final int end = text.length() - 1;
-        return text.substring(1, end);
-    }
-
-    /**
      * Parses the body of the method and increments counter each time when it
      * founds constant name.
      * @param method Tree node, containing method.
@@ -134,7 +148,7 @@ public final class ConstantUsageCheck extends Check {
             final int start = opening.getLineNo();
             final int end = closing.getLineNo() - 1;
             final String[] lines = this.getLines();
-            for (int i = start; i < end; i += 1) {
+            for (int i = start; i < end; i = i + 1) {
                 if (lines[i].contains(name)) {
                     counter += 1;
                 }

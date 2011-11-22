@@ -3,10 +3,12 @@
  * only as a text resource in integration.ChecksIT.
  */
 public final class Invalid {
+    private static final Invalid INSTANCE = new Invalid();
     private final int NUMBER = 5;
     protected String NAME = "DDD";
+    private static final int N = NUMBER*2;
     static {
-        System.out.println(NUMBER);
+        System.out.println(N);
     }
     {
         System.out.println("Before start");
