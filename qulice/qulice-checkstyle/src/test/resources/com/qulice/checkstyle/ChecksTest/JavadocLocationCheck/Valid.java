@@ -27,6 +27,9 @@ public final class Valid {
         int b = 3;
         assert a != b;
         final Runnable runnable = new Runnable() {
+            /**
+             * {@inheritDoc}
+             */
             @Override
             void run() {
             }
@@ -42,6 +45,4 @@ interface I1 {
      * Integer variable.
      */
     private int x = 0;
-
 }
-

@@ -82,6 +82,8 @@ public final class ChecksTest {
         "CascadeIndentationCheck",
         "BracketsStructureCheck",
         "ConstantUsageCheck",
+        "JavadocLocationCheck",
+        "MethodBodyCommentsCheck",
     };
 
     /**
