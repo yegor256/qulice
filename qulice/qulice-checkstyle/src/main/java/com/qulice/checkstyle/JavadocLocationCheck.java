@@ -66,20 +66,56 @@ public final class JavadocLocationCheck extends Check {
         }
         final String[] lines = this.getLines();
         final int current = ast.getLineNo();
-        final int commentEnd = this.findCommentEnd(lines, current) + 1;
-        if (commentEnd > 0) {
-            final int diff = current - commentEnd;
-            if (diff > 1) {
-                for (int i = 1; i < diff; i += 1) {
-                    this.log(
-                        commentEnd + i,
-                        "Empty line between javadoc and subject"
-                    );
-                }
-            }
-        } else {
-            this.log(0, "Problem finding javadoc");
+        final int commentEnd = this.findCommentEnd(lines, current);
+        final int commentMinimum = this.getCommentMinimum(ast);
+        if (commentEnd <= commentMinimum) {
+            this.log(current, "Problem finding javadoc");
+            return;
         }
+        final int diff = current - commentEnd;
+        if (diff > 1) {
+            for (int i = 1; i < diff; i += 1) {
+                this.log(
+                    commentEnd + i,
+                    "Empty line between javadoc and subject"
+                );
+            }
+        }
+    }
+
+    /**
+     * Returns mimimum line number of the end of the comment.
+     * @param node Node to be checked for Java docs.
+     * @return Mimimum line number of the end of the comment.
+     */
+    private int getCommentMinimum(final DetailAST node) {
+        int minimum = 0;
+        final DetailAST parent = node.getParent();
+        if (null != parent) {
+            DetailAST previous = node.getPreviousSibling();
+            if (null == previous) {
+                previous = parent;
+            }
+            minimum = previous.getLineNo();
+        } else if (!this.isFirst(node)) {
+            final DetailAST previous = node.getPreviousSibling();
+            final DetailAST object =
+                previous.findFirstToken(TokenTypes.OBJBLOCK);
+            final DetailAST closing = object.getLastChild();
+            minimum = closing.getLineNo();
+        }
+        return minimum;
+    }
+
+    /**
+     * Checks the specified node: is it first element or not.
+     * @param node Node to be checked.
+     * @return True if there are no any nodes before this one, else -
+     * <code>false</code>.
+     */
+    private boolean isFirst(final DetailAST node) {
+        final DetailAST previous = node.getPreviousSibling();
+        return null == previous;
     }
 
     /**
@@ -119,7 +155,7 @@ public final class JavadocLocationCheck extends Check {
         final int start, final String text) {
         for (int pos = start - 1; pos >= 0; pos -= 1) {
             if (lines[pos].trim().equals(text)) {
-                return pos;
+                return pos + 1;
             }
         }
         return -1;
