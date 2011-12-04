@@ -510,6 +510,12 @@
                 <artifactId>commons-io</artifactId>
                 <version since="18 Oct 2011">2.1</version>
             </dependency>
+            <dependency>
+                <!-- Nice tools for file manipulations -->
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava-io</artifactId>
+                <version since="4 Dec 2011">r03</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

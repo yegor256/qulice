@@ -33,25 +33,20 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.varia.NullAppender;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.mockito.Mockito;
 
 /**
  * Test case for {@link CodeNarcValidator} class.
  * @author Pavlo Shamrai (pshamrai@gmail.com)
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
 public final class CodeNarcValidatorTest {
@@ -64,10 +59,7 @@ public final class CodeNarcValidatorTest {
     @Test(expected = ValidationException.class)
     public void failsOnIncorrectGroovySources() throws Exception {
         final Environment env = new EnvironmentMocker()
-            .withFile(
-                "src/main/java/foo/FailedMain.groovy",
-                "class failedMain { int x = 0 }"
-            )
+            .withFile("src/Main.groovy", "System.out.println('hi')")
             .mock();
         final Validator validator = new CodeNarcValidator();
         validator.validate(env);
@@ -81,10 +73,7 @@ public final class CodeNarcValidatorTest {
     public void passesCorrectFilesWithoutExceptions() throws Exception {
         final Validator validator = new CodeNarcValidator();
         final Environment env = new EnvironmentMocker()
-            .withFile(
-                "src/main/java/com/example/foo/SuccessMain.groovy",
-                "class SuccessMain { int x = 0 }"
-            )
+            .withFile("src/foo/Foo.groovy", "// empty")
             .mock();
         validator.validate(env);
     }
@@ -100,10 +89,7 @@ public final class CodeNarcValidatorTest {
     @Ignore
     public void reportsFullFileNamesOfGroovyScripts() throws Exception {
         final Environment env = new EnvironmentMocker()
-            .withFile(
-                "src/main/java/foo/SecondMain.groovy",
-                "class secondMain { int x = 0 }"
-            )
+            .withFile("src/main/Foo.groovy", "System.out.println('foo')")
             .mock();
         final Validator validator = new CodeNarcValidator();
         final CodeNarcAppender codeNarcAppender = new CodeNarcAppender();

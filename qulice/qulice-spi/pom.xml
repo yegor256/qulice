@@ -51,9 +51,16 @@
             <artifactId>mockito-all</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava-io</artifactId>
-            <version since="4 Dec 2011">r03</version>
             <scope>test</scope>
         </dependency>
         <dependency>

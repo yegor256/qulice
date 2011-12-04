@@ -32,6 +32,8 @@ package com.qulice.spi;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import org.mockito.Mockito;
 import org.apache.commons.io.FileUtils;
 
@@ -49,14 +51,25 @@ public final class EnvironmentMocker {
     private final File basedir;
 
     /**
-     * Public ctor.
+     * Files for classpath.
      */
-    public EnvironmentMocker() {
-        this.basedir = Files.createTempDir();
+    private final Collection<File> classpath = new ArrayList<File>();
+
+    /**
+     * Public ctor.
+     * @throws IOException If some IO problem
+     */
+    public EnvironmentMocker() throws IOException {
+        final File temp = Files.createTempDir();
+        FileUtils.forceDeleteOnExit(temp);
+        this.basedir = new File(temp, "basedir");
+        this.basedir.mkdirs();
     }
 
     /**
      * With this file on board.
+     * @param name File name related to basedir
+     * @param content File content to write
      * @return This object
      * @throws IOException If some IO problem
      */
@@ -68,16 +81,34 @@ public final class EnvironmentMocker {
     }
 
     /**
+     * With this file on board.
+     * @param name File name related to basedir
+     * @param bytes File content to write
+     * @return This object
+     * @throws IOException If some IO problem
+     */
+    public EnvironmentMocker withFile(final String name, final byte[] bytes)
+        throws IOException {
+        final File file = new File(this.basedir, name);
+        FileUtils.writeByteArrayToFile(file, bytes);
+        return this;
+    }
+
+    /**
      * Mock it.
      * @return The instance of {@link Environment}
      */
     public Environment mock() {
         final Environment env = Mockito.mock(Environment.class);
         Mockito.doReturn(this.basedir).when(env).basedir();
-        Mockito.doReturn(new File(this.basedir, "target/tempdir"))
-            .when(env).tempdir();
-        Mockito.doReturn(new File(this.basedir, "target/classes"))
-            .when(env).outdir();
+        final File tempdir = new File(this.basedir, "target/tempdir");
+        tempdir.mkdirs();
+        Mockito.doReturn(tempdir).when(env).tempdir();
+        final File outdir = new File(this.basedir, "target/classes");
+        outdir.mkdirs();
+        Mockito.doReturn(outdir).when(env).outdir();
+        this.classpath.add(outdir);
+        Mockito.doReturn(this.classpath).when(env).classpath();
         return env;
     }
 
