@@ -29,47 +29,22 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
-import java.util.Properties;
-import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.context.Context;
+import com.qulice.spi.ValidationException;
 
 /**
- * Environment, passed from MOJO to validators.
+ * Validator inside Maven.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-interface MavenEnvironment extends Environment {
+interface MavenValidator {
 
     /**
-     * Get project.
-     * @return The project
+     * Validate this environment.
+     * @param env The environment
+     * @throws ValidationException In case of violations
+     * @checkstyle RedundantThrows (4 lines)
      */
-    MavenProject project();
-
-    /**
-     * Get properties.
-     * @return The properties
-     */
-    Properties properties();
-
-    /**
-     * Get context.
-     * @return The context
-     */
-    Context context();
-
-    /**
-     * Get plugin configuration properties.
-     * @return The props
-     */
-    Properties config();
-
-    /**
-     * Get MOJO executor.
-     * @return The executor
-     */
-    MojoExecutor executor();
+    void validate(final MavenEnvironment env) throws ValidationException;
 
 }

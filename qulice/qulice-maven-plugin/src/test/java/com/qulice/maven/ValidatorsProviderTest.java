@@ -29,8 +29,6 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Validator;
-import java.util.List;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -40,16 +38,22 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class ValidatorsProviderTest {
+public final class DefaultValidatorsProviderTest {
 
     /**
-     * Get collection of validators.
+     * ValidatorsProvider can produce a list of validators.
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void testCollectionRetrieving() throws Exception {
-        final List<Validator> validators = new ValidatorsProvider().all();
-        MatcherAssert.assertThat(validators.size(), Matchers.greaterThan(0));
+    public void producesACollectionOfValidators() throws Exception {
+        MatcherAssert.assertThat(
+            new DefaultValidatorsProvider().external().size(),
+            Matchers.greaterThan(0)
+        );
+        MatcherAssert.assertThat(
+            new DefaultValidatorsProvider().internal().size(),
+            Matchers.greaterThan(0)
+        );
     }
 
 }

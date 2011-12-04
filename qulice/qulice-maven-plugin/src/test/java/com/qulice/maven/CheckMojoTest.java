@@ -34,33 +34,26 @@ import com.qulice.spi.Validator;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.maven.plugin.logging.Log;
-import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
  * Test case for {@link CheckMojo} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ CheckMojo.class, ValidatorsProvider.class })
-public final class CheckMojoTest extends AbstractMojoTestCase {
+public final class CheckMojoTest {
 
     /**
-     * Skip option should work.
+     * CheckMojo can skip execution if "skip" flag is set.
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void testSkipOption() throws Exception {
+    public void skipsExecutionOnSkipFlag() throws Exception {
         final CheckMojo mojo = new CheckMojo();
         final Log log = Mockito.mock(Log.class);
         mojo.setLog(log);
@@ -70,23 +63,15 @@ public final class CheckMojoTest extends AbstractMojoTestCase {
     }
 
     /**
-     * Validation should happen.
+     * CheckMojo can validate a project using all provided validators.
      * @throws Exception If something wrong happens inside
-     * @checkstyle ExecutableStatementCount (30 lines)
      */
     @Test
-    public void testValidatingWorks() throws Exception {
-        PowerMockito.mockStatic(ValidatorsProvider.class);
-        final ValidatorsProvider factory =
-            PowerMockito.mock(ValidatorsProvider.class);
-        final List<Validator> validators = new ArrayList<Validator>();
-        final CheckMojoTest.SpyValidator validator =
-            new CheckMojoTest.SpyValidator();
-        validators.add(validator);
-        Mockito.doReturn(validators).when(factory).all();
-        PowerMockito.whenNew(ValidatorsProvider.class).withNoArguments()
-            .thenReturn(factory);
+    public void validatesUsingAllProvidedValidators() throws Exception {
         final CheckMojo mojo = new CheckMojo();
+        final ValidatorsProvider provider =
+            new ValidatorsProviderMocker().mock();
+        mojo.setValidatorsProvider(provider);
         final MavenProject project = Mockito.mock(MavenProject.class);
         mojo.setProject(project);
         mojo.setLog(Mockito.mock(Log.class));
@@ -95,49 +80,8 @@ public final class CheckMojoTest extends AbstractMojoTestCase {
         final Context context = Mockito.mock(Context.class);
         mojo.contextualize(context);
         mojo.execute();
-        Mockito.verify(factory).all();
-        final Environment env = validator.env();
-        MatcherAssert.assertThat(env, Matchers.notNullValue());
-        MatcherAssert.assertThat(
-            env,
-            Matchers.instanceOf(MavenEnvironment.class)
-        );
-        MatcherAssert.assertThat(
-            ((MavenEnvironment) env).project(),
-            Matchers.equalTo(project)
-        );
-        MatcherAssert.assertThat(
-            ((MavenEnvironment) env).context(),
-            Matchers.equalTo(context)
-        );
-        MatcherAssert.assertThat(
-            env.param("license", ""),
-            Matchers.equalTo(license)
-        );
-    }
-
-    /**
-     * Simulator of validation.
-     */
-    private static final class SpyValidator implements Validator {
-        /**
-         * Environment.
-         */
-        private Environment env;
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void validate(final Environment environment) {
-            this.env = environment;
-        }
-        /**
-         * Return the environment.
-         * @return The environment
-         */
-        public Environment env() {
-            return this.env;
-        }
+        Mockito.verify(provider).external();
+        Mockito.verify(provider).internal();
     }
 
 }

@@ -53,6 +53,13 @@
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
+            <artifactId>qulice-spi</artifactId>
+            <version qulice="yes">1.0-SNAPSHOT</version>
+            <classifier>mock</classifier>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.qulice</groupId>
             <artifactId>qulice-checkstyle</artifactId>
             <version qulice="yes">1.0-SNAPSHOT</version>
         </dependency>

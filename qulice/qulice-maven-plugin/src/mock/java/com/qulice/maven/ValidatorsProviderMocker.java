@@ -29,47 +29,59 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
-import java.util.Properties;
-import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.context.Context;
+import com.qulice.spi.Validator;
+import java.util.HashSet;
+import java.util.Set;
+import org.mockito.Mockito;
 
 /**
- * Environment, passed from MOJO to validators.
- *
+ * Mocker of ValidatorsProvider.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-interface MavenEnvironment extends Environment {
+final class ValidatorsProviderMocker {
 
     /**
-     * Get project.
-     * @return The project
+     * List of external validators.
      */
-    MavenProject project();
+    private final Set<Validator> external = new HashSet<Validator>();
 
     /**
-     * Get properties.
-     * @return The properties
+     * List of internal validators.
      */
-    Properties properties();
+    private final Set<MavenValidator> internal = new HashSet<MavenValidator>();
 
     /**
-     * Get context.
-     * @return The context
+     * With this external validator.
+     * @param validator The validator
+     * @return This object
      */
-    Context context();
+    public ValidatorsProviderMocker withExternal(final Validator validator) {
+        this.external.add(validator);
+        return this;
+    }
 
     /**
-     * Get plugin configuration properties.
-     * @return The props
+     * With this external validator.
+     * @param validator The validator
+     * @return This object
      */
-    Properties config();
+    public ValidatorsProviderMocker withInternal(
+        final MavenValidator validator) {
+        this.internal.add(validator);
+        return this;
+    }
 
     /**
-     * Get MOJO executor.
-     * @return The executor
+     * Mock it.
+     * @return The provider
      */
-    MojoExecutor executor();
+    public ValidatorsProvider mock() {
+        final ValidatorsProvider provider =
+            Mockito.mock(ValidatorsProvider.class);
+        Mockito.doReturn(this.internal).when(provider).internal();
+        Mockito.doReturn(this.external).when(provider).external();
+        return provider;
+    }
 
 }
