@@ -139,7 +139,6 @@ public final class LicenseMocker {
             .append("package ").append(this.pkgName)
             .append(";").append(this.eol);
         FileUtils.writeStringToFile(info, body.toString());
-        System.out.println(body.toString());
     }
 
 }

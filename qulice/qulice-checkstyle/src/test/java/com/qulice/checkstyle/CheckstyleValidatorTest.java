@@ -32,16 +32,14 @@ package com.qulice.checkstyle;
 import com.qulice.spi.Environment;
 import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
 import java.io.File;
-import org.apache.commons.io.FileUtils;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  * Test case for {@link CheckstyleValidator} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ * @checkstyle MultipleStringLiterals (120 lines)
  */
 public final class CheckstyleValidatorTest {
 

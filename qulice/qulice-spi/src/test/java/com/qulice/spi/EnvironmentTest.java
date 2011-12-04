@@ -74,8 +74,8 @@ public final class EnvironmentTest {
      */
     @Test
     public void writesByteArrayToTheDesignatedLocation() throws Exception {
-        final String name = "src/main/java/Main.java";
-        final byte[] bytes = "class Main {}".getBytes();
+        final String name = "src/main/java/Foo.java";
+        final byte[] bytes = "class Foo {}".getBytes();
         final Environment env = new EnvironmentMocker()
             .withFile(name, bytes)
             .mock();
