@@ -29,7 +29,11 @@
  */
 package com.qulice.spi;
 
+import com.google.common.io.Files;
+import java.io.File;
+import java.io.IOException;
 import org.mockito.Mockito;
+import org.apache.commons.io.FileUtils;
 
 /**
  * Mocker of {@link Environment}.
@@ -40,11 +44,40 @@ import org.mockito.Mockito;
 public final class EnvironmentMocker {
 
     /**
+     * The basedir.
+     */
+    private final File basedir;
+
+    /**
+     * Public ctor.
+     */
+    public EnvironmentMocker() {
+        this.basedir = Files.createTempDir();
+    }
+
+    /**
+     * With this file on board.
+     * @return This object
+     * @throws IOException If some IO problem
+     */
+    public EnvironmentMocker withFile(final String name, final String content)
+        throws IOException {
+        final File file = new File(this.basedir, name);
+        FileUtils.writeStringToFile(file, content);
+        return this;
+    }
+
+    /**
      * Mock it.
      * @return The instance of {@link Environment}
      */
     public Environment mock() {
         final Environment env = Mockito.mock(Environment.class);
+        Mockito.doReturn(this.basedir).when(env).basedir();
+        Mockito.doReturn(new File(this.basedir, "target/tempdir"))
+            .when(env).tempdir();
+        Mockito.doReturn(new File(this.basedir, "target/classes"))
+            .when(env).outdir();
         return env;
     }
 

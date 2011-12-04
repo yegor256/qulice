@@ -58,4 +58,21 @@
             <useDefaultExcludes>true</useDefaultExcludes>
         </fileSet>
     </fileSets>
+    <dependencySets>
+        <dependencySet>
+            <unpack>true</unpack>
+            <useProjectArtifact>false</useProjectArtifact>
+            <scope>test</scope>
+            <includes>
+                <include>*</include>
+            </includes>
+        </dependencySet>
+        <dependencySet>
+            <unpack>true</unpack>
+            <useProjectArtifact>false</useProjectArtifact>
+            <includes>
+                <include>*</include>
+            </includes>
+        </dependencySet>
+    </dependencySets>
 </assembly>
