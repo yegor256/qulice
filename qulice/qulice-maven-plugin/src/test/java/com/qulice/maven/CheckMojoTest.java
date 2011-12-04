@@ -29,15 +29,9 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
-import com.qulice.spi.Validator;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.mockito.Mockito;
 

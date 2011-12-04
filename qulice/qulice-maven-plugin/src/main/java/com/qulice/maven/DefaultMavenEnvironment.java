@@ -29,7 +29,6 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
 import com.ymock.util.Logger;
 import java.io.File;
 import java.net.URL;

@@ -42,14 +42,6 @@
     <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
         <fileSet>
-            <directory>${basedir}</directory>
-            <outputDirectory>/</outputDirectory>
-            <includes>
-                <include>pom.xml</include>
-            </includes>
-            <useDefaultExcludes>true</useDefaultExcludes>
-        </fileSet>
-        <fileSet>
             <directory>${project.build.testOutputDirectory}</directory>
             <outputDirectory>/</outputDirectory>
             <includes>

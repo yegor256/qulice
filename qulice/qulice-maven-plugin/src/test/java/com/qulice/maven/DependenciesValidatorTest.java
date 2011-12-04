@@ -29,26 +29,15 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
-import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.maven.artifact.Artifact;
-import org.apache.maven.model.Build;
-import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
-import org.codehaus.plexus.PlexusConstants;
-import org.codehaus.plexus.PlexusContainer;
-import org.codehaus.plexus.context.Context;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Test case for {@link DependenciesValidator} class.
@@ -56,6 +45,16 @@ import org.slf4j.impl.StaticLoggerBinder;
  * @version $Id$
  */
 public final class DependenciesValidatorTest {
+
+    /**
+     * Plexus role.
+     */
+    private static final String ROLE = ProjectDependencyAnalyzer.ROLE;
+
+    /**
+     * Plexus hint.
+     */
+    private static final String HINT = "default";
 
     /**
      * DependencyValidator can pass on when no violations are found.
@@ -67,7 +66,7 @@ public final class DependenciesValidatorTest {
             Mockito.mock(ProjectDependencyAnalysis.class);
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker()
-            .inPlexus(ProjectDependencyAnalyzer.ROLE, "default", analyzer)
+            .inPlexus(this.ROLE, this.HINT, analyzer)
             .mock();
         new DependenciesValidator().validate(env);
     }
@@ -85,7 +84,7 @@ public final class DependenciesValidatorTest {
         Mockito.doReturn(unused).when(analysis).getUsedUndeclaredArtifacts();
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker()
-            .inPlexus(ProjectDependencyAnalyzer.ROLE, "default", analyzer)
+            .inPlexus(this.ROLE, this.HINT, analyzer)
             .mock();
         new DependenciesValidator().validate(env);
     }
@@ -105,13 +104,14 @@ public final class DependenciesValidatorTest {
         Mockito.doReturn(Artifact.SCOPE_RUNTIME).when(artifact).getScope();
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker()
-            .inPlexus(ProjectDependencyAnalyzer.ROLE, "default", analyzer)
+            .inPlexus(this.ROLE, this.HINT, analyzer)
             .mock();
         new DependenciesValidator().validate(env);
     }
 
     /**
      * Create analyzer object.
+     * @param analysis The analysis object
      * @return The object
      * @throws Exception If something wrong happens inside
      */

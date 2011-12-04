@@ -30,7 +30,7 @@
 package com.qulice.maven;
 
 import com.qulice.spi.Validator;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -46,7 +46,8 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
      */
     @Override
     public Set<MavenValidator> internal() {
-        final Set<MavenValidator> validators = new HashSet<MavenValidator>();
+        final Set<MavenValidator> validators =
+            new LinkedHashSet<MavenValidator>();
         validators.add(new EnforcerValidator());
         // doesn't work properly - always report a problem
         // validators.add(new DependenciesValidator());
@@ -60,7 +61,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
      */
     @Override
     public Set<Validator> external() {
-        final Set<Validator> validators = new HashSet<Validator>();
+        final Set<Validator> validators = new LinkedHashSet<Validator>();
         validators.add(new com.qulice.checkstyle.CheckstyleValidator());
         validators.add(new com.qulice.pmd.PMDValidator());
         validators.add(new com.qulice.xml.XmlValidator());

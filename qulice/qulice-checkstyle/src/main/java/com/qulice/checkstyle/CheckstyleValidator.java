@@ -208,25 +208,22 @@ public final class CheckstyleValidator implements Validator {
     private List<File> files(final Environment env) {
         final List<File> files = new ArrayList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final File sources = new File(env.basedir(), "src/main/java");
-        if (sources.exists()) {
-            files.addAll(
-                FileUtils.listFiles(
-                    sources,
-                    filter,
-                    DirectoryFileFilter.INSTANCE
-                )
-            );
-        }
-        final File tests = new File(env.basedir(), "src/test/java");
-        if (tests.exists()) {
-            files.addAll(
-                FileUtils.listFiles(
-                    tests,
-                    filter,
-                    DirectoryFileFilter.INSTANCE
-                )
-            );
+        final String[] dirs = new String[] {
+            "src/main/java",
+            "src/test/java",
+            "src/mock/java",
+        };
+        for (String dir : dirs) {
+            final File sources = new File(env.basedir(), dir);
+            if (sources.exists()) {
+                files.addAll(
+                    FileUtils.listFiles(
+                        sources,
+                        filter,
+                        DirectoryFileFilter.INSTANCE
+                    )
+                );
+            }
         }
         return files;
     }
