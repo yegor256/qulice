@@ -61,16 +61,6 @@ public final class ChecksTest {
 
     /**
      * Directories where test scripts are located.
-     * @todo #55 ConstantUsageCheck doesn't work at the moment and is
-     *  not in this list. In order to reproduce the problem add its name
-     *  to the list and run all tests. Looks like it is somehow related to
-     *  static variables.
-     * @todo #55 MethodBodyCommentsCheck doesn't work. To reproduce the
-     *  problem include it into this list and run all tests. I think that
-     *  the problem is related to interface, which don't have any method
-     *  bodies.
-     * @todo #55 JavadocLocationCheck doesn't work with nested classes. To
-     *  reproduce the problem just add its name to the list below.
      */
     private static final String[] DIRS = {
         "MultilineJavadocTagsCheck",

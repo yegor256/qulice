@@ -30,46 +30,58 @@
 package com.qulice.maven;
 
 import com.qulice.spi.Environment;
-import java.util.Properties;
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
+import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.model.Build;
+import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
+import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
+import org.codehaus.plexus.PlexusConstants;
+import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.context.Context;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.slf4j.impl.StaticLoggerBinder;
 
 /**
- * Environment, passed from MOJO to validators.
- *
+ * Mocker of {@link MavenProject}.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-interface MavenEnvironment extends Environment {
+public final class MavenProjectMocker {
 
     /**
-     * Get project.
-     * @return The project
+     * Mock of project.
      */
-    MavenProject project();
+    private final MavenProject project = Mockito.mock(MavenProject.class);
 
     /**
-     * Get properties.
-     * @return The properties
+     * In this basedir.
+     * @throws Exception If something wrong happens inside
      */
-    Properties properties();
+    public MavenProjectMocker inBasedir(final File dir) throws Exception {
+        Mockito.doReturn(dir).when(project).getBasedir();
+        final Build build = Mockito.mock(Build.class);
+        Mockito.doReturn(build).when(project).getBuild();
+        Mockito.doReturn(new File(dir, "target").getPath())
+            .when(build).getOutputDirectory();
+        return this;
+    }
 
     /**
-     * Get context.
-     * @return The context
+     * Mock it.
+     * @throws Exception If something wrong happens inside
      */
-    Context context();
-
-    /**
-     * Get plugin configuration properties.
-     * @return The props
-     */
-    Properties config();
-
-    /**
-     * Get MOJO executor.
-     * @return The executor
-     */
-    MojoExecutor executor();
+    public MavenProject mock() throws Exception {
+        Mockito.doReturn("jar").when(this.project).getPackaging();
+        return this.project;
+    }
 
 }

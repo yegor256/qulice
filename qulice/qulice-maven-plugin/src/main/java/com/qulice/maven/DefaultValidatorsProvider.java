@@ -29,47 +29,46 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
-import java.util.Properties;
-import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.context.Context;
+import com.qulice.spi.Validator;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
- * Environment, passed from MOJO to validators.
+ * Provider of validators.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-interface MavenEnvironment extends Environment {
+final class DefaultValidatorsProvider implements ValidatorsProvider {
 
     /**
-     * Get project.
-     * @return The project
+     * {@inheritDoc}
      */
-    MavenProject project();
+    @Override
+    public Set<MavenValidator> internal() {
+        final Set<MavenValidator> validators =
+            new LinkedHashSet<MavenValidator>();
+        validators.add(new EnforcerValidator());
+        // doesn't work properly - always report a problem
+        // validators.add(new DependenciesValidator());
+        // not working yet
+        // validators.add(new CoberturaValidator());
+        return validators;
+    }
 
     /**
-     * Get properties.
-     * @return The properties
+     * {@inheritDoc}
      */
-    Properties properties();
-
-    /**
-     * Get context.
-     * @return The context
-     */
-    Context context();
-
-    /**
-     * Get plugin configuration properties.
-     * @return The props
-     */
-    Properties config();
-
-    /**
-     * Get MOJO executor.
-     * @return The executor
-     */
-    MojoExecutor executor();
+    @Override
+    public Set<Validator> external() {
+        final Set<Validator> validators = new LinkedHashSet<Validator>();
+        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
+        validators.add(new com.qulice.pmd.PMDValidator());
+        validators.add(new com.qulice.xml.XmlValidator());
+        validators.add(new com.qulice.codenarc.CodeNarcValidator());
+        // has some strange defect inside
+        // validators.add(new com.qulice.findbugs.FindBugsValidator());
+        return validators;
+    }
 
 }

@@ -55,7 +55,12 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
     /**
      * Environment to pass to validators.
      */
-    private MavenEnvironment env = new MavenEnvironment();
+    private DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+
+    /**
+     * Provider of validators.
+     */
+    private ValidatorsProvider provider = new DefaultValidatorsProvider();
 
     /**
      * Maven project, to be injected by Maven itself.
@@ -145,20 +150,34 @@ public final class CheckMojo extends AbstractMojo implements Contextualizable {
         this.env.setMojoExecutor(
             new MojoExecutor(this.manager, this.session)
         );
-        final long start = System.nanoTime();
-        for (Validator validator : new ValidatorsProvider().all()) {
+        final long start = System.currentTimeMillis();
+        for (MavenValidator validator : this.provider.internal()) {
+            try {
+                validator.validate(this.env);
+            } catch (ValidationException ex) {
+                throw new MojoFailureException("Failure", ex);
+            }
+        }
+        for (Validator validator : this.provider.external()) {
             try {
                 validator.validate(this.env);
             } catch (ValidationException ex) {
                 throw new MojoFailureException("Failed", ex);
             }
         }
-        // Output elapsed time.
         Logger.info(
             this,
-            "Time elapsed on validation: %.2fs",
-            // @checkstyle MagicNumber (1 lines)
-            (double) (System.nanoTime() - start) / (1000L * 1000 * 1000)
+            "Time elapsed on validation: %dms",
+            System.currentTimeMillis() - start
         );
     }
+
+    /**
+     * Set provider of validators.
+     * @param prov The provider
+     */
+    protected void setValidatorsProvider(final ValidatorsProvider prov) {
+        this.provider = prov;
+    }
+
 }

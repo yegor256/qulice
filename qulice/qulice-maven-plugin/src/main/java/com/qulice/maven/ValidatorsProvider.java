@@ -30,8 +30,7 @@
 package com.qulice.maven;
 
 import com.qulice.spi.Validator;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Provider of validators.
@@ -39,27 +38,20 @@ import java.util.List;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-final class ValidatorsProvider {
+interface ValidatorsProvider {
 
     /**
-     * Get a collection of validators.
+     * Get a collection of internal validators.
      * @return List of them
      * @see CheckMojo#execute()
      */
-    public List<Validator> all() {
-        final List<Validator> validators = new ArrayList<Validator>();
-        validators.add(new EnforcerValidator());
-        // doesn't work properly - always report a problem
-        // validators.add(new DependenciesValidator());
-        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
-        validators.add(new com.qulice.pmd.PMDValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        // has some strange defect inside
-        // validators.add(new com.qulice.findbugs.FindBugsValidator());
-        // not working yet
-        // validators.add(new CoberturaValidator());
-        return validators;
-    }
+    Set<MavenValidator> internal();
+
+    /**
+     * Get a collection of external validators.
+     * @return List of them
+     * @see CheckMojo#execute()
+     */
+    Set<Validator> external();
 
 }

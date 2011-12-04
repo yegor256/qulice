@@ -30,109 +30,80 @@
 package com.qulice.codenarc;
 
 import com.qulice.spi.Environment;
+import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.varia.NullAppender;
-import org.junit.Assert;
-import org.junit.Before;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Ignore;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.mockito.Mockito;
 
 /**
  * Test case for {@link CodeNarcValidator} class.
  * @author Pavlo Shamrai (pshamrai@gmail.com)
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
 public final class CodeNarcValidatorTest {
 
     /**
-     * Temporary folder, set by JUnit framework automatically.
-     * @checkstyle VisibilityModifier (3 lines)
-     */
-    @Rule
-    public TemporaryFolder temp = new TemporaryFolder();
-
-    /**
-     * The folder to work in, to store sources.
-     * @see #prepare()
-     */
-    private File src;
-
-    /**
-     * The environment to work with.
-     * @see #prepare()
-     */
-    private Environment env;
-
-    /**
-     * Prepare the folder and the environment.
-     * @throws Exception If something wrong happens inside
-     */
-    @Before
-    public void prepare() throws Exception {
-        final File basedir = this.temp.newFolder("basedir");
-        this.src = new File(basedir, "src");
-        this.src.mkdirs();
-        this.env = Mockito.mock(Environment.class);
-        Mockito.doReturn(basedir).when(this.env).basedir();
-        Mockito.doReturn(new File(basedir, "target")).when(this.env).tempdir();
-    }
-
-    /**
-     * Validate set of files to find violations.
+     * CodeNarcValidator can throw ValidationExctpion when source code contains
+     * some Groovy scripts that violate static analysis rules.
      * @throws Exception If something wrong happens inside.
      */
-
     @Test(expected = ValidationException.class)
-    public void testFailValidation() throws Exception {
+    public void failsOnIncorrectGroovySources() throws Exception {
+        final Environment env = new EnvironmentMocker()
+            .withFile("src/Main.groovy", "System.out.println('hi')")
+            .mock();
         final Validator validator = new CodeNarcValidator();
-        final File groovy = new File(this.src, "FailedMain.groovy");
-        FileUtils.writeStringToFile(groovy, "class failedMain { int x = 0 }");
-        validator.validate(this.env);
+        validator.validate(env);
     }
 
     /**
-     * Validate set of files without violations.
+     * CodeNarcValidator can pass valid Groovy sources without any exceptions.
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void testSuccessValidation() throws Exception {
+    public void passesCorrectFilesWithoutExceptions() throws Exception {
         final Validator validator = new CodeNarcValidator();
-        final File groovy = new File(this.src, "SuccessMain.groovy");
-        FileUtils.writeStringToFile(groovy, "class SuccessMain { int x = 0 }");
-        validator.validate(this.env);
+        final Environment env = new EnvironmentMocker()
+            .withFile("src/foo/Foo.groovy", "// empty")
+            .mock();
+        validator.validate(env);
     }
 
     /**
-     * Validate log message for filename existence.
+     * CodeNarcValidator can report full names of files that contain
+     * violations.
      * @todo #36! The test is ignored until filename will be added
      *  to codernarc validation log messages.
      * @throws Exception If error message does not include filename.
      */
     @Test(expected = ValidationException.class)
     @Ignore
-    public void testFilenameValidation() throws Exception {
+    public void reportsFullFileNamesOfGroovyScripts() throws Exception {
+        final Environment env = new EnvironmentMocker()
+            .withFile("src/main/Foo.groovy", "System.out.println('foo')")
+            .mock();
         final Validator validator = new CodeNarcValidator();
-        final File groovy = new File(this.src, "SecondMain.groovy");
-        FileUtils.writeStringToFile(groovy, "class secondMain { int x = 0 }");
         final CodeNarcAppender codeNarcAppender = new CodeNarcAppender();
         org.apache.log4j.Logger.getRootLogger().addAppender(codeNarcAppender);
         try {
-            validator.validate(this.env);
+            validator.validate(env);
         } catch (ValidationException ex) {
             final List<String> messages = codeNarcAppender.getMessages();
-            final Pattern p = Pattern.compile("[a-zA-Z0-9_]+\\.groovy");
+            final Pattern pattern = Pattern.compile("[a-zA-Z0-9_]+\\.groovy");
             for (String message : messages) {
-                Assert.assertTrue(p.matcher(message).find());
+                MatcherAssert.assertThat(
+                    pattern.matcher(message).matches(),
+                    Matchers.is(true)
+                );
             }
             throw ex;
         }
@@ -141,7 +112,7 @@ public final class CodeNarcValidatorTest {
     /**
      * Appender for log verifying.
      */
-    private class CodeNarcAppender extends NullAppender {
+    private static final class CodeNarcAppender extends NullAppender {
         /**
          * List of logged messages.
          */

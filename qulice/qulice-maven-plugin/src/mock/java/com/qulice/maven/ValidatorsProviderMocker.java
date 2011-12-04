@@ -30,26 +30,58 @@
 package com.qulice.maven;
 
 import com.qulice.spi.Validator;
-import java.util.List;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
-import org.junit.Test;
+import java.util.HashSet;
+import java.util.Set;
+import org.mockito.Mockito;
 
 /**
- * Test case for {@link ValidatorsProvider} class.
+ * Mocker of ValidatorsProvider.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class ValidatorsProviderTest {
+final class ValidatorsProviderMocker {
 
     /**
-     * Get collection of validators.
-     * @throws Exception If something wrong happens inside
+     * List of external validators.
      */
-    @Test
-    public void testCollectionRetrieving() throws Exception {
-        final List<Validator> validators = new ValidatorsProvider().all();
-        MatcherAssert.assertThat(validators.size(), Matchers.greaterThan(0));
+    private final Set<Validator> external = new HashSet<Validator>();
+
+    /**
+     * List of internal validators.
+     */
+    private final Set<MavenValidator> internal = new HashSet<MavenValidator>();
+
+    /**
+     * With this external validator.
+     * @param validator The validator
+     * @return This object
+     */
+    public ValidatorsProviderMocker withExternal(final Validator validator) {
+        this.external.add(validator);
+        return this;
+    }
+
+    /**
+     * With this external validator.
+     * @param validator The validator
+     * @return This object
+     */
+    public ValidatorsProviderMocker withInternal(
+        final MavenValidator validator) {
+        this.internal.add(validator);
+        return this;
+    }
+
+    /**
+     * Mock it.
+     * @return The provider
+     */
+    public ValidatorsProvider mock() {
+        final ValidatorsProvider provider =
+            Mockito.mock(ValidatorsProvider.class);
+        Mockito.doReturn(this.internal).when(provider).internal();
+        Mockito.doReturn(this.external).when(provider).external();
+        return provider;
     }
 
 }

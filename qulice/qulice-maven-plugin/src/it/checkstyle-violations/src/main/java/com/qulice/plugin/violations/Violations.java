@@ -1,5 +1,6 @@
+package com.qulice.plugin.violations;
 public class Violations {
-    public synchronized void test() {
-        System.out.println("test");
+    public void test() {
+        System.setProperty("test", "test value");
     }
 }

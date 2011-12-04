@@ -27,49 +27,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
-
-import com.qulice.spi.Environment;
-import java.util.Properties;
-import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.context.Context;
 
 /**
- * Environment, passed from MOJO to validators.
+ * Service provider interface, tests.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-interface MavenEnvironment extends Environment {
-
-    /**
-     * Get project.
-     * @return The project
-     */
-    MavenProject project();
-
-    /**
-     * Get properties.
-     * @return The properties
-     */
-    Properties properties();
-
-    /**
-     * Get context.
-     * @return The context
-     */
-    Context context();
-
-    /**
-     * Get plugin configuration properties.
-     * @return The props
-     */
-    Properties config();
-
-    /**
-     * Get MOJO executor.
-     * @return The executor
-     */
-    MojoExecutor executor();
-
-}
+package com.qulice.spi;

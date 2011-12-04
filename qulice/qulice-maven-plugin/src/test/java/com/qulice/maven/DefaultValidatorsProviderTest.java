@@ -29,47 +29,31 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
-import java.util.Properties;
-import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.context.Context;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.Test;
 
 /**
- * Environment, passed from MOJO to validators.
- *
+ * Test case for {@link ValidatorsProvider} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-interface MavenEnvironment extends Environment {
+public final class DefaultValidatorsProviderTest {
 
     /**
-     * Get project.
-     * @return The project
+     * ValidatorsProvider can produce a list of validators.
+     * @throws Exception If something wrong happens inside
      */
-    MavenProject project();
-
-    /**
-     * Get properties.
-     * @return The properties
-     */
-    Properties properties();
-
-    /**
-     * Get context.
-     * @return The context
-     */
-    Context context();
-
-    /**
-     * Get plugin configuration properties.
-     * @return The props
-     */
-    Properties config();
-
-    /**
-     * Get MOJO executor.
-     * @return The executor
-     */
-    MojoExecutor executor();
+    @Test
+    public void producesACollectionOfValidators() throws Exception {
+        MatcherAssert.assertThat(
+            new DefaultValidatorsProvider().external().size(),
+            Matchers.greaterThan(0)
+        );
+        MatcherAssert.assertThat(
+            new DefaultValidatorsProvider().internal().size(),
+            Matchers.greaterThan(0)
+        );
+    }
 
 }

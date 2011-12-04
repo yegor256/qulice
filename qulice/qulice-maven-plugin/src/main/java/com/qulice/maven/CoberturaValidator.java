@@ -29,9 +29,7 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
 import java.util.Properties;
 
 /**
@@ -40,7 +38,7 @@ import java.util.Properties;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class CoberturaValidator implements Validator {
+public final class CoberturaValidator implements MavenValidator {
 
     /**
      * {@inheritDoc}
@@ -48,10 +46,11 @@ public final class CoberturaValidator implements Validator {
      * @checkstyle RedundantThrows (4 lines)
      */
     @Override
-    public void validate(final Environment env) throws ValidationException {
+    public void validate(final MavenEnvironment env)
+        throws ValidationException {
         final Properties props = new Properties();
         props.put("quiet", "false");
-        ((MavenEnvironment) env).executor().execute(
+        env.executor().execute(
             "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
             "instrument",
             props
@@ -65,7 +64,7 @@ public final class CoberturaValidator implements Validator {
         check.put("packageBranchRate", "70");
         check.put("totalLineRate", "80");
         check.put("totalBranchRate", "80");
-        ((MavenEnvironment) env).executor().execute(
+        env.executor().execute(
             "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
             "check",
             props
