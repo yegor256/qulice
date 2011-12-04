@@ -82,6 +82,7 @@ public final class MavenEnvironmentMocker {
      * @throws IOException If some IO problem inside
      */
     public MavenEnvironmentMocker() throws IOException {
+        StaticLoggerBinder.getSingleton().setMavenLog(Mockito.mock(Log.class));
         this.envMocker = new EnvironmentMocker();
     }
 
