@@ -1,6 +1,4 @@
-<?xml version="1.0"?>
-<!--
- *
+/**
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -28,28 +26,26 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.spi;
+
+import org.mockito.Mockito;
+
+/**
+ * Mocker of {@link Environment}.
  *
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+ */
+public final class EnvironmentMocker {
 
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.qulice</groupId>
-        <artifactId>qulice</artifactId>
-        <version qulice="yes">1.0-SNAPSHOT</version>
-    </parent>
-    <artifactId>qulice-spi</artifactId>
-    <packaging>jar</packaging>
-    <name>qulice-spi</name>
+    /**
+     * Mock it.
+     * @return The instance of {@link Environment}
+     */
+    public Environment mock() {
+        final Environment env = Mockito.mock(Environment.class);
+        return env;
+    }
 
-    <dependencies>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-        </dependency>
-    </dependencies>
-
-</project>
+}

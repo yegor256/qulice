@@ -188,7 +188,6 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
-                        <version since="18 Oct 2011">2.2.1</version>
                         <dependencies>
                             <dependency>
                                 <groupId>com.qulice</groupId>
@@ -557,6 +556,10 @@
                     <version since="18 Oct 2011">2.7</version>
                 </plugin>
                 <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version since="19 Oct 2011">2.2.1</version>
+                </plugin>
+                <plugin>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version since="18 Oct 2011">2.3</version>
                 </plugin>
@@ -617,7 +620,48 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <!-- intentionally empty -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version since="2 Dec 2011">1.7</version>
+                <executions>
+                    <execution>
+                        <id>add-test-sources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>${basedir}/src/mock/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.qulice</groupId>
+                        <artifactId>qulice-tk</artifactId>
+                        <version qulice="yes">1.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptorRefs>
+                                <descriptorRef>qulice-mock</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 

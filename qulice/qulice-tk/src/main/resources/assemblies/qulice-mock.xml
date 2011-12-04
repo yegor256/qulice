@@ -31,25 +31,31 @@
  *
  * @version $Id$
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.qulice</groupId>
-        <artifactId>qulice</artifactId>
-        <version qulice="yes">1.0-SNAPSHOT</version>
-    </parent>
-    <artifactId>qulice-spi</artifactId>
-    <packaging>jar</packaging>
-    <name>qulice-spi</name>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-        </dependency>
-    </dependencies>
-
-</project>
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0
+    http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+    <id>mock</id>
+    <formats>
+        <format>jar</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>${basedir}</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>pom.xml</include>
+            </includes>
+            <useDefaultExcludes>true</useDefaultExcludes>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.testOutputDirectory}</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>**/*Mocker.class</include>
+            </includes>
+            <useDefaultExcludes>true</useDefaultExcludes>
+        </fileSet>
+    </fileSets>
+</assembly>
