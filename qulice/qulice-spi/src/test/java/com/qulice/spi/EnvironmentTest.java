@@ -96,4 +96,18 @@ public final class EnvironmentTest {
         );
     }
 
+    /**
+     * EnvironmentMocker can mock params.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void configuresParametersInMock() throws Exception {
+        final String name = "alpha";
+        final String value = "some complex value";
+        final Environment env = new EnvironmentMocker()
+            .withParam(name, value)
+            .mock();
+        MatcherAssert.assertThat(env.param(name, ""), Matchers.equalTo(value));
+    }
+
 }

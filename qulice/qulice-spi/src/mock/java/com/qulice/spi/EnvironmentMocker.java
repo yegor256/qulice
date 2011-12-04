@@ -34,6 +34,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import org.mockito.Mockito;
 import org.apache.commons.io.FileUtils;
 
@@ -56,6 +58,11 @@ public final class EnvironmentMocker {
     private final Collection<File> classpath = new ArrayList<File>();
 
     /**
+     * Map of params.
+     */
+    private final Map<String, String> params = new HashMap<String, String>();
+
+    /**
      * Public ctor.
      * @throws IOException If some IO problem
      */
@@ -64,6 +71,17 @@ public final class EnvironmentMocker {
         FileUtils.forceDeleteOnExit(temp);
         this.basedir = new File(temp, "basedir");
         this.basedir.mkdirs();
+    }
+
+    /**
+     * With this param and its value.
+     * @param name Param name
+     * @param value Param value
+     * @return This object
+     */
+    public EnvironmentMocker withParam(final String name, final String value) {
+        this.params.put(name, value);
+        return this;
     }
 
     /**
@@ -117,6 +135,10 @@ public final class EnvironmentMocker {
         Mockito.doReturn(outdir).when(env).outdir();
         this.classpath.add(outdir);
         Mockito.doReturn(this.classpath).when(env).classpath();
+        for (Map.Entry<String, String> entry : this.params.entrySet()) {
+            Mockito.doReturn(entry.getValue()).when(env)
+                .param(Mockito.eq(entry.getKey()), Mockito.anyString());
+        }
         return env;
     }
 
