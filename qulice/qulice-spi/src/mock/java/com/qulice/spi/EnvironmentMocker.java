@@ -95,6 +95,14 @@ public final class EnvironmentMocker {
     }
 
     /**
+     * Get basedir.
+     * @return The basedir
+     */
+    public File getBasedir() {
+        return this.basedir;
+    }
+
+    /**
      * Mock it.
      * @return The instance of {@link Environment}
      */

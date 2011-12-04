@@ -35,7 +35,9 @@ import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.model.Build;
@@ -62,18 +64,26 @@ public final class MavenEnvironmentMocker {
     /**
      * Env mocker.
      */
-    private final EnvironmentMocker envMocker = new EnvironmentMocker();
+    private final EnvironmentMocker envMocker;
 
     /**
      * Project.
      */
-    private final MavenProjectMocker projectMocker = new MavenProjectMocker();
+    private MavenProjectMocker projectMocker = new MavenProjectMocker();
 
     /**
      * Plexus container, mock.
      */
     private final PlexusContainer container =
         Mockito.mock(PlexusContainer.class);
+
+    /**
+     * Public ctor.
+     * @throws IOException If some IO problem inside
+     */
+    public MavenEnvironmentMocker() throws IOException {
+        this.envMocker = new EnvironmentMocker();
+    }
 
     /**
      * Inject this object into plexus container.
@@ -129,12 +139,110 @@ public final class MavenEnvironmentMocker {
         this.projectMocker.inBasedir(this.envMocker.getBasedir());
         final MavenProject project = this.projectMocker.mock();
         final Environment parent = this.envMocker.mock();
-        final Environment env = Mockito.mock(MavenEnvironment.class);
+        final MavenEnvironment env = Mockito.mock(MavenEnvironment.class);
         Mockito.doReturn(project).when(env).project();
         final Context context = Mockito.mock(Context.class);
         Mockito.doReturn(context).when(env).context();
         Mockito.doReturn(this.container).when(context).get(Mockito.anyString());
-        return env;
+        return new EnvWrapper(parent, env);
+    }
+
+    private static final class EnvWrapper implements MavenEnvironment {
+        /**
+         * Parent environment.
+         */
+        private final Environment env;
+        /**
+         * Parent maven environment.
+         */
+        private final MavenEnvironment menv;
+        /**
+         * Public ctor.
+         * @param penv Parent env
+         * @param pmenv Parent maven env
+         */
+        public EnvWrapper(final Environment penv,
+            final MavenEnvironment pmenv) {
+            this.env = penv;
+            this.menv = pmenv;
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public File basedir() {
+            return this.env.basedir();
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public File tempdir() {
+            return this.env.tempdir();
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public File outdir() {
+            return this.env.outdir();
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String param(final String name, final String value) {
+            return this.env.param(name, value);
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public ClassLoader classloader() {
+            return this.env.classloader();
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Collection<File> classpath() {
+            return this.env.classpath();
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MavenProject project() {
+            return this.menv.project();
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Properties properties() {
+            return this.menv.properties();
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Context context() {
+            return this.menv.context();
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Properties config() {
+            return this.menv.config();
+        }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public MojoExecutor executor() {
+            return this.menv.executor();
+        }
     }
 
 }

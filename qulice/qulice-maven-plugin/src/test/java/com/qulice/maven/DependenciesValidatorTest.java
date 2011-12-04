@@ -67,7 +67,7 @@ public final class DependenciesValidatorTest {
             Mockito.mock(ProjectDependencyAnalysis.class);
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker()
-            .inPlexus(Mockito.anyString(), Mockito.anyString(), analyzer)
+            .inPlexus(ProjectDependencyAnalyzer.ROLE, "default", analyzer)
             .mock();
         new DependenciesValidator().validate(env);
     }
@@ -85,7 +85,7 @@ public final class DependenciesValidatorTest {
         Mockito.doReturn(unused).when(analysis).getUsedUndeclaredArtifacts();
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker()
-            .inPlexus(Mockito.anyString(), Mockito.anyString(), analyzer)
+            .inPlexus(ProjectDependencyAnalyzer.ROLE, "default", analyzer)
             .mock();
         new DependenciesValidator().validate(env);
     }
@@ -99,12 +99,13 @@ public final class DependenciesValidatorTest {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
         final Artifact artifact = Mockito.mock(Artifact.class);
+        final Set<Artifact> unused = new HashSet<Artifact>();
         unused.add(artifact);
         Mockito.doReturn(unused).when(analysis).getUnusedDeclaredArtifacts();
         Mockito.doReturn(Artifact.SCOPE_RUNTIME).when(artifact).getScope();
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker()
-            .inPlexus(Mockito.anyString(), Mockito.anyString(), analyzer)
+            .inPlexus(ProjectDependencyAnalyzer.ROLE, "default", analyzer)
             .mock();
         new DependenciesValidator().validate(env);
     }
