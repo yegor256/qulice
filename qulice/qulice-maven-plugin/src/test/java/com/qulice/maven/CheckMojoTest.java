@@ -29,6 +29,8 @@
  */
 package com.qulice.maven;
 
+import com.qulice.spi.Environment;
+import com.qulice.spi.Validator;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
@@ -63,8 +65,12 @@ public final class CheckMojoTest {
     @Test
     public void validatesUsingAllProvidedValidators() throws Exception {
         final CheckMojo mojo = new CheckMojo();
-        final ValidatorsProvider provider =
-            new ValidatorsProviderMocker().mock();
+        final Validator external = Mockito.mock(Validator.class);
+        final MavenValidator internal = Mockito.mock(MavenValidator.class);
+        final ValidatorsProvider provider = new ValidatorsProviderMocker()
+            .withInternal(internal)
+            .withExternal(external)
+            .mock();
         mojo.setValidatorsProvider(provider);
         final MavenProject project = Mockito.mock(MavenProject.class);
         mojo.setProject(project);
@@ -74,8 +80,8 @@ public final class CheckMojoTest {
         final Context context = Mockito.mock(Context.class);
         mojo.contextualize(context);
         mojo.execute();
-        Mockito.verify(provider).external();
-        Mockito.verify(provider).internal();
+        Mockito.verify(internal).validate(Mockito.any(MavenEnvironment.class));
+        Mockito.verify(external).validate(Mockito.any(Environment.class));
     }
 
 }
