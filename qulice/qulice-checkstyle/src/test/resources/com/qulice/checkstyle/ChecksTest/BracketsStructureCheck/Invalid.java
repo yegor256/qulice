@@ -3,10 +3,6 @@
  * only as a text resource in integration.ChecksIT.
  */
 public final class Invalid {
-/*
-    This doesn't work at the moment, see documentation of
-    BracketsStructureCheck class
-
     public Invalid(String name,
      String value
      ) {
@@ -23,7 +19,6 @@ public final class Invalid {
         String format,
         String text) {
     }
-*/
     // Check static declarations.
     static {
       String.format("File %s not found",
@@ -54,5 +49,32 @@ public final class Invalid {
         file);
       String.format(
         "File %s not found", file);
+      new Invalid(x,
+        y);
+      Invalid d = new Invalid(
+        x,
+        y);
+      Invalid d1 = new Invalid(
+        x, y);
+    }
+    @Test
+    public Invalid(String name,
+     String value
+     ) {
+    }
+    @Test
+    public Invalid(
+        String name,
+        String value) {
+    }
+    @Test
+    public void print(String format,
+       String text
+    ) {
+    }
+    @Test
+    public void print(
+        String format,
+        String text) {
     }
 }
