@@ -244,6 +244,13 @@ public final class MavenEnvironmentMocker {
         public MojoExecutor executor() {
             return this.menv.executor();
         }
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Collection<File> files(final String pattern){
+            throw new UnsupportedOperationException();
+        }
     }
 
 }
