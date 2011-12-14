@@ -3,7 +3,9 @@
  * only as a text resource in integration.ChecksIT.
  */
 public final class Valid {
-/*
+    public Valid() {
+    }
+    @Test
     public Valid() {
     }
     public Valid(String name, String value) {
@@ -15,6 +17,9 @@ public final class Valid {
     }
     public void print(){
     }
+    @Test
+    public void print(){
+    }
     public void print(String format,String text) {
     }
     public void print(
@@ -22,7 +27,6 @@ public final class Valid {
         String text
     ) {
     }
-*/
     // Check static declarations.
     static {
        String.format(
@@ -58,5 +62,14 @@ public final class Valid {
       );
       String.format("File %s not found", file);
       String.format("File %s not found(", file);
+      new Invalid(
+          x,
+          y
+      );
+      Invalid d = new Invalid(
+        x, y
+      );
+      Invalid d1 = new Invalid(x, y);
+      Invalid d2 = new Invalid("File %s not found(", file);
     }
 }
