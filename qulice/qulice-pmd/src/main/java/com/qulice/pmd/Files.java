@@ -53,7 +53,7 @@ public final class Files {
      * @param environment The environment.
      * @return Collection of files.
      * @todo #44:1h Perform refactoring: remove this method, use
-     * Environment.files() instead.
+     *  Environment.files() instead.
      */
     private Collection<File> getFiles(final Environment environment) {
         final Collection<File> files = new LinkedList<File>();

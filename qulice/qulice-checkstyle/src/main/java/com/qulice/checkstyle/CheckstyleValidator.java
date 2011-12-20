@@ -205,7 +205,7 @@ public final class CheckstyleValidator implements Validator {
      * @param env The environmet
      * @return List of files
      * @todo #44:1h Perform refactoring: remove this method, use
-     * Environment.files() instead.
+     *  Environment.files() instead.
      */
     private List<File> files(final Environment env) {
         final List<File> files = new ArrayList<File>();
