@@ -61,24 +61,23 @@ public final class JavadocLocationCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        if (!this.isField(ast)) {
-            return;
-        }
-        final String[] lines = this.getLines();
-        final int current = ast.getLineNo();
-        final int cend = this.findCommentEnd(lines, current);
-        final int cminimum = this.getCommentMinimum(ast);
-        if (cend <= cminimum) {
-            this.log(current, "Problem finding javadoc");
-            return;
-        }
-        final int diff = current - cend;
-        if (diff > 1) {
-            for (int pos = 1; pos < diff; pos += 1) {
-                this.log(
-                    cend + pos,
-                    "Empty line between javadoc and subject"
-                );
+        if (this.isField(ast)) {
+            final String[] lines = this.getLines();
+            final int current = ast.getLineNo();
+            final int cend = this.findCommentEnd(lines, current);
+            final int cminimum = this.getCommentMinimum(ast);
+            if (cend <= cminimum) {
+                this.log(current, "Problem finding javadoc");
+                return;
+            }
+            final int diff = current - cend;
+            if (diff > 1) {
+                for (int pos = 1; pos < diff; pos += 1) {
+                    this.log(
+                        cend + pos,
+                        "Empty line between javadoc and subject"
+                    );
+                }
             }
         }
     }
@@ -127,10 +126,8 @@ public final class JavadocLocationCheck extends Check {
      *  <code>true</code>.
      */
     private boolean isField(final DetailAST node) {
-        boolean yes;
-        if (TokenTypes.VARIABLE_DEF != node.getType()) {
-            yes = true;
-        } else {
+        boolean yes = true;
+        if (TokenTypes.VARIABLE_DEF == node.getType()) {
             yes = TokenTypes.OBJBLOCK == node.getParent().getType();
         }
         return yes;
