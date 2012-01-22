@@ -58,24 +58,21 @@ public final class Files {
     private Collection<File> getFiles(final Environment environment) {
         final Collection<File> files = new LinkedList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final File sourcesDir =
-            new File(environment.basedir(), "src/main/java");
-        if (sourcesDir.exists()) {
-            final Collection<File> sources = FileUtils.listFiles(
-                sourcesDir,
-                filter,
-                DirectoryFileFilter.INSTANCE
-            );
-            files.addAll(sources);
-        }
-        final File testsDir = new File(environment.basedir(), "src/test/java");
-        if (testsDir.exists()) {
-            final Collection<File> tests = FileUtils.listFiles(
-                testsDir,
-                filter,
-                DirectoryFileFilter.INSTANCE
-            );
-            files.addAll(tests);
+        final String[] dirs = new String[] {
+            "src/main/java",
+            "src/test/java",
+            "src/mock/java",
+        };
+        for (String dir : dirs) {
+            final File sourcesDir = new File(environment.basedir(), dir);
+            if (sourcesDir.exists()) {
+                final Collection<File> sources = FileUtils.listFiles(
+                    sourcesDir,
+                    filter,
+                    DirectoryFileFilter.INSTANCE
+                );
+                files.addAll(sources);
+            }
         }
         return files;
     }
