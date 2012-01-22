@@ -1,4 +1,5 @@
 /**
+ *
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -26,57 +27,10 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.maven;
-
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
-import org.apache.maven.plugin.MojoFailureException;
-
-/**
- * Check the project and find all possible violations.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- * @goal check
- * @phase verify
- * @threadSafe
  */
-public final class CheckMojo extends AbstractQuliceMojo {
 
-    /**
-     * Provider of validators.
-     */
-    private transient ValidatorsProvider provider =
-        new DefaultValidatorsProvider();
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void doExecute() throws MojoFailureException {
-        for (Validator validator : this.provider.external()) {
-            try {
-                validator.validate(this.env());
-            } catch (ValidationException ex) {
-                throw new MojoFailureException("Failed", ex);
-            }
-        }
-        for (MavenValidator validator : this.provider.internal()) {
-            try {
-                validator.validate(this.env());
-            } catch (ValidationException ex) {
-                throw new MojoFailureException("Failure", ex);
-            }
-        }
-    }
-
-    /**
-     * Set provider of validators.
-     * @param prov The provider
-     */
-    protected void setValidatorsProvider(final ValidatorsProvider prov) {
-        this.provider = prov;
-    }
-
-}
+def log = new File(basedir, 'build.log')
+assert log.text.contains('Coverage check failed. See messages above.')
+assert log.text.contains('com.qulice.foo.Bump failed check. Line coverage rate of 0.0% is below 60.0%')

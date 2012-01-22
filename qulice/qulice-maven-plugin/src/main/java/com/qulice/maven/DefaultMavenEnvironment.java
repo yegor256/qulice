@@ -47,38 +47,40 @@ import org.codehaus.plexus.context.Context;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Maven project.
      */
-    private MavenProject project;
+    private transient MavenProject iproject;
 
     /**
      * Plexus context.
      */
-    private Context context;
+    private transient Context icontext;
 
     /**
      * Plugin configuration.
      */
-    private final Properties properties = new Properties();
+    private final transient Properties iproperties = new Properties();
 
     /**
      * MOJO executor.
      */
-    private MojoExecutor mojoExecutor;
+    private transient MojoExecutor mojoExecutor;
 
     /**
      * {@inheritDoc}
      */
     @Override
     public String param(final String name, final String value) {
-        final String val = this.properties.getProperty(name);
-        if (val == null) {
-            return value;
+        final String val = this.iproperties.getProperty(name);
+        String ret = val;
+        if (ret == null) {
+            ret = value;
         }
-        return val;
+        return ret;
     }
 
     /**
@@ -86,7 +88,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     @Override
     public File basedir() {
-        return this.project.getBasedir();
+        return this.iproject.getBasedir();
     }
 
     /**
@@ -94,7 +96,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     @Override
     public File tempdir() {
-        return new File(this.project.getBuild().getOutputDirectory());
+        return new File(this.iproject.getBuild().getOutputDirectory());
     }
 
     /**
@@ -102,17 +104,18 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     @Override
     public File outdir() {
-        return new File(this.project.getBuild().getOutputDirectory());
+        return new File(this.iproject.getBuild().getOutputDirectory());
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<File> classpath() {
         final Collection<File> paths = new ArrayList<File>();
         try {
-            for (String name : this.project.getRuntimeClasspathElements()) {
+            for (String name : this.iproject.getRuntimeClasspathElements()) {
                 paths.add(new File(name));
             }
         } catch (DependencyResolutionRequiredException ex) {
@@ -136,7 +139,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         }
         final URLClassLoader loader = new URLClassLoader(
             urls.toArray(new URL[] {}),
-            this.getClass().getClassLoader()
+            Thread.currentThread().getContextClassLoader()
         );
         for (URL url : loader.getURLs()) {
             Logger.debug(this, "Classpath: %s", url);
@@ -149,7 +152,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     @Override
     public MavenProject project() {
-        return this.project;
+        return this.iproject;
     }
 
     /**
@@ -157,7 +160,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     @Override
     public Properties properties() {
-        return this.properties;
+        return this.iproperties;
     }
 
     /**
@@ -165,7 +168,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     @Override
     public Context context() {
-        return this.context;
+        return this.icontext;
     }
 
     /**
@@ -173,7 +176,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     @Override
     public Properties config() {
-        return this.properties;
+        return this.iproperties;
     }
 
     /**
@@ -197,7 +200,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * @param proj The project to set
      */
     public void setProject(final MavenProject proj) {
-        this.project = proj;
+        this.iproject = proj;
     }
 
     /**
@@ -205,7 +208,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * @param ctx The context to set
      */
     public void setContext(final Context ctx) {
-        this.context = ctx;
+        this.icontext = ctx;
     }
 
     /**
@@ -222,7 +225,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * @param value Its value
      */
     public void setProperty(final String name, final String value) {
-        this.properties.setProperty(name, value);
+        this.iproperties.setProperty(name, value);
     }
 
 }

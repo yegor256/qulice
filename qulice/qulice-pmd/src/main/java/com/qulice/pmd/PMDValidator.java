@@ -44,10 +44,6 @@ import net.sourceforge.pmd.IRuleViolation;
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- * @todo #45 Class is too complex now and should be refactored to become
- *  smaller. We should break it down to smaller classes. And we should move
- *  the inner PmdListener class out, to make it a standalone class in the
- *  package. Checkstyle annotation should be removed (see above).
  */
 public final class PMDValidator implements Validator {
 

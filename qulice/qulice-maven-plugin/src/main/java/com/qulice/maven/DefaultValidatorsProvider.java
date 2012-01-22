@@ -52,7 +52,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         // doesn't work properly - always report a problem
         // validators.add(new DependenciesValidator());
         // not working yet
-        // validators.add(new CoberturaValidator());
+        validators.add(new CoberturaValidator());
         return validators;
     }
 

@@ -1,4 +1,6 @@
-/**
+<?xml version="1.0"?>
+<!--
+ *
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -26,57 +28,39 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.maven;
-
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
-import org.apache.maven.plugin.MojoFailureException;
-
-/**
- * Check the project and find all possible violations.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- * @goal check
- * @phase verify
- * @threadSafe
- */
-public final class CheckMojo extends AbstractQuliceMojo {
+ -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-    /**
-     * Provider of validators.
-     */
-    private transient ValidatorsProvider provider =
-        new DefaultValidatorsProvider();
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.qulice.plugin</groupId>
+    <artifactId>cobertura-violations</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <name>cobertura-violations</name>
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    protected void doExecute() throws MojoFailureException {
-        for (Validator validator : this.provider.external()) {
-            try {
-                validator.validate(this.env());
-            } catch (ValidationException ex) {
-                throw new MojoFailureException("Failed", ex);
-            }
-        }
-        for (MavenValidator validator : this.provider.internal()) {
-            try {
-                validator.validate(this.env());
-            } catch (ValidationException ex) {
-                throw new MojoFailureException("Failure", ex);
-            }
-        }
-    }
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.qulice</groupId>
+                <artifactId>qulice-maven-plugin</artifactId>
+                <version qulice="yes">1.0-SNAPSHOT</version>
+                <configuration>
+                    <license>file:${basedir}/LICENSE.txt</license>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>instrument</goal>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
-    /**
-     * Set provider of validators.
-     * @param prov The provider
-     */
-    protected void setValidatorsProvider(final ValidatorsProvider prov) {
-        this.provider = prov;
-    }
-
-}
+</project>

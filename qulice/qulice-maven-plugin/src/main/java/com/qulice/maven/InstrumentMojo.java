@@ -30,53 +30,36 @@
 package com.qulice.maven;
 
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
+import java.util.Properties;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
- * Check the project and find all possible violations.
+ * Prepare classes for code coverage check.
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- * @goal check
- * @phase verify
+ * @goal instrument
+ * @phase process-classes
  * @threadSafe
  */
-public final class CheckMojo extends AbstractQuliceMojo {
-
-    /**
-     * Provider of validators.
-     */
-    private transient ValidatorsProvider provider =
-        new DefaultValidatorsProvider();
+public final class InstrumentMojo extends AbstractQuliceMojo {
 
     /**
      * {@inheritDoc}
      */
     @Override
     protected void doExecute() throws MojoFailureException {
-        for (Validator validator : this.provider.external()) {
-            try {
-                validator.validate(this.env());
-            } catch (ValidationException ex) {
-                throw new MojoFailureException("Failed", ex);
-            }
+        final Properties props = new Properties();
+        props.put("quiet", "false");
+        try {
+            this.env().executor().execute(
+                "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
+                "instrument",
+                props
+            );
+        } catch (ValidationException ex) {
+            throw new MojoFailureException("Failed", ex);
         }
-        for (MavenValidator validator : this.provider.internal()) {
-            try {
-                validator.validate(this.env());
-            } catch (ValidationException ex) {
-                throw new MojoFailureException("Failure", ex);
-            }
-        }
-    }
-
-    /**
-     * Set provider of validators.
-     * @param prov The provider
-     */
-    protected void setValidatorsProvider(final ValidatorsProvider prov) {
-        this.provider = prov;
     }
 
 }
