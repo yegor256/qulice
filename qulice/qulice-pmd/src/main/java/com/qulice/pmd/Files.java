@@ -46,6 +46,7 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id: Files.java 297 2011-11-13 14:01:00Z guard $
  */
+@SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
 public final class Files {
 
     /**
@@ -58,16 +59,16 @@ public final class Files {
     private Collection<File> getFiles(final Environment environment) {
         final Collection<File> files = new LinkedList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final String[] dirs = new String[] {
+        final String[] paths = new String[] {
             "src/main/java",
             "src/test/java",
             "src/mock/java",
         };
-        for (String dir : dirs) {
-            final File sourcesDir = new File(environment.basedir(), dir);
-            if (sourcesDir.exists()) {
+        for (String path : paths) {
+            final File dir = new File(environment.basedir(), path);
+            if (dir.exists()) {
                 final Collection<File> sources = FileUtils.listFiles(
-                    sourcesDir,
+                    dir,
                     filter,
                     DirectoryFileFilter.INSTANCE
                 );

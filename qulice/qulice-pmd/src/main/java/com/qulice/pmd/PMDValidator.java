@@ -35,7 +35,6 @@ import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
 import java.io.File;
 import java.util.Collection;
-import java.util.Collections;
 import net.sourceforge.pmd.DataSource;
 import net.sourceforge.pmd.IRuleViolation;
 
@@ -50,7 +49,7 @@ public final class PMDValidator implements Validator {
     /**
      * Validator.
      */
-    private final SourceValidator validator = new SourceValidator();
+    private final transient SourceValidator validator = new SourceValidator();
 
     /**
      * {@inheritDoc}
@@ -94,7 +93,6 @@ public final class PMDValidator implements Validator {
         final Collection<DataSource> sources = files.getSources(environment);
         if (sources.isEmpty()) {
             Logger.info(this, "No files to check with PMD");
-            return Collections.EMPTY_LIST;
         }
         return sources;
     }

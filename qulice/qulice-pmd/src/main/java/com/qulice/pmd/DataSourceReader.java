@@ -47,15 +47,15 @@ public final class DataSourceReader {
     /**
      * Data source.
      */
-    private DataSource source;
+    private final transient DataSource source;
 
     /**
      * Creates new instance of <code>DataSourceReader</code> with the specified
      * <code>DataSource</code>.
-     * @param dataSource Data source to work with.
+     * @param src Data source to work with.
      */
-    public DataSourceReader(final DataSource dataSource) {
-        this.source = dataSource;
+    public DataSourceReader(final DataSource src) {
+        this.source = src;
     }
 
     /**
@@ -75,7 +75,6 @@ public final class DataSourceReader {
         } catch (UnsupportedEncodingException exception) {
             throw new IllegalArgumentException(exception);
         }
-        final BufferedReader buffer = new BufferedReader(reader);
-        return buffer;
+        return new BufferedReader(reader);
     }
 }

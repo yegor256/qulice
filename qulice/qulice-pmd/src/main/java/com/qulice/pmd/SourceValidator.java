@@ -54,22 +54,22 @@ public final class SourceValidator {
     /**
      * PMD.
      */
-    private final PMD pmd = new PMD();
+    private final transient PMD pmd = new PMD();
 
     /**
      * Rule context.
      */
-    private final RuleContext context = new RuleContext();
-
-    /**
-     * Rules.
-     */
-    private RuleSets ruleSets;
+    private final transient RuleContext context = new RuleContext();
 
     /**
      * Report listener.
      */
-    private final PmdListener reportListener = new PmdListener();
+    private final transient PmdListener reportListener = new PmdListener();
+
+    /**
+     * Rules.
+     */
+    private transient RuleSets ruleSets;
 
     /**
      * Creates new instance of <code>SourceValidator</code>.
@@ -95,6 +95,7 @@ public final class SourceValidator {
      * @param sources Input source files.
      * @param path Base path.
      */
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public void validate(
         final Collection<DataSource> sources, final String path
     ) {

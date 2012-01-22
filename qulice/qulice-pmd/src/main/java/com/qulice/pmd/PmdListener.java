@@ -48,7 +48,7 @@ public final class PmdListener implements ReportListener {
     /**
      * Violations.
      */
-    private Collection<IRuleViolation> violations =
+    private final transient Collection<IRuleViolation> violations =
         new LinkedList<IRuleViolation>();
 
     /**
