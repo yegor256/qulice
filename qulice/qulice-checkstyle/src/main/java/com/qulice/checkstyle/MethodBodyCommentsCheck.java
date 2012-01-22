@@ -80,13 +80,13 @@ public final class MethodBodyCommentsCheck extends Check {
         final int start,
         final int end
     ) {
-        for (int i = start; i < end; i = i + 1) {
-            final String line = lines[i].trim();
+        for (int pos = start; pos < end; pos += pos) {
+            final String line = lines[pos].trim();
             if (line.startsWith("//")) {
                 String comment = line.substring(2);
                 comment = comment.trim();
                 if (!comment.startsWith("@checkstyle")) {
-                    this.log(i + 1, "Comments in method body are prohibited");
+                    this.log(pos + 1, "Comments in method body are prohibited");
                 }
             }
         }

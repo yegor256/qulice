@@ -77,7 +77,7 @@ final class DependenciesValidator implements MavenValidator {
             }
             unused.add(artifact.toString());
         }
-        if (unused.size() > 0) {
+        if (!unused.isEmpty()) {
             Logger.warn(
                 this,
                 "Unused declared dependencies found:%s%s",
@@ -89,7 +89,7 @@ final class DependenciesValidator implements MavenValidator {
         for (Object artifact : analysis.getUsedUndeclaredArtifacts()) {
             used.add(((Artifact) artifact).toString());
         }
-        if (used.size() > 0) {
+        if (!used.isEmpty()) {
             Logger.warn(
                 this,
                 "Used undeclared dependencies found:%s%s",

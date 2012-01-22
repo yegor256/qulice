@@ -55,17 +55,18 @@ import org.powermock.modules.junit4.PowerMockRunner;
  */
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ SvnPropertiesCheck.class, ProcessBuilder.class })
+@SuppressWarnings("PMD.LooseCoupling")
 public final class SvnPropertiesCheckTest {
 
     /**
      * The check we're testing.
      */
-    private FileSetCheck check;
+    private transient FileSetCheck check;
 
     /**
      * Dispatcher of log messages.
      */
-    private MessageDispatcher dispatcher;
+    private transient MessageDispatcher dispatcher;
 
     /**
      * Prepare mocked process builder.
@@ -100,6 +101,7 @@ public final class SvnPropertiesCheckTest {
      * @throws Exception If something goes wrong
      */
     @Test
+    @SuppressWarnings("PMD.UseConcurrentHashMap")
     public void testSimulatesSvnPropgetRequest() throws Exception {
         final Map<String, String> props = new HashMap<String, String>();
         props.put("svn:keywords", "Id");

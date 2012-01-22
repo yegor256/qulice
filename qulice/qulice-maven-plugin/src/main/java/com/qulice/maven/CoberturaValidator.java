@@ -50,11 +50,6 @@ public final class CoberturaValidator implements MavenValidator {
         throws ValidationException {
         final Properties props = new Properties();
         props.put("quiet", "false");
-        env.executor().execute(
-            "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
-            "instrument",
-            props
-        );
         final Properties check = new Properties();
         props.put("check", check);
         check.put("haltOnFailure", "true");

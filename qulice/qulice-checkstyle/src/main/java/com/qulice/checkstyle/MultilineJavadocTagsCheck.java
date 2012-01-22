@@ -59,10 +59,10 @@ public final class MultilineJavadocTagsCheck extends Check {
     public void visitToken(final DetailAST ast) {
         final String[] lines = this.getLines();
         final int start = ast.getLineNo();
-        final int commentStart = this.findCommentStart(lines, start) + 1;
-        final int commentEnd = this.findCommentEnd(lines, start) - 1;
-        if ((commentEnd >= commentStart) && (commentStart >= 0)) {
-            this.checkJavaDoc(lines, commentStart, commentEnd);
+        final int cstart = this.findCommentStart(lines, start) + 1;
+        final int cend = this.findCommentEnd(lines, start) - 1;
+        if ((cend >= cstart) && (cstart >= 0)) {
+            this.checkJavaDoc(lines, cstart, cend);
         } else {
             this.log(0, "Can't find method comment");
         }
@@ -131,11 +131,13 @@ public final class MultilineJavadocTagsCheck extends Check {
      */
     private int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
+        int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {
             if (lines[pos].trim().equals(text)) {
-                return pos;
+                found = pos;
+                break;
             }
         }
-        return -1;
+        return found;
     }
 }

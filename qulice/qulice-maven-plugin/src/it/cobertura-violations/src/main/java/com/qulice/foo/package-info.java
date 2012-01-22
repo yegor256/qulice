@@ -1,6 +1,4 @@
-<?xml version="1.0"?>
-<!--
- *
+/**
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -28,43 +26,12 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/**
+ * Simple classes to test.
  *
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- -->
-<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0
-    http://maven.apache.org/xsd/assembly-1.1.0.xsd">
-    <id>mock</id>
-    <formats>
-        <format>jar</format>
-    </formats>
-    <includeBaseDirectory>false</includeBaseDirectory>
-    <fileSets>
-        <fileSet>
-            <directory>${project.build.testOutputDirectory}</directory>
-            <outputDirectory>/</outputDirectory>
-            <includes>
-                <include>**/*Mocker.class</include>
-            </includes>
-            <useDefaultExcludes>true</useDefaultExcludes>
-        </fileSet>
-    </fileSets>
-    <dependencySets>
-        <dependencySet>
-            <unpack>true</unpack>
-            <useProjectArtifact>false</useProjectArtifact>
-            <scope>test</scope>
-            <includes>
-                <include>*</include>
-            </includes>
-        </dependencySet>
-        <dependencySet>
-            <unpack>true</unpack>
-            <useProjectArtifact>false</useProjectArtifact>
-            <includes>
-                <include>*</include>
-            </includes>
-        </dependencySet>
-    </dependencySets>
-</assembly>
+ */
+package com.qulice.foo;

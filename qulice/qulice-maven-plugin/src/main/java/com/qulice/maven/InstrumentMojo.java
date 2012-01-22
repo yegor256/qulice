@@ -1,6 +1,4 @@
-<?xml version="1.0"?>
-<!--
- *
+/**
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -28,31 +26,40 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.maven;
+
+import com.qulice.spi.ValidationException;
+import java.util.Properties;
+import org.apache.maven.plugin.MojoFailureException;
+
+/**
+ * Prepare classes for code coverage check.
  *
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- -->
-<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0
-    http://maven.apache.org/xsd/assembly-1.1.0.xsd">
-    <id>sources</id>
-    <formats>
-        <format>jar</format>
-    </formats>
-    <fileSets>
-        <fileSet>
-            <directory>${basedir}</directory>
-            <includes>
-                <include>README*</include>
-                <include>LICENSE*</include>
-                <include>NOTICE*</include>
-                <include>pom.xml</include>
-            </includes>
-            <useDefaultExcludes>true</useDefaultExcludes>
-        </fileSet>
-        <fileSet>
-            <directory>${project.build.sourceDirectory}</directory>
-            <useDefaultExcludes>true</useDefaultExcludes>
-        </fileSet>
-    </fileSets>
-</assembly>
+ * @goal instrument
+ * @phase process-classes
+ * @threadSafe
+ */
+public final class InstrumentMojo extends AbstractQuliceMojo {
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void doExecute() throws MojoFailureException {
+        final Properties props = new Properties();
+        props.put("quiet", "false");
+        try {
+            this.env().executor().execute(
+                "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
+                "instrument",
+                props
+            );
+        } catch (ValidationException ex) {
+            throw new MojoFailureException("Failed", ex);
+        }
+    }
+
+}

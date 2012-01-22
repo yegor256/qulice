@@ -49,6 +49,7 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TestClassWithoutTestCases")
 public final class CodeNarcValidatorTest {
 
     /**
@@ -116,7 +117,7 @@ public final class CodeNarcValidatorTest {
         /**
          * List of logged messages.
          */
-        private List<String> messages = new ArrayList<String>();
+        private final transient List<String> messages = new ArrayList<String>();
         /**
          * {@inheritDoc}
          */
