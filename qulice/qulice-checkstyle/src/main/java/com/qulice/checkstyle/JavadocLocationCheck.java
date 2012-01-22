@@ -127,11 +127,13 @@ public final class JavadocLocationCheck extends Check {
      *  <code>true</code>.
      */
     private boolean isField(final DetailAST node) {
+        boolean yes;
         if (TokenTypes.VARIABLE_DEF != node.getType()) {
-            return true;
+            yes = true;
+        } else {
+            yes = TokenTypes.OBJBLOCK == node.getParent().getType();
         }
-        final DetailAST parent = node.getParent();
-        return TokenTypes.OBJBLOCK == parent.getType();
+        return yes;
     }
 
     /**
@@ -153,11 +155,13 @@ public final class JavadocLocationCheck extends Check {
      */
     private int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
+        int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {
             if (lines[pos].trim().equals(text)) {
-                return pos + 1;
+                found = pos + 1;
+                break;
             }
         }
-        return -1;
+        return found;
     }
 }

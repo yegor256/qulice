@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.qulice.spi.Environment;
@@ -86,7 +85,7 @@ public final class CheckstyleValidator implements Validator {
         } catch (CheckstyleException ex) {
             throw new IllegalStateException("Failed to configure checker", ex);
         }
-        final Listener listener = new Listener(env);
+        final CheckstyleListener listener = new CheckstyleListener(env);
         checker.addListener(listener);
         checker.process(files);
         checker.destroy();
@@ -228,88 +227,6 @@ public final class CheckstyleValidator implements Validator {
             }
         }
         return files;
-    }
-
-    /**
-     * Listener of events.
-     */
-    private final class Listener implements AuditListener {
-        /**
-         * Environment.
-         */
-        private final Environment env;
-        /**
-         * Collection of events collected.
-         */
-        private final List<AuditEvent> events = new ArrayList<AuditEvent>();
-        /**
-         * Public ctor.
-         * @param environ The environment
-         */
-        public Listener(final Environment environ) {
-            this.env = environ;
-        }
-        /**
-         * Get all events.
-         * @return List of events
-         */
-        public List<AuditEvent> events() {
-            return this.events;
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void auditStarted(final AuditEvent event) {
-            // intentionally empty
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void auditFinished(final AuditEvent event) {
-            // intentionally empty
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void fileStarted(final AuditEvent event) {
-            // intentionally empty
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void fileFinished(final AuditEvent event) {
-            // intentionally empty
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void addError(final AuditEvent event) {
-            this.events.add(event);
-            final String check = event.getSourceName();
-            Logger.error(
-                this,
-                "%s[%d]: %s (%s)",
-                event.getFileName().substring(
-                    this.env.basedir().toString().length()
-                ),
-                event.getLine(),
-                event.getMessage(),
-                check.substring(check.lastIndexOf('.') + 1)
-            );
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void addException(final AuditEvent event,
-            final Throwable throwable) {
-            // intentionally empty
-        }
     }
 
 }
