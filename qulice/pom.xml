@@ -48,7 +48,6 @@
     <name>qulice</name>
 
     <modules>
-        <module>qulice-tk</module>
         <module>qulice-spi</module>
         <module>qulice-checkstyle</module>
         <module>qulice-codenarc</module>
@@ -190,9 +189,9 @@
                         <artifactId>maven-assembly-plugin</artifactId>
                         <dependencies>
                             <dependency>
-                                <groupId>com.qulice</groupId>
-                                <artifactId>qulice-tk</artifactId>
-                                <version qulice="yes">1.0-SNAPSHOT</version>
+                                <groupId>com.ymock</groupId>
+                                <artifactId>ymock-tk</artifactId>
+                                <version since="22 Jan 2012">1.0.4</version>
                             </dependency>
                         </dependencies>
                         <executions>
@@ -204,12 +203,7 @@
                                 </goals>
                                 <configuration>
                                     <descriptorRefs>
-                                        <!--
-                                        This descriptor is in qulice-tk sub-module, which is in classpath of
-                                        this plugin.
-                                        @see http://maven.apache.org/plugins/maven-assembly-plugin/examples/sharing-descriptors.html
-                                        -->
-                                        <descriptorRef>qulice-sources</descriptorRef>
+                                        <descriptorRef>ymock-sources</descriptorRef>
                                     </descriptorRefs>
                                 </configuration>
                             </execution>
@@ -219,20 +213,13 @@
                         <groupId>com.qulice</groupId>
                         <artifactId>qulice-maven-plugin</artifactId>
                         <version since="30 Oct 2011">0.1.5</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.qulice</groupId>
-                                <artifactId>qulice-tk</artifactId>
-                                <version qulice="yes">1.0-SNAPSHOT</version>
-                            </dependency>
-                        </dependencies>
                         <executions>
                             <execution>
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
                                 <configuration>
-                                    <license>LICENSE.txt</license>
+                                    <license>file:${basedir}/LICENSE.txt</license>
                                 </configuration>
                             </execution>
                         </executions>
@@ -372,13 +359,6 @@
                                 </plugin>
                             </reportPlugins>
                         </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.qulice</groupId>
-                                <artifactId>qulice-tk</artifactId>
-                                <version qulice="yes">1.0-SNAPSHOT</version>
-                            </dependency>
-                        </dependencies>
                         <executions>
                             <execution>
                                 <id>attach-descriptor</id>
@@ -453,25 +433,27 @@
                         </executions>
                     </plugin>
                     <plugin>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.qulice</groupId>
-                                <artifactId>qulice-tk</artifactId>
-                                <version qulice="yes">1.0-SNAPSHOT</version>
-                            </dependency>
-                        </dependencies>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version since="5 Dec 2011">2.3.2</version>
                         <executions>
                             <execution>
-                                <id>mock-packaging</id>
+                                <id>mock-artifact</id>
                                 <phase>package</phase>
                                 <goals>
-                                    <goal>single</goal>
+                                    <goal>jar</goal>
                                 </goals>
                                 <configuration>
-                                    <descriptorRefs>
-                                        <descriptorRef>qulice-mock</descriptorRef>
-                                    </descriptorRefs>
+                                    <classesDirectory>${project.build.testOutputDirectory}</classesDirectory>
+                                    <archive>
+                                        <index>true</index>
+                                        <manifest>
+                                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                        </manifest>
+                                    </archive>
+                                    <classifier>mock</classifier>
+                                    <includes>
+                                        <include>**/*Mocker.class</include>
+                                    </includes>
                                 </configuration>
                             </execution>
                         </executions>
