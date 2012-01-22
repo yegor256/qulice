@@ -32,8 +32,8 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
 
 /**
@@ -49,7 +49,8 @@ public final class JavadocTagsCheck extends Check {
     /**
      * Map of tag and its pattern.
      */
-    private final Map<String, Pattern> tags = new HashMap<String, Pattern>();
+    private final transient ConcurrentMap<String, Pattern> tags =
+        new ConcurrentHashMap<String, Pattern>();
 
     /**
      * {@inheritDoc}
@@ -132,7 +133,7 @@ public final class JavadocTagsCheck extends Check {
      */
     private String getTagText(final String line) {
         return line.substring(
-            line.indexOf(" ", line.indexOf("@")) + 1
+            line.indexOf(' ', line.indexOf('@')) + 1
         );
     }
 

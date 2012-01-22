@@ -34,9 +34,10 @@ import com.ymock.util.Logger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Check for required svn properties in java files.
@@ -60,7 +61,8 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
     /**
      * List of required values.
      */
-    private final Map<String, String> required = new HashMap<String, String>();
+    private final transient ConcurrentMap<String, String> required =
+        new ConcurrentHashMap<String, String>();
 
     /**
      * {@inheritDoc}
