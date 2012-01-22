@@ -83,11 +83,11 @@ public final class JavadocTagsCheck extends Check {
         if (ast.getParent() == null) {
             final String[] lines = this.getLines();
             final int start = ast.getLineNo();
-            final int commentStart = this.findCommentStart(lines, start);
-            final int commentEnd = this.findCommentEnd(lines, start);
-            if ((commentEnd > commentStart) && (commentStart >= 0)) {
+            final int cstart = this.findCommentStart(lines, start);
+            final int cend = this.findCommentEnd(lines, start);
+            if ((cend > cstart) && (cstart >= 0)) {
                 for (String tag : this.tags.keySet()) {
-                    this.matchTagFormat(lines, commentStart, commentEnd, tag);
+                    this.matchTagFormat(lines, cstart, cend, tag);
                 }
             } else {
                 this.log(0, "Problem finding class/interface comment");

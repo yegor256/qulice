@@ -50,7 +50,7 @@ public final class XmlValidator implements Validator {
     public void validate(final Environment env) throws ValidationException {
         Logger.info(
             this,
-            "Not implemented yet"
+            "XML validation is not implemented yet"
         );
     }
 

@@ -84,6 +84,7 @@ public final class CascadeIndentationCheckTest {
     @Test
     public void testWithCorrectIndentation() throws Exception {
         this.process(
+            // @checkstyle StringLiteralsConcatenation (6 lines)
             ""
             + "class Foo {\n"
             + "    void foo() {\n"

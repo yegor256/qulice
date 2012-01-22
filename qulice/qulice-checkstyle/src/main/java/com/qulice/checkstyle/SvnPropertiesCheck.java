@@ -30,6 +30,7 @@
 package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.ymock.util.Logger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -132,7 +133,10 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
                 value = "";
             }
         } catch (java.io.IOException ex) {
-            this.log(0, "Failed to execute 'svn': " + ex.getMessage());
+            this.log(
+                0,
+                Logger.format("Failed to execute 'svn': %[exception]s", ex)
+            );
         } finally {
             if (reader != null) {
                 try {
@@ -140,7 +144,10 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
                 } catch (java.io.IOException ex) {
                     this.log(
                         0,
-                        "Failed to close 'svn' stream: " + ex.getMessage()
+                        Logger.format(
+                            "Failed to close 'svn' stream: %[exception]s",
+                            ex
+                        )
                     );
                 }
             }

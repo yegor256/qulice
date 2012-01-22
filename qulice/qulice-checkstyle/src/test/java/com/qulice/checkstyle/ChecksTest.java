@@ -86,7 +86,7 @@ public final class ChecksTest {
      * @param name The name of the check to work with
      */
     public ChecksTest(final String name) {
-        this.dir = "ChecksTest/" + name;
+        this.dir = String.format("ChecksTest/%s", name);
     }
 
     /**
@@ -212,7 +212,9 @@ public final class ChecksTest {
         throws Exception {
         final Checker checker = new Checker();
         final InputSource src = new InputSource(
-            this.getClass().getResourceAsStream(this.dir + "/config.xml")
+            this.getClass().getResourceAsStream(
+                String.format("%s/config.xml", this.dir)
+            )
         );
         checker.setClassloader(this.getClass().getClassLoader());
         checker.setModuleClassLoader(this.getClass().getClassLoader());

@@ -66,17 +66,17 @@ public final class JavadocLocationCheck extends Check {
         }
         final String[] lines = this.getLines();
         final int current = ast.getLineNo();
-        final int commentEnd = this.findCommentEnd(lines, current);
-        final int commentMinimum = this.getCommentMinimum(ast);
-        if (commentEnd <= commentMinimum) {
+        final int cend = this.findCommentEnd(lines, current);
+        final int cminimum = this.getCommentMinimum(ast);
+        if (cend <= cminimum) {
             this.log(current, "Problem finding javadoc");
             return;
         }
-        final int diff = current - commentEnd;
+        final int diff = current - cend;
         if (diff > 1) {
-            for (int i = 1; i < diff; i += 1) {
+            for (int pos = 1; pos < diff; pos += 1) {
                 this.log(
-                    commentEnd + i,
+                    cend + pos,
                     "Empty line between javadoc and subject"
                 );
             }
@@ -111,7 +111,7 @@ public final class JavadocLocationCheck extends Check {
      * Checks the specified node: is it first element or not.
      * @param node Node to be checked.
      * @return True if there are no any nodes before this one, else -
-     * <code>false</code>.
+     *  <code>false</code>.
      */
     private boolean isFirst(final DetailAST node) {
         final DetailAST previous = node.getPreviousSibling();
@@ -124,7 +124,7 @@ public final class JavadocLocationCheck extends Check {
      * <code>true</code>.
      * @param node Node to check.
      * @return False if the specified node is a field, otherwise it returns
-     * <code>true</code>.
+     *  <code>true</code>.
      */
     private boolean isField(final DetailAST node) {
         if (TokenTypes.VARIABLE_DEF != node.getType()) {

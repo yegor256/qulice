@@ -86,7 +86,10 @@ public final class ConstantUsageCheck extends Check {
             }
         }
         if (counter < 2) {
-            this.log(line, "Constant \"" + name + "\" used only once");
+            this.log(
+                line,
+                String.format("Constant \"%s\" used only once", name)
+            );
         }
     }
 
@@ -115,7 +118,7 @@ public final class ConstantUsageCheck extends Check {
      * <code>OBJBLOCK</code>.
      * @param node Node to check.
      * @return True if parent node is <code>OBJBLOCK</code>, else
-     * returns <code>false</code>.
+     *  returns <code>false</code>.
      */
     private boolean isField(final DetailAST node) {
         final DetailAST parent = node.getParent();
@@ -126,7 +129,7 @@ public final class ConstantUsageCheck extends Check {
      * Returns true if specified node has modifiers of type <code>FINAL</code>.
      * @param node Node to check.
      * @return True if specified node contains modifiers of type
-     * <code>FINAL</code>, else returns <code>false</code>.
+     *  <code>FINAL</code>, else returns <code>false</code>.
      */
     private boolean isFinal(final DetailAST node) {
         final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
@@ -148,8 +151,8 @@ public final class ConstantUsageCheck extends Check {
             final int start = opening.getLineNo();
             final int end = closing.getLineNo() - 1;
             final String[] lines = this.getLines();
-            for (int i = start; i < end; i = i + 1) {
-                if (lines[i].contains(name)) {
+            for (int pos = start; pos < end; pos += 1) {
+                if (lines[pos].contains(name)) {
                     counter += 1;
                 }
             }
