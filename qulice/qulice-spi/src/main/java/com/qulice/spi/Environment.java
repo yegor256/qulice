@@ -78,4 +78,10 @@ public interface Environment {
      */
     Collection<File> classpath();
 
+    /**
+     * Returns collection of files, matching the specified pattern.
+     * @param pattern File name pattern.
+     * @return Collection of files, matching the specified pattern.
+     */
+    Collection<File> files(final String pattern);
 }

@@ -185,6 +185,14 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Collection<File> files(final String pattern) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
      * Set Maven Project (used mostly for unit testing).
      * @param proj The project to set
      */
