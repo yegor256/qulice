@@ -90,18 +90,20 @@ public final class JavadocLocationCheck extends Check {
     private int getCommentMinimum(final DetailAST node) {
         int minimum = 0;
         final DetailAST parent = node.getParent();
-        if (null != parent) {
+        if (null == parent) {
+            if (!this.isFirst(node)) {
+                final DetailAST previous = node.getPreviousSibling();
+                final DetailAST object =
+                    previous.findFirstToken(TokenTypes.OBJBLOCK);
+                final DetailAST closing = object.getLastChild();
+                minimum = closing.getLineNo();
+            }
+        } else {
             DetailAST previous = node.getPreviousSibling();
             if (null == previous) {
                 previous = parent;
             }
             minimum = previous.getLineNo();
-        } else if (!this.isFirst(node)) {
-            final DetailAST previous = node.getPreviousSibling();
-            final DetailAST object =
-                previous.findFirstToken(TokenTypes.OBJBLOCK);
-            final DetailAST closing = object.getLastChild();
-            minimum = closing.getLineNo();
         }
         return minimum;
     }

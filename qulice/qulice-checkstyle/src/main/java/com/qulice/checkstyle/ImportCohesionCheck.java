@@ -40,6 +40,7 @@ import java.util.List;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.CyclomaticComplexity")
 public final class ImportCohesionCheck extends AbstractFileSetCheck {
 
     /**

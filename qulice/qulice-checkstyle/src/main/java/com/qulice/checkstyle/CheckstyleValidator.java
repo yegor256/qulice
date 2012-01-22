@@ -79,7 +79,9 @@ public final class CheckstyleValidator implements Validator {
             throw new IllegalStateException("Failed to create checker", ex);
         }
         checker.setClassloader(env.classloader());
-        checker.setModuleClassLoader(this.getClass().getClassLoader());
+        checker.setModuleClassLoader(
+            Thread.currentThread().getContextClassLoader()
+        );
         try {
             checker.configure(this.configuration(env));
         } catch (CheckstyleException ex) {
@@ -206,6 +208,7 @@ public final class CheckstyleValidator implements Validator {
      * @todo #44:1h Perform refactoring: remove this method, use
      *  Environment.files() instead.
      */
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private List<File> files(final Environment env) {
         final List<File> files = new ArrayList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");

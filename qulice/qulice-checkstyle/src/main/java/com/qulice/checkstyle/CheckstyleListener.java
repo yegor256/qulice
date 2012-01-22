@@ -53,7 +53,7 @@ final class CheckstyleListener implements AuditListener {
     /**
      * Collection of events collected.
      */
-    private final transient List<AuditEvent> events =
+    private final transient List<AuditEvent> all =
         new ArrayList<AuditEvent>();
 
     /**
@@ -69,7 +69,7 @@ final class CheckstyleListener implements AuditListener {
      * @return List of events
      */
     public List<AuditEvent> events() {
-        return this.events;
+        return this.all;
     }
 
     /**
@@ -109,7 +109,7 @@ final class CheckstyleListener implements AuditListener {
      */
     @Override
     public void addError(final AuditEvent event) {
-        this.events.add(event);
+        this.all.add(event);
         final String check = event.getSourceName();
         Logger.error(
             this,
