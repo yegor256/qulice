@@ -6,4 +6,7 @@ public class InvalidTest {
     public String name() {
       return "test";
     }
+    public String name() {
+        return "this";
+    }
 }

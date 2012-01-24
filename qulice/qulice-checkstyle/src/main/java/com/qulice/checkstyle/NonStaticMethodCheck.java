@@ -61,33 +61,9 @@ public final class NonStaticMethodCheck extends Check {
         if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
             return;
         }
-        if (!this.checkMethod(ast)) {
+        if (!ast.branchContains(TokenTypes.LITERAL_THIS)) {
             final int line = ast.getLineNo();
             this.log(line, "This method must be static.");
         }
-    }
-
-    /**
-     * Checks method body for containing reference to <code>this</code>.
-     * @param method Tree node, containing method.
-     * @return True if method contains at least one reference to
-     *  <code>this</code>, otherwise - <code>false</code>.
-     */
-    private boolean checkMethod(final DetailAST method) {
-        final DetailAST opening = method.findFirstToken(TokenTypes.SLIST);
-        boolean valid = false;
-        if (null != opening) {
-            final DetailAST closing = opening.findFirstToken(TokenTypes.RCURLY);
-            final int start = opening.getLineNo();
-            final int end = closing.getLineNo() - 1;
-            final String[] lines = this.getLines();
-            for (int i = start; i < end; i = i + 1) {
-                if (lines[i].contains("this.")) {
-                    valid = true;
-                    break;
-                }
-            }
-        }
-        return valid;
     }
 }

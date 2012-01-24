@@ -3,7 +3,11 @@
  * only as a text resource in integration.ChecksIT.
  */
 public class ValidTest {
+    private static final String TEST = "test";
     public static String name() {
       return "test";
+    }
+    public String test() {
+        return this.TEST;
     }
 }
