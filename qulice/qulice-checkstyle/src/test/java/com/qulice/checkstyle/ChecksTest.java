@@ -74,6 +74,7 @@ public final class ChecksTest {
         "ConstantUsageCheck",
         "JavadocLocationCheck",
         "MethodBodyCommentsCheck",
+        "NonStaticMethodCheck",
     };
 
     /**
