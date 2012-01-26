@@ -61,24 +61,23 @@ public final class JavadocLocationCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        if (!this.isField(ast)) {
-            return;
-        }
-        final String[] lines = this.getLines();
-        final int current = ast.getLineNo();
-        final int commentEnd = this.findCommentEnd(lines, current);
-        final int commentMinimum = this.getCommentMinimum(ast);
-        if (commentEnd <= commentMinimum) {
-            this.log(current, "Problem finding javadoc");
-            return;
-        }
-        final int diff = current - commentEnd;
-        if (diff > 1) {
-            for (int i = 1; i < diff; i += 1) {
-                this.log(
-                    commentEnd + i,
-                    "Empty line between javadoc and subject"
-                );
+        if (this.isField(ast)) {
+            final String[] lines = this.getLines();
+            final int current = ast.getLineNo();
+            final int cend = this.findCommentEnd(lines, current);
+            final int cminimum = this.getCommentMinimum(ast);
+            if (cend <= cminimum) {
+                this.log(current, "Problem finding javadoc");
+                return;
+            }
+            final int diff = current - cend;
+            if (diff > 1) {
+                for (int pos = 1; pos < diff; pos += 1) {
+                    this.log(
+                        cend + pos,
+                        "Empty line between javadoc and subject"
+                    );
+                }
             }
         }
     }
@@ -91,18 +90,20 @@ public final class JavadocLocationCheck extends Check {
     private int getCommentMinimum(final DetailAST node) {
         int minimum = 0;
         final DetailAST parent = node.getParent();
-        if (null != parent) {
+        if (null == parent) {
+            if (!this.isFirst(node)) {
+                final DetailAST previous = node.getPreviousSibling();
+                final DetailAST object =
+                    previous.findFirstToken(TokenTypes.OBJBLOCK);
+                final DetailAST closing = object.getLastChild();
+                minimum = closing.getLineNo();
+            }
+        } else {
             DetailAST previous = node.getPreviousSibling();
             if (null == previous) {
                 previous = parent;
             }
             minimum = previous.getLineNo();
-        } else if (!this.isFirst(node)) {
-            final DetailAST previous = node.getPreviousSibling();
-            final DetailAST object =
-                previous.findFirstToken(TokenTypes.OBJBLOCK);
-            final DetailAST closing = object.getLastChild();
-            minimum = closing.getLineNo();
         }
         return minimum;
     }
@@ -111,7 +112,7 @@ public final class JavadocLocationCheck extends Check {
      * Checks the specified node: is it first element or not.
      * @param node Node to be checked.
      * @return True if there are no any nodes before this one, else -
-     * <code>false</code>.
+     *  <code>false</code>.
      */
     private boolean isFirst(final DetailAST node) {
         final DetailAST previous = node.getPreviousSibling();
@@ -124,14 +125,14 @@ public final class JavadocLocationCheck extends Check {
      * <code>true</code>.
      * @param node Node to check.
      * @return False if the specified node is a field, otherwise it returns
-     * <code>true</code>.
+     *  <code>true</code>.
      */
     private boolean isField(final DetailAST node) {
-        if (TokenTypes.VARIABLE_DEF != node.getType()) {
-            return true;
+        boolean yes = true;
+        if (TokenTypes.VARIABLE_DEF == node.getType()) {
+            yes = TokenTypes.OBJBLOCK == node.getParent().getType();
         }
-        final DetailAST parent = node.getParent();
-        return TokenTypes.OBJBLOCK == parent.getType();
+        return yes;
     }
 
     /**
@@ -153,11 +154,13 @@ public final class JavadocLocationCheck extends Check {
      */
     private int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
+        int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {
             if (lines[pos].trim().equals(text)) {
-                return pos + 1;
+                found = pos + 1;
+                break;
             }
         }
-        return -1;
+        return found;
     }
 }

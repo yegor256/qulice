@@ -62,7 +62,7 @@ public final class ChecksTest {
     /**
      * Directories where test scripts are located.
      */
-    private static final String[] DIRS = {
+    private static final String[] CHECKS = {
         "MultilineJavadocTagsCheck",
         "StringLiteralsConcatenationCheck",
         "EmptyLinesCheck",
@@ -80,14 +80,14 @@ public final class ChecksTest {
     /**
      * Current directory we're working with.
      */
-    private final String dir;
+    private final transient String dir;
 
     /**
      * Public ctor.
      * @param name The name of the check to work with
      */
     public ChecksTest(final String name) {
-        this.dir = "ChecksTest/" + name;
+        this.dir = String.format("ChecksTest/%s", name);
     }
 
     /**
@@ -95,9 +95,10 @@ public final class ChecksTest {
      * @return The list
      */
     @Parameterized.Parameters
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public static Collection<Object[]> dirs() {
         final Collection<Object[]> dirs = new ArrayList<Object[]>();
-        for (String url : ChecksTest.DIRS) {
+        for (String url : ChecksTest.CHECKS) {
             dirs.add(new Object[] {url});
         }
         return dirs;
@@ -161,7 +162,8 @@ public final class ChecksTest {
         /**
          * List of events received.
          */
-        private final List<AuditEvent> events = new ArrayList<AuditEvent>();
+        private final transient List<AuditEvent> events =
+            new ArrayList<AuditEvent>();
         /**
          * {@inheritDoc}
          */
@@ -177,12 +179,14 @@ public final class ChecksTest {
          * @return This message was reported for the give line?
          */
         public boolean has(final Integer line, final String msg) {
+            boolean has = false;
             for (AuditEvent event : this.events) {
                 if (event.getLine() == line && event.getMessage().equals(msg)) {
-                    return true;
+                    has = true;
+                    break;
                 }
             }
-            return false;
+            return has;
         }
         /**
          * Returns full summary.
@@ -213,10 +217,14 @@ public final class ChecksTest {
         throws Exception {
         final Checker checker = new Checker();
         final InputSource src = new InputSource(
-            this.getClass().getResourceAsStream(this.dir + "/config.xml")
+            this.getClass().getResourceAsStream(
+                String.format("%s/config.xml", this.dir)
+            )
         );
-        checker.setClassloader(this.getClass().getClassLoader());
-        checker.setModuleClassLoader(this.getClass().getClassLoader());
+        checker.setClassloader(Thread.currentThread().getContextClassLoader());
+        checker.setModuleClassLoader(
+            Thread.currentThread().getContextClassLoader()
+        );
         checker.configure(
             ConfigurationLoader.loadConfiguration(
                 src,

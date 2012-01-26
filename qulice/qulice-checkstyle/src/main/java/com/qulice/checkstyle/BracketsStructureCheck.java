@@ -79,20 +79,20 @@ public final class BracketsStructureCheck extends Check {
 
     /**
      * Checks method call statement to satisfy the rule.
-     * @param methodCall Tree node, containing method call statement.
+     * @param node Tree node, containing method call statement.
      * @param type Type, containing parameters (depends on
-     *  <code>methodCall</code> type).
+     *  <code>node</code> type).
      */
-    private void checkMethod(final DetailAST methodCall, final int type) {
-        DetailAST opening = methodCall;
-        if (TokenTypes.METHOD_CALL != methodCall.getType()) {
-            opening = methodCall.findFirstToken(TokenTypes.LPAREN);
+    private void checkMethod(final DetailAST node, final int type) {
+        DetailAST opening = node;
+        if (TokenTypes.METHOD_CALL != node.getType()) {
+            opening = node.findFirstToken(TokenTypes.LPAREN);
         }
-        final DetailAST closing = methodCall.findFirstToken(TokenTypes.RPAREN);
+        final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
         final int startLine = opening.getLineNo();
         final int endLine = closing.getLineNo();
         if (startLine != endLine) {
-            final DetailAST elist = methodCall.findFirstToken(type);
+            final DetailAST elist = node.findFirstToken(type);
             final int parametersLine = elist.getLineNo();
             if (parametersLine == startLine) {
                 this.log(parametersLine, this.ERROR_MESSAGE);

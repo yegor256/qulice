@@ -58,35 +58,37 @@ public final class ConstantUsageCheck extends Check {
 
     /**
      * {@inheritDoc}
+     * @checkstyle NestedIfDepth (35 lines)
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        if (!this.isField(ast)) {
-            return;
-        }
-        if (!this.isFinal(ast)) {
-            return;
-        }
-        final DetailAST nameNode = ast.findFirstToken(TokenTypes.IDENT);
-        final String name = nameNode.getText();
-        final int line = nameNode.getLineNo();
-        DetailAST variable = ast;
-        int counter = 0;
-        while (null != (variable = variable.getNextSibling())) {
-            if (TokenTypes.VARIABLE_DEF != variable.getType()) {
-                final int number = this.parseMethod(variable, name);
-                counter = counter + number;
-                continue;
+        if (this.isField(ast) && this.isFinal(ast)) {
+            final DetailAST nameNode = ast.findFirstToken(TokenTypes.IDENT);
+            final String name = nameNode.getText();
+            final int line = nameNode.getLineNo();
+            DetailAST variable = ast.getNextSibling();
+            int counter = 0;
+            while (null != variable) {
+                if (TokenTypes.VARIABLE_DEF == variable.getType()) {
+                    final DetailAST assign =
+                        variable.findFirstToken(TokenTypes.ASSIGN);
+                    final DetailAST expression =
+                        assign.findFirstToken(TokenTypes.EXPR);
+                    final String text = this.getText(expression);
+                    if (text.contains(name)) {
+                        counter = counter + 1;
+                    }
+                } else {
+                    counter = counter + this.parseMethod(variable, name);
+                }
+                variable = variable.getNextSibling();
             }
-            final DetailAST assign = variable.findFirstToken(TokenTypes.ASSIGN);
-            final DetailAST expression = assign.findFirstToken(TokenTypes.EXPR);
-            final String text = this.getText(expression);
-            if (text.contains(name)) {
-                counter = counter + 1;
+            if (counter < 2) {
+                this.log(
+                    line,
+                    String.format("Constant \"%s\" used only once", name)
+                );
             }
-        }
-        if (counter < 2) {
-            this.log(line, "Constant \"" + name + "\" used only once");
         }
     }
 
@@ -97,17 +99,20 @@ public final class ConstantUsageCheck extends Check {
      * @return Text representation of the node.
      */
     private String getText(final DetailAST node) {
+        String ret;
         if (0 == node.getChildCount()) {
-            return node.getText();
+            ret = node.getText();
+        } else {
+            final StringBuilder result = new StringBuilder(this.BUFFER_SIZE);
+            DetailAST child = node.getFirstChild();
+            while (null != child) {
+                final String text = this.getText(child);
+                result.append(text);
+                child = child.getNextSibling();
+            }
+            ret = result.toString();
         }
-        final StringBuilder result = new StringBuilder(this.BUFFER_SIZE);
-        DetailAST child = node.getFirstChild();
-        while (null != child) {
-            final String text = this.getText(child);
-            result.append(text);
-            child = child.getNextSibling();
-        }
-        return result.toString();
+        return ret;
     }
 
     /**
@@ -115,7 +120,7 @@ public final class ConstantUsageCheck extends Check {
      * <code>OBJBLOCK</code>.
      * @param node Node to check.
      * @return True if parent node is <code>OBJBLOCK</code>, else
-     * returns <code>false</code>.
+     *  returns <code>false</code>.
      */
     private boolean isField(final DetailAST node) {
         final DetailAST parent = node.getParent();
@@ -126,7 +131,7 @@ public final class ConstantUsageCheck extends Check {
      * Returns true if specified node has modifiers of type <code>FINAL</code>.
      * @param node Node to check.
      * @return True if specified node contains modifiers of type
-     * <code>FINAL</code>, else returns <code>false</code>.
+     *  <code>FINAL</code>, else returns <code>false</code>.
      */
     private boolean isFinal(final DetailAST node) {
         final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
@@ -148,8 +153,8 @@ public final class ConstantUsageCheck extends Check {
             final int start = opening.getLineNo();
             final int end = closing.getLineNo() - 1;
             final String[] lines = this.getLines();
-            for (int i = start; i < end; i = i + 1) {
-                if (lines[i].contains(name)) {
+            for (int pos = start; pos < end; pos += 1) {
+                if (lines[pos].contains(name)) {
                     counter += 1;
                 }
             }

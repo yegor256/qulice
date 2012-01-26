@@ -1,4 +1,5 @@
 /**
+ *
  * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
@@ -26,32 +27,10 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.xml;
-
-import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
-import com.ymock.util.Logger;
-
-/**
- * Validates XML files for formatting.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class XmlValidator implements Validator {
 
-    /**
-     * {@inheritDoc}
-     * @checkstyle RedundantThrows (3 lines)
-     */
-    @Override
-    public void validate(final Environment env) throws ValidationException {
-        Logger.info(
-            this,
-            "XML validation is not implemented yet"
-        );
-    }
-
-}
+def log = new File(basedir, 'build.log')
+assert log.text.contains('Coverage check failed. See messages above.')
+assert log.text.contains('com.qulice.foo.Bump failed check. Line coverage rate of 0.0% is below 60.0%')

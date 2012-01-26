@@ -56,12 +56,12 @@ public final class MojoExecutor {
     /**
      * Plugin manager.
      */
-    private MavenPluginManager manager;
+    private final transient MavenPluginManager manager;
 
     /**
      * Maven session.
      */
-    private MavenSession session;
+    private final transient MavenSession session;
 
     /**
      * Public ctor.
@@ -94,7 +94,7 @@ public final class MojoExecutor {
             this.manager.setupPluginRealm(
                 descriptor.getPluginDescriptor(),
                 this.session,
-                this.getClass().getClassLoader(),
+                Thread.currentThread().getContextClassLoader(),
                 new java.util.ArrayList<String>(),
                 this.session.getTopLevelProject().getExtensionDependencyFilter()
             );
@@ -104,8 +104,8 @@ public final class MojoExecutor {
             throw new IllegalStateException("Can't setup realm", ex);
         }
         final Xpp3Dom xpp = Xpp3Dom.mergeXpp3Dom(
-            this.toXpp3Dom(config, "configuration"),
-            this.toXpp3Dom(descriptor.getMojoConfiguration())
+            this.toXppDom(config, "configuration"),
+            this.toXppDom(descriptor.getMojoConfiguration())
         );
         final MojoExecution execution = new MojoExecution(descriptor, xpp);
         final Mojo mojo = this.mojo(execution);
@@ -172,7 +172,8 @@ public final class MojoExecutor {
      * @return The Xpp3Dom document
      * @see #execute(String,String,Properties)
      */
-    private Xpp3Dom toXpp3Dom(final Properties config, final String name) {
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+    private Xpp3Dom toXppDom(final Properties config, final String name) {
         final Xpp3Dom xpp = new Xpp3Dom(name);
         for (Map.Entry entry : config.entrySet()) {
             if (entry.getValue() instanceof String) {
@@ -197,7 +198,7 @@ public final class MojoExecutor {
                 xpp.addChild(child);
             } else if (entry.getValue() instanceof Properties) {
                 xpp.addChild(
-                    this.toXpp3Dom(
+                    this.toXppDom(
                         (Properties) entry.getValue(),
                         (String) entry.getKey()
                     )
@@ -220,7 +221,7 @@ public final class MojoExecutor {
      * @return The Xpp3Dom document
      * @see #execute(String,String,Properties)
      */
-    private Xpp3Dom toXpp3Dom(final PlexusConfiguration config) {
+    private Xpp3Dom toXppDom(final PlexusConfiguration config) {
         final Xpp3Dom result = new Xpp3Dom(config.getName());
         result.setValue(config.getValue(null));
         for (String name : config.getAttributeNames()) {
@@ -231,7 +232,7 @@ public final class MojoExecutor {
             }
         }
         for (PlexusConfiguration child : config.getChildren()) {
-            result.addChild(this.toXpp3Dom(child));
+            result.addChild(this.toXppDom(child));
         }
         return result;
     }

@@ -61,6 +61,7 @@ public final class CheckstyleValidatorTest {
             .withEol("\n")
             .mock();
         final String content =
+            // @checkstyle StringLiteralsConcatenation (4 lines)
             // @checkstyle RegexpSingleline (1 line)
             "/**\n * License-1.\n *\n * License-2.\n */\n"
             + "package foo;\n"
@@ -85,6 +86,7 @@ public final class CheckstyleValidatorTest {
             .withEol("\r\n")
             .mock();
         final String content =
+            // @checkstyle StringLiteralsConcatenation (12 lines)
             "/**\r\n"
             + " * Hello.\r\n"
             + " *\r\n"
