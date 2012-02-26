@@ -36,7 +36,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Checks opening/closing brackets to be the last symbols on the line.
  *
+ * <p>This is how a correct bracket structure should look like:
+ *
+ * <pre>
+ * String text = String.format(
+ *   "some text: %s",
+ *   new Foo().with(
+ *     "abc",
+ *     "foo"
+ *   )
+ * );
+ * </pre>
+ *
+ * <p>In other words, when you open a bracket and can't close it at the same
+ * line - you should leave it as the last symbol at this line.
+ *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  * @todo #32:1h! Checks only method calls inside method bodies,
  *  constructors, static initializers, and instance initializers. We should

@@ -35,9 +35,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks that non static method must contain at least one reference to
- * <code>this</code>.
+ * {@code this}.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
 public final class NonStaticMethodCheck extends Check {

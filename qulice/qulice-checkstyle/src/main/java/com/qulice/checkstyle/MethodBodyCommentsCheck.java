@@ -37,6 +37,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks method bodies for comments. All comments in method bodies are
  * prohibited.
  *
+ * <p>We believe that in-code comments and empty lines are evil. If you
+ * need to use
+ * a comment inside a method - your code needs refactoring. Either move that
+ * comment to a method javadoc block or add a logging mechanism with the same
+ * text.
+ *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
  */
