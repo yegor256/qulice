@@ -142,12 +142,12 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.environment.setMojoExecutor(
             new MojoExecutor(this.manager, this.session)
         );
-        final long start = System.currentTimeMillis();
+        final long start = System.nanoTime();
         this.doExecute();
         Logger.info(
             this,
-            "Time elapsed: %dms",
-            System.currentTimeMillis() - start
+            "Qulice quality check completed in %[nano]s",
+            System.nanoTime() - start
         );
     }
 
