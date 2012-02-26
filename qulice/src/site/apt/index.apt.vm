@@ -40,17 +40,16 @@
 
 Introduction
 
-  Qulice is a static analysis quality control instrument for
+  Qulice is a {{{http://en.wikipedia.org/wiki/Static_program_analysis}static analysis}}
+  quality control instrument for
   Java projects. It combines all the best static analysis instruments and
-  configure them. You don't need to use and configure them individually any more.
+  pre-configure them. You don't need to use and configure them individually any more.
 
   At the moment we integrate together:
 
    * {{{http://maven.apache.org/plugins/maven-dependency-plugin/analyze-only-mojo.html}Maven dependency analysis}}
 
    * {{{http://maven.apache.org/plugins/maven-enforcer-plugin/enforce-mojo.html}maven-enforcer-plugin}}
-
-   * {{{http://mojo.codehaus.org/xml-maven-plugin/validate-mojo.html}xml-maven-plugin}}
 
    * {{{http://checkstyle.sourceforge.net/}Checkstyle}}
 
@@ -60,6 +59,9 @@ Introduction
 
    * {{{http://cobertura.sourceforge.net/}Cobertura}}
 
+   * {{{http://codenarc.sourceforge.net/}CodeNarc}}
+
   Read about {{{./qulice-maven-plugin/}qulice-maven-plugin}} (we don't have
-  plugins for any other builders, only for Maven).
+  plugins for any other builders, only for Maven2). Read about our
+  {{{./quality.html}quality policy}}.
 
