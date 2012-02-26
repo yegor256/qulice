@@ -40,11 +40,99 @@
 
 What is Quality and how to achieve it?
 
+  Quality Java code, as we understand it, compiles and complies to
+  {{{http://en.wikipedia.org/wiki/Static_program_analysis}static analysis}}
+  rules. Qulice uses a number of open-source components (in order to avoid
+  reinventing the wheel). We pre-configured these tools for your convenience
+  and extended them with our specific rules.
+
 * Checkstyle
+
+  {{{http://checkstyle.sourceforge.net/checks.html}Inherited rules}}.
+
+  Our custom rules:
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/BracketsStructureCheck.html}BracketsStructure}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/CascadeIndentationCheck.html}CascadeIndentation}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/ConstantUsageCheck.html}ConstantUsage}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/EmptyLinesCheck.html}EmptyLines}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/ImportCohesionCheck.html}ImportCohesion}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/JavadocLocationCheck.html}JavadocLocation}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/JavadocTagsCheck.html}JavadocTags}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/MethodBodyCommentsCheck.html}MethodBodyComments}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/MultilineJavadocTagsCheck.html}MultilineJavadocTags}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/NonStaticMethodCheck.html}NonStaticMethod}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/PuzzleFormatCheck.html}PuzzleFormat}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/StringLiteralsConcatenationCheck.html}StringLiteralsConcatenation}}
+
+   * {{{./qulice-checkstyle/apidocs/com/qulice/checkstyle/SvnPropertiesCheck.html}SvnProperties}}
+
+  If you want to disable some rule (this may happen, but try to avoid such
+  situations at all cost):
+
++--
+/**
+ * @checkstyle ParameterNumber (3 lines)
+ */
+public void funcWithManyParams(int a, int b, int c, int d) {
+  // @checkstyle MagicNumber (1 line)
+  int num = 5;
+  // ...
+}
++--
 
 * PMD
 
+  {{{http://pmd.sourceforge.net/rules/index.html}Inherited rules}}.
+
+  Rules can be disabled (again, try to avoid this at all cost):
+
++--
+@SuppressWarnings("PMD.UseConcurrentHashMap")
+public void func() {
+  Map<String, String> map = new HashMap<String, String>();
+  // ...
+}
++--
+
 * Cobertura
 
-* Codenarc
+  Every class, method, and package should be covered by unit tests. Qulice will
+  complain when coverage is not sufficient. In order to get a visual presentation
+  of your coverage add this to your <<<pom.xml>>>:
 
++--
+<build>
+  <pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.5.1</version>
+      </plugin>
+    </plugins>
+  </pluginManagement>
+</build>
++--
+
+  And run <<<mvn cobertura:cobertura>>>. Then open
+  <<<target/site/cobertura/index.html>>> in any browser.
+
+  You can't disable Cobertura checks.
+
+* CodeNarc
+
+  {{{http://codenarc.sourceforge.net/codenarc-rule-index.html}Inherited rules}}.
+
+  You can't disable CodeNarc rules.
