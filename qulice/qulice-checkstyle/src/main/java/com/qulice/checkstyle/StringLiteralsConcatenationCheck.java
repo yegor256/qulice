@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,7 +38,7 @@ import java.util.List;
 /**
  * Checks for not using concatenation of string literals in any form.
  *
- * <p>The following is prohibited:
+ * <p>The following constructs are prohibited:
  *
  * <pre>
  * String a = "done in " + time + " seconds";
@@ -46,7 +46,18 @@ import java.util.List;
  * x += "done";
  * </pre>
  *
+ * <p>You should avoid string concatenation at all cost. Why? There are two
+ * reasons: readability of the code and translateability. First of all it's
+ * difficult to understand how the text will look after concatenation,
+ * especially if the text is long and there are more than a few {@code +}
+ * operators. Second, you won't be able to translate your text to other
+ * languages later, if you don't have solid string literals.
+ *
+ * <p>There are two alternatives to concatenation: {@link StringBuilder}
+ * and {@link String#format(String)}.
+ *
  * @author Dzmitry Petrushenka (dpetruha@gmail.com)
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
 public final class StringLiteralsConcatenationCheck extends Check {

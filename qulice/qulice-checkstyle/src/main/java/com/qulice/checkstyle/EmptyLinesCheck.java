@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,6 +36,11 @@ import java.util.regex.Pattern;
 
 /**
  * Check for empty lines inside methods and constructors.
+ *
+ * <p>We believe that comments and empty lines are evil. If you need to use
+ * an empty line in order to add a vertical separator of concepts - refactor
+ * your code and make more cohesive and readable. The bottom line is that every
+ * method should look solid and do just one thing.
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)

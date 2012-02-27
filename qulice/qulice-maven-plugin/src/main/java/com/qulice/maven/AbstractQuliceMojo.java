@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -142,12 +142,12 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.environment.setMojoExecutor(
             new MojoExecutor(this.manager, this.session)
         );
-        final long start = System.currentTimeMillis();
+        final long start = System.nanoTime();
         this.doExecute();
         Logger.info(
             this,
-            "Time elapsed: %dms",
-            System.currentTimeMillis() - start
+            "Qulice quality check completed in %[nano]s",
+            System.nanoTime() - start
         );
     }
 
