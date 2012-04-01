@@ -42,11 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class ConstantUsageCheck extends Check {
 
     /**
-     * Size of text buffer.
-     */
-    private static final int BUFFER_SIZE = 64;
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -103,7 +98,7 @@ public final class ConstantUsageCheck extends Check {
         if (0 == node.getChildCount()) {
             ret = node.getText();
         } else {
-            final StringBuilder result = new StringBuilder(this.BUFFER_SIZE);
+            final StringBuilder result = new StringBuilder();
             DetailAST child = node.getFirstChild();
             while (null != child) {
                 final String text = this.getText(child);

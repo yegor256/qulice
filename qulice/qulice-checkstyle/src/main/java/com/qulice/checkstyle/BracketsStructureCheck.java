@@ -72,8 +72,6 @@ public final class BracketsStructureCheck extends Check {
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
-            TokenTypes.CTOR_DEF,
-            TokenTypes.METHOD_DEF,
             TokenTypes.LITERAL_NEW,
             TokenTypes.METHOD_CALL,
         };
@@ -84,13 +82,7 @@ public final class BracketsStructureCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        int type = TokenTypes.ELIST;
-        final int nodeType = ast.getType();
-        if ((TokenTypes.CTOR_DEF == nodeType)
-            || (TokenTypes.METHOD_DEF == nodeType)) {
-            type = TokenTypes.PARAMETERS;
-        }
-        this.checkMethod(ast, type);
+        this.checkMethod(ast, TokenTypes.ELIST);
     }
 
     /**

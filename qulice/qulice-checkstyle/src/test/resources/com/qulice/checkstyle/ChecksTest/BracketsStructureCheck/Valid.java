@@ -10,10 +10,7 @@ public final class Valid {
     }
     public Valid(String name, String value) {
     }
-    public Valid(
-        String name,
-        String value
-    ) {
+    public Valid(String name, String value) {
     }
     public void print(){
     }
@@ -22,10 +19,7 @@ public final class Valid {
     }
     public void print(String format,String text) {
     }
-    public void print(
-        String format,
-        String text
-    ) {
+    public void print(String format, String text ) {
     }
     // Check static declarations.
     static {
