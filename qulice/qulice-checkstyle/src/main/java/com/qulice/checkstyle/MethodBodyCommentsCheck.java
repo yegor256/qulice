@@ -64,12 +64,12 @@ public final class MethodBodyCommentsCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        final DetailAST list = ast.findFirstToken(TokenTypes.SLIST);
-        if (null != list) {
+        final DetailAST start = ast.findFirstToken(TokenTypes.SLIST);
+        if (start != null) {
             this.checkMethod(
                 this.getLines(),
-                ast.getLineNo(),
-                list.findFirstToken(TokenTypes.RCURLY).getLineNo() - 1
+                start.getLineNo(),
+                start.findFirstToken(TokenTypes.RCURLY).getLineNo() - 1
             );
         }
     }
