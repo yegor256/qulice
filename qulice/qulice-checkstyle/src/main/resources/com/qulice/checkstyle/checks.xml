@@ -322,10 +322,9 @@
         <module name="com.qulice.checkstyle.JavadocTagsCheck"/>
         <module name="com.qulice.checkstyle.StringLiteralsConcatenationCheck"/>
         <module name="com.qulice.checkstyle.MultilineJavadocTagsCheck"/>
-        <!-- They don't work at the moment -->
-        <!-- <module name="com.qulice.checkstyle.ConstantUsageCheck"/> -->
-        <!-- <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/> -->
-        <!-- <module name="com.qulice.checkstyle.JavadocLocationCheck"/> -->
+        <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/>
+        <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
+        <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
     </module>
 
     <!--
