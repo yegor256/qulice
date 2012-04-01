@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
 public final class JavadocLocationCheck extends Check {
@@ -112,7 +113,7 @@ public final class JavadocLocationCheck extends Check {
      * Checks the specified node: is it first element or not.
      * @param node Node to be checked.
      * @return True if there are no any nodes before this one, else -
-     *  <code>false</code>.
+     *  {@code false}.
      */
     private boolean isFirst(final DetailAST node) {
         final DetailAST previous = node.getPreviousSibling();
@@ -120,12 +121,11 @@ public final class JavadocLocationCheck extends Check {
     }
 
     /**
-     * Checks input nodes: if specified node is variable method returns
-     * <code>false</code> if node is not a field. Otherwise it returns
-     * <code>true</code>.
-     * @param node Node to check.
-     * @return False if the specified node is a field, otherwise it returns
-     *  <code>true</code>.
+     * Returns {@code TRUE} if a specified node is something that should have
+     * a Javadoc, which includes classes, interface, class methods, and
+     * class variables.
+     * @param node Node to check
+     * @return Is it a Javadoc-required entity?
      */
     private boolean isField(final DetailAST node) {
         boolean yes = true;
