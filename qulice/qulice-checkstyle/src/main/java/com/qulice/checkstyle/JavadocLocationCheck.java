@@ -93,11 +93,13 @@ public final class JavadocLocationCheck extends Check {
         final DetailAST parent = node.getParent();
         if (null == parent) {
             if (!this.isFirst(node)) {
-                final DetailAST previous = node.getPreviousSibling();
-                final DetailAST object =
-                    previous.findFirstToken(TokenTypes.OBJBLOCK);
-                final DetailAST closing = object.getLastChild();
-                minimum = closing.getLineNo();
+                final DetailAST object = node
+                    .getPreviousSibling()
+                    .findFirstToken(TokenTypes.OBJBLOCK);
+                // @checkstyle NestedIfDepth (1 line)
+                if (object != null) {
+                    minimum = object.getLastChild().getLineNo();
+                }
             }
         } else {
             DetailAST previous = node.getPreviousSibling();
