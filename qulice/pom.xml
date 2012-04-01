@@ -495,7 +495,39 @@
                 -->
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version since="18 Oct 2011">4.9</version>
+                <version since="25 Nov 2011">4.10</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <!--
+                XML matchers.
+                @see http://code.google.com/p/xml-matchers/wiki/Tutorial
+                -->
+                <groupId>org.xmlmatchers</groupId>
+                <artifactId>xml-matchers</artifactId>
+                <version since="23 Sep 2011">0.10</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <!--
+                Assertions and matchers for unit tests.
+                @link http://code.google.com/p/hamcrest/wiki/Tutorial
+                -->
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version since="23 Dec 2011">1.2.1</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -504,8 +536,8 @@
                 @link http://code.google.com/p/hamcrest/wiki/Tutorial
                 -->
                 <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-all</artifactId>
-                <version since="18 Oct 2011">1.1</version>
+                <artifactId>hamcrest-library</artifactId>
+                <version since="23 Dec 2011">1.2.1</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -516,7 +548,8 @@
                 -->
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
-                <version since="18 Oct 2011">1.9.0-rc1</version>
+                <version since="9 Oct 2010">1.8.5</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <!-- PowerMock unit testing framework -->

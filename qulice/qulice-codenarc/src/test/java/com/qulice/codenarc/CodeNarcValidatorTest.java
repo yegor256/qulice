@@ -40,7 +40,6 @@ import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.varia.NullAppender;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -82,31 +81,35 @@ public final class CodeNarcValidatorTest {
     /**
      * CodeNarcValidator can report full names of files that contain
      * violations.
-     * @todo #36! The test is ignored until filename will be added
-     *  to codernarc validation log messages.
      * @throws Exception If error message does not include filename.
      */
     @Test(expected = ValidationException.class)
-    @Ignore
     public void reportsFullFileNamesOfGroovyScripts() throws Exception {
         final Environment env = new EnvironmentMocker()
             .withFile("src/main/Foo.groovy", "System.out.println('foo')")
             .mock();
         final Validator validator = new CodeNarcValidator();
-        final CodeNarcAppender codeNarcAppender = new CodeNarcAppender();
-        org.apache.log4j.Logger.getRootLogger().addAppender(codeNarcAppender);
+        final CodeNarcAppender appender = new CodeNarcAppender();
+        org.apache.log4j.Logger.getRootLogger().addAppender(appender);
         try {
             validator.validate(env);
         } catch (ValidationException ex) {
-            final List<String> messages = codeNarcAppender.getMessages();
-            final Pattern pattern = Pattern.compile("[a-zA-Z0-9_]+\\.groovy");
+            final List<String> messages = appender.getMessages();
+            final Pattern pattern = Pattern.compile(
+                "[a-zA-Z0-9_/]+\\.groovy\\[\\d+\\]: .*"
+            );
             for (String message : messages) {
+                if (message.startsWith("CodeNarc validated ")) {
+                    continue;
+                }
                 MatcherAssert.assertThat(
                     pattern.matcher(message).matches(),
-                    Matchers.is(true)
+                    Matchers.describedAs(message, Matchers.is(true))
                 );
             }
             throw ex;
+        } finally {
+            org.apache.log4j.Logger.getRootLogger().removeAppender(appender);
         }
     }
 
