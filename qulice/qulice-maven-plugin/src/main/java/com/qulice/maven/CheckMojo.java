@@ -69,6 +69,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
      * Run them all.
+     * @throws ValidationException If any of them fail
      */
     private void run() throws ValidationException {
         for (Validator validator : this.provider.external()) {
