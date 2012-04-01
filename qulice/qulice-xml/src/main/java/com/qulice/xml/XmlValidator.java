@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,7 +50,7 @@ public final class XmlValidator implements Validator {
     public void validate(final Environment env) throws ValidationException {
         Logger.info(
             this,
-            "Not implemented yet"
+            "XML validation is not implemented yet"
         );
     }
 

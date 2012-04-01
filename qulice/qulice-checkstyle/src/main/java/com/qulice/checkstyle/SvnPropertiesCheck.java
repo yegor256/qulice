@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,12 +30,14 @@
 package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.ymock.util.Logger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Check for required svn properties in java files.
@@ -59,7 +61,8 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
     /**
      * List of required values.
      */
-    private final Map<String, String> required = new HashMap<String, String>();
+    private final transient ConcurrentMap<String, String> required =
+        new ConcurrentHashMap<String, String>();
 
     /**
      * {@inheritDoc}
@@ -132,7 +135,10 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
                 value = "";
             }
         } catch (java.io.IOException ex) {
-            this.log(0, "Failed to execute 'svn': " + ex.getMessage());
+            this.log(
+                0,
+                Logger.format("Failed to execute 'svn': %[exception]s", ex)
+            );
         } finally {
             if (reader != null) {
                 try {
@@ -140,7 +146,10 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
                 } catch (java.io.IOException ex) {
                     this.log(
                         0,
-                        "Failed to close 'svn' stream: " + ex.getMessage()
+                        Logger.format(
+                            "Failed to close 'svn' stream: %[exception]s",
+                            ex
+                        )
                     );
                 }
             }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,69 +30,42 @@
 package com.qulice.findbugs;
 
 import com.qulice.spi.Environment;
+import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
-import edu.umd.cs.findbugs.FindBugs2;
-import java.io.File;
-import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
- * Test case for {@link FindbugsValidator} class.
+ * Test case for {@link FindbugsValidator}.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({ FindBugsValidator.class, FindBugs2.class })
 public final class FindBugsValidatorTest {
 
     /**
-     * The environment to work with.
-     * @see #prepare()
-     */
-    private Environment env;
-
-    /**
-     * Prepare the environment.
-     * @throws Exception If something wrong happens inside
-     */
-    @Before
-    public void prepare() throws Exception {
-        final File basedir = new File(".");
-        this.env = Mockito.mock(Environment.class);
-        Mockito.doReturn(basedir).when(this.env).basedir();
-        Mockito.doReturn(basedir).when(this.env).outdir();
-    }
-
-    /**
-     * Absent violations should pass.
+     * FindbugsValidator can pass correct files with no exceptions.
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void testValidatesWithNoViolations() throws Exception {
-        PowerMockito.mockStatic(FindBugs2.class);
-        final FindBugs2 findbugs = PowerMockito.mock(FindBugs2.class);
-        PowerMockito.whenNew(FindBugs2.class).withNoArguments()
-            .thenReturn(findbugs);
-        new FindBugsValidator().validate(this.env);
+    public void passesCorrectFilesWithNoExceptions() throws Exception {
+        final Environment env = new EnvironmentMocker()
+            .withFile("src/main/java/Main.java", "class Main { int x = 0; }")
+            .mock();
+        new FindBugsValidator().validate(env);
     }
 
     /**
-     * One violation should be found.
+     * FindbugsValidator throw exception for invalid file.
      * @throws Exception If something wrong happens inside
      */
     @Test(expected = ValidationException.class)
-    public void testValidatesWithOneViolation() throws Exception {
-        PowerMockito.mockStatic(FindBugs2.class);
-        final FindBugs2 findbugs = PowerMockito.mock(FindBugs2.class);
-        PowerMockito.whenNew(FindBugs2.class).withNoArguments()
-            .thenReturn(findbugs);
-        Mockito.doReturn(1).when(findbugs).getBugCount();
-        new FindBugsValidator().validate(this.env);
+    public void throwsExceptionOnViolation() throws Exception {
+        final byte[] bytecode = new BytecodeMocker()
+            .withSource("class Foo { public Foo clone() { return this; } }")
+            .mock();
+        final Environment env = new EnvironmentMocker()
+            .withFile("target/classes/Foo.class", bytecode)
+            .mock();
+        new FindBugsValidator().validate(env);
     }
 
 }

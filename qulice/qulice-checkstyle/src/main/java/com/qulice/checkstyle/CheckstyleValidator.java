@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.qulice.spi.Environment;
@@ -80,13 +79,15 @@ public final class CheckstyleValidator implements Validator {
             throw new IllegalStateException("Failed to create checker", ex);
         }
         checker.setClassloader(env.classloader());
-        checker.setModuleClassLoader(this.getClass().getClassLoader());
+        checker.setModuleClassLoader(
+            Thread.currentThread().getContextClassLoader()
+        );
         try {
             checker.configure(this.configuration(env));
         } catch (CheckstyleException ex) {
             throw new IllegalStateException("Failed to configure checker", ex);
         }
-        final Listener listener = new Listener(env);
+        final CheckstyleListener listener = new CheckstyleListener(env);
         checker.addListener(listener);
         checker.process(files);
         checker.destroy();
@@ -204,113 +205,31 @@ public final class CheckstyleValidator implements Validator {
      * Get full list of files to process.
      * @param env The environmet
      * @return List of files
+     * @todo #44:1h Perform refactoring: remove this method, use
+     *  Environment.files() instead.
      */
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private List<File> files(final Environment env) {
         final List<File> files = new ArrayList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final File sources = new File(env.basedir(), "src/main/java");
-        if (sources.exists()) {
-            files.addAll(
-                FileUtils.listFiles(
-                    sources,
-                    filter,
-                    DirectoryFileFilter.INSTANCE
-                )
-            );
-        }
-        final File tests = new File(env.basedir(), "src/test/java");
-        if (tests.exists()) {
-            files.addAll(
-                FileUtils.listFiles(
-                    tests,
-                    filter,
-                    DirectoryFileFilter.INSTANCE
-                )
-            );
+        final String[] dirs = new String[] {
+            "src/main/java",
+            "src/test/java",
+            "src/mock/java",
+        };
+        for (String dir : dirs) {
+            final File sources = new File(env.basedir(), dir);
+            if (sources.exists()) {
+                files.addAll(
+                    FileUtils.listFiles(
+                        sources,
+                        filter,
+                        DirectoryFileFilter.INSTANCE
+                    )
+                );
+            }
         }
         return files;
-    }
-
-    /**
-     * Listener of events.
-     */
-    private final class Listener implements AuditListener {
-        /**
-         * Environment.
-         */
-        private final Environment env;
-        /**
-         * Collection of events collected.
-         */
-        private final List<AuditEvent> events = new ArrayList<AuditEvent>();
-        /**
-         * Public ctor.
-         * @param environ The environment
-         */
-        public Listener(final Environment environ) {
-            this.env = environ;
-        }
-        /**
-         * Get all events.
-         * @return List of events
-         */
-        public List<AuditEvent> events() {
-            return this.events;
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void auditStarted(final AuditEvent event) {
-            // intentionally empty
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void auditFinished(final AuditEvent event) {
-            // intentionally empty
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void fileStarted(final AuditEvent event) {
-            // intentionally empty
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void fileFinished(final AuditEvent event) {
-            // intentionally empty
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void addError(final AuditEvent event) {
-            this.events.add(event);
-            final String check = event.getSourceName();
-            Logger.error(
-                this,
-                "%s[%d]: %s (%s)",
-                event.getFileName().substring(
-                    this.env.basedir().toString().length()
-                ),
-                event.getLine(),
-                event.getMessage(),
-                check.substring(check.lastIndexOf('.') + 1)
-            );
-        }
-        /**
-         * {@inheritDoc}
-         */
-        @Override
-        public void addException(final AuditEvent event,
-            final Throwable throwable) {
-            // intentionally empty
-        }
     }
 
 }

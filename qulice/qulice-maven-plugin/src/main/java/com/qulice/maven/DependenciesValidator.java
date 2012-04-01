@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,9 +30,7 @@
 package com.qulice.maven;
 // @checkstyle LineLength (20 lines)
 
-import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +49,7 @@ import org.codehaus.plexus.component.repository.exception.ComponentLookupExcepti
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class DependenciesValidator implements Validator {
+final class DependenciesValidator implements MavenValidator {
 
     /**
      * Separator between lines.
@@ -63,8 +61,8 @@ public final class DependenciesValidator implements Validator {
      * @checkstyle RedundantThrows (4 lines)
      */
     @Override
-    public void validate(final Environment environ) throws ValidationException {
-        final MavenEnvironment env = (MavenEnvironment) environ;
+    public void validate(final MavenEnvironment env)
+        throws ValidationException {
         if (!env.outdir().exists()
             || "pom".equals(env.project().getPackaging())) {
             Logger.info(this, "No dependency analysis in this project");
@@ -79,7 +77,7 @@ public final class DependenciesValidator implements Validator {
             }
             unused.add(artifact.toString());
         }
-        if (unused.size() > 0) {
+        if (!unused.isEmpty()) {
             Logger.warn(
                 this,
                 "Unused declared dependencies found:%s%s",
@@ -91,7 +89,7 @@ public final class DependenciesValidator implements Validator {
         for (Object artifact : analysis.getUsedUndeclaredArtifacts()) {
             used.add(((Artifact) artifact).toString());
         }
-        if (used.size() > 0) {
+        if (!used.isEmpty()) {
             Logger.warn(
                 this,
                 "Used undeclared dependencies found:%s%s",

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -104,11 +104,18 @@ public final class FindBugsValidator implements Validator {
         final Project project = new Project();
         for (File jar : env.classpath()) {
             project.addFile(jar.getPath());
+            Logger.debug(
+                this,
+                "#project(): added '%s'",
+                jar
+            );
             if (!jar.equals(env.outdir())) {
                 project.addAuxClasspathEntry(jar.getPath());
             }
         }
-        project.addSourceDir(env.basedir().getPath());
+        project.addSourceDir(
+            new File(env.basedir(), "src/main/java").getPath()
+        );
         return project;
     }
 

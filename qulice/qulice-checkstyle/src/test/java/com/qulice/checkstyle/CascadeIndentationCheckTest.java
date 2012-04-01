@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,12 +51,12 @@ public final class CascadeIndentationCheckTest {
     /**
      * The check we're testing.
      */
-    private FileSetCheck check;
+    private transient FileSetCheck check;
 
     /**
      * Message dispatcher to catch logging mechanism.
      */
-    private MessageDispatcher dispatcher;
+    private transient MessageDispatcher dispatcher;
 
     /**
      * Prepare the check before testing.
@@ -82,10 +82,11 @@ public final class CascadeIndentationCheckTest {
      * @throws Exception If something goes wrong
      */
     @Test
+    @SuppressWarnings("PMD.LooseCoupling")
     public void testWithCorrectIndentation() throws Exception {
         this.process(
-            ""
-            + "class Foo {\n"
+            // @checkstyle StringLiteralsConcatenation (5 lines)
+            "class Foo {\n"
             + "    void foo() {\n"
             + "        int i = 1;\n"
             + "    }\n"

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,15 +30,10 @@
 package com.qulice.xml;
 
 import com.qulice.spi.Environment;
+import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import java.io.File;
-import org.apache.commons.io.FileUtils;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.mockito.Mockito;
 
 /**
  * Test case for {@link XmlValidator} class.
@@ -46,37 +41,6 @@ import org.mockito.Mockito;
  * @version $Id$
  */
 public final class XmlValidatorTest {
-
-    /**
-     * Temporary folder, set by JUnit framework automatically.
-     * @checkstyle VisibilityModifier (3 lines)
-     */
-    @Rule
-    public TemporaryFolder temp = new TemporaryFolder();
-
-    /**
-     * The folder to work in.
-     * @see #prepare()
-     */
-    private File folder;
-
-    /**
-     * The environment to work with.
-     * @see #prepare()
-     */
-    private Environment env;
-
-    /**
-     * Prepare the folder and the environment.
-     * @throws Exception If something wrong happens inside
-     */
-    @Before
-    public void prepare() throws Exception {
-        this.folder = this.temp.newFolder("temp-src");
-        this.env = Mockito.mock(Environment.class);
-        Mockito.doReturn(this.folder).when(this.env).basedir();
-        Mockito.doReturn(this.folder).when(this.env).tempdir();
-    }
 
     /**
      * Validate set of files to find violations.
@@ -87,9 +51,10 @@ public final class XmlValidatorTest {
     @Test(expected = ValidationException.class)
     @org.junit.Ignore
     public void testValidatesSetOfFiles() throws Exception {
+        final Environment env = new EnvironmentMocker()
+            .withFile("text.xml", "<a></a>")
+            .mock();
         final Validator validator = new XmlValidator();
-        final File java = new File(this.folder, "test.xml");
-        FileUtils.writeStringToFile(java, "<a></a>");
-        validator.validate(this.env);
+        validator.validate(env);
     }
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,8 +32,8 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
 
 /**
@@ -49,7 +49,8 @@ public final class JavadocTagsCheck extends Check {
     /**
      * Map of tag and its pattern.
      */
-    private final Map<String, Pattern> tags = new HashMap<String, Pattern>();
+    private final transient ConcurrentMap<String, Pattern> tags =
+        new ConcurrentHashMap<String, Pattern>();
 
     /**
      * {@inheritDoc}
@@ -83,11 +84,11 @@ public final class JavadocTagsCheck extends Check {
         if (ast.getParent() == null) {
             final String[] lines = this.getLines();
             final int start = ast.getLineNo();
-            final int commentStart = this.findCommentStart(lines, start);
-            final int commentEnd = this.findCommentEnd(lines, start);
-            if ((commentEnd > commentStart) && (commentStart >= 0)) {
+            final int cstart = this.findCommentStart(lines, start);
+            final int cend = this.findCommentEnd(lines, start);
+            if ((cend > cstart) && (cstart >= 0)) {
                 for (String tag : this.tags.keySet()) {
-                    this.matchTagFormat(lines, commentStart, commentEnd, tag);
+                    this.matchTagFormat(lines, cstart, cend, tag);
                 }
             } else {
                 this.log(0, "Problem finding class/interface comment");
@@ -132,7 +133,7 @@ public final class JavadocTagsCheck extends Check {
      */
     private String getTagText(final String line) {
         return line.substring(
-            line.indexOf(" ", line.indexOf("@")) + 1
+            line.indexOf(' ', line.indexOf('@')) + 1
         );
     }
 

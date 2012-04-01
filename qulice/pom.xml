@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
  *
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,7 +48,6 @@
     <name>qulice</name>
 
     <modules>
-        <module>qulice-tk</module>
         <module>qulice-spi</module>
         <module>qulice-checkstyle</module>
         <module>qulice-codenarc</module>
@@ -188,28 +187,23 @@
                 <plugins>
                     <plugin>
                         <artifactId>maven-assembly-plugin</artifactId>
-                        <version since="18 Oct 2011">2.2.1</version>
                         <dependencies>
                             <dependency>
-                                <groupId>com.qulice</groupId>
-                                <artifactId>qulice-tk</artifactId>
-                                <version qulice="yes">1.0-SNAPSHOT</version>
+                                <groupId>com.ymock</groupId>
+                                <artifactId>ymock-tk</artifactId>
+                                <version since="26 Feb 2012">1.0.5</version>
                             </dependency>
                         </dependencies>
                         <executions>
                             <execution>
+                                <id>source-packaging</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>single</goal>
                                 </goals>
                                 <configuration>
                                     <descriptorRefs>
-                                        <!--
-                                        This descriptor is in qulice-tk sub-module, which is in classpath of
-                                        this plugin.
-                                        @see http://maven.apache.org/plugins/maven-assembly-plugin/examples/sharing-descriptors.html
-                                        -->
-                                        <descriptorRef>qulice-sources</descriptorRef>
+                                        <descriptorRef>ymock-sources</descriptorRef>
                                     </descriptorRefs>
                                 </configuration>
                             </execution>
@@ -218,21 +212,14 @@
                     <plugin>
                         <groupId>com.qulice</groupId>
                         <artifactId>qulice-maven-plugin</artifactId>
-                        <version since="30 Oct 2011">0.1.5</version>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.qulice</groupId>
-                                <artifactId>qulice-tk</artifactId>
-                                <version qulice="yes">1.0-SNAPSHOT</version>
-                            </dependency>
-                        </dependencies>
+                        <version since="22 Jan 2012">0.1.7</version>
                         <executions>
                             <execution>
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
                                 <configuration>
-                                    <license>LICENSE.txt</license>
+                                    <license>file:${basedir}/LICENSE.txt</license>
                                 </configuration>
                             </execution>
                         </executions>
@@ -253,7 +240,8 @@
                                 </goals>
                                 <configuration>
                                     <ignoreNonCompile>true</ignoreNonCompile>
-                                    <failOnWarning>true</failOnWarning>
+                                    <!-- @todo #21 Doesn't work because of MOCK deps -->
+                                    <failOnWarning>false</failOnWarning>
                                 </configuration>
                             </execution>
                         </executions>
@@ -366,18 +354,11 @@
                                     <artifactId>rempl-maven-plugin</artifactId>
                                     <version since="18 Oct 2011">1.1.3</version>
                                     <configuration>
-                                        <rom>src/rempl/rom.xml</rom>
+                                        <rom>${basedir}/src/rempl/rom.xml</rom>
                                     </configuration>
                                 </plugin>
                             </reportPlugins>
                         </configuration>
-                        <dependencies>
-                            <dependency>
-                                <groupId>com.qulice</groupId>
-                                <artifactId>qulice-tk</artifactId>
-                                <version qulice="yes">1.0-SNAPSHOT</version>
-                            </dependency>
-                        </dependencies>
                         <executions>
                             <execution>
                                 <id>attach-descriptor</id>
@@ -416,6 +397,64 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!--
+            Package MOCK artifact.
+            -->
+            <id>mock</id>
+            <activation>
+                <file><exists>${basedir}/src/mock</exists></file>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version since="2 Dec 2011">1.7</version>
+                        <executions>
+                            <execution>
+                                <id>add-test-sources</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>add-test-source</goal>
+                                </goals>
+                                <configuration>
+                                    <sources>
+                                        <source>${basedir}/src/mock/java</source>
+                                    </sources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version since="5 Dec 2011">2.3.2</version>
+                        <executions>
+                            <execution>
+                                <id>mock-artifact</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <classesDirectory>${project.build.testOutputDirectory}</classesDirectory>
+                                    <archive>
+                                        <index>true</index>
+                                        <manifest>
+                                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                                        </manifest>
+                                    </archive>
+                                    <classifier>mock</classifier>
+                                    <includes>
+                                        <include>**/*Mocker.class</include>
+                                    </includes>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
@@ -497,7 +536,7 @@
                 <!-- Logging facility. -->
                 <groupId>com.ymock</groupId>
                 <artifactId>ymock-util</artifactId>
-                <version since="22 Sep 2011">1.0</version>
+                <version since="26 Feb 2012">1.0.5</version>
             </dependency>
             <dependency>
                 <!-- Jakarta common lang-related utilities -->
@@ -510,6 +549,12 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version since="18 Oct 2011">2.1</version>
+            </dependency>
+            <dependency>
+                <!-- Nice tools for file manipulations -->
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava-io</artifactId>
+                <version since="4 Dec 2011">r03</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -555,6 +600,10 @@
                 <plugin>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version since="18 Oct 2011">2.7</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version since="19 Oct 2011">2.2.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-dependency-plugin</artifactId>
@@ -616,9 +665,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <!-- intentionally empty -->
-        </plugins>
     </build>
 
     <reporting>

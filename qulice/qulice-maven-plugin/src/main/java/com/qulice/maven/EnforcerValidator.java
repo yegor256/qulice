@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,9 +29,7 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
 import java.util.Properties;
 
 /**
@@ -40,7 +38,7 @@ import java.util.Properties;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class EnforcerValidator implements Validator {
+public final class EnforcerValidator implements MavenValidator {
 
     /**
      * {@inheritDoc}
@@ -48,7 +46,8 @@ public final class EnforcerValidator implements Validator {
      * @checkstyle RedundantThrows (4 lines)
      */
     @Override
-    public void validate(final Environment env) throws ValidationException {
+    public void validate(final MavenEnvironment env)
+        throws ValidationException {
         final Properties props = new Properties();
         final Properties rules = new Properties();
         props.put("rules", rules);
@@ -59,7 +58,7 @@ public final class EnforcerValidator implements Validator {
         rules.put("requireJavaVersion", java);
         // @checkstyle MultipleStringLiterals (1 line)
         java.put("version", "1.6");
-        ((MavenEnvironment) env).executor().execute(
+        env.executor().execute(
             "org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1",
             "enforce",
             props

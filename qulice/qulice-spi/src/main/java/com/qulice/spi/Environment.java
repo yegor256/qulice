@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -78,4 +78,10 @@ public interface Environment {
      */
     Collection<File> classpath();
 
+    /**
+     * Returns collection of files, matching the specified pattern.
+     * @param pattern File name pattern.
+     * @return Collection of files, matching the specified pattern.
+     */
+    Collection<File> files(final String pattern);
 }

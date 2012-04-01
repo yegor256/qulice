@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,21 +30,16 @@
 package com.qulice.checkstyle;
 
 import com.qulice.spi.Environment;
+import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
 import java.io.File;
-import org.apache.commons.io.FileUtils;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-import org.mockito.Mockito;
 
 /**
  * Test case for {@link CheckstyleValidator} class.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- * @checkstyle MultipleStringLiterals (300 lines)
+ * @checkstyle MultipleStringLiterals (120 lines)
  */
 public final class CheckstyleValidatorTest {
 
@@ -54,93 +49,61 @@ public final class CheckstyleValidatorTest {
     private static final String LICENSE_PROP = "license";
 
     /**
-     * Temporary folder, set by JUnit framework automatically.
-     * @checkstyle VisibilityModifier (3 lines)
-     */
-    @Rule
-    public TemporaryFolder temp = new TemporaryFolder();
-
-    /**
-     * The file where to save java code.
-     * @see #prepare()
-     */
-    private File java;
-
-    /**
-     * The environment.
-     * @see #prepare()
-     */
-    private Environment env;
-
-    /**
-     * Prepare the folder and environment for testing.
-     * @throws Exception If something wrong happens inside
-     */
-    @Before
-    public void prepare() throws Exception {
-        final File folder = this.temp.newFolder("temp-src");
-        this.env = Mockito.mock(Environment.class);
-        Mockito.doReturn(folder).when(this.env).basedir();
-        Mockito.doReturn(folder).when(this.env).tempdir();
-        this.java = new File(folder, "src/main/java/com/qulice/foo/Main.java");
-        this.java.getParentFile().mkdirs();
-    }
-
-    /**
-     * Validate set of files with error inside.
+     * CheckstyleValidator can catch checkstyle violations.
      * @throws Exception If something wrong happens inside
      */
     @Test(expected = ValidationException.class)
-    public void testValidatesSetOfFiles() throws Exception {
-        final File license = this.build("The license.", "\n");
-        Mockito.doReturn(this.toURL(license)).when(this.env)
-            .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
-        final Validator validator = new CheckstyleValidator();
-        FileUtils.writeStringToFile(
-            this.java,
+    public void catchesCheckstyleViolationsInLicense() throws Exception {
+        final EnvironmentMocker mock = new EnvironmentMocker();
+        final File license = new LicenseMocker()
+            .savePackageInfo(new File(mock.getBasedir(), "src/main/java/foo"))
+            .withLines(new String[] {"License-1.", "", "License-2."})
+            .withEol("\n")
+            .mock();
+        final String content =
+            // @checkstyle StringLiteralsConcatenation (4 lines)
             // @checkstyle RegexpSingleline (1 line)
-            "/**\n * The license.\n *\n * The license.\n */\n"
-            + "package com.qulice.foo;\n"
-            + "public class Main { }\n"
-        );
-        validator.validate(this.env);
+            "/**\n * License-1.\n *\n * License-2.\n */\n"
+            + "package foo;\n"
+            + "public class Foo { }\n";
+        final Environment env = mock
+            .withParam(this.LICENSE_PROP, this.toURL(license))
+            .withFile("src/main/java/foo/Foo.java", content)
+            .mock();
+        new CheckstyleValidator().validate(env);
     }
 
     /**
-     * Immidate the license inside the classpath (validator has to find it).
+     * CheckstyleValidator can manage to understand Windows EOL-s.
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void testImmitatesLicenseInClasspath() throws Exception {
-        // not implemented yet
-    }
-
-    /**
-     * Validate with Windows-style formatting.
-     * @throws Exception If something wrong happens inside
-     */
-    @Test
-    public void testWindowsEndsOfLine() throws Exception {
-        final File license = this.build("Line 1.", "\r\n");
-        Mockito.doReturn(this.toURL(license)).when(this.env)
-            .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
-        final Validator validator = new CheckstyleValidator();
-        FileUtils.writeStringToFile(
-            this.java,
+    public void passesWindowsEndsOfLineWithoutException() throws Exception {
+        final EnvironmentMocker mock = new EnvironmentMocker();
+        final File license = new LicenseMocker()
+            .savePackageInfo(new File(mock.getBasedir(), "src/main/java/foo"))
+            .withLines(new String[] {"Hello.", "", "World."})
+            .withEol("\r\n")
+            .mock();
+        final String content =
+            // @checkstyle StringLiteralsConcatenation (12 lines)
             "/**\r\n"
-            + " * Line 1.\r\n"
+            + " * Hello.\r\n"
             + " *\r\n"
-            + " * Line 1.\r\n"
+            + " * World.\r\n"
             + " */\r\n"
-            + "package com.qulice.foo;\r\n"
+            + "package foo;\r\n"
             + "/**\r\n"
             + " * Simple class.\r\n"
             + " * @version $Id $\r\n"
             + " * @author John Doe (john@qulice.com)\r\n"
             + " */\r\n"
-            + "public class Main { }\r\n"
-        );
-        validator.validate(this.env);
+            + "public class Main { }\r\n";
+        final Environment env = mock
+            .withParam(this.LICENSE_PROP, this.toURL(license))
+            .withFile("src/main/java/foo/Main.java", content)
+            .mock();
+        new CheckstyleValidator().validate(env);
     }
 
     /**
@@ -150,26 +113,30 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
-        final File license = this.build("Line 2.", "\r\n");
-        Mockito.doReturn(this.toURL(license)).when(this.env)
-            .param(Mockito.eq(this.LICENSE_PROP), Mockito.any(String.class));
-        final Validator validator = new CheckstyleValidator();
-        FileUtils.writeStringToFile(
-            this.java,
+        final EnvironmentMocker mock = new EnvironmentMocker();
+        final File license = new LicenseMocker()
+            .savePackageInfo(new File(mock.getBasedir(), "src/main/java/foo"))
+            .withLines(new String[] {"Welcome.", "", "Friend."})
+            .withEol("\r\n")
+            .mock();
+        final String content =
             "/**\n"
-            + " * Line 2.\n"
+            + " * Welcome.\n"
             + " *\n"
-            + " * Line 2.\n"
+            + " * Friend.\n"
             + " */\n"
-            + "package com.qulice.foo;\n"
+            + "package foo;\n"
             + "/**\n"
             + " * Just a simple class.\n"
             + " * @version $Id $\n"
             + " * @author Alex Doe (alex@qulice.com)\n"
             + " */\n"
-            + "public class Main { }" + System.getProperty("line.separator")
-        );
-        validator.validate(this.env);
+            + "public class Bar { }" + System.getProperty("line.separator");
+        final Environment env = mock
+            .withFile("src/main/java/foo/Bar.java", content)
+            .withParam(this.LICENSE_PROP, this.toURL(license))
+            .mock();
+        new CheckstyleValidator().validate(env);
     }
 
     /**
@@ -179,39 +146,6 @@ public final class CheckstyleValidatorTest {
      */
     private String toURL(final File file) {
         return String.format("file:%s", file);
-    }
-
-    /**
-     * Create license and package-info.java close to the java file.
-     * @param line The line to put into the license
-     * @param eol What to use as end-of-line character
-     * @return The location of LICENSE.txt
-     * @throws Exception If something wrong happens inside
-     */
-    private File build(final String line, final String eol) throws Exception {
-        final File license = this.temp.newFile("LICENSE.txt");
-        FileUtils.writeStringToFile(
-            license,
-            String.format("%s%s%s%s", line, eol, eol, line)
-        );
-        final File info = new File(
-            this.java.getParentFile(), "package-info.java"
-        );
-        final String header = String.format(
-            // @checkstyle RegexpSingleline (1 line)
-            "/**%s * %s%s *%s * %s%s */",
-            eol, line, eol, eol, line, eol, eol
-        );
-        FileUtils.writeStringToFile(
-            info,
-            String.format(
-                // @checkstyle LineLength (2 lines)
-                // @checkstyle RegexpSingleline (1 line)
-                "%s%s/**%s * Hm...%s@version $Id $%s * @author John Doe (j@qulice.com)%s */%spackage com.qulice.foo;%s",
-                header, eol, eol, eol, eol, eol, eol, eol
-            )
-        );
-        return license;
     }
 
 }

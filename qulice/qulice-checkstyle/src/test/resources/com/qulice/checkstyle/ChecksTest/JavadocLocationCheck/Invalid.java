@@ -24,6 +24,9 @@ public final class Invalid {
 
     public void method() {
     }
+
+    public void method2() {
+    }
 }
 /**
  * This is not a real Java class. It won't be compiled ever. It is used
@@ -31,5 +34,17 @@ public final class Invalid {
  */
 
 interface I1 {
+    public void method3() {
+    }
+
+    /**
+     * Integer variable.
+     */
+
+    private int x = 0;
+
+}
+
+interface I2 {
 
 }

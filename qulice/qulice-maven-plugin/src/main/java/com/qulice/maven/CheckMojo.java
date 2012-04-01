@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,15 +31,7 @@ package com.qulice.maven;
 
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import com.ymock.util.Logger;
-import org.apache.maven.execution.MavenSession;
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MavenPluginManager;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.context.Context;
-import org.codehaus.plexus.personality.plexus.lifecycle.phase.Contextualizable;
-import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Check the project and find all possible violations.
@@ -50,115 +42,41 @@ import org.slf4j.impl.StaticLoggerBinder;
  * @phase verify
  * @threadSafe
  */
-public final class CheckMojo extends AbstractMojo implements Contextualizable {
+public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
-     * Environment to pass to validators.
+     * Provider of validators.
      */
-    private MavenEnvironment env = new MavenEnvironment();
-
-    /**
-     * Maven project, to be injected by Maven itself.
-     * @parameter expression="${project}"
-     * @required
-     * @readonly
-     */
-    private MavenProject project;
-
-    /**
-     * Maven session, to be injected by Maven itself.
-     * @parameter expression="${session}"
-     * @required
-     * @readonly
-     */
-    private MavenSession session;
-
-    /**
-     * Maven plugin manager, to be injected by Maven itself.
-     * @component
-     * @required
-     */
-    private MavenPluginManager manager;
-
-    /**
-     * Shall we skip execution?
-     * @parameter expression="${qulice.skip}" default-value="false"
-     * @required
-     * @since 0.1
-     */
-    private boolean skip;
-
-    /**
-     * Location of License file. If it is an absolute file name you should
-     * prepend it with "file:" prefix. Otherwise it is treated like a resource
-     * name and will be found in classpath (if available).
-     * @parameter expression="${qulice.license}" default-value="LICENSE.txt"
-     * @required
-     * @since 0.1
-     */
-    private String license = "LICENSE.txt";
-
-    /**
-     * Set Maven Project (used mostly for unit testing).
-     * @param proj The project to set
-     */
-    public void setProject(final MavenProject proj) {
-        this.project = proj;
-    }
-
-    /**
-     * Set skip option (mostly for unit testing).
-     * @param skp The "skip" option
-     */
-    public void setSkip(final boolean skp) {
-        this.skip = skp;
-    }
-
-    /**
-     * Set license address.
-     * @param lcs The "license" option
-     */
-    public void setLicense(final String lcs) {
-        this.license = lcs;
-    }
+    private transient ValidatorsProvider provider =
+        new DefaultValidatorsProvider();
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void contextualize(final Context ctx) {
-        this.env.setContext(ctx);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void execute() throws MojoFailureException {
-        StaticLoggerBinder.getSingleton().setMavenLog(this.getLog());
-        if (this.skip) {
-            Logger.info(this, "Execution skipped");
-            return;
-        }
-        this.env.setProperty("license", this.license);
-        this.env.setProject(this.project);
-        this.env.setMojoExecutor(
-            new MojoExecutor(this.manager, this.session)
-        );
-        final long start = System.nanoTime();
-        for (Validator validator : new ValidatorsProvider().all()) {
+    protected void doExecute() throws MojoFailureException {
+        for (Validator validator : this.provider.external()) {
             try {
-                validator.validate(this.env);
+                validator.validate(this.env());
             } catch (ValidationException ex) {
                 throw new MojoFailureException("Failed", ex);
             }
         }
-        // Output elapsed time.
-        Logger.info(
-            this,
-            "Time elapsed on validation: %.2fs",
-            // @checkstyle MagicNumber (1 lines)
-            (double) (System.nanoTime() - start) / (1000L * 1000 * 1000)
-        );
+        for (MavenValidator validator : this.provider.internal()) {
+            try {
+                validator.validate(this.env());
+            } catch (ValidationException ex) {
+                throw new MojoFailureException("Failure", ex);
+            }
+        }
     }
+
+    /**
+     * Set provider of validators.
+     * @param prov The provider
+     */
+    protected void setValidatorsProvider(final ValidatorsProvider prov) {
+        this.provider = prov;
+    }
+
 }

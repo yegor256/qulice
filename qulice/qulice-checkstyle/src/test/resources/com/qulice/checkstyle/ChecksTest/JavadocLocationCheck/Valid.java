@@ -26,6 +26,14 @@ public final class Valid {
         int a = 5;
         int b = 3;
         assert a != b;
+        final Runnable runnable = new Runnable() {
+            /**
+             * {@inheritDoc}
+             */
+            @Override
+            void run() {
+            }
+        };
     }
 }
 /**
@@ -33,6 +41,8 @@ public final class Valid {
  * only as a text resource in integration.ChecksIT.
  */
 interface I1 {
-
+    /**
+     * Integer variable.
+     */
+    private int x = 0;
 }
-

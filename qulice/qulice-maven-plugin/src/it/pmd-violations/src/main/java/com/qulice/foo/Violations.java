@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,13 +37,17 @@ package com.qulice.foo;
 public final class Violations {
 
     /**
+     * Unused variable - PMD should report a violation here.
+     */
+    private Integer var;
+
+    /**
      * Calculate square of a number.
      * @param num The number
      * @return The square
      */
     public int square(final int num) {
-        final Integer s = 1;
-        return num * s;
+        return num * num;
     }
 
 }

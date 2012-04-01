@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2012, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,32 +36,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Checks opening/closing brackets to be the last symbols on the line.
  *
- * <p>So this will do:
+ * <p>This is how a correct bracket structure should look like:
  *
  * <pre>
- * String.format(
- *   "File %s not found",
- *   file
+ * String text = String.format(
+ *   "some text: %s",
+ *   new Foo().with(
+ *     "abc",
+ *     "foo"
+ *   )
  * );
- * String.format(
- *   "File %s not found", file
- * );
- * String.format("File %s not found", file);
  * </pre>
  *
- * <p>and this won't:
- *
- * <pre>
- * String.format("File %s not found",
- *   file);
- * String.format(
- *   "File %s not found",
- *   file);
- * String.format(
- *   "File %s not found", file);
- * </pre>
+ * <p>In other words, when you open a bracket and can't close it at the same
+ * line - you should leave it as the last symbol at this line.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  * @todo #32:1h! Checks only method calls inside method bodies,
  *  constructors, static initializers, and instance initializers. We should
@@ -71,14 +62,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class BracketsStructureCheck extends Check {
 
     /**
+     * Error message.
+     */
+    private static final String ERROR_MESSAGE = "Brackets structure is broken";
+
+    /**
      * {@inheritDoc}
      */
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
+            TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
-            TokenTypes.STATIC_INIT,
-            TokenTypes.INSTANCE_INIT,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.METHOD_CALL,
         };
     }
 
@@ -87,38 +84,39 @@ public final class BracketsStructureCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        final DetailAST list = ast.findFirstToken(TokenTypes.SLIST);
-        if (null != list) {
-            DetailAST expression = list.findFirstToken(TokenTypes.EXPR);
-            while (null != expression) {
-                final DetailAST methodCall =
-                    expression.findFirstToken(TokenTypes.METHOD_CALL);
-                if (null != methodCall) {
-                    this.checkMethod(methodCall);
-                }
-                expression = expression.getNextSibling();
-            }
+        int type = TokenTypes.ELIST;
+        final int nodeType = ast.getType();
+        if ((TokenTypes.CTOR_DEF == nodeType)
+            || (TokenTypes.METHOD_DEF == nodeType)) {
+            type = TokenTypes.PARAMETERS;
         }
+        this.checkMethod(ast, type);
     }
 
     /**
      * Checks method call statement to satisfy the rule.
-     * @param methodCall Tree node, containing method call statement.
+     * @param node Tree node, containing method call statement.
+     * @param type Type, containing parameters (depends on
+     *  <code>node</code> type).
      */
-    private void checkMethod(final DetailAST methodCall) {
-        final DetailAST closing = methodCall.findFirstToken(TokenTypes.RPAREN);
-        final int startLine = methodCall.getLineNo();
+    private void checkMethod(final DetailAST node, final int type) {
+        DetailAST opening = node;
+        if (TokenTypes.METHOD_CALL != node.getType()) {
+            opening = node.findFirstToken(TokenTypes.LPAREN);
+        }
+        final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
+        final int startLine = opening.getLineNo();
         final int endLine = closing.getLineNo();
         if (startLine != endLine) {
-            final DetailAST elist = methodCall.findFirstToken(TokenTypes.ELIST);
+            final DetailAST elist = node.findFirstToken(type);
             final int parametersLine = elist.getLineNo();
             if (parametersLine == startLine) {
-                this.log(parametersLine, "Brackets structure is broken");
+                this.log(parametersLine, this.ERROR_MESSAGE);
             }
             final DetailAST lastParameter = elist.getLastChild();
             final int lastParameterLine = lastParameter.getLineNo();
             if (lastParameterLine == endLine) {
-                this.log(lastParameterLine, "Brackets structure broken");
+                this.log(lastParameterLine, this.ERROR_MESSAGE);
             }
         }
     }
