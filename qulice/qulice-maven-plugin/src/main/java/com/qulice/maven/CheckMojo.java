@@ -31,6 +31,7 @@ package com.qulice.maven;
 
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
+import com.ymock.util.Logger;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**
@@ -55,19 +56,27 @@ public final class CheckMojo extends AbstractQuliceMojo {
      */
     @Override
     protected void doExecute() throws MojoFailureException {
+        try {
+            this.run();
+        } catch (ValidationException ex) {
+            Logger.info(
+                this,
+                "Read our quality policy: http://www.qulice.com/quality.html"
+            );
+            throw new MojoFailureException("Failure", ex);
+        }
+    }
+
+    /**
+     * Run them all.
+     * @throws ValidationException If any of them fail
+     */
+    private void run() throws ValidationException {
         for (Validator validator : this.provider.external()) {
-            try {
-                validator.validate(this.env());
-            } catch (ValidationException ex) {
-                throw new MojoFailureException("Failed", ex);
-            }
+            validator.validate(this.env());
         }
         for (MavenValidator validator : this.provider.internal()) {
-            try {
-                validator.validate(this.env());
-            } catch (ValidationException ex) {
-                throw new MojoFailureException("Failure", ex);
-            }
+            validator.validate(this.env());
         }
     }
 

@@ -10,22 +10,16 @@ public final class Valid {
     }
     public Valid(String name, String value) {
     }
-    public Valid(
-        String name,
-        String value
-    ) {
+    public Valid(String name, String value) {
     }
     public void print(){
     }
     @Test
     public void print(){
     }
-    public void print(String format,String text) {
+    public void print(String format, String[] text) {
     }
-    public void print(
-        String format,
-        String text
-    ) {
+    public void print(String format, String text ) {
     }
     // Check static declarations.
     static {
@@ -64,7 +58,8 @@ public final class Valid {
       String.format("File %s not found(", file);
       new Invalid(
           x,
-          y
+          y,
+          new String[] {"some text", "another one"}
       );
       Invalid d = new Invalid(
         x, y

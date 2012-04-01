@@ -64,15 +64,14 @@ public final class MethodBodyCommentsCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        final int start = ast.getLineNo();
-        final DetailAST list = ast.findFirstToken(TokenTypes.SLIST);
-        if (null == list) {
-            return;
+        final DetailAST start = ast.findFirstToken(TokenTypes.SLIST);
+        if (start != null) {
+            this.checkMethod(
+                this.getLines(),
+                start.getLineNo(),
+                start.findFirstToken(TokenTypes.RCURLY).getLineNo() - 1
+            );
         }
-        final DetailAST closingNode = list.findFirstToken(TokenTypes.RCURLY);
-        final int end = closingNode.getLineNo() - 1;
-        final String[] lines = this.getLines();
-        this.checkMethod(lines, start, end);
     }
 
     /**
@@ -81,17 +80,14 @@ public final class MethodBodyCommentsCheck extends Check {
      * @param start Start line of the method body.
      * @param end End line of the method body.
      */
-    private void checkMethod(
-        final String[] lines,
-        final int start,
-        final int end
-    ) {
-        for (int pos = start; pos < end; pos += pos) {
+    private void checkMethod(final String[] lines, final int start,
+        final int end) {
+        final boolean oneliner = start == end - 1;
+        for (int pos = start; pos < end; ++pos) {
             final String line = lines[pos].trim();
             if (line.startsWith("//")) {
-                String comment = line.substring(2);
-                comment = comment.trim();
-                if (!comment.startsWith("@checkstyle")) {
+                final String comment = line.substring(2).trim();
+                if (!comment.startsWith("@checkstyle") && !oneliner) {
                     this.log(pos + 1, "Comments in method body are prohibited");
                 }
             }
