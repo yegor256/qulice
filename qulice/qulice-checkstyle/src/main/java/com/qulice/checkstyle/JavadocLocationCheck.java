@@ -63,22 +63,27 @@ public final class JavadocLocationCheck extends Check {
     @Override
     public void visitToken(final DetailAST ast) {
         if (this.isField(ast)) {
-            final String[] lines = this.getLines();
             final int current = ast.getLineNo();
-            final int cend = this.findCommentEnd(lines, current);
-            final int cminimum = this.getCommentMinimum(ast);
-            if (cend <= cminimum) {
-                this.log(current, "Problem finding javadoc");
-                return;
+            final int end = this.findCommentEnd(this.getLines(), current);
+            if (end > this.getCommentMinimum(ast)) {
+                this.report(current, end);
             }
-            final int diff = current - cend;
-            if (diff > 1) {
-                for (int pos = 1; pos < diff; pos += 1) {
-                    this.log(
-                        cend + pos,
-                        "Empty line between javadoc and subject"
-                    );
-                }
+        }
+    }
+
+    /**
+     * Report empty lines between current and end line.
+     * @param current Current line
+     * @param end Final line
+     */
+    private void report(final int current, final int end) {
+        final int diff = current - end;
+        if (diff > 1) {
+            for (int pos = 1; pos < diff; pos += 1) {
+                this.log(
+                    end + pos,
+                    "Empty line between javadoc and subject"
+                );
             }
         }
     }
