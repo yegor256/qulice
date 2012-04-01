@@ -71,10 +71,10 @@ public final class ChecksTest {
         "PuzzleFormatCheck",
         "CascadeIndentationCheck",
         "BracketsStructureCheck",
-        // "ConstantUsageCheck",
         "JavadocLocationCheck",
         "MethodBodyCommentsCheck",
         "NonStaticMethodCheck",
+        // "ConstantUsageCheck",
     };
 
     /**
