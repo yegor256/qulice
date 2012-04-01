@@ -17,7 +17,7 @@ public final class Valid {
     @Test
     public void print(){
     }
-    public void print(String format,String text) {
+    public void print(String format, String[] text) {
     }
     public void print(String format, String text ) {
     }
@@ -58,7 +58,8 @@ public final class Valid {
       String.format("File %s not found(", file);
       new Invalid(
           x,
-          y
+          y,
+          new String[] {"some text", "another one"}
       );
       Invalid d = new Invalid(
         x, y
