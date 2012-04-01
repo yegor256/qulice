@@ -3,15 +3,13 @@
  * only as a text resource in integration.ChecksIT.
  */
 public final class Invalid {
-    /** 
+    /**
      * Comments.
      */
     public Invalid(String name, String value) {
+        int i;
         // Comments
     }
-    /** 
-     * Comments.
-     */
     public void print(String format, String text) {
         // Comments
         int c = 0;

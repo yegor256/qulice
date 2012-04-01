@@ -22,6 +22,13 @@ public final class Valid {
     public void print() {
         // empty method, nothing here but a comment
     }
+    /**
+     * Some comment.
+     */
+    @Override
+    public void print() {
+        // empty
+    }
 }
 
 /**
