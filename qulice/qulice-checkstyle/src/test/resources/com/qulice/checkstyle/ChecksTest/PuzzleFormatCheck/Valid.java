@@ -7,6 +7,7 @@
  * @todo #555 Some text with proper
  *  indentation of the second and all
  *  consecutive lines.
+ * @todo #JIRA-7643!:1.5hr Longer format of puzzle marker
  */
 public final class Invalid {
     public void main() {
