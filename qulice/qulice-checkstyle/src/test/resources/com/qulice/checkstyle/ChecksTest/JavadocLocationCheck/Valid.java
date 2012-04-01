@@ -25,6 +25,7 @@ public final class Valid {
     public void method(final int alpha, final String beta) {
         int a = 5;
         int b = 3;
+        final String texts = new String[] {"hello there!"};
         assert a != b;
         final Runnable runnable = new Runnable() {
             /**
