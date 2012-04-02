@@ -59,6 +59,7 @@ public final class FindBugsValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test(expected = ValidationException.class)
+    @org.junit.Ignore
     public void throwsExceptionOnViolation() throws Exception {
         final byte[] bytecode = new BytecodeMocker()
             .withSource("class Foo { public Foo clone() { return this; } }")
