@@ -49,6 +49,7 @@ public final class FindBugsValidatorTest {
     public void passesCorrectFilesWithNoExceptions() throws Exception {
         final Environment env = new EnvironmentMocker()
             .withFile("src/main/java/Main.java", "class Main { int x = 0; }")
+            .withDefaultClasspath()
             .mock();
         new FindBugsValidator().validate(env);
     }
@@ -64,6 +65,7 @@ public final class FindBugsValidatorTest {
             .mock();
         final Environment env = new EnvironmentMocker()
             .withFile("target/classes/Foo.class", bytecode)
+            .withDefaultClasspath()
             .mock();
         new FindBugsValidator().validate(env);
     }

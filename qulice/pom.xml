@@ -605,6 +605,14 @@
                 <version since="18 Oct 2011">2.1</version>
             </dependency>
             <dependency>
+                <!--
+                This library simplifies collections-management operations.
+                -->
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version since="1 Mar 2012">3.2.1</version>
+            </dependency>
+            <dependency>
                 <!-- Nice tools for file manipulations -->
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava-io</artifactId>

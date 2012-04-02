@@ -35,7 +35,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import org.mockito.Mockito;
 import org.apache.commons.io.FileUtils;
 
@@ -55,7 +57,7 @@ public final class EnvironmentMocker {
     /**
      * Files for classpath.
      */
-    private final Collection<File> classpath = new ArrayList<File>();
+    private final Set<File> classpath = new HashSet<File>();
 
     /**
      * Map of params.
@@ -109,6 +111,18 @@ public final class EnvironmentMocker {
         throws IOException {
         final File file = new File(this.basedir, name);
         FileUtils.writeByteArrayToFile(file, bytes);
+        return this;
+    }
+
+    /**
+     * With default classpath.
+     * @return This object
+     */
+    public EnvironmentMocker withDefaultClasspath() {
+        for (String file : System.getProperty("java.class.path")
+            .split(System.getProperty("path.separator"))) {
+            this.classpath.add(new File(file));
+        }
         return this;
     }
 
