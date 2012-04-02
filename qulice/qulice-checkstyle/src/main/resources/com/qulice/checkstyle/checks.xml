@@ -124,6 +124,16 @@
         <property name="fileExtensions" value="java"/>
         <property name="message" value="First sentence in a comment should start with a capital letter"/>
     </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="synchronized +\(this\) +\{"/>
+        <property name="fileExtensions" value="java"/>
+        <property name="message" value="using THIS as a lock is a bad practice (use class variable instead)"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="synchronized +\([\w\.]\.class\) +\{"/>
+        <property name="fileExtensions" value="java"/>
+        <property name="message" value="using class as a lock is a bad practice (use class variable instead)"/>
+    </module>
 
     <!-- Checks for Header -->
     <module name="Header">
