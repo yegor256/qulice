@@ -53,7 +53,7 @@ import java.util.regex.Pattern;
  *     // ...
  * </pre>
  *
- * <p>{@code &#36;Id&#36;} will be replaced by a full text automatically
+ * <p>"&#36;Id&#36;" will be replaced by a full text automatically
  * by Subversion as explained in their documentation (see link below).
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
