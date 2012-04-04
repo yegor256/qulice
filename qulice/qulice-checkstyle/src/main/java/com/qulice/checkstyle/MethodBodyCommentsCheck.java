@@ -44,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * text.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
 public final class MethodBodyCommentsCheck extends Check {
