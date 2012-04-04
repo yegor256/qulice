@@ -333,6 +333,11 @@
                                             ${project.name} ${project.version} API
                                         </windowtitle>
                                         <quiet>true</quiet>
+                                        <sourcepath>src/main/java</sourcepath>
+                                        <links>
+                                            <link>http://download.oracle.com/javaee/6/api/</link>
+                                        </links>
+                                        <detectLinks>true</detectLinks>
                                         <tags>
                                             <!--
                                             Here we instruct plugin to use custom tag
@@ -342,6 +347,11 @@
                                                 <name>todo</name>
                                                 <placement>a</placement>
                                                 <head>To do:</head>
+                                            </tag>
+                                            <tag>
+                                                <name>checkstyle</name>
+                                                <placement>a</placement>
+                                                <head>Suppressed checkstyle violations:</head>
                                             </tag>
                                         </tags>
                                     </configuration>
@@ -366,6 +376,10 @@
                                     <configuration>
                                         <rom>${basedir}/src/rempl/rom.xml</rom>
                                     </configuration>
+                                </plugin>
+                                <plugin>
+                                    <artifactId>maven-plugin-plugin</artifactId>
+                                    <version since="4 Oct 2011">2.9</version>
                                 </plugin>
                             </reportPlugins>
                         </configuration>
