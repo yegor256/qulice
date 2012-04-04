@@ -70,7 +70,7 @@ public final class NonStaticMethodCheck extends Check {
             this.log(
                 line,
                 // @checkstyle LineLength (1 line)
-                "This method must be static, because it doesn't refer to \"this\""
+                "This method must be static, because it does not refer to \"this\""
             );
         }
     }

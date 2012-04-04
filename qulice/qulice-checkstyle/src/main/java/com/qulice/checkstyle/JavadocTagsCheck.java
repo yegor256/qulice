@@ -47,14 +47,14 @@ import java.util.regex.Pattern;
  *  * This is my new class.
  *  *
  *  * &#64;author John Doe (john&#64;example.com)
- *  * &#64;version $Id$
+ *  * &#64;version &#36;Id&#36;
  *  *&#47;
  * public final class Foo {
  *     // ...
  * </pre>
  *
- * <p>{@code $Id$} will be replaced by a full text automatically by Subversion
- * as explained in their documentation (see link below).
+ * <p>{@code &#36;Id&#36;} will be replaced by a full text automatically
+ * by Subversion as explained in their documentation (see link below).
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
