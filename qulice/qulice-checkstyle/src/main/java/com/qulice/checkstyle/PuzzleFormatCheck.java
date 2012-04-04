@@ -38,9 +38,26 @@ import java.util.regex.Pattern;
 /**
  * Check format of PDD puzzles.
  *
+ * <p>This is how you should format them:
+ *
+ * <pre>
+ * &#47;**
+ *  * This is my new method.
+ *  * &#64;todo #123:1hr! I will implement it later, when more information
+ *  *  come to light and I have some extra documentation
+ *  *&#47;
+ * public void func() {
+ *     // ...
+ * }
+ * </pre>
+ *
+ * <p>Full syntax is explained
+ * <a href="http://www.tpc2.com/dev/pdd">here</a>.
+ *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ * @see <a href="http://www.tpc2.com/dev/pdd">Puzzle Driven Development</a>
  * @checkstyle PuzzleFormat (200 lines)
  */
 public final class PuzzleFormatCheck extends AbstractFileSetCheck {

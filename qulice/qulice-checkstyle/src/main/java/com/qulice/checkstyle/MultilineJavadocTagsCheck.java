@@ -36,6 +36,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Check indents in multi line JavaDoc tags.
  *
+ * <p>This is how you should format javadoc tags that need a few lines:
+ *
+ * <pre>
+ * &#47;**
+ *  * This is my new method.
+ *  * &#64;param text Some text information, provided to the
+ *  *  method by another class
+ *  * &#64;todo #123 I will implement it later, when more information
+ *  *  come to light and I have documentation supplied by
+ *  *  AAA team in the office accross the street
+ *  *&#47;
+ * public void func() {
+ *     // ...
+ * }
+ * </pre>
+ *
+ * <p>Keep in mind that all free-text information should go <b>before</b>
+ * javadoc tags, or else it will treated as part of the latest tag and
+ * qulice will complain.
+ *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
  */

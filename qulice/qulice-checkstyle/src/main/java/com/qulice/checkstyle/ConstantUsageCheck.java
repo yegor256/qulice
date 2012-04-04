@@ -36,6 +36,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Checks that constant, declared as private field of class is used more than
  * once.
+ *
+ * <p>We're still experimenting with this check and it is not used in
+ * released version.
+ *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id: BracketsStructureCheck.java 71 2011-10-14 20:41:40Z guard $
  */

@@ -37,6 +37,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that non static method must contain at least one reference to
  * {@code this}.
  *
+ * <p>If your method doesn't need {@code this} than why it is not
+ * {@code static}?
+ *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
@@ -64,7 +67,11 @@ public final class NonStaticMethodCheck extends Check {
         }
         if (!ast.branchContains(TokenTypes.LITERAL_THIS)) {
             final int line = ast.getLineNo();
-            this.log(line, "This method must be static.");
+            this.log(
+                line,
+                // @checkstyle LineLength (1 line)
+                "This method must be static, because it doesn't refer to \"this\""
+            );
         }
     }
 }

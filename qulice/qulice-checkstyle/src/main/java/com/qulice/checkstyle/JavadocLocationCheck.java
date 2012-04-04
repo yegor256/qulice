@@ -36,6 +36,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Checks that there is no empty line between a javadoc and it's subject.
  *
+ * <p>You can't have empty lines between javadoc block and
+ * a class/method/variable. They should stay together, always.
+ *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@qulice.com)

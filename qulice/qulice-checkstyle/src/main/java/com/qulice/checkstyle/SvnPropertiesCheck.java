@@ -42,9 +42,19 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Check for required svn properties in java files.
  *
+ * <p>Every {@code java} file should have two SVN properties:
+ *
+ * <pre>
+ * svn:keywords=Id
+ * svn:eol-style=native
+ * </pre>
+ *
+ * <p>Read SVN documentation about how you can set them.
+ *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ * @see <a href="http://svnbook.red-bean.com/en/1.5/svn.ref.properties.html">Properties in Subversion</a>
  */
 public final class SvnPropertiesCheck extends AbstractFileSetCheck {
 

@@ -48,16 +48,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * );
  * </pre>
  *
+ * <p>The motivation for such formatting is simple - we want to see the entire
+ * block as fast as possible. When you look at a block of code you should be
+ * able to see where it starts and where it ends. In exactly the same way
+ * we organize curled brackets.
+ *
  * <p>In other words, when you open a bracket and can't close it at the same
  * line - you should leave it as the last symbol at this line.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
- * @todo #32:1h! Checks only method calls inside method bodies,
- *  constructors, static initializers, and instance initializers. We should
- *  extend its functionality and enable checking of all other language
- *  constructs.
  */
 public final class BracketsStructureCheck extends Check {
 
