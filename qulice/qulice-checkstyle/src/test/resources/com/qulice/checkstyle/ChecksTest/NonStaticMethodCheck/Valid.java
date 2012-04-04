@@ -11,3 +11,14 @@ public class ValidTest {
         return this.TEST;
     }
 }
+
+public interface Foo {
+    void func();
+}
+
+public interface Foo {
+    @Test
+    public void someTest() {
+        // this method is not static, but it's a unit test
+    }
+}
