@@ -36,6 +36,10 @@ import java.util.List;
 /**
  * Check if indentation on every level has fixed number of spaces.
  *
+ * <p>The algorithm is simple - every new line should have the same indentation
+ * as the previous one or 4 spaces more/less. I don't know why this rule is
+ * not implemented in checkstyle... It looks like a very important one.
+ *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */

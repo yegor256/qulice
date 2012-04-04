@@ -39,8 +39,8 @@ import java.util.regex.Pattern;
  *
  * <p>We believe that comments and empty lines are evil. If you need to use
  * an empty line in order to add a vertical separator of concepts - refactor
- * your code and make more cohesive and readable. The bottom line is that every
- * method should look solid and do just one thing.
+ * your code and make it more cohesive and readable. The bottom line is
+ * that every method should look solid and do just <b>one thing</b>.
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)

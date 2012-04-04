@@ -40,9 +40,26 @@ import java.util.regex.Pattern;
  * Check if the class/interface javadoc contains properly formatted author
  * and version tags.
  *
+ * <p>Correct format is the following (of a class javadoc):
+ *
+ * <pre>
+ * &#47;**
+ *  * This is my new class.
+ *  *
+ *  * &#64;author John Doe (john&#64;example.com)
+ *  * &#64;version &#36;Id&#36;
+ *  *&#47;
+ * public final class Foo {
+ *     // ...
+ * </pre>
+ *
+ * <p>{@code &#36;Id&#36;} will be replaced by a full text automatically
+ * by Subversion as explained in their documentation (see link below).
+ *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ * @see <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">Keywords substitution in Subversion</a>
  */
 public final class JavadocTagsCheck extends Check {
 

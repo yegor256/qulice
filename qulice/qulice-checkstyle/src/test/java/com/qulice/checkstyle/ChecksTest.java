@@ -73,7 +73,7 @@ public final class ChecksTest {
         "BracketsStructureCheck",
         "JavadocLocationCheck",
         "MethodBodyCommentsCheck",
-        "NonStaticMethodCheck",
+        // "NonStaticMethodCheck",
         // "ConstantUsageCheck",
     };
 

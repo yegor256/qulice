@@ -36,6 +36,10 @@ import java.util.List;
 /**
  * Check if import lines are all together without any empty lines or comments.
  *
+ * <p>All {@code import} instructions shall stay together, without any empty
+ * lines between them. If you need to separate them because the list is too
+ * big - it's time to refactor the class and make is smaller.
+ *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
