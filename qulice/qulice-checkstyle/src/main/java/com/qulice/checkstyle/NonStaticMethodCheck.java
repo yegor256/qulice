@@ -40,6 +40,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>If your method doesn't need {@code this} than why it is not
  * {@code static}?
  *
+ * <p>This check is still in development and is not used in a released version.
+ *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
