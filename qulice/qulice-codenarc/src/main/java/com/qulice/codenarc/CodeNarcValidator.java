@@ -34,7 +34,7 @@ import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
 import java.io.File;
-import java.util.List;
+import org.apache.commons.io.FileUtils;
 import org.codenarc.CodeNarcRunner;
 import org.codenarc.analyzer.FilesystemSourceAnalyzer;
 import org.codenarc.results.Results;
@@ -54,10 +54,23 @@ public final class CodeNarcValidator implements Validator {
     @Override
     public void validate(final Environment env) throws ValidationException {
         final File src = new File(env.basedir(), "src");
-        if (!src.exists()) {
-            Logger.info(this, "No source, no codenarc validation required");
-            return;
+        if (this.required(src)) {
+            final int violations = this.logViolations(this.detect(src));
+            if (violations > 0) {
+                throw new ValidationException(
+                    "%d CodeNarc violations (see log above)",
+                    violations
+                );
+            }
         }
+    }
+
+    /**
+     * Detect all violations.
+     * @param src Source code folder
+     * @return The result
+     */
+    private Results detect(final File src) {
         final FilesystemSourceAnalyzer sourceAnalyzer =
             new FilesystemSourceAnalyzer();
         sourceAnalyzer.setBaseDirectory(src.getAbsolutePath());
@@ -68,36 +81,73 @@ public final class CodeNarcValidator implements Validator {
         codeNarcRunner.setRuleSetFiles("com/qulice/codenarc/rules.txt");
         codeNarcRunner.setReportWriters(null);
         final Results results = codeNarcRunner.execute();
-        final List<Violation> violations = results.getViolations();
-        this.logViolations(violations);
-        if (!violations.isEmpty()) {
-            throw new ValidationException(
-                "%d CodeNarc violations (see log above)",
-                violations.size()
-            );
-        }
         Logger.info(
             this,
-            "No CodeNarc violations found in %d files",
+            "CodeNarc validated %d file(s)",
             results.getTotalNumberOfFiles(true)
         );
+        return results;
+    }
+
+    /**
+     * This folder required CodeNarc validation?
+     * @param src Source code folder
+     * @return TRUE if there are any groovy files inside
+     */
+    private boolean required(final File src) {
+        boolean required = false;
+        if (src.exists()) {
+            final int total = FileUtils.listFiles(
+                src,
+                new String[]{"groovy"},
+                true
+            ).size();
+            if (total == 0) {
+                Logger.info(
+                    this,
+                    "CodeNarc not required since no groovy files in %s",
+                    src
+                );
+            } else {
+                required = true;
+            }
+        } else {
+            Logger.info(
+                this,
+                "CodeNarc not required since no sources in %s",
+                src
+            );
+        }
+        return required;
     }
 
     /**
      * Log all violations.
-     * @param violations The list of violations
+     * @param list The results from CodeNarc
+     * @return Number of found violations
      */
-    private void logViolations(final List<Violation> violations) {
-        for (Violation violation : violations) {
-            Logger.error(
-                this,
-                "%s[%d]: %s (%s)",
-                "?",
-                violation.getLineNumber(),
-                violation.getMessage(),
-                violation.getRule().getName()
-            );
+    private int logViolations(final Results list) {
+        int count = 0;
+        for (Object child : list.getChildren()) {
+            final Results result = (Results) child;
+            if (!result.isFile()) {
+                count += this.logViolations(result);
+                continue;
+            }
+            for (Object vltn : result.getViolations()) {
+                final Violation violation = (Violation) vltn;
+                ++count;
+                Logger.error(
+                    this,
+                    "%s[%d]: %s (%s)",
+                    result.getPath(),
+                    violation.getLineNumber(),
+                    violation.getMessage(),
+                    violation.getRule().getName()
+                );
+            }
         }
+        return count;
     }
 
 }

@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks opening/closing brackets to be the last symbols on the line.
+ * Checks node/closing brackets to be the last symbols on the line.
  *
  * <p>This is how a correct bracket structure should look like:
  *
@@ -62,18 +62,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class BracketsStructureCheck extends Check {
 
     /**
-     * Error message.
-     */
-    private static final String ERROR_MESSAGE = "Brackets structure is broken";
-
-    /**
      * {@inheritDoc}
      */
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
-            TokenTypes.CTOR_DEF,
-            TokenTypes.METHOD_DEF,
             TokenTypes.LITERAL_NEW,
             TokenTypes.METHOD_CALL,
         };
@@ -84,40 +77,47 @@ public final class BracketsStructureCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        int type = TokenTypes.ELIST;
-        final int nodeType = ast.getType();
-        if ((TokenTypes.CTOR_DEF == nodeType)
-            || (TokenTypes.METHOD_DEF == nodeType)) {
-            type = TokenTypes.PARAMETERS;
+        if (TokenTypes.METHOD_CALL == ast.getType()) {
+            this.checkParams(ast);
+        } else {
+            final DetailAST brackets = ast.findFirstToken(TokenTypes.LPAREN);
+            if (brackets != null) {
+                this.checkParams(brackets);
+            }
         }
-        this.checkMethod(ast, type);
     }
 
     /**
-     * Checks method call statement to satisfy the rule.
+     * Checks params statement to satisfy the rule.
      * @param node Tree node, containing method call statement.
-     * @param type Type, containing parameters (depends on
-     *  <code>node</code> type).
      */
-    private void checkMethod(final DetailAST node, final int type) {
-        DetailAST opening = node;
-        if (TokenTypes.METHOD_CALL != node.getType()) {
-            opening = node.findFirstToken(TokenTypes.LPAREN);
-        }
+    private void checkParams(final DetailAST node) {
         final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
-        final int startLine = opening.getLineNo();
-        final int endLine = closing.getLineNo();
-        if (startLine != endLine) {
-            final DetailAST elist = node.findFirstToken(type);
-            final int parametersLine = elist.getLineNo();
-            if (parametersLine == startLine) {
-                this.log(parametersLine, this.ERROR_MESSAGE);
+        if (closing != null) {
+            this.checkLines(node, node.getLineNo(), closing.getLineNo());
+        }
+    }
+
+    /**
+     * Checks params statement to satisfy the rule.
+     * @param node Tree node, containing method call statement.
+     * @param start First line
+     * @param end Final line
+     */
+    private void checkLines(final DetailAST node, final int start,
+        final int end) {
+        if (start != end) {
+            final DetailAST elist = node.findFirstToken(TokenTypes.ELIST);
+            final int pline = elist.getLineNo();
+            if (pline == start) {
+                this.log(pline, "Parameters should start on a new line");
             }
-            final DetailAST lastParameter = elist.getLastChild();
-            final int lastParameterLine = lastParameter.getLineNo();
-            if (lastParameterLine == endLine) {
-                this.log(lastParameterLine, this.ERROR_MESSAGE);
+            final DetailAST last = elist.getLastChild();
+            final int lline = last.getLineNo();
+            if (lline == end) {
+                this.log(lline, "Closing bracket should be on a new line");
             }
         }
     }
+
 }

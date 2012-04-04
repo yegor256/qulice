@@ -33,14 +33,16 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import com.ymock.util.Logger;
-import edu.umd.cs.findbugs.BugReporter;
-import edu.umd.cs.findbugs.Detector;
-import edu.umd.cs.findbugs.DetectorFactoryCollection;
-import edu.umd.cs.findbugs.FindBugs2;
-import edu.umd.cs.findbugs.PrintingBugReporter;
-import edu.umd.cs.findbugs.Project;
-import edu.umd.cs.findbugs.config.UserPreferences;
 import java.io.File;
+import java.net.URI;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * Validates source code and compiled binaris with FindBugs.
@@ -56,67 +58,138 @@ public final class FindBugsValidator implements Validator {
      */
     @Override
     public void validate(final Environment env) throws ValidationException {
-        if (!env.outdir().exists()) {
+        if (env.outdir().exists()) {
+            this.check(this.findbugs(env));
+        } else {
             Logger.info(
                 this,
                 "No classes at %s, no FindBugs validation",
                 env.outdir()
             );
-            return;
         }
-        final FindBugs2 findbugs = new FindBugs2();
-        findbugs.setProject(this.project(env));
-        final BugReporter reporter = new PrintingBugReporter();
-        reporter.getProjectStats().getProfiler().start(findbugs.getClass());
-        reporter.setPriorityThreshold(Detector.LOW_PRIORITY);
-        findbugs.setBugReporter(reporter);
-        DetectorFactoryCollection.instance().ensureLoaded();
-        findbugs.setDetectorFactoryCollection(
-            DetectorFactoryCollection.instance()
-        );
-        findbugs.setUserPreferences(
-            UserPreferences.createDefaultUserPreferences()
-        );
-        findbugs.setNoClassOk(true);
-        findbugs.setScanNestedArchives(true);
-        try {
-            findbugs.execute();
-        } catch (java.io.IOException ex) {
-            throw new IllegalStateException(ex);
-        } catch (InterruptedException ex) {
-            throw new IllegalStateException(ex);
-        }
-        if (findbugs.getBugCount() > 0) {
-            throw new ValidationException(
-                "%d FindBugs violations (see log above)",
-                findbugs.getBugCount()
-            );
-        }
-        Logger.info(this, "No FindBugs violations found");
     }
 
     /**
-     * Create project.
+     * Start findbugs and return its output.
      * @param env Environment
-     * @return The project
+     * @return Output of findbugs
      */
-    private Project project(final Environment env) {
-        final Project project = new Project();
-        for (File jar : env.classpath()) {
-            project.addFile(jar.getPath());
-            Logger.debug(
-                this,
-                "#project(): added '%s'",
-                jar
+    private String findbugs(final Environment env) {
+        final List<String> args = new LinkedList<String>();
+        args.add("java");
+        args.addAll(this.options(env));
+        args.add(Wrap.class.getName());
+        args.add(env.basedir().getPath());
+        args.add(env.outdir().getPath());
+        args.add(StringUtils.join(env.classpath(), ","));
+        final String command = StringUtils.join(args, " ");
+        Logger.debug(this, "#restart(): running \"%s\"", command);
+        final ProcessBuilder builder = new ProcessBuilder(args);
+        String report;
+        try {
+            final Process process = builder.start();
+            if (process.waitFor() != 0) {
+                Logger.warn(
+                    this,
+                    "Failed to execute FindBugs:\n%s",
+                    command,
+                    IOUtils.toString(process.getErrorStream())
+                );
+            }
+            report = IOUtils.toString(process.getInputStream());
+        } catch (java.io.IOException ex) {
+            throw new IllegalStateException(ex);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException(ex);
+        }
+        Logger.debug(this, "#restart(): returned:\n%s", report);
+        return report;
+    }
+
+    /**
+     * Java options.
+     * @param env Environment
+     * @return Options
+     */
+    private List<String> options(final Environment env) {
+        final File jar = this.jar(Wrap.class);
+        final List<String> opts = new LinkedList<String>();
+        if (!jar.isDirectory()) {
+            opts.add("-jar");
+            opts.add(jar.getPath());
+        }
+        opts.add("-classpath");
+        opts.add(
+            StringUtils.join(
+                CollectionUtils.union(
+                    Arrays.asList(
+                        new File[] {
+                            jar,
+                            this.jar(edu.umd.cs.findbugs.FindBugs2.class),
+                        }
+                    ),
+                    env.classpath()
+                ),
+                System.getProperty("path.separator")
+            )
+        );
+        return opts;
+    }
+
+    /**
+     * Get address of our JAR or directory.
+     * @param resource Name of resource
+     * @return The file
+     */
+    private File jar(final Class resource) {
+        final String name = resource.getName()
+            .replace(".", System.getProperty("file.separator"));
+        final URL res = this.getClass().getResource(
+            String.format("/%s.class", name)
+        );
+        if (res == null) {
+            throw new IllegalStateException(
+                String.format(
+                    "can't find JAR for %s",
+                    name
+                )
             );
-            if (!jar.equals(env.outdir())) {
-                project.addAuxClasspathEntry(jar.getPath());
+        }
+        final String path = res.getFile().replaceAll("\\!.*$", "");
+        File file;
+        if ("jar".equals(FilenameUtils.getExtension(path))) {
+            file = new File(URI.create(path).getPath());
+        } else {
+            file = new File(path).getParentFile()
+                .getParentFile()
+                .getParentFile()
+                .getParentFile();
+        }
+        Logger.debug(this, "#jar(%s): found at %s", resource.getName(), file);
+        return file;
+    }
+
+    /**
+     * Check report for errors.
+     * @param report The report
+     * @throws ValidationException If it contains errors
+     * @checkstyle RedundantThrows (3 lines)
+     */
+    private void check(final String report) throws ValidationException {
+        int total = 0;
+        for (String line : report.split("\n")) {
+            if (line.matches("[a-zA-Z ]+: .*")) {
+                Logger.warn(this, "FindBugs: %s", line);
+                ++total;
             }
         }
-        project.addSourceDir(
-            new File(env.basedir(), "src/main/java").getPath()
-        );
-        return project;
+        if (total > 0) {
+            throw new ValidationException(
+                "%d FindBugs violations (see log above)",
+                total
+            );
+        }
     }
 
 }

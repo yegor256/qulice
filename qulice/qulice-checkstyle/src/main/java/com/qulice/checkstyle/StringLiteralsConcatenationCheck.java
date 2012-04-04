@@ -54,7 +54,7 @@ import java.util.List;
  * languages later, if you don't have solid string literals.
  *
  * <p>There are two alternatives to concatenation: {@link StringBuilder}
- * and {@link String#format(String)}.
+ * and {@link String#format(String,Object[])}.
  *
  * @author Dzmitry Petrushenka (dpetruha@gmail.com)
  * @author Yegor Bugayenko (yegor@qulice.com)

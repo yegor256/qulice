@@ -38,6 +38,7 @@ import java.util.Set;
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
+ * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */
 final class DefaultValidatorsProvider implements ValidatorsProvider {
 
@@ -49,10 +50,9 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         final Set<MavenValidator> validators =
             new LinkedHashSet<MavenValidator>();
         validators.add(new EnforcerValidator());
+        validators.add(new CoberturaValidator());
         // doesn't work properly - always report a problem
         // validators.add(new DependenciesValidator());
-        // not working yet
-        validators.add(new CoberturaValidator());
         return validators;
     }
 
@@ -66,8 +66,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         validators.add(new com.qulice.pmd.PMDValidator());
         validators.add(new com.qulice.xml.XmlValidator());
         validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        // has some strange defect inside
-        // validators.add(new com.qulice.findbugs.FindBugsValidator());
+        validators.add(new com.qulice.findbugs.FindBugsValidator());
         return validators;
     }
 

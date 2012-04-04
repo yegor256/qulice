@@ -47,6 +47,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-spi</artifactId>
             <version qulice="yes">1.0-SNAPSHOT</version>
@@ -61,7 +69,6 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -76,10 +83,6 @@
             <groupId>org.codenarc</groupId>
             <artifactId>CodeNarc</artifactId>
             <version since="04 Aug 2011">0.15</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

@@ -158,7 +158,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <releasedVersion>0.1.6</releasedVersion>
+        <releasedVersion>0.1.8</releasedVersion>
     </properties>
     <repositories>
         <!--
@@ -271,6 +271,27 @@
             </activation>
             <build>
                 <plugins>
+                    <plugin>
+                        <!--
+                        This plugin will collect current build number
+                        from Subversion and save it into Maven property "buildNumber".
+                        -->
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>buildnumber-maven-plugin</artifactId>
+                        <version since="22 Mar 2012">1.0-beta-4</version>
+                        <executions>
+                            <execution>
+                                <phase>pre-site</phase>
+                                <goals>
+                                    <goal>create</goal>
+                                </goals>
+                                <configuration>
+                                    <doCheck>false</doCheck>
+                                    <doUpdate>false</doUpdate>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <artifactId>maven-site-plugin</artifactId>
                         <configuration>
@@ -474,7 +495,39 @@
                 -->
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
-                <version since="18 Oct 2011">4.9</version>
+                <version since="25 Nov 2011">4.10</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <!--
+                XML matchers.
+                @see http://code.google.com/p/xml-matchers/wiki/Tutorial
+                -->
+                <groupId>org.xmlmatchers</groupId>
+                <artifactId>xml-matchers</artifactId>
+                <version since="23 Sep 2011">0.10</version>
+                <scope>test</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.hamcrest</groupId>
+                        <artifactId>hamcrest-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <!--
+                Assertions and matchers for unit tests.
+                @link http://code.google.com/p/hamcrest/wiki/Tutorial
+                -->
+                <groupId>org.hamcrest</groupId>
+                <artifactId>hamcrest-core</artifactId>
+                <version since="23 Dec 2011">1.2.1</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -483,8 +536,8 @@
                 @link http://code.google.com/p/hamcrest/wiki/Tutorial
                 -->
                 <groupId>org.hamcrest</groupId>
-                <artifactId>hamcrest-all</artifactId>
-                <version since="18 Oct 2011">1.1</version>
+                <artifactId>hamcrest-library</artifactId>
+                <version since="23 Dec 2011">1.2.1</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -495,7 +548,8 @@
                 -->
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-all</artifactId>
-                <version since="18 Oct 2011">1.9.0-rc1</version>
+                <version since="9 Oct 2010">1.8.5</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <!-- PowerMock unit testing framework -->
@@ -549,6 +603,14 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version since="18 Oct 2011">2.1</version>
+            </dependency>
+            <dependency>
+                <!--
+                This library simplifies collections-management operations.
+                -->
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version since="1 Mar 2012">3.2.1</version>
             </dependency>
             <dependency>
                 <!-- Nice tools for file manipulations -->

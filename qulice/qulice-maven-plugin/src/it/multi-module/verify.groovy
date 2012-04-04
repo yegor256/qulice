@@ -1,7 +1,6 @@
-<?xml version="1.0"?>
-<!--
+/**
  *
- * Copyright (c) 2011-2012, Qulice.com
+ * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,48 +29,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @version $Id$
- -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+ *
+ */
 
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.qulice</groupId>
-        <artifactId>qulice</artifactId>
-        <version qulice="yes">1.0-SNAPSHOT</version>
-    </parent>
-    <artifactId>qulice-spi</artifactId>
-    <packaging>jar</packaging>
-    <name>qulice-spi</name>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava-io</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-</project>
+// Let's validate that the build never touched Groovy files
+// see ticket #39 for explanation
+def log = new File(basedir, 'build.log')
+assert !log.text.contains('CodeNarc completed:')

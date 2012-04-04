@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
+ * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
 public final class JavadocLocationCheck extends Check {
@@ -62,22 +63,27 @@ public final class JavadocLocationCheck extends Check {
     @Override
     public void visitToken(final DetailAST ast) {
         if (this.isField(ast)) {
-            final String[] lines = this.getLines();
             final int current = ast.getLineNo();
-            final int cend = this.findCommentEnd(lines, current);
-            final int cminimum = this.getCommentMinimum(ast);
-            if (cend <= cminimum) {
-                this.log(current, "Problem finding javadoc");
-                return;
+            final int end = this.findCommentEnd(this.getLines(), current);
+            if (end > this.getCommentMinimum(ast)) {
+                this.report(current, end);
             }
-            final int diff = current - cend;
-            if (diff > 1) {
-                for (int pos = 1; pos < diff; pos += 1) {
-                    this.log(
-                        cend + pos,
-                        "Empty line between javadoc and subject"
-                    );
-                }
+        }
+    }
+
+    /**
+     * Report empty lines between current and end line.
+     * @param current Current line
+     * @param end Final line
+     */
+    private void report(final int current, final int end) {
+        final int diff = current - end;
+        if (diff > 1) {
+            for (int pos = 1; pos < diff; pos += 1) {
+                this.log(
+                    end + pos,
+                    "Empty line between javadoc and subject"
+                );
             }
         }
     }
@@ -92,11 +98,13 @@ public final class JavadocLocationCheck extends Check {
         final DetailAST parent = node.getParent();
         if (null == parent) {
             if (!this.isFirst(node)) {
-                final DetailAST previous = node.getPreviousSibling();
-                final DetailAST object =
-                    previous.findFirstToken(TokenTypes.OBJBLOCK);
-                final DetailAST closing = object.getLastChild();
-                minimum = closing.getLineNo();
+                final DetailAST object = node
+                    .getPreviousSibling()
+                    .findFirstToken(TokenTypes.OBJBLOCK);
+                // @checkstyle NestedIfDepth (1 line)
+                if (object != null) {
+                    minimum = object.getLastChild().getLineNo();
+                }
             }
         } else {
             DetailAST previous = node.getPreviousSibling();
@@ -112,7 +120,7 @@ public final class JavadocLocationCheck extends Check {
      * Checks the specified node: is it first element or not.
      * @param node Node to be checked.
      * @return True if there are no any nodes before this one, else -
-     *  <code>false</code>.
+     *  {@code false}.
      */
     private boolean isFirst(final DetailAST node) {
         final DetailAST previous = node.getPreviousSibling();
@@ -120,12 +128,11 @@ public final class JavadocLocationCheck extends Check {
     }
 
     /**
-     * Checks input nodes: if specified node is variable method returns
-     * <code>false</code> if node is not a field. Otherwise it returns
-     * <code>true</code>.
-     * @param node Node to check.
-     * @return False if the specified node is a field, otherwise it returns
-     *  <code>true</code>.
+     * Returns {@code TRUE} if a specified node is something that should have
+     * a Javadoc, which includes classes, interface, class methods, and
+     * class variables.
+     * @param node Node to check
+     * @return Is it a Javadoc-required entity?
      */
     private boolean isField(final DetailAST node) {
         boolean yes = true;

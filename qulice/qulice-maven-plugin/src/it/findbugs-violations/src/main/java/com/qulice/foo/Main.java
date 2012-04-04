@@ -3,7 +3,9 @@
  */
 package com.qulice.foo;
 
-import java.util.List;
+import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This is just a test class.
@@ -13,15 +15,23 @@ import java.util.List;
 public final class Main {
 
     /**
-     * List of some strings.
+     * List of some URLs.
      */
-    private List<String> list;
+    private final transient Set<URL> list;
 
     /**
      * Test something.
      */
-    public void test() {
-        System.out.println("test");
+    public Main() {
+        this.list = new HashSet<URL>();
+    }
+
+    /**
+     * Get size of list.
+     * @return The size
+     */
+    public int size() {
+        return this.list.size();
     }
 
 }

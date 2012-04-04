@@ -124,6 +124,26 @@
         <property name="fileExtensions" value="java"/>
         <property name="message" value="First sentence in a comment should start with a capital letter"/>
     </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="synchronized +\(this\) +\{"/>
+        <property name="fileExtensions" value="java"/>
+        <property name="message" value="Using THIS as a lock is a bad practice (use class variable instead)"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="synchronized +\([\w\.]\.class\) +\{"/>
+        <property name="fileExtensions" value="java"/>
+        <property name="message" value="Using class as a lock is a bad practice (use class variable instead)"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="^(?! *(/\*\*|\*|//)).*[\.\-\+%/\*&lt;&gt;] *$"/>
+        <property name="fileExtensions" value="java"/>
+        <property name="message" value="Line cannot end with this symbol, move it to the next line"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="^ *="/>
+        <property name="fileExtensions" value="java"/>
+        <property name="message" value="Line cannot start with this symbol, move it to the previous line"/>
+    </module>
 
     <!-- Checks for Header -->
     <module name="Header">
@@ -322,10 +342,10 @@
         <module name="com.qulice.checkstyle.JavadocTagsCheck"/>
         <module name="com.qulice.checkstyle.StringLiteralsConcatenationCheck"/>
         <module name="com.qulice.checkstyle.MultilineJavadocTagsCheck"/>
-        <!-- They don't work at the moment -->
+        <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/>
+        <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
+        <!-- not yet ready to be used: -->
         <!-- <module name="com.qulice.checkstyle.ConstantUsageCheck"/> -->
-        <!-- <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/> -->
-        <!-- <module name="com.qulice.checkstyle.JavadocLocationCheck"/> -->
     </module>
 
     <!--

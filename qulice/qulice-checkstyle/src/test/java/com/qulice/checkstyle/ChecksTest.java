@@ -71,10 +71,10 @@ public final class ChecksTest {
         "PuzzleFormatCheck",
         "CascadeIndentationCheck",
         "BracketsStructureCheck",
-        "ConstantUsageCheck",
         "JavadocLocationCheck",
         "MethodBodyCommentsCheck",
         "NonStaticMethodCheck",
+        // "ConstantUsageCheck",
     };
 
     /**
@@ -150,7 +150,11 @@ public final class ChecksTest {
     @Test
     public void testCheckstyleTrueNegative() throws Exception {
         final AuditListener listener = Mockito.mock(AuditListener.class);
+        final Collector collector = new ChecksTest.Collector();
+        Mockito.doAnswer(collector).when(listener)
+            .addError(Mockito.any(AuditEvent.class));
         this.check("/Valid.java", listener);
+        MatcherAssert.assertThat(collector.summary(), Matchers.equalTo(""));
         Mockito.verify(listener, Mockito.times(0))
             .addError(Mockito.any(AuditEvent.class));
     }

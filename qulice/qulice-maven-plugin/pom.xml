@@ -80,6 +80,11 @@
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
+            <artifactId>qulice-findbugs</artifactId>
+            <version qulice="yes">1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qulice</groupId>
             <artifactId>qulice-xml</artifactId>
             <version qulice="yes">1.0-SNAPSHOT</version>
         </dependency>
@@ -158,7 +163,11 @@
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
+            <artifactId>hamcrest-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
@@ -200,15 +209,7 @@
                         <pomInclude>checkstyle-violations/pom.xml</pomInclude>
                         <pomInclude>pmd-violations/pom.xml</pomInclude>
                         <pomInclude>codenarc-violations/pom.xml</pomInclude>
-                        <!--
-                        @todo #11 This check is disabled because findbugs doesn't work
-                         for some strange reason. Actually it works here, in this project,
-                         if you enable this test and enable FindBugsValidator in ValidatorsProvider
-                         collection. But then later if you use this plugin in some project
-                         it crashes the entire Maven execution. We need to solve this problem
-                         and enable findbugs!
-                        -->
-                        <!-- <pomInclude>findbugs-violations/pom.xml</pomInclude> -->
+                        <pomInclude>findbugs-violations/pom.xml</pomInclude>
                         <!--
                         @todo #8 This test is not working. I don't know what exactly is
                          going on. Seems like ASM is not working in maven-dependency-analyzer.

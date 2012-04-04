@@ -19,6 +19,16 @@ public final class Valid {
         // @checkstyle MagicNumber (1 line)
         this.a = b;
     }
+    public void print() {
+        // empty method, nothing here but a comment
+    }
+    /**
+     * Some comment.
+     */
+    @Override
+    public void print() {
+        // empty
+    }
 }
 
 /**

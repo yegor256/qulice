@@ -129,7 +129,18 @@ final class CheckstyleListener implements AuditListener {
     @Override
     public void addException(final AuditEvent event,
         final Throwable throwable) {
-        // intentionally empty
+        final String check = event.getSourceName();
+        Logger.error(
+            this,
+            "%s[%d]: %s (%s), %[exception]s",
+            event.getFileName().substring(
+                this.env.basedir().toString().length()
+            ),
+            event.getLine(),
+            event.getMessage(),
+            check.substring(check.lastIndexOf('.') + 1),
+            throwable
+        );
     }
 
 }
