@@ -30,8 +30,8 @@
 package com.qulice.maven;
 // @checkstyle LineLength (20 lines)
 
+import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
-import com.ymock.util.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;

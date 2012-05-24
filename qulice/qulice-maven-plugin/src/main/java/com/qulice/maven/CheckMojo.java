@@ -29,9 +29,9 @@
  */
 package com.qulice.maven;
 
+import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import com.ymock.util.Logger;
 import org.apache.maven.plugin.MojoFailureException;
 
 /**

@@ -82,7 +82,7 @@ public final class CascadeIndentationCheckTest {
      * @throws Exception If something goes wrong
      */
     @Test
-    @SuppressWarnings("PMD.LooseCoupling")
+    @SuppressWarnings({ "PMD.LooseCoupling", "unchecked" })
     public void testWithCorrectIndentation() throws Exception {
         this.process(
             // @checkstyle StringLiteralsConcatenation (5 lines)

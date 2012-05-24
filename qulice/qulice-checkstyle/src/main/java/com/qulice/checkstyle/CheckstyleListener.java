@@ -29,10 +29,10 @@
  */
 package com.qulice.checkstyle;
 
+import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.qulice.spi.Environment;
-import com.ymock.util.Logger;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -29,10 +29,10 @@
  */
 package com.qulice.xml;
 
+import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import com.ymock.util.Logger;
 
 /**
  * Validates XML files for formatting.

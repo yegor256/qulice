@@ -30,7 +30,7 @@
 package com.qulice.findbugs;
 
 import com.google.common.io.Files;
-import com.ymock.util.Logger;
+import com.jcabi.log.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
@@ -47,7 +47,7 @@ public final class BytecodeMocker {
     /**
      * The source code.
      */
-    private String source;
+    private transient String source;
 
     /**
      * Use this source code.
@@ -68,13 +68,13 @@ public final class BytecodeMocker {
         final File outdir = Files.createTempDir();
         final File input = File.createTempFile("input", ".java");
         FileUtils.writeStringToFile(input, this.source);
-        final ProcessBuilder pb = new ProcessBuilder(
+        final ProcessBuilder builder = new ProcessBuilder(
             "javac",
             "-d",
             outdir.getPath(),
             input.getPath()
         );
-        final Process process = pb.start();
+        final Process process = builder.start();
         byte[] bytes;
         try {
             process.waitFor();
@@ -113,7 +113,7 @@ public final class BytecodeMocker {
         final Collection<File> produced = FileUtils.listFiles(
             dir, new String[] {"class"}, true
         );
-        if (produced.size() == 0) {
+        if (produced.isEmpty()) {
             throw new IllegalStateException("No files generated");
         }
         final File found = produced.iterator().next();

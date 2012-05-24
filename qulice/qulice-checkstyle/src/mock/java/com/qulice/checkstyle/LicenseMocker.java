@@ -29,15 +29,9 @@
  */
 package com.qulice.checkstyle;
 
-import com.qulice.spi.Environment;
-import com.qulice.spi.EnvironmentMocker;
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  * Builder of {@code LICENSE.txt} content.
@@ -49,22 +43,22 @@ public final class LicenseMocker {
     /**
      * The text.
      */
-    private String[] lines;
+    private transient String[] lines;
 
     /**
      * EOL.
      */
-    private String eol;
+    private transient String eol;
 
     /**
      * Package name.
      */
-    private String pkgName = "foo";
+    private transient String pkgName = "foo";
 
     /**
      * Directory for package-info.java.
      */
-    private File packageInfoDir;
+    private transient File packageInfoDir;
 
     /**
      * Use this EOL.
@@ -82,7 +76,18 @@ public final class LicenseMocker {
      * @return This object
      */
     public LicenseMocker withLines(final String[] lns) {
-        this.lines = lns;
+        this.lines = new String[lns.length];
+        System.arraycopy(lns, 0, this.lines, 0, lns.length);
+        return this;
+    }
+
+    /**
+     * Use this package name.
+     * @param name The name of package
+     * @return This object
+     */
+    public LicenseMocker withPackage(final String name) {
+        this.pkgName = name;
         return this;
     }
 
@@ -118,6 +123,7 @@ public final class LicenseMocker {
      * Save package-info.java to the directory.
      * @param dir The directory
      * @throws Exception If something wrong happens inside
+     * @checkstyle MultipleStringLiterals (20 lines)
      */
     private void makePackageInfo(final File dir) throws Exception {
         final File info = new File(dir, "package-info.java");

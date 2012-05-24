@@ -29,10 +29,10 @@
  */
 package com.qulice.findbugs;
 
+import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import com.ymock.util.Logger;
 import java.io.File;
 import java.net.URI;
 import java.net.URL;

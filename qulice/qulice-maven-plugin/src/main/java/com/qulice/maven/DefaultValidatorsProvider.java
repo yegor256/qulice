@@ -44,6 +44,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
 
     /**
      * {@inheritDoc}
+     * @todo #83 When it works, add {@code DependenciesValidator()} to this list
      */
     @Override
     public Set<MavenValidator> internal() {
@@ -51,13 +52,12 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
             new LinkedHashSet<MavenValidator>();
         validators.add(new EnforcerValidator());
         validators.add(new CoberturaValidator());
-        // doesn't work properly - always report a problem
-        // validators.add(new DependenciesValidator());
         return validators;
     }
 
     /**
      * {@inheritDoc}
+     * @todo #83 When it works, add {@code FindBugsValidator()} to this list
      */
     @Override
     public Set<Validator> external() {
@@ -66,7 +66,6 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         validators.add(new com.qulice.pmd.PMDValidator());
         validators.add(new com.qulice.xml.XmlValidator());
         validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        // validators.add(new com.qulice.findbugs.FindBugsValidator());
         return validators;
     }
 

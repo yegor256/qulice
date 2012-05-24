@@ -38,6 +38,11 @@ package com.qulice.spi;
 public final class ValidationException extends Exception {
 
     /**
+     * Serialization marker.
+     */
+    private static final long serialVersionUID = 0x75298A7876D21470L;
+
+    /**
      * Public ctor.
      * @param text The text of the exception
      * @param args Optional arguments for String.format()

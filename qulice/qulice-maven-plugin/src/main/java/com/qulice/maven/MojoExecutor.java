@@ -29,8 +29,8 @@
  */
 package com.qulice.maven;
 
+import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
-import com.ymock.util.Logger;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Properties;
@@ -177,37 +177,37 @@ public final class MojoExecutor {
         final Xpp3Dom xpp = new Xpp3Dom(name);
         for (Map.Entry entry : config.entrySet()) {
             if (entry.getValue() instanceof String) {
-                final Xpp3Dom child = new Xpp3Dom((String) entry.getKey());
-                child.setValue(config.getProperty((String) entry.getKey()));
+                final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
+                child.setValue(config.getProperty(entry.getKey().toString()));
                 xpp.addChild(child);
             } else if (entry.getValue() instanceof String[]) {
-                final Xpp3Dom child = new Xpp3Dom((String) entry.getKey());
-                for (String val : (String[]) entry.getValue()) {
-                    final Xpp3Dom row = new Xpp3Dom((String) entry.getKey());
+                final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
+                for (String val : String[].class.cast(entry.getValue())) {
+                    final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
                     row.setValue(val);
                     child.addChild(row);
                 }
                 xpp.addChild(child);
             } else if (entry.getValue() instanceof Collection) {
-                final Xpp3Dom child = new Xpp3Dom((String) entry.getKey());
-                for (String val : (Collection<String>) entry.getValue()) {
-                    final Xpp3Dom row = new Xpp3Dom((String) entry.getKey());
-                    row.setValue(val);
+                final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
+                for (Object val : Collection.class.cast(entry.getValue())) {
+                    final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
+                    row.setValue(val.toString());
                     child.addChild(row);
                 }
                 xpp.addChild(child);
             } else if (entry.getValue() instanceof Properties) {
                 xpp.addChild(
                     this.toXppDom(
-                        (Properties) entry.getValue(),
-                        (String) entry.getKey()
+                        Properties.class.cast(entry.getValue()),
+                        entry.getKey().toString()
                     )
                 );
             } else {
                 throw new IllegalArgumentException(
                     String.format(
                         "Invalid properties value at '%s'",
-                        (String) entry.getKey()
+                        entry.getKey().toString()
                     )
                 );
             }
