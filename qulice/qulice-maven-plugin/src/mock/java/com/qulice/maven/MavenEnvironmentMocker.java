@@ -31,26 +31,14 @@ package com.qulice.maven;
 
 import com.qulice.spi.Environment;
 import com.qulice.spi.EnvironmentMocker;
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Properties;
-import java.util.Set;
-import org.apache.maven.artifact.Artifact;
-import org.apache.maven.model.Build;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
-import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
-import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
-import org.codehaus.plexus.PlexusConstants;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.context.Context;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.mockito.Mockito;
 import org.slf4j.impl.StaticLoggerBinder;
 
@@ -59,22 +47,24 @@ import org.slf4j.impl.StaticLoggerBinder;
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class MavenEnvironmentMocker {
 
     /**
      * Env mocker.
      */
-    private final EnvironmentMocker envMocker;
+    private final transient EnvironmentMocker envMocker;
 
     /**
      * Project.
      */
-    private MavenProjectMocker projectMocker = new MavenProjectMocker();
+    private transient MavenProjectMocker projectMocker =
+        new MavenProjectMocker();
 
     /**
      * Plexus container, mock.
      */
-    private final PlexusContainer container =
+    private final transient PlexusContainer container =
         Mockito.mock(PlexusContainer.class);
 
     /**
@@ -88,6 +78,10 @@ public final class MavenEnvironmentMocker {
 
     /**
      * Inject this object into plexus container.
+     * @param role The role
+     * @param hint The hint
+     * @param object The object to return
+     * @return This object
      * @throws Exception If something wrong happens inside
      */
     public MavenEnvironmentMocker inPlexus(final String role, final String hint,
@@ -134,6 +128,7 @@ public final class MavenEnvironmentMocker {
 
     /**
      * Mock it.
+     * @return The environment just mocked
      * @throws Exception If something wrong happens inside
      */
     public MavenEnvironment mock() throws Exception {
@@ -148,15 +143,19 @@ public final class MavenEnvironmentMocker {
         return new EnvWrapper(parent, env);
     }
 
+    /**
+     * Wrapper of maven environment.
+     */
+    @SuppressWarnings("PMD.TooManyMethods")
     private static final class EnvWrapper implements MavenEnvironment {
         /**
          * Parent environment.
          */
-        private final Environment env;
+        private final transient Environment env;
         /**
          * Parent maven environment.
          */
-        private final MavenEnvironment menv;
+        private final transient MavenEnvironment menv;
         /**
          * Public ctor.
          * @param penv Parent env
@@ -248,7 +247,7 @@ public final class MavenEnvironmentMocker {
          * {@inheritDoc}
          */
         @Override
-        public Collection<File> files(final String pattern){
+        public Collection<File> files(final String pattern) {
             throw new UnsupportedOperationException();
         }
     }

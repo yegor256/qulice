@@ -29,7 +29,7 @@
  */
 package com.qulice.pmd;
 
-import com.ymock.util.Logger;
+import com.jcabi.log.Logger;
 import java.io.File;
 import java.io.Reader;
 import java.util.Collection;

@@ -29,26 +29,10 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
 import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
-import org.apache.maven.artifact.Artifact;
 import org.apache.maven.model.Build;
-import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
-import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
-import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
-import org.codehaus.plexus.PlexusConstants;
-import org.codehaus.plexus.PlexusContainer;
-import org.codehaus.plexus.context.Context;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.mockito.Mockito;
-import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Mocker of {@link MavenProject}.
@@ -60,16 +44,19 @@ public final class MavenProjectMocker {
     /**
      * Mock of project.
      */
-    private final MavenProject project = Mockito.mock(MavenProject.class);
+    private final transient MavenProject project =
+        Mockito.mock(MavenProject.class);
 
     /**
      * In this basedir.
+     * @param dir The directory
+     * @return This object
      * @throws Exception If something wrong happens inside
      */
     public MavenProjectMocker inBasedir(final File dir) throws Exception {
-        Mockito.doReturn(dir).when(project).getBasedir();
+        Mockito.doReturn(dir).when(this.project).getBasedir();
         final Build build = Mockito.mock(Build.class);
-        Mockito.doReturn(build).when(project).getBuild();
+        Mockito.doReturn(build).when(this.project).getBuild();
         Mockito.doReturn(new File(dir, "target").getPath())
             .when(build).getOutputDirectory();
         return this;
@@ -77,6 +64,7 @@ public final class MavenProjectMocker {
 
     /**
      * Mock it.
+     * @return The mock
      * @throws Exception If something wrong happens inside
      */
     public MavenProject mock() throws Exception {

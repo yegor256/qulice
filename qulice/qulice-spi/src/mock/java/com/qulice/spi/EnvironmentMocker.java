@@ -32,14 +32,12 @@ package com.qulice.spi;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
-import org.mockito.Mockito;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import org.apache.commons.io.FileUtils;
+import org.mockito.Mockito;
 
 /**
  * Mocker of {@link Environment}.
@@ -52,17 +50,18 @@ public final class EnvironmentMocker {
     /**
      * The basedir.
      */
-    private final File basedir;
+    private final transient File basedir;
 
     /**
      * Files for classpath.
      */
-    private final Set<File> classpath = new HashSet<File>();
+    private final transient Set<File> classpath = new HashSet<File>();
 
     /**
      * Map of params.
      */
-    private final Map<String, String> params = new HashMap<String, String>();
+    private final transient ConcurrentMap<String, String> params =
+        new ConcurrentHashMap<String, String>();
 
     /**
      * Public ctor.
@@ -118,6 +117,7 @@ public final class EnvironmentMocker {
      * With default classpath.
      * @return This object
      */
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public EnvironmentMocker withDefaultClasspath() {
         for (String file : System.getProperty("java.class.path")
             .split(System.getProperty("path.separator"))) {
@@ -149,7 +149,8 @@ public final class EnvironmentMocker {
         Mockito.doReturn(outdir).when(env).outdir();
         this.classpath.add(outdir);
         Mockito.doReturn(this.classpath).when(env).classpath();
-        for (Map.Entry<String, String> entry : this.params.entrySet()) {
+        for (ConcurrentMap.Entry<String, String> entry
+            : this.params.entrySet()) {
             Mockito.doReturn(entry.getValue()).when(env)
                 .param(Mockito.eq(entry.getKey()), Mockito.anyString());
         }

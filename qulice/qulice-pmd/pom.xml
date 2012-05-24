@@ -64,17 +64,27 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.ymock</groupId>
-            <artifactId>ymock-util</artifactId>
+            <groupId>com.jcabi</groupId>
+            <artifactId>jcabi-log</artifactId>
         </dependency>
         <dependency>
             <groupId>pmd</groupId>
             <artifactId>pmd</artifactId>
             <version since="13 Nov 2011">4.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
         </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
@@ -85,8 +95,8 @@
             <artifactId>hamcrest-library</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

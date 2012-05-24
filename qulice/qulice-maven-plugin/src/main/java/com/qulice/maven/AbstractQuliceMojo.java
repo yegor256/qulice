@@ -29,7 +29,7 @@
  */
 package com.qulice.maven;
 
-import com.ymock.util.Logger;
+import com.jcabi.log.Logger;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MavenPluginManager;

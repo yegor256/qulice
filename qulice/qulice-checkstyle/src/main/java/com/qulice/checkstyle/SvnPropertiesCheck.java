@@ -29,8 +29,8 @@
  */
 package com.qulice.checkstyle;
 
+import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.ymock.util.Logger;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;

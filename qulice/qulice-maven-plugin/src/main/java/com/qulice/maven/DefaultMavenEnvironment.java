@@ -29,7 +29,7 @@
  */
 package com.qulice.maven;
 
-import com.ymock.util.Logger;
+import com.jcabi.log.Logger;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;

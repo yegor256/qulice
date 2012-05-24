@@ -29,6 +29,7 @@
  */
 package com.qulice.checkstyle;
 
+import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
@@ -38,7 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import com.ymock.util.Logger;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -126,7 +126,6 @@ public final class CheckstyleValidator implements Validator {
             configuration = ConfigurationLoader.loadConfiguration(
                 src,
                 new PropertiesExpander(props),
-                // omit ignored modules
                 true
             );
         } catch (CheckstyleException ex) {
@@ -147,7 +146,6 @@ public final class CheckstyleValidator implements Validator {
         String content;
         try {
             content = IOUtils.toString(url.openStream()).replaceAll("\\r", "");
-            // content = IOUtils.toString(url.openStream());
         } catch (java.io.IOException ex) {
             throw new IllegalStateException("Failed to read license", ex);
         }

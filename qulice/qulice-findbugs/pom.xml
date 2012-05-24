@@ -59,8 +59,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.ymock</groupId>
-            <artifactId>ymock-util</artifactId>
+            <groupId>com.jcabi</groupId>
+            <artifactId>jcabi-log</artifactId>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -88,6 +88,14 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit-dep</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-core</artifactId>
         </dependency>
@@ -96,8 +104,8 @@
             <artifactId>hamcrest-library</artifactId>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

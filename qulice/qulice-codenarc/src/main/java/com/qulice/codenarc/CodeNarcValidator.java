@@ -29,10 +29,10 @@
  */
 package com.qulice.codenarc;
 
+import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import com.ymock.util.Logger;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.codenarc.CodeNarcRunner;

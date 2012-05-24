@@ -29,7 +29,7 @@
  */
 package com.qulice.pmd;
 
-import com.ymock.util.Logger;
+import com.jcabi.log.Logger;
 import java.util.Collection;
 import java.util.LinkedList;
 import net.sourceforge.pmd.IRuleViolation;
