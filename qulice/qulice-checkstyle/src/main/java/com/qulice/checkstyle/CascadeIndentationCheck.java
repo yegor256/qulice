@@ -64,12 +64,12 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
                 continue;
             }
             final int diff = current - previous;
-            if (diff > 0 && diff != this.DELTA) {
+            if (diff > 0 && diff != CascadeIndentationCheck.DELTA) {
                 this.log(
                     pos + 1,
                     String.format(
                         "Should be indented by %d spaces (%d instead)",
-                        previous + this.DELTA,
+                        previous + CascadeIndentationCheck.DELTA,
                         current
                     )
                 );

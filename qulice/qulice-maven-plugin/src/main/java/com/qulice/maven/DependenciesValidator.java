@@ -81,8 +81,8 @@ final class DependenciesValidator implements MavenValidator {
             Logger.warn(
                 this,
                 "Unused declared dependencies found:%s%s",
-                this.SEP,
-                StringUtils.join(unused, this.SEP)
+                DependenciesValidator.SEP,
+                StringUtils.join(unused, DependenciesValidator.SEP)
             );
         }
         final List<String> used = new ArrayList<String>();
@@ -93,8 +93,8 @@ final class DependenciesValidator implements MavenValidator {
             Logger.warn(
                 this,
                 "Used undeclared dependencies found:%s%s",
-                this.SEP,
-                StringUtils.join(used, this.SEP)
+                DependenciesValidator.SEP,
+                StringUtils.join(used, DependenciesValidator.SEP)
             );
         }
         final Integer failures = used.size() + unused.size();

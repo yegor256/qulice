@@ -66,10 +66,10 @@ public final class CheckstyleValidatorTest {
             "/**\n * License-1.\n *\n * License-2.\n */\n"
             + "package foo;\n"
             + "public class Foo { }\n";
-        final Environment env = mock
-            .withParam(this.LICENSE_PROP, this.toURL(license))
-            .withFile("src/main/java/foo/Foo.java", content)
-            .mock();
+        final Environment env = mock.withParam(
+            CheckstyleValidatorTest.LICENSE_PROP,
+            this.toURL(license)
+        ).withFile("src/main/java/foo/Foo.java", content).mock();
         new CheckstyleValidator().validate(env);
     }
 
@@ -99,10 +99,10 @@ public final class CheckstyleValidatorTest {
             + " * @author John Doe (john@qulice.com)\r\n"
             + " */\r\n"
             + "public class Main { }\r\n";
-        final Environment env = mock
-            .withParam(this.LICENSE_PROP, this.toURL(license))
-            .withFile("src/main/java/foo/Main.java", content)
-            .mock();
+        final Environment env = mock.withParam(
+            CheckstyleValidatorTest.LICENSE_PROP,
+            this.toURL(license)
+        ).withFile("src/main/java/foo/Main.java", content).mock();
         new CheckstyleValidator().validate(env);
     }
 
@@ -134,7 +134,10 @@ public final class CheckstyleValidatorTest {
             + "public class Bar { }" + System.getProperty("line.separator");
         final Environment env = mock
             .withFile("src/main/java/foo/Bar.java", content)
-            .withParam(this.LICENSE_PROP, this.toURL(license))
+            .withParam(
+                CheckstyleValidatorTest.LICENSE_PROP,
+                this.toURL(license)
+            )
             .mock();
         new CheckstyleValidator().validate(env);
     }

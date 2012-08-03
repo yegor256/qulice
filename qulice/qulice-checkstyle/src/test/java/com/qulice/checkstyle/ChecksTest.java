@@ -162,7 +162,7 @@ public final class ChecksTest {
     /**
      * Mocked collector of checkstyle events.
      */
-    private static class Collector implements Answer {
+    private static class Collector implements Answer<Object> {
         /**
          * List of events received.
          */

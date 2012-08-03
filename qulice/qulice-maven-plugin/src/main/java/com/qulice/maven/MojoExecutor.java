@@ -175,7 +175,7 @@ public final class MojoExecutor {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private Xpp3Dom toXppDom(final Properties config, final String name) {
         final Xpp3Dom xpp = new Xpp3Dom(name);
-        for (Map.Entry entry : config.entrySet()) {
+        for (Map.Entry<?, ?> entry : config.entrySet()) {
             if (entry.getValue() instanceof String) {
                 final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
                 child.setValue(config.getProperty(entry.getKey().toString()));

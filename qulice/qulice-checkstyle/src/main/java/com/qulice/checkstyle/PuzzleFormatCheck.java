@@ -92,7 +92,7 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
             final String line = lines.get(pos);
             // @checkstyle PuzzleFormat (1 line)
             if (line.contains("@todo")) {
-                if (!this.FIRST.matcher(line).matches()) {
+                if (!PuzzleFormatCheck.FIRST.matcher(line).matches()) {
                     // @checkstyle PuzzleFormat (1 line)
                     this.log(pos + 1, "@todo tag has wrong format");
                     failure = true;
@@ -169,10 +169,10 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
         final List<Integer> defects = new ArrayList<Integer>();
         for (int pos = start + 1; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);
-            if (this.OTHER.matcher(line).matches()) {
+            if (PuzzleFormatCheck.OTHER.matcher(line).matches()) {
                 break;
             }
-            if (!this.FOLLOWING.matcher(line).matches()) {
+            if (!PuzzleFormatCheck.FOLLOWING.matcher(line).matches()) {
                 defects.add(pos);
             }
         }
