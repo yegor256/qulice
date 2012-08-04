@@ -63,7 +63,7 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
         int last = -1;
         for (int pos = 0; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);
-            if (line.startsWith(this.IMPORT)) {
+            if (line.startsWith(ImportCohesionCheck.IMPORT)) {
                 if (first == -1) {
                     first = pos;
                 }
@@ -83,7 +83,7 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
         }
         for (int pos = first; pos < last; pos += 1) {
             final String line = lines.get(pos);
-            if (!line.startsWith(this.IMPORT)) {
+            if (!line.startsWith(ImportCohesionCheck.IMPORT)) {
                 this.log(
                     pos + 1,
                     "Empty line or comment between imports is not allowed"

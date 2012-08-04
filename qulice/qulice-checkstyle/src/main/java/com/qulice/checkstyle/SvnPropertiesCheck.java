@@ -130,8 +130,8 @@ public final class SvnPropertiesCheck extends AbstractFileSetCheck {
         String value = null;
         try {
             final ProcessBuilder builder = new ProcessBuilder(
-                this.SVN,
-                this.PROPGET,
+                SvnPropertiesCheck.SVN,
+                SvnPropertiesCheck.PROPGET,
                 name,
                 file.getPath()
             );

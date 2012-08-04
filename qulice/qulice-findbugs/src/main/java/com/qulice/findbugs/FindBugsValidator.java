@@ -142,7 +142,7 @@ public final class FindBugsValidator implements Validator {
      * @param resource Name of resource
      * @return The file
      */
-    private File jar(final Class resource) {
+    private File jar(final Class<?> resource) {
         final String name = resource.getName()
             .replace(".", System.getProperty("file.separator"));
         final URL res = this.getClass().getResource(

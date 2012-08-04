@@ -703,6 +703,8 @@
                             <Xlint:-path/>
                             <!-- @see https://blogs.oracle.com/darcy/entry/bootclasspath_older_source -->
                             <Xlint:-options/>
+                            <!-- @see http://stackoverflow.com/questions/10738609 -->
+                            <proc:none/>
                         </compilerArguments>
                         <testExcludes>
                             <exclude>**/package-info.java</exclude>

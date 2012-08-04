@@ -77,7 +77,7 @@ public final class EmptyLinesCheck extends Check {
             final int lastLine = closing.getLineNo();
             final String[] lines = this.getLines();
             for (int line = firstLine; line < lastLine; line += 1) {
-                if (this.PATTERN.matcher(lines[line]).find()) {
+                if (EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
                     this.log(line + 1, "Empty line inside method");
                 }
             }

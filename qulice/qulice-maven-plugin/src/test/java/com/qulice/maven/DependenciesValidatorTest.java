@@ -65,9 +65,11 @@ public final class DependenciesValidatorTest {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
-        final MavenEnvironment env = new MavenEnvironmentMocker()
-            .inPlexus(this.ROLE, this.HINT, analyzer)
-            .mock();
+        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
+            DependenciesValidatorTest.ROLE,
+            DependenciesValidatorTest.HINT,
+            analyzer
+        ).mock();
         new DependenciesValidator().validate(env);
     }
 
@@ -83,9 +85,11 @@ public final class DependenciesValidatorTest {
         unused.add(Mockito.mock(Artifact.class));
         Mockito.doReturn(unused).when(analysis).getUsedUndeclaredArtifacts();
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
-        final MavenEnvironment env = new MavenEnvironmentMocker()
-            .inPlexus(this.ROLE, this.HINT, analyzer)
-            .mock();
+        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
+            DependenciesValidatorTest.ROLE,
+            DependenciesValidatorTest.HINT,
+            analyzer
+        ).mock();
         new DependenciesValidator().validate(env);
     }
 
@@ -103,9 +107,11 @@ public final class DependenciesValidatorTest {
         Mockito.doReturn(unused).when(analysis).getUnusedDeclaredArtifacts();
         Mockito.doReturn(Artifact.SCOPE_RUNTIME).when(artifact).getScope();
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
-        final MavenEnvironment env = new MavenEnvironmentMocker()
-            .inPlexus(this.ROLE, this.HINT, analyzer)
-            .mock();
+        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
+            DependenciesValidatorTest.ROLE,
+            DependenciesValidatorTest.HINT,
+            analyzer
+        ).mock();
         new DependenciesValidator().validate(env);
     }
 
