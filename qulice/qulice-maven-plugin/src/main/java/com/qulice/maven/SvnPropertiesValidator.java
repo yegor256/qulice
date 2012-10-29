@@ -64,22 +64,31 @@ public final class SvnPropertiesValidator implements MavenValidator {
     public void validate(final MavenEnvironment env)
         throws ValidationException {
         if (this.isSvn(env.project())) {
-            final Collection<File> files = FileUtils.listFiles(
-                new File(env.project().getBasedir(), "src"),
-                new String[] {
-                    "java", "txt", "xsl", "xml", "html",
-                    "php", "py", "groovy", "ini", "properties",
-                },
-                true
-            );
-            for (File file : files) {
-                this.check(file);
+            final File dir = new File(env.project().getBasedir(), "src");
+            if (dir.exists()) {
+                final Collection<File> files = FileUtils.listFiles(
+                    dir,
+                    new String[] {
+                        "java", "txt", "xsl", "xml", "html",
+                        "php", "py", "groovy", "ini", "properties",
+                    },
+                    true
+                );
+                for (File file : files) {
+                    this.check(file);
+                }
+                Logger.info(
+                    this,
+                    "%d text files have all required SVN properties",
+                    files.size()
+                );
+            } else {
+                Logger.info(
+                    this,
+                    "%s directory is absent, no need to check SVN properties",
+                    dir
+                );
             }
-            Logger.info(
-                this,
-                "%d text files have necessary SVN properties",
-                files.size()
-            );
         } else {
             Logger.info(this, "This is not an SVN project");
         }
