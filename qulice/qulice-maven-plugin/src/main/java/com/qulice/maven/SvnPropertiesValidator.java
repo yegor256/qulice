@@ -65,7 +65,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
         throws ValidationException {
         if (this.isSvn(env.project())) {
             final Collection<File> files = FileUtils.listFiles(
-                env.project().getBasedir(),
+                new File(env.project().getBasedir(), "src"),
                 new String[] {
                     "java", "txt", "xsl", "xml", "html",
                     "php", "py", "groovy", "ini", "properties",
