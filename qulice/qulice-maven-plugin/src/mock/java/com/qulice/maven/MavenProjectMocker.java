@@ -31,6 +31,7 @@ package com.qulice.maven;
 
 import java.io.File;
 import org.apache.maven.model.Build;
+import org.apache.maven.model.Scm;
 import org.apache.maven.project.MavenProject;
 import org.mockito.Mockito;
 
@@ -69,6 +70,9 @@ public final class MavenProjectMocker {
      */
     public MavenProject mock() throws Exception {
         Mockito.doReturn("jar").when(this.project).getPackaging();
+        final Scm scm = new Scm();
+        scm.setConnection("scm:svn:...");
+        Mockito.doReturn(scm).when(this.project).getScm();
         return this.project;
     }
 

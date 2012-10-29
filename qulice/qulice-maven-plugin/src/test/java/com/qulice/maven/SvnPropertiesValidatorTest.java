@@ -27,16 +27,16 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.checkstyle;
+package com.qulice.maven;
 
 import org.junit.Test;
 
 /**
- * Test case for {@link SvnPropertiesCheck}.
+ * Test case for {@link SvnPropertiesValidator}.
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @version $Id$
  */
-public final class SvnPropertiesCheckTest {
+public final class SvnPropertiesValidatorTest {
 
     /**
      * Let's simulate the property reading request.
@@ -44,6 +44,8 @@ public final class SvnPropertiesCheckTest {
      */
     @Test
     public void testSimulatesSvnPropgetRequest() throws Exception {
-        // todo
+        final MavenValidator validator = new SvnPropertiesValidator();
+        final MavenEnvironment env = new MavenEnvironmentMocker().mock();
+        validator.validate(env);
     }
 }
