@@ -89,7 +89,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
         final Collection<File> files = FileUtils.listFiles(
             dir,
             new String[] {
-                "java", "txt", "xsl", "xml", "html", "js",
+                "java", "txt", "xsl", "xml", "html", "js", "css", "vm",
                 "php", "py", "groovy", "ini", "properties",
             },
             true
