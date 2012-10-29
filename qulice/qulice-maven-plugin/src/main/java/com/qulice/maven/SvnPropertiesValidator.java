@@ -90,7 +90,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
             dir,
             new String[] {
                 "java", "txt", "xsl", "xml", "html", "js", "css", "vm",
-                "php", "py", "groovy", "ini", "properties",
+                "php", "py", "groovy", "ini", "properties", "bsh", "xsd", "sql",
             },
             true
         );
