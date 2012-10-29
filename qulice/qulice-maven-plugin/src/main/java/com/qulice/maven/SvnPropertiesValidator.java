@@ -66,22 +66,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
         if (this.isSvn(env.project())) {
             final File dir = new File(env.project().getBasedir(), "src");
             if (dir.exists()) {
-                final Collection<File> files = FileUtils.listFiles(
-                    dir,
-                    new String[] {
-                        "java", "txt", "xsl", "xml", "html",
-                        "php", "py", "groovy", "ini", "properties",
-                    },
-                    true
-                );
-                for (File file : files) {
-                    this.check(file);
-                }
-                Logger.info(
-                    this,
-                    "%d text files have all required SVN properties",
-                    files.size()
-                );
+                this.validate(dir);
             } else {
                 Logger.info(
                     this,
@@ -91,6 +76,47 @@ public final class SvnPropertiesValidator implements MavenValidator {
             }
         } else {
             Logger.info(this, "This is not an SVN project");
+        }
+    }
+
+    /**
+     * Validate directory.
+     * @param dir The directory
+     * @throws ValidationException If fails
+     * @checkstyle RedundantThrows (4 lines)
+     */
+    private void validate(final File dir) throws ValidationException {
+        final Collection<File> files = FileUtils.listFiles(
+            dir,
+            new String[] {
+                "java", "txt", "xsl", "xml", "html",
+                "php", "py", "groovy", "ini", "properties",
+            },
+            true
+        );
+        int errors = 0;
+        for (File file : files) {
+            if (!this.valid(file)) {
+                ++errors;
+            }
+        }
+        if (errors == 0) {
+            Logger.info(
+                this,
+                "%d text files have all required SVN properties",
+                files.size()
+            );
+        } else {
+            Logger.info(
+                this,
+                "%d of %d files don't have required SVN properties",
+                errors,
+                files.size()
+            );
+            throw new ValidationException(
+                "%d files with invalid SVN properties",
+                errors
+            );
         }
     }
 
@@ -108,26 +134,31 @@ public final class SvnPropertiesValidator implements MavenValidator {
     /**
      * Check one file.
      * @param file The file to check
-     * @throws ValidationException If any errors
-     * @checkstyle RedundantThrows (4 lines)
+     * @return TRUE if valid
      */
-    private void check(final File file) throws ValidationException {
+    private boolean valid(final File file) {
+        boolean valid = true;
         final String style = this.propget(file, "svn:eol-style");
         if (!"native".equals(style)) {
-            throw new ValidationException(
+            Logger.error(
+                this,
                 "File %s doesn't have 'svn:eol-style' set to 'native': '%s'",
                 file,
                 style
             );
+            valid = false;
         }
         final String keywords = this.propget(file, "svn:keywords");
         if (!keywords.contains("Id")) {
-            throw new ValidationException(
+            Logger.error(
+                this,
                 "File %s doesn't have 'svn:keywords' with 'Id': '%s'",
                 file,
                 keywords
             );
+            valid = false;
         }
+        return valid;
     }
 
     /**
@@ -135,11 +166,8 @@ public final class SvnPropertiesValidator implements MavenValidator {
      * @param file The file to check
      * @param name Property name
      * @return Property value
-     * @throws ValidationException If any errors
-     * @checkstyle RedundantThrows (4 lines)
      */
-    private String propget(final File file, final String name)
-        throws ValidationException {
+    private String propget(final File file, final String name) {
         final ProcessBuilder builder = new ProcessBuilder(
             "svn",
             "propget",
@@ -152,10 +180,10 @@ public final class SvnPropertiesValidator implements MavenValidator {
             process.waitFor();
             return IOUtils.toString(process.getInputStream()).trim();
         } catch (java.io.IOException ex) {
-            throw new ValidationException(ex);
+            throw new IllegalArgumentException(ex);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
-            throw new ValidationException(ex);
+            throw new IllegalStateException(ex);
         }
     }
 
