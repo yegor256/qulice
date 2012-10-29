@@ -31,9 +31,7 @@ package com.qulice.maven;
 
 import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStreamReader;
 import java.util.Collection;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -108,7 +106,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
         final String style = this.propget(file, "svn:eol-style");
         if (!"native".equals(style)) {
             throw new ValidationException(
-                "File %s doesn't have 'svn:eol-style' set to 'native': %s",
+                "File %s doesn't have 'svn:eol-style' set to 'native': '%s'",
                 file,
                 style
             );
@@ -116,7 +114,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
         final String keywords = this.propget(file, "svn:keywords");
         if (!keywords.contains("Id")) {
             throw new ValidationException(
-                "File %s doesn't have 'svn:keywords' with 'Id': %s",
+                "File %s doesn't have 'svn:keywords' with 'Id': '%s'",
                 file,
                 keywords
             );
@@ -143,7 +141,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
         try {
             final Process process = builder.start();
             process.waitFor();
-            return IOUtils.toString(process.getInputStream());
+            return IOUtils.toString(process.getInputStream()).trim();
         } catch (java.io.IOException ex) {
             throw new ValidationException(ex);
         } catch (InterruptedException ex) {
