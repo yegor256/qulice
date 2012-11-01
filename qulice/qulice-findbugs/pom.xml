@@ -39,7 +39,7 @@
     <parent>
         <groupId>com.qulice</groupId>
         <artifactId>qulice</artifactId>
-        <version qulice="yes">1.0-SNAPSHOT</version>
+        <version qulice="yes">0.2.1</version>
     </parent>
     <artifactId>qulice-findbugs</artifactId>
     <packaging>jar</packaging>
@@ -49,12 +49,12 @@
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-spi</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
+            <version qulice="yes">0.2.1</version>
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-spi</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
+            <version qulice="yes">0.2.1</version>
             <classifier>mock</classifier>
             <scope>test</scope>
         </dependency>
