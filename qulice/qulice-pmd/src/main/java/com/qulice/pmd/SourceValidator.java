@@ -47,7 +47,7 @@ import net.sourceforge.pmd.SourceType;
  * Validates source files via <code>PMDValidator</code>.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id: SourceValidator.java 297 2011-11-13 14:01:00Z guard $
+ * @version $Id$
  */
 public final class SourceValidator {
 

@@ -32,7 +32,7 @@ package com.qulice.foo;
 /**
  * Sample class.
  * @author Yegor Bugayenko (yegor@qulice.com)
- * @version $Id: Main.java 18 2011-08-28 14:44:19Z yegor256@yahoo.com $
+ * @version $Id$
  */
 public final class Violations {
 

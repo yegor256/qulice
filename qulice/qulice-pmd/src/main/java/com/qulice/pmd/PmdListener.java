@@ -41,7 +41,7 @@ import net.sourceforge.pmd.stat.Metric;
  *
  * @author Yegor Bugayenko (yegor@qulice.com)
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id: PmdListener.java 297 2011-11-13 14:01:00Z guard $
+ * @version $Id$
  */
 public final class PmdListener implements ReportListener {
 
