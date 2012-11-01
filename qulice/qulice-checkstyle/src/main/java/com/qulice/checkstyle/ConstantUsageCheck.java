@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * released version.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id: BracketsStructureCheck.java 71 2011-10-14 20:41:40Z guard $
+ * @version $Id$
  */
 public final class ConstantUsageCheck extends Check {
 

@@ -44,7 +44,7 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  * Contains methods to work with source files.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id: Files.java 297 2011-11-13 14:01:00Z guard $
+ * @version $Id$
  */
 @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
 public final class Files {

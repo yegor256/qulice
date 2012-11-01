@@ -28,7 +28,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @version $Id: verify.groovy 292 2011-11-13 13:19:44Z yegor256@yahoo.com $
+ * @version $Id$
  */
 
 def log = new File(basedir, 'build.log')

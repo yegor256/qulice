@@ -50,6 +50,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
     public Set<MavenValidator> internal() {
         final Set<MavenValidator> validators =
             new LinkedHashSet<MavenValidator>();
+        validators.add(new SnapshotsValidator());
         validators.add(new EnforcerValidator());
         validators.add(new CoberturaValidator());
         validators.add(new SvnPropertiesValidator());
