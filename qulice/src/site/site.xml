@@ -31,82 +31,27 @@
  *
  * @version $Id$
  -->
-<project xmlns="http://maven.apache.org/DECORATION/1.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0
-    http://maven.apache.org/xsd/decoration-1.0.0.xsd"
-    name="qulice">
-
+<project xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0     http://maven.apache.org/xsd/decoration-1.0.0.xsd" name="qulice">
     <skin>
-        <groupId>org.apache.maven.skins</groupId>
-        <artifactId>maven-stylus-skin</artifactId>
-        <version>1.2</version>
+        <groupId>com.jcabi</groupId>
+        <artifactId>jcabi-maven-skin</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </skin>
-
     <bannerLeft>
         <name>Qulice</name>
         <src>images/logo.png</src>
         <href>http://www.qulice.com/</href>
     </bannerLeft>
-
-    <poweredBy>
-        <logo name="Maven" href="http://maven.apache.org/"
-            img="http://maven.apache.org/images/logos/maven-feather.png"/>
-    </poweredBy>
-
+    <googleAnalyticsAccountId>UA-1963507-25</googleAnalyticsAccountId>
     <body>
-        <head>
-            <link href="/images/favicon.gif" rel="shortcut icon" />
-            <link href="/css/qulice.css" rel="stylesheet" type="text/css" />
-            <link type="text/css"
-                href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css"
-                rel="stylesheet" />
-            <script type="text/javascript"
-                src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
-            <script type="text/javascript"
-                src="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js"></script>
-            <script type="text/javascript">
-                //<![CDATA[
-                $(document).ready(
-                    function() {
-                        $("div#contentBox div.source pre").addClass("prettyprint");
-                        prettyPrint();
-                    }
-                );
-                //]]>
-            </script>
-            <script type="text/javascript">
-                //<![CDATA[
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-                //]]>
-            </script>
-        </head>
         <breadcrumbs>
             <item name="qulice.com" href="http://www.qulice.com"/>
         </breadcrumbs>
-        <links>
-            <item name="Built with Maven 2" href="http://maven.apache.org/" />
-        </links>
         <menu name="Overview">
-            <item name="Introduction" href="index.html" />
-            <item name="What is Quality?" href="quality.html" />
+            <item name="Introduction" href="index.html"/>
+            <item name="What is Quality?" href="quality.html"/>
         </menu>
-        <menu ref="modules" />
-        <menu ref="reports" />
+        <menu ref="modules"/>
+        <menu ref="reports"/>
     </body>
-
-    <!--
-    Read more about date format:
-    @see http://download.oracle.com/javase/1.5.0/docs/api/java/text/SimpleDateFormat.html
-    -->
-    <publishDate position="right" format="dd-MMM-yyyy h:mmaa" />
-    <version position="right"/>
-
 </project>
