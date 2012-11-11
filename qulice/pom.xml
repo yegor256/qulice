@@ -129,15 +129,11 @@
     <distributionManagement>
         <downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
         <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>sonatype.nexus</id>
-            <name>Sonatype OSS Repository (for releases)</name>
+            <id>oss.sonatype.org</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
         <snapshotRepository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>sonatype.nexus</id>
-            <name>Sonatype OSS Repository (for snapshots)</name>
+            <id>oss.sonatype.org</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
@@ -146,7 +142,7 @@
             are defined in "settings.xml" file, provided by continuous integration
             server during build cycle.
             -->
-            <id>qulice.s3</id>
+            <id>www.qulice.com</id>
             <name>Qulice.com Project Site</name>
             <url>s3://www.qulice.com/</url>
         </site>
@@ -631,13 +627,9 @@
         </testResources>
         <extensions>
             <extension>
-                <!--
-                Artifacts deployment to Amazon Web Services, S3.
-                @see http://blog.cyclopsgroup.org/2011/06/publish-maven-site-with-amazon-s3-and.html
-                -->
-                <groupId>org.cyclopsgroup</groupId>
-                <artifactId>awss3-maven-wagon</artifactId>
-                <version since="18 Oct 2011">0.1</version>
+                <groupId>org.kuali.maven.wagons</groupId>
+                <artifactId>maven-s3-wagon</artifactId>
+                <version since="20 Sep 2012">1.1.14</version>
             </extension>
         </extensions>
         <pluginManagement>
@@ -713,7 +705,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version since="28 Dec 2010">3.0-beta-3</version>
+                    <version since="11 Nov 2012">3.2</version>
                     <configuration>
                         <reportPlugins>
                             <!--
