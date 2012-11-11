@@ -129,15 +129,11 @@
     <distributionManagement>
         <downloadUrl>https://oss.sonatype.org/content/groups/public</downloadUrl>
         <repository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>sonatype.nexus</id>
-            <name>Sonatype OSS Repository (for releases)</name>
+            <id>oss.sonatype.org</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
         </repository>
         <snapshotRepository>
-            <uniqueVersion>false</uniqueVersion>
-            <id>sonatype.nexus</id>
-            <name>Sonatype OSS Repository (for snapshots)</name>
+            <id>oss.sonatype.org</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
@@ -146,7 +142,7 @@
             are defined in "settings.xml" file, provided by continuous integration
             server during build cycle.
             -->
-            <id>qulice.s3</id>
+            <id>www.qulice.com</id>
             <name>Qulice.com Project Site</name>
             <url>s3://www.qulice.com/</url>
         </site>
