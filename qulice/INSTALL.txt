@@ -83,6 +83,8 @@ Continuous Integration Configuration
 
 How to release new version to Maven Central:
 ---------------------------------
+    https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-8.ReleaseIt
+    http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html
 
     1. Create a new ticket in Trac, explaining why you want to release
        a new version (for example see ticket #9)
@@ -96,11 +98,9 @@ How to release new version to Maven Central:
 
     4. Commit your changes to SVN
 
-    5. Read these pages:
-        https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide#SonatypeOSSMavenRepositoryUsageGuide-8.ReleaseIt
-        http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html
+    6. Deploy code to sonatype
 
-    6. Run "mvn -Dci -Pqulice clean deploy"
+        mvn -Dci -Pqulice clean deploy
 
         Make sure that you have this profile in ~/.m2/settings.xml:
 
@@ -113,9 +113,9 @@ How to release new version to Maven Central:
             </properties>
           </profile>
 
-    7. Run "mvn nexus:staging-close"
+    7. Deploy site to Amazon S3
 
-    8. Run "mvn nexus:staging-promote" (target ID is "releases")
+        mvn -Dsite -Pqulice clean install site-deploy
 
     9. Copy your branch to tags:
 
