@@ -41,7 +41,7 @@ import net.sourceforge.pmd.IRuleViolation;
 /**
  * Validates source code with PMD.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class PMDValidator implements Validator {

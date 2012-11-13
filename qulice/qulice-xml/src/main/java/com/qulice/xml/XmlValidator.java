@@ -37,7 +37,7 @@ import com.qulice.spi.Validator;
 /**
  * Validates XML files for formatting.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class XmlValidator implements Validator {

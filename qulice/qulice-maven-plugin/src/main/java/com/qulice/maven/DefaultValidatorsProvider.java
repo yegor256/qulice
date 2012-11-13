@@ -36,7 +36,7 @@ import java.util.Set;
 /**
  * Provider of validators.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */

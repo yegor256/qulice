@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class JavadocLocationCheck extends Check {

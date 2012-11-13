@@ -99,9 +99,9 @@
         <developer>
             <id>1</id>
             <name>Yegor Bugayenko</name>
-            <email>yegor@qulice.com</email>
-            <organization>Qulice.com</organization>
-            <organizationUrl>http://www.qulice.com</organizationUrl>
+            <email>yegor@tpc2.com</email>
+            <organization>tpc2.com</organization>
+            <organizationUrl>http://www.tpc2.com</organizationUrl>
             <roles>
                 <role>Architect</role>
                 <role>Developer</role>
@@ -116,8 +116,8 @@
     </issueManagement>
 
     <ciManagement>
-        <system>hudson</system>
-        <url>http://hudson.qulice.com/hudson/job/qulice</url>
+        <system>jenkins</system>
+        <url>http://ci.qulice.com:8080/job/qulice</url>
     </ciManagement>
 
     <scm>
@@ -293,7 +293,7 @@
                             <reportPlugins>
                                 <plugin>
                                     <artifactId>maven-project-info-reports-plugin</artifactId>
-                                    <version since="18 Oct 2011">2.4</version>
+                                    <version since="7 Nov 2012">2.6</version>
                                     <configuration>
                                         <dependencyDetailsEnabled>false</dependencyDetailsEnabled>
                                         <dependencyLocationsEnabled>false</dependencyLocationsEnabled>

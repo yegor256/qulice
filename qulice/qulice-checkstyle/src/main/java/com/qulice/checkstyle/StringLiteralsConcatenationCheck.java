@@ -57,7 +57,7 @@ import java.util.List;
  * and {@link String#format(String,Object[])}.
  *
  * @author Dzmitry Petrushenka (dpetruha@gmail.com)
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class StringLiteralsConcatenationCheck extends Check {

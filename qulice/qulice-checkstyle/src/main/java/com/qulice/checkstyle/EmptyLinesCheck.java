@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
  * that every method should look solid and do just <b>one thing</b>.
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class EmptyLinesCheck extends Check {

@@ -35,7 +35,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * Builder of {@code LICENSE.txt} content.
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class LicenseMocker {

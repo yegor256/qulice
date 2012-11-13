@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>This check is still in development and is not used in a released version.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class NonStaticMethodCheck extends Check {

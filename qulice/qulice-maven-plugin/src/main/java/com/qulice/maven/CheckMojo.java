@@ -37,7 +37,7 @@ import org.apache.maven.plugin.MojoFailureException;
 /**
  * Check the project and find all possible violations.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @goal check
  * @phase verify

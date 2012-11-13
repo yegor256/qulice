@@ -32,7 +32,7 @@ package com.qulice.foo;
 /**
  * Simple class.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class Bump {

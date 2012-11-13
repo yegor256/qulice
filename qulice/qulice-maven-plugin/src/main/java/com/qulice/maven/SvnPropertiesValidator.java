@@ -50,7 +50,7 @@ import org.apache.maven.project.MavenProject;
  * <p>Read SVN documentation about how you can set them.
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @see <a href="http://svnbook.red-bean.com/en/1.5/svn.ref.properties.html">Properties in Subversion</a>
  */

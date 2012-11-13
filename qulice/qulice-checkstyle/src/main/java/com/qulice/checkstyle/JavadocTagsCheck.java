@@ -57,7 +57,7 @@ import java.util.regex.Pattern;
  * by Subversion as explained in their documentation (see link below).
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @see <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">Keywords substitution in Subversion</a>
  */
