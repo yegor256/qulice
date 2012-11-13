@@ -34,7 +34,7 @@ import com.qulice.spi.ValidationException;
 /**
  * Validator inside Maven.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 interface MavenValidator {

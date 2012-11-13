@@ -31,7 +31,7 @@
 /**
  * Checkstyle checks, mocks.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 package com.qulice.checkstyle;

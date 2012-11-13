@@ -42,7 +42,7 @@ import org.slf4j.impl.StaticLoggerBinder;
 /**
  * Abstract mojo.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public abstract class AbstractQuliceMojo extends AbstractMojo

@@ -39,7 +39,7 @@ import org.apache.maven.model.Plugin;
  * Check that the project has not SNAPSHOT dependencies if its own
  * status is stable.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class SnapshotsValidator implements MavenValidator {

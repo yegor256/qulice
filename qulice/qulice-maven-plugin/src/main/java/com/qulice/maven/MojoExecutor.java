@@ -48,7 +48,7 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 /**
  * Executor of plugins.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class MojoExecutor {

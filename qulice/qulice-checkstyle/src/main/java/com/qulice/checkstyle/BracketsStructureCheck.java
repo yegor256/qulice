@@ -57,7 +57,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * line - you should leave it as the last symbol at this line.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class BracketsStructureCheck extends Check {

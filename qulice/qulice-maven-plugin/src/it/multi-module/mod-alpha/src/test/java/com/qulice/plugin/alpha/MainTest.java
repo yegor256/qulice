@@ -34,7 +34,7 @@ import org.junit.Test;
 
 /**
  * Simple test of the Main class.
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class MainTest {

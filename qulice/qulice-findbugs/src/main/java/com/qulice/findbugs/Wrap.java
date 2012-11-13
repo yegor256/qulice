@@ -41,7 +41,7 @@ import java.io.File;
 /**
  * Executed by {@link FindBugsValidator}, but in a new process.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class Wrap {

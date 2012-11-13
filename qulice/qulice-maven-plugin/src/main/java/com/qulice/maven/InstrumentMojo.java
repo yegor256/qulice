@@ -36,7 +36,7 @@ import org.apache.maven.plugin.MojoFailureException;
 /**
  * Prepare classes for code coverage check.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @goal instrument
  * @phase process-classes

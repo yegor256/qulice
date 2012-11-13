@@ -40,7 +40,7 @@ import java.util.List;
  * as the previous one or 4 spaces more/less. I don't know why this rule is
  * not implemented in checkstyle... It looks like a very important one.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class CascadeIndentationCheck extends AbstractFileSetCheck {

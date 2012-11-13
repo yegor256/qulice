@@ -45,7 +45,7 @@ import org.junit.Test;
 /**
  * Test case for {@link CodeNarcValidator} class.
  * @author Pavlo Shamrai (pshamrai@gmail.com)
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 @SuppressWarnings("PMD.TestClassWithoutTestCases")

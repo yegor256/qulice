@@ -41,7 +41,7 @@ import org.mockito.Mockito;
 
 /**
  * Test case for {@link DependenciesValidator} class.
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 public final class DependenciesValidatorTest {

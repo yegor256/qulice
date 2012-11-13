@@ -55,7 +55,7 @@ import org.xml.sax.InputSource;
 /**
  * Validator with Checkstyle.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @checkstyle ClassDataAbstractionCoupling (260 lines)
  */

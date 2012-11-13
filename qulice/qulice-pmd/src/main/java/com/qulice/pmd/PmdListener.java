@@ -39,7 +39,7 @@ import net.sourceforge.pmd.stat.Metric;
 /**
  * Listener of PMD errors.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
  */

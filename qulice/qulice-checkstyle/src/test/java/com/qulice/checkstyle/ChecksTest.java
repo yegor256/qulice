@@ -53,7 +53,7 @@ import org.xml.sax.InputSource;
 
 /**
  * Integration test case for all checkstyle checks.
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 @RunWith(Parameterized.class)

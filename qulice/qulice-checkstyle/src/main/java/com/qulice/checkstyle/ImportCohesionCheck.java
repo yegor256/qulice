@@ -41,7 +41,7 @@ import java.util.List;
  * big - it's time to refactor the class and make is smaller.
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
 @SuppressWarnings("PMD.CyclomaticComplexity")

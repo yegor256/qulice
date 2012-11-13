@@ -39,7 +39,7 @@ import java.util.List;
 /**
  * Listener of Checkstyle events.
  *
- * @author Yegor Bugayenko (yegor@qulice.com)
+ * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @checkstyle ClassDataAbstractionCoupling (260 lines)
  */
