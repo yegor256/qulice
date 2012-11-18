@@ -87,20 +87,24 @@ How to release new version to Maven Central:
     http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html
 
     1. Create a new ticket in Trac, explaining why you want to release
-       a new version (for example see ticket #9)
+       a new version (for example see ticket #95)
 
     2. Create new branch
+
+        svn cp ^/trunk ^/branches/ticket95 -m 'refs #95 - new branch' && svn sw ^/branches/tickt95
 
     3. Replace <version qulice="yes">...</version> with the next
        version you want to use, e.g.:
 
-        find . -name "*.xml" -exec sed -i "" 's|\(\<version qulice\=\"yes\"\>\)1\.0\-SNAPSHOT\(\<\/version\>\)|\10.1.5\2|g' {} \;
+        find . -name "*.xml" -exec sed -i "" 's|\(\<version qulice\=\"yes\"\>\)1\.0\-SNAPSHOT\(\<\/version\>\)|\10.2.2\2|g' {} \;
 
     4. Commit your changes to SVN
 
+        svn ci -m 'refs #95 - version up'
+
     6. Deploy code to sonatype
 
-        mvn -Dci -Pqulice clean deploy
+        mvn -Dci -Pqulice -Psonatype clean deploy
 
         Make sure that you have this profile in ~/.m2/settings.xml:
 

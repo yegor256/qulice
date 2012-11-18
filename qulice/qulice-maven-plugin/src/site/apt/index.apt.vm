@@ -38,7 +38,7 @@
 ~~ @version $Id$
 ~~
 
-Introduction
+Qulice Maven Plugin
 
   Use it like this in your Maven project:
 
@@ -48,7 +48,7 @@ Introduction
     <plugin>
       <groupId>com.qulice</groupId>
       <artifactId>qulice-maven-plugin</artifactId>
-      <version>${releasedVersion}</version>
+      <version>${project.version}</version>
       <executions>
         <execution>
           <goals>
