@@ -38,7 +38,10 @@
 ~~ @version $Id$
 ~~
 
-Introduction to Checkstyle Module
+Checkstyle Module
 
-  See {{{./apidocs/index.html}JavaDoc of API}}.
+  The module encapsulates
+  {{{http://checkstyle.sourceforge.net/}Checkstyle}} static analysis tool
+  and pre-configures it. Full configuration we're using is available in
+  {{{http://trac.fazend.com/qulice/browser/qulice/tags/qulice-${project.version}/qulice/qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml}<<<checks.xml>>>}}.
 

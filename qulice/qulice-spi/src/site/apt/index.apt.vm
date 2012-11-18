@@ -1,5 +1,5 @@
  ------
- Introduction to Qulice
+ SPI of Qulice
  ------
  Yegor Bugayenko
  ------
@@ -38,7 +38,11 @@
 ~~ @version $Id$
 ~~
 
-Introduction
+Service Programming Interface (SPI)
 
-  See {{{./apidocs/index.html}JavaDoc of API}}.
+  The module contains common classes for all other modules. Every new
+  module has to implement this SPI in order be used in
+  {{{../qulice-maven-plugin}qulice-maven-plugin}}.
+  {{{./apidocs-${project.version}/index.html}JavaDoc}} gives more
+  details about the SPI.
 

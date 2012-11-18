@@ -87,20 +87,24 @@ How to release new version to Maven Central:
     http://www.sonatype.com/books/nexus-book/reference/staging-sect-managing-plugin.html
 
     1. Create a new ticket in Trac, explaining why you want to release
-       a new version (for example see ticket #9)
+       a new version (for example see ticket #95)
 
     2. Create new branch
+
+        svn cp ^/trunk ^/branches/ticket95 -m 'refs #95 - new branch' && svn sw ^/branches/ticket95
 
     3. Replace <version qulice="yes">...</version> with the next
        version you want to use, e.g.:
 
-        find . -name "*.xml" -exec sed -i "" 's|\(\<version qulice\=\"yes\"\>\)1\.0\-SNAPSHOT\(\<\/version\>\)|\10.1.5\2|g' {} \;
+        find . -name "*.xml" -exec sed -i "" 's|\(\<version qulice\=\"yes\"\>\)1\.0\-SNAPSHOT\(\<\/version\>\)|\10.2.2\2|g' {} \;
 
     4. Commit your changes to SVN
 
-    6. Deploy code to sonatype
+        svn ci -m 'refs #95 - version up'
 
-        mvn -Dci -Pqulice clean deploy
+    5. Deploy code to sonatype
+
+        mvn -Dci -Pqulice -Psonatype clean deploy
 
         Make sure that you have this profile in ~/.m2/settings.xml:
 
@@ -113,19 +117,23 @@ How to release new version to Maven Central:
             </properties>
           </profile>
 
-    7. Deploy site to Amazon S3
+    6. Deploy site to Amazon S3
 
         mvn -Dsite -Pqulice clean install site-deploy
 
-    9. Copy your branch to tags:
+    7. Copy your branch to tags:
 
-        svn cp ^/branches/ticketXX ^/tags/qulice-X.X.X -m "refs #XX - qulice-0.1.5 released to Maven Central"
+        svn cp ^/branches/ticket95 ^/tags/qulice-0.2.2 -m "refs #95 - qulice-0.2.2 released to Maven Central"
 
-    10. Delete the branch or merge it back to trunk (if you did any changes). Don't
+    8. Delete the branch or merge it back to trunk (if you did any changes). Don't
         forget to revert back version number:
 
-        find . -name "*.xml" -exec sed -i "" 's|\(\<version qulice\=\"yes\"\>\)0\.1\.5\(\<\/version\>\)|\11.0-SNAPSHOT\2|g' {} \;
+        find . -name "*.xml" -exec sed -i "" 's|\(\<version qulice\=\"yes\"\>\)0\.2\.2\(\<\/version\>\)|\11.0-SNAPSHOT\2|g' {} \;
 
-    11. Close the ticket as "fixed"
+    9. Commit changes
+
+        svn ci -m 'refs #95 - version back to SNAPSHOT'
+
+    10. Merge it back to TRUNK and close the ticket as "fixed"
 
     That's it

@@ -154,7 +154,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <releasedVersion>0.2.1</releasedVersion>
     </properties>
     <repositories>
         <!--
@@ -290,6 +289,7 @@
                     <plugin>
                         <artifactId>maven-site-plugin</artifactId>
                         <configuration>
+                            <generateSitemap>true</generateSitemap>
                             <reportPlugins>
                                 <plugin>
                                     <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -352,10 +352,24 @@
                                     </configuration>
                                     <reportSets>
                                         <reportSet>
-                                            <id>html</id>
+                                            <id>versioned-html</id>
                                             <reports>
                                                 <report>javadoc</report>
                                             </reports>
+                                            <configuration>
+                                                <sourcepath>src/main/java</sourcepath>
+                                                <destDir>apidocs-${project.version}</destDir>
+                                            </configuration>
+                                        </reportSet>
+                                        <reportSet>
+                                            <id>versioned-mock</id>
+                                            <reports>
+                                                <report>test-javadoc</report>
+                                            </reports>
+                                            <configuration>
+                                                <sourcepath>src/mock/java</sourcepath>
+                                                <destDir>testapidocs-${project.version}</destDir>
+                                            </configuration>
                                         </reportSet>
                                     </reportSets>
                                 </plugin>
@@ -480,6 +494,46 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>sonatype</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <artifactId>maven-deploy-plugin</artifactId>
+                            <configuration>
+                                <skip>true</skip>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version since="29 Aug 2012">1.0.2</version>
+                        <configuration>
+                            <serverId>oss.sonatype.org</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <stagingRepositoryId>jcabi</stagingRepositoryId>
+                            <deployUrl>https://oss.sonatype.org/service/local/staging/deploy/maven2</deployUrl>
+                            <description>${project.version}</description>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>deploy-to-sonatype</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>deploy</goal>
+                                    <goal>close</goal>
+                                    <goal>release</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 
     <dependencyManagement>
@@ -525,7 +579,7 @@
                 -->
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-core</artifactId>
-                <version since="23 Dec 2011">1.2.1</version>
+                <version since="18 Nov 2012">1.3</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -535,7 +589,7 @@
                 -->
                 <groupId>org.hamcrest</groupId>
                 <artifactId>hamcrest-library</artifactId>
-                <version since="23 Dec 2011">1.2.1</version>
+                <version since="18 Nov 2012">1.3</version>
                 <scope>test</scope>
             </dependency>
             <dependency>

@@ -1,5 +1,5 @@
  ------
- Introduction to Qulice
+ PMD Module
  ------
  Yegor Bugayenko
  ------
@@ -38,7 +38,9 @@
 ~~ @version $Id$
 ~~
 
-Introduction
+PMD Module
 
-  See {{{./apidocs/index.html}JavaDoc of API}}.
+  The module encapsulates {{{http://pmd.sourceforge.net/}PMD}} and
+  pre-configures it with this
+  {{{http://trac.fazend.com/qulice/browser/qulice/tags/qulice-${project.version}/qulice/qulice-pmd/src/main/resources/com/qulice/pmd/ruleset.xml}<<<ruleset.xml>>>}}.
 

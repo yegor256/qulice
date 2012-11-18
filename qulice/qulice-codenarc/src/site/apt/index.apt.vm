@@ -38,7 +38,9 @@
 ~~ @version $Id$
 ~~
 
-Introduction to CodeNarc Module
+CodeNarc Module
 
-  See {{{./apidocs/index.html}JavaDoc of API}}.
+  The module encapsulates {{{http://codenarc.sourceforge.net/}CodeNarc}}, a
+  static analyzer of Groovy files, and pre-configures it with
+  {{{http://trac.fazend.com/qulice/browser/qulice/tags/qulice-${project.version}/qulice/qulice-codenarc/src/main/resources/com/qulice/codenarc/rules.txt}<<<rules.txt>>>}}.
 
