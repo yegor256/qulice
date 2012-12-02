@@ -31,10 +31,7 @@
  *
  * @version $Id$
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.qulice</groupId>
@@ -44,7 +41,6 @@
     <artifactId>qulice-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
     <name>qulice-maven-plugin</name>
-
     <dependencies>
         <dependency>
             <groupId>com.qulice</groupId>
@@ -183,7 +179,6 @@
             <artifactId>commons-lang</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -241,27 +236,13 @@
                         <phase>pre-integration-test</phase>
                         <configuration>
                             <target>
-                                <copy verbose="true"
-                                    file="${basedir}/../pom.xml"
-                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice/${project.version}/qulice-${project.version}.pom"/>
-                                <copy verbose="true"
-                                    file="${com.qulice:qulice-checkstyle:jar}"
-                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-checkstyle/${project.version}/qulice-checkstyle-${project.version}.jar"/>
-                                <copy verbose="true"
-                                    file="${com.qulice:qulice-pmd:jar}"
-                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-pmd/${project.version}/qulice-pmd-${project.version}.jar"/>
-                                <copy verbose="true"
-                                    file="${com.qulice:qulice-codenarc:jar}"
-                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-codenarc/${project.version}/qulice-codenarc-${project.version}.jar"/>
-                                <copy verbose="true"
-                                    file="${com.qulice:qulice-spi:jar}"
-                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-spi/${project.version}/qulice-spi-${project.version}.jar"/>
-                                <copy verbose="true"
-                                    file="${com.qulice:qulice-xml:jar}"
-                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-xml/${project.version}/qulice-xml-${project.version}.jar"/>
-                                <copy verbose="true"
-                                    file="${com.qulice:qulice-findbugs:jar}"
-                                    tofile="${project.build.directory}/local-repo/com/qulice/qulice-findbugs/${project.version}/qulice-findbugs-${project.version}.jar"/>
+                                <copy verbose="true" file="${basedir}/../pom.xml" tofile="${project.build.directory}/local-repo/com/qulice/qulice/${project.version}/qulice-${project.version}.pom"/>
+                                <copy verbose="true" file="${com.qulice:qulice-checkstyle:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-checkstyle/${project.version}/qulice-checkstyle-${project.version}.jar"/>
+                                <copy verbose="true" file="${com.qulice:qulice-pmd:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-pmd/${project.version}/qulice-pmd-${project.version}.jar"/>
+                                <copy verbose="true" file="${com.qulice:qulice-codenarc:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-codenarc/${project.version}/qulice-codenarc-${project.version}.jar"/>
+                                <copy verbose="true" file="${com.qulice:qulice-spi:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-spi/${project.version}/qulice-spi-${project.version}.jar"/>
+                                <copy verbose="true" file="${com.qulice:qulice-xml:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-xml/${project.version}/qulice-xml-${project.version}.jar"/>
+                                <copy verbose="true" file="${com.qulice:qulice-findbugs:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-findbugs/${project.version}/qulice-findbugs-${project.version}.jar"/>
                             </target>
                         </configuration>
                         <goals>
@@ -287,5 +268,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
 </project>
