@@ -1,5 +1,5 @@
  ------
- Introduction to Qulice
+ Source Code Quality Police (Qulice)
  ------
  Yegor Bugayenko
  ------
@@ -38,11 +38,11 @@
 ~~ @version $Id$
 ~~
 
-Introduction
+Source Code Quality Police (Qulice)
 
   Qulice is a {{{http://en.wikipedia.org/wiki/Static_program_analysis}static analysis}}
   quality control instrument for
-  Java projects. It combines all the best static analysis instruments and
+  Java projects. It combines a few static analysis tools and
   pre-configure them. You don't need to use and configure them individually any more.
 
   At the moment we integrate together:
@@ -61,9 +61,31 @@ Introduction
 
    * {{{http://codenarc.sourceforge.net/}CodeNarc}}
 
-  Read about {{{./qulice-maven-plugin/}qulice-maven-plugin}} (we don't have
-  plugins for any other builders, only for Maven2). Read about our
-  {{{./quality.html}quality policy}}.
+  Just add our {{{./qulice-maven-plugin/}qulice-maven-plugin}} to your
+  Maven project and start following out
+  {{{./quality.html}quality policy}}:
+
++--
+<build>
+  <plugins>
+    <plugin>
+      <groupId>com.qulice</groupId>
+      <artifactId>qulice-maven-plugin</artifactId>
+      <version>${project.version}</version>
+      <configuration>
+        <license>file:${basedir}/LICENSE.txt</license>
+      </configuration>
+      <executions>
+        <execution>
+          <goals>
+            <goal>check</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
++--
 
   Post us a message in our
   {{{https://groups.google.com/forum/#!forum/qulice}Google Group}}
@@ -71,5 +93,3 @@ Introduction
   curious what is it all about. Besides that, don't hesitate to submit a
   ticket to {{{http://trac.qulice.com/qulice}Trac}} when something
   doesn't work or you need more features.
-
-  Currently deployed revision: <<<${buildNumber}>>>

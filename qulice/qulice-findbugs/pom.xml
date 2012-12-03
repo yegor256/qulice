@@ -31,10 +31,7 @@
  *
  * @version $Id$
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.qulice</groupId>
@@ -44,7 +41,6 @@
     <artifactId>qulice-findbugs</artifactId>
     <packaging>jar</packaging>
     <name>qulice-findbugs</name>
-
     <dependencies>
         <dependency>
             <groupId>com.qulice</groupId>
@@ -79,6 +75,24 @@
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>findbugs</artifactId>
             <version since="1 Apr 2012">2.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>jsr305</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>annotations</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.code.findbugs</groupId>
+                    <artifactId>bcel</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <!-- Required for FindBugs -->
@@ -86,6 +100,12 @@
             <artifactId>xalan</artifactId>
             <version since="30 Aug 2011">2.7.1</version>
             <scope>runtime</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
@@ -116,7 +136,6 @@
             <artifactId>log4j</artifactId>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -131,5 +150,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

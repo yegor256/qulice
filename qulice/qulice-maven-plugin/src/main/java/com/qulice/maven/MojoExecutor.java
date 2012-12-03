@@ -228,7 +228,7 @@ public final class MojoExecutor {
             try {
                 result.setAttribute(name, config.getAttribute(name));
             } catch (PlexusConfigurationException ex) {
-                throw new IllegalStateException("Can't setAttribute()", ex);
+                throw new IllegalArgumentException(ex);
             }
         }
         for (PlexusConfiguration child : config.getChildren()) {
