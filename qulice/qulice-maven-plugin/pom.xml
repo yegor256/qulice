@@ -68,6 +68,12 @@
             <groupId>com.qulice</groupId>
             <artifactId>qulice-pmd</artifactId>
             <version qulice="yes">1.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>ant</groupId>
+                    <artifactId>ant</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
@@ -102,38 +108,42 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
-            <version since="22 Aug 2011">3.0.3</version>
+            <version since="2 Dec 2012">3.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-model</artifactId>
-            <version since="22 Aug 2011">3.0.3</version>
+            <version since="2 Dec 2012">3.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version since="22 Aug 2011">3.0.3</version>
+            <version since="2 Dec 2012">3.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact</artifactId>
-            <version since="22 Aug 2011">3.0.3</version>
+            <version since="2 Dec 2012">3.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.shared</groupId>
             <artifactId>maven-dependency-analyzer</artifactId>
-            <version since="27 Sep 2011">1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven</groupId>
-            <artifactId>maven-project</artifactId>
-            <version since="27 Sep 2011">3.0-alpha-2</version>
-            <scope>runtime</scope>
+            <version since="2 Dec 2012">1.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.maven</groupId>
+                    <artifactId>maven-project</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.maven</groupId>
+                    <artifactId>maven-artifact-manager</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-testing</groupId>
             <artifactId>maven-plugin-testing-harness</artifactId>
-            <version since="22 Aug 2011">2.0-alpha-1</version>
+            <version since="2 Dec 2012">2.1</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -145,18 +155,31 @@
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
-            <version since="27 Sep 2011">2.0.6</version>
+            <version since="2 Dec 2012">3.0.9</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-container-default</artifactId>
-            <version since="27 Sep 2011">1.0-alpha-44</version>
+            <version since="2 Dec 2012">1.5.5</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.sonatype.sisu</groupId>
             <artifactId>sisu-inject-plexus</artifactId>
-            <version since="4 Aug 2012">2.3.0</version>
+            <version since="2 Dec 2012">2.3.2</version>
             <scope>runtime</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -252,20 +275,83 @@
                 </executions>
             </plugin>
         </plugins>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <configuration>
-                        <reportPlugins>
-                            <plugin>
-                                <artifactId>maven-plugin-plugin</artifactId>
-                                <version since="4 Oct 2011">2.9</version>
-                            </plugin>
-                        </reportPlugins>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
+    <profiles>
+        <profile>
+            <id>qulice</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.ning.maven.plugins</groupId>
+                        <artifactId>maven-duplicate-finder-plugin</artifactId>
+                        <configuration>
+                            <exceptions combine.children="append">
+                                <exception>
+                                    <conflictingDependencies>
+                                        <dependency>
+                                            <groupId>commons-beanutils</groupId>
+                                            <artifactId>commons-beanutils-core</artifactId>
+                                            <version>1.8.3</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>commons-collections</groupId>
+                                            <artifactId>commons-collections</artifactId>
+                                            <version>3.2.1</version>
+                                        </dependency>
+                                    </conflictingDependencies>
+                                    <classes>
+                                        <class>org.apache.commons.collections.ArrayStack</class>
+                                        <class>org.apache.commons.collections.Buffer</class>
+                                        <class>org.apache.commons.collections.BufferUnderflowException</class>
+                                        <class>org.apache.commons.collections.FastHashMap</class>
+                                    </classes>
+                                </exception>
+                                <exception>
+                                    <conflictingDependencies>
+                                        <dependency>
+                                            <groupId>org.codehaus.groovy</groupId>
+                                            <artifactId>groovy-all</artifactId>
+                                            <version>1.7.5</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codenarc</groupId>
+                                            <artifactId>CodeNarc</artifactId>
+                                            <version>0.15</version>
+                                        </dependency>
+                                    </conflictingDependencies>
+                                    <classes>
+                                        <class>org.codehaus.groovy.ast.expr.RegexExpression</class>
+                                        <class>org.codehaus.groovy.transform.powerassert.Value</class>
+                                        <class>org.codehaus.groovy.transform.powerassert.ValueRecorder</class>
+                                    </classes>
+                                </exception>
+                                <exception>
+                                    <conflictingDependencies>
+                                        <dependency>
+                                            <groupId>pmd</groupId>
+                                            <artifactId>pmd</artifactId>
+                                            <version>4.3</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.codenarc</groupId>
+                                            <artifactId>CodeNarc</artifactId>
+                                            <version>0.15</version>
+                                        </dependency>
+                                    </conflictingDependencies>
+                                    <resources>
+                                        <resource>rulesets/basic.xml</resource>
+                                        <resource>rulesets/braces.xml</resource>
+                                        <resource>rulesets/design.xml</resource>
+                                        <resource>rulesets/imports.xml</resource>
+                                        <resource>rulesets/junit.xml</resource>
+                                        <resource>rulesets/naming.xml</resource>
+                                    </resources>
+                                </exception>
+                            </exceptions>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
