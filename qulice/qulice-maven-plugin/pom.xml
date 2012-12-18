@@ -41,7 +41,25 @@
     <artifactId>qulice-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
     <name>qulice-maven-plugin</name>
+    <repositories>
+        <repository>
+            <id>repo.jfrog.org</id>
+            <url>http://repo.jfrog.org/artifactory/plugins-releases</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>repo.jfrog.org</id>
+            <url>http://repo.jfrog.org/artifactory/plugins-releases</url>
+        </pluginRepository>
+    </pluginRepositories>
     <dependencies>
+        <dependency>
+            <!-- see http://wiki.jfrog.org/confluence/display/OSS/Maven+Anno+Mojo -->
+            <groupId>org.jfrog.maven.annomojo</groupId>
+            <artifactId>maven-plugin-anno</artifactId>
+            <version>1.4.1</version>
+        </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-spi</artifactId>
@@ -72,6 +90,15 @@
                 <exclusion>
                     <groupId>ant</groupId>
                     <artifactId>ant</artifactId>
+                </exclusion>
+                <exclusion>
+                    <!-- http://jira.codehaus.org/browse/MPLUGIN-221 -->
+                    <groupId>com.ibm.icu</groupId>
+                    <artifactId>icu4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>xerces</groupId>
+                    <artifactId>xmlParserAPIs</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -188,6 +215,58 @@
     <build>
         <plugins>
             <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/HelpMojo.java</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <configuration>
+                            <compilerArgument>-Xlint:-processing</compilerArgument>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>compile-helpmojo</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/HelpMojo.java</include>
+                            </includes>
+                            <compilerArgument>-Xlint:-unchecked,-rawtypes</compilerArgument>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>generated-helpmojo</id>
+                        <goals>
+                            <goal>helpmojo</goal>
+                        </goals>
+                        <configuration>
+                            <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jfrog.maven.annomojo</groupId>
+                        <artifactId>maven-plugin-tools-anno</artifactId>
+                        <version>1.4.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
                 <artifactId>maven-invoker-plugin</artifactId>
                 <configuration combine.children="append">
                     <!--
@@ -291,7 +370,12 @@
                                         <dependency>
                                             <groupId>org.codenarc</groupId>
                                             <artifactId>CodeNarc</artifactId>
-                                            <version>0.15</version>
+                                            <version>0.18</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.gmetrics</groupId>
+                                            <artifactId>GMetrics</artifactId>
+                                            <version>0.5</version>
                                         </dependency>
                                     </conflictingDependencies>
                                     <classes>

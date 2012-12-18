@@ -33,16 +33,17 @@ import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import org.apache.maven.plugin.MojoFailureException;
+import org.jfrog.maven.annomojo.annotations.MojoGoal;
+import org.jfrog.maven.annomojo.annotations.MojoPhase;
 
 /**
  * Check the project and find all possible violations.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @goal check
- * @phase verify
- * @threadSafe
  */
+@MojoGoal("check")
+@MojoPhase("verify")
 public final class CheckMojo extends AbstractQuliceMojo {
 
     /**

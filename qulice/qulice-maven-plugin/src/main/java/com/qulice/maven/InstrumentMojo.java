@@ -32,16 +32,17 @@ package com.qulice.maven;
 import com.qulice.spi.ValidationException;
 import java.util.Properties;
 import org.apache.maven.plugin.MojoFailureException;
+import org.jfrog.maven.annomojo.annotations.MojoGoal;
+import org.jfrog.maven.annomojo.annotations.MojoPhase;
 
 /**
  * Prepare classes for code coverage check.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @goal instrument
- * @phase process-classes
- * @threadSafe
  */
+@MojoGoal("instrument")
+@MojoPhase("process-classes")
 public final class InstrumentMojo extends AbstractQuliceMojo {
 
     /**
