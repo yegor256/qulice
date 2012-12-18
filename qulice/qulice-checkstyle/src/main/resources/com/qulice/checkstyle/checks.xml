@@ -54,7 +54,8 @@
     <module name="Translation"/>
 
     <!-- Checks for duplicate code -->
-    <module name="StrictDuplicateCode"/>
+    <!-- https://sourceforge.net/p/checkstyle/bugs/693/ -->
+    <!-- <module name="StrictDuplicateCode"/> -->
 
     <!--
     Maximum number of lines in any .java file is limited.
