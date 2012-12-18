@@ -187,12 +187,12 @@
         <module name="DesignForExtension"/>
         <module name="MutableException"/>
         <module name="ThrowsCount" />
+        <module name="InnerTypeLast"/>
 
         <!-- Checks for common coding problems -->
         <module name="ArrayTrailingComma"/>
         <module name="AvoidInlineConditionals"/>
         <module name="CovariantEquals"/>
-        <module name="DoubleCheckedLocking"/>
         <module name="EmptyStatement"/>
         <module name="EqualsAvoidNull"/>
         <module name="EqualsHashCode"/>
@@ -211,6 +211,7 @@
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
         <module name="StringLiteralEquality"/>
+        <module name="NestedForDepth"/>
         <module name="NestedIfDepth"/>
         <module name="NestedTryDepth"/>
         <module name="NoClone"/>
@@ -231,14 +232,14 @@
         <module name="MultipleVariableDeclarations"/>
         <module name="RequireThis"/>
         <module name="UnnecessaryParentheses"/>
+        <module name="OneStatementPerLine"/>
+
+        <!-- Checks for duplicate code -->
+        <module name="StrictDuplicateCode"/>
 
         <!-- Checks for imports. -->
-        <module name="AvoidStarImport">
-            <property name="excludes" value="org.hamcrest.Matchers.*"/>
-        </module>
-        <module name="AvoidStaticImport">
-            <property name="excludes" value="org.hamcrest.Matchers.*"/>
-        </module>
+        <module name="AvoidStarImport" />
+        <module name="AvoidStaticImport" />
         <module name="IllegalImport"/>
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>
@@ -277,6 +278,7 @@
         <module name="FinalParameters"/>
         <module name="Indentation"/>
         <module name="TrailingComment"/>
+        <module name="OuterTypeFilename"/>
 
         <!-- Modifier Checks. -->
         <module name="ModifierOrder"/>
@@ -320,6 +322,7 @@
             <property name="max" value="3"/>
         </module>
         <module name="OuterTypeNumber"/>
+        <module name="MethodCount"/>
 
         <!-- Checks for whitespace. -->
         <module name="GenericWhitespace"/>

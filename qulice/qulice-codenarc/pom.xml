@@ -107,8 +107,14 @@
                                         <dependency>
                                             <groupId>org.codenarc</groupId>
                                             <artifactId>CodeNarc</artifactId>
-                                            <version>0.15</version>
+                                            <version>0.18</version>
                                         </dependency>
+                                        <dependency>
+                                            <groupId>org.gmetrics</groupId>
+                                            <artifactId>GMetrics</artifactId>
+                                            <version>0.5</version>
+                                        </dependency>
+
                                     </conflictingDependencies>
                                     <classes>
                                         <class>org.codehaus.groovy.ast.expr.RegexExpression</class>
