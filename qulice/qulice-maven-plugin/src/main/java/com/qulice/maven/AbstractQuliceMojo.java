@@ -37,6 +37,8 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Contextualizable;
+import org.jfrog.maven.annomojo.annotations.MojoComponent;
+import org.jfrog.maven.annomojo.annotations.MojoParameter;
 import org.slf4j.impl.StaticLoggerBinder;
 
 /**
@@ -56,43 +58,59 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Maven project, to be injected by Maven itself.
-     * @parameter expression="${project}"
-     * @required
-     * @readonly
      */
+    @MojoParameter(
+        expression = "${project}",
+        required = true,
+        readonly = true,
+        description = "Maven project"
+    )
     private transient MavenProject project;
 
     /**
      * Maven session, to be injected by Maven itself.
-     * @parameter expression="${session}"
-     * @required
-     * @readonly
      */
+    @MojoParameter(
+        expression = "${session}",
+        required = true,
+        readonly = true,
+        description = "Maven session"
+    )
     private transient MavenSession session;
 
     /**
      * Maven plugin manager, to be injected by Maven itself.
-     * @component
-     * @required
      */
+    @MojoComponent(
+        role = "org.apache.maven.plugin.MavenPluginManager",
+        roleHint = "",
+        description = "Maven plugin manager"
+    )
     private transient MavenPluginManager manager;
 
     /**
      * Shall we skip execution?
-     * @parameter expression="${qulice.skip}" default-value="false"
-     * @required
-     * @since 0.1
      */
+    @MojoParameter(
+        expression = "${qulice.skip}",
+        defaultValue = "false",
+        required = false,
+        description = "Skips execution"
+    )
     private transient boolean skip;
 
     /**
      * Location of License file. If it is an absolute file name you should
      * prepend it with "file:" prefix. Otherwise it is treated like a resource
      * name and will be found in classpath (if available).
-     * @parameter expression="${qulice.license}" default-value="LICENSE.txt"
-     * @required
      * @since 0.1
      */
+    @MojoParameter(
+        expression = "${qulice.license}",
+        defaultValue = "LICENSE.txt",
+        required = false,
+        description = "Location of LICENSE.txt"
+    )
     private transient String license = "LICENSE.txt";
 
     /**

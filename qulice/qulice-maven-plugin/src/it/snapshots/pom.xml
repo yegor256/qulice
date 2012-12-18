@@ -31,23 +31,19 @@
  *
  * @version $Id$
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.qulice.plugin</groupId>
     <artifactId>snapshots</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
     <name>snapshots</name>
-
     <build>
         <plugins>
             <plugin>
                 <groupId>com.qulice</groupId>
                 <artifactId>qulice-maven-plugin</artifactId>
-                <version qulice="yes">1.0-SNAPSHOT</version>
+                <version>@project.version@</version>
                 <executions>
                     <execution>
                         <goals>
@@ -58,5 +54,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
