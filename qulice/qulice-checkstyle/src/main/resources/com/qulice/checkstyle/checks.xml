@@ -53,6 +53,9 @@
     -->
     <module name="Translation"/>
 
+    <!-- Checks for duplicate code -->
+    <module name="StrictDuplicateCode"/>
+
     <!--
     Maximum number of lines in any .java file is limited.
     -->
@@ -233,9 +236,6 @@
         <module name="RequireThis"/>
         <module name="UnnecessaryParentheses"/>
         <module name="OneStatementPerLine"/>
-
-        <!-- Checks for duplicate code -->
-        <module name="StrictDuplicateCode"/>
 
         <!-- Checks for imports. -->
         <module name="AvoidStarImport" />
