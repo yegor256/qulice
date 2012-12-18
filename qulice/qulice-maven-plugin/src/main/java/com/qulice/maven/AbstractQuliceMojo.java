@@ -56,7 +56,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Maven project, to be injected by Maven itself.
-     * @parameter expression="${project}"
+     * @parameter property="project"
      * @required
      * @readonly
      */
@@ -64,7 +64,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Maven session, to be injected by Maven itself.
-     * @parameter expression="${session}"
+     * @parameter property="session"
      * @required
      * @readonly
      */
@@ -79,7 +79,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Shall we skip execution?
-     * @parameter expression="${qulice.skip}" default-value="false"
+     * @parameter property="qulice.skip" default-value="false"
      * @required
      * @since 0.1
      */
@@ -89,7 +89,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      * Location of License file. If it is an absolute file name you should
      * prepend it with "file:" prefix. Otherwise it is treated like a resource
      * name and will be found in classpath (if available).
-     * @parameter expression="${qulice.license}" default-value="LICENSE.txt"
+     * @parameter property="qulice.license" default-value="LICENSE.txt"
      * @required
      * @since 0.1
      */

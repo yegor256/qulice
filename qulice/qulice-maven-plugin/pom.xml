@@ -36,7 +36,7 @@
     <parent>
         <groupId>com.qulice</groupId>
         <artifactId>qulice</artifactId>
-        <version qulice="yes">1.0-SNAPSHOT</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <artifactId>qulice-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
@@ -45,12 +45,12 @@
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-spi</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-spi</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <classifier>mock</classifier>
             <scope>test</scope>
         </dependency>
@@ -62,12 +62,12 @@
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-checkstyle</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-pmd</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>ant</groupId>
@@ -78,18 +78,18 @@
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-codenarc</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-findbugs</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-xml</artifactId>
-            <version qulice="yes">1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -103,32 +103,31 @@
             <!-- Forward all calls to SLF4J to Maven log. -->
             <groupId>com.jcabi</groupId>
             <artifactId>jcabi-maven-slf4j</artifactId>
-            <version since="24 May 2012">0.1.9</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-core</artifactId>
-            <version since="2 Dec 2012">3.0.4</version>
+            <version>3.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-model</artifactId>
-            <version since="2 Dec 2012">3.0.4</version>
+            <version>3.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version since="2 Dec 2012">3.0.4</version>
+            <version>3.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact</artifactId>
-            <version since="2 Dec 2012">3.0.4</version>
+            <version>3.0.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.shared</groupId>
             <artifactId>maven-dependency-analyzer</artifactId>
-            <version since="2 Dec 2012">1.3</version>
+            <version>1.3</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.maven</groupId>
@@ -143,7 +142,7 @@
         <dependency>
             <groupId>org.apache.maven.plugin-testing</groupId>
             <artifactId>maven-plugin-testing-harness</artifactId>
-            <version since="2 Dec 2012">2.1</version>
+            <version>2.1</version>
             <scope>test</scope>
             <exclusions>
                 <exclusion>
@@ -155,12 +154,12 @@
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-utils</artifactId>
-            <version since="2 Dec 2012">3.0.9</version>
+            <version>3.0.9</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-container-default</artifactId>
-            <version since="2 Dec 2012">1.5.5</version>
+            <version>1.5.5</version>
             <scope>provided</scope>
             <exclusions>
                 <exclusion>
@@ -172,7 +171,7 @@
         <dependency>
             <groupId>org.sonatype.sisu</groupId>
             <artifactId>sisu-inject-plexus</artifactId>
-            <version since="2 Dec 2012">2.3.2</version>
+            <version>2.3.2</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -180,22 +179,6 @@
                     <artifactId>guava</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit-dep</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
         </dependency>
         <dependency>
             <groupId>commons-lang</groupId>
@@ -206,12 +189,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-invoker-plugin</artifactId>
-                <version since="22 Mar 2011">1.5</version>
-                <configuration>
-                    <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-                    <debug>false</debug>
-                    <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
-                    <noLog>false</noLog>
+                <configuration combine.children="append">
                     <!--
                     With this construct you can exclude certain IT projects.
                     -->
@@ -229,50 +207,47 @@
                         <!-- <pomInclude>dependency-violations/pom.xml</pomInclude> -->
                         <pomInclude>multi-module/pom.xml</pomInclude>
                     </pomIncludes>
-                    <postBuildHookScript>verify</postBuildHookScript>
-                    <preBuildHookScript>setup</preBuildHookScript>
-                    <projectsDirectory>src/it</projectsDirectory>
-                    <settingsFile>${basedir}/src/it/settings.xml</settingsFile>
-                    <showErrors>true</showErrors>
-                    <showVersion>false</showVersion>
-                    <streamLogs>true</streamLogs>
+                    <extraArtifacts>
+                        <extraArtifact>${project.groupId}:qulice-checkstyle:${project.version}:jar</extraArtifact>
+                        <extraArtifact>${project.groupId}:qulice-codenarc:${project.version}:jar</extraArtifact>
+                        <extraArtifact>${project.groupId}:qulice-findbugs:${project.version}:jar</extraArtifact>
+                        <extraArtifact>${project.groupId}:qulice-pmd:${project.version}:jar</extraArtifact>
+                        <extraArtifact>${project.groupId}:qulice-spi:${project.version}:jar</extraArtifact>
+                        <extraArtifact>${project.groupId}:qulice-xml:${project.version}:jar</extraArtifact>
+                    </extraArtifacts>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>integration-test</id>
-                        <goals>
-                            <goal>install</goal>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <!--
-                @todo #26 This is a workaround until they fix maven-invoker-plugin,
-                 see the ticket #26 for more information.
-                -->
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version since="26 Oct 2011">1.6</version>
-                <executions>
-                    <execution>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <target>
-                                <copy verbose="true" file="${basedir}/../pom.xml" tofile="${project.build.directory}/local-repo/com/qulice/qulice/${project.version}/qulice-${project.version}.pom"/>
-                                <copy verbose="true" file="${com.qulice:qulice-checkstyle:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-checkstyle/${project.version}/qulice-checkstyle-${project.version}.jar"/>
-                                <copy verbose="true" file="${com.qulice:qulice-pmd:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-pmd/${project.version}/qulice-pmd-${project.version}.jar"/>
-                                <copy verbose="true" file="${com.qulice:qulice-codenarc:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-codenarc/${project.version}/qulice-codenarc-${project.version}.jar"/>
-                                <copy verbose="true" file="${com.qulice:qulice-spi:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-spi/${project.version}/qulice-spi-${project.version}.jar"/>
-                                <copy verbose="true" file="${com.qulice:qulice-xml:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-xml/${project.version}/qulice-xml-${project.version}.jar"/>
-                                <copy verbose="true" file="${com.qulice:qulice-findbugs:jar}" tofile="${project.build.directory}/local-repo/com/qulice/qulice-findbugs/${project.version}/qulice-findbugs-${project.version}.jar"/>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>qulice-checkstyle</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>qulice-codenarc</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>qulice-findbugs</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>qulice-pmd</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>qulice-spi</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>${project.groupId}</groupId>
+                        <artifactId>qulice-xml</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
         </plugins>
     </build>
