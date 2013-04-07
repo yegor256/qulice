@@ -41,7 +41,7 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.7.5</version>
+        <version>0.7.16</version>
     </parent>
     <groupId>com.qulice</groupId>
     <artifactId>qulice</artifactId>
@@ -110,9 +110,9 @@
         <url>http://ci.qulice.com:8080/job/qulice</url>
     </ciManagement>
     <scm>
-        <connection>scm:svn:svn://svn.qulice.com/qulice/trunk/qulice</connection>
-        <developerConnection>scm:svn:svn://svn.qulice.com/qulice/trunk/qulice</developerConnection>
-        <url>http://trac.qulice.com/qulice/browse/qulice/trunk/qulice</url>
+        <connection>scm:svn:svn://svn.qulice.com/qulice/trunk</connection>
+        <developerConnection>scm:svn:svn://svn.qulice.com/qulice/trunk</developerConnection>
+        <url>http://trac.qulice.com/qulice/browse/qulice/trunk</url>
     </scm>
     <distributionManagement>
         <site>
@@ -166,14 +166,4 @@
             </build>
         </profile>
     </profiles>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <!-- Nice tools for file manipulations -->
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava-io</artifactId>
-                <version>r03</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 </project>
