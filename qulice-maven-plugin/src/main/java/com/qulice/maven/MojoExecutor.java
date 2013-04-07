@@ -34,7 +34,7 @@ import com.qulice.spi.ValidationException;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Properties;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.plugin.MavenPluginManager;

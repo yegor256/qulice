@@ -60,7 +60,7 @@
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
-            <artifactId>guava-io</artifactId>
+            <artifactId>guava</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -70,7 +70,7 @@
         <dependency>
             <groupId>org.codenarc</groupId>
             <artifactId>CodeNarc</artifactId>
-            <version>0.18</version>
+            <version>0.18.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>ant</groupId>

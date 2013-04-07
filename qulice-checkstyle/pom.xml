@@ -57,6 +57,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava-io</artifactId>
+            <version>r03</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -73,8 +74,8 @@
             <artifactId>commons-io</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
             <!-- Checkstyle is using some classes from this lib -->
