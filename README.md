@@ -6,3 +6,7 @@ and pre-configure them. You don't need to use and configure them
 individually any more.
 
 Read more at [www.qulice.com](http://www.qulice.com).
+
+Read this short summary of [typical mistakes](https://github.com/tpc2/qulice/wiki/mistakes) 
+you may encounter in your project. 
+Qulice can't catch them, that's why this wiki pages...
