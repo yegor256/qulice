@@ -1,5 +1,5 @@
  ------
- Quality Police for Java Projects
+ Source Code Quality Police (Qulice)
  ------
  Yegor Bugayenko
  ------
@@ -7,7 +7,7 @@
  ------
 
 ~~
-~~ Copyright (c) 2011-2013, Qulice.com
+~~ Copyright (c) 2011-2012, Qulice.com
 ~~ All rights reserved.
 ~~
 ~~ Redistribution and use in source and binary forms, with or without
@@ -38,35 +38,58 @@
 ~~ @version $Id$
 ~~
 
-Quality Police for Java Projects
+Source Code Quality Police (Qulice)
 
-  Qulice is a static analysis quality control instrument for Java projects.
-  It combines all the best static analysis instruments and pre-configure them.
-  You don't need to use and configure them individually any more.
+  Qulice is a {{{http://en.wikipedia.org/wiki/Static_program_analysis}static analysis}}
+  quality control instrument for
+  Java projects. It combines a few static analysis tools and
+  pre-configure them. You don't need to use and configure them individually any more.
 
   At the moment we integrate together:
 
-   * Maven dependency analysis
+   * {{{http://maven.apache.org/plugins/maven-dependency-plugin/analyze-only-mojo.html}Maven dependency analysis}}
 
-   * maven-enforcer-plugin
+   * {{{http://maven.apache.org/plugins/maven-enforcer-plugin/enforce-mojo.html}maven-enforcer-plugin}}
 
-   * Checkstyle
+   * {{{http://checkstyle.sourceforge.net/}Checkstyle}}
 
-   * PMD
+   * {{{http://pmd.sourceforge.net/}PMD}}
 
-   * FindBugs
+   * {{{http://findbugs.sourceforge.net/}FindBugs}}
 
-   * Cobertura
+   * {{{http://cobertura.sourceforge.net/}Cobertura}}
 
-   * CodeNarc
+   * {{{http://codenarc.sourceforge.net/}CodeNarc}}
 
-Read about {{{./qulice-maven-plugin/index.html}qulice-maven-plugin}}
-(we don't have plugins for any other builders,
-only for Maven2). Read about our quality policy.
+  Just add our {{{./qulice-maven-plugin/}qulice-maven-plugin}} to your
+  Maven project and start following out
+  {{{./quality.html}quality policy}}:
 
-Post us a message in our {{{https://groups.google.com/forum/#!forum/qulice}Google Group}} if you're interested or
-just curious what is it all about. Besides that, don't hesitate to
-submit a ticket to Github when something doesn't work or you need more features.
++--
+<build>
+  <plugins>
+    <plugin>
+      <groupId>com.qulice</groupId>
+      <artifactId>qulice-maven-plugin</artifactId>
+      <version>${project.version}</version>
+      <configuration>
+        <license>file:${basedir}/LICENSE.txt</license>
+      </configuration>
+      <executions>
+        <execution>
+          <goals>
+            <goal>check</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
++--
 
-Currently deployed revision: ${buildNumber}
-
+  Post us a message in our
+  {{{https://groups.google.com/forum/#!forum/qulice}Google Group}}
+  if you're interested or just
+  curious what is it all about. Besides that, don't hesitate to submit a
+  ticket to {{{http://trac.qulice.com/qulice}Trac}} when something
+  doesn't work or you need more features.
