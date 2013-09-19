@@ -41,11 +41,11 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.7.16</version>
+        <version>0.8</version>
     </parent>
     <groupId>com.qulice</groupId>
     <artifactId>qulice</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.2.3</version>
     <packaging>pom</packaging>
     <name>qulice</name>
     <modules>
@@ -103,16 +103,16 @@
     </developers>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/yegor256/qulice/issues</url>
+        <url>https://github.com/tpc2/qulice/issues</url>
     </issueManagement>
     <scm>
-        <connection>scm:git:git@github.com:yegor256/qulice.git</connection>
-        <developerConnection>scm:git:git@github.com:yegor256/qulice.git</developerConnection>
-        <url>https://github.com/yegor256/qulice</url>
+        <connection>scm:git:git@github.com:tpc2/qulice.git</connection>
+        <developerConnection>scm:git:git@github.com:tpc2/qulice.git</developerConnection>
+        <url>https://github.com/tpc2/qulice</url>
     </scm>
     <ciManagement>
-        <system>jenkins</system>
-        <url>http://ci.qulice.com:8080/job/qulice</url>
+        <system>rultor</system>
+        <url>http://www.rultor.com/s/qulice</url>
     </ciManagement>
     <distributionManagement>
         <site>
