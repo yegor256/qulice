@@ -46,10 +46,6 @@
             <id>repo.jfrog.org</id>
             <url>http://repo.jfrog.org/artifactory/plugins-releases</url>
         </repository>
-        <repository>
-            <id>apache.snapshots</id>
-            <url>http://repository.apache.org/snapshots/</url>
-        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -89,7 +85,7 @@
         <dependency>
             <groupId>org.apache.maven.reporting</groupId>
             <artifactId>maven-reporting-exec</artifactId>
-            <version>1.1.1-SNAPSHOT</version>
+            <version>1.1</version>
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>

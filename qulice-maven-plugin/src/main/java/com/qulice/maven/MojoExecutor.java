@@ -32,6 +32,7 @@ package com.qulice.maven;
 import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
@@ -107,8 +108,8 @@ public final class MojoExecutor {
                 descriptor.getPluginDescriptor(),
                 this.session,
                 Thread.currentThread().getContextClassLoader(),
-                new java.util.ArrayList<String>(),
-                new java.util.ArrayList<String>()
+                new LinkedList<String>(),
+                new LinkedList<String>()
             );
         } catch (org.apache.maven.plugin.PluginResolutionException ex) {
             throw new IllegalStateException("Plugin resolution problem", ex);
@@ -140,8 +141,11 @@ public final class MojoExecutor {
      */
     private MojoDescriptor descriptor(final Plugin plugin, final String goal) {
         try {
-            return this.helper.getPluginDescriptor(plugin, this.session)
-                .getMojo(goal);
+            return this.helper.getPluginDescriptor(
+                plugin,
+                this.session.getCurrentProject().getRemotePluginRepositories(),
+                this.session
+            ).getMojo(goal);
         } catch (org.apache.maven.plugin.PluginResolutionException ex) {
             throw new IllegalStateException("Can't resolve plugin", ex);
         } catch (org.apache.maven.plugin.PluginDescriptorParsingException ex) {
