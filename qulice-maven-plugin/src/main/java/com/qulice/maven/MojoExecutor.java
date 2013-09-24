@@ -41,6 +41,7 @@ import org.apache.maven.plugin.MavenPluginManager;
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecution;
 import org.apache.maven.plugin.descriptor.MojoDescriptor;
+import org.apache.maven.reporting.exec.DefaultMavenPluginManagerHelper;
 import org.codehaus.plexus.configuration.PlexusConfiguration;
 import org.codehaus.plexus.configuration.PlexusConfigurationException;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
@@ -64,14 +65,25 @@ public final class MojoExecutor {
     private final transient MavenSession session;
 
     /**
+     * Helper for plugin manager.
+     */
+    private final transient DefaultMavenPluginManagerHelper helper;
+
+    /**
      * Public ctor.
      * @param mngr The manager
      * @param sesn Maven session
      */
+    @SuppressWarnings("PMD.NonStaticInitializer")
     public MojoExecutor(final MavenPluginManager mngr,
         final MavenSession sesn) {
         this.manager = mngr;
         this.session = sesn;
+        this.helper = new DefaultMavenPluginManagerHelper() {
+            {
+                this.mavenPluginManager = MojoExecutor.this.manager;
+            }
+        };
     }
 
     /**
@@ -91,12 +103,12 @@ public final class MojoExecutor {
         plugin.setVersion(sectors[2]);
         final MojoDescriptor descriptor = this.descriptor(plugin, goal);
         try {
-            this.manager.setupPluginRealm(
+            this.helper.setupPluginRealm(
                 descriptor.getPluginDescriptor(),
                 this.session,
                 Thread.currentThread().getContextClassLoader(),
                 new java.util.ArrayList<String>(),
-                this.session.getTopLevelProject().getExtensionDependencyFilter()
+                new java.util.ArrayList<String>()
             );
         } catch (org.apache.maven.plugin.PluginResolutionException ex) {
             throw new IllegalStateException("Plugin resolution problem", ex);
@@ -127,16 +139,9 @@ public final class MojoExecutor {
      * @return The descriptor
      */
     private MojoDescriptor descriptor(final Plugin plugin, final String goal) {
-        MojoDescriptor descriptor;
         try {
-            descriptor = this.manager.getMojoDescriptor(
-                plugin,
-                goal,
-                this.session.getTopLevelProject().getRemotePluginRepositories(),
-                this.session.getRepositorySession()
-            );
-        } catch (org.apache.maven.plugin.MojoNotFoundException ex) {
-            throw new IllegalStateException("Can't find MOJO", ex);
+            return this.helper.getPluginDescriptor(plugin, this.session)
+                .getMojo(goal);
         } catch (org.apache.maven.plugin.PluginResolutionException ex) {
             throw new IllegalStateException("Can't resolve plugin", ex);
         } catch (org.apache.maven.plugin.PluginDescriptorParsingException ex) {
@@ -144,7 +149,6 @@ public final class MojoExecutor {
         } catch (org.apache.maven.plugin.InvalidPluginDescriptorException ex) {
             throw new IllegalStateException("Invalid plugin descriptor", ex);
         }
-        return descriptor;
     }
 
     /**

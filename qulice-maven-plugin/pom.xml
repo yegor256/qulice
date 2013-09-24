@@ -46,6 +46,10 @@
             <id>repo.jfrog.org</id>
             <url>http://repo.jfrog.org/artifactory/plugins-releases</url>
         </repository>
+        <repository>
+            <id>apache.snapshots</id>
+            <url>http://repository.apache.org/snapshots/</url>
+        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -81,6 +85,11 @@
             <groupId>com.qulice</groupId>
             <artifactId>qulice-checkstyle</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.reporting</groupId>
+            <artifactId>maven-reporting-exec</artifactId>
+            <version>1.1.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
@@ -138,12 +147,12 @@
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
-            <artifactId>maven-model</artifactId>
+            <artifactId>maven-plugin-api</artifactId>
             <version>3.0.5</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
-            <artifactId>maven-plugin-api</artifactId>
+            <artifactId>maven-model</artifactId>
             <version>3.0.5</version>
         </dependency>
         <dependency>
@@ -360,6 +369,16 @@
                                             <groupId>org.sonatype.sisu</groupId>
                                             <artifactId>sisu-inject-plexus</artifactId>
                                             <version>2.3.4</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.eclipse.aether</groupId>
+                                            <artifactId>aether-api</artifactId>
+                                            <version>0.9.0.M2</version>
+                                        </dependency>
+                                        <dependency>
+                                            <groupId>org.eclipse.aether</groupId>
+                                            <artifactId>aether-util</artifactId>
+                                            <version>0.9.0.M2</version>
                                         </dependency>
                                     </conflictingDependencies>
                                     <resources>
