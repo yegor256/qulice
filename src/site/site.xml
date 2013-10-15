@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <!--
- *
  * Copyright (c) 2011-2013, Qulice.com
  * All rights reserved.
  *
@@ -28,8 +27,6 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * @version $Id$
  -->
 <project xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0     http://maven.apache.org/xsd/decoration-1.0.0.xsd" name="qulice">
     <skin>
@@ -55,12 +52,10 @@
             <item name="qulice.com" href="http://www.qulice.com"/>
         </breadcrumbs>
         <menu name="Overview">
-            <item name="Introduction" href="index.html"/>
-            <item name="Quick Start" href="start.html"/>
-            <item name="What is Quality?" href="quality.html"/>
-            <item name="Release History" href="changes-report.html"/>
+            <item name="Introduction" href="./index.html"/>
+            <item name="Quick Start" href="./qulice-maven-plugin/usage.html"/>
+            <item name="What is Quality?" href="./quality.html"/>
         </menu>
-        <menu ref="modules"/>
         <menu ref="reports"/>
     </body>
 </project>
