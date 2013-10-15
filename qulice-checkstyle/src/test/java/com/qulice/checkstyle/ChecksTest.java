@@ -160,6 +160,40 @@ public final class ChecksTest {
     }
 
     /**
+     * Check one file.
+     * @param name The name of the check
+     * @param listener The listener
+     * @throws Exception If something goes wrong inside
+     */
+    private void check(final String name, final AuditListener listener)
+        throws Exception {
+        final Checker checker = new Checker();
+        final InputSource src = new InputSource(
+            this.getClass().getResourceAsStream(
+                String.format("%s/config.xml", this.dir)
+            )
+        );
+        checker.setClassloader(Thread.currentThread().getContextClassLoader());
+        checker.setModuleClassLoader(
+            Thread.currentThread().getContextClassLoader()
+        );
+        checker.configure(
+            ConfigurationLoader.loadConfiguration(
+                src,
+                new PropertiesExpander(new Properties()),
+                true
+            )
+        );
+        final List<File> files = new ArrayList<File>();
+        files.add(
+            new File(this.getClass().getResource(this.dir + name).getFile())
+        );
+        checker.addListener(listener);
+        checker.process(files);
+        checker.destroy();
+    }
+
+    /**
      * Mocked collector of checkstyle events.
      */
     private static class Collector implements Answer<Object> {
@@ -209,40 +243,6 @@ public final class ChecksTest {
             }
             return StringUtils.join(msgs, "; ");
         }
-    }
-
-    /**
-     * Check one file.
-     * @param name The name of the check
-     * @param listener The listener
-     * @throws Exception If something goes wrong inside
-     */
-    private void check(final String name, final AuditListener listener)
-        throws Exception {
-        final Checker checker = new Checker();
-        final InputSource src = new InputSource(
-            this.getClass().getResourceAsStream(
-                String.format("%s/config.xml", this.dir)
-            )
-        );
-        checker.setClassloader(Thread.currentThread().getContextClassLoader());
-        checker.setModuleClassLoader(
-            Thread.currentThread().getContextClassLoader()
-        );
-        checker.configure(
-            ConfigurationLoader.loadConfiguration(
-                src,
-                new PropertiesExpander(new Properties()),
-                true
-            )
-        );
-        final List<File> files = new ArrayList<File>();
-        files.add(
-            new File(this.getClass().getResource(this.dir + name).getFile())
-        );
-        checker.addListener(listener);
-        checker.process(files);
-        checker.destroy();
     }
 
 }
