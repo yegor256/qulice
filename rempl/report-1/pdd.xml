@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pdd>
+    <wp marker="SuD">
+        <description></description>
+        <dependants>
+            <wp marker="45">
+                <description></description>
+                <dependants>
+                    <wp marker="PDD-6AFAD375-45">
+                        <issue assignee="guard" href="http://trac.qulice.com/qulice/ticket/47">47</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                    <wp marker="PDD-0E4F2BF3-45">
+                        <issue assignee="guard" href="http://trac.qulice.com/qulice/ticket/48">48</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                    <wp marker="PDD-BBBD4158-45">
+                        <issue assignee="guard" href="http://trac.qulice.com/qulice/ticket/49">49</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                    <wp marker="PDD-BD446E6F-45">
+                        <issue assignee="guard" href="http://trac.qulice.com/qulice/ticket/50">50</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="44">
+                <description></description>
+                <dependants>
+                    <wp estimate="60" marker="PDD-21460232-44">
+                        <subject>./qulice-pmd/src/main/java/com/qulice/pmd/Files.java</subject>
+                        <description>&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/src/main/java/com/qulice/checkstyle/CheckstyleValidator.java?marks=206-207"&gt;./qulice-checkstyle/src/main/java/com/qulice/checkstyle/CheckstyleValidator.java&lt;/a&gt;
+Perform refactoring: remove this method, use Environment.files() instead.
+&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-pmd/src/main/java/com/qulice/pmd/Files.java?marks=56-57"&gt;./qulice-pmd/src/main/java/com/qulice/pmd/Files.java&lt;/a&gt;
+Perform refactoring: remove this method, use Environment.files() instead.</description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="32">
+                <description></description>
+                <dependants>
+                    <wp marker="PDD-B5105E05-32">
+                        <issue assignee="dmitry.bashkin@gmail.com" href="http://trac.qulice.com/qulice/ticket/51">51</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="55">
+                <description></description>
+                <dependants>
+                    <wp marker="PDD-42D5DC87-55">
+                        <issue assignee="guard" href="http://trac.qulice.com/qulice/ticket/57">57</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                    <wp marker="PDD-EABFF616-55">
+                        <issue assignee="guard" href="http://trac.qulice.com/qulice/ticket/59">59</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                    <wp marker="PDD-8F826680-55">
+                        <issue assignee="guard" href="http://trac.qulice.com/qulice/ticket/58">58</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                    <wp estimate="0" marker="PDD-5B4FE4E6-55">
+                        <subject>./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</subject>
+                        <description>&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java?marks=14-15"&gt;./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java&lt;/a&gt;
+First line is correct, but second line is impropertly indented
+&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java?marks=14-15"&gt;./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java&lt;/a&gt;
+First line is correct, but second line is impropertly indented</description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="83">
+                <description></description>
+                <dependants>
+                    <wp estimate="0" marker="PDD-4EE89D51-83">
+                        <subject>./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</subject>
+                        <description>&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java?marks=62-62"&gt;./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java&lt;/a&gt;
+When it works, add {@code FindBugsValidator()} to this list</description>
+                        <dependants/>
+                    </wp>
+                    <wp estimate="0" marker="PDD-7CADAB22-83">
+                        <subject>./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</subject>
+                        <description>&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java?marks=47-47"&gt;./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java&lt;/a&gt;
+When it works, add {@code DependenciesValidator()} to this list</description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="36">
+                <description></description>
+                <dependants>
+                    <wp marker="PDD-F44F782A-36">
+                        <issue assignee="guard" href="http://trac.qulice.com/qulice/ticket/52">52</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="33">
+                <description></description>
+                <dependants>
+                    <wp estimate="0" marker="PDD-01EA1718-33">
+                        <subject>./pom.xml</subject>
+                        <description>&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./pom.xml?marks=229-231"&gt;./pom.xml&lt;/a&gt;
+This is a temporary measure, until qulice implements this validation. Once it's implemented in qulice - just remove this plugin from here.</description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="555">
+                <description></description>
+                <dependants>
+                    <wp estimate="0" marker="PDD-B5DCEC0F-555">
+                        <subject>./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</subject>
+                        <description>&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java?marks=7-7"&gt;./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java&lt;/a&gt;
+Some text with proper indentation of the second and all consecutive lines.
+&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java?marks=7-7"&gt;./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java&lt;/a&gt;
+Some text with proper indentation of the second and all consecutive lines.</description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="8">
+                <description></description>
+                <dependants>
+                    <wp estimate="0" marker="PDD-AC27A39D-8">
+                        <issue assignee="yegor256@yahoo.com" href="http://trac.qulice.com/qulice/ticket/14">14</issue>
+                        <subject>./qulice-maven-plugin/pom.xml</subject>
+                        <description>&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-maven-plugin/pom.xml?marks=206-209"&gt;./qulice-maven-plugin/pom.xml&lt;/a&gt;
+This test is not working. I don't know what exactly is going on. Seems like ASM is not working in maven-dependency-analyzer. I copied implementation from maven-dependency-plugin, almost literally.</description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="26">
+                <description></description>
+                <dependants>
+                    <wp estimate="0" marker="PDD-C987678A-26">
+                        <subject>./qulice-maven-plugin/pom.xml</subject>
+                        <description>&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-maven-plugin/pom.xml?marks=234-235"&gt;./qulice-maven-plugin/pom.xml&lt;/a&gt;
+This is a workaround until they fix maven-invoker-plugin, see the ticket #26 for more information.</description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="13">
+                <description></description>
+                <dependants>
+                    <wp estimate="0" marker="PDD-5CE3B686-13">
+                        <issue assignee="yegor256@yahoo.com" href="http://trac.qulice.com/qulice/ticket/54">54</issue>
+                        <subject>./qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java</subject>
+                        <description>&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java?marks=48-49"&gt;./qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java&lt;/a&gt;
+The test doesn't work because functionality is not implemented yet.</description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="11">
+                <description></description>
+                <dependants>
+                    <wp marker="PDD-3FBB12D7-11">
+                        <issue assignee="guard" href="http://trac.qulice.com/qulice/ticket/20">20</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                    <wp marker="PDD-049CFC45-11">
+                        <issue assignee="guard" href="http://trac.qulice.com/qulice/ticket/60">60</issue>
+                        <description></description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+            <wp marker="JIRA-7643">
+                <description></description>
+                <dependants>
+                    <wp estimate="90" marker="PDD-4A467C24-JIRA-7643">
+                        <subject>./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</subject>
+                        <description>&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java?marks=10-10"&gt;./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java&lt;/a&gt;
+Longer format of puzzle marker
+&lt;a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java?marks=10-10"&gt;./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java&lt;/a&gt;
+Longer format of puzzle marker</description>
+                        <dependants/>
+                    </wp>
+                </dependants>
+            </wp>
+        </dependants>
+    </wp>
+</pdd>

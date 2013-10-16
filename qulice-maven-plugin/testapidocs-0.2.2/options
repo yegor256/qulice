@@ -1,0 +1,75 @@
+-classpath
+'/Users/be/code/qulice/qulice/qulice-maven-plugin/target/classes:/Users/be/code/qulice/qulice/qulice-maven-plugin/target/test-classes:/Users/be/.m2/repository/log4j/log4j/1.2.16/log4j-1.2.16.jar:/Users/be/.m2/repository/xml-apis/xml-apis/1.3.02/xml-apis-1.3.02.jar:/Users/be/code/qulice/qulice/qulice-spi/target/qulice-spi-0.2.2.jar:/Users/be/.m2/repository/org/slf4j/log4j-over-slf4j/1.6.2/log4j-over-slf4j-1.6.2.jar:/Users/be/.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-44/plexus-container-default-1.0-alpha-44.jar:/Users/be/.m2/repository/org/codehaus/plexus/plexus-classworlds/2.4/plexus-classworlds-2.4.jar:/Users/be/.m2/repository/org/sonatype/aether/aether-spi/1.11/aether-spi-1.11.jar:/Users/be/.m2/repository/org/sonatype/plexus/plexus-sec-dispatcher/1.3/plexus-sec-dispatcher-1.3.jar:/Users/be/.m2/repository/org/apache/maven/maven-compat/3.0-alpha-2/maven-compat-3.0-alpha-2.jar:/Users/be/code/qulice/qulice/qulice-spi/target/qulice-spi-0.2.2-mock.jar:/Users/be/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/be/code/qulice/qulice/qulice-codenarc/target/qulice-codenarc-0.2.2.jar:/Users/be/.m2/repository/com/google/guava/guava-annotations/r03/guava-annotations-r03.jar:/Users/be/.m2/repository/org/apache/maven/maven-settings/3.0.3/maven-settings-3.0.3.jar:/Users/be/.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-beta-4/wagon-provider-api-1.0-beta-4.jar:/Users/be/.m2/repository/xerces/xercesImpl/2.6.2/xercesImpl-2.6.2.jar:/Users/be/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/be/.m2/repository/org/hamcrest/hamcrest-library/1.3/hamcrest-library-1.3.jar:/Users/be/.m2/repository/org/codehaus/plexus/plexus-utils/2.0.6/plexus-utils-2.0.6.jar:/Users/be/.m2/repository/antlr/antlr/2.7.7/antlr-2.7.7.jar:/Users/be/.m2/repository/org/apache/maven/maven-model/3.0.3/maven-model-3.0.3.jar:/Users/be/.m2/repository/org/apache/maven/shared/maven-dependency-analyzer/1.2/maven-dependency-analyzer-1.2.jar:/Users/be/.m2/repository/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2.jar:/Users/be/.m2/repository/org/apache/maven/maven-project-builder/3.0-alpha-2/maven-project-builder-3.0-alpha-2.jar:/Users/be/.m2/repository/com/google/code/findbugs/jsr305/2.0.0/jsr305-2.0.0.jar:/Users/be/.m2/repository/org/sonatype/sisu/sisu-guice/3.1.0/sisu-guice-3.1.0-no_aop.jar:/Users/be/.m2/repository/org/mockito/mockito-core/1.9.0/mockito-core-1.9.0.jar:/Users/be/.m2/repository/com/google/guava/guava-io/r03/guava-io-r03.jar:/Users/be/.m2/repository/org/apache/maven/maven-repository-metadata/3.0.3/maven-repository-metadata-3.0.3.jar:/Users/be/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar:/Users/be/.m2/repository/org/apache/maven/maven-plugin-api/3.0.3/maven-plugin-api-3.0.3.jar:/Users/be/.m2/repository/commons-beanutils/commons-beanutils-core/1.8.3/commons-beanutils-core-1.8.3.jar:/Users/be/.m2/repository/ant/ant/1.6/ant-1.6.jar:/Users/be/.m2/repository/org/gmetrics/GMetrics/0.3/GMetrics-0.3.jar:/Users/be/.m2/repository/aspectj/aspectjrt/1.5.3/aspectjrt-1.5.3.jar:/Users/be/.m2/repository/junit/junit-dep/4.10/junit-dep-4.10.jar:/Users/be/.m2/repository/xom/xom/1.0/xom-1.0.jar:/Users/be/.m2/repository/jdom/jdom/1.0/jdom-1.0.jar:/Users/be/.m2/repository/com/jcabi/jcabi-maven-slf4j/0.1.9/jcabi-maven-slf4j-0.1.9.jar:/Users/be/code/qulice/qulice/qulice-checkstyle/target/qulice-checkstyle-0.2.2.jar:/Users/be/.m2/repository/org/apache/maven/plugin-testing/maven-plugin-testing-harness/2.0-alpha-1/maven-plugin-testing-harness-2.0-alpha-1.jar:/Users/be/.m2/repository/com/google/code/findbugs/findbugs/2.0.0/findbugs-2.0.0.jar:/Users/be/.m2/repository/org/codehaus/groovy/groovy-all/1.7.5/groovy-all-1.7.5.jar:/Users/be/.m2/repository/org/apache/maven/maven-core/3.0.3/maven-core-3.0.3.jar:/Users/be/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar:/Users/be/.m2/repository/org/objenesis/objenesis/1.0/objenesis-1.0.jar:/Users/be/.m2/repository/asm/asm-commons/3.3/asm-commons-3.3.jar:/Users/be/.m2/repository/com/google/collections/google-collections/1.0/google-collections-1.0.jar:/Users/be/.m2/repository/org/apache/maven/maven-model-builder/3.0.3/maven-model-builder-3.0.3.jar:/Users/be/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/Users/be/.m2/repository/pmd/pmd/4.3/pmd-4.3.jar:/Users/be/.m2/repository/com/jcabi/jcabi-log/0.1.9/jcabi-log-0.1.9.jar:/Users/be/.m2/repository/org/apache/maven/maven-project/3.0-alpha-2/maven-project-3.0-alpha-2.jar:/Users/be/.m2/repository/jaxen/jaxen/1.1.1/jaxen-1.1.1.jar:/Users/be/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar:/Users/be/.m2/repository/asm/asm-tree/3.3/asm-tree-3.3.jar:/Users/be/code/qulice/qulice/qulice-pmd/target/qulice-pmd-0.2.2.jar:/Users/be/.m2/repository/org/sonatype/sisu/sisu-inject-bean/2.3.0/sisu-inject-bean-2.3.0.jar:/Users/be/.m2/repository/com/google/code/findbugs/annotations/2.0.0/annotations-2.0.0.jar:/Users/be/.m2/repository/org/apache/maven/maven-artifact/3.0.3/maven-artifact-3.0.3.jar:/Users/be/.m2/repository/commons-io/commons-io/2.1/commons-io-2.1.jar:/Users/be/.m2/repository/com/google/guava/guava-base/r03/guava-base-r03.jar:/Users/be/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/be/.m2/repository/org/codehaus/woodstox/wstx-asl/3.2.6/wstx-asl-3.2.6.jar:/Users/be/.m2/repository/com/ibm/icu/icu4j/2.6.1/icu4j-2.6.1.jar:/Users/be/.m2/repository/com/puppycrawl/tools/checkstyle/5.4/checkstyle-5.4.jar:/Users/be/.m2/repository/org/sonatype/aether/aether-impl/1.11/aether-impl-1.11.jar:/Users/be/.m2/repository/com/google/code/findbugs/jFormatString/2.0.0/jFormatString-2.0.0.jar:/Users/be/.m2/repository/stax/stax-api/1.0.1/stax-api-1.0.1.jar:/Users/be/.m2/repository/org/apache/maven/maven-aether-provider/3.0.3/maven-aether-provider-3.0.3.jar:/Users/be/.m2/repository/org/apache/maven/maven-settings-builder/3.0.3/maven-settings-builder-3.0.3.jar:/Users/be/.m2/repository/org/sonatype/spice/model-builder/1.3/model-builder-1.3.jar:/Users/be/.m2/repository/commons-cli/commons-cli/1.2/commons-cli-1.2.jar:/Users/be/.m2/repository/xalan/serializer/2.7.1/serializer-2.7.1.jar:/Users/be/.m2/repository/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.jar:/Users/be/code/qulice/qulice/qulice-findbugs/target/qulice-findbugs-0.2.2.jar:/Users/be/.m2/repository/org/sonatype/aether/aether-api/1.11/aether-api-1.11.jar:/Users/be/.m2/repository/org/apache/ant/ant-launcher/1.7.1/ant-launcher-1.7.1.jar:/Users/be/code/qulice/qulice/qulice-xml/target/qulice-xml-0.2.2.jar:/Users/be/.m2/repository/org/codehaus/plexus/plexus-interpolation/1.14/plexus-interpolation-1.14.jar:/Users/be/.m2/repository/org/sonatype/aether/aether-util/1.11/aether-util-1.11.jar:/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home/jre/../lib/tools.jar:/Users/be/.m2/repository/org/apache/ant/ant/1.7.1/ant-1.7.1.jar:/Users/be/.m2/repository/org/sonatype/sisu/sisu-inject-plexus/2.3.0/sisu-inject-plexus-2.3.0.jar:/Users/be/.m2/repository/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.jar:/Users/be/.m2/repository/org/codehaus/plexus/plexus-archiver/1.0-alpha-7/plexus-archiver-1.0-alpha-7.jar:/Users/be/.m2/repository/org/codenarc/CodeNarc/0.15/CodeNarc-0.15.jar:/Users/be/.m2/repository/asm/asm/3.0/asm-3.0.jar:/Users/be/.m2/repository/org/sonatype/sisu/sisu-guava/0.9.9/sisu-guava-0.9.9.jar:/Users/be/.m2/repository/xalan/xalan/2.7.1/xalan-2.7.1.jar:/Users/be/.m2/repository/com/google/code/findbugs/bcel/2.0.0/bcel-2.0.0.jar'
+-encoding
+'UTF-8'
+-protected
+-quiet
+-sourcepath
+'/Users/be/code/qulice/qulice/qulice-maven-plugin/src/mock/java'
+-author
+-bottom
+'Copyright &#169; 2011-2012 <a href="http://www.qulice.com">Qulice.com</a>. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/be/code/qulice/qulice/qulice-maven-plugin/target/site/testapidocs-0.2.2'
+-docencoding
+'UTF-8'
+-doctitle
+'qulice-maven-plugin 0.2.2 Test API'
+-link
+'http://download.oracle.com/javaee/6/api'
+-link
+'http://www.qulice.com/qulice-spi/apidocs'
+-link
+'http://www.qulice.com/qulice-checkstyle/apidocs'
+-link
+'http://www.qulice.com/qulice-pmd/apidocs'
+-link
+'http://www.qulice.com/qulice-codenarc/apidocs'
+-link
+'http://www.qulice.com/qulice-findbugs/apidocs'
+-link
+'http://www.qulice.com/qulice-xml/apidocs'
+-link
+'http://commons.apache.org/io/apidocs'
+-link
+'http://www.jcabi.com/jcabi-log/apidocs'
+-link
+'http://www.jcabi.com/jcabi-maven-slf4j/apidocs'
+-link
+'http://maven.apache.org/maven-core/apidocs'
+-link
+'http://maven.apache.org/maven-model/apidocs'
+-link
+'http://maven.apache.org/maven-plugin-api/apidocs'
+-link
+'http://maven.apache.org/maven-artifact/apidocs'
+-link
+'http://maven.apache.org/shared/maven-dependency-analyzer/apidocs'
+-link
+'http://maven.apache.org/maven-project/apidocs'
+-link
+'http://maven.apache.org/plugin-testing/maven-plugin-testing-harness/apidocs'
+-link
+'http://plexus.codehaus.org/plexus-utils/apidocs'
+-link
+'http://sisu.sonatype.org/sisu-inject/containers/guice-bean/guice-plexus/sisu-inject-plexus/apidocs'
+-link
+'http://commons.apache.org/lang/apidocs'
+-linkoffline
+'http://download.oracle.com/javase/6/docs/api' '/Users/be/code/qulice/qulice/qulice-maven-plugin/target/javadoc-bundle-options'
+-linkoffline
+'http://www.qulice.com/qulice-spi/apidocs' '/Users/be/code/qulice/qulice/qulice-spi/target/site/testapidocs-0.2.2'
+-linkoffline
+'http://www.qulice.com/qulice-checkstyle/apidocs' '/Users/be/code/qulice/qulice/qulice-checkstyle/target/site/testapidocs-0.2.2'
+-linkoffline
+'http://www.qulice.com/qulice-findbugs/apidocs' '/Users/be/code/qulice/qulice/qulice-findbugs/target/site/testapidocs-0.2.2'
+-tag
+"todo:a:To do:"
+-tag
+"checkstyle:a:Suppressed checkstyle violations:"
+-use
+-version
+-windowtitle
+'qulice-maven-plugin 0.2.2 Test API'

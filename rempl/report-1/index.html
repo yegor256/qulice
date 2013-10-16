@@ -1,0 +1,235 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>PDD Report</title><style>
+                * {
+                    font-family: 'Trebuchet MS';
+                }
+                body {
+                    padding: 3em;
+                }
+                a, a:hover, a:visited {
+                    color: #00a;
+                }
+                div.wp {
+                    /* display: none; */
+                    margin: 1.5em 0em 1.5em 2em;
+                }
+                div.visible {
+                    display: block;
+                }
+                div.data {
+                    margin: 0.5em 0em 1.5em 0em;
+                    width: 40em;
+                    white-space: pre-wrap;
+                }
+                span.item {
+                    border: 1px solid gray;
+                    background-color: lightgray;
+                    padding: 0.2em 0.4em;
+                    margin-right: 0.4em;
+                    cursor: pointer;
+                }
+                span.unassigned {
+                    border: 1px solid red;
+                    background-color: #fcc;
+                }
+                span.author {
+                    background-color: white;
+                    color: gray;
+                }
+                span.element {
+                    color: gray;
+                    margin-left: 1em;
+                }
+                span.marker {
+                    margin: 0em 0.4em;
+                }
+                span.emphasize {
+                    color: red;
+                }
+                span.person {
+                    color: #88f;
+                }
+                table#legend {
+                    margin-top: 6em;
+                }
+                    table#legend td {
+                        vertical-align: top;
+                        padding: 0.5em 0em;
+                    }
+            </style><script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script><script type="text/javascript">
+            //
+            $(document).ready(
+                function() {
+                    $("span.item").click(
+                        function () {
+                            $(this).siblings("div.wp").toggle();
+                        }
+                    );
+                    $("body div.wp div.wp div.wp").hide();
+                }
+            );
+            //
+            </script></head>
+   <body>
+      <div class="wp"><span class="item unassigned">SuD</span><span class="marker">♦?+2½</span><span class="marker emphasize">▼34</span><div class="data"></div>
+         <div class="wp"><span class="item unassigned">45</span><span class="marker">♦?+?</span><span class="marker">▼4</span><div class="data"></div>
+            <div class="wp"><span class="item">PDD-6AFAD375-45</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/47">47</a> <span class="person">guard</span></span><div class="data"></div>
+            </div>
+            <div class="wp"><span class="item">PDD-0E4F2BF3-45</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/48">48</a> <span class="person">guard</span></span><div class="data"></div>
+            </div>
+            <div class="wp"><span class="item">PDD-BBBD4158-45</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/49">49</a> <span class="person">guard</span></span><div class="data"></div>
+            </div>
+            <div class="wp"><span class="item">PDD-BD446E6F-45</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/50">50</a> <span class="person">guard</span></span><div class="data"></div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">44</span><span class="marker">♦?+1</span><span class="marker emphasize">▼1</span><div class="data"></div>
+            <div class="wp"><span class="item unassigned">PDD-21460232-44</span><span class="marker">♦1</span><span class="element">./qulice-pmd/src/main/java/com/qulice/pmd/Files.java</span><div class="data"><a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/src/main/java/com/qulice/checkstyle/CheckstyleValidator.java?marks=206-207">./qulice-checkstyle/src/main/java/com/qulice/checkstyle/CheckstyleValidator.java</a>
+                  Perform refactoring: remove this method, use Environment.files() instead.
+                  <a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-pmd/src/main/java/com/qulice/pmd/Files.java?marks=56-57">./qulice-pmd/src/main/java/com/qulice/pmd/Files.java</a>
+                  Perform refactoring: remove this method, use Environment.files() instead.
+               </div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">32</span><span class="marker">♦?+?</span><span class="marker">▼1</span><div class="data"></div>
+            <div class="wp"><span class="item">PDD-B5105E05-32</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/51">51</a> <span class="person">dmitry.bashkin@gmail.com</span></span><div class="data"></div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">55</span><span class="marker">♦?+?</span><span class="marker emphasize">▼4</span><div class="data"></div>
+            <div class="wp"><span class="item">PDD-42D5DC87-55</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/57">57</a> <span class="person">guard</span></span><div class="data"></div>
+            </div>
+            <div class="wp"><span class="item">PDD-EABFF616-55</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/59">59</a> <span class="person">guard</span></span><div class="data"></div>
+            </div>
+            <div class="wp"><span class="item">PDD-8F826680-55</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/58">58</a> <span class="person">guard</span></span><div class="data"></div>
+            </div>
+            <div class="wp"><span class="item unassigned">PDD-5B4FE4E6-55</span><span class="marker">♦?</span><span class="element">./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</span><div class="data"><a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java?marks=14-15">./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</a>
+                  First line is correct, but second line is impropertly indented
+                  <a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java?marks=14-15">./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</a>
+                  First line is correct, but second line is impropertly indented
+               </div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">83</span><span class="marker">♦?+?</span><span class="marker emphasize">▼2</span><div class="data"></div>
+            <div class="wp"><span class="item unassigned">PDD-4EE89D51-83</span><span class="marker">♦?</span><span class="element">./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</span><div class="data"><a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java?marks=62-62">./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</a>
+                  When it works, add {@code FindBugsValidator()} to this list
+               </div>
+            </div>
+            <div class="wp"><span class="item unassigned">PDD-7CADAB22-83</span><span class="marker">♦?</span><span class="element">./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</span><div class="data"><a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java?marks=47-47">./qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</a>
+                  When it works, add {@code DependenciesValidator()} to this list
+               </div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">36</span><span class="marker">♦?+?</span><span class="marker">▼1</span><div class="data"></div>
+            <div class="wp"><span class="item">PDD-F44F782A-36</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/52">52</a> <span class="person">guard</span></span><div class="data"></div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">33</span><span class="marker">♦?+?</span><span class="marker emphasize">▼1</span><div class="data"></div>
+            <div class="wp"><span class="item unassigned">PDD-01EA1718-33</span><span class="marker">♦?</span><span class="element">./pom.xml</span><div class="data"><a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./pom.xml?marks=229-231">./pom.xml</a>
+                  This is a temporary measure, until qulice implements this validation. Once it's implemented in qulice - just remove this plugin
+                  from here.
+               </div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">555</span><span class="marker">♦?+?</span><span class="marker emphasize">▼1</span><div class="data"></div>
+            <div class="wp"><span class="item unassigned">PDD-B5DCEC0F-555</span><span class="marker">♦?</span><span class="element">./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</span><div class="data"><a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java?marks=7-7">./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</a>
+                  Some text with proper indentation of the second and all consecutive lines.
+                  <a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java?marks=7-7">./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</a>
+                  Some text with proper indentation of the second and all consecutive lines.
+               </div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">8</span><span class="marker">♦?+?</span><span class="marker">▼1</span><div class="data"></div>
+            <div class="wp"><span class="item">PDD-AC27A39D-8</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/14">14</a> <span class="person">yegor256@yahoo.com</span></span><span class="element">./qulice-maven-plugin/pom.xml</span><div class="data"><a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-maven-plugin/pom.xml?marks=206-209">./qulice-maven-plugin/pom.xml</a>
+                  This test is not working. I don't know what exactly is going on. Seems like ASM is not working in maven-dependency-analyzer.
+                  I copied implementation from maven-dependency-plugin, almost literally.
+               </div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">26</span><span class="marker">♦?+?</span><span class="marker emphasize">▼1</span><div class="data"></div>
+            <div class="wp"><span class="item unassigned">PDD-C987678A-26</span><span class="marker">♦?</span><span class="element">./qulice-maven-plugin/pom.xml</span><div class="data"><a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-maven-plugin/pom.xml?marks=234-235">./qulice-maven-plugin/pom.xml</a>
+                  This is a workaround until they fix maven-invoker-plugin, see the ticket #26 for more information.
+               </div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">13</span><span class="marker">♦?+?</span><span class="marker">▼1</span><div class="data"></div>
+            <div class="wp"><span class="item">PDD-5CE3B686-13</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/54">54</a> <span class="person">yegor256@yahoo.com</span></span><span class="element">./qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java</span><div class="data"><a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java?marks=48-49">./qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java</a>
+                  The test doesn't work because functionality is not implemented yet.
+               </div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">11</span><span class="marker">♦?+?</span><span class="marker">▼2</span><div class="data"></div>
+            <div class="wp"><span class="item">PDD-3FBB12D7-11</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/20">20</a> <span class="person">guard</span></span><div class="data"></div>
+            </div>
+            <div class="wp"><span class="item">PDD-049CFC45-11</span><span class="marker">♦?</span><span class="marker">▶<a href="http://trac.qulice.com/qulice/ticket/60">60</a> <span class="person">guard</span></span><div class="data"></div>
+            </div>
+         </div>
+         <div class="wp"><span class="item unassigned">JIRA-7643</span><span class="marker">♦?+1½</span><span class="marker emphasize">▼1</span><div class="data"></div>
+            <div class="wp"><span class="item unassigned">PDD-4A467C24-JIRA-7643</span><span class="marker">♦1½</span><span class="element">./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</span><div class="data"><a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java?marks=10-10">./qulice-checkstyle/target/test-classes/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</a>
+                  Longer format of puzzle marker
+                  <a href="http://trac.qulice.com/qulice/browser/trunk/qulice/./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java?marks=10-10">./qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</a>
+                  Longer format of puzzle marker
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+   <table id="legend">
+      <colgroup>
+         <col style="width: 5em; text-align: right;">
+         <col style="width: 25em;">
+      </colgroup>
+      <tbody>
+         <tr>
+            <td><span class="item">...</span></td>
+            <td>is a unit of work in the implementation process, where
+               the hash code is the dynamic identifier of the unit
+               of work uniquely designating its location in the
+               SuD
+            </td>
+         </tr>
+         <tr>
+            <td><span class="item unassigned">...</span></td>
+            <td>is a unit of work not assigned to anyone yet</td>
+         </tr>
+         <tr>
+            <td><span class="marker">♦2+3⅓</span></td>
+            <td>estimate of the unit of work in hours, where the first
+               number is its own estimate and the second number
+               is the estimate of its subordinates
+            </td>
+         </tr>
+         <tr>
+            <td><span class="marker">▼3</span></td>
+            <td>identifies the amount of subordinate
+               units of work, highlighting the number in
+               red when some of them are not assigned to implementors yet
+            </td>
+         </tr>
+         <tr>
+            <td><span class="marker">▶123</span></td>
+            <td>denotes the ticket ID where this particular
+               unit of work is discussed and assigned to
+               the implementor
+            </td>
+         </tr>
+      </tbody>
+   </table>
+   <p>
+      The method and software used during generation of
+      this report is called Puzzle Driven Development and
+      is patent pending in United States Patent and Trademark
+      Office (USPTO), patent application no.12/840,306 filled
+      in July 2010. To avoid unintended
+      <a href="http://en.wikipedia.org/wiki/Patent_infringement">patent infringement</a>
+      and consecutive penalties kindly ask a written permission
+      of the author beforehand: Yegor Bugayenko (<a href="mailto:yegor@rempl.com">yegor@rempl.com</a>).
+      
+   </p>
+   <p>
+      The page was generated on
+      2012-11-01T14:19:45.529Z
+   </p>
+</html>
