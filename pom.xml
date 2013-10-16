@@ -108,10 +108,60 @@
     </ciManagement>
     <distributionManagement>
         <site>
-            <id>www.qulice.com</id>
-            <url>s3://www.qulice.com/</url>
+            <id>github-pages</id>
+            <url>http://www.rexsl.com</url>
         </site>
     </distributionManagement>
+    <properties>
+        <github.global.server>github</github.global.server>
+    </properties>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <configuration>
+                        <skipDeploy>true</skipDeploy>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <configuration>
+                        <archive>
+                            <manifestEntries>
+                                <Qulice-Version>${project.version}</Qulice-Version>
+                                <Qulice-Build>${buildNumber}</Qulice-Build>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.github</groupId>
+                    <artifactId>site-maven-plugin</artifactId>
+                    <version>0.8</version>
+                    <configuration>
+                        <message>site for ${project.version}</message>
+                        <path></path>
+                        <merge>true</merge>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>site-deploy</phase>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
     <profiles>
         <profile>
             <id>site</id>
