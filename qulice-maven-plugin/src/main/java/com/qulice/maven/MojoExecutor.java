@@ -38,6 +38,7 @@ import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Plugin;
+import org.apache.maven.plugin.InvalidPluginDescriptorException;
 import org.apache.maven.plugin.MavenPluginManager;
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecution;
@@ -167,10 +168,11 @@ public final class MojoExecutor {
      * @return The mojo
      */
     private Mojo mojo(final MojoExecution execution) {
-        Mojo mojo;
+        final Mojo mojo;
         try {
-            mojo = this.manager
-                .getConfiguredMojo(Mojo.class, this.session, execution);
+            mojo = this.manager.getConfiguredMojo(
+                Mojo.class, this.session, execution
+            );
         } catch (PluginConfigurationException ex) {
             throw new IllegalStateException("Can't configure MOJO", ex);
         } catch (PluginContainerException ex) {
@@ -189,14 +191,14 @@ public final class MojoExecutor {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private Xpp3Dom toXppDom(final Properties config, final String name) {
         final Xpp3Dom xpp = new Xpp3Dom(name);
-        for (Map.Entry<?, ?> entry : config.entrySet()) {
+        for (final Map.Entry<?, ?> entry : config.entrySet()) {
             if (entry.getValue() instanceof String) {
                 final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
                 child.setValue(config.getProperty(entry.getKey().toString()));
                 xpp.addChild(child);
             } else if (entry.getValue() instanceof String[]) {
                 final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
-                for (String val : String[].class.cast(entry.getValue())) {
+                for (final String val : String[].class.cast(entry.getValue())) {
                     final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
                     row.setValue(val);
                     child.addChild(row);
@@ -204,7 +206,8 @@ public final class MojoExecutor {
                 xpp.addChild(child);
             } else if (entry.getValue() instanceof Collection) {
                 final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
-                for (Object val : Collection.class.cast(entry.getValue())) {
+                for (final Object val
+                    : Collection.class.cast(entry.getValue())) {
                     final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
                     row.setValue(val.toString());
                     child.addChild(row);
@@ -238,14 +241,14 @@ public final class MojoExecutor {
     private Xpp3Dom toXppDom(final PlexusConfiguration config) {
         final Xpp3Dom result = new Xpp3Dom(config.getName());
         result.setValue(config.getValue(null));
-        for (String name : config.getAttributeNames()) {
+        for (final String name : config.getAttributeNames()) {
             try {
                 result.setAttribute(name, config.getAttribute(name));
             } catch (PlexusConfigurationException ex) {
                 throw new IllegalArgumentException(ex);
             }
         }
-        for (PlexusConfiguration child : config.getChildren()) {
+        for (final PlexusConfiguration child : config.getChildren()) {
             result.addChild(this.toXppDom(child));
         }
         return result;
