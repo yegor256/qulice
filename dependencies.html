@@ -7,7 +7,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-checkstyle - Project Dependencies</title>
+        <title>qulice-codenarc - Project Dependencies</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                                                                                                                         
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
@@ -106,12 +106,12 @@
                                     </li>
                                                                                         <li>
                                                                     <a href="project-reports.html" title="Project Reports">Project Reports</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
                                                                 </ul>
                                     </li>
                     </ul>
         <div id="content">
-                            <a href="https://github.com/tpc2/qulice/qulice-checkstyle">
+                            <a href="https://github.com/tpc2/qulice/qulice-codenarc">
                     <img style="position: absolute; top: 0; right: 0; border: 0; width: 100px; height: 100px;"
                         src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
                         alt="Fork me on GitHub" />
@@ -126,7 +126,7 @@
                             <ul id="breadcrumbs">
                                             <li>                        <a href=".." title="qulice.com">qulice.com</a>
         </li>
-                                            <li>                                    <a href="./" title="qulice-checkstyle">qulice-checkstyle</a>
+                                            <li>                                    <a href="./" title="qulice-codenarc">qulice-codenarc</a>
         </li>
                                     </ul>
                         <p>
@@ -155,29 +155,29 @@
 <td>jar</td>
 <td><a class="externalLink" href="http://www.jcabi.com/LICENSE.txt">BSD</a></td></tr>
 <tr class="a">
-<td>com.puppycrawl.tools</td>
-<td><a class="externalLink" href="http://checkstyle.sourceforge.net/">checkstyle</a></td>
-<td>5.6</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt">GNU Lesser General Public License</a></td></tr>
-<tr class="b">
 <td>com.qulice</td>
 <td><a class="externalLink" href="http://www.qulice.com/qulice-spi">qulice-spi</a></td>
 <td>0.3.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.qulice.com/LICENSE.txt">BSD</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>commons-io</td>
 <td><a class="externalLink" href="http://commons.apache.org/io/">commons-io</a></td>
 <td>2.4</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
-<td>org.apache.commons</td>
-<td><a class="externalLink" href="http://commons.apache.org/lang/">commons-lang3</a></td>
-<td>3.1</td>
+<tr class="a">
+<td>log4j</td>
+<td><a class="externalLink" href="http://logging.apache.org/log4j/1.2/">log4j</a></td>
+<td>1.2.17</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr></table></div><a name="Project_Dependencies_test"></a>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="b">
+<td>org.codenarc</td>
+<td><a class="externalLink" href="http://codenarc.sourceforge.net/">CodeNarc</a></td>
+<td>0.19</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2</a></td></tr></table></div><a name="Project_Dependencies_test"></a>
 <div class="section">
 <h3>test<a name="test"></a></h3>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
@@ -190,40 +190,26 @@
 <th>Type</th>
 <th>License</th></tr>
 <tr class="b">
-<td>com.google.collections</td>
-<td><a class="externalLink" href="http://code.google.com/p/google-collections/">google-collections</a></td>
-<td>1.0-rc5</td>
+<td>com.google.guava</td>
+<td><a class="externalLink" href="http://code.google.com/p/guava-libraries/guava">guava</a></td>
+<td>15.0</td>
 <td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="a">
-<td>com.google.guava</td>
-<td><a class="externalLink" href="http://code.google.com/p/guava-libraries/guava-io">guava-io</a></td>
-<td>r03</td>
-<td>-</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
 <td>com.qulice</td>
 <td><a class="externalLink" href="http://www.qulice.com/qulice-spi">qulice-spi</a></td>
 <td>0.3.1</td>
 <td>mock</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.qulice.com/LICENSE.txt">BSD</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>junit</td>
 <td><a class="externalLink" href="http://junit.org">junit</a></td>
 <td>4.11</td>
 <td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.opensource.org/licenses/cpl1.0.txt">Common Public License Version 1.0</a></td></tr>
-<tr class="b">
-<td>log4j</td>
-<td><a class="externalLink" href="http://logging.apache.org/log4j/1.2/">log4j</a></td>
-<td>1.2.17</td>
-<td>-</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="a">
 <td>org.hamcrest</td>
 <td><a class="externalLink" href="https://github.com/hamcrest/JavaHamcrest/hamcrest-core">hamcrest-core</a></td>
@@ -266,35 +252,11 @@
 <th>Type</th>
 <th>License</th></tr>
 <tr class="b">
-<td>antlr</td>
-<td><a class="externalLink" href="http://www.antlr.org/">antlr</a></td>
-<td>2.7.7</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.antlr.org/license.html">BSD License</a></td></tr>
-<tr class="a">
 <td>com.jcabi</td>
 <td><a class="externalLink" href="http://www.jcabi.com/parent/jcabi-aspects">jcabi-aspects</a></td>
 <td>0.11.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.jcabi.com/LICENSE.txt">BSD</a></td></tr>
-<tr class="b">
-<td>commons-beanutils</td>
-<td><a class="externalLink" href="http://commons.apache.org/beanutils/">commons-beanutils-core</a></td>
-<td>1.8.3</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="a">
-<td>commons-cli</td>
-<td><a class="externalLink" href="http://commons.apache.org/cli/">commons-cli</a></td>
-<td>1.2</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
-<td>commons-logging</td>
-<td><a class="externalLink" href="http://commons.apache.org/logging">commons-logging</a></td>
-<td>1.1.1</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="a">
 <td>javax.validation</td>
 <td><a class="externalLink" href="http://beanvalidation.org">validation-api</a></td>
@@ -302,12 +264,42 @@
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="b">
+<td>org.apache.ant</td>
+<td><a class="externalLink" href="http://ant.apache.org/ant/">ant</a></td>
+<td>1.7.1</td>
+<td>jar</td>
+<td>-</td></tr>
+<tr class="a">
+<td>org.apache.ant</td>
+<td><a class="externalLink" href="http://ant.apache.org/ant-launcher/">ant-launcher</a></td>
+<td>1.7.1</td>
+<td>jar</td>
+<td>-</td></tr>
+<tr class="b">
+<td>org.apache.commons</td>
+<td><a class="externalLink" href="http://commons.apache.org/lang/">commons-lang3</a></td>
+<td>3.1</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
 <td>org.aspectj</td>
 <td><a class="externalLink" href="http://www.aspectj.org">aspectjrt</a></td>
 <td>1.7.3</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License - v 1.0</a></td></tr>
+<tr class="b">
+<td>org.codehaus.groovy</td>
+<td><a class="externalLink" href="http://groovy.codehaus.org/">groovy-all</a></td>
+<td>1.7.5</td>
+<td>jar</td>
+<td>-</td></tr>
 <tr class="a">
+<td>org.gmetrics</td>
+<td><a class="externalLink" href="http://gmetrics.sourceforge.net/">GMetrics</a></td>
+<td>0.5</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2</a></td></tr>
+<tr class="b">
 <td>org.slf4j</td>
 <td><a class="externalLink" href="http://www.slf4j.org">slf4j-api</a></td>
 <td>1.7.5</td>
@@ -324,39 +316,11 @@
 <th>Type</th>
 <th>License</th></tr>
 <tr class="b">
-<td>com.google.guava</td>
-<td><a class="externalLink" href="http://code.google.com/p/guava-libraries/guava-annotations">guava-annotations</a></td>
-<td>r03</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="a">
-<td>com.google.guava</td>
-<td><a class="externalLink" href="http://code.google.com/p/guava-libraries/guava-base">guava-base</a></td>
-<td>r03</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
 <td>org.objenesis</td>
 <td><a class="externalLink" href="http://objenesis.googlecode.com/svn/docs/index.html">objenesis</a></td>
 <td>1.0</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://objenesis.googlecode.com/svn/docs/license.html">MIT License</a></td></tr></table></div><a name="Project_Transitive_Dependencies_system"></a>
-<div class="section">
-<h3>system<a name="system"></a></h3>
-<p>The following is a list of system dependencies for this project. These dependencies are required to compile the application:</p>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>GroupId</th>
-<th>ArtifactId</th>
-<th>Version</th>
-<th>Type</th>
-<th>License</th></tr>
-<tr class="b">
-<td>com.sun</td>
-<td>tools</td>
-<td>1.5.0</td>
-<td>jar</td>
-<td>-</td></tr></table></div></div><a name="Project_Dependency_Graph"></a>
+<td><a class="externalLink" href="http://objenesis.googlecode.com/svn/docs/license.html">MIT License</a></td></tr></table></div></div><a name="Project_Dependency_Graph"></a>
 <div class="section">
 <h2>Project Dependency Graph<a name="Project_Dependency_Graph"></a></h2><script language="javascript" type="text/javascript">
       function toggleDependencyDetail( divId, imgId )
@@ -379,15 +343,15 @@
 <div class="section">
 <h3>Dependency Tree<a name="Dependency_Tree"></a></h3>
 <ul>
-<li>com.qulice:qulice-checkstyle:jar:0.3.1 <img id="_img1" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep0', '_img1' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep0" style="display:none">
+<li>com.qulice:qulice-codenarc:jar:0.3.1 <img id="_img1" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep0', '_img1' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep0" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>qulice-checkstyle</th></tr>
+<th>qulice-codenarc</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>Quality control library, integrating together other static
         analysis and validation tools and instruments.</p>
-<p><b>URL: </b><a class="externalLink" href="http://www.qulice.com/qulice-checkstyle">http://www.qulice.com/qulice-checkstyle</a></p>
+<p><b>URL: </b><a class="externalLink" href="http://www.qulice.com/qulice-codenarc">http://www.qulice.com/qulice-codenarc</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.qulice.com/LICENSE.txt">BSD</a></p></td></tr></table></div>
 <ul>
 <li>com.qulice:qulice-spi:jar:0.3.1 (compile) <img id="_img3" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep2', '_img3' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep2" style="display:none">
@@ -410,144 +374,7 @@
         analysis and validation tools and instruments.</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.qulice.com/qulice-spi">http://www.qulice.com/qulice-spi</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.qulice.com/LICENSE.txt">BSD</a></p></td></tr></table></div></li>
-<li>com.google.guava:guava-io:jar:r03 (test) <img id="_img7" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep6', '_img7' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep6" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Guava (Google Common Libraries) Input/Output</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Guava IO contains a variety of types and utilities to ease 
-    IO handling in Java.</p>
-<p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/guava-libraries/guava-io">http://code.google.com/p/guava-libraries/guava-io</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
-<ul>
-<li>com.google.guava:guava-annotations:jar:r03 (test) <img id="_img9" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep8', '_img9' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep8" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Guava (Google Common Libraries) Annotations</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Guava annotations are used throughout the Guava libraries.</p>
-<p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/guava-libraries/guava-annotations">http://code.google.com/p/guava-libraries/guava-annotations</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.google.guava:guava-base:jar:r03 (test) <img id="_img11" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep10', '_img11' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep10" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Guava (Google Common Libraries) Base</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Guava Base contains core classes, utility methods, and services
-    used by other parts of the Guava libraries.</p>
-<p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/guava-libraries/guava-base">http://code.google.com/p/guava-libraries/guava-base</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>com.jcabi:jcabi-log:jar:0.10 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep12', '_img13' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep12" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>jcabi-log</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Wrapper of SLF4J and a few supplementary logging classes</p>
-<p><b>URL: </b><a class="externalLink" href="http://www.jcabi.com/parent/jcabi-log">http://www.jcabi.com/parent/jcabi-log</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.jcabi.com/LICENSE.txt">BSD</a></p></td></tr></table></div>
-<ul>
-<li>com.jcabi:jcabi-aspects:jar:0.11.1 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep14', '_img15' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep14" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>jcabi-aspects</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Collection of convenient and useful Java annotations</p>
-<p><b>URL: </b><a class="externalLink" href="http://www.jcabi.com/parent/jcabi-aspects">http://www.jcabi.com/parent/jcabi-aspects</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.jcabi.com/LICENSE.txt">BSD</a></p></td></tr></table></div></li>
-<li>org.aspectj:aspectjrt:jar:1.7.3 (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep16', '_img17' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep16" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>AspectJ runtime</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>The runtime needed to execute a program using AspectJ</p>
-<p><b>URL: </b><a class="externalLink" href="http://www.aspectj.org">http://www.aspectj.org</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License - v 1.0</a></p></td></tr></table></div></li>
-<li>javax.validation:validation-api:jar:1.1.0.Final (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep18', '_img19' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep18" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Bean Validation API</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Bean Validation API</p>
-<p><b>URL: </b><a class="externalLink" href="http://beanvalidation.org">http://beanvalidation.org</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.slf4j:slf4j-api:jar:1.7.5 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep20', '_img21' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep20" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>SLF4J API Module</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>The slf4j API</p>
-<p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li></ul></li>
-<li>com.puppycrawl.tools:checkstyle:jar:5.6 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep22', '_img23' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep22" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>checkstyle</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Checkstyle is a development tool to help programmers write Java code that adheres to a coding standard</p>
-<p><b>URL: </b><a class="externalLink" href="http://checkstyle.sourceforge.net/">http://checkstyle.sourceforge.net/</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt">GNU Lesser General Public License</a></p></td></tr></table></div>
-<ul>
-<li>antlr:antlr:jar:2.7.7 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep24', '_img25' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep24" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>AntLR Parser Generator</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>A framework for constructing recognizers, compilers,
-    and translators from grammatical descriptions containing
-    Java, C#, C++, or Python actions.</p>
-<p><b>URL: </b><a class="externalLink" href="http://www.antlr.org/">http://www.antlr.org/</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.antlr.org/license.html">BSD License</a></p></td></tr></table></div></li>
-<li>commons-beanutils:commons-beanutils-core:jar:1.8.3 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep26', '_img27' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep26" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Commons BeanUtils Core</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>The Apache Software Foundation provides support for the Apache community of open-source software projects.
-    The Apache projects are characterized by a collaborative, consensus based development process, an open and
-    pragmatic software license, and a desire to create high quality software that leads the way in its field.
-    We consider ourselves not simply a group of projects sharing a server, but rather a community of developers
-    and users.</p>
-<p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/beanutils/">http://commons.apache.org/beanutils/</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div>
-<ul>
-<li>commons-logging:commons-logging:jar:1.1.1 (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep28', '_img29' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep28" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Commons Logging</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Commons Logging is a thin adapter allowing configurable bridging to other,
-    well known logging systems.</p>
-<p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/logging">http://commons.apache.org/logging</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>commons-cli:commons-cli:jar:1.2 (compile) <img id="_img31" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep30', '_img31' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep30" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Commons CLI</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Commons CLI provides a simple API for presenting, processing and validating a command line interface.</p>
-<p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/cli/">http://commons.apache.org/cli/</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.sun:tools:jar:1.5.0 (system) <img id="_img33" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep32', '_img33' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep32" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>com.sun:tools:jar:1.5.0</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>There is currently no description associated with this project.</p></td></tr></table></div></li></ul></li>
-<li>commons-io:commons-io:jar:2.4 (compile) <img id="_img35" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep34', '_img35' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep34" style="display:none">
+<li>commons-io:commons-io:jar:2.4 (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep6', '_img7' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep6" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Commons IO</th></tr>
@@ -557,7 +384,67 @@
 file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/io/">http://commons.apache.org/io/</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.commons:commons-lang3:jar:3.1 (compile) <img id="_img37" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep36', '_img37' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep36" style="display:none">
+<li>com.google.guava:guava:jar:15.0 (test) <img id="_img9" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep8', '_img9' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep8" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Guava: Google Core Libraries for Java</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Guava is a suite of core and expanded libraries that include
+    utility classes, google's collections, io classes, and much
+    much more.
+
+    Guava has two code dependencies - javax.annotation
+    per the JSR-305 spec and javax.inject per the JSR-330 spec.</p>
+<p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/guava-libraries/guava">http://code.google.com/p/guava-libraries/guava</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>com.jcabi:jcabi-log:jar:0.10 (compile) <img id="_img11" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep10', '_img11' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep10" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>jcabi-log</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Wrapper of SLF4J and a few supplementary logging classes</p>
+<p><b>URL: </b><a class="externalLink" href="http://www.jcabi.com/parent/jcabi-log">http://www.jcabi.com/parent/jcabi-log</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.jcabi.com/LICENSE.txt">BSD</a></p></td></tr></table></div>
+<ul>
+<li>com.jcabi:jcabi-aspects:jar:0.11.1 (compile) <img id="_img13" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep12', '_img13' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep12" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>jcabi-aspects</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Collection of convenient and useful Java annotations</p>
+<p><b>URL: </b><a class="externalLink" href="http://www.jcabi.com/parent/jcabi-aspects">http://www.jcabi.com/parent/jcabi-aspects</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.jcabi.com/LICENSE.txt">BSD</a></p></td></tr></table></div></li>
+<li>org.aspectj:aspectjrt:jar:1.7.3 (compile) <img id="_img15" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep14', '_img15' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep14" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>AspectJ runtime</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The runtime needed to execute a program using AspectJ</p>
+<p><b>URL: </b><a class="externalLink" href="http://www.aspectj.org">http://www.aspectj.org</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License - v 1.0</a></p></td></tr></table></div></li>
+<li>javax.validation:validation-api:jar:1.1.0.Final (compile) <img id="_img17" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep16', '_img17' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep16" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Bean Validation API</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Bean Validation API</p>
+<p><b>URL: </b><a class="externalLink" href="http://beanvalidation.org">http://beanvalidation.org</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.slf4j:slf4j-api:jar:1.7.5 (compile) <img id="_img19" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep18', '_img19' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep18" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>SLF4J API Module</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The slf4j API</p>
+<p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li>
+<li>org.apache.commons:commons-lang3:jar:3.1 (compile) <img id="_img21" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep20', '_img21' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep20" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Commons Lang</th></tr>
@@ -567,17 +454,65 @@ file comparators, endian transformation classes, and much more.</p>
   classes that are in java.lang's hierarchy, or are considered to be so
   standard as to justify existence in java.lang.</p>
 <p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/lang/">http://commons.apache.org/lang/</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>com.google.collections:google-collections:jar:1.0-rc5 (test) <img id="_img39" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep38', '_img39' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep38" style="display:none">
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
+<li>org.codenarc:CodeNarc:jar:0.19 (compile) <img id="_img23" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep22', '_img23' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep22" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
-<th>Google Collections Library</th></tr>
+<th>CodeNarc</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>Google Collections Library is a suite of new collections and collection-related goodness for Java 5.0</p>
-<p><b>URL: </b><a class="externalLink" href="http://code.google.com/p/google-collections/">http://code.google.com/p/google-collections/</a></p>
+<p><b>Description: </b>The CodeNarc project provides a static analysis tool for Groovy code.</p>
+<p><b>URL: </b><a class="externalLink" href="http://codenarc.sourceforge.net/">http://codenarc.sourceforge.net/</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2</a></p></td></tr></table></div>
+<ul>
+<li>org.gmetrics:GMetrics:jar:0.5 (compile) <img id="_img25" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep24', '_img25' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep24" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>GMetrics</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The GMetrics project provides calculation and reporting of size and
+        complexity metrics for Groovy source code.</p>
+<p><b>URL: </b><a class="externalLink" href="http://gmetrics.sourceforge.net/">http://gmetrics.sourceforge.net/</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2</a></p></td></tr></table></div></li>
+<li>org.codehaus.groovy:groovy-all:jar:1.7.5 (compile) <img id="_img27" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep26', '_img27' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep26" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Groovy</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Groovy: A powerful, dynamic language for the JVM</p>
+<p><b>URL: </b><a class="externalLink" href="http://groovy.codehaus.org/">http://groovy.codehaus.org/</a></p>
+<p><b>Project License: </b>No license is defined for this project.</p></td></tr></table></div></li>
+<li>org.apache.ant:ant:jar:1.7.1 (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep28', '_img29' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep28" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>org.apache.tools.ant</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache Ant</p>
+<p><b>URL: </b><a class="externalLink" href="http://ant.apache.org/ant/">http://ant.apache.org/ant/</a></p>
+<p><b>Project License: </b>No license is defined for this project.</p></td></tr></table></div>
+<ul>
+<li>org.apache.ant:ant-launcher:jar:1.7.1 (compile) <img id="_img31" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep30', '_img31' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep30" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>ant-launcher</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>master POM</p>
+<p><b>URL: </b><a class="externalLink" href="http://ant.apache.org/ant-launcher/">http://ant.apache.org/ant-launcher/</a></p>
+<p><b>Project License: </b>No license is defined for this project.</p></td></tr></table></div></li></ul></li></ul></li>
+<li>log4j:log4j:jar:1.2.17 (compile) <img id="_img33" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep32', '_img33' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep32" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Apache Log4j</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Apache Log4j 1.2</p>
+<p><b>URL: </b><a class="externalLink" href="http://logging.apache.org/log4j/1.2/">http://logging.apache.org/log4j/1.2/</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>junit:junit:jar:4.11 (test) <img id="_img41" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep40', '_img41' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep40" style="display:none">
+<li>junit:junit:jar:4.11 (test) <img id="_img35" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep34', '_img35' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep34" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>JUnit</th></tr>
@@ -587,7 +522,7 @@ file comparators, endian transformation classes, and much more.</p>
         It is used by the developer who implements unit tests in Java.</p>
 <p><b>URL: </b><a class="externalLink" href="http://junit.org">http://junit.org</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.opensource.org/licenses/cpl1.0.txt">Common Public License Version 1.0</a></p></td></tr></table></div></li>
-<li>org.hamcrest:hamcrest-core:jar:1.3 (test) <img id="_img43" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep42', '_img43' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep42" style="display:none">
+<li>org.hamcrest:hamcrest-core:jar:1.3 (test) <img id="_img37" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep36', '_img37' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep36" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Hamcrest Core</th></tr>
@@ -596,7 +531,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>This is the core API of hamcrest matcher framework to be used by third-party framework providers. This includes the a foundation set of matcher implementations for common operations.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/hamcrest/JavaHamcrest/hamcrest-core">https://github.com/hamcrest/JavaHamcrest/hamcrest-core</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></p></td></tr></table></div></li>
-<li>org.hamcrest:hamcrest-library:jar:1.3 (test) <img id="_img45" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep44', '_img45' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep44" style="display:none">
+<li>org.hamcrest:hamcrest-library:jar:1.3 (test) <img id="_img39" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep38', '_img39' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep38" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Hamcrest library</th></tr>
@@ -605,7 +540,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Hamcrest library of matcher implementations.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/hamcrest/JavaHamcrest/hamcrest-library">https://github.com/hamcrest/JavaHamcrest/hamcrest-library</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></p></td></tr></table></div></li>
-<li>org.mockito:mockito-core:jar:1.9.5 (test) <img id="_img47" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep46', '_img47' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep46" style="display:none">
+<li>org.mockito:mockito-core:jar:1.9.5 (test) <img id="_img41" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep40', '_img41' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep40" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Mockito</th></tr>
@@ -615,7 +550,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.mockito.org">http://www.mockito.org</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://code.google.com/p/mockito/wiki/License">The MIT License</a></p></td></tr></table></div>
 <ul>
-<li>org.objenesis:objenesis:jar:1.0 (test) <img id="_img49" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep48', '_img49' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep48" style="display:none">
+<li>org.objenesis:objenesis:jar:1.0 (test) <img id="_img43" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep42', '_img43' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep42" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Objenesis</th></tr>
@@ -624,7 +559,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>A library for instantiating Java objects</p>
 <p><b>URL: </b><a class="externalLink" href="http://objenesis.googlecode.com/svn/docs/index.html">http://objenesis.googlecode.com/svn/docs/index.html</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://objenesis.googlecode.com/svn/docs/license.html">MIT License</a></p></td></tr></table></div></li></ul></li>
-<li>org.slf4j:slf4j-log4j12:jar:1.7.5 (test) <img id="_img51" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep50', '_img51' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep50" style="display:none">
+<li>org.slf4j:slf4j-log4j12:jar:1.7.5 (test) <img id="_img45" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep44', '_img45' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep44" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>SLF4J LOG4J-12 Binding</th></tr>
@@ -632,26 +567,17 @@ file comparators, endian transformation classes, and much more.</p>
 <td>
 <p><b>Description: </b>SLF4J LOG4J-12 Binding</p>
 <p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li>
-<li>log4j:log4j:jar:1.2.17 (test) <img id="_img53" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep52', '_img53' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep52" style="display:none">
-<table border="0" class="bodyTable">
-<tr class="a">
-<th>Apache Log4j</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Apache Log4j 1.2</p>
-<p><b>URL: </b><a class="externalLink" href="http://logging.apache.org/log4j/1.2/">http://logging.apache.org/log4j/1.2/</a></p>
-<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
+<p><b>Project License: </b><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></p></td></tr></table></div></li></ul></li></ul></div></div><a name="Licenses"></a>
 <div class="section">
 <h2>Licenses<a name="Licenses"></a></h2>
 <p><b>New BSD License: </b>Hamcrest Core, Hamcrest library</p>
-<p><b>BSD License: </b>AntLR Parser Generator</p>
-<p><b>BSD: </b>jcabi-aspects, jcabi-log, qulice-checkstyle, qulice-spi</p>
+<p><b>Apache 2: </b>CodeNarc, GMetrics</p>
+<p><b>Unknown: </b>Groovy, ant-launcher, org.apache.tools.ant</p>
+<p><b>BSD: </b>jcabi-aspects, jcabi-log, qulice-codenarc, qulice-spi</p>
 <p><b>Eclipse Public License - v 1.0: </b>AspectJ runtime</p>
 <p><b>Common Public License Version 1.0: </b>JUnit</p>
-<p><b>GNU Lesser General Public License: </b>checkstyle</p>
 <p><b>MIT License: </b>Objenesis, SLF4J API Module, SLF4J LOG4J-12 Binding</p>
-<p><b>The Apache Software License, Version 2.0: </b>Apache Log4j, Bean Validation API, Commons BeanUtils Core, Commons CLI, Commons IO, Commons Lang, Commons Logging, Google Collections Library, Guava (Google Common Libraries) Annotations, Guava (Google Common Libraries) Base, Guava (Google Common Libraries) Input/Output</p>
+<p><b>The Apache Software License, Version 2.0: </b>Apache Log4j, Bean Validation API, Commons IO, Commons Lang, Guava: Google Core Libraries for Java</p>
 <p><b>The MIT License: </b>Mockito</p></div>
             </article>
             <p style="margin-bottom: 3em; margin-top: 2em;">
