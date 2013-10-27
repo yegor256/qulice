@@ -353,14 +353,14 @@
                                 <exception>
                                     <conflictingDependencies>
                                         <dependency>
-                                            <groupId>org.sonatype.sisu</groupId>
-                                            <artifactId>sisu-inject-bean</artifactId>
-                                            <version>2.3.4</version>
+                                            <groupId>org.eclipse.sisu</groupId>
+                                            <artifactId>org.eclipse.sisu.plexus</artifactId>
+                                            <version>0.0.0.M5</version>
                                         </dependency>
                                         <dependency>
-                                            <groupId>org.sonatype.sisu</groupId>
-                                            <artifactId>sisu-inject-plexus</artifactId>
-                                            <version>2.3.4</version>
+                                            <groupId>org.eclipse.sisu</groupId>
+                                            <artifactId>org.eclipse.sisu.inject</artifactId>
+                                            <version>0.0.0.M5</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.eclipse.aether</groupId>
