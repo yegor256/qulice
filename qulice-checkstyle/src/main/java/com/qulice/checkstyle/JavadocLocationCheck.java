@@ -46,9 +46,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class JavadocLocationCheck extends Check {
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
@@ -60,9 +57,6 @@ public final class JavadocLocationCheck extends Check {
         };
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void visitToken(final DetailAST ast) {
         if (this.isField(ast)) {

@@ -59,17 +59,11 @@ public final class PmdListener implements ReportListener {
         return this.violations;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void metricAdded(final Metric metric) {
         // ignore it
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void ruleViolationAdded(final IRuleViolation violation) {
         this.violations.add(violation);

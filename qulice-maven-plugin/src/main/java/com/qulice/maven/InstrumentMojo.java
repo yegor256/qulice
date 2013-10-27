@@ -32,8 +32,8 @@ package com.qulice.maven;
 import com.qulice.spi.ValidationException;
 import java.util.Properties;
 import org.apache.maven.plugin.MojoFailureException;
-import org.jfrog.maven.annomojo.annotations.MojoGoal;
-import org.jfrog.maven.annomojo.annotations.MojoPhase;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
 
 /**
  * Prepare classes for code coverage check.
@@ -41,13 +41,9 @@ import org.jfrog.maven.annomojo.annotations.MojoPhase;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
-@MojoGoal("instrument")
-@MojoPhase("process-classes")
+@Mojo(name = "instrument", defaultPhase = LifecyclePhase.PROCESS_CLASSES)
 public final class InstrumentMojo extends AbstractQuliceMojo {
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     protected void doExecute() throws MojoFailureException {
         final Properties props = new Properties();

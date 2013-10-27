@@ -82,9 +82,6 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
     private static final Pattern OTHER =
         Pattern.compile("^\\s+\\*(/?| *@.*)$");
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void processFiltered(final File file, final List<String> lines) {
         boolean failure = false;

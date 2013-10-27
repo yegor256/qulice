@@ -69,9 +69,6 @@ public final class JavadocTagsCheck extends Check {
     private final transient ConcurrentMap<String, Pattern> tags =
         new ConcurrentHashMap<String, Pattern>();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void init() {
         this.tags.put(
@@ -82,9 +79,6 @@ public final class JavadocTagsCheck extends Check {
         this.tags.put("version", Pattern.compile("^\\$Id.*\\$$"));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getDefaultTokens() {
         return new int[]{
@@ -93,9 +87,6 @@ public final class JavadocTagsCheck extends Check {
         };
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getParent() == null) {

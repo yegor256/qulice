@@ -34,11 +34,11 @@ import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MavenPluginManager;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugins.annotations.Component;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Contextualizable;
-import org.jfrog.maven.annomojo.annotations.MojoComponent;
-import org.jfrog.maven.annomojo.annotations.MojoParameter;
 import org.slf4j.impl.StaticLoggerBinder;
 
 /**
@@ -59,44 +59,25 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     /**
      * Maven project, to be injected by Maven itself.
      */
-    @MojoParameter(
-        expression = "${project}",
-        required = true,
-        readonly = true,
-        description = "Maven project"
-    )
+    @Component
     private transient MavenProject project;
 
     /**
      * Maven session, to be injected by Maven itself.
      */
-    @MojoParameter(
-        expression = "${session}",
-        required = true,
-        readonly = true,
-        description = "Maven session"
-    )
+    @Component
     private transient MavenSession session;
 
     /**
      * Maven plugin manager, to be injected by Maven itself.
      */
-    @MojoComponent(
-        role = "org.apache.maven.plugin.MavenPluginManager",
-        roleHint = "",
-        description = "Maven plugin manager"
-    )
+    @Component
     private transient MavenPluginManager manager;
 
     /**
      * Shall we skip execution?
      */
-    @MojoParameter(
-        expression = "${qulice.skip}",
-        defaultValue = "false",
-        required = false,
-        description = "Skips execution"
-    )
+    @Parameter(property = "qulice.skip", defaultValue = "false")
     private transient boolean skip;
 
     /**
@@ -105,12 +86,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      * name and will be found in classpath (if available).
      * @since 0.1
      */
-    @MojoParameter(
-        expression = "${qulice.license}",
-        defaultValue = "LICENSE.txt",
-        required = false,
-        description = "Location of LICENSE.txt"
-    )
+    @Parameter(property = "qulice.license", defaultValue = "LICENSE.txt")
     private transient String license = "LICENSE.txt";
 
     /**
@@ -137,17 +113,11 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.license = lcs;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public final void contextualize(final Context ctx) {
         this.environment.setContext(ctx);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public final void execute() throws MojoFailureException {
         StaticLoggerBinder.getSingleton().setMavenLog(this.getLog());

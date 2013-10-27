@@ -48,9 +48,6 @@ import org.codenarc.rule.Violation;
  */
 public final class CodeNarcValidator implements Validator {
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void validate(final Environment env) throws ValidationException {
         final File src = new File(env.basedir(), "src");

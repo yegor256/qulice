@@ -62,17 +62,11 @@ import java.util.List;
  */
 public final class StringLiteralsConcatenationCheck extends Check {
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getDefaultTokens() {
         return new int[] {TokenTypes.OBJBLOCK};
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void visitToken(final DetailAST ast) {
         final List<DetailAST> pluses = this.findChildASTsOfType(

@@ -71,9 +71,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     private transient MojoExecutor mojoExecutor;
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public String param(final String name, final String value) {
         final String val = this.iproperties.getProperty(name);
@@ -84,33 +81,21 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return ret;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public File basedir() {
         return this.iproject.getBasedir();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public File tempdir() {
         return new File(this.iproject.getBuild().getOutputDirectory());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public File outdir() {
         return new File(this.iproject.getBuild().getOutputDirectory());
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<File> classpath() {
@@ -128,9 +113,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return paths;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public ClassLoader classloader() {
         final List<URL> urls = new ArrayList<URL>();
@@ -151,49 +133,31 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return loader;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public MavenProject project() {
         return this.iproject;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Properties properties() {
         return this.iproperties;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Context context() {
         return this.icontext;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Properties config() {
         return this.iproperties;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public MojoExecutor executor() {
         return this.mojoExecutor;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public Collection<File> files(final String pattern) {
         throw new UnsupportedOperationException("Not supported yet.");

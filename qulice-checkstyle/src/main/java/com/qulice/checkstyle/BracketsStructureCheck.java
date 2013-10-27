@@ -62,9 +62,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class BracketsStructureCheck extends Check {
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
@@ -73,9 +70,6 @@ public final class BracketsStructureCheck extends Check {
         };
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void visitToken(final DetailAST ast) {
         if (TokenTypes.METHOD_CALL == ast.getType()) {

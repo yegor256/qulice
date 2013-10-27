@@ -45,9 +45,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class ConstantUsageCheck extends Check {
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getDefaultTokens() {
         return new int[]{

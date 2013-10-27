@@ -50,9 +50,6 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
      */
     private static final Integer DELTA = 4;
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void processFiltered(final File file, final List<String> lines) {
         boolean failure = false;

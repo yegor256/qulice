@@ -202,9 +202,6 @@ public final class ChecksTest {
          */
         private final transient List<AuditEvent> events =
             new ArrayList<AuditEvent>();
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public Object answer(final InvocationOnMock invocation) {
             this.events.add((AuditEvent) invocation.getArguments()[0]);

@@ -33,8 +33,8 @@ import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import org.apache.maven.plugin.MojoFailureException;
-import org.jfrog.maven.annomojo.annotations.MojoGoal;
-import org.jfrog.maven.annomojo.annotations.MojoPhase;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
 
 /**
  * Check the project and find all possible violations.
@@ -42,8 +42,7 @@ import org.jfrog.maven.annomojo.annotations.MojoPhase;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
-@MojoGoal("check")
-@MojoPhase("verify")
+@Mojo(name = "check", defaultPhase = LifecyclePhase.VERIFY)
 public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
@@ -52,9 +51,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
     private transient ValidatorsProvider provider =
         new DefaultValidatorsProvider();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     protected void doExecute() throws MojoFailureException {
         try {

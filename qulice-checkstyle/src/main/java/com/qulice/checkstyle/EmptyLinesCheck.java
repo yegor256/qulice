@@ -53,9 +53,6 @@ public final class EmptyLinesCheck extends Check {
      */
     private static final Pattern PATTERN = Pattern.compile("^\\s*$");
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
@@ -64,9 +61,6 @@ public final class EmptyLinesCheck extends Check {
         };
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void visitToken(final DetailAST ast) {
         final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);

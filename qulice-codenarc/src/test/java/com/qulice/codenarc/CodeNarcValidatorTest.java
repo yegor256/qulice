@@ -121,9 +121,6 @@ public final class CodeNarcValidatorTest {
          * List of logged messages.
          */
         private final transient List<String> messages = new ArrayList<String>();
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public void doAppend(final LoggingEvent event) {
             this.messages.add(event.getMessage().toString());

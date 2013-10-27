@@ -72,41 +72,26 @@ final class CheckstyleListener implements AuditListener {
         return this.all;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void auditStarted(final AuditEvent event) {
         // intentionally empty
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void auditFinished(final AuditEvent event) {
         // intentionally empty
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void fileStarted(final AuditEvent event) {
         // intentionally empty
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void fileFinished(final AuditEvent event) {
         // intentionally empty
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void addError(final AuditEvent event) {
         this.all.add(event);
@@ -123,9 +108,6 @@ final class CheckstyleListener implements AuditListener {
         );
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void addException(final AuditEvent event,
         final Throwable throwable) {

@@ -41,6 +41,12 @@ import org.apache.maven.model.Plugin;
 import org.apache.maven.plugin.MavenPluginManager;
 import org.apache.maven.plugin.Mojo;
 import org.apache.maven.plugin.MojoExecution;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugin.PluginConfigurationException;
+import org.apache.maven.plugin.PluginContainerException;
+import org.apache.maven.plugin.PluginDescriptorParsingException;
+import org.apache.maven.plugin.PluginResolutionException;
 import org.apache.maven.plugin.descriptor.MojoDescriptor;
 import org.apache.maven.reporting.exec.DefaultMavenPluginManagerHelper;
 import org.codehaus.plexus.configuration.PlexusConfiguration;
@@ -111,9 +117,9 @@ public final class MojoExecutor {
                 new LinkedList<String>(),
                 new LinkedList<String>()
             );
-        } catch (org.apache.maven.plugin.PluginResolutionException ex) {
+        } catch (PluginResolutionException ex) {
             throw new IllegalStateException("Plugin resolution problem", ex);
-        } catch (org.apache.maven.plugin.PluginContainerException ex) {
+        } catch (PluginContainerException ex) {
             throw new IllegalStateException("Can't setup realm", ex);
         }
         final Xpp3Dom xpp = Xpp3Dom.mergeXpp3Dom(
@@ -125,9 +131,9 @@ public final class MojoExecutor {
         Logger.info(this, "Calling %s:%s...", coords, goal);
         try {
             mojo.execute();
-        } catch (org.apache.maven.plugin.MojoExecutionException ex) {
+        } catch (MojoExecutionException ex) {
             throw new IllegalArgumentException(ex);
-        } catch (org.apache.maven.plugin.MojoFailureException ex) {
+        } catch (MojoFailureException ex) {
             throw new ValidationException(ex);
         }
         this.manager.releaseMojo(mojo, execution);
@@ -146,11 +152,11 @@ public final class MojoExecutor {
                 this.session.getCurrentProject().getRemotePluginRepositories(),
                 this.session
             ).getMojo(goal);
-        } catch (org.apache.maven.plugin.PluginResolutionException ex) {
+        } catch (PluginResolutionException ex) {
             throw new IllegalStateException("Can't resolve plugin", ex);
-        } catch (org.apache.maven.plugin.PluginDescriptorParsingException ex) {
+        } catch (PluginDescriptorParsingException ex) {
             throw new IllegalStateException("Can't parse descriptor", ex);
-        } catch (org.apache.maven.plugin.InvalidPluginDescriptorException ex) {
+        } catch (InvalidPluginDescriptorException ex) {
             throw new IllegalStateException("Invalid plugin descriptor", ex);
         }
     }
@@ -165,9 +171,9 @@ public final class MojoExecutor {
         try {
             mojo = this.manager
                 .getConfiguredMojo(Mojo.class, this.session, execution);
-        } catch (org.apache.maven.plugin.PluginConfigurationException ex) {
+        } catch (PluginConfigurationException ex) {
             throw new IllegalStateException("Can't configure MOJO", ex);
-        } catch (org.apache.maven.plugin.PluginContainerException ex) {
+        } catch (PluginContainerException ex) {
             throw new IllegalStateException("Plugin container failure", ex);
         }
         return mojo;

@@ -166,86 +166,50 @@ public final class MavenEnvironmentMocker {
             this.env = penv;
             this.menv = pmenv;
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public File basedir() {
             return this.env.basedir();
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public File tempdir() {
             return this.env.tempdir();
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public File outdir() {
             return this.env.outdir();
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public String param(final String name, final String value) {
             return this.env.param(name, value);
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public ClassLoader classloader() {
             return this.env.classloader();
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public Collection<File> classpath() {
             return this.env.classpath();
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public MavenProject project() {
             return this.menv.project();
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public Properties properties() {
             return this.menv.properties();
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public Context context() {
             return this.menv.context();
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public Properties config() {
             return this.menv.config();
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public MojoExecutor executor() {
             return this.menv.executor();
         }
-        /**
-         * {@inheritDoc}
-         */
         @Override
         public Collection<File> files(final String pattern) {
             throw new UnsupportedOperationException();

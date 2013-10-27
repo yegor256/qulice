@@ -51,9 +51,6 @@ public final class PMDValidator implements Validator {
      */
     private final transient SourceValidator validator = new SourceValidator();
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void validate(final Environment env) throws ValidationException {
         final Collection<DataSource> sources = this.getSources(env);
