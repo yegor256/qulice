@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles/>
+<?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles>
+   <puzzle>
+      <ticket>44</ticket>
+      <file>src/main/java/com/qulice/pmd/Files.java</file>
+      <prefix>     * </prefix>
+      <body>Perform refactoring: remove this method, use Environment.files() instead.</body>
+      <estimate>60</estimate>
+      <lines>56-57</lines>
+      <owner>someone</owner>
+   </puzzle>
+</puzzles>
