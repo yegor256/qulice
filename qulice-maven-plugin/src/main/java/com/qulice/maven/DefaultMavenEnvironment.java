@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
@@ -117,6 +118,9 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         try {
             for (String name : this.iproject.getRuntimeClasspathElements()) {
                 paths.add(new File(name));
+            }
+            for (Artifact artifact : this.iproject.getDependencyArtifacts()) {
+                paths.add(artifact.getFile());
             }
         } catch (DependencyResolutionRequiredException ex) {
             throw new IllegalStateException("Failed to read classpath", ex);
