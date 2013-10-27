@@ -33,7 +33,7 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.11</version>
+        <version>0.12</version>
     </parent>
     <groupId>com.qulice</groupId>
     <artifactId>qulice</artifactId>
@@ -112,18 +112,9 @@
             <url>http://www.rexsl.com</url>
         </site>
     </distributionManagement>
-    <properties>
-        <github.global.server>github</github.global.server>
-    </properties>
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <artifactId>maven-site-plugin</artifactId>
-                    <configuration>
-                        <skipDeploy>true</skipDeploy>
-                    </configuration>
-                </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
                     <configuration>
@@ -135,63 +126,7 @@
                         </archive>
                     </configuration>
                 </plugin>
-                <plugin>
-                    <groupId>com.github.github</groupId>
-                    <artifactId>site-maven-plugin</artifactId>
-                    <version>0.8</version>
-                    <configuration>
-                        <message>site for ${project.version}</message>
-                        <path></path>
-                        <merge>true</merge>
-                    </configuration>
-                </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>com.github.github</groupId>
-                <artifactId>site-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>site-deploy</phase>
-                        <goals>
-                            <goal>site</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>site</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-site-plugin</artifactId>
-                        <configuration>
-                            <generateSitemap>true</generateSitemap>
-                            <reportPlugins combine.children="append">
-                                <plugin>
-                                    <artifactId>maven-changes-plugin</artifactId>
-                                    <configuration>
-                                        <columnNames>Id, Priority, Summary, Reporter, Resolution</columnNames>
-                                        <includeOpenIssues>false</includeOpenIssues>
-                                    </configuration>
-                                    <reportSets>
-                                        <reportSet>
-                                            <reports>
-                                                <report>github-report</report>
-                                                <report>changes-report</report>
-                                            </reports>
-                                        </reportSet>
-                                    </reportSets>
-                                </plugin>
-                            </reportPlugins>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
