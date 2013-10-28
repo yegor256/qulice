@@ -72,7 +72,8 @@ public final class BracketsStructureCheck extends Check {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (TokenTypes.METHOD_CALL == ast.getType()) {
+        if ((ast.getType() == TokenTypes.METHOD_CALL)
+            || ast.getType() == TokenTypes.LITERAL_NEW) {
             this.checkParams(ast);
         } else {
             final DetailAST brackets = ast.findFirstToken(TokenTypes.LPAREN);
