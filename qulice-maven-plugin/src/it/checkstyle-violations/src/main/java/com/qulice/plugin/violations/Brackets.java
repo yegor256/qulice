@@ -1,6 +1,5 @@
 /**
- *
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2013, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -28,12 +27,48 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @version $Id$
- *
- * Validate that the build really failed and violations were reported.
  */
+package com.qulice.plugin.violations;
 
-def log = new File(basedir, 'build.log')
-assert log.text.contains('LICENSE found')
-assert log.text.contains(' Checkstyle violations (see log above)')
-assert log.text.findAll('ERROR.*Brackets.java.*BracketsStructureCheck').size() == 3
+/**
+ * Validation of bracket structure check.
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
+ * @version $Id$
+ */
+public final class Brackets {
+
+    /**
+     * Simple method.
+     */
+    public void wrongBrackets() {
+        new Foo(null, new int[]{1},
+            null
+        );
+        new Foo(new String(""),
+            null, null
+        );
+        this.call(null,
+            null
+        );
+    }
+
+    private void call(final String start, final String end) {
+        // do nothing
+    }
+
+    /**
+     * Check brackets structure.
+     */
+    private final class Foo {
+
+        /**
+         * Constructor.
+         * @param start First param.
+         * @param list Second param.
+         * @param rest Last param.
+         */
+        public Foo(final String start, final int[] list, final String rest) {
+            // ignore
+        }
+    }
+}
