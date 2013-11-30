@@ -209,11 +209,9 @@ public final class CheckstyleValidator implements Validator {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private List<File> files(final Environment env) {
         final List<File> files = new ArrayList<File>();
-        final IOFileFilter filter = new WildcardFileFilter("*.java");
+        final IOFileFilter filter = new WildcardFileFilter("*.*");
         final String[] dirs = new String[] {
-            "src/main/java",
-            "src/test/java",
-            "src/mock/java",
+            "src",
         };
         for (String dir : dirs) {
             final File sources = new File(env.basedir(), dir);
