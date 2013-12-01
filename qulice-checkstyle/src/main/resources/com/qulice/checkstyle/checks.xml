@@ -46,7 +46,9 @@
     <!--
     Checks whether files end with a new line.
     -->
-    <module name="NewlineAtEndOfFile"/>
+    <module name="NewlineAtEndOfFile">
+        <property name="fileExtensions" value="java"/>
+    </module>
 
     <!--
     Checks that property files contain the same keys.
@@ -62,6 +64,7 @@
     -->
     <module name="FileLength">
         <property name="max" value="1000"/>
+        <property name="fileExtensions" value="java"/>
     </module>
 
     <!--
@@ -69,6 +72,7 @@
     -->
     <module name="FileTabCharacter">
         <property name="eachLine" value="true"/>
+        <property name="fileExtensions" value="java,txt,xml,xsl,xsd,properties,groovy,vm,MF,sh,sql,tokens,g,spec,css,csv"/>
     </module>
 
     <!--
@@ -152,6 +156,7 @@
     <!-- Checks for Header -->
     <module name="Header">
         <property name="header" value="${header}"/>
+        <property name="fileExtensions" value="java"/>
     </module>
 
     <!--
@@ -356,8 +361,14 @@
     <!--
     Our custom checkers.
     -->
-    <module name="com.qulice.checkstyle.PuzzleFormatCheck"/>
-    <module name="com.qulice.checkstyle.ImportCohesionCheck"/>
-    <module name="com.qulice.checkstyle.CascadeIndentationCheck"/>
+    <module name="com.qulice.checkstyle.PuzzleFormatCheck">
+        <property name="fileExtensions" value="java"/>
+    </module>
+    <module name="com.qulice.checkstyle.ImportCohesionCheck">
+        <property name="fileExtensions" value="java"/>
+    </module>
+    <module name="com.qulice.checkstyle.CascadeIndentationCheck">
+        <property name="fileExtensions" value="java"/>
+    </module>
 
 </module>
