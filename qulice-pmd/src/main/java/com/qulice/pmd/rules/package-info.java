@@ -1,6 +1,5 @@
 /**
- *
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2013, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,14 +26,12 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * @version $Id$
  */
 
-def log = new File(basedir, 'build.log')
-assert log.text.contains('2 PMD violation')
-assert log.text.contains(' PMD violations (see log above)')
-assert log.text.contains("Avoid unused private fields such as 'var'")
-assert log.text.contains("Avoid creating unnecessary local variables like 'name'")
-
-
+/**
+ * PMD custom rules.
+ *
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
+ * @version $Id$
+ */
+package com.qulice.pmd.rules;

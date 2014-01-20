@@ -50,4 +50,46 @@ public final class Violations {
         return num * num;
     }
 
+    /**
+     * Returns Foo.
+     * @return Foo.
+     */
+    public Foo doSmth() {
+        final String name = "test".toUpperCase();
+        return new Foo(name);
+    }
+
+    /**
+     * Returns Foo again.
+     * @return Foo.
+     */
+    public Foo doSmthElse() {
+        String name = "other";
+        name = String.format("%s append", name);
+        return new Foo(name);
+    }
+
+    /**
+     * Test class.
+     */
+    private static final class Foo {
+        /**
+         * Name.
+         */
+        private final transient String name;
+
+        /**
+         * Constructor.
+         * @param nam Name.
+         */
+        public Foo(final String nam) {
+            this.name = nam;
+        }
+
+        @Override
+        public String toString() {
+            return this.name;
+        }
+    }
 }
+
