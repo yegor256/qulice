@@ -32,5 +32,9 @@
  */
 
 def log = new File(basedir, 'build.log')
+assert log.text.contains('2 PMD violation')
 assert log.text.contains(' PMD violations (see log above)')
 assert log.text.contains("Avoid unused private fields such as 'var'")
+assert log.text.contains("Avoid creating unnecessary local variables like 'name'")
+
+
