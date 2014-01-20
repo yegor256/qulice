@@ -83,4 +83,8 @@
         <exclude name="SignatureDeclareThrowsException"/>
     </rule>
 
+    <rule name="UnnecessaryLocalRule"
+          message="Avoid creating unnecessary local variables like ''{0}''"
+          class="com.qulice.pmd.rules.UnnecessaryLocalRule">
+    </rule>
 </ruleset>
