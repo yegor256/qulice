@@ -154,8 +154,8 @@ public final class CheckstyleValidator implements Validator {
         builder.append("/**").append(eol);
         for (String line : StringUtils.splitPreserveAllTokens(content, eol)) {
             builder.append(" *");
-            if (!line.isEmpty()) {
-                builder.append(" ").append(line);
+            if (!line.trim().isEmpty()) {
+                builder.append(" ").append(line.trim());
             }
             builder.append(eol);
         }
