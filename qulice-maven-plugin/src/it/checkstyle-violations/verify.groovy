@@ -39,3 +39,4 @@ assert log.text.contains(' Checkstyle violations (see log above)')
 assert log.text.findAll('ERROR.*Brackets.java.*BracketsStructureCheck').size() == 3
 assert log.text.contains('Tabs.java[4]: Line contains a tab character. (FileTabCharacterCheck)')
 assert log.text.contains('tabs.txt[1]: Line contains a tab character. (FileTabCharacterCheck)')
+assert log.text.findAll('Brackets.java.*(HeaderCheck)').empty
