@@ -30,6 +30,8 @@
  */
 package com.qulice.plugin.violations;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Validation of bracket structure check.
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
@@ -50,6 +52,8 @@ public final class Brackets {
         this.call(null,
             null
         );
+        final AtomicInteger atom = new AtomicInteger(
+            1);
     }
 
     private void call(final String start, final String end) {
