@@ -74,7 +74,7 @@
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     </li>
                                                                                         <li>
                                                                     <a href="project-reports.html" title="Project Reports">Project Reports</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
                                                                 </ul>
                                     </li>
                     </ul>
@@ -99,8 +99,8 @@
                                     </ul>
                         <p>
                 
-                16-Oct-2013
-                0.3
+                03-Feb-2014
+                0.3.2
             </p>
             <article>
                 
@@ -110,12 +110,11 @@
       
 <p><b>Full name</b>:</p>
       
-<p>com.qulice:qulice-maven-plugin:0.3:check</p>
+<p>com.qulice:qulice-maven-plugin:0.3.2:check</p>
       
 <p><b>Description</b>:</p>
       
-<div>Check the project and find all possible violations. @author Yegor
-Bugayenko (yegor@tpc2.com) @version $Id$</div>
+<div>Check the project and find all possible violations.</div>
       
 <p><b>Attributes</b>:</p>
       
@@ -144,13 +143,15 @@ Bugayenko (yegor@tpc2.com) @version $Id$</div>
           
 <tr class="b">
             
-<td><b><a href="#manager">manager</a></b></td>
+<td><b><a href="#license">license</a></b></td>
             
-<td><tt>MavenPluginManager</tt></td>
+<td><tt>String</tt></td>
             
-<td><tt>-</tt></td>
+<td><tt>0.1</tt></td>
             
-<td>Maven plugin manager<br /></td>
+<td>Location of License file. If it is an absolute file name you should
+prepend it with &quot;file:&quot; prefix. Otherwise it is treated like a
+resource name and will be found in classpath (if available).<br /><b>Default value is</b>: <tt>LICENSE.txt</tt>.<br /><b>User property is</b>: <tt>qulice.license</tt>.</td>
           </tr>
           
 <tr class="a">
@@ -161,18 +162,7 @@ Bugayenko (yegor@tpc2.com) @version $Id$</div>
             
 <td><tt>-</tt></td>
             
-<td>Skips execution<br /><b>Default value is</b>: <tt>false</tt>.<br /><b>User property is</b>: <tt>qulice.skip</tt>.</td>
-          </tr>
-          
-<tr class="b">
-            
-<td><b><a href="#license">license</a></b></td>
-            
-<td><tt>String</tt></td>
-            
-<td><tt>-</tt></td>
-            
-<td>Location of LICENSE.txt<br /><b>Default value is</b>: <tt>LICENSE.txt</tt>.<br /><b>User property is</b>: <tt>qulice.license</tt>.</td>
+<td>Shall we skip execution?<br /><b>Default value is</b>: <tt>false</tt>.<br /><b>User property is</b>: <tt>qulice.skip</tt>.</td>
           </tr>
         </table>
       </div>
@@ -180,19 +170,27 @@ Bugayenko (yegor@tpc2.com) @version $Id$</div>
 <div class="section">
 <h3>Parameter Details<a name="Parameter_Details"></a></h3>
         
-<p><b><a name="manager">manager</a>:</b></p>
+<p><b><a name="license">license</a>:</b></p>
         
-<div>Maven plugin manager</div>
+<div>Location of License file. If it is an absolute file name you should
+prepend it with &quot;file:&quot; prefix. Otherwise it is treated like a
+resource name and will be found in classpath (if available).</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>org.apache.maven.plugin.MavenPluginManager</tt></li>
+<li><b>Type</b>: <tt>java.lang.String</tt></li>
+          
+<li><b>Since</b>: <tt>0.1</tt></li>
           
 <li><b>Required</b>: <tt>No</tt></li>
+          
+<li><b>User Property</b>: <tt>qulice.license</tt></li>
+          
+<li><b>Default</b>: <tt>LICENSE.txt</tt></li>
         </ul><hr />
 <p><b><a name="skip">skip</a>:</b></p>
         
-<div>Skips execution</div>
+<div>Shall we skip execution?</div>
         
 <ul>
           
@@ -203,20 +201,6 @@ Bugayenko (yegor@tpc2.com) @version $Id$</div>
 <li><b>User Property</b>: <tt>qulice.skip</tt></li>
           
 <li><b>Default</b>: <tt>false</tt></li>
-        </ul><hr />
-<p><b><a name="license">license</a>:</b></p>
-        
-<div>Location of LICENSE.txt</div>
-        
-<ul>
-          
-<li><b>Type</b>: <tt>java.lang.String</tt></li>
-          
-<li><b>Required</b>: <tt>No</tt></li>
-          
-<li><b>User Property</b>: <tt>qulice.license</tt></li>
-          
-<li><b>Default</b>: <tt>LICENSE.txt</tt></li>
         </ul>
       </div>
     </div>
@@ -225,7 +209,7 @@ Bugayenko (yegor@tpc2.com) @version $Id$</div>
             </article>
             <p style="margin-bottom: 3em; margin-top: 2em;">
                 Copyright &#169;
-                                                    2011-2013
+                                                    2011-2014
                                 Qulice.com, All Rights Reserved.
                 <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
             </p>
