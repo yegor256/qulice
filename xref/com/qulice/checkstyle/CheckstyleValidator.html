@@ -164,8 +164,8 @@
 <a class="jxr_linenumber" name="154" href="#154">154</a>         builder.append(<span class="jxr_string">"/**"</span>).append(eol);
 <a class="jxr_linenumber" name="155" href="#155">155</a>         <strong class="jxr_keyword">for</strong> (String line : StringUtils.splitPreserveAllTokens(content, eol)) {
 <a class="jxr_linenumber" name="156" href="#156">156</a>             builder.append(<span class="jxr_string">" *"</span>);
-<a class="jxr_linenumber" name="157" href="#157">157</a>             <strong class="jxr_keyword">if</strong> (!line.isEmpty()) {
-<a class="jxr_linenumber" name="158" href="#158">158</a>                 builder.append(<span class="jxr_string">" "</span>).append(line);
+<a class="jxr_linenumber" name="157" href="#157">157</a>             <strong class="jxr_keyword">if</strong> (!line.trim().isEmpty()) {
+<a class="jxr_linenumber" name="158" href="#158">158</a>                 builder.append(<span class="jxr_string">" "</span>).append(line.trim());
 <a class="jxr_linenumber" name="159" href="#159">159</a>             }
 <a class="jxr_linenumber" name="160" href="#160">160</a>             builder.append(eol);
 <a class="jxr_linenumber" name="161" href="#161">161</a>         }
@@ -219,28 +219,26 @@
 <a class="jxr_linenumber" name="209" href="#209">209</a>     @SuppressWarnings(<span class="jxr_string">"PMD.AvoidInstantiatingObjectsInLoops"</span>)
 <a class="jxr_linenumber" name="210" href="#210">210</a>     <strong class="jxr_keyword">private</strong> List&lt;File&gt; files(<strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/spi/Environment.html">Environment</a> env) {
 <a class="jxr_linenumber" name="211" href="#211">211</a>         <strong class="jxr_keyword">final</strong> List&lt;File&gt; files = <strong class="jxr_keyword">new</strong> ArrayList&lt;File&gt;();
-<a class="jxr_linenumber" name="212" href="#212">212</a>         <strong class="jxr_keyword">final</strong> IOFileFilter filter = <strong class="jxr_keyword">new</strong> WildcardFileFilter(<span class="jxr_string">"*.java"</span>);
+<a class="jxr_linenumber" name="212" href="#212">212</a>         <strong class="jxr_keyword">final</strong> IOFileFilter filter = <strong class="jxr_keyword">new</strong> WildcardFileFilter(<span class="jxr_string">"*.*"</span>);
 <a class="jxr_linenumber" name="213" href="#213">213</a>         <strong class="jxr_keyword">final</strong> String[] dirs = <strong class="jxr_keyword">new</strong> String[] {
-<a class="jxr_linenumber" name="214" href="#214">214</a>             <span class="jxr_string">"src/main/java"</span>,
-<a class="jxr_linenumber" name="215" href="#215">215</a>             <span class="jxr_string">"src/test/java"</span>,
-<a class="jxr_linenumber" name="216" href="#216">216</a>             <span class="jxr_string">"src/mock/java"</span>,
-<a class="jxr_linenumber" name="217" href="#217">217</a>         };
-<a class="jxr_linenumber" name="218" href="#218">218</a>         <strong class="jxr_keyword">for</strong> (String dir : dirs) {
-<a class="jxr_linenumber" name="219" href="#219">219</a>             <strong class="jxr_keyword">final</strong> File sources = <strong class="jxr_keyword">new</strong> File(env.basedir(), dir);
-<a class="jxr_linenumber" name="220" href="#220">220</a>             <strong class="jxr_keyword">if</strong> (sources.exists()) {
-<a class="jxr_linenumber" name="221" href="#221">221</a>                 files.addAll(
-<a class="jxr_linenumber" name="222" href="#222">222</a>                     FileUtils.listFiles(
-<a class="jxr_linenumber" name="223" href="#223">223</a>                         sources,
-<a class="jxr_linenumber" name="224" href="#224">224</a>                         filter,
-<a class="jxr_linenumber" name="225" href="#225">225</a>                         DirectoryFileFilter.INSTANCE
-<a class="jxr_linenumber" name="226" href="#226">226</a>                     )
-<a class="jxr_linenumber" name="227" href="#227">227</a>                 );
-<a class="jxr_linenumber" name="228" href="#228">228</a>             }
-<a class="jxr_linenumber" name="229" href="#229">229</a>         }
-<a class="jxr_linenumber" name="230" href="#230">230</a>         <strong class="jxr_keyword">return</strong> files;
-<a class="jxr_linenumber" name="231" href="#231">231</a>     }
-<a class="jxr_linenumber" name="232" href="#232">232</a> 
-<a class="jxr_linenumber" name="233" href="#233">233</a> }
+<a class="jxr_linenumber" name="214" href="#214">214</a>             <span class="jxr_string">"src"</span>,
+<a class="jxr_linenumber" name="215" href="#215">215</a>         };
+<a class="jxr_linenumber" name="216" href="#216">216</a>         <strong class="jxr_keyword">for</strong> (String dir : dirs) {
+<a class="jxr_linenumber" name="217" href="#217">217</a>             <strong class="jxr_keyword">final</strong> File sources = <strong class="jxr_keyword">new</strong> File(env.basedir(), dir);
+<a class="jxr_linenumber" name="218" href="#218">218</a>             <strong class="jxr_keyword">if</strong> (sources.exists()) {
+<a class="jxr_linenumber" name="219" href="#219">219</a>                 files.addAll(
+<a class="jxr_linenumber" name="220" href="#220">220</a>                     FileUtils.listFiles(
+<a class="jxr_linenumber" name="221" href="#221">221</a>                         sources,
+<a class="jxr_linenumber" name="222" href="#222">222</a>                         filter,
+<a class="jxr_linenumber" name="223" href="#223">223</a>                         DirectoryFileFilter.INSTANCE
+<a class="jxr_linenumber" name="224" href="#224">224</a>                     )
+<a class="jxr_linenumber" name="225" href="#225">225</a>                 );
+<a class="jxr_linenumber" name="226" href="#226">226</a>             }
+<a class="jxr_linenumber" name="227" href="#227">227</a>         }
+<a class="jxr_linenumber" name="228" href="#228">228</a>         <strong class="jxr_keyword">return</strong> files;
+<a class="jxr_linenumber" name="229" href="#229">229</a>     }
+<a class="jxr_linenumber" name="230" href="#230">230</a> 
+<a class="jxr_linenumber" name="231" href="#231">231</a> }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>
