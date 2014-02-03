@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles>
+   <puzzle>
+      <ticket>44</ticket>
+      <file>src/main/java/com/qulice/checkstyle/CheckstyleValidator.java</file>
+      <prefix>     * </prefix>
+      <body>Perform refactoring: remove this method, use Environment.files() instead.</body>
+      <estimate>60</estimate>
+      <lines>206-207</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>55</ticket>
+      <file>src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</file>
+      <prefix>     * </prefix>
+      <body>First line is correct, but second line is impropertly indented</body>
+      <estimate>0</estimate>
+      <lines>14-15</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>555</ticket>
+      <file>src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
+      <prefix> * </prefix>
+      <body>Some text with proper indentation of the second and all consecutive lines.</body>
+      <estimate>0</estimate>
+      <lines>7-7</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>JIRA-7643</ticket>
+      <file>src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
+      <prefix> * </prefix>
+      <body>Longer format of puzzle marker</body>
+      <estimate>90</estimate>
+      <lines>10-10</lines>
+      <owner>author</owner>
+   </puzzle>
+</puzzles>
