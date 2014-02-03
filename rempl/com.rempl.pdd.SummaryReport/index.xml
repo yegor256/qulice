@@ -1,8 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles>
    <puzzle>
+      <ticket>44</ticket>
+      <file>qulice-checkstyle/src/main/java/com/qulice/checkstyle/CheckstyleValidator.java</file>
+      <prefix>     * </prefix>
+      <body>Perform refactoring: remove this method, use Environment.files() instead.</body>
+      <estimate>60</estimate>
+      <lines>206-207</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>55</ticket>
+      <file>qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</file>
+      <prefix>     * </prefix>
+      <body>First line is correct, but second line is impropertly indented</body>
+      <estimate>0</estimate>
+      <lines>14-15</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>555</ticket>
+      <file>qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
+      <prefix> * </prefix>
+      <body>Some text with proper indentation of the second and all consecutive lines.</body>
+      <estimate>0</estimate>
+      <lines>7-7</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>JIRA-7643</ticket>
+      <file>qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
+      <prefix> * </prefix>
+      <body>Longer format of puzzle marker</body>
+      <estimate>90</estimate>
+      <lines>10-10</lines>
+      <owner>author</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>8</ticket>
+      <file>qulice-maven-plugin/pom.xml</file>
+      <prefix>                        </prefix>
+      <body>This test is not working. I don't know what exactly is going on. Seems like ASM is not working in maven-dependency-analyzer. I copied implementation from maven-dependency-plugin, almost literally.</body>
+      <estimate>0</estimate>
+      <lines>281-284</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>83</ticket>
+      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</file>
+      <prefix>     * </prefix>
+      <body>When it works, add {@code DependenciesValidator()} to this list</body>
+      <estimate>0</estimate>
+      <lines>47-47</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>83</ticket>
+      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</file>
+      <prefix>     * </prefix>
+      <body>When it works, add {@code FindBugsValidator()} to this list</body>
+      <estimate>0</estimate>
+      <lines>62-62</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>44</ticket>
+      <file>qulice-pmd/src/main/java/com/qulice/pmd/Files.java</file>
+      <prefix>     * </prefix>
+      <body>Perform refactoring: remove this method, use Environment.files() instead.</body>
+      <estimate>60</estimate>
+      <lines>56-57</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
       <ticket>13</ticket>
-      <file>src/test/java/com/qulice/xml/XmlValidatorTest.java</file>
+      <file>qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java</file>
       <prefix>     * </prefix>
       <body>The test doesn't work because functionality is not implemented yet.</body>
       <estimate>0</estimate>
