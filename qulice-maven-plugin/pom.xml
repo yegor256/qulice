@@ -277,12 +277,6 @@
                         <pomInclude>pmd-violations/pom.xml</pomInclude>
                         <pomInclude>codenarc-violations/pom.xml</pomInclude>
                         <pomInclude>findbugs-violations/pom.xml</pomInclude>
-                        <!--
-                        @todo #8 This test is not working. I don't know what exactly is
-                         going on. Seems like ASM is not working in maven-dependency-analyzer.
-                         I copied implementation from maven-dependency-plugin, almost
-                         literally.
-                        -->
                         <pomInclude>dependency-violations/pom.xml</pomInclude>
                         <pomInclude>multi-module/pom.xml</pomInclude>
                     </pomIncludes>
