@@ -64,7 +64,7 @@
                 <artifactId>qulice-maven-plugin</artifactId>
                 <version>@project.version@</version>
                 <configuration>
-                    <license>file:./license.txt</license>
+                    <license>file:${basedir}/LICENSE.txt</license>
                 </configuration>
                 <executions>
                     <execution>

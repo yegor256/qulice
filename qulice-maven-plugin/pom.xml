@@ -283,7 +283,7 @@
                          I copied implementation from maven-dependency-plugin, almost
                          literally.
                         -->
-                        <!-- <pomInclude>dependency-violations/pom.xml</pomInclude> -->
+                        <pomInclude>dependency-violations/pom.xml</pomInclude>
                         <pomInclude>multi-module/pom.xml</pomInclude>
                     </pomIncludes>
                     <extraArtifacts>

@@ -35,6 +35,7 @@ import com.qulice.spi.Validator;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.ResolutionScope;
 
 /**
  * Check the project and find all possible violations.
@@ -42,7 +43,8 @@ import org.apache.maven.plugins.annotations.Mojo;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
-@Mojo(name = "check", defaultPhase = LifecyclePhase.VERIFY)
+@Mojo(name = "check", defaultPhase = LifecyclePhase.VERIFY,
+    requiresDependencyResolution = ResolutionScope.TEST)
 public final class CheckMojo extends AbstractQuliceMojo {
 
     /**

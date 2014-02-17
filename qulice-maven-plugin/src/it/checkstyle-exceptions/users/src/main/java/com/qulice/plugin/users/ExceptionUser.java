@@ -43,6 +43,17 @@ public final class ExceptionUser {
      * @throws FooException In case of problem.
      */
     public void user() throws FooException {
-        // do nothing
+        throw new FooException();
+    }
+
+    /**
+     * Test.
+     */
+    public void catcher() {
+        try {
+            this.user();
+        } catch (FooException ex) {
+            throw new IllegalStateException(ex);
+        }
     }
 }

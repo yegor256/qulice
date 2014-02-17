@@ -42,10 +42,6 @@ import java.util.Set;
  */
 final class DefaultValidatorsProvider implements ValidatorsProvider {
 
-    /**
-     * {@inheritDoc}
-     * @todo #83 When it works, add {@code DependenciesValidator()} to this list
-     */
     @Override
     public Set<MavenValidator> internal() {
         final Set<MavenValidator> validators =
@@ -54,6 +50,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         validators.add(new EnforcerValidator());
         validators.add(new CoberturaValidator());
         validators.add(new SvnPropertiesValidator());
+        validators.add(new DependenciesValidator());
         return validators;
     }
 
