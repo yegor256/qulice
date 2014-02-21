@@ -91,7 +91,7 @@ public final class FindBugsValidator implements Validator {
             if (process.waitFor() != 0) {
                 Logger.warn(
                     this,
-                    "Failed to execute FindBugs:\n%s",
+                    "Failed to execute FindBugs:\n%s\n%s",
                     command,
                     IOUtils.toString(process.getErrorStream())
                 );
@@ -115,10 +115,6 @@ public final class FindBugsValidator implements Validator {
     private List<String> options(final Environment env) {
         final File jar = this.jar(Wrap.class);
         final List<String> opts = new LinkedList<String>();
-        if (!jar.isDirectory()) {
-            opts.add("-jar");
-            opts.add(jar.getPath());
-        }
         opts.add("-classpath");
         opts.add(
             StringUtils.join(
@@ -127,6 +123,22 @@ public final class FindBugsValidator implements Validator {
                         new File[] {
                             jar,
                             this.jar(edu.umd.cs.findbugs.FindBugs2.class),
+                            this.jar(
+                                // @checkstyle LineLength (1 line)
+                                org.apache.bcel.classfile.ClassFormatException.class
+                            ),
+                            this.jar(org.dom4j.DocumentException.class),
+                            this.jar(org.jaxen.JaxenException.class),
+                            this.jar(org.objectweb.asm.tree.ClassNode.class),
+                            this.jar(org.objectweb.asm.ClassVisitor.class),
+                            this.jar(javax.annotation.meta.When.class),
+                            this.jar(
+                                org.objectweb.asm.commons.EmptyVisitor.class
+                            ),
+                            this.jar(
+                                // @checkstyle LineLength (1 line)
+                                edu.umd.cs.findbugs.formatStringChecker.FormatterNumberFormatException.class
+                            ),
                         }
                     ),
                     env.classpath()
