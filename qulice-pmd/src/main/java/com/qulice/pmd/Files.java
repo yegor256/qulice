@@ -53,8 +53,9 @@ public final class Files {
      * Get full list of files to process.
      * @param environment The environment.
      * @return Collection of files.
-     * @todo #44:1h Perform refactoring: remove this method, use
-     *  Environment.files() instead.
+     * @todo #44 Perform refactoring: remove this method, use
+     *  Environment.files() instead, in order to simplify files
+     *  manipulations.
      */
     private Collection<File> getFiles(final Environment environment) {
         final Collection<File> files = new LinkedList<File>();
