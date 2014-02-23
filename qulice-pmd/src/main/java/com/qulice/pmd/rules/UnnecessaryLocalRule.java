@@ -32,9 +32,11 @@ package com.qulice.pmd.rules;
 import java.util.List;
 import java.util.Map;
 import net.sourceforge.pmd.AbstractJavaRule;
+import net.sourceforge.pmd.ast.ASTArgumentList;
 import net.sourceforge.pmd.ast.ASTMethodDeclaration;
 import net.sourceforge.pmd.ast.ASTName;
 import net.sourceforge.pmd.ast.ASTReturnStatement;
+import net.sourceforge.pmd.ast.SimpleJavaNode;
 import net.sourceforge.pmd.symboltable.NameOccurrence;
 import net.sourceforge.pmd.symboltable.VariableNameDeclaration;
 
@@ -48,33 +50,53 @@ public final class UnnecessaryLocalRule extends AbstractJavaRule {
     @Override
     public Object visit(final ASTMethodDeclaration meth, final Object data) {
         Object ndata = data;
-        if (!meth.isVoid() && !meth.isAbstract() && !meth.isNative()) {
+        if (!meth.isAbstract() && !meth.isNative()) {
             ndata = super.visit(meth, data);
         }
         return ndata;
     }
 
-    @SuppressWarnings({ "PMD.AvoidInstantiatingObjectsInLoops",
-        "PMD.UseConcurrentHashMap" })
     @Override
     public Object visit(final ASTReturnStatement rtn, final Object data) {
         final ASTName name = rtn.getFirstChildOfType(ASTName.class);
         if (name != null) {
-            final Map<VariableNameDeclaration, List<NameOccurrence>> vars = name
-                .getScope().getVariableDeclarations();
-            for (Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry
-                : vars.entrySet()) {
-                final List<NameOccurrence> usages = entry.getValue();
-                if (usages.size() > 1) {
-                    continue;
-                }
-                for (NameOccurrence occ: usages) {
-                    if (occ.getLocation().equals(name)) {
-                        addViolation(data, rtn, new Object[] {name.getImage()});
-                    }
+            usages(rtn, data, name);
+        }
+        return data;
+    }
+
+    @Override
+    public Object visit(final ASTArgumentList rtn, final Object data) {
+        final List<ASTName> names = rtn.findChildrenOfType(ASTName.class);
+        for (ASTName name : names) {
+            usages(rtn, data, name);
+        }
+        return data;
+    }
+
+    /**
+     * Report when number of variable usages is equal to zero.
+     * @param node Node to check.
+     * @param data Context.
+     * @param name Variable name.
+     */
+    @SuppressWarnings({ "PMD.AvoidInstantiatingObjectsInLoops",
+        "PMD.UseConcurrentHashMap" })
+    private void usages(final SimpleJavaNode node, final Object data,
+        final ASTName name) {
+        final Map<VariableNameDeclaration, List<NameOccurrence>> vars = name
+            .getScope().getVariableDeclarations();
+        for (Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry
+            : vars.entrySet()) {
+            final List<NameOccurrence> usages = entry.getValue();
+            if (usages.size() > 1) {
+                continue;
+            }
+            for (NameOccurrence occ: usages) {
+                if (occ.getLocation().equals(name)) {
+                    addViolation(data, node, new Object[] {name.getImage()});
                 }
             }
         }
-        return data;
     }
 }
