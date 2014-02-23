@@ -70,6 +70,14 @@ public final class Violations {
     }
 
     /**
+     * Prints something.
+     */
+    public void print() {
+        final String message = "hello";
+        System.out.println(message);
+    }
+
+    /**
      * Test class.
      */
     private static final class Foo {
