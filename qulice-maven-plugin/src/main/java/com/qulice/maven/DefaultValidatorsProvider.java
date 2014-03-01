@@ -65,6 +65,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         validators.add(new com.qulice.pmd.PMDValidator());
         validators.add(new com.qulice.xml.XmlValidator());
         validators.add(new com.qulice.codenarc.CodeNarcValidator());
+        validators.add(new com.qulice.findbugs.FindBugsValidator());
         return validators;
     }
 
