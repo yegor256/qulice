@@ -45,6 +45,7 @@ import org.apache.commons.io.FileUtils;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public interface Environment {
 
     /**
@@ -202,7 +203,7 @@ public interface Environment {
         }
         @Override
         public ClassLoader classloader() {
-            return this.getClass().getClassLoader();
+            return Thread.currentThread().getContextClassLoader();
         }
         @Override
         public Collection<File> classpath() {

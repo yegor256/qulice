@@ -40,11 +40,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>If your method doesn't need {@code this} than why it is not
  * {@code static}?
  *
- * <p>This check is still in development and is not used in a released version.
- *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @todo #1 NonStaticMethodCheck doesn't work. This check is still
+ *  in development and is not used in a released version. Let's try to fix
+ *  it and enable its validation inside ChecksTest. Also, don't forget
+ *  to enable it inside checks.xml and make sure all maven-invoker-plugin
+ *  tests pass
  */
 public final class NonStaticMethodCheck extends Check {
 
