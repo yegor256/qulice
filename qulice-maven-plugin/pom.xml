@@ -337,9 +337,9 @@
                         <groupId>com.qulice</groupId>
                         <artifactId>qulice-maven-plugin</artifactId>
                         <configuration>
-                            <excludes>
-                                <exclude>findbugs</exclude>
-                                <exclude>/src/it/.*</exclude>
+                            <excludes combine.children="append">
+                                <exclude>findbugs:.*</exclude>
+                                <exclude>checkstyle:/src/it/.*</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
