@@ -17,6 +17,7 @@
                                             <link rel="stylesheet" href="./css/highlight.css" />
         <script src="./js/jquery-1.8.3.min.js"></script>
         <script src="./js/highlight-7.3.min.js"></script>
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
         <script>
             $(document).ready(
                 function() {
@@ -25,92 +26,119 @@
                             hljs.highlightBlock(element);
                         }
                     );
+                    $(".menu-button").click(
+                        function() {
+                            if ($("#here-goes-menu").attr("class") == "menu-off") {
+                                $("#menu").clone().attr("class", "mobile-menu").appendTo("#here-goes-menu");
+                                $("#here-goes-menu").attr("class", "menu-on");
+                            } else {
+                                $(".mobile-menu").hide();
+                                $("#here-goes-menu").attr("class", "menu-off");
+                            }
+                        }
+                    );
                 }
             );
         </script>
+        <style>
+            @import url("./css/wide.css") (min-width: 1200px) and (max-width:5000px);
+            @import url("./css/900-1199.css") (min-width: 900px) and (max-width:1199px);
+            @import url("./css/600-899.css") (min-width: 600px) and (max-width:899px);
+            @import url("./css/100-599.css") (min-width: 100px) and (max-width:599px);
+        </style>
     </head>
-    <body>
+    <body style="background: url('./images/background.png') fixed;">
+                <div class="page">
+            <div class="menu-section">
                 <ul id="menu">
-                                                    <li>
-                    Parent Project
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="../index.html" title="qulice">qulice</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                            <li>
-                    Overview
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="index.html" title="Introduction">Introduction</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="usage.html" title="Usage">Usage</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="plugin-info.html" title="Goals">Goals</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="faq.html" title="FAQ">FAQ</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                            <li>
-                    Project Documentation
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="project-info.html" title="Project Information">Project Information</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
-                                                                                        <li>
-                                                                    <a href="project-reports.html" title="Project Reports">Project Reports</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
-                                                                </ul>
-                                    </li>
-                    </ul>
-        <div id="content">
-                            <a href="https://github.com/tpc2/qulice/qulice-maven-plugin">
-                    <img style="position: absolute; top: 0; right: 0; border: 0; width: 100px; height: 100px;"
-                        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
-                        alt="Fork me on GitHub" />
-                </a>
-                        <a href="../" title="home page of Qulice.com">
-                <img src="http://img.qulice.com/logo.png"
-                    alt="Qulice"
-                                            width="214"
-                                                                height="60"
-                                    />
-            </a>
-                            <ul id="breadcrumbs">
-                                            <li>                        <a href=".." title="qulice.com">qulice.com</a>
-        </li>
-                                            <li>                                    <a href="./" title="qulice-maven-plugin">qulice-maven-plugin</a>
-        </li>
+                                                                                    <li>
+                            Parent Project
+                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="../index.html" title="qulice">qulice</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            Overview
+                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="index.html" title="Introduction">Introduction</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="usage.html" title="Usage">Usage</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="plugin-info.html" title="Goals">Goals</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="faq.html" title="FAQ">FAQ</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            Examples
+                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="example-exclude.html" title="Exclude">Exclude</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            Project Documentation
+                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="project-info.html" title="Project Information">Project Information</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                        <li>
+                                                                                    <a href="project-reports.html" title="Project Reports">Project Reports</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                        </ul>
+                                                    </li>
                                     </ul>
-                        <p>
-                
-                03-Feb-2014
-                0.3.2
-            </p>
-            <article>
-                
+            </div>
+            <div id="right-side">
+                <div id="content">
+                    <i class="menu-button fa fa-align-justify"></i>
+                    <div class="logo-section">
+                        <a href="../" title="home page of Qulice.com">
+                            <img src="http://img.qulice.com/logo.png"
+                                alt="Qulice"
+                                                                    width="214"
+                                                                                                    height="60"
+                                                            />
+                        </a>
+                    </div>
+                    <div class="date">
+                        <div class="date-numbers">
+                            
+                            02-Mar-2014
+                            0.4.1
+                        </div>
+                                                                    </div>
+                    <div id="here-goes-menu"></div>
+                    <article>
+                        <div class="section">
+                            
   
     <div class="section">
 <h2>qulice:check<a name="qulice:check"></a></h2>
       
 <p><b>Full name</b>:</p>
       
-<p>com.qulice:qulice-maven-plugin:0.3.2:check</p>
+<p>com.qulice:qulice-maven-plugin:0.4.1:check</p>
       
 <p><b>Description</b>:</p>
       
@@ -121,6 +149,8 @@
 <ul>
         
 <li>Requires a Maven project to be executed.</li>
+        
+<li>Requires dependency resolution of artifacts in scope: <tt>test</tt>.</li>
         
 <li>Binds by default to the <a class="externalLink" href="http://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycle phase</a>: <tt>verify</tt>.</li>
       </ul>
@@ -143,6 +173,17 @@
           
 <tr class="b">
             
+<td><b><a href="#excludes">excludes</a></b></td>
+            
+<td><tt>Collection</tt></td>
+            
+<td><tt>0.4</tt></td>
+            
+<td>List of regular expressions to exclude.<br /><b>User property is</b>: <tt>qulice.excludes</tt>.</td>
+          </tr>
+          
+<tr class="a">
+            
 <td><b><a href="#license">license</a></b></td>
             
 <td><tt>String</tt></td>
@@ -154,7 +195,7 @@ prepend it with &quot;file:&quot; prefix. Otherwise it is treated like a
 resource name and will be found in classpath (if available).<br /><b>Default value is</b>: <tt>LICENSE.txt</tt>.<br /><b>User property is</b>: <tt>qulice.license</tt>.</td>
           </tr>
           
-<tr class="a">
+<tr class="b">
             
 <td><b><a href="#skip">skip</a></b></td>
             
@@ -170,6 +211,20 @@ resource name and will be found in classpath (if available).<br /><b>Default val
 <div class="section">
 <h3>Parameter Details<a name="Parameter_Details"></a></h3>
         
+<p><b><a name="excludes">excludes</a>:</b></p>
+        
+<div>List of regular expressions to exclude.</div>
+        
+<ul>
+          
+<li><b>Type</b>: <tt>java.util.Collection</tt></li>
+          
+<li><b>Since</b>: <tt>0.4</tt></li>
+          
+<li><b>Required</b>: <tt>No</tt></li>
+          
+<li><b>User Property</b>: <tt>qulice.excludes</tt></li>
+        </ul><hr />
 <p><b><a name="license">license</a>:</b></p>
         
 <div>Location of License file. If it is an absolute file name you should
@@ -206,18 +261,21 @@ resource name and will be found in classpath (if available).</div>
     </div>
   
 
-            </article>
-            <p style="margin-bottom: 3em; margin-top: 2em;">
-                Copyright &#169;
-                                                    2011-2014
-                                Qulice.com, All Rights Reserved.
-                <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
-            </p>
-            <a href="http://maven.apache.org" title="site is built by Apache Maven"
-                style='position: absolute; bottom: 1em; right: 1em;'>
-                <img src='images/built-by-maven.png' style='width: 50px; height: 17px;'
-                    alt='site is built by Apache Maven'/>
-            </a>
+                        </div>
+                    </article>
+                    <img class="maven-mobile" src="./images/built-by-maven.png" style="float:right" width="80px"/>
+                </div>
+                <div class="legal-notes">
+                    <div class="copyright">
+                        Copyright &#169;
+                                                                            2011-2014
+                                                <br/>
+                        Qulice.com, All Rights Reserved.
+                        <br/>
+                        <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

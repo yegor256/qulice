@@ -1,30 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles>
    <puzzle>
-      <ticket>8</ticket>
-      <file>pom.xml</file>
-      <prefix>                        </prefix>
-      <body>This test is not working. I don't know what exactly is going on. Seems like ASM is not working in maven-dependency-analyzer. I copied implementation from maven-dependency-plugin, almost literally.</body>
-      <estimate>0</estimate>
-      <lines>281-284</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>83</ticket>
-      <file>src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</file>
-      <prefix>     * </prefix>
-      <body>When it works, add {@code DependenciesValidator()} to this list</body>
-      <estimate>0</estimate>
-      <lines>47-47</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
       <ticket>83</ticket>
       <file>src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</file>
       <prefix>     * </prefix>
       <body>When it works, add {@code FindBugsValidator()} to this list</body>
       <estimate>0</estimate>
-      <lines>62-62</lines>
+      <lines>59-59</lines>
       <owner>someone</owner>
    </puzzle>
 </puzzles>
