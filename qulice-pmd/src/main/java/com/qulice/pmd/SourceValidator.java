@@ -30,6 +30,7 @@
 package com.qulice.pmd;
 
 import com.jcabi.log.Logger;
+import com.qulice.spi.Environment;
 import java.io.File;
 import java.io.Reader;
 import java.util.Collection;
@@ -64,7 +65,7 @@ public final class SourceValidator {
     /**
      * Report listener.
      */
-    private final transient PmdListener reportListener = new PmdListener();
+    private final transient PmdListener reportListener;
 
     /**
      * Rules.
@@ -73,8 +74,10 @@ public final class SourceValidator {
 
     /**
      * Creates new instance of <code>SourceValidator</code>.
+     * @param env Environment
      */
-    public SourceValidator() {
+    public SourceValidator(final Environment env) {
+        this.reportListener = new PmdListener(env);
         final RuleSetFactory factory = new RuleSetFactory();
         // @checkstyle MagicNumber (1 line)
         factory.setMinimumPriority(5);

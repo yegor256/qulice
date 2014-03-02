@@ -33,7 +33,8 @@ import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.qulice.spi.Environment;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -54,13 +55,13 @@ final class CheckstyleListener implements AuditListener {
      * Collection of events collected.
      */
     private final transient List<AuditEvent> all =
-        new ArrayList<AuditEvent>();
+        new LinkedList<AuditEvent>();
 
     /**
      * Public ctor.
      * @param environ The environment
      */
-    public CheckstyleListener(final Environment environ) {
+    CheckstyleListener(final Environment environ) {
         this.env = environ;
     }
 
@@ -69,7 +70,7 @@ final class CheckstyleListener implements AuditListener {
      * @return List of events
      */
     public List<AuditEvent> events() {
-        return this.all;
+        return Collections.unmodifiableList(this.all);
     }
 
     @Override
@@ -94,18 +95,21 @@ final class CheckstyleListener implements AuditListener {
 
     @Override
     public void addError(final AuditEvent event) {
-        this.all.add(event);
-        final String check = event.getSourceName();
-        Logger.error(
-            this,
-            "%s[%d]: %s (%s)",
-            event.getFileName().substring(
-                this.env.basedir().toString().length()
-            ),
-            event.getLine(),
-            event.getMessage(),
-            check.substring(check.lastIndexOf('.') + 1)
+        final String name = event.getFileName().substring(
+            this.env.basedir().toString().length()
         );
+        if (!this.env.exclude(name)) {
+            this.all.add(event);
+            final String check = event.getSourceName();
+            Logger.error(
+                this,
+                "%s[%d]: %s (%s)",
+                name,
+                event.getLine(),
+                event.getMessage(),
+                check.substring(check.lastIndexOf('.') + 1)
+            );
+        }
     }
 
     @Override

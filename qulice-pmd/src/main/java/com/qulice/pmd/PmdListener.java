@@ -30,7 +30,9 @@
 package com.qulice.pmd;
 
 import com.jcabi.log.Logger;
+import com.qulice.spi.Environment;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import net.sourceforge.pmd.IRuleViolation;
 import net.sourceforge.pmd.ReportListener;
@@ -43,7 +45,12 @@ import net.sourceforge.pmd.stat.Metric;
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
  */
-public final class PmdListener implements ReportListener {
+final class PmdListener implements ReportListener {
+
+    /**
+     * Environment.
+     */
+    private final transient Environment env;
 
     /**
      * Violations.
@@ -52,11 +59,11 @@ public final class PmdListener implements ReportListener {
         new LinkedList<IRuleViolation>();
 
     /**
-     * Get list of violations.
-     * @return List of violations
+     * Public ctor.
+     * @param environ Environment
      */
-    public Collection<IRuleViolation> getViolations() {
-        return this.violations;
+    PmdListener(final Environment environ) {
+        this.env = environ;
     }
 
     @Override
@@ -66,15 +73,27 @@ public final class PmdListener implements ReportListener {
 
     @Override
     public void ruleViolationAdded(final IRuleViolation violation) {
-        this.violations.add(violation);
-        Logger.error(
-            this,
-            "%s[%d-%d]: %s (%s)",
-            violation.getFilename(),
-            violation.getBeginLine(),
-            violation.getEndLine(),
-            violation.getDescription(),
-            violation.getRule().getName()
-        );
+        final String name = violation.getFilename();
+        if (!this.env.exclude(name)) {
+            this.violations.add(violation);
+            Logger.error(
+                this,
+                "%s[%d-%d]: %s (%s)",
+                name,
+                violation.getBeginLine(),
+                violation.getEndLine(),
+                violation.getDescription(),
+                violation.getRule().getName()
+            );
+        }
     }
+
+    /**
+     * Get list of violations.
+     * @return List of violations
+     */
+    public Collection<IRuleViolation> getViolations() {
+        return Collections.unmodifiableCollection(this.violations);
+    }
+
 }

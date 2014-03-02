@@ -94,6 +94,13 @@ public interface Environment {
     Collection<File> files(String pattern);
 
     /**
+     * Shall this item be excluded from report?
+     * @param name File or any other item, which is subject of validation
+     * @return TRUE if it should be ignored
+     */
+    boolean exclude(String name);
+
+    /**
      * Mock of {@link Environment}.
      */
     final class Mock implements Environment {
@@ -212,6 +219,10 @@ public interface Environment {
         @Override
         public Collection<File> files(final String pattern) {
             return Collections.emptyList();
+        }
+        @Override
+        public boolean exclude(final String name) {
+            return false;
         }
     }
 }

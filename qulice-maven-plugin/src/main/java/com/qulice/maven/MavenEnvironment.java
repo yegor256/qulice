@@ -145,5 +145,9 @@ interface MavenEnvironment extends Environment {
         public Collection<File> files(final String pattern) {
             throw new UnsupportedOperationException();
         }
+        @Override
+        public boolean exclude(final String name) {
+            return this.env.exclude(name);
+        }
     }
 }

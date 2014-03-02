@@ -30,6 +30,8 @@
 package com.qulice.maven;
 
 import com.jcabi.log.Logger;
+import java.util.Collection;
+import java.util.LinkedList;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MavenPluginManager;
@@ -90,6 +92,13 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     private transient String license = "LICENSE.txt";
 
     /**
+     * List of regular expressions to exclude.
+     * @since 0.4
+     */
+    @Parameter(property = "qulice.excludes")
+    private transient Collection<String> excludes = new LinkedList<String>();
+
+    /**
      * Set Maven Project (used mostly for unit testing).
      * @param proj The project to set
      */
@@ -130,6 +139,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.environment.setMojoExecutor(
             new MojoExecutor(this.manager, this.session)
         );
+        this.environment.setExcludes(this.excludes);
         final long start = System.nanoTime();
         this.doExecute();
         Logger.info(

@@ -167,19 +167,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.ning.maven.plugins</groupId>
-                <artifactId>maven-duplicate-finder-plugin</artifactId>
-                <configuration>
-                    <ignoredDependencies combine.children="append">
-                        <dependency>
-                            <groupId>xalan</groupId>
-                            <artifactId>xalan</artifactId>
-                            <version>2.7.1</version>
-                        </dependency>
-                    </ignoredDependencies>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
                 <configuration>
@@ -198,4 +185,26 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>qulice</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.ning.maven.plugins</groupId>
+                        <artifactId>maven-duplicate-finder-plugin</artifactId>
+                        <configuration>
+                            <ignoredDependencies combine.children="append">
+                                <dependency>
+                                    <groupId>xalan</groupId>
+                                    <artifactId>xalan</artifactId>
+                                    <version>2.7.1</version>
+                                </dependency>
+                            </ignoredDependencies>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

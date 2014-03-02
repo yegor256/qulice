@@ -35,6 +35,7 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import org.apache.maven.artifact.Artifact;
@@ -70,6 +71,11 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * MOJO executor.
      */
     private transient MojoExecutor mojoExecutor;
+
+    /**
+     * Excludes, regular expressions.
+     */
+    private transient Collection<String> excludes = new LinkedList<String>();
 
     @Override
     public String param(final String name, final String value) {
@@ -163,6 +169,18 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
+    public boolean exclude(final String name) {
+        boolean exclude = false;
+        for (final String expr : this.excludes) {
+            if (name.matches(expr)) {
+                exclude = true;
+                break;
+            }
+        }
+        return exclude;
+    }
+
     /**
      * Set Maven Project (used mostly for unit testing).
      * @param proj The project to set
@@ -194,6 +212,15 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     public void setProperty(final String name, final String value) {
         this.iproperties.setProperty(name, value);
+    }
+
+    /**
+     * Set list of regular expressions to exclude.
+     * @param exprs Expressions
+     */
+    public void setExcludes(final Collection<String> exprs) {
+        this.excludes.clear();
+        this.excludes.addAll(exprs);
     }
 
 }

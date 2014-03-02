@@ -71,10 +71,10 @@ public final class CheckMojo extends AbstractQuliceMojo {
      * @throws ValidationException If any of them fail
      */
     private void run() throws ValidationException {
-        for (Validator validator : this.provider.external()) {
+        for (final Validator validator : this.provider.external()) {
             validator.validate(this.env());
         }
-        for (MavenValidator validator : this.provider.internal()) {
+        for (final MavenValidator validator : this.provider.internal()) {
             validator.validate(this.env());
         }
     }
@@ -83,7 +83,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
      * Set provider of validators.
      * @param prov The provider
      */
-    protected void setValidatorsProvider(final ValidatorsProvider prov) {
+    void setValidatorsProvider(final ValidatorsProvider prov) {
         this.provider = prov;
     }
 

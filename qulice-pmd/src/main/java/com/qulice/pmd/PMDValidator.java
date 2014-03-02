@@ -46,31 +46,14 @@ import net.sourceforge.pmd.IRuleViolation;
  */
 public final class PMDValidator implements Validator {
 
-    /**
-     * Validator.
-     */
-    private final transient SourceValidator validator = new SourceValidator();
-
     @Override
     public void validate(final Environment env) throws ValidationException {
+        final SourceValidator validator = new SourceValidator(env);
         final Collection<DataSource> sources = this.getSources(env);
-        this.validateSources(env, sources);
-        this.checkViolations();
-        Logger.info(
-            this,
-            "No PMD violations found in %d files",
-            sources.size()
-        );
-    }
-
-    /**
-     * Checks validation results. If violations were found
-     * <code>ValidationException</code> is thrown.
-     * @throws ValidationException If violations were found.
-     */
-    private void checkViolations() throws ValidationException {
-        final Collection<IRuleViolation> violations =
-            this.validator.getViolations();
+        final File base = env.basedir();
+        final String path = base.getPath();
+        validator.validate(sources, path);
+        final Collection<IRuleViolation> violations = validator.getViolations();
         final int size = violations.size();
         if (!violations.isEmpty()) {
             throw new ValidationException(
@@ -78,6 +61,11 @@ public final class PMDValidator implements Validator {
                 size
             );
         }
+        Logger.info(
+            this,
+            "No PMD violations found in %d files",
+            sources.size()
+        );
     }
 
     /**
@@ -94,17 +82,4 @@ public final class PMDValidator implements Validator {
         return sources;
     }
 
-    /**
-     * Performs validation of the specified source files.
-     * @param environment Environment.
-     * @param sources Source files to validate.
-     */
-    private void validateSources(
-        final Environment environment,
-        final Collection<DataSource> sources
-    ) {
-        final File base = environment.basedir();
-        final String path = base.getPath();
-        this.validator.validate(sources, path);
-    }
 }
