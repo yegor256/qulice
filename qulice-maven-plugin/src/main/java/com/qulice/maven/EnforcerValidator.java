@@ -48,21 +48,23 @@ public final class EnforcerValidator implements MavenValidator {
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        final Properties props = new Properties();
-        final Properties rules = new Properties();
-        props.put("rules", rules);
-        final Properties maven = new Properties();
-        rules.put("requireMavenVersion", maven);
-        maven.put("version", "3.0");
-        final Properties java = new Properties();
-        rules.put("requireJavaVersion", java);
-        // @checkstyle MultipleStringLiterals (1 line)
-        java.put("version", "1.6");
-        env.executor().execute(
-            "org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1",
-            "enforce",
-            props
-        );
+        if (!env.exclude("enforcer")) {
+            final Properties props = new Properties();
+            final Properties rules = new Properties();
+            props.put("rules", rules);
+            final Properties maven = new Properties();
+            rules.put("requireMavenVersion", maven);
+            maven.put("version", "3.0");
+            final Properties java = new Properties();
+            rules.put("requireJavaVersion", java);
+            // @checkstyle MultipleStringLiterals (1 line)
+            java.put("version", "1.6");
+            env.executor().execute(
+                "org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1",
+                "enforce",
+                props
+            );
+        }
     }
 
 }

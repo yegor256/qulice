@@ -65,7 +65,8 @@ final class DependenciesValidator implements MavenValidator {
     public void validate(final MavenEnvironment env)
         throws ValidationException {
         if (!env.outdir().exists()
-            || "pom".equals(env.project().getPackaging())) {
+            || "pom".equals(env.project().getPackaging())
+            || env.exclude("dependencies")) {
             Logger.info(this, "No dependency analysis in this project");
             return;
         }

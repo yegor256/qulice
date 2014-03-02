@@ -48,22 +48,24 @@ public final class CoberturaValidator implements MavenValidator {
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        final Properties props = new Properties();
-        props.put("quiet", "false");
-        final Properties check = new Properties();
-        props.put("check", check);
-        check.put("haltOnFailure", "true");
-        check.put("lineRate", "60");
-        check.put("branchRate", "60");
-        check.put("packageLineRate", "70");
-        check.put("packageBranchRate", "70");
-        check.put("totalLineRate", "80");
-        check.put("totalBranchRate", "80");
-        env.executor().execute(
-            "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
-            "check",
-            props
-        );
+        if (!env.exclude("cobertura")) {
+            final Properties props = new Properties();
+            props.put("quiet", "false");
+            final Properties check = new Properties();
+            props.put("check", check);
+            check.put("haltOnFailure", "true");
+            check.put("lineRate", "60");
+            check.put("branchRate", "60");
+            check.put("packageLineRate", "70");
+            check.put("packageBranchRate", "70");
+            check.put("totalLineRate", "80");
+            check.put("totalBranchRate", "80");
+            env.executor().execute(
+                "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",
+                "check",
+                props
+            );
+        }
     }
 
 }
