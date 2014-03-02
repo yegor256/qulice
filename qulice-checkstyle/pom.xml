@@ -48,13 +48,6 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qulice</groupId>
-            <artifactId>qulice-spi</artifactId>
-            <version>${project.version}</version>
-            <classifier>mock</classifier>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava-io</artifactId>
             <version>r03</version>

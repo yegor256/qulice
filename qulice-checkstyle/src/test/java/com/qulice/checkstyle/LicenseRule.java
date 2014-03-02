@@ -30,15 +30,19 @@
 package com.qulice.checkstyle;
 
 import java.io.File;
+import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.junit.rules.TestRule;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
 
 /**
  * Builder of {@code LICENSE.txt} content.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
-public final class LicenseMocker {
+public final class LicenseRule implements TestRule {
 
     /**
      * The text.
@@ -60,12 +64,18 @@ public final class LicenseMocker {
      */
     private transient File packageInfoDir;
 
+    @Override
+    public Statement apply(final Statement statement,
+        final Description description) {
+        return statement;
+    }
+
     /**
      * Use this EOL.
      * @param txt What to use as end-of-line character
      * @return This object
      */
-    public LicenseMocker withEol(final String txt) {
+    public LicenseRule withEol(final String txt) {
         this.eol = txt;
         return this;
     }
@@ -75,7 +85,7 @@ public final class LicenseMocker {
      * @param lns The lines to use
      * @return This object
      */
-    public LicenseMocker withLines(final String[] lns) {
+    public LicenseRule withLines(final String[] lns) {
         this.lines = new String[lns.length];
         System.arraycopy(lns, 0, this.lines, 0, lns.length);
         return this;
@@ -86,7 +96,7 @@ public final class LicenseMocker {
      * @param name The name of package
      * @return This object
      */
-    public LicenseMocker withPackage(final String name) {
+    public LicenseRule withPackage(final String name) {
         this.pkgName = name;
         return this;
     }
@@ -96,17 +106,17 @@ public final class LicenseMocker {
      * @param dir The folder to save to
      * @return This object
      */
-    public LicenseMocker savePackageInfo(final File dir) {
+    public LicenseRule savePackageInfo(final File dir) {
         this.packageInfoDir = dir;
         return this;
     }
 
     /**
-     * Mock it.
+     * Make a file.
      * @return The location of LICENSE.txt
-     * @throws Exception If something wrong happens inside
+     * @throws IOException If something wrong happens inside
      */
-    public File mock() throws Exception {
+    public File file() throws IOException {
         final File license = File.createTempFile("LICENSE", ".txt");
         FileUtils.forceDeleteOnExit(license);
         FileUtils.writeStringToFile(
@@ -122,17 +132,17 @@ public final class LicenseMocker {
     /**
      * Save package-info.java to the directory.
      * @param dir The directory
-     * @throws Exception If something wrong happens inside
+     * @throws IOException If something wrong happens inside
      * @checkstyle MultipleStringLiterals (20 lines)
      */
-    private void makePackageInfo(final File dir) throws Exception {
+    private void makePackageInfo(final File dir) throws IOException {
         final File info = new File(dir, "package-info.java");
         final StringBuilder body = new StringBuilder();
         body.append("/**").append(this.eol);
-        for (String line : this.lines) {
+        for (final String line : this.lines) {
             body.append(" *");
             if (!line.isEmpty()) {
-                body.append(" ").append(line);
+                body.append(' ').append(line);
             }
             body.append(this.eol);
         }
@@ -143,7 +153,7 @@ public final class LicenseMocker {
             .append(" * @author John Doe (j@qulice.com)").append(this.eol)
             .append(" */").append(this.eol)
             .append("package ").append(this.pkgName)
-            .append(";").append(this.eol);
+            .append(';').append(this.eol);
         FileUtils.writeStringToFile(info, body.toString());
     }
 

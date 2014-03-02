@@ -30,7 +30,6 @@
 package com.qulice.xml;
 
 import com.qulice.spi.Environment;
-import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import org.junit.Test;
@@ -51,9 +50,8 @@ public final class XmlValidatorTest {
     @Test(expected = ValidationException.class)
     @org.junit.Ignore
     public void testValidatesSetOfFiles() throws Exception {
-        final Environment env = new EnvironmentMocker()
-            .withFile("text.xml", "<a></a>")
-            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile("text.xml", "<a></a>");
         final Validator validator = new XmlValidator();
         validator.validate(env);
     }

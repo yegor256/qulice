@@ -30,9 +30,9 @@
 package com.qulice.checkstyle;
 
 import com.qulice.spi.Environment;
-import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
 import java.io.File;
+import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -49,17 +49,23 @@ public final class CheckstyleValidatorTest {
     private static final String LICENSE_PROP = "license";
 
     /**
+     * License rule.
+     */
+    @Rule
+    public final transient LicenseRule license = new LicenseRule();
+
+    /**
      * CheckstyleValidator can catch checkstyle violations.
      * @throws Exception If something wrong happens inside
      */
     @Test(expected = ValidationException.class)
     public void catchesCheckstyleViolationsInLicense() throws Exception {
-        final EnvironmentMocker mock = new EnvironmentMocker();
-        final File license = new LicenseMocker()
-            .savePackageInfo(new File(mock.getBasedir(), "src/main/java/foo"))
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.license
+            .savePackageInfo(new File(mock.basedir(), "src/main/java/foo"))
             .withLines(new String[] {"License-1.", "", "License-2."})
             .withEol("\n")
-            .mock();
+            .file();
         final String content =
             // @checkstyle StringLiteralsConcatenation (4 lines)
             // @checkstyle RegexpSingleline (1 line)
@@ -69,7 +75,7 @@ public final class CheckstyleValidatorTest {
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
             this.toURL(license)
-        ).withFile("src/main/java/foo/Foo.java", content).mock();
+        ).withFile("src/main/java/foo/Foo.java", content);
         new CheckstyleValidator().validate(env);
     }
 
@@ -79,12 +85,12 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
-        final EnvironmentMocker mock = new EnvironmentMocker();
-        final File license = new LicenseMocker()
-            .savePackageInfo(new File(mock.getBasedir(), "src/main/java/foo"))
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.license
+            .savePackageInfo(new File(mock.basedir(), "src/main/java/foo"))
             .withLines(new String[] {"Hello.", "", "World."})
             .withEol("\r\n")
-            .mock();
+            .file();
         final String content =
             // @checkstyle StringLiteralsConcatenation (12 lines)
             "/**\r\n"
@@ -102,7 +108,7 @@ public final class CheckstyleValidatorTest {
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
             this.toURL(license)
-        ).withFile("src/main/java/foo/Main.java", content).mock();
+        ).withFile("src/main/java/foo/Main.java", content);
         new CheckstyleValidator().validate(env);
     }
 
@@ -113,12 +119,12 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
-        final EnvironmentMocker mock = new EnvironmentMocker();
-        final File license = new LicenseMocker()
-            .savePackageInfo(new File(mock.getBasedir(), "src/main/java/foo"))
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.license
+            .savePackageInfo(new File(mock.basedir(), "src/main/java/foo"))
             .withLines(new String[] {"Welcome.", "", "Friend."})
             .withEol("\r\n")
-            .mock();
+            .file();
         final String content =
             "/**\n"
             + " * Welcome.\n"
@@ -137,8 +143,7 @@ public final class CheckstyleValidatorTest {
             .withParam(
                 CheckstyleValidatorTest.LICENSE_PROP,
                 this.toURL(license)
-            )
-            .mock();
+            );
         new CheckstyleValidator().validate(env);
     }
 

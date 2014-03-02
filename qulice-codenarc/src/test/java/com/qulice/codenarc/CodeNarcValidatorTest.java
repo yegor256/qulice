@@ -30,10 +30,10 @@
 package com.qulice.codenarc;
 
 import com.qulice.spi.Environment;
-import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 import org.apache.log4j.spi.LoggingEvent;
@@ -58,9 +58,8 @@ public final class CodeNarcValidatorTest {
      */
     @Test(expected = ValidationException.class)
     public void failsOnIncorrectGroovySources() throws Exception {
-        final Environment env = new EnvironmentMocker()
-            .withFile("src/Main.groovy", "System.out.println('hi')")
-            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile("src/Main.groovy", "System.out.println('hi')");
         final Validator validator = new CodeNarcValidator();
         validator.validate(env);
     }
@@ -72,9 +71,8 @@ public final class CodeNarcValidatorTest {
     @Test
     public void passesCorrectFilesWithoutExceptions() throws Exception {
         final Validator validator = new CodeNarcValidator();
-        final Environment env = new EnvironmentMocker()
-            .withFile("src/foo/Foo.groovy", "// empty")
-            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile("src/foo/Foo.groovy", "// empty");
         validator.validate(env);
     }
 
@@ -85,9 +83,8 @@ public final class CodeNarcValidatorTest {
      */
     @Test(expected = ValidationException.class)
     public void reportsFullFileNamesOfGroovyScripts() throws Exception {
-        final Environment env = new EnvironmentMocker()
-            .withFile("src/main/Foo.groovy", "System.out.println('foo')")
-            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile("src/main/Foo.groovy", "System.out.println('foo')");
         final Validator validator = new CodeNarcValidator();
         final CodeNarcAppender appender = new CodeNarcAppender();
         org.apache.log4j.Logger.getRootLogger().addAppender(appender);
@@ -98,7 +95,7 @@ public final class CodeNarcValidatorTest {
             final Pattern pattern = Pattern.compile(
                 "[a-zA-Z0-9_/]+\\.groovy\\[\\d+\\]: .*"
             );
-            for (String message : messages) {
+            for (final String message : messages) {
                 if (message.startsWith("CodeNarc validated ")) {
                     continue;
                 }
@@ -120,7 +117,8 @@ public final class CodeNarcValidatorTest {
         /**
          * List of logged messages.
          */
-        private final transient List<String> messages = new ArrayList<String>();
+        private final transient List<String> messages =
+            new LinkedList<String>();
         @Override
         public void doAppend(final LoggingEvent event) {
             this.messages.add(event.getMessage().toString());
@@ -130,7 +128,7 @@ public final class CodeNarcValidatorTest {
          * @return The list of logged messages
          */
         public List<String> getMessages() {
-            return this.messages;
+            return Collections.unmodifiableList(this.messages);
         }
     }
 

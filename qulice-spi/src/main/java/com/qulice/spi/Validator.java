@@ -42,6 +42,6 @@ public interface Validator {
      * @param env The environment to work with
      * @throws ValidationException In case of any violations found
      */
-    void validate(final Environment env) throws ValidationException;
+    void validate(Environment env) throws ValidationException;
 
 }

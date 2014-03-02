@@ -31,7 +31,6 @@ package com.qulice.xml;
 
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 
 /**
@@ -42,12 +41,8 @@ import com.qulice.spi.Validator;
  */
 public final class XmlValidator implements Validator {
 
-    /**
-     * {@inheritDoc}
-     * @checkstyle RedundantThrows (3 lines)
-     */
     @Override
-    public void validate(final Environment env) throws ValidationException {
+    public void validate(final Environment env) {
         Logger.info(
             this,
             "XML validation is not implemented yet"

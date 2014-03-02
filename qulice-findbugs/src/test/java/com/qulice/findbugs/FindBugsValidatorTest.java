@@ -30,7 +30,6 @@
 package com.qulice.findbugs;
 
 import com.qulice.spi.Environment;
-import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
 import org.junit.Test;
 
@@ -47,10 +46,9 @@ public final class FindBugsValidatorTest {
      */
     @Test
     public void passesCorrectFilesWithNoExceptions() throws Exception {
-        final Environment env = new EnvironmentMocker()
+        final Environment env = new Environment.Mock()
             .withFile("src/main/java/Main.java", "class Main { int x = 0; }")
-            .withDefaultClasspath()
-            .mock();
+            .withDefaultClasspath();
         new FindBugsValidator().validate(env);
     }
 
@@ -64,10 +62,9 @@ public final class FindBugsValidatorTest {
         final byte[] bytecode = new BytecodeMocker()
             .withSource("class Foo { public Foo clone() { return this; } }")
             .mock();
-        final Environment env = new EnvironmentMocker()
+        final Environment env = new Environment.Mock()
             .withFile("target/classes/Foo.class", bytecode)
-            .withDefaultClasspath()
-            .mock();
+            .withDefaultClasspath();
         new FindBugsValidator().validate(env);
     }
 

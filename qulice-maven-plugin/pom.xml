@@ -51,13 +51,6 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.qulice</groupId>
-            <artifactId>qulice-spi</artifactId>
-            <version>${project.version}</version>
-            <classifier>mock</classifier>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
             <version>3.2</version>

@@ -47,7 +47,7 @@ public final class EnvironmentTest {
      */
     @Test
     public void canBeInstantiatedWithMocker() throws Exception {
-        final Environment env = new EnvironmentMocker().mock();
+        final Environment env = new Environment.Mock();
         MatcherAssert.assertThat(env.basedir().exists(), Matchers.is(true));
         MatcherAssert.assertThat(env.tempdir().exists(), Matchers.is(true));
         MatcherAssert.assertThat(env.outdir().exists(), Matchers.is(true));
@@ -61,9 +61,8 @@ public final class EnvironmentTest {
     public void writesFileContentToTheDesignatedLocation() throws Exception {
         final String name = "src/main/java/Main.java";
         final String content = "class Main {}";
-        final Environment env = new EnvironmentMocker()
-            .withFile(name, content)
-            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile(name, content);
         final File file = new File(env.basedir(), name);
         MatcherAssert.assertThat(file.exists(), Matchers.is(true));
     }
@@ -76,9 +75,8 @@ public final class EnvironmentTest {
     public void writesByteArrayToTheDesignatedLocation() throws Exception {
         final String name = "src/main/java/Foo.java";
         final byte[] bytes = "class Foo {}".getBytes();
-        final Environment env = new EnvironmentMocker()
-            .withFile(name, bytes)
-            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile(name, bytes);
         final File file = new File(env.basedir(), name);
         MatcherAssert.assertThat(file.exists(), Matchers.is(true));
     }
@@ -89,7 +87,7 @@ public final class EnvironmentTest {
      */
     @Test
     public void setsClasspathOnTheMock() throws Exception {
-        final Environment env = new EnvironmentMocker().mock();
+        final Environment env = new Environment.Mock();
         MatcherAssert.assertThat(
             env.classpath().size(),
             Matchers.greaterThan(0)
@@ -104,9 +102,8 @@ public final class EnvironmentTest {
     public void configuresParametersInMock() throws Exception {
         final String name = "alpha";
         final String value = "some complex value";
-        final Environment env = new EnvironmentMocker()
-            .withParam(name, value)
-            .mock();
+        final Environment env = new Environment.Mock()
+            .withParam(name, value);
         MatcherAssert.assertThat(env.param(name, ""), Matchers.equalTo(value));
     }
 

@@ -30,7 +30,6 @@
 package com.qulice.pmd;
 
 import com.qulice.spi.Environment;
-import com.qulice.spi.EnvironmentMocker;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import org.junit.Test;
@@ -48,9 +47,8 @@ public final class PMDValidatorTest {
      */
     @Test(expected = ValidationException.class)
     public void findsProblemsInJavaFiles() throws Exception {
-        final Environment env = new EnvironmentMocker()
-            .withFile("src/main/java/Main.java", "class Main { int x = 0; }")
-            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile("src/main/java/Main.java", "class Main { int x = 0; }");
         final Validator validator = new PMDValidator();
         validator.validate(env);
     }
