@@ -16,6 +16,7 @@
                                             <link rel="stylesheet" href="./css/highlight.css" />
         <script src="./js/jquery-1.8.3.min.js"></script>
         <script src="./js/highlight-7.3.min.js"></script>
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
         <script>
             $(document).ready(
                 function() {
@@ -24,157 +25,217 @@
                             hljs.highlightBlock(element);
                         }
                     );
+                    $(".menu-button").click(
+                        function() {
+                            if ($("#here-goes-menu").attr("class") == "menu-off") {
+                                $("#menu").clone().attr("class", "mobile-menu").appendTo("#here-goes-menu");
+                                $("#here-goes-menu").attr("class", "menu-on");
+                            } else {
+                                $(".mobile-menu").hide();
+                                $("#here-goes-menu").attr("class", "menu-off");
+                            }
+                        }
+                    );
                 }
             );
         </script>
+        <style>
+            @import url("./css/wide.css") (min-width: 1200px) and (max-width:5000px);
+            @import url("./css/900-1199.css") (min-width: 900px) and (max-width:1199px);
+            @import url("./css/600-899.css") (min-width: 600px) and (max-width:899px);
+            @import url("./css/100-599.css") (min-width: 100px) and (max-width:599px);
+        </style>
     </head>
-    <body>
+    <body style="background: url('./images/background.png') fixed;">
+                <div class="page">
+            <div class="menu-section">
                 <ul id="menu">
-                                                    <li>
-                    Parent Project
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="../index.html" title="qulice">qulice</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                            <li>
-                    Overview
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="index.html" title="Introduction">Introduction</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                            <li>
-                    Project Documentation
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="project-info.html" title="Project Information">Project Information</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
-                                                                                        <li>
-                                                                    <a href="project-reports.html" title="Project Reports">Project Reports</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
-                                                                            <li>
-                                                                    <a href="rempl.html" title="REMPL">REMPL</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                            <strong>                        <a href="changelog.html" title="Change Log">Change Log</a>
+                                                                                    <li>
+                            Parent Project
+                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="../index.html" title="qulice">qulice</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            Overview
+                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="index.html" title="Introduction">Introduction</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            Project Documentation
+                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="project-info.html" title="Project Information">Project Information</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                        <li>
+                                                                                    <a href="project-reports.html" title="Project Reports">Project Reports</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
+                                                                                                    <li>
+                                                                                    <a href="rempl.html" title="REMPL">REMPL</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                            <strong>                        <a href="changelog.html" title="Change Log">Change Log</a>
         </strong>
-                                                                                                                <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="file-activity.html" title="File Activity">File Activity</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="dependency-updates-report.html" title="Dependency Updates Report">Dependency Updates Report</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="plugin-updates-report.html" title="Plugin Updates Report">Plugin Updates Report</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="apidocs-0.3.2/index.html" title="JavaDocs">JavaDocs</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="github-report.html" title="GitHub Report">GitHub Report</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                    </ul>
-        <div id="content">
-                            <a href="https://github.com/tpc2/qulice/qulice-pmd">
-                    <img style="position: absolute; top: 0; right: 0; border: 0; width: 100px; height: 100px;"
-                        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
-                        alt="Fork me on GitHub" />
-                </a>
-                        <a href="../" title="home page of Qulice.com">
-                <img src="http://img.qulice.com/logo.png"
-                    alt="Qulice"
-                                            width="214"
-                                                                height="60"
-                                    />
-            </a>
-                            <ul id="breadcrumbs">
-                                            <li>                        <a href=".." title="qulice.com">qulice.com</a>
-        </li>
-                                            <li>                                    <a href="./" title="qulice-pmd">qulice-pmd</a>
-        </li>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="file-activity.html" title="File Activity">File Activity</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="dependency-updates-report.html" title="Dependency Updates Report">Dependency Updates Report</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="plugin-updates-report.html" title="Plugin Updates Report">Plugin Updates Report</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="apidocs-0.4.1/index.html" title="JavaDocs">JavaDocs</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li>
+                                                                                    <a href="github-report.html" title="GitHub Report">GitHub Report</a>
+                                                                                                                                                                        <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
                                     </ul>
-                        <p>
-                
-                03-Feb-2014
-                0.3.2
-            </p>
-            <article>
-                <div class="section">
+            </div>
+            <div id="right-side">
+                <div id="content">
+                    <i class="menu-button fa fa-align-justify"></i>
+                    <div class="logo-section">
+                        <a href="../" title="home page of Qulice.com">
+                            <img src="http://img.qulice.com/logo.png"
+                                alt="Qulice"
+                                                                    width="214"
+                                                                                                    height="60"
+                                                            />
+                        </a>
+                    </div>
+                    <div class="date">
+                        <div class="date-numbers">
+                            
+                            02-Mar-2014
+                            0.4.1
+                        </div>
+                                                                    </div>
+                    <div id="here-goes-menu"></div>
+                    <article>
+                        <div class="section">
+                            <div class="section">
 <h2>Change Log Report<a name="Change_Log_Report"></a></h2>
 <p>Total number of changed sets: 1</p>
 <div class="section">
-<h3>Changes between 2014-01-04 and 2014-02-04<a name="Changes_between_2014-01-04_and_2014-02-04"></a></h3>
-<p>Total commits: 3<br />Total number of files changed: 4</p>
+<h3>Changes between 2014-01-31 and 2014-03-03<a name="Changes_between_2014-01-31_and_2014-03-03"></a></h3>
+<p>Total commits: 13<br />Total number of files changed: 9</p>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Timestamp</th>
 <th>Author</th>
 <th>Details</th></tr>
 <tr class="b">
+<td>2014-03-02 13:35:30</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml">qulice-pmd/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml?rev=4766a88c8b55577ce0baaa99fefb6c38f955d515&amp;content-type=text/vnd.viewcvs-markup">v 4766a88c8b55577ce0baaa99fefb6c38f955d515</a><br /><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/PmdListener.java">qulice-pmd/src/main/java/com/qulice/pmd/<b>PmdListener.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/PmdListener.java?rev=4766a88c8b55577ce0baaa99fefb6c38f955d515&amp;content-type=text/vnd.viewcvs-markup">v 4766a88c8b55577ce0baaa99fefb6c38f955d515</a><br /><br />0.4.1</td></tr>
+<tr class="a">
+<td>2014-03-02 12:57:49</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml">qulice-pmd/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml?rev=bdb1f8145bb2fdb02d5d105b77ad7fb9712cd344&amp;content-type=text/vnd.viewcvs-markup">v bdb1f8145bb2fdb02d5d105b77ad7fb9712cd344</a><br /><br />all tests fixed</td></tr>
+<tr class="b">
+<td>2014-03-02 12:54:22</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml">qulice-pmd/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml?rev=cc9676cb25e404043665214f0247287f95588be0&amp;content-type=text/vnd.viewcvs-markup">v cc9676cb25e404043665214f0247287f95588be0</a><br /><br />0.4.1</td></tr>
+<tr class="a">
+<td>2014-03-02 12:53:15</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/Files.java">qulice-pmd/src/main/java/com/qulice/pmd/<b>Files.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/Files.java?rev=30c1c848dde92e23c6dc6cf7ef0b7571fcc11933&amp;content-type=text/vnd.viewcvs-markup">v 30c1c848dde92e23c6dc6cf7ef0b7571fcc11933</a><br /><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/SourceValidator.java">qulice-pmd/src/main/java/com/qulice/pmd/<b>SourceValidator.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/SourceValidator.java?rev=30c1c848dde92e23c6dc6cf7ef0b7571fcc11933&amp;content-type=text/vnd.viewcvs-markup">v 30c1c848dde92e23c6dc6cf7ef0b7571fcc11933</a><br /><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/rules/UnnecessaryLocalRule.java">qulice-pmd/src/main/java/com/qulice/pmd/rules/<b>UnnecessaryLocalRule.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/rules/UnnecessaryLocalRule.java?rev=30c1c848dde92e23c6dc6cf7ef0b7571fcc11933&amp;content-type=text/vnd.viewcvs-markup">v 30c1c848dde92e23c6dc6cf7ef0b7571fcc11933</a><br /><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/resources/com/qulice/pmd/ruleset.xml">qulice-pmd/src/main/resources/com/qulice/pmd/<b>ruleset.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/resources/com/qulice/pmd/ruleset.xml?rev=30c1c848dde92e23c6dc6cf7ef0b7571fcc11933&amp;content-type=text/vnd.viewcvs-markup">v 30c1c848dde92e23c6dc6cf7ef0b7571fcc11933</a><br /><br />polished for qulice 0.4</td></tr>
+<tr class="b">
+<td>2014-03-02 11:18:46</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml">qulice-pmd/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml?rev=8c249a09f7137b574358c96abc235826f832868e&amp;content-type=text/vnd.viewcvs-markup">v 8c249a09f7137b574358c96abc235826f832868e</a><br /><br />snapshot</td></tr>
+<tr class="a">
+<td>2014-03-02 10:53:30</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/resources/com/qulice/pmd/ruleset.xml">qulice-pmd/src/main/resources/com/qulice/pmd/<b>ruleset.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/resources/com/qulice/pmd/ruleset.xml?rev=cef8e19ab39621f3d5bd7bebc6bf2ec98161415c&amp;content-type=text/vnd.viewcvs-markup">v cef8e19ab39621f3d5bd7bebc6bf2ec98161415c</a><br /><br />#146 rule temporary disabled in rulesets.xml</td></tr>
+<tr class="b">
+<td>2014-03-02 10:53:03</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml">qulice-pmd/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml?rev=5a7f7f8aabe1669ad6c24cb793605fcbae514b77&amp;content-type=text/vnd.viewcvs-markup">v 5a7f7f8aabe1669ad6c24cb793605fcbae514b77</a><br /><br />0.4</td></tr>
+<tr class="a">
+<td>2014-03-02 10:39:10</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/DataSourceReader.java">qulice-pmd/src/main/java/com/qulice/pmd/<b>DataSourceReader.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/DataSourceReader.java?rev=8804a6889eb4be421d43ec9794fffe4a40c7002f&amp;content-type=text/vnd.viewcvs-markup">v 8804a6889eb4be421d43ec9794fffe4a40c7002f</a><br /><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/PMDValidator.java">qulice-pmd/src/main/java/com/qulice/pmd/<b>PMDValidator.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/PMDValidator.java?rev=8804a6889eb4be421d43ec9794fffe4a40c7002f&amp;content-type=text/vnd.viewcvs-markup">v 8804a6889eb4be421d43ec9794fffe4a40c7002f</a><br /><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/PmdListener.java">qulice-pmd/src/main/java/com/qulice/pmd/<b>PmdListener.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/PmdListener.java?rev=8804a6889eb4be421d43ec9794fffe4a40c7002f&amp;content-type=text/vnd.viewcvs-markup">v 8804a6889eb4be421d43ec9794fffe4a40c7002f</a><br /><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/SourceValidator.java">qulice-pmd/src/main/java/com/qulice/pmd/<b>SourceValidator.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/SourceValidator.java?rev=8804a6889eb4be421d43ec9794fffe4a40c7002f&amp;content-type=text/vnd.viewcvs-markup">v 8804a6889eb4be421d43ec9794fffe4a40c7002f</a><br /><br />Environment#exclude()</td></tr>
+<tr class="b">
+<td>2014-03-02 09:10:05</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml">qulice-pmd/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml?rev=a4c1122cfe86dde63c92fe81032cf81de5b03563&amp;content-type=text/vnd.viewcvs-markup">v a4c1122cfe86dde63c92fe81032cf81de5b03563</a><br /><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/test/java/com/qulice/pmd/PMDValidatorTest.java">qulice-pmd/src/test/java/com/qulice/pmd/<b>PMDValidatorTest.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/test/java/com/qulice/pmd/PMDValidatorTest.java?rev=a4c1122cfe86dde63c92fe81032cf81de5b03563&amp;content-type=text/vnd.viewcvs-markup">v a4c1122cfe86dde63c92fe81032cf81de5b03563</a><br /><br />mocks removed</td></tr>
+<tr class="a">
+<td>2014-02-23 17:25:28</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/Files.java">qulice-pmd/src/main/java/com/qulice/pmd/<b>Files.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/Files.java?rev=e0486cfa797be19f5df008be19a91e873308871d&amp;content-type=text/vnd.viewcvs-markup">v e0486cfa797be19f5df008be19a91e873308871d</a><br /><br />puzzle renamed</td></tr>
+<tr class="b">
+<td>2014-02-23 10:58:42</td>
+<td>krzyk &lt;Krzysztof.Krason@sabre.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/rules/UnnecessaryLocalRule.java">qulice-pmd/src/main/java/com/qulice/pmd/rules/<b>UnnecessaryLocalRule.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/rules/UnnecessaryLocalRule.java?rev=867962a32c4f62f60f92e1717f47fbcf52be0d10&amp;content-type=text/vnd.viewcvs-markup">v 867962a32c4f62f60f92e1717f47fbcf52be0d10</a><br /><br />#134 Parameters used only once are reported</td></tr>
+<tr class="a">
+<td>2014-02-03 21:11:01</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml">qulice-pmd/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml?rev=70dacfeb50af76c9e6596c60e428519b812808a3&amp;content-type=text/vnd.viewcvs-markup">v 70dacfeb50af76c9e6596c60e428519b812808a3</a><br /><br />snapshot</td></tr>
+<tr class="b">
 <td>2014-02-03 20:52:46</td>
 <td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml">qulice-pmd/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml?rev=84199f7154125fe68ce08ccd35720c31732705b2&amp;content-type=text/vnd.viewcvs-markup">v 84199f7154125fe68ce08ccd35720c31732705b2</a><br /><br />site plugin fixed</td></tr>
-<tr class="a">
-<td>2014-01-23 20:09:14</td>
-<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml">qulice-pmd/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml?rev=dd3fbe7ca74592a4abe5462d29f3dbf15d318acd&amp;content-type=text/vnd.viewcvs-markup">v dd3fbe7ca74592a4abe5462d29f3dbf15d318acd</a><br /><br />0.3.2</td></tr>
-<tr class="b">
-<td>2014-01-20 12:40:48</td>
-<td>krzyk &lt;Krzysztof.Krason@sabre.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/rules/UnnecessaryLocalRule.java">qulice-pmd/src/main/java/com/qulice/pmd/rules/<b>UnnecessaryLocalRule.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/rules/UnnecessaryLocalRule.java?rev=f8d0ecdf2b9e5082effbb160d5b1141693fa4093&amp;content-type=text/vnd.viewcvs-markup">v f8d0ecdf2b9e5082effbb160d5b1141693fa4093</a><br /><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/rules/package-info.java">qulice-pmd/src/main/java/com/qulice/pmd/rules/<b>package-info.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/java/com/qulice/pmd/rules/package-info.java?rev=f8d0ecdf2b9e5082effbb160d5b1141693fa4093&amp;content-type=text/vnd.viewcvs-markup">v f8d0ecdf2b9e5082effbb160d5b1141693fa4093</a><br /><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/resources/com/qulice/pmd/ruleset.xml">qulice-pmd/src/main/resources/com/qulice/pmd/<b>ruleset.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/src/main/resources/com/qulice/pmd/ruleset.xml?rev=f8d0ecdf2b9e5082effbb160d5b1141693fa4093&amp;content-type=text/vnd.viewcvs-markup">v f8d0ecdf2b9e5082effbb160d5b1141693fa4093</a><br /><br />#105 added PMD rule to check for unneeded local variables</td></tr></table></div></div>
-            </article>
-            <p style="margin-bottom: 3em; margin-top: 2em;">
-                Copyright &#169;
-                                                    2011-2014
-                                Qulice.com, All Rights Reserved.
-                <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
-            </p>
-            <a href="http://maven.apache.org" title="site is built by Apache Maven"
-                style='position: absolute; bottom: 1em; right: 1em;'>
-                <img src='images/built-by-maven.png' style='width: 50px; height: 17px;'
-                    alt='site is built by Apache Maven'/>
-            </a>
+<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml">qulice-pmd/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-pmd/pom.xml?rev=84199f7154125fe68ce08ccd35720c31732705b2&amp;content-type=text/vnd.viewcvs-markup">v 84199f7154125fe68ce08ccd35720c31732705b2</a><br /><br />site plugin fixed</td></tr></table></div></div>
+                        </div>
+                    </article>
+                    <img class="maven-mobile" src="./images/built-by-maven.png" style="float:right" width="80px"/>
+                </div>
+                <div class="legal-notes">
+                    <div class="copyright">
+                        Copyright &#169;
+                                                                            2011-2014
+                                                <br/>
+                        Qulice.com, All Rights Reserved.
+                        <br/>
+                        <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
