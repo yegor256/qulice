@@ -95,10 +95,11 @@ public interface Environment {
 
     /**
      * Shall this item be excluded from report?
+     * @param check Name of the check that is asking
      * @param name File or any other item, which is subject of validation
      * @return TRUE if it should be ignored
      */
-    boolean exclude(String name);
+    boolean exclude(String check, String name);
 
     /**
      * Mock of {@link Environment}.
@@ -231,7 +232,7 @@ public interface Environment {
             return Collections.emptyList();
         }
         @Override
-        public boolean exclude(final String name) {
+        public boolean exclude(final String check, final String name) {
             return false;
         }
     }

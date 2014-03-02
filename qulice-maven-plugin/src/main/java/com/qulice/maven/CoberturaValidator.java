@@ -48,7 +48,7 @@ public final class CoberturaValidator implements MavenValidator {
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        if (!env.exclude("cobertura")) {
+        if (!env.exclude("cobertura", "")) {
             final Properties props = new Properties();
             props.put("quiet", "false");
             final Properties check = new Properties();

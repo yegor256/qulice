@@ -48,7 +48,7 @@ public final class EnforcerValidator implements MavenValidator {
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        if (!env.exclude("enforcer")) {
+        if (!env.exclude("enforcer", "")) {
             final Properties props = new Properties();
             final Properties rules = new Properties();
             props.put("rules", rules);

@@ -74,7 +74,7 @@ final class PmdListener implements ReportListener {
     @Override
     public void ruleViolationAdded(final IRuleViolation violation) {
         final String name = violation.getFilename();
-        if (!this.env.exclude(name)) {
+        if (!this.env.exclude("pmd", name)) {
             this.violations.add(violation);
             Logger.error(
                 this,

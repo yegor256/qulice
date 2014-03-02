@@ -69,7 +69,7 @@ public final class FindBugsValidator implements Validator {
     @Override
     public void validate(final Environment env) throws ValidationException {
         if (env.outdir().exists()) {
-            if (!env.exclude("findbugs")) {
+            if (!env.exclude("findbugs", "")) {
                 this.check(this.findbugs(env));
             }
         } else {

@@ -51,7 +51,7 @@ public final class CodeNarcValidator implements Validator {
     @Override
     public void validate(final Environment env) throws ValidationException {
         final File src = new File(env.basedir(), "src");
-        if (this.required(src) && !env.exclude("codenarc")) {
+        if (this.required(src) && !env.exclude("codenarc", "")) {
             final int violations = this.logViolations(this.detect(src));
             if (violations > 0) {
                 throw new ValidationException(

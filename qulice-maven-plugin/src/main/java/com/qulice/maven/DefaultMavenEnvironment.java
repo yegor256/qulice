@@ -173,10 +173,11 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
-    public boolean exclude(final String name) {
+    public boolean exclude(final String check, final String name) {
+        final String line = String.format("%s:%s", check, name);
         boolean exclude = false;
         for (final String expr : this.exc) {
-            if (name.matches(expr)) {
+            if (line.matches(expr)) {
                 exclude = true;
                 break;
             }

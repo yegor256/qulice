@@ -98,7 +98,7 @@ final class CheckstyleListener implements AuditListener {
         final String name = event.getFileName().substring(
             this.env.basedir().toString().length()
         );
-        if (!this.env.exclude(name)) {
+        if (!this.env.exclude("checkstyle", name)) {
             this.all.add(event);
             final String check = event.getSourceName();
             Logger.error(

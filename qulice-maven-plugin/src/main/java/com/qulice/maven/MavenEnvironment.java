@@ -146,8 +146,8 @@ interface MavenEnvironment extends Environment {
             throw new UnsupportedOperationException();
         }
         @Override
-        public boolean exclude(final String name) {
-            return this.env.exclude(name);
+        public boolean exclude(final String check, final String name) {
+            return this.env.exclude(check, name);
         }
     }
 }

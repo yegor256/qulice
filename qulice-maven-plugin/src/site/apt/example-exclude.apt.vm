@@ -51,7 +51,7 @@ Exclude
       <version>${project.version}</version>
       <configuration>
         <excludes>
-          <exclude>\/src\/examples\/.*</exclude>
+          <exclude>checkstyle:/src/examples/.*</exclude>
         </excludes>
       </configuration>
     </plugin>
@@ -59,4 +59,7 @@ Exclude
 </build>
 +--
 
-  Every <<<exclude>>> item is a regular expression.
+  Every <<<exclude>>> item is a regular expression. The following
+  exclusion prefixes are supported now (the list may actually be longer):
+  <<<checkstyle:>>>, <<<pmd:>>>, <<<findbugs:>>>, <<<codenarc:>>>,
+  <<<dependencies:>>>, <<<cobertura:>>>.
