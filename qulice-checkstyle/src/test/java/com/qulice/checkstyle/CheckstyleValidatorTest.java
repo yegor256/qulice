@@ -50,9 +50,10 @@ public final class CheckstyleValidatorTest {
 
     /**
      * License rule.
+     * @checkstyle VisibilityModifierCheck (5 lines)
      */
     @Rule
-    public final transient LicenseRule license = new LicenseRule();
+    public final transient LicenseRule rule = new LicenseRule();
 
     /**
      * CheckstyleValidator can catch checkstyle violations.
@@ -61,7 +62,7 @@ public final class CheckstyleValidatorTest {
     @Test(expected = ValidationException.class)
     public void catchesCheckstyleViolationsInLicense() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.license
+        final File license = this.rule
             .savePackageInfo(new File(mock.basedir(), "src/main/java/foo"))
             .withLines(new String[] {"License-1.", "", "License-2."})
             .withEol("\n")
@@ -86,7 +87,7 @@ public final class CheckstyleValidatorTest {
     @Test
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.license
+        final File license = this.rule
             .savePackageInfo(new File(mock.basedir(), "src/main/java/foo"))
             .withLines(new String[] {"Hello.", "", "World."})
             .withEol("\r\n")
@@ -120,7 +121,7 @@ public final class CheckstyleValidatorTest {
     @Test
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.license
+        final File license = this.rule
             .savePackageInfo(new File(mock.basedir(), "src/main/java/foo"))
             .withLines(new String[] {"Welcome.", "", "Friend."})
             .withEol("\r\n")
