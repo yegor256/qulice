@@ -70,15 +70,7 @@ final class DependenciesValidator implements MavenValidator {
             Logger.info(this, "No dependency analysis in this project");
             return;
         }
-        final ProjectDependencyAnalysis analysis = this.analyze(env);
-        final Collection<String> unused = new LinkedList<String>();
-        for (final Object obj : analysis.getUnusedDeclaredArtifacts()) {
-            final Artifact artifact = (Artifact) obj;
-            if (!artifact.getScope().equals(Artifact.SCOPE_COMPILE)) {
-                continue;
-            }
-            unused.add(artifact.toString());
-        }
+        final Collection<String> unused = this.unused(env);
         if (!unused.isEmpty()) {
             Logger.warn(
                 this,
@@ -87,10 +79,7 @@ final class DependenciesValidator implements MavenValidator {
                 StringUtils.join(unused, DependenciesValidator.SEP)
             );
         }
-        final Collection<String> used = new LinkedList<String>();
-        for (final Object artifact : analysis.getUsedUndeclaredArtifacts()) {
-            used.add(((Artifact) artifact).toString());
-        }
+        final Collection<String> used = this.used(env);
         if (!used.isEmpty()) {
             Logger.warn(
                 this,
@@ -128,6 +117,38 @@ final class DependenciesValidator implements MavenValidator {
         } catch (ProjectDependencyAnalyzerException ex) {
             throw new IllegalStateException(ex);
         }
+    }
+
+    /**
+     * Find unused artifacts.
+     * @param env Environment
+     * @return Collection of unused artifacts
+     */
+    private Collection<String> used(final MavenEnvironment env) {
+        final ProjectDependencyAnalysis analysis = this.analyze(env);
+        final Collection<String> used = new LinkedList<String>();
+        for (final Object artifact : analysis.getUsedUndeclaredArtifacts()) {
+            used.add(((Artifact) artifact).toString());
+        }
+        return used;
+    }
+
+    /**
+     * Find unused artifacts.
+     * @param env Environment
+     * @return Collection of unused artifacts
+     */
+    private Collection<String> unused(final MavenEnvironment env) {
+        final ProjectDependencyAnalysis analysis = this.analyze(env);
+        final Collection<String> unused = new LinkedList<String>();
+        for (final Object obj : analysis.getUnusedDeclaredArtifacts()) {
+            final Artifact artifact = (Artifact) obj;
+            if (!artifact.getScope().equals(Artifact.SCOPE_COMPILE)) {
+                continue;
+            }
+            unused.add(artifact.toString());
+        }
+        return unused;
     }
 
 }
