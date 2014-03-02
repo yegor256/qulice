@@ -77,7 +77,7 @@
 <a class="jxr_linenumber" name="67" href="#67">67</a>          <strong class="jxr_keyword">final</strong> CheckMojo mojo = <strong class="jxr_keyword">new</strong> CheckMojo();
 <a class="jxr_linenumber" name="68" href="#68">68</a>          <strong class="jxr_keyword">final</strong> Validator external = Mockito.mock(Validator.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="69" href="#69">69</a>          <strong class="jxr_keyword">final</strong> MavenValidator internal = Mockito.mock(MavenValidator.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="70" href="#70">70</a>          <strong class="jxr_keyword">final</strong> ValidatorsProvider provider = <strong class="jxr_keyword">new</strong> ValidatorsProviderMocker()
+<a class="jxr_linenumber" name="70" href="#70">70</a>          <strong class="jxr_keyword">final</strong> ValidatorsProvider provider = <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/maven/ValidatorsProviderMocker.html">ValidatorsProviderMocker</a>()
 <a class="jxr_linenumber" name="71" href="#71">71</a>              .withInternal(internal)
 <a class="jxr_linenumber" name="72" href="#72">72</a>              .withExternal(external)
 <a class="jxr_linenumber" name="73" href="#73">73</a>              .mock();

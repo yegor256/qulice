@@ -105,7 +105,7 @@
 <a class="jxr_linenumber" name="95" href="#95">95</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> cstart = <strong class="jxr_keyword">this</strong>.findCommentStart(lines, start);
 <a class="jxr_linenumber" name="96" href="#96">96</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> cend = <strong class="jxr_keyword">this</strong>.findCommentEnd(lines, start);
 <a class="jxr_linenumber" name="97" href="#97">97</a>              <strong class="jxr_keyword">if</strong> ((cend &gt; cstart) &amp;&amp; (cstart &gt;= 0)) {
-<a class="jxr_linenumber" name="98" href="#98">98</a>                  <strong class="jxr_keyword">for</strong> (String tag : <strong class="jxr_keyword">this</strong>.tags.keySet()) {
+<a class="jxr_linenumber" name="98" href="#98">98</a>                  <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String tag : <strong class="jxr_keyword">this</strong>.tags.keySet()) {
 <a class="jxr_linenumber" name="99" href="#99">99</a>                      <strong class="jxr_keyword">this</strong>.matchTagFormat(lines, cstart, cend, tag);
 <a class="jxr_linenumber" name="100" href="#100">100</a>                 }
 <a class="jxr_linenumber" name="101" href="#101">101</a>             } <strong class="jxr_keyword">else</strong> {

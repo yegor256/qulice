@@ -58,24 +58,26 @@
 <a class="jxr_linenumber" name="48" href="#48">48</a>      @Override
 <a class="jxr_linenumber" name="49" href="#49">49</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> validate(<strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/maven/MavenEnvironment.html">MavenEnvironment</a> env)
 <a class="jxr_linenumber" name="50" href="#50">50</a>          <strong class="jxr_keyword">throws</strong> <a href="../../../com/qulice/spi/ValidationException.html">ValidationException</a> {
-<a class="jxr_linenumber" name="51" href="#51">51</a>          <strong class="jxr_keyword">final</strong> Properties props = <strong class="jxr_keyword">new</strong> Properties();
-<a class="jxr_linenumber" name="52" href="#52">52</a>          <strong class="jxr_keyword">final</strong> Properties rules = <strong class="jxr_keyword">new</strong> Properties();
-<a class="jxr_linenumber" name="53" href="#53">53</a>          props.put(<span class="jxr_string">"rules"</span>, rules);
-<a class="jxr_linenumber" name="54" href="#54">54</a>          <strong class="jxr_keyword">final</strong> Properties maven = <strong class="jxr_keyword">new</strong> Properties();
-<a class="jxr_linenumber" name="55" href="#55">55</a>          rules.put(<span class="jxr_string">"requireMavenVersion"</span>, maven);
-<a class="jxr_linenumber" name="56" href="#56">56</a>          maven.put(<span class="jxr_string">"version"</span>, <span class="jxr_string">"3.0"</span>);
-<a class="jxr_linenumber" name="57" href="#57">57</a>          <strong class="jxr_keyword">final</strong> Properties java = <strong class="jxr_keyword">new</strong> Properties();
-<a class="jxr_linenumber" name="58" href="#58">58</a>          rules.put(<span class="jxr_string">"requireJavaVersion"</span>, java);
-<a class="jxr_linenumber" name="59" href="#59">59</a>          <em class="jxr_comment">// @checkstyle MultipleStringLiterals (1 line)</em>
-<a class="jxr_linenumber" name="60" href="#60">60</a>          java.put(<span class="jxr_string">"version"</span>, <span class="jxr_string">"1.6"</span>);
-<a class="jxr_linenumber" name="61" href="#61">61</a>          env.executor().execute(
-<a class="jxr_linenumber" name="62" href="#62">62</a>              <span class="jxr_string">"org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1"</span>,
-<a class="jxr_linenumber" name="63" href="#63">63</a>              <span class="jxr_string">"enforce"</span>,
-<a class="jxr_linenumber" name="64" href="#64">64</a>              props
-<a class="jxr_linenumber" name="65" href="#65">65</a>          );
-<a class="jxr_linenumber" name="66" href="#66">66</a>      }
-<a class="jxr_linenumber" name="67" href="#67">67</a>  
-<a class="jxr_linenumber" name="68" href="#68">68</a>  }
+<a class="jxr_linenumber" name="51" href="#51">51</a>          <strong class="jxr_keyword">if</strong> (!env.exclude(<span class="jxr_string">"enforcer"</span>, <span class="jxr_string">""</span>)) {
+<a class="jxr_linenumber" name="52" href="#52">52</a>              <strong class="jxr_keyword">final</strong> Properties props = <strong class="jxr_keyword">new</strong> Properties();
+<a class="jxr_linenumber" name="53" href="#53">53</a>              <strong class="jxr_keyword">final</strong> Properties rules = <strong class="jxr_keyword">new</strong> Properties();
+<a class="jxr_linenumber" name="54" href="#54">54</a>              props.put(<span class="jxr_string">"rules"</span>, rules);
+<a class="jxr_linenumber" name="55" href="#55">55</a>              <strong class="jxr_keyword">final</strong> Properties maven = <strong class="jxr_keyword">new</strong> Properties();
+<a class="jxr_linenumber" name="56" href="#56">56</a>              rules.put(<span class="jxr_string">"requireMavenVersion"</span>, maven);
+<a class="jxr_linenumber" name="57" href="#57">57</a>              maven.put(<span class="jxr_string">"version"</span>, <span class="jxr_string">"3.0"</span>);
+<a class="jxr_linenumber" name="58" href="#58">58</a>              <strong class="jxr_keyword">final</strong> Properties java = <strong class="jxr_keyword">new</strong> Properties();
+<a class="jxr_linenumber" name="59" href="#59">59</a>              rules.put(<span class="jxr_string">"requireJavaVersion"</span>, java);
+<a class="jxr_linenumber" name="60" href="#60">60</a>              <em class="jxr_comment">// @checkstyle MultipleStringLiterals (1 line)</em>
+<a class="jxr_linenumber" name="61" href="#61">61</a>              java.put(<span class="jxr_string">"version"</span>, <span class="jxr_string">"1.6"</span>);
+<a class="jxr_linenumber" name="62" href="#62">62</a>              env.executor().execute(
+<a class="jxr_linenumber" name="63" href="#63">63</a>                  <span class="jxr_string">"org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1"</span>,
+<a class="jxr_linenumber" name="64" href="#64">64</a>                  <span class="jxr_string">"enforce"</span>,
+<a class="jxr_linenumber" name="65" href="#65">65</a>                  props
+<a class="jxr_linenumber" name="66" href="#66">66</a>              );
+<a class="jxr_linenumber" name="67" href="#67">67</a>          }
+<a class="jxr_linenumber" name="68" href="#68">68</a>      }
+<a class="jxr_linenumber" name="69" href="#69">69</a>  
+<a class="jxr_linenumber" name="70" href="#70">70</a>  }
 </pre>
 <hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
 </html>

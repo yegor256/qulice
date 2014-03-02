@@ -61,7 +61,7 @@
 <a class="jxr_linenumber" name="51" href="#51">51</a>      @Override
 <a class="jxr_linenumber" name="52" href="#52">52</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> validate(<strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/spi/Environment.html">Environment</a> env) <strong class="jxr_keyword">throws</strong> ValidationException {
 <a class="jxr_linenumber" name="53" href="#53">53</a>          <strong class="jxr_keyword">final</strong> File src = <strong class="jxr_keyword">new</strong> File(env.basedir(), <span class="jxr_string">"src"</span>);
-<a class="jxr_linenumber" name="54" href="#54">54</a>          <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.required(src)) {
+<a class="jxr_linenumber" name="54" href="#54">54</a>          <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.required(src) &amp;&amp; !env.exclude(<span class="jxr_string">"codenarc"</span>, <span class="jxr_string">""</span>)) {
 <a class="jxr_linenumber" name="55" href="#55">55</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> violations = <strong class="jxr_keyword">this</strong>.logViolations(<strong class="jxr_keyword">this</strong>.detect(src));
 <a class="jxr_linenumber" name="56" href="#56">56</a>              <strong class="jxr_keyword">if</strong> (violations &gt; 0) {
 <a class="jxr_linenumber" name="57" href="#57">57</a>                  <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/spi/ValidationException.html">ValidationException</a>(
@@ -135,13 +135,13 @@
 <a class="jxr_linenumber" name="125" href="#125">125</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="126" href="#126">126</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> logViolations(<strong class="jxr_keyword">final</strong> Results list) {
 <a class="jxr_linenumber" name="127" href="#127">127</a>         <strong class="jxr_keyword">int</strong> count = 0;
-<a class="jxr_linenumber" name="128" href="#128">128</a>         <strong class="jxr_keyword">for</strong> (Object child : list.getChildren()) {
+<a class="jxr_linenumber" name="128" href="#128">128</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Object child : list.getChildren()) {
 <a class="jxr_linenumber" name="129" href="#129">129</a>             <strong class="jxr_keyword">final</strong> Results result = (Results) child;
 <a class="jxr_linenumber" name="130" href="#130">130</a>             <strong class="jxr_keyword">if</strong> (!result.isFile()) {
 <a class="jxr_linenumber" name="131" href="#131">131</a>                 count += <strong class="jxr_keyword">this</strong>.logViolations(result);
 <a class="jxr_linenumber" name="132" href="#132">132</a>                 <strong class="jxr_keyword">continue</strong>;
 <a class="jxr_linenumber" name="133" href="#133">133</a>             }
-<a class="jxr_linenumber" name="134" href="#134">134</a>             <strong class="jxr_keyword">for</strong> (Object vltn : result.getViolations()) {
+<a class="jxr_linenumber" name="134" href="#134">134</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Object vltn : result.getViolations()) {
 <a class="jxr_linenumber" name="135" href="#135">135</a>                 <strong class="jxr_keyword">final</strong> Violation violation = (Violation) vltn;
 <a class="jxr_linenumber" name="136" href="#136">136</a>                 ++count;
 <a class="jxr_linenumber" name="137" href="#137">137</a>                 Logger.error(

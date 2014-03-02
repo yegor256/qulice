@@ -84,7 +84,7 @@
 <a class="jxr_linenumber" name="74" href="#74">74</a>              TokenTypes.PLUS,
 <a class="jxr_linenumber" name="75" href="#75">75</a>              TokenTypes.PLUS_ASSIGN
 <a class="jxr_linenumber" name="76" href="#76">76</a>          );
-<a class="jxr_linenumber" name="77" href="#77">77</a>          <strong class="jxr_keyword">for</strong> (DetailAST plus : pluses) {
+<a class="jxr_linenumber" name="77" href="#77">77</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> DetailAST plus : pluses) {
 <a class="jxr_linenumber" name="78" href="#78">78</a>              <strong class="jxr_keyword">if</strong> (plus.getChildCount(TokenTypes.STRING_LITERAL) &gt; 0) {
 <a class="jxr_linenumber" name="79" href="#79">79</a>                  <strong class="jxr_keyword">this</strong>.log(plus, <span class="jxr_string">"Concatenation of string literals prohibited"</span>);
 <a class="jxr_linenumber" name="80" href="#80">80</a>              }
@@ -124,7 +124,7 @@
 <a class="jxr_linenumber" name="114" href="#114">114</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="115" href="#115">115</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> isOfType(<strong class="jxr_keyword">final</strong> DetailAST ast, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong>[] types) {
 <a class="jxr_linenumber" name="116" href="#116">116</a>         <strong class="jxr_keyword">boolean</strong> yes = false;
-<a class="jxr_linenumber" name="117" href="#117">117</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> type : types) {
+<a class="jxr_linenumber" name="117" href="#117">117</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> type : types) {
 <a class="jxr_linenumber" name="118" href="#118">118</a>             <strong class="jxr_keyword">if</strong> (ast.getType() == type) {
 <a class="jxr_linenumber" name="119" href="#119">119</a>                 yes = <strong class="jxr_keyword">true</strong>;
 <a class="jxr_linenumber" name="120" href="#120">120</a>                 <strong class="jxr_keyword">break</strong>;

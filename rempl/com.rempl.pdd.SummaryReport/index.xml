@@ -6,7 +6,25 @@
       <prefix>     * </prefix>
       <body>Perform refactoring: remove this method, use Environment.files() instead.</body>
       <estimate>60</estimate>
-      <lines>206-207</lines>
+      <lines>207-208</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>1</ticket>
+      <file>qulice-checkstyle/src/main/java/com/qulice/checkstyle/ConstantUsageCheck.java</file>
+      <prefix> * </prefix>
+      <body>ConstantUsageCheck doesn't work. This check is still in development and is not used in a released version. Let's try to fix it and enable its validation inside ChecksTest. Also, don't forget to enable it inside checks.xml and make sure all maven-invoker-plugin tests pass</body>
+      <estimate>0</estimate>
+      <lines>42-46</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>1</ticket>
+      <file>qulice-checkstyle/src/main/java/com/qulice/checkstyle/NonStaticMethodCheck.java</file>
+      <prefix> * </prefix>
+      <body>NonStaticMethodCheck doesn't work. This check is still in development and is not used in a released version. Let's try to fix it and enable its validation inside ChecksTest. Also, don't forget to enable it inside checks.xml and make sure all maven-invoker-plugin tests pass</body>
+      <estimate>0</estimate>
+      <lines>46-50</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -37,39 +55,21 @@
       <owner>author</owner>
    </puzzle>
    <puzzle>
-      <ticket>8</ticket>
-      <file>qulice-maven-plugin/pom.xml</file>
-      <prefix>                        </prefix>
-      <body>This test is not working. I don't know what exactly is going on. Seems like ASM is not working in maven-dependency-analyzer. I copied implementation from maven-dependency-plugin, almost literally.</body>
-      <estimate>0</estimate>
-      <lines>281-284</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>83</ticket>
-      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</file>
-      <prefix>     * </prefix>
-      <body>When it works, add {@code DependenciesValidator()} to this list</body>
-      <estimate>0</estimate>
-      <lines>47-47</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
       <ticket>83</ticket>
       <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</file>
       <prefix>     * </prefix>
       <body>When it works, add {@code FindBugsValidator()} to this list</body>
       <estimate>0</estimate>
-      <lines>62-62</lines>
+      <lines>59-59</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
       <ticket>44</ticket>
       <file>qulice-pmd/src/main/java/com/qulice/pmd/Files.java</file>
       <prefix>     * </prefix>
-      <body>Perform refactoring: remove this method, use Environment.files() instead.</body>
-      <estimate>60</estimate>
-      <lines>56-57</lines>
+      <body>Perform refactoring: remove this method, use Environment.files() instead, in order to simplify files manipulations.</body>
+      <estimate>0</estimate>
+      <lines>56-58</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -78,7 +78,7 @@
       <prefix>     * </prefix>
       <body>The test doesn't work because functionality is not implemented yet.</body>
       <estimate>0</estimate>
-      <lines>48-49</lines>
+      <lines>47-48</lines>
       <owner>someone</owner>
    </puzzle>
 </puzzles>

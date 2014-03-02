@@ -106,7 +106,7 @@
 <a class="jxr_linenumber" name="96" href="#96">96</a>                  }
 <a class="jxr_linenumber" name="97" href="#97">97</a>                  <strong class="jxr_keyword">final</strong> List&lt;Integer&gt; defects = <strong class="jxr_keyword">this</strong>.indentDefects(lines, pos);
 <a class="jxr_linenumber" name="98" href="#98">98</a>                  <strong class="jxr_keyword">if</strong> (!defects.isEmpty()) {
-<a class="jxr_linenumber" name="99" href="#99">99</a>                      <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> defect : defects) {
+<a class="jxr_linenumber" name="99" href="#99">99</a>                      <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> defect : defects) {
 <a class="jxr_linenumber" name="100" href="#100">100</a>                         <strong class="jxr_keyword">this</strong>.log(
 <a class="jxr_linenumber" name="101" href="#101">101</a>                             defect + 1,
 <a class="jxr_linenumber" name="102" href="#102">102</a>                             <span class="jxr_string">"One space indentation expected in @todo puzzle"</span>
