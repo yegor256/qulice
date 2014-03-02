@@ -56,7 +56,6 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
 
     /**
      * {@inheritDoc}
-     * @todo #83 When it works, add {@code FindBugsValidator()} to this list
      */
     @Override
     public Set<Validator> external() {
