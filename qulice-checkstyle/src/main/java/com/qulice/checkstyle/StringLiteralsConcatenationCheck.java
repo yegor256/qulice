@@ -74,7 +74,7 @@ public final class StringLiteralsConcatenationCheck extends Check {
             TokenTypes.PLUS,
             TokenTypes.PLUS_ASSIGN
         );
-        for (DetailAST plus : pluses) {
+        for (final DetailAST plus : pluses) {
             if (plus.getChildCount(TokenTypes.STRING_LITERAL) > 0) {
                 this.log(plus, "Concatenation of string literals prohibited");
             }
@@ -114,7 +114,7 @@ public final class StringLiteralsConcatenationCheck extends Check {
      */
     private boolean isOfType(final DetailAST ast, final int[] types) {
         boolean yes = false;
-        for (int type : types) {
+        for (final int type : types) {
             if (ast.getType() == type) {
                 yes = true;
                 break;

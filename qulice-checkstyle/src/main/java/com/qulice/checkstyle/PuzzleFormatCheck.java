@@ -96,7 +96,7 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
                 }
                 final List<Integer> defects = this.indentDefects(lines, pos);
                 if (!defects.isEmpty()) {
-                    for (int defect : defects) {
+                    for (final int defect : defects) {
                         this.log(
                             defect + 1,
                             "One space indentation expected in @todo puzzle"

@@ -95,7 +95,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
             true
         );
         int errors = 0;
-        for (File file : files) {
+        for (final File file : files) {
             if (!this.valid(file)) {
                 ++errors;
             }

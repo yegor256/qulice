@@ -57,12 +57,12 @@ public final class LicenseRule implements TestRule {
     /**
      * Package name.
      */
-    private transient String pkgName = "foo";
+    private transient String pkg = "foo";
 
     /**
      * Directory for package-info.java.
      */
-    private transient File packageInfoDir;
+    private transient File directory;
 
     @Override
     public Statement apply(final Statement statement,
@@ -97,7 +97,7 @@ public final class LicenseRule implements TestRule {
      * @return This object
      */
     public LicenseRule withPackage(final String name) {
-        this.pkgName = name;
+        this.pkg = name;
         return this;
     }
 
@@ -107,7 +107,7 @@ public final class LicenseRule implements TestRule {
      * @return This object
      */
     public LicenseRule savePackageInfo(final File dir) {
-        this.packageInfoDir = dir;
+        this.directory = dir;
         return this;
     }
 
@@ -123,8 +123,8 @@ public final class LicenseRule implements TestRule {
             license,
             StringUtils.join(this.lines, this.eol)
         );
-        if (this.packageInfoDir != null) {
-            this.makePackageInfo(this.packageInfoDir);
+        if (this.directory != null) {
+            this.makePackageInfo(this.directory);
         }
         return license;
     }
@@ -152,7 +152,7 @@ public final class LicenseRule implements TestRule {
             .append(" * @version $Id $").append(this.eol)
             .append(" * @author John Doe (j@qulice.com)").append(this.eol)
             .append(" */").append(this.eol)
-            .append("package ").append(this.pkgName)
+            .append("package ").append(this.pkg)
             .append(';').append(this.eol);
         FileUtils.writeStringToFile(info, body.toString());
     }

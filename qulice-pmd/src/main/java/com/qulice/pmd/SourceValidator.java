@@ -65,31 +65,31 @@ public final class SourceValidator {
     /**
      * Report listener.
      */
-    private final transient PmdListener reportListener;
+    private final transient PmdListener listener;
 
     /**
      * Rules.
      */
-    private transient RuleSets ruleSets;
+    private transient RuleSets sets;
 
     /**
      * Creates new instance of <code>SourceValidator</code>.
      * @param env Environment
      */
     public SourceValidator(final Environment env) {
-        this.reportListener = new PmdListener(env);
+        this.listener = new PmdListener(env);
         final RuleSetFactory factory = new RuleSetFactory();
         // @checkstyle MagicNumber (1 line)
         factory.setMinimumPriority(5);
         try {
-            this.ruleSets = factory.createRuleSets(
+            this.sets = factory.createRuleSets(
                 "com/qulice/pmd/ruleset.xml"
             );
         } catch (RuleSetNotFoundException ex) {
             throw new IllegalArgumentException(ex);
         }
         final Report report = new Report();
-        report.addListener(this.reportListener);
+        report.addListener(this.listener);
         this.context.setReport(report);
     }
 
@@ -102,7 +102,7 @@ public final class SourceValidator {
     public void validate(
         final Collection<DataSource> sources, final String path
     ) {
-        for (DataSource source : sources) {
+        for (final DataSource source : sources) {
             final String name = source.getNiceFileName(false, path);
             this.context.setSourceCodeFilename(name);
             this.context.setSourceCodeFile(new File(name));
@@ -115,7 +115,7 @@ public final class SourceValidator {
      * @return Collection of violations.
      */
     public Collection<IRuleViolation> getViolations() {
-        return this.reportListener.getViolations();
+        return this.listener.getViolations();
     }
 
     /**
@@ -128,7 +128,7 @@ public final class SourceValidator {
         try {
             this.pmd.processFile(
                 reader,
-                this.ruleSets,
+                this.sets,
                 this.context,
                 SourceType.JAVA_16
             );

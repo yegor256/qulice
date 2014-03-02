@@ -54,7 +54,7 @@ public final class SnapshotsValidator implements MavenValidator {
         final String version = env.project().getVersion();
         if (!this.isSnapshot(version)) {
             int errors = 0;
-            for (Extension ext : env.project().getBuildExtensions()) {
+            for (final Extension ext : env.project().getBuildExtensions()) {
                 if (this.isSnapshot(ext.getVersion())) {
                     Logger.warn(
                         this,
@@ -64,7 +64,7 @@ public final class SnapshotsValidator implements MavenValidator {
                     ++errors;
                 }
             }
-            for (Plugin plugin : env.project().getBuildPlugins()) {
+            for (final Plugin plugin : env.project().getBuildPlugins()) {
                 if (this.isSnapshot(plugin.getVersion())) {
                     Logger.warn(
                         this,
@@ -74,7 +74,7 @@ public final class SnapshotsValidator implements MavenValidator {
                     ++errors;
                 }
             }
-            for (Dependency dep : env.project().getDependencies()) {
+            for (final Dependency dep : env.project().getDependencies()) {
                 if (this.isSnapshot(dep.getVersion())) {
                     Logger.warn(
                         this,

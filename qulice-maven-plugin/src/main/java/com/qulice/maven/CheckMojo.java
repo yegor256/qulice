@@ -83,7 +83,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
      * Set provider of validators.
      * @param prov The provider
      */
-    void setValidatorsProvider(final ValidatorsProvider prov) {
+    public void setValidatorsProvider(final ValidatorsProvider prov) {
         this.provider = prov;
     }
 

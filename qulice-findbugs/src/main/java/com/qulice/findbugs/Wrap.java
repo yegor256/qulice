@@ -92,7 +92,7 @@ public final class Wrap {
     private Project project(final String basedir, final String outdir,
         final String[] paths) {
         final Project project = new Project();
-        for (String jar : paths) {
+        for (final String jar : paths) {
             if (!jar.equals(outdir)) {
                 project.addAuxClasspathEntry(jar);
             }

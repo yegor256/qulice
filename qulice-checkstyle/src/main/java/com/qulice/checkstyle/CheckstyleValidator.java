@@ -152,7 +152,8 @@ public final class CheckstyleValidator implements Validator {
         final StringBuilder builder = new StringBuilder();
         final String eol = System.getProperty("line.separator");
         builder.append("/**").append(eol);
-        for (String line : StringUtils.splitPreserveAllTokens(content, eol)) {
+        for (final String line
+            : StringUtils.splitPreserveAllTokens(content, eol)) {
             builder.append(" *");
             if (!line.trim().isEmpty()) {
                 builder.append(" ").append(line.trim());
@@ -213,7 +214,7 @@ public final class CheckstyleValidator implements Validator {
         final String[] dirs = new String[] {
             "src",
         };
-        for (String dir : dirs) {
+        for (final String dir : dirs) {
             final File sources = new File(env.basedir(), dir);
             if (sources.exists()) {
                 files.addAll(

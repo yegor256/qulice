@@ -32,8 +32,8 @@ package com.qulice.maven;
 
 import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.LinkedList;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
@@ -42,6 +42,7 @@ import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzerExce
 import org.codehaus.plexus.PlexusConstants;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
+import org.codehaus.plexus.context.ContextException;
 
 /**
  * Validator of dependencies.
@@ -69,8 +70,8 @@ final class DependenciesValidator implements MavenValidator {
             return;
         }
         final ProjectDependencyAnalysis analysis = this.analyze(env);
-        final List<String> unused = new ArrayList<String>();
-        for (Object obj : analysis.getUnusedDeclaredArtifacts()) {
+        final Collection<String> unused = new LinkedList<String>();
+        for (final Object obj : analysis.getUnusedDeclaredArtifacts()) {
             final Artifact artifact = (Artifact) obj;
             if (!artifact.getScope().equals(Artifact.SCOPE_COMPILE)) {
                 continue;
@@ -85,8 +86,8 @@ final class DependenciesValidator implements MavenValidator {
                 StringUtils.join(unused, DependenciesValidator.SEP)
             );
         }
-        final List<String> used = new ArrayList<String>();
-        for (Object artifact : analysis.getUsedUndeclaredArtifacts()) {
+        final Collection<String> used = new LinkedList<String>();
+        for (final Object artifact : analysis.getUsedUndeclaredArtifacts()) {
             used.add(((Artifact) artifact).toString());
         }
         if (!used.isEmpty()) {
@@ -114,13 +115,12 @@ final class DependenciesValidator implements MavenValidator {
      */
     private ProjectDependencyAnalysis analyze(final MavenEnvironment env) {
         try {
-            return
-                ((ProjectDependencyAnalyzer)
-                    ((PlexusContainer)
-                        env.context().get(PlexusConstants.PLEXUS_KEY)
-                    ).lookup(ProjectDependencyAnalyzer.ROLE, "default")
-                ).analyze(env.project());
-        } catch (org.codehaus.plexus.context.ContextException ex) {
+            return ((ProjectDependencyAnalyzer)
+                ((PlexusContainer)
+                    env.context().get(PlexusConstants.PLEXUS_KEY)
+                ).lookup(ProjectDependencyAnalyzer.ROLE, "default")
+            ).analyze(env.project());
+        } catch (ContextException ex) {
             throw new IllegalStateException(ex);
         } catch (ComponentLookupException ex) {
             throw new IllegalStateException(ex);

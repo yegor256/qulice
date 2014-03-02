@@ -49,12 +49,12 @@ public final class MavenEnvironmentMocker {
     /**
      * Env mocker.
      */
-    private final transient Environment.Mock envMocker;
+    private final transient Environment.Mock ienv;
 
     /**
      * Project.
      */
-    private transient MavenProjectMocker projectMocker =
+    private transient MavenProjectMocker prj =
         new MavenProjectMocker();
 
     /**
@@ -69,7 +69,7 @@ public final class MavenEnvironmentMocker {
      */
     public MavenEnvironmentMocker() throws IOException {
         StaticLoggerBinder.getSingleton().setMavenLog(Mockito.mock(Log.class));
-        this.envMocker = new Environment.Mock();
+        this.ienv = new Environment.Mock();
     }
 
     /**
@@ -92,7 +92,7 @@ public final class MavenEnvironmentMocker {
      * @return This object
      */
     public MavenEnvironmentMocker with(final MavenProjectMocker mocker) {
-        this.projectMocker = mocker;
+        this.prj = mocker;
         return this;
     }
 
@@ -105,7 +105,7 @@ public final class MavenEnvironmentMocker {
      */
     public MavenEnvironmentMocker withFile(final String name,
         final String content) throws IOException {
-        this.envMocker.withFile(name, content);
+        this.ienv.withFile(name, content);
         return this;
     }
 
@@ -118,7 +118,7 @@ public final class MavenEnvironmentMocker {
      */
     public MavenEnvironmentMocker withFile(final String name,
         final byte[] bytes) throws IOException {
-        this.envMocker.withFile(name, bytes);
+        this.ienv.withFile(name, bytes);
         return this;
     }
 
@@ -128,9 +128,9 @@ public final class MavenEnvironmentMocker {
      * @throws Exception If something wrong happens inside
      */
     public MavenEnvironment mock() throws Exception {
-        this.projectMocker.inBasedir(this.envMocker.basedir());
-        final MavenProject project = this.projectMocker.mock();
-        final Environment parent = this.envMocker;
+        this.prj.inBasedir(this.ienv.basedir());
+        final MavenProject project = this.prj.mock();
+        final Environment parent = this.ienv;
         final MavenEnvironment env = Mockito.mock(MavenEnvironment.class);
         Mockito.doReturn(project).when(env).project();
         final Context context = Mockito.mock(Context.class);

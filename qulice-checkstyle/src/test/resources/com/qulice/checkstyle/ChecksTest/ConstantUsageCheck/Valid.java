@@ -1,3 +1,4 @@
+
 import org.apache.commons.lang.CharEncoding;
 /**
  * This is not a real Java class. It won't be compiled ever. It is used

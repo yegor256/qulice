@@ -125,13 +125,13 @@ public final class CodeNarcValidator implements Validator {
      */
     private int logViolations(final Results list) {
         int count = 0;
-        for (Object child : list.getChildren()) {
+        for (final Object child : list.getChildren()) {
             final Results result = (Results) child;
             if (!result.isFile()) {
                 count += this.logViolations(result);
                 continue;
             }
-            for (Object vltn : result.getViolations()) {
+            for (final Object vltn : result.getViolations()) {
                 final Violation violation = (Violation) vltn;
                 ++count;
                 Logger.error(

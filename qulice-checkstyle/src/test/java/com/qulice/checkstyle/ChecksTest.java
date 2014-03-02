@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import org.apache.commons.io.IOUtils;
@@ -98,7 +99,7 @@ public final class ChecksTest {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public static Collection<Object[]> dirs() {
         final Collection<Object[]> dirs = new ArrayList<Object[]>();
-        for (String url : ChecksTest.CHECKS) {
+        for (final String url : ChecksTest.CHECKS) {
             dirs.add(new Object[] {url});
         }
         return dirs;
@@ -123,7 +124,7 @@ public final class ChecksTest {
             ),
             "\n"
         );
-        for (String line : violations) {
+        for (final String line : violations) {
             final String[] sectors = StringUtils.split(line, ":");
             final Integer pos = Integer.valueOf(sectors[0]);
             final String needle = sectors[1].trim();
@@ -201,7 +202,7 @@ public final class ChecksTest {
          * List of events received.
          */
         private final transient List<AuditEvent> events =
-            new ArrayList<AuditEvent>();
+            new LinkedList<AuditEvent>();
         @Override
         public Object answer(final InvocationOnMock invocation) {
             this.events.add((AuditEvent) invocation.getArguments()[0]);
@@ -215,7 +216,7 @@ public final class ChecksTest {
          */
         public boolean has(final Integer line, final String msg) {
             boolean has = false;
-            for (AuditEvent event : this.events) {
+            for (final AuditEvent event : this.events) {
                 if (event.getLine() == line && event.getMessage().equals(msg)) {
                     has = true;
                     break;
@@ -228,8 +229,8 @@ public final class ChecksTest {
          * @return The test summary of all events
          */
         public String summary() {
-            final List<String> msgs = new ArrayList<String>();
-            for (AuditEvent event : this.events) {
+            final List<String> msgs = new LinkedList<String>();
+            for (final AuditEvent event : this.events) {
                 msgs.add(
                     String.format(
                         "%s:%s",

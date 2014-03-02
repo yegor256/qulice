@@ -33,16 +33,26 @@ import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
+import edu.umd.cs.findbugs.FindBugs2;
+import edu.umd.cs.findbugs.formatStringChecker.FormatterNumberFormatException;
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import javax.annotation.meta.When;
+import org.apache.bcel.classfile.ClassFormatException;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.dom4j.DocumentException;
+import org.jaxen.JaxenException;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.commons.EmptyVisitor;
+import org.objectweb.asm.tree.ClassNode;
 
 /**
  * Validates source code and compiled binaris with FindBugs.
@@ -59,7 +69,9 @@ public final class FindBugsValidator implements Validator {
     @Override
     public void validate(final Environment env) throws ValidationException {
         if (env.outdir().exists()) {
-            this.check(this.findbugs(env));
+            if (!env.exclude("findbugs")) {
+                this.check(this.findbugs(env));
+            }
         } else {
             Logger.info(
                 this,
@@ -97,7 +109,7 @@ public final class FindBugsValidator implements Validator {
                 );
             }
             report = IOUtils.toString(process.getInputStream());
-        } catch (java.io.IOException ex) {
+        } catch (IOException ex) {
             throw new IllegalStateException(ex);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
@@ -120,26 +132,16 @@ public final class FindBugsValidator implements Validator {
             StringUtils.join(
                 CollectionUtils.union(
                     Arrays.asList(
-                        new File[] {
-                            jar,
-                            this.jar(edu.umd.cs.findbugs.FindBugs2.class),
-                            this.jar(
-                                // @checkstyle LineLength (1 line)
-                                org.apache.bcel.classfile.ClassFormatException.class
-                            ),
-                            this.jar(org.dom4j.DocumentException.class),
-                            this.jar(org.jaxen.JaxenException.class),
-                            this.jar(org.objectweb.asm.tree.ClassNode.class),
-                            this.jar(org.objectweb.asm.ClassVisitor.class),
-                            this.jar(javax.annotation.meta.When.class),
-                            this.jar(
-                                org.objectweb.asm.commons.EmptyVisitor.class
-                            ),
-                            this.jar(
-                                // @checkstyle LineLength (1 line)
-                                edu.umd.cs.findbugs.formatStringChecker.FormatterNumberFormatException.class
-                            ),
-                        }
+                        jar,
+                        this.jar(FindBugs2.class),
+                        this.jar(ClassFormatException.class),
+                        this.jar(DocumentException.class),
+                        this.jar(JaxenException.class),
+                        this.jar(ClassNode.class),
+                        this.jar(ClassVisitor.class),
+                        this.jar(When.class),
+                        this.jar(EmptyVisitor.class),
+                        this.jar(FormatterNumberFormatException.class)
                     ),
                     env.classpath()
                 ),
@@ -190,7 +192,7 @@ public final class FindBugsValidator implements Validator {
      */
     private void check(final String report) throws ValidationException {
         int total = 0;
-        for (String line : report.split("\n")) {
+        for (final String line : report.split("\n")) {
             if (line.matches("[a-zA-Z ]+: .*")) {
                 Logger.warn(this, "FindBugs: %s", line);
                 ++total;

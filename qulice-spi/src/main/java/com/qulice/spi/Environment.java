@@ -125,11 +125,17 @@ public interface Environment {
             final File temp = File.createTempFile(
                 System.getProperty("java.io.tmpdir"), ".qulice"
             );
-            temp.delete();
-            temp.mkdirs();
+            if (!temp.delete()) {
+                throw new IllegalStateException("files collision");
+            }
+            if (!temp.mkdirs()) {
+                throw new IllegalStateException("mkdir failed");
+            }
             FileUtils.forceDeleteOnExit(temp);
             this.basedir = new File(temp, "basedir");
-            this.basedir.mkdirs();
+            if (this.basedir.mkdirs()) {
+                assert this.basedir != null;
+            }
             this.classpath.add(this.outdir());
         }
         /**
@@ -178,7 +184,7 @@ public interface Environment {
          */
         @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
         public Environment.Mock withDefaultClasspath() {
-            for (String file : System.getProperty("java.class.path")
+            for (final String file : System.getProperty("java.class.path")
                 .split(System.getProperty("path.separator"))) {
                 this.classpath.add(new File(file));
             }
@@ -191,13 +197,17 @@ public interface Environment {
         @Override
         public File tempdir() {
             final File file = new File(this.basedir, "target/tempdir");
-            file.mkdirs();
+            if (file.mkdirs()) {
+                assert file != null;
+            }
             return file;
         }
         @Override
         public File outdir() {
             final File file = new File(this.basedir, "target/classes");
-            file.mkdirs();
+            if (file.mkdirs()) {
+                assert file != null;
+            }
             return file;
         }
         @Override

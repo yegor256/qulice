@@ -60,12 +60,12 @@ public final class Files {
     private Collection<File> getFiles(final Environment environment) {
         final Collection<File> files = new LinkedList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final String[] paths = new String[] {
+        final String[] paths = {
             "src/main/java",
             "src/test/java",
             "src/mock/java",
         };
-        for (String path : paths) {
+        for (final String path : paths) {
             final File dir = new File(environment.basedir(), path);
             if (dir.exists()) {
                 final Collection<File> sources = FileUtils.listFiles(
@@ -87,7 +87,7 @@ public final class Files {
      */
     public Collection<DataSource> getSources(final Environment environment) {
         final Collection<DataSource> sources = new LinkedList<DataSource>();
-        for (File file : this.getFiles(environment)) {
+        for (final File file : this.getFiles(environment)) {
             sources.add(new FileDataSource(file));
         }
         return sources;

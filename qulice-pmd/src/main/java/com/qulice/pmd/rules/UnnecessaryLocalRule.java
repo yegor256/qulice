@@ -68,7 +68,7 @@ public final class UnnecessaryLocalRule extends AbstractJavaRule {
     @Override
     public Object visit(final ASTArgumentList rtn, final Object data) {
         final List<ASTName> names = rtn.findChildrenOfType(ASTName.class);
-        for (ASTName name : names) {
+        for (final ASTName name : names) {
             usages(rtn, data, name);
         }
         return data;
@@ -86,15 +86,18 @@ public final class UnnecessaryLocalRule extends AbstractJavaRule {
         final ASTName name) {
         final Map<VariableNameDeclaration, List<NameOccurrence>> vars = name
             .getScope().getVariableDeclarations();
-        for (Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry
+        // @checkstyle LineLength (1 line)
+        for (final Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry
             : vars.entrySet()) {
             final List<NameOccurrence> usages = entry.getValue();
             if (usages.size() > 1) {
                 continue;
             }
-            for (NameOccurrence occ: usages) {
+            for (final NameOccurrence occ: usages) {
                 if (occ.getLocation().equals(name)) {
-                    addViolation(data, node, new Object[] {name.getImage()});
+                    this.addViolation(
+                        data, node, new Object[]{name.getImage()}
+                    );
                 }
             }
         }

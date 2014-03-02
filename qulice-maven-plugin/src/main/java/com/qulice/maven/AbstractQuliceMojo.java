@@ -96,7 +96,8 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      * @since 0.4
      */
     @Parameter(property = "qulice.excludes")
-    private transient Collection<String> excludes = new LinkedList<String>();
+    private final transient Collection<String> excludes =
+        new LinkedList<String>();
 
     /**
      * Set Maven Project (used mostly for unit testing).
@@ -120,6 +121,15 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      */
     public final void setLicense(final String lcs) {
         this.license = lcs;
+    }
+
+    /**
+     * Set excludes.
+     * @param exprs Expressions
+     */
+    public final void setExcludes(final Collection<String> exprs) {
+        this.excludes.clear();
+        this.excludes.addAll(exprs);
     }
 
     @Override

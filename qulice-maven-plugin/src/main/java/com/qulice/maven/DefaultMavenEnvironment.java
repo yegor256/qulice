@@ -70,12 +70,13 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     /**
      * MOJO executor.
      */
-    private transient MojoExecutor mojoExecutor;
+    private transient MojoExecutor exectr;
 
     /**
      * Excludes, regular expressions.
      */
-    private transient Collection<String> excludes = new LinkedList<String>();
+    private final transient Collection<String> exc =
+        new LinkedList<String>();
 
     @Override
     public String param(final String name, final String value) {
@@ -107,10 +108,12 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public Collection<File> classpath() {
         final Collection<File> paths = new ArrayList<File>();
         try {
-            for (String name : this.iproject.getRuntimeClasspathElements()) {
+            for (final String name
+                : this.iproject.getRuntimeClasspathElements()) {
                 paths.add(new File(name));
             }
-            for (Artifact artifact : this.iproject.getDependencyArtifacts()) {
+            for (final Artifact artifact
+                : this.iproject.getDependencyArtifacts()) {
                 paths.add(artifact.getFile());
             }
         } catch (DependencyResolutionRequiredException ex) {
@@ -122,7 +125,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     public ClassLoader classloader() {
         final List<URL> urls = new ArrayList<URL>();
-        for (File path : this.classpath()) {
+        for (final File path : this.classpath()) {
             try {
                 urls.add(path.toURI().toURL());
             } catch (java.net.MalformedURLException ex) {
@@ -133,7 +136,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
             urls.toArray(new URL[] {}),
             Thread.currentThread().getContextClassLoader()
         );
-        for (URL url : loader.getURLs()) {
+        for (final URL url : loader.getURLs()) {
             Logger.debug(this, "Classpath: %s", url);
         }
         return loader;
@@ -161,7 +164,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public MojoExecutor executor() {
-        return this.mojoExecutor;
+        return this.exectr;
     }
 
     @Override
@@ -172,7 +175,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     public boolean exclude(final String name) {
         boolean exclude = false;
-        for (final String expr : this.excludes) {
+        for (final String expr : this.exc) {
             if (name.matches(expr)) {
                 exclude = true;
                 break;
@@ -202,7 +205,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * @param exec The executor
      */
     public void setMojoExecutor(final MojoExecutor exec) {
-        this.mojoExecutor = exec;
+        this.exectr = exec;
     }
 
     /**
@@ -219,8 +222,8 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * @param exprs Expressions
      */
     public void setExcludes(final Collection<String> exprs) {
-        this.excludes.clear();
-        this.excludes.addAll(exprs);
+        this.exc.clear();
+        this.exc.addAll(exprs);
     }
 
 }
