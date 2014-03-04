@@ -93,6 +93,15 @@
     </module>
 
     <!--
+    Windows line endings are not allowed.
+    -->
+    <module name="RegexpMultiline">
+        <property name="format" value="\r\n$"/>
+        <property name="message"
+                  value="Lines in file should end with Unix-like end of line"/>
+    </module>
+
+    <!--
     Two consecutive empty lines are not allowed.
     -->
     <module name="RegexpMultiline">
