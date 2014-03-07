@@ -124,7 +124,8 @@ public interface Environment {
          */
         public Mock() throws IOException {
             final File temp = File.createTempFile(
-                System.getProperty("java.io.tmpdir"), ".qulice"
+                "mock", ".qulice",
+                new File(System.getProperty("java.io.tmpdir"))
             );
             if (!temp.delete()) {
                 throw new IllegalStateException("files collision");
