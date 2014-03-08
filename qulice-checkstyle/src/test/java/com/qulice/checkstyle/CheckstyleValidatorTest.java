@@ -81,10 +81,10 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator can manage to understand Windows EOL-s.
+     * CheckstyleValidator will fail if  Windows EOL-s are used.
      * @throws Exception If something wrong happens inside
      */
-    @Test
+    @Test(expected = ValidationException.class)
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule
@@ -114,11 +114,11 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * Validate with Windows-style formatting of the license and Linux-style
-     * formatting of the sources.
+     * Fail validation with Windows-style formatting of the license and
+     * Linux-style formatting of the sources.
      * @throws Exception If something wrong happens inside
      */
-    @Test
+    @Test(expected = ValidationException.class)
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule
