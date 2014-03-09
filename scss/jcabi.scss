@@ -1,0 +1,327 @@
+/**
+ * Copyright (c) 2012-2013, JCabi.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the jcabi.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
+
+/* Variables */
+$main-font: 'Ubuntu', sans-serif;
+$header-font: 'Ubuntu Condensed', sans-serif;
+$code-font: 'Source Code Pro', sans-serif;
+$link-color: #2276A4;
+
+a {
+    color: $link-color;
+    text-decoration: none;
+    &:hover {
+        color: black;
+    };
+    tt {
+        text-decoration: none;
+        /* see http://stackoverflow.com/questions/13442609 */
+        display: inline-block;
+    }
+}
+h1, h2, h3 {
+    font-family: $header-font;
+    color:black;
+}
+    h1 {
+        line-height: 1em;
+        font-size: 2.5em;
+    }
+    h2 {
+        font-size: 2em;
+        line-height: 1em;
+    }
+    h3 {
+        font-size: 1.6em;
+    }
+pre {
+    background-color: #3f464c;
+    color: #f8f8f8;
+    padding: 1em;
+    font-family: $code-font;
+    font-size: 1em;
+    overflow-x: auto;
+    line-height: 1.3em;
+}
+#breadcrumbs {
+    list-style: none;
+    padding-left: 0;
+}
+    #breadcrumbs li {
+        display: inline;
+    }
+    #breadcrumbs li:before {
+        content: ">";
+    }
+    #breadcrumbs li:first-child:before {
+        content: none;
+    }
+tt {
+    background-color: #eee;
+    padding: 0.05em 0.5em;
+    font-family: 'Source Code Pro', sans-serif;
+    font-weight: 500;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+table {
+    background-color: white;
+    border:0px;
+    border-collapse: collapse;
+}
+    table tr.a {
+        background-color: #FCFCFC;
+    }
+    table tr.b {
+        background-color: #FAFAFA;
+    }
+    table th {
+        background-color: #F2F2F2;
+        font-family: $header-font;
+        color: #585858;
+        padding-left: 0.7em;
+        padding-top: 0.7em;
+        padding-bottom: 0.7em;
+        font-weight: normal;
+        font-size: 1.2em;
+        text-align: left;
+        border-bottom: 1px solid white;
+    }
+    table td {
+        vertical-align: top;
+        padding:0.7em;
+    }
+    table td:nth-child(1) {
+        width: 30%;
+    }
+body {
+    margin: 0em;
+    padding: 2em;
+    font-family: $main-font;
+    background-color: #E6E6E6;
+    @media all and (min-width: 100px) and (max-width:599px) {
+        padding:0.2em;
+    }
+    @media all and (min-width: 600px) and (max-width:899px) {
+        padding:0.5em;
+    }
+}
+div.page {
+    margin-left: auto;
+    margin-right: auto;
+    white-space: nowrap;
+    @media all and (min-width: 1200px) and (max-width:5000px) {
+        width: 85%;
+    }
+    @media all and (min-width: 900px) and (max-width:1199px) {
+        width: 100%;
+    }
+    @media all and (min-width: 600px) and (max-width:899px) {
+        width: 100%;
+    }
+    @media all and (min-width: 100px) and (max-width:599px) {
+        width: 100%;
+    }
+}
+div.menu-section {
+    vertical-align: top;
+    display: inline-block;
+    @media all and (min-width: 1200px) and (max-width:5000px) {
+        width: 30%;
+    }
+    @media all and (min-width: 900px) and (max-width:1199px) {
+        width: 30%;
+    }
+    @media all and (min-width: 600px) and (max-width:899px) {
+        display: none;
+    }
+    @media all and (min-width: 100px) and (max-width:599px) {
+        display:none;
+    }
+}
+div.copyright {
+    font-size: 0.8em;
+}
+div.logo-section {
+    margin-bottom:3em;
+}
+div.date {
+    color:lightgray;
+    font-weight: 100;
+    @media all and (min-width: 1200px) and (max-width:5000px) {
+        position: absolute;
+        right:0px;
+        top:40px;
+        float:right;
+    }
+    @media all and (min-width: 900px) and (max-width:1199px) {
+        position: absolute;
+        right:0px;
+        top:40px;
+        float:right;
+    }
+}
+div.legal-notes {
+    margin-bottom: 3em;
+    margin-top: 2em;
+    font-weight: 100;
+    color:gray;
+    font-size: 1.1em;
+    @media all and (min-width: 600px) and (max-width:899px) {
+        text-align:center;
+        font-size: 1.3em;
+    }
+    @media all and (min-width: 100px) and (max-width:599px) {
+        text-align:center;
+        font-size: 1.3em;
+    }
+}
+.maven-mobile {
+    display: none;
+}
+#content {
+    font-size: 1.1em;
+    font-weight: 400;
+    min-height: 25em;
+    color: gray;
+    background-color: white;
+    line-height: 1.7em;
+    position: relative;
+    box-sizing:border-box;
+    @media all and (min-width: 1200px) and (max-width:5000px) {
+        padding: 3em;
+    }
+    @media all and (min-width: 900px) and (max-width:1199px) {
+        padding: 3em;
+    }
+    @media all and (min-width: 600px) and (max-width:899px) {
+        padding:2em;
+    }
+    @media all and (min-width: 100px) and (max-width:599px) {
+        padding:1em;
+    }
+}
+#right-side {
+    white-space: normal;
+    display: inline-block;
+    @media all and (min-width: 1200px) and (max-width:5000px) {
+        width: 70%;
+    }
+    @media all and (min-width: 900px) and (max-width:1199px) {
+        width: 70%;
+    }
+    @media all and (min-width: 600px) and (max-width:899px) {
+        width: 100%;
+    }
+    @media all and (min-width: 100px) and (max-width:599px) {
+        width: 100%;
+    }
+}
+.menu-button {
+    float:right;
+    font-size: 2em;
+    color: #2276A4;
+    display: none;
+    @media all and (min-width: 600px) and (max-width:899px) {
+        display: block;
+    }
+    @media all and (min-width: 100px) and (max-width:599px) {
+        display: block;
+    }
+}
+.github-large {
+    display:block;
+    @media all and (min-width: 600px) and (max-width:899px) {
+        display: none;
+    }
+    @media all and (min-width: 100px) and (max-width:599px) {
+        display: none;
+    }
+}
+.github-small {
+    display:none;
+    @media all and (min-width: 600px) and (max-width:899px) {
+        display: block;
+    }
+    @media all and (min-width: 100px) and (max-width:599px) {
+        display: block;
+    }
+}
+.mobile-menu {
+    display:none;
+    @media all and (min-width: 100px) and (max-width:599px) {
+        display:block;
+    }
+    @media all and (min-width: 600px) and (max-width:899px) {
+        display:block;
+    }
+}
+#menu {
+    background-color: white;
+    font-size: 1.2em;
+    margin-top: 1em;
+    margin-right:1em;
+    padding-top: 1.3em;
+    padding-right: 2em;
+    padding-left: 2em;
+    padding-bottom: 2em;
+    list-style: none;
+
+    li {
+        /* Menu chapter style*/
+        font-family: $header-font;
+        font-size: 1.3em;
+        padding-top: 1em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+
+        ul {
+            line-height: 1.5em;
+            font-family: $main-font;
+            font-size: 0.6em;
+            padding-left: 0em;
+            font-weight: 400;
+            margin-top:0.5em;
+
+            li {
+                font-family: $main-font;
+                padding: 0.05em;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+        }
+    }
+}
