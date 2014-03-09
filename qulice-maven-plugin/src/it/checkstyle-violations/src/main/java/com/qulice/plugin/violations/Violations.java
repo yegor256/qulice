@@ -12,4 +12,15 @@ public class Violations {
             System.out.println(txt);
         }
     }
+
+    /**
+     * Missing final in catch.
+     */
+    public final void catchFinal() {
+        try {
+            Integer.parseInt("123");
+        } catch (NumberFormatException ex) {
+            throw new IllegalStateException(ex);
+        }
+    }
 }
