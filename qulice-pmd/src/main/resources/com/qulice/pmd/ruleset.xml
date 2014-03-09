@@ -79,6 +79,7 @@
     </rule>
 
     <rule ref="rulesets/java/naming.xml">
+        <exclude name="ShortClassName"/>
         <exclude name="ShortVariable"/>
     </rule>
 
