@@ -17,6 +17,7 @@
         <script src="./js/jquery-1.8.3.min.js"></script>
         <script src="./js/highlight-7.3.min.js"></script>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+        <link href="./css/jcabi.css" rel="stylesheet"/>
         <script>
             $(document).ready(
                 function() {
@@ -39,14 +40,8 @@
                 }
             );
         </script>
-        <style>
-            @import url("./css/wide.css") (min-width: 1200px) and (max-width:5000px);
-            @import url("./css/900-1199.css") (min-width: 900px) and (max-width:1199px);
-            @import url("./css/600-899.css") (min-width: 600px) and (max-width:899px);
-            @import url("./css/100-599.css") (min-width: 100px) and (max-width:599px);
-        </style>
     </head>
-    <body style="background: url('./images/background.png') fixed;">
+    <body>
                 <div class="page">
             <div class="menu-section">
                 <ul id="menu">
@@ -180,12 +175,12 @@
                     </div>
                     <div class="date">
                         <div class="date-numbers">
+                            <strong>0.4.1</strong>
                             
-                            02-Mar-2014
-                            0.4.1
+                            09-Mar-2014
                         </div>
                                                                     </div>
-                    <div id="here-goes-menu"></div>
+                    <div id="here-goes-menu" class="menu-off"></div>
                     <article>
                         <div class="section">
                             <script type="text/javascript">
@@ -224,7 +219,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>1.336</td></tr></table><br />
+<td>1.299</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2>Package List<a name="Package_List"></a></h2><a name="Package_List"></a>
@@ -245,7 +240,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>1.336</td></tr></table><br />
+<td>1.299</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
 <h3>com.qulice.maven<a name="com.qulice.maven"></a></h3><a name="com.qulice.maven"></a>
@@ -267,7 +262,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.39</td></tr>
+<td>0.404</td></tr>
 <tr class="a">
 <td><a href="#com.qulice.mavenDefaultValidatorsProviderTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.mavenDefaultValidatorsProviderTest">DefaultValidatorsProviderTest</a></td>
@@ -276,7 +271,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.037</td></tr>
+<td>0.033</td></tr>
 <tr class="b">
 <td><a href="#com.qulice.mavenDependenciesValidatorTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.mavenDependenciesValidatorTest">DependenciesValidatorTest</a></td>
@@ -285,7 +280,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.683</td></tr>
+<td>0.648</td></tr>
 <tr class="a">
 <td><a href="#com.qulice.mavenSvnPropertiesValidatorTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.mavenSvnPropertiesValidatorTest">SvnPropertiesValidatorTest</a></td>
@@ -294,7 +289,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.226</td></tr></table></div><br /></div>
+<td>0.214</td></tr></table></div><br /></div>
 <div class="section">
 <h2>Test Cases<a name="Test_Cases"></a></h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
@@ -303,44 +298,45 @@ function toggleDisplay(elementId) {
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>skipsExecutionOnSkipFlag</td>
-<td>0.17</td></tr>
+<td>validatesUsingAllProvidedValidators</td>
+<td>0.214</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>validatesUsingAllProvidedValidators</td>
-<td>0.22</td></tr></table></div>
+<td>skipsExecutionOnSkipFlag</td>
+<td>0.19</td></tr></table></div>
 <div class="section">
 <h3>DefaultValidatorsProviderTest<a name="DefaultValidatorsProviderTest"></a></h3><a name="com.qulice.mavenDefaultValidatorsProviderTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>producesACollectionOfValidators</td>
-<td>0.037</td></tr></table></div>
+<td>0.033</td></tr></table></div>
 <div class="section">
 <h3>DependenciesValidatorTest<a name="DependenciesValidatorTest"></a></h3><a name="com.qulice.mavenDependenciesValidatorTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testWithRuntimeScope</td>
-<td>0.226</td></tr>
+<td>passesIfNoDependencyProblemsFound</td>
+<td>0.215</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>passesIfNoDependencyProblemsFound</td>
-<td>0.226</td></tr>
+<td>testWithRuntimeScope</td>
+<td>0.214</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>catchesDependencyProblemsAndThrowsException</td>
-<td>0.231</td></tr></table></div>
+<td>0.219</td></tr></table></div>
 <div class="section">
 <h3>SvnPropertiesValidatorTest<a name="SvnPropertiesValidatorTest"></a></h3><a name="com.qulice.mavenSvnPropertiesValidatorTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>testSimulatesSvnPropgetRequest</td>
-<td>0.226</td></tr></table></div><br /></div>
+<td>0.214</td></tr></table></div><br /></div>
                         </div>
                     </article>
-                    <img class="maven-mobile" src="./images/built-by-maven.png" style="float:right" width="80px"/>
+                    <img class="maven-mobile" src="./images/built-by-maven.png"
+                        alt="built by maven" style="float:right" width="80"/>
                 </div>
                 <div class="legal-notes">
                     <div class="copyright">
