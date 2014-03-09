@@ -52,7 +52,7 @@ public final class ExceptionUser {
     public void catcher() {
         try {
             this.user();
-        } catch (FooException ex) {
+        } catch (final FooException ex) {
             throw new IllegalStateException(ex);
         }
     }
