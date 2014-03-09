@@ -35,8 +35,8 @@ import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
 import java.util.Collection;
-import net.sourceforge.pmd.DataSource;
-import net.sourceforge.pmd.IRuleViolation;
+import net.sourceforge.pmd.RuleViolation;
+import net.sourceforge.pmd.util.datasource.DataSource;
 
 /**
  * Validates source code with PMD.
@@ -53,7 +53,7 @@ public final class PMDValidator implements Validator {
         final File base = env.basedir();
         final String path = base.getPath();
         validator.validate(sources, path);
-        final Collection<IRuleViolation> violations = validator.getViolations();
+        final Collection<RuleViolation> violations = validator.getViolations();
         final int size = violations.size();
         if (!violations.isEmpty()) {
             throw new ValidationException(
