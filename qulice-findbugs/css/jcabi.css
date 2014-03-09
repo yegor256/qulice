@@ -1,3 +1,6 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed);
+@import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
 /**
  * Copyright (c) 2012-2013, JCabi.com
  * All rights reserved.
@@ -27,101 +30,379 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-@import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
-@import url(http://fonts.googleapis.com/css?family=Patua+One);
-
-body {
-    margin: 0em;
-    padding: 2em;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 16px;
-    background-color: #EEE;
-}
-div.menu {
-    padding: 1em;
-    border-top: 20px solid white;
-    box-shadow: 0px 1px 1px lightgray;
-    background-color: white;
-    margin-bottom: 1em;
-    text-align: center;
-}
-.maven-mobile {
-    display: none;
-}
-h1, h2, h3 {
-    font-weight: 300;
-}
-    h1 {
-        font-size: 2.5em;
-        line-height: 1.1em;
-    }
-    h2 {
-        font-size: 2em;
-        line-height: 1.2em;
-    }
-    h2 {
-        font-size: 1.6em;
-        line-height: 1.3em;
-    }
+/* Variables */
 a {
-    color: #2276A4;
-    text-decoration: none;
+  color: #2276a4;
+  text-decoration: none;
 }
-    a tt {
-        text-decoration: none;
-        /* see http://stackoverflow.com/questions/13442609 */
-        display: inline-block;
-    }
+a:hover {
+  color: black;
+}
+a tt {
+  text-decoration: none;
+  /* see http://stackoverflow.com/questions/13442609 */
+  display: inline-block;
+}
+
+h1, h2, h3 {
+  font-family: "Ubuntu Condensed", sans-serif;
+  color: black;
+}
+
+h1 {
+  line-height: 1em;
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+  line-height: 1em;
+}
+
+h3 {
+  font-size: 1.6em;
+}
 
 pre {
-    background-color: #3f464c;
-    color: #f8f8f8;
-    border-radius: 3px;
-    padding: 1em;
-    font-family: 'Monaco', monospace;
-    font-size: 16px;
-    overflow-x: auto;
-    line-height: 1.3em;
+  background-color: #3f464c;
+  color: #f8f8f8;
+  padding: 1em;
+  font-family: "Source Code Pro", sans-serif;
+  font-size: 1em;
+  overflow-x: auto;
+  line-height: 1.3em;
+}
+
+#breadcrumbs {
+  list-style: none;
+  padding-left: 0;
+}
+
+#breadcrumbs li {
+  display: inline;
+}
+
+#breadcrumbs li:before {
+  content: ">";
+}
+
+#breadcrumbs li:first-child:before {
+  content: none;
 }
 
 tt {
-    background-color: #eee;
-    padding: 0.05em 0.5em;
-    font-family: 'Exo 2', monospace;
-    font-weight: 500;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
+  background-color: #eee;
+  padding: 0.05em 0.5em;
+  font-family: 'Source Code Pro', sans-serif;
+  font-weight: 500;
+  border: 1px solid #ccc;
+  border-radius: 3px;
 }
 
 table {
-    background-color: white;
-    border:0px;
-    border-collapse: collapse;
+  background-color: white;
+  border: 0px;
+  border-collapse: collapse;
 }
-    table tr.a {
-        background-color: #FCFCFC;
-    }
-    table tr.b {
-        background-color: #FAFAFA;
-    }
-    table th {
-        background-color: #F2F2F2;
-        color: #585858;
-        padding-left: 0.7em;
-        padding-top: 0.7em;
-        padding-bottom: 0.7em;
-        font-weight: normal;
-        text-align: left;
-        border-bottom: 1px solid white;
-    }
-    table td {
-        vertical-align: top;
-        padding:0.7em;
-    }
-    table th:first-child {
-        border-top-left-radius:5px;
-    }
-    table th:last-child {
-        border-top-right-radius:5px;
-    }
+
+table tr.a {
+  background-color: #FCFCFC;
+}
+
+table tr.b {
+  background-color: #FAFAFA;
+}
+
+table th {
+  background-color: #F2F2F2;
+  font-family: "Ubuntu Condensed", sans-serif;
+  color: #585858;
+  padding-left: 0.7em;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+  font-weight: normal;
+  font-size: 1.2em;
+  text-align: left;
+  border-bottom: 1px solid white;
+}
+
+table td {
+  vertical-align: top;
+  padding: 0.7em;
+}
+
+table td:nth-child(1) {
+  width: 30%;
+}
+
+body {
+  margin: 0em;
+  padding: 2em;
+  font-family: "Ubuntu", sans-serif;
+  background-color: #E6E6E6;
+}
+@media all and (min-width: 100px) and (max-width: 599px) {
+  body {
+    padding: 0.2em;
+  }
+}
+@media all and (min-width: 600px) and (max-width: 899px) {
+  body {
+    padding: 0.5em;
+  }
+}
+
+div.page {
+  margin-left: auto;
+  margin-right: auto;
+  white-space: nowrap;
+}
+@media all and (min-width: 1200px) and (max-width: 5000px) {
+  div.page {
+    width: 85%;
+  }
+}
+@media all and (min-width: 900px) and (max-width: 1199px) {
+  div.page {
+    width: 100%;
+  }
+}
+@media all and (min-width: 600px) and (max-width: 899px) {
+  div.page {
+    width: 100%;
+  }
+}
+@media all and (min-width: 100px) and (max-width: 599px) {
+  div.page {
+    width: 100%;
+  }
+}
+
+div.menu-section {
+  vertical-align: top;
+  display: inline-block;
+}
+@media all and (min-width: 1200px) and (max-width: 5000px) {
+  div.menu-section {
+    width: 30%;
+  }
+}
+@media all and (min-width: 900px) and (max-width: 1199px) {
+  div.menu-section {
+    width: 30%;
+  }
+}
+@media all and (min-width: 600px) and (max-width: 899px) {
+  div.menu-section {
+    display: none;
+  }
+}
+@media all and (min-width: 100px) and (max-width: 599px) {
+  div.menu-section {
+    display: none;
+  }
+}
+
+div.copyright {
+  font-size: 0.8em;
+}
+
+div.logo-section {
+  margin-bottom: 3em;
+}
+
+div.date {
+  color: lightgray;
+  font-weight: 100;
+}
+@media all and (min-width: 1200px) and (max-width: 5000px) {
+  div.date {
+    position: absolute;
+    right: 0px;
+    top: 40px;
+    float: right;
+  }
+}
+@media all and (min-width: 900px) and (max-width: 1199px) {
+  div.date {
+    position: absolute;
+    right: 0px;
+    top: 40px;
+    float: right;
+  }
+}
+
+div.legal-notes {
+  margin-bottom: 3em;
+  margin-top: 2em;
+  font-weight: 100;
+  color: gray;
+  font-size: 1.1em;
+}
+@media all and (min-width: 600px) and (max-width: 899px) {
+  div.legal-notes {
+    text-align: center;
+    font-size: 1.3em;
+  }
+}
+@media all and (min-width: 100px) and (max-width: 599px) {
+  div.legal-notes {
+    text-align: center;
+    font-size: 1.3em;
+  }
+}
+
+.maven-mobile {
+  display: none;
+}
+
+#content {
+  font-size: 1.1em;
+  font-weight: 400;
+  min-height: 25em;
+  color: gray;
+  background-color: white;
+  line-height: 1.7em;
+  position: relative;
+  box-sizing: border-box;
+}
+@media all and (min-width: 1200px) and (max-width: 5000px) {
+  #content {
+    padding: 3em;
+  }
+}
+@media all and (min-width: 900px) and (max-width: 1199px) {
+  #content {
+    padding: 3em;
+  }
+}
+@media all and (min-width: 600px) and (max-width: 899px) {
+  #content {
+    padding: 2em;
+  }
+}
+@media all and (min-width: 100px) and (max-width: 599px) {
+  #content {
+    padding: 1em;
+  }
+}
+
+#right-side {
+  white-space: normal;
+  display: inline-block;
+}
+@media all and (min-width: 1200px) and (max-width: 5000px) {
+  #right-side {
+    width: 70%;
+  }
+}
+@media all and (min-width: 900px) and (max-width: 1199px) {
+  #right-side {
+    width: 70%;
+  }
+}
+@media all and (min-width: 600px) and (max-width: 899px) {
+  #right-side {
+    width: 100%;
+  }
+}
+@media all and (min-width: 100px) and (max-width: 599px) {
+  #right-side {
+    width: 100%;
+  }
+}
+
+.menu-button {
+  float: right;
+  font-size: 2em;
+  color: #2276A4;
+  display: none;
+}
+@media all and (min-width: 600px) and (max-width: 899px) {
+  .menu-button {
+    display: block;
+  }
+}
+@media all and (min-width: 100px) and (max-width: 599px) {
+  .menu-button {
+    display: block;
+  }
+}
+
+.github-large {
+  display: block;
+}
+@media all and (min-width: 600px) and (max-width: 899px) {
+  .github-large {
+    display: none;
+  }
+}
+@media all and (min-width: 100px) and (max-width: 599px) {
+  .github-large {
+    display: none;
+  }
+}
+
+.github-small {
+  display: none;
+}
+@media all and (min-width: 600px) and (max-width: 899px) {
+  .github-small {
+    display: block;
+  }
+}
+@media all and (min-width: 100px) and (max-width: 599px) {
+  .github-small {
+    display: block;
+  }
+}
+
+.mobile-menu {
+  display: none;
+}
+@media all and (min-width: 100px) and (max-width: 599px) {
+  .mobile-menu {
+    display: block;
+  }
+}
+@media all and (min-width: 600px) and (max-width: 899px) {
+  .mobile-menu {
+    display: block;
+  }
+}
+
+#menu {
+  background-color: white;
+  font-size: 1.2em;
+  margin-top: 1em;
+  margin-right: 1em;
+  padding-top: 1.3em;
+  padding-right: 2em;
+  padding-left: 2em;
+  padding-bottom: 2em;
+  list-style: none;
+}
+#menu li {
+  /* Menu chapter style*/
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-size: 1.3em;
+  padding-top: 1em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+#menu li ul {
+  line-height: 1.5em;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 0.6em;
+  padding-left: 0em;
+  font-weight: 400;
+  margin-top: 0.5em;
+}
+#menu li ul li {
+  font-family: "Ubuntu", sans-serif;
+  padding: 0.05em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
