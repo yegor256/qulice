@@ -44,6 +44,5 @@ assert log.text.contains('Brackets.java[58]: Closing bracket should be on a new 
 assert log.text.contains('Violations.java[11]: Parameter txt should be final. (FinalParametersCheck)')
 assert log.text.contains('Violations.java[24]: Parameter ex should be final. (FinalParametersCheck)')
 assert log.text.contains('NewLines.java[4]: Lines in file should end with Unix-like end of line')
-assert log.text.contains('NewLines.java[4]: Lines in file should end with Unix-like end of line')
 assert log.text.contains('newlines.txt[3]: Lines in file should end with Unix-like end of line')
 assert log.text.findAll('todo With this description already exists in project .PuzzleDuplicateCheck.').size() == 1
