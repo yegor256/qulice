@@ -422,9 +422,9 @@
                                 <exception>
                                     <conflictingDependencies>
                                         <dependency>
-                                            <groupId>pmd</groupId>
+                                            <groupId>net.sourceforge.pmd</groupId>
                                             <artifactId>pmd</artifactId>
-                                            <version>4.3</version>
+                                            <version>5.1.0</version>
                                         </dependency>
                                         <dependency>
                                             <groupId>org.codenarc</groupId>
@@ -433,12 +433,12 @@
                                         </dependency>
                                     </conflictingDependencies>
                                     <resources>
-                                        <resource>rulesets/basic.xml</resource>
-                                        <resource>rulesets/braces.xml</resource>
-                                        <resource>rulesets/design.xml</resource>
-                                        <resource>rulesets/imports.xml</resource>
-                                        <resource>rulesets/junit.xml</resource>
-                                        <resource>rulesets/naming.xml</resource>
+                                        <resource>rulesets/java/basic.xml</resource>
+                                        <resource>rulesets/java/braces.xml</resource>
+                                        <resource>rulesets/java/design.xml</resource>
+                                        <resource>rulesets/java/imports.xml</resource>
+                                        <resource>rulesets/java/junit.xml</resource>
+                                        <resource>rulesets/java/naming.xml</resource>
                                     </resources>
                                 </exception>
                             </exceptions>
