@@ -93,7 +93,8 @@ public final class FindBugsValidator implements Validator {
         args.add(Wrap.class.getName());
         args.add(env.basedir().getPath());
         args.add(env.outdir().getPath());
-        args.add(StringUtils.join(env.classpath(), ","));
+        // @checkstyle MultipleStringLiteralsCheck (1 line)
+        args.add(StringUtils.join(env.classpath(), ",").replace("\\", "/"));
         final String command = StringUtils.join(args, " ");
         Logger.debug(this, "#restart(): running \"%s\"", command);
         final ProcessBuilder builder = new ProcessBuilder(args);
@@ -146,7 +147,8 @@ public final class FindBugsValidator implements Validator {
                     env.classpath()
                 ),
                 System.getProperty("path.separator")
-            )
+                // @checkstyle MultipleStringLiteralsCheck (1 line)
+            ).replace("\\", "/")
         );
         return opts;
     }
@@ -158,7 +160,8 @@ public final class FindBugsValidator implements Validator {
      */
     private File jar(final Class<?> resource) {
         final String name = resource.getName()
-            .replace(".", System.getProperty("file.separator"));
+            // @checkstyle MultipleStringLiteralsCheck (1 line)
+            .replace(".", "/");
         final URL res = this.getClass().getResource(
             String.format("/%s.class", name)
         );
@@ -192,7 +195,8 @@ public final class FindBugsValidator implements Validator {
      */
     private void check(final String report) throws ValidationException {
         int total = 0;
-        for (final String line : report.split("\n")) {
+        for (final String line
+            : report.split(System.getProperty("line.separator"))) {
             if (line.matches("[a-zA-Z ]+: .*")) {
                 Logger.warn(this, "FindBugs: %s", line);
                 ++total;
