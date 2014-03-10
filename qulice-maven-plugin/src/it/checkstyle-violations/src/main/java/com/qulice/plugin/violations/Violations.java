@@ -15,6 +15,8 @@ public class Violations {
 
     /**
      * Missing final in catch.
+     * @todo #123 Make this better
+     *  in multiple lines.
      */
     public final void catchFinal() {
         try {
