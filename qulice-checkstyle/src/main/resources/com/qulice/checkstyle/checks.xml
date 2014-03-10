@@ -110,6 +110,7 @@
         <property name="message" value="Two consecutive empty lines"/>
     </module>
 
+
     <!--
     Regexp for PDD todo tags formatting.
     -->
@@ -380,6 +381,20 @@
         <property name="fileExtensions" value="java"/>
     </module>
     <module name="com.qulice.checkstyle.CascadeIndentationCheck">
+        <property name="fileExtensions" value="java"/>
+    </module>
+    <module name="com.qulice.checkstyle.ConditionalRegexpMultilineCheck">
+        <property name="condition" value="^import java\.util\.ArrayList;$"/>
+        <property name="format" value="new ArrayList(?:&lt;.*?&gt;)?\(\)"/>
+        <property name="message"
+                  value="ArrayList should be initialized with a size parameter"/>
+        <property name="fileExtensions" value="java"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format"
+                  value="new java.util.ArrayList(?:&lt;.*?&gt;)?\(\)"/>
+        <property name="message"
+                  value="ArrayList should be initialized with a size parameter"/>
         <property name="fileExtensions" value="java"/>
     </module>
 
