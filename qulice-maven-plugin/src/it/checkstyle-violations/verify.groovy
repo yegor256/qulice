@@ -42,3 +42,5 @@ assert log.text.contains('tabs.txt[1]: Line contains a tab character. (FileTabCh
 assert log.text.findAll('Brackets.java.*(HeaderCheck)').empty
 assert log.text.contains('Brackets.java[56]: Closing bracket should be on a new line (BracketsStructureCheck)')
 assert log.text.contains('Violations.java[11]: Parameter txt should be final. (FinalParametersCheck)')
+assert log.text.contains('NewLines.java[4]: Lines in file should end with Unix-like end of line')
+assert log.text.contains('newlines.txt[3]: Lines in file should end with Unix-like end of line')
