@@ -28,6 +28,15 @@
       <owner>someone</owner>
    </puzzle>
    <puzzle>
+      <ticket>143</ticket>
+      <file>qulice-checkstyle/src/main/java/com/qulice/checkstyle/PuzzleDuplicateCheck.java</file>
+      <prefix> * </prefix>
+      <body>Add handling of non-java files (e.g. xml, groovy).</body>
+      <estimate>0</estimate>
+      <lines>46-46</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
       <ticket>55</ticket>
       <file>qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</file>
       <prefix>     * </prefix>
@@ -55,12 +64,30 @@
       <owner>author</owner>
    </puzzle>
    <puzzle>
-      <ticket>83</ticket>
-      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</file>
+      <ticket>123</ticket>
+      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
       <prefix>     * </prefix>
-      <body>When it works, add {@code FindBugsValidator()} to this list</body>
+      <body>Make this better in multiple lines but different.</body>
       <estimate>0</estimate>
-      <lines>59-59</lines>
+      <lines>44-45</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>123</ticket>
+      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
+      <prefix>     * </prefix>
+      <body>Make this better in multiple lines.</body>
+      <estimate>0</estimate>
+      <lines>67-68</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>123</ticket>
+      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
+      <prefix>     * </prefix>
+      <body>Make this better in multiple lines.</body>
+      <estimate>0</estimate>
+      <lines>18-19</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -70,6 +97,15 @@
       <body>Perform refactoring: remove this method, use Environment.files() instead, in order to simplify files manipulations.</body>
       <estimate>0</estimate>
       <lines>56-58</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>153</ticket>
+      <file>qulice-spi/src/main/java/com/qulice/spi/Environment.java</file>
+      <prefix>     * </prefix>
+      <body>Using File as classpath element is dangerous, as it won't work under Windows without conversion - classpaths always use slashes, while File objects under Windows will always use backslashes. This method should return a collection of elements that are not affected by OS.</body>
+      <estimate>0</estimate>
+      <lines>86-90</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
