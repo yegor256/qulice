@@ -31,7 +31,6 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed);
 @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
 
-/* Variables */
 $main-font: 'Ubuntu', sans-serif;
 $header-font: 'Ubuntu Condensed', sans-serif;
 $code-font: 'Source Code Pro', sans-serif;
@@ -45,7 +44,6 @@ a {
     };
     tt {
         text-decoration: none;
-        /* see http://stackoverflow.com/questions/13442609 */
         display: inline-block;
     }
 }
@@ -298,7 +296,6 @@ div.legal-notes {
     list-style: none;
 
     li {
-        /* Menu chapter style*/
         font-family: $header-font;
         font-size: 1.3em;
         padding-top: 1em;
