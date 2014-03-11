@@ -89,6 +89,10 @@
                     <groupId>xerces</groupId>
                     <artifactId>xmlParserAPIs</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.ow2.asm</groupId>
+                    <artifactId>asm</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
