@@ -28,6 +28,15 @@
       <owner>someone</owner>
    </puzzle>
    <puzzle>
+      <ticket>143</ticket>
+      <file>src/main/java/com/qulice/checkstyle/PuzzleDuplicateCheck.java</file>
+      <prefix> * </prefix>
+      <body>Add handling of non-java files (e.g. xml, groovy).</body>
+      <estimate>0</estimate>
+      <lines>46-46</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
       <ticket>55</ticket>
       <file>src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</file>
       <prefix>     * </prefix>
