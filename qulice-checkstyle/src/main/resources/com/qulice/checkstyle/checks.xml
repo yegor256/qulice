@@ -292,7 +292,7 @@
         <module name="UpperEll"/>
         <module name="ArrayTypeStyle"/>
         <module name="FinalParameters">
-            <property name="tokens" value="CTOR_DEF,METHOD_DEF,FOR_EACH_CLAUSE"/>
+            <property name="tokens" value="CTOR_DEF,METHOD_DEF,FOR_EACH_CLAUSE,LITERAL_CATCH"/>
         </module>
         <module name="Indentation"/>
         <module name="TrailingComment"/>
@@ -374,6 +374,9 @@
     Our custom checkers.
     -->
     <module name="com.qulice.checkstyle.PuzzleFormatCheck">
+        <property name="fileExtensions" value="java"/>
+    </module>
+    <module name="com.qulice.checkstyle.PuzzleDuplicateCheck">
         <property name="fileExtensions" value="java"/>
     </module>
     <module name="com.qulice.checkstyle.ImportCohesionCheck">
