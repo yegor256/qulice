@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles>
    <puzzle>
-      <ticket>83</ticket>
-      <file>src/main/java/com/qulice/maven/DefaultValidatorsProvider.java</file>
+      <ticket>123</ticket>
+      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
       <prefix>     * </prefix>
-      <body>When it works, add {@code FindBugsValidator()} to this list</body>
+      <body>Make this better in multiple lines but different.</body>
       <estimate>0</estimate>
-      <lines>59-59</lines>
+      <lines>44-45</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>123</ticket>
+      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
+      <prefix>     * </prefix>
+      <body>Make this better in multiple lines.</body>
+      <estimate>0</estimate>
+      <lines>67-68</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>123</ticket>
+      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
+      <prefix>     * </prefix>
+      <body>Make this better in multiple lines.</body>
+      <estimate>0</estimate>
+      <lines>18-19</lines>
       <owner>someone</owner>
    </puzzle>
 </puzzles>
