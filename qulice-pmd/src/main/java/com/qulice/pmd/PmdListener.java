@@ -34,8 +34,8 @@ import com.qulice.spi.Environment;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
-import net.sourceforge.pmd.IRuleViolation;
 import net.sourceforge.pmd.ReportListener;
+import net.sourceforge.pmd.RuleViolation;
 import net.sourceforge.pmd.stat.Metric;
 
 /**
@@ -55,8 +55,8 @@ final class PmdListener implements ReportListener {
     /**
      * Violations.
      */
-    private final transient Collection<IRuleViolation> violations =
-        new LinkedList<IRuleViolation>();
+    private final transient Collection<RuleViolation> violations =
+        new LinkedList<RuleViolation>();
 
     /**
      * Public ctor.
@@ -72,7 +72,7 @@ final class PmdListener implements ReportListener {
     }
 
     @Override
-    public void ruleViolationAdded(final IRuleViolation violation) {
+    public void ruleViolationAdded(final RuleViolation violation) {
         final String name = violation.getFilename();
         if (!this.env.exclude("pmd", name)) {
             this.violations.add(violation);
@@ -92,7 +92,7 @@ final class PmdListener implements ReportListener {
      * Get list of violations.
      * @return List of violations
      */
-    public Collection<IRuleViolation> getViolations() {
+    public Collection<RuleViolation> getViolations() {
         return Collections.unmodifiableCollection(this.violations);
     }
 
