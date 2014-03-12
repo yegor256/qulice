@@ -32,8 +32,8 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import java.io.File;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
@@ -71,7 +71,8 @@ public final class PuzzleDuplicateCheck extends AbstractFileSetCheck {
     /**
      * All seen puzzle texts.
      */
-    private final transient Collection<String> puzzles = new HashSet<String>();
+    private final transient Collection<String> puzzles =
+        new ConcurrentSkipListSet<String>();
 
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
@@ -90,7 +91,10 @@ public final class PuzzleDuplicateCheck extends AbstractFileSetCheck {
                 if (this.puzzles.contains(text.toString())) {
                     this.log(
                         pos + 1,
-                        "@todo With this description already exists in project"
+                        String.format(
+                            "@todo \"%s\" already exists in the project",
+                            text.toString()
+                        )
                     );
                 } else {
                     this.puzzles.add(text.toString());
