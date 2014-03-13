@@ -35,7 +35,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
-import net.sourceforge.pmd.DataSource;
+import net.sourceforge.pmd.util.datasource.DataSource;
 import org.apache.commons.lang3.CharEncoding;
 
 /**
@@ -68,13 +68,13 @@ public final class DataSourceReader {
         InputStream input = null;
         try {
             input = this.source.getInputStream();
-        } catch (IOException ex) {
+        } catch (final IOException ex) {
             throw new IllegalArgumentException(ex);
         }
         Reader reader = null;
         try {
             reader = new InputStreamReader(input, CharEncoding.UTF_8);
-        } catch (UnsupportedEncodingException exception) {
+        } catch (final UnsupportedEncodingException exception) {
             throw new IllegalArgumentException(exception);
         }
         return new BufferedReader(reader);

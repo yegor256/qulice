@@ -31,14 +31,14 @@ package com.qulice.pmd.rules;
 
 import java.util.List;
 import java.util.Map;
-import net.sourceforge.pmd.AbstractJavaRule;
-import net.sourceforge.pmd.ast.ASTArgumentList;
-import net.sourceforge.pmd.ast.ASTMethodDeclaration;
-import net.sourceforge.pmd.ast.ASTName;
-import net.sourceforge.pmd.ast.ASTReturnStatement;
-import net.sourceforge.pmd.ast.SimpleJavaNode;
-import net.sourceforge.pmd.symboltable.NameOccurrence;
-import net.sourceforge.pmd.symboltable.VariableNameDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTArgumentList;
+import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTReturnStatement;
+import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
+import net.sourceforge.pmd.lang.java.ast.JavaNode;
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
+import net.sourceforge.pmd.lang.symboltable.NameDeclaration;
+import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 
 /**
  * Rule to check unnecessary local variables.
@@ -58,18 +58,20 @@ public final class UnnecessaryLocalRule extends AbstractJavaRule {
 
     @Override
     public Object visit(final ASTReturnStatement rtn, final Object data) {
-        final ASTName name = rtn.getFirstChildOfType(ASTName.class);
+        final ASTVariableDeclarator name =
+            rtn.getFirstChildOfType(ASTVariableDeclarator.class);
         if (name != null) {
-            usages(rtn, data, name);
+            this.usages(rtn, data, name);
         }
         return data;
     }
 
     @Override
     public Object visit(final ASTArgumentList rtn, final Object data) {
-        final List<ASTName> names = rtn.findChildrenOfType(ASTName.class);
-        for (final ASTName name : names) {
-            usages(rtn, data, name);
+        final List<ASTVariableDeclarator> names =
+            rtn.findChildrenOfType(ASTVariableDeclarator.class);
+        for (final ASTVariableDeclarator name : names) {
+            this.usages(rtn, data, name);
         }
         return data;
     }
@@ -82,12 +84,12 @@ public final class UnnecessaryLocalRule extends AbstractJavaRule {
      */
     @SuppressWarnings({ "PMD.AvoidInstantiatingObjectsInLoops",
         "PMD.UseConcurrentHashMap" })
-    private void usages(final SimpleJavaNode node, final Object data,
-        final ASTName name) {
-        final Map<VariableNameDeclaration, List<NameOccurrence>> vars = name
-            .getScope().getVariableDeclarations();
+    private void usages(final JavaNode node, final Object data,
+        final ASTVariableDeclarator name) {
+        final Map<NameDeclaration, List<NameOccurrence>> vars = name
+            .getScope().getDeclarations();
         // @checkstyle LineLength (1 line)
-        for (final Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry
+        for (final Map.Entry<NameDeclaration, List<NameOccurrence>> entry
             : vars.entrySet()) {
             final List<NameOccurrence> usages = entry.getValue();
             if (usages.size() > 1) {

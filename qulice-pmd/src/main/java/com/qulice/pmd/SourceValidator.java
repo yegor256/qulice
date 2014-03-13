@@ -29,20 +29,20 @@
  */
 package com.qulice.pmd;
 
-import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import java.io.File;
-import java.io.Reader;
 import java.util.Collection;
-import net.sourceforge.pmd.DataSource;
-import net.sourceforge.pmd.IRuleViolation;
+import java.util.Collections;
+import java.util.LinkedList;
 import net.sourceforge.pmd.PMD;
+import net.sourceforge.pmd.PMDConfiguration;
 import net.sourceforge.pmd.Report;
 import net.sourceforge.pmd.RuleContext;
+import net.sourceforge.pmd.RulePriority;
 import net.sourceforge.pmd.RuleSetFactory;
-import net.sourceforge.pmd.RuleSetNotFoundException;
-import net.sourceforge.pmd.RuleSets;
-import net.sourceforge.pmd.SourceType;
+import net.sourceforge.pmd.RuleViolation;
+import net.sourceforge.pmd.renderers.Renderer;
+import net.sourceforge.pmd.util.datasource.DataSource;
 
 /**
  * Validates source files via <code>PMDValidator</code>.
@@ -51,11 +51,6 @@ import net.sourceforge.pmd.SourceType;
  * @version $Id$
  */
 public final class SourceValidator {
-
-    /**
-     * PMD.
-     */
-    private final transient PMD pmd = new PMD();
 
     /**
      * Rule context.
@@ -70,7 +65,7 @@ public final class SourceValidator {
     /**
      * Rules.
      */
-    private transient RuleSets sets;
+    private final transient PMDConfiguration config;
 
     /**
      * Creates new instance of <code>SourceValidator</code>.
@@ -78,16 +73,8 @@ public final class SourceValidator {
      */
     public SourceValidator(final Environment env) {
         this.listener = new PmdListener(env);
-        final RuleSetFactory factory = new RuleSetFactory();
-        // @checkstyle MagicNumber (1 line)
-        factory.setMinimumPriority(5);
-        try {
-            this.sets = factory.createRuleSets(
-                "com/qulice/pmd/ruleset.xml"
-            );
-        } catch (RuleSetNotFoundException ex) {
-            throw new IllegalArgumentException(ex);
-        }
+        this.config = new PMDConfiguration();
+        this.config.setRuleSets("com/qulice/pmd/ruleset.xml");
         final Report report = new Report();
         report.addListener(this.listener);
         this.context.setReport(report);
@@ -114,7 +101,7 @@ public final class SourceValidator {
      * Returns violations to take place while validation.
      * @return Collection of violations.
      */
-    public Collection<IRuleViolation> getViolations() {
+    public Collection<RuleViolation> getViolations() {
         return this.listener.getViolations();
     }
 
@@ -123,23 +110,15 @@ public final class SourceValidator {
      * @param source Input source file
      */
     private void validateOne(final DataSource source) {
-        final DataSourceReader input = new DataSourceReader(source);
-        final Reader reader = input.getReader();
-        try {
-            this.pmd.processFile(
-                reader,
-                this.sets,
-                this.context,
-                SourceType.JAVA_16
-            );
-        } catch (net.sourceforge.pmd.PMDException ex) {
-            throw new IllegalArgumentException(ex);
-        } finally {
-            try {
-                reader.close();
-            } catch (java.io.IOException ex) {
-                Logger.error(this, "Failed to close stream: %s", ex);
-            }
-        }
+        final RuleSetFactory factory = new RuleSetFactory();
+        // @checkstyle MagicNumber (1 line)
+        factory.setMinimumPriority(RulePriority.valueOf(5));
+        PMD.processFiles(
+            this.config,
+            factory,
+            new LinkedList<DataSource>(Collections.singleton(source)),
+            this.context,
+            Collections.<Renderer>emptyList()
+        );
     }
 }
