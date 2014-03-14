@@ -1,4 +1,7 @@
 package com.qulice.plugin.violations;
+
+import java.util.ArrayList;
+
 public class Violations {
     public void test() {
         System.setProperty("test", "test value");
@@ -26,5 +29,14 @@ public class Violations {
         } catch (NumberFormatException ex) {
             throw new IllegalStateException(ex);
         }
+    }
+    /**
+     * ArrayList without initializer.
+     */
+    public final void arrayLists() {
+        System.out.println(new ArrayList<Integer>());
+        System.out.println(new java.util.ArrayList<Integer>());
+        System.out.println(new ArrayList<Integer>(1));
+        System.out.println(new java.util.ArrayList<Integer>(2));
     }
 }
