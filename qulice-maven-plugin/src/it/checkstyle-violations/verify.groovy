@@ -41,8 +41,8 @@ assert log.text.contains('Tabs.java[4]: Line contains a tab character. (FileTabC
 assert log.text.contains('tabs.txt[1]: Line contains a tab character. (FileTabCharacterCheck)')
 assert log.text.findAll('Brackets.java.*(HeaderCheck)').empty
 assert log.text.contains('Brackets.java[58]: Closing bracket should be on a new line (BracketsStructureCheck)')
-assert log.text.contains('Violations.java[14]: Parameter txt should be final. (FinalParametersCheck)')
-assert log.text.contains('Violations.java[25]: Parameter ex should be final. (FinalParametersCheck)')
+assert log.text.contains('Violations.java[16]: Parameter txt should be final. (FinalParametersCheck)')
+assert log.text.contains('Violations.java[29]: Parameter ex should be final. (FinalParametersCheck)')
 assert log.text.contains('NewLines.java[4]: Lines in file should end with Unix-like end of line')
 assert log.text.contains('newlines.txt[3]: Lines in file should end with Unix-like end of line')
 // @todo #1 PuzzleDuplicateCheck doesn't work, for some reason. In order to make
@@ -50,5 +50,5 @@ assert log.text.contains('newlines.txt[3]: Lines in file should end with Unix-li
 //  ChecksTest in qulice-checkstyle module. Besides that, don't forget to
 //  enable it again in checks.xml
 // assert log.text.findAll('Violations.java[20]: @todo "First second" already exists in the project').size() == 1
-assert log.text.contains('Violations.java[33]: ArrayList should be initialized with a size parameter')
-assert log.text.contains('Violations.java[34]: ArrayList should be initialized with a size parameter')
+assert log.text.contains('Violations.java[37]: ArrayList should be initialized with a size parameter')
+assert log.text.contains('Violations.java[38]: ArrayList should be initialized with a size parameter')
