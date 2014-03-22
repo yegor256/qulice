@@ -64,6 +64,7 @@ public final class ChecksTest {
      * Directories where test scripts are located.
      */
     private static final String[] CHECKS = {
+        "MethodsOrderCheck",
         "MultilineJavadocTagsCheck",
         "StringLiteralsConcatenationCheck",
         "EmptyLinesCheck",
