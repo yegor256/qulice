@@ -76,6 +76,12 @@ interface MavenEnvironment extends Environment {
     MojoExecutor executor();
 
     /**
+     * Get xpath queries for pom.xml validation.
+     * @return The asserts
+     */
+    Collection<String> asserts();
+
+    /**
      * Wrapper of maven environment.
      */
     final class Wrap implements MavenEnvironment {
@@ -140,6 +146,10 @@ interface MavenEnvironment extends Environment {
         @Override
         public MojoExecutor executor() {
             return this.menv.executor();
+        }
+        @Override
+        public Collection<String> asserts() {
+            return this.menv.asserts();
         }
         @Override
         public Collection<File> files(final String pattern) {
