@@ -52,3 +52,4 @@ assert log.text.contains('newlines.txt[3]: Lines in file should end with Unix-li
 // assert log.text.findAll('Violations.java[20]: @todo "First second" already exists in the project').size() == 1
 assert log.text.contains('Violations.java[37]: ArrayList should be initialized with a size parameter')
 assert log.text.contains('Violations.java[38]: ArrayList should be initialized with a size parameter')
+assert log.text.findAll('Pdd.java.*: @todo tag has wrong format').empty
