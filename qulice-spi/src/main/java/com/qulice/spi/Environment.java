@@ -34,10 +34,14 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 /**
  * Environment.
@@ -234,8 +238,26 @@ public interface Environment {
             return Collections.unmodifiableCollection(this.classpath);
         }
         @Override
+        @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
         public Collection<File> files(final String pattern) {
-            return Collections.emptyList();
+            final Collection<File> files = new LinkedList<File>();
+            final IOFileFilter filter = new WildcardFileFilter(pattern);
+            final String[] dirs = new String[] {
+                "src",
+            };
+            for (final String dir : dirs) {
+                final File sources = new File(this.basedir(), dir);
+                if (sources.exists()) {
+                    files.addAll(
+                        FileUtils.listFiles(
+                            sources,
+                            filter,
+                            DirectoryFileFilter.INSTANCE
+                        )
+                    );
+                }
+            }
+            return files;
         }
         @Override
         public boolean exclude(final String check, final String name) {

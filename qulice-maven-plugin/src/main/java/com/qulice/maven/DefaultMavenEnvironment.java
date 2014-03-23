@@ -38,6 +38,10 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.project.MavenProject;
@@ -179,8 +183,26 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<File> files(final String pattern) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        final Collection<File> files = new LinkedList<File>();
+        final IOFileFilter filter = new WildcardFileFilter(pattern);
+        final String[] dirs = new String[] {
+            "src",
+        };
+        for (final String dir : dirs) {
+            final File sources = new File(this.basedir(), dir);
+            if (sources.exists()) {
+                files.addAll(
+                    FileUtils.listFiles(
+                        sources,
+                        filter,
+                        DirectoryFileFilter.INSTANCE
+                    )
+                );
+            }
+        }
+        return files;
     }
 
     @Override
