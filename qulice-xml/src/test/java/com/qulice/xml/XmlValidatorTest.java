@@ -42,16 +42,29 @@ import org.junit.Test;
 public final class XmlValidatorTest {
 
     /**
-     * Validate set of files to find violations.
+     * Should fail validation in case of wrong XML.
      * @throws Exception If something wrong happens inside.
-     * @todo #13 The test doesn't work because functionality is not
-     *  implemented yet.
      */
     @Test(expected = ValidationException.class)
-    @org.junit.Ignore
-    public void testValidatesSetOfFiles() throws Exception {
+    public void failsValidationOnWrongFile() throws Exception {
         final Environment env = new Environment.Mock()
-            .withFile("text.xml", "<a></a>");
+            .withFile("src/main/resources/invalid.xml", "<a></a>");
+        final Validator validator = new XmlValidator();
+        validator.validate(env);
+    }
+
+    /**
+     * Should pass validation in case of correct XML.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void passesValidationOnCorrectFile() throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "src/main/resources/valid.xml",
+                // @checkstyle LineLength (1 line)
+                "<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd\"></document>"
+        );
         final Validator validator = new XmlValidator();
         validator.validate(env);
     }

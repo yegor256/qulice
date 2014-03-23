@@ -41,14 +41,11 @@ import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
-import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.InputSource;
 
@@ -67,7 +64,7 @@ public final class CheckstyleValidator implements Validator {
      */
     @Override
     public void validate(final Environment env) throws ValidationException {
-        final List<File> files = this.files(env);
+        final Collection<File> files = env.files("*.*");
         if (files.isEmpty()) {
             Logger.info(this, "No files to check with Checkstyle");
             return;
@@ -89,7 +86,7 @@ public final class CheckstyleValidator implements Validator {
         }
         final CheckstyleListener listener = new CheckstyleListener(env);
         checker.addListener(listener);
-        checker.process(files);
+        checker.process(new LinkedList<File>(files));
         checker.destroy();
         final List<AuditEvent> events = listener.events();
         if (!events.isEmpty()) {
@@ -199,34 +196,4 @@ public final class CheckstyleValidator implements Validator {
         }
         return url;
     }
-
-    /**
-     * Get full list of files to process.
-     * @param env The environmet
-     * @return List of files
-     * @todo #44:1h Perform refactoring: remove this method, use
-     *  Environment.files() instead.
-     */
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    private List<File> files(final Environment env) {
-        final List<File> files = new ArrayList<File>();
-        final IOFileFilter filter = new WildcardFileFilter("*.*");
-        final String[] dirs = new String[] {
-            "src",
-        };
-        for (final String dir : dirs) {
-            final File sources = new File(env.basedir(), dir);
-            if (sources.exists()) {
-                files.addAll(
-                    FileUtils.listFiles(
-                        sources,
-                        filter,
-                        DirectoryFileFilter.INSTANCE
-                    )
-                );
-            }
-        }
-        return files;
-    }
-
 }
