@@ -67,7 +67,7 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
      * @checkstyle LineLength (3 lines)
      */
     private static final Pattern FIRST = Pattern.compile(
-        "^\\s+\\* @todo #[\\w\\d:\\-]+!?(:[0-9]+(\\.[0-9]){0,2}hrs?)? [A-Z][^\n]+$"
+        "^\\s+\\* @todo #[\\w\\d:\\-]+[!?]?(:[0-9]+(\\.[0-9]){0,2}hrs?)? [A-Z][^\n]+$"
     );
 
     /**
