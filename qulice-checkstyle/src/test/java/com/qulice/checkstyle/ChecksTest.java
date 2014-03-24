@@ -76,6 +76,7 @@ public final class ChecksTest {
         "JavadocLocationCheck",
         "MethodBodyCommentsCheck",
         "RequireThisCheck",
+        "ProtectedMethodInFinalClassCheck",
         // "NonStaticMethodCheck",
         // "ConstantUsageCheck",
     };
