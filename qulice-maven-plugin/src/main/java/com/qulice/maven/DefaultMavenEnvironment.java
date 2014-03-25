@@ -82,6 +82,12 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     private final transient Collection<String> exc =
         new LinkedList<String>();
 
+    /**
+     * Xpath queries for pom.xml validation.
+     */
+    private final transient Collection<String> asser =
+        new LinkedList<String>();
+
     @Override
     public String param(final String name, final String value) {
         final String val = this.iproperties.getProperty(name);
@@ -172,6 +178,11 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
+    public Collection<String> asserts() {
+        return this.asser;
+    }
+
+    @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<File> files(final String pattern) {
         final Collection<File> files = new LinkedList<File>();
@@ -247,6 +258,15 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public void setExcludes(final Collection<String> exprs) {
         this.exc.clear();
         this.exc.addAll(exprs);
+    }
+
+    /**
+     * Set list of Xpath queries for pom.xml validation.
+     * @param ass Xpath queries
+     */
+    public void setAsser(final Collection<String> ass) {
+        this.asser.clear();
+        this.exc.addAll(ass);
     }
 
 }

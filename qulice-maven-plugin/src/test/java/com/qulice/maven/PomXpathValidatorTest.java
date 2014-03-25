@@ -29,44 +29,43 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Validator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.io.File;
+import java.util.Collections;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.junit.Test;
 
 /**
- * Provider of validators.
- *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * Test case for {@link PomXpathValidator} class.
+ * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
- * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */
-final class DefaultValidatorsProvider implements ValidatorsProvider {
-
-    @Override
-    public Set<MavenValidator> internal() {
-        final Set<MavenValidator> validators =
-            new LinkedHashSet<MavenValidator>();
-        validators.add(new SnapshotsValidator());
-        validators.add(new EnforcerValidator());
-        validators.add(new CoberturaValidator());
-        validators.add(new SvnPropertiesValidator());
-        validators.add(new DependenciesValidator());
-        validators.add(new PomXpathValidator());
-        return validators;
-    }
+public final class PomXpathValidatorTest {
 
     /**
-     * {@inheritDoc}
+     * PomXpathValidator can validate pom.xml with xpath.
+     * @throws Exception If something wrong happens inside
      */
-    @Override
-    public Set<Validator> external() {
-        final Set<Validator> validators = new LinkedHashSet<Validator>();
-        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
-        validators.add(new com.qulice.pmd.PMDValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        validators.add(new com.qulice.findbugs.FindBugsValidator());
-        return validators;
+    @Test
+    public void canValidatePomWithXpath() throws Exception {
+        final MavenEnvironment env = new MavenEnvironmentMocker()
+            .withAsserts(
+                Collections.singletonList(
+                // @checkstyle LineLength (1 line)
+                "/pom:project/pom:dependencies/pom:dependency[pom:artifactId='commons-io']/pom:version[.='1.2.5']/text()"
+            )
+        ).mock();
+        final String pom = IOUtils.toString(
+            this.getClass().getResourceAsStream("PomXpathValidator/pom.xml")
+        );
+        FileUtils.write(
+            new File(
+                String.format(
+                    "%s%spom.xml", env.basedir(), File.separator
+                )
+            ),
+            pom
+        );
+        new PomXpathValidator().validate(env);
     }
-
 }

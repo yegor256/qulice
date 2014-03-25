@@ -100,6 +100,17 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         new LinkedList<String>();
 
     /**
+     * List of xpath queries to validate pom.xml.
+     * @since 0.5
+     */
+    @Parameter(
+        alias = "pom",
+        required = false
+    )
+    private final transient Collection<String> asserts =
+        new LinkedList<String>();
+
+    /**
      * Set Maven Project (used mostly for unit testing).
      * @param proj The project to set
      */
@@ -150,6 +161,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
             new MojoExecutor(this.manager, this.session)
         );
         this.environment.setExcludes(this.excludes);
+        this.environment.setAsser(this.asserts);
         final long start = System.nanoTime();
         this.doExecute();
         Logger.info(
