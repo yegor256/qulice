@@ -17,4 +17,12 @@ public class Pdd {
     public final void foreach() {
         System.out.println("test");
     }
+    /**
+     * Test.
+     */
+    public void inner() {
+        // @todo #123 Here we should capture
+        //  also another line.
+        System.out.println("inner");
+    }
 }

@@ -31,6 +31,9 @@ package com.qulice.maven;
 
 import com.qulice.spi.Environment;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.PlexusContainer;
@@ -62,6 +65,12 @@ public final class MavenEnvironmentMocker {
      */
     private final transient PlexusContainer container =
         Mockito.mock(PlexusContainer.class);
+
+    /**
+     * Xpath queries to test pom.xml.
+     */
+    private transient Collection<String> ass =
+        new LinkedList<String>();
 
     /**
      * Public ctor.
@@ -123,6 +132,17 @@ public final class MavenEnvironmentMocker {
     }
 
     /**
+     * With list of xpath queries to validate pom.xml.
+     * @param asserts Collection of xpath queries
+     * @return This object
+     */
+    public MavenEnvironmentMocker withAsserts(
+        final Collection<String> asserts) {
+        this.ass = Collections.unmodifiableCollection(asserts);
+        return this;
+    }
+
+    /**
      * Mock it.
      * @return The environment just mocked
      * @throws Exception If something wrong happens inside
@@ -136,6 +156,7 @@ public final class MavenEnvironmentMocker {
         final Context context = Mockito.mock(Context.class);
         Mockito.doReturn(context).when(env).context();
         Mockito.doReturn(this.container).when(context).get(Mockito.anyString());
+        Mockito.doReturn(this.ass).when(env).asserts();
         return new MavenEnvironment.Wrap(parent, env);
     }
 
