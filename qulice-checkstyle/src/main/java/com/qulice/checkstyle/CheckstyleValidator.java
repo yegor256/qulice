@@ -142,7 +142,8 @@ public final class CheckstyleValidator implements Validator {
         final URL url = this.toURL(env, name);
         String content;
         try {
-            content = IOUtils.toString(url.openStream()).replaceAll("\\r", "");
+            content = IOUtils.toString(url.openStream())
+                .trim().replaceAll("[\\r\\n]+$", "");
         } catch (java.io.IOException ex) {
             throw new IllegalStateException("Failed to read license", ex);
         }
@@ -157,7 +158,7 @@ public final class CheckstyleValidator implements Validator {
             }
             builder.append(eol);
         }
-        builder.append(" */").append(eol);
+        builder.append(" */");
         final String license = builder.toString();
         Logger.info(this, "LICENSE found: %s", url);
         Logger.debug(
