@@ -67,20 +67,20 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
      * @checkstyle LineLength (3 lines)
      */
     private static final Pattern FIRST = Pattern.compile(
-        "^\\s+\\* @todo #[\\w\\d:\\-]+[!?]?(:[0-9]+(\\.[0-9]){0,2}hrs?)? [A-Z][^\n]+$"
+        "^\\s+(?:\\*|//) @todo #[\\w\\d:\\-]+[!?]?(:[0-9]+(\\.[0-9]){0,2}hrs?)? [A-Z][^\n]+$"
     );
 
     /**
      * Pattern for the rest of todo lines.
      */
     private static final Pattern FOLLOWING =
-        Pattern.compile("^\\s+\\*  [^ ].+$");
+        Pattern.compile("^\\s+(?:\\*|//)  [^ ].+$");
 
     /**
      * Pattern marking the end of todo text.
      */
     private static final Pattern OTHER =
-        Pattern.compile("^\\s+\\*(/?| *@.*)$");
+        Pattern.compile("^(?:\\s+\\*(/?| *@.*)|[^/*]*)$");
 
     @Override
     public void processFiltered(final File file, final List<String> lines) {
@@ -104,55 +104,11 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
                         failure = true;
                     }
                 }
-                if (!this.isInsideJavadoc(lines, pos)) {
-                    this.log(
-                        pos + 1,
-                        // @checkstyle PuzzleFormat (1 line)
-                        "@todo puzzles are allowed only in javadoc blocks"
-                    );
-                }
             }
         }
         if (failure) {
             this.fireErrors(file.getPath());
         }
-    }
-
-    /**
-     * Check if todo tag is inside a class or method javadoc.
-     * @param lines All lines in a file.
-     * @param start Line number of todo tag start.
-     * @return If the tag is inside the javadoc.
-     */
-    private boolean isInsideJavadoc(final List<String> lines, final int start) {
-        return this.hasMarker(lines, start, -1, "/**")
-            && this.hasMarker(lines, start, 1, "*/");
-    }
-
-    /**
-     * Is there a line with a marker around this start line?
-     * @param lines All lines in a file.
-     * @param start Line number of todo tag start.
-     * @param direction In which direction to go
-     * @param marker The marker to find
-     * @return The marker is there?
-     * @checkstyle ParameterNumber (3 lines)
-     */
-    private boolean hasMarker(final List<String> lines, final int start,
-        final int direction, final String marker) {
-        boolean found = false;
-        for (int pos = start + direction; pos >= 0; pos += direction) {
-            final String line = lines.get(pos);
-            if (line.trim().equals(marker)) {
-                found = true;
-                break;
-            }
-            if (!line.trim().startsWith("*")) {
-                found = false;
-                break;
-            }
-        }
-        return found;
     }
 
     /**
