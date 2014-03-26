@@ -29,12 +29,14 @@
  */
 package com.qulice.codenarc;
 
+import com.google.common.collect.Lists;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.regex.Pattern;
 import org.apache.log4j.spi.LoggingEvent;
 import org.apache.log4j.varia.NullAppender;
@@ -117,8 +119,8 @@ public final class CodeNarcValidatorTest {
         /**
          * List of logged messages.
          */
-        private final transient List<String> messages =
-            new LinkedList<String>();
+        private final transient Collection<String> messages =
+            new ConcurrentLinkedQueue<String>();
         @Override
         public void doAppend(final LoggingEvent event) {
             this.messages.add(event.getMessage().toString());
@@ -128,7 +130,9 @@ public final class CodeNarcValidatorTest {
          * @return The list of logged messages
          */
         public List<String> getMessages() {
-            return Collections.unmodifiableList(this.messages);
+            return Collections.unmodifiableList(
+                Lists.newArrayList(this.messages)
+            );
         }
     }
 
