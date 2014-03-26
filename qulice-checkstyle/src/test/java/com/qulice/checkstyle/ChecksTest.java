@@ -73,6 +73,7 @@ public final class ChecksTest {
         "PuzzleFormatCheck",
         "CascadeIndentationCheck",
         "BracketsStructureCheck",
+        "CurlyBracketsStructureCheck",
         "JavadocLocationCheck",
         "MethodBodyCommentsCheck",
         "RequireThisCheck",
