@@ -111,6 +111,13 @@ public interface Environment {
     boolean exclude(String check, String name);
 
     /**
+     * String with exclude patterns, separated by coma
+     * @param checker Name of the checker that is asking (pmd, codenarc ...)
+     * @return Exclude patterns
+     */
+    String excludes(String checker);
+
+    /**
      * Mock of {@link Environment}.
      */
     final class Mock implements Environment {
@@ -127,6 +134,11 @@ public interface Environment {
          */
         private final transient ConcurrentMap<String, String> params =
             new ConcurrentHashMap<String, String>();
+        /**
+         * Exclude patterns.
+         */
+        private transient String excl;
+
         /**
          * Public ctor.
          * @throws IOException If some IO problem
@@ -187,6 +199,16 @@ public interface Environment {
             throws IOException {
             final File file = new File(this.basedir, name);
             FileUtils.writeByteArrayToFile(file, bytes);
+            return this;
+        }
+
+        /**
+         * With exclude patterns.
+         * @param excludes Exclude patterns
+         * @return
+         */
+        public Environment.Mock withExcludes(final String excludes) {
+            this.excl = excludes;
             return this;
         }
         /**
@@ -262,6 +284,11 @@ public interface Environment {
         @Override
         public boolean exclude(final String check, final String name) {
             return false;
+        }
+
+        @Override
+        public String excludes(final String checker) {
+            return this.excl;
         }
     }
 }

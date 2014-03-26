@@ -79,6 +79,20 @@ public final class CodeNarcValidatorTest {
     }
 
     /**
+     * CodeNarcValidator can exclude files.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void passesExcludeFiles() throws Exception {
+        final Validator validator = new CodeNarcValidator();
+        final Environment env = new Environment.Mock()
+            .withFile("src/ex1/Main.groovy", "System.out.println('hi')")
+            .withFile("src/ex2/Main2.groovy", "System.out.println('hi again')")
+            .withExcludes("**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy");
+        validator.validate(env);
+    }
+
+    /**
      * CodeNarcValidator can report full names of files that contain
      * violations.
      * @throws Exception If error message does not include filename.

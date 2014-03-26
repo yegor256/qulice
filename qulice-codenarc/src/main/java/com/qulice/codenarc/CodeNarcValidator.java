@@ -43,6 +43,12 @@ import org.codenarc.rule.Violation;
 /**
  * Validates groovy source code with CodeNarc.
  *
+ * @todo #148 Create integration tests to check exclusion.
+ *  Lets implement integration tests to check that exclusion patterns
+ *  propagated to CodeNarc Validator.
+ *  For syntax example see
+ *  http://www.qulice.com/qulice-maven-plugin/example-exclude.html
+ *
  * @author Pavlo Shamrai (pshamrai@gmail.com)
  * @version $Id$
  */
@@ -51,8 +57,10 @@ public final class CodeNarcValidator implements Validator {
     @Override
     public void validate(final Environment env) throws ValidationException {
         final File src = new File(env.basedir(), "src");
-        if (this.required(src) && !env.exclude("codenarc", "")) {
-            final int violations = this.logViolations(this.detect(src));
+        if (this.required(src)) {
+            final int violations = this.logViolations(
+                this.detect(src, env.excludes("codenarc"))
+            );
             if (violations > 0) {
                 throw new ValidationException(
                     "%d CodeNarc violations (see log above)",
@@ -65,14 +73,15 @@ public final class CodeNarcValidator implements Validator {
     /**
      * Detect all violations.
      * @param src Source code folder
+     * @param excludes Exclude patterns with "coma" delimiter
      * @return The result
      */
-    private Results detect(final File src) {
+    private Results detect(final File src, final String excludes) {
         final FilesystemSourceAnalyzer sourceAnalyzer =
             new FilesystemSourceAnalyzer();
         sourceAnalyzer.setBaseDirectory(src.getAbsolutePath());
         sourceAnalyzer.setIncludes("**/*.groovy");
-        sourceAnalyzer.setExcludes(null);
+        sourceAnalyzer.setExcludes(excludes);
         final CodeNarcRunner codeNarcRunner = new CodeNarcRunner();
         codeNarcRunner.setSourceAnalyzer(sourceAnalyzer);
         codeNarcRunner.setRuleSetFiles("com/qulice/codenarc/rules.txt");
