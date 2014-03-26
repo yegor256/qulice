@@ -73,7 +73,7 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
         if (first == -1) {
             return;
         }
-        if (!lines.get(first - 1).isEmpty()) {
+        if (first == 0 || !lines.get(first - 1).isEmpty()) {
             this.log(first, "Line before imports should be empty");
             failure = true;
         }
