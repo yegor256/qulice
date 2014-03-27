@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles>
    <puzzle>
-      <ticket>13</ticket>
+      <ticket>176</ticket>
+      <file>src/main/java/com/qulice/xml/XmlValidator.java</file>
+      <prefix>     * </prefix>
+      <body>Perform refactoring: remove this method, use Environment.files() instead.</body>
+      <estimate>0</estimate>
+      <lines>64-65</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>1</ticket>
       <file>src/test/java/com/qulice/xml/XmlValidatorTest.java</file>
       <prefix>     * </prefix>
-      <body>The test doesn't work because functionality is not implemented yet.</body>
+      <body>Let's implement a proper validation of XML document formatting (!). Not just XML validity, but formatting of the document, including indentation, spaces, quotation marks used, etc.</body>
       <estimate>0</estimate>
-      <lines>47-48</lines>
+      <lines>48-51</lines>
       <owner>someone</owner>
    </puzzle>
 </puzzles>
