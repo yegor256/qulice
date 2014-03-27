@@ -6,7 +6,7 @@
       <prefix>     * </prefix>
       <body>Make this better in multiple lines but different.</body>
       <estimate>0</estimate>
-      <lines>44-45</lines>
+      <lines>43-44</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -15,7 +15,34 @@
       <prefix>     * </prefix>
       <body>Make this better in multiple lines.</body>
       <estimate>0</estimate>
-      <lines>67-68</lines>
+      <lines>66-67</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>123</ticket>
+      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
+      <prefix>     * </prefix>
+      <body>This is also valid.</body>
+      <estimate>120</estimate>
+      <lines>7-7</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>123</ticket>
+      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
+      <prefix>     * </prefix>
+      <body>This is valid.</body>
+      <estimate>0</estimate>
+      <lines>15-15</lines>
+      <owner>uplink</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>123</ticket>
+      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
+      <prefix>     * </prefix>
+      <body>First second</body>
+      <estimate>0</estimate>
+      <lines>12-13</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -24,16 +51,16 @@
       <prefix>     * </prefix>
       <body>First second</body>
       <estimate>0</estimate>
-      <lines>9-10</lines>
+      <lines>23-24</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
-      <ticket>123</ticket>
-      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
-      <prefix>     * </prefix>
-      <body>First second</body>
-      <estimate>0</estimate>
-      <lines>20-21</lines>
+      <ticket>67</ticket>
+      <file>src/main/java/com/qulice/maven/PomXpathValidator.java</file>
+      <prefix> * </prefix>
+      <body>Implement integration tests for PomXpathValidator. Validator should obtain xpath queries from plugin configuration</body>
+      <estimate>60</estimate>
+      <lines>51-52</lines>
       <owner>someone</owner>
    </puzzle>
 </puzzles>
