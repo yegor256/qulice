@@ -6,7 +6,7 @@
       <prefix>     * </prefix>
       <body>Using File as classpath element is dangerous, as it won't work under Windows without conversion - classpaths always use slashes, while File objects under Windows will always use backslashes. This method should return a collection of elements that are not affected by OS.</body>
       <estimate>0</estimate>
-      <lines>86-90</lines>
+      <lines>90-94</lines>
       <owner>someone</owner>
    </puzzle>
 </puzzles>
