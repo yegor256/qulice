@@ -30,23 +30,23 @@
 package com.qulice.findbugs;
 
 import com.jcabi.log.Logger;
+import com.jcabi.log.VerboseProcess;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import edu.umd.cs.findbugs.FindBugs2;
 import edu.umd.cs.findbugs.formatStringChecker.FormatterNumberFormatException;
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import javax.annotation.meta.When;
 import org.apache.bcel.classfile.ClassFormatException;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.DocumentException;
 import org.jaxen.JaxenException;
@@ -93,31 +93,10 @@ public final class FindBugsValidator implements Validator {
         args.add(Wrap.class.getName());
         args.add(env.basedir().getPath());
         args.add(env.outdir().getPath());
-        // @checkstyle MultipleStringLiteralsCheck (1 line)
-        args.add(StringUtils.join(env.classpath(), ",").replace("\\", "/"));
-        final String command = StringUtils.join(args, " ");
-        Logger.debug(this, "#restart(): running \"%s\"", command);
-        final ProcessBuilder builder = new ProcessBuilder(args);
-        String report;
-        try {
-            final Process process = builder.start();
-            if (process.waitFor() != 0) {
-                Logger.warn(
-                    this,
-                    "Failed to execute FindBugs:\n%s\n%s",
-                    command,
-                    IOUtils.toString(process.getErrorStream())
-                );
-            }
-            report = IOUtils.toString(process.getInputStream());
-        } catch (IOException ex) {
-            throw new IllegalStateException(ex);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-            throw new IllegalStateException(ex);
-        }
-        Logger.debug(this, "#restart(): returned:\n%s", report);
-        return report;
+        args.add(StringUtils.join(env.classpath(), ",")
+            .replace("\\", "/")
+        );
+        return new VerboseProcess(new ProcessBuilder(args)).stdoutQuietly();
     }
 
     /**
@@ -125,9 +104,9 @@ public final class FindBugsValidator implements Validator {
      * @param env Environment
      * @return Options
      */
-    private List<String> options(final Environment env) {
+    private Collection<String> options(final Environment env) {
         final File jar = this.jar(Wrap.class);
-        final List<String> opts = new LinkedList<String>();
+        final Collection<String> opts = new LinkedList<String>();
         opts.add("-classpath");
         opts.add(
             StringUtils.join(
@@ -147,7 +126,6 @@ public final class FindBugsValidator implements Validator {
                     env.classpath()
                 ),
                 System.getProperty("path.separator")
-                // @checkstyle MultipleStringLiteralsCheck (1 line)
             ).replace("\\", "/")
         );
         return opts;
