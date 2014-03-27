@@ -111,7 +111,7 @@ public interface Environment {
     boolean exclude(String check, String name);
 
     /**
-     * String with exclude patterns, separated by coma
+     * String with exclude patterns, separated by coma.
      * @param checker Name of the checker that is asking (pmd, codenarc ...)
      * @return Exclude patterns
      */
@@ -205,7 +205,7 @@ public interface Environment {
         /**
          * With exclude patterns.
          * @param excludes Exclude patterns
-         * @return
+         * @return This object
          */
         public Environment.Mock withExcludes(final String excludes) {
             this.excl = excludes;

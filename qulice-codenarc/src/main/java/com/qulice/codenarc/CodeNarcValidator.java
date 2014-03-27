@@ -48,7 +48,6 @@ import org.codenarc.rule.Violation;
  *  propagated to CodeNarc Validator.
  *  For syntax example see
  *  http://www.qulice.com/qulice-maven-plugin/example-exclude.html
- *
  * @author Pavlo Shamrai (pshamrai@gmail.com)
  * @version $Id$
  */

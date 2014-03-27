@@ -61,7 +61,7 @@ public final class CodeNarcValidatorTest {
     @Test(expected = ValidationException.class)
     public void failsOnIncorrectGroovySources() throws Exception {
         final Environment env = new Environment.Mock()
-            .withFile("src/Main.groovy", "System.out.println('hi')");
+            .withFile("src/Main.groovy", "System.out.println('hello')");
         final Validator validator = new CodeNarcValidator();
         validator.validate(env);
     }
@@ -87,7 +87,7 @@ public final class CodeNarcValidatorTest {
         final Validator validator = new CodeNarcValidator();
         final Environment env = new Environment.Mock()
             .withFile("src/ex1/Main.groovy", "System.out.println('hi')")
-            .withFile("src/ex2/Main2.groovy", "System.out.println('hi again')")
+            .withFile("src/ex2/Main2.groovy", "System.out.println('buy')")
             .withExcludes("**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy");
         validator.validate(env);
     }

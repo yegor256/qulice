@@ -46,7 +46,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.project.MavenProject;
@@ -55,6 +54,7 @@ import org.codehaus.plexus.context.Context;
 /**
  * Environment, passed from MOJO to validators.
  *
+ * @checkstyle ClassDataAbstractionCouplingCheck (300 lines)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
@@ -226,19 +226,22 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     public String excludes(final String checker) {
         return Joiner.on(',').skipNulls().join(
-            Iterables.transform(this.exc, new Function<String, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable final String input) {
-                    if (input != null) {
-                        final String[] exclude = input.split(":");
-                        if ("checker".equals(input) && input.length() > 1) {
-                            return exclude[1];
+            Iterables.transform(
+                this.exc,
+                new Function<String, String>() {
+                    @Nullable
+                    @Override
+                    public String apply(@Nullable final String input) {
+                        if (input != null) {
+                            final String[] exclude = input.split(":");
+                            if ("checker".equals(input) && input.length() > 1) {
+                                return exclude[1];
+                            }
                         }
+                        return null;
                     }
-                    return null;
                 }
-            })
+            )
         );
     }
 
