@@ -31,20 +31,14 @@ package com.qulice.xml;
 
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import javax.xml.XMLConstants;
-import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.SchemaFactory;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
-import org.xml.sax.SAXException;
 
 /**
  * Validates XML files for formatting.
@@ -52,27 +46,14 @@ import org.xml.sax.SAXException;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
 public final class XmlValidator implements Validator {
 
-    @SuppressWarnings({ "PMD.AvoidInstantiatingObjectsInLoops",
-        "PMD.PreserveStackTrace" })
     @Override
-    public void validate(final Environment env) throws ValidationException {
+    public void validate(final Environment env) {
+        Logger.info(this, "XML validation not implemented yet");
         for (final File file : this.files(env)) {
-            try {
-                SchemaFactory
-                    .newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI)
-                    .newSchema()
-                    .newValidator()
-                    .validate(new StreamSource(file));
-            } catch (SAXException ex) {
-                Logger.warn(this, "XmlValidator: %s", ex.getMessage());
-                throw new ValidationException(
-                    "XML validation exception (see log above)"
-                );
-            } catch (IOException ex) {
-                throw new IllegalStateException(ex);
-            }
+            Logger.info(this, "%s: to be validated", file);
         }
     }
 
@@ -83,11 +64,10 @@ public final class XmlValidator implements Validator {
      * @todo #176 Perform refactoring: remove this method, use
      *  Environment.files() instead.
      */
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private List<File> files(final Environment env) {
-        final List<File> files = new ArrayList<File>();
+        final List<File> files = new LinkedList<File>();
         final IOFileFilter filter = new WildcardFileFilter("*.xml");
-        final String[] dirs = new String[] {
+        final String[] dirs = {
             "src",
         };
         for (final String dir : dirs) {

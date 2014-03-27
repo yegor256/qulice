@@ -52,7 +52,9 @@
     <rule ref="rulesets/java/imports.xml"/>
     <rule ref="rulesets/java/j2ee.xml"/>
     <rule ref="rulesets/java/javabeans.xml"/>
-    <rule ref="rulesets/java/logging-java.xml"/>
+    <rule ref="rulesets/java/logging-java.xml">
+        <exclude name="GuardLogStatementJavaUtil"/>
+    </rule>
     <rule ref="rulesets/java/optimizations.xml"/>
     <rule ref="rulesets/java/strings.xml"/>
     <rule ref="rulesets/java/sunsecure.xml"/>
@@ -89,12 +91,9 @@
 
     <rule ref="rulesets/jsp/basic-jsf.xml"/>
 
-    <!--
-    see https://github.com/tpc2/qulice/issues/146
     <rule name="UnnecessaryLocalRule"
           message="Avoid creating unnecessary local variables like ''{0}''"
           class="com.qulice.pmd.rules.UnnecessaryLocalRule">
     </rule>
-    -->
 
 </ruleset>
