@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles>
    <puzzle>
-      <ticket>44</ticket>
-      <file>qulice-checkstyle/src/main/java/com/qulice/checkstyle/CheckstyleValidator.java</file>
-      <prefix>     * </prefix>
-      <body>Perform refactoring: remove this method, use Environment.files() instead.</body>
-      <estimate>60</estimate>
-      <lines>207-208</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
       <ticket>1</ticket>
       <file>qulice-checkstyle/src/main/java/com/qulice/checkstyle/ConstantUsageCheck.java</file>
       <prefix> * </prefix>
@@ -34,6 +25,24 @@
       <body>Add handling of non-java files (e.g. xml, groovy).</body>
       <estimate>0</estimate>
       <lines>46-46</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>1</ticket>
+      <file>qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml</file>
+      <prefix>        </prefix>
+      <body>This check leads to NullPointerException when run on a bit source code base. Just try to turn it on and run through Qulice code base. It throws NPE almost at every file.</body>
+      <estimate>0</estimate>
+      <lines>372-374</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>1</ticket>
+      <file>qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml</file>
+      <prefix>        </prefix>
+      <body>The check complains about all methods in all unit tests, because they are not using "this", but are in reality static methods. Even though this complain is totally valid, we can't do anything about this, since JUnit is designed that way. Let's introduce a parameter in this check, which will allow to excluse classes by pattern</body>
+      <estimate>0</estimate>
+      <lines>378-383</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -69,7 +78,7 @@
       <prefix>     * </prefix>
       <body>Make this better in multiple lines but different.</body>
       <estimate>0</estimate>
-      <lines>44-45</lines>
+      <lines>43-44</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -78,7 +87,34 @@
       <prefix>     * </prefix>
       <body>Make this better in multiple lines.</body>
       <estimate>0</estimate>
-      <lines>67-68</lines>
+      <lines>66-67</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>123</ticket>
+      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
+      <prefix>     * </prefix>
+      <body>This is also valid.</body>
+      <estimate>120</estimate>
+      <lines>7-7</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>123</ticket>
+      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
+      <prefix>     * </prefix>
+      <body>This is valid.</body>
+      <estimate>0</estimate>
+      <lines>15-15</lines>
+      <owner>uplink</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>123</ticket>
+      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
+      <prefix>     * </prefix>
+      <body>First second</body>
+      <estimate>0</estimate>
+      <lines>12-13</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -87,16 +123,16 @@
       <prefix>     * </prefix>
       <body>First second</body>
       <estimate>0</estimate>
-      <lines>9-10</lines>
+      <lines>23-24</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
-      <ticket>123</ticket>
-      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
-      <prefix>     * </prefix>
-      <body>First second</body>
-      <estimate>0</estimate>
-      <lines>20-21</lines>
+      <ticket>67</ticket>
+      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/PomXpathValidator.java</file>
+      <prefix> * </prefix>
+      <body>Implement integration tests for PomXpathValidator. Validator should obtain xpath queries from plugin configuration</body>
+      <estimate>60</estimate>
+      <lines>51-52</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -114,16 +150,25 @@
       <prefix>     * </prefix>
       <body>Using File as classpath element is dangerous, as it won't work under Windows without conversion - classpaths always use slashes, while File objects under Windows will always use backslashes. This method should return a collection of elements that are not affected by OS.</body>
       <estimate>0</estimate>
-      <lines>86-90</lines>
+      <lines>90-94</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
-      <ticket>13</ticket>
+      <ticket>176</ticket>
+      <file>qulice-xml/src/main/java/com/qulice/xml/XmlValidator.java</file>
+      <prefix>     * </prefix>
+      <body>Perform refactoring: remove this method, use Environment.files() instead.</body>
+      <estimate>0</estimate>
+      <lines>64-65</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>1</ticket>
       <file>qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java</file>
       <prefix>     * </prefix>
-      <body>The test doesn't work because functionality is not implemented yet.</body>
+      <body>Let's implement a proper validation of XML document formatting (!). Not just XML validity, but formatting of the document, including indentation, spaces, quotation marks used, etc.</body>
       <estimate>0</estimate>
-      <lines>47-48</lines>
+      <lines>48-51</lines>
       <owner>someone</owner>
    </puzzle>
 </puzzles>

@@ -45,8 +45,8 @@
 <a class="jxr_linenumber" name="35" href="#35">35</a>  <strong class="jxr_keyword">import</strong> com.qulice.spi.Validator;
 <a class="jxr_linenumber" name="36" href="#36">36</a>  <strong class="jxr_keyword">import</strong> java.io.File;
 <a class="jxr_linenumber" name="37" href="#37">37</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
-<a class="jxr_linenumber" name="38" href="#38">38</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.DataSource;
-<a class="jxr_linenumber" name="39" href="#39">39</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.IRuleViolation;
+<a class="jxr_linenumber" name="38" href="#38">38</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.RuleViolation;
+<a class="jxr_linenumber" name="39" href="#39">39</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.util.datasource.DataSource;
 <a class="jxr_linenumber" name="40" href="#40">40</a>  
 <a class="jxr_linenumber" name="41" href="#41">41</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="42" href="#42">42</a>  <em class="jxr_javadoccomment"> * Validates source code with PMD.</em>
@@ -63,7 +63,7 @@
 <a class="jxr_linenumber" name="53" href="#53">53</a>          <strong class="jxr_keyword">final</strong> File base = env.basedir();
 <a class="jxr_linenumber" name="54" href="#54">54</a>          <strong class="jxr_keyword">final</strong> String path = base.getPath();
 <a class="jxr_linenumber" name="55" href="#55">55</a>          validator.validate(sources, path);
-<a class="jxr_linenumber" name="56" href="#56">56</a>          <strong class="jxr_keyword">final</strong> Collection&lt;IRuleViolation&gt; violations = validator.getViolations();
+<a class="jxr_linenumber" name="56" href="#56">56</a>          <strong class="jxr_keyword">final</strong> Collection&lt;RuleViolation&gt; violations = validator.getViolations();
 <a class="jxr_linenumber" name="57" href="#57">57</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> size = violations.size();
 <a class="jxr_linenumber" name="58" href="#58">58</a>          <strong class="jxr_keyword">if</strong> (!violations.isEmpty()) {
 <a class="jxr_linenumber" name="59" href="#59">59</a>              <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/spi/ValidationException.html">ValidationException</a>(
