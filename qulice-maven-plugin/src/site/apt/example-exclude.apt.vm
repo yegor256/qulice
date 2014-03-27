@@ -64,9 +64,9 @@ Exclude
   <<<checkstyle:>>>, <<<pmd:>>>, <<<findbugs:>>>, <<<codenarc:>>>,
   <<<dependencies:>>>, <<<cobertura:>>>.
 
-  Exclude for CodeNarc is a bit diffetent, as CodeNarc consumes ant-style
+  Exclude for CodeNarc is a bit different, as CodeNarc consumes ant-style
   expressions. For example:
-  1. <<<codenark:**/*.groovy>>> excludes all <<<.groovy>>> files in all
+  1. <<<codenarc:**/*.groovy>>> excludes all <<<.groovy>>> files in all
   folders.
-  2. <<<codenark:**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy>>> excludes
+  2. <<<codenarc:**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy>>> excludes
   <<<Main.groovy>>> and <<<Main2.groovy>>> in appropriate packages.
