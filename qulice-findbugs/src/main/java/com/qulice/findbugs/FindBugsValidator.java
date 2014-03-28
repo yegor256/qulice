@@ -93,6 +93,7 @@ public final class FindBugsValidator implements Validator {
         args.add(Wrap.class.getName());
         args.add(env.basedir().getPath());
         args.add(env.outdir().getPath());
+        // @checkstyle MultipleStringLiteralsCheck (2 lines)
         args.add(StringUtils.join(env.classpath(), ",")
             .replace("\\", "/")
         );
