@@ -69,7 +69,6 @@ public final class ChecksTest {
         "StringLiteralsConcatenationCheck",
         "EmptyLinesCheck",
         "ImportCohesionCheck",
-        "ImportCohesionCheck2",
         "JavadocTagsCheck",
         "PuzzleFormatCheck",
         "CascadeIndentationCheck",

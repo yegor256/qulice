@@ -58,7 +58,6 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
      */
     @Override
     public void processFiltered(final File file, final List<String> lines) {
-        boolean failure = false;
         int first = -1;
         int last = -1;
         for (int pos = 0; pos < lines.size(); pos += 1) {
@@ -73,6 +72,22 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
         if (first == -1) {
             return;
         }
+        if (check(first, last, lines)) {
+            this.fireErrors(file.getPath());
+        }
+    }
+
+    /**
+     * Perform check for empty lines and comments inside imports.
+     * @param first Line number where import occurred first
+     * @param last Line number where import occurred first
+     * @param lines All file line by line
+     * @return True if check is failed
+     */
+    private boolean check(final int first, final int last,
+        final List<String> lines
+    ) {
+        boolean failure = false;
         if (first == 0 || !lines.get(first - 1).isEmpty()) {
             this.log(first, "Line before imports should be empty");
             failure = true;
@@ -91,9 +106,7 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
                 failure = true;
             }
         }
-        if (failure) {
-            this.fireErrors(file.getPath());
-        }
+        return failure;
     }
 
 }
