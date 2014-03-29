@@ -29,6 +29,9 @@
  */
 package com.qulice.maven;
 
+import com.google.common.base.Function;
+import com.google.common.base.Joiner;
+import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
 import java.io.File;
 import java.net.URL;
@@ -38,6 +41,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import javax.annotation.Nullable;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
@@ -50,6 +54,7 @@ import org.codehaus.plexus.context.Context;
 /**
  * Environment, passed from MOJO to validators.
  *
+ * @checkstyle ClassDataAbstractionCouplingCheck (300 lines)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
@@ -216,6 +221,28 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
             }
         }
         return exclude;
+    }
+
+    @Override
+    public String excludes(final String checker) {
+        return Joiner.on(',').skipNulls().join(
+            Iterables.transform(
+                this.exc,
+                new Function<String, String>() {
+                    @Nullable
+                    @Override
+                    public String apply(@Nullable final String input) {
+                        if (input != null) {
+                            final String[] exclude = input.split(":");
+                            if ("checker".equals(input) && input.length() > 1) {
+                                return exclude[1];
+                            }
+                        }
+                        return null;
+                    }
+                }
+            )
+        );
     }
 
     /**

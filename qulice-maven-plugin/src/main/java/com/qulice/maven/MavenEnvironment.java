@@ -159,5 +159,9 @@ interface MavenEnvironment extends Environment {
         public boolean exclude(final String check, final String name) {
             return this.env.exclude(check, name);
         }
+        @Override
+        public String excludes(final String checker) {
+            return this.env.excludes(checker);
+        }
     }
 }
