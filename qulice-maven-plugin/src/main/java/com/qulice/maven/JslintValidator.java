@@ -29,45 +29,37 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Validator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import com.qulice.spi.ValidationException;
+import java.util.Properties;
 
 /**
- * Provider of validators.
+ * Validate with jslint-maven-plugin.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
- * @checkstyle ClassDataAbstractionCoupling (500 lines)
+ * @todo #151 Integration tests for jslint-maven-plugin.
+ *  Let's implement integration tests for jslint-maven-plugin to be sure
+ *  it is called.
  */
-final class DefaultValidatorsProvider implements ValidatorsProvider {
-
-    @Override
-    public Set<MavenValidator> internal() {
-        final Set<MavenValidator> validators =
-            new LinkedHashSet<MavenValidator>();
-        validators.add(new SnapshotsValidator());
-        validators.add(new EnforcerValidator());
-        validators.add(new CoberturaValidator());
-        validators.add(new SvnPropertiesValidator());
-        validators.add(new DependenciesValidator());
-        validators.add(new JslintValidator());
-        validators.add(new PomXpathValidator());
-        return validators;
-    }
+public final class JslintValidator implements MavenValidator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle RedundantThrows (4 lines)
      */
     @Override
-    public Set<Validator> external() {
-        final Set<Validator> validators = new LinkedHashSet<Validator>();
-        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
-        validators.add(new com.qulice.pmd.PMDValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        validators.add(new com.qulice.findbugs.FindBugsValidator());
-        return validators;
+    public void validate(final MavenEnvironment env)
+        throws ValidationException {
+        final Properties config = new Properties();
+        config.setProperty("sourceJsFolder", "${basedir}/src");
+        final String jslint = "jslint";
+        if (!env.exclude(jslint, "")) {
+            env.executor().execute(
+                "org.codehaus.mojo:jslint-maven-plugin:1.0.1",
+                jslint,
+                config
+            );
+        }
     }
 
 }
