@@ -53,6 +53,9 @@ import org.codehaus.plexus.context.Context;
 
 /**
  * Environment, passed from MOJO to validators.
+ * @todo #152 Refactor excludes method.
+ *  Refactor excludes method to return Collection of excludes.
+ *  Move joining excludes directly to CodeNarcValidator
  *
  * @checkstyle ClassDataAbstractionCouplingCheck (300 lines)
  * @author Yegor Bugayenko (yegor@tpc2.com)

@@ -29,45 +29,42 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Validator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import com.qulice.spi.ValidationException;
+import java.util.Properties;
 
 /**
- * Provider of validators.
- *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * Validate with maven-duplicate-finder-plugin.
+ * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
- * @checkstyle ClassDataAbstractionCoupling (500 lines)
+ * @since 0.5
+ * @todo #152 Maven-duplicate-finder-plugin should support exclusions.
+ *  Let's add exclusions of following formats (examples):
+ *  - duplicate:about.html
+ *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5
+ *  - duplicate:org.codehaus.groovy.ast.expr.RegexExpression
+ *  See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953
+ *  for details
+ * @todo #152 Maven-duplicate-finder-plugin integration tests.
+ *  Let's add integration tests to check that all types of excludes
+ *  work properly for maven-duplicate-finder-plugin
  */
-final class DefaultValidatorsProvider implements ValidatorsProvider {
-
-    @Override
-    public Set<MavenValidator> internal() {
-        final Set<MavenValidator> validators =
-            new LinkedHashSet<MavenValidator>();
-        validators.add(new SnapshotsValidator());
-        validators.add(new EnforcerValidator());
-        validators.add(new CoberturaValidator());
-        validators.add(new SvnPropertiesValidator());
-        validators.add(new DependenciesValidator());
-        validators.add(new PomXpathValidator());
-        validators.add(new DuplicateFinderValidator());
-        return validators;
-    }
+public final class DuplicateFinderValidator implements MavenValidator {
 
     /**
      * {@inheritDoc}
+     * @checkstyle MultipleStringLiterals (20 lines)
+     * @checkstyle RedundantThrows (4 lines)
      */
     @Override
-    public Set<Validator> external() {
-        final Set<Validator> validators = new LinkedHashSet<Validator>();
-        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
-        validators.add(new com.qulice.pmd.PMDValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        validators.add(new com.qulice.findbugs.FindBugsValidator());
-        return validators;
+    public void validate(final MavenEnvironment env)
+        throws ValidationException {
+        if (!env.exclude("duplicatefinder", "")) {
+            env.executor().execute(
+                "com.ning.maven.plugins:maven-duplicate-finder-plugin:1.0.7",
+                "check",
+                new Properties()
+            );
+        }
     }
 
 }
