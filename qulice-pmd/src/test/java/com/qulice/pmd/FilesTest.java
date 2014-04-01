@@ -30,31 +30,36 @@
 package com.qulice.pmd;
 
 import com.qulice.spi.Environment;
-import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
-import java.util.LinkedList;
 import net.sourceforge.pmd.util.datasource.DataSource;
-import net.sourceforge.pmd.util.datasource.FileDataSource;
+import org.apache.commons.io.IOUtils;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.Test;
 
 /**
- * Contains methods to work with source files.
- *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
+ * Test case for {@link Files} class.
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
  */
-@SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-public final class Files {
+public final class FilesTest {
+
     /**
-     * Get full list of files to process.
-     * @param environment The environment.
-     * @return Collection of data sources.
-     * @see #validate()
+     * Should provide only java files.
+     * @throws IOException In case of problem.
      */
-    public Collection<DataSource> getSources(final Environment environment) {
-        final Collection<DataSource> sources = new LinkedList<DataSource>();
-        for (final File file : environment.files("*.java")) {
-            sources.add(new FileDataSource(file));
-        }
-        return sources;
+    @Test
+    public void providesOnlyJavaFiles() throws IOException {
+        final String source = "class Cls{}";
+        final Environment env = new Environment.Mock()
+            .withFile("src/main/java/Main.java", source)
+            .withFile("src/main/resources/test.properties", "prop=1");
+        final Collection<DataSource> found = new Files().getSources(env);
+        MatcherAssert.assertThat(found.size(), Matchers.is(1));
+        MatcherAssert.assertThat(
+            IOUtils.toString(found.iterator().next().getInputStream()),
+            Matchers.equalTo(source)
+        );
     }
 }
