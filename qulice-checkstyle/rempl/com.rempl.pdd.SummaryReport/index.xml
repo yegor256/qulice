@@ -33,7 +33,7 @@
       <prefix>        </prefix>
       <body>This check leads to NullPointerException when run on a bit source code base. Just try to turn it on and run through Qulice code base. It throws NPE almost at every file.</body>
       <estimate>0</estimate>
-      <lines>372-374</lines>
+      <lines>376-378</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -42,7 +42,7 @@
       <prefix>        </prefix>
       <body>The check complains about all methods in all unit tests, because they are not using "this", but are in reality static methods. Even though this complain is totally valid, we can't do anything about this, since JUnit is designed that way. Let's introduce a parameter in this check, which will allow to excluse classes by pattern</body>
       <estimate>0</estimate>
-      <lines>378-383</lines>
+      <lines>382-387</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
