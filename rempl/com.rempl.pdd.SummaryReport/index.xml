@@ -33,7 +33,7 @@
       <prefix>        </prefix>
       <body>This check leads to NullPointerException when run on a bit source code base. Just try to turn it on and run through Qulice code base. It throws NPE almost at every file.</body>
       <estimate>0</estimate>
-      <lines>372-374</lines>
+      <lines>376-378</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -42,7 +42,7 @@
       <prefix>        </prefix>
       <body>The check complains about all methods in all unit tests, because they are not using "this", but are in reality static methods. Even though this complain is totally valid, we can't do anything about this, since JUnit is designed that way. Let's introduce a parameter in this check, which will allow to excluse classes by pattern</body>
       <estimate>0</estimate>
-      <lines>378-383</lines>
+      <lines>382-387</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
@@ -71,6 +71,15 @@
       <estimate>90</estimate>
       <lines>10-10</lines>
       <owner>author</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>148</ticket>
+      <file>qulice-codenarc/src/main/java/com/qulice/codenarc/CodeNarcValidator.java</file>
+      <prefix> * </prefix>
+      <body>Create integration tests to check exclusion. Lets implement integration tests to check that exclusion patterns propagated to CodeNarc Validator. For syntax example see http://www.qulice.com/qulice-maven-plugin/example-exclude.html</body>
+      <estimate>0</estimate>
+      <lines>46-50</lines>
+      <owner>someone</owner>
    </puzzle>
    <puzzle>
       <ticket>123</ticket>
@@ -127,21 +136,48 @@
       <owner>someone</owner>
    </puzzle>
    <puzzle>
+      <ticket>152</ticket>
+      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultMavenEnvironment.java</file>
+      <prefix> * </prefix>
+      <body>Refactor excludes method. Refactor excludes method to return Collection of excludes. Move joining excludes directly to CodeNarcValidator</body>
+      <estimate>0</estimate>
+      <lines>56-58</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>152</ticket>
+      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java</file>
+      <prefix> * </prefix>
+      <body>Maven-duplicate-finder-plugin should support exclusions. Let's add exclusions of following formats (examples): - duplicate:about.html - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5 - duplicate:org.codehaus.groovy.ast.expr.RegexExpression See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953 for details</body>
+      <estimate>0</estimate>
+      <lines>40-40</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>152</ticket>
+      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java</file>
+      <prefix> * </prefix>
+      <body>Maven-duplicate-finder-plugin integration tests. Let's add integration tests to check that all types of excludes work properly for maven-duplicate-finder-plugin</body>
+      <estimate>0</estimate>
+      <lines>47-49</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>151</ticket>
+      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/JslintValidator.java</file>
+      <prefix> * </prefix>
+      <body>Integration tests for jslint-maven-plugin. Let's implement integration tests for jslint-maven-plugin to be sure it is called.</body>
+      <estimate>0</estimate>
+      <lines>40-42</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
       <ticket>67</ticket>
       <file>qulice-maven-plugin/src/main/java/com/qulice/maven/PomXpathValidator.java</file>
       <prefix> * </prefix>
       <body>Implement integration tests for PomXpathValidator. Validator should obtain xpath queries from plugin configuration</body>
       <estimate>60</estimate>
       <lines>51-52</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>44</ticket>
-      <file>qulice-pmd/src/main/java/com/qulice/pmd/Files.java</file>
-      <prefix>     * </prefix>
-      <body>Perform refactoring: remove this method, use Environment.files() instead, in order to simplify files manipulations.</body>
-      <estimate>0</estimate>
-      <lines>56-58</lines>
       <owner>someone</owner>
    </puzzle>
    <puzzle>
