@@ -110,16 +110,6 @@
         <property name="message" value="Two consecutive empty lines"/>
     </module>
 
-
-    <!--
-    Regexp for PDD todo tags formatting.
-    -->
-    <module name="RegexpMultiline">
-        <property name="format" value="^ +\* @todo A#[\w\d:\-]+!?(:[0-9]+hrs?)? [A-Z][^\n]+$\n(^ +\*  [^ ][^\n]*$\n)*\n"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="Wrong format of @todo tag"/>
-    </module>
-
     <!--
     JavaDoc regexp checks
     -->
