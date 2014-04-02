@@ -186,7 +186,11 @@
         <module name="FileContentsHolder"/>
 
         <!-- Checks for annotations. -->
-        <module name="AnnotationUseStyle"/>
+        <module name="AnnotationUseStyle">
+            <property name="elementStyle" value="compact_no_array"/>
+            <property name="trailingArrayComma" value="never"/>
+            <property name="closingParens" value="ignore"/>
+        </module>
         <module name="MissingDeprecated"/>
         <module name="MissingOverride"/>
         <module name="PackageAnnotation"/>
