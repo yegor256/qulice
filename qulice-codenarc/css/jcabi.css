@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Condensed);
 @import url(http://fonts.googleapis.com/css?family=Source+Code+Pro);
 /**
  * Copyright (c) 2012-2013, JCabi.com
@@ -42,7 +43,7 @@ a tt {
 }
 
 h1, h2, h3 {
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu Condensed", sans-serif;
   color: black;
 }
 
@@ -90,7 +91,7 @@ pre {
 tt {
   background-color: #eee;
   padding: 0.05em 0.5em;
-  font-family: "Source Code Pro", sans-serif;
+  font-family: 'Source Code Pro', sans-serif;
   font-weight: 500;
   border: 1px solid #ccc;
   border-radius: 3px;
@@ -112,7 +113,7 @@ table tr.b {
 
 table th {
   background-color: #F2F2F2;
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu Condensed", sans-serif;
   color: #585858;
   padding-left: 0.7em;
   padding-top: 0.7em;
@@ -380,7 +381,7 @@ div.legal-notes {
   list-style: none;
 }
 #menu li {
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu Condensed", sans-serif;
   font-size: 1.3em;
   padding-top: 1em;
   text-overflow: ellipsis;
