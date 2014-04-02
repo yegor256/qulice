@@ -35,10 +35,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import net.sourceforge.pmd.util.datasource.DataSource;
 import net.sourceforge.pmd.util.datasource.FileDataSource;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
-import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 /**
  * Contains methods to work with source files.
@@ -48,37 +44,6 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  */
 @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
 public final class Files {
-
-    /**
-     * Get full list of files to process.
-     * @param environment The environment.
-     * @return Collection of files.
-     * @todo #44 Perform refactoring: remove this method, use
-     *  Environment.files() instead, in order to simplify files
-     *  manipulations.
-     */
-    private Collection<File> getFiles(final Environment environment) {
-        final Collection<File> files = new LinkedList<File>();
-        final IOFileFilter filter = new WildcardFileFilter("*.java");
-        final String[] paths = {
-            "src/main/java",
-            "src/test/java",
-            "src/mock/java",
-        };
-        for (final String path : paths) {
-            final File dir = new File(environment.basedir(), path);
-            if (dir.exists()) {
-                final Collection<File> sources = FileUtils.listFiles(
-                    dir,
-                    filter,
-                    DirectoryFileFilter.INSTANCE
-                );
-                files.addAll(sources);
-            }
-        }
-        return files;
-    }
-
     /**
      * Get full list of files to process.
      * @param environment The environment.
@@ -87,7 +52,7 @@ public final class Files {
      */
     public Collection<DataSource> getSources(final Environment environment) {
         final Collection<DataSource> sources = new LinkedList<DataSource>();
-        for (final File file : this.getFiles(environment)) {
+        for (final File file : environment.files("*.java")) {
             sources.add(new FileDataSource(file));
         }
         return sources;

@@ -27,48 +27,39 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.pmd;
 
-import com.qulice.spi.Validator;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import com.qulice.spi.Environment;
+import java.io.IOException;
+import java.util.Collection;
+import net.sourceforge.pmd.util.datasource.DataSource;
+import org.apache.commons.io.IOUtils;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
+import org.junit.Test;
 
 /**
- * Provider of validators.
- *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * Test case for {@link Files} class.
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
- * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */
-final class DefaultValidatorsProvider implements ValidatorsProvider {
-
-    @Override
-    public Set<MavenValidator> internal() {
-        final Set<MavenValidator> validators =
-            new LinkedHashSet<MavenValidator>();
-        validators.add(new SnapshotsValidator());
-        validators.add(new EnforcerValidator());
-        validators.add(new CoberturaValidator());
-        validators.add(new SvnPropertiesValidator());
-        validators.add(new DependenciesValidator());
-        validators.add(new JslintValidator());
-        validators.add(new PomXpathValidator());
-        validators.add(new DuplicateFinderValidator());
-        return validators;
-    }
+public final class FilesTest {
 
     /**
-     * {@inheritDoc}
+     * Should provide only java files.
+     * @throws IOException In case of problem.
      */
-    @Override
-    public Set<Validator> external() {
-        final Set<Validator> validators = new LinkedHashSet<Validator>();
-        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
-        validators.add(new com.qulice.pmd.PMDValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        validators.add(new com.qulice.findbugs.FindBugsValidator());
-        return validators;
+    @Test
+    public void providesOnlyJavaFiles() throws IOException {
+        final String source = "class Cls{}";
+        final Environment env = new Environment.Mock()
+            .withFile("src/main/java/Main.java", source)
+            .withFile("src/main/resources/test.properties", "prop=1");
+        final Collection<DataSource> found = new Files().getSources(env);
+        MatcherAssert.assertThat(found.size(), Matchers.is(1));
+        MatcherAssert.assertThat(
+            IOUtils.toString(found.iterator().next().getInputStream()),
+            Matchers.equalTo(source)
+        );
     }
-
 }
