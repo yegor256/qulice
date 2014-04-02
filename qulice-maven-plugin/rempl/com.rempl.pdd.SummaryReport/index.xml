@@ -55,6 +55,42 @@
       <owner>someone</owner>
    </puzzle>
    <puzzle>
+      <ticket>152</ticket>
+      <file>src/main/java/com/qulice/maven/DefaultMavenEnvironment.java</file>
+      <prefix> * </prefix>
+      <body>Refactor excludes method. Refactor excludes method to return Collection of excludes. Move joining excludes directly to CodeNarcValidator</body>
+      <estimate>0</estimate>
+      <lines>56-58</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>152</ticket>
+      <file>src/main/java/com/qulice/maven/DuplicateFinderValidator.java</file>
+      <prefix> * </prefix>
+      <body>Maven-duplicate-finder-plugin should support exclusions. Let's add exclusions of following formats (examples): - duplicate:about.html - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5 - duplicate:org.codehaus.groovy.ast.expr.RegexExpression See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953 for details</body>
+      <estimate>0</estimate>
+      <lines>40-40</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>152</ticket>
+      <file>src/main/java/com/qulice/maven/DuplicateFinderValidator.java</file>
+      <prefix> * </prefix>
+      <body>Maven-duplicate-finder-plugin integration tests. Let's add integration tests to check that all types of excludes work properly for maven-duplicate-finder-plugin</body>
+      <estimate>0</estimate>
+      <lines>47-49</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
+      <ticket>151</ticket>
+      <file>src/main/java/com/qulice/maven/JslintValidator.java</file>
+      <prefix> * </prefix>
+      <body>Integration tests for jslint-maven-plugin. Let's implement integration tests for jslint-maven-plugin to be sure it is called.</body>
+      <estimate>0</estimate>
+      <lines>40-42</lines>
+      <owner>someone</owner>
+   </puzzle>
+   <puzzle>
       <ticket>67</ticket>
       <file>src/main/java/com/qulice/maven/PomXpathValidator.java</file>
       <prefix> * </prefix>
