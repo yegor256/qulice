@@ -96,7 +96,12 @@ public interface Environment {
     Collection<File> classpath();
 
     /**
-     * Returns collection of files, matching the specified pattern.
+     * Returns the files matching the specified pattern.
+     *
+     * <p>The pattern matching scheme used is wildcard matching. The characters
+     * '?' and '*' represents single or multiple wildcard characters,
+     * respectively. Pattern matching is case sensitive.
+     *
      * @param pattern File name pattern.
      * @return Collection of files, matching the specified pattern.
      */
