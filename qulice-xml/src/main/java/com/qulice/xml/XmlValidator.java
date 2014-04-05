@@ -30,15 +30,24 @@
 package com.qulice.xml;
 
 import com.jcabi.log.Logger;
+import com.jcabi.xml.XMLDocument;
+import com.jcabi.xml.XSDDocument;
 import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import javax.xml.transform.stream.StreamSource;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
+import org.apache.commons.lang3.StringUtils;
+import org.xml.sax.SAXParseException;
 
 /**
  * Validates XML files for formatting.
@@ -50,10 +59,39 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
 public final class XmlValidator implements Validator {
 
     @Override
-    public void validate(final Environment env) {
-        Logger.info(this, "XML validation not implemented yet");
-        for (final File file : this.files(env)) {
-            Logger.info(this, "%s: to be validated", file);
+    public void validate(final Environment env) throws ValidationException {
+        try {
+            for (final File file : this.files(env)) {
+                Logger.info(this, "%s: to be validated", file);
+                final XMLDocument document = new XMLDocument(file);
+                final List<String> schemas = document
+                    .xpath("/*/@xsi:schemaLocation");
+                if (schemas.isEmpty()) {
+                    throw new ValidationException(
+                        "XML validation exception: missing schema"
+                    );
+                } else {
+                    final Collection<SAXParseException> errors =
+                        new XSDDocument(
+                            URI.create(
+                                StringUtils.substringAfter(schemas.get(0), " ")
+                            ).toURL()
+                        ).validate(new StreamSource(file));
+                    for (final SAXParseException error : errors) {
+                        Logger.warn(
+                            this,
+                            "XmlValidator: %s", error.getMessage()
+                        );
+                    }
+                    if (!errors.isEmpty()) {
+                        throw new ValidationException(
+                            "XML validation exception (see log above)"
+                        );
+                    }
+                }
+            }
+        } catch (final IOException ex) {
+            throw new IllegalStateException(ex);
         }
     }
 
