@@ -39,19 +39,26 @@ import com.qulice.plugin.exceptions.FooException;
  */
 public final class ExceptionUser {
     /**
+     * Utility constructor.
+     */
+    private ExceptionUser() {
+        // do nothing
+    }
+
+    /**
      * Might throw exception.
      * @throws FooException In case of problem.
      */
-    public void user() throws FooException {
+    public static void user() throws FooException {
         throw new FooException();
     }
 
     /**
      * Test.
      */
-    public void catcher() {
+    public static void catcher() {
         try {
-            this.user();
+            ExceptionUser.user();
         } catch (final FooException ex) {
             throw new IllegalStateException(ex);
         }

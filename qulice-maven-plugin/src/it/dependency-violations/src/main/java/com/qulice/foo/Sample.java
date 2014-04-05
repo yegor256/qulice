@@ -14,10 +14,17 @@ import org.apache.commons.io.IOUtils;
  */
 public final class Sample {
     /**
+     * Utility constructor.
+     */
+    private Sample() {
+        // do nothing
+    }
+
+    /**
      * Test method.
      * @return Stream.
      */
-    public InputStream test() {
+    public static InputStream test() {
         return IOUtils.toInputStream("oops");
     }
 }
