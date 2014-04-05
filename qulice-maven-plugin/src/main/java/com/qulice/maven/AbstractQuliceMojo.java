@@ -152,7 +152,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     public final void execute() throws MojoFailureException {
         StaticLoggerBinder.getSingleton().setMavenLog(this.getLog());
         if (this.skip) {
-            Logger.info(this, "Execution skipped");
+            this.getLog().info("Execution skipped");
             return;
         }
         this.environment.setProperty("license", this.license);
