@@ -53,3 +53,5 @@ assert log.text.contains('newlines.txt[3]: Lines in file should end with Unix-li
 assert log.text.contains('Violations.java[37]: ArrayList should be initialized with a size parameter')
 assert log.text.contains('Violations.java[38]: ArrayList should be initialized with a size parameter')
 assert log.text.findAll('Pdd.java.*: @todo tag has wrong format').empty
+assert log.text.contains('Constants.java[39]: Constant "ONCE" used only once (ConstantUsageCheck)')
+assert !log.text.contains('Constants.java[41]: Constant "TWICE" used only once (ConstantUsageCheck)')
