@@ -32,6 +32,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.regex.Pattern;
 
 /**
  * Checks that non static method must contain at least one reference to
@@ -43,13 +44,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @todo #1 NonStaticMethodCheck doesn't work. This check is still
- *  in development and is not used in a released version. Let's try to fix
- *  it and enable its validation inside ChecksTest. Also, don't forget
- *  to enable it inside checks.xml and make sure all maven-invoker-plugin
- *  tests pass
  */
 public final class NonStaticMethodCheck extends Check {
+
+    /**
+     * Files to exclude from this check.
+     * This is mostly to exclude JUnit tests.
+     */
+    private transient Pattern exclude = Pattern.compile("^$");
+
+    /**
+     * Exclude files matching given pattern.
+     * @param excl Regexp of classes to exclude.
+     */
+    public void setExcludeFileNamePattern(final String excl) {
+        this.exclude = Pattern.compile(excl);
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -60,17 +70,21 @@ public final class NonStaticMethodCheck extends Check {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
-            return;
-        }
-        if (!ast.branchContains(TokenTypes.LITERAL_THIS)) {
-            final int line = ast.getLineNo();
-            this.log(
-                line,
-                // @checkstyle LineLength (1 line)
-                "This method must be static, because it does not refer to \"this\""
-            );
+        if (!this.exclude.matcher(this.getFileContents().getFilename())
+            .find()) {
+            final DetailAST modifiers = ast
+                .findFirstToken(TokenTypes.MODIFIERS);
+            if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
+                return;
+            }
+            if (!ast.branchContains(TokenTypes.LITERAL_THIS)) {
+                final int line = ast.getLineNo();
+                this.log(
+                    line,
+                    // @checkstyle LineLength (1 line)
+                    "This method must be static, because it does not refer to \"this\""
+                );
+            }
         }
     }
 }
