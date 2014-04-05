@@ -362,12 +362,7 @@
         <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/>
         <module name="com.qulice.checkstyle.MethodsOrderCheck"/>
         <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
-        <!--
-        @todo #1 This check leads to NullPointerException when run on
-         a bit source code base. Just try to turn it on and run through
-         Qulice code base. It throws NPE almost at every file.
         <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
-        -->
         <!--
         @todo #1 The check complains about all methods in all unit tests,
          because they are not using "this", but are in reality static methods.
