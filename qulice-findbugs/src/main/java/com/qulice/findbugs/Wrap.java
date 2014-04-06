@@ -75,9 +75,9 @@ public final class Wrap {
         findbugs.setScanNestedArchives(true);
         try {
             findbugs.execute();
-        } catch (java.io.IOException ex) {
+        } catch (final java.io.IOException ex) {
             throw new IllegalStateException(ex);
-        } catch (InterruptedException ex) {
+        } catch (final InterruptedException ex) {
             throw new IllegalStateException(ex);
         }
     }

@@ -106,7 +106,7 @@ public final class CodeNarcValidatorTest {
         org.apache.log4j.Logger.getRootLogger().addAppender(appender);
         try {
             validator.validate(env);
-        } catch (ValidationException ex) {
+        } catch (final ValidationException ex) {
             final List<String> messages = appender.getMessages();
             final Pattern pattern = Pattern.compile(
                 "[a-zA-Z0-9_/]+\\.groovy\\[\\d+\\]: .*"
