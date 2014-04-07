@@ -78,7 +78,7 @@ public final class BytecodeMocker {
         byte[] bytes;
         try {
             process.waitFor();
-        } catch (InterruptedException ex) {
+        } catch (final InterruptedException ex) {
             throw new IllegalStateException(ex);
         } finally {
             input.delete();

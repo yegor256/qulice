@@ -57,7 +57,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
     protected void doExecute() throws MojoFailureException {
         try {
             this.run();
-        } catch (ValidationException ex) {
+        } catch (final ValidationException ex) {
             Logger.info(
                 this,
                 "Read our quality policy: http://www.qulice.com/quality.html"

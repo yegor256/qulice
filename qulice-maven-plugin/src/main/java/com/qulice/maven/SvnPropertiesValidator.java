@@ -179,9 +179,9 @@ public final class SvnPropertiesValidator implements MavenValidator {
             final Process process = builder.start();
             process.waitFor();
             return IOUtils.toString(process.getInputStream()).trim();
-        } catch (java.io.IOException ex) {
+        } catch (final java.io.IOException ex) {
             throw new IllegalArgumentException(ex);
-        } catch (InterruptedException ex) {
+        } catch (final InterruptedException ex) {
             Thread.currentThread().interrupt();
             throw new IllegalStateException(ex);
         }

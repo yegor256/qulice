@@ -54,7 +54,7 @@ public final class InstrumentMojo extends AbstractQuliceMojo {
                 "instrument",
                 props
             );
-        } catch (ValidationException ex) {
+        } catch (final ValidationException ex) {
             throw new MojoFailureException("Failed", ex);
         }
     }

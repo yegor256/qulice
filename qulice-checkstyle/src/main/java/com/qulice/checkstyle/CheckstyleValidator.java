@@ -72,7 +72,7 @@ public final class CheckstyleValidator implements Validator {
         Checker checker;
         try {
             checker = new Checker();
-        } catch (CheckstyleException ex) {
+        } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to create checker", ex);
         }
         checker.setClassloader(env.classloader());
@@ -81,7 +81,7 @@ public final class CheckstyleValidator implements Validator {
         );
         try {
             checker.configure(this.configuration(env));
-        } catch (CheckstyleException ex) {
+        } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to configure checker", ex);
         }
         final CheckstyleListener listener = new CheckstyleListener(env);
@@ -125,7 +125,7 @@ public final class CheckstyleValidator implements Validator {
                 new PropertiesExpander(props),
                 true
             );
-        } catch (CheckstyleException ex) {
+        } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to load config", ex);
         }
         return configuration;
@@ -144,7 +144,7 @@ public final class CheckstyleValidator implements Validator {
         try {
             content = IOUtils.toString(url.openStream())
                 .trim().replaceAll("[\\r\\n]+$", "");
-        } catch (java.io.IOException ex) {
+        } catch (final java.io.IOException ex) {
             throw new IllegalStateException("Failed to read license", ex);
         }
         final StringBuilder builder = new StringBuilder();
@@ -181,7 +181,7 @@ public final class CheckstyleValidator implements Validator {
         if (name.startsWith("file:")) {
             try {
                 url = new URL(name);
-            } catch (java.net.MalformedURLException ex) {
+            } catch (final java.net.MalformedURLException ex) {
                 throw new IllegalStateException("Invalid URL", ex);
             }
         } else {

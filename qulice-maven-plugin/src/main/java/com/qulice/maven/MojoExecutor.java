@@ -118,9 +118,9 @@ public final class MojoExecutor {
                 new LinkedList<String>(),
                 new LinkedList<String>()
             );
-        } catch (PluginResolutionException ex) {
+        } catch (final PluginResolutionException ex) {
             throw new IllegalStateException("Plugin resolution problem", ex);
-        } catch (PluginContainerException ex) {
+        } catch (final PluginContainerException ex) {
             throw new IllegalStateException("Can't setup realm", ex);
         }
         final Xpp3Dom xpp = Xpp3Dom.mergeXpp3Dom(
@@ -132,9 +132,9 @@ public final class MojoExecutor {
         Logger.info(this, "Calling %s:%s...", coords, goal);
         try {
             mojo.execute();
-        } catch (MojoExecutionException ex) {
+        } catch (final MojoExecutionException ex) {
             throw new IllegalArgumentException(ex);
-        } catch (MojoFailureException ex) {
+        } catch (final MojoFailureException ex) {
             throw new ValidationException(ex);
         }
         this.manager.releaseMojo(mojo, execution);
@@ -153,11 +153,11 @@ public final class MojoExecutor {
                 this.session.getCurrentProject().getRemotePluginRepositories(),
                 this.session
             ).getMojo(goal);
-        } catch (PluginResolutionException ex) {
+        } catch (final PluginResolutionException ex) {
             throw new IllegalStateException("Can't resolve plugin", ex);
-        } catch (PluginDescriptorParsingException ex) {
+        } catch (final PluginDescriptorParsingException ex) {
             throw new IllegalStateException("Can't parse descriptor", ex);
-        } catch (InvalidPluginDescriptorException ex) {
+        } catch (final InvalidPluginDescriptorException ex) {
             throw new IllegalStateException("Invalid plugin descriptor", ex);
         }
     }
@@ -173,9 +173,9 @@ public final class MojoExecutor {
             mojo = this.manager.getConfiguredMojo(
                 Mojo.class, this.session, execution
             );
-        } catch (PluginConfigurationException ex) {
+        } catch (final PluginConfigurationException ex) {
             throw new IllegalStateException("Can't configure MOJO", ex);
-        } catch (PluginContainerException ex) {
+        } catch (final PluginContainerException ex) {
             throw new IllegalStateException("Plugin container failure", ex);
         }
         return mojo;
@@ -244,7 +244,7 @@ public final class MojoExecutor {
         for (final String name : config.getAttributeNames()) {
             try {
                 result.setAttribute(name, config.getAttribute(name));
-            } catch (PlexusConfigurationException ex) {
+            } catch (final PlexusConfigurationException ex) {
                 throw new IllegalArgumentException(ex);
             }
         }
