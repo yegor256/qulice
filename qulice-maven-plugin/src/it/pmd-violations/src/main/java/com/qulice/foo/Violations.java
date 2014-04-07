@@ -35,18 +35,24 @@ package com.qulice.foo;
  * @version $Id$
  */
 public final class Violations {
-
     /**
      * Unused variable - PMD should report a violation here.
      */
     private Integer var;
 
     /**
+     * Utility constructor.
+     */
+    private Violations() {
+        // do nothing
+    }
+
+    /**
      * Calculate square of a number.
      * @param num The number
      * @return The square
      */
-    public int square(final int num) {
+    public static int square(final int num) {
         return num * num;
     }
 
@@ -54,7 +60,7 @@ public final class Violations {
      * Returns Foo.
      * @return Foo.
      */
-    public Foo doSmth() {
+    public static Foo doSmth() {
         final String name = "test".toUpperCase();
         return new Foo(name);
     }
@@ -63,7 +69,7 @@ public final class Violations {
      * Returns Foo again.
      * @return Foo.
      */
-    public Foo doSmthElse() {
+    public static Foo doSmthElse() {
         String name = "other";
         name = String.format("%s append", name);
         return new Foo(name);
@@ -72,7 +78,7 @@ public final class Violations {
     /**
      * Prints something.
      */
-    public void print() {
+    public static void print() {
         final String message = "hello";
         System.out.println(message);
     }
