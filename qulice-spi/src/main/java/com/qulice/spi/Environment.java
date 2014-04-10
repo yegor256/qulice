@@ -93,7 +93,7 @@ public interface Environment {
      *  method should return a collection of elements that are not affected
      *  by OS.
      */
-    Collection<File> classpath();
+    Collection<String> classpath();
 
     /**
      * Returns the files matching the specified pattern.
@@ -133,7 +133,7 @@ public interface Environment {
         /**
          * Files for classpath.
          */
-        private final transient Set<File> classpath = new HashSet<File>(0);
+        private final transient Set<String> classpath = new HashSet<String>(0);
         /**
          * Map of params.
          */
@@ -164,7 +164,9 @@ public interface Environment {
             if (this.basedir.mkdirs()) {
                 assert this.basedir != null;
             }
-            this.classpath.add(this.outdir());
+            this.classpath.add(
+                this.outdir().getAbsolutePath().replace(File.separatorChar, '/')
+            );
         }
         /**
          * With this param and its value.
@@ -222,10 +224,11 @@ public interface Environment {
          */
         @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
         public Environment.Mock withDefaultClasspath() {
-            for (final String file : System.getProperty("java.class.path")
-                .split(System.getProperty("path.separator"))) {
-                this.classpath.add(new File(file));
-            }
+            Collections.addAll(
+                this.classpath,
+                System.getProperty("java.class.path")
+                    .split(System.getProperty("path.separator"))
+            );
             return this;
         }
         @Override
@@ -261,7 +264,7 @@ public interface Environment {
             return Thread.currentThread().getContextClassLoader();
         }
         @Override
-        public Collection<File> classpath() {
+        public Collection<String> classpath() {
             return Collections.unmodifiableCollection(this.classpath);
         }
         @Override
