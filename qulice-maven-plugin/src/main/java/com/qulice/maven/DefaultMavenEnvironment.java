@@ -134,7 +134,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
                 : this.iproject.getDependencyArtifacts()) {
                 paths.add(artifact.getFile());
             }
-        } catch (DependencyResolutionRequiredException ex) {
+        } catch (final DependencyResolutionRequiredException ex) {
             throw new IllegalStateException("Failed to read classpath", ex);
         }
         return paths;
@@ -146,7 +146,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         for (final File path : this.classpath()) {
             try {
                 urls.add(path.toURI().toURL());
-            } catch (java.net.MalformedURLException ex) {
+            } catch (final java.net.MalformedURLException ex) {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }

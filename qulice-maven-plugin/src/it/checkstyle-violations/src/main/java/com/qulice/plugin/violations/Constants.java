@@ -27,83 +27,24 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.foo;
+package com.qulice.plugin.violations;
 
 /**
- * Sample class.
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * Validation of constants check.
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
  */
-public final class Violations {
-    /**
-     * Unused variable - PMD should report a violation here.
-     */
-    private Integer var;
+public final class Constants {
 
-    /**
-     * Utility constructor.
-     */
-    private Violations() {
-        // do nothing
+    private static final String ONCE = "test";
+
+    private static final String TWICE = "test";
+
+    public void print() {
+        System.out.println(Constants.ONCE + Constants.TWICE);
     }
 
-    /**
-     * Calculate square of a number.
-     * @param num The number
-     * @return The square
-     */
-    public static int square(final int num) {
-        return num * num;
-    }
-
-    /**
-     * Returns Foo.
-     * @return Foo.
-     */
-    public static Foo doSmth() {
-        final String name = "test".toUpperCase();
-        return new Foo(name);
-    }
-
-    /**
-     * Returns Foo again.
-     * @return Foo.
-     */
-    public static Foo doSmthElse() {
-        String name = "other";
-        name = String.format("%s append", name);
-        return new Foo(name);
-    }
-
-    /**
-     * Prints something.
-     */
-    public static void print() {
-        final String message = "hello";
-        System.out.println(message);
-    }
-
-    /**
-     * Test class.
-     */
-    private static final class Foo {
-        /**
-         * Name.
-         */
-        private final transient String name;
-
-        /**
-         * Constructor.
-         * @param nam Name.
-         */
-        public Foo(final String nam) {
-            this.name = nam;
-        }
-
-        @Override
-        public String toString() {
-            return this.name;
-        }
+    public void anotherPrint() {
+        System.out.println(Constants.TWICE);
     }
 }
-

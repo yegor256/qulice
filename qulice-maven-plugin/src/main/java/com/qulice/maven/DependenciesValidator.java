@@ -110,11 +110,11 @@ final class DependenciesValidator implements MavenValidator {
                     env.context().get(PlexusConstants.PLEXUS_KEY)
                 ).lookup(ProjectDependencyAnalyzer.ROLE, "default")
             ).analyze(env.project());
-        } catch (ContextException ex) {
+        } catch (final ContextException ex) {
             throw new IllegalStateException(ex);
-        } catch (ComponentLookupException ex) {
+        } catch (final ComponentLookupException ex) {
             throw new IllegalStateException(ex);
-        } catch (ProjectDependencyAnalyzerException ex) {
+        } catch (final ProjectDependencyAnalyzerException ex) {
             throw new IllegalStateException(ex);
         }
     }

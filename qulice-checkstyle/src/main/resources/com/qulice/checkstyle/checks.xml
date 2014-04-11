@@ -362,21 +362,10 @@
         <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/>
         <module name="com.qulice.checkstyle.MethodsOrderCheck"/>
         <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
-        <!--
-        @todo #1 This check leads to NullPointerException when run on
-         a bit source code base. Just try to turn it on and run through
-         Qulice code base. It throws NPE almost at every file.
         <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
-        -->
-        <!--
-        @todo #1 The check complains about all methods in all unit tests,
-         because they are not using "this", but are in reality static methods.
-         Even though this complain is totally valid, we can't do anything
-         about this, since JUnit is designed that way. Let's introduce
-         a parameter in this check, which will allow to excluse classes
-         by pattern
-        <module name="com.qulice.checkstyle.NonStaticMethodCheck"/>
-        -->
+        <module name="com.qulice.checkstyle.NonStaticMethodCheck">
+            <property name="excludeFileNamePattern" value=".*Test\.java"/>
+        </module>
         <module name="com.qulice.checkstyle.ProtectedMethodInFinalClassCheck"/>
     </module>
 

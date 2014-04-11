@@ -36,13 +36,19 @@ package com.qulice.plugin.alpha;
  * @version $Id$
  */
 public final class Main {
+    /**
+     * Utility constructor.
+     */
+    private Main() {
+        // do nothing
+    }
 
     /**
      * Calculate square of a number.
      * @param num The number
      * @return The square
      */
-    public int square(final int num) {
+    public static int square(final int num) {
         return num * num;
     }
 
