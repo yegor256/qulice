@@ -34,6 +34,8 @@ import java.io.File;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -47,9 +49,24 @@ import org.apache.commons.lang3.StringUtils;
 public final class PuzzleDuplicateCheck extends AbstractFileSetCheck {
 
     /**
-     * Todo marker.
+     * Pattern first line of todo tag.
+     * @checkstyle LineLength (3 lines)
      */
-    private static final String TODO_TAG = "@todo ";
+    private static final Pattern FIRST = Pattern.compile(
+        "^\\s+\\* @todo #[\\w\\d:\\-]+!?(:[0-9]+(\\.[0-9]){0,2}hrs?)? ([A-Z][^\n]+)$"
+    );
+
+    /**
+     * Pattern for the rest of todo lines.
+     */
+    private static final Pattern FOLLOWING =
+        Pattern.compile("^\\s+\\*  ([^ ].+)$");
+
+    /**
+     * Pattern marking the end of todo text.
+     */
+    private static final Pattern OTHER =
+        Pattern.compile("^\\s+\\*(/?| *@.*)$");
 
     /**
      * All seen puzzle texts.
@@ -63,19 +80,14 @@ public final class PuzzleDuplicateCheck extends AbstractFileSetCheck {
         for (int pos = 0; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);
             // @checkstyle PuzzleFormat (1 line)
-            if (line.contains(PuzzleDuplicateCheck.TODO_TAG)) {
+            if (line.contains("@todo")) {
+                final Matcher matcher = PuzzleDuplicateCheck.FIRST
+                    .matcher(line);
                 final StringBuilder text = new StringBuilder();
-                final int col = line.indexOf(PuzzleDuplicateCheck.TODO_TAG);
-                text.append(
-                    StringUtils.substringAfter(
-                        StringUtils.substringAfter(
-                            line, PuzzleDuplicateCheck.TODO_TAG
-                        ),
-                        StringUtils.SPACE
-                    ).trim()
-                );
-                text.append(StringUtils.SPACE)
-                    .append(this.rest(lines, pos, col));
+                if (matcher.matches()) {
+                    text.append(matcher.group(1));
+                }
+                text.append(StringUtils.SPACE).append(this.rest(lines, pos));
                 if (this.puzzles.contains(text.toString())) {
                     this.log(
                         pos + 1,
@@ -95,18 +107,20 @@ public final class PuzzleDuplicateCheck extends AbstractFileSetCheck {
      * Get rest of todo tag description.
      * @param lines All lines in a file.
      * @param start Line number of todo tag start.
-     * @param col Column at which puzzle text should start.
      * @return Rest of todo description.
      */
-    private String rest(final List<String> lines, final int start,
-        final int col) {
+    private String rest(final List<String> lines, final int start) {
         final StringBuilder text = new StringBuilder();
         for (int pos = start + 1; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);
-            if ((line.length() <= col) || (line.charAt(col) != ' ')) {
+            if (PuzzleDuplicateCheck.OTHER.matcher(line).matches()) {
                 break;
             }
-            text.append(line.substring(col + 1)).append(StringUtils.SPACE);
+            final Matcher matcher = PuzzleDuplicateCheck.FOLLOWING
+                .matcher(line);
+            if (matcher.matches()) {
+                text.append(matcher.group(1)).append(StringUtils.SPACE);
+            }
         }
         return text.toString().trim();
     }
