@@ -32,6 +32,8 @@ public class Violations {
     }
     /**
      * ArrayList without initializer.
+     * @todo #123 Make this
+     *  a better text.
      */
     public final void arrayLists() {
         System.out.println(new ArrayList<Integer>());
