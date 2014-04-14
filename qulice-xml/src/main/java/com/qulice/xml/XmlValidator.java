@@ -39,13 +39,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import javax.xml.transform.stream.StreamSource;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
-import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.SAXParseException;
 
@@ -61,7 +56,7 @@ public final class XmlValidator implements Validator {
     @Override
     public void validate(final Environment env) throws ValidationException {
         try {
-            for (final File file : this.files(env)) {
+            for (final File file : env.files("*.xml")) {
                 Logger.info(this, "%s: to be validated", file);
                 final XMLDocument document = new XMLDocument(file);
                 final List<String> schemas = document
@@ -94,33 +89,4 @@ public final class XmlValidator implements Validator {
             throw new IllegalStateException(ex);
         }
     }
-
-    /**
-     * Get full list of files to process.
-     * @param env The environmet
-     * @return List of files
-     * @todo #176 Perform refactoring: remove this method, use
-     *  Environment.files() instead.
-     */
-    private List<File> files(final Environment env) {
-        final List<File> files = new LinkedList<File>();
-        final IOFileFilter filter = new WildcardFileFilter("*.xml");
-        final String[] dirs = {
-            "src",
-        };
-        for (final String dir : dirs) {
-            final File sources = new File(env.basedir(), dir);
-            if (sources.exists()) {
-                files.addAll(
-                    FileUtils.listFiles(
-                        sources,
-                        filter,
-                        DirectoryFileFilter.INSTANCE
-                    )
-                );
-            }
-        }
-        return files;
-    }
-
 }
