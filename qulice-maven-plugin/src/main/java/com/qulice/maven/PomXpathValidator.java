@@ -48,8 +48,6 @@ import org.apache.commons.io.FileUtils;
  *
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
- * @todo #67:1h Implement integration tests for PomXpathValidator.
- *  Validator should obtain xpath queries from plugin configuration
  */
 public final class PomXpathValidator implements MavenValidator {
 
