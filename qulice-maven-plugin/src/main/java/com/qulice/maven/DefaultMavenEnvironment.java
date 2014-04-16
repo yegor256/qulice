@@ -296,7 +296,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     public void setAsser(final Collection<String> ass) {
         this.asser.clear();
-        this.exc.addAll(ass);
+        this.asser.addAll(ass);
     }
 
 }
