@@ -295,6 +295,7 @@
                         <pomInclude>dependency-violations/pom.xml</pomInclude>
                         <pomInclude>multi-module/pom.xml</pomInclude>
                         <pomInclude>pom-xpath-validator-violations</pomInclude>
+                        <pomInclude>duplicate-finder-violations</pomInclude>
                     </pomIncludes>
                     <extraArtifacts>
                         <extraArtifact>${project.groupId}:qulice-checkstyle:${project.version}:jar</extraArtifact>
