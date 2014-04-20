@@ -41,7 +41,6 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
- * @todo #143 Add handling of non-java files (e.g. xml, groovy).
  * @checkstyle PuzzleFormat (200 lines)
  */
 public final class PuzzleDuplicateCheck extends AbstractFileSetCheck {
