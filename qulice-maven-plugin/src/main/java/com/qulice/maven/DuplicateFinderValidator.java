@@ -44,9 +44,6 @@ import java.util.Properties;
  *  - duplicate:org.codehaus.groovy.ast.expr.RegexExpression
  *  See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953
  *  for details
- * @todo #152 Maven-duplicate-finder-plugin integration tests.
- *  Let's add integration tests to check that all types of excludes
- *  work properly for maven-duplicate-finder-plugin
  */
 public final class DuplicateFinderValidator implements MavenValidator {
 
