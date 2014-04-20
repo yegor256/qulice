@@ -44,6 +44,7 @@ import java.util.List;
 import java.util.Properties;
 import javax.annotation.Nullable;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
@@ -219,7 +220,11 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public boolean exclude(final String check, final String name) {
-        final String line = String.format("%s:%s", check, name);
+        final String line = String.format(
+            "%s:%s",
+            check,
+            FilenameUtils.normalize(name)
+        );
         boolean exclude = false;
         for (final String expr : this.exc) {
             if (line.matches(expr)) {
@@ -302,5 +307,4 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         this.asser.clear();
         this.asser.addAll(ass);
     }
-
 }
