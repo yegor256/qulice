@@ -54,6 +54,7 @@
                         <configuration>
                             <target>
                                 <echo message="println &quot;test&quot;;" file="${basedir}/src/script.groovy"/>
+                                <echo message="println 'test'" file="${basedir}/src/test/ignore_script.groovy"/>
                             </target>
                         </configuration>
                         <goals>
@@ -68,6 +69,11 @@
                 <version>@project.version@</version>
                 <executions>
                     <execution>
+                        <configuration>
+                            <excludes>
+                                <exclude>codenarc:test/*.groovy</exclude>
+                            </excludes>
+                        </configuration>
                         <goals>
                             <goal>check</goal>
                         </goals>
