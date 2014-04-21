@@ -58,7 +58,8 @@ public final class CodeNarcValidator implements Validator {
         final File src = new File(env.basedir(), "src");
         if (this.required(src)) {
             final int violations = this.logViolations(
-                this.detect(src, env.excludes("codenarc"))
+                this.detect(src, env.excludes("codenarc")),
+                src
             );
             if (violations > 0) {
                 throw new ValidationException(
@@ -131,12 +132,12 @@ public final class CodeNarcValidator implements Validator {
      * @param list The results from CodeNarc
      * @return Number of found violations
      */
-    private int logViolations(final Results list) {
+    private int logViolations(final Results list, final File base) {
         int count = 0;
         for (final Object child : list.getChildren()) {
             final Results result = (Results) child;
             if (!result.isFile()) {
-                count += this.logViolations(result);
+                count += this.logViolations(result, base);
                 continue;
             }
             for (final Object vltn : result.getViolations()) {
@@ -144,7 +145,9 @@ public final class CodeNarcValidator implements Validator {
                 ++count;
                 Logger.error(
                     this,
-                    "%s[%d]: %s (%s)",
+                    "%s%s%s[%d]: %s (%s)",
+                    base.getPath(),
+                    File.separator,
                     result.getPath(),
                     violation.getLineNumber(),
                     violation.getMessage(),

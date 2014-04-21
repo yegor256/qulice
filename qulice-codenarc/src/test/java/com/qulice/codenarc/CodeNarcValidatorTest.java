@@ -109,7 +109,7 @@ public final class CodeNarcValidatorTest {
         } catch (final ValidationException ex) {
             final List<String> messages = appender.getMessages();
             final Pattern pattern = Pattern.compile(
-                "[a-zA-Z0-9_/]+\\.groovy\\[\\d+\\]: .*"
+                "[a-zA-Z0-9_/.]+\\.groovy\\[\\d+\\]: .*"
             );
             for (final String message : messages) {
                 if (message.startsWith("CodeNarc validated ")) {
