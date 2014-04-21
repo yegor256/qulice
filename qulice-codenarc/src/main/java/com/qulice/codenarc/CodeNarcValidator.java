@@ -130,6 +130,7 @@ public final class CodeNarcValidator implements Validator {
     /**
      * Log all violations.
      * @param list The results from CodeNarc
+     * @param base Base directory.
      * @return Number of found violations
      */
     private int logViolations(final Results list, final File base) {
