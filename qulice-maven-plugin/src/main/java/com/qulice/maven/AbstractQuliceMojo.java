@@ -104,7 +104,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      * @since 0.5
      */
     @Parameter(
-        alias = "pom",
+        property = "qulice.asserts",
         required = false
     )
     private final transient Collection<String> asserts =
@@ -124,6 +124,15 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      */
     public final void setSkip(final boolean skp) {
         this.skip = skp;
+    }
+
+    /**
+     * Set asserts option.
+     * @param asser Asserts to use.
+     */
+    public final void setAsserts(final Collection<String> asser) {
+        this.asserts.clear();
+        this.asserts.addAll(asser);
     }
 
     /**

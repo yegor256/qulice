@@ -34,6 +34,7 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
 import java.io.File;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -124,16 +125,19 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public Collection<File> classpath() {
-        final Collection<File> paths = new ArrayList<File>();
+    public Collection<String> classpath() {
+        final Collection<String> paths = new ArrayList<String>();
         try {
             for (final String name
                 : this.iproject.getRuntimeClasspathElements()) {
-                paths.add(new File(name));
+                paths.add(name);
             }
             for (final Artifact artifact
                 : this.iproject.getDependencyArtifacts()) {
-                paths.add(artifact.getFile());
+                paths.add(
+                    artifact.getFile().getAbsolutePath()
+                        .replace(File.separatorChar, '/')
+                );
             }
         } catch (final DependencyResolutionRequiredException ex) {
             throw new IllegalStateException("Failed to read classpath", ex);
@@ -144,15 +148,15 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     public ClassLoader classloader() {
         final List<URL> urls = new ArrayList<URL>();
-        for (final File path : this.classpath()) {
+        for (final String path : this.classpath()) {
             try {
-                urls.add(path.toURI().toURL());
+                urls.add(URI.create(String.format("file://%s", path)).toURL());
             } catch (final java.net.MalformedURLException ex) {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
         final URLClassLoader loader = new URLClassLoader(
-            urls.toArray(new URL[] {}),
+            urls.toArray(new URL[urls.size()]),
             Thread.currentThread().getContextClassLoader()
         );
         for (final URL url : loader.getURLs()) {
@@ -301,7 +305,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     public void setAsser(final Collection<String> ass) {
         this.asser.clear();
-        this.exc.addAll(ass);
+        this.asser.addAll(ass);
     }
-
 }

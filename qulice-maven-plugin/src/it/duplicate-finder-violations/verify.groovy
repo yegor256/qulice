@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2011-2013, Qulice.com
+ *
+ * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,49 +27,10 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.maven;
-
-import com.qulice.spi.Validator;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-/**
- * Provider of validators.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */
-final class DefaultValidatorsProvider implements ValidatorsProvider {
 
-    @Override
-    public Set<MavenValidator> internal() {
-        final Set<MavenValidator> validators =
-            new LinkedHashSet<MavenValidator>();
-        validators.add(new PomXpathValidator());
-        validators.add(new DuplicateFinderValidator());
-        validators.add(new EnforcerValidator());
-        validators.add(new CoberturaValidator());
-        validators.add(new SvnPropertiesValidator());
-        validators.add(new DependenciesValidator());
-        validators.add(new JslintValidator());
-        validators.add(new SnapshotsValidator());
-        return validators;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Set<Validator> external() {
-        final Set<Validator> validators = new LinkedHashSet<Validator>();
-        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
-        validators.add(new com.qulice.pmd.PMDValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        validators.add(new com.qulice.findbugs.FindBugsValidator());
-        return validators;
-    }
-
-}
+def log = new File(basedir, 'build.log')
+assert log.text.contains('Found duplicate and different classes in ' +
+    '[org.apache.xmlgraphics:batik-ext:1.7,xml-apis:xml-apis:1.3.04]')
