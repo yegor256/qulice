@@ -56,10 +56,12 @@ public final class DuplicateFinderValidator implements MavenValidator {
     public void validate(final MavenEnvironment env)
         throws ValidationException {
         if (!env.exclude("duplicatefinder", "")) {
+            final Properties props = new Properties();
+            props.put("failBuildInCaseOfConflict", "true");
             env.executor().execute(
                 "com.ning.maven.plugins:maven-duplicate-finder-plugin:1.0.7",
                 "check",
-                new Properties()
+                props
             );
         }
     }
