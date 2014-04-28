@@ -34,15 +34,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.qulice.plugin</groupId>
-    <artifactId>codenarc-violations</artifactId>
+    <artifactId>module</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>codenarc-violations</name>
-
-    <modules>
-        <module>module</module>
-    </modules>
-
+    <packaging>jar</packaging>
+    <name>module</name>
     <build>
         <plugins>
             <plugin>
@@ -59,7 +54,6 @@
                         <configuration>
                             <target>
                                 <echo message="println &quot;test&quot;;" file="${basedir}/src/script.groovy"/>
-                                <echo message="println 'test'" file="${basedir}/src/test/ignore_script.groovy"/>
                             </target>
                         </configuration>
                         <goals>
@@ -74,11 +68,6 @@
                 <version>@project.version@</version>
                 <executions>
                     <execution>
-                        <configuration>
-                            <excludes>
-                                <exclude>codenarc:test/*.groovy</exclude>
-                            </excludes>
-                        </configuration>
                         <goals>
                             <goal>check</goal>
                         </goals>

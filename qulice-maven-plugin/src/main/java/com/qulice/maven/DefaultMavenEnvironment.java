@@ -31,6 +31,8 @@ package com.qulice.maven;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
 import java.io.File;
@@ -220,40 +222,44 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public boolean exclude(final String check, final String name) {
-        final String line = String.format(
-            "%s:%s",
-            check,
-            FilenameUtils.normalize(name)
-        );
-        boolean exclude = false;
-        for (final String expr : this.exc) {
-            if (line.matches(expr)) {
-                exclude = true;
-                break;
+        return Iterables.any(
+            this.excludeList(check),
+            new Predicate<String>() {
+                @Override
+                public boolean apply(@Nullable final String input) {
+                    return input != null
+                        && FilenameUtils.normalize(name).matches(input);
+                }
             }
-        }
-        return exclude;
+        );
     }
 
     @Override
     public String excludes(final String checker) {
-        return Joiner.on(',').skipNulls().join(
-            Iterables.transform(
-                this.exc,
-                new Function<String, String>() {
-                    @Nullable
-                    @Override
-                    public String apply(@Nullable final String input) {
-                        if (input != null) {
-                            final String[] exclude = input.split(":");
-                            if ("checker".equals(input) && input.length() > 1) {
-                                return exclude[1];
-                            }
+        return Joiner.on(',').skipNulls().join(this.excludeList(checker));
+    }
+
+    /**
+     * Creates exclude list for particular checker.
+     * @param checker Validator name
+     * @return Iterable with excludes
+     */
+    private Iterable<String> excludeList(final String checker) {
+        return Collections2.transform(
+            this.exc,
+            new Function<String, String>() {
+                @Nullable
+                @Override
+                public String apply(@Nullable final String input) {
+                    if (input != null) {
+                        final String[] exclude = input.split(":");
+                        if (checker.equals(exclude[0]) && exclude.length > 1) {
+                            return exclude[1];
                         }
-                        return null;
                     }
+                    return null;
                 }
-            )
+            }
         );
     }
 

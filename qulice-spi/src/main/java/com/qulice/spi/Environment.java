@@ -87,11 +87,6 @@ public interface Environment {
     /**
      * Get list of paths in classpath.
      * @return The collection of paths
-     * @todo #153 Using File as classpath element is dangerous, as it won't
-     *  work under Windows without conversion - classpaths always use slashes,
-     *  while File objects under Windows will always use backslashes. This
-     *  method should return a collection of elements that are not affected
-     *  by OS.
      */
     Collection<String> classpath();
 
