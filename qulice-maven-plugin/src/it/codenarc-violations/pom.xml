@@ -46,6 +46,28 @@
     <build>
         <plugins>
             <plugin>
+                <!--
+                We can't keep this Groovy-violating script in source
+                repository because Qulice will complain during static analysis
+                validation in the main project
+                -->
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <phase>generate-test-resources</phase>
+                        <configuration>
+                            <target>
+                                <echo message="println &quot;test&quot;;" file="${basedir}/src/script.groovy"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.qulice</groupId>
                 <artifactId>qulice-maven-plugin</artifactId>
                 <version>@project.version@</version>
