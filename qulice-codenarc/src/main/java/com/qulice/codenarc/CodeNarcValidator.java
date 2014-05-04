@@ -43,11 +43,6 @@ import org.codenarc.rule.Violation;
 /**
  * Validates groovy source code with CodeNarc.
  *
- * @todo #148 Create integration tests to check exclusion.
- *  Lets implement integration tests to check that exclusion patterns
- *  propagated to CodeNarc Validator.
- *  For syntax example see
- *  http://www.qulice.com/qulice-maven-plugin/example-exclude.html
  * @author Pavlo Shamrai (pshamrai@gmail.com)
  * @version $Id$
  */
