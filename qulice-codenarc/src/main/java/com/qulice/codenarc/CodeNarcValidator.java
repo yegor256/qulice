@@ -43,11 +43,6 @@ import org.codenarc.rule.Violation;
 /**
  * Validates groovy source code with CodeNarc.
  *
- * @todo #148 Create integration tests to check exclusion.
- *  Lets implement integration tests to check that exclusion patterns
- *  propagated to CodeNarc Validator.
- *  For syntax example see
- *  http://www.qulice.com/qulice-maven-plugin/example-exclude.html
  * @author Pavlo Shamrai (pshamrai@gmail.com)
  * @version $Id$
  */
@@ -58,7 +53,8 @@ public final class CodeNarcValidator implements Validator {
         final File src = new File(env.basedir(), "src");
         if (this.required(src)) {
             final int violations = this.logViolations(
-                this.detect(src, env.excludes("codenarc"))
+                this.detect(src, env.excludes("codenarc")),
+                src
             );
             if (violations > 0) {
                 throw new ValidationException(
@@ -129,14 +125,15 @@ public final class CodeNarcValidator implements Validator {
     /**
      * Log all violations.
      * @param list The results from CodeNarc
+     * @param base Base directory.
      * @return Number of found violations
      */
-    private int logViolations(final Results list) {
+    private int logViolations(final Results list, final File base) {
         int count = 0;
         for (final Object child : list.getChildren()) {
             final Results result = (Results) child;
             if (!result.isFile()) {
-                count += this.logViolations(result);
+                count += this.logViolations(result, base);
                 continue;
             }
             for (final Object vltn : result.getViolations()) {
@@ -144,7 +141,9 @@ public final class CodeNarcValidator implements Validator {
                 ++count;
                 Logger.error(
                     this,
-                    "%s[%d]: %s (%s)",
+                    "%s%s%s[%d]: %s (%s)",
+                    base.getPath(),
+                    File.separator,
                     result.getPath(),
                     violation.getLineNumber(),
                     violation.getMessage(),

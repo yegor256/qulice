@@ -124,7 +124,7 @@ interface MavenEnvironment extends Environment {
             return this.env.classloader();
         }
         @Override
-        public Collection<File> classpath() {
+        public Collection<String> classpath() {
             return this.env.classpath();
         }
         @Override

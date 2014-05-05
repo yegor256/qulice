@@ -36,8 +36,13 @@
     <groupId>com.qulice.plugin</groupId>
     <artifactId>codenarc-violations</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>codenarc-violations</name>
+
+    <modules>
+        <module>module</module>
+    </modules>
+
     <build>
         <plugins>
             <plugin>

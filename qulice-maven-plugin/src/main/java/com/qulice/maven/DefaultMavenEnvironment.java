@@ -31,9 +31,12 @@ package com.qulice.maven;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
 import java.io.File;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -43,6 +46,7 @@ import java.util.List;
 import java.util.Properties;
 import javax.annotation.Nullable;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
@@ -123,16 +127,19 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public Collection<File> classpath() {
-        final Collection<File> paths = new ArrayList<File>();
+    public Collection<String> classpath() {
+        final Collection<String> paths = new ArrayList<String>();
         try {
             for (final String name
                 : this.iproject.getRuntimeClasspathElements()) {
-                paths.add(new File(name));
+                paths.add(name);
             }
             for (final Artifact artifact
                 : this.iproject.getDependencyArtifacts()) {
-                paths.add(artifact.getFile());
+                paths.add(
+                    artifact.getFile().getAbsolutePath()
+                        .replace(File.separatorChar, '/')
+                );
             }
         } catch (final DependencyResolutionRequiredException ex) {
             throw new IllegalStateException("Failed to read classpath", ex);
@@ -143,15 +150,15 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     public ClassLoader classloader() {
         final List<URL> urls = new ArrayList<URL>();
-        for (final File path : this.classpath()) {
+        for (final String path : this.classpath()) {
             try {
-                urls.add(path.toURI().toURL());
+                urls.add(URI.create(String.format("file://%s", path)).toURL());
             } catch (final java.net.MalformedURLException ex) {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
         final URLClassLoader loader = new URLClassLoader(
-            urls.toArray(new URL[] {}),
+            urls.toArray(new URL[urls.size()]),
             Thread.currentThread().getContextClassLoader()
         );
         for (final URL url : loader.getURLs()) {
@@ -215,36 +222,44 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public boolean exclude(final String check, final String name) {
-        final String line = String.format("%s:%s", check, name);
-        boolean exclude = false;
-        for (final String expr : this.exc) {
-            if (line.matches(expr)) {
-                exclude = true;
-                break;
+        return Iterables.any(
+            this.excludeList(check),
+            new Predicate<String>() {
+                @Override
+                public boolean apply(@Nullable final String input) {
+                    return input != null
+                        && FilenameUtils.normalize(name).matches(input);
+                }
             }
-        }
-        return exclude;
+        );
     }
 
     @Override
     public String excludes(final String checker) {
-        return Joiner.on(',').skipNulls().join(
-            Iterables.transform(
-                this.exc,
-                new Function<String, String>() {
-                    @Nullable
-                    @Override
-                    public String apply(@Nullable final String input) {
-                        if (input != null) {
-                            final String[] exclude = input.split(":");
-                            if ("checker".equals(input) && input.length() > 1) {
-                                return exclude[1];
-                            }
+        return Joiner.on(',').skipNulls().join(this.excludeList(checker));
+    }
+
+    /**
+     * Creates exclude list for particular checker.
+     * @param checker Validator name
+     * @return Iterable with excludes
+     */
+    private Iterable<String> excludeList(final String checker) {
+        return Collections2.transform(
+            this.exc,
+            new Function<String, String>() {
+                @Nullable
+                @Override
+                public String apply(@Nullable final String input) {
+                    if (input != null) {
+                        final String[] exclude = input.split(":");
+                        if (checker.equals(exclude[0]) && exclude.length > 1) {
+                            return exclude[1];
                         }
-                        return null;
                     }
+                    return null;
                 }
-            )
+            }
         );
     }
 
@@ -296,7 +311,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     public void setAsser(final Collection<String> ass) {
         this.asser.clear();
-        this.exc.addAll(ass);
+        this.asser.addAll(ass);
     }
-
 }
