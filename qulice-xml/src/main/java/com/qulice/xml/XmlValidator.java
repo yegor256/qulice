@@ -57,13 +57,23 @@ public final class XmlValidator implements Validator {
     public void validate(final Environment env) throws ValidationException {
         try {
             for (final File file : env.files("*.xml")) {
-                Logger.info(this, "%s: to be validated", file);
+                final String name = file.getAbsolutePath().substring(
+                    env.basedir().toString().length()
+                );
+                if (env.exclude("xml", name)) {
+                    Logger.info(this, "%s: skipped", name);
+                    continue;
+                }
+                Logger.info(this, "%s: to be validated", name);
                 final XMLDocument document = new XMLDocument(file);
                 final List<String> schemas = document
                     .xpath("/*/@xsi:schemaLocation");
                 if (schemas.isEmpty()) {
                     throw new ValidationException(
-                        "XML validation exception: missing schema"
+                        String.format(
+                            "XML validation exception: missing schema in %s",
+                            name
+                        )
                     );
                 } else {
                     final Collection<SAXParseException> errors =
@@ -80,7 +90,10 @@ public final class XmlValidator implements Validator {
                     }
                     if (!errors.isEmpty()) {
                         throw new ValidationException(
-                            "XML validation exception (see log above)"
+                            String.format(
+                                "XML validation failure in %s (see log above)",
+                                name
+                            )
                         );
                     }
                 }
