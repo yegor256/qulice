@@ -1,75 +1,39 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles>
-   <puzzle>
-      <ticket>1</ticket>
-      <file>src/main/java/com/qulice/checkstyle/ConstantUsageCheck.java</file>
-      <prefix> * </prefix>
-      <body>ConstantUsageCheck doesn't work. This check is still in development and is not used in a released version. Let's try to fix it and enable its validation inside ChecksTest. Also, don't forget to enable it inside checks.xml and make sure all maven-invoker-plugin tests pass</body>
-      <estimate>0</estimate>
-      <lines>42-46</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>1</ticket>
-      <file>src/main/java/com/qulice/checkstyle/NonStaticMethodCheck.java</file>
-      <prefix> * </prefix>
-      <body>NonStaticMethodCheck doesn't work. This check is still in development and is not used in a released version. Let's try to fix it and enable its validation inside ChecksTest. Also, don't forget to enable it inside checks.xml and make sure all maven-invoker-plugin tests pass</body>
-      <estimate>0</estimate>
-      <lines>46-50</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>143</ticket>
-      <file>src/main/java/com/qulice/checkstyle/PuzzleDuplicateCheck.java</file>
-      <prefix> * </prefix>
-      <body>Add handling of non-java files (e.g. xml, groovy).</body>
-      <estimate>0</estimate>
-      <lines>46-46</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>1</ticket>
-      <file>src/main/resources/com/qulice/checkstyle/checks.xml</file>
-      <prefix>        </prefix>
-      <body>This check leads to NullPointerException when run on a bit source code base. Just try to turn it on and run through Qulice code base. It throws NPE almost at every file.</body>
-      <estimate>0</estimate>
-      <lines>376-378</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>1</ticket>
-      <file>src/main/resources/com/qulice/checkstyle/checks.xml</file>
-      <prefix>        </prefix>
-      <body>The check complains about all methods in all unit tests, because they are not using "this", but are in reality static methods. Even though this complain is totally valid, we can't do anything about this, since JUnit is designed that way. Let's introduce a parameter in this check, which will allow to excluse classes by pattern</body>
-      <estimate>0</estimate>
-      <lines>382-387</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>55</ticket>
-      <file>src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</file>
-      <prefix>     * </prefix>
-      <body>First line is correct, but second line is impropertly indented</body>
-      <estimate>0</estimate>
-      <lines>14-15</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>555</ticket>
-      <file>src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
-      <prefix> * </prefix>
-      <body>Some text with proper indentation of the second and all consecutive lines.</body>
-      <estimate>0</estimate>
-      <lines>7-7</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>JIRA-7643</ticket>
-      <file>src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
-      <prefix> * </prefix>
-      <body>Longer format of puzzle marker</body>
-      <estimate>90</estimate>
-      <lines>10-10</lines>
-      <owner>author</owner>
-   </puzzle>
+<puzzle>
+<ticket>1</ticket>
+<file>src/main/resources/com/qulice/checkstyle/checks.xml</file>
+<prefix>        </prefix>
+<body>NPE when parsing interfaces with embedded classes. This check fails with an NPE, when parsing an interface with a final class inside it. Let's try to reproduce and fix. Once fixed, remove this puzzle and enable the check again.</body>
+<estimate>0</estimate>
+<lines>366-369</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>55</ticket>
+<file>src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</file>
+<prefix>     * </prefix>
+<body>First line is correct, but second line is impropertly indented</body>
+<estimate>0</estimate>
+<lines>14-15</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>555</ticket>
+<file>src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
+<prefix> * </prefix>
+<body>Some text with proper indentation of the second and all consecutive lines.</body>
+<estimate>0</estimate>
+<lines>7-7</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>JIRA-7643</ticket>
+<file>src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
+<prefix> * </prefix>
+<body>Longer format of puzzle marker</body>
+<estimate>90</estimate>
+<lines>10-10</lines>
+<owner>author</owner>
+</puzzle>
 </puzzles>
