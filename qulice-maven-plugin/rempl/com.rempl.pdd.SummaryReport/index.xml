@@ -1,102 +1,102 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
-      <prefix>     * </prefix>
-      <body>Make this better in multiple lines but different.</body>
-      <estimate>0</estimate>
-      <lines>43-44</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
-      <prefix>     * </prefix>
-      <body>Make this better in multiple lines.</body>
-      <estimate>0</estimate>
-      <lines>66-67</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
-      <prefix>     * </prefix>
-      <body>This is also valid.</body>
-      <estimate>120</estimate>
-      <lines>7-7</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
-      <prefix>     * </prefix>
-      <body>This is valid.</body>
-      <estimate>0</estimate>
-      <lines>15-15</lines>
-      <owner>uplink</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
-      <prefix>     * </prefix>
-      <body>First second</body>
-      <estimate>0</estimate>
-      <lines>12-13</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
-      <prefix>     * </prefix>
-      <body>First second</body>
-      <estimate>0</estimate>
-      <lines>23-24</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>152</ticket>
-      <file>src/main/java/com/qulice/maven/DefaultMavenEnvironment.java</file>
-      <prefix> * </prefix>
-      <body>Refactor excludes method. Refactor excludes method to return Collection of excludes. Move joining excludes directly to CodeNarcValidator</body>
-      <estimate>0</estimate>
-      <lines>56-58</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>152</ticket>
-      <file>src/main/java/com/qulice/maven/DuplicateFinderValidator.java</file>
-      <prefix> * </prefix>
-      <body>Maven-duplicate-finder-plugin should support exclusions. Let's add exclusions of following formats (examples): - duplicate:about.html - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5 - duplicate:org.codehaus.groovy.ast.expr.RegexExpression See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953 for details</body>
-      <estimate>0</estimate>
-      <lines>40-40</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>152</ticket>
-      <file>src/main/java/com/qulice/maven/DuplicateFinderValidator.java</file>
-      <prefix> * </prefix>
-      <body>Maven-duplicate-finder-plugin integration tests. Let's add integration tests to check that all types of excludes work properly for maven-duplicate-finder-plugin</body>
-      <estimate>0</estimate>
-      <lines>47-49</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>151</ticket>
-      <file>src/main/java/com/qulice/maven/JslintValidator.java</file>
-      <prefix> * </prefix>
-      <body>Integration tests for jslint-maven-plugin. Let's implement integration tests for jslint-maven-plugin to be sure it is called.</body>
-      <estimate>0</estimate>
-      <lines>40-42</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>67</ticket>
-      <file>src/main/java/com/qulice/maven/PomXpathValidator.java</file>
-      <prefix> * </prefix>
-      <body>Implement integration tests for PomXpathValidator. Validator should obtain xpath queries from plugin configuration</body>
-      <estimate>60</estimate>
-      <lines>51-52</lines>
-      <owner>someone</owner>
-   </puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
+<prefix>     * </prefix>
+<body>Make this better in multiple lines but different.</body>
+<estimate>0</estimate>
+<lines>43-44</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
+<prefix>     * </prefix>
+<body>Make this better in multiple lines.</body>
+<estimate>0</estimate>
+<lines>66-67</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
+<prefix>     * </prefix>
+<body>This is also valid.</body>
+<estimate>120</estimate>
+<lines>7-7</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
+<prefix>     * </prefix>
+<body>This is valid.</body>
+<estimate>0</estimate>
+<lines>15-15</lines>
+<owner>uplink</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
+<prefix>     * </prefix>
+<body>First second</body>
+<estimate>0</estimate>
+<lines>12-13</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
+<prefix>     * </prefix>
+<body>First second</body>
+<estimate>0</estimate>
+<lines>23-24</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
+<prefix>     * </prefix>
+<body>Make this a better text.</body>
+<estimate>0</estimate>
+<lines>35-36</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>src/it/checkstyle-violations/src/main/resources/some.xml</file>
+<prefix>        </prefix>
+<body>Make this a better text.</body>
+<estimate>0</estimate>
+<lines>3-4</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>152</ticket>
+<file>src/main/java/com/qulice/maven/DefaultMavenEnvironment.java</file>
+<prefix> * </prefix>
+<body>Refactor excludes method. Refactor excludes method to return Collection of excludes. Move joining excludes directly to CodeNarcValidator</body>
+<estimate>0</estimate>
+<lines>60-62</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>152</ticket>
+<file>src/main/java/com/qulice/maven/DuplicateFinderValidator.java</file>
+<prefix> * </prefix>
+<body>Maven-duplicate-finder-plugin should support exclusions. Let's add exclusions of following formats (examples): - duplicate:about.html - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5 - duplicate:org.codehaus.groovy.ast.expr.RegexExpression See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953 for details</body>
+<estimate>0</estimate>
+<lines>41-47</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>151</ticket>
+<file>src/main/java/com/qulice/maven/JslintValidator.java</file>
+<prefix> * </prefix>
+<body>Integration tests for jslint-maven-plugin. Let's implement integration tests for jslint-maven-plugin to be sure it is called.</body>
+<estimate>0</estimate>
+<lines>40-42</lines>
+<owner>someone</owner>
+</puzzle>
 </puzzles>

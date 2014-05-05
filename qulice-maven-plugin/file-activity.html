@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
- * Copyright (c) 2012-2013, JCabi.com
+ * Copyright (c) 2012-2014, jcabi.com
  * All rights reserved.
  -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,19 +13,12 @@
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
                                                                                                                 
 <link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
-                                            <link rel="stylesheet" href="./css/highlight.css" />
-        <script src="./js/jquery-1.8.3.min.js"></script>
-        <script src="./js/highlight-7.3.min.js"></script>
+                                            <script src="./js/jquery-1.8.3.min.js"></script>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
         <link href="./css/jcabi.css" rel="stylesheet"/>
         <script>
             $(document).ready(
                 function() {
-                    $('div.source pre').each(
-                        function (idx, element) {
-                            hljs.highlightBlock(element);
-                        }
-                    );
                     $(".menu-button").click(
                         function() {
                             if ($("#here-goes-menu").attr("class") == "menu-off") {
@@ -42,8 +35,8 @@
         </script>
     </head>
     <body>
-                <div class="page">
-            <div class="menu-section">
+                <section class="page">
+            <nav class="menu-section">
                 <ul id="menu">
                                                                                     <li>
                             Parent Project
@@ -136,7 +129,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li>
-                                                                                    <a href="apidocs-0.7/index.html" title="JavaDocs">JavaDocs</a>
+                                                                                    <a href="apidocs-0.8/index.html" title="JavaDocs">JavaDocs</a>
                                                                                                                                                                         <ul>
                                                                     </ul>
                                                     </li>
@@ -160,7 +153,7 @@
                                                                                         </ul>
                                                     </li>
                                     </ul>
-            </div>
+            </nav>
             <div id="right-side">
                 <div id="content">
                     <i class="menu-button fa fa-align-justify"></i>
@@ -175,111 +168,286 @@
                     </div>
                     <div class="date">
                         <div class="date-numbers">
-                            <strong>0.7</strong>
+                            <strong>0.8</strong>
                             
-                            02-Apr-2014
+                            05-May-2014
                         </div>
                                                                     </div>
                     <div id="here-goes-menu" class="menu-off"></div>
                     <article>
                         <div class="section">
-                            <div class="section">
 <h2>File Activity Report<a name="File_Activity_Report"></a></h2>
 <div class="section">
-<h3>Changes between 2014-03-03 and 2014-04-03<a name="Changes_between_2014-03-03_and_2014-04-03"></a></h3>
-<p>Total commits: 51<br />Total number of files changed: 24</p>
+<h3>Changes between 2014-04-05 and 2014-05-06<a name="Changes_between_2014-04-05_and_2014-05-06"></a></h3>
+<p>Total commits: 18<br />Total number of files changed: 84</p>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Filename</th>
 <th>Number of Times Changed</th></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/pom.xml">qulice-maven-plugin/<b>pom.xml</b></a> </td>
-<td>20</td></tr>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultMavenEnvironment.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>DefaultMavenEnvironment.java</b></a> </td>
+<td>6</td></tr>
 <tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/checkstyle-violations/verify.groovy">qulice-maven-plugin/src/it/checkstyle-violations/<b>verify.groovy</b></a> </td>
-<td>13</td></tr>
-<tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/checkstyle-violations/src/main/resources/newlines.txt">qulice-maven-plugin/src/it/checkstyle-violations/src/main/resources/<b>newlines.txt</b></a> </td>
-<td>13</td></tr>
-<tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/NewLines.java">qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/<b>NewLines.java</b></a> </td>
-<td>12</td></tr>
-<tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java">qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/<b>Violations.java</b></a> </td>
-<td>7</td></tr>
-<tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultMavenEnvironment.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>DefaultMavenEnvironment.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-violations/verify.groovy">qulice-maven-plugin/src/it/checkstyle-violations/<b>verify.groovy</b></a> </td>
 <td>5</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>DefaultValidatorsProvider.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/pom.xml">qulice-maven-plugin/<b>pom.xml</b></a> </td>
+<td>4</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>DefaultValidatorsProvider.java</b></a> </td>
+<td>4</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>DuplicateFinderValidator.java</b></a> </td>
+<td>4</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/codenarc-violations/pom.xml">qulice-maven-plugin/src/it/codenarc-violations/<b>pom.xml</b></a> </td>
+<td>4</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/codenarc-violations/module/pom.xml">qulice-maven-plugin/src/it/codenarc-violations/module/<b>pom.xml</b></a> </td>
 <td>3</td></tr>
 <tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/MavenEnvironment.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>MavenEnvironment.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/duplicate-finder-violations/pom.xml">qulice-maven-plugin/src/it/duplicate-finder-violations/<b>pom.xml</b></a> </td>
 <td>3</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java">qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/<b>Brackets.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/codenarc-violations/verify.groovy">qulice-maven-plugin/src/it/codenarc-violations/<b>verify.groovy</b></a> </td>
 <td>3</td></tr>
 <tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/site/apt/example-exclude.apt.vm">qulice-maven-plugin/src/site/apt/<b>example-exclude.apt.vm</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java">qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/<b>Violations.java</b></a> </td>
 <td>3</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java">qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/<b>Pdd.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-violations/src/main/resources/some.xml">qulice-maven-plugin/src/it/checkstyle-violations/src/main/resources/<b>some.xml</b></a> </td>
+<td>3</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Constants.java">qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/<b>Constants.java</b></a> </td>
+<td>2</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/pom-xpath-validator-violations/pom.xml">qulice-maven-plugin/src/it/pom-xpath-validator-violations/<b>pom.xml</b></a> </td>
 <td>2</td></tr>
 <tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/AbstractQuliceMojo.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>AbstractQuliceMojo.java</b></a> </td>
-<td>1</td></tr>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/AbstractQuliceMojo.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>AbstractQuliceMojo.java</b></a> </td>
+<td>2</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/PomXpathValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>PomXpathValidator.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/MavenEnvironment.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>MavenEnvironment.java</b></a> </td>
+<td>2</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/PomXpathValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>PomXpathValidator.java</b></a> </td>
+<td>2</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/DefaultMavenEnvironmentTest.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>DefaultMavenEnvironmentTest.java</b></a> </td>
+<td>2</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/CheckMojo.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>CheckMojo.java</b></a> </td>
+<td>2</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/DependenciesValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>DependenciesValidator.java</b></a> </td>
+<td>2</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/InstrumentMojo.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>InstrumentMojo.java</b></a> </td>
+<td>2</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/MojoExecutor.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>MojoExecutor.java</b></a> </td>
+<td>2</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/SvnPropertiesValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>SvnPropertiesValidator.java</b></a> </td>
+<td>2</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/pom-xpath-validator-violations/invoker.properties">qulice-maven-plugin/src/it/pom-xpath-validator-violations/<b>invoker.properties</b></a> </td>
 <td>1</td></tr>
 <tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/MavenEnvironmentMocker.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>MavenEnvironmentMocker.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/pom-xpath-validator-violations/verify.groovy">qulice-maven-plugin/src/it/pom-xpath-validator-violations/<b>verify.groovy</b></a> </td>
 <td>1</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/PomXpathValidatorTest.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>PomXpathValidatorTest.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/LICENSE.txt">qulice-maven-plugin/<b>LICENSE.txt</b></a> </td>
 <td>1</td></tr>
 <tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/test/resources/com/qulice/maven/PomXpathValidator/pom.xml">qulice-maven-plugin/src/test/resources/com/qulice/maven/PomXpathValidator/<b>pom.xml</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/LICENSE.txt">qulice-maven-plugin/src/it/checkstyle-exceptions/<b>LICENSE.txt</b></a> </td>
 <td>1</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/users/src/main/java/com/qulice/plugin/users/ExceptionUser.java">qulice-maven-plugin/src/it/checkstyle-exceptions/users/src/main/java/com/qulice/plugin/users/<b>ExceptionUser.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/exceptions/LICENSE.txt">qulice-maven-plugin/src/it/checkstyle-exceptions/exceptions/<b>LICENSE.txt</b></a> </td>
 <td>1</td></tr>
 <tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>DuplicateFinderValidator.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/exceptions/pom.xml">qulice-maven-plugin/src/it/checkstyle-exceptions/exceptions/<b>pom.xml</b></a> </td>
 <td>1</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/JslintValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>JslintValidator.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/exceptions/src/main/java/com/qulice/plugin/exceptions/FooException.java">qulice-maven-plugin/src/it/checkstyle-exceptions/exceptions/src/main/java/com/qulice/plugin/exceptions/<b>FooException.java</b></a> </td>
 <td>1</td></tr>
 <tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/checkstyle-violations/LICENSE.txt">qulice-maven-plugin/src/it/checkstyle-violations/<b>LICENSE.txt</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/exceptions/src/main/java/com/qulice/plugin/exceptions/package-info.java">qulice-maven-plugin/src/it/checkstyle-exceptions/exceptions/src/main/java/com/qulice/plugin/exceptions/<b>package-info.java</b></a> </td>
 <td>1</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/dependency-violations/src/main/java/com/qulice/foo/Sample.java">qulice-maven-plugin/src/it/dependency-violations/src/main/java/com/qulice/foo/<b>Sample.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/pom.xml">qulice-maven-plugin/src/it/checkstyle-exceptions/<b>pom.xml</b></a> </td>
 <td>1</td></tr>
 <tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/dependency-violations/src/main/java/com/qulice/foo/package-info.java">qulice-maven-plugin/src/it/dependency-violations/src/main/java/com/qulice/foo/<b>package-info.java</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/users/LICENSE.txt">qulice-maven-plugin/src/it/checkstyle-exceptions/users/<b>LICENSE.txt</b></a> </td>
 <td>1</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/src/.gitignore">qulice-maven-plugin/src/it/checkstyle-exceptions/src/<b>.gitignore</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/users/pom.xml">qulice-maven-plugin/src/it/checkstyle-exceptions/users/<b>pom.xml</b></a> </td>
 <td>1</td></tr>
 <tr class="a">
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-maven-plugin/src/it/multi-module/src/.gitignore">qulice-maven-plugin/src/it/multi-module/src/<b>.gitignore</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/users/src/main/java/com/qulice/plugin/users/ExceptionUser.java">qulice-maven-plugin/src/it/checkstyle-exceptions/users/src/main/java/com/qulice/plugin/users/<b>ExceptionUser.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-exceptions/users/src/main/java/com/qulice/plugin/users/package-info.java">qulice-maven-plugin/src/it/checkstyle-exceptions/users/src/main/java/com/qulice/plugin/users/<b>package-info.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-newlines/LICENSE.txt">qulice-maven-plugin/src/it/checkstyle-newlines/<b>LICENSE.txt</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-newlines/pom.xml">qulice-maven-plugin/src/it/checkstyle-newlines/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-violations/LICENSE.txt">qulice-maven-plugin/src/it/checkstyle-violations/<b>LICENSE.txt</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-violations/pom.xml">qulice-maven-plugin/src/it/checkstyle-violations/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java">qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/<b>Brackets.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/cobertura-violations/LICENSE.txt">qulice-maven-plugin/src/it/cobertura-violations/<b>LICENSE.txt</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/cobertura-violations/pom.xml">qulice-maven-plugin/src/it/cobertura-violations/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/cobertura-violations/src/main/java/com/qulice/foo/Bump.java">qulice-maven-plugin/src/it/cobertura-violations/src/main/java/com/qulice/foo/<b>Bump.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/cobertura-violations/src/main/java/com/qulice/foo/package-info.java">qulice-maven-plugin/src/it/cobertura-violations/src/main/java/com/qulice/foo/<b>package-info.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/dependency-violations/pom.xml">qulice-maven-plugin/src/it/dependency-violations/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/findbugs-violations/pom.xml">qulice-maven-plugin/src/it/findbugs-violations/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/multi-module/mod-alpha/pom.xml">qulice-maven-plugin/src/it/multi-module/mod-alpha/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/multi-module/mod-alpha/src/main/java/com/qulice/plugin/alpha/Main.java">qulice-maven-plugin/src/it/multi-module/mod-alpha/src/main/java/com/qulice/plugin/alpha/<b>Main.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/multi-module/mod-alpha/src/main/java/com/qulice/plugin/alpha/package-info.java">qulice-maven-plugin/src/it/multi-module/mod-alpha/src/main/java/com/qulice/plugin/alpha/<b>package-info.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/multi-module/mod-alpha/src/test/java/com/qulice/plugin/alpha/MainTest.java">qulice-maven-plugin/src/it/multi-module/mod-alpha/src/test/java/com/qulice/plugin/alpha/<b>MainTest.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/multi-module/mod-alpha/src/test/java/com/qulice/plugin/alpha/package-info.java">qulice-maven-plugin/src/it/multi-module/mod-alpha/src/test/java/com/qulice/plugin/alpha/<b>package-info.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/multi-module/mod-tk/pom.xml">qulice-maven-plugin/src/it/multi-module/mod-tk/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/multi-module/mod-tk/src/main/resources/LICENSE.txt">qulice-maven-plugin/src/it/multi-module/mod-tk/src/main/resources/<b>LICENSE.txt</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/multi-module/pom.xml">qulice-maven-plugin/src/it/multi-module/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/pmd-violations/LICENSE.txt">qulice-maven-plugin/src/it/pmd-violations/<b>LICENSE.txt</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/pmd-violations/pom.xml">qulice-maven-plugin/src/it/pmd-violations/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/pmd-violations/src/main/java/com/qulice/foo/Violations.java">qulice-maven-plugin/src/it/pmd-violations/src/main/java/com/qulice/foo/<b>Violations.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/pmd-violations/src/main/java/com/qulice/foo/package-info.java">qulice-maven-plugin/src/it/pmd-violations/src/main/java/com/qulice/foo/<b>package-info.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/settings.xml">qulice-maven-plugin/src/it/<b>settings.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/snapshots/pom.xml">qulice-maven-plugin/src/it/snapshots/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/xml-violations/pom.xml">qulice-maven-plugin/src/it/xml-violations/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/CoberturaValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>CoberturaValidator.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/EnforcerValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>EnforcerValidator.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/JslintValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>JslintValidator.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/MavenValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>MavenValidator.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/SnapshotsValidator.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>SnapshotsValidator.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/ValidatorsProvider.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>ValidatorsProvider.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/main/java/com/qulice/maven/package-info.java">qulice-maven-plugin/src/main/java/com/qulice/maven/<b>package-info.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/site/apt/example-exclude.apt.vm">qulice-maven-plugin/src/site/apt/<b>example-exclude.apt.vm</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/site/apt/index.apt.vm">qulice-maven-plugin/src/site/apt/<b>index.apt.vm</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/site/apt/usage.apt.vm">qulice-maven-plugin/src/site/apt/<b>usage.apt.vm</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/site/site.xml">qulice-maven-plugin/src/site/<b>site.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/CheckMojoTest.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>CheckMojoTest.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/DefaultValidatorsProviderTest.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>DefaultValidatorsProviderTest.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/DependenciesValidatorTest.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>DependenciesValidatorTest.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/MavenEnvironmentMocker.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>MavenEnvironmentMocker.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/MavenProjectMocker.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>MavenProjectMocker.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/PomXpathValidatorTest.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>PomXpathValidatorTest.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/SvnPropertiesValidatorTest.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>SvnPropertiesValidatorTest.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/ValidatorsProviderMocker.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>ValidatorsProviderMocker.java</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/java/com/qulice/maven/package-info.java">qulice-maven-plugin/src/test/java/com/qulice/maven/<b>package-info.java</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/test/resources/com/qulice/maven/PomXpathValidator/pom.xml">qulice-maven-plugin/src/test/resources/com/qulice/maven/PomXpathValidator/<b>pom.xml</b></a> </td>
+<td>1</td></tr>
+<tr class="b">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/duplicate-finder-violations/invoker.properties">qulice-maven-plugin/src/it/duplicate-finder-violations/<b>invoker.properties</b></a> </td>
+<td>1</td></tr>
+<tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-maven-plugin/src/it/duplicate-finder-violations/verify.groovy">qulice-maven-plugin/src/it/duplicate-finder-violations/<b>verify.groovy</b></a> </td>
 <td>1</td></tr></table></div></div>
-                        </div>
                     </article>
-                    <img class="maven-mobile" src="./images/built-by-maven.png"
-                        alt="built by maven" style="float:right" width="80"/>
+                    <img class="maven-mobile" src="./images/built-by-maven.png" alt="built by maven"/>
                 </div>
-                <div class="legal-notes">
-                    <div class="copyright">
-                        Copyright &#169;
-                                                                            2011-2014
-                                                <br/>
-                        Qulice.com, All Rights Reserved.
-                        <br/>
-                        <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
-                    </div>
-                </div>
+                <footer class="legal-notes">
+                    Copyright &#169;
+                                                                2011-2014
+                                        <br/>
+                    Qulice.com, All Rights Reserved.
+                    <br/>
+                    <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
+                </footer>
             </div>
-        </div>
+        </section>
     </body>
 </html>
