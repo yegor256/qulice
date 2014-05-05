@@ -1,6 +1,6 @@
 <img src="http://img.qulice.com/logo-big.png" width="200px" height="55px"/>
 
-[![Build Status](https://travis-ci.org/tpc2/qulice.svg?branch=master)](https://travis-ci.org/tpc2/qulice)
+[![Build Status](https://travis-ci.org/teamed/qulice.svg?branch=master)](https://travis-ci.org/teamed/qulice)
 
 Qulice is a static analysis quality control instrument for Java
 projects. It combines all the best static analysis instruments
@@ -17,7 +17,7 @@ Just add this plugin to your `pom.xml`:
     <plugin>
       <groupId>com.qulice</groupId>
       <artifactId>qulice-maven-plugin</artifactId>
-      <version>0.7</version>
+      <version>0.8</version>
       <configuration>
         <license>file:${basedir}/LICENSE.txt</license>
       </configuration>
