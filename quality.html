@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
- * Copyright (c) 2012-2013, JCabi.com
+ * Copyright (c) 2012-2014, jcabi.com
  * All rights reserved.
  -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -24,19 +24,12 @@
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
                                                                                                                 
 <link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
-                                            <link rel="stylesheet" href="./css/highlight.css" />
-        <script src="./js/jquery-1.8.3.min.js"></script>
-        <script src="./js/highlight-7.3.min.js"></script>
+                                            <script src="./js/jquery-1.8.3.min.js"></script>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
         <link href="./css/jcabi.css" rel="stylesheet"/>
         <script>
             $(document).ready(
                 function() {
-                    $('div.source pre').each(
-                        function (idx, element) {
-                            hljs.highlightBlock(element);
-                        }
-                    );
                     $(".menu-button").click(
                         function() {
                             if ($("#here-goes-menu").attr("class") == "menu-off") {
@@ -53,8 +46,8 @@
         </script>
     </head>
     <body>
-                <div class="page">
-            <div class="menu-section">
+                <section class="page">
+            <nav class="menu-section">
                 <ul id="menu">
                                                                                     <li>
                             Overview
@@ -89,7 +82,7 @@
                                                                                         </ul>
                                                     </li>
                                     </ul>
-            </div>
+            </nav>
             <div id="right-side">
                 <div id="content">
                     <i class="menu-button fa fa-align-justify"></i>
@@ -104,14 +97,14 @@
                     </div>
                     <div class="date">
                         <div class="date-numbers">
-                            <strong>0.7</strong>
+                            <strong>0.8</strong>
                             
-                            02-Apr-2014
+                            05-May-2014
                         </div>
                                                                             <div class="github">
                                 <iframe
                                     class="github-large"
-                                    src="http://ghbtns.com/github-btn.html?user=tpc2&amp;repo=qulice&amp;type=watch&amp;count=true&amp;size=large"
+                                    src="http://ghbtns.com/github-btn.html?user=teamed&amp;repo=qulice&amp;type=watch&amp;count=true&amp;size=large"
                                     allowtransparency="true"
                                     frameborder="0"
                                     scrolling="0"
@@ -120,7 +113,7 @@
                                 </iframe>
                                 <iframe
                                     class="github-small"
-                                    src="http://ghbtns.com/github-btn.html?user=tpc2&amp;repo=qulice&amp;type=watch&amp;count=true&amp;size=small"
+                                    src="http://ghbtns.com/github-btn.html?user=teamed&amp;repo=qulice&amp;type=watch&amp;count=true&amp;size=small"
                                     allowtransparency="true"
                                     frameborder="0"
                                     scrolling="0"
@@ -131,8 +124,7 @@
                                             </div>
                     <div id="here-goes-menu" class="menu-off"></div>
                     <article>
-                        <div class="section">
-                            <!--  --><!-- Copyright (c) 2011-2012, Qulice.com --><!-- All rights reserved. --><!--  --><!-- Redistribution and use in source and binary forms, with or without --><!-- modification, are permitted provided that the following conditions --><!-- are met: 1) Redistributions of source code must retain the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer. 2) Redistributions in binary form must reproduce the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer in the documentation and/or other materials provided --><!-- with the distribution. 3) Neither the name of the Qulice.com nor --><!-- the names of its contributors may be used to endorse or promote --><!-- products derived from this software without specific prior written --><!-- permission. --><!--  --><!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS --><!-- "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT --><!-- NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND --><!-- FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL --><!-- THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, --><!-- INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES --><!-- (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR --><!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) --><!-- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, --><!-- STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) --><!-- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED --><!-- OF THE POSSIBILITY OF SUCH DAMAGE. --><!--  --><!-- @version $Id$ --><!--  --><div class="section">
+                        <!--  --><!-- Copyright (c) 2011-2012, Qulice.com --><!-- All rights reserved. --><!--  --><!-- Redistribution and use in source and binary forms, with or without --><!-- modification, are permitted provided that the following conditions --><!-- are met: 1) Redistributions of source code must retain the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer. 2) Redistributions in binary form must reproduce the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer in the documentation and/or other materials provided --><!-- with the distribution. 3) Neither the name of the Qulice.com nor --><!-- the names of its contributors may be used to endorse or promote --><!-- products derived from this software without specific prior written --><!-- permission. --><!--  --><!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS --><!-- "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT --><!-- NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND --><!-- FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL --><!-- THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, --><!-- INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES --><!-- (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR --><!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) --><!-- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, --><!-- STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) --><!-- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED --><!-- OF THE POSSIBILITY OF SUCH DAMAGE. --><!--  --><!-- @version $Id$ --><!--  --><div class="section">
 <h2>What is Quality and how to achieve it?<a name="What_is_Quality_and_how_to_achieve_it"></a></h2>
 <p>Quality Java code, as we understand it, compiles and complies to <a class="externalLink" href="http://en.wikipedia.org/wiki/Static_program_analysis">static analysis</a> rules. Qulice uses a number of open-source components (in order to avoid reinventing the wheel). We pre-configured these tools for your convenience and extended them with our specific rules.</p>
 <div class="section">
@@ -140,18 +132,18 @@
 <p><a class="externalLink" href="http://checkstyle.sourceforge.net/checks.html">Inherited rules</a>.</p>
 <p>Our custom rules:</p>
 <ul>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/BracketsStructureCheck.html">BracketsStructure</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/CascadeIndentationCheck.html">CascadeIndentation</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/ConstantUsageCheck.html">ConstantUsage</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/EmptyLinesCheck.html">EmptyLines</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/ImportCohesionCheck.html">ImportCohesion</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/JavadocLocationCheck.html">JavadocLocation</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/JavadocTagsCheck.html">JavadocTags</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/MethodBodyCommentsCheck.html">MethodBodyComments</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/MultilineJavadocTagsCheck.html">MultilineJavadocTags</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/NonStaticMethodCheck.html">NonStaticMethod</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/PuzzleFormatCheck.html">PuzzleFormat</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.7/com/qulice/checkstyle/StringLiteralsConcatenationCheck.html">StringLiteralsConcatenation</a></li></ul>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/BracketsStructureCheck.html">BracketsStructure</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/CascadeIndentationCheck.html">CascadeIndentation</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/ConstantUsageCheck.html">ConstantUsage</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/EmptyLinesCheck.html">EmptyLines</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/ImportCohesionCheck.html">ImportCohesion</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/JavadocLocationCheck.html">JavadocLocation</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/JavadocTagsCheck.html">JavadocTags</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/MethodBodyCommentsCheck.html">MethodBodyComments</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/MultilineJavadocTagsCheck.html">MultilineJavadocTags</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/NonStaticMethodCheck.html">NonStaticMethod</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/PuzzleFormatCheck.html">PuzzleFormat</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.8/com/qulice/checkstyle/StringLiteralsConcatenationCheck.html">StringLiteralsConcatenation</a></li></ul>
 <p>If you want to disable some rule (this may happen, but try to avoid such situations at all cost):</p>
 <div class="source">
 <pre>/**
@@ -193,22 +185,18 @@ public void func() {
 <h3>CodeNarc<a name="CodeNarc"></a></h3>
 <p><a class="externalLink" href="http://codenarc.sourceforge.net/codenarc-rule-index.html">Inherited rules</a>.</p>
 <p>You can't disable CodeNarc rules.</p></div></div>
-                        </div>
                     </article>
-                    <img class="maven-mobile" src="./images/built-by-maven.png"
-                        alt="built by maven" style="float:right" width="80"/>
+                    <img class="maven-mobile" src="./images/built-by-maven.png" alt="built by maven"/>
                 </div>
-                <div class="legal-notes">
-                    <div class="copyright">
-                        Copyright &#169;
-                                                                            2011-2014
-                                                <br/>
-                        Qulice.com, All Rights Reserved.
-                        <br/>
-                        <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
-                    </div>
-                </div>
+                <footer class="legal-notes">
+                    Copyright &#169;
+                                                                2011-2014
+                                        <br/>
+                    Qulice.com, All Rights Reserved.
+                    <br/>
+                    <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
+                </footer>
             </div>
-        </div>
+        </section>
     </body>
 </html>

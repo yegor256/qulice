@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
- * Copyright (c) 2012-2013, JCabi.com
+ * Copyright (c) 2012-2014, jcabi.com
  * All rights reserved.
  -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,19 +23,12 @@
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
                                                                                                                 
 <link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
-                                            <link rel="stylesheet" href="./css/highlight.css" />
-        <script src="./js/jquery-1.8.3.min.js"></script>
-        <script src="./js/highlight-7.3.min.js"></script>
+                                            <script src="./js/jquery-1.8.3.min.js"></script>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
         <link href="./css/jcabi.css" rel="stylesheet"/>
         <script>
             $(document).ready(
                 function() {
-                    $('div.source pre').each(
-                        function (idx, element) {
-                            hljs.highlightBlock(element);
-                        }
-                    );
                     $(".menu-button").click(
                         function() {
                             if ($("#here-goes-menu").attr("class") == "menu-off") {
@@ -52,8 +45,8 @@
         </script>
     </head>
     <body>
-                <div class="page">
-            <div class="menu-section">
+                <section class="page">
+            <nav class="menu-section">
                 <ul id="menu">
                                                                                     <li>
                             Overview
@@ -90,12 +83,12 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li>
-                                                                                    <a href="xref/index.html" title="Source Xref">Source Xref</a>
+                                                                                    <a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a>
                                                                                                                                                                         <ul>
                                                                     </ul>
                                                     </li>
                                                                                                                         <li>
-                                                                                    <a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a>
+                                                                                    <a href="xref/index.html" title="Source Xref">Source Xref</a>
                                                                                                                                                                         <ul>
                                                                     </ul>
                                                     </li>
@@ -140,7 +133,7 @@
                                                                                         </ul>
                                                     </li>
                                     </ul>
-            </div>
+            </nav>
             <div id="right-side">
                 <div id="content">
                     <i class="menu-button fa fa-align-justify"></i>
@@ -155,14 +148,14 @@
                     </div>
                     <div class="date">
                         <div class="date-numbers">
-                            <strong>0.7</strong>
+                            <strong>0.8</strong>
                             
-                            02-Apr-2014
+                            05-May-2014
                         </div>
                                                                             <div class="github">
                                 <iframe
                                     class="github-large"
-                                    src="http://ghbtns.com/github-btn.html?user=tpc2&amp;repo=qulice&amp;type=watch&amp;count=true&amp;size=large"
+                                    src="http://ghbtns.com/github-btn.html?user=teamed&amp;repo=qulice&amp;type=watch&amp;count=true&amp;size=large"
                                     allowtransparency="true"
                                     frameborder="0"
                                     scrolling="0"
@@ -171,7 +164,7 @@
                                 </iframe>
                                 <iframe
                                     class="github-small"
-                                    src="http://ghbtns.com/github-btn.html?user=tpc2&amp;repo=qulice&amp;type=watch&amp;count=true&amp;size=small"
+                                    src="http://ghbtns.com/github-btn.html?user=teamed&amp;repo=qulice&amp;type=watch&amp;count=true&amp;size=small"
                                     allowtransparency="true"
                                     frameborder="0"
                                     scrolling="0"
@@ -183,25 +176,20 @@
                     <div id="here-goes-menu" class="menu-off"></div>
                     <article>
                         <div class="section">
-                            <div class="section">
 <h2>GitHub Report<a name="GitHub_Report"></a></h2><a name="GitHub_Report"></a>
 <p>An error occured that made it impossible to generate this report. Please check the console for information on what might be the cause of this.</p></div>
-                        </div>
                     </article>
-                    <img class="maven-mobile" src="./images/built-by-maven.png"
-                        alt="built by maven" style="float:right" width="80"/>
+                    <img class="maven-mobile" src="./images/built-by-maven.png" alt="built by maven"/>
                 </div>
-                <div class="legal-notes">
-                    <div class="copyright">
-                        Copyright &#169;
-                                                                            2011-2014
-                                                <br/>
-                        Qulice.com, All Rights Reserved.
-                        <br/>
-                        <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
-                    </div>
-                </div>
+                <footer class="legal-notes">
+                    Copyright &#169;
+                                                                2011-2014
+                                        <br/>
+                    Qulice.com, All Rights Reserved.
+                    <br/>
+                    <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
+                </footer>
             </div>
-        </div>
+        </section>
     </body>
 </html>

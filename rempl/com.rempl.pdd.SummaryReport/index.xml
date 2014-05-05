@@ -1,210 +1,147 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?xml-stylesheet type='text/xsl' href='puzzles.xsl'?><puzzles>
-   <puzzle>
-      <ticket>1</ticket>
-      <file>qulice-checkstyle/src/main/java/com/qulice/checkstyle/ConstantUsageCheck.java</file>
-      <prefix> * </prefix>
-      <body>ConstantUsageCheck doesn't work. This check is still in development and is not used in a released version. Let's try to fix it and enable its validation inside ChecksTest. Also, don't forget to enable it inside checks.xml and make sure all maven-invoker-plugin tests pass</body>
-      <estimate>0</estimate>
-      <lines>42-46</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>1</ticket>
-      <file>qulice-checkstyle/src/main/java/com/qulice/checkstyle/NonStaticMethodCheck.java</file>
-      <prefix> * </prefix>
-      <body>NonStaticMethodCheck doesn't work. This check is still in development and is not used in a released version. Let's try to fix it and enable its validation inside ChecksTest. Also, don't forget to enable it inside checks.xml and make sure all maven-invoker-plugin tests pass</body>
-      <estimate>0</estimate>
-      <lines>46-50</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>143</ticket>
-      <file>qulice-checkstyle/src/main/java/com/qulice/checkstyle/PuzzleDuplicateCheck.java</file>
-      <prefix> * </prefix>
-      <body>Add handling of non-java files (e.g. xml, groovy).</body>
-      <estimate>0</estimate>
-      <lines>46-46</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>1</ticket>
-      <file>qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml</file>
-      <prefix>        </prefix>
-      <body>This check leads to NullPointerException when run on a bit source code base. Just try to turn it on and run through Qulice code base. It throws NPE almost at every file.</body>
-      <estimate>0</estimate>
-      <lines>376-378</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>1</ticket>
-      <file>qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml</file>
-      <prefix>        </prefix>
-      <body>The check complains about all methods in all unit tests, because they are not using "this", but are in reality static methods. Even though this complain is totally valid, we can't do anything about this, since JUnit is designed that way. Let's introduce a parameter in this check, which will allow to excluse classes by pattern</body>
-      <estimate>0</estimate>
-      <lines>382-387</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>55</ticket>
-      <file>qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</file>
-      <prefix>     * </prefix>
-      <body>First line is correct, but second line is impropertly indented</body>
-      <estimate>0</estimate>
-      <lines>14-15</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>555</ticket>
-      <file>qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
-      <prefix> * </prefix>
-      <body>Some text with proper indentation of the second and all consecutive lines.</body>
-      <estimate>0</estimate>
-      <lines>7-7</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>JIRA-7643</ticket>
-      <file>qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
-      <prefix> * </prefix>
-      <body>Longer format of puzzle marker</body>
-      <estimate>90</estimate>
-      <lines>10-10</lines>
-      <owner>author</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>148</ticket>
-      <file>qulice-codenarc/src/main/java/com/qulice/codenarc/CodeNarcValidator.java</file>
-      <prefix> * </prefix>
-      <body>Create integration tests to check exclusion. Lets implement integration tests to check that exclusion patterns propagated to CodeNarc Validator. For syntax example see http://www.qulice.com/qulice-maven-plugin/example-exclude.html</body>
-      <estimate>0</estimate>
-      <lines>46-50</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
-      <prefix>     * </prefix>
-      <body>Make this better in multiple lines but different.</body>
-      <estimate>0</estimate>
-      <lines>43-44</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
-      <prefix>     * </prefix>
-      <body>Make this better in multiple lines.</body>
-      <estimate>0</estimate>
-      <lines>66-67</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
-      <prefix>     * </prefix>
-      <body>This is also valid.</body>
-      <estimate>120</estimate>
-      <lines>7-7</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
-      <prefix>     * </prefix>
-      <body>This is valid.</body>
-      <estimate>0</estimate>
-      <lines>15-15</lines>
-      <owner>uplink</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
-      <prefix>     * </prefix>
-      <body>First second</body>
-      <estimate>0</estimate>
-      <lines>12-13</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>123</ticket>
-      <file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
-      <prefix>     * </prefix>
-      <body>First second</body>
-      <estimate>0</estimate>
-      <lines>23-24</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>152</ticket>
-      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultMavenEnvironment.java</file>
-      <prefix> * </prefix>
-      <body>Refactor excludes method. Refactor excludes method to return Collection of excludes. Move joining excludes directly to CodeNarcValidator</body>
-      <estimate>0</estimate>
-      <lines>56-58</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>152</ticket>
-      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java</file>
-      <prefix> * </prefix>
-      <body>Maven-duplicate-finder-plugin should support exclusions. Let's add exclusions of following formats (examples): - duplicate:about.html - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5 - duplicate:org.codehaus.groovy.ast.expr.RegexExpression See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953 for details</body>
-      <estimate>0</estimate>
-      <lines>40-40</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>152</ticket>
-      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java</file>
-      <prefix> * </prefix>
-      <body>Maven-duplicate-finder-plugin integration tests. Let's add integration tests to check that all types of excludes work properly for maven-duplicate-finder-plugin</body>
-      <estimate>0</estimate>
-      <lines>47-49</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>151</ticket>
-      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/JslintValidator.java</file>
-      <prefix> * </prefix>
-      <body>Integration tests for jslint-maven-plugin. Let's implement integration tests for jslint-maven-plugin to be sure it is called.</body>
-      <estimate>0</estimate>
-      <lines>40-42</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>67</ticket>
-      <file>qulice-maven-plugin/src/main/java/com/qulice/maven/PomXpathValidator.java</file>
-      <prefix> * </prefix>
-      <body>Implement integration tests for PomXpathValidator. Validator should obtain xpath queries from plugin configuration</body>
-      <estimate>60</estimate>
-      <lines>51-52</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>153</ticket>
-      <file>qulice-spi/src/main/java/com/qulice/spi/Environment.java</file>
-      <prefix>     * </prefix>
-      <body>Using File as classpath element is dangerous, as it won't work under Windows without conversion - classpaths always use slashes, while File objects under Windows will always use backslashes. This method should return a collection of elements that are not affected by OS.</body>
-      <estimate>0</estimate>
-      <lines>90-94</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>176</ticket>
-      <file>qulice-xml/src/main/java/com/qulice/xml/XmlValidator.java</file>
-      <prefix>     * </prefix>
-      <body>Perform refactoring: remove this method, use Environment.files() instead.</body>
-      <estimate>0</estimate>
-      <lines>64-65</lines>
-      <owner>someone</owner>
-   </puzzle>
-   <puzzle>
-      <ticket>1</ticket>
-      <file>qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java</file>
-      <prefix>     * </prefix>
-      <body>Let's implement a proper validation of XML document formatting (!). Not just XML validity, but formatting of the document, including indentation, spaces, quotation marks used, etc.</body>
-      <estimate>0</estimate>
-      <lines>48-51</lines>
-      <owner>someone</owner>
-   </puzzle>
+<puzzle>
+<ticket>1</ticket>
+<file>qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml</file>
+<prefix>        </prefix>
+<body>NPE when parsing interfaces with embedded classes. This check fails with an NPE, when parsing an interface with a final class inside it. Let's try to reproduce and fix. Once fixed, remove this puzzle and enable the check again.</body>
+<estimate>0</estimate>
+<lines>366-369</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>55</ticket>
+<file>qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Invalid.java</file>
+<prefix>     * </prefix>
+<body>First line is correct, but second line is impropertly indented</body>
+<estimate>0</estimate>
+<lines>14-15</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>555</ticket>
+<file>qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
+<prefix> * </prefix>
+<body>Some text with proper indentation of the second and all consecutive lines.</body>
+<estimate>0</estimate>
+<lines>7-7</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>JIRA-7643</ticket>
+<file>qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ChecksTest/PuzzleFormatCheck/Valid.java</file>
+<prefix> * </prefix>
+<body>Longer format of puzzle marker</body>
+<estimate>90</estimate>
+<lines>10-10</lines>
+<owner>author</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
+<prefix>     * </prefix>
+<body>Make this better in multiple lines but different.</body>
+<estimate>0</estimate>
+<lines>43-44</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Brackets.java</file>
+<prefix>     * </prefix>
+<body>Make this better in multiple lines.</body>
+<estimate>0</estimate>
+<lines>66-67</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
+<prefix>     * </prefix>
+<body>This is also valid.</body>
+<estimate>120</estimate>
+<lines>7-7</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Pdd.java</file>
+<prefix>     * </prefix>
+<body>This is valid.</body>
+<estimate>0</estimate>
+<lines>15-15</lines>
+<owner>uplink</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
+<prefix>     * </prefix>
+<body>First second</body>
+<estimate>0</estimate>
+<lines>12-13</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
+<prefix>     * </prefix>
+<body>First second</body>
+<estimate>0</estimate>
+<lines>23-24</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/Violations.java</file>
+<prefix>     * </prefix>
+<body>Make this a better text.</body>
+<estimate>0</estimate>
+<lines>35-36</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>123</ticket>
+<file>qulice-maven-plugin/src/it/checkstyle-violations/src/main/resources/some.xml</file>
+<prefix>        </prefix>
+<body>Make this a better text.</body>
+<estimate>0</estimate>
+<lines>3-4</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>152</ticket>
+<file>qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultMavenEnvironment.java</file>
+<prefix> * </prefix>
+<body>Refactor excludes method. Refactor excludes method to return Collection of excludes. Move joining excludes directly to CodeNarcValidator</body>
+<estimate>0</estimate>
+<lines>60-62</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>152</ticket>
+<file>qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java</file>
+<prefix> * </prefix>
+<body>Maven-duplicate-finder-plugin should support exclusions. Let's add exclusions of following formats (examples): - duplicate:about.html - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5 - duplicate:org.codehaus.groovy.ast.expr.RegexExpression See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953 for details</body>
+<estimate>0</estimate>
+<lines>41-47</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>151</ticket>
+<file>qulice-maven-plugin/src/main/java/com/qulice/maven/JslintValidator.java</file>
+<prefix> * </prefix>
+<body>Integration tests for jslint-maven-plugin. Let's implement integration tests for jslint-maven-plugin to be sure it is called.</body>
+<estimate>0</estimate>
+<lines>40-42</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>1</ticket>
+<file>qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java</file>
+<prefix> * </prefix>
+<body>Let's implement a proper validation of XML document formatting (!). Not just XML validity, but formatting of the document, including indentation, spaces, quotation marks used, etc.</body>
+<estimate>0</estimate>
+<lines>41-44</lines>
+<owner>someone</owner>
+</puzzle>
 </puzzles>
