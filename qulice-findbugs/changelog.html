@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--
- * Copyright (c) 2012-2013, JCabi.com
+ * Copyright (c) 2012-2014, jcabi.com
  * All rights reserved.
  -->
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -13,19 +13,12 @@
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
                                                                                                                 
 <link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
-                                            <link rel="stylesheet" href="./css/highlight.css" />
-        <script src="./js/jquery-1.8.3.min.js"></script>
-        <script src="./js/highlight-7.3.min.js"></script>
+                                            <script src="./js/jquery-1.8.3.min.js"></script>
         <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
         <link href="./css/jcabi.css" rel="stylesheet"/>
         <script>
             $(document).ready(
                 function() {
-                    $('div.source pre').each(
-                        function (idx, element) {
-                            hljs.highlightBlock(element);
-                        }
-                    );
                     $(".menu-button").click(
                         function() {
                             if ($("#here-goes-menu").attr("class") == "menu-off") {
@@ -42,8 +35,8 @@
         </script>
     </head>
     <body>
-                <div class="page">
-            <div class="menu-section">
+                <section class="page">
+            <nav class="menu-section">
                 <ul id="menu">
                                                                                     <li>
                             Parent Project
@@ -111,12 +104,12 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li>
-                                                                                    <a href="apidocs-0.7/index.html" title="JavaDocs">JavaDocs</a>
+                                                                                    <a href="apidocs-0.8/index.html" title="JavaDocs">JavaDocs</a>
                                                                                                                                                                         <ul>
                                                                     </ul>
                                                     </li>
                                                                                                                         <li>
-                                                                                    <a href="testapidocs-0.7/index.html" title="Test JavaDocs">Test JavaDocs</a>
+                                                                                    <a href="testapidocs-0.8/index.html" title="Test JavaDocs">Test JavaDocs</a>
                                                                                                                                                                         <ul>
                                                                     </ul>
                                                     </li>
@@ -135,7 +128,7 @@
                                                                                         </ul>
                                                     </li>
                                     </ul>
-            </div>
+            </nav>
             <div id="right-side">
                 <div id="content">
                     <i class="menu-button fa fa-align-justify"></i>
@@ -150,97 +143,48 @@
                     </div>
                     <div class="date">
                         <div class="date-numbers">
-                            <strong>0.7</strong>
+                            <strong>0.8</strong>
                             
-                            02-Apr-2014
+                            05-May-2014
                         </div>
                                                                     </div>
                     <div id="here-goes-menu" class="menu-off"></div>
                     <article>
                         <div class="section">
-                            <div class="section">
 <h2>Change Log Report<a name="Change_Log_Report"></a></h2>
 <p>Total number of changed sets: 1</p>
 <div class="section">
-<h3>Changes between 2014-03-03 and 2014-04-03<a name="Changes_between_2014-03-03_and_2014-04-03"></a></h3>
-<p>Total commits: 14<br />Total number of files changed: 2</p>
+<h3>Changes between 2014-04-05 and 2014-05-06<a name="Changes_between_2014-04-05_and_2014-05-06"></a></h3>
+<p>Total commits: 3<br />Total number of files changed: 12</p>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Timestamp</th>
 <th>Author</th>
 <th>Details</th></tr>
 <tr class="b">
-<td>2014-04-02 11:35:01</td>
+<td>2014-05-05 17:52:15</td>
 <td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml?rev=bcce5a1dc8a3e33e2fb5cb7bf610d207d5ef9418&amp;content-type=text/vnd.viewcvs-markup">v bcce5a1dc8a3e33e2fb5cb7bf610d207d5ef9418</a><br /><br />0.7</td></tr>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/pom.xml?rev=5881ccd91ce66626dc66891855d1c23caf6029f3&amp;content-type=text/vnd.viewcvs-markup">v 5881ccd91ce66626dc66891855d1c23caf6029f3</a><br /><br />0.8</td></tr>
 <tr class="a">
-<td>2014-03-28 23:28:24</td>
-<td>longtimeago &lt;ppol@ua.fm&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java">qulice-findbugs/src/main/java/com/qulice/findbugs/<b>FindBugsValidator.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java?rev=c234d32565f77b1db1b3fded74fe194e08f07a19&amp;content-type=text/vnd.viewcvs-markup">v c234d32565f77b1db1b3fded74fe194e08f07a19</a><br /><br />Checkstyle fix</td></tr>
+<td>2014-05-05 17:51:18</td>
+<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/LICENSE.txt">qulice-findbugs/<b>LICENSE.txt</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/LICENSE.txt?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/pom.xml?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java">qulice-findbugs/src/main/java/com/qulice/findbugs/<b>FindBugsValidator.java</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/Wrap.java">qulice-findbugs/src/main/java/com/qulice/findbugs/<b>Wrap.java</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/Wrap.java?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/package-info.java">qulice-findbugs/src/main/java/com/qulice/findbugs/<b>package-info.java</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/package-info.java?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/mock/java/com/qulice/findbugs/BytecodeMocker.java">qulice-findbugs/src/mock/java/com/qulice/findbugs/<b>BytecodeMocker.java</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/mock/java/com/qulice/findbugs/BytecodeMocker.java?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/mock/java/com/qulice/findbugs/package-info.java">qulice-findbugs/src/mock/java/com/qulice/findbugs/<b>package-info.java</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/mock/java/com/qulice/findbugs/package-info.java?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/site/apt/index.apt.vm">qulice-findbugs/src/site/apt/<b>index.apt.vm</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/site/apt/index.apt.vm?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/site/site.xml">qulice-findbugs/src/site/<b>site.xml</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/site/site.xml?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/test/java/com/qulice/findbugs/FindBugsValidatorTest.java">qulice-findbugs/src/test/java/com/qulice/findbugs/<b>FindBugsValidatorTest.java</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/test/java/com/qulice/findbugs/FindBugsValidatorTest.java?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/test/java/com/qulice/findbugs/package-info.java">qulice-findbugs/src/test/java/com/qulice/findbugs/<b>package-info.java</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/test/java/com/qulice/findbugs/package-info.java?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/test/resources/log4j.properties">qulice-findbugs/src/test/resources/<b>log4j.properties</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/test/resources/log4j.properties?rev=9b642652768a39f68d2434ca23340be4f17c0798&amp;content-type=text/vnd.viewcvs-markup">v 9b642652768a39f68d2434ca23340be4f17c0798</a><br /><br />year up</td></tr>
 <tr class="b">
-<td>2014-03-27 22:57:47</td>
-<td>longtimeago &lt;ppol@ua.fm&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java">qulice-findbugs/src/main/java/com/qulice/findbugs/<b>FindBugsValidator.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java?rev=caf63e27a1cd93009412c082c90dc626167f9028&amp;content-type=text/vnd.viewcvs-markup">v caf63e27a1cd93009412c082c90dc626167f9028</a><br /><br />Issue #150 VerboseProcess in FindbugsValidator</td></tr>
-<tr class="a">
-<td>2014-03-27 22:39:17</td>
-<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml?rev=f724a11f24833b35bdbf365cd8fd57c040eb4eb1&amp;content-type=text/vnd.viewcvs-markup">v f724a11f24833b35bdbf365cd8fd57c040eb4eb1</a><br /><br />0.6</td></tr>
-<tr class="b">
-<td>2014-03-11 11:01:48</td>
-<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml?rev=a4973f846ddd789f78e7bfd34098fadd878b36c4&amp;content-type=text/vnd.viewcvs-markup">v a4973f846ddd789f78e7bfd34098fadd878b36c4</a><br /><br />snapshot</td></tr>
-<tr class="a">
-<td>2014-03-11 11:01:48</td>
-<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml?rev=483d513ac4ce75eed28dc22bb53f569a387f237a&amp;content-type=text/vnd.viewcvs-markup">v 483d513ac4ce75eed28dc22bb53f569a387f237a</a><br /><br />snapshot</td></tr>
-<tr class="b">
-<td>2014-03-11 10:56:06</td>
-<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml?rev=cd87d92f4f004d5843b660e92c699cd774a1a5c8&amp;content-type=text/vnd.viewcvs-markup">v cd87d92f4f004d5843b660e92c699cd774a1a5c8</a><br /><br />#153 PuzzleDuplicateCheck disabled</td></tr>
-<tr class="a">
-<td>2014-03-11 10:56:06</td>
-<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml?rev=aba30b6d42ff53e628d1e413e02f9abb71b30392&amp;content-type=text/vnd.viewcvs-markup">v aba30b6d42ff53e628d1e413e02f9abb71b30392</a><br /><br />#153 PuzzleDuplicateCheck disabled</td></tr>
-<tr class="b">
-<td>2014-03-11 10:07:13</td>
-<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml?rev=2d055ed8aa4131bc7b0e03b9cd0d04d79cc60ddc&amp;content-type=text/vnd.viewcvs-markup">v 2d055ed8aa4131bc7b0e03b9cd0d04d79cc60ddc</a><br /><br />snapshot</td></tr>
-<tr class="a">
-<td>2014-03-11 10:07:13</td>
-<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml?rev=3687e5ff3555e9624018ec09bd46a9f5cb657a02&amp;content-type=text/vnd.viewcvs-markup">v 3687e5ff3555e9624018ec09bd46a9f5cb657a02</a><br /><br />snapshot</td></tr>
-<tr class="b">
-<td>2014-03-11 09:22:12</td>
-<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml?rev=ed11466da5342dd7e01b1f4b11f2f31f8d2a0208&amp;content-type=text/vnd.viewcvs-markup">v ed11466da5342dd7e01b1f4b11f2f31f8d2a0208</a><br /><br />0.5, and versions up</td></tr>
-<tr class="a">
-<td>2014-03-11 09:22:12</td>
-<td>Yegor Bugayenko &lt;yegor@tpc2.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml">qulice-findbugs/<b>pom.xml</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/pom.xml?rev=a617e872e690da3d93385e0788a8eb25d765d01d&amp;content-type=text/vnd.viewcvs-markup">v a617e872e690da3d93385e0788a8eb25d765d01d</a><br /><br />0.5, and versions up</td></tr>
-<tr class="b">
-<td>2014-03-10 22:57:22</td>
-<td>krzyk &lt;Krzysztof.Krason@sabre.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java">qulice-findbugs/src/main/java/com/qulice/findbugs/<b>FindBugsValidator.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java?rev=c01e69d23cdf33e7008d0c6af3a3b2660a1b7c09&amp;content-type=text/vnd.viewcvs-markup">v c01e69d23cdf33e7008d0c6af3a3b2660a1b7c09</a><br /><br />#153 Fixed classpath and newline problems under windows</td></tr>
-<tr class="a">
-<td>2014-03-10 22:57:22</td>
-<td>krzyk &lt;Krzysztof.Krason@sabre.com&gt;</td>
-<td><a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java">qulice-findbugs/src/main/java/com/qulice/findbugs/<b>FindBugsValidator.java</b></a> <a class="externalLink" href="https://github.com/tpc2/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java?rev=1d284f5052e54f5be4bb290ac84f0b80eed6f1db&amp;content-type=text/vnd.viewcvs-markup">v 1d284f5052e54f5be4bb290ac84f0b80eed6f1db</a><br /><br />#153 Fixed classpath and newline problems under windows</td></tr></table></div></div>
-                        </div>
+<td>2014-04-06 17:30:29</td>
+<td>Carlos Miranda &lt;carlosmiranda@users.noreply.github.com&gt;</td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/Wrap.java">qulice-findbugs/src/main/java/com/qulice/findbugs/<b>Wrap.java</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/main/java/com/qulice/findbugs/Wrap.java?rev=baa203cc57a7d0dd2c1190c05e6661c3c2653537&amp;content-type=text/vnd.viewcvs-markup">v baa203cc57a7d0dd2c1190c05e6661c3c2653537</a><br /><a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/mock/java/com/qulice/findbugs/BytecodeMocker.java">qulice-findbugs/src/mock/java/com/qulice/findbugs/<b>BytecodeMocker.java</b></a> <a class="externalLink" href="https://github.com/teamed/qulice/qulice-findbugs/src/mock/java/com/qulice/findbugs/BytecodeMocker.java?rev=baa203cc57a7d0dd2c1190c05e6661c3c2653537&amp;content-type=text/vnd.viewcvs-markup">v baa203cc57a7d0dd2c1190c05e6661c3c2653537</a><br /><br />Issue #196 Updated to jcabi-parent 0.18.1</td></tr></table></div></div>
                     </article>
-                    <img class="maven-mobile" src="./images/built-by-maven.png"
-                        alt="built by maven" style="float:right" width="80"/>
+                    <img class="maven-mobile" src="./images/built-by-maven.png" alt="built by maven"/>
                 </div>
-                <div class="legal-notes">
-                    <div class="copyright">
-                        Copyright &#169;
-                                                                            2011-2014
-                                                <br/>
-                        Qulice.com, All Rights Reserved.
-                        <br/>
-                        <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
-                    </div>
-                </div>
+                <footer class="legal-notes">
+                    Copyright &#169;
+                                                                2011-2014
+                                        <br/>
+                    Qulice.com, All Rights Reserved.
+                    <br/>
+                    <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
+                </footer>
             </div>
-        </div>
+        </section>
     </body>
 </html>
