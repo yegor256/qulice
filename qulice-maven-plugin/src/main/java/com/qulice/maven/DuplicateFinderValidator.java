@@ -30,6 +30,7 @@
 package com.qulice.maven;
 
 import com.qulice.spi.ValidationException;
+import java.util.Collections;
 import java.util.Properties;
 
 /**
@@ -58,6 +59,8 @@ public final class DuplicateFinderValidator implements MavenValidator {
         if (!env.exclude("duplicatefinder", "")) {
             final Properties props = new Properties();
             props.put("failBuildInCaseOfConflict", "true");
+            props.put("checkTestClasspath", "false");
+            props.put("ignoredResources", Collections.singleton("META-INF/.*"));
             env.executor().execute(
                 "com.ning.maven.plugins:maven-duplicate-finder-plugin:1.0.7",
                 "check",

@@ -47,8 +47,8 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         final Set<MavenValidator> validators =
             new LinkedHashSet<MavenValidator>();
         validators.add(new PomXpathValidator());
-        validators.add(new DuplicateFinderValidator());
         validators.add(new EnforcerValidator());
+        validators.add(new DuplicateFinderValidator());
         validators.add(new CoberturaValidator());
         validators.add(new SvnPropertiesValidator());
         validators.add(new DependenciesValidator());
