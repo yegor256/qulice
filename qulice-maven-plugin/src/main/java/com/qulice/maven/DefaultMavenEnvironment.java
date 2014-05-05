@@ -36,10 +36,10 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -102,8 +102,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public String param(final String name, final String value) {
-        final String val = this.iproperties.getProperty(name);
-        String ret = val;
+        String ret = this.iproperties.getProperty(name);
         if (ret == null) {
             ret = value;
         }
@@ -128,7 +127,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<String> classpath() {
-        final Collection<String> paths = new ArrayList<String>();
+        final Collection<String> paths = new LinkedList<String>();
         try {
             for (final String name
                 : this.iproject.getRuntimeClasspathElements()) {
@@ -149,11 +148,11 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public ClassLoader classloader() {
-        final List<URL> urls = new ArrayList<URL>();
+        final List<URL> urls = new LinkedList<URL>();
         for (final String path : this.classpath()) {
             try {
                 urls.add(URI.create(String.format("file://%s", path)).toURL());
-            } catch (final java.net.MalformedURLException ex) {
+            } catch (final MalformedURLException ex) {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
@@ -202,7 +201,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public Collection<File> files(final String pattern) {
         final Collection<File> files = new LinkedList<File>();
         final IOFileFilter filter = new WildcardFileFilter(pattern);
-        final String[] dirs = new String[] {
+        final String[] dirs = {
             "src",
         };
         for (final String dir : dirs) {
@@ -237,30 +236,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     public String excludes(final String checker) {
         return Joiner.on(',').skipNulls().join(this.excludeList(checker));
-    }
-
-    /**
-     * Creates exclude list for particular checker.
-     * @param checker Validator name
-     * @return Iterable with excludes
-     */
-    private Iterable<String> excludeList(final String checker) {
-        return Collections2.transform(
-            this.exc,
-            new Function<String, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable final String input) {
-                    if (input != null) {
-                        final String[] exclude = input.split(":");
-                        if (checker.equals(exclude[0]) && exclude.length > 1) {
-                            return exclude[1];
-                        }
-                    }
-                    return null;
-                }
-            }
-        );
     }
 
     /**
@@ -313,4 +288,29 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         this.asser.clear();
         this.asser.addAll(ass);
     }
+
+    /**
+     * Creates exclude list for particular checker.
+     * @param checker Validator name
+     * @return Iterable with excludes
+     */
+    private Iterable<String> excludeList(final String checker) {
+        return Collections2.transform(
+            this.exc,
+            new Function<String, String>() {
+                @Nullable
+                @Override
+                public String apply(@Nullable final String input) {
+                    if (input != null) {
+                        final String[] exclude = input.split(":");
+                        if (checker.equals(exclude[0]) && exclude.length > 1) {
+                            return exclude[1];
+                        }
+                    }
+                    return null;
+                }
+            }
+        );
+    }
+
 }

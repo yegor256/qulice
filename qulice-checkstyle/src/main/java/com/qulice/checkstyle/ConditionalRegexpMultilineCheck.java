@@ -47,7 +47,7 @@ public final class ConditionalRegexpMultilineCheck extends
     private transient Pattern condition = Pattern.compile(".");
 
     @Override
-    protected void processFiltered(final File file, final List<String> lines) {
+    public void processFiltered(final File file, final List<String> lines) {
         boolean found = false;
         for (final String line: lines) {
             if (this.condition.matcher(line).find()) {

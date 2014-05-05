@@ -32,7 +32,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -92,7 +92,7 @@ public final class StringLiteralsConcatenationCheck extends Check {
      */
     private List<DetailAST> findChildASTsOfType(final DetailAST tree,
         final int... types) {
-        final List<DetailAST> children = new ArrayList<DetailAST>();
+        final List<DetailAST> children = new LinkedList<DetailAST>();
         DetailAST child = tree.getFirstChild();
         while (child != null) {
             if (this.isOfType(child, types)) {

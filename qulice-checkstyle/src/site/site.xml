@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <!--
- *
  * Copyright (c) 2011-2014, Qulice.com
  * All rights reserved.
  *
@@ -28,10 +27,11 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * @version $Id$
  -->
-<project xmlns="http://maven.apache.org/DECORATION/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0     http://maven.apache.org/xsd/decoration-1.0.0.xsd" name="qulice-checkstyle">
+<project xmlns="http://maven.apache.org/DECORATION/1.3.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd"
+    name="qulice-checkstyle">
     <body>
         <menu ref="parent"/>
         <menu name="Overview">

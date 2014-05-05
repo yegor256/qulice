@@ -29,6 +29,7 @@
  */
 package com.qulice.checkstyle;
 
+import com.jcabi.aspects.Tv;
 import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -40,6 +41,8 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -69,7 +72,7 @@ public final class CheckstyleValidator implements Validator {
             Logger.info(this, "No files to check with Checkstyle");
             return;
         }
-        Checker checker;
+        final Checker checker;
         try {
             checker = new Checker();
         } catch (final CheckstyleException ex) {
@@ -118,7 +121,7 @@ public final class CheckstyleValidator implements Validator {
         final InputSource src = new InputSource(
             this.getClass().getResourceAsStream("checks.xml")
         );
-        Configuration configuration;
+        final Configuration configuration;
         try {
             configuration = ConfigurationLoader.loadConfiguration(
                 src,
@@ -140,21 +143,21 @@ public final class CheckstyleValidator implements Validator {
     private String header(final Environment env) {
         final String name = env.param("license", "LICENSE.txt");
         final URL url = this.toURL(env, name);
-        String content;
+        final String content;
         try {
             content = IOUtils.toString(url.openStream())
                 .trim().replaceAll("[\\r\\n]+$", "");
-        } catch (final java.io.IOException ex) {
+        } catch (final IOException ex) {
             throw new IllegalStateException("Failed to read license", ex);
         }
-        final StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder(Tv.HUNDRED);
         final String eol = System.getProperty("line.separator");
         builder.append("/**").append(eol);
         for (final String line
             : StringUtils.splitPreserveAllTokens(content, eol)) {
             builder.append(" *");
             if (!line.trim().isEmpty()) {
-                builder.append(" ").append(line.trim());
+                builder.append(' ').append(line.trim());
             }
             builder.append(eol);
         }
@@ -177,11 +180,11 @@ public final class CheckstyleValidator implements Validator {
      * @see #header(Environment)
      */
     private URL toURL(final Environment env, final String name) {
-        URL url;
+        final URL url;
         if (name.startsWith("file:")) {
             try {
                 url = new URL(name);
-            } catch (final java.net.MalformedURLException ex) {
+            } catch (final MalformedURLException ex) {
                 throw new IllegalStateException("Invalid URL", ex);
             }
         } else {

@@ -29,6 +29,7 @@
  */
 package com.qulice.checkstyle;
 
+import com.jcabi.aspects.Tv;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import java.io.File;
 import java.util.Collection;
@@ -63,7 +64,7 @@ public final class PuzzleDuplicateCheck extends AbstractFileSetCheck {
             final String line = lines.get(pos);
             // @checkstyle PuzzleFormat (1 line)
             if (line.contains(PuzzleDuplicateCheck.TODO_TAG)) {
-                final StringBuilder text = new StringBuilder();
+                final StringBuilder text = new StringBuilder(Tv.HUNDRED);
                 final int col = line.indexOf(PuzzleDuplicateCheck.TODO_TAG);
                 text.append(
                     StringUtils.substringAfter(
@@ -72,9 +73,7 @@ public final class PuzzleDuplicateCheck extends AbstractFileSetCheck {
                         ),
                         StringUtils.SPACE
                     ).trim()
-                );
-                text.append(StringUtils.SPACE)
-                    .append(this.rest(lines, pos, col));
+                ).append(StringUtils.SPACE).append(this.rest(lines, pos, col));
                 if (this.puzzles.contains(text.toString())) {
                     this.log(
                         pos + 1,

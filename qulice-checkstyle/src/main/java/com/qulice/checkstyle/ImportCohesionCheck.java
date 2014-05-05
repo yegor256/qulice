@@ -72,7 +72,7 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
         if (first == -1) {
             return;
         }
-        if (check(first, last, lines)) {
+        if (this.check(first, last, lines)) {
             this.fireErrors(file.getPath());
         }
     }

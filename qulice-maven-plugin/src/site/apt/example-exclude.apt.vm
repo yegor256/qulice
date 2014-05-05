@@ -62,7 +62,7 @@ Exclude
   Every <<<exclude>>> item is a regular expression. The following
   exclusion prefixes are supported now (the list may actually be longer):
   <<<checkstyle:>>>, <<<pmd:>>>, <<<findbugs:>>>, <<<codenarc:>>>,
-  <<<dependencies:>>>, <<<cobertura:>>>, <<<jslint:>>>, <<<duplicate:>>>.
+  <<<dependencies:>>>, <<<cobertura:>>>, <<<jslint:>>>, <<<duplicatefinder:>>>.
 
   Exclude for CodeNarc is a bit different, as CodeNarc consumes ant-style
   expressions. For example:

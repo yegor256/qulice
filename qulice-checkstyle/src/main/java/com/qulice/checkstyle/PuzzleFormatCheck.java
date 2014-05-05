@@ -99,7 +99,7 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
                     for (final int defect : defects) {
                         this.log(
                             defect + 1,
-                            "One space indentation expected in @todo puzzle"
+                            "One space indentation expected in TODO puzzle"
                         );
                         failure = true;
                     }
@@ -119,7 +119,7 @@ public final class PuzzleFormatCheck extends AbstractFileSetCheck {
      */
     private List<Integer> indentDefects(final List<String> lines,
         final int start) {
-        final List<Integer> defects = new ArrayList<Integer>();
+        final List<Integer> defects = new ArrayList<Integer>(lines.size());
         for (int pos = start + 1; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);
             if (PuzzleFormatCheck.OTHER.matcher(line).matches()) {

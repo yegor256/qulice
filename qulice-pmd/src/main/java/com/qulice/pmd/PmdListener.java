@@ -73,7 +73,9 @@ final class PmdListener implements ReportListener {
 
     @Override
     public void ruleViolationAdded(final RuleViolation violation) {
-        final String name = violation.getFilename();
+        final String name = violation.getFilename().substring(
+            this.env.basedir().toString().length()
+        );
         if (!this.env.exclude("pmd", name)) {
             this.violations.add(violation);
             Logger.error(

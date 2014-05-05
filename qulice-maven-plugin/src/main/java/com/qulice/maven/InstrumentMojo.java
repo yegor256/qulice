@@ -45,9 +45,9 @@ import org.apache.maven.plugins.annotations.Mojo;
 public final class InstrumentMojo extends AbstractQuliceMojo {
 
     @Override
-    protected void doExecute() throws MojoFailureException {
+    public void doExecute() throws MojoFailureException {
         final Properties props = new Properties();
-        props.put("quiet", "false");
+        props.setProperty("quiet", "false");
         try {
             this.env().executor().execute(
                 "org.codehaus.mojo:cobertura-maven-plugin:2.5.1",

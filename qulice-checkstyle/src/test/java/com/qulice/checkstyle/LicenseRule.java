@@ -29,6 +29,7 @@
  */
 package com.qulice.checkstyle;
 
+import com.jcabi.aspects.Tv;
 import java.io.File;
 import java.io.IOException;
 import org.apache.commons.io.FileUtils;
@@ -137,7 +138,7 @@ public final class LicenseRule implements TestRule {
      */
     private void makePackageInfo(final File dir) throws IOException {
         final File info = new File(dir, "package-info.java");
-        final StringBuilder body = new StringBuilder();
+        final StringBuilder body = new StringBuilder(Tv.HUNDRED);
         body.append("/**").append(this.eol);
         for (final String line : this.lines) {
             body.append(" *");

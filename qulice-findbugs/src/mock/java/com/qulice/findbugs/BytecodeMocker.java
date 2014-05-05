@@ -75,7 +75,6 @@ public final class BytecodeMocker {
             input.getPath()
         );
         final Process process = builder.start();
-        byte[] bytes;
         try {
             process.waitFor();
         } catch (final InterruptedException ex) {
@@ -86,18 +85,15 @@ public final class BytecodeMocker {
         if (process.exitValue() != 0) {
             throw new IllegalStateException(
                 String.format(
-                    "Failed to compile '%s':%n%s",
-                    this.source,
+                    "Failed to compile '%s':%n%s", this.source,
                     IOUtils.toString(process.getErrorStream())
                 )
             );
         }
-        bytes = this.findIn(outdir);
+        final byte[] bytes = this.findIn(outdir);
         Logger.debug(
-            this,
-            "#mock(): produced %d bytes in bytecode for '%s'",
-            bytes.length,
-            this.source
+            this, "#mock(): produced %d bytes in bytecode for '%s'",
+            bytes.length, this.source
         );
         FileUtils.deleteDirectory(outdir);
         return bytes;

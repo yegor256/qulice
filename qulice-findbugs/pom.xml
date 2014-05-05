@@ -194,16 +194,12 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>com.ning.maven.plugins</groupId>
-                        <artifactId>maven-duplicate-finder-plugin</artifactId>
+                        <groupId>com.qulice</groupId>
+                        <artifactId>qulice-maven-plugin</artifactId>
                         <configuration>
-                            <ignoredDependencies combine.children="append">
-                                <dependency>
-                                    <groupId>xalan</groupId>
-                                    <artifactId>xalan</artifactId>
-                                    <version>2.7.1</version>
-                                </dependency>
-                            </ignoredDependencies>
+                            <excludes combine.children="append">
+                                <exclude>duplicatefinder:.*</exclude>
+                            </excludes>
                         </configuration>
                     </plugin>
                 </plugins>

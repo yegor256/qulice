@@ -102,7 +102,7 @@ public final class ChecksTest {
     @Parameterized.Parameters
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public static Collection<Object[]> dirs() {
-        final Collection<Object[]> dirs = new ArrayList<Object[]>();
+        final Collection<Object[]> dirs = new LinkedList<Object[]>();
         for (final String url : ChecksTest.CHECKS) {
             dirs.add(new Object[] {url});
         }
@@ -189,9 +189,13 @@ public final class ChecksTest {
                 true
             )
         );
-        final List<File> files = new ArrayList<File>();
+        final List<File> files = new ArrayList<File>(0);
         files.add(
-            new File(this.getClass().getResource(this.dir + name).getFile())
+            new File(
+                this.getClass().getResource(
+                    String.format("%s%s", this.dir, name)
+                ).getFile()
+            )
         );
         checker.addListener(listener);
         checker.process(files);

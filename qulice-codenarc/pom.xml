@@ -97,35 +97,12 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>com.ning.maven.plugins</groupId>
-                        <artifactId>maven-duplicate-finder-plugin</artifactId>
+                        <groupId>com.qulice</groupId>
+                        <artifactId>qulice-maven-plugin</artifactId>
                         <configuration>
-                            <exceptions combine.children="append">
-                                <exception>
-                                    <conflictingDependencies>
-                                        <dependency>
-                                            <groupId>org.codehaus.groovy</groupId>
-                                            <artifactId>groovy-all</artifactId>
-                                            <version>1.7.5</version>
-                                        </dependency>
-                                        <dependency>
-                                            <groupId>org.codenarc</groupId>
-                                            <artifactId>CodeNarc</artifactId>
-                                            <version>0.18</version>
-                                        </dependency>
-                                        <dependency>
-                                            <groupId>org.gmetrics</groupId>
-                                            <artifactId>GMetrics</artifactId>
-                                            <version>0.5</version>
-                                        </dependency>
-                                    </conflictingDependencies>
-                                    <classes>
-                                        <class>org.codehaus.groovy.ast.expr.RegexExpression</class>
-                                        <class>org.codehaus.groovy.transform.powerassert.Value</class>
-                                        <class>org.codehaus.groovy.transform.powerassert.ValueRecorder</class>
-                                    </classes>
-                                </exception>
-                            </exceptions>
+                            <excludes combine.children="append">
+                                <exclude>duplicatefinder:.*</exclude>
+                            </excludes>
                         </configuration>
                     </plugin>
                 </plugins>
