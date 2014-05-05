@@ -362,10 +362,19 @@
         <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/>
         <module name="com.qulice.checkstyle.MethodsOrderCheck"/>
         <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
+        <!--
+        @todo #1 NPE when parsing interfaces with embedded classes. This
+         check fails with an NPE, when parsing an interface with a final class
+         inside it. Let's try to reproduce and fix. Once fixed, remove
+         this puzzle and enable the check again.
         <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
+        -->
+        <!--
+        see https://github.com/teamed/qulice/issues/239
         <module name="com.qulice.checkstyle.NonStaticMethodCheck">
             <property name="excludeFileNamePattern" value=".*Test\.java"/>
         </module>
+        -->
         <module name="com.qulice.checkstyle.ProtectedMethodInFinalClassCheck"/>
     </module>
 
