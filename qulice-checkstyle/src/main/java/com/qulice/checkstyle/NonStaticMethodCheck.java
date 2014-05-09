@@ -43,6 +43,7 @@ import java.util.regex.Pattern;
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
  */
 public final class NonStaticMethodCheck extends Check {
@@ -70,21 +71,32 @@ public final class NonStaticMethodCheck extends Check {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (!this.exclude.matcher(this.getFileContents().getFilename())
+        if (this.exclude.matcher(this.getFileContents().getFilename())
             .find()) {
-            final DetailAST modifiers = ast
-                .findFirstToken(TokenTypes.MODIFIERS);
-            if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
-                return;
-            }
-            if (!ast.branchContains(TokenTypes.LITERAL_THIS)) {
-                final int line = ast.getLineNo();
-                this.log(
-                    line,
-                    // @checkstyle LineLength (1 line)
-                    "This method must be static, because it does not refer to \"this\""
-                );
-            }
+            return;
+        }
+        if (TokenTypes.CLASS_DEF == ast.getParent().getParent().getType()) {
+            this.checkClassMethod(ast);
+        }
+    }
+
+    /**
+     * Check that non static class method refer \"this\".
+     * @param method DetailAST of method
+     */
+    private void checkClassMethod(final DetailAST method) {
+        final DetailAST modifiers = method
+            .findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
+            return;
+        }
+        if (!method.branchContains(TokenTypes.LITERAL_THIS)) {
+            final int line = method.getLineNo();
+            this.log(
+                line,
+                // @checkstyle LineLength (1 line)
+                "This method must be static, because it does not refer to \"this\""
+            );
         }
     }
 }

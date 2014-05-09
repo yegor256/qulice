@@ -78,7 +78,7 @@ public final class ChecksTest {
         "MethodBodyCommentsCheck",
         "RequireThisCheck",
         "ProtectedMethodInFinalClassCheck",
-        // "NonStaticMethodCheck",
+        "NonStaticMethodCheck",
         // "ConstantUsageCheck",
     };
 
