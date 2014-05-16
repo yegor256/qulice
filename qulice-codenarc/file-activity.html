@@ -1,21 +1,16 @@
 <!DOCTYPE html>
-<!--
- * Copyright (c) 2012-2014, jcabi.com
- * All rights reserved.
- -->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>qulice-codenarc - File Activity Report</title>
+        <link media="all" rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                                                                                                                         
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
                                                                                                                 
 <link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
-                                            <script src="./js/jquery-1.8.3.min.js"></script>
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
-        <link href="./css/jcabi.css" rel="stylesheet"/>
+                                            <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
         <script>
             $(document).ready(
                 function() {
@@ -35,15 +30,16 @@
         </script>
     </head>
     <body>
-                <section class="page">
-            <nav class="menu-section">
-                <ul id="menu">
+                <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <nav class="menu-section" role="navigation">
+                <ul class="menu">
                                                                                     <li>
                             Parent Project
                                                             <ul>
-                                                                                                    <li>
-                                                                                    <a href="../index.html" title="qulice">qulice</a>
-                                                                                                                                                                        <ul>
+                                                                                                    <li >
+                            <span>                        <a href="../index.html" title="qulice">qulice</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
                                                                                         </ul>
@@ -51,9 +47,10 @@
                                             <li>
                             Overview
                                                             <ul>
-                                                                                                    <li>
-                                                                                    <a href="index.html" title="Introduction">Introduction</a>
-                                                                                                                                                                        <ul>
+                                                                                                    <li >
+                            <span>                        <a href="index.html" title="Introduction">Introduction</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
                                                                                         </ul>
@@ -61,61 +58,72 @@
                                             <li>
                             Project Documentation
                                                             <ul>
-                                                                                                    <li>
-                                                                                    <a href="project-info.html" title="Project Information">Project Information</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
-                                                                                                                        <li>
-                                                                                    <a href="project-reports.html" title="Project Reports">Project Reports</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
-                                                                                                    <li>
-                                                                                    <a href="rempl.html" title="REMPL">REMPL</a>
-                                                                                                                                                                        <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li>
-                                                                                    <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
-                                                                                                                                                                        <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li>
-                                                                                    <a href="changelog.html" title="Change Log">Change Log</a>
-                                                                                                                                                                        <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li>
-                                                                                    <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
-                                                                                                                                                                        <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li>
-                                                            <strong>                        <a href="file-activity.html" title="File Activity">File Activity</a>
-        </strong>
+                                                                                                    <li >
+                            <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
+                                                                                                    <li >
+                            <span>                        <a href="rempl.html" title="REMPL">REMPL</a>
+        </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="dependency-updates-report.html" title="Dependency Updates Report">Dependency Updates Report</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="plugin-updates-report.html" title="Plugin Updates Report">Plugin Updates Report</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="changelog.html" title="Change Log">Change Log</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="apidocs-0.8/index.html" title="JavaDocs">JavaDocs</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li  class='active' >
+                            <span>                        <a href="file-activity.html" title="File Activity">File Activity</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li>
-                                                                                    <a href="github-report.html" title="GitHub Report">GitHub Report</a>
-                                                                                                                                                                        <ul>
+                                                                                                                        <li >
+                            <span>                        <a href="dependency-updates-report.html" title="Dependency Updates Report">Dependency Updates Report</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="plugin-updates-report.html" title="Plugin Updates Report">Plugin Updates Report</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="apidocs-0.8.1/index.html" title="JavaDocs">JavaDocs</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="github-report.html" title="GitHub Report">GitHub Report</a>
+        </span>
+                                                                                                                                                                <ul>
                                                                     </ul>
                                                     </li>
                                                                                         </ul>
@@ -124,56 +132,64 @@
                                                     </li>
                                     </ul>
             </nav>
-            <div id="right-side">
-                <div id="content">
-                    <i class="menu-button fa fa-align-justify"></i>
-                    <div class="logo-section">
-                        <a href="../" title="home page of Qulice.com">
-                            <img src="http://img.qulice.com/logo.png"
-                                alt="Qulice"
-                                                                    width="214"
-                                                                                                    height="60"
-                                                            />
-                        </a>
-                    </div>
-                    <div class="date">
-                        <div class="date-numbers">
-                            <strong>0.8</strong>
-                            
-                            05-May-2014
-                        </div>
-                                                                    </div>
-                    <div id="here-goes-menu" class="menu-off"></div>
-                    <article>
-                        <div class="section">
+            <div class="right-side">
+                <main role="main">
+                    <div class="content">
+                        <header>
+                            <i class="menu-button fa fa-align-justify"></i>
+                            <div class="logo">
+                                <a href="../"
+                                    title=" home page of Qulice.com ">
+                                    <img src="http://img.qulice.com/logo.png"
+                                        alt="Qulice"
+                                                                                    width="214"
+                                                                                                                            height="60"
+                                                                                itemprop="image"
+                                    />
+                                </a>
+                            </div>
+                            <div class="date">
+                                <div class="date-numbers">
+                                    <strong itemprop="version">0.8.1</strong>
+                                    
+                                    <time itemprop="datePublished" datetime="2014-05-16T10:45:51Z">
+                                        
+                                        16-May-2014
+                                    </time>
+                                </div>
+                                                                                            </div>
+                            <div id="here-goes-menu" class="menu-off"></div>
+                        </header>
+                        <article role="article" itemprop="articleBody">
+                            <div class="section">
 <h2>File Activity Report<a name="File_Activity_Report"></a></h2>
 <div class="section">
-<h3>Changes between 2014-04-05 and 2014-05-06<a name="Changes_between_2014-04-05_and_2014-05-06"></a></h3>
-<p>Total commits: 7<br />Total number of files changed: 9</p>
+<h3>Changes between 2014-04-16 and 2014-05-17<a name="Changes_between_2014-04-16_and_2014-05-17"></a></h3>
+<p>Total commits: 10<br />Total number of files changed: 9</p>
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Filename</th>
 <th>Number of Times Changed</th></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/src/test/java/com/qulice/codenarc/CodeNarcValidatorTest.java">qulice-codenarc/src/test/java/com/qulice/codenarc/<b>CodeNarcValidatorTest.java</b></a> </td>
-<td>4</td></tr>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/pom.xml">qulice-codenarc/<b>pom.xml</b></a> </td>
+<td>6</td></tr>
 <tr class="a">
 <td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/src/main/java/com/qulice/codenarc/CodeNarcValidator.java">qulice-codenarc/src/main/java/com/qulice/codenarc/<b>CodeNarcValidator.java</b></a> </td>
 <td>4</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/pom.xml">qulice-codenarc/<b>pom.xml</b></a> </td>
-<td>2</td></tr>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/src/test/java/com/qulice/codenarc/CodeNarcValidatorTest.java">qulice-codenarc/src/test/java/com/qulice/codenarc/<b>CodeNarcValidatorTest.java</b></a> </td>
+<td>3</td></tr>
 <tr class="a">
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/src/site/site.xml">qulice-codenarc/src/site/<b>site.xml</b></a> </td>
+<td>2</td></tr>
+<tr class="b">
 <td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/LICENSE.txt">qulice-codenarc/<b>LICENSE.txt</b></a> </td>
 <td>1</td></tr>
-<tr class="b">
+<tr class="a">
 <td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/src/main/java/com/qulice/codenarc/package-info.java">qulice-codenarc/src/main/java/com/qulice/codenarc/<b>package-info.java</b></a> </td>
 <td>1</td></tr>
-<tr class="a">
-<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/src/site/apt/index.apt.vm">qulice-codenarc/src/site/apt/<b>index.apt.vm</b></a> </td>
-<td>1</td></tr>
 <tr class="b">
-<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/src/site/site.xml">qulice-codenarc/src/site/<b>site.xml</b></a> </td>
+<td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/src/site/apt/index.apt.vm">qulice-codenarc/src/site/apt/<b>index.apt.vm</b></a> </td>
 <td>1</td></tr>
 <tr class="a">
 <td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/src/test/java/com/qulice/codenarc/package-info.java">qulice-codenarc/src/test/java/com/qulice/codenarc/<b>package-info.java</b></a> </td>
@@ -181,16 +197,17 @@
 <tr class="b">
 <td><a class="externalLink" href="https://github.com/teamed/qulice/qulice-codenarc/src/test/resources/log4j.properties">qulice-codenarc/src/test/resources/<b>log4j.properties</b></a> </td>
 <td>1</td></tr></table></div></div>
-                    </article>
-                    <img class="maven-mobile" src="./images/built-by-maven.png" alt="built by maven"/>
-                </div>
+                            <img class="maven-logo" src="//img.jcabi.com/built-by-maven.png" alt="built by maven"/>
+                        </article>
+                    </div>
+                </main>
                 <footer class="legal-notes">
-                    Copyright &#169;
-                                                                2011-2014
-                                        <br/>
-                    Qulice.com, All Rights Reserved.
-                    <br/>
-                    <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
+                    <div>
+                        Copyright &#169;
+                                                                            2011-2014
+                                            </div>
+                    <div>Qulice.com, All Rights Reserved.</div>
+                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </section>
