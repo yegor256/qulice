@@ -81,30 +81,32 @@
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>      @Override
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> ruleViolationAdded(<strong class="jxr_keyword">final</strong> RuleViolation violation) {
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>          <strong class="jxr_keyword">final</strong> String name = violation.getFilename();
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>          <strong class="jxr_keyword">if</strong> (!<strong class="jxr_keyword">this</strong>.env.exclude(<span class="jxr_string">"pmd"</span>, name)) {
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>              <strong class="jxr_keyword">this</strong>.violations.add(violation);
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>              Logger.error(
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>                  <strong class="jxr_keyword">this</strong>,
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>                  <span class="jxr_string">"%s[%d-%d]: %s (%s)"</span>,
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>                  name,
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>                  violation.getBeginLine(),
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>                  violation.getEndLine(),
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>                  violation.getDescription(),
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>                  violation.getRule().getName()
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>              );
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>          }
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>      }
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     * Get list of violations.</em>
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">     * @return List of violations</em>
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>      <strong class="jxr_keyword">public</strong> Collection&lt;RuleViolation&gt; getViolations() {
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">return</strong> Collections.unmodifiableCollection(<strong class="jxr_keyword">this</strong>.violations);
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>      }
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  }
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>          <strong class="jxr_keyword">final</strong> String name = violation.getFilename().substring(
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>              <strong class="jxr_keyword">this</strong>.env.basedir().toString().length()
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          );
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>          <strong class="jxr_keyword">if</strong> (!<strong class="jxr_keyword">this</strong>.env.exclude(<span class="jxr_string">"pmd"</span>, name)) {
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>              <strong class="jxr_keyword">this</strong>.violations.add(violation);
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>              Logger.error(
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>                  <strong class="jxr_keyword">this</strong>,
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>                  <span class="jxr_string">"%s[%d-%d]: %s (%s)"</span>,
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>                  name,
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>                  violation.getBeginLine(),
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>                  violation.getEndLine(),
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>                  violation.getDescription(),
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>                  violation.getRule().getName()
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>              );
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          }
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>      }
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     * Get list of violations.</em>
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_javadoccomment">     * @return List of violations</em>
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>      <strong class="jxr_keyword">public</strong> Collection&lt;RuleViolation&gt; getViolations() {
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>          <strong class="jxr_keyword">return</strong> Collections.unmodifiableCollection(<strong class="jxr_keyword">this</strong>.violations);
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>      }
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> 
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2014 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>

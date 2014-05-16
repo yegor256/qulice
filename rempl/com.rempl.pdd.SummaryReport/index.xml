@@ -4,9 +4,18 @@
 <ticket>1</ticket>
 <file>qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml</file>
 <prefix>        </prefix>
+<body>RedundantThrows check complains about custom exceptions, even in the same package. An exception is defined in the same package, and a method throws it. This checkstyle check complains. Let's fix this problem and enable the check.</body>
+<estimate>0</estimate>
+<lines>225-229</lines>
+<owner>someone</owner>
+</puzzle>
+<puzzle>
+<ticket>1</ticket>
+<file>qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml</file>
+<prefix>        </prefix>
 <body>NPE when parsing interfaces with embedded classes. This check fails with an NPE, when parsing an interface with a final class inside it. Let's try to reproduce and fix. Once fixed, remove this puzzle and enable the check again.</body>
 <estimate>0</estimate>
-<lines>366-369</lines>
+<lines>373-376</lines>
 <owner>someone</owner>
 </puzzle>
 <puzzle>
