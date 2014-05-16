@@ -221,7 +221,14 @@
         <module name="MagicNumber"/>
         <module name="MissingSwitchDefault"/>
         <module name="ModifiedControlVariable"/>
-        <module name="RedundantThrows"/>
+        <!--
+        @todo #1 RedundantThrows check complains about custom
+         exceptions, even in the same package. An exception is
+         defined in the same package, and a method throws it. This
+         checkstyle check complains. Let's fix this problem and
+         enable the check.
+        -->
+        <!-- <module name="RedundantThrows"/> -->
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
         <module name="StringLiteralEquality"/>
