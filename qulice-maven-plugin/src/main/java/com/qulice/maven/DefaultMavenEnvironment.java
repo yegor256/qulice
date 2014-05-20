@@ -131,7 +131,9 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         try {
             for (final String name
                 : this.iproject.getRuntimeClasspathElements()) {
-                paths.add(name);
+                paths.add(
+                    name.replace(File.separatorChar, '/')
+                );
             }
             for (final Artifact artifact
                 : this.iproject.getDependencyArtifacts()) {
