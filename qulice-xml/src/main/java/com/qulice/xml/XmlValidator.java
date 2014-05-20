@@ -40,13 +40,8 @@ import com.qulice.spi.Validator;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Collection;
 import java.util.List;
-import javax.xml.transform.stream.StreamSource;
-import org.apache.commons.io.Charsets;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.xml.sax.SAXParseException;
 
 /**
  * Validates XML files for formatting.
