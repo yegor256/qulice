@@ -1,6 +1,7 @@
 <img src="http://img.qulice.com/logo-big.png" width="200px" height="55px"/>
 
 [![Build Status](https://travis-ci.org/teamed/qulice.svg?branch=master)](https://travis-ci.org/teamed/qulice)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice)
 
 Qulice is a static analysis quality control instrument for Java
 projects. It combines all the best static analysis instruments
