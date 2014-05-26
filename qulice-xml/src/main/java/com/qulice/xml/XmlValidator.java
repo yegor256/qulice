@@ -30,6 +30,8 @@
 package com.qulice.xml;
 
 import com.jcabi.log.Logger;
+import com.jcabi.xml.StrictXML;
+import com.jcabi.xml.XML;
 import com.jcabi.xml.XMLDocument;
 import com.jcabi.xml.XSDDocument;
 import com.qulice.spi.Environment;
@@ -38,11 +40,8 @@ import com.qulice.spi.Validator;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.util.Collection;
 import java.util.List;
-import javax.xml.transform.stream.StreamSource;
 import org.apache.commons.lang3.StringUtils;
-import org.xml.sax.SAXParseException;
 
 /**
  * Validates XML files for formatting.
@@ -65,7 +64,7 @@ public final class XmlValidator implements Validator {
                     continue;
                 }
                 Logger.info(this, "%s: to be validated", name);
-                final XMLDocument document = new XMLDocument(file);
+                final XML document = new XMLDocument(file);
                 final List<String> schemas = document
                     .xpath("/*/@xsi:schemaLocation");
                 if (schemas.isEmpty()) {
@@ -76,26 +75,16 @@ public final class XmlValidator implements Validator {
                         )
                     );
                 } else {
-                    final Collection<SAXParseException> errors =
+                    new StrictXML(
+                        document,
                         new XSDDocument(
                             URI.create(
-                                StringUtils.substringAfter(schemas.get(0), " ")
+                                StringUtils.substringAfter(
+                                    schemas.get(0), " "
+                                )
                             ).toURL()
-                        ).validate(new StreamSource(file));
-                    for (final SAXParseException error : errors) {
-                        Logger.warn(
-                            this,
-                            "XmlValidator: %s", error.getMessage()
-                        );
-                    }
-                    if (!errors.isEmpty()) {
-                        throw new ValidationException(
-                            String.format(
-                                "XML validation failure in %s (see log above)",
-                                name
-                            )
-                        );
-                    }
+                        )
+                    );
                 }
             }
         } catch (final IOException ex) {
