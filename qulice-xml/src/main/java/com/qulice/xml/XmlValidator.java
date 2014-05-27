@@ -42,6 +42,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
+import org.xml.sax.SAXException;
 
 /**
  * Validates XML files for formatting.
@@ -75,20 +76,48 @@ public final class XmlValidator implements Validator {
                         )
                     );
                 } else {
-                    new StrictXML(
-                        document,
-                        new XSDDocument(
-                            URI.create(
-                                StringUtils.substringAfter(
-                                    schemas.get(0), " "
-                                )
-                            ).toURL()
-                        )
-                    );
+                    try {
+                        new StrictXML(
+                            document,
+                            new XSDDocument(
+                                URI.create(
+                                    StringUtils.substringAfter(
+                                        schemas.get(0), " "
+                                    )
+                                ).toURL()
+                            )
+                        );
+                    } catch (final IllegalStateException ex) {
+                        if (ex.getCause() != null
+                            && ex.getCause() instanceof SAXException) {
+                            this.warn(name, schemas.get(0), ex);
+                        }
+                    }
                 }
             }
         } catch (final IOException ex) {
             throw new IllegalStateException(ex);
         }
+    }
+
+    /**
+     * Log warning.
+     *
+     * @param file Name of file under check
+     * @param schema Schema location
+     * @param exception Exception
+     */
+    private void warn(
+        final String file,
+        final String schema,
+        final Throwable exception
+    ) {
+        Logger.warn(
+            // @checkstyle LineLength (1 line)
+            this, "Failed to validate file %s against schema %s. Cause: %s",
+            file,
+            schema,
+            exception.toString()
+        );
     }
 }
