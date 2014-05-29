@@ -76,21 +76,26 @@ public final class XmlValidator implements Validator {
                         )
                     );
                 } else {
+                    final String schema = schemas.get(0);
                     try {
                         new StrictXML(
                             document,
                             new XSDDocument(
                                 URI.create(
-                                    StringUtils.substringAfter(
-                                        schemas.get(0), " "
-                                    )
+                                    StringUtils.substringAfter(schema, " ")
                                 ).toURL()
                             )
                         );
                     } catch (final IllegalStateException ex) {
                         if (ex.getCause() != null
                             && ex.getCause() instanceof SAXException) {
-                            this.warn(name, schemas.get(0), ex);
+                            Logger.warn(
+                                // @checkstyle LineLength (1 line)
+                                this, "Failed to validate file %s against schema %s. Cause: %s",
+                                name,
+                                schema,
+                                ex.toString()
+                            );
                         }
                     }
                 }
@@ -98,26 +103,5 @@ public final class XmlValidator implements Validator {
         } catch (final IOException ex) {
             throw new IllegalStateException(ex);
         }
-    }
-
-    /**
-     * Log warning.
-     *
-     * @param file Name of file under check
-     * @param schema Schema location
-     * @param exception Exception
-     */
-    private void warn(
-        final String file,
-        final String schema,
-        final Throwable exception
-    ) {
-        Logger.warn(
-            // @checkstyle LineLength (1 line)
-            this, "Failed to validate file %s against schema %s. Cause: %s",
-            file,
-            schema,
-            exception.toString()
-        );
     }
 }
