@@ -27,6 +27,7 @@ public final class Valid {
         new Runnable() {
             @Override
             public void run() {
+                Valid.this.stream.write(NUMBER);
                 System.out.println(CharEncoding.UTF_8);
             }
         };
