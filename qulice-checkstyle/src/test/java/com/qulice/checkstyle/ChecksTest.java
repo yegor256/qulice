@@ -79,7 +79,7 @@ public final class ChecksTest {
         "RequireThisCheck",
         "ProtectedMethodInFinalClassCheck",
         "NonStaticMethodCheck",
-        // "ConstantUsageCheck",
+        "ConstantUsageCheck",
     };
 
     /**
