@@ -56,32 +56,44 @@ public final class ConstantUsageCheck extends Check {
     @Override
     public void visitToken(final DetailAST ast) {
         if (this.isField(ast) && this.isFinal(ast)) {
-            final DetailAST nameNode = ast.findFirstToken(TokenTypes.IDENT);
-            final String name = nameNode.getText();
-            final int line = nameNode.getLineNo();
-            DetailAST variable = ast.getNextSibling();
-            int counter = 0;
-            while (null != variable) {
-                if (TokenTypes.VARIABLE_DEF == variable.getType()) {
-                    final DetailAST assign =
-                        variable.findFirstToken(TokenTypes.ASSIGN);
-                    final DetailAST expression =
-                        assign.findFirstToken(TokenTypes.EXPR);
-                    final String text = this.getText(expression);
-                    if (text.contains(name)) {
-                        counter = counter + 1;
-                    }
-                } else {
-                    counter = counter + this.parseMethod(variable, name);
+            final DetailAST namenode = ast.findFirstToken(TokenTypes.IDENT);
+            if (!"serialVersionUID".equals(this.getText(namenode))) {
+                this.checkField(ast, namenode);
+            }
+        }
+    }
+
+    /**
+     * Check that constant, declared as private field of class
+     * is used more than ones.
+     * @param ast Node which contains VARIABLE_DEF
+     * @param namenode Node which contains variable name
+     */
+    private void checkField(final DetailAST ast, final DetailAST namenode) {
+        final String name = namenode.getText();
+        final int line = namenode.getLineNo();
+        DetailAST variable = ast.getNextSibling();
+        int counter = 0;
+        while (null != variable) {
+            if (TokenTypes.VARIABLE_DEF == variable.getType()) {
+                final DetailAST assign =
+                    variable.findFirstToken(TokenTypes.ASSIGN);
+                final DetailAST expression =
+                    assign.findFirstToken(TokenTypes.EXPR);
+                final String text = this.getText(expression);
+                if (text.contains(name)) {
+                    counter = counter + 1;
                 }
-                variable = variable.getNextSibling();
+            } else {
+                counter = counter + this.parseMethod(variable, name);
             }
-            if (counter < 2) {
-                this.log(
-                    line,
-                    String.format("Constant \"%s\" used only once", name)
-                );
-            }
+            variable = variable.getNextSibling();
+        }
+        if (counter < 2) {
+            this.log(
+                line,
+                String.format("Constant \"%s\" used only once", name)
+            );
         }
     }
 
