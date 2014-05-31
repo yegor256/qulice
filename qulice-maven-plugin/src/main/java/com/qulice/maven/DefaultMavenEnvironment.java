@@ -30,7 +30,6 @@
 package com.qulice.maven;
 
 import com.google.common.base.Function;
-import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
@@ -57,9 +56,6 @@ import org.codehaus.plexus.context.Context;
 
 /**
  * Environment, passed from MOJO to validators.
- * @todo #152 Refactor excludes method.
- *  Refactor excludes method to return Collection of excludes.
- *  Move joining excludes directly to CodeNarcValidator
  *
  * @checkstyle ClassDataAbstractionCouplingCheck (300 lines)
  * @author Yegor Bugayenko (yegor@tpc2.com)
@@ -224,7 +220,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     public boolean exclude(final String check, final String name) {
         return Iterables.any(
-            this.excludeList(check),
+            this.excludes(check),
             new Predicate<String>() {
                 @Override
                 public boolean apply(@Nullable final String input) {
@@ -236,8 +232,23 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
-    public String excludes(final String checker) {
-        return Joiner.on(',').skipNulls().join(this.excludeList(checker));
+    public Iterable<String> excludes(final String checker) {
+        return Collections2.transform(
+            this.exc,
+            new Function<String, String>() {
+                @Nullable
+                @Override
+                public String apply(@Nullable final String input) {
+                    if (input != null) {
+                        final String[] exclude = input.split(":");
+                        if (checker.equals(exclude[0]) && exclude.length > 1) {
+                            return exclude[1];
+                        }
+                    }
+                    return null;
+                }
+            }
+        );
     }
 
     /**
@@ -289,30 +300,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public void setAsser(final Collection<String> ass) {
         this.asser.clear();
         this.asser.addAll(ass);
-    }
-
-    /**
-     * Creates exclude list for particular checker.
-     * @param checker Validator name
-     * @return Iterable with excludes
-     */
-    private Iterable<String> excludeList(final String checker) {
-        return Collections2.transform(
-            this.exc,
-            new Function<String, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable final String input) {
-                    if (input != null) {
-                        final String[] exclude = input.split(":");
-                        if (checker.equals(exclude[0]) && exclude.length > 1) {
-                            return exclude[1];
-                        }
-                    }
-                    return null;
-                }
-            }
-        );
     }
 
 }
