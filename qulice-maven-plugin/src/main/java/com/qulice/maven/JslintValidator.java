@@ -37,9 +37,6 @@ import java.util.Properties;
  *
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
- * @todo #151 Integration tests for jslint-maven-plugin.
- *  Let's implement integration tests for jslint-maven-plugin to be sure
- *  it is called.
  */
 public final class JslintValidator implements MavenValidator {
 
