@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2011-2014, Qulice.com
+ *
+ * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,49 +27,9 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.maven;
-
-import com.qulice.spi.ValidationException;
-import java.util.Properties;
-
-/**
- * Validate with jslint-maven-plugin.
  *
- * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
- * @todo #151 Integration tests for jslint-maven-plugin.
- *  Let's implement integration tests for jslint-maven-plugin to be sure
- *  it is called.
  */
-public final class JslintValidator implements MavenValidator {
 
-    /**
-     * {@inheritDoc}
-     * @checkstyle RedundantThrows (4 lines)
-     */
-    @Override
-    public void validate(final MavenEnvironment env)
-        throws ValidationException {
-        final Properties config = new Properties();
-        config.setProperty("sourceJsFolder", "${basedir}/src/main");
-        final String jslint = "jslint";
-        if (!env.exclude(jslint, "")) {
-            try {
-                env.executor().execute(
-                    "org.codehaus.mojo:jslint-maven-plugin:1.0.1",
-                    jslint,
-                    config
-                );
-            } catch (final IllegalStateException ex) {
-                // @checkstyle MethodBodyCommentsCheck (1 line)
-                // JsLint throws error if it can't find the sourceJsFolder
-                if (!(ex.getMessage().contains("basedir")
-                    && ex.getMessage().contains("does not exist"))) {
-                    throw ex;
-                }
-            }
-        }
-    }
-
-}
+def log = new File(basedir, 'build.log')
+assert log.text.findAll('violations.js:.*\'c\' has not been fully defined yet.').size() == 1
