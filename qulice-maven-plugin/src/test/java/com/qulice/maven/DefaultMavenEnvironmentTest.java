@@ -54,7 +54,7 @@ public class DefaultMavenEnvironmentTest {
         env.setExcludes(Collections.singletonList("codenarc:**/*.groovy"));
         MatcherAssert.assertThat(
             env.excludes("codenarc"),
-            Matchers.is("**/*.groovy")
+            Matchers.contains("**/*.groovy")
         );
     }
 
@@ -67,8 +67,8 @@ public class DefaultMavenEnvironmentTest {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         env.setExcludes(Collections.<String>emptyList());
         MatcherAssert.assertThat(
-            env.excludes("codenarc"),
-            Matchers.isEmptyString()
+            env.excludes("codenarc").iterator().hasNext(),
+            Matchers.is(false)
         );
     }
 
@@ -80,8 +80,8 @@ public class DefaultMavenEnvironmentTest {
     public final void noExclude() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         MatcherAssert.assertThat(
-            env.excludes("codenarc"),
-            Matchers.isEmptyString()
+            env.excludes("codenarc").iterator().hasNext(),
+            Matchers.is(false)
         );
     }
 
@@ -100,7 +100,10 @@ public class DefaultMavenEnvironmentTest {
         );
         MatcherAssert.assertThat(
             env.excludes("codenarc"),
-            Matchers.is("**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy")
+            Matchers.containsInAnyOrder(
+                "**/src/ex1/Main.groovy",
+                "**/src/ex2/Main2.groovy"
+            )
         );
     }
 }

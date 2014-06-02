@@ -31,6 +31,7 @@ package com.qulice.spi;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -111,11 +112,11 @@ public interface Environment {
     boolean exclude(String check, String name);
 
     /**
-     * String with exclude patterns, separated by coma.
+     * List of exclude patterns.
      * @param checker Name of the checker that is asking (pmd, codenarc ...)
      * @return Exclude patterns
      */
-    String excludes(String checker);
+    Iterable<String> excludes(String checker);
 
     /**
      * Mock of {@link Environment}.
@@ -290,8 +291,14 @@ public interface Environment {
         }
 
         @Override
-        public String excludes(final String checker) {
-            return this.excl;
+        public Iterable<String> excludes(final String checker) {
+            final Iterable<String> exc;
+            if (this.excl == null) {
+                exc = Collections.emptyList();
+            } else {
+                exc = Arrays.asList(this.excl.split(","));
+            }
+            return exc;
         }
     }
 }

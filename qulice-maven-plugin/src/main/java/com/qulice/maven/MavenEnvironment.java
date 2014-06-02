@@ -160,7 +160,7 @@ interface MavenEnvironment extends Environment {
             return this.env.exclude(check, name);
         }
         @Override
-        public String excludes(final String checker) {
+        public Iterable<String> excludes(final String checker) {
             return this.env.excludes(checker);
         }
     }

@@ -29,6 +29,7 @@
  */
 package com.qulice.codenarc;
 
+import com.google.common.base.Joiner;
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
@@ -53,7 +54,10 @@ public final class CodeNarcValidator implements Validator {
         final File src = new File(env.basedir(), "src");
         if (this.required(src)) {
             final int violations = this.logViolations(
-                this.detect(src, env.excludes("codenarc")),
+                this.detect(
+                    src,
+                    Joiner.on(',').skipNulls().join(env.excludes("codenarc"))
+                ),
                 src
             );
             if (violations > 0) {
