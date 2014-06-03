@@ -7,6 +7,7 @@ import org.apache.commons.lang.CharEncoding;
 public final class Valid {
     private static final Invalid INSTANCE = new Invalid();
     private static final int NUMBER = 5;
+    private static final long serialVersionUID = 1L;
     private final transient OutputStream stream = new ByteArrayOutputStream();
     protected String NAME = "DDD";
     protected static final int N = NUMBER*2;
