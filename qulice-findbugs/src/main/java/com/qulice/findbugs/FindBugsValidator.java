@@ -37,6 +37,7 @@ import com.qulice.spi.Validator;
 import edu.umd.cs.findbugs.FindBugs2;
 import edu.umd.cs.findbugs.formatStringChecker.FormatterNumberFormatException;
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.util.Arrays;
@@ -46,7 +47,9 @@ import java.util.List;
 import javax.annotation.meta.When;
 import org.apache.bcel.classfile.ClassFormatException;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.DocumentException;
 import org.jaxen.JaxenException;
@@ -55,10 +58,16 @@ import org.objectweb.asm.commons.EmptyVisitor;
 import org.objectweb.asm.tree.ClassNode;
 
 /**
- * Validates source code and compiled binaris with FindBugs.
+ * Validates source code and compiled binaries with FindBugs.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @todo #149 Create integration tests to check that FindBugsValidator
+ *  can exclude classes from check.
+ *  see http://findbugs.sourceforge.net/manual/filter.html for details
+ *  of findbug filter patterns.
+ *  Don't forget to update example-exclude.apt.vm with example for
+ *  findbugs exclusion.
  */
 public final class FindBugsValidator implements Validator {
 
@@ -69,6 +78,7 @@ public final class FindBugsValidator implements Validator {
     @Override
     public void validate(final Environment env) throws ValidationException {
         if (env.outdir().exists()) {
+            // @checkstyle MultipleStringLiteralsCheck (1 line)
             if (!env.exclude("findbugs", "")) {
                 this.check(this.findbugs(env));
             }
@@ -97,6 +107,10 @@ public final class FindBugsValidator implements Validator {
         args.add(StringUtils.join(env.classpath(), ",")
             .replace("\\", "/")
         );
+        final Iterable<String> excludes = env.excludes("findbugs");
+        if (excludes.iterator().hasNext()) {
+            args.add(this.excludes(env, excludes));
+        }
         return new VerboseProcess(new ProcessBuilder(args)).stdoutQuietly();
     }
 
@@ -122,14 +136,59 @@ public final class FindBugsValidator implements Validator {
                         this.jar(ClassVisitor.class),
                         this.jar(When.class),
                         this.jar(EmptyVisitor.class),
-                        this.jar(FormatterNumberFormatException.class)
+                        this.jar(FormatterNumberFormatException.class),
+                        this.jar(StringEscapeUtils.class)
                     ),
                     env.classpath()
                 ),
+                // @checkstyle MultipleStringLiteralsCheck (1 line)
                 System.getProperty("path.separator")
             ).replace("\\", "/")
         );
         return opts;
+    }
+
+    /**
+     * Creates file with findbug excludes.
+     * @param env Environment
+     * @param excludes Iterable with exclude patterns
+     * @return Path to file with findbug excludes
+     */
+    private String excludes(final Environment env,
+        final Iterable<String> excludes) {
+        final String path = StringUtils.join(
+            env.basedir().getPath(),
+            System.getProperty("path.separator"),
+            "findbug_excludes_",
+            String.valueOf(System.nanoTime()),
+            ".xml"
+        );
+        try {
+            FileUtils.writeStringToFile(
+                new File(path),
+                this.generateExcludes(excludes)
+            );
+        } catch (final IOException exc) {
+            throw new IllegalStateException(
+                "can't generate exclude rules for findbugs",
+                exc
+            );
+        }
+        return path;
+    }
+
+    /**
+     * Creates xml with exclude patterns in findbugs native format.
+     * @param excludes Exclude patterns
+     * @return XML with findbugs excludes
+     */
+    private String generateExcludes(final Iterable<String> excludes) {
+        // @checkstyle StringLiteralsConcatenationCheck (5 lines)
+        return "<FindBugsFilter>\n"
+            + "     <Match>\n"
+            + "       <Class name=\"" + excludes.iterator().next() + "\" />\n"
+            + "     </Match>\n"
+            + "</FindBugsFilter>";
     }
 
     /**
