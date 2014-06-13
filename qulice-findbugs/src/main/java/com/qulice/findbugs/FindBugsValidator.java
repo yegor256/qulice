@@ -111,7 +111,7 @@ public final class FindBugsValidator implements Validator {
         if (excludes.iterator().hasNext()) {
             args.add(this.excludes(env, excludes));
         }
-        return new VerboseProcess(new ProcessBuilder(args)).stdoutQuietly();
+        return new VerboseProcess(new ProcessBuilder(args), Level.ALL, Level.ALL).stdout();
     }
 
     /**
