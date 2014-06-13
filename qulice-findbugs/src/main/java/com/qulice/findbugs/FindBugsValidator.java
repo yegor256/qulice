@@ -44,6 +44,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.annotation.meta.When;
 import org.apache.bcel.classfile.ClassFormatException;
 import org.apache.commons.collections.CollectionUtils;
