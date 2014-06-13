@@ -113,10 +113,10 @@ public final class FindBugsValidator implements Validator {
             args.add(this.excludes(env, excludes));
         }
         return new VerboseProcess(
-				new ProcessBuilder(args),
-				Level.ALL,
-				Level.ALL
-		).stdoutQuietly();
+            new ProcessBuilder(args),
+                Level.ALL,
+                Level.ALL
+        ).stdoutQuietly();
     }
 
     /**
