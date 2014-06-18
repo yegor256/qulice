@@ -1,6 +1,5 @@
 /**
- *
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2014, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,18 +26,14 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * @version $Id$
- *
  */
+package com.qulice.plugin.exceptions;
 
-def log = new File(basedir, 'build.log')
-assert log.text.contains('Redundant throws: \'ModuleException\' is unchecked exception.')
-// @todo #262 Checkstyle doesn't have current module in classpath (either because
-//  RedundantThrows/AbstractTypeAwareCheck have wrong implementation of resolveClass()
-//  or qulice provides wrong classpath to the module. When this is fixed uncomment
-//  following three checks and remove "suppressLoadErrors" from RedundantThrows configuration
-//  in checks.xml.
-//assert log.text.contains('Redundant throws: \'SubException\' is unchecked exception.')
-//assert log.text.contains('Redundant throws: \'BarException\' is unchecked exception.')
-//assert !log.text.contains('Unable to get class information for ')
+/**
+ * Exceptions class.
+ *
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
+ * @version $Id$
+ */
+public final class ModuleException extends RuntimeException {
+}
