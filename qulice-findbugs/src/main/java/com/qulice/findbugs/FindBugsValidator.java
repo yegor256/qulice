@@ -44,6 +44,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
 import javax.annotation.meta.When;
 import org.apache.bcel.classfile.ClassFormatException;
 import org.apache.commons.collections.CollectionUtils;
@@ -111,7 +112,9 @@ public final class FindBugsValidator implements Validator {
         if (excludes.iterator().hasNext()) {
             args.add(this.excludes(env, excludes));
         }
-        return new VerboseProcess(new ProcessBuilder(args)).stdoutQuietly();
+        return new VerboseProcess(
+            new ProcessBuilder(args), Level.ALL, Level.ALL
+        ).stdout();
     }
 
     /**
