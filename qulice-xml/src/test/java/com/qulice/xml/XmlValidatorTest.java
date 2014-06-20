@@ -72,4 +72,59 @@ public final class XmlValidatorTest {
         final Validator validator = new XmlValidator();
         validator.validate(env);
     }
+
+    /**
+     * Should pass validation if XML schema file is not accessible.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void passesValidationIfSchemaIsNotAccessible() throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "src/main/resources/valid2.xml",
+                // @checkstyle LineLength (1 line)
+                "<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://www.google.com\"></document>"
+        );
+        final Validator validator = new XmlValidator();
+        validator.validate(env);
+    }
+
+    /**
+     * Should fail validation in case of noNamespaceSchemaLocation attribute.
+     * specified on xml instance, while targetNamespace attribute exists in
+     * schema
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test(expected = ValidationException.class)
+    public void failValidationWithNoSchemaLocationAttr() throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "src/main/resources/valid3.xml",
+                // @checkstyle LineLength (1 line)
+                "<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xsi:noNamespaceSchemaLocation=\"http://maven.apache.org/xsd/decoration-1.3.0.xsd\" \n name=\"test\">\n</project>"
+        );
+        final Validator validator = new XmlValidator();
+        validator.validate(env);
+    }
+
+    /**
+     * Should pass validation if noNamespaceSchemaLocation attribute specified.
+     * @throws Exception If something wrong happens inside.
+     * @checkstyle IndentationCheck (15 lines)
+     */
+    @Test
+    public void passesValidationIfNoSchemaLocationSpecified() throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "src/main/resources/valid4.xml",
+                // @checkstyle LineLength (1 line)
+                "<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xsi:noNamespaceSchemaLocation=\"http://simple.com/test.xsd\">\n</project>"
+            ).withFile(
+                "src/main/resources/test.xsd",
+                // @checkstyle LineLength (1 line)
+                "<schema xmlns=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\">\n<element name=\"project\" type=\"xs:anyType\"/>\n</schema>"
+            );
+        final Validator validator = new XmlValidator();
+        validator.validate(env);
+    }
 }

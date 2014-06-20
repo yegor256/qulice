@@ -51,6 +51,7 @@ assert log.text.findAll('@todo "Make this a better text." already exists in the 
 assert log.text.contains('Violations.java[39]: ArrayList should be initialized with a size parameter')
 assert log.text.contains('Violations.java[40]: ArrayList should be initialized with a size parameter')
 assert log.text.findAll('Pdd.java.*: @todo tag has wrong format').empty
+assert !log.text.contains('Got an exception - java.lang.NullPointerException')
 //assert !log.text.contains('SomeTest.java[5]: This method must be static, because it does not refer to "this"')
-//assert log.text.contains('Constants.java[39]: Constant "ONCE" used only once (ConstantUsageCheck)')
-//assert !log.text.contains('Constants.java[41]: Constant "TWICE" used only once (ConstantUsageCheck)')
+assert log.text.contains('Constants.java[39]: Constant "ONCE" used only once (ConstantUsageCheck)')
+assert !log.text.contains('Constants.java[41]: Constant "TWICE" used only once (ConstantUsageCheck)')

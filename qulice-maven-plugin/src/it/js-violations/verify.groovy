@@ -29,16 +29,7 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @version $Id$
- *
  */
 
 def log = new File(basedir, 'build.log')
-assert log.text.contains('Redundant throws: \'ModuleException\' is unchecked exception.')
-// @todo #262 Checkstyle doesn't have current module in classpath (either because
-//  RedundantThrows/AbstractTypeAwareCheck have wrong implementation of resolveClass()
-//  or qulice provides wrong classpath to the module. When this is fixed uncomment
-//  following three checks and remove "suppressLoadErrors" from RedundantThrows configuration
-//  in checks.xml.
-//assert log.text.contains('Redundant throws: \'SubException\' is unchecked exception.')
-//assert log.text.contains('Redundant throws: \'BarException\' is unchecked exception.')
-//assert !log.text.contains('Unable to get class information for ')
+assert log.text.findAll('violations.js:.*\'c\' has not been fully defined yet.').size() == 1

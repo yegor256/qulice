@@ -37,9 +37,6 @@ import java.util.Properties;
  *
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
- * @todo #151 Integration tests for jslint-maven-plugin.
- *  Let's implement integration tests for jslint-maven-plugin to be sure
- *  it is called.
  */
 public final class JslintValidator implements MavenValidator {
 
@@ -51,14 +48,23 @@ public final class JslintValidator implements MavenValidator {
     public void validate(final MavenEnvironment env)
         throws ValidationException {
         final Properties config = new Properties();
-        config.setProperty("sourceJsFolder", "${basedir}/src");
+        config.setProperty("sourceJsFolder", "${basedir}/src/main");
         final String jslint = "jslint";
         if (!env.exclude(jslint, "")) {
-            env.executor().execute(
-                "org.codehaus.mojo:jslint-maven-plugin:1.0.1",
-                jslint,
-                config
-            );
+            try {
+                env.executor().execute(
+                    "org.codehaus.mojo:jslint-maven-plugin:1.0.1",
+                    jslint,
+                    config
+                );
+            } catch (final IllegalStateException ex) {
+                // @checkstyle MethodBodyCommentsCheck (1 line)
+                // JsLint throws error if it can't find the sourceJsFolder
+                if (!(ex.getMessage().contains("basedir")
+                    && ex.getMessage().contains("does not exist"))) {
+                    throw ex;
+                }
+            }
         }
     }
 
