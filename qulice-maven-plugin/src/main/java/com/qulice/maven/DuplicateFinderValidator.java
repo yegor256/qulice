@@ -30,8 +30,11 @@
 package com.qulice.maven;
 
 import com.qulice.spi.ValidationException;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.Properties;
+import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Validate with maven-duplicate-finder-plugin.
@@ -52,6 +55,10 @@ public final class DuplicateFinderValidator implements MavenValidator {
      * {@inheritDoc}
      * @checkstyle MultipleStringLiterals (20 lines)
      * @checkstyle RedundantThrows (4 lines)
+     * @todo #250 Fix a problem with maven configuration of duplicate finder
+     *  plugin in commented out code below, and enable
+     *  duplicate-finder-ignore-deps IT in pom.xml.
+     * @checkstyle MethodBodyCommentsCheck (50 lines)
      */
     @Override
     public void validate(final MavenEnvironment env)
@@ -60,7 +67,27 @@ public final class DuplicateFinderValidator implements MavenValidator {
             final Properties props = new Properties();
             props.put("failBuildInCaseOfConflict", "true");
             props.put("checkTestClasspath", "false");
-            props.put("ignoredResources", Collections.singleton("META-INF/.*"));
+            props.put(
+                "ignoredResources",
+                CollectionUtils.union(
+                    env.excludes("duplicate"),
+                    Collections.singleton("META-INF/.*")
+                )
+            );
+            final Collection<Properties> deps = new LinkedList<Properties>();
+//            for (String sdep : env.excludes("duplicate")) {
+//                if (StringUtils.countMatches(sdep, ":") == 2) {
+//                    String[] parts = sdep.split(":");
+//                    Properties main = new Properties();
+//                    Properties prop = new Properties();
+//                    prop.put("groupId", parts[0]);
+//                    prop.put("artifactId", parts[1]);
+//                    prop.put("version", parts[2]);
+//                    main.put("dependency", prop);
+//                    deps.add(prop);
+//                }
+//            }
+            props.put("ignoredDependencies", deps);
             env.executor().execute(
                 "com.ning.maven.plugins:maven-duplicate-finder-plugin:1.0.7",
                 "check",

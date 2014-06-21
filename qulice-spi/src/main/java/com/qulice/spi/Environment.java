@@ -116,7 +116,7 @@ public interface Environment {
      * @param checker Name of the checker that is asking (pmd, codenarc ...)
      * @return Exclude patterns
      */
-    Iterable<String> excludes(String checker);
+    Collection<String> excludes(String checker);
 
     /**
      * Mock of {@link Environment}.
@@ -291,8 +291,8 @@ public interface Environment {
         }
 
         @Override
-        public Iterable<String> excludes(final String checker) {
-            final Iterable<String> exc;
+        public Collection<String> excludes(final String checker) {
+            final Collection<String> exc;
             if (this.excl == null) {
                 exc = Collections.emptyList();
             } else {

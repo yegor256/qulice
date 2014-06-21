@@ -232,7 +232,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
-    public Iterable<String> excludes(final String checker) {
+    public Collection<String> excludes(final String checker) {
         return Collections2.transform(
             this.exc,
             new Function<String, String>() {
@@ -240,7 +240,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
                 @Override
                 public String apply(@Nullable final String input) {
                     if (input != null) {
-                        final String[] exclude = input.split(":");
+                        final String[] exclude = input.split(":", 2);
                         if (checker.equals(exclude[0]) && exclude.length > 1) {
                             return exclude[1];
                         }
