@@ -38,10 +38,6 @@ import org.junit.Test;
  * Test case for {@link XmlValidator} class.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @todo #1 Let's implement a proper validation of XML
- *  document formatting (!). Not just XML validity, but
- *  formatting of the document, including indentation, spaces,
- *  quotation marks used, etc.
  */
 public final class XmlValidatorTest {
 
@@ -67,9 +63,25 @@ public final class XmlValidatorTest {
             .withFile(
                 "src/main/resources/valid.xml",
                 // @checkstyle LineLength (1 line)
-                "<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd\"></document>"
+                "<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd\">\n    <body/>\n</document>\n"
         );
-        final Validator validator = new XmlValidator();
+        final Validator validator = new XmlValidator(true);
+        validator.validate(env);
+    }
+
+    /**
+     * Should fail validation on incorrectly formatted file.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test(expected = ValidationException.class)
+    public void failsValidationOnIncorrectlyFormattedFile() throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "src/main/resources/almost-valid.xml",
+                // @checkstyle LineLength (1 line)
+                "<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd\"><body/></document>"
+        );
+        final Validator validator = new XmlValidator(true);
         validator.validate(env);
     }
 
@@ -85,6 +97,45 @@ public final class XmlValidatorTest {
                 // @checkstyle LineLength (1 line)
                 "<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://www.google.com\"></document>"
         );
+        final Validator validator = new XmlValidator();
+        validator.validate(env);
+    }
+
+    /**
+     * Should fail validation in case of noNamespaceSchemaLocation attribute.
+     * specified on xml instance, while targetNamespace attribute exists in
+     * schema
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test(expected = ValidationException.class)
+    public void failValidationWithNoSchemaLocationAttr() throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "src/main/resources/valid3.xml",
+                // @checkstyle LineLength (1 line)
+                "<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xsi:noNamespaceSchemaLocation=\"http://maven.apache.org/xsd/decoration-1.3.0.xsd\" \n name=\"test\">\n</project>"
+        );
+        final Validator validator = new XmlValidator();
+        validator.validate(env);
+    }
+
+    /**
+     * Should pass validation if noNamespaceSchemaLocation attribute specified.
+     * @throws Exception If something wrong happens inside.
+     * @checkstyle IndentationCheck (15 lines)
+     */
+    @Test
+    public void passesValidationIfNoSchemaLocationSpecified() throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "src/main/resources/valid4.xml",
+                // @checkstyle LineLength (1 line)
+                "<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xsi:noNamespaceSchemaLocation=\"http://simple.com/test.xsd\">\n</project>"
+            ).withFile(
+                "src/main/resources/test.xsd",
+                // @checkstyle LineLength (1 line)
+                "<schema xmlns=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\">\n<element name=\"project\" type=\"xs:anyType\"/>\n</schema>"
+            );
         final Validator validator = new XmlValidator();
         validator.validate(env);
     }

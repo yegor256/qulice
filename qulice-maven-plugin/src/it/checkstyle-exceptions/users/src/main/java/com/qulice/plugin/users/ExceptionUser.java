@@ -30,6 +30,8 @@
 package com.qulice.plugin.users;
 
 import com.qulice.plugin.exceptions.FooException;
+import com.qulice.plugin.exceptions.ModuleException;
+import com.qulice.plugin.users.sub.SubException;
 
 /**
  * Exception user class.
@@ -40,8 +42,9 @@ import com.qulice.plugin.exceptions.FooException;
 public final class ExceptionUser {
     /**
      * Utility constructor.
+     * @throws BarException in case of error.
      */
-    private ExceptionUser() {
+    private ExceptionUser() throws BarException {
         // do nothing
     }
 
@@ -62,5 +65,21 @@ public final class ExceptionUser {
         } catch (final FooException ex) {
             throw new IllegalStateException(ex);
         }
+    }
+
+    /**
+     * Might throw exception.
+     * @throws SubException In case of problem.
+     */
+    public static void subuser() throws SubException {
+        throw new SubException();
+    }
+
+    /**
+     * Might throw exception.
+     * @throws ModuleException In case of problem.
+     */
+    public static void moduleuser() throws ModuleException {
+        throw new ModuleException();
     }
 }

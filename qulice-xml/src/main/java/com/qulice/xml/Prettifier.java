@@ -1,6 +1,5 @@
 /**
- *
- * Copyright (c) 2011, Qulice.com
+ * Copyright (c) 2011-2014, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,18 +26,49 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * @version $Id$
- *
  */
+package com.qulice.xml;
 
-def log = new File(basedir, 'build.log')
-assert log.text.contains('Redundant throws: \'ModuleException\' is unchecked exception.')
-// @todo #262 Checkstyle doesn't have current module in classpath (either because
-//  RedundantThrows/AbstractTypeAwareCheck have wrong implementation of resolveClass()
-//  or qulice provides wrong classpath to the module. When this is fixed uncomment
-//  following three checks and remove "suppressLoadErrors" from RedundantThrows configuration
-//  in checks.xml.
-//assert log.text.contains('Redundant throws: \'SubException\' is unchecked exception.')
-//assert log.text.contains('Redundant throws: \'BarException\' is unchecked exception.')
-//assert !log.text.contains('Unable to get class information for ')
+import java.io.StringReader;
+import java.io.StringWriter;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
+/**
+ * Prettifies XML files.
+ *
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
+ * @version $Id$
+ */
+public final class Prettifier {
+    /**
+     * Prettify XML by indenting it.
+     * @param xml Input XML.
+     * @return Formatted XML.
+     * @checkstyle MultipleStringLiterals (9 lines)
+     */
+    public String prettify(final String xml) {
+        try {
+            final Transformer transformer = TransformerFactory
+                .newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty(
+                OutputKeys.OMIT_XML_DECLARATION, "yes"
+            );
+            transformer.setOutputProperty(
+                "{http://xml.apache.org/xslt}indent-amount", "2"
+            );
+            final StreamResult result = new StreamResult(new StringWriter());
+            transformer.transform(
+                new StreamSource(new StringReader(xml)), result
+            );
+            return result.getWriter().toString();
+        } catch (final TransformerException ex) {
+            throw new IllegalStateException(ex);
+        }
+    }
+}

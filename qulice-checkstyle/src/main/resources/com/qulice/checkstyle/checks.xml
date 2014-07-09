@@ -221,14 +221,9 @@
         <module name="MagicNumber"/>
         <module name="MissingSwitchDefault"/>
         <module name="ModifiedControlVariable"/>
-        <!--
-        @todo #1 RedundantThrows check complains about custom
-         exceptions, even in the same package. An exception is
-         defined in the same package, and a method throws it. This
-         checkstyle check complains. Let's fix this problem and
-         enable the check.
-        -->
-        <!-- <module name="RedundantThrows"/> -->
+        <module name="RedundantThrows">
+            <property name="suppressLoadErrors" value="true"/>
+        </module>
         <module name="SimplifyBooleanExpression"/>
         <module name="SimplifyBooleanReturn"/>
         <module name="StringLiteralEquality"/>
@@ -369,13 +364,7 @@
         <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/>
         <module name="com.qulice.checkstyle.MethodsOrderCheck"/>
         <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
-        <!--
-        @todo #1 NPE when parsing interfaces with embedded classes. This
-         check fails with an NPE, when parsing an interface with a final class
-         inside it. Let's try to reproduce and fix. Once fixed, remove
-         this puzzle and enable the check again.
         <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
-        -->
         <!--
         see https://github.com/teamed/qulice/issues/239
         <module name="com.qulice.checkstyle.NonStaticMethodCheck">

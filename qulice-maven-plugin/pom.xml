@@ -129,6 +129,10 @@
             <artifactId>commons-io</artifactId>
         </dependency>
         <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.jcabi</groupId>
             <artifactId>jcabi-log</artifactId>
         </dependency>
@@ -296,6 +300,7 @@
                         <pomInclude>multi-module/pom.xml</pomInclude>
                         <pomInclude>pom-xpath-validator-violations</pomInclude>
                         <pomInclude>duplicate-finder-violations</pomInclude>
+                        <!--<pomInclude>duplicate-finder-ignore-deps</pomInclude>-->
                         <!--
                          @todo #251 Rename volations.JS to violations.js after a new version
                           of parent is published (that uses qulice which has jslint configured
