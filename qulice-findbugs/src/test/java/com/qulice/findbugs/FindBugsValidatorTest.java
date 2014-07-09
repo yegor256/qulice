@@ -31,12 +31,14 @@ package com.qulice.findbugs;
 
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * Test case for {@link FindbugsValidator}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @checkstyle MultipleStringLiteralsCheck (200 lines)
  */
 public final class FindBugsValidatorTest {
 
@@ -57,13 +59,53 @@ public final class FindBugsValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test(expected = ValidationException.class)
-    @org.junit.Ignore
     public void throwsExceptionOnViolation() throws Exception {
         final byte[] bytecode = new BytecodeMocker()
             .withSource("class Foo { public Foo clone() { return this; } }")
             .mock();
         final Environment env = new Environment.Mock()
             .withFile("target/classes/Foo.class", bytecode)
+            .withDefaultClasspath();
+        new FindBugsValidator().validate(env);
+    }
+
+    /**
+     * FindbugsValidator can exclude classes from check.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void excludesIncorrectClassFormCheck() throws Exception {
+        final byte[] bytecode = new BytecodeMocker()
+            .withSource("class Foo { public Foo clone() { return this; } }")
+            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile("target/classes/Foo.class", bytecode)
+            .withExcludes("Foo")
+            .withDefaultClasspath();
+        new FindBugsValidator().validate(env);
+    }
+
+    /**
+     * FindbugsValidator can exclude several classes from check.
+     * @throws Exception If something wrong happens inside
+     * @todo #149 Add support for multiline excludes.
+     *  Use xembly Directives to generate xml on the fly.
+     *  Beware, excludes may contain coma separated list of exclude patterns.
+     *  When done, remove Ignore annotation on this test.
+     */
+    @Test
+    @Ignore
+    public void excludesSeveralIncorrectClassFormCheck() throws Exception {
+        final byte[] bytecode = new BytecodeMocker()
+            .withSource("class Foo { public Foo clone() { return this; } }")
+            .mock();
+        final byte[] anotherbytecode = new BytecodeMocker()
+            .withSource("class Bar { public Bar clone() { return this; } }")
+            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile("target/classes/Foo.class", bytecode)
+            .withFile("target/classes/Bar.class", anotherbytecode)
+            .withExcludes("Foo,Bar")
             .withDefaultClasspath();
         new FindBugsValidator().validate(env);
     }

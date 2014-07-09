@@ -37,6 +37,7 @@ import edu.umd.cs.findbugs.PrintingBugReporter;
 import edu.umd.cs.findbugs.Project;
 import edu.umd.cs.findbugs.config.UserPreferences;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Executed by {@link FindBugsValidator}, but in a new process.
@@ -74,8 +75,12 @@ public final class Wrap {
         findbugs.setNoClassOk(true);
         findbugs.setScanNestedArchives(true);
         try {
+            // @checkstyle MagicNumberCheck (2 lines)
+            if (args.length > 3) {
+                findbugs.addFilter(args[3], false);
+            }
             findbugs.execute();
-        } catch (final java.io.IOException ex) {
+        } catch (final IOException ex) {
             throw new IllegalStateException(ex);
         } catch (final InterruptedException ex) {
             throw new IllegalStateException(ex);
