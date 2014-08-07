@@ -2,24 +2,28 @@ assets:
   settings.xml: "yegor256/home#assets/qulice/settings.xml"
   pubring.gpg: "yegor256/home#assets/pubring.gpg"
   secring.gpg: "yegor256/home#assets/secring.gpg"
+  s3cfg: "yegor256/home#assets/s3cfg"
 
 merge:
   env:
     MAVEN_OPTS: "-XX:MaxPermSize=256m -Xmx1g"
-  script: 
+  script:
     - "mvn clean install -Pqulice-profile -Pqulice --errors --settings ../settings.xml"
+    - "mvn clean site -Psite --errors --settings ../settings.xml"
 
 deploy:
   env:
     MAVEN_OPTS: "-XX:MaxPermSize=256m -Xmx1g"
-  script: 
-    - "mvn clean deploy -Ppdd -Pqulice --errors --settings ../settings.xml"
+  script:
+    - "mvn clean deploy -Pqulice --errors --settings ../settings.xml"
+    - "pdd --source=$(pwd) --verbose --file=qulice.xml"
+    - "s3cmd --no-progress put qulice.xml --config=../s3cfg s3://pdd.teamed.io/qulice.xml > /dev/null"
 
 release:
   env:
     MAVEN_OPTS: "-XX:MaxPermSize=256m -Xmx1g"
-  script: 
+  script:
     - "mvn versions:set \"-DnewVersion=${tag}\""
     - "git commit -am \"${tag}\""
     - "mvn clean deploy -Pqulice -Psonatype --errors --settings ../settings.xml"
-    - "mvn clean site-deploy -Psite -Prempl --errors --settings ../settings.xml"
+    - "mvn clean site-deploy -Psite --errors --settings ../settings.xml"
