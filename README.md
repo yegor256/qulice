@@ -1,5 +1,7 @@
 <img src="http://img.qulice.com/logo-big.png" width="200px" height="55px"/>
 
+[![Made By Teamed.io](http://img.teamed.io/btn.svg)](http://www.teamed.io)
+
 [![Build Status](https://travis-ci.org/teamed/qulice.svg?branch=master)](https://travis-ci.org/teamed/qulice)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice)
 
