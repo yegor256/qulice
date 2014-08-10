@@ -46,8 +46,6 @@ assert log.text.contains('Violations.java[16]: Parameter txt should be final. (F
 assert log.text.contains('Violations.java[29]: Parameter ex should be final. (FinalParametersCheck)')
 assert log.text.contains('NewLines.java[4]: Lines in file should end with Unix-like end of line')
 assert log.text.contains('newlines.txt[3]: Lines in file should end with Unix-like end of line')
-assert log.text.findAll('@todo "First second" already exists in the project').size() == 1
-assert log.text.findAll('@todo "Make this a better text." already exists in the project').size() == 1
 assert log.text.contains('Violations.java[39]: ArrayList should be initialized with a size parameter')
 assert log.text.contains('Violations.java[40]: ArrayList should be initialized with a size parameter')
 assert log.text.findAll('Pdd.java.*: @todo tag has wrong format').empty
