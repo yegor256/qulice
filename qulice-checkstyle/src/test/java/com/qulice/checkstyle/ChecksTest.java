@@ -70,7 +70,6 @@ public final class ChecksTest {
         "EmptyLinesCheck",
         "ImportCohesionCheck",
         "JavadocTagsCheck",
-        "PuzzleFormatCheck",
         "CascadeIndentationCheck",
         "BracketsStructureCheck",
         "CurlyBracketsStructureCheck",
