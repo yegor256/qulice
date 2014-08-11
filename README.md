@@ -1,4 +1,4 @@
-<img src="http://img.qulice.com/logo-big.png" width="200px" height="55px"/>
+<img src="http://img.qulice.com/logo.svg" width="200px" height="55px"/>
 
 [![Made By Teamed.io](http://img.teamed.io/btn.svg)](http://www.teamed.io)
 
