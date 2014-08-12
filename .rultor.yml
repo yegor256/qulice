@@ -15,7 +15,7 @@ merge:
 deploy:
   script:
     - "mvn clean deploy -Pqulice --errors --settings ../settings.xml"
-    - "pdd --source=$(pwd) --verbose --file=qulice.xml"
+    - "pdd --source=$(pwd) --verbose --file=qulice.xml --exclude=qulice-maven-plugin/src/it/**/*.java"
     - "s3cmd --no-progress put qulice.xml --config=../s3cfg s3://pdd.teamed.io/qulice.xml > /dev/null"
 
 release:
