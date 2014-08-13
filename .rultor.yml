@@ -18,7 +18,7 @@ deploy:
     - "gem install pdd"
     - "mvn clean"
     - "pdd --source=$(pwd) --verbose --file=qulice.xml --exclude=qulice-maven-plugin/src/it/**/*.java"
-    - "s3cmd --no-progress put qulice.xml --config=../s3cfg s3://pdd.teamed.io/qulice.xml > /dev/null"
+    - "s3cmd --no-progress put qulice.xml --config=../s3cfg s3://pdd.teamed.io/qulice.xml"
 
 release:
   script:
