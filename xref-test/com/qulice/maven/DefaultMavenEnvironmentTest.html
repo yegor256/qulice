@@ -62,7 +62,7 @@
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>          env.setExcludes(Collections.singletonList(<span class="jxr_string">"codenarc:**/*.groovy"</span>));
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>          MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>              env.excludes(<span class="jxr_string">"codenarc"</span>),
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>              Matchers.is(<span class="jxr_string">"**/*.groovy"</span>)
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>              Matchers.contains(<span class="jxr_string">"**/*.groovy"</span>)
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>          );
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>      }
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  
@@ -75,8 +75,8 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>          <strong class="jxr_keyword">final</strong> DefaultMavenEnvironment env = <strong class="jxr_keyword">new</strong> DefaultMavenEnvironment();
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>          env.setExcludes(Collections.&lt;String&gt;emptyList());
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>          MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>              env.excludes(<span class="jxr_string">"codenarc"</span>),
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>              Matchers.isEmptyString()
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>              env.excludes(<span class="jxr_string">"codenarc"</span>).iterator().hasNext(),
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>              Matchers.is(false)
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          );
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>      }
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  
@@ -88,8 +88,8 @@
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> noExclude() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>          <strong class="jxr_keyword">final</strong> DefaultMavenEnvironment env = <strong class="jxr_keyword">new</strong> DefaultMavenEnvironment();
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>          MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>              env.excludes(<span class="jxr_string">"codenarc"</span>),
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>              Matchers.isEmptyString()
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>              env.excludes(<span class="jxr_string">"codenarc"</span>).iterator().hasNext(),
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>              Matchers.is(false)
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>          );
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>      }
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  
@@ -108,10 +108,13 @@
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>         );
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>         MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>             env.excludes(<span class="jxr_string">"codenarc"</span>),
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>             Matchers.is(<span class="jxr_string">"**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy"</span>)
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>         );
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>     }
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> }
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>             Matchers.containsInAnyOrder(
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>                 <span class="jxr_string">"**/src/ex1/Main.groovy"</span>,
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>                 <span class="jxr_string">"**/src/ex2/Main2.groovy"</span>
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>             )
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>         );
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>     }
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2014 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
