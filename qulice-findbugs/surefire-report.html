@@ -4,7 +4,6 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>qulice-findbugs - Surefire Report</title>
-        <link media="all" rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                                                                                                                         
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
@@ -32,9 +31,9 @@
     <body>
                 <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
             <nav class="menu-section" role="navigation">
-                <ul class="menu">
+                <ul class="menu" id="menu">
                                                                                     <li>
-                            Parent Project
+                            <span>Parent Project</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="../index.html" title="qulice">qulice</a>
@@ -45,7 +44,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Overview
+                            <span>Overview</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="index.html" title="Introduction">Introduction</a>
@@ -56,7 +55,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Project Documentation
+                            <span>Project Documentation</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
@@ -65,33 +64,9 @@
                                                                                                                         <li >
                             <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
-                                                                                                    <li >
-                            <span>                        <a href="rempl.html" title="REMPL">REMPL</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li  class='active' >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
+                                                                                                    <li  class='active' >
                             <span>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="changelog.html" title="Change Log">Change Log</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="file-activity.html" title="File Activity">File Activity</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -109,25 +84,19 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.8.1/index.html" title="JavaDocs">JavaDocs</a>
+                            <span>                        <a href="apidocs-0.9/index.html" title="JavaDocs">JavaDocs</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="testapidocs-0.8.1/index.html" title="Test JavaDocs">Test JavaDocs</a>
+                            <span>                        <a href="testapidocs-0.9/index.html" title="Test JavaDocs">Test JavaDocs</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
                             <span>                        <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="github-report.html" title="GitHub Report">GitHub Report</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -142,11 +111,10 @@
                 <main role="main">
                     <div class="content">
                         <header>
-                            <i class="menu-button fa fa-align-justify"></i>
                             <div class="logo">
                                 <a href="../"
                                     title=" home page of Qulice.com ">
-                                    <img src="http://img.qulice.com/logo.png"
+                                    <img src="http://img.qulice.com/logo.svg"
                                         alt="Qulice"
                                                                                     width="214"
                                                                                                                             height="60"
@@ -154,19 +122,27 @@
                                     />
                                 </a>
                             </div>
-                            <div class="date">
-                                <div class="date-numbers">
-                                    <strong itemprop="version">0.8.1</strong>
+                            <div class="teamed">
+                                <a href="http://www.teamed.io">
+                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
+                                </a>
+                            </div>
+                            <ul class="badges">
+                                <li>
+                                    <strong itemprop="version">0.9</strong>
+                                </li>
+                                <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-05-16T10:46:26Z">
+                                    <time itemprop="datePublished" datetime="2014-08-14T06:51:33Z">
                                         
-                                        16-May-2014
+                                        14-Aug-2014
                                     </time>
-                                </div>
-                                                                                            </div>
-                            <div id="here-goes-menu" class="menu-off"></div>
+                                </li>
+                                <li class="menu-button">menu</li>
+                            </ul>
                         </header>
-                        <article role="article" itemprop="articleBody">
+                        <div id="here-goes-menu" class="menu-off"></div>
+                                                                        <article role="article" itemprop="articleBody">
                             <script type="text/javascript">
 //<![CDATA[
 function toggleDisplay(elementId) {
@@ -198,12 +174,12 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td>2</td>
-<td>1</td>
+<td>4</td>
+<td>0</td>
 <td>0</td>
 <td>1</td>
-<td>0%</td>
-<td>0.216</td></tr></table><br />
+<td>75%</td>
+<td>36.969</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2>Package List<a name="Package_List"></a></h2><a name="Package_List"></a>
@@ -219,12 +195,12 @@ function toggleDisplay(elementId) {
 <th>Time</th></tr>
 <tr class="b">
 <td><a href="#com.qulice.findbugs">com.qulice.findbugs</a></td>
-<td>2</td>
-<td>1</td>
+<td>4</td>
+<td>0</td>
 <td>0</td>
 <td>1</td>
-<td>0%</td>
-<td>0.216</td></tr></table><br />
+<td>75%</td>
+<td>36.969</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
 <h3>com.qulice.findbugs<a name="com.qulice.findbugs"></a></h3><a name="com.qulice.findbugs"></a>
@@ -239,14 +215,14 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#com.qulice.findbugsFindBugsValidatorTest"><img src="images/icon_error_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.findbugsFindBugsValidatorTest"><img src="images/icon_warning_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.findbugsFindBugsValidatorTest">FindBugsValidatorTest</a></td>
-<td>2</td>
-<td>1</td>
+<td>4</td>
+<td>0</td>
 <td>0</td>
 <td>1</td>
-<td>0%</td>
-<td>0.216</td></tr></table></div><br /></div>
+<td>75%</td>
+<td>36.969</td></tr></table></div><br /></div>
 <div class="section">
 <h2>Test Cases<a name="Test_Cases"></a></h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
@@ -254,51 +230,36 @@ function toggleDisplay(elementId) {
 <h3>FindBugsValidatorTest<a name="FindBugsValidatorTest"></a></h3><a name="com.qulice.findbugsFindBugsValidatorTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
-<td><a href="#com.qulice.findbugs.FindBugsValidatorTest.throwsExceptionOnViolation"><img src="images/icon_warning_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.findbugs.FindBugsValidatorTest.throwsExceptionOnViolation">throwsExceptionOnViolation</a>
-<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_findbugs_FindBugsValidatorTest_throwsExceptionOnViolation&apos;);"><span style="display:inline;" id="com_qulice_findbugs_FindBugsValidatorTest_throwsExceptionOnViolationoff"> + </span><span style="display:none;" id="com_qulice_findbugs_FindBugsValidatorTest_throwsExceptionOnViolationon"> - </span>[ Detail ]</a></div></td>
+<td><a href="#com.qulice.findbugs.FindBugsValidatorTest.excludesSeveralIncorrectClassFormCheck"><img src="images/icon_warning_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.findbugs.FindBugsValidatorTest.excludesSeveralIncorrectClassFormCheck">excludesSeveralIncorrectClassFormCheck</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_findbugs_FindBugsValidatorTest_excludesSeveralIncorrectClassFormCheck&apos;);"><span style="display:inline;" id="com_qulice_findbugs_FindBugsValidatorTest_excludesSeveralIncorrectClassFormCheckoff"> + </span><span style="display:none;" id="com_qulice_findbugs_FindBugsValidatorTest_excludesSeveralIncorrectClassFormCheckon"> - </span>[ Detail ]</a></div></td>
 <td>0</td></tr>
 <tr class="b">
 <td></td>
 <td>skipped</td>
 <td></td></tr>
 <tr class="a">
-<td><a href="#com.qulice.findbugs.FindBugsValidatorTest.passesCorrectFilesWithNoExceptions"><img src="images/icon_error_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.findbugs.FindBugsValidatorTest.passesCorrectFilesWithNoExceptions">passesCorrectFilesWithNoExceptions</a>
-<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_findbugs_FindBugsValidatorTest_passesCorrectFilesWithNoExceptions&apos;);"><span style="display:inline;" id="com_qulice_findbugs_FindBugsValidatorTest_passesCorrectFilesWithNoExceptionsoff"> + </span><span style="display:none;" id="com_qulice_findbugs_FindBugsValidatorTest_passesCorrectFilesWithNoExceptionson"> - </span>[ Detail ]</a></div></td>
-<td>0.216</td></tr>
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>throwsExceptionOnViolation</td>
+<td>13.774</td></tr>
 <tr class="b">
-<td></td>
-<td>1 FindBugs violations (see log above)</td>
-<td></td></tr>
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>passesCorrectFilesWithNoExceptions</td>
+<td>9.188</td></tr>
 <tr class="a">
-<td></td>
-<td>
-<div id="com_qulice_findbugs_FindBugsValidatorTest_passesCorrectFilesWithNoExceptionserror" style="display:none;">
-<div>
-<pre>com.qulice.spi.ValidationException: 1 FindBugs violations (see log above)at com.qulice.findbugs.FindBugsValidator.check(FindBugsValidator.java:185)at com.qulice.findbugs.FindBugsValidator.validate(FindBugsValidator.java:73)at com.qulice.findbugs.FindBugsValidatorTest.passesCorrectFilesWithNoExceptions(FindBugsValidatorTest.java:52)</pre></div></div></td>
-<td></td></tr></table></div><br /></div>
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>excludesIncorrectClassFormCheck</td>
+<td>14.007</td></tr></table></div><br /></div>
 <div class="section">
 <h2>Failure Details<a name="Failure_Details"></a></h2><a name="Failure_Details"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_warning_sml.gif" alt="" /></td>
-<td><a name="com.qulice.findbugs.FindBugsValidatorTest.throwsExceptionOnViolation"></a>throwsExceptionOnViolation</td></tr>
+<td><a name="com.qulice.findbugs.FindBugsValidatorTest.excludesSeveralIncorrectClassFormCheck"></a>excludesSeveralIncorrectClassFormCheck</td></tr>
 <tr class="b">
 <td></td>
-<td>skipped: skipped</td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" /></td>
-<td><a name="com.qulice.findbugs.FindBugsValidatorTest.passesCorrectFilesWithNoExceptions"></a>passesCorrectFilesWithNoExceptions</td></tr>
-<tr class="b">
-<td></td>
-<td>com.qulice.spi.ValidationException: 1 FindBugs violations (see log above)</td></tr>            
-<tr class="a">
-<td></td>
-<td>
-<div id="passesCorrectFilesWithNoExceptionserror">com.qulice.findbugs.FindBugsValidatorTest:52</div></td></tr></table><br /></div>
-                            <img class="maven-logo" src="//img.jcabi.com/built-by-maven.png" alt="built by maven"/>
+<td>skipped: skipped</td></tr></table><br /></div>
                         </article>
                     </div>
                 </main>
