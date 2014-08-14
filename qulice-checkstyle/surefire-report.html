@@ -4,7 +4,6 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>qulice-checkstyle - Surefire Report</title>
-        <link media="all" rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                                                                                                                         
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
@@ -32,9 +31,9 @@
     <body>
                 <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
             <nav class="menu-section" role="navigation">
-                <ul class="menu">
+                <ul class="menu" id="menu">
                                                                                     <li>
-                            Parent Project
+                            <span>Parent Project</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="../index.html" title="qulice">qulice</a>
@@ -45,7 +44,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Overview
+                            <span>Overview</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="index.html" title="Introduction">Introduction</a>
@@ -56,7 +55,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Project Documentation
+                            <span>Project Documentation</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
@@ -65,33 +64,9 @@
                                                                                                                         <li >
                             <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
-                                                                                                    <li >
-                            <span>                        <a href="rempl.html" title="REMPL">REMPL</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li  class='active' >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
+                                                                                                    <li  class='active' >
                             <span>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="changelog.html" title="Change Log">Change Log</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="file-activity.html" title="File Activity">File Activity</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -109,19 +84,13 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.8.1/index.html" title="JavaDocs">JavaDocs</a>
+                            <span>                        <a href="apidocs-0.9/index.html" title="JavaDocs">JavaDocs</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
                             <span>                        <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="github-report.html" title="GitHub Report">GitHub Report</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -136,11 +105,10 @@
                 <main role="main">
                     <div class="content">
                         <header>
-                            <i class="menu-button fa fa-align-justify"></i>
                             <div class="logo">
                                 <a href="../"
                                     title=" home page of Qulice.com ">
-                                    <img src="http://img.qulice.com/logo.png"
+                                    <img src="http://img.qulice.com/logo.svg"
                                         alt="Qulice"
                                                                                     width="214"
                                                                                                                             height="60"
@@ -148,19 +116,27 @@
                                     />
                                 </a>
                             </div>
-                            <div class="date">
-                                <div class="date-numbers">
-                                    <strong itemprop="version">0.8.1</strong>
+                            <div class="teamed">
+                                <a href="http://www.teamed.io">
+                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
+                                </a>
+                            </div>
+                            <ul class="badges">
+                                <li>
+                                    <strong itemprop="version">0.9</strong>
+                                </li>
+                                <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-05-16T10:44:58Z">
+                                    <time itemprop="datePublished" datetime="2014-08-14T06:49:57Z">
                                         
-                                        16-May-2014
+                                        14-Aug-2014
                                     </time>
-                                </div>
-                                                                                            </div>
-                            <div id="here-goes-menu" class="menu-off"></div>
+                                </li>
+                                <li class="menu-button">menu</li>
+                            </ul>
                         </header>
-                        <article role="article" itemprop="articleBody">
+                        <div id="here-goes-menu" class="menu-off"></div>
+                                                                        <article role="article" itemprop="articleBody">
                             <script type="text/javascript">
 //<![CDATA[
 function toggleDisplay(elementId) {
@@ -192,12 +168,12 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td>32</td>
+<td>31</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>13.012</td></tr></table><br />
+<td>31.886</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2>Package List<a name="Package_List"></a></h2><a name="Package_List"></a>
@@ -213,12 +189,12 @@ function toggleDisplay(elementId) {
 <th>Time</th></tr>
 <tr class="b">
 <td><a href="#com.qulice.checkstyle">com.qulice.checkstyle</a></td>
-<td>32</td>
+<td>31</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>13.012</td></tr></table><br />
+<td>31.886</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
 <h3>com.qulice.checkstyle<a name="com.qulice.checkstyle"></a></h3><a name="com.qulice.checkstyle"></a>
@@ -233,14 +209,14 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#com.qulice.checkstyleCascadeIndentationCheckTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.checkstyleCascadeIndentationCheckTest">CascadeIndentationCheckTest</a></td>
-<td>1</td>
+<td><a href="#com.qulice.checkstyleCheckstyleValidatorTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.checkstyleCheckstyleValidatorTest">CheckstyleValidatorTest</a></td>
+<td>3</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.329</td></tr>
+<td>10.521</td></tr>
 <tr class="a">
 <td><a href="#com.qulice.checkstyleChecksTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.checkstyleChecksTest">ChecksTest</a></td>
@@ -249,157 +225,140 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>8.265</td></tr>
-<tr class="b">
-<td><a href="#com.qulice.checkstyleCheckstyleValidatorTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.checkstyleCheckstyleValidatorTest">CheckstyleValidatorTest</a></td>
-<td>3</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>4.418</td></tr></table></div><br /></div>
+<td>21.365</td></tr></table></div><br /></div>
 <div class="section">
 <h2>Test Cases<a name="Test_Cases"></a></h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
-<div class="section">
-<h3>CascadeIndentationCheckTest<a name="CascadeIndentationCheckTest"></a></h3><a name="com.qulice.checkstyleCascadeIndentationCheckTest"></a>
-<table border="1" class="bodyTable">
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testWithCorrectIndentation</td>
-<td>0.329</td></tr></table></div>
-<div class="section">
-<h3>ChecksTest<a name="ChecksTest"></a></h3><a name="com.qulice.checkstyleChecksTest"></a>
-<table border="1" class="bodyTable">
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[1]</td>
-<td>0.481</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[2]</td>
-<td>0.491</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[0]</td>
-<td>0.488</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[0]</td>
-<td>0.5</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[2]</td>
-<td>0.484</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[1]</td>
-<td>0.516</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[3]</td>
-<td>0.481</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[4]</td>
-<td>0.381</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[4]</td>
-<td>0.382</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[6]</td>
-<td>0.38</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[3]</td>
-<td>0.48</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[5]</td>
-<td>0.48</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[7]</td>
-<td>0.379</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[6]</td>
-<td>0.379</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[5]</td>
-<td>0.495</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[7]</td>
-<td>0.379</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[8]</td>
-<td>0.134</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[9]</td>
-<td>0.129</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[10]</td>
-<td>0.107</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[10]</td>
-<td>0.095</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[11]</td>
-<td>0.099</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[9]</td>
-<td>0.109</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[8]</td>
-<td>0.132</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[11]</td>
-<td>0.1</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[12]</td>
-<td>0.059</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[12]</td>
-<td>0.057</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTruePositive[13]</td>
-<td>0.039</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testCheckstyleTrueNegative[13]</td>
-<td>0.029</td></tr></table></div>
 <div class="section">
 <h3>CheckstyleValidatorTest<a name="CheckstyleValidatorTest"></a></h3><a name="com.qulice.checkstyleCheckstyleValidatorTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>testWindowsEndsOfLineWithLinuxSources</td>
-<td>1.473</td></tr>
+<td>passesWindowsEndsOfLineWithoutException</td>
+<td>3.51</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>catchesCheckstyleViolationsInLicense</td>
-<td>1.472</td></tr>
+<td>3.507</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>passesWindowsEndsOfLineWithoutException</td>
-<td>1.473</td></tr></table></div><br /></div>
-                            <img class="maven-logo" src="//img.jcabi.com/built-by-maven.png" alt="built by maven"/>
+<td>testWindowsEndsOfLineWithLinuxSources</td>
+<td>3.504</td></tr></table></div>
+<div class="section">
+<h3>ChecksTest<a name="ChecksTest"></a></h3><a name="com.qulice.checkstyleChecksTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[1]</td>
+<td>1.764</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[0]</td>
+<td>1.655</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[0]</td>
+<td>1.606</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[1]</td>
+<td>1.41</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[2]</td>
+<td>1.459</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[3]</td>
+<td>1.407</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[2]</td>
+<td>1.402</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[3]</td>
+<td>1.443</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[6]</td>
+<td>1.708</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[6]</td>
+<td>1.566</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[5]</td>
+<td>1.426</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[4]</td>
+<td>1.198</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[4]</td>
+<td>0.076</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[5]</td>
+<td>0.179</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[7]</td>
+<td>0.359</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[7]</td>
+<td>0.47</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[8]</td>
+<td>0.305</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[8]</td>
+<td>0.278</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[9]</td>
+<td>0.233</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[9]</td>
+<td>0.329</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[10]</td>
+<td>0.217</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[10]</td>
+<td>0.194</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[11]</td>
+<td>0.148</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[11]</td>
+<td>0.124</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[12]</td>
+<td>0.103</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[12]</td>
+<td>0.079</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTruePositive[13]</td>
+<td>0.115</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>testCheckstyleTrueNegative[13]</td>
+<td>0.112</td></tr></table></div><br /></div>
                         </article>
                     </div>
                 </main>
