@@ -5,7 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>qulice-maven-plugin - 
     qulice:check</title>
-        <link media="all" rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                                                                                                                         
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
@@ -33,9 +32,9 @@
     <body>
                 <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
             <nav class="menu-section" role="navigation">
-                <ul class="menu">
+                <ul class="menu" id="menu">
                                                                                     <li>
-                            Parent Project
+                            <span>Parent Project</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="../index.html" title="qulice">qulice</a>
@@ -46,7 +45,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Overview
+                            <span>Overview</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="index.html" title="Introduction">Introduction</a>
@@ -75,7 +74,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Examples
+                            <span>Examples</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="example-exclude.html" title="Exclude">Exclude</a>
@@ -86,7 +85,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Project Documentation
+                            <span>Project Documentation</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
@@ -95,7 +94,7 @@
                                                                                                                         <li >
                             <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
                                                                                         </ul>
                                                     </li>
                                     </ul>
@@ -104,11 +103,10 @@
                 <main role="main">
                     <div class="content">
                         <header>
-                            <i class="menu-button fa fa-align-justify"></i>
                             <div class="logo">
                                 <a href="../"
                                     title=" home page of Qulice.com ">
-                                    <img src="http://img.qulice.com/logo.png"
+                                    <img src="http://img.qulice.com/logo.svg"
                                         alt="Qulice"
                                                                                     width="214"
                                                                                                                             height="60"
@@ -116,19 +114,27 @@
                                     />
                                 </a>
                             </div>
-                            <div class="date">
-                                <div class="date-numbers">
-                                    <strong itemprop="version">0.8.1</strong>
+                            <div class="teamed">
+                                <a href="http://www.teamed.io">
+                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
+                                </a>
+                            </div>
+                            <ul class="badges">
+                                <li>
+                                    <strong itemprop="version">0.9</strong>
+                                </li>
+                                <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-05-16T10:49:08Z">
+                                    <time itemprop="datePublished" datetime="2014-08-14T06:55:45Z">
                                         
-                                        16-May-2014
+                                        14-Aug-2014
                                     </time>
-                                </div>
-                                                                                            </div>
-                            <div id="here-goes-menu" class="menu-off"></div>
+                                </li>
+                                <li class="menu-button">menu</li>
+                            </ul>
                         </header>
-                        <article role="article" itemprop="articleBody">
+                        <div id="here-goes-menu" class="menu-off"></div>
+                                                                        <article role="article" itemprop="articleBody">
                             
   
     <div class="section">
@@ -136,7 +142,7 @@
       
 <p><b>Full name</b>:</p>
       
-<p>com.qulice:qulice-maven-plugin:0.8.1:check</p>
+<p>com.qulice:qulice-maven-plugin:0.9:check</p>
       
 <p><b>Description</b>:</p>
       
@@ -284,7 +290,6 @@ resource name and will be found in classpath (if available).</div>
     </div>
   
 
-                            <img class="maven-logo" src="//img.jcabi.com/built-by-maven.png" alt="built by maven"/>
                         </article>
                     </div>
                 </main>

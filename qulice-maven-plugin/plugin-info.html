@@ -4,7 +4,6 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>qulice-maven-plugin - Plugin Documentation</title>
-        <link media="all" rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                                                                                                                         
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
@@ -32,9 +31,9 @@
     <body>
                 <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
             <nav class="menu-section" role="navigation">
-                <ul class="menu">
+                <ul class="menu" id="menu">
                                                                                     <li>
-                            Parent Project
+                            <span>Parent Project</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="../index.html" title="qulice">qulice</a>
@@ -45,7 +44,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Overview
+                            <span>Overview</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="index.html" title="Introduction">Introduction</a>
@@ -74,7 +73,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Examples
+                            <span>Examples</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="example-exclude.html" title="Exclude">Exclude</a>
@@ -85,7 +84,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Project Documentation
+                            <span>Project Documentation</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
@@ -94,33 +93,9 @@
                                                                                                                         <li >
                             <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
                                                                                                     <li >
-                            <span>                        <a href="rempl.html" title="REMPL">REMPL</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
                             <span>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="changelog.html" title="Change Log">Change Log</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="file-activity.html" title="File Activity">File Activity</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -138,7 +113,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.8.1/index.html" title="JavaDocs">JavaDocs</a>
+                            <span>                        <a href="apidocs-0.9/index.html" title="JavaDocs">JavaDocs</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -155,12 +130,6 @@
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
-                                                                                                                        <li >
-                            <span>                        <a href="github-report.html" title="GitHub Report">GitHub Report</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
                                                                                         </ul>
                                                     </li>
                                                                                         </ul>
@@ -171,11 +140,10 @@
                 <main role="main">
                     <div class="content">
                         <header>
-                            <i class="menu-button fa fa-align-justify"></i>
                             <div class="logo">
                                 <a href="../"
                                     title=" home page of Qulice.com ">
-                                    <img src="http://img.qulice.com/logo.png"
+                                    <img src="http://img.qulice.com/logo.svg"
                                         alt="Qulice"
                                                                                     width="214"
                                                                                                                             height="60"
@@ -183,19 +151,27 @@
                                     />
                                 </a>
                             </div>
-                            <div class="date">
-                                <div class="date-numbers">
-                                    <strong itemprop="version">0.8.1</strong>
+                            <div class="teamed">
+                                <a href="http://www.teamed.io">
+                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
+                                </a>
+                            </div>
+                            <ul class="badges">
+                                <li>
+                                    <strong itemprop="version">0.9</strong>
+                                </li>
+                                <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-05-16T10:49:04Z">
+                                    <time itemprop="datePublished" datetime="2014-08-14T06:55:45Z">
                                         
-                                        16-May-2014
+                                        14-Aug-2014
                                     </time>
-                                </div>
-                                                                                            </div>
-                            <div id="here-goes-menu" class="menu-off"></div>
+                                </li>
+                                <li class="menu-button">menu</li>
+                            </ul>
                         </header>
-                        <article role="article" itemprop="articleBody">
+                        <div id="here-goes-menu" class="menu-off"></div>
+                                                                        <article role="article" itemprop="articleBody">
                             <div class="section">
 <h2>Plugin Documentation<a name="Plugin_Documentation"></a></h2><a name="Plugin_Documentation"></a>
 <p>Goals available for this plugin:</p>
@@ -243,7 +219,7 @@ Call <code>mvn qulice:help -Ddetail=true
         &lt;plugin&gt;
           &lt;groupId&gt;com.qulice&lt;/groupId&gt;
           &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-          &lt;version&gt;0.8.1&lt;/version&gt;
+          &lt;version&gt;0.9&lt;/version&gt;
         &lt;/plugin&gt;
         ...
       &lt;/plugins&gt;
@@ -253,7 +229,7 @@ Call <code>mvn qulice:help -Ddetail=true
       &lt;plugin&gt;
         &lt;groupId&gt;com.qulice&lt;/groupId&gt;
         &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-        &lt;version&gt;0.8.1&lt;/version&gt;
+        &lt;version&gt;0.9&lt;/version&gt;
       &lt;/plugin&gt;
       ...
     &lt;/plugins&gt;
@@ -262,7 +238,6 @@ Call <code>mvn qulice:help -Ddetail=true
 &lt;/project&gt;
 </pre></div>
 <p>For more information, see <a class="externalLink" href="http://maven.apache.org/guides/mini/guide-configuring-plugins.html">&quot;Guide to Configuring Plug-ins&quot;</a></p></div></div>
-                            <img class="maven-logo" src="//img.jcabi.com/built-by-maven.png" alt="built by maven"/>
                         </article>
                     </div>
                 </main>
