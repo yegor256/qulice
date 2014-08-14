@@ -4,7 +4,6 @@
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>qulice-pmd - Surefire Report</title>
-        <link media="all" rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                                                                                                                         
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
@@ -32,9 +31,9 @@
     <body>
                 <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
             <nav class="menu-section" role="navigation">
-                <ul class="menu">
+                <ul class="menu" id="menu">
                                                                                     <li>
-                            Parent Project
+                            <span>Parent Project</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="../index.html" title="qulice">qulice</a>
@@ -45,7 +44,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Overview
+                            <span>Overview</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="index.html" title="Introduction">Introduction</a>
@@ -56,7 +55,7 @@
                                                                                         </ul>
                                                     </li>
                                             <li>
-                            Project Documentation
+                            <span>Project Documentation</span>
                                                             <ul>
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
@@ -65,33 +64,9 @@
                                                                                                                         <li >
                             <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
-                                                                                                    <li >
-                            <span>                        <a href="rempl.html" title="REMPL">REMPL</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li  class='active' >
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
+                                                                                                    <li  class='active' >
                             <span>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="changelog.html" title="Change Log">Change Log</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="dev-activity.html" title="Developer Activity">Developer Activity</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="file-activity.html" title="File Activity">File Activity</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -109,19 +84,13 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.8.1/index.html" title="JavaDocs">JavaDocs</a>
+                            <span>                        <a href="apidocs-0.9/index.html" title="JavaDocs">JavaDocs</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
                             <span>                        <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="github-report.html" title="GitHub Report">GitHub Report</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -136,11 +105,10 @@
                 <main role="main">
                     <div class="content">
                         <header>
-                            <i class="menu-button fa fa-align-justify"></i>
                             <div class="logo">
                                 <a href="../"
                                     title=" home page of Qulice.com ">
-                                    <img src="http://img.qulice.com/logo.png"
+                                    <img src="http://img.qulice.com/logo.svg"
                                         alt="Qulice"
                                                                                     width="214"
                                                                                                                             height="60"
@@ -148,19 +116,27 @@
                                     />
                                 </a>
                             </div>
-                            <div class="date">
-                                <div class="date-numbers">
-                                    <strong itemprop="version">0.8.1</strong>
+                            <div class="teamed">
+                                <a href="http://www.teamed.io">
+                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
+                                </a>
+                            </div>
+                            <ul class="badges">
+                                <li>
+                                    <strong itemprop="version">0.9</strong>
+                                </li>
+                                <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-05-16T10:47:22Z">
+                                    <time itemprop="datePublished" datetime="2014-08-14T06:53:28Z">
                                         
-                                        16-May-2014
+                                        14-Aug-2014
                                     </time>
-                                </div>
-                                                                                            </div>
-                            <div id="here-goes-menu" class="menu-off"></div>
+                                </li>
+                                <li class="menu-button">menu</li>
+                            </ul>
                         </header>
-                        <article role="article" itemprop="articleBody">
+                        <div id="here-goes-menu" class="menu-off"></div>
+                                                                        <article role="article" itemprop="articleBody">
                             <script type="text/javascript">
 //<![CDATA[
 function toggleDisplay(elementId) {
@@ -197,7 +173,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.772</td></tr></table><br />
+<td>2.002</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2>Package List<a name="Package_List"></a></h2><a name="Package_List"></a>
@@ -218,7 +194,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.772</td></tr></table><br />
+<td>2.002</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
 <h3>com.qulice.pmd<a name="com.qulice.pmd"></a></h3><a name="com.qulice.pmd"></a>
@@ -233,15 +209,6 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#com.qulice.pmdFilesTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.pmdFilesTest">FilesTest</a></td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>0.03</td></tr>
-<tr class="a">
 <td><a href="#com.qulice.pmdPMDValidatorTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.pmdPMDValidatorTest">PMDValidatorTest</a></td>
 <td>1</td>
@@ -249,25 +216,33 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.742</td></tr></table></div><br /></div>
+<td>1.934</td></tr>
+<tr class="a">
+<td><a href="#com.qulice.pmdFilesTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.pmdFilesTest">FilesTest</a></td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>100%</td>
+<td>0.068</td></tr></table></div><br /></div>
 <div class="section">
 <h2>Test Cases<a name="Test_Cases"></a></h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
-<div class="section">
-<h3>FilesTest<a name="FilesTest"></a></h3><a name="com.qulice.pmdFilesTest"></a>
-<table border="1" class="bodyTable">
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>providesOnlyJavaFiles</td>
-<td>0.03</td></tr></table></div>
 <div class="section">
 <h3>PMDValidatorTest<a name="PMDValidatorTest"></a></h3><a name="com.qulice.pmdPMDValidatorTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>findsProblemsInJavaFiles</td>
-<td>0.742</td></tr></table></div><br /></div>
-                            <img class="maven-logo" src="//img.jcabi.com/built-by-maven.png" alt="built by maven"/>
+<td>1.934</td></tr></table></div>
+<div class="section">
+<h3>FilesTest<a name="FilesTest"></a></h3><a name="com.qulice.pmdFilesTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>providesOnlyJavaFiles</td>
+<td>0.068</td></tr></table></div><br /></div>
                         </article>
                     </div>
                 </main>
