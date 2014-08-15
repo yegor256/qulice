@@ -139,4 +139,54 @@ public final class XmlValidatorTest {
         final Validator validator = new XmlValidator();
         validator.validate(env);
     }
+
+    /**
+     * Should pass validation for valid XML when multiple schemas are specified.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void passesValidationWithMultipleSchemas() throws Exception {
+        // @checkstyle LineLength (10 lines)
+        final String xml = new StringBuilder()
+            .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> ")
+            .append("<beans xmlns=\"http://www.springframework.org/schema/beans\" ")
+            .append("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ")
+            .append("xmlns:util=\"http://www.springframework.org/schema/util\" ")
+            .append("xsi:schemaLocation=\"")
+            .append("http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd ")
+            .append("http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd\">")
+            .append("<bean id=\"bean\" class=\"bean\"></bean>")
+            .append("<util:constant static-field=\"blah\"/>")
+            .append("</beans>")
+            .toString();
+        final Environment env = new Environment.Mock()
+            .withFile("src/main/resources/valid-multi.xml", xml);
+        final Validator validator = new XmlValidator(false);
+        validator.validate(env);
+    }
+
+    /**
+     * Should fail validation for invalid XML if multiple schemas are specified.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test(expected = ValidationException.class)
+    public void failsValidationWithMultipleSchemas() throws Exception {
+        // @checkstyle LineLength (10 lines)
+        final String xml = new StringBuilder()
+            .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> ")
+            .append("<beans xmlns=\"http://www.springframework.org/schema/beans\" ")
+            .append("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" ")
+            .append("xmlns:util=\"http://www.springframework.org/schema/util\" ")
+            .append("xsi:schemaLocation=\"")
+            .append("http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd ")
+            .append("http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd\">")
+            .append("<bean noSuchAttribute=\"fail\"/>")
+            .append("<util:shouldFail/>")
+            .append("</beans>")
+            .toString();
+        final Environment env = new Environment.Mock()
+            .withFile("src/main/resources/invalid-multi.xml", xml);
+        final Validator validator = new XmlValidator(false);
+        validator.validate(env);
+    }
 }
