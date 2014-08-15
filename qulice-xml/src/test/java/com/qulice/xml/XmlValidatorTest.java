@@ -152,6 +152,7 @@ public final class XmlValidatorTest {
      */
     @Test
     public void passesValidationWithMultipleSchemas() throws Exception {
+        // @checkstyle MultipleStringLiterals (50 lines)
         // @checkstyle LineLength (10 lines)
         final String xml = new StringBuilder()
             .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?> ")
