@@ -112,7 +112,10 @@ public interface Environment {
     boolean exclude(String check, String name);
 
     /**
-     * List of exclude patterns.
+     * List of exclude patterns for given checker.
+     * Each list element will contain exactly one exclude pattern which,
+     * depending on the plugin that uses the excludes might be either wildcard
+     * (CodeNarc) pattern or regex pattern (FindBugs).
      * @param checker Name of the checker that is asking (pmd, codenarc ...)
      * @return Exclude patterns
      */
