@@ -35,5 +35,5 @@
 
 def log = new File(basedir, 'build.log')
 assert log.text.findAll('println should be replaced with something more robust').size() == 1
-assert log.text.contains('module/src/script.groovy[1]: Semi-colons as line endings can be removed safely')
-assert log.text.contains('module/src/script.groovy[1]: println should be replaced with something more robust')
+assert log.text.contains('script.groovy[1]: Semi-colons as line endings can be removed safely')
+assert log.text.contains('script.groovy[1]: println should be replaced with something more robust')
