@@ -225,7 +225,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
                 @Override
                 public boolean apply(@Nullable final String input) {
                     return input != null
-                        && FilenameUtils.normalize(name).matches(input);
+                        && FilenameUtils.normalize(name, true).matches(input);
                 }
             }
         );
