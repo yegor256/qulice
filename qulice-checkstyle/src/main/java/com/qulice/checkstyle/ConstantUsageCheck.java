@@ -91,10 +91,15 @@ public final class ConstantUsageCheck extends Check {
             }
             variable = variable.getNextSibling();
         }
-        if (counter < 2) {
+        if (counter == 1) {
             this.log(
                 line,
                 String.format("Constant \"%s\" used only once", name)
+            );
+        } else if (counter == 0) {
+            this.log(
+                line,
+                String.format("Constant \"%s\" is not used", name)
             );
         }
     }
