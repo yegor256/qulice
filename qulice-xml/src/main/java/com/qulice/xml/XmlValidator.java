@@ -126,8 +126,10 @@ public final class XmlValidator implements Validator {
      */
     private void formatting(final String name, final String before)
         throws ValidationException {
-        final String after = new Prettifier().prettify(before);
-        if (!before.equals(after)) {
+        // @checkstyle MultipleStringLiterals (3 lines)
+        final String after = new Prettifier().prettify(before)
+            .replace("\r\n", "\n");
+        if (!before.replace("\r\n", "\n").equals(after)) {
             throw new ValidationException(
                 // @checkstyle LineLength (1 line)
                 "The provided XML %s is not well formatted, it should look like this:\n%s",
