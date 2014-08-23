@@ -32,6 +32,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Arrays;
 
 /**
  * Checks method bodies for comments. All comments in method bodies are
@@ -46,6 +47,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @todo #260 Add handling of multiple anonymous classes inside methods by
+ *  looking at the recursive tree.
+ * @todo #260 Add handling of anonymous classes outside of variable definitions,
+ *  e.g. in for, try/catch, expression, etc.
  */
 public final class MethodBodyCommentsCheck extends Check {
 
@@ -60,9 +65,29 @@ public final class MethodBodyCommentsCheck extends Check {
     @Override
     public void visitToken(final DetailAST ast) {
         final DetailAST start = ast.findFirstToken(TokenTypes.SLIST);
+        final String[] lines = Arrays.copyOf(
+            this.getLines(), this.getLines().length
+        );
         if (start != null) {
+            DetailAST ostart = start.findFirstToken(TokenTypes.VARIABLE_DEF);
+            final int[] tokens = {
+                TokenTypes.ASSIGN, TokenTypes.EXPR,
+                TokenTypes.LITERAL_NEW, TokenTypes.OBJBLOCK,
+            };
+            for (final int token : tokens) {
+                if (ostart != null) {
+                    ostart = ostart.findFirstToken(token);
+                }
+            }
+            if ((ostart != null)
+                && (ostart.getType() == tokens[tokens.length - 1])) {
+                Arrays.fill(
+                    lines, ostart.getLineNo(),
+                    ostart.findFirstToken(TokenTypes.RCURLY).getLineNo(), ""
+                );
+            }
             this.checkMethod(
-                this.getLines(),
+                lines,
                 start.getLineNo(),
                 start.findFirstToken(TokenTypes.RCURLY).getLineNo() - 1
             );
