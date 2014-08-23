@@ -301,13 +301,7 @@
                         <pomInclude>pom-xpath-validator-violations</pomInclude>
                         <pomInclude>duplicate-finder-violations</pomInclude>
                         <!--<pomInclude>duplicate-finder-ignore-deps</pomInclude>-->
-                        <!--
-                         @todo #251 Rename volations.JS to violations.js after a new version
-                          of parent is published (that uses qulice which has jslint configured
-                          to use src/main for the js file locations)
-                          and uncomment following line.
                         <pomInclude>js-violations/pom.xml</pomInclude>
-                        -->
                     </pomIncludes>
                     <extraArtifacts>
                         <extraArtifact>${project.groupId}:qulice-checkstyle:${project.version}:jar</extraArtifact>
