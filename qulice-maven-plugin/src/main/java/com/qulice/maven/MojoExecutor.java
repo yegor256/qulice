@@ -187,6 +187,7 @@ public final class MojoExecutor {
      * @param name High-level name of it
      * @return The Xpp3Dom document
      * @see #execute(String,String,Properties)
+     * @checkstyle ExecutableStatementCountCheck (100 lines)
      */
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private Xpp3Dom toXppDom(final Properties config, final String name) {

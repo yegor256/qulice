@@ -83,23 +83,18 @@ public final class ConstantUsageCheck extends Check {
                         assign.findFirstToken(TokenTypes.EXPR);
                     final String text = this.getText(expression);
                     if (text.contains(name)) {
-                        counter = counter + 1;
+                        ++counter;
                     }
                 }
             } else {
-                counter = counter + this.parseMethod(variable, name);
+                counter += this.parseMethod(variable, name);
             }
             variable = variable.getNextSibling();
         }
-        if (counter == 1) {
+        if (counter == 0 && this.isPrivate(ast)) {
             this.log(
                 line,
-                String.format("Constant \"%s\" used only once", name)
-            );
-        } else if (counter == 0) {
-            this.log(
-                line,
-                String.format("Constant \"%s\" is not used", name)
+                String.format("Private constant \"%s\" is not used", name)
             );
         }
     }
@@ -148,6 +143,18 @@ public final class ConstantUsageCheck extends Check {
     private boolean isFinal(final DetailAST node) {
         final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.branchContains(TokenTypes.FINAL);
+    }
+
+    /**
+     * Returns true if specified node has modifiers of type
+     * <code>PRIVATE</code>.
+     * @param node Node to check.
+     * @return True if specified node contains modifiers of type
+     *  <code>PRIVATE</code>, else returns <code>false</code>.
+     */
+    private boolean isPrivate(final DetailAST node) {
+        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
+        return modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
     }
 
     /**
