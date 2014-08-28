@@ -209,8 +209,10 @@ public final class MojoExecutor {
                 for (final Object val
                     : Collection.class.cast(entry.getValue())) {
                     final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
-                    row.setValue(val.toString());
-                    child.addChild(row);
+                    if (val != null) {
+                        row.setValue(val.toString());
+                        child.addChild(row);
+                    }
                 }
                 xpp.addChild(child);
             } else if (entry.getValue() instanceof Properties) {
