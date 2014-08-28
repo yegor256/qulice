@@ -131,7 +131,7 @@
 <a class="jxr_linenumber" name="L123" href="#L123">123</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> ValidationException ex) {
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>             <strong class="jxr_keyword">final</strong> List&lt;String&gt; messages = appender.getMessages();
 <a class="jxr_linenumber" name="L125" href="#L125">125</a>             <strong class="jxr_keyword">final</strong> Pattern pattern = Pattern.compile(
-<a class="jxr_linenumber" name="L126" href="#L126">126</a>                 <span class="jxr_string">"[a-zA-Z0-9_/.]+&#92;&#92;.groovy&#92;&#92;[&#92;&#92;d+&#92;&#92;]: .*"</span>
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>                 <span class="jxr_string">"[a-zA-Z0-9_/&#92;&#92;&#92;&#92;:~.]+&#92;&#92;.groovy&#92;&#92;[&#92;&#92;d+&#92;&#92;]: .*"</span>
 <a class="jxr_linenumber" name="L127" href="#L127">127</a>             );
 <a class="jxr_linenumber" name="L128" href="#L128">128</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String message : messages) {
 <a class="jxr_linenumber" name="L129" href="#L129">129</a>                 <strong class="jxr_keyword">if</strong> (message.startsWith(<span class="jxr_string">"CodeNarc validated "</span>)) {
