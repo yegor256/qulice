@@ -29,6 +29,17 @@ public final class Valid {
     public void print() {
         // empty
     }
+    /**
+     * Some method.
+     */
+    public void someMethod() {
+        final Closeable resource = new Closeable() {
+            @Override
+            public void close() {
+                // nothing to close here
+            }
+        };
+    }
 }
 
 /**
