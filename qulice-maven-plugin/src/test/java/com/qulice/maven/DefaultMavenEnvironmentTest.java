@@ -30,10 +30,14 @@
 package com.qulice.maven;
 
 import com.google.common.collect.ImmutableList;
+import java.util.Arrays;
 import java.util.Collections;
+import org.apache.maven.project.MavenProject;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 /**
  * Test case for {@link DefaultMavenEnvironment} class.
@@ -104,6 +108,23 @@ public class DefaultMavenEnvironmentTest {
                 "**/src/ex1/Main.groovy",
                 "**/src/ex2/Main2.groovy"
             )
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment can work with witespaces in classpath.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public final void passPathsWithWhitespaces()  throws Exception {
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProject project = Mockito.mock(MavenProject.class);
+        Mockito.when(project.getRuntimeClasspathElements())
+            .thenReturn(Arrays.asList("/home/pr/qulice test/target"));
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            env.classloader(),
+            Matchers.notNullValue()
         );
     }
 }
