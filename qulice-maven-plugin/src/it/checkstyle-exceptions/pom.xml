@@ -59,6 +59,9 @@
                         <version>@project.version@</version>
                         <configuration>
                             <license>file:${basedir}/LICENSE.txt</license>
+                            <excludes combine.children="append">
+                                <exclude>dependencies:.*</exclude>
+                            </excludes>
                         </configuration>
                         <executions>
                             <execution>

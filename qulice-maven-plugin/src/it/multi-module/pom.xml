@@ -57,6 +57,11 @@
                         <groupId>com.qulice</groupId>
                         <artifactId>qulice-maven-plugin</artifactId>
                         <version>@project.version@</version>
+                        <configuration>
+                            <excludes combine.children="append">
+                                <exclude>dependencies:.*</exclude>
+                            </excludes>
+                        </configuration>
                         <executions>
                             <execution>
                                 <phase>verify</phase>

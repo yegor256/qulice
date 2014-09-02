@@ -55,7 +55,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.dom4j.DocumentException;
 import org.jaxen.JaxenException;
 import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.commons.EmptyVisitor;
 import org.objectweb.asm.tree.ClassNode;
 
 /**
@@ -138,7 +137,6 @@ public final class FindBugsValidator implements Validator {
                         this.jar(ClassNode.class),
                         this.jar(ClassVisitor.class),
                         this.jar(When.class),
-                        this.jar(EmptyVisitor.class),
                         this.jar(FormatterNumberFormatException.class),
                         this.jar(StringEscapeUtils.class)
                     ),
