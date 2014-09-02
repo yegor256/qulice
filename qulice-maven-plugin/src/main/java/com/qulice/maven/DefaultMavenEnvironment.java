@@ -35,10 +35,12 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -149,8 +151,12 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         final List<URL> urls = new LinkedList<URL>();
         for (final String path : this.classpath()) {
             try {
-                urls.add(URI.create(String.format("file://%s", path)).toURL());
+                urls.add(URI.create(
+                    String.format("file://%s", URLEncoder.encode(path, "utf-8"))
+                ).toURL());
             } catch (final MalformedURLException ex) {
+                throw new IllegalStateException("Failed to build URL", ex);
+            } catch (final UnsupportedEncodingException ex) {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
