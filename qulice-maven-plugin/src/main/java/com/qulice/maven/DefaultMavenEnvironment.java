@@ -35,12 +35,10 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.net.URLEncoder;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -126,18 +124,24 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<String> classpath() {
         final Collection<String> paths = new LinkedList<String>();
+        final String blank = "%20";
+        final String whitespace = " ";
         try {
             for (final String name
                 : this.iproject.getRuntimeClasspathElements()) {
                 paths.add(
-                    name.replace(File.separatorChar, '/')
+                    name.replace(
+                        File.separatorChar, '/'
+                    ).replaceAll(whitespace, blank)
                 );
             }
             for (final Artifact artifact
                 : this.iproject.getDependencyArtifacts()) {
                 paths.add(
                     artifact.getFile().getAbsolutePath()
-                        .replace(File.separatorChar, '/')
+                        .replace(
+                            File.separatorChar, '/'
+                    ).replaceAll(whitespace, blank)
                 );
             }
         } catch (final DependencyResolutionRequiredException ex) {
@@ -151,12 +155,10 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         final List<URL> urls = new LinkedList<URL>();
         for (final String path : this.classpath()) {
             try {
-                urls.add(URI.create(
-                    String.format("file://%s", URLEncoder.encode(path, "utf-8"))
-                ).toURL());
+                urls.add(
+                    URI.create(String.format("file:///%s", path)).toURL()
+                );
             } catch (final MalformedURLException ex) {
-                throw new IllegalStateException("Failed to build URL", ex);
-            } catch (final UnsupportedEncodingException ex) {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
