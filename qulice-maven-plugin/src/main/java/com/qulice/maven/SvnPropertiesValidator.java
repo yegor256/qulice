@@ -56,10 +56,7 @@ import org.apache.maven.project.MavenProject;
  */
 public final class SvnPropertiesValidator implements MavenValidator {
 
-    /**
-     * {@inheritDoc}
-     * @checkstyle RedundantThrows (4 lines)
-     */
+    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {

@@ -35,7 +35,6 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 
@@ -51,10 +50,7 @@ import org.apache.commons.io.FileUtils;
  */
 public final class PomXpathValidator implements MavenValidator {
 
-    /**
-     * {@inheritDoc}
-     * @checkstyle RedundantThrows (4 lines)
-     */
+    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
@@ -67,7 +63,7 @@ public final class PomXpathValidator implements MavenValidator {
      * @param xpaths Xpath queries
      * @throws ValidationException validation exception
      */
-    private void validate(final XML pom, final Collection<String> xpaths)
+    private void validate(final XML pom, final Iterable<String> xpaths)
         throws ValidationException {
         for (final String xpath : xpaths) {
             if (pom.xpath(xpath).isEmpty()) {

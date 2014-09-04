@@ -44,13 +44,13 @@ import org.apache.maven.model.Plugin;
  */
 public final class SnapshotsValidator implements MavenValidator {
 
-    /**
-     * {@inheritDoc}
-     * @checkstyle RedundantThrows (4 lines)
-     */
+    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
+        if (env.exclude("snapshots", "")) {
+            return;
+        }
         final String version = env.project().getVersion();
         if (!this.isSnapshot(version)) {
             int errors = 0;
