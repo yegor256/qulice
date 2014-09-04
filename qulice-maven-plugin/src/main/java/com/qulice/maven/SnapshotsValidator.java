@@ -44,58 +44,66 @@ import org.apache.maven.model.Plugin;
  */
 public final class SnapshotsValidator implements MavenValidator {
 
-    /**
-     * {@inheritDoc}
-     * @checkstyle RedundantThrows (4 lines)
-     */
+    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        final String version = env.project().getVersion();
-        if (!this.isSnapshot(version)) {
-            int errors = 0;
-            for (final Extension ext : env.project().getBuildExtensions()) {
-                if (this.isSnapshot(ext.getVersion())) {
-                    Logger.warn(
-                        this,
-                        "%s build extension is SNAPSHOT",
-                        ext
-                    );
-                    ++errors;
-                }
+        if (!env.exclude("snapshots", "")) {
+            final String version = env.project().getVersion();
+            if (!this.isSnapshot(version)) {
+                this.check(env);
             }
-            for (final Plugin plugin : env.project().getBuildPlugins()) {
-                if (this.isSnapshot(plugin.getVersion())) {
-                    Logger.warn(
-                        this,
-                        "%s build plugin is SNAPSHOT",
-                        plugin
-                    );
-                    ++errors;
-                }
-            }
-            for (final Dependency dep : env.project().getDependencies()) {
-                if (this.isSnapshot(dep.getVersion())) {
-                    Logger.warn(
-                        this,
-                        "%s dependency is SNAPSHOT",
-                        dep
-                    );
-                    ++errors;
-                }
-            }
-            if (errors > 0) {
+        }
+    }
+
+    /**
+     * Check all plugins and deps.
+     * @param env Environment
+     * @throws ValidationException If fails
+     */
+    private void check(final MavenEnvironment env) throws ValidationException {
+        int errors = 0;
+        for (final Extension ext : env.project().getBuildExtensions()) {
+            if (this.isSnapshot(ext.getVersion())) {
                 Logger.warn(
                     this,
-                    // @checkstyle LineLength (1 line)
-                    "The version of the project is not SNAPSHOT; there shouldn't not be any SNAPSHOT dependencies (%d found)",
-                    errors
+                    "%s build extension is SNAPSHOT",
+                    ext
                 );
-                throw new ValidationException(
-                    "%d dependencies are in SNAPSHOT state",
-                    errors
-                );
+                ++errors;
             }
+        }
+        for (final Plugin plugin : env.project().getBuildPlugins()) {
+            if (this.isSnapshot(plugin.getVersion())) {
+                Logger.warn(
+                    this,
+                    "%s build plugin is SNAPSHOT",
+                    plugin
+                );
+                ++errors;
+            }
+        }
+        for (final Dependency dep : env.project().getDependencies()) {
+            if (this.isSnapshot(dep.getVersion())) {
+                Logger.warn(
+                    this,
+                    "%s dependency is SNAPSHOT",
+                    dep
+                );
+                ++errors;
+            }
+        }
+        if (errors > 0) {
+            Logger.warn(
+                this,
+                // @checkstyle LineLength (1 line)
+                "The version of the project is not SNAPSHOT; there shouldn't not be any SNAPSHOT dependencies (%d found)",
+                errors
+            );
+            throw new ValidationException(
+                "%d dependencies are in SNAPSHOT state",
+                errors
+            );
         }
     }
 

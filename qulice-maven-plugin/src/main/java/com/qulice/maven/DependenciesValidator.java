@@ -57,10 +57,7 @@ final class DependenciesValidator implements MavenValidator {
      */
     private static final String SEP = "\n\t";
 
-    /**
-     * {@inheritDoc}
-     * @checkstyle RedundantThrows (4 lines)
-     */
+    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
