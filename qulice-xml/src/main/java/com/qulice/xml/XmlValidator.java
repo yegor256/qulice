@@ -36,9 +36,13 @@ import com.jcabi.xml.XMLDocument;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
+import difflib.DiffUtils;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.SAXException;
 
 /**
@@ -46,9 +50,6 @@ import org.xml.sax.SAXException;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @todo #252 Use better approach to display differences
- *  between correctly and incorrectly formatted files, maybe use
- *  google-diff-match-patch.
  */
 @SuppressWarnings(
     { "PMD.AvoidInstantiatingObjectsInLoops", "PMD.ExceptionAsFlowControl" }
@@ -129,13 +130,24 @@ public final class XmlValidator implements Validator {
         // @checkstyle MultipleStringLiterals (3 lines)
         final String after = new Prettifier().prettify(before)
             .replace("\r\n", "\n");
-        if (!before.replace("\r\n", "\n").equals(after)) {
+        final String bnormalized = before.replace("\r\n", "\n");
+        if (!bnormalized.equals(after)) {
+            // @checkstyle MultipleStringLiteralsCheck (1 line)
+            final List<String> blines = Arrays.asList(bnormalized.split("\\n"));
+            final int context = 5;
             throw new ValidationException(
                 // @checkstyle LineLength (1 line)
-                "The provided XML %s is not well formatted, it should look like this:\n%s",
-                name, after
+                "The provided XML %s is not well formatted, it should look like this:\n%s\npatch:\n%s",
+                name, after,
+                StringUtils.join(
+                    DiffUtils.generateUnifiedDiff(
+                        "before", "after", blines,
+                        DiffUtils.diff(
+                            blines, Arrays.asList(after.split("\\n"))
+                        ), context
+                    ), "\n"
+                )
             );
         }
     }
-
 }
