@@ -21,7 +21,6 @@ Just add this plugin to your `pom.xml`:
     <plugin>
       <groupId>com.qulice</groupId>
       <artifactId>qulice-maven-plugin</artifactId>
-      <version>0.8</version>
       <configuration>
         <license>file:${basedir}/LICENSE.txt</license>
       </configuration>
