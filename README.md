@@ -11,7 +11,8 @@ projects. It combines all the best static analysis instruments
 and pre-configure them. You don't need to use and configure them
 individually any more.
 
-Read more at [www.qulice.com](http://www.qulice.com).
+Read more at [www.qulice.com](http://www.qulice.com). Also,
+read this blog post: [Strict Control of Java Code Quality](http://www.yegor256.com/2014/08/13/strict-code-quality-control.html).
 
 Just add this plugin to your `pom.xml`:
 
