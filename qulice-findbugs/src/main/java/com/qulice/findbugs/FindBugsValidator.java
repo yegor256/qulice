@@ -47,7 +47,6 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.annotation.meta.When;
 import org.apache.bcel.classfile.ClassFormatException;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringEscapeUtils;
@@ -99,7 +98,7 @@ public final class FindBugsValidator implements Validator {
     private String findbugs(final Environment env) {
         final List<String> args = new LinkedList<String>();
         args.add("java");
-        args.addAll(this.options(env));
+        args.addAll(this.options());
         args.add(Wrap.class.getName());
         args.add(env.basedir().getPath());
         args.add(env.outdir().getPath());
@@ -118,29 +117,24 @@ public final class FindBugsValidator implements Validator {
 
     /**
      * Java options.
-     * @param env Environment
      * @return Options
      */
-    private Collection<String> options(final Environment env) {
-        final File jar = this.jar(Wrap.class);
+    private Collection<String> options() {
         final Collection<String> opts = new LinkedList<String>();
         opts.add("-classpath");
         opts.add(
             StringUtils.join(
-                CollectionUtils.union(
-                    Arrays.asList(
-                        jar,
-                        this.jar(FindBugs2.class),
-                        this.jar(ClassFormatException.class),
-                        this.jar(DocumentException.class),
-                        this.jar(JaxenException.class),
-                        this.jar(ClassNode.class),
-                        this.jar(ClassVisitor.class),
-                        this.jar(When.class),
-                        this.jar(FormatterNumberFormatException.class),
-                        this.jar(StringEscapeUtils.class)
-                    ),
-                    env.classpath()
+                Arrays.asList(
+                    this.jar(Wrap.class),
+                    this.jar(FindBugs2.class),
+                    this.jar(ClassFormatException.class),
+                    this.jar(DocumentException.class),
+                    this.jar(JaxenException.class),
+                    this.jar(ClassNode.class),
+                    this.jar(ClassVisitor.class),
+                    this.jar(When.class),
+                    this.jar(FormatterNumberFormatException.class),
+                    this.jar(StringEscapeUtils.class)
                 ),
                 // @checkstyle MultipleStringLiteralsCheck (1 line)
                 System.getProperty("path.separator")
