@@ -3,9 +3,19 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-xml - Surefire Report</title>
+        <title>qulice-xml &#x2013; Surefire Report</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                                                                                                                        
+                            <script>
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-1963507-25']);
+                _gaq.push(['_trackPageview']);
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+                                                                                                                
 <link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
                                                                                                                 
 <link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
@@ -84,7 +94,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.10/index.html" title="JavaDocs">JavaDocs</a>
+                            <span>                        <a href="apidocs-0.12/index.html" title="JavaDocs">JavaDocs</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -123,13 +133,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.10</strong>
+                                    <strong itemprop="version">0.12</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-08-28T07:46:32Z">
+                                    <time itemprop="datePublished" datetime="2014-12-02T09:01:56Z">
                                         
-                                        28-Aug-2014
+                                        02-Dec-2014
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -155,9 +165,9 @@ function toggleDisplay(elementId) {
 //]]>
 </script>
 <div class="section">
-<h2>Surefire Report<a name="Surefire_Report"></a></h2></div>
+<h2><a name="Surefire_Report"></a>Surefire Report</h2></div>
 <div class="section">
-<h2>Summary<a name="Summary"></a></h2><a name="Summary"></a>
+<h2><a name="Summary"></a>Summary</h2><a name="Summary"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
 <table border="1" class="bodyTable">
 <tr class="a">
@@ -173,10 +183,10 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>1</td>
 <td>87.5%</td>
-<td>8.487</td></tr></table><br />
+<td>8.042</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
-<h2>Package List<a name="Package_List"></a></h2><a name="Package_List"></a>
+<h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
 <table border="1" class="bodyTable">
 <tr class="a">
@@ -194,10 +204,10 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>1</td>
 <td>87.5%</td>
-<td>8.487</td></tr></table><br />
+<td>8.042</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
-<h3>com.qulice.xml<a name="com.qulice.xml"></a></h3><a name="com.qulice.xml"></a>
+<h3><a name="com.qulice.xml"></a>com.qulice.xml</h3><a name="com.qulice.xml"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <th></th>
@@ -216,13 +226,21 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>1</td>
 <td>87.5%</td>
-<td>8.487</td></tr></table></div><br /></div>
+<td>8.042</td></tr></table></div><br /></div>
 <div class="section">
-<h2>Test Cases<a name="Test_Cases"></a></h2><a name="Test_Cases"></a>
+<h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
 <div class="section">
-<h3>XmlValidatorTest<a name="XmlValidatorTest"></a></h3><a name="com.qulice.xmlXmlValidatorTest"></a>
+<h3><a name="XmlValidatorTest"></a>XmlValidatorTest</h3><a name="com.qulice.xmlXmlValidatorTest"></a>
 <table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>passesValidationIfNoSchemaLocationSpecified</td>
+<td>0.972</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>failsValidationOnWrongFile</td>
+<td>0.581</td></tr>
 <tr class="a">
 <td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationIfSchemaIsNotAccessible"><img src="images/icon_warning_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationIfSchemaIsNotAccessible">passesValidationIfSchemaIsNotAccessible</a>
@@ -234,34 +252,26 @@ function toggleDisplay(elementId) {
 <td></td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>failsValidationWithMultipleSchemas</td>
-<td>2.356</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>failValidationWithNoSchemaLocationAttr</td>
-<td>0.765</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>passesValidationOnCorrectFile</td>
-<td>0.715</td></tr>
+<td>passesValidationWithMultipleSchemas</td>
+<td>1.825</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsValidationOnIncorrectlyFormattedFile</td>
-<td>0.716</td></tr>
+<td>0.917</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>failsValidationOnWrongFile</td>
-<td>0.574</td></tr>
+<td>failValidationWithNoSchemaLocationAttr</td>
+<td>1.114</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>passesValidationWithMultipleSchemas</td>
-<td>2.336</td></tr>
+<td>failsValidationWithMultipleSchemas</td>
+<td>1.787</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>passesValidationIfNoSchemaLocationSpecified</td>
-<td>1.025</td></tr></table></div><br /></div>
+<td>passesValidationOnCorrectFile</td>
+<td>0.846</td></tr></table></div><br /></div>
 <div class="section">
-<h2>Failure Details<a name="Failure_Details"></a></h2><a name="Failure_Details"></a>
+<h2><a name="Failure_Details"></a>Failure Details</h2><a name="Failure_Details"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
 <table border="1" class="bodyTable">
 <tr class="a">
