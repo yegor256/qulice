@@ -105,7 +105,33 @@ public void func() {
 * Cobertura
 
   Every class, method, and package should be covered by unit tests. Qulice will
-  complain when coverage is not sufficient. In order to get a visual presentation
+  complain when coverage is not sufficient. To enable cobertura checks add
+  <<<<goal>instrument</goal>>>> to plugin <<<executions>>> section:
+
++--
+<build>
+   <plugins>
+       <plugin>
+           <groupId>com.qulice</groupId>
+           <artifactId>qulice-maven-plugin</artifactId>
+           <version>${project.version}</version>
+           <configuration>
+               <license>file:${basedir}/LICENSE.txt</license>
+           </configuration>
+           <executions>
+               <execution>
+                   <goals>
+                       <goal>instrument</goal>
+                       <goal>check</goal>
+                   </goals>
+               </execution>
+           </executions>
+       </plugin>
+   </plugins>
+</build>
++--
+
+  In order to get a visual presentation
   of your coverage add this to your <<<pom.xml>>>:
 
 +--
