@@ -106,7 +106,7 @@ are met: no conditions.
     <plugin>
       <groupId>com.qulice</groupId>
       <artifactId>qulice-maven-plugin</artifactId>
-      <version>${releasedVersion}</version>
+      <version>${project.version}</version>
       <configuration>
         <license>LICENSE.txt</license>
       </configuration>
