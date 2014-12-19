@@ -10,6 +10,10 @@ env:
 install:
   - "sudo gem install pdd"
 
+architect:
+  - yegor256
+  - davvd
+
 merge:
   script: |
     mvn clean install -Pqulice-profile -Pqulice --errors --settings ../settings.xml
