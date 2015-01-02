@@ -34,3 +34,4 @@
  */
 def log = new File(basedir, 'build.log')
 assert !log.text.contains('com.qulice.foo.Main.list is or uses a map or set of URLs, which can be a performance hog')
+assert !log.text.contains('com.qulice.foo.Bar.list is or uses a map or set of URLs, which can be a performance hog')

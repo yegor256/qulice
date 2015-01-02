@@ -49,7 +49,7 @@
                     <excludes>
                         <!-- @todo #352 Need to add multiline check after issue #350-->
                         <!-- resolved. Now only one class can be excluded -->
-                        <exclude>findbugs:com.qulice.foo.Main</exclude>
+                        <exclude>findbugs:~com.qulice.foo.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
