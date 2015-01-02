@@ -51,7 +51,8 @@ Exclude
       <version>${project.version}</version>
       <configuration>
         <excludes>
-          <exclude>checkstyle:/src/examples/.*</exclude>
+          <exclude>checkstyle:/src/examples/foo/.*</exclude>
+          <exclude>findbugs:com.qulice.foo.*</exclude>
         </excludes>
       </configuration>
     </plugin>
@@ -70,3 +71,7 @@ Exclude
   folders;
   2) <<<codenarc:**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy>>> excludes
   <<<Main.groovy>>> and <<<Main2.groovy>>> in appropriate packages.
+
+  Exclude for Findbug is a bit different, as expression must be exact or regex
+  match pattern for the class name.
+  See http://findbugs.sourceforge.net/manual/filter.html
