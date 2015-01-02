@@ -51,7 +51,7 @@ Exclude
       <version>${project.version}</version>
       <configuration>
         <excludes>
-          <exclude>checkstyle:/src/examples/foo/.*</exclude>
+          <exclude>checkstyle:/src/examples/.*</exclude>
           <exclude>findbugs:com.qulice.foo.Main</exclude>
         </excludes>
       </configuration>
