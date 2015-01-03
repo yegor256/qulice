@@ -7,7 +7,7 @@
  ------
 
 ~~
-~~ Copyright (c) 2011-2015, Qulice.com
+~~ Copyright (c) 2011-2014, Qulice.com
 ~~ All rights reserved.
 ~~
 ~~ Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,23 @@ Ant Module
 
   Use it like this in your Ant project:
 
-~~ todo
++--
+ <project name="Qulice" basedir="." default="qulice">
+     <taskdef name="qulice"
+              classname="com.qulice.ant.QuliceTask"
+              classpath="${com.qulice:qulice-ant:jar}"/>
+     <target name="qulice" description="Execute qulice checks">
+         <property name="license" value="LICENSE.txt"/>
+         <qulice
+                 srcdir="${basedir}/src/main/java"
+                 classesdir="${basedir}/target/classes"
+                 classpath="${basedir}/target/classes:${basedir}"/>
+     </target>
+ </project>
++--
+
+   * License file must be in classpath
+   * Only one directory may be used as classesdir
 
   That's it. Your build will fail if you have quality problems. Read
   {{{../quality.html}this page}} about how you can fix them.
