@@ -43,10 +43,11 @@ import org.apache.tools.ant.types.Path;
 /**
  * Ant Task for Qulice.
  *
+ * @checkstyle ClassDataAbstractionCouplingCheck (150 lines)
  * @author Yuriy Alevohin (alevohin@mail.ru)
  * @version $Id$
  */
-public class QuliceTask extends Task {
+public final class QuliceTask extends Task {
 
     /**
      * Sources dirs.
@@ -54,7 +55,7 @@ public class QuliceTask extends Task {
     private transient Path srcdir;
 
     /**
-     * Classes dir (only one dir is supported)
+     * Classes dir (only one dir is supported).
      */
     private transient File classesdir;
 
@@ -66,10 +67,10 @@ public class QuliceTask extends Task {
     @Override
     public void execute() throws BuildException {
         super.execute();
-        Environment env = environment();
+        final Environment env = this.environment();
         try {
             final long start = System.nanoTime();
-            validate(env);
+            this.validate(env);
             Logger.info(
                 this,
                 "Qulice quality check completed in %[nano]s",
@@ -86,24 +87,25 @@ public class QuliceTask extends Task {
 
     /**
      * Create Environment.
+     * @checkstyle RedundantThrows (5 lines)
      * @return Environment.
      * @throws BuildException If ant task doesn't have mandatory params.
      */
     private Environment environment() throws BuildException {
-        if (srcdir == null) {
+        if (this.srcdir == null) {
             throw new BuildException("sourcepath not defined for QuliceTask");
         }
-        if (classesdir == null) {
+        if (this.classesdir == null) {
             throw new BuildException("classesdir not defined for QuliceTask");
         }
-        if (classpath == null) {
+        if (this.classpath == null) {
             throw new BuildException("classpath not defined for QuliceTask");
         }
         return new AntEnvironment(
-            getProject(),
-            srcdir,
-            classesdir,
-            classpath);
+            this.getProject(),
+            this.srcdir,
+            this.classesdir,
+            this.classpath);
     }
 
     /**
@@ -133,25 +135,25 @@ public class QuliceTask extends Task {
 
     /**
      * Set source dirs
-     * @param srcdir Source dirs
+     * @param srcdr Source dirs
      */
-    public void setSrcdir(Path srcdir) {
+    public void setSrcdir(Path srcdr) {
         this.srcdir = srcdir;
     }
 
     /**
      * Set classes dir
-     * @param classesdir Classes dir
+     * @param clssedr Classes dir
      */
-    public void setClassesdir(File classesdir) {
-        this.classesdir = classesdir;
+    public void setClassesdir(File clssedr) {
+        this.classesdir = clssedr;
     }
 
     /**
      * Set classpath
-     * @param classpath classpath
+     * @param clsspth classpath
      */
-    public void setClasspath(Path classpath) {
-        this.classpath = classpath;
+    public void setClasspath(Path clsspth) {
+        this.classpath = clsspth;
     }
 }

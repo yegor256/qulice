@@ -35,7 +35,11 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.LinkedList;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
@@ -48,40 +52,39 @@ import org.apache.tools.ant.types.Path;
  * @author Yuriy Alevohin (alevohin@mail.ru)
  * @version $Id$
  */
-public class AntEnvironment implements Environment {
+public final class AntEnvironment implements Environment {
 
     /**
      * Ant project.
      */
-    private transient final Project project;
-
+    private final transient Project project;
     /**
      * Sources dirs.
      */
-    private transient final Path srcdir;
-
+    private final transient Path srcdir;
     /**
-     * Classes dir (only one dir is supported)
+     * Classes dir (only one dir is supported).
      */
-    private transient final java.io.File classesdir;
-
+    private final transient java.io.File classesdir;
     /**
      * Classpath dirs and files.
      */
-    private transient final Path classpath;
+    private final transient Path classpath;
 
     /**
-     * Public constructor.
-     * @param project - ant project
-     * @param srcdir  - sources dirs
-     * @param classesdir - classes dir
-     * @param classpath - classpath
+     * Public ctor.
+     * @param project    Ant project
+     * @param srcdir     Sources dirs
+     * @param classesdir Classes dir
+     * @param classpath  Classpath
      */
+    //@checkstyle ParameterNumber (5 lines)
+    //@checkstyle HiddenField (5 lines)
     public AntEnvironment(
-        Project project,
-        Path srcdir,
-        java.io.File classesdir,
-        Path classpath) {
+        final Project project,
+        final Path srcdir,
+        final java.io.File classesdir,
+        final Path classpath) {
         this.project = project;
         this.srcdir = srcdir;
         this.classesdir = classesdir;
@@ -90,7 +93,7 @@ public class AntEnvironment implements Environment {
 
     @Override
     public File basedir() {
-        return project.getBaseDir();
+        return this.project.getBaseDir();
     }
 
     @Override
@@ -100,12 +103,12 @@ public class AntEnvironment implements Environment {
 
     @Override
     public File outdir() {
-        return classesdir;
+        return this.classesdir;
     }
 
     @Override
-    public String param(String name, String value) {
-        final String property = project.getProperty(name);
+    public String param(final String name, final String value) {
+        final String property = this.project.getProperty(name);
         if (property == null) {
             return value;
         } else {
@@ -116,18 +119,14 @@ public class AntEnvironment implements Environment {
     @Override
     public ClassLoader classloader() {
         final List<URL> urls = new LinkedList<URL>();
-        for (final String path : this.classpath()) {
-            try {
+        try {
+            for (final String path : this.classpath()) {
                 urls.add(
                     new File(path).toURI().toURL()
                 );
-            } catch (final MalformedURLException ex) {
-                throw new IllegalStateException("Failed to build URL", ex);
             }
-        }
-        try {
             urls.add(classesdir.toURI().toURL());
-        } catch (MalformedURLException ex) {
+        } catch (final MalformedURLException ex) {
             throw new IllegalStateException("Failed to build URL", ex);
         }
         final URLClassLoader loader = new URLClassLoader(
@@ -142,14 +141,14 @@ public class AntEnvironment implements Environment {
 
     @Override
     public Collection<String> classpath() {
-        return Arrays.asList(classpath.list());
+        return Arrays.asList(this.classpath.list());
     }
 
     @Override
-    public Collection<File> files(String pattern) {
+    public Collection<File> files(final String pattern) {
         final Collection<File> files = new LinkedList<File>();
         final IOFileFilter filter = new WildcardFileFilter(pattern);
-        for (final String dir : srcdir.list()) {
+        for (final String dir : this.srcdir.list()) {
             final File sources = new File(dir);
             if (sources.exists() && sources.isDirectory()) {
                 files.addAll(
@@ -165,14 +164,13 @@ public class AntEnvironment implements Environment {
     }
 
     @Override
-    public boolean exclude(String check, String name) {
-        // @todo 337. Implement exclude and excludes for ant QuliceTask
+    // @todo 337. Implement exclude and excludes for ant QuliceTask
+    public boolean exclude(final String check, final String name) {
         return false;
     }
 
     @Override
-    public Collection<String> excludes(String checker) {
-        // @todo 337. Implement exclude and excludes for ant QuliceTask
+    public Collection<String> excludes(final String checker) {
         return Collections.emptyList();
     }
 }
