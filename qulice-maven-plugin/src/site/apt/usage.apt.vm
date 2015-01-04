@@ -94,6 +94,36 @@ are met: no conditions.
  */
 +--
 
+* JSR-303 validations
+
+  In case you would like to use JSR-303 validations in your code or get annoyed by logs like:
+
++--
+[ERROR] JSR-303 validator failed to initialize: Unable to instantiate Configuration. (see http://www.jcabi.com/jcabi-aspects/jsr-303.html)
++--
+
+  just add your favourite implementation to plugin dependency:
+
++--
+<build>
+  <plugins>
+     <plugin>
+        <groupId>com.qulice</groupId>
+        <artifactId>qulice-maven-plugin</artifactId>
+        ...
+        <dependencies>
+          <dependency>
+             <groupId>org.hibernate</groupId>
+             <artifactId>hibernate-validator</artifactId>
+             <version>5.0.0.Final</version>
+             <scope>runtime</scope>
+          </dependency>
+        </dependencies>
+     </plugin>
+  </plugins>
+</build>
++--
+
 * Multi-Module Setup
 
   In a multi-module setup we recommend you to move all supplementary
