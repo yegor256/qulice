@@ -64,8 +64,32 @@ public final class QuliceTask extends Task {
      */
     private transient Path classpath;
 
+    /**
+     * Set source dirs.
+     * @param srcdr Source dirs
+     */
+    public void setSrcdir(final Path srcdr) {
+        this.srcdir = srcdr;
+    }
+
+    /**
+     * Set classes dir.
+     * @param clssedr Classes dir
+     */
+    public void setClassesdir(final File clssedr) {
+        this.classesdir = clssedr;
+    }
+
+    /**
+     * Set classpath.
+     * @param clsspth Classpath
+     */
+    public void setClasspath(final Path clsspth) {
+        this.classpath = clsspth;
+    }
+
     @Override
-    public void execute() throws BuildException {
+    public void execute() {
         super.execute();
         final Environment env = this.environment();
         try {
@@ -76,7 +100,7 @@ public final class QuliceTask extends Task {
                 "Qulice quality check completed in %[nano]s",
                 System.nanoTime() - start
             );
-        } catch (ValidationException ex) {
+        } catch (final ValidationException ex) {
             Logger.info(
                 this,
                 "Read our quality policy: http://www.qulice.com/quality.html"
@@ -87,13 +111,11 @@ public final class QuliceTask extends Task {
 
     /**
      * Create Environment.
-     * @checkstyle RedundantThrows (5 lines)
      * @return Environment.
-     * @throws BuildException If ant task doesn't have mandatory params.
      */
-    private Environment environment() throws BuildException {
+    private Environment environment() {
         if (this.srcdir == null) {
-            throw new BuildException("sourcepath not defined for QuliceTask");
+            throw new BuildException("srcdir not defined for QuliceTask");
         }
         if (this.classesdir == null) {
             throw new BuildException("classesdir not defined for QuliceTask");
@@ -105,7 +127,8 @@ public final class QuliceTask extends Task {
             this.getProject(),
             this.srcdir,
             this.classesdir,
-            this.classpath);
+            this.classpath
+        );
     }
 
     /**
@@ -113,7 +136,7 @@ public final class QuliceTask extends Task {
      * @param env Environment
      * @throws ValidationException If there are any problems.
      */
-    private void validate(Environment env) throws ValidationException {
+    private void validate(final Environment env) throws ValidationException {
         for (final Validator validator : this.validators()) {
             validator.validate(env);
         }
@@ -131,29 +154,5 @@ public final class QuliceTask extends Task {
         validators.add(new com.qulice.codenarc.CodeNarcValidator());
         validators.add(new com.qulice.findbugs.FindBugsValidator());
         return validators;
-    }
-
-    /**
-     * Set source dirs
-     * @param srcdr Source dirs
-     */
-    public void setSrcdir(Path srcdr) {
-        this.srcdir = srcdir;
-    }
-
-    /**
-     * Set classes dir
-     * @param clssedr Classes dir
-     */
-    public void setClassesdir(File clssedr) {
-        this.classesdir = clssedr;
-    }
-
-    /**
-     * Set classpath
-     * @param clsspth classpath
-     */
-    public void setClasspath(Path clsspth) {
-        this.classpath = clsspth;
     }
 }

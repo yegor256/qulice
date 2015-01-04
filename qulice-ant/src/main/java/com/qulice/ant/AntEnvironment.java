@@ -38,8 +38,8 @@ import java.net.URLClassLoader;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
@@ -65,30 +65,30 @@ public final class AntEnvironment implements Environment {
     /**
      * Classes dir (only one dir is supported).
      */
-    private final transient java.io.File classesdir;
+    private final transient File classesdir;
     /**
      * Classpath dirs and files.
      */
+    @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
     private final transient Path classpath;
 
     /**
      * Public ctor.
-     * @param project    Ant project
-     * @param srcdir     Sources dirs
-     * @param classesdir Classes dir
-     * @param classpath  Classpath
+     * @param prjct Ant project
+     * @param srcdr Sources dirs
+     * @param clsssdr Classes dir
+     * @param clsspth Classpath
+     * @checkstyle ParameterNumber (5 lines)
      */
-    //@checkstyle ParameterNumber (5 lines)
-    //@checkstyle HiddenField (5 lines)
     public AntEnvironment(
-        final Project project,
-        final Path srcdir,
-        final java.io.File classesdir,
-        final Path classpath) {
-        this.project = project;
-        this.srcdir = srcdir;
-        this.classesdir = classesdir;
-        this.classpath = classpath;
+        final Project prjct,
+        final Path srcdr,
+        final File clsssdr,
+        final Path clsspth) {
+        this.project = prjct;
+        this.srcdir = srcdr;
+        this.classesdir = clsssdr;
+        this.classpath = clsspth;
     }
 
     @Override
@@ -108,15 +108,15 @@ public final class AntEnvironment implements Environment {
 
     @Override
     public String param(final String name, final String value) {
-        final String property = this.project.getProperty(name);
-        if (property == null) {
-            return value;
-        } else {
-            return property;
+        String propValue = this.project.getProperty(name);
+        if (propValue == null) {
+            propValue = value;
         }
+        return propValue;
     }
 
     @Override
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public ClassLoader classloader() {
         final List<URL> urls = new LinkedList<URL>();
         try {
@@ -125,7 +125,7 @@ public final class AntEnvironment implements Environment {
                     new File(path).toURI().toURL()
                 );
             }
-            urls.add(classesdir.toURI().toURL());
+            urls.add(this.classesdir.toURI().toURL());
         } catch (final MalformedURLException ex) {
             throw new IllegalStateException("Failed to build URL", ex);
         }
@@ -145,6 +145,7 @@ public final class AntEnvironment implements Environment {
     }
 
     @Override
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<File> files(final String pattern) {
         final Collection<File> files = new LinkedList<File>();
         final IOFileFilter filter = new WildcardFileFilter(pattern);
