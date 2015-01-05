@@ -63,11 +63,9 @@ public final class XmlValidator implements Validator {
 
     /**
      * Constructor.
-     * @todo #252 Fix all test cases to pass with formating check enabled and
-     *  change default value to true.
      */
     public XmlValidator() {
-        this(false);
+        this(true);
     }
 
     /**

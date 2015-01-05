@@ -136,7 +136,7 @@ public final class XmlValidatorTest {
             .withFile(
                 "src/main/resources/valid4.xml",
                 // @checkstyle LineLength (1 line)
-                "<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xsi:noNamespaceSchemaLocation=\"http://simple.com/test.xsd\">\n</project>"
+                "<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"http://simple.com/test.xsd\">\n</project>\n"
             ).withFile(
                 "src/main/resources/test.xsd",
                 // @checkstyle LineLength (1 line)
