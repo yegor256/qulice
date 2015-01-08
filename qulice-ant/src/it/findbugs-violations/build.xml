@@ -6,12 +6,12 @@
              classpath="${com.qulice:qulice-ant:jar}"/>
 
     <target name="qulice" description="Execute qulice checks">
-        <property name="license" value="LICENSE.txt"/>
+        <property name="license" value="file:${basedir}/LICENSE.txt"/>
 
         <qulice
                 srcdir="${basedir}/src/main/java"
                 classesdir="${basedir}/target/classes"
-                classpath="${basedir}/target/classes:${basedir}"/>
+                classpath="${basedir}/target/classes"/>
     </target>
 
 </project>
