@@ -61,6 +61,16 @@
         <dependency>
             <groupId>com.jcabi</groupId>
             <artifactId>jcabi-xml</artifactId>
+            <version>0.15</version>
+            <!--
+             @todo #280 This version of jcabi-xml retries if the connection
+              to the host of the schema document is reset. However I don't know
+              how to trigger the "connection reset" condition for testing. We
+              should find a way to test whether it does retry if this happens.
+              See issues https://github.com/jcabi/jcabi-xml/issues/32 and
+              https://github.com/teamed/qulice/issues/280 for background
+              details.  
+            -->
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
