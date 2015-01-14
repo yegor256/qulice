@@ -11,15 +11,15 @@ import org.gradle.api.Project;
  */
 public class QulicePlugin implements Plugin<Project> {
     public void apply(Project project) {
-        this.runMavenDependencyAnalysis(prj);
-        this.runMavenEnforcerPlugin(prj);
-        this.runJsLintMavenPlugin(prj);
-        this.runmavenDuplicateFinderPlugin(prj);
-        this.runCheckstyle(prj);
-        this.runPMD(prj);
-        this.runFindBugs(prj);
-        this.runCobertura(prj);
-        this.runCodeNarc(prj);
+        this.runMavenDependencyAnalysis(project);
+        this.runMavenEnforcerPlugin(project);
+        this.runJsLintMavenPlugin(project);
+        this.runmavenDuplicateFinderPlugin(project);
+        this.runCheckstyle(project);
+        this.runPMD(project);
+        this.runFindBugs(project);
+        this.runCobertura(project);
+        this.runCodeNarc(project);
     }
 
     public void runMavenDependencyAnalysis(Project prj) {
