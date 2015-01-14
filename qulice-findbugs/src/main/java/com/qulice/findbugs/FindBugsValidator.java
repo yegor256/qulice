@@ -181,16 +181,16 @@ public final class FindBugsValidator implements Validator {
      * @return XML with findbugs excludes
      */
     private String generateExcludes(final Iterable<String> excludes) {
-        Directives directives = new Directives()
+        final Directives directives = new Directives()
             .add("FindBugsFilter")
             .add("Match")
             .add("Or");
-        for (String exclude : excludes) {
+        for (final String exclude : excludes) {
             directives.add("Class").attr("name", exclude).up();
         }
         try {
             return new Xembler(directives).xml();
-        } catch (ImpossibleModificationException ex) {
+        } catch (final ImpossibleModificationException ex) {
             throw new IllegalStateException(
                 "Cannot make XML with exclusion rules for findbugs",
                  ex

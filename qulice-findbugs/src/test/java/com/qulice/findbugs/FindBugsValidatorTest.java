@@ -31,7 +31,6 @@ package com.qulice.findbugs;
 
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
