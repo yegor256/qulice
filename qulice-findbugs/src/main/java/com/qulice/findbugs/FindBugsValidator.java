@@ -55,6 +55,9 @@ import org.dom4j.DocumentException;
 import org.jaxen.JaxenException;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.tree.ClassNode;
+import org.xembly.Directives;
+import org.xembly.ImpossibleModificationException;
+import org.xembly.Xembler;
 
 /**
  * Validates source code and compiled binaries with FindBugs.
@@ -178,12 +181,21 @@ public final class FindBugsValidator implements Validator {
      * @return XML with findbugs excludes
      */
     private String generateExcludes(final Iterable<String> excludes) {
-        // @checkstyle StringLiteralsConcatenationCheck (5 lines)
-        return "<FindBugsFilter>\n"
-            + "     <Match>\n"
-            + "       <Class name=\"" + excludes.iterator().next() + "\" />\n"
-            + "     </Match>\n"
-            + "</FindBugsFilter>";
+        Directives directives = new Directives()
+            .add("FindBugsFilter")
+            .add("Match")
+            .add("Or");
+        for (String exclude : excludes) {
+            directives.add("Class").attr("name", exclude).up();
+        }
+        try {
+            return new Xembler(directives).xml();
+        } catch (ImpossibleModificationException e) {
+            throw new IllegalStateException(
+                "Cannot make XML with exclusion rules for findbugs",
+                 e
+            );
+        }
     }
 
     /**

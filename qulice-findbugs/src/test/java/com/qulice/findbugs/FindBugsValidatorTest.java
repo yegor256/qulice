@@ -94,7 +94,6 @@ public final class FindBugsValidatorTest {
      *  When done, remove Ignore annotation on this test.
      */
     @Test
-    @Ignore
     public void excludesSeveralIncorrectClassFormCheck() throws Exception {
         final byte[] bytecode = new BytecodeMocker()
             .withSource("class Foo { public Foo clone() { return this; } }")
