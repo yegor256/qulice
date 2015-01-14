@@ -190,10 +190,10 @@ public final class FindBugsValidator implements Validator {
         }
         try {
             return new Xembler(directives).xml();
-        } catch (ImpossibleModificationException e) {
+        } catch (ImpossibleModificationException ex) {
             throw new IllegalStateException(
                 "Cannot make XML with exclusion rules for findbugs",
-                 e
+                 ex
             );
         }
     }

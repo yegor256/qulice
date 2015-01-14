@@ -88,10 +88,6 @@ public final class FindBugsValidatorTest {
     /**
      * FindbugsValidator can exclude several classes from check.
      * @throws Exception If something wrong happens inside
-     * @todo #149 Add support for multiline excludes.
-     *  Use xembly Directives to generate xml on the fly.
-     *  Beware, excludes may contain coma separated list of exclude patterns.
-     *  When done, remove Ignore annotation on this test.
      */
     @Test
     public void excludesSeveralIncorrectClassFormCheck() throws Exception {
