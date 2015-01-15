@@ -49,8 +49,6 @@ import java.util.Arrays;
  * @version $Id$
  * @todo #260 Add handling of multiple anonymous classes inside methods by
  *  looking at the recursive tree.
- * @todo #260 Add handling of anonymous classes outside of variable definitions,
- *  e.g. in for, try/catch, expression, etc.
  */
 public final class MethodBodyCommentsCheck extends Check {
 
