@@ -52,6 +52,7 @@ Exclude
       <configuration>
         <excludes>
           <exclude>checkstyle:/src/examples/.*</exclude>
+          <exclude>findbugs:~com.qulice.foo.*</exclude>
         </excludes>
       </configuration>
     </plugin>
@@ -70,3 +71,13 @@ Exclude
   folders;
   2) <<<codenarc:**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy>>> excludes
   <<<Main.groovy>>> and <<<Main2.groovy>>> in appropriate packages.
+
+  Exclude for Findbug is a bit different, as expression has to be either an
+  exact class name or start with the ~ character the rest of content is
+  interpreted as a Java regular expression. For example:
+  1) <<<findbugs:~com.qulice.foo.*>>> excludes all classes in package
+  com.qulice.foo;
+  2) <<<findbugs:com.qulice.foo.Bar>>> excludes only class Bar in appropriate
+  packages.
+  See http://findbugs.sourceforge.net/manual/filter.html
+  Only one exclude is supported for findbugs.
