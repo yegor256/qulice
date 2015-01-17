@@ -33,11 +33,12 @@ import org.gradle.api.Plugin;
 import org.gradle.api.Project;
 
 /**
+ * Main class of the Qulice Gradle plugin.
  * @author Dmitri Pisarenko (dp@altruix.co)
  * @version $Id$
  * @since 1.0
  */
-public class QulicePlugin implements Plugin<Project> {
+public final class QulicePlugin implements Plugin<Project> {
     public void apply(Project project) {
         this.runMavenDependencyAnalysis(project);
         this.runMavenEnforcerPlugin(project);
