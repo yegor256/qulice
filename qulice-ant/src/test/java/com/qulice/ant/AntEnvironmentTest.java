@@ -47,8 +47,7 @@ public class AntEnvironmentTest {
      */
     @Test
     @Ignore
-    public void buildsClassloader() throws Exception{
-
+    public void buildsClassloader() throws Exception {
     }
 
     /**
@@ -57,8 +56,7 @@ public class AntEnvironmentTest {
      */
     @Test
     @Ignore
-    public void returnsFiles() throws Exception{
-
+    public void returnsFiles() throws Exception {
     }
 
     /**
@@ -67,7 +65,6 @@ public class AntEnvironmentTest {
      */
     @Test
     @Ignore
-    public void excludesFiles() throws Exception{
-
+    public void excludesFiles() throws Exception {
     }
 }
