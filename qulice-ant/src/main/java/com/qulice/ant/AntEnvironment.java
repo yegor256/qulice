@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2014, Qulice.com
+ * Copyright (c) 2011-2015, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,11 +61,11 @@ public final class AntEnvironment implements Environment {
     /**
      * Sources dirs.
      */
-    private final transient Path srcdir;
+    private final transient Path sources;
     /**
      * Classes dir (only one dir is supported).
      */
-    private final transient File classesdir;
+    private final transient File classes;
     /**
      * Classpath dirs and files.
      */
@@ -75,19 +75,19 @@ public final class AntEnvironment implements Environment {
     /**
      * Public ctor.
      * @param prjct Ant project
-     * @param srcdr Sources dirs
-     * @param clsssdr Classes dir
+     * @param srcs Sources dirs
+     * @param clss Classes dir
      * @param clsspth Classpath
      * @checkstyle ParameterNumber (5 lines)
      */
     public AntEnvironment(
         final Project prjct,
-        final Path srcdr,
-        final File clsssdr,
+        final Path srcs,
+        final File clss,
         final Path clsspth) {
         this.project = prjct;
-        this.srcdir = srcdr;
-        this.classesdir = clsssdr;
+        this.sources = srcs;
+        this.classes = clss;
         this.classpath = clsspth;
     }
 
@@ -103,7 +103,7 @@ public final class AntEnvironment implements Environment {
 
     @Override
     public File outdir() {
-        return this.classesdir;
+        return this.classes;
     }
 
     @Override
@@ -125,7 +125,7 @@ public final class AntEnvironment implements Environment {
                     new File(path).toURI().toURL()
                 );
             }
-            urls.add(this.classesdir.toURI().toURL());
+            urls.add(this.classes.toURI().toURL());
         } catch (final MalformedURLException ex) {
             throw new IllegalStateException("Failed to build URL", ex);
         }
@@ -149,12 +149,12 @@ public final class AntEnvironment implements Environment {
     public Collection<File> files(final String pattern) {
         final Collection<File> files = new LinkedList<File>();
         final IOFileFilter filter = new WildcardFileFilter(pattern);
-        for (final String dir : this.srcdir.list()) {
-            final File sources = new File(dir);
-            if (sources.exists() && sources.isDirectory()) {
+        for (final String dir : this.sources.list()) {
+            final File source = new File(dir);
+            if (source.exists() && source.isDirectory()) {
                 files.addAll(
                     FileUtils.listFiles(
-                        sources,
+                        source,
                         filter,
                         DirectoryFileFilter.INSTANCE
                     )
@@ -165,7 +165,7 @@ public final class AntEnvironment implements Environment {
     }
 
     @Override
-    // @todo 337. Implement exclude and excludes for ant QuliceTask
+    // @todo #337. Implement exclude and excludes for ant QuliceTask
     public boolean exclude(final String check, final String name) {
         return false;
     }

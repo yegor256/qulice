@@ -1,5 +1,4 @@
-<?xml version="1.0"?>
-<!--
+/**
  * Copyright (c) 2011-2015, Qulice.com
  * All rights reserved.
  *
@@ -27,38 +26,48 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- -->
-<settings>
-    <profiles>
-        <profile>
-            <id>it-repo</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>local.central</id>
-                    <url>@localRepositoryUrl@</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>local.central</id>
-                    <url>@localRepositoryUrl@</url>
-                    <releases>
-                        <enabled>true</enabled>
-                    </releases>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
-        </profile>
-    </profiles>
-</settings>
+ */
+package com.qulice.ant;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
+/**
+ * Test for AntEnvironment.
+ *
+ * @author Yuriy Alevohin (alevohin@mail.ru)
+ * @version $Id$
+ * @todo #337 Implement unit tests at AntEnvironmentTest
+ */
+public class AntEnvironmentTest {
+
+    /**
+     * AntEnvironment can build Classloader from org.apache.tools.ant.Project.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    @Ignore
+    public void buildsClassloader() throws Exception{
+
+    }
+
+    /**
+     * AntEnvironment can return the files matching the specified pattern.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    @Ignore
+    public void returnsFiles() throws Exception{
+
+    }
+
+    /**
+     * AntEnvironment can exclude files.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    @Ignore
+    public void excludesFiles() throws Exception{
+
+    }
+}
