@@ -35,7 +35,7 @@
     <parent>
         <groupId>com.jcabi</groupId>
         <artifactId>parent</artifactId>
-        <version>0.29</version>
+        <version>0.32</version>
     </parent>
     <groupId>com.qulice</groupId>
     <artifactId>qulice</artifactId>
@@ -51,6 +51,7 @@
         <module>qulice-pmd</module>
         <module>qulice-spi</module>
         <module>qulice-xml</module>
+        <module>qulice-gradle-plugin</module>
     </modules>
     <description><![CDATA[
         Quality control library, integrating together other static
@@ -131,16 +132,5 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <!--
-        @todo #308 Remove this declaration when parent pom would depends
-         on qulice-maven-plugin:0.12
-         -->
-        <plugins>
-            <plugin>
-                <groupId>com.qulice</groupId>
-                <artifactId>qulice-maven-plugin</artifactId>
-                <version>0.12</version>
-            </plugin>
-        </plugins>
     </build>
 </project>

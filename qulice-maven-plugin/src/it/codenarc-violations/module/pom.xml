@@ -70,6 +70,7 @@
                 <executions>
                     <execution>
                         <configuration>
+	                    <license>file:${basedir}/LICENSE.txt</license>
                             <excludes>
                                 <exclude>codenarc:**/test/*.groovy</exclude>
                             </excludes>

@@ -294,6 +294,7 @@
                         <pomInclude>checkstyle-newlines/pom.xml</pomInclude>
                         <pomInclude>pmd-violations/pom.xml</pomInclude>
                         <pomInclude>codenarc-violations/pom.xml</pomInclude>
+                        <pomInclude>findbugs-exclude/pom.xml</pomInclude>
                         <pomInclude>findbugs-violations/pom.xml</pomInclude>
                         <!--
                          @todo #281 Dependency-violations is broken.
@@ -308,13 +309,7 @@
                         <pomInclude>pom-xpath-validator-violations</pomInclude>
                         <pomInclude>duplicate-finder-violations</pomInclude>
                         <!--<pomInclude>duplicate-finder-ignore-deps</pomInclude>-->
-                        <!--
-                         @todo #251 Rename volations.JS to violations.js after a new version
-                          of parent is published (that uses qulice which has jslint configured
-                          to use src/main for the js file locations)
-                          and uncomment following line.
                         <pomInclude>js-violations/pom.xml</pomInclude>
-                        -->
                     </pomIncludes>
                     <extraArtifacts>
                         <extraArtifact>${project.groupId}:qulice-checkstyle:${project.version}:jar</extraArtifact>
