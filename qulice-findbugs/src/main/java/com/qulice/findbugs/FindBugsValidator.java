@@ -61,12 +61,6 @@ import org.objectweb.asm.tree.ClassNode;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @todo #149 Create integration tests to check that FindBugsValidator
- *  can exclude classes from check.
- *  see http://findbugs.sourceforge.net/manual/filter.html for details
- *  of findbug filter patterns.
- *  Don't forget to update example-exclude.apt.vm with example for
- *  findbugs exclusion.
  */
 public final class FindBugsValidator implements Validator {
 
