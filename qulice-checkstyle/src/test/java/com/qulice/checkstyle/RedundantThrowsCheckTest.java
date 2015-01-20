@@ -46,7 +46,7 @@ import org.junit.Test;
  *
  * @author Eugene Bukhtin (maurezen@gmail.com)
  * @version $Id$
- * @checkstyle MultipleStringLiteralsCheck (150 lines)
+ * @checkstyle MultipleStringLiteralsCheck (500 lines)
  */
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class RedundantThrowsCheckTest {
@@ -65,13 +65,93 @@ public final class RedundantThrowsCheckTest {
     public final transient LicenseRule rule = new LicenseRule();
 
     /**
-     * Tries to violates RedundantThrowsCheck with a test class with
-     * inner Exception descendant.
+     * Tries to pass RedundantThrowsCheck with a test class with
+     * inner Exception descendant in another class.
      *
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void violatesRedundantThrowsCheckWithInnerException()
+    public void passesRedundantThrowsCheckWithInnerExceptionInAnotherClass()
+        throws Exception {
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.rule
+            .savePackageInfo(new File(mock.basedir(), "src/main/java/foo"))
+            .withLines(new String[]{"HELLO"})
+            .withEol("\n")
+            .file();
+        final String parent = Joiner.on("\n").join(
+            "/**",
+            " * HELLO",
+            " */",
+            "package foo;",
+            "/**",
+            " * A.",
+            " * @author Eugene Bukhtin (maurezen@gmail.com)",
+            " * @version $Id$",
+            " */",
+            "public class A {",
+            "    /**",
+            "     * Test illustration method.",
+            "     * @throws E no problem here",
+            "     */",
+            "    public final void mthd() throws E {",
+            "        throw new E(\"just a demo\");",
+            "    }",
+            "",
+            "    /**",
+            "     * E.",
+            "     */",
+            "    public static class E extends Exception {",
+            "        /**",
+            "         * Ctor.",
+            "         * @param message Message",
+            "         */",
+            "        public E(final String message) {",
+            "            super(message);",
+            "        }",
+            "    }",
+            "}",
+            ""
+        );
+        final String valid = Joiner.on("\n").join(
+            "/**",
+            " * HELLO",
+            " */",
+            "package foo;",
+            "/**",
+            " * B.",
+            " * @author Eugene Bukhtin (maurezen@gmail.com)",
+            " * @version $Id$",
+            " */",
+            "public class B extends A {",
+            "    /**",
+            "     * Test illustration method.",
+            "     * @throws E THIS CAUSES THE PROBLEM",
+            "     */",
+            "    public final void method() throws E {",
+            "        throw new E(\"just a demo\");",
+            "    }",
+            "}",
+            ""
+        );
+        final Environment env = mock
+            .withParam(
+                RedundantThrowsCheckTest.LICENSE_PROP,
+                this.toURL(license)
+        )
+            .withFile("src/main/java/foo/A.java", parent)
+            .withFile("src/main/java/foo/B.java", valid);
+        new CheckstyleValidator().validate(env);
+    }
+
+    /**
+     * Tries to pass RedundantThrowsCheck with a test class with
+     * inner Exception descendant in the same class.
+     *
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void passesRedundantThrowsCheckWithInnerExceptionInSameClass()
         throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule
@@ -113,34 +193,12 @@ public final class RedundantThrowsCheckTest {
             "}",
             ""
         );
-        final String invalid = Joiner.on("\n").join(
-            "/**",
-            " * HELLO",
-            " */",
-            "package foo;",
-            "/**",
-            " * B.",
-            " * @author Eugene Bukhtin (maurezen@gmail.com)",
-            " * @version $Id$",
-            " */",
-            "public class B extends A {",
-            "    /**",
-            "     * Test illustration method.",
-            "     * @throws E THIS CAUSES THE PROBLEM",
-            "     */",
-            "    public final void method() throws E {",
-            "        throw new E(\"just a demo\");",
-            "    }",
-            "}",
-            ""
-        );
         final Environment env = mock
             .withParam(
                 RedundantThrowsCheckTest.LICENSE_PROP,
                 this.toURL(license)
         )
-            .withFile("src/main/java/foo/A.java", valid)
-            .withFile("src/main/java/foo/B.java", invalid);
+            .withFile("src/main/java/foo/A.java", valid);
         new CheckstyleValidator().validate(env);
     }
 
