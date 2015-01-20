@@ -38,6 +38,11 @@ Just add this plugin to your `pom.xml`:
 </build>
 ```
 
+and make sure you have the JDK binaries (including the Java compiler `javac`)
+accessible from your `PATH` environment variable (e.g. if you have JDK 1.8.0
+installed in Windows your PATH should contain something like `C:\Program
+Files\Java\jdk1.8.0\bin`).
+
 Read this short summary of [typical mistakes](https://github.com/tpc2/qulice/wiki/mistakes)
 you may encounter in your project.
 Qulice can't catch them, that's why this wiki page...
