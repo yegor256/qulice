@@ -36,7 +36,11 @@ import org.junit.Rule;
 import org.junit.Test;
 
 /**
- * Test case for teamed/qulice#113 and checkstyle/checkstyle#90 issues.
+ * Test case for teamed/qulice#113 and checkstyle/checkstyle#90 issues,
+ * the issues in question being checkstyle RedundantThrowsCheck failing
+ * in case of javadoc @throws clause featuring a descendant of
+ * ${@link Exception} implemented as an inner class in an outer
+ * class different from the one containing @throws in question.
  * Should fail on qulice 0.3.1, pass on qulice 0.10+
  * (Requires checkstyle 5.7+ to pass)
  *
