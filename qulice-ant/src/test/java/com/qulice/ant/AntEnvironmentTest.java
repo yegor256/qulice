@@ -38,7 +38,6 @@ import org.junit.Test;
  * @author Yuriy Alevohin (alevohin@mail.ru)
  * @version $Id$
  * @todo #337 Implement unit tests at AntEnvironmentTest
- * @checkstyle UncommentedEmptyMethod (70 Lines)
  */
 public class AntEnvironmentTest {
 
@@ -48,6 +47,7 @@ public class AntEnvironmentTest {
      */
     @Test
     @Ignore
+    @SuppressWarnings("PMD.UncommentedEmptyMethod")
     public void buildsClassloader() throws Exception {
     }
 
@@ -57,6 +57,7 @@ public class AntEnvironmentTest {
      */
     @Test
     @Ignore
+    @SuppressWarnings("PMD.UncommentedEmptyMethod")
     public void returnsFiles() throws Exception {
     }
 
@@ -66,6 +67,7 @@ public class AntEnvironmentTest {
      */
     @Test
     @Ignore
+    @SuppressWarnings("PMD.UncommentedEmptyMethod")
     public void excludesFiles() throws Exception {
     }
 }
