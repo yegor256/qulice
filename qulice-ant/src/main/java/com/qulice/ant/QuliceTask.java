@@ -49,7 +49,7 @@ import org.apache.tools.ant.types.Path;
 /**
  * Ant Task for Qulice.
  *
- * @checkstyle ClassDataAbstractionCouplingCheck (150 lines)
+ * @checkstyle ClassDataAbstractionCouplingCheck (170 lines)
  * @author Yuriy Alevohin (alevohin@mail.ru)
  * @version $Id$
  */
