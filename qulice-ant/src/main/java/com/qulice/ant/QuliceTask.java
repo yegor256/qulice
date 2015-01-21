@@ -38,12 +38,13 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import com.qulice.xml.XmlValidator;
-import org.apache.tools.ant.BuildException;
-import org.apache.tools.ant.Task;
-import org.apache.tools.ant.types.Path;
 import java.io.File;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import org.apache.tools.ant.BuildException;
+import org.apache.tools.ant.Task;
+import org.apache.tools.ant.types.Path;
+
 
 /**
  * Ant Task for Qulice.
