@@ -30,12 +30,18 @@
 package com.qulice.ant;
 
 import com.jcabi.log.Logger;
+import com.qulice.checkstyle.CheckstyleValidator;
+import com.qulice.codenarc.CodeNarcValidator;
+import com.qulice.findbugs.FindBugsValidator;
+import com.qulice.pmd.PMDValidator;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.File;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import com.qulice.xml.XmlValidator;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.Path;
@@ -52,12 +58,12 @@ public final class QuliceTask extends Task {
     /**
      * Sources dirs.
      */
-    private transient Path srcdir;
+    private transient Path sources;
 
     /**
      * Classes dir (only one dir is supported).
      */
-    private transient File classesdir;
+    private transient File classes;
 
     /**
      * Classpath dirs and files.
@@ -69,7 +75,7 @@ public final class QuliceTask extends Task {
      * @param srcdr Source dirs
      */
     public void setSrcdir(final Path srcdr) {
-        this.srcdir = srcdr;
+        this.sources = srcdr;
     }
 
     /**
@@ -77,7 +83,7 @@ public final class QuliceTask extends Task {
      * @param clssedr Classes dir
      */
     public void setClassesdir(final File clssedr) {
-        this.classesdir = clssedr;
+        this.classes = clssedr;
     }
 
     /**
@@ -114,10 +120,10 @@ public final class QuliceTask extends Task {
      * @return Environment.
      */
     private Environment environment() {
-        if (this.srcdir == null) {
+        if (this.sources == null) {
             throw new BuildException("srcdir not defined for QuliceTask");
         }
-        if (this.classesdir == null) {
+        if (this.classes == null) {
             throw new BuildException("classesdir not defined for QuliceTask");
         }
         if (this.classpath == null) {
@@ -125,8 +131,8 @@ public final class QuliceTask extends Task {
         }
         return new AntEnvironment(
             this.getProject(),
-            this.srcdir,
-            this.classesdir,
+            this.sources,
+            this.classes,
             this.classpath
         );
     }
@@ -148,11 +154,11 @@ public final class QuliceTask extends Task {
      */
     private Set<Validator> validators() {
         final Set<Validator> validators = new LinkedHashSet<Validator>();
-        validators.add(new com.qulice.checkstyle.CheckstyleValidator());
-        validators.add(new com.qulice.pmd.PMDValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
-        validators.add(new com.qulice.findbugs.FindBugsValidator());
+        validators.add(new CheckstyleValidator());
+        validators.add(new PMDValidator());
+        validators.add(new XmlValidator());
+        validators.add(new CodeNarcValidator());
+        validators.add(new FindBugsValidator());
         return validators;
     }
 }
