@@ -45,7 +45,6 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.Path;
 
-
 /**
  * Ant Task for Qulice.
  *
