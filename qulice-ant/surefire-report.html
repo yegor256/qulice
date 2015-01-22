@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>qulice-ant &#x2013; Surefire Report</title>
+        <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
+                            <script>
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-1963507-25']);
+                _gaq.push(['_trackPageview']);
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+                                                                                                                
+<link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
+                                                                                                                
+<link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
+                                            <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script>
+            $(document).ready(
+                function() {
+                    $(".menu-button").click(
+                        function() {
+                            if ($("#here-goes-menu").attr("class") == "menu-off") {
+                                $("#menu").clone().attr("class", "mobile-menu").appendTo("#here-goes-menu");
+                                $("#here-goes-menu").attr("class", "menu-on");
+                            } else {
+                                $(".mobile-menu").hide();
+                                $("#here-goes-menu").attr("class", "menu-off");
+                            }
+                        }
+                    );
+                }
+            );
+        </script>
+    </head>
+    <body>
+                <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <nav class="menu-section" role="navigation">
+                <ul class="menu" id="menu">
+                                                                                    <li>
+                            <span>Parent Project</span>
+                                                            <ul>
+                                                                                                    <li >
+                            <span>                        <a href="../index.html" title="qulice">qulice</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            <span>Overview</span>
+                                                            <ul>
+                                                                                                    <li >
+                            <span>                        <a href="index.html" title="Introduction">Introduction</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            <span>Project Documentation</span>
+                                                            <ul>
+                                                                                                    <li >
+                            <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
+                                                                                                    <li  class='active' >
+                            <span>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="dependency-updates-report.html" title="Dependency Updates Report">Dependency Updates Report</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="plugin-updates-report.html" title="Plugin Updates Report">Plugin Updates Report</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="apidocs-0.12.1/index.html" title="JavaDocs">JavaDocs</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="cobertura/index.html" title="Cobertura Test Coverage">Cobertura Test Coverage</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                    </ul>
+            </nav>
+            <div class="right-side">
+                <main role="main">
+                    <div class="content">
+                        <header>
+                            <div class="logo">
+                                <a href="../"
+                                    title=" home page of Qulice.com ">
+                                    <img src="http://img.qulice.com/logo.svg"
+                                        alt="Qulice"
+                                                                                    width="214"
+                                                                                                                            height="60"
+                                                                                itemprop="image"
+                                    />
+                                </a>
+                            </div>
+                            <div class="teamed">
+                                <a href="http://www.teamed.io">
+                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
+                                </a>
+                            </div>
+                            <ul class="badges">
+                                <li>
+                                    <strong itemprop="version">0.12.1</strong>
+                                </li>
+                                <li>
+                                    
+                                    <time itemprop="datePublished" datetime="2015-01-22T11:43:02Z">
+                                        
+                                        22-Jan-2015
+                                    </time>
+                                </li>
+                                <li class="menu-button">menu</li>
+                            </ul>
+                        </header>
+                        <div id="here-goes-menu" class="menu-off"></div>
+                                                                        <article role="article" itemprop="articleBody">
+                            <script type="text/javascript">
+//<![CDATA[
+function toggleDisplay(elementId) {
+ var elm = document.getElementById(elementId + 'error');
+ if (elm && typeof elm.style != "undefined") {
+ if (elm.style.display == "none") {
+ elm.style.display = "";
+ document.getElementById(elementId + 'off').style.display = "none";
+ document.getElementById(elementId + 'on').style.display = "inline";
+ } else if (elm.style.display == "") { elm.style.display = "none";
+ document.getElementById(elementId + 'off').style.display = "inline";
+ document.getElementById(elementId + 'on').style.display = "none";
+ } 
+ } 
+ }
+//]]>
+</script>
+<div class="section">
+<h2><a name="Surefire_Report"></a>Surefire Report</h2></div>
+<div class="section">
+<h2><a name="Summary"></a>Summary</h2><a name="Summary"></a>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
+<table border="1" class="bodyTable">
+<tr class="a">
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0%</td>
+<td>0</td></tr></table><br />
+<p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
+<div class="section">
+<h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
+<table border="1" class="bodyTable">
+<tr class="a">
+<th>Package</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#com.qulice.ant">com.qulice.ant</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0%</td>
+<td>0</td></tr></table><br />
+<p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
+<div class="section">
+<h3><a name="com.qulice.ant"></a>com.qulice.ant</h3><a name="com.qulice.ant"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<th></th>
+<th>Class</th>
+<th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
+<tr class="b">
+<td><a href="#com.qulice.antAntEnvironmentTest"><img src="images/icon_warning_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.antAntEnvironmentTest">AntEnvironmentTest</a></td>
+<td>3</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>0%</td>
+<td>0</td></tr></table></div><br /></div>
+<div class="section">
+<h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
+<div class="section">
+<h3><a name="AntEnvironmentTest"></a>AntEnvironmentTest</h3><a name="com.qulice.antAntEnvironmentTest"></a>
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><a href="#com.qulice.ant.AntEnvironmentTest.buildsClassloader"><img src="images/icon_warning_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.ant.AntEnvironmentTest.buildsClassloader">buildsClassloader</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_ant_AntEnvironmentTest_buildsClassloader&apos;);"><span style="display:inline;" id="com_qulice_ant_AntEnvironmentTest_buildsClassloaderoff"> + </span><span style="display:none;" id="com_qulice_ant_AntEnvironmentTest_buildsClassloaderon"> - </span>[ Detail ]</a></div></td>
+<td>0</td></tr>
+<tr class="b">
+<td></td>
+<td>skipped</td>
+<td></td></tr>
+<tr class="a">
+<td><a href="#com.qulice.ant.AntEnvironmentTest.returnsFiles"><img src="images/icon_warning_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.ant.AntEnvironmentTest.returnsFiles">returnsFiles</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_ant_AntEnvironmentTest_returnsFiles&apos;);"><span style="display:inline;" id="com_qulice_ant_AntEnvironmentTest_returnsFilesoff"> + </span><span style="display:none;" id="com_qulice_ant_AntEnvironmentTest_returnsFileson"> - </span>[ Detail ]</a></div></td>
+<td>0</td></tr>
+<tr class="b">
+<td></td>
+<td>skipped</td>
+<td></td></tr>
+<tr class="a">
+<td><a href="#com.qulice.ant.AntEnvironmentTest.excludesFiles"><img src="images/icon_warning_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.ant.AntEnvironmentTest.excludesFiles">excludesFiles</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_ant_AntEnvironmentTest_excludesFiles&apos;);"><span style="display:inline;" id="com_qulice_ant_AntEnvironmentTest_excludesFilesoff"> + </span><span style="display:none;" id="com_qulice_ant_AntEnvironmentTest_excludesFileson"> - </span>[ Detail ]</a></div></td>
+<td>0</td></tr>
+<tr class="b">
+<td></td>
+<td>skipped</td>
+<td></td></tr></table></div><br /></div>
+<div class="section">
+<h2><a name="Failure_Details"></a>Failure Details</h2><a name="Failure_Details"></a>
+<p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p><br />
+<table border="1" class="bodyTable">
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><a name="com.qulice.ant.AntEnvironmentTest.buildsClassloader"></a>buildsClassloader</td></tr>
+<tr class="b">
+<td></td>
+<td>skipped: skipped</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><a name="com.qulice.ant.AntEnvironmentTest.returnsFiles"></a>returnsFiles</td></tr>
+<tr class="b">
+<td></td>
+<td>skipped: skipped</td></tr>
+<tr class="a">
+<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><a name="com.qulice.ant.AntEnvironmentTest.excludesFiles"></a>excludesFiles</td></tr>
+<tr class="b">
+<td></td>
+<td>skipped: skipped</td></tr></table><br /></div>
+                        </article>
+                    </div>
+                </main>
+                <footer class="legal-notes">
+                    <div>
+                        Copyright &#169;
+                                                                            2011-2015
+                                            </div>
+                    <div>Qulice.com, All Rights Reserved.</div>
+                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                </footer>
+            </div>
+        </section>
+    </body>
+</html>
