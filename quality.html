@@ -103,13 +103,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.12</strong>
+                                    <strong itemprop="version">0.12.1</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2014-12-02T08:56:39Z">
+                                    <time itemprop="datePublished" datetime="2015-01-22T11:37:10Z">
                                         
-                                        02-Dec-2014
+                                        22-Jan-2015
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -128,17 +128,17 @@
 <p><a class="externalLink" href="http://checkstyle.sourceforge.net/checks.html">Inherited rules</a>.</p>
 <p>Our custom rules:</p>
 <ul>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/BracketsStructureCheck.html">BracketsStructure</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/CascadeIndentationCheck.html">CascadeIndentation</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/ConstantUsageCheck.html">ConstantUsage</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/EmptyLinesCheck.html">EmptyLines</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/ImportCohesionCheck.html">ImportCohesion</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/JavadocLocationCheck.html">JavadocLocation</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/JavadocTagsCheck.html">JavadocTags</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/MethodBodyCommentsCheck.html">MethodBodyComments</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/MultilineJavadocTagsCheck.html">MultilineJavadocTags</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/NonStaticMethodCheck.html">NonStaticMethod</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.12/com/qulice/checkstyle/StringLiteralsConcatenationCheck.html">StringLiteralsConcatenation</a></li></ul>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/BracketsStructureCheck.html">BracketsStructure</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/CascadeIndentationCheck.html">CascadeIndentation</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/ConstantUsageCheck.html">ConstantUsage</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/EmptyLinesCheck.html">EmptyLines</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/ImportCohesionCheck.html">ImportCohesion</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/JavadocLocationCheck.html">JavadocLocation</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/JavadocTagsCheck.html">JavadocTags</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/MethodBodyCommentsCheck.html">MethodBodyComments</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/MultilineJavadocTagsCheck.html">MultilineJavadocTags</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/NonStaticMethodCheck.html">NonStaticMethod</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.12.1/com/qulice/checkstyle/StringLiteralsConcatenationCheck.html">StringLiteralsConcatenation</a></li></ul>
 <p>If you want to disable some rule (this may happen, but try to avoid such situations at all cost):</p>
 <div class="source">
 <pre>/**
@@ -161,7 +161,29 @@ public void func() {
 }</pre></div></div>
 <div class="section">
 <h3><a name="Cobertura"></a>Cobertura</h3>
-<p>Every class, method, and package should be covered by unit tests. Qulice will complain when coverage is not sufficient. In order to get a visual presentation of your coverage add this to your <tt>pom.xml</tt>:</p>
+<p>Every class, method, and package should be covered by unit tests. Qulice will complain when coverage is not sufficient. To enable cobertura checks add <tt>&lt;goal&gt;instrument&lt;/goal</tt>&gt; to plugin <tt>executions</tt> section:</p>
+<div class="source">
+<pre>&lt;build&gt;
+   &lt;plugins&gt;
+       &lt;plugin&gt;
+           &lt;groupId&gt;com.qulice&lt;/groupId&gt;
+           &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
+           &lt;version&gt;0.12.1&lt;/version&gt;
+           &lt;configuration&gt;
+               &lt;license&gt;file:${basedir}/LICENSE.txt&lt;/license&gt;
+           &lt;/configuration&gt;
+           &lt;executions&gt;
+               &lt;execution&gt;
+                   &lt;goals&gt;
+                       &lt;goal&gt;instrument&lt;/goal&gt;
+                       &lt;goal&gt;check&lt;/goal&gt;
+                   &lt;/goals&gt;
+               &lt;/execution&gt;
+           &lt;/executions&gt;
+       &lt;/plugin&gt;
+   &lt;/plugins&gt;
+&lt;/build&gt;</pre></div>
+<p>In order to get a visual presentation of your coverage add this to your <tt>pom.xml</tt>:</p>
 <div class="source">
 <pre>&lt;build&gt;
   &lt;pluginManagement&gt;
@@ -186,7 +208,7 @@ public void func() {
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2014
+                                                                            2011-2015
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
