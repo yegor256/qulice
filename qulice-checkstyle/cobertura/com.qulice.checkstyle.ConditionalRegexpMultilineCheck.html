@@ -99,7 +99,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * @version $Id$</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;41</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;42</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> ConditionalRegexpMultilineCheck <span class="keyword">extends</span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;42</td>  <td class="nbHitsCovered">&nbsp;5</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> ConditionalRegexpMultilineCheck <span class="keyword">extends</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;43</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    RegexpMultilineCheck {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;44</td>  <td class="nbHits">&nbsp;</td>
@@ -108,26 +108,26 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     * Condition that has to pass.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;46</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;47</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">transient</span> Pattern condition = Pattern.compile(<span class="string">"."</span>);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;47</td>  <td class="nbHitsCovered">&nbsp;5</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">transient</span> Pattern condition = Pattern.compile(<span class="string">"."</span>);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;48</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;49</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;50</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> processFiltered(<span class="keyword">final</span> File file, <span class="keyword">final</span> List&lt;String&gt; lines) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;51</td>  <td class="nbHitsCovered">&nbsp;6</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> found = <span class="keyword">false</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;52</td>  <td class="nbHitsCovered"><a title="Line 52: Conditional coverage 100% (2/2).">&nbsp;6</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 52: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">final</span> String line: lines) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;53</td>  <td class="nbHitsUncovered"><a title="Line 53: Conditional coverage 50% (1/2).">&nbsp;64</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 53: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (<span class="keyword">this</span>.condition.matcher(line).find()) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;51</td>  <td class="nbHitsCovered">&nbsp;11</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> found = <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;52</td>  <td class="nbHitsCovered"><a title="Line 52: Conditional coverage 100% (2/2).">&nbsp;11</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 52: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">final</span> String line: lines) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;53</td>  <td class="nbHitsUncovered"><a title="Line 53: Conditional coverage 50% (1/2).">&nbsp;162</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 53: Conditional coverage 50% (1/2).">            <span class="keyword">if</span> (<span class="keyword">this</span>.condition.matcher(line).find()) {</a></span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;54</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                found = <span class="keyword">true</span>;</span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;55</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                <span class="keyword">break</span>;</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;56</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;57</td>  <td class="nbHitsCovered">&nbsp;64</td>  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsUncovered"><a title="Line 58: Conditional coverage 50% (1/2).">&nbsp;6</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 58: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (found) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;57</td>  <td class="nbHitsCovered">&nbsp;162</td>  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsUncovered"><a title="Line 58: Conditional coverage 50% (1/2).">&nbsp;11</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 58: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (found) {</a></span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;59</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            <span class="keyword">super</span>.processFiltered(file, lines);</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;60</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;61</td>  <td class="nbHitsCovered">&nbsp;6</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;61</td>  <td class="nbHitsCovered">&nbsp;11</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;62</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;63</td>  <td class="nbHits">&nbsp;</td>
@@ -140,12 +140,12 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;67</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> setCondition(<span class="keyword">final</span> String cond) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.condition = Pattern.compile(cond);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;69</td>  <td class="nbHitsCovered">&nbsp;3</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsCovered">&nbsp;5</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.condition = Pattern.compile(cond);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;69</td>  <td class="nbHitsCovered">&nbsp;5</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;70</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9.4.1 on 12/2/14 8:58 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 1.9.4.1 on 1/22/15 11:40 AM.</div>
 </body>
 </html>
