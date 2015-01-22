@@ -46,19 +46,20 @@ Ant Module
  <project name="Qulice" basedir="." default="qulice">
      <taskdef name="qulice"
               classname="com.qulice.ant.QuliceTask"
-              classpath="${com.qulice:qulice-ant:jar}"/>
+              classpath="${esc.d}{com.qulice:qulice-ant:jar}"/>
      <target name="qulice" description="Execute qulice checks">
          <property name="license" value="LICENSE.txt"/>
          <qulice
-                 srcdir="${basedir}/src/main/java"
-                 classesdir="${basedir}/target/classes"
-                 classpath="${basedir}/target/classes:${basedir}"/>
+                 srcdir="${esc.d}{basedir}/src/main/java"
+                 classesdir="${esc.d}{basedir}/target/classes"
+                 classpath="${esc.d}{basedir}/target/classes:${esc.d}{basedir}"/>
      </target>
  </project>
 +--
 
-   * License file must be in classpath
-   * Only one directory may be used as classesdir
+   * License file must be in classpath.
+
+   * Only one directory may be used as classesdir.
 
   That's it. Your build will fail if you have quality problems. Read
   {{{../quality.html}this page}} about how you can fix them.
