@@ -56,7 +56,6 @@ import org.jaxen.JaxenException;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.tree.ClassNode;
 import org.xembly.Directives;
-import org.xembly.ImpossibleModificationException;
 import org.xembly.Xembler;
 
 /**
@@ -190,14 +189,7 @@ public final class FindBugsValidator implements Validator {
                 directives.add("Class").attr("name", exclude).up();
             }
         }
-        try {
-            return new Xembler(directives).xml();
-        } catch (final ImpossibleModificationException ex) {
-            throw new IllegalStateException(
-                "Cannot make XML with exclusion rules for findbugs",
-                ex
-            );
-        }
+        return new Xembler(directives).xmlQuietly();
     }
 
     /**
