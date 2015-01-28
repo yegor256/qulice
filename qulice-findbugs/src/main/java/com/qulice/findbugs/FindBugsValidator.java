@@ -55,6 +55,9 @@ import org.dom4j.DocumentException;
 import org.jaxen.JaxenException;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.tree.ClassNode;
+import org.xembly.Directives;
+import org.xembly.ImpossibleModificationException;
+import org.xembly.Xembler;
 
 /**
  * Validates source code and compiled binaries with FindBugs.
@@ -176,22 +179,25 @@ public final class FindBugsValidator implements Validator {
      * Creates xml with exclude patterns in findbugs native format.
      * @param excludes Exclude patterns
      * @return XML with findbugs excludes
-     * @todo #350 It's better to build XML using Xembly, but when it's
-     *  added to dependencies, build fails with the message:
-     *  Found duplicate and different classes in
-     *  [org.apache.xmlgraphics:batik-ext:1.7,xml-apis:xml-apis:1.3.04]
-     *  org.w3c.dom.events.DocumentEvent
-     *  org.w3c.dom.events.Event
-     *  org.w3c.dom.events.EventException
      */
     private String generateExcludes(final Iterable<String> excludes) {
-        final StringBuilder xml = new StringBuilder(75);
-        xml.append("<FindBugsFilter><Match><Or>");
+        final Directives directives = new Directives()
+            .add("FindBugsFilter")
+            .add("Match")
+            .add("Or");
         for (final String exclude : excludes) {
-            xml.append("<Class name=\"").append(exclude).append("\"/>");
+            if (exclude != null) {
+                directives.add("Class").attr("name", exclude).up();
+            }
         }
-        xml.append("</Or></Match></FindBugsFilter>");
-        return xml.toString();
+        try {
+            return new Xembler(directives).xml();
+        } catch (final ImpossibleModificationException ex) {
+            throw new IllegalStateException(
+                "Cannot make XML with exclusion rules for findbugs",
+                ex
+            );
+        }
     }
 
     /**
