@@ -31,7 +31,6 @@ package com.qulice.findbugs;
 
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -88,13 +87,8 @@ public final class FindBugsValidatorTest {
     /**
      * FindbugsValidator can exclude several classes from check.
      * @throws Exception If something wrong happens inside
-     * @todo #149 Add support for multiline excludes.
-     *  Use xembly Directives to generate xml on the fly.
-     *  Beware, excludes may contain coma separated list of exclude patterns.
-     *  When done, remove Ignore annotation on this test.
      */
     @Test
-    @Ignore
     public void excludesSeveralIncorrectClassFormCheck() throws Exception {
         final byte[] bytecode = new BytecodeMocker()
             .withSource("class Foo { public Foo clone() { return this; } }")
