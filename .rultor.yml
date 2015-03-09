@@ -1,7 +1,13 @@
-architect: [yegor256, davvd]
-install: [sudo gem install pdd]
-assets: {secring.gpg: yegor256/home#assets/secring.gpg, settings.xml: yegor256/home#assets/qulice/settings.xml,
-  pubring.gpg: yegor256/home#assets/pubring.gpg, s3cfg: yegor256/home#assets/s3cfg}
+architect:
+- yegor256
+- davvd
+install:
+- sudo gem install pdd
+assets:
+  secring.gpg: yegor256/home#assets/secring.gpg
+  settings.xml: yegor256/home#assets/qulice/settings.xml
+  pubring.gpg: yegor256/home#assets/pubring.gpg
+  s3cfg: yegor256/home#assets/s3cfg
 merge:
   script: |-
     mvn clean install -Pqulice-profile -Pqulice --errors --settings ../settings.xml
@@ -14,7 +20,8 @@ deploy:
     mvn clean
     pdd --source=$(pwd) --verbose --file=qulice.xml --exclude=qulice-maven-plugin/src/it/**/*.java
     s3cmd --no-progress put qulice.xml --config=../s3cfg s3://pdd.teamed.io/qulice.xml
-env: {MAVEN_OPTS: '-XX:MaxPermSize=256m -Xmx1g'}
+env:
+  MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
 release:
   script: |-
     mvn versions:set "-DnewVersion=${tag}"
