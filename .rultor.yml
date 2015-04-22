@@ -15,7 +15,6 @@ merge:
     mvn clean
     pdd --source=$(pwd) --verbose --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java
   commanders:
-  - alevohin
   - carlosmiranda
   - darkled
   - ggajos
