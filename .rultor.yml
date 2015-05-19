@@ -13,7 +13,12 @@ merge:
     mvn clean site -Psite --errors --settings ../settings.xml
     mvn clean
     pdd --source=$(pwd) --verbose --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java
-  commanders: []
+  commanders:
+  - carlosmiranda
+  - ggajos
+  - krzyk
+  - longtimeago
+  - pinaf
 deploy:
   script: |-
     mvn clean deploy -Pqulice-profile -Pqulice --errors --settings ../settings.xml
