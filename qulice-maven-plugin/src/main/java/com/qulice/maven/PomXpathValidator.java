@@ -39,11 +39,14 @@ import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 
 /**
- * Check pom.xml with XPath validation queries.
+ * <p>Check pom.xml with XPath validation queries.</p>
  *
- * Restrictions:
- * 1. Each xpath component should contains namespace prefix pom:
- * 2. Each xpath query should end with /text()
+ * <p>Restrictions:</p>
+ *
+ * <ol>
+ * <li>Each xpath component should contains namespace prefix pom:</li>
+ * <li>Each xpath query should end with /text()</li>
+ * </ol>
  *
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
