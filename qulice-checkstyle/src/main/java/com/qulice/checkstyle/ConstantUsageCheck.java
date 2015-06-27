@@ -79,8 +79,13 @@ public final class ConstantUsageCheck extends Check {
                 final DetailAST assign =
                     variable.findFirstToken(TokenTypes.ASSIGN);
                 if (assign != null) {
-                    final DetailAST expression =
+                    DetailAST expression =
                         assign.findFirstToken(TokenTypes.EXPR);
+                    if (expression == null) {
+                        expression = assign.findFirstToken(
+                            TokenTypes.ARRAY_INIT
+                        );
+                    }
                     final String text = this.getText(expression);
                     if (text.contains(name)) {
                         ++counter;
