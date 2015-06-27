@@ -5,7 +5,7 @@ import org.apache.commons.lang.CharEncoding;
  */
 public final class Invalid {
     private static final Invalid INSTANCE = new Invalid();
-    private static final int[] FOREGROUND_FRACTIONS =
+    private static final int[] OTHER_INSTANCE =
         {
             1,
             2,

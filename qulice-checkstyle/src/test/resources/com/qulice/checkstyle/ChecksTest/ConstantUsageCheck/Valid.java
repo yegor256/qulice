@@ -5,7 +5,7 @@ import org.apache.commons.lang.CharEncoding;
  */
 public final class Valid {
     private static final Invalid INSTANCE = new Invalid();
-    private static final int[] FOREGROUND_FRACTIONS =
+    private static final int[] OTHER_INSTANCE =
         {
             1,
             2,
@@ -28,7 +28,7 @@ public final class Valid {
         print(INSTANCE, CharEncoding.UTF_8);
         print(this.stream.toString());
         final Integer x = 5;
-        return y * NUMBER * x * FOREGROUND_FRACTIONS[0];
+        return y * NUMBER * x * OTHER_INSTANCE[0];
     }
     private void extra() {
         new Runnable() {
