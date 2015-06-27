@@ -1,4 +1,3 @@
-
 import org.apache.commons.lang.CharEncoding;
 /**
  * This is not a real Java class. It won't be compiled ever. It is used
@@ -6,6 +5,13 @@ import org.apache.commons.lang.CharEncoding;
  */
 public final class Valid {
     private static final Invalid INSTANCE = new Invalid();
+    private static final int[] FOREGROUND_FRACTIONS =
+        {
+            1,
+            2,
+            3,
+            4,
+        };
     private static final int NUMBER = 5;
     private static final long serialVersionUID = 1L;
     private final transient OutputStream stream = new ByteArrayOutputStream();
@@ -22,7 +28,7 @@ public final class Valid {
         print(INSTANCE, CharEncoding.UTF_8);
         print(this.stream.toString());
         final Integer x = 5;
-        return y * NUMBER * x;
+        return y * NUMBER * x * FOREGROUND_FRACTIONS[0];
     }
     private void extra() {
         new Runnable() {
