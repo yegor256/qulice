@@ -165,7 +165,7 @@ public final class AntEnvironment implements Environment {
     }
 
     @Override
-    // @todo #337. Implement exclude and excludes for ant QuliceTask
+    // @todo #337 Implement exclude and excludes for ant QuliceTask
     public boolean exclude(final String check, final String name) {
         return false;
     }
