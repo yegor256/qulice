@@ -76,16 +76,7 @@ public final class ConstantUsageCheck extends Check {
         int counter = 0;
         while (null != variable) {
             if (TokenTypes.VARIABLE_DEF == variable.getType()) {
-                final DetailAST assign =
-                    variable.findFirstToken(TokenTypes.ASSIGN);
-                if (assign != null) {
-                    final DetailAST expression =
-                        assign.findFirstToken(TokenTypes.EXPR);
-                    final String text = this.getText(expression);
-                    if (text.contains(name)) {
-                        ++counter;
-                    }
-                }
+                counter += this.parseVarDef(variable, name);
             } else {
                 counter += this.parseMethod(variable, name);
             }
@@ -97,6 +88,33 @@ public final class ConstantUsageCheck extends Check {
                 String.format("Private constant \"%s\" is not used", name)
             );
         }
+    }
+
+    /**
+     * Parses the variable definition and increments the counter
+     * if name is found.
+     * @param variable DetailAST of variable definition
+     * @param name Name of constant we search for
+     * @return Zero if not found, 1 otherwise
+     */
+    private int parseVarDef(final DetailAST variable, final String name) {
+        int counter = 0;
+        final DetailAST assign =
+            variable.findFirstToken(TokenTypes.ASSIGN);
+        if (assign != null) {
+            DetailAST expression =
+                assign.findFirstToken(TokenTypes.EXPR);
+            if (expression == null) {
+                expression = assign.findFirstToken(
+                    TokenTypes.ARRAY_INIT
+                );
+            }
+            final String text = this.getText(expression);
+            if (text.contains(name)) {
+                ++counter;
+            }
+        }
+        return counter;
     }
 
     /**

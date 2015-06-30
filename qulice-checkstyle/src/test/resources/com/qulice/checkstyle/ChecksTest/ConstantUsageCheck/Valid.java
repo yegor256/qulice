@@ -1,11 +1,10 @@
-
-import org.apache.commons.lang.CharEncoding;
 /**
  * This is not a real Java class. It won't be compiled ever. It is used
  * only as a text resource in integration.ChecksIT.
  */
 public final class Valid {
     private static final Invalid INSTANCE = new Invalid();
+    private static final int[] OTHER_INSTANCE = { 1, 2, 3, 4 };
     private static final int NUMBER = 5;
     private static final long serialVersionUID = 1L;
     private final transient OutputStream stream = new ByteArrayOutputStream();
@@ -22,7 +21,7 @@ public final class Valid {
         print(INSTANCE, CharEncoding.UTF_8);
         print(this.stream.toString());
         final Integer x = 5;
-        return y * NUMBER * x;
+        return y * NUMBER * x * OTHER_INSTANCE[0];
     }
     private void extra() {
         new Runnable() {

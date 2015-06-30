@@ -4,6 +4,7 @@
  */
 public final class Invalid {
     private static final Invalid INSTANCE = new Invalid();
+    private static final int[] OTHER_INSTANCE = { 1, 2, 3, 4 };
     private final int NUMBER = 5;
     protected String NAME = "DDD";
     private static final int N = NUMBER*2;
