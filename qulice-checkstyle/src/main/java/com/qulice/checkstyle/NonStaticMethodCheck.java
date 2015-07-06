@@ -71,7 +71,7 @@ public final class NonStaticMethodCheck extends Check {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (this.exclude.matcher(this.getFileContents().getFilename())
+        if (this.exclude.matcher(this.getFileContents().getFileName())
             .find()) {
             return;
         }

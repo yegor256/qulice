@@ -29,9 +29,15 @@
  */
 package com.qulice.checkstyle;
 
+import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
+import java.io.StringWriter;
+import org.apache.log4j.SimpleLayout;
+import org.apache.log4j.WriterAppender;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -49,6 +55,11 @@ public final class CheckstyleValidatorTest {
     private static final String LICENSE_PROP = "license";
 
     /**
+     * Directory with classes.
+     */
+    private static final String DIRECTORY = "src/main/java/foo";
+
+    /**
      * License rule.
      * @checkstyle VisibilityModifierCheck (5 lines)
      */
@@ -63,7 +74,7 @@ public final class CheckstyleValidatorTest {
     public void catchesCheckstyleViolationsInLicense() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule
-            .savePackageInfo(new File(mock.basedir(), "src/main/java/foo"))
+            .savePackageInfo(new File(mock.basedir(), DIRECTORY))
             .withLines(new String[] {"License-1.", "", "License-2."})
             .withEol("\n")
             .file();
@@ -81,6 +92,61 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can accept instance method references.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void acceptsInstanceMethodReferences() throws Exception {
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.rule
+            .savePackageInfo(new File(mock.basedir(), DIRECTORY))
+            .withLines(new String[] {"Hello."})
+            .withEol("\n")
+            .file();
+        final String content = Joiner.on("\n").join(
+            "/**",
+            " * Hello.",
+            " */",
+            "package foo;",
+            "/**",
+            " * Simple.",
+            " * @version $Id $",
+            " * @author John Smith (john@example.com)",
+            " */",
+            "public final class Main {",
+            "    /**",
+            "     * Start. Check fails in this method.",
+            "     */",
+            "    private void start() {",
+            "        Collections.singletonList(\"1\")",
+            "            .forEach(this::doSomething);",
+            "    }",
+            "    /**",
+            "     * Method to be referenced.",
+            "     * @param value Value to print",
+            "     */",
+            "    private void doSomething(final String value) {",
+            "        System.out.println(value);",
+            "    }",
+            "}",
+            ""
+        );
+        final StringWriter writer = new StringWriter();
+        org.apache.log4j.Logger.getRootLogger().addAppender(
+            new WriterAppender(new SimpleLayout(), writer)
+        );
+        final Environment env = mock.withParam(
+            CheckstyleValidatorTest.LICENSE_PROP,
+            this.toURL(license)
+        ).withFile("src/main/java/foo/Main.java", content);
+        new CheckstyleValidator().validate(env);
+        MatcherAssert.assertThat(
+            writer.toString(),
+            Matchers.containsString("No Checkstyle violations found")
+        );
+    }
+
+    /**
      * CheckstyleValidator will fail if  Windows EOL-s are used.
      * @throws Exception If something wrong happens inside
      */
@@ -88,7 +154,7 @@ public final class CheckstyleValidatorTest {
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule
-            .savePackageInfo(new File(mock.basedir(), "src/main/java/foo"))
+            .savePackageInfo(new File(mock.basedir(), DIRECTORY))
             .withLines(new String[] {"Hello.", "", "World."})
             .withEol("\r\n")
             .file();
@@ -122,11 +188,12 @@ public final class CheckstyleValidatorTest {
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule
-            .savePackageInfo(new File(mock.basedir(), "src/main/java/foo"))
+            .savePackageInfo(new File(mock.basedir(), DIRECTORY))
             .withLines(new String[] {"Welcome.", "", "Friend."})
             .withEol("\r\n")
             .file();
         final String content =
+            // @checkstyle MultipleStringLiterals (11 lines)
             "/**\n"
             + " * Welcome.\n"
             + " *\n"

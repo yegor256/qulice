@@ -78,7 +78,7 @@ public final class CheckstyleValidator implements Validator {
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to create checker", ex);
         }
-        checker.setClassloader(env.classloader());
+        checker.setClassLoader(env.classloader());
         checker.setModuleClassLoader(
             Thread.currentThread().getContextClassLoader()
         );
