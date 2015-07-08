@@ -74,7 +74,9 @@ public final class CheckstyleValidatorTest {
     public void catchesCheckstyleViolationsInLicense() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule
-            .savePackageInfo(new File(mock.basedir(), DIRECTORY))
+            .savePackageInfo(
+                new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+            )
             .withLines(new String[] {"License-1.", "", "License-2."})
             .withEol("\n")
             .file();
@@ -99,7 +101,9 @@ public final class CheckstyleValidatorTest {
     public void acceptsInstanceMethodReferences() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule
-            .savePackageInfo(new File(mock.basedir(), DIRECTORY))
+            .savePackageInfo(
+                new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+            )
             .withLines(new String[] {"Hello."})
             .withEol("\n")
             .file();
@@ -154,7 +158,9 @@ public final class CheckstyleValidatorTest {
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule
-            .savePackageInfo(new File(mock.basedir(), DIRECTORY))
+            .savePackageInfo(
+                new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+            )
             .withLines(new String[] {"Hello.", "", "World."})
             .withEol("\r\n")
             .file();
@@ -188,7 +194,9 @@ public final class CheckstyleValidatorTest {
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule
-            .savePackageInfo(new File(mock.basedir(), DIRECTORY))
+            .savePackageInfo(
+                new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+            )
             .withLines(new String[] {"Welcome.", "", "Friend."})
             .withEol("\r\n")
             .file();
