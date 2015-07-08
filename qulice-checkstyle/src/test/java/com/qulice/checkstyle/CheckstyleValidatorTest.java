@@ -45,7 +45,7 @@ import org.junit.Test;
  * Test case for {@link CheckstyleValidator} class.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @checkstyle MultipleStringLiterals (120 lines)
+ * @checkstyle MultipleStringLiterals (240 lines)
  */
 public final class CheckstyleValidatorTest {
 
@@ -73,11 +73,9 @@ public final class CheckstyleValidatorTest {
     @Test(expected = ValidationException.class)
     public void catchesCheckstyleViolationsInLicense() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule
-            .savePackageInfo(
-                new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-            )
-            .withLines(new String[] {"License-1.", "", "License-2."})
+        final File license = this.rule.savePackageInfo(
+            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+        ).withLines(new String[] {"License-1.", "", "License-2."})
             .withEol("\n")
             .file();
         final String content =
@@ -100,11 +98,9 @@ public final class CheckstyleValidatorTest {
     @Test
     public void acceptsInstanceMethodReferences() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule
-            .savePackageInfo(
-                new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-            )
-            .withLines(new String[] {"Hello."})
+        final File license = this.rule.savePackageInfo(
+            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+        ).withLines(new String[] {"Hello."})
             .withEol("\n")
             .file();
         final String content = Joiner.on("\n").join(
@@ -157,11 +153,9 @@ public final class CheckstyleValidatorTest {
     @Test(expected = ValidationException.class)
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule
-            .savePackageInfo(
-                new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-            )
-            .withLines(new String[] {"Hello.", "", "World."})
+        final File license = this.rule.savePackageInfo(
+            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+        ).withLines(new String[] {"Hello.", "", "World."})
             .withEol("\r\n")
             .file();
         final String content =
@@ -193,11 +187,9 @@ public final class CheckstyleValidatorTest {
     @Test(expected = ValidationException.class)
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule
-            .savePackageInfo(
-                new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-            )
-            .withLines(new String[] {"Welcome.", "", "Friend."})
+        final File license = this.rule.savePackageInfo(
+            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+        ).withLines(new String[] {"Welcome.", "", "Friend."})
             .withEol("\r\n")
             .file();
         final String content =
