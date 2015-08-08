@@ -137,12 +137,13 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
             }
             for (final Artifact artifact
                 : this.iproject.getDependencyArtifacts()) {
-                paths.add(
-                    artifact.getFile().getAbsolutePath()
-                        .replace(
-                            File.separatorChar, '/'
-                    ).replaceAll(whitespace, blank)
-                );
+                if (artifact.getFile() != null) {
+                    paths.add(
+                        artifact.getFile().getAbsolutePath()
+                            .replace(File.separatorChar, '/')
+                            .replaceAll(whitespace, blank)
+                    );
+                }
             }
         } catch (final DependencyResolutionRequiredException ex) {
             throw new IllegalStateException("Failed to read classpath", ex);
