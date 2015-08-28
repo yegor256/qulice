@@ -29,9 +29,15 @@
  */
 package com.qulice.pmd;
 
+import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
+import java.io.StringWriter;
+import org.apache.log4j.SimpleLayout;
+import org.apache.log4j.WriterAppender;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
@@ -53,4 +59,39 @@ public final class PMDValidatorTest {
         validator.validate(env);
     }
 
+    /**
+     * PMDValidator can understand method references.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void understandsMethodReferences() throws Exception {
+        final Environment env = new Environment.Mock().withFile(
+            "src/main/java/Other.java",
+            Joiner.on('\n').join(
+                "import java.util.ArrayList;",
+                "class Other {",
+                "    public static void test() {",
+                "        new ArrayList<String>().forEach(Other::other);",
+                "    }",
+                "    private static void other(String some) {}",
+                "}"
+            )
+        );
+        final StringWriter writer = new StringWriter();
+        org.apache.log4j.Logger.getRootLogger().addAppender(
+            new WriterAppender(new SimpleLayout(), writer)
+        );
+        final Validator validator = new PMDValidator();
+        boolean thrown = false;
+        try {
+            validator.validate(env);
+        } catch (final ValidationException ex) {
+            thrown = true;
+        }
+        MatcherAssert.assertThat(thrown, Matchers.is(true));
+        MatcherAssert.assertThat(
+            writer.toString(),
+            Matchers.not(Matchers.containsString("(UnusedPrivateMethod)"))
+        );
+    }
 }
