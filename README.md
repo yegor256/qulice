@@ -43,6 +43,10 @@ accessible from your `PATH` environment variable (e.g. if you have JDK 1.8.0
 installed in Windows your PATH should contain something like `C:\Program
 Files\Java\jdk1.8.0\bin`).
 
+The path to license has to be declared in the following format:
+`file:${basedir}/LICENSE.txt`, it's the default value, one can use any full path
+instead of `${basedir}`.
+
 Read this short summary of [typical mistakes](https://github.com/tpc2/qulice/wiki/mistakes)
 you may encounter in your project.
 Qulice can't catch them, that's why this wiki page...
