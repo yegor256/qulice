@@ -34,6 +34,7 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
 import java.io.StringWriter;
+import org.apache.commons.io.IOUtils;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
 import org.hamcrest.MatcherAssert;
@@ -58,6 +59,11 @@ public final class CheckstyleValidatorTest {
      * Directory with classes.
      */
     private static final String DIRECTORY = "src/main/java/foo";
+
+    /**
+     * License text.
+     */
+    private static final String LICENSE = "Hello.";
 
     /**
      * License rule.
@@ -100,7 +106,7 @@ public final class CheckstyleValidatorTest {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule.savePackageInfo(
             new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(new String[] {"Hello."})
+        ).withLines(new String[] {CheckstyleValidatorTest.LICENSE})
             .withEol("\n")
             .file();
         final String content = Joiner.on("\n").join(
@@ -139,6 +145,38 @@ public final class CheckstyleValidatorTest {
             CheckstyleValidatorTest.LICENSE_PROP,
             this.toURL(license)
         ).withFile("src/main/java/foo/Main.java", content);
+        new CheckstyleValidator().validate(env);
+        MatcherAssert.assertThat(
+            writer.toString(),
+            Matchers.containsString("No Checkstyle violations found")
+        );
+    }
+
+    /**
+     * CheckstyleValidator can accept default methods with final modifiers.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void acceptsDefaultMethodsWithFinalModifiers() throws Exception {
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.rule.savePackageInfo(
+            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+        ).withLines(new String[] {CheckstyleValidatorTest.LICENSE})
+            .withEol("\n").file();
+        final StringWriter writer = new StringWriter();
+        org.apache.log4j.Logger.getRootLogger().addAppender(
+            new WriterAppender(new SimpleLayout(), writer)
+        );
+        final Environment env = mock.withParam(
+            CheckstyleValidatorTest.LICENSE_PROP,
+            this.toURL(license)
+        )
+            .withFile(
+                "src/main/java/foo/DefaultMethods.java",
+                IOUtils.toString(
+                    this.getClass().getResourceAsStream("DefaultMethods.java")
+                )
+            );
         new CheckstyleValidator().validate(env);
         MatcherAssert.assertThat(
             writer.toString(),
