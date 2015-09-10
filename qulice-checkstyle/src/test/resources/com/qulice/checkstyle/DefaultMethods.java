@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 
 /**
  * Simple.
- * @version $Id $
+ * @version $Id$
  * @author John Smith (john@example.com)
  */
 public interface DefaultMethods {
