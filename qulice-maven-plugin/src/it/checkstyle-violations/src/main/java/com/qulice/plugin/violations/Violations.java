@@ -10,7 +10,6 @@ public class Violations {
     /**
      * Test method.
      * @todo #123 First
-     *  second
      */
     public final void foreach() {
         for (String txt : new String[] {"test"}) {
@@ -20,8 +19,7 @@ public class Violations {
 
     /**
      * Missing final in catch.
-     * @todo #123 First
-     *  second
+     * @todo #123 Second
      */
     public final void catchFinal() {
         try {
