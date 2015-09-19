@@ -311,6 +311,7 @@
                         <pomInclude>duplicate-finder-violations</pomInclude>
                         <!--<pomInclude>duplicate-finder-ignore-deps</pomInclude>-->
                         <pomInclude>js-violations/pom.xml</pomInclude>
+                        <pomInclude>xml-violations/pom.xml</pomInclude>
                     </pomIncludes>
                     <extraArtifacts>
                         <extraArtifact>${project.groupId}:qulice-checkstyle:${project.version}:jar</extraArtifact>

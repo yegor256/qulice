@@ -32,4 +32,5 @@
  */
 
 def log = new File(basedir, 'build.log')
-assert log.text.contains(' XML violations (see log above)')
+assert log.text.contains('site.xml: to be validated')
+assert !log.text.contains('The provided XML .* is not well formatted')

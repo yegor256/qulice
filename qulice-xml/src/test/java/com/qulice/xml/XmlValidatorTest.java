@@ -32,6 +32,8 @@ package com.qulice.xml;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
@@ -67,6 +69,34 @@ public final class XmlValidatorTest {
         );
         final Validator validator = new XmlValidator(true);
         validator.validate(env);
+    }
+
+    /**
+     * XmlValidator can inform about missing end of line at the and of file.
+     * @throws Exception In case of error.
+     */
+    @Test
+    public void informsAboutMissingEOLAtEOF() throws Exception {
+        final Environment env = new Environment.Mock().withFile(
+            "src/main/resources/valid5.xml",
+            // @checkstyle LineLength (1 line)
+            "<project xmlns=\"http://maven.apache.org/DECORATION/1.3.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd\" name=\"xockets-hadoop-transport\">\n</project>"
+        );
+        final Validator validator = new XmlValidator(true);
+        String message = "";
+        try {
+            validator.validate(env);
+        } catch (final ValidationException ex) {
+            message = ex.getMessage();
+        }
+        MatcherAssert.assertThat(
+            message,
+            Matchers.allOf(
+                Matchers.containsString("--- before"),
+                Matchers.containsString("+++ after"),
+                Matchers.containsString("</project>\n+")
+            )
+        );
     }
 
     /**

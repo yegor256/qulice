@@ -57,6 +57,11 @@ import org.xml.sax.SAXException;
 public final class XmlValidator implements Validator {
 
     /**
+     * New line escaped, for use in regex.
+     */
+    private static final String ESCAPED_EOL = "\\n";
+
+    /**
      * Should XML format be checked.
      */
     private final transient boolean format;
@@ -131,7 +136,8 @@ public final class XmlValidator implements Validator {
         final String bnormalized = before.replace("\r\n", "\n");
         if (!bnormalized.equals(after)) {
             // @checkstyle MultipleStringLiteralsCheck (1 line)
-            final List<String> blines = Arrays.asList(bnormalized.split("\\n"));
+            final List<String> blines =
+                Arrays.asList(bnormalized.split(XmlValidator.ESCAPED_EOL, -1));
             final int context = 5;
             throw new ValidationException(
                 // @checkstyle LineLength (1 line)
@@ -141,7 +147,10 @@ public final class XmlValidator implements Validator {
                     DiffUtils.generateUnifiedDiff(
                         "before", "after", blines,
                         DiffUtils.diff(
-                            blines, Arrays.asList(after.split("\\n"))
+                            blines,
+                            Arrays.asList(
+                                after.split(XmlValidator.ESCAPED_EOL, -1)
+                            )
                         ), context
                     ), "\n"
                 )
