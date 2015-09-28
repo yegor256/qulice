@@ -223,6 +223,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>5.0.0.Final</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -312,6 +318,7 @@
                         <!--<pomInclude>duplicate-finder-ignore-deps</pomInclude>-->
                         <pomInclude>js-violations/pom.xml</pomInclude>
                         <pomInclude>xml-violations/pom.xml</pomInclude>
+                        <pomInclude>hibernate-validator-check/pom.xml</pomInclude>
                     </pomIncludes>
                     <extraArtifacts>
                         <extraArtifact>${project.groupId}:qulice-checkstyle:${project.version}:jar</extraArtifact>
