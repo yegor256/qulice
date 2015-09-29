@@ -34,7 +34,4 @@
  */
 
 def log = new File(basedir, 'build.log')
-assert !log.text.contains(
-    'JSR-303 validator failed to initialize: Unable to create a Configuration, because no ' +
-        'Bean Validation provider could be found.'
-)
+assert !log.text.contains('JSR-303 validator failed to initialize')
