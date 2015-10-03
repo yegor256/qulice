@@ -75,10 +75,18 @@ public final class ConstantUsageCheck extends Check {
         DetailAST variable = ast.getNextSibling();
         int counter = 0;
         while (null != variable) {
-            if (TokenTypes.VARIABLE_DEF == variable.getType()) {
-                counter += this.parseVarDef(variable, name);
-            } else {
-                counter += this.parseMethod(variable, name);
+            switch (variable.getType()) {
+                case TokenTypes.VARIABLE_DEF:
+                    counter += this.parseVarDef(variable, name);
+                    break;
+                case TokenTypes.CLASS_DEF:
+                    counter += this.parseDef(
+                        variable, name, TokenTypes.OBJBLOCK
+                    );
+                    break;
+                default:
+                    counter += this.parseDef(variable, name, TokenTypes.SLIST);
+                    break;
             }
             variable = variable.getNextSibling();
         }
@@ -176,15 +184,17 @@ public final class ConstantUsageCheck extends Check {
     }
 
     /**
-     * Parses the body of the method and increments counter each time when it
-     * founds constant name.
-     * @param method Tree node, containing method.
+     * Parses the body of the definition (either method or inner class) and
+     * increments counter each time when it founds constant name.
+     * @param definition Tree node, containing definition.
      * @param name Constant name to search.
+     * @param type Type of definition start.
      * @return Number of found constant usages.
      */
-    private int parseMethod(final DetailAST method, final String name) {
+    private int parseDef(final DetailAST definition, final String name,
+        final int type) {
         int counter = 0;
-        final DetailAST opening = method.findFirstToken(TokenTypes.SLIST);
+        final DetailAST opening = definition.findFirstToken(type);
         if (null != opening) {
             final DetailAST closing = opening.findFirstToken(TokenTypes.RCURLY);
             final int start = opening.getLineNo();

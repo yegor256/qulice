@@ -11,6 +11,7 @@ public final class Valid {
     protected String NAME = "DDD";
     protected static final int N = NUMBER*2;
     private static int K = 7;
+    private static final String NAME = "name";
     static {
         System.out.println(INSTANCE.toString());
     }
@@ -31,5 +32,14 @@ public final class Valid {
                 System.out.println(CharEncoding.UTF_8);
             }
         };
+    }
+    private static final class ValidInner {
+        private final String name;
+        ValidInner() {
+            this.name = Valid.NAME;
+        }
+        public String get() {
+            return this.name;
+        }
     }
 }
