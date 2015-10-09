@@ -37,6 +37,7 @@ import java.io.StringWriter;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
+import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Rule;
@@ -158,29 +159,32 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void acceptsDefaultMethodsWithFinalModifiers() throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(new String[] {CheckstyleValidatorTest.LICENSE})
-            .withEol("\n").file();
-        final StringWriter writer = new StringWriter();
-        org.apache.log4j.Logger.getRootLogger().addAppender(
-            new WriterAppender(new SimpleLayout(), writer)
-        );
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
-        )
-            .withFile(
-                "src/main/java/foo/DefaultMethods.java",
-                IOUtils.toString(
-                    this.getClass().getResourceAsStream("DefaultMethods.java")
-                )
-            );
-        new CheckstyleValidator().validate(env);
-        MatcherAssert.assertThat(
-            writer.toString(),
+        this.validateCheckstyle(
+            "DefaultMethods.java", true,
             Matchers.containsString("No Checkstyle violations found")
+        );
+    }
+
+    /**
+     * CheckstyleValidator can allow constructor parameters named just like
+     * fields.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void acceptsConstructorParametersNamedJustLikeFields()
+        throws Exception {
+        this.validateCheckstyle(
+            "ConstructorParams.java", false,
+            Matchers.allOf(
+                Matchers.containsString(
+                    "ConstructorParams.java[30]: 'number' hides a field."
+                ),
+                Matchers.not(
+                    Matchers.containsString(
+                        "ConstructorParams.java[21]: 'number' hides a field."
+                    )
+                )
+            )
         );
     }
 
@@ -262,4 +266,41 @@ public final class CheckstyleValidatorTest {
         return String.format("file:%s", file);
     }
 
+    /**
+     * Validates that checkstyle reported given violation.
+     * @param file File to check.
+     * @param result Expected validation result.
+     * @param matcher Matcher to call on checkstyle output.
+     * @throws Exception In case of error
+     */
+    private void validateCheckstyle(final String file, final boolean result,
+        final Matcher<String> matcher) throws Exception {
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.rule.savePackageInfo(
+            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+        ).withLines(new String[] {CheckstyleValidatorTest.LICENSE})
+            .withEol("\n").file();
+        final StringWriter writer = new StringWriter();
+        org.apache.log4j.Logger.getRootLogger().addAppender(
+            new WriterAppender(new SimpleLayout(), writer)
+        );
+        final Environment env = mock.withParam(
+            CheckstyleValidatorTest.LICENSE_PROP,
+            this.toURL(license)
+        )
+            .withFile(
+                String.format("src/main/java/foo/%s", file),
+                IOUtils.toString(
+                    this.getClass().getResourceAsStream(file)
+                )
+            );
+        boolean valid = true;
+        try {
+            new CheckstyleValidator().validate(env);
+        } catch (final ValidationException ex) {
+            valid = false;
+        }
+        MatcherAssert.assertThat(valid, Matchers.is(result));
+        MatcherAssert.assertThat(writer.toString(), matcher);
+    }
 }
