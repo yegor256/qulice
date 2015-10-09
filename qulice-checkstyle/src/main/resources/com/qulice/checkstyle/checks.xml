@@ -256,12 +256,9 @@
         <module name="ImportOrder"/>
 
         <!-- Checks for Javadoc comments. -->
-
-        <!--
-        Disabled until this problem is solved:
-        http://stackoverflow.com/questions/4185309
-        <module name="JavadocType"/>
-        -->
+        <module name="JavadocType">
+            <property name="allowUnknownTags" value="true"/>
+        </module>
         <module name="JavadocMethod"/>
         <module name="JavadocVariable"/>
         <module name="JavadocStyle"/>
