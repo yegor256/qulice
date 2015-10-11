@@ -96,4 +96,29 @@
           class="com.qulice.pmd.rules.UnnecessaryLocalRule">
     </rule>
 
+    <rule name="ConstructorShouldDoInitialization"
+          message="Avoid doing field initialization outside constructor."
+          language="java"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            Avoid doing field initialization outside class constructor.
+            Such initialization is allowed only when there is no constructor.
+        </description>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <!--
+                        //ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/[count(FieldDeclaration/VariableDeclarator/VariableInitializer)>0]
+                    |
+                    -->
+                    <![CDATA[
+                        //ClassOrInterfaceBody
+                        [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>0]
+                        [count(ClassOrInterfaceBodyDeclaration/FieldDeclaration/VariableDeclarator/VariableInitializer)>0]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+        <priority>3</priority>
+    </rule>
 </ruleset>
