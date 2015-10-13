@@ -107,10 +107,6 @@
         <properties>
             <property name="xpath">
                 <value>
-                    <!--
-                        //ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration/[count(FieldDeclaration/VariableDeclarator/VariableInitializer)>0]
-                    |
-                    -->
                     <![CDATA[
                         //ClassOrInterfaceBody
                         [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>0]
