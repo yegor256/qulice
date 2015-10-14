@@ -30,12 +30,16 @@
 package com.qulice.pmd;
 
 import com.google.common.base.Joiner;
+import com.jcabi.matchers.RegexMatchers;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.StringWriter;
+import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
+import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -46,6 +50,12 @@ import org.junit.Test;
  * @version $Id$
  */
 public final class PMDValidatorTest {
+
+    /**
+     * Pattern for non-constructor field initialization.
+     * @checkstyle LineLength (2 lines)
+     */
+    private static final String INIT_PATTERN = "%s\\[\\d-\\d\\]: Avoid doing field initialization outside constructor.";
 
     /**
      * PMDValidator can find violations in Java file(s).
@@ -78,7 +88,7 @@ public final class PMDValidatorTest {
             )
         );
         final StringWriter writer = new StringWriter();
-        org.apache.log4j.Logger.getRootLogger().addAppender(
+        Logger.getRootLogger().addAppender(
             new WriterAppender(new SimpleLayout(), writer)
         );
         final Validator validator = new PMDValidator();
@@ -93,5 +103,77 @@ public final class PMDValidatorTest {
             writer.toString(),
             Matchers.not(Matchers.containsString("(UnusedPrivateMethod)"))
         );
+    }
+
+    /**
+     * PMDValidator can allow field initialization when constructor is missing.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsFieldInitializationWhenConstructorIsMissing()
+        throws Exception {
+        final String file = "FieldInitNoConstructor.java";
+        this.validatePMD(
+            file, false,
+            Matchers.not(
+                RegexMatchers.containsPattern(
+                    String.format(PMDValidatorTest.INIT_PATTERN, file)
+                )
+            )
+        );
+    }
+
+    /**
+     * PMDValidator can forbid field initialization when constructor exists.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsFieldInitializationWhenConstructorExists()
+        throws Exception {
+        final String file = "FieldInitConstructor.java";
+        this.validatePMD(
+            file, false,
+            Matchers.not(
+                RegexMatchers.containsPattern(
+                    String.format(PMDValidatorTest.INIT_PATTERN, file)
+                )
+            )
+        );
+    }
+
+    /**
+     * Validates that PMD reported given violation.
+     * @param file File to check.
+     * @param result Expected validation result.
+     * @param matcher Matcher to call on checkstyle output.
+     * @throws Exception In case of error
+     */
+    private void validatePMD(final String file, final boolean result,
+        final Matcher<String> matcher) throws Exception {
+        final Environment.Mock mock = new Environment.Mock();
+        final StringWriter writer = new StringWriter();
+        final WriterAppender appender =
+            new WriterAppender(new SimpleLayout(), writer);
+        try {
+            Logger.getRootLogger().addAppender(
+                appender
+            );
+            final Environment env = mock.withFile(
+                String.format("src/main/java/foo/%s", file),
+                IOUtils.toString(
+                    this.getClass().getResourceAsStream(file)
+                )
+            );
+            boolean valid = true;
+            try {
+                new PMDValidator().validate(env);
+            } catch (final ValidationException ex) {
+                valid = false;
+            }
+            MatcherAssert.assertThat(valid, Matchers.is(result));
+            MatcherAssert.assertThat(writer.toString(), matcher);
+        } finally {
+            Logger.getRootLogger().removeAppender(appender);
+        }
     }
 }
