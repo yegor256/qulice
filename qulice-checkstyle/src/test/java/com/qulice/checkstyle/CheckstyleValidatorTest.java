@@ -154,6 +154,49 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can report error when parameter object is not
+     * documented.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void reportsErrorWhenParameterObjectIsNotDocumented()
+        throws Exception {
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.rule.savePackageInfo(
+            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+        ).withLines(new String[] {CheckstyleValidatorTest.LICENSE})
+            .withEol("\n").file();
+        final StringWriter writer = new StringWriter();
+        org.apache.log4j.Logger.getRootLogger().addAppender(
+            new WriterAppender(new SimpleLayout(), writer)
+        );
+        final String name = "ParametrizedClass.java";
+        final Environment env = mock.withParam(
+            CheckstyleValidatorTest.LICENSE_PROP,
+            this.toURL(license)
+        )
+            .withFile(
+                String.format("src/main/java/foo/%s", name),
+                IOUtils.toString(
+                    this.getClass().getResourceAsStream(name)
+                )
+            );
+        boolean valid = true;
+        try {
+            new CheckstyleValidator().validate(env);
+        } catch (final ValidationException ex) {
+            valid = false;
+        }
+        MatcherAssert.assertThat(valid, Matchers.is(false));
+        MatcherAssert.assertThat(
+            writer.toString(),
+            Matchers.containsString(
+                "Type Javadoc comment is missing an @param <T> tag."
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator can accept default methods with final modifiers.
      * @throws Exception In case of error
      */
