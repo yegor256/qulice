@@ -36,11 +36,14 @@ import com.jcabi.xml.XMLDocument;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
+import difflib.Delta;
 import difflib.DiffUtils;
+import difflib.Patch;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.xml.sax.SAXException;
@@ -60,6 +63,11 @@ public final class XmlValidator implements Validator {
      * New line escaped, for use in regex.
      */
     private static final String ESCAPED_EOL = "\\n";
+
+    /**
+     * Pattern for lines starting with XML attributes.
+     */
+    private static final Pattern ATTRS_PATTERN = Pattern.compile("^ *[^ <].*");
 
     /**
      * Should XML format be checked.
@@ -134,10 +142,15 @@ public final class XmlValidator implements Validator {
         final String after = new Prettifier().prettify(before)
             .replace("\r\n", "\n");
         final String bnormalized = before.replace("\r\n", "\n");
-        if (!bnormalized.equals(after)) {
-            // @checkstyle MultipleStringLiteralsCheck (1 line)
-            final List<String> blines =
-                Arrays.asList(bnormalized.split(XmlValidator.ESCAPED_EOL, -1));
+        final List<String> blines =
+            Arrays.asList(bnormalized.split(XmlValidator.ESCAPED_EOL, -1));
+        final Patch filter = this.filter(
+            DiffUtils.diff(
+                blines,
+                Arrays.asList(after.split(XmlValidator.ESCAPED_EOL, -1))
+            )
+        );
+        if (!filter.getDeltas().isEmpty()) {
             final int context = 5;
             throw new ValidationException(
                 // @checkstyle LineLength (1 line)
@@ -146,15 +159,37 @@ public final class XmlValidator implements Validator {
                 StringUtils.join(
                     DiffUtils.generateUnifiedDiff(
                         "before", "after", blines,
-                        DiffUtils.diff(
-                            blines,
-                            Arrays.asList(
-                                after.split(XmlValidator.ESCAPED_EOL, -1)
-                            )
-                        ), context
+                        filter, context
                     ), "\n"
                 )
             );
         }
+    }
+
+    /**
+     * Remove unwanted deltas.
+     * @param diff Patch to filter.
+     * @return Patch with unwanted deltas removed.
+     * @todo #469:30min Remove the method below and find a way to format tags
+     *  correctly in XML. Attributes should be indented by 4 spaces, just like
+     *  XML tags, but in IT xml-violations there is a tag that our Prettifier
+     *  want to be indented by 3 spaces which is wrong. Another problem is
+     *  that in the parent tag, attributes are indented to match the first
+     *  attribute, this is also wrong - all attributes on new line should be
+     *  indented by 4 spaces.
+     */
+    private Patch filter(final Patch diff) {
+        final Patch patch = new Patch();
+        for (final Delta delta : diff.getDeltas()) {
+            final List<?> prev = delta.getOriginal().getLines();
+            if (
+                prev.size() != 1 || delta.getRevised().getLines().size() != 1
+                    || !XmlValidator.ATTRS_PATTERN
+                        .matcher(prev.get(0).toString()).matches()
+                ) {
+                patch.addDelta(delta);
+            }
+        }
+        return patch;
     }
 }

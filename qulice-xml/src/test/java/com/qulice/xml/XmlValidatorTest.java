@@ -65,7 +65,7 @@ public final class XmlValidatorTest {
             .withFile(
                 "src/main/resources/valid.xml",
                 // @checkstyle LineLength (1 line)
-                "<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd\">\n    <body/>\n</document>\n"
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd\">\n    <body/>\n</document>\n"
         );
         final Validator validator = new XmlValidator(true);
         validator.validate(env);
@@ -80,7 +80,7 @@ public final class XmlValidatorTest {
         final Environment env = new Environment.Mock().withFile(
             "src/main/resources/valid5.xml",
             // @checkstyle LineLength (1 line)
-            "<project xmlns=\"http://maven.apache.org/DECORATION/1.3.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd\" name=\"xockets-hadoop-transport\">\n</project>"
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/DECORATION/1.3.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd\" name=\"xockets-hadoop-transport\">\n</project>"
         );
         final Validator validator = new XmlValidator(true);
         String message = "";
@@ -109,7 +109,7 @@ public final class XmlValidatorTest {
             .withFile(
                 "src/main/resources/almost-valid.xml",
                 // @checkstyle LineLength (1 line)
-                "<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd\"><body/></document>"
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd\"><body/></document>"
         );
         final Validator validator = new XmlValidator(true);
         validator.validate(env);
@@ -131,7 +131,7 @@ public final class XmlValidatorTest {
             .withFile(
                 "src/main/resources/valid2.xml",
                 // @checkstyle LineLength (1 line)
-                "<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://www.google.com\"></document>"
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://www.google.com\"></document>"
         );
         final Validator validator = new XmlValidator();
         validator.validate(env);
@@ -149,7 +149,7 @@ public final class XmlValidatorTest {
             .withFile(
                 "src/main/resources/valid3.xml",
                 // @checkstyle LineLength (1 line)
-                "<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xsi:noNamespaceSchemaLocation=\"http://maven.apache.org/xsd/decoration-1.3.0.xsd\" \n name=\"test\">\n</project>"
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xsi:noNamespaceSchemaLocation=\"http://maven.apache.org/xsd/decoration-1.3.0.xsd\" \n name=\"test\">\n</project>"
         );
         final Validator validator = new XmlValidator();
         validator.validate(env);
@@ -166,11 +166,11 @@ public final class XmlValidatorTest {
             .withFile(
                 "src/main/resources/valid4.xml",
                 // @checkstyle LineLength (1 line)
-                "<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"http://simple.com/test.xsd\">\n</project>\n"
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"http://simple.com/test.xsd\">\n</project>\n"
             ).withFile(
                 "src/main/resources/test.xsd",
                 // @checkstyle LineLength (1 line)
-                "<schema xmlns=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\">\n<element name=\"project\" type=\"xs:anyType\"/>\n</schema>"
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<schema xmlns=\"http://www.w3.org/2001/XMLSchema\" elementFormDefault=\"qualified\">\n<element name=\"project\" type=\"xs:anyType\"/>\n</schema>"
             );
         final Validator validator = new XmlValidator();
         validator.validate(env);
@@ -224,6 +224,24 @@ public final class XmlValidatorTest {
         final Environment env = new Environment.Mock()
             .withFile("src/main/resources/invalid-multi.xml", xml);
         final Validator validator = new XmlValidator(false);
+        validator.validate(env);
+    }
+
+    /**
+     * Should pass validation if comments are before parent tag.
+     * @throws Exception If something wrong happens inside.
+     * @checkstyle IndentationCheck (15 lines)
+     */
+    @Test
+    public void passesValidationIfCommentsAreBeforeParentTag()
+        throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "src/main/resources/comments.xml",
+                // @checkstyle LineLength (1 line)
+                "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!-- comment -->\n<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd\">\n  <body/>\n</document>\n"
+            );
+        final Validator validator = new XmlValidator();
         validator.validate(env);
     }
 }

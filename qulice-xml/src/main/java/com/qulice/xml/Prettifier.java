@@ -55,9 +55,10 @@ public final class Prettifier {
         try {
             final Transformer transformer = TransformerFactory
                 .newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty(
-                OutputKeys.OMIT_XML_DECLARATION, "yes"
+                OutputKeys.OMIT_XML_DECLARATION, "no"
             );
             transformer.setOutputProperty(
                 "{http://xml.apache.org/xslt}indent-amount", "2"
@@ -66,7 +67,14 @@ public final class Prettifier {
             transformer.transform(
                 new StreamSource(new StringReader(xml)), result
             );
-            return result.getWriter().toString();
+            return String.format(
+                "%s%n",
+                result.getWriter().toString()
+                    .replaceFirst("\\?><", "?>\n<")
+                    .replaceFirst("-->", "-->\n")
+                    .replaceFirst("\\?><!--", "?>\n<!--")
+                    .trim()
+            );
         } catch (final TransformerException ex) {
             throw new IllegalStateException(ex);
         }
