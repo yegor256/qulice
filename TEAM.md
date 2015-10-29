@@ -4,7 +4,7 @@ The following members are in the project team:
 
 Role | Members
 ---|---
-PM | 
+PM | @davvd
 CR | @darkled, @caarlos0, @carlosmiranda, @dmzaytsev, @pinaf, @ggajos, @longtimeago, @yegor256
 DEV | 
 IMP | 
