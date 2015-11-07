@@ -96,7 +96,7 @@ public final class Violations {
          * Constructor.
          * @param nam Name.
          */
-        public Foo(final String nam) {
+        Foo(final String nam) {
             this.name = nam;
         }
 
