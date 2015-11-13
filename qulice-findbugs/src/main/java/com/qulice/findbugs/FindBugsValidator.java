@@ -148,7 +148,7 @@ public final class FindBugsValidator implements Validator {
     private String excludes(final Environment env,
         final Iterable<String> excludes) {
         final String path = StringUtils.join(
-            env.basedir().getPath(),
+            env.tempdir().getPath(),
             System.getProperty("path.separator"),
             "findbug_excludes_",
             String.valueOf(System.nanoTime()),
