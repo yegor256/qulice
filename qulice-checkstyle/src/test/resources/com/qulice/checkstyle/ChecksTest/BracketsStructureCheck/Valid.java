@@ -66,5 +66,7 @@ public final class Valid {
       );
       Invalid d1 = new Invalid(x, y);
       Invalid d2 = new Invalid("File %s not found(", file);
+      Valid object = new
+              Valid();
     }
 }

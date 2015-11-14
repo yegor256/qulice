@@ -108,6 +108,17 @@ public final class BracketsStructureCheck extends Check {
             if (pline == start) {
                 this.log(pline, "Parameters should start on a new line");
             }
+            this.checkExpressionList(elist, end);
+        }
+    }
+
+    /**
+     * Checks expression list if closing bracket is on new line.
+     * @param elist Tree node, containing expression list
+     * @param end Final line
+     */
+    private void checkExpressionList(final DetailAST elist, final int end) {
+        if (elist.getChildCount() > 0) {
             final DetailAST last = elist.getLastChild();
             final int lline = last.getLineNo();
             if (lline == end) {
