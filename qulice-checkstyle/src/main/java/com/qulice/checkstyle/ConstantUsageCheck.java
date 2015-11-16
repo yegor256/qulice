@@ -141,6 +141,10 @@ public final class ConstantUsageCheck extends Check {
             while (null != child) {
                 final String text = this.getText(child);
                 result.append(text);
+                if (".".equals(node.getText())
+                    && child.getNextSibling() != null) {
+                    result.append(node.getText());
+                }
                 child = child.getNextSibling();
             }
             ret = result.toString();
@@ -194,6 +198,11 @@ public final class ConstantUsageCheck extends Check {
     private int parseDef(final DetailAST definition, final String name,
         final int type) {
         int counter = 0;
+        final DetailAST modifiers =
+            definition.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers != null) {
+            counter += this.parseAnnotation(modifiers, name);
+        }
         final DetailAST opening = definition.findFirstToken(type);
         if (null != opening) {
             final DetailAST closing = opening.findFirstToken(TokenTypes.RCURLY);
@@ -204,6 +213,26 @@ public final class ConstantUsageCheck extends Check {
                 if (lines[pos].contains(name)) {
                     counter += 1;
                 }
+            }
+        }
+        return counter;
+    }
+
+    /**
+     * Parses the annotation value pair and increments the counter
+     * if name is found.
+     * @param modifiers DetailAST of variable definition
+     * @param name Name of constant we search for
+     * @return Zero if not found, 1 otherwise
+     */
+    private int parseAnnotation(final DetailAST modifiers, final String name) {
+        int counter = 0;
+        final DetailAST variable =
+            modifiers.findFirstToken(TokenTypes.ANNOTATION);
+        if (variable != null) {
+            final String txt = this.getText(variable);
+            if (txt.contains(name)) {
+                ++counter;
             }
         }
         return counter;
