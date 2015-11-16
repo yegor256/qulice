@@ -209,6 +209,20 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can accept author which has only a single name.
+     * This is to support case where authro wants to use a nick instead of
+     * first and last name.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void acceptsSingleNameAuthor() throws Exception {
+        this.validateCheckstyle(
+            "AuthorTag.java", true,
+            Matchers.containsString("No Checkstyle violations found")
+        );
+    }
+
+    /**
      * CheckstyleValidator can allow constructor parameters named just like
      * fields.
      * @throws Exception In case of error
