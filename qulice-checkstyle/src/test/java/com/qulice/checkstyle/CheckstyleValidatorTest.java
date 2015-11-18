@@ -223,6 +223,21 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can accept constant used in method annotation.
+     * @throws Exception In case of error
+     * @todo #447:30min Right now ConstantUsageCheck takes into account
+     *  usage of constants inside method annotations, add handling of constants
+     *  used in field and class annotations.
+     */
+    @Test
+    public void acceptsConstantUsedInMethodAnnotation() throws Exception {
+        this.validateCheckstyle(
+            "AnnotationConstant.java", true,
+            Matchers.containsString("No Checkstyle violations found")
+        );
+    }
+
+    /**
      * CheckstyleValidator can allow constructor parameters named just like
      * fields.
      * @throws Exception In case of error
