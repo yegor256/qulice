@@ -156,7 +156,7 @@
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>     <strong class="jxr_keyword">private</strong> String excludes(<strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/spi/Environment.html">Environment</a> env,
 <a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">final</strong> Iterable&lt;String&gt; excludes) {
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>         <strong class="jxr_keyword">final</strong> String path = StringUtils.join(
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>             env.basedir().getPath(),
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>             env.tempdir().getPath(),
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>             System.getProperty(<span class="jxr_string">"path.separator"</span>),
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>             <span class="jxr_string">"findbug_excludes_"</span>,
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>             String.valueOf(System.nanoTime()),

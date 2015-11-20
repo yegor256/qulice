@@ -116,15 +116,26 @@
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>             <strong class="jxr_keyword">if</strong> (pline == start) {
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>                 <strong class="jxr_keyword">this</strong>.log(pline, <span class="jxr_string">"Parameters should start on a new line"</span>);
 <a class="jxr_linenumber" name="L110" href="#L110">110</a>             }
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>             <strong class="jxr_keyword">final</strong> DetailAST last = elist.getLastChild();
-<a class="jxr_linenumber" name="L112" href="#L112">112</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> lline = last.getLineNo();
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>             <strong class="jxr_keyword">if</strong> (lline == end) {
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>                 <strong class="jxr_keyword">this</strong>.log(lline, <span class="jxr_string">"Closing bracket should be on a new line"</span>);
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>             }
-<a class="jxr_linenumber" name="L116" href="#L116">116</a>         }
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>     }
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> }
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>             <strong class="jxr_keyword">this</strong>.checkExpressionList(elist, end);
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>         }
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>     }
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> 
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">     * Checks expression list if closing bracket is on new line.</em>
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">     * @param elist Tree node, containing expression list</em>
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">     * @param end Final line</em>
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> checkExpressionList(<strong class="jxr_keyword">final</strong> DetailAST elist, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> end) {
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>         <strong class="jxr_keyword">if</strong> (elist.getChildCount() &gt; 0) {
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>             <strong class="jxr_keyword">final</strong> DetailAST last = elist.getLastChild();
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> lline = last.getLineNo();
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>             <strong class="jxr_keyword">if</strong> (lline == end) {
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>                 <strong class="jxr_keyword">this</strong>.log(lline, <span class="jxr_string">"Closing bracket should be on a new line"</span>);
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>             }
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>         }
+<a class="jxr_linenumber" name="L128" href="#L128">128</a>     }
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> 
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2015 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
