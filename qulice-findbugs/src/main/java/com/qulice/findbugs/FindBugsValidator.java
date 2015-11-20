@@ -86,6 +86,11 @@ public final class FindBugsValidator implements Validator {
         }
     }
 
+    @Override
+    public String name() {
+        return "FindBugs";
+    }
+
     /**
      * Start findbugs and return its output.
      * @param env Environment
