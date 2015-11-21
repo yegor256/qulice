@@ -33,3 +33,5 @@
 
 def log = new File(basedir, 'build.log')
 assert log.text.findAll('violations.js:.*\'c\' has not been fully defined yet.').size() == 1
+assert log.text.findAll('other_viol.js:.*\'c\' has not been fully defined yet.').size() == 0
+assert log.text.findAll('new.js:.*\'c\' has not been fully defined yet.').size() == 0

@@ -72,6 +72,11 @@ Exclude
   2) <<<codenarc:**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy>>> excludes
   <<<Main.groovy>>> and <<<Main2.groovy>>> in appropriate packages.
 
+  Exclude for jslint also uses ant-style expressions, for example:
+  1) <<jslint:**/*.js>> excludes all <<.js>> files in all folders;
+  2) <<jslint:**/bar/main.js,**/foo/other.js>> excludes <<main.js>> and
+  <<other.js>> in the appropriate fodlers.
+
   Exclude for Findbug is a bit different, as expression has to be either an
   exact class name or start with the ~ character the rest of content is
   interpreted as a Java regular expression. For example:
