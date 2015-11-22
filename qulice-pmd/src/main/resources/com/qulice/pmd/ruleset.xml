@@ -110,7 +110,7 @@
                     <![CDATA[
                         //ClassOrInterfaceBody
                         [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>0]
-                        [count(ClassOrInterfaceBodyDeclaration/FieldDeclaration/VariableDeclarator/VariableInitializer)>0]
+                        [count(ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static='false']/VariableDeclarator/VariableInitializer)>0]
                     ]]>
                 </value>
             </property>
