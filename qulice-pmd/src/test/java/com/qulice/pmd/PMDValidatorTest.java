@@ -55,7 +55,7 @@ public final class PMDValidatorTest {
      * Pattern for non-constructor field initialization.
      * @checkstyle LineLength (2 lines)
      */
-    private static final String INIT_PATTERN = "%s\\[\\d-\\d\\]: Avoid doing field initialization outside constructor.";
+    private static final String INIT_PATTERN = "%s\\[\\d+-\\d+\\]: Avoid doing field initialization outside constructor.";
 
     /**
      * PMDValidator can find violations in Java file(s).
@@ -133,6 +133,23 @@ public final class PMDValidatorTest {
         final String file = "FieldInitConstructor.java";
         this.validatePMD(
             file, false,
+            RegexMatchers.containsPattern(
+                String.format(PMDValidatorTest.INIT_PATTERN, file)
+            )
+        );
+    }
+
+    /**
+     * PMDValidator can allow static field initialization when constructor
+     * exists.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsStaticFieldInitializationWhenConstructorExists()
+        throws Exception {
+        final String file = "StaticFieldInitConstructor.java";
+        this.validatePMD(
+            file, true,
             Matchers.not(
                 RegexMatchers.containsPattern(
                     String.format(PMDValidatorTest.INIT_PATTERN, file)
