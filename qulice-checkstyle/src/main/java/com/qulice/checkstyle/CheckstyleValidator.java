@@ -105,6 +105,10 @@ public final class CheckstyleValidator implements Validator {
         );
     }
 
+    @Override public String name() {
+        return "Checkstyle";
+    }
+
     /**
      * Load checkstyle configuration.
      * @param env The environemt

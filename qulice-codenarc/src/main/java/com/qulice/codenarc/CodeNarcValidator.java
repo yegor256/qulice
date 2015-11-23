@@ -69,6 +69,11 @@ public final class CodeNarcValidator implements Validator {
         }
     }
 
+    @Override
+    public String name() {
+        return "CodeNarc";
+    }
+
     /**
      * Detect all violations.
      * @param src Source code folder

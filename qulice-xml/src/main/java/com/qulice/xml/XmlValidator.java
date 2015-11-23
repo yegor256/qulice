@@ -130,6 +130,11 @@ public final class XmlValidator implements Validator {
         }
     }
 
+    @Override
+    public String name() {
+        return "XML";
+    }
+
     /**
      * Check formatting of given XML.
      * @param name Name of XML file.

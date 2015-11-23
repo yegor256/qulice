@@ -80,7 +80,9 @@ public final class CheckMojo extends AbstractQuliceMojo {
      */
     private void run() throws ValidationException {
         for (final Validator validator : this.provider.external()) {
+            Logger.info(this, "Starting %s validator", validator.name());
             validator.validate(this.env());
+            Logger.info(this, "Finishing %s validator", validator.name());
         }
         for (final MavenValidator validator : this.provider.internal()) {
             validator.validate(this.env());

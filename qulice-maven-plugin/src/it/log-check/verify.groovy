@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ *
+ * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,27 +27,19 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.spi;
-
-/**
- * Validator.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
-public interface Validator {
 
-    /**
-     * Validate and throws exception if there are any problems.
-     * @param env The environment to work with
-     * @throws ValidationException In case of any violations found
-     */
-    void validate(Environment env) throws ValidationException;
+def log = new File(basedir, 'build.log')
+assert log.text.contains('Starting Checkstyle validator')
+assert log.text.contains('Finishing Checkstyle validator')
+assert log.text.contains('Starting PMD validator')
+assert log.text.contains('Finishing PMD validator')
+assert log.text.contains('Starting XML validator')
+assert log.text.contains('Finishing XML validator')
+assert log.text.contains('Starting FindBugs validator')
+assert log.text.contains('Finishing FindBugs validator')
+assert log.text.contains('Starting CodeNarc validator')
+assert log.text.contains('Finishing CodeNarc validator')
 
-    /**
-     * Name of this validator.
-     * @return Name of this validator.
-     */
-    String name();
-}
