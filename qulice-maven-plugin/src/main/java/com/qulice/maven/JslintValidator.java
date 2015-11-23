@@ -40,27 +40,25 @@ import java.util.Properties;
  */
 public final class JslintValidator implements MavenValidator {
 
-    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
         final Properties config = new Properties();
-        config.setProperty("sourceJsFolder", "${basedir}/src/main");
         final String jslint = "jslint";
-        if (!env.exclude(jslint, "")) {
-            try {
-                env.executor().execute(
-                    "org.codehaus.mojo:jslint-maven-plugin:1.0.1",
-                    jslint,
-                    config
-                );
-            } catch (final IllegalStateException ex) {
-                // @checkstyle MethodBodyCommentsCheck (1 line)
-                // JsLint throws error if it can't find the sourceJsFolder
-                if (!(ex.getMessage().contains("basedir")
-                    && ex.getMessage().contains("does not exist"))) {
-                    throw ex;
-                }
+        config.setProperty("sourceJsFolder", "${basedir}/src/main");
+        config.put("excludes", env.excludes(jslint));
+        try {
+            env.executor().execute(
+                "org.codehaus.mojo:jslint-maven-plugin:1.0.1",
+                jslint,
+                config
+            );
+        } catch (final IllegalStateException ex) {
+            // @checkstyle MethodBodyCommentsCheck (1 line)
+            // JsLint throws error if it can't find the sourceJsFolder
+            if (!(ex.getMessage().contains("basedir")
+                && ex.getMessage().contains("does not exist"))) {
+                throw ex;
             }
         }
     }
