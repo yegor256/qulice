@@ -74,7 +74,7 @@ public final class JavadocTagsCheck extends Check {
         this.tags.put(
             "author",
             // @checkstyle LineLength (1 line)
-            Pattern.compile("^([A-Z](\\.|[a-z]+) ){2,}\\([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\)$")
+            Pattern.compile("^([A-Z](\\.|[a-z]+) )+\\([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\)$")
         );
         this.tags.put("version", Pattern.compile("^\\$Id.*\\$$"));
     }
