@@ -159,6 +159,23 @@ public final class PMDValidatorTest {
     }
 
     /**
+     * PMDValidator can forbid field initialization in several constructors.
+     * Only one constructor should do real work. Others - delegate to it.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsFieldInitializationInSeveralConstructors()
+        throws Exception {
+        final String file = "FieldInitSeveralConstructors.java";
+        this.validatePMD(
+            file, false,
+            Matchers.containsString(
+                "(OnlyOneConstructorShouldDoInitialization)"
+            )
+        );
+    }
+
+    /**
      * Validates that PMD reported given violation.
      * @param file File to check.
      * @param result Expected validation result.
