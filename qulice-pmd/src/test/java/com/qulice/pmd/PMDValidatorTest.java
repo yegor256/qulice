@@ -170,7 +170,27 @@ public final class PMDValidatorTest {
         this.validatePMD(
             file, false,
             Matchers.containsString(
+                // @checkstyle MultipleStringLiteralsCheck (1 line)
                 "(OnlyOneConstructorShouldDoInitialization)"
+            )
+        );
+    }
+
+    /**
+     * PMDValidator can allow field initialization in one constructor.
+     * Only one constructor should do real work. Others - delegate to it.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsFieldInitializationInOneConstructor()
+        throws Exception {
+        final String file = "FieldInitOneConstructor.java";
+        this.validatePMD(
+            file, true,
+            Matchers.not(
+                Matchers.containsString(
+                    "(OnlyOneConstructorShouldDoInitialization)"
+                )
             )
         );
     }
@@ -178,7 +198,7 @@ public final class PMDValidatorTest {
     /**
      * Validates that PMD reported given violation.
      * @param file File to check.
-     * @param result Expected validation result.
+     * @param result Expected validation result (true if valid).
      * @param matcher Matcher to call on checkstyle output.
      * @throws Exception In case of error
      */
