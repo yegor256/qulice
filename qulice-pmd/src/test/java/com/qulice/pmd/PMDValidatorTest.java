@@ -55,7 +55,13 @@ public final class PMDValidatorTest {
      * Pattern for non-constructor field initialization.
      * @checkstyle LineLength (2 lines)
      */
-    private static final String INIT_PATTERN = "%s\\[\\d+-\\d+\\]: Avoid doing field initialization outside constructor.";
+    private static final String NO_CON_INIT = "%s\\[\\d+-\\d+\\]: Avoid doing field initialization outside constructor.";
+
+    /**
+     * Pattern multiple constructors field initialization.
+     * @checkstyle LineLength (2 lines)
+     */
+    private static final String MULT_CON_INIT = "%s\\[\\d+-\\d+\\]: Avoid field initialization in several constructors.";
 
     /**
      * PMDValidator can find violations in Java file(s).
@@ -117,7 +123,7 @@ public final class PMDValidatorTest {
             file, false,
             Matchers.not(
                 RegexMatchers.containsPattern(
-                    String.format(PMDValidatorTest.INIT_PATTERN, file)
+                    String.format(PMDValidatorTest.NO_CON_INIT, file)
                 )
             )
         );
@@ -134,7 +140,7 @@ public final class PMDValidatorTest {
         this.validatePMD(
             file, false,
             RegexMatchers.containsPattern(
-                String.format(PMDValidatorTest.INIT_PATTERN, file)
+                String.format(PMDValidatorTest.NO_CON_INIT, file)
             )
         );
     }
@@ -152,7 +158,7 @@ public final class PMDValidatorTest {
             file, true,
             Matchers.not(
                 RegexMatchers.containsPattern(
-                    String.format(PMDValidatorTest.INIT_PATTERN, file)
+                    String.format(PMDValidatorTest.NO_CON_INIT, file)
                 )
             )
         );
@@ -169,9 +175,8 @@ public final class PMDValidatorTest {
         final String file = "FieldInitSeveralConstructors.java";
         this.validatePMD(
             file, false,
-            Matchers.containsString(
-                // @checkstyle MultipleStringLiteralsCheck (1 line)
-                "(OnlyOneConstructorShouldDoInitialization)"
+            RegexMatchers.containsPattern(
+                String.format(PMDValidatorTest.MULT_CON_INIT, file)
             )
         );
     }
@@ -188,8 +193,8 @@ public final class PMDValidatorTest {
         this.validatePMD(
             file, true,
             Matchers.not(
-                Matchers.containsString(
-                    "(OnlyOneConstructorShouldDoInitialization)"
+                RegexMatchers.containsPattern(
+                    String.format(PMDValidatorTest.MULT_CON_INIT, file)
                 )
             )
         );
