@@ -40,3 +40,4 @@ release:
     mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml || echo 'site-deploy failed'
   commanders:
   - krzyk
+  - yegor256
