@@ -10,7 +10,7 @@ DEV | @hdouss
 IMP | @hdouss
 ARC | @krzyk
 DES | 
-PO | 
+PO | @yegor256
 ITR | 
 QA | 
 SA | 
