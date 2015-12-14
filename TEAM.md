@@ -6,8 +6,8 @@ Role | Members
 ---|---
 PM | @davvd
 CR | @darkled, @caarlos0, @carlosmiranda, @dmzaytsev, @pinaf, @ggajos, @longtimeago
-DEV | @aschworer, @hdouss, @jrdalpra, @mkordas
-IMP | @aschworer, @hdouss, @jrdalpra, @mkordas
+DEV | @aschworer, @hdouss, @happy-neko, @jrdalpra, @mkordas
+IMP | @aschworer, @hdouss, @happy-neko, @jrdalpra, @mkordas
 ARC | @krzyk
 DES | 
 PO | @yegor256
