@@ -61,7 +61,7 @@ sending us your pull request please run full Maven build:
 
 > mvn clean install -Pqulice
 
-Keep in mind that JDK7 is the lowest version you may use.
+Keep in mind that JDK7 and Maven 3.1.0 are the lowest versions you may use.
 
 ## Got questions?
 
