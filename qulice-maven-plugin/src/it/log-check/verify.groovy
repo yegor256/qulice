@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ *
+ * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,41 +27,19 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.maven;
-
-import com.qulice.spi.ValidationException;
-import java.util.Properties;
-
-/**
- * Validate with jslint-maven-plugin.
  *
- * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
  */
-public final class JslintValidator implements MavenValidator {
 
-    @Override
-    public void validate(final MavenEnvironment env)
-        throws ValidationException {
-        final Properties config = new Properties();
-        final String jslint = "jslint";
-        config.setProperty("sourceJsFolder", "${basedir}/src/main");
-        config.put("excludes", env.excludes(jslint));
-        try {
-            env.executor().execute(
-                "org.codehaus.mojo:jslint-maven-plugin:1.0.1",
-                jslint,
-                config
-            );
-        } catch (final IllegalStateException ex) {
-            // @checkstyle MethodBodyCommentsCheck (1 line)
-            // JsLint throws error if it can't find the sourceJsFolder
-            if (!(ex.getMessage().contains("basedir")
-                && ex.getMessage().contains("does not exist"))) {
-                throw ex;
-            }
-        }
-    }
+def log = new File(basedir, 'build.log')
+assert log.text.contains('Starting Checkstyle validator')
+assert log.text.contains('Finishing Checkstyle validator')
+assert log.text.contains('Starting PMD validator')
+assert log.text.contains('Finishing PMD validator')
+assert log.text.contains('Starting XML validator')
+assert log.text.contains('Finishing XML validator')
+assert log.text.contains('Starting FindBugs validator')
+assert log.text.contains('Finishing FindBugs validator')
+assert log.text.contains('Starting CodeNarc validator')
+assert log.text.contains('Finishing CodeNarc validator')
 
-}

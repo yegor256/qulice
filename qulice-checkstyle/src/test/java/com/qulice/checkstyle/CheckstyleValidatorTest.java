@@ -47,8 +47,12 @@ import org.junit.Test;
  * Test case for {@link CheckstyleValidator} class.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @checkstyle MultipleStringLiterals (240 lines)
+ * @checkstyle MultipleStringLiterals (300 lines)
+ * @todo #412:30min Split this class into smaller ones and remove PMD
+ *  exclude `TooManyMethods`. Good candidates for moving out of this class
+ *  are all that use `validateCheckstyle` method.
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class CheckstyleValidatorTest {
 
     /**
@@ -65,6 +69,12 @@ public final class CheckstyleValidatorTest {
      * License text.
      */
     private static final String LICENSE = "Hello.";
+
+    /**
+     * Message that there are no violations.
+     */
+    private static final String NO_VIOLATIONS =
+        "No Checkstyle violations found";
 
     /**
      * License rule.
@@ -149,7 +159,7 @@ public final class CheckstyleValidatorTest {
         new CheckstyleValidator().validate(env);
         MatcherAssert.assertThat(
             writer.toString(),
-            Matchers.containsString("No Checkstyle violations found")
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
         );
     }
 
@@ -204,7 +214,21 @@ public final class CheckstyleValidatorTest {
     public void acceptsDefaultMethodsWithFinalModifiers() throws Exception {
         this.validateCheckstyle(
             "DefaultMethods.java", true,
-            Matchers.containsString("No Checkstyle violations found")
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
+     * CheckstyleValidator can accept author which has only a single name.
+     * This is to support case where authro wants to use a nick instead of
+     * first and last name.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void acceptsSingleNameAuthor() throws Exception {
+        this.validateCheckstyle(
+            "AuthorTag.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
         );
     }
 
@@ -219,7 +243,7 @@ public final class CheckstyleValidatorTest {
     public void acceptsConstantUsedInMethodAnnotation() throws Exception {
         this.validateCheckstyle(
             "AnnotationConstant.java", true,
-            Matchers.containsString("No Checkstyle violations found")
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
         );
     }
 

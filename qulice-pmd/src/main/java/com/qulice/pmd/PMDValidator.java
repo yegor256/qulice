@@ -68,6 +68,11 @@ public final class PMDValidator implements Validator {
         );
     }
 
+    @Override
+    public String name() {
+        return "PMD";
+    }
+
     /**
      * Retrieves <code>DataSource</code>s from <code>Environment</code>.
      * @param environment Environment.

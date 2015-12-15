@@ -55,7 +55,13 @@ public final class PMDValidatorTest {
      * Pattern for non-constructor field initialization.
      * @checkstyle LineLength (2 lines)
      */
-    private static final String INIT_PATTERN = "%s\\[\\d-\\d\\]: Avoid doing field initialization outside constructor.";
+    private static final String NO_CON_INIT = "%s\\[\\d+-\\d+\\]: Avoid doing field initialization outside constructor.";
+
+    /**
+     * Pattern multiple constructors field initialization.
+     * @checkstyle LineLength (2 lines)
+     */
+    private static final String MULT_CON_INIT = "%s\\[\\d+-\\d+\\]: Avoid field initialization in several constructors.";
 
     /**
      * PMDValidator can find violations in Java file(s).
@@ -117,7 +123,7 @@ public final class PMDValidatorTest {
             file, false,
             Matchers.not(
                 RegexMatchers.containsPattern(
-                    String.format(PMDValidatorTest.INIT_PATTERN, file)
+                    String.format(PMDValidatorTest.NO_CON_INIT, file)
                 )
             )
         );
@@ -133,9 +139,62 @@ public final class PMDValidatorTest {
         final String file = "FieldInitConstructor.java";
         this.validatePMD(
             file, false,
+            RegexMatchers.containsPattern(
+                String.format(PMDValidatorTest.NO_CON_INIT, file)
+            )
+        );
+    }
+
+    /**
+     * PMDValidator can allow static field initialization when constructor
+     * exists.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsStaticFieldInitializationWhenConstructorExists()
+        throws Exception {
+        final String file = "StaticFieldInitConstructor.java";
+        this.validatePMD(
+            file, true,
             Matchers.not(
                 RegexMatchers.containsPattern(
-                    String.format(PMDValidatorTest.INIT_PATTERN, file)
+                    String.format(PMDValidatorTest.NO_CON_INIT, file)
+                )
+            )
+        );
+    }
+
+    /**
+     * PMDValidator can forbid field initialization in several constructors.
+     * Only one constructor should do real work. Others - delegate to it.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsFieldInitializationInSeveralConstructors()
+        throws Exception {
+        final String file = "FieldInitSeveralConstructors.java";
+        this.validatePMD(
+            file, false,
+            RegexMatchers.containsPattern(
+                String.format(PMDValidatorTest.MULT_CON_INIT, file)
+            )
+        );
+    }
+
+    /**
+     * PMDValidator can allow field initialization in one constructor.
+     * Only one constructor should do real work. Others - delegate to it.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsFieldInitializationInOneConstructor()
+        throws Exception {
+        final String file = "FieldInitOneConstructor.java";
+        this.validatePMD(
+            file, true,
+            Matchers.not(
+                RegexMatchers.containsPattern(
+                    String.format(PMDValidatorTest.MULT_CON_INIT, file)
                 )
             )
         );
@@ -144,7 +203,7 @@ public final class PMDValidatorTest {
     /**
      * Validates that PMD reported given violation.
      * @param file File to check.
-     * @param result Expected validation result.
+     * @param result Expected validation result (true if valid).
      * @param matcher Matcher to call on checkstyle output.
      * @throws Exception In case of error
      */

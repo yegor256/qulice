@@ -51,6 +51,10 @@
                 <version>@project.version@</version>
                 <configuration>
                     <license>file:${basedir}/LICENSE.txt</license>
+                    <excludes>
+                        <exclude>jslint:other_*.js</exclude>
+                        <exclude>jslint:**/bar/**</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

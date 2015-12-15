@@ -73,11 +73,7 @@ public final class CheckstyleValidator implements Validator {
             return;
         }
         final Checker checker;
-        try {
-            checker = new Checker();
-        } catch (final CheckstyleException ex) {
-            throw new IllegalStateException("Failed to create checker", ex);
-        }
+        checker = new Checker();
         checker.setClassLoader(env.classloader());
         checker.setModuleClassLoader(
             Thread.currentThread().getContextClassLoader()
@@ -89,7 +85,11 @@ public final class CheckstyleValidator implements Validator {
         }
         final CheckstyleListener listener = new CheckstyleListener(env);
         checker.addListener(listener);
-        checker.process(new LinkedList<File>(files));
+        try {
+            checker.process(new LinkedList<File>(files));
+        } catch (final CheckstyleException ex) {
+            throw new IllegalStateException("Failed to process files", ex);
+        }
         checker.destroy();
         final List<AuditEvent> events = listener.events();
         if (!events.isEmpty()) {
@@ -105,6 +105,10 @@ public final class CheckstyleValidator implements Validator {
         );
     }
 
+    @Override public String name() {
+        return "Checkstyle";
+    }
+
     /**
      * Load checkstyle configuration.
      * @param env The environemt
@@ -112,10 +116,20 @@ public final class CheckstyleValidator implements Validator {
      * @see #validate()
      */
     private Configuration configuration(final Environment env) {
+        final File cacheFile =
+                new File(env.tempdir(), "checkstyle/checkstyle.cache");
+        if (!cacheFile.getParentFile().mkdirs()) {
+            throw new IllegalStateException(
+                String.format(
+                    "Unable to crate directories needed for %s",
+                    cacheFile.getPath()
+                )
+            );
+        }
         final Properties props = new Properties();
         props.setProperty(
             "cache.file",
-            new File(env.tempdir(), "checkstyle/checkstyle.cache").getPath()
+            cacheFile.getPath()
         );
         props.setProperty("header", this.header(env));
         final InputSource src = new InputSource(

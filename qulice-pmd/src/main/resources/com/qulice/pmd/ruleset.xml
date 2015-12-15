@@ -110,11 +110,35 @@
                     <![CDATA[
                         //ClassOrInterfaceBody
                         [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>0]
-                        [count(ClassOrInterfaceBodyDeclaration/FieldDeclaration/VariableDeclarator/VariableInitializer)>0]
+                        [count(ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static='false']/VariableDeclarator/VariableInitializer)>0]
                     ]]>
                 </value>
             </property>
         </properties>
         <priority>3</priority>
     </rule>
+
+    <rule name="OnlyOneConstructorShouldDoInitialization"
+          message="Avoid field initialization in several constructors."
+          language="java"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            Avoid doing field initialization in several constructors.
+            Only one main constructor should do real work.
+            Other constructors should delegate initialization to it.
+        </description>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                            //ClassOrInterfaceBody[count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>1]
+                            [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration[BlockStatement])>1]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+        <priority>3</priority>
+    </rule>
+
+
 </ruleset>

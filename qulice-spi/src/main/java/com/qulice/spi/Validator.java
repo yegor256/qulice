@@ -44,4 +44,9 @@ public interface Validator {
      */
     void validate(Environment env) throws ValidationException;
 
+    /**
+     * Name of this validator.
+     * @return Name of this validator.
+     */
+    String name();
 }

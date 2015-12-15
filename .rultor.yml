@@ -24,7 +24,6 @@ merge:
   - krzyk
   - longtimeago
   - pinaf
-  - yegor256
 deploy:
   script: |-
     mvn clean deploy -Pqulice-profile -Pqulice --errors --settings ../settings.xml
@@ -41,3 +40,4 @@ release:
     mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml || echo 'site-deploy failed'
   commanders:
   - krzyk
+  - yegor256

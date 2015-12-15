@@ -1,5 +1,7 @@
-/**
- * Copyright (c) 2011-2015, Qulice.com
+<?xml version="1.0"?>
+<!--
+ *
+ * Copyright (c) 2011-2014, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,41 +28,33 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.maven;
-
-import com.qulice.spi.ValidationException;
-import java.util.Properties;
-
-/**
- * Validate with jslint-maven-plugin.
  *
- * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
- */
-public final class JslintValidator implements MavenValidator {
-
-    @Override
-    public void validate(final MavenEnvironment env)
-        throws ValidationException {
-        final Properties config = new Properties();
-        final String jslint = "jslint";
-        config.setProperty("sourceJsFolder", "${basedir}/src/main");
-        config.put("excludes", env.excludes(jslint));
-        try {
-            env.executor().execute(
-                "org.codehaus.mojo:jslint-maven-plugin:1.0.1",
-                jslint,
-                config
-            );
-        } catch (final IllegalStateException ex) {
-            // @checkstyle MethodBodyCommentsCheck (1 line)
-            // JsLint throws error if it can't find the sourceJsFolder
-            if (!(ex.getMessage().contains("basedir")
-                && ex.getMessage().contains("does not exist"))) {
-                throw ex;
-            }
-        }
-    }
-
-}
+ -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.qulice.plugin</groupId>
+    <artifactId>log-check</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>log-check</name>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.qulice</groupId>
+                <artifactId>qulice-maven-plugin</artifactId>
+                <version>@project.version@</version>
+                <configuration>
+                    <license>file:${basedir}/LICENSE.txt</license>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
