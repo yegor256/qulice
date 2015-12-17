@@ -36,6 +36,11 @@
  * @link http://checkstyle.sourceforge.net/config.html
  -->
 <module name="Checker">
+    <!--
+    Enforces English locale to be independent from the
+    default locale which may vary between environments.
+    -->
+    <property name="localeLanguage" value="en"/>
 
     <!--
     Checks that each Java package has a Javadoc file
