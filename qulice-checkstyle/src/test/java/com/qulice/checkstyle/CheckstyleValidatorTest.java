@@ -207,8 +207,8 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * Real.
-     * @throws Exception xhen error.
+     * CheckstyleValidator reports an error when package decalaration is wrapped.
+     * @throws Exception when error.
      */
     @Test
     public void reportsErrorWhenLineWrap()
