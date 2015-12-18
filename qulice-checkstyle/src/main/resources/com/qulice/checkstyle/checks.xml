@@ -257,6 +257,11 @@
         <module name="UnusedImports"/>
         <module name="ImportOrder"/>
 
+        <!--
+        Checks that imports and package are not line wrapped
+        -->
+        <module name="NoLineWrap"/>
+
         <!-- Checks for Javadoc comments. -->
         <module name="JavadocType">
             <property name="allowUnknownTags" value="true"/>

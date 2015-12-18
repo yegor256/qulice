@@ -207,6 +207,19 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * Real.
+     * @throws Exception xhen error.
+     */
+    @Test
+    public void reportsErrorWhenLineWrap()
+        throws Exception {
+        this.validateCheckstyle(
+            "LineWrapPackage.java", false,
+            Matchers.containsString("should not be line-wrapped")
+        );
+    }
+
+    /**
      * CheckstyleValidator can accept default methods with final modifiers.
      * @throws Exception In case of error
      */
