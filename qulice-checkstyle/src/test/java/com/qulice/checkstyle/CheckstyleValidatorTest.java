@@ -207,7 +207,8 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator reports an error when package decalaration is wrapped.
+     * CheckstyleValidator reports an error when package decalaration
+     * is line wrapped.
      * @throws Exception when error.
      */
     @Test
