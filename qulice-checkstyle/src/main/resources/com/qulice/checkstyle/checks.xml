@@ -236,7 +236,9 @@
         <module name="IllegalCatch"/>
         <module name="IllegalThrows"/>
         <module name="PackageDeclaration"/>
-        <module name="ReturnCount" />
+        <module name="ReturnCount">
+            <property name="max" value="1"/>
+        </module>
         <module name="IllegalType"/>
         <module name="DeclarationOrder"/>
         <module name="ParameterAssignment"/>

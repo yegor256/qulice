@@ -221,6 +221,19 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator reports an error when any method contains more
+     * than one return statement.
+     * @throws Exception when error.
+     */
+    @Test
+    public void reportsErrorOnMoreThanOneReturnStatement() throws Exception {
+        this.validateCheckstyle(
+            "ReturnCount.java", false,
+            Matchers.containsString("Return count is 2 (max allowed is 1)")
+        );
+    }
+
+    /**
      * CheckstyleValidator can accept default methods with final modifiers.
      * @throws Exception In case of error
      */
