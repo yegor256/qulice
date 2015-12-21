@@ -221,6 +221,21 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator reports an error when indentation is not strict.
+     * @throws Exception when error.
+     */
+    @Test
+    public void reportsErrorWhenIndentationIsNotStrict() throws Exception {
+        this.validateCheckstyle(
+            "StrictIndentation.java",
+            false,
+            Matchers.containsString(
+                "incorrect indentation level 14, expected level should be 12"
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator reports an error when any method contains more
      * than one return statement.
      * @throws Exception when error.
