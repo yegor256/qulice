@@ -114,53 +114,10 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void acceptsInstanceMethodReferences() throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(new String[] {CheckstyleValidatorTest.LICENSE})
-            .withEol("\n")
-            .file();
-        final String content = Joiner.on("\n").join(
-            "/**",
-            " * Hello.",
-            " */",
-            "package foo;",
-            "/**",
-            " * Simple.",
-            " * @version $Id $",
-            " * @author John Smith (john@example.com)",
-            " */",
-            "public final class Main {",
-            "    /**",
-            "     * Start. Check fails in this method.",
-            "     */",
-            "    private void start() {",
-            "        Collections.singletonList(\"1\")",
-            "            .forEach(this::doSomething);",
-            "    }",
-            "    /**",
-            "     * Method to be referenced.",
-            "     * @param value Value to print",
-            "     */",
-            "    private void doSomething(final String value) {",
-            "        System.out.println(value);",
-            "    }",
-            "}",
-            ""
-        );
-        final StringWriter writer = new StringWriter();
-        org.apache.log4j.Logger.getRootLogger().addAppender(
-            new WriterAppender(new SimpleLayout(), writer)
-        );
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
-        ).withFile("src/main/java/foo/Main.java", content);
-        new CheckstyleValidator().validate(env);
-        MatcherAssert.assertThat(
-            writer.toString(),
-            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
-        );
+        this.validateCheckstyle(
+        		"Main.java", true,
+                Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+            );
     }
 
     /**
@@ -170,40 +127,11 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void reportsErrorWhenParameterObjectIsNotDocumented()
-        throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(new String[] {CheckstyleValidatorTest.LICENSE})
-            .withEol("\n").file();
-        final StringWriter writer = new StringWriter();
-        org.apache.log4j.Logger.getRootLogger().addAppender(
-            new WriterAppender(new SimpleLayout(), writer)
-        );
-        final String name = "ParametrizedClass.java";
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
-        )
-            .withFile(
-                String.format("src/main/java/foo/%s", name),
-                IOUtils.toString(
-                    this.getClass().getResourceAsStream(name)
-                )
+            throws Exception {
+            this.validateCheckstyle(
+            		"ParametrizedClass.java", false,
+                Matchers.containsString("Type Javadoc comment is missing an @param <T> tag.")
             );
-        boolean valid = true;
-        try {
-            new CheckstyleValidator().validate(env);
-        } catch (final ValidationException ex) {
-            valid = false;
-        }
-        MatcherAssert.assertThat(valid, Matchers.is(false));
-        MatcherAssert.assertThat(
-            writer.toString(),
-            Matchers.containsString(
-                "Type Javadoc comment is missing an @param <T> tag."
-            )
-        );
     }
 
     /**
