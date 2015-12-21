@@ -201,6 +201,34 @@ public final class PMDValidatorTest {
     }
 
     /**
+     * PMDValidator forbids unnecessary final modifier for methods.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsUnnecessaryFinalModifier()
+        throws Exception {
+        final String file = "UnnecessaryFinalModifier.java";
+        this.validatePMD(
+            file, false,
+            Matchers.containsString("Unnecessary final modifier")
+        );
+    }
+
+    /**
+     * PMDValidator forbid useless parentheses.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsUselessParentheses()
+        throws Exception {
+        final String file = "UselessParentheses.java";
+        this.validatePMD(
+            file, false,
+            Matchers.containsString("Useless parentheses")
+        );
+    }
+
+    /**
      * Validates that PMD reported given violation.
      * @param file File to check.
      * @param result Expected validation result (true if valid).
