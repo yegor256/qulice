@@ -296,7 +296,9 @@
         <module name="FinalParameters">
             <property name="tokens" value="CTOR_DEF,METHOD_DEF,FOR_EACH_CLAUSE,LITERAL_CATCH"/>
         </module>
-        <module name="Indentation"/>
+        <module name="Indentation">
+            <property name="forceStrictCondition" value="true"/>
+        </module>
         <module name="CommentsIndentation"/>
         <module name="TrailingComment"/>
         <module name="OuterTypeFilename"/>
