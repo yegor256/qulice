@@ -230,33 +230,12 @@ public final class CheckstyleValidatorTest {
      * CheckstyleValidator will fail if  Windows EOL-s are used.
      * @throws Exception If something wrong happens inside
      */
-    @Test(expected = ValidationException.class)
+    @Test
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(new String[] {"Hello.", "", "World."})
-            .withEol("\r\n")
-            .file();
-        final String content =
-            // @checkstyle StringLiteralsConcatenation (12 lines)
-            "/**\r\n"
-            + " * Hello.\r\n"
-            + " *\r\n"
-            + " * World.\r\n"
-            + " */\r\n"
-            + "package foo;\r\n"
-            + "/**\r\n"
-            + " * Simple class.\r\n"
-            + " * @version $Id $\r\n"
-            + " * @author John Doe (john@qulice.com)\r\n"
-            + " */\r\n"
-            + "public class Main { }\r\n";
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
-        ).withFile("src/main/java/foo/Main.java", content);
-        new CheckstyleValidator().validate(env);
+        this.validateCheckstyle(
+            "MainWindows.java", false,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
     }
 
     /**
