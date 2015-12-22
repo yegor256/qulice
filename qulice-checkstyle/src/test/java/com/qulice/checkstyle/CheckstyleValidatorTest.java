@@ -29,7 +29,6 @@
  */
 package com.qulice.checkstyle;
 
-import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
@@ -115,9 +114,9 @@ public final class CheckstyleValidatorTest {
     @Test
     public void acceptsInstanceMethodReferences() throws Exception {
         this.validateCheckstyle(
-        		"Main.java", true,
+                "Main.java", true,
                 Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
-            );
+        );
     }
 
     /**
@@ -127,11 +126,13 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void reportsErrorWhenParameterObjectIsNotDocumented()
-            throws Exception {
-            this.validateCheckstyle(
-            		"ParametrizedClass.java", false,
-                Matchers.containsString("Type Javadoc comment is missing an @param <T> tag.")
-            );
+        throws Exception {
+        this.validateCheckstyle(
+            "ParametrizedClass.java", false,
+            Matchers.containsString(
+                "Type Javadoc comment is missing an @param <T> tag."
+            )
+        );
     }
 
     /**
