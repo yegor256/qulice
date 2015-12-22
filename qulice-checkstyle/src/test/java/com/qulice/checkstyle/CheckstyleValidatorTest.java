@@ -234,7 +234,7 @@ public final class CheckstyleValidatorTest {
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
         this.validateCheckstyle(
             "MainWindows.java", false,
-            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+            Matchers.containsString("LICENSE found")
         );
     }
 
@@ -247,7 +247,7 @@ public final class CheckstyleValidatorTest {
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
         this.validateCheckstyle(
             "Bar.java", false,
-            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+            Matchers.containsString("LICENSE found")
         );
     }
 
