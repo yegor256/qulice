@@ -114,7 +114,7 @@ public final class CheckstyleValidatorTest {
     @Test
     public void acceptsInstanceMethodReferences() throws Exception {
         this.validateCheckstyle(
-                "Main.java", true,
+                "InstanceMethodRef.java", true,
                 Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
         );
     }
@@ -233,7 +233,7 @@ public final class CheckstyleValidatorTest {
     @Test
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
         this.validateCheckstyle(
-            "MainWindows.java", false,
+            "WindowsEol.java", false,
             Matchers.containsString("LICENSE found")
         );
     }
@@ -246,7 +246,7 @@ public final class CheckstyleValidatorTest {
     @Test
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
         this.validateCheckstyle(
-            "Bar.java", false,
+            "WindowsEolLinux.java", false,
             Matchers.containsString("LICENSE found")
         );
     }

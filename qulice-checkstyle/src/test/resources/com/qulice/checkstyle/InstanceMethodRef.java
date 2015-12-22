@@ -7,7 +7,7 @@ package foo;
  * @version $Id $
  * @author John Smith (john@example.com)
  */
-public final class Main {
+public final class InstanceMethodRef {
     /**
      * Start. Check fails in this method.
      */

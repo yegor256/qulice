@@ -9,5 +9,5 @@ package foo;
  * @version $Id $
  * @author John Doe (john@qulice.com)
  */
-public class MainWindows { }
+public class WindowsEol { }
 

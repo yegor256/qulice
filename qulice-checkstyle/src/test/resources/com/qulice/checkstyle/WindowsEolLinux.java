@@ -9,5 +9,5 @@ package foo;
  * @version $Id $
  * @author Alex Doe (alex@qulice.com)
  */
-public class Bar { }
+public class WindowsEolLinux { }
 
