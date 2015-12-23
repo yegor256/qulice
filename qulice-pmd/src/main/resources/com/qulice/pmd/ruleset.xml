@@ -146,9 +146,9 @@
           language="java"
           class="net.sourceforge.pmd.lang.rule.XPathRule">
         <description>
-            Avoid doing field initialization in several constructors.
-            Only one main constructor should do real work.
-            Other constructors should delegate initialization to it.
+            Avoid putting anything other than field assignments into constructors.
+            The only exception should be calling other constructors
+            or calling super class constructor.
         </description>
         <properties>
             <property name="xpath">
