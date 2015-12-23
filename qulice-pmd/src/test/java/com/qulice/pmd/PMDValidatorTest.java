@@ -49,7 +49,15 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class PMDValidatorTest {
+
+    /**
+     * Error message for forbidding instructions inside a constructor
+     * other than field initialization or call to other contructors.
+     * @checkstyle LineLength (2 lines)
+     */
+    private static final String CODE_IN_CON = "Only field initialization or call to other contructors in a constructor";
 
     /**
      * Pattern for non-constructor field initialization.
@@ -225,6 +233,21 @@ public final class PMDValidatorTest {
         this.validatePMD(
             file, false,
             Matchers.containsString("Useless parentheses")
+        );
+    }
+
+    /**
+     * PMDValidator forbids code in constructor
+     * other than field initialization.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsCodeInConstructor()
+        throws Exception {
+        final String file = "CodeInConstructor.java";
+        this.validatePMD(
+            file, false,
+            Matchers.containsString(CODE_IN_CON)
         );
     }
 

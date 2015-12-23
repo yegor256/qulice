@@ -141,5 +141,26 @@
         <priority>3</priority>
     </rule>
 
+    <rule name="ConstructorOnlyInitializesOrCallOtherConstructors"
+          message="Only field initialization or call to other contructors in a constructor."
+          language="java"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            Avoid doing field initialization in several constructors.
+            Only one main constructor should do real work.
+            Other constructors should delegate initialization to it.
+        </description>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                            //ConstructorDeclaration/BlockStatement[count(Statement/StatementExpression/PrimaryExpression/PrimaryPrefix[@ThisModifier="true"])!=count(*)]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+        <priority>3</priority>
+    </rule>
+
 
 </ruleset>
