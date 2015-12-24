@@ -53,8 +53,9 @@ public final class DetailASTTest {
     /**
      * ELIST token should return valid line number.
      * @throws Exception If something goes wrong
-     * @todo #541:30min/DEV Test BracketsStructureCheck with fixed checkstyle
-     *  version.
+     * @todo #541:30min/DEV This test does not pass at the moment because of
+     *  the bug in checkstyle lib. We should test again with fixed version and
+     *  verify BracketsStructureCheck behaviour.
      */
     @Ignore
     @Test
