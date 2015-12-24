@@ -46,6 +46,7 @@ import org.junit.Test;
  * Test case for {@link DetailAST}.
  * @author I. Sokolov (happy.neko@gmail.com)
  * @version $Id$
+ * @since 0.14.2
  */
 public final class DetailASTTest {
 
