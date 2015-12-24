@@ -57,7 +57,7 @@ public final class PMDValidatorTest {
      * other than field initialization or call to other contructors.
      * @checkstyle LineLength (2 lines)
      */
-    private static final String CODE_IN_CON = "Only field initialization or call to other contructors in a constructor";
+    private static final String CODE_IN_CON = "%s\\[\\d+-\\d+\\]: Only field initialization or call to other contructors in a constructor";
 
     /**
      * Pattern for non-constructor field initialization.
@@ -247,10 +247,30 @@ public final class PMDValidatorTest {
         final String file = "CodeInConstructor.java";
         this.validatePMD(
             file, false,
-            Matchers.containsString(CODE_IN_CON)
+            RegexMatchers.containsPattern(
+                String.format(PMDValidatorTest.CODE_IN_CON, file)
+            )
         );
     }
 
+    /**
+     * PMDValidator accepts calls to other constructors
+     * or call to super class constructor in constructors.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void acceptsCallToConstructorInConstructor()
+        throws Exception {
+        final String file = "CallToConstructorInConstructor.java";
+        this.validatePMD(
+            file, true,
+            Matchers.not(
+                RegexMatchers.containsPattern(
+                    String.format(PMDValidatorTest.CODE_IN_CON, file)
+                )
+            )
+        );
+    }
     /**
      * Validates that PMD reported given violation.
      * @param file File to check.
