@@ -81,23 +81,22 @@ public final class DetailASTTest {
      * @param ast Tree to search
      * @param type Token type
      * @return Token node if found
-     * @checkstyle ReturnCountCheck (2 lines)
      */
-    @SuppressWarnings("PMD.OnlyOneReturn")
     private static Optional<DetailAST> findToken(final DetailAST ast,
         final int type) {
+        Optional<DetailAST> token = Optional.absent();
         DetailAST child = ast.getFirstChild();
         while (child != null) {
-            final DetailAST token = child.findFirstToken(type);
-            if (token != null) {
-                return Optional.of(token);
+            token = Optional.fromNullable(child.findFirstToken(type));
+            if (token.isPresent()) {
+                break;
             }
-            final Optional<DetailAST> deep = findToken(child, type);
-            if (deep.isPresent()) {
-                return deep;
+            token = findToken(child, type);
+            if (token.isPresent()) {
+                break;
             }
             child = child.getNextSibling();
         }
-        return Optional.absent();
+        return token;
     }
 }
