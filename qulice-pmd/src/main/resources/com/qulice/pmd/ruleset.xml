@@ -154,7 +154,7 @@
             <property name="xpath">
                 <value>
                     <![CDATA[
-                            //ConstructorDeclaration/BlockStatement[count(Statement/StatementExpression/PrimaryExpression/PrimaryPrefix[@ThisModifier="true"])!=count(*)]
+                            //ConstructorDeclaration/BlockStatement[count(Statement/StatementExpression/PrimaryExpression[count(following-sibling::AssignmentOperator[1])>0]/PrimaryPrefix[@ThisModifier="true"])!=count(*)]
                     ]]>
                 </value>
             </property>
