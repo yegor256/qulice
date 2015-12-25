@@ -56,7 +56,7 @@ public final class FinalSemicolonInTryWithResourcesCheck extends Check {
     @Override
     public void visitToken(final DetailAST ast) {
         final int semicolons = ast.getChildCount(TokenTypes.SEMI);
-        if (semicolons == 1) {
+        if (semicolons > 0) {
             this.log(
                 ast.getLineNo(),
                 "Extra semicolon in the end of try-with-resources head."
