@@ -1,6 +1,6 @@
 package foo;
 
-public final class CallToConstructorInConstructor extends Super{
+public final class CallToConstructorInConstructor extends Super {
     private final transient int number;
     private final transient int another;
 
