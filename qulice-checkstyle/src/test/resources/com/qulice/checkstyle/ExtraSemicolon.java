@@ -17,6 +17,7 @@ public final class ExtraSemicolon {
         try (
             final Closeable door = new Door();
             final Closeable window = new Window();
+            final Closeable win = new Window();
         ) {
             int data = input.read();
             while (data != -1) {
