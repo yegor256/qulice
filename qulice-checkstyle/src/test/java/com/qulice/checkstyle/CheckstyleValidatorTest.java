@@ -267,6 +267,19 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * Fail validation with extra semicolon in the end
+     * of try-with-resources head.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void testExtraSemicolonInTryWithResources() throws Exception {
+        this.validateCheckstyle(
+            "ExtraSemicolon.java", false,
+            Matchers.containsString("Only one statement per line allowed.")
+        );
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
