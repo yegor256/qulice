@@ -275,7 +275,9 @@ public final class CheckstyleValidatorTest {
     public void testExtraSemicolonInTryWithResources() throws Exception {
         this.validateCheckstyle(
             "ExtraSemicolon.java", false,
-            Matchers.containsString("Only one statement per line allowed.")
+            Matchers.containsString(
+                "Extra semicolon in the end of try-with-resources head."
+            )
         );
     }
 
