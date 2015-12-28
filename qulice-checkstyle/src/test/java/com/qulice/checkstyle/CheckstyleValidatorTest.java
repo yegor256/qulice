@@ -282,6 +282,19 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * Accepts try-with-resources without extra semicolon
+     * at the end of the head.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void acceptsTryWithResourcesWithoutSemicolon() throws Exception {
+        this.validateCheckstyle(
+            "ValidSemicolon.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
