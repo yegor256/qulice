@@ -102,6 +102,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     /**
      * List of xpath queries to validate pom.xml.
      * @since 0.5
+     * @checkstyle IndentationCheck (5 lines)
      */
     @Parameter(
         property = "qulice.asserts",

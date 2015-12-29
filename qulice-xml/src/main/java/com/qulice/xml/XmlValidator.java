@@ -53,6 +53,7 @@ import org.xml.sax.SAXException;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @checkstyle IndentationCheck (5 lines)
  */
 @SuppressWarnings(
     { "PMD.AvoidInstantiatingObjectsInLoops", "PMD.ExceptionAsFlowControl" }
