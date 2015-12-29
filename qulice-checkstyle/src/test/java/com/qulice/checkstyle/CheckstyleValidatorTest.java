@@ -150,17 +150,32 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator reports an error when indentation is not strict.
+     * CheckstyleValidator reports an error when indentation is not
+     * bigger than previous line by exactly 4.
      * @throws Exception when error.
      */
     @Test
-    public void reportsErrorWhenIndentationIsNotStrict() throws Exception {
+    public void reportsErrorWhenIndentationIsIncorrect() throws Exception {
         this.validateCheckstyle(
-            "StrictIndentation.java",
+            "InvalidIndentation.java",
             false,
             Matchers.containsString(
-                "incorrect indentation level 14, expected level should be 12"
+                "Indentation (14) must be same or less than"
             )
+        );
+    }
+
+    /**
+     * CheckstyleValidator accepts the valid indentation
+     * refused by forceStrictCondition.
+     * @throws Exception when error.
+     */
+    @Test
+    public void acceptsValidIndentation() throws Exception {
+        this.validateCheckstyle(
+            "ValidIndentation.java",
+            true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
         );
     }
 
