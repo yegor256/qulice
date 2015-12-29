@@ -118,7 +118,8 @@ public final class CheckstyleValidator implements Validator {
     private Configuration configuration(final Environment env) {
         final File cacheFile =
                 new File(env.tempdir(), "checkstyle/checkstyle.cache");
-        if (!cacheFile.getParentFile().mkdirs()) {
+        final File parent = cacheFile.getParentFile();
+        if (!parent.exists() && !parent.mkdirs()) {
             throw new IllegalStateException(
                 String.format(
                     "Unable to crate directories needed for %s",
