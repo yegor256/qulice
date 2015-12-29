@@ -63,7 +63,6 @@ public final class CheckstyleValidator implements Validator {
 
     /**
      * {@inheritDoc}
-     * @checkstyle RedundantThrows (3 lines)
      */
     @Override
     public void validate(final Environment env) throws ValidationException {
