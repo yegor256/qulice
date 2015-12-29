@@ -300,6 +300,7 @@ public final class PMDValidatorTest {
             } catch (final ValidationException ex) {
                 valid = false;
             }
+            writer.flush();
             MatcherAssert.assertThat(valid, Matchers.is(result));
             MatcherAssert.assertThat(writer.toString(), matcher);
         } finally {
