@@ -55,8 +55,9 @@ public final class QuliceIndentationCheck extends AbstractFileSetCheck {
         int previous = 0;
         for (int pos = 0; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);
-            final int current = indentation(line);
-            if (inCommentBlock(line) || line.length() == 0) {
+            final int current = QuliceIndentationCheck.indentation(line);
+            if (QuliceIndentationCheck.inCommentBlock(line)
+                || line.length() == 0) {
                 continue;
             }
             if (current > previous
