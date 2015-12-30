@@ -56,7 +56,6 @@ import org.apache.maven.project.MavenProject;
  */
 public final class SvnPropertiesValidator implements MavenValidator {
 
-    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
@@ -80,7 +79,6 @@ public final class SvnPropertiesValidator implements MavenValidator {
      * Validate directory.
      * @param dir The directory
      * @throws ValidationException If fails
-     * @checkstyle RedundantThrows (4 lines)
      */
     private void validate(final File dir) throws ValidationException {
         final Collection<File> files = FileUtils.listFiles(

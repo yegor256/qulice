@@ -68,7 +68,6 @@ public final class FindBugsValidator implements Validator {
 
     /**
      * {@inheritDoc}
-     * @checkstyle RedundantThrows (3 lines)
      */
     @Override
     public void validate(final Environment env) throws ValidationException {
@@ -229,7 +228,6 @@ public final class FindBugsValidator implements Validator {
      * Check report for errors.
      * @param report The report
      * @throws ValidationException If it contains errors
-     * @checkstyle RedundantThrows (3 lines)
      */
     private void check(final String report) throws ValidationException {
         int total = 0;

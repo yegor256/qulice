@@ -55,7 +55,6 @@ import org.apache.commons.collections.CollectionUtils;
 public final class DuplicateFinderValidator implements MavenValidator {
 
     // @checkstyle MultipleStringLiterals (20 lines)
-    // @checkstyle RedundantThrows (4 lines)
     // @checkstyle MethodBodyCommentsCheck (50 lines)
     // @todo #250 Fix a problem with maven configuration of duplicate finder
     //  plugin in commented out code below, and enable
