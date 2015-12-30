@@ -74,18 +74,18 @@ public final class DuplicateFinderValidator implements MavenValidator {
                 )
             );
             final Collection<Properties> deps = new LinkedList<Properties>();
-//            for (String sdep : env.excludes("duplicate")) {
-//                if (StringUtils.countMatches(sdep, ":") == 2) {
-//                    String[] parts = sdep.split(":");
-//                    Properties main = new Properties();
-//                    Properties prop = new Properties();
-//                    prop.put("groupId", parts[0]);
-//                    prop.put("artifactId", parts[1]);
-//                    prop.put("version", parts[2]);
-//                    main.put("dependency", prop);
-//                    deps.add(prop);
-//                }
-//            }
+            //  for (String sdep : env.excludes("duplicate")) {
+            //      if (StringUtils.countMatches(sdep, ":") == 2) {
+            //          String[] parts = sdep.split(":");
+            //          Properties main = new Properties();
+            //          Properties prop = new Properties();
+            //          prop.put("groupId", parts[0]);
+            //          prop.put("artifactId", parts[1]);
+            //          prop.put("version", parts[2]);
+            //          main.put("dependency", prop);
+            //          deps.add(prop);
+            //      }
+            //  }
             props.put("ignoredDependencies", deps);
             env.executor().execute(
                 "com.ning.maven.plugins:maven-duplicate-finder-plugin:1.0.7",
