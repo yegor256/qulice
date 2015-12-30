@@ -31,7 +31,6 @@ package com.qulice.pmd;
 
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
 import java.io.StringWriter;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -189,8 +188,8 @@ public final class PMDEmptyTest {
      */
     private void validatePMD(final String file,
         final Matcher<String> matcher) throws Exception {
-        final StringWriter writer = new StringWriter();
         final Environment.Mock mock = new Environment.Mock();
+        final StringWriter writer = new StringWriter();
         final WriterAppender appender =
             new WriterAppender(new SimpleLayout(), writer);
         try {
@@ -203,16 +202,13 @@ public final class PMDEmptyTest {
                     this.getClass().getResourceAsStream(file)
                 )
             );
-            Logger.getRootLogger().addAppender(
-                new WriterAppender(new SimpleLayout(), writer)
-            );
-            final Validator validator = new PMDValidator();
             boolean thrown = false;
             try {
-                validator.validate(env);
+                new PMDValidator().validate(env);
             } catch (final ValidationException ex) {
                 thrown = true;
             }
+            writer.flush();
             MatcherAssert.assertThat(thrown, Matchers.is(true));
             MatcherAssert.assertThat(writer.toString(), matcher);
         } finally {
