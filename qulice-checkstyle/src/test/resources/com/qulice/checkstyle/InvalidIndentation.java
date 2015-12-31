@@ -8,8 +8,11 @@ package foo.bar;
  * @version $Id$
  * @author John Smith (john@example.com)
  */
-public class StrictIndentation {
-    public StrictIndentation() {
+public class InvalidIndentation {
+    /**
+     * Ctor.
+     */
+    public InvalidIndentation() {
         final String first = String.format(
               "incorrect"
         );
