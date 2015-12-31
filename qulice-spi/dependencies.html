@@ -70,7 +70,7 @@
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
                                                                                                     <li >
                             <span>                        <a href="integration.html" title="Continuous Integration">Continuous Integration</a>
         </span>
@@ -79,6 +79,12 @@
                                                     </li>
                                                                                                                         <li  class='active' >
                             <span>                        <a href="dependencies.html" title="Dependencies">Dependencies</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="index.html" title="About">About</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -157,13 +163,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.12.1</strong>
+                                    <strong itemprop="version">0.14.2</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2015-01-22T11:39:07Z">
+                                    <time itemprop="datePublished" datetime="2015-12-31T06:30:56Z">
                                         
-                                        22-Jan-2015
+                                        31-Dec-2015
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -203,7 +209,7 @@
 <tr class="b">
 <td>junit</td>
 <td><a class="externalLink" href="http://junit.org">junit</a></td>
-<td>4.12-beta-3</td>
+<td>4.12</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.eclipse.org/legal/epl-v10.html">Eclipse Public License 1.0</a></td></tr>
 <tr class="a">
@@ -220,8 +226,8 @@
 <td><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></td></tr>
 <tr class="a">
 <td>org.mockito</td>
-<td><a class="externalLink" href="http://www.mockito.org">mockito-core</a></td>
-<td>1.10.8</td>
+<td><a class="externalLink" href="http://mockito.org">mockito-core</a></td>
+<td>2.0.32-beta</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://github.com/mockito/mockito/blob/master/LICENSE">The MIT License</a></td></tr></table></div></div><a name="Project_Transitive_Dependencies"></a>
 <div class="section">
@@ -238,6 +244,12 @@
 <th>Type</th>
 <th>License</th></tr>
 <tr class="b">
+<td>net.bytebuddy</td>
+<td><a class="externalLink" href="http://bytebuddy.net/byte-buddy">byte-buddy</a></td>
+<td>0.7.6</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
+<tr class="a">
 <td>org.objenesis</td>
 <td><a class="externalLink" href="http://objenesis.org">objenesis</a></td>
 <td>2.1</td>
@@ -265,7 +277,7 @@
 <div class="section">
 <h3><a name="Dependency_Tree"></a>Dependency Tree</h3>
 <ul>
-<li>com.qulice:qulice-spi:jar:0.12.1 <img id="_img1" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep0', '_img1' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep0" style="display:none">
+<li>com.qulice:qulice-spi:jar:0.14.2 <img id="_img1" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep0', '_img1' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep0" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>qulice-spi</th></tr>
@@ -286,7 +298,7 @@
 file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/io/">http://commons.apache.org/io/</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>junit:junit:jar:4.12-beta-3 (test) <img id="_img5" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep4', '_img5' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep4" style="display:none">
+<li>junit:junit:jar:4.12 (test) <img id="_img5" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep4', '_img5' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep4" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>JUnit</th></tr>
@@ -313,17 +325,27 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Hamcrest library of matcher implementations.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/hamcrest/JavaHamcrest/hamcrest-library">https://github.com/hamcrest/JavaHamcrest/hamcrest-library</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://www.opensource.org/licenses/bsd-license.php">New BSD License</a></p></td></tr></table></div></li>
-<li>org.mockito:mockito-core:jar:1.10.8 (test) <img id="_img11" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep10', '_img11' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep10" style="display:none">
+<li>org.mockito:mockito-core:jar:2.0.32-beta (test) <img id="_img11" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep10', '_img11' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep10" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Mockito</th></tr>
 <tr class="b">
 <td>
 <p><b>Description: </b>Mock objects library for java</p>
-<p><b>URL: </b><a class="externalLink" href="http://www.mockito.org">http://www.mockito.org</a></p>
+<p><b>URL: </b><a class="externalLink" href="http://mockito.org">http://mockito.org</a></p>
 <p><b>Project License: </b><a class="externalLink" href="http://github.com/mockito/mockito/blob/master/LICENSE">The MIT License</a></p></td></tr></table></div>
 <ul>
-<li>org.objenesis:objenesis:jar:2.1 (test) <img id="_img13" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep12', '_img13' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep12" style="display:none">
+<li>net.bytebuddy:byte-buddy:jar:0.7.6 (test) <img id="_img13" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep12', '_img13' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep12" style="display:none">
+<table border="0" class="bodyTable">
+<tr class="a">
+<th>Byte Buddy (without dependencies)</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>Byte Buddy is a Java library for creating Java classes at run time.
+        This artifact is a build of Byte Buddy with all ASM dependencies repackaged into its own name space.</p>
+<p><b>URL: </b><a class="externalLink" href="http://bytebuddy.net/byte-buddy">http://bytebuddy.net/byte-buddy</a></p>
+<p><b>Project License: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
+<li>org.objenesis:objenesis:jar:2.1 (test) <img id="_img15" src="./images/icon_info_sml.gif" alt="Information" onclick="toggleDependencyDetail( '_dep14', '_img15' );" style="cursor: pointer;vertical-align:text-bottom;"></img><div id="_dep14" style="display:none">
 <table border="0" class="bodyTable">
 <tr class="a">
 <th>Objenesis</th></tr>
@@ -338,7 +360,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>New BSD License: </b>Hamcrest Core, Hamcrest library</p>
 <p><b>BSD: </b>qulice-spi</p>
 <p><b>Eclipse Public License 1.0: </b>JUnit</p>
-<p><b>The Apache Software License, Version 2.0: </b>Commons IO</p>
+<p><b>The Apache Software License, Version 2.0: </b>Byte Buddy (without dependencies), Commons IO</p>
 <p><b>The MIT License: </b>Mockito</p></div>
                         </article>
                     </div>
