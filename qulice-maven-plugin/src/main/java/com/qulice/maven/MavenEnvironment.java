@@ -98,7 +98,7 @@ interface MavenEnvironment extends Environment {
          * @param penv Parent env
          * @param pmenv Parent maven env
          */
-        public Wrap(final Environment penv,
+        Wrap(final Environment penv,
             final MavenEnvironment pmenv) {
             this.env = penv;
             this.menv = pmenv;

@@ -68,5 +68,5 @@ There are 15 active puzzles (67 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#483](https://github.com/teamed/qulice/issues/483):[**469-1b2c894b**](https://github.com/teamed/qulice/issues/483) [`XmlValidator.java:173-179`](../master/qulice-xml/src/main/java/com/qulice/xml/XmlValidator.java#L173-L179)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>447</del>](https://github.com/teamed/qulice/issues/447) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#497](https://github.com/teamed/qulice/issues/497):[**447-94597ea9**](https://github.com/teamed/qulice/issues/497) [`CheckstyleValidatorTest.java:214-216`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L214-L216)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[#412](https://github.com/teamed/qulice/issues/412):[<del>412</del>](https://github.com/teamed/qulice/issues/412) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[<del>412</del>](https://github.com/teamed/qulice/issues/412) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#505](https://github.com/teamed/qulice/issues/505):[**412-bd044e76**](https://github.com/teamed/qulice/issues/505) [`CheckstyleValidatorTest.java:51-53`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L51-L53)<br/>

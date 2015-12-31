@@ -54,14 +54,14 @@ final class CheckstyleListener implements AuditListener {
     /**
      * Collection of events collected.
      */
-    private final transient List<AuditEvent> all =
-        new LinkedList<AuditEvent>();
+    private final transient List<AuditEvent> all;
 
     /**
      * Public ctor.
      * @param environ The environment
      */
     CheckstyleListener(final Environment environ) {
+        this.all = new LinkedList<AuditEvent>();
         this.env = environ;
     }
 

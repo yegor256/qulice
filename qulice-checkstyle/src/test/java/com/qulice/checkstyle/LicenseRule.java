@@ -86,7 +86,7 @@ public final class LicenseRule implements TestRule {
      * @param lns The lines to use
      * @return This object
      */
-    public LicenseRule withLines(final String[] lns) {
+    public LicenseRule withLines(final String... lns) {
         this.lines = new String[lns.length];
         System.arraycopy(lns, 0, this.lines, 0, lns.length);
         return this;
