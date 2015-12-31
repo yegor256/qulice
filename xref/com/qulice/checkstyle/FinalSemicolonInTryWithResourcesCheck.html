@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title>CoberturaValidator xref</title>
+<title>FinalSemicolonInTryWithResourcesCheck xref</title>
 <link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../apidocs/com/qulice/maven/CoberturaValidator.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../apidocs/com/qulice/checkstyle/FinalSemicolonInTryWithResourcesCheck.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Copyright (c) 2011-2015, Qulice.com</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * All rights reserved.</em>
@@ -35,44 +35,43 @@
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * OF THE POSSIBILITY OF SUCH DAMAGE.</em>
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">package</strong> com.qulice.maven;
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">package</strong> com.qulice.checkstyle;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> com.qulice.spi.ValidationException;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.util.Properties;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> * Validates with Cobertura.</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment"> * @author Yegor Bugayenko (yegor@tpc2.com)</em>
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> * @version $Id$</em>
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/qulice/maven/CoberturaValidator.html">CoberturaValidator</a> <strong class="jxr_keyword">implements</strong> <a href="../../../com/qulice/maven/MavenValidator.html">MavenValidator</a> {
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <em class="jxr_comment">// @checkstyle MultipleStringLiterals (30 lines)</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.Check;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.DetailAST;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.TokenTypes;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment"> * Checks that try-with-resources does not end with a semicolon.</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> * @author Hamdi Douss (douss.hamdi@gmail.com)</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> * @version $Id$</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/qulice/checkstyle/FinalSemicolonInTryWithResourcesCheck.html">FinalSemicolonInTryWithResourcesCheck</a> <strong class="jxr_keyword">extends</strong> Check {
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      @Override
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> validate(<strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/maven/MavenEnvironment.html">MavenEnvironment</a> env)
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>          <strong class="jxr_keyword">throws</strong> <a href="../../../com/qulice/spi/ValidationException.html">ValidationException</a> {
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>          <strong class="jxr_keyword">if</strong> (!env.exclude(<span class="jxr_string">"cobertura"</span>, <span class="jxr_string">""</span>)) {
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>              <strong class="jxr_keyword">final</strong> Properties props = <strong class="jxr_keyword">new</strong> Properties();
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>              props.put(<span class="jxr_string">"quiet"</span>, <span class="jxr_string">"false"</span>);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>              <strong class="jxr_keyword">final</strong> Properties check = <strong class="jxr_keyword">new</strong> Properties();
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>              props.put(<span class="jxr_string">"check"</span>, check);
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>              check.put(<span class="jxr_string">"haltOnFailure"</span>, <span class="jxr_string">"true"</span>);
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>              check.put(<span class="jxr_string">"lineRate"</span>, <span class="jxr_string">"60"</span>);
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>              check.put(<span class="jxr_string">"branchRate"</span>, <span class="jxr_string">"60"</span>);
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>              check.put(<span class="jxr_string">"packageLineRate"</span>, <span class="jxr_string">"70"</span>);
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>              check.put(<span class="jxr_string">"packageBranchRate"</span>, <span class="jxr_string">"70"</span>);
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>              check.put(<span class="jxr_string">"totalLineRate"</span>, <span class="jxr_string">"80"</span>);
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>              check.put(<span class="jxr_string">"totalBranchRate"</span>, <span class="jxr_string">"80"</span>);
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>              env.executor().execute(
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>                  <span class="jxr_string">"org.codehaus.mojo:cobertura-maven-plugin:2.5.1"</span>,
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>                  <span class="jxr_string">"check"</span>,
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>                  props
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong>[] getDefaultTokens() {
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">int</strong>[]{
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>              TokenTypes.RESOURCE_SPECIFICATION,
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>          };
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment">     * Implementation relies on existence of semicolon inside of</em>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">     * RESOURCE_SPECIFICATION token as interpreted by Checkstyle.</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     * @param ast RESOURCE_SPECIFICATION token</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>      @Override
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> visitToken(<strong class="jxr_keyword">final</strong> DetailAST ast) {
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> semicolons = ast.getChildCount(TokenTypes.SEMI);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>          <strong class="jxr_keyword">if</strong> (semicolons &gt; 0) {
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>              <strong class="jxr_keyword">this</strong>.log(
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>                  ast.getLineNo(),
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>                  <span class="jxr_string">"Extra semicolon in the end of try-with-resources head."</span>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>              );
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>          }
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>      }
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  }
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2015 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
