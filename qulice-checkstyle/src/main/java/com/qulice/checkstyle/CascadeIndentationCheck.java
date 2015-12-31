@@ -51,9 +51,6 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
      */
     private static final int LINE_INDENT_DIFF = 4;
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void processFiltered(final File file, final List<String> lines) {
         int previous = 0;
