@@ -81,6 +81,7 @@ public final class PMDValidatorTest {
      */
     @Test
     public void understandsMethodReferences() throws Exception {
+        // @checkstyle MultipleStringLiteralsCheck (10 lines)
         final Environment env = new Environment.Mock().withFile(
             "src/main/java/Other.java",
             Joiner.on('\n').join(
@@ -108,6 +109,44 @@ public final class PMDValidatorTest {
         MatcherAssert.assertThat(
             writer.toString(),
             Matchers.not(Matchers.containsString("(UnusedPrivateMethod)"))
+        );
+    }
+
+    /**
+     * PMDValidator does not think that constant is unused when it is used
+     * just from the inner class.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void doesNotComplainAboutConstantsInInnerClasses() throws Exception {
+        // @checkstyle MultipleStringLiteralsCheck (10 lines)
+        final Environment env = new Environment.Mock().withFile(
+            "src/main/java/foo/Foo.java",
+            Joiner.on('\n').join(
+                "package foo;",
+                "interface Foo {",
+                "  final class Bar implements Foo {",
+                "    private static final Pattern TEST =",
+                "      Pattern.compile(\"hey\");",
+                "    public String doSomething() {",
+                "      return Foo.Bar.TEST.toString();",
+                "    }",
+                "  }",
+                "}"
+            )
+        );
+        final StringWriter writer = new StringWriter();
+        Logger.getRootLogger().addAppender(
+            new WriterAppender(new SimpleLayout(), writer)
+        );
+        final Validator validator = new PMDValidator();
+        validator.validate(env);
+        MatcherAssert.assertThat(
+            writer.toString(),
+            Matchers.allOf(
+                Matchers.not(Matchers.containsString("UnusedPrivateMethod")),
+                Matchers.containsString("No PMD violations found in 1 files")
+            )
         );
     }
 
