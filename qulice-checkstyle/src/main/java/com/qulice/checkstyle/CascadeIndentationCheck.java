@@ -45,23 +45,27 @@ import org.apache.commons.lang3.StringUtils;
  * @author Hamdi Douss (douss.hamdi@gmail.com)
  * @version $Id$
  */
-public final class QuliceIndentationCheck extends AbstractFileSetCheck {
+public final class CascadeIndentationCheck extends AbstractFileSetCheck {
+    /**
+     * Exact indentation increase difference.
+     */
+    private static final int LINE_INDENT_DIFF = 4;
+
     /**
      * {@inheritDoc}
-     * @checkstyle MagicNumberCheck (13 lines)
      */
     @Override
     public void processFiltered(final File file, final List<String> lines) {
         int previous = 0;
         for (int pos = 0; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);
-            final int current = QuliceIndentationCheck.indentation(line);
-            if (QuliceIndentationCheck.inCommentBlock(line)
+            final int current = CascadeIndentationCheck.indentation(line);
+            if (CascadeIndentationCheck.inCommentBlock(line)
                 || line.length() == 0) {
                 continue;
             }
             if (current > previous
-                && current != previous + 4) {
+                && current != previous + LINE_INDENT_DIFF) {
                 this.log(
                     pos + 1,
                     String.format(
