@@ -41,6 +41,7 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class XmlValidatorTest {
 
     /**
@@ -67,6 +68,22 @@ public final class XmlValidatorTest {
                 // @checkstyle LineLength (1 line)
                 "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document xmlns=\"http://maven.apache.org/changes/1.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd\">\n    <body/>\n</document>\n"
         );
+        final Validator validator = new XmlValidator(true);
+        validator.validate(env);
+    }
+
+    /**
+     * Should fail validation for XML without schema specified.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test(expected = ValidationException.class)
+    public void failValidationWithoutSchema() throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "src/main/resources/noschema.xml",
+                // @checkstyle LineLength (1 line)
+                "<Configuration><Appenders><Console name=\"CONSOLE\" target=\"SYSTEM_OUT\"><PatternLayout pattern=\"[%p] %t %c: %m%n\"/></Console></Appenders></Configuration>"
+            );
         final Validator validator = new XmlValidator(true);
         validator.validate(env);
     }
