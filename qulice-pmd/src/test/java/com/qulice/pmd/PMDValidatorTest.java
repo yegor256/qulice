@@ -139,12 +139,11 @@ public final class PMDValidatorTest {
         Logger.getRootLogger().addAppender(
             new WriterAppender(new SimpleLayout(), writer)
         );
-        final Validator validator = new PMDValidator();
-        validator.validate(env);
+        new PMDValidator().validate(env);
         MatcherAssert.assertThat(
             writer.toString(),
             Matchers.allOf(
-                Matchers.not(Matchers.containsString("UnusedPrivateMethod")),
+                Matchers.not(Matchers.containsString("UnusedPrivateField")),
                 Matchers.containsString("No PMD violations found in 1 files")
             )
         );
