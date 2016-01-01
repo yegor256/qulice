@@ -17,3 +17,12 @@ public final class Invalid {
  */
 public final class Foo {
 }
+
+/**
+ * @author First Author (first@author.com)
+ * @author second author has incorrect format
+ * @author Third Author (third@author.com)
+ * @version $Id$
+ */
+public final class Bar {
+}
