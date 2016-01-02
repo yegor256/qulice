@@ -36,6 +36,7 @@ import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.StringWriter;
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Appender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
@@ -136,10 +137,13 @@ public final class PMDValidatorTest {
             )
         );
         final StringWriter writer = new StringWriter();
-        Logger.getRootLogger().addAppender(
-            new WriterAppender(new SimpleLayout(), writer)
+        final Appender appender = new WriterAppender(
+            new SimpleLayout(),
+            writer
         );
+        Logger.getRootLogger().addAppender(appender);
         new PMDValidator().validate(env);
+        writer.flush();
         MatcherAssert.assertThat(
             writer.toString(),
             Matchers.allOf(
@@ -147,6 +151,7 @@ public final class PMDValidatorTest {
                 Matchers.containsString("No PMD violations found in 1 files")
             )
         );
+        Logger.getRootLogger().removeAppender(appender);
     }
 
     /**
