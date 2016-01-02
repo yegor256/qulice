@@ -141,17 +141,20 @@ public final class PMDValidatorTest {
             new SimpleLayout(),
             writer
         );
-        Logger.getRootLogger().addAppender(appender);
-        new PMDValidator().validate(env);
-        writer.flush();
-        MatcherAssert.assertThat(
-            writer.toString(),
-            Matchers.allOf(
-                Matchers.not(Matchers.containsString("UnusedPrivateField")),
-                Matchers.containsString("No PMD violations found in 1 files")
-            )
-        );
-        Logger.getRootLogger().removeAppender(appender);
+        try {
+            Logger.getRootLogger().addAppender(appender);
+            new PMDValidator().validate(env);
+            writer.flush();
+            MatcherAssert.assertThat(
+                writer.toString(),
+                Matchers.allOf(
+                    Matchers.not(Matchers.containsString("UnusedPrivateField")),
+                    Matchers.containsString("No PMD violations found")
+                )
+            );
+        } finally {
+            Logger.getRootLogger().removeAppender(appender);
+        }
     }
 
     /**
