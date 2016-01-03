@@ -78,14 +78,13 @@ public final class XmlValidatorTest {
      */
     @Test(expected = ValidationException.class)
     public void failValidationWithoutSchema() throws Exception {
-        final Environment env = new Environment.Mock()
+        new XmlValidator(true).validate(new Environment.Mock()
             .withFile(
                 "src/main/resources/noschema.xml",
                 // @checkstyle LineLength (1 line)
                 "<Configuration><Appenders><Console name=\"CONSOLE\" target=\"SYSTEM_OUT\"><PatternLayout pattern=\"[%p] %t %c: %m%n\"/></Console></Appenders></Configuration>"
-            );
-        final Validator validator = new XmlValidator(true);
-        validator.validate(env);
+            )
+        );
     }
 
     /**
