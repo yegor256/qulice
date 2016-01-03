@@ -11,6 +11,6 @@ public final class CodeInConstructor {
     }
 
     public int num() {
-        return number;
+        return number + another;
     }
 }
