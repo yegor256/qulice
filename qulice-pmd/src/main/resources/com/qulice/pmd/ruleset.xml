@@ -58,6 +58,7 @@
     <rule ref="rulesets/java/optimizations.xml"/>
     <rule ref="rulesets/java/strings.xml"/>
     <rule ref="rulesets/java/sunsecure.xml"/>
+    <rule ref="rulesets/java/unnecessary.xml"/>
     <rule ref="rulesets/java/unusedcode.xml"/>
 
     <rule ref="rulesets/java/coupling.xml">
@@ -133,6 +134,27 @@
                     <![CDATA[
                             //ClassOrInterfaceBody[count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>1]
                             [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration[BlockStatement])>1]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+        <priority>3</priority>
+    </rule>
+
+    <rule name="ConstructorOnlyInitializesOrCallOtherConstructors"
+          message="Only field initialization or call to other contructors in a constructor."
+          language="java"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            Avoid putting anything other than field assignments into constructors.
+            The only exception should be calling other constructors
+            or calling super class constructor.
+        </description>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                            //ConstructorDeclaration/BlockStatement[count(Statement/StatementExpression/PrimaryExpression[count(following-sibling::AssignmentOperator[1])>0]/PrimaryPrefix[@ThisModifier="true"])!=count(*)]
                     ]]>
                 </value>
             </property>

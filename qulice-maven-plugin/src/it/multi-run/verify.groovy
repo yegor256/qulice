@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ *
+ * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,24 +27,10 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.maven;
-
-import com.qulice.spi.ValidationException;
-
-/**
- * Validator inside Maven.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ *
  */
-interface MavenValidator {
 
-    /**
-     * Validate this environment.
-     * @param env The environment
-     * @throws ValidationException In case of violations
-     */
-    void validate(final MavenEnvironment env) throws ValidationException;
-
-}
+def log = new File(basedir, 'build.log')
+assert log.text.contains('Finishing Checkstyle validator')

@@ -47,7 +47,7 @@ public class AntEnvironmentTest {
      */
     @Test
     @Ignore
-    @SuppressWarnings("PMD.UncommentedEmptyMethod")
+    @SuppressWarnings("PMD.UncommentedEmptyMethodBody")
     public void buildsClassloader() throws Exception {
     }
 
@@ -57,7 +57,7 @@ public class AntEnvironmentTest {
      */
     @Test
     @Ignore
-    @SuppressWarnings("PMD.UncommentedEmptyMethod")
+    @SuppressWarnings("PMD.UncommentedEmptyMethodBody")
     public void returnsFiles() throws Exception {
     }
 
@@ -67,7 +67,7 @@ public class AntEnvironmentTest {
      */
     @Test
     @Ignore
-    @SuppressWarnings("PMD.UncommentedEmptyMethod")
+    @SuppressWarnings("PMD.UncommentedEmptyMethodBody")
     public void excludesFiles() throws Exception {
     }
 }

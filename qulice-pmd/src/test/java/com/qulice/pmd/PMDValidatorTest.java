@@ -50,7 +50,15 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class PMDValidatorTest {
+
+    /**
+     * Error message for forbidding instructions inside a constructor
+     * other than field initialization or call to other contructors.
+     * @checkstyle LineLength (2 lines)
+     */
+    private static final String CODE_IN_CON = "%s\\[\\d+-\\d+\\]: Only field initialization or call to other contructors in a constructor";
 
     /**
      * Pattern for non-constructor field initialization.
@@ -247,6 +255,69 @@ public final class PMDValidatorTest {
     }
 
     /**
+     * PMDValidator forbids unnecessary final modifier for methods.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsUnnecessaryFinalModifier()
+        throws Exception {
+        final String file = "UnnecessaryFinalModifier.java";
+        this.validatePMD(
+            file, false,
+            Matchers.containsString("Unnecessary final modifier")
+        );
+    }
+
+    /**
+     * PMDValidator forbid useless parentheses.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsUselessParentheses()
+        throws Exception {
+        final String file = "UselessParentheses.java";
+        this.validatePMD(
+            file, false,
+            Matchers.containsString("Useless parentheses")
+        );
+    }
+
+    /**
+     * PMDValidator forbids code in constructor
+     * other than field initialization.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsCodeInConstructor()
+        throws Exception {
+        final String file = "CodeInConstructor.java";
+        this.validatePMD(
+            file, false,
+            RegexMatchers.containsPattern(
+                String.format(PMDValidatorTest.CODE_IN_CON, file)
+            )
+        );
+    }
+
+    /**
+     * PMDValidator accepts calls to other constructors
+     * or call to super class constructor in constructors.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void acceptsCallToConstructorInConstructor()
+        throws Exception {
+        final String file = "CallToConstructorInConstructor.java";
+        this.validatePMD(
+            file, true,
+            Matchers.not(
+                RegexMatchers.containsPattern(
+                    String.format(PMDValidatorTest.CODE_IN_CON, file)
+                )
+            )
+        );
+    }
+    /**
      * Validates that PMD reported given violation.
      * @param file File to check.
      * @param result Expected validation result (true if valid).
@@ -275,6 +346,7 @@ public final class PMDValidatorTest {
             } catch (final ValidationException ex) {
                 valid = false;
             }
+            writer.flush();
             MatcherAssert.assertThat(valid, Matchers.is(result));
             MatcherAssert.assertThat(writer.toString(), matcher);
         } finally {
