@@ -30,8 +30,6 @@
 package com.qulice.maven;
 
 import com.jcabi.log.Logger;
-import java.util.Collection;
-import java.util.LinkedList;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MavenPluginManager;
@@ -42,6 +40,9 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Contextualizable;
 import org.slf4j.impl.StaticLoggerBinder;
+
+import java.util.Collection;
+import java.util.LinkedList;
 
 /**
  * Abstract mojo.
@@ -100,6 +101,15 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         new LinkedList<String>();
 
     /**
+     * Location of Checkstyle checks file. If it is an absolute file name you should
+     * prepend it with "file:" prefix. Otherwise it is treated like a resource
+     * name and will be found in classpath (if available).
+     * @since 0.1
+     */
+    @Parameter(property = "qulice.checkstyle", defaultValue = "checks.xml")
+    private transient String checkstyle = "checks.xml";
+
+    /**
      * List of xpath queries to validate pom.xml.
      * @since 0.5
      * @checkstyle IndentationCheck (5 lines)
@@ -145,6 +155,14 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     }
 
     /**
+     * Set checkstyle address.
+     * @param checkstyle The "checkstyle" option
+     */
+    public final void setCheckstyle(final String checkstyle) {
+        this.checkstyle = checkstyle;
+    }
+
+    /**
      * Set excludes.
      * @param exprs Expressions
      */
@@ -166,6 +184,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
             return;
         }
         this.environment.setProperty("license", this.license);
+        this.environment.setProperty("checkstyle", this.checkstyle);
         this.environment.setProject(this.project);
         this.environment.setMojoExecutor(
             new MojoExecutor(this.manager, this.session)

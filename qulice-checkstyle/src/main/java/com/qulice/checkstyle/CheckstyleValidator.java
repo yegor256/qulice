@@ -40,6 +40,10 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.xml.sax.InputSource;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -48,9 +52,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.xml.sax.InputSource;
 
 /**
  * Validator with Checkstyle.
@@ -132,18 +133,17 @@ public final class CheckstyleValidator implements Validator {
             cacheFile.getPath()
         );
         props.setProperty("header", this.header(env));
-        final InputSource src = new InputSource(
-            this.getClass().getResourceAsStream("checks.xml")
-        );
         final Configuration configuration;
         try {
             configuration = ConfigurationLoader.loadConfiguration(
-                src,
-                new PropertiesExpander(props),
-                true
+                    new InputSource(this.toURL(env, env.param("checkstyle", "checks.xml")).openStream()),
+                    new PropertiesExpander(props),
+                    true
             );
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to load config", ex);
+        } catch (IOException e) {
+            throw new IllegalStateException("Failed to read checks.xml", e);
         }
         return configuration;
     }
