@@ -3,4 +3,4 @@
 6:Missing '@since' tag in class/interface comment
 15:Tag text 'John Smith - incorrect format of author' does not match the pattern '^([A-Z](\.|[a-z]+) )+\([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\)$'
 16:Tag text '1.1 - incorrect format' does not match the pattern '^\$Id.*\$$'
-17:Tag text 'a1.0 - incorrect format' does not match the pattern '^\d+(\.\d+)+[a-z]?$'
+17:Tag text 'a1.0 - incorrect format' does not match the pattern '^\d+(\.\d+){1,2}(\.[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$'
