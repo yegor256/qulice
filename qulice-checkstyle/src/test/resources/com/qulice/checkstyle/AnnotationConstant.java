@@ -40,11 +40,16 @@ public final class AnnotationConstant {
     private static final String TEXT6 = "some static text6";
 
     /**
+     * Dummy data.
+     */
+    private int dat = 1;
+
+    /**
      * Some data.
      * @return Some data.
      */
     @SuppressWarnings(AnnotationConstant.TEXT1)
-    public String data() {
+    public static String data() {
         return "some data1";
     }
 
@@ -53,7 +58,7 @@ public final class AnnotationConstant {
      * @return Some other data.
      */
     @SuppressWarnings(value = AnnotationConstant.TEXT2)
-    public String other() {
+    public static String other() {
         return "some data2";
     }
 
@@ -62,7 +67,7 @@ public final class AnnotationConstant {
      * @return Some other data.
      */
     @SuppressWarnings({ AnnotationConstant.TEXT3, AnnotationConstant.TEXT4})
-    public String other() {
+    public static String other() {
         return "some data3";
     }
 
@@ -73,7 +78,7 @@ public final class AnnotationConstant {
     @SuppressWarnings(value = { AnnotationConstant.TEXT5,
         AnnotationConstant.TEXT6 })
     public String other() {
-        return "some data4";
+        return String.valueOf(this.dat);
     }
 }
 
