@@ -15,6 +15,6 @@ install:
   - gem install --no-ri --no-rdoc pdd
   - gem install --no-ri --no-rdoc est
 script:
-  - pdd --file=/dev/null
+  - pdd --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java
   - est --dir=est --file=/dev/null
   - mvn clean install -Pqulice --errors
