@@ -3,7 +3,8 @@ architect:
 - yegor256
 - davvd
 install:
-- sudo gem install pdd
+- sudo gem install --no-ri --no-rdoc pdd
+- sudo gem install --no-ri --no-rdoc est
 assets:
   secring.gpg: yegor256/home#assets/secring.gpg
   settings.xml: yegor256/home#assets/qulice/settings.xml
@@ -15,6 +16,7 @@ merge:
     mvn clean site -Psite --errors --settings ../settings.xml
     mvn clean
     pdd --source=$(pwd) --verbose --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java
+    est --dir=est --file=/dev/null
   commanders:
   - caarlos0
   - carlosmiranda
