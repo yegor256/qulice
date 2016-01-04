@@ -77,6 +77,7 @@ public final class JavadocTagsCheck extends Check {
             Pattern.compile("^([A-Z](\\.|[a-z]+) )+\\([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\)$")
         );
         this.tags.put("version", Pattern.compile("^\\$Id.*\\$$"));
+        this.tags.put("since", Pattern.compile("^\\d+(\\.\\d+)+[a-z]?$"));
     }
 
     @Override

@@ -14,6 +14,7 @@ public final class Invalid {
 /**
  * @author John Smith - incorrect format of author
  * @version 1.1 - incorrect format
+ * @since a1.0 - incorrect format
  */
 public final class Foo {
 }
