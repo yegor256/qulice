@@ -249,7 +249,7 @@ public final class CheckstyleValidatorTest {
                 ),
                 Matchers.not(
                     Matchers.containsString(
-                        "ConstructorParams.java[21]: 'number' hides a field."
+                        "ConstructorParams.java[22]: 'number' hides a field."
                     )
                 )
             )
