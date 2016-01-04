@@ -15,6 +15,6 @@ install:
   - gem install --no-ri --no-rdoc pdd
   - gem install --no-ri --no-rdoc est
 script:
-  - mvn clean install -Pqulice --errors
   - pdd --file=/dev/null
   - est --dir=est --file=/dev/null
+  - mvn clean install -Pqulice --errors
