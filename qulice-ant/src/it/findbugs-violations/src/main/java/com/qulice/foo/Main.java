@@ -37,6 +37,7 @@ import java.util.Set;
  * This is just a test class.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 1.0
  */
 public final class Main {
 
