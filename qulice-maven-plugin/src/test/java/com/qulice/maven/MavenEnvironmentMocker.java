@@ -57,20 +57,17 @@ public final class MavenEnvironmentMocker {
     /**
      * Project.
      */
-    private transient MavenProjectMocker prj =
-        new MavenProjectMocker();
+    private transient MavenProjectMocker prj;
 
     /**
      * Plexus container, mock.
      */
-    private final transient PlexusContainer container =
-        Mockito.mock(PlexusContainer.class);
+    private final transient PlexusContainer container;
 
     /**
      * Xpath queries to test pom.xml.
      */
-    private transient Collection<String> ass =
-        new LinkedList<String>();
+    private transient Collection<String> ass;
 
     /**
      * Public ctor.
@@ -78,6 +75,9 @@ public final class MavenEnvironmentMocker {
      */
     public MavenEnvironmentMocker() throws IOException {
         StaticLoggerBinder.getSingleton().setMavenLog(Mockito.mock(Log.class));
+        this.prj = new MavenProjectMocker();
+        this.container = Mockito.mock(PlexusContainer.class);
+        this.ass = new LinkedList<String>();
         this.ienv = new Environment.Mock();
     }
 

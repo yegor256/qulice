@@ -112,7 +112,7 @@ public final class StringLiteralsConcatenationCheck extends Check {
      * @return True if of type, false otherwise.
      * @see TokenTypes
      */
-    private boolean isOfType(final DetailAST ast, final int[] types) {
+    private boolean isOfType(final DetailAST ast, final int... types) {
         boolean yes = false;
         for (final int type : types) {
             if (ast.getType() == type) {

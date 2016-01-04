@@ -36,6 +36,7 @@ import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.StringWriter;
 import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Appender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
@@ -89,6 +90,7 @@ public final class PMDValidatorTest {
      */
     @Test
     public void understandsMethodReferences() throws Exception {
+        // @checkstyle MultipleStringLiteralsCheck (10 lines)
         final Environment env = new Environment.Mock().withFile(
             "src/main/java/Other.java",
             Joiner.on('\n').join(
@@ -117,6 +119,50 @@ public final class PMDValidatorTest {
             writer.toString(),
             Matchers.not(Matchers.containsString("(UnusedPrivateMethod)"))
         );
+    }
+
+    /**
+     * PMDValidator does not think that constant is unused when it is used
+     * just from the inner class.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void doesNotComplainAboutConstantsInInnerClasses() throws Exception {
+        // @checkstyle MultipleStringLiteralsCheck (10 lines)
+        final Environment env = new Environment.Mock().withFile(
+            "src/main/java/foo/Foo.java",
+            Joiner.on('\n').join(
+                "package foo;",
+                "interface Foo {",
+                "  final class Bar implements Foo {",
+                "    private static final Pattern TEST =",
+                "      Pattern.compile(\"hey\");",
+                "    public String doSomething() {",
+                "      return Foo.Bar.TEST.toString();",
+                "    }",
+                "  }",
+                "}"
+            )
+        );
+        final StringWriter writer = new StringWriter();
+        final Appender appender = new WriterAppender(
+            new SimpleLayout(),
+            writer
+        );
+        try {
+            Logger.getRootLogger().addAppender(appender);
+            new PMDValidator().validate(env);
+            writer.flush();
+            MatcherAssert.assertThat(
+                writer.toString(),
+                Matchers.allOf(
+                    Matchers.not(Matchers.containsString("UnusedPrivateField")),
+                    Matchers.containsString("No PMD violations found")
+                )
+            );
+        } finally {
+            Logger.getRootLogger().removeAppender(appender);
+        }
     }
 
     /**
@@ -300,6 +346,7 @@ public final class PMDValidatorTest {
             } catch (final ValidationException ex) {
                 valid = false;
             }
+            writer.flush();
             MatcherAssert.assertThat(valid, Matchers.is(result));
             MatcherAssert.assertThat(writer.toString(), matcher);
         } finally {

@@ -27,23 +27,40 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.checkstyle;
 
-import com.qulice.spi.ValidationException;
+import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Validator inside Maven.
+ * Checks that try-with-resources does not end with a semicolon.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Hamdi Douss (douss.hamdi@gmail.com)
  * @version $Id$
  */
-interface MavenValidator {
+public final class FinalSemicolonInTryWithResourcesCheck extends Check {
+
+    @Override
+    public int[] getDefaultTokens() {
+        return new int[]{
+            TokenTypes.RESOURCE_SPECIFICATION,
+        };
+    }
 
     /**
-     * Validate this environment.
-     * @param env The environment
-     * @throws ValidationException In case of violations
+     * Implementation relies on existence of semicolon inside of
+     * RESOURCE_SPECIFICATION token as interpreted by Checkstyle.
+     * @param ast RESOURCE_SPECIFICATION token
      */
-    void validate(final MavenEnvironment env) throws ValidationException;
-
+    @Override
+    public void visitToken(final DetailAST ast) {
+        final int semicolons = ast.getChildCount(TokenTypes.SEMI);
+        if (semicolons > 0) {
+            this.log(
+                ast.getLineNo(),
+                "Extra semicolon in the end of try-with-resources head."
+            );
+        }
+    }
 }

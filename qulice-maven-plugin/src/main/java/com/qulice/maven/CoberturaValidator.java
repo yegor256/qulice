@@ -41,7 +41,6 @@ import java.util.Properties;
 public final class CoberturaValidator implements MavenValidator {
 
     // @checkstyle MultipleStringLiterals (30 lines)
-    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {

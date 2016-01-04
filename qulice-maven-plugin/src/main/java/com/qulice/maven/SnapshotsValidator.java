@@ -44,7 +44,6 @@ import org.apache.maven.model.Plugin;
  */
 public final class SnapshotsValidator implements MavenValidator {
 
-    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {

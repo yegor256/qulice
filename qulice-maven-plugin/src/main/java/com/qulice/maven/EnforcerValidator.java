@@ -41,7 +41,6 @@ import java.util.Properties;
 public final class EnforcerValidator implements MavenValidator {
 
     // @checkstyle MultipleStringLiterals (20 lines)
-    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {

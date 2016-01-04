@@ -132,12 +132,11 @@ public interface Environment {
         /**
          * Files for classpath.
          */
-        private final transient Set<String> classpath = new HashSet<String>(0);
+        private final transient Set<String> classpath;
         /**
          * Map of params.
          */
-        private final transient ConcurrentMap<String, String> params =
-            new ConcurrentHashMap<String, String>();
+        private final transient ConcurrentMap<String, String> params;
         /**
          * Exclude patterns.
          */
@@ -148,6 +147,8 @@ public interface Environment {
          * @throws IOException If some IO problem
          */
         public Mock() throws IOException {
+            this.params = new ConcurrentHashMap<String, String>();
+            this.classpath = new HashSet<String>(0);
             final File temp = File.createTempFile(
                 "mock", ".qulice",
                 new File(System.getProperty("java.io.tmpdir"))

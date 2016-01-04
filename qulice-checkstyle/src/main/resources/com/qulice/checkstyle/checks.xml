@@ -296,9 +296,7 @@
         <module name="FinalParameters">
             <property name="tokens" value="CTOR_DEF,METHOD_DEF,FOR_EACH_CLAUSE,LITERAL_CATCH"/>
         </module>
-        <module name="Indentation">
-            <property name="forceStrictCondition" value="true"/>
-        </module>
+        <module name="Indentation"/>
         <module name="CommentsIndentation"/>
         <module name="TrailingComment"/>
         <module name="OuterTypeFilename"/>
@@ -373,19 +371,20 @@
         <module name="com.qulice.checkstyle.MethodsOrderCheck"/>
         <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
         <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
-        <!--
-        see https://github.com/teamed/qulice/issues/239
         <module name="com.qulice.checkstyle.NonStaticMethodCheck">
             <property name="excludeFileNamePattern" value=".*Test\.java"/>
         </module>
-        -->
         <module name="com.qulice.checkstyle.ProtectedMethodInFinalClassCheck"/>
+        <module name="com.qulice.checkstyle.FinalSemicolonInTryWithResourcesCheck"/>
     </module>
 
     <!--
     Our custom checkers.
     -->
     <module name="com.qulice.checkstyle.ImportCohesionCheck">
+        <property name="fileExtensions" value="java"/>
+    </module>
+    <module name="com.qulice.checkstyle.CascadeIndentationCheck">
         <property name="fileExtensions" value="java"/>
     </module>
     <module name="com.qulice.checkstyle.ConditionalRegexpMultilineCheck">

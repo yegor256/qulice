@@ -95,7 +95,7 @@ public final class Wrap {
      * @return The project
      */
     private Project project(final String basedir, final String outdir,
-        final String[] paths) {
+        final String... paths) {
         final Project project = new Project();
         for (final String jar : paths) {
             if (!jar.equals(outdir)) {
