@@ -245,7 +245,7 @@ public final class CheckstyleValidatorTest {
             "ConstructorParams.java", false,
             Matchers.allOf(
                 Matchers.containsString(
-                    "ConstructorParams.java[30]: 'number' hides a field."
+                    "ConstructorParams.java[31]: 'number' hides a field."
                 ),
                 Matchers.not(
                     Matchers.containsString(
