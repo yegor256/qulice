@@ -208,10 +208,10 @@ public final class PMDEmptyTest {
             } catch (final ValidationException ex) {
                 thrown = true;
             }
+            writer.flush();
             MatcherAssert.assertThat(thrown, Matchers.is(true));
             MatcherAssert.assertThat(writer.toString(), matcher);
         } finally {
-            writer.flush();
             Logger.getRootLogger().removeAppender(appender);
         }
     }
