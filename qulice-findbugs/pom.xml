@@ -208,11 +208,6 @@
                         <configuration>
                             <excludes combine.children="append">
                                 <exclude>duplicatefinder:.*</exclude>
-                                <!--
-                                @todo #333 When new jcabi is released based
-                                 on qulice > 0.11, remove the line below.
-                                -->
-                                <exclude>findbugs:.*</exclude>
                             </excludes>
                         </configuration>
                     </plugin>
