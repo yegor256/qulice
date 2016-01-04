@@ -53,7 +53,7 @@ public final class PMDEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void emptyStaticInitializerTest() throws Exception {
+    public void failsForEmptyStaticInitializer() throws Exception {
         this.validatePMD(
             "EmptyStaticInitializer.java",
             Matchers.containsString(
@@ -67,7 +67,7 @@ public final class PMDEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void emptyStatementBlockTest() throws Exception {
+    public void failsForEmptyStatementBlock() throws Exception {
         this.validatePMD(
             "EmptyStatementBlock.java",
             Matchers.containsString(
@@ -81,7 +81,7 @@ public final class PMDEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void emptyInitializerTest() throws Exception {
+    public void failsForEmptyInitializer() throws Exception {
         this.validatePMD(
             "EmptyInitializer.java",
             Matchers.containsString(
@@ -95,7 +95,7 @@ public final class PMDEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void emptyStatementNotInLoopTest() throws Exception {
+    public void failsForEmptyNonLoopStatement() throws Exception {
         this.validatePMD(
             "EmptyStatementNotInLoop.java",
             Matchers.containsString(
@@ -109,7 +109,7 @@ public final class PMDEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void emptySynchronizedBlockTest() throws Exception {
+    public void failsForEmptySynchronizedBlock() throws Exception {
         this.validatePMD(
             "EmptySynchronizedBlock.java",
             Matchers.containsString(
@@ -123,7 +123,7 @@ public final class PMDEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void emptySwitchStmtTest() throws Exception {
+    public void failsForEmptySwitchStatement() throws Exception {
         this.validatePMD(
             "EmptySwitchStmt.java",
             Matchers.containsString(
@@ -137,7 +137,7 @@ public final class PMDEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void emptyFinallyBlockTest() throws Exception {
+    public void failsForEmptyFinallyBlock() throws Exception {
         this.validatePMD(
             "EmptyFinallyBlock.java",
             Matchers.containsString("Avoid empty finally blocks")
@@ -149,7 +149,7 @@ public final class PMDEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void emptyWhileStmtTest() throws Exception {
+    public void failsForEmptyWhileStatement() throws Exception {
         this.validatePMD(
             "EmptyWhileStmt.java",
             Matchers.containsString("Avoid empty while statements")
@@ -161,7 +161,7 @@ public final class PMDEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void emptyIfStmtTest() throws Exception {
+    public void failsForEmptyIfStatement() throws Exception {
         this.validatePMD(
             "EmptyIfStmt.java",
             Matchers.containsString("Avoid empty if statements")
@@ -173,7 +173,7 @@ public final class PMDEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void emptyCatchBlockTest() throws Exception {
+    public void failsForEmptyCatchBlock() throws Exception {
         this.validatePMD(
             "EmptyCatchBlock.java",
             Matchers.containsString("Avoid empty catch blocks")
