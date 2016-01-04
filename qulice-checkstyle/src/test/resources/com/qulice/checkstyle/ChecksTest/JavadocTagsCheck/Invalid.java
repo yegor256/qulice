@@ -15,7 +15,7 @@ public final class Invalid {
  * @author John Smith - incorrect format of author
  * @version 1.1 - incorrect format
  */
-public final class Foo {
+public final class InvalidAuthor {
 }
 
 /**
@@ -24,5 +24,13 @@ public final class Foo {
  * @author Third Author (third@author.com)
  * @version $Id$
  */
-public final class Bar {
+public final class TwoValidAndOneInvalidAuthor {
+}
+
+/**
+ * @author first author has incorrect format
+ * @author second author has incorrect format
+ * @version $Id$
+ */
+public final class TwoInvalidAuthors {
 }
