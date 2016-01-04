@@ -49,14 +49,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>18.0</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava-io</artifactId>
-            <version>r03</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.jcabi</groupId>
@@ -85,13 +78,6 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-        </dependency>
-        <dependency>
-            <!-- Checkstyle is using some classes from this lib -->
-            <groupId>com.google.collections</groupId>
-            <artifactId>google-collections</artifactId>
-            <version>1.0-rc5</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
     <build>
