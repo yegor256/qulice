@@ -32,6 +32,8 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Pattern;
@@ -119,8 +121,8 @@ public final class JavadocTagsCheck extends Check {
      */
     private void matchTagFormat(final String[] lines, final int start,
         final int end, final String tag) {
-        final int line = this.findTagLineNum(lines, start, end, tag);
-        if (line == -1) {
+        final List<Integer> found = this.findTagLineNum(lines, start, end, tag);
+        if (found.isEmpty()) {
             this.log(
                 start + 1,
                 "Missing ''@{0}'' tag in class/interface comment",
@@ -128,14 +130,16 @@ public final class JavadocTagsCheck extends Check {
             );
             return;
         }
-        final String text = this.getTagText(lines[line]);
-        if (!this.tags.get(tag).matcher(text).matches()) {
-            this.log(
-                line + 1,
-                "Tag text ''{0}'' does not match the pattern ''{1}''",
-                text,
-                this.tags.get(tag).toString()
-            );
+        for (final Integer item : found) {
+            final String text = this.getTagText(lines[item]);
+            if (!this.tags.get(tag).matcher(text).matches()) {
+                this.log(
+                    item + 1,
+                    "Tag text ''{0}'' does not match the pattern ''{1}''",
+                    text,
+                    this.tags.get(tag).toString()
+                );
+            }
         }
     }
 
@@ -159,10 +163,10 @@ public final class JavadocTagsCheck extends Check {
      * @return Line number with found tag or -1 otherwise.
      * @checkstyle ParameterNumber (3 lines)
      */
-    private int findTagLineNum(final String[] lines, final int start,
+    private List<Integer> findTagLineNum(final String[] lines, final int start,
         final int end, final String tag) {
         final String prefix = String.format(" * @%s ", tag);
-        int found = -1;
+        final List<Integer> found = new ArrayList<Integer>(1);
         for (int pos = start; pos <= end; pos += 1) {
             final String line = lines[pos];
             if (line.contains(String.format("@%s ", tag))) {
@@ -173,11 +177,9 @@ public final class JavadocTagsCheck extends Check {
                         tag,
                         prefix
                     );
-                    found = -1;
                     break;
                 }
-                found = pos;
-                break;
+                found.add(pos);
             }
         }
         return found;

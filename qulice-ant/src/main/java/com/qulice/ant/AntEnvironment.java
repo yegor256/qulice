@@ -35,6 +35,8 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -129,9 +131,8 @@ public final class AntEnvironment implements Environment {
         } catch (final MalformedURLException ex) {
             throw new IllegalStateException("Failed to build URL", ex);
         }
-        final URLClassLoader loader = new URLClassLoader(
-            urls.toArray(new URL[urls.size()]),
-            Thread.currentThread().getContextClassLoader()
+        final URLClassLoader loader = AccessController.doPrivileged(
+            new AntEnvironment.PrivilegedClassLoader(urls)
         );
         for (final URL url : loader.getURLs()) {
             Logger.debug(this, "Classpath: %s", url);
@@ -173,5 +174,32 @@ public final class AntEnvironment implements Environment {
     @Override
     public Collection<String> excludes(final String checker) {
         return Collections.emptyList();
+    }
+
+    /**
+     * Creates URL ClassLoadere in privileged block.
+     */
+    private static final class PrivilegedClassLoader implements
+        PrivilegedAction<URLClassLoader> {
+        /**
+         * URLs for class loading.
+         */
+        private final transient List<URL> urls;
+
+        /**
+         * Constructor.
+         * @param urls URLs for class loading.
+         */
+        private PrivilegedClassLoader(final List<URL> urls) {
+            this.urls = urls;
+        }
+
+        @Override
+        public URLClassLoader run() {
+            return new URLClassLoader(
+                this.urls.toArray(new URL[this.urls.size()]),
+                Thread.currentThread().getContextClassLoader()
+            );
+        }
     }
 }
