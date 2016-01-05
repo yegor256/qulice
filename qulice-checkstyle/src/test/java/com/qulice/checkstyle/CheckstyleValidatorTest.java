@@ -33,6 +33,7 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
 import java.io.StringWriter;
+import java.util.Arrays;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
@@ -250,6 +251,40 @@ public final class CheckstyleValidatorTest {
                 Matchers.not(
                     Matchers.containsString(
                         "ConstructorParams.java[21]: 'number' hides a field."
+                    )
+                )
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator allows local variables and catch parameters with
+     * names matching {@code ^[a-z]{3,12}$} pattern.
+     * Additionally, catch parameters can use name {@code ex}.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void allowsOnlyProperlyNamedLocalVariables() throws Exception {
+        this.validateCheckstyle(
+            "LocalVariableNames.java", false,
+            Matchers.allOf(
+                Matchers.not(
+                    Matchers.stringContainsInOrder(
+                        Arrays.asList(
+                            "aaa", "twelveletter", "ise"
+                        )
+                    )
+                ),
+                Matchers.stringContainsInOrder(
+                    Arrays.asList(
+                        "LocalVariableNames.java",
+                        "Name 'prolongations' must match pattern",
+                        "Name 'camelCase' must match pattern '^[a-z]{3,12}$'.",
+                        "Name 'number1' must match pattern '^[a-z]{3,12}$'.",
+                        "Name 'ex' must match pattern '^[a-z]{3,12}$'.",
+                        "Name 'a' must match pattern '^[a-z]{3,12}$'.",
+                        "Name 'ae' must match pattern '^ex|[a-z]{3,12}$'.",
+                        "Name 'e' must match pattern '^ex|[a-z]{3,12}$'."
                     )
                 )
             )
