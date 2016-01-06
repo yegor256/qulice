@@ -29,7 +29,7 @@ public final class LocalVariableNames {
     }
 
     /**
-     * Each name here should cause one violation.
+     * Each of those seven names here should cause violation.
      */
     void invalid() {
         try {

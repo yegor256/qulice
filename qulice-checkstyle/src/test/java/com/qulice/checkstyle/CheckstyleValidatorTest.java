@@ -29,12 +29,15 @@
  */
 package com.qulice.checkstyle;
 
+import com.jcabi.aspects.Tv;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Arrays;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
 import org.hamcrest.Matcher;
@@ -265,8 +268,15 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void allowsOnlyProperlyNamedLocalVariables() throws Exception {
-        this.validateCheckstyle(
-            "LocalVariableNames.java", false,
+        final String result = this.runValidation(
+            "LocalVariableNames.java", false
+        );
+        MatcherAssert.assertThat(
+            StringUtils.countMatches(result, "LocalVariableNames.java"),
+            Matchers.is(Tv.SEVEN)
+        );
+        MatcherAssert.assertThat(
+            result,
             Matchers.allOf(
                 Matchers.not(
                     Matchers.stringContainsInOrder(
@@ -277,7 +287,6 @@ public final class CheckstyleValidatorTest {
                 ),
                 Matchers.stringContainsInOrder(
                     Arrays.asList(
-                        "LocalVariableNames.java",
                         "Name 'prolongations' must match pattern",
                         "Name 'camelCase' must match pattern '^[a-z]{3,12}$'.",
                         "Name 'number1' must match pattern '^[a-z]{3,12}$'.",
@@ -362,6 +371,18 @@ public final class CheckstyleValidatorTest {
      */
     private void validateCheckstyle(final String file, final boolean result,
         final Matcher<String> matcher) throws Exception {
+        MatcherAssert.assertThat(this.runValidation(file, result), matcher);
+    }
+
+    /**
+     * Returns string with Checkstyle validation results.
+     * @param file File to check.
+     * @param result Expected validation result.
+     * @return String containing validation results in textual form.
+     * @throws IOException In case of error
+     */
+    private String runValidation(final String file, final boolean result)
+        throws IOException {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule.savePackageInfo(
             new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
@@ -388,6 +409,6 @@ public final class CheckstyleValidatorTest {
             valid = false;
         }
         MatcherAssert.assertThat(valid, Matchers.is(result));
-        MatcherAssert.assertThat(writer.toString(), matcher);
+        return writer.toString();
     }
 }
