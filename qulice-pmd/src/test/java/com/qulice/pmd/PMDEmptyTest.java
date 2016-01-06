@@ -45,6 +45,7 @@ import org.junit.Test;
  * Test case for {@link PMDValidator} class.
  * @author Prahlad Yeri (prahladyeri@yahoo.com)
  * @version $Id$
+ * @todo #544:30min Tests below pass only when run sequentially, when they are run in parallel some of them start to fail. Please fix the tests below and remove override of maven-surefire-plugin configuration in qulice-pmd pom.xml
  */
 @SuppressWarnings("PMD.TooManyMethods")
 public final class PMDEmptyTest {
