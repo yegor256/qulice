@@ -116,6 +116,17 @@
             <url>http://www.qulice.com</url>
         </site>
     </distributionManagement>
+    <dependencyManagement>
+        <dependencies>
+            <!-- Manual jcabi-xml version override until parent POM declares
+            version 0.17.1 or higher -->
+            <dependency>
+                <groupId>com.jcabi</groupId>
+                <artifactId>jcabi-xml</artifactId>
+                <version>0.17.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <build>
         <pluginManagement>
             <plugins>
