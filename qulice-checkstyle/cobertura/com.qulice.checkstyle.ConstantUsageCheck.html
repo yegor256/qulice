@@ -101,14 +101,14 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * @version $Id$</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;42</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;43</td>  <td class="nbHitsCovered">&nbsp;17</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> ConstantUsageCheck <span class="keyword">extends</span> Check {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;43</td>  <td class="nbHitsCovered">&nbsp;18</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> ConstantUsageCheck <span class="keyword">extends</span> Check {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;44</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;45</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;46</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span>[] getDefaultTokens() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;47</td>  <td class="nbHitsCovered">&nbsp;17</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]{</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;47</td>  <td class="nbHitsCovered">&nbsp;18</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]{</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;48</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            TokenTypes.VARIABLE_DEF,</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;49</td>  <td class="nbHits">&nbsp;</td>
@@ -129,7 +129,7 @@
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;57</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> visitToken(<span class="keyword">final</span> DetailAST ast) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsCovered"><a title="Line 58: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;28</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 58: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">        <span class="keyword">if</span> (<span class="keyword">this</span>.isField(ast) &amp;&amp; <span class="keyword">this</span>.isFinal(ast)) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsCovered"><a title="Line 58: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;38</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 58: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">        <span class="keyword">if</span> (<span class="keyword">this</span>.isField(ast) &amp;&amp; <span class="keyword">this</span>.isFinal(ast)) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;59</td>  <td class="nbHitsCovered">&nbsp;19</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> DetailAST namenode = ast.findFirstToken(TokenTypes.IDENT);</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;60</td>  <td class="nbHitsCovered"><a title="Line 60: Conditional coverage 100% (2/2).">&nbsp;19</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 60: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (!<span class="string">"serialVersionUID"</span>.equals(<span class="keyword">this</span>.getText(namenode))) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;61</td>  <td class="nbHitsCovered">&nbsp;18</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">this</span>.checkField(ast, namenode);</pre></td></tr>
@@ -137,7 +137,7 @@
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;63</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;64</td>  <td class="nbHitsCovered">&nbsp;28</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;64</td>  <td class="nbHitsCovered">&nbsp;38</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;65</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
@@ -158,12 +158,12 @@
 <tr>  <td class="numLineCover">&nbsp;74</td>  <td class="nbHitsCovered">&nbsp;18</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> <span class="keyword">int</span> line = namenode.getLineNo();</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;75</td>  <td class="nbHitsCovered">&nbsp;18</td>  <td class="src"><pre class="src">&nbsp;        DetailAST variable = ast.getNextSibling();</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;76</td>  <td class="nbHitsCovered">&nbsp;18</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> counter = 0;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;77</td>  <td class="nbHitsCovered"><a title="Line 77: Conditional coverage 100% (2/2).">&nbsp;157</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 77: Conditional coverage 100% (2/2).">        <span class="keyword">while</span> (<span class="keyword">null</span> != variable) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;78</td>  <td class="nbHitsCovered"><a title="Line 78: Conditional coverage 100% (3/3).">&nbsp;139</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 78: Conditional coverage 100% (3/3).">            <span class="keyword">switch</span> (variable.getType()) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;77</td>  <td class="nbHitsCovered"><a title="Line 77: Conditional coverage 100% (2/2).">&nbsp;163</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 77: Conditional coverage 100% (2/2).">        <span class="keyword">while</span> (<span class="keyword">null</span> != variable) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;78</td>  <td class="nbHitsCovered"><a title="Line 78: Conditional coverage 100% (3/3).">&nbsp;145</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 78: Conditional coverage 100% (3/3).">            <span class="keyword">switch</span> (variable.getType()) {</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;79</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">case</span> TokenTypes.VARIABLE_DEF:</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;80</td>  <td class="nbHitsCovered">&nbsp;51</td>  <td class="src"><pre class="src">&nbsp;                    counter += <span class="keyword">this</span>.parseVarDef(variable, name);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;81</td>  <td class="nbHitsCovered">&nbsp;51</td>  <td class="src"><pre class="src">&nbsp;                    <span class="keyword">break</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;80</td>  <td class="nbHitsCovered">&nbsp;57</td>  <td class="src"><pre class="src">&nbsp;                    counter += <span class="keyword">this</span>.parseVarDef(variable, name);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;81</td>  <td class="nbHitsCovered">&nbsp;57</td>  <td class="src"><pre class="src">&nbsp;                    <span class="keyword">break</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;82</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                <span class="keyword">case</span> TokenTypes.CLASS_DEF:</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;83</td>  <td class="nbHitsCovered">&nbsp;6</td>  <td class="src"><pre class="src">&nbsp;                    counter += <span class="keyword">this</span>.parseDef(</pre></td></tr>
@@ -179,7 +179,7 @@
   <td class="src"><pre class="src">&nbsp;                    <span class="keyword">break</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;90</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;91</td>  <td class="nbHitsCovered">&nbsp;139</td>  <td class="src"><pre class="src">&nbsp;            variable = variable.getNextSibling();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;91</td>  <td class="nbHitsCovered">&nbsp;145</td>  <td class="src"><pre class="src">&nbsp;            variable = variable.getNextSibling();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;92</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;93</td>  <td class="nbHitsUncovered"><a title="Line 93: Conditional coverage 75% (3/4) [each condition: 100%, 50%].">&nbsp;18</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 93: Conditional coverage 75% (3/4) [each condition: 100%, 50%].">        <span class="keyword">if</span> (counter == 0 &amp;&amp; <span class="keyword">this</span>.isPrivate(ast)) {</a></span></pre></td></tr>
@@ -211,15 +211,15 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;108</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">int</span> parseVarDef(<span class="keyword">final</span> DetailAST variable, <span class="keyword">final</span> String name) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;109</td>  <td class="nbHitsCovered">&nbsp;51</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> counter = 0;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;110</td>  <td class="nbHitsCovered">&nbsp;51</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> DetailAST assign =</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;109</td>  <td class="nbHitsCovered">&nbsp;57</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> counter = 0;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;110</td>  <td class="nbHitsCovered">&nbsp;57</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> DetailAST assign =</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;111</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            variable.findFirstToken(TokenTypes.ASSIGN);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;112</td>  <td class="nbHitsUncovered"><a title="Line 112: Conditional coverage 50% (1/2).">&nbsp;51</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 112: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (assign != <span class="keyword">null</span>) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;113</td>  <td class="nbHitsCovered">&nbsp;51</td>  <td class="src"><pre class="src">&nbsp;            DetailAST expression =</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;112</td>  <td class="nbHitsUncovered"><a title="Line 112: Conditional coverage 50% (1/2).">&nbsp;57</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 112: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (assign != <span class="keyword">null</span>) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;113</td>  <td class="nbHitsCovered">&nbsp;57</td>  <td class="src"><pre class="src">&nbsp;            DetailAST expression =</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;114</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                assign.findFirstToken(TokenTypes.EXPR);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;115</td>  <td class="nbHitsCovered"><a title="Line 115: Conditional coverage 100% (2/2).">&nbsp;51</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 115: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (expression == <span class="keyword">null</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;115</td>  <td class="nbHitsCovered"><a title="Line 115: Conditional coverage 100% (2/2).">&nbsp;57</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 115: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (expression == <span class="keyword">null</span>) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;116</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;                expression = assign.findFirstToken(</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;117</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    TokenTypes.ARRAY_INIT</pre></td></tr>
@@ -227,14 +227,14 @@
   <td class="src"><pre class="src">&nbsp;                );</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;119</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;120</td>  <td class="nbHitsCovered">&nbsp;51</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> String text = <span class="keyword">this</span>.getText(expression);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;121</td>  <td class="nbHitsCovered"><a title="Line 121: Conditional coverage 100% (2/2).">&nbsp;51</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 121: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (text.contains(name)) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;120</td>  <td class="nbHitsCovered">&nbsp;57</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> String text = <span class="keyword">this</span>.getText(expression);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;121</td>  <td class="nbHitsCovered"><a title="Line 121: Conditional coverage 100% (2/2).">&nbsp;57</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 121: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (text.contains(name)) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;122</td>  <td class="nbHitsCovered">&nbsp;2</td>  <td class="src"><pre class="src">&nbsp;                ++counter;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;123</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;124</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;125</td>  <td class="nbHitsCovered">&nbsp;51</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> counter;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;125</td>  <td class="nbHitsCovered">&nbsp;57</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> counter;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;126</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;127</td>  <td class="nbHits">&nbsp;</td>
@@ -255,27 +255,27 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> String getText(<span class="keyword">final</span> DetailAST node) {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;135</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        String ret;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;136</td>  <td class="nbHitsCovered"><a title="Line 136: Conditional coverage 100% (2/2).">&nbsp;505</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 136: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (0 == node.getChildCount()) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;137</td>  <td class="nbHitsCovered">&nbsp;316</td>  <td class="src"><pre class="src">&nbsp;            ret = node.getText();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;136</td>  <td class="nbHitsCovered"><a title="Line 136: Conditional coverage 100% (2/2).">&nbsp;517</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 136: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (0 == node.getChildCount()) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;137</td>  <td class="nbHitsCovered">&nbsp;322</td>  <td class="src"><pre class="src">&nbsp;            ret = node.getText();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;138</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        } <span class="keyword">else</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;139</td>  <td class="nbHitsCovered">&nbsp;189</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> StringBuilder result = <span class="keyword">new</span> StringBuilder();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;140</td>  <td class="nbHitsCovered">&nbsp;189</td>  <td class="src"><pre class="src">&nbsp;            DetailAST child = node.getFirstChild();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;141</td>  <td class="nbHitsCovered"><a title="Line 141: Conditional coverage 100% (2/2).">&nbsp;600</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 141: Conditional coverage 100% (2/2).">            <span class="keyword">while</span> (<span class="keyword">null</span> != child) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;142</td>  <td class="nbHitsCovered">&nbsp;411</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">final</span> String text = <span class="keyword">this</span>.getText(child);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;143</td>  <td class="nbHitsCovered">&nbsp;411</td>  <td class="src"><pre class="src">&nbsp;                result.append(text);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;144</td>  <td class="nbHitsCovered"><a title="Line 144: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;411</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 144: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">                <span class="keyword">if</span> (<span class="string">"."</span>.equals(node.getText())</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;139</td>  <td class="nbHitsCovered">&nbsp;195</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> StringBuilder result = <span class="keyword">new</span> StringBuilder();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;140</td>  <td class="nbHitsCovered">&nbsp;195</td>  <td class="src"><pre class="src">&nbsp;            DetailAST child = node.getFirstChild();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;141</td>  <td class="nbHitsCovered"><a title="Line 141: Conditional coverage 100% (2/2).">&nbsp;612</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 141: Conditional coverage 100% (2/2).">            <span class="keyword">while</span> (<span class="keyword">null</span> != child) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;142</td>  <td class="nbHitsCovered">&nbsp;417</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">final</span> String text = <span class="keyword">this</span>.getText(child);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;143</td>  <td class="nbHitsCovered">&nbsp;417</td>  <td class="src"><pre class="src">&nbsp;                result.append(text);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;144</td>  <td class="nbHitsCovered"><a title="Line 144: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;417</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 144: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">                <span class="keyword">if</span> (<span class="string">"."</span>.equals(node.getText())</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;145</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                    &amp;&amp; child.getNextSibling() != <span class="keyword">null</span>) {</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;146</td>  <td class="nbHitsCovered">&nbsp;36</td>  <td class="src"><pre class="src">&nbsp;                    result.append(node.getText());</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;147</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;148</td>  <td class="nbHitsCovered">&nbsp;411</td>  <td class="src"><pre class="src">&nbsp;                child = child.getNextSibling();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;149</td>  <td class="nbHitsCovered">&nbsp;411</td>  <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;150</td>  <td class="nbHitsCovered">&nbsp;189</td>  <td class="src"><pre class="src">&nbsp;            ret = result.toString();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;148</td>  <td class="nbHitsCovered">&nbsp;417</td>  <td class="src"><pre class="src">&nbsp;                child = child.getNextSibling();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;149</td>  <td class="nbHitsCovered">&nbsp;417</td>  <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;150</td>  <td class="nbHitsCovered">&nbsp;195</td>  <td class="src"><pre class="src">&nbsp;            ret = result.toString();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;151</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;152</td>  <td class="nbHitsCovered">&nbsp;505</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> ret;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;152</td>  <td class="nbHitsCovered">&nbsp;517</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> ret;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;153</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;154</td>  <td class="nbHits">&nbsp;</td>
@@ -296,8 +296,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;162</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">boolean</span> isField(<span class="keyword">final</span> DetailAST node) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;163</td>  <td class="nbHitsCovered">&nbsp;28</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> DetailAST parent = node.getParent();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;164</td>  <td class="nbHitsCovered"><a title="Line 164: Conditional coverage 100% (2/2).">&nbsp;28</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 164: Conditional coverage 100% (2/2).">        <span class="keyword">return</span> TokenTypes.OBJBLOCK == parent.getType();</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;163</td>  <td class="nbHitsCovered">&nbsp;38</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> DetailAST parent = node.getParent();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;164</td>  <td class="nbHitsCovered"><a title="Line 164: Conditional coverage 100% (2/2).">&nbsp;38</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 164: Conditional coverage 100% (2/2).">        <span class="keyword">return</span> TokenTypes.OBJBLOCK == parent.getType();</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;165</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;166</td>  <td class="nbHits">&nbsp;</td>
@@ -316,8 +316,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;173</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">boolean</span> isFinal(<span class="keyword">final</span> DetailAST node) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;174</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;175</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> modifiers.branchContains(TokenTypes.FINAL);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;174</td>  <td class="nbHitsCovered">&nbsp;25</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;175</td>  <td class="nbHitsCovered">&nbsp;25</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> modifiers.branchContains(TokenTypes.FINAL);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;176</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;177</td>  <td class="nbHits">&nbsp;</td>
@@ -427,6 +427,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 12/31/15 6:35 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 1/7/16 10:24 PM.</div>
 </body>
 </html>
