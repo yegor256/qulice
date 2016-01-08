@@ -170,8 +170,8 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator reports an error when indentation is not
-     * bigger than previous line by exactly 4.
+     * CheckstyleValidator reports an error when comment or Javadoc has too
+     * long line.
      * @throws Exception when error.
      */
     @Test
