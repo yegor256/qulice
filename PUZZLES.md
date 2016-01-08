@@ -1,6 +1,6 @@
 ## Puzzles
 
-There are 14 active puzzles (68 total):
+There are 15 active puzzles (70 total):
 
 
 <del>unknown</del> [`?`](../master/?)<br/>
@@ -71,3 +71,5 @@ There are 14 active puzzles (68 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#497](https://github.com/teamed/qulice/issues/497):[**447-94597ea9**](https://github.com/teamed/qulice/issues/497) [`CheckstyleValidatorTest.java:214-216`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L214-L216)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>412</del>](https://github.com/teamed/qulice/issues/412) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#505](https://github.com/teamed/qulice/issues/505):[**412-bd044e76**](https://github.com/teamed/qulice/issues/505) [`CheckstyleValidatorTest.java:51-53`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L51-L53)<br/>
+[#544](https://github.com/teamed/qulice/issues/544):[<del>544</del>](https://github.com/teamed/qulice/issues/544) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[**544-c37b2cc3**]() [`PMDEmptyTest.java:48-50`](../master/qulice-pmd/src/test/java/com/qulice/pmd/PMDEmptyTest.java#L48-L50)<br/>
