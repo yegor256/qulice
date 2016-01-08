@@ -118,8 +118,8 @@ public final class CheckstyleValidatorTest {
     @Test
     public void acceptsInstanceMethodReferences() throws Exception {
         this.validateCheckstyle(
-                "InstanceMethodRef.java", true,
-                Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+            "InstanceMethodRef.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
         );
     }
 

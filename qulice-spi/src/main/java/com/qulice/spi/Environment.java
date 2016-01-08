@@ -123,6 +123,7 @@ public interface Environment {
 
     /**
      * Mock of {@link Environment}.
+     * @checkstyle NonStaticMethodCheck (500 lines)
      */
     final class Mock implements Environment {
         /**
@@ -146,9 +147,12 @@ public interface Environment {
          * Public ctor.
          * @throws IOException If some IO problem
          */
+        @SuppressWarnings(
+            "PMD.ConstructorOnlyInitializesOrCallOtherConstructors"
+            )
         public Mock() throws IOException {
             this.params = new ConcurrentHashMap<String, String>();
-            this.classpath = new HashSet<String>(0);
+            this.classpath = new HashSet<String>(1);
             final File temp = File.createTempFile(
                 "mock", ".qulice",
                 new File(System.getProperty("java.io.tmpdir"))
@@ -290,6 +294,7 @@ public interface Environment {
             return files;
         }
         @Override
+        // @checkstyle NonStaticMethod (1 line)
         public boolean exclude(final String check, final String name) {
             return false;
         }

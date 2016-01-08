@@ -248,13 +248,14 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
                 @Nullable
                 @Override
                 public String apply(@Nullable final String input) {
+                    String result = null;
                     if (input != null) {
                         final String[] exclude = input.split(":", 2);
                         if (checker.equals(exclude[0]) && exclude.length > 1) {
-                            return exclude[1];
+                            result = exclude[1];
                         }
                     }
-                    return null;
+                    return result;
                 }
             }
         );

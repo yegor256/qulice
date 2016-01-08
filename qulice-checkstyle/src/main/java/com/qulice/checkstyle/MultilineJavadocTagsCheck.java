@@ -75,7 +75,7 @@ public final class MultilineJavadocTagsCheck extends Check {
         final int start = ast.getLineNo();
         final int cstart = this.findCommentStart(lines, start) + 1;
         final int cend = this.findCommentEnd(lines, start) - 1;
-        if ((cend >= cstart) && (cstart >= 0)) {
+        if (cend >= cstart && cstart >= 0) {
             this.checkJavaDoc(lines, cstart, cend);
         } else {
             this.log(0, "Can't find method comment");
@@ -90,22 +90,22 @@ public final class MultilineJavadocTagsCheck extends Check {
      */
     private void checkJavaDoc(final String[] lines, final int start,
         final int end) {
-        boolean isTagged = false;
-        int tagIndex = -1;
+        boolean tagged = false;
+        int index = -1;
         for (int current = start; current <= end; current += 1) {
             final String line = lines[current];
             if (line.contains("* @")) {
-                isTagged = true;
-                tagIndex = line.indexOf('@');
+                tagged = true;
+                index = line.indexOf('@');
             } else {
-                if (isTagged) {
-                    final int startComment = line.indexOf('*');
-                    int startText = startComment + 1;
-                    while ((startText < line.length())
-                        && (line.charAt(startText) == ' ')) {
-                        startText += 1;
+                if (tagged) {
+                    final int comment = line.indexOf('*');
+                    int text = comment + 1;
+                    while (text < line.length()
+                        && line.charAt(text) == ' ') {
+                        text += 1;
                     }
-                    if (startText != (tagIndex + 1)) {
+                    if (text != index + 1) {
                         this.log(
                             current + 1,
                             "Should contain one indentation space"

@@ -96,7 +96,7 @@ public final class JavadocTagsCheck extends Check {
             final int start = ast.getLineNo();
             final int cstart = this.findCommentStart(lines, start);
             final int cend = this.findCommentEnd(lines, start);
-            if ((cend > cstart) && (cstart >= 0)) {
+            if (cend > cstart && cstart >= 0) {
                 for (final String tag : this.tags.keySet()) {
                     this.matchTagFormat(lines, cstart, cend, tag);
                 }
