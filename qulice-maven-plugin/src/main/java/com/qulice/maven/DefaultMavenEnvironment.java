@@ -39,6 +39,8 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -163,9 +165,8 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
-        final URLClassLoader loader = new URLClassLoader(
-            urls.toArray(new URL[urls.size()]),
-            Thread.currentThread().getContextClassLoader()
+        final URLClassLoader loader = AccessController.doPrivilegedWithCombiner(
+            new DefaultMavenEnvironment.PrivilegedClassLoader(urls)
         );
         for (final URL url : loader.getURLs()) {
             Logger.debug(this, "Classpath: %s", url);
@@ -230,13 +231,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public boolean exclude(final String check, final String name) {
         return Iterables.any(
             this.excludes(check),
-            new Predicate<String>() {
-                @Override
-                public boolean apply(@Nullable final String input) {
-                    return input != null
-                        && FilenameUtils.normalize(name, true).matches(input);
-                }
-            }
+            new DefaultMavenEnvironment.PathPredicate(name)
         );
     }
 
@@ -244,19 +239,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public Collection<String> excludes(final String checker) {
         return Collections2.transform(
             this.exc,
-            new Function<String, String>() {
-                @Nullable
-                @Override
-                public String apply(@Nullable final String input) {
-                    if (input != null) {
-                        final String[] exclude = input.split(":", 2);
-                        if (checker.equals(exclude[0]) && exclude.length > 1) {
-                            return exclude[1];
-                        }
-                    }
-                    return null;
-                }
-            }
+            new DefaultMavenEnvironment.CheckerExcludes(checker)
         );
     }
 
@@ -311,4 +294,88 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         this.asser.addAll(ass);
     }
 
+    /**
+     * Creates URL ClassLoader in privileged block.
+     */
+    private static final class PrivilegedClassLoader implements
+        PrivilegedAction<URLClassLoader> {
+        /**
+         * URLs for class loading.
+         */
+        private final transient List<URL> urls;
+
+        /**
+         * Constructor.
+         * @param urls URLs for class loading.
+         */
+        private PrivilegedClassLoader(final List<URL> urls) {
+            this.urls = urls;
+        }
+
+        @Override
+        public URLClassLoader run() {
+            return new URLClassLoader(
+                this.urls.toArray(new URL[this.urls.size()]),
+                Thread.currentThread().getContextClassLoader()
+            );
+        }
+    }
+
+    /**
+     * Checks if two paths are equal.
+     */
+    private static class PathPredicate implements Predicate<String> {
+        /**
+         * Path to match.
+         */
+        private final transient String name;
+
+        /**
+         * Constructor.
+         * @param name Path to match.
+         */
+        PathPredicate(final String name) {
+            this.name = name;
+        }
+
+        @Override
+        public boolean apply(@Nullable final String input) {
+            return input != null
+                && FilenameUtils.normalize(this.name, true).matches(input);
+        }
+    }
+
+    /**
+     * Converts a checker exclude into exclude param.
+     *
+     * E.g. "checkstyle:.*" will become ".*".
+     */
+    private static class CheckerExcludes implements Function<String, String> {
+
+        /**
+         * Name of checker.
+         */
+        private final transient String checker;
+
+        /**
+         * Constructor.
+         * @param checker Name of checker.
+         */
+        CheckerExcludes(final String checker) {
+            this.checker = checker;
+        }
+
+        @Nullable
+        @Override
+        public String apply(@Nullable final String input) {
+            String result = null;
+            if (input != null) {
+                final String[] exclude = input.split(":", 2);
+                if (this.checker.equals(exclude[0]) && exclude.length > 1) {
+                    result = exclude[1];
+                }
+            }
+            return result;
+        }
+    }
 }
