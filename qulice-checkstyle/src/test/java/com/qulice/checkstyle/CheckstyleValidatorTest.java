@@ -170,6 +170,27 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator reports an error when comment or Javadoc has too
+     * long line.
+     * @throws Exception when error.
+     */
+    @Test
+    public void reportsErrorWhenCommentOrJavadocIsTooLong() throws Exception {
+        this.validateCheckstyle(
+            "TooLongLines.java",
+            false,
+            Matchers.stringContainsInOrder(
+                Arrays.asList(
+                    "TooLongLines.java[8]",
+                    "Line is longer than 80 characters (found 82)",
+                    "TooLongLines.java[14]",
+                    "Line is longer than 80 characters (found 85)"
+                )
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator accepts the valid indentation
      * refused by forceStrictCondition.
      * @throws Exception when error.
