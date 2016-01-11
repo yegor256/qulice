@@ -45,7 +45,7 @@ import org.hamcrest.MatcherAssert;
  * @version $Id$
  * @since 0.16
  */
-public final class PMDAssert {
+final class PMDAssert {
     /**
      * File to validate.
      */
@@ -67,7 +67,7 @@ public final class PMDAssert {
      * @param result Expected build status.
      * @param matcher Matcher that needs to match.
      */
-    public PMDAssert(final String file, final Matcher<Boolean> result,
+    PMDAssert(final String file, final Matcher<Boolean> result,
         final Matcher<String> matcher) {
         this.file = file;
         this.result = result;
@@ -78,15 +78,13 @@ public final class PMDAssert {
      * Validated given file against PMD.
      * @throws Exception In case of error.
      */
-    public void validate() throws Exception {
+    void validate() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final StringWriter writer = new StringWriter();
         final WriterAppender appender =
             new WriterAppender(new SimpleLayout(), writer);
         try {
-            Logger.getRootLogger().addAppender(
-                appender
-            );
+            Logger.getRootLogger().addAppender(appender);
             final Environment env = mock.withFile(
                 String.format("src/main/java/foo/%s", this.file),
                 IOUtils.toString(
