@@ -339,7 +339,7 @@
         </module>
         <module name="LineLength">
             <property name="max" value="80"/>
-            <property name="ignorePattern" value="^((\s+(\*|//)\s+@[a-z]+ )|(import )).*$"/>
+            <property name="ignorePattern" value="^import .*$"/>
         </module>
         <module name="AnonInnerLength" />
         <module name="MethodLength"/>

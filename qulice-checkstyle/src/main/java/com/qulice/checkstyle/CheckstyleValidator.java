@@ -121,7 +121,7 @@ public final class CheckstyleValidator implements Validator {
         if (!parent.exists() && !parent.mkdirs()) {
             throw new IllegalStateException(
                 String.format(
-                    "Unable to crate directories needed for %s",
+                    "Unable to create directories needed for %s",
                     cache.getPath()
                 )
             );
