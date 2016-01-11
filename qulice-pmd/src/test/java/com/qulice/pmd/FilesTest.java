@@ -55,7 +55,7 @@ public final class FilesTest {
         final Environment env = new Environment.Mock()
             .withFile("src/main/java/Main.java", source)
             .withFile("src/main/resources/test.properties", "prop=1");
-        final Collection<DataSource> found = new Files().getSources(env);
+        final Collection<DataSource> found = new Files(env).sources();
         MatcherAssert.assertThat(found.size(), Matchers.is(1));
         MatcherAssert.assertThat(
             IOUtils.toString(found.iterator().next().getInputStream()),

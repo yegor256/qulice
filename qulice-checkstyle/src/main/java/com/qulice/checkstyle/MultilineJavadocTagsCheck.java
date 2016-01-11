@@ -73,8 +73,10 @@ public final class MultilineJavadocTagsCheck extends Check {
     public void visitToken(final DetailAST ast) {
         final String[] lines = this.getLines();
         final int start = ast.getLineNo();
-        final int cstart = this.findCommentStart(lines, start) + 1;
-        final int cend = this.findCommentEnd(lines, start) - 1;
+        final int cstart =
+            MultilineJavadocTagsCheck.findCommentStart(lines, start) + 1;
+        final int cend =
+            MultilineJavadocTagsCheck.findCommentEnd(lines, start) - 1;
         if (cend >= cstart && cstart >= 0) {
             this.checkJavaDoc(lines, cstart, cend);
         } else {
@@ -122,8 +124,8 @@ public final class MultilineJavadocTagsCheck extends Check {
      * @param start Start searching from this line number.
      * @return Line number with found starting comment or -1 otherwise.
      */
-    private int findCommentStart(final String[] lines, final int start) {
-        return this.findTrimmedTextUp(lines, start, "/**");
+    private static int findCommentStart(final String[] lines, final int start) {
+        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, "/**");
     }
 
     /**
@@ -132,8 +134,8 @@ public final class MultilineJavadocTagsCheck extends Check {
      * @param start Start searching from this line number.
      * @return Line number with found ending comment, or -1 if it wasn't found.
      */
-    private int findCommentEnd(final String[] lines, final int start) {
-        return this.findTrimmedTextUp(lines, start, "*/");
+    private static int findCommentEnd(final String[] lines, final int start) {
+        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, "*/");
     }
 
     /**
@@ -143,7 +145,7 @@ public final class MultilineJavadocTagsCheck extends Check {
      * @param text Text to find.
      * @return Line number with found text, or -1 if it wasn't found.
      */
-    private int findTrimmedTextUp(final String[] lines,
+    private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
         int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {

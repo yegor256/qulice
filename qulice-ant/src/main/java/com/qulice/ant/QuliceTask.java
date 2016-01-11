@@ -99,7 +99,7 @@ public final class QuliceTask extends Task {
         final Environment env = this.environment();
         try {
             final long start = System.nanoTime();
-            this.validate(env);
+            QuliceTask.validate(env);
             Logger.info(
                 this,
                 "Qulice quality check completed in %[nano]s",
@@ -141,8 +141,9 @@ public final class QuliceTask extends Task {
      * @param env Environment
      * @throws ValidationException If there are any problems.
      */
-    private void validate(final Environment env) throws ValidationException {
-        for (final Validator validator : this.validators()) {
+    private static void validate(final Environment env)
+        throws ValidationException {
+        for (final Validator validator : QuliceTask.validators()) {
             validator.validate(env);
         }
     }
@@ -151,7 +152,7 @@ public final class QuliceTask extends Task {
      * Create set of Validators.
      * @return Set of Validators.
      */
-    private Set<Validator> validators() {
+    private static Set<Validator> validators() {
         final Set<Validator> validators = new LinkedHashSet<Validator>();
         validators.add(new CheckstyleValidator());
         validators.add(new PMDValidator());

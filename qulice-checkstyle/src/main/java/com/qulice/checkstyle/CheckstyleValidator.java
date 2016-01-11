@@ -156,7 +156,7 @@ public final class CheckstyleValidator implements Validator {
      */
     private String header(final Environment env) {
         final String name = env.param("license", "LICENSE.txt");
-        final URL url = this.toURL(env, name);
+        final URL url = CheckstyleValidator.toURL(env, name);
         final String content;
         try {
             content = IOUtils.toString(url.openStream())
@@ -193,7 +193,7 @@ public final class CheckstyleValidator implements Validator {
      * @return The URL
      * @see #header(Environment)
      */
-    private URL toURL(final Environment env, final String name) {
+    private static URL toURL(final Environment env, final String name) {
         final URL url;
         if (name.startsWith("file:")) {
             try {

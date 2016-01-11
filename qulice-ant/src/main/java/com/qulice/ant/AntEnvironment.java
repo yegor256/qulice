@@ -110,11 +110,11 @@ public final class AntEnvironment implements Environment {
 
     @Override
     public String param(final String name, final String value) {
-        String propValue = this.project.getProperty(name);
-        if (propValue == null) {
-            propValue = value;
+        String property = this.project.getProperty(name);
+        if (property == null) {
+            property = value;
         }
-        return propValue;
+        return property;
     }
 
     @Override
