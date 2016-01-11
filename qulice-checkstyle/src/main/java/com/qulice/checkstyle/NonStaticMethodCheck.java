@@ -32,6 +32,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 import java.util.regex.Pattern;
 
 /**
@@ -40,6 +41,11 @@ import java.util.regex.Pattern;
  *
  * <p>If your method doesn't need {@code this} than why it is not
  * {@code static}?
+ *
+ * The only case when method can't be marked as static is when it has
+ * {@code @Override} annotation. There's no concept of inheritance and
+ * polymorphism for static methods even if they don't need {@code this} to
+ * perform the actual work.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
@@ -81,7 +87,8 @@ public final class NonStaticMethodCheck extends Check {
     }
 
     /**
-     * Check that non static class method refer \"this\".
+     * Check that non static class method refer \"this\". Methods annotated
+     * with {@code @Override} are excluded.
      * @param method DetailAST of method
      */
     private void checkClassMethod(final DetailAST method) {
@@ -90,7 +97,8 @@ public final class NonStaticMethodCheck extends Check {
         if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
             return;
         }
-        if (!method.branchContains(TokenTypes.LITERAL_THIS)) {
+        if (!AnnotationUtility.containsAnnotation(method, "Override")
+            && !method.branchContains(TokenTypes.LITERAL_THIS)) {
             final int line = method.getLineNo();
             this.log(
                 line,
