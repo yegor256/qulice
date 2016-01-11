@@ -294,7 +294,6 @@ public interface Environment {
             return files;
         }
         @Override
-        // @checkstyle NonStaticMethod (1 line)
         public boolean exclude(final String check, final String name) {
             return false;
         }
