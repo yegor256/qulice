@@ -78,7 +78,7 @@ final class PMDAssert {
      * Validated given file against PMD.
      * @throws Exception In case of error.
      */
-    void validate() throws Exception {
+    public void validate() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final StringWriter writer = new StringWriter();
         final WriterAppender appender =
