@@ -41,7 +41,6 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
-@SuppressWarnings("PMD.TooManyMethods")
 public final class XmlValidatorTest {
 
     /**
@@ -70,21 +69,6 @@ public final class XmlValidatorTest {
         );
         final Validator validator = new XmlValidator(true);
         validator.validate(env);
-    }
-
-    /**
-     * Should fail validation for XML without schema specified.
-     * @throws Exception If something wrong happens inside.
-     */
-    @Test(expected = ValidationException.class)
-    public void failValidationWithoutSchema() throws Exception {
-        new XmlValidator(true).validate(new Environment.Mock()
-            .withFile(
-                "src/main/resources/noschema.xml",
-                // @checkstyle LineLength (1 line)
-                "<Configuration><Appenders><Console name=\"CONSOLE\" target=\"SYSTEM_OUT\"><PatternLayout pattern=\"[%p] %t %c: %m%n\"/></Console></Appenders></Configuration>"
-            )
-        );
     }
 
     /**

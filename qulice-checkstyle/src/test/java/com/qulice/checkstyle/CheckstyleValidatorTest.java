@@ -29,15 +29,11 @@
  */
 package com.qulice.checkstyle;
 
-import com.jcabi.aspects.Tv;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
-import java.io.IOException;
 import java.io.StringWriter;
-import java.util.Arrays;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
 import org.hamcrest.Matcher;
@@ -170,27 +166,6 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator reports an error when comment or Javadoc has too
-     * long line.
-     * @throws Exception when error.
-     */
-    @Test
-    public void reportsErrorWhenCommentOrJavadocIsTooLong() throws Exception {
-        this.validateCheckstyle(
-            "TooLongLines.java",
-            false,
-            Matchers.stringContainsInOrder(
-                Arrays.asList(
-                    "TooLongLines.java[8]",
-                    "Line is longer than 80 characters (found 82)",
-                    "TooLongLines.java[14]",
-                    "Line is longer than 80 characters (found 85)"
-                )
-            )
-        );
-    }
-
-    /**
      * CheckstyleValidator accepts the valid indentation
      * refused by forceStrictCondition.
      * @throws Exception when error.
@@ -282,46 +257,6 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator allows local variables and catch parameters with
-     * names matching {@code ^[a-z]{3,12}$} pattern.
-     * Additionally, catch parameters can use name {@code ex}.
-     * @throws Exception In case of error
-     */
-    @Test
-    public void allowsOnlyProperlyNamedLocalVariables() throws Exception {
-        final String result = this.runValidation(
-            "LocalVariableNames.java", false
-        );
-        MatcherAssert.assertThat(
-            StringUtils.countMatches(result, "LocalVariableNames.java"),
-            Matchers.is(Tv.SEVEN)
-        );
-        MatcherAssert.assertThat(
-            result,
-            Matchers.allOf(
-                Matchers.not(
-                    Matchers.stringContainsInOrder(
-                        Arrays.asList(
-                            "aaa", "twelveletter", "ise"
-                        )
-                    )
-                ),
-                Matchers.stringContainsInOrder(
-                    Arrays.asList(
-                        "Name 'prolongations' must match pattern",
-                        "Name 'camelCase' must match pattern '^[a-z]{3,12}$'.",
-                        "Name 'number1' must match pattern '^[a-z]{3,12}$'.",
-                        "Name 'ex' must match pattern '^[a-z]{3,12}$'.",
-                        "Name 'a' must match pattern '^[a-z]{3,12}$'.",
-                        "Name 'ae' must match pattern '^ex|[a-z]{3,12}$'.",
-                        "Name 'e' must match pattern '^ex|[a-z]{3,12}$'."
-                    )
-                )
-            )
-        );
-    }
-
-    /**
      * CheckstyleValidator will fail if  Windows EOL-s are used.
      * @throws Exception If something wrong happens inside
      */
@@ -392,18 +327,6 @@ public final class CheckstyleValidatorTest {
      */
     private void validateCheckstyle(final String file, final boolean result,
         final Matcher<String> matcher) throws Exception {
-        MatcherAssert.assertThat(this.runValidation(file, result), matcher);
-    }
-
-    /**
-     * Returns string with Checkstyle validation results.
-     * @param file File to check.
-     * @param result Expected validation result.
-     * @return String containing validation results in textual form.
-     * @throws IOException In case of error
-     */
-    private String runValidation(final String file, final boolean result)
-        throws IOException {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule.savePackageInfo(
             new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
@@ -430,6 +353,6 @@ public final class CheckstyleValidatorTest {
             valid = false;
         }
         MatcherAssert.assertThat(valid, Matchers.is(result));
-        return writer.toString();
+        MatcherAssert.assertThat(writer.toString(), matcher);
     }
 }

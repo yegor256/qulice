@@ -310,14 +310,10 @@
         <module name="ClassTypeParameterName"/>
         <module name="ConstantName"/>
         <module name="LocalFinalVariableName">
-            <property name="format" value="^[a-z]{3,12}$"/>
-            <property name="tokens" value="VARIABLE_DEF"/>
+            <property name="format" value="^ex|[a-z]{3,}$"/>
         </module>
         <module name="LocalVariableName">
-            <property name="format" value="^[a-z]{3,12}$"/>
-        </module>
-        <module name="CatchParameterName">
-            <property name="format" value="^ex|[a-z]{3,12}$"/>
+            <property name="format" value="^ex|[a-z]{3,}$"/>
         </module>
         <module name="MemberName">
             <property name="format" value="^[a-z]{3,}$"/>
@@ -339,7 +335,7 @@
         </module>
         <module name="LineLength">
             <property name="max" value="80"/>
-            <property name="ignorePattern" value="^import .*$"/>
+            <property name="ignorePattern" value="^((\s+(\*|//)\s+@[a-z]+ )|(import )).*$"/>
         </module>
         <module name="AnonInnerLength" />
         <module name="MethodLength"/>
