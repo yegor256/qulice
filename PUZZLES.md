@@ -73,5 +73,5 @@ There are 16 active puzzles (72 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#505](https://github.com/teamed/qulice/issues/505):[**412-bd044e76**](https://github.com/teamed/qulice/issues/505) [`CheckstyleValidatorTest.java:51-53`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L51-L53)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#544](https://github.com/teamed/qulice/issues/544):[<del>544</del>](https://github.com/teamed/qulice/issues/544) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#596](https://github.com/teamed/qulice/issues/596):[**544-c37b2cc3**](https://github.com/teamed/qulice/issues/596) [`PMDEmptyTest.java:48-50`](../master/qulice-pmd/src/test/java/com/qulice/pmd/PMDEmptyTest.java#L48-L50)<br/>
-[#569](https://github.com/teamed/qulice/issues/569):[<del>569</del>](https://github.com/teamed/qulice/issues/569) [`?`](../master/?)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[**569-cd6c2a10**]() [`PMDDisabledRulesTest.java:44-47`](../master/qulice-pmd/src/test/java/com/qulice/pmd/PMDDisabledRulesTest.java#L44-L47)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[#569](https://github.com/teamed/qulice/issues/569):[<del>569</del>](https://github.com/teamed/qulice/issues/569) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#609](https://github.com/teamed/qulice/issues/609):[**569-cd6c2a10**](https://github.com/teamed/qulice/issues/609) [`PMDDisabledRulesTest.java:44-47`](../master/qulice-pmd/src/test/java/com/qulice/pmd/PMDDisabledRulesTest.java#L44-L47)<br/>
