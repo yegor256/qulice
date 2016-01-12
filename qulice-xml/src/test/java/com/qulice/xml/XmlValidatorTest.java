@@ -29,8 +29,6 @@
  */
 package com.qulice.xml;
 
-import com.jcabi.xml.StrictXML;
-import com.jcabi.xml.XMLDocument;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
@@ -263,6 +261,10 @@ public final class XmlValidatorTest {
         validator.validate(env);
     }
 
+    /**
+     * XmlValidatorTest can pass validation if schema file is in classpath.
+     * @throws Exception If something goes wrong
+     */
     @Test
     public void passesValidationForClasspathSchema() throws Exception {
         final Environment env = new Environment.Mock().withFile(
@@ -285,17 +287,4 @@ public final class XmlValidatorTest {
         validator.validate(env);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void failsValidation() throws Exception {
-        new StrictXML(
-            new XMLDocument("<a></a>")
-        );
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void failsValidationForInvalidURI() throws Exception {
-        new StrictXML(
-            new XMLDocument("<a xsi:schemaLocation=\"http://hello world\"></a>")
-        );
-    }
 }
