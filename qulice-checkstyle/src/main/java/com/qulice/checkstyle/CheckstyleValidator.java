@@ -115,29 +115,29 @@ public final class CheckstyleValidator implements Validator {
      * @see #validate()
      */
     private Configuration configuration(final Environment env) {
-        final File cacheFile =
-                new File(env.tempdir(), "checkstyle/checkstyle.cache");
-        final File parent = cacheFile.getParentFile();
+        final File cache =
+            new File(env.tempdir(), "checkstyle/checkstyle.cache");
+        final File parent = cache.getParentFile();
         if (!parent.exists() && !parent.mkdirs()) {
             throw new IllegalStateException(
                 String.format(
-                    "Unable to crate directories needed for %s",
-                    cacheFile.getPath()
+                    "Unable to create directories needed for %s",
+                    cache.getPath()
                 )
             );
         }
         final Properties props = new Properties();
         props.setProperty(
             "cache.file",
-            cacheFile.getPath()
+            cache.getPath()
         );
         props.setProperty("header", this.header(env));
         final InputSource src = new InputSource(
             this.getClass().getResourceAsStream("checks.xml")
         );
-        final Configuration configuration;
+        final Configuration config;
         try {
-            configuration = ConfigurationLoader.loadConfiguration(
+            config = ConfigurationLoader.loadConfiguration(
                 src,
                 new PropertiesExpander(props),
                 true
@@ -145,7 +145,7 @@ public final class CheckstyleValidator implements Validator {
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to load config", ex);
         }
-        return configuration;
+        return config;
     }
 
     /**
@@ -156,7 +156,7 @@ public final class CheckstyleValidator implements Validator {
      */
     private String header(final Environment env) {
         final String name = env.param("license", "LICENSE.txt");
-        final URL url = this.toURL(env, name);
+        final URL url = CheckstyleValidator.toURL(env, name);
         final String content;
         try {
             content = IOUtils.toString(url.openStream())
@@ -193,7 +193,7 @@ public final class CheckstyleValidator implements Validator {
      * @return The URL
      * @see #header(Environment)
      */
-    private URL toURL(final Environment env, final String name) {
+    private static URL toURL(final Environment env, final String name) {
         final URL url;
         if (name.startsWith("file:")) {
             try {

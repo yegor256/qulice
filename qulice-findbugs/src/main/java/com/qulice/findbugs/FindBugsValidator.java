@@ -108,7 +108,7 @@ public final class FindBugsValidator implements Validator {
         );
         final Iterable<String> excludes = env.excludes("findbugs");
         if (excludes.iterator().hasNext()) {
-            args.add(this.excludes(env, excludes));
+            args.add(FindBugsValidator.excludes(env, excludes));
         }
         return new VerboseProcess(
             new ProcessBuilder(args), Level.ALL, Level.ALL
@@ -149,7 +149,7 @@ public final class FindBugsValidator implements Validator {
      * @param excludes Iterable with exclude patterns
      * @return Path to file with findbug excludes
      */
-    private String excludes(final Environment env,
+    private static String excludes(final Environment env,
         final Iterable<String> excludes) {
         final String path = StringUtils.join(
             env.tempdir().getPath(),
@@ -161,7 +161,7 @@ public final class FindBugsValidator implements Validator {
         try {
             FileUtils.writeStringToFile(
                 new File(path),
-                this.generateExcludes(excludes)
+                FindBugsValidator.generateExcludes(excludes)
             );
         } catch (final IOException exc) {
             throw new IllegalStateException(
@@ -177,7 +177,7 @@ public final class FindBugsValidator implements Validator {
      * @param excludes Exclude patterns
      * @return XML with findbugs excludes
      */
-    private String generateExcludes(final Iterable<String> excludes) {
+    private static String generateExcludes(final Iterable<String> excludes) {
         final Directives directives = new Directives()
             .add("FindBugsFilter")
             .add("Match")

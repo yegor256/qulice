@@ -29,37 +29,69 @@
  */
 package com.qulice.pmd;
 
-import com.qulice.spi.Environment;
-import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
-import net.sourceforge.pmd.util.datasource.DataSource;
-import org.apache.commons.io.IOUtils;
-import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 /**
- * Test case for {@link Files} class.
+ * Tests for disabled rules.
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
+ * @since 0.16
+ * @todo #569:15min When new version of Qulice is released (with disabled rules:
+ *  UseConcurrentHashMap, DoNotUseThreads and AvoidUsingVolatile) remove
+ *  suppression of given rules and remove unneeded usages of ConcurrentMap and
+ *  ConcurrentHashMap.
  */
-public final class FilesTest {
+@RunWith(Parameterized.class)
+public final class PMDDisabledRulesTest {
 
     /**
-     * Should provide only java files.
-     * @throws IOException In case of problem.
+     * Disabled rule name.
      */
-    @Test
-    public void providesOnlyJavaFiles() throws IOException {
-        final String source = "class Cls{}";
-        final Environment env = new Environment.Mock()
-            .withFile("src/main/java/Main.java", source)
-            .withFile("src/main/resources/test.properties", "prop=1");
-        final Collection<DataSource> found = new Files(env).sources();
-        MatcherAssert.assertThat(found.size(), Matchers.is(1));
-        MatcherAssert.assertThat(
-            IOUtils.toString(found.iterator().next().getInputStream()),
-            Matchers.equalTo(source)
+    private final transient String rule;
+
+    /**
+     * Constructor.
+     * @param rule Disabled rule name.
+     */
+    public PMDDisabledRulesTest(final String rule) {
+        this.rule = rule;
+    }
+
+    /**
+     * Collection of disabled rules.
+     * @return Collection of disabled rules.
+     */
+    @Parameterized.Parameters
+    public static Collection<String[]> parameters() {
+        return Arrays.asList(
+            new String[][] {
+                {"UseConcurrentHashMap"},
+                {"DoNotUseThreads"},
+                {"AvoidUsingVolatile"},
+            }
         );
     }
+
+    /**
+     * PMDValidator has rules disabled.
+     * @throws Exception In case of error.
+     */
+    @Test
+    public void disablesRules() throws Exception {
+        new PMDAssert(
+            String.format("%s.java", this.rule),
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString(
+                    String.format("(%s)", this.rule)
+                )
+            )
+        ).validate();
+    }
+
 }

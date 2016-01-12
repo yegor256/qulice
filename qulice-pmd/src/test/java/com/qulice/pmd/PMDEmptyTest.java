@@ -29,15 +29,6 @@
  */
 package com.qulice.pmd;
 
-import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
-import java.io.StringWriter;
-import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
-import org.apache.log4j.SimpleLayout;
-import org.apache.log4j.WriterAppender;
-import org.hamcrest.Matcher;
-import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 
@@ -45,6 +36,7 @@ import org.junit.Test;
  * Test case for {@link PMDValidator} class.
  * @author Prahlad Yeri (prahladyeri@yahoo.com)
  * @version $Id$
+ * @since 0.15
  * @todo #544:30min Tests below pass only when run sequentially, when they are
  *  run in parallel some of them start to fail. Please fix the tests below and
  *  remove override of maven-surefire-plugin configuration in qulice-pmd pom.xml
@@ -57,12 +49,13 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyStaticInitializer() throws Exception {
-        this.validatePMD(
+        new PMDAssert(
             "EmptyStaticInitializer.java",
+            Matchers.is(false),
             Matchers.containsString(
                 "Empty static initializer was found"
             )
-        );
+        ).validate();
     }
 
     /**
@@ -71,12 +64,13 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyStatementBlock() throws Exception {
-        this.validatePMD(
+        new PMDAssert(
             "EmptyStatementBlock.java",
+            Matchers.is(false),
             Matchers.containsString(
                 "Avoid empty block statements"
             )
-        );
+        ).validate();
     }
 
     /**
@@ -85,12 +79,13 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyInitializer() throws Exception {
-        this.validatePMD(
+        new PMDAssert(
             "EmptyInitializer.java",
+            Matchers.is(false),
             Matchers.containsString(
                 "Empty initializer was found"
             )
-        );
+        ).validate();
     }
 
     /**
@@ -99,12 +94,13 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyNonLoopStatement() throws Exception {
-        this.validatePMD(
+        new PMDAssert(
             "EmptyStatementNotInLoop.java",
+            Matchers.is(false),
             Matchers.containsString(
                 "An empty statement (semicolon) not part of a loop"
             )
-        );
+        ).validate();
     }
 
     /**
@@ -113,12 +109,13 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptySynchronizedBlock() throws Exception {
-        this.validatePMD(
+        new PMDAssert(
             "EmptySynchronizedBlock.java",
+            Matchers.is(false),
             Matchers.containsString(
                 "Avoid empty synchronized blocks"
             )
-        );
+        ).validate();
     }
 
     /**
@@ -127,12 +124,13 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptySwitchStatement() throws Exception {
-        this.validatePMD(
+        new PMDAssert(
             "EmptySwitchStmt.java",
+            Matchers.is(false),
             Matchers.containsString(
                 "Avoid empty switch statements"
             )
-        );
+        ).validate();
     }
 
     /**
@@ -141,10 +139,11 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyFinallyBlock() throws Exception {
-        this.validatePMD(
+        new PMDAssert(
             "EmptyFinallyBlock.java",
+            Matchers.is(false),
             Matchers.containsString("Avoid empty finally blocks")
-        );
+        ).validate();
     }
 
     /**
@@ -153,10 +152,11 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyWhileStatement() throws Exception {
-        this.validatePMD(
+        new PMDAssert(
             "EmptyWhileStmt.java",
+            Matchers.is(false),
             Matchers.containsString("Avoid empty while statements")
-        );
+        ).validate();
     }
 
     /**
@@ -165,10 +165,11 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyIfStatement() throws Exception {
-        this.validatePMD(
+        new PMDAssert(
             "EmptyIfStmt.java",
+            Matchers.is(false),
             Matchers.containsString("Avoid empty if statements")
-        );
+        ).validate();
     }
 
     /**
@@ -177,45 +178,10 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyCatchBlock() throws Exception {
-        this.validatePMD(
+        new PMDAssert(
             "EmptyCatchBlock.java",
+            Matchers.is(false),
             Matchers.containsString("Avoid empty catch blocks")
-        );
-    }
-
-    /**
-     * Validates that PMD reported given violation.
-     * @param file String containing file name to emulate.
-     * @param matcher Matching string needed in the output.
-     * @throws Exception If something wrong happens inside.
-     */
-    private void validatePMD(final String file,
-        final Matcher<String> matcher) throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final StringWriter writer = new StringWriter();
-        final WriterAppender appender =
-            new WriterAppender(new SimpleLayout(), writer);
-        try {
-            Logger.getRootLogger().addAppender(
-                appender
-            );
-            final Environment env = mock.withFile(
-                String.format("src/main/java/emp/%s", file),
-                IOUtils.toString(
-                    this.getClass().getResourceAsStream(file)
-                )
-            );
-            boolean thrown = false;
-            try {
-                new PMDValidator().validate(env);
-            } catch (final ValidationException ex) {
-                thrown = true;
-            }
-            writer.flush();
-            MatcherAssert.assertThat(thrown, Matchers.is(true));
-            MatcherAssert.assertThat(writer.toString(), matcher);
-        } finally {
-            Logger.getRootLogger().removeAppender(appender);
-        }
+        ).validate();
     }
 }

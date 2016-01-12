@@ -55,7 +55,8 @@ public final class ConstantUsageCheck extends Check {
      */
     @Override
     public void visitToken(final DetailAST ast) {
-        if (this.isField(ast) && this.isFinal(ast)) {
+        if (ConstantUsageCheck.isField(ast)
+            && ConstantUsageCheck.isFinal(ast)) {
             final DetailAST namenode = ast.findFirstToken(TokenTypes.IDENT);
             if (!"serialVersionUID".equals(this.getText(namenode))) {
                 this.checkField(ast, namenode);
@@ -90,7 +91,7 @@ public final class ConstantUsageCheck extends Check {
             }
             variable = variable.getNextSibling();
         }
-        if (counter == 0 && this.isPrivate(ast)) {
+        if (counter == 0 && ConstantUsageCheck.isPrivate(ast)) {
             this.log(
                 line,
                 String.format("Private constant \"%s\" is not used", name)
@@ -132,7 +133,7 @@ public final class ConstantUsageCheck extends Check {
      * @return Text representation of the node.
      */
     private String getText(final DetailAST node) {
-        String ret;
+        final String ret;
         if (0 == node.getChildCount()) {
             ret = node.getText();
         } else {
@@ -159,7 +160,7 @@ public final class ConstantUsageCheck extends Check {
      * @return True if parent node is <code>OBJBLOCK</code>, else
      *  returns <code>false</code>.
      */
-    private boolean isField(final DetailAST node) {
+    private static boolean isField(final DetailAST node) {
         final DetailAST parent = node.getParent();
         return TokenTypes.OBJBLOCK == parent.getType();
     }
@@ -170,7 +171,7 @@ public final class ConstantUsageCheck extends Check {
      * @return True if specified node contains modifiers of type
      *  <code>FINAL</code>, else returns <code>false</code>.
      */
-    private boolean isFinal(final DetailAST node) {
+    private static boolean isFinal(final DetailAST node) {
         final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.branchContains(TokenTypes.FINAL);
     }
@@ -182,7 +183,7 @@ public final class ConstantUsageCheck extends Check {
      * @return True if specified node contains modifiers of type
      *  <code>PRIVATE</code>, else returns <code>false</code>.
      */
-    private boolean isPrivate(final DetailAST node) {
+    private static boolean isPrivate(final DetailAST node) {
         final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
     }
