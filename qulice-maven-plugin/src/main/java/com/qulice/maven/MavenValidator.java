@@ -43,7 +43,6 @@ interface MavenValidator {
      * Validate this environment.
      * @param env The environment
      * @throws ValidationException In case of violations
-     * @checkstyle RedundantThrows (4 lines)
      */
     void validate(final MavenEnvironment env) throws ValidationException;
 

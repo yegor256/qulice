@@ -22,3 +22,10 @@ public interface Foo {
         // this method is not static, but it's a unit test
     }
 }
+
+public class Bar {
+    @Override
+    public void someMethod() {
+        // this method is not static, but it has "@Override" annotation
+    }
+}

@@ -69,7 +69,7 @@
               should find a way to test whether it does retry if this happens.
               See issues https://github.com/jcabi/jcabi-xml/issues/32 and
               https://github.com/teamed/qulice/issues/280 for background
-              details.  
+              details.
             -->
         </dependency>
         <dependency>
@@ -84,6 +84,17 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.jcabi</groupId>
+            <artifactId>jcabi-aspects</artifactId>
+            <version>0.21.1</version>
+            <!--
+            Override jcabi-aspects version for qulice-xml to 0.21.1
+            See issues https://github.com/jcabi/jcabi-aspects/issues/194
+            and https://github.com/jcabi/jcabi-xml/issues/73
+             -->
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
     <build>

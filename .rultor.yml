@@ -3,7 +3,8 @@ architect:
 - yegor256
 - davvd
 install:
-- sudo gem install pdd
+- sudo gem install --no-ri --no-rdoc pdd
+- sudo gem install --no-ri --no-rdoc est
 assets:
   secring.gpg: yegor256/home#assets/secring.gpg
   settings.xml: yegor256/home#assets/qulice/settings.xml
@@ -15,6 +16,7 @@ merge:
     mvn clean site -Psite --errors --settings ../settings.xml
     mvn clean
     pdd --source=$(pwd) --verbose --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java
+    est --dir=est --file=/dev/null
   commanders:
   - caarlos0
   - carlosmiranda
@@ -30,6 +32,8 @@ deploy:
     mvn clean
     pdd --source=$(pwd) --verbose --file=qulice.xml --exclude=qulice-maven-plugin/src/it/**/*.java
     s3cmd --no-progress put qulice.xml --config=../s3cfg s3://pdd.teamed.io/qulice.xml
+    est --dir=./est --verbose --file=qulice.xml --format=xml
+    s3cmd --no-progress put qulice.xml --config=../s3cfg s3://est.teamed.io/qulice.xml
 env:
   MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
 release:
@@ -40,3 +44,4 @@ release:
     mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml || echo 'site-deploy failed'
   commanders:
   - krzyk
+  - yegor256

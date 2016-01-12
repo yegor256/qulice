@@ -1,0 +1,36 @@
+date: 31-12-2015
+author: Michal Kordas
+method: champions.pert
+scope:
+  1: Setup infrastructure
+  2: Define interfaces and architecture
+  3: Integrate Checkstyle
+  4: Integrate PMD
+  5: Integrate Findbugs
+  6: Integrate Codenarc
+  7: Add custom checks/rules
+  8: Add dependency analyser
+  9: Add XML analyser
+  10: Add website
+  11: Add code coverage checks
+  12: Implement Maven Plugin
+  13: Implement Gradle Plugin
+  14: Add Ant integration
+  15: Add duplicate code detector
+  16: Integrate Java Script static analysis
+  17: Add checks for POM file
+  18: Integrate with Enforcer plugin
+  19: Integration testing
+champions:
+  7:
+    worst-case: 120
+    best-case: 50
+    most-likely: 70
+  2:
+    worst-case: 60
+    best-case: 20
+    most-likely: 30
+  12:
+    worst-case: 50
+    best-case: 15
+    most-likely: 25

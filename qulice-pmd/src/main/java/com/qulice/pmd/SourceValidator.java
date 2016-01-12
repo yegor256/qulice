@@ -55,7 +55,7 @@ public final class SourceValidator {
     /**
      * Rule context.
      */
-    private final transient RuleContext context = new RuleContext();
+    private final transient RuleContext context;
 
     /**
      * Report listener.
@@ -72,6 +72,7 @@ public final class SourceValidator {
      * @param env Environment
      */
     public SourceValidator(final Environment env) {
+        this.context = new RuleContext();
         this.listener = new PmdListener(env);
         this.config = new PMDConfiguration();
         this.config.setRuleSets("com/qulice/pmd/ruleset.xml");

@@ -36,6 +36,11 @@
  * @link http://checkstyle.sourceforge.net/config.html
  -->
 <module name="Checker">
+    <!--
+    Enforces English locale to be independent from the
+    default locale which may vary between environments.
+    -->
+    <property name="localeLanguage" value="en"/>
 
     <!--
     Checks that each Java package has a Javadoc file
@@ -236,7 +241,9 @@
         <module name="IllegalCatch"/>
         <module name="IllegalThrows"/>
         <module name="PackageDeclaration"/>
-        <module name="ReturnCount" />
+        <module name="ReturnCount">
+            <property name="max" value="1"/>
+        </module>
         <module name="IllegalType"/>
         <module name="DeclarationOrder"/>
         <module name="ParameterAssignment"/>
@@ -256,6 +263,8 @@
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>
         <module name="ImportOrder"/>
+
+        <module name="NoLineWrap"/>
 
         <!-- Checks for Javadoc comments. -->
         <module name="JavadocType">
@@ -301,10 +310,14 @@
         <module name="ClassTypeParameterName"/>
         <module name="ConstantName"/>
         <module name="LocalFinalVariableName">
-            <property name="format" value="^ex|[a-z]{3,}$"/>
+            <property name="format" value="^[a-z]{3,12}$"/>
+            <property name="tokens" value="VARIABLE_DEF"/>
         </module>
         <module name="LocalVariableName">
-            <property name="format" value="^ex|[a-z]{3,}$"/>
+            <property name="format" value="^[a-z]{3,12}$"/>
+        </module>
+        <module name="CatchParameterName">
+            <property name="format" value="^ex|[a-z]{3,12}$"/>
         </module>
         <module name="MemberName">
             <property name="format" value="^[a-z]{3,}$"/>
@@ -326,7 +339,7 @@
         </module>
         <module name="LineLength">
             <property name="max" value="80"/>
-            <property name="ignorePattern" value="^((\s+(\*|//)\s+@[a-z]+ )|(import )).*$"/>
+            <property name="ignorePattern" value="^import .*$"/>
         </module>
         <module name="AnonInnerLength" />
         <module name="MethodLength"/>
@@ -362,19 +375,20 @@
         <module name="com.qulice.checkstyle.MethodsOrderCheck"/>
         <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
         <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
-        <!--
-        see https://github.com/teamed/qulice/issues/239
         <module name="com.qulice.checkstyle.NonStaticMethodCheck">
             <property name="excludeFileNamePattern" value=".*Test\.java"/>
         </module>
-        -->
         <module name="com.qulice.checkstyle.ProtectedMethodInFinalClassCheck"/>
+        <module name="com.qulice.checkstyle.FinalSemicolonInTryWithResourcesCheck"/>
     </module>
 
     <!--
     Our custom checkers.
     -->
     <module name="com.qulice.checkstyle.ImportCohesionCheck">
+        <property name="fileExtensions" value="java"/>
+    </module>
+    <module name="com.qulice.checkstyle.CascadeIndentationCheck">
         <property name="fileExtensions" value="java"/>
     </module>
     <module name="com.qulice.checkstyle.ConditionalRegexpMultilineCheck">

@@ -6,11 +6,11 @@ Role | Members
 ---|---
 PM | @davvd
 CR | @darkled, @caarlos0, @carlosmiranda, @dmzaytsev, @pinaf, @ggajos, @longtimeago
-DEV | @hdouss
-IMP | @hdouss
+DEV | @aschworer, @happy-neko, @jrdalpra, @prahladyeri
+IMP | @aschworer, @happy-neko, @jrdalpra, @prahladyeri
 ARC | @krzyk
 DES | 
-PO | 
+PO | @yegor256
 ITR | 
 QA | 
 SA | 

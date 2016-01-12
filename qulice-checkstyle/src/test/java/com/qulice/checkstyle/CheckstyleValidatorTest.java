@@ -29,12 +29,15 @@
  */
 package com.qulice.checkstyle;
 
-import com.google.common.base.Joiner;
+import com.jcabi.aspects.Tv;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
+import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Arrays;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
 import org.hamcrest.Matcher;
@@ -114,52 +117,9 @@ public final class CheckstyleValidatorTest {
      */
     @Test
     public void acceptsInstanceMethodReferences() throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(new String[] {CheckstyleValidatorTest.LICENSE})
-            .withEol("\n")
-            .file();
-        final String content = Joiner.on("\n").join(
-            "/**",
-            " * Hello.",
-            " */",
-            "package foo;",
-            "/**",
-            " * Simple.",
-            " * @version $Id $",
-            " * @author John Smith (john@example.com)",
-            " */",
-            "public final class Main {",
-            "    /**",
-            "     * Start. Check fails in this method.",
-            "     */",
-            "    private void start() {",
-            "        Collections.singletonList(\"1\")",
-            "            .forEach(this::doSomething);",
-            "    }",
-            "    /**",
-            "     * Method to be referenced.",
-            "     * @param value Value to print",
-            "     */",
-            "    private void doSomething(final String value) {",
-            "        System.out.println(value);",
-            "    }",
-            "}",
-            ""
-        );
-        final StringWriter writer = new StringWriter();
-        org.apache.log4j.Logger.getRootLogger().addAppender(
-            new WriterAppender(new SimpleLayout(), writer)
-        );
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
-        ).withFile("src/main/java/foo/Main.java", content);
-        new CheckstyleValidator().validate(env);
-        MatcherAssert.assertThat(
-            writer.toString(),
-            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        this.validateCheckstyle(
+                "InstanceMethodRef.java", true,
+                Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
         );
     }
 
@@ -171,38 +131,89 @@ public final class CheckstyleValidatorTest {
     @Test
     public void reportsErrorWhenParameterObjectIsNotDocumented()
         throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(new String[] {CheckstyleValidatorTest.LICENSE})
-            .withEol("\n").file();
-        final StringWriter writer = new StringWriter();
-        org.apache.log4j.Logger.getRootLogger().addAppender(
-            new WriterAppender(new SimpleLayout(), writer)
-        );
-        final String name = "ParametrizedClass.java";
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
-        )
-            .withFile(
-                String.format("src/main/java/foo/%s", name),
-                IOUtils.toString(
-                    this.getClass().getResourceAsStream(name)
-                )
-            );
-        boolean valid = true;
-        try {
-            new CheckstyleValidator().validate(env);
-        } catch (final ValidationException ex) {
-            valid = false;
-        }
-        MatcherAssert.assertThat(valid, Matchers.is(false));
-        MatcherAssert.assertThat(
-            writer.toString(),
+        this.validateCheckstyle(
+            "ParametrizedClass.java", false,
             Matchers.containsString(
                 "Type Javadoc comment is missing an @param <T> tag."
             )
+        );
+    }
+
+    /**
+     * CheckstyleValidator reports an error when package decalaration
+     * is line wrapped.
+     * @throws Exception when error.
+     */
+    @Test
+    public void reportsErrorWhenLineWrap()
+        throws Exception {
+        this.validateCheckstyle(
+            "LineWrapPackage.java", false,
+            Matchers.containsString("should not be line-wrapped")
+        );
+    }
+
+    /**
+     * CheckstyleValidator reports an error when indentation is not
+     * bigger than previous line by exactly 4.
+     * @throws Exception when error.
+     */
+    @Test
+    public void reportsErrorWhenIndentationIsIncorrect() throws Exception {
+        this.validateCheckstyle(
+            "InvalidIndentation.java",
+            false,
+            Matchers.containsString(
+                "Indentation (14) must be same or less than"
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator reports an error when comment or Javadoc has too
+     * long line.
+     * @throws Exception when error.
+     */
+    @Test
+    public void reportsErrorWhenCommentOrJavadocIsTooLong() throws Exception {
+        this.validateCheckstyle(
+            "TooLongLines.java",
+            false,
+            Matchers.stringContainsInOrder(
+                Arrays.asList(
+                    "TooLongLines.java[8]",
+                    "Line is longer than 80 characters (found 82)",
+                    "TooLongLines.java[14]",
+                    "Line is longer than 80 characters (found 85)"
+                )
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator accepts the valid indentation
+     * refused by forceStrictCondition.
+     * @throws Exception when error.
+     */
+    @Test
+    public void acceptsValidIndentation() throws Exception {
+        this.validateCheckstyle(
+            "ValidIndentation.java",
+            true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
+     * CheckstyleValidator reports an error when any method contains more
+     * than one return statement.
+     * @throws Exception when error.
+     */
+    @Test
+    public void reportsErrorOnMoreThanOneReturnStatement() throws Exception {
+        this.validateCheckstyle(
+            "ReturnCount.java", false,
+            Matchers.containsString("Return count is 2 (max allowed is 1)")
         );
     }
 
@@ -271,36 +282,55 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator allows local variables and catch parameters with
+     * names matching {@code ^[a-z]{3,12}$} pattern.
+     * Additionally, catch parameters can use name {@code ex}.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void allowsOnlyProperlyNamedLocalVariables() throws Exception {
+        final String result = this.runValidation(
+            "LocalVariableNames.java", false
+        );
+        MatcherAssert.assertThat(
+            StringUtils.countMatches(result, "LocalVariableNames.java"),
+            Matchers.is(Tv.SEVEN)
+        );
+        MatcherAssert.assertThat(
+            result,
+            Matchers.allOf(
+                Matchers.not(
+                    Matchers.stringContainsInOrder(
+                        Arrays.asList(
+                            "aaa", "twelveletter", "ise"
+                        )
+                    )
+                ),
+                Matchers.stringContainsInOrder(
+                    Arrays.asList(
+                        "Name 'prolongations' must match pattern",
+                        "Name 'camelCase' must match pattern '^[a-z]{3,12}$'.",
+                        "Name 'number1' must match pattern '^[a-z]{3,12}$'.",
+                        "Name 'ex' must match pattern '^[a-z]{3,12}$'.",
+                        "Name 'a' must match pattern '^[a-z]{3,12}$'.",
+                        "Name 'ae' must match pattern '^ex|[a-z]{3,12}$'.",
+                        "Name 'e' must match pattern '^ex|[a-z]{3,12}$'."
+                    )
+                )
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator will fail if  Windows EOL-s are used.
      * @throws Exception If something wrong happens inside
      */
-    @Test(expected = ValidationException.class)
+    @Test
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(new String[] {"Hello.", "", "World."})
-            .withEol("\r\n")
-            .file();
-        final String content =
-            // @checkstyle StringLiteralsConcatenation (12 lines)
-            "/**\r\n"
-            + " * Hello.\r\n"
-            + " *\r\n"
-            + " * World.\r\n"
-            + " */\r\n"
-            + "package foo;\r\n"
-            + "/**\r\n"
-            + " * Simple class.\r\n"
-            + " * @version $Id $\r\n"
-            + " * @author John Doe (john@qulice.com)\r\n"
-            + " */\r\n"
-            + "public class Main { }\r\n";
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
-        ).withFile("src/main/java/foo/Main.java", content);
-        new CheckstyleValidator().validate(env);
+        this.validateCheckstyle(
+            "WindowsEol.java", false,
+            Matchers.containsString("LICENSE found")
+        );
     }
 
     /**
@@ -308,35 +338,40 @@ public final class CheckstyleValidatorTest {
      * Linux-style formatting of the sources.
      * @throws Exception If something wrong happens inside
      */
-    @Test(expected = ValidationException.class)
+    @Test
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(new String[] {"Welcome.", "", "Friend."})
-            .withEol("\r\n")
-            .file();
-        final String content =
-            // @checkstyle MultipleStringLiterals (11 lines)
-            "/**\n"
-            + " * Welcome.\n"
-            + " *\n"
-            + " * Friend.\n"
-            + " */\n"
-            + "package foo;\n"
-            + "/**\n"
-            + " * Just a simple class.\n"
-            + " * @version $Id $\n"
-            + " * @author Alex Doe (alex@qulice.com)\n"
-            + " */\n"
-            + "public class Bar { }" + System.getProperty("line.separator");
-        final Environment env = mock
-            .withFile("src/main/java/foo/Bar.java", content)
-            .withParam(
-                CheckstyleValidatorTest.LICENSE_PROP,
-                this.toURL(license)
-            );
-        new CheckstyleValidator().validate(env);
+        this.validateCheckstyle(
+            "WindowsEolLinux.java", false,
+            Matchers.containsString("LICENSE found")
+        );
+    }
+
+    /**
+     * Fail validation with extra semicolon in the end
+     * of try-with-resources head.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void testExtraSemicolonInTryWithResources() throws Exception {
+        this.validateCheckstyle(
+            "ExtraSemicolon.java", false,
+            Matchers.containsString(
+                "Extra semicolon in the end of try-with-resources head."
+            )
+        );
+    }
+
+    /**
+     * Accepts try-with-resources without extra semicolon
+     * at the end of the head.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void acceptsTryWithResourcesWithoutSemicolon() throws Exception {
+        this.validateCheckstyle(
+            "ValidSemicolon.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
     }
 
     /**
@@ -357,6 +392,18 @@ public final class CheckstyleValidatorTest {
      */
     private void validateCheckstyle(final String file, final boolean result,
         final Matcher<String> matcher) throws Exception {
+        MatcherAssert.assertThat(this.runValidation(file, result), matcher);
+    }
+
+    /**
+     * Returns string with Checkstyle validation results.
+     * @param file File to check.
+     * @param result Expected validation result.
+     * @return String containing validation results in textual form.
+     * @throws IOException In case of error
+     */
+    private String runValidation(final String file, final boolean result)
+        throws IOException {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule.savePackageInfo(
             new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
@@ -383,6 +430,6 @@ public final class CheckstyleValidatorTest {
             valid = false;
         }
         MatcherAssert.assertThat(valid, Matchers.is(result));
-        MatcherAssert.assertThat(writer.toString(), matcher);
+        return writer.toString();
     }
 }

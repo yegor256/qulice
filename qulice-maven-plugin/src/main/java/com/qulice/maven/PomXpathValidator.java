@@ -53,7 +53,6 @@ import org.apache.commons.io.FileUtils;
  */
 public final class PomXpathValidator implements MavenValidator {
 
-    // @checkstyle RedundantThrows (4 lines)
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {

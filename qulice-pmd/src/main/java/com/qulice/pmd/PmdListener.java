@@ -55,14 +55,14 @@ final class PmdListener implements ReportListener {
     /**
      * Violations.
      */
-    private final transient Collection<RuleViolation> violations =
-        new LinkedList<RuleViolation>();
+    private final transient Collection<RuleViolation> violations;
 
     /**
      * Public ctor.
      * @param environ Environment
      */
     PmdListener(final Environment environ) {
+        this.violations = new LinkedList<RuleViolation>();
         this.env = environ;
     }
 

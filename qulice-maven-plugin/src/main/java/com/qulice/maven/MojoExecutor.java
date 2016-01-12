@@ -100,7 +100,6 @@ public final class MojoExecutor {
      * @param goal Maven plugin goal to execute
      * @param config The configuration to set
      * @throws ValidationException If something is wrong inside
-     * @checkstyle RedundantThrows (4 lines)
      */
     public void execute(final String coords, final String goal,
         final Properties config) throws ValidationException {
