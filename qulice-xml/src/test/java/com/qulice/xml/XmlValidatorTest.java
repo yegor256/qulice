@@ -29,6 +29,8 @@
  */
 package com.qulice.xml;
 
+import com.jcabi.xml.StrictXML;
+import com.jcabi.xml.XMLDocument;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
@@ -243,5 +245,41 @@ public final class XmlValidatorTest {
             );
         final Validator validator = new XmlValidator();
         validator.validate(env);
+    }
+
+    @Test
+    public void passesValidationForClasspathSchema() throws Exception {
+        final Environment env = new Environment.Mock().withFile(
+            "test-classpath-schema.xml",
+            new StringBuilder()
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
+                .append("<foo xmlns=\"http://qulice.com/test/schema\" ")
+                .append("xmlns:xsi=\"")
+                .append("http://www.w3.org/2001/XMLSchema-instance")
+                .append("\" ")
+                .append("xsi:schemaLocation=\"")
+                .append("http://qulice.com/test/schema ")
+                .append("test-classpath-schema.xsd")
+                .append("\">")
+                .append("<bar>333</bar>")
+                .append("<baz>444</baz>")
+                .append("</foo>").toString()
+        );
+        final Validator validator = new XmlValidator();
+        validator.validate(env);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void failsValidation() throws Exception {
+        new StrictXML(
+            new XMLDocument("<a></a>")
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void failsValidationForInvalidURI() throws Exception {
+        new StrictXML(
+            new XMLDocument("<a xsi:schemaLocation=\"http://hello world\"></a>")
+        );
     }
 }
