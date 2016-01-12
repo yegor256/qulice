@@ -96,7 +96,8 @@ public final class MojoExecutor {
 
     /**
      * Find and configure a mojor.
-     * @param coords Maven coordinates, e.g. "com.qulice:maven-qulice-plugin:1.0"
+     * @param coords Maven coordinates,
+     *  e.g. "com.qulice:maven-qulice-plugin:1.0"
      * @param goal Maven plugin goal to execute
      * @param config The configuration to set
      * @throws ValidationException If something is wrong inside

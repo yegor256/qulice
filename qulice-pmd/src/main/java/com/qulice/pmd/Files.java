@@ -44,15 +44,27 @@ import net.sourceforge.pmd.util.datasource.FileDataSource;
  */
 @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
 public final class Files {
+
+    /**
+     * The environment.
+     */
+    private final transient Environment environment;
+
+    /**
+     * Constructor.
+     * @param environment The environment.
+     */
+    public Files(final Environment environment) {
+        this.environment = environment;
+    }
+
     /**
      * Get full list of files to process.
-     * @param environment The environment.
      * @return Collection of data sources.
-     * @see #validate()
      */
-    public Collection<DataSource> getSources(final Environment environment) {
+    public Collection<DataSource> sources() {
         final Collection<DataSource> sources = new LinkedList<DataSource>();
-        for (final File file : environment.files("*.java")) {
+        for (final File file : this.environment.files("*.java")) {
             sources.add(new FileDataSource(file));
         }
         return sources;
