@@ -33,9 +33,9 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -69,8 +69,8 @@ public final class JavadocTagsCheck extends Check {
     /**
      * Map of tag and its pattern.
      */
-    private final transient ConcurrentMap<String, Pattern> tags =
-        new ConcurrentHashMap<String, Pattern>();
+    private final transient Map<String, Pattern> tags =
+        new HashMap<String, Pattern>();
 
     @Override
     public void init() {

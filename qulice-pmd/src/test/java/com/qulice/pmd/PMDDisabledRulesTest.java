@@ -41,10 +41,6 @@ import org.junit.runners.Parameterized;
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
  * @since 0.16
- * @todo #569:15min When new version of Qulice is released (with disabled rules:
- *  UseConcurrentHashMap, DoNotUseThreads and AvoidUsingVolatile) remove
- *  suppression of given rules and remove unneeded usages of ConcurrentMap and
- *  ConcurrentHashMap.
  */
 @RunWith(Parameterized.class)
 public final class PMDDisabledRulesTest {
