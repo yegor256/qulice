@@ -95,6 +95,7 @@
                 <artifactId>site-maven-plugin</artifactId>
                 <configuration>
                     <path>${project.artifactId}</path>
+                    <message>Creating site for ${project.artifactId} ${project.version}</message>
                 </configuration>
             </plugin>
             <plugin>
