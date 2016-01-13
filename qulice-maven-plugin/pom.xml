@@ -375,7 +375,8 @@
                         <artifactId>qulice-maven-plugin</artifactId>
                         <configuration>
                             <excludes combine.children="append">
-                                <exclude>findbugs:.*</exclude>
+                                <!-- generated class -->
+                                <exclude>findbugs:com.qulice.maven.HelpMojo</exclude>
                                 <exclude>checkstyle:/src/it/.*</exclude>
                                 <exclude>pmd:.*/src/it/.*</exclude>
                                 <exclude>xml:/src/it/.*</exclude>

@@ -81,16 +81,16 @@ public final class CodeNarcValidator implements Validator {
      * @return The result
      */
     private Results detect(final File src, final String excludes) {
-        final FilesystemSourceAnalyzer sourceAnalyzer =
+        final FilesystemSourceAnalyzer analyzer =
             new FilesystemSourceAnalyzer();
-        sourceAnalyzer.setBaseDirectory(src.getAbsolutePath());
-        sourceAnalyzer.setIncludes("**/*.groovy");
-        sourceAnalyzer.setExcludes(excludes);
-        final CodeNarcRunner codeNarcRunner = new CodeNarcRunner();
-        codeNarcRunner.setSourceAnalyzer(sourceAnalyzer);
-        codeNarcRunner.setRuleSetFiles("com/qulice/codenarc/rules.txt");
-        codeNarcRunner.setReportWriters(null);
-        final Results results = codeNarcRunner.execute();
+        analyzer.setBaseDirectory(src.getAbsolutePath());
+        analyzer.setIncludes("**/*.groovy");
+        analyzer.setExcludes(excludes);
+        final CodeNarcRunner runner = new CodeNarcRunner();
+        runner.setSourceAnalyzer(analyzer);
+        runner.setRuleSetFiles("com/qulice/codenarc/rules.txt");
+        runner.setReportWriters(null);
+        final Results results = runner.execute();
         Logger.info(
             this,
             "CodeNarc validated %d file(s)",

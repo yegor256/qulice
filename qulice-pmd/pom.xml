@@ -97,6 +97,12 @@
                     <path>${project.artifactId}</path>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <parallel>classes</parallel>
+                </configuration>
+            </plugin>            
         </plugins>
     </build>
     <profiles>

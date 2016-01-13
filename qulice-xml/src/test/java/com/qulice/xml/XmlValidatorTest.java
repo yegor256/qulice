@@ -41,6 +41,7 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class XmlValidatorTest {
 
     /**
@@ -69,6 +70,21 @@ public final class XmlValidatorTest {
         );
         final Validator validator = new XmlValidator(true);
         validator.validate(env);
+    }
+
+    /**
+     * Should fail validation for XML without schema specified.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test(expected = ValidationException.class)
+    public void failValidationWithoutSchema() throws Exception {
+        new XmlValidator(true).validate(new Environment.Mock()
+            .withFile(
+                "src/main/resources/noschema.xml",
+                // @checkstyle LineLength (1 line)
+                "<Configuration><Appenders><Console name=\"CONSOLE\" target=\"SYSTEM_OUT\"><PatternLayout pattern=\"[%p] %t %c: %m%n\"/></Console></Appenders></Configuration>"
+            )
+        );
     }
 
     /**
@@ -244,4 +260,30 @@ public final class XmlValidatorTest {
         final Validator validator = new XmlValidator();
         validator.validate(env);
     }
+
+    /**
+     * XmlValidatorTest can pass validation if schema file is in classpath.
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    public void passesValidationForClasspathSchema() throws Exception {
+        final Environment env = new Environment.Mock().withFile(
+            "test-classpath-schema.xml",
+            new StringBuilder()
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
+                .append("<foo xmlns=\"http://qulice.com/test/schema\" ")
+                .append("xmlns:xsi=\"")
+                .append("http://www.w3.org/2001/XMLSchema-instance")
+                .append("\" ")
+                .append("xsi:schemaLocation=\"")
+                .append("http://qulice.com/test/schema ")
+                .append("test-classpath-schema.xsd")
+                .append("\">")
+                .append("<bar>333</bar>")
+                .append("<baz>444</baz>")
+                .append("</foo>").toString()
+        );
+        new XmlValidator().validate(env);
+    }
+
 }

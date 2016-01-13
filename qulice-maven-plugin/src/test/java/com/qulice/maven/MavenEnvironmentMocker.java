@@ -74,7 +74,6 @@ public final class MavenEnvironmentMocker {
      * @throws IOException If some IO problem inside
      */
     public MavenEnvironmentMocker() throws IOException {
-        StaticLoggerBinder.getSingleton().setMavenLog(Mockito.mock(Log.class));
         this.prj = new MavenProjectMocker();
         this.container = Mockito.mock(PlexusContainer.class);
         this.ass = new LinkedList<String>();
@@ -148,6 +147,7 @@ public final class MavenEnvironmentMocker {
      * @throws Exception If something wrong happens inside
      */
     public MavenEnvironment mock() throws Exception {
+        StaticLoggerBinder.getSingleton().setMavenLog(Mockito.mock(Log.class));
         this.prj.inBasedir(this.ienv.basedir());
         final MavenProject project = this.prj.mock();
         final Environment parent = this.ienv;
