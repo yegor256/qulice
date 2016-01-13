@@ -1,6 +1,6 @@
 ## Puzzles
 
-There are 16 active puzzles (72 total):
+There are 15 active puzzles (73 total):
 
 
 <del>unknown</del> [`?`](../master/?)<br/>
@@ -56,9 +56,9 @@ There are 16 active puzzles (72 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>308-45ddd042</del> [`pom.xml:134-136`](../master/pom.xml#L134-L136)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>333</del>](https://github.com/teamed/qulice/issues/333) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#370](https://github.com/teamed/qulice/issues/370):[<del>333-37771839</del>](https://github.com/teamed/qulice/issues/370) [`pom.xml:207-208`](../master/qulice-findbugs/pom.xml#L207-L208)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#590](https://github.com/teamed/qulice/issues/590):[**370-69914ea1**](https://github.com/teamed/qulice/issues/590) [`pom.xml:379-380`](../master/qulice-maven-plugin/pom.xml#L379-L380)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#590](https://github.com/teamed/qulice/issues/590):[<del>370-69914ea1</del>](https://github.com/teamed/qulice/issues/590) [`pom.xml:379-380`](../master/qulice-maven-plugin/pom.xml#L379-L380)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>339</del>](https://github.com/teamed/qulice/issues/339) [`?`](../master/?)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#422](https://github.com/teamed/qulice/issues/422):[**339-6f043704**](https://github.com/teamed/qulice/issues/422) [`QulicePlugin.java:47-47`](../master/qulice-gradle-plugin/src/main/java/com/qulice/gradle/QulicePlugin.java#L47-L47)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#422](https://github.com/teamed/qulice/issues/422):[<del>339-6f043704</del>](https://github.com/teamed/qulice/issues/422) [`QulicePlugin.java:47-47`](../master/qulice-gradle-plugin/src/main/java/com/qulice/gradle/QulicePlugin.java#L47-L47)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>280</del>](https://github.com/teamed/qulice/issues/280) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#423](https://github.com/teamed/qulice/issues/423):[**280-4ce4d8c5**](https://github.com/teamed/qulice/issues/423) [`pom.xml:66-72`](../master/qulice-xml/pom.xml#L66-L72)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<del>337.-8e901889</del> [`AntEnvironment.java:168-168`](../master/qulice-ant/src/main/java/com/qulice/ant/AntEnvironment.java#L168-L168)<br/>
@@ -75,3 +75,4 @@ There are 16 active puzzles (72 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#596](https://github.com/teamed/qulice/issues/596):[**544-c37b2cc3**](https://github.com/teamed/qulice/issues/596) [`PMDEmptyTest.java:48-50`](../master/qulice-pmd/src/test/java/com/qulice/pmd/PMDEmptyTest.java#L48-L50)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#569](https://github.com/teamed/qulice/issues/569):[<del>569</del>](https://github.com/teamed/qulice/issues/569) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#609](https://github.com/teamed/qulice/issues/609):[**569-cd6c2a10**](https://github.com/teamed/qulice/issues/609) [`PMDDisabledRulesTest.java:44-47`](../master/qulice-pmd/src/test/java/com/qulice/pmd/PMDDisabledRulesTest.java#L44-L47)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[**339-f214ff2b**]() [`QulicePlugin.java:47-48`](../master/qulice-gradle-plugin/src/main/java/com/qulice/gradle/QulicePlugin.java#L47-L48)<br/>
