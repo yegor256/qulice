@@ -283,8 +283,7 @@ public final class XmlValidatorTest {
                 .append("<baz>444</baz>")
                 .append("</foo>").toString()
         );
-        final Validator validator = new XmlValidator();
-        validator.validate(env);
+        new XmlValidator().validate(env);
     }
 
 }
