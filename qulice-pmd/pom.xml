@@ -44,7 +44,7 @@
     <packaging>jar</packaging>
     <name>qulice-pmd</name>
     <properties>
-        <pmd.version>5.3.4</pmd.version>
+        <pmd.version>5.4.1</pmd.version>
     </properties>
     <dependencies>
         <dependency>
@@ -102,7 +102,7 @@
                 <configuration>
                     <parallel>classes</parallel>
                 </configuration>
-            </plugin>            
+            </plugin>
         </plugins>
     </build>
     <profiles>
