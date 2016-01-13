@@ -315,4 +315,21 @@ public final class PMDValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PMDValidator forbids non public clone methods (PMD rule
+     * rulesets/java/clone.xml/CloneMethodMustBePublic).
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsNonPublicCloneMethod() throws Exception {
+        final String file = "CloneMethodMustBePublic.java";
+        new PMDAssert(
+            file,
+            Matchers.is(false),
+            Matchers.containsString(
+                String.format("(%s)", "CloneMethodMustBePublic")
+            )
+        ).validate();
+    }
 }
