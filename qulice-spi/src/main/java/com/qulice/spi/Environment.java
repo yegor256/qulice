@@ -34,11 +34,11 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
@@ -137,7 +137,7 @@ public interface Environment {
         /**
          * Map of params.
          */
-        private final transient ConcurrentMap<String, String> params;
+        private final transient Map<String, String> params;
         /**
          * Exclude patterns.
          */
@@ -151,7 +151,7 @@ public interface Environment {
             "PMD.ConstructorOnlyInitializesOrCallOtherConstructors"
             )
         public Mock() throws IOException {
-            this.params = new ConcurrentHashMap<String, String>();
+            this.params = new HashMap<String, String>();
             this.classpath = new HashSet<String>(1);
             final File temp = File.createTempFile(
                 "mock", ".qulice",
