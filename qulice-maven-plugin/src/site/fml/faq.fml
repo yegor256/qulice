@@ -41,7 +41,8 @@
                     about it is not passed to underlying validators. However, standard
                     [JVM proxy](https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html)
                     configuration works fine. To use it just add `-Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`
-                    to your `MAVEN_OPTS` environment variable.
+                    to your `MAVEN_OPTS` environment variable or to Maven command, e.g.
+                    `mvn clean verify -Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`.
                 </p>
             </answer>
             <question>Does it work with Maven 2.0?</question>
