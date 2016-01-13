@@ -332,4 +332,23 @@ public final class PMDValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PMDValidator forbids clone methods with return type not matching class
+     * name (PMD rule
+     * rulesets/java/clone.xml/CloneMethodReturnTypeMustMatchClassName).
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsCloneMethodReturnTypeNotMatchingClassName()
+        throws Exception {
+        final String file = "CloneMethodReturnTypeMustMatchClassName.java";
+        new PMDAssert(
+            file,
+            Matchers.is(false),
+            Matchers.containsString(
+                String.format("(%s)", "CloneMethodReturnTypeMustMatchClassName")
+            )
+        ).validate();
+    }
 }
