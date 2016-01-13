@@ -42,10 +42,13 @@ import java.util.regex.Pattern;
  * <p>If your method doesn't need {@code this} than why it is not
  * {@code static}?
  *
- * The only case when method can't be marked as static is when it has
- * {@code @Override} annotation. There's no concept of inheritance and
- * polymorphism for static methods even if they don't need {@code this} to
- * perform the actual work.
+ * The exception here is when method has {@code @Override} annotation. There's
+ * no concept of inheritance and polymorphism for static methods even if they
+ * don't need {@code this} to perform the actual work.
+ *
+ * Another exception is when method is {@code abstract} or {@code native}.
+ * Such methods don't have body so detection based on {@code this} doesn't
+ * make sense for them.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
@@ -87,8 +90,9 @@ public final class NonStaticMethodCheck extends Check {
     }
 
     /**
-     * Check that non static class method refer \"this\". Methods annotated
-     * with {@code @Override} are excluded.
+     * Check that non static class method refer {@code this}. Methods that
+     * are {@code native}, {@code abstract} or annotated with {@code @Override}
+     * are excluded.
      * @param method DetailAST of method
      */
     private void checkClassMethod(final DetailAST method) {
@@ -98,6 +102,7 @@ public final class NonStaticMethodCheck extends Check {
             return;
         }
         if (!AnnotationUtility.containsAnnotation(method, "Override")
+            && !isInAbstractOrNativeMethod(method)
             && !method.branchContains(TokenTypes.LITERAL_THIS)) {
             final int line = method.getLineNo();
             this.log(
@@ -106,5 +111,16 @@ public final class NonStaticMethodCheck extends Check {
                 "This method must be static, because it does not refer to \"this\""
             );
         }
+    }
+
+    /**
+     * Determines whether a method is {@code abstract} or {@code native}.
+     * @param method Method to check.
+     * @return True if method is abstract or native.
+     */
+    private static boolean isInAbstractOrNativeMethod(final DetailAST method) {
+        final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);
+        return modifiers.branchContains(TokenTypes.ABSTRACT)
+            || modifiers.branchContains(TokenTypes.LITERAL_NATIVE);
     }
 }
