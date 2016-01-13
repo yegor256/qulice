@@ -29,11 +29,9 @@ public class Bar {
         // this method is not static, but it has "@Override" annotation
     }
 
-    public abstract void someAbstractMethod() {
-        // this method is not static, but it is abstract
-    }
+    // this method is not static, but it is abstract
+    public abstract void someAbstractMethod();
 
-    public native void someNativeMethod() {
-        // this method is not static, but it is native
-    }
+    // this method is not static, but it is native
+    public native void someNativeMethod();
 }
