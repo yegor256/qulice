@@ -127,7 +127,7 @@
 <a class="jxr_linenumber" name="L119" href="#L119">119</a>                     <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/spi/ValidationException.html">ValidationException</a>(ex);
 <a class="jxr_linenumber" name="L120" href="#L120">120</a>                 }
 <a class="jxr_linenumber" name="L121" href="#L121">121</a>                 <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.format) {
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>                     <strong class="jxr_keyword">this</strong>.formatting(
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>                     XmlValidator.formatting(
 <a class="jxr_linenumber" name="L123" href="#L123">123</a>                         file.toString(), FileUtils.readFileToString(file)
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>                     );
 <a class="jxr_linenumber" name="L125" href="#L125">125</a>                 }
@@ -148,15 +148,15 @@
 <a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment">     * @param before XML to check.</em>
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">     * @throws ValidationException In case of validation error.</em>
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> formatting(<strong class="jxr_keyword">final</strong> String name, <strong class="jxr_keyword">final</strong> String before)
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> formatting(<strong class="jxr_keyword">final</strong> String name, <strong class="jxr_keyword">final</strong> String before)
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>         <strong class="jxr_keyword">throws</strong> <a href="../../../com/qulice/spi/ValidationException.html">ValidationException</a> {
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>         <em class="jxr_comment">// @checkstyle MultipleStringLiterals (3 lines)</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a>         <strong class="jxr_keyword">final</strong> String after = <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/xml/Prettifier.html">Prettifier</a>().prettify(before)
+<a class="jxr_linenumber" name="L146" href="#L146">146</a>         <strong class="jxr_keyword">final</strong> String after = <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/xml/Prettifier.html">Prettifier</a>(before).prettify()
 <a class="jxr_linenumber" name="L147" href="#L147">147</a>             .replace(<span class="jxr_string">"\r\n"</span>, <span class="jxr_string">"\n"</span>);
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>         <strong class="jxr_keyword">final</strong> String bnormalized = before.replace(<span class="jxr_string">"\r\n"</span>, <span class="jxr_string">"\n"</span>);
 <a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">final</strong> List&lt;String&gt; blines =
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>             Arrays.asList(bnormalized.split(XmlValidator.ESCAPED_EOL, -1));
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">final</strong> Patch filter = <strong class="jxr_keyword">this</strong>.filter(
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">final</strong> Patch filter = XmlValidator.filter(
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>             DiffUtils.diff(
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>                 blines,
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>                 Arrays.asList(after.split(XmlValidator.ESCAPED_EOL, -1))
@@ -190,7 +190,7 @@
 <a class="jxr_linenumber" name="L182" href="#L182">182</a> <em class="jxr_javadoccomment">     *  attribute, this is also wrong - all attributes on new line should be</em>
 <a class="jxr_linenumber" name="L183" href="#L183">183</a> <em class="jxr_javadoccomment">     *  indented by 4 spaces.</em>
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L185" href="#L185">185</a>     <strong class="jxr_keyword">private</strong> Patch filter(<strong class="jxr_keyword">final</strong> Patch diff) {
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Patch filter(<strong class="jxr_keyword">final</strong> Patch diff) {
 <a class="jxr_linenumber" name="L186" href="#L186">186</a>         <strong class="jxr_keyword">final</strong> Patch patch = <strong class="jxr_keyword">new</strong> Patch();
 <a class="jxr_linenumber" name="L187" href="#L187">187</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Delta delta : diff.getDeltas()) {
 <a class="jxr_linenumber" name="L188" href="#L188">188</a>             <strong class="jxr_keyword">final</strong> List&lt;?&gt; prev = delta.getOriginal().getLines();

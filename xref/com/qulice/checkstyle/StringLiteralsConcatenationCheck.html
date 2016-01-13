@@ -103,7 +103,7 @@
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>          <strong class="jxr_keyword">final</strong> List&lt;DetailAST&gt; children = <strong class="jxr_keyword">new</strong> LinkedList&lt;DetailAST&gt;();
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>          DetailAST child = tree.getFirstChild();
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>          <strong class="jxr_keyword">while</strong> (child != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>              <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.isOfType(child, types)) {
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>              <strong class="jxr_keyword">if</strong> (StringLiteralsConcatenationCheck.isOfType(child, types)) {
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>                  children.add(child);
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>             } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>                 children.addAll(<strong class="jxr_keyword">this</strong>.findChildASTsOfType(child, types));
@@ -120,7 +120,7 @@
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">     * @return True if of type, false otherwise.</em>
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">     * @see TokenTypes</em>
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> isOfType(<strong class="jxr_keyword">final</strong> DetailAST ast, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong>... types) {
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isOfType(<strong class="jxr_keyword">final</strong> DetailAST ast, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong>... types) {
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>         <strong class="jxr_keyword">boolean</strong> yes = false;
 <a class="jxr_linenumber" name="L117" href="#L117">117</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> type : types) {
 <a class="jxr_linenumber" name="L118" href="#L118">118</a>             <strong class="jxr_keyword">if</strong> (ast.getType() == type) {

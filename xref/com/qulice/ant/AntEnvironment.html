@@ -118,11 +118,11 @@
 <a class="jxr_linenumber" name="L110" href="#L110">110</a> 
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>     @Override
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>     <strong class="jxr_keyword">public</strong> String param(<strong class="jxr_keyword">final</strong> String name, <strong class="jxr_keyword">final</strong> String value) {
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>         String propValue = <strong class="jxr_keyword">this</strong>.project.getProperty(name);
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>         <strong class="jxr_keyword">if</strong> (propValue == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>             propValue = value;
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>         String property = <strong class="jxr_keyword">this</strong>.project.getProperty(name);
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>         <strong class="jxr_keyword">if</strong> (property == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>             property = value;
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>         }
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>         <strong class="jxr_keyword">return</strong> propValue;
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>         <strong class="jxr_keyword">return</strong> property;
 <a class="jxr_linenumber" name="L118" href="#L118">118</a>     }
 <a class="jxr_linenumber" name="L119" href="#L119">119</a> 
 <a class="jxr_linenumber" name="L120" href="#L120">120</a>     @Override

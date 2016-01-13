@@ -89,16 +89,16 @@
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">     * @return The result</em>
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>      <strong class="jxr_keyword">private</strong> Results detect(<strong class="jxr_keyword">final</strong> File src, <strong class="jxr_keyword">final</strong> String excludes) {
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>          <strong class="jxr_keyword">final</strong> FilesystemSourceAnalyzer sourceAnalyzer =
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>          <strong class="jxr_keyword">final</strong> FilesystemSourceAnalyzer analyzer =
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>              <strong class="jxr_keyword">new</strong> FilesystemSourceAnalyzer();
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>          sourceAnalyzer.setBaseDirectory(src.getAbsolutePath());
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>          sourceAnalyzer.setIncludes(<span class="jxr_string">"**/*.groovy"</span>);
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>          sourceAnalyzer.setExcludes(excludes);
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>          <strong class="jxr_keyword">final</strong> CodeNarcRunner codeNarcRunner = <strong class="jxr_keyword">new</strong> CodeNarcRunner();
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>          codeNarcRunner.setSourceAnalyzer(sourceAnalyzer);
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>          codeNarcRunner.setRuleSetFiles(<span class="jxr_string">"com/qulice/codenarc/rules.txt"</span>);
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>          codeNarcRunner.setReportWriters(<strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>          <strong class="jxr_keyword">final</strong> Results results = codeNarcRunner.execute();
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>          analyzer.setBaseDirectory(src.getAbsolutePath());
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>          analyzer.setIncludes(<span class="jxr_string">"**/*.groovy"</span>);
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>          analyzer.setExcludes(excludes);
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>          <strong class="jxr_keyword">final</strong> CodeNarcRunner runner = <strong class="jxr_keyword">new</strong> CodeNarcRunner();
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          runner.setSourceAnalyzer(analyzer);
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>          runner.setRuleSetFiles(<span class="jxr_string">"com/qulice/codenarc/rules.txt"</span>);
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          runner.setReportWriters(<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>          <strong class="jxr_keyword">final</strong> Results results = runner.execute();
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>          Logger.info(
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>              <strong class="jxr_keyword">this</strong>,
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>              <span class="jxr_string">"CodeNarc validated %d file(s)"</span>,

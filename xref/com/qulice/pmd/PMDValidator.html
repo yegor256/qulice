@@ -87,15 +87,14 @@
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">     * @return Collection of &lt;code&gt;DataSource&lt;/code&gt;s of source files.</em>
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>      <strong class="jxr_keyword">private</strong> Collection&lt;DataSource&gt; getSources(<strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/spi/Environment.html">Environment</a> environment) {
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>          <strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/pmd/Files.html">Files</a> files = <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/pmd/Files.html">Files</a>();
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>          <strong class="jxr_keyword">final</strong> Collection&lt;DataSource&gt; sources = files.getSources(environment);
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>          <strong class="jxr_keyword">if</strong> (sources.isEmpty()) {
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>              Logger.info(<strong class="jxr_keyword">this</strong>, <span class="jxr_string">"No files to check with PMD"</span>);
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>          }
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>          <strong class="jxr_keyword">return</strong> sources;
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>      }
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  }
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>          <strong class="jxr_keyword">final</strong> Collection&lt;DataSource&gt; sources = <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/pmd/Files.html">Files</a>(environment).sources();
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>          <strong class="jxr_keyword">if</strong> (sources.isEmpty()) {
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>              Logger.info(<strong class="jxr_keyword">this</strong>, <span class="jxr_string">"No files to check with PMD"</span>);
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>          }
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>          <strong class="jxr_keyword">return</strong> sources;
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>      }
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2016 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>

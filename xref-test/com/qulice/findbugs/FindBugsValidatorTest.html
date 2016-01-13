@@ -101,12 +101,12 @@
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>          <strong class="jxr_keyword">final</strong> byte[] bytecode = <strong class="jxr_keyword">new</strong> BytecodeMocker()
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>              .withSource(<span class="jxr_string">"class Foo { public Foo clone() { return this; } }"</span>)
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>              .mock();
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">final</strong> byte[] anotherbytecode = <strong class="jxr_keyword">new</strong> BytecodeMocker()
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">final</strong> byte[] another = <strong class="jxr_keyword">new</strong> BytecodeMocker()
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>              .withSource(<span class="jxr_string">"class Bar { public Bar clone() { return this; } }"</span>)
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>              .mock();
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>          <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock()
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>             .withFile(<span class="jxr_string">"target/classes/Foo.class"</span>, bytecode)
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>             .withFile(<span class="jxr_string">"target/classes/Bar.class"</span>, anotherbytecode)
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>             .withFile(<span class="jxr_string">"target/classes/Bar.class"</span>, another)
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>             .withExcludes(<span class="jxr_string">"Foo,Bar"</span>)
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>             .withDefaultClasspath();
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>         <strong class="jxr_keyword">new</strong> FindBugsValidator().validate(env);

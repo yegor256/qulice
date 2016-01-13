@@ -116,7 +116,7 @@
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>         );
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>         <strong class="jxr_keyword">final</strong> Iterable&lt;String&gt; excludes = env.excludes(<span class="jxr_string">"findbugs"</span>);
 <a class="jxr_linenumber" name="L110" href="#L110">110</a>         <strong class="jxr_keyword">if</strong> (excludes.iterator().hasNext()) {
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>             args.add(<strong class="jxr_keyword">this</strong>.excludes(env, excludes));
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>             args.add(FindBugsValidator.excludes(env, excludes));
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>         }
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> VerboseProcess(
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>             <strong class="jxr_keyword">new</strong> ProcessBuilder(args), Level.ALL, Level.ALL
@@ -157,7 +157,7 @@
 <a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">     * @param excludes Iterable with exclude patterns</em>
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">     * @return Path to file with findbug excludes</em>
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>     <strong class="jxr_keyword">private</strong> String excludes(<strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/spi/Environment.html">Environment</a> env,
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String excludes(<strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/spi/Environment.html">Environment</a> env,
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>         <strong class="jxr_keyword">final</strong> Iterable&lt;String&gt; excludes) {
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>         <strong class="jxr_keyword">final</strong> String path = StringUtils.join(
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>             env.tempdir().getPath(),
@@ -169,7 +169,7 @@
 <a class="jxr_linenumber" name="L161" href="#L161">161</a>         <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L162" href="#L162">162</a>             FileUtils.writeStringToFile(
 <a class="jxr_linenumber" name="L163" href="#L163">163</a>                 <strong class="jxr_keyword">new</strong> File(path),
-<a class="jxr_linenumber" name="L164" href="#L164">164</a>                 <strong class="jxr_keyword">this</strong>.generateExcludes(excludes)
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>                 FindBugsValidator.generateExcludes(excludes)
 <a class="jxr_linenumber" name="L165" href="#L165">165</a>             );
 <a class="jxr_linenumber" name="L166" href="#L166">166</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IOException exc) {
 <a class="jxr_linenumber" name="L167" href="#L167">167</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(
@@ -185,7 +185,7 @@
 <a class="jxr_linenumber" name="L177" href="#L177">177</a> <em class="jxr_javadoccomment">     * @param excludes Exclude patterns</em>
 <a class="jxr_linenumber" name="L178" href="#L178">178</a> <em class="jxr_javadoccomment">     * @return XML with findbugs excludes</em>
 <a class="jxr_linenumber" name="L179" href="#L179">179</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>     <strong class="jxr_keyword">private</strong> String generateExcludes(<strong class="jxr_keyword">final</strong> Iterable&lt;String&gt; excludes) {
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String generateExcludes(<strong class="jxr_keyword">final</strong> Iterable&lt;String&gt; excludes) {
 <a class="jxr_linenumber" name="L181" href="#L181">181</a>         <strong class="jxr_keyword">final</strong> Directives directives = <strong class="jxr_keyword">new</strong> Directives()
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>             .add(<span class="jxr_string">"FindBugsFilter"</span>)
 <a class="jxr_linenumber" name="L183" href="#L183">183</a>             .add(<span class="jxr_string">"Match"</span>)

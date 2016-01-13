@@ -75,10 +75,10 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>          <strong class="jxr_keyword">if</strong> (opening != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>              <strong class="jxr_keyword">final</strong> DetailAST closing =
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>                  opening.findFirstToken(TokenTypes.RCURLY);
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> firstLine = opening.getLineNo();
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> lastLine = closing.getLineNo();
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> first = opening.getLineNo();
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> last = closing.getLineNo();
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>              <strong class="jxr_keyword">final</strong> String[] lines = <strong class="jxr_keyword">this</strong>.getLines();
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>              <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> line = firstLine; line &lt; lastLine; line += 1) {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>              <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> line = first; line &lt; last; line += 1) {
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>                  <strong class="jxr_keyword">if</strong> (EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>                      <strong class="jxr_keyword">this</strong>.log(line + 1, <span class="jxr_string">"Empty line inside method"</span>);
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>                  }
