@@ -1,0 +1,12 @@
+<xsd:schema xmlns="http://qulice.com/test/schema"
+           targetNamespace="http://qulice.com/test/schema"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+    <xsd:complexType name="foo">
+        <xsd:all>
+            <xsd:element name="bar"/>
+            <xsd:element name="baz"/>
+        </xsd:all>
+    </xsd:complexType>
+    <xsd:element name="abcd" type="foo"/>
+</xsd:schema>

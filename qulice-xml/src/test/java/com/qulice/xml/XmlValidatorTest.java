@@ -260,4 +260,30 @@ public final class XmlValidatorTest {
         final Validator validator = new XmlValidator();
         validator.validate(env);
     }
+
+    /**
+     * XmlValidatorTest can pass validation if schema file is in classpath.
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    public void passesValidationForClasspathSchema() throws Exception {
+        final Environment env = new Environment.Mock().withFile(
+            "test-classpath-schema.xml",
+            new StringBuilder()
+                .append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
+                .append("<foo xmlns=\"http://qulice.com/test/schema\" ")
+                .append("xmlns:xsi=\"")
+                .append("http://www.w3.org/2001/XMLSchema-instance")
+                .append("\" ")
+                .append("xsi:schemaLocation=\"")
+                .append("http://qulice.com/test/schema ")
+                .append("test-classpath-schema.xsd")
+                .append("\">")
+                .append("<bar>333</bar>")
+                .append("<baz>444</baz>")
+                .append("</foo>").toString()
+        );
+        new XmlValidator().validate(env);
+    }
+
 }
