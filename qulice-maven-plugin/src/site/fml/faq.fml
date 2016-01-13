@@ -34,6 +34,17 @@
 <faqs id="FAQ" title="Frequently Asked Questions">
     <part id="General">
         <faq id="question">
+            <question>How can I setup proxy needed to download and validate schemas?</question>
+            <answer>
+                <p>
+                    Standard Maven proxy set in `settings.xml` doesn't work, because information
+                    about it is not passed to underlying validators. However, standard
+                    [JVM proxy](https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html)
+                    configuration works fine. To use it just add `-Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`
+                    to your `MAVEN_OPTS` environment variable or to Maven command, e.g.
+                    `mvn clean verify -Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`.
+                </p>
+            </answer>
             <question>Does it work with Maven 2.0?</question>
             <answer>
                 <p>
