@@ -351,4 +351,22 @@ public final class PMDValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PMDValidator forbids ternary operators that can be simplified (PMD rule
+     * rulesets/java/basic.xml/SimplifiedTernary).
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsNonSimplifiedTernaryOperators()
+        throws Exception {
+        final String file = "SimplifiedTernary.java";
+        new PMDAssert(
+            file,
+            Matchers.is(false),
+            Matchers.containsString(
+                String.format("(%s)", "SimplifiedTernary")
+            )
+        ).validate();
+    }
 }
