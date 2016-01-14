@@ -77,8 +77,8 @@ public final class MethodBodyCommentsCheck extends Check {
                     ostart = ostart.findFirstToken(token);
                 }
             }
-            if ((ostart != null)
-                && (ostart.getType() == tokens[tokens.length - 1])) {
+            if (ostart != null
+                && ostart.getType() == tokens[tokens.length - 1]) {
                 Arrays.fill(
                     lines, ostart.getLineNo(),
                     ostart.findFirstToken(TokenTypes.RCURLY).getLineNo(), ""

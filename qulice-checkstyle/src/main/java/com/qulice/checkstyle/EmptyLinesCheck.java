@@ -67,10 +67,10 @@ public final class EmptyLinesCheck extends Check {
         if (opening != null) {
             final DetailAST closing =
                 opening.findFirstToken(TokenTypes.RCURLY);
-            final int firstLine = opening.getLineNo();
-            final int lastLine = closing.getLineNo();
+            final int first = opening.getLineNo();
+            final int last = closing.getLineNo();
             final String[] lines = this.getLines();
-            for (int line = firstLine; line < lastLine; line += 1) {
+            for (int line = first; line < last; line += 1) {
                 if (EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
                     this.log(line + 1, "Empty line inside method");
                 }

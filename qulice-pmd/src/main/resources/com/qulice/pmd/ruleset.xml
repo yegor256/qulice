@@ -44,13 +44,16 @@
     <rule ref="rulesets/java/basic.xml">
         <exclude name="AvoidThreadGroup"/>
     </rule>
+    <rule ref="rulesets/java/empty.xml"/>
     <rule ref="rulesets/java/braces.xml"/>
     <rule ref="rulesets/java/clone.xml" />
     <rule ref="rulesets/java/codesize.xml" />
     <rule ref="rulesets/java/design.xml"/>
     <rule ref="rulesets/java/finalizers.xml"/>
     <rule ref="rulesets/java/imports.xml"/>
-    <rule ref="rulesets/java/j2ee.xml"/>
+    <rule ref="rulesets/java/j2ee.xml">
+        <exclude name="DoNotUseThreads"/>
+    </rule>
     <rule ref="rulesets/java/javabeans.xml"/>
     <rule ref="rulesets/java/logging-java.xml">
         <exclude name="GuardLogStatementJavaUtil"/>
@@ -71,6 +74,8 @@
         <exclude name="AvoidFinalLocalVariable"/>
         <exclude name="AvoidLiteralsInIfCondition"/>
         <exclude name="DataflowAnomalyAnalysis"/>
+        <exclude name="UseConcurrentHashMap"/>
+        <exclude name="AvoidUsingVolatile"/>
     </rule>
 
     <rule ref="rulesets/java/typeresolution.xml">

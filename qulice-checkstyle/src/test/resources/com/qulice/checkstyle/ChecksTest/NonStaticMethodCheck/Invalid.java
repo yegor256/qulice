@@ -9,4 +9,11 @@ public class InvalidTest {
     public String name() {
         return "this";
     }
+    @Deprecated
+    public String name() {
+        return "method with non-overide annotation";
+    }
+    public synchronized String name() {
+        return "method with non-native and non-abstract modifier";
+    }
 }

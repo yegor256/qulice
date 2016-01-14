@@ -22,3 +22,16 @@ public interface Foo {
         // this method is not static, but it's a unit test
     }
 }
+
+public class Bar {
+    @Override
+    public void someOverrideMethod() {
+        // this method is not static, but it has "@Override" annotation
+    }
+
+    // this method is not static, but it is abstract
+    public abstract void someAbstractMethod();
+
+    // this method is not static, but it is native
+    public native void someNativeMethod();
+}

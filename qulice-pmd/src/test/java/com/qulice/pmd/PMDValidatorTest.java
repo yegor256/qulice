@@ -35,12 +35,10 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.io.StringWriter;
-import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Appender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
-import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -114,7 +112,7 @@ public final class PMDValidatorTest {
         } catch (final ValidationException ex) {
             thrown = true;
         }
-        MatcherAssert.assertThat(thrown, Matchers.is(true));
+        MatcherAssert.assertThat(thrown, Matchers.is(Matchers.is(true)));
         MatcherAssert.assertThat(
             writer.toString(),
             Matchers.not(Matchers.containsString("(UnusedPrivateMethod)"))
@@ -173,14 +171,14 @@ public final class PMDValidatorTest {
     public void allowsFieldInitializationWhenConstructorIsMissing()
         throws Exception {
         final String file = "FieldInitNoConstructor.java";
-        this.validatePMD(
-            file, false,
+        new PMDAssert(
+            file, Matchers.is(false),
             Matchers.not(
                 RegexMatchers.containsPattern(
                     String.format(PMDValidatorTest.NO_CON_INIT, file)
                 )
             )
-        );
+        ).validate();
     }
 
     /**
@@ -191,12 +189,12 @@ public final class PMDValidatorTest {
     public void forbidsFieldInitializationWhenConstructorExists()
         throws Exception {
         final String file = "FieldInitConstructor.java";
-        this.validatePMD(
-            file, false,
+        new PMDAssert(
+            file, Matchers.is(false),
             RegexMatchers.containsPattern(
                 String.format(PMDValidatorTest.NO_CON_INIT, file)
             )
-        );
+        ).validate();
     }
 
     /**
@@ -208,14 +206,14 @@ public final class PMDValidatorTest {
     public void allowsStaticFieldInitializationWhenConstructorExists()
         throws Exception {
         final String file = "StaticFieldInitConstructor.java";
-        this.validatePMD(
-            file, true,
+        new PMDAssert(
+            file, Matchers.is(true),
             Matchers.not(
                 RegexMatchers.containsPattern(
                     String.format(PMDValidatorTest.NO_CON_INIT, file)
                 )
             )
-        );
+        ).validate();
     }
 
     /**
@@ -227,12 +225,12 @@ public final class PMDValidatorTest {
     public void forbidsFieldInitializationInSeveralConstructors()
         throws Exception {
         final String file = "FieldInitSeveralConstructors.java";
-        this.validatePMD(
-            file, false,
+        new PMDAssert(
+            file, Matchers.is(false),
             RegexMatchers.containsPattern(
                 String.format(PMDValidatorTest.MULT_CON_INIT, file)
             )
-        );
+        ).validate();
     }
 
     /**
@@ -244,14 +242,14 @@ public final class PMDValidatorTest {
     public void allowsFieldInitializationInOneConstructor()
         throws Exception {
         final String file = "FieldInitOneConstructor.java";
-        this.validatePMD(
-            file, true,
+        new PMDAssert(
+            file, Matchers.is(true),
             Matchers.not(
                 RegexMatchers.containsPattern(
                     String.format(PMDValidatorTest.MULT_CON_INIT, file)
                 )
             )
-        );
+        ).validate();
     }
 
     /**
@@ -262,10 +260,10 @@ public final class PMDValidatorTest {
     public void forbidsUnnecessaryFinalModifier()
         throws Exception {
         final String file = "UnnecessaryFinalModifier.java";
-        this.validatePMD(
-            file, false,
+        new PMDAssert(
+            file, Matchers.is(false),
             Matchers.containsString("Unnecessary final modifier")
-        );
+        ).validate();
     }
 
     /**
@@ -276,10 +274,10 @@ public final class PMDValidatorTest {
     public void forbidsUselessParentheses()
         throws Exception {
         final String file = "UselessParentheses.java";
-        this.validatePMD(
-            file, false,
+        new PMDAssert(
+            file, Matchers.is(false),
             Matchers.containsString("Useless parentheses")
-        );
+        ).validate();
     }
 
     /**
@@ -291,12 +289,12 @@ public final class PMDValidatorTest {
     public void forbidsCodeInConstructor()
         throws Exception {
         final String file = "CodeInConstructor.java";
-        this.validatePMD(
-            file, false,
+        new PMDAssert(
+            file, Matchers.is(false),
             RegexMatchers.containsPattern(
                 String.format(PMDValidatorTest.CODE_IN_CON, file)
             )
-        );
+        ).validate();
     }
 
     /**
@@ -308,49 +306,13 @@ public final class PMDValidatorTest {
     public void acceptsCallToConstructorInConstructor()
         throws Exception {
         final String file = "CallToConstructorInConstructor.java";
-        this.validatePMD(
-            file, true,
+        new PMDAssert(
+            file, Matchers.is(true),
             Matchers.not(
                 RegexMatchers.containsPattern(
                     String.format(PMDValidatorTest.CODE_IN_CON, file)
                 )
             )
-        );
-    }
-    /**
-     * Validates that PMD reported given violation.
-     * @param file File to check.
-     * @param result Expected validation result (true if valid).
-     * @param matcher Matcher to call on checkstyle output.
-     * @throws Exception In case of error
-     */
-    private void validatePMD(final String file, final boolean result,
-        final Matcher<String> matcher) throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final StringWriter writer = new StringWriter();
-        final WriterAppender appender =
-            new WriterAppender(new SimpleLayout(), writer);
-        try {
-            Logger.getRootLogger().addAppender(
-                appender
-            );
-            final Environment env = mock.withFile(
-                String.format("src/main/java/foo/%s", file),
-                IOUtils.toString(
-                    this.getClass().getResourceAsStream(file)
-                )
-            );
-            boolean valid = true;
-            try {
-                new PMDValidator().validate(env);
-            } catch (final ValidationException ex) {
-                valid = false;
-            }
-            writer.flush();
-            MatcherAssert.assertThat(valid, Matchers.is(result));
-            MatcherAssert.assertThat(writer.toString(), matcher);
-        } finally {
-            Logger.getRootLogger().removeAppender(appender);
-        }
+        ).validate();
     }
 }

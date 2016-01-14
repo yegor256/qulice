@@ -27,28 +27,67 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.gradle;
+package com.qulice.pmd;
 
-import org.gradle.api.Plugin;
-import org.gradle.api.Project;
+import java.util.Arrays;
+import java.util.Collection;
+import org.hamcrest.Matchers;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 /**
- * Main class of the Qulice Gradle plugin.
- * @author Dmitri Pisarenko (dp@altruix.co)
+ * Tests for disabled rules.
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
- * @since 1.0
+ * @since 0.16
  */
-public final class QulicePlugin implements Plugin<Project> {
+@RunWith(Parameterized.class)
+public final class PMDDisabledRulesTest {
+
     /**
-     * This method is called, when a Gradle plugin is applied to a project. In
-     *  this method all the checks (Checkstyle, Findbugs etc.) should be
-     *  performed.
-     * @param project Gradle project, which Qulice should check.
-     * @todo #339:30min Design validator classes for Gradle. And remove the
-     *  NonStaticMethod exclude below.
-     * @checkstyle NonStaticMethod (2 lines)
+     * Disabled rule name.
      */
-    public void apply(final Project project) {
-        // Will be designed later
+    private final transient String rule;
+
+    /**
+     * Constructor.
+     * @param rule Disabled rule name.
+     */
+    public PMDDisabledRulesTest(final String rule) {
+        this.rule = rule;
     }
+
+    /**
+     * Collection of disabled rules.
+     * @return Collection of disabled rules.
+     */
+    @Parameterized.Parameters
+    public static Collection<String[]> parameters() {
+        return Arrays.asList(
+            new String[][] {
+                {"UseConcurrentHashMap"},
+                {"DoNotUseThreads"},
+                {"AvoidUsingVolatile"},
+            }
+        );
+    }
+
+    /**
+     * PMDValidator has rules disabled.
+     * @throws Exception In case of error.
+     */
+    @Test
+    public void disablesRules() throws Exception {
+        new PMDAssert(
+            String.format("%s.java", this.rule),
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString(
+                    String.format("(%s)", this.rule)
+                )
+            )
+        ).validate();
+    }
+
 }

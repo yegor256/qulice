@@ -56,7 +56,7 @@ public final class PomXpathValidator implements MavenValidator {
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        this.validate(this.pom(env), env.asserts());
+        PomXpathValidator.validate(PomXpathValidator.pom(env), env.asserts());
     }
 
     /**
@@ -65,7 +65,7 @@ public final class PomXpathValidator implements MavenValidator {
      * @param xpaths Xpath queries
      * @throws ValidationException validation exception
      */
-    private void validate(final XML pom, final Iterable<String> xpaths)
+    private static void validate(final XML pom, final Iterable<String> xpaths)
         throws ValidationException {
         for (final String xpath : xpaths) {
             if (pom.xpath(xpath).isEmpty()) {
@@ -82,7 +82,7 @@ public final class PomXpathValidator implements MavenValidator {
      * @param env Environment
      * @return XML instance
      */
-    private XML pom(final Environment env) {
+    private static XML pom(final Environment env) {
         try {
             return new XMLDocument(
                 FileUtils.readFileToString(
@@ -96,10 +96,7 @@ public final class PomXpathValidator implements MavenValidator {
                     ),
                     Charsets.UTF_8
                 )
-            ).registerNs(
-                "pom",
-                "http://maven.apache.org/POM/4.0.0"
-            );
+            ).registerNs("pom", "http://maven.apache.org/POM/4.0.0");
         } catch (final IOException exc) {
             throw new IllegalArgumentException(exc);
         }

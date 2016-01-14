@@ -48,20 +48,27 @@ import java.io.IOException;
 public final class Wrap {
 
     /**
-     * Run it.
-     * @param args Arguments
+     * Private constructor.
      */
-    public static void main(final String... args) {
-        new Wrap().run(args);
+    private Wrap() {
+        // this class shouldn't be instantiated
     }
 
     /**
      * Run it.
      * @param args Arguments
      */
-    public void run(final String... args) {
+    public static void main(final String... args) {
+        Wrap.run(args);
+    }
+
+    /**
+     * Run it.
+     * @param args Arguments
+     */
+    public static void run(final String... args) {
         final FindBugs2 findbugs = new FindBugs2();
-        findbugs.setProject(this.project(args[0], args[1], args[2].split(",")));
+        findbugs.setProject(Wrap.project(args[0], args[1], args[2].split(",")));
         final BugReporter reporter = new PrintingBugReporter();
         reporter.getProjectStats().getProfiler().start(findbugs.getClass());
         reporter.setPriorityThreshold(Detector.LOW_PRIORITY);
@@ -94,7 +101,7 @@ public final class Wrap {
      * @param paths Paths of a classpath
      * @return The project
      */
-    private Project project(final String basedir, final String outdir,
+    private static Project project(final String basedir, final String outdir,
         final String... paths) {
         final Project project = new Project();
         for (final String jar : paths) {
