@@ -387,4 +387,22 @@ public final class PMDValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PMDValidator forbids singleton with multiple getInstance methods
+     * (PMD rule rulesets/java/design.xml/SingleMethodSingleton).
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsSingletonWithMultipleGetInstanceMethods()
+        throws Exception {
+        final String file = "SingleMethodSingleton.java";
+        new PMDAssert(
+            file,
+            Matchers.is(false),
+            Matchers.containsString(
+                String.format("(%s)", "SingleMethodSingleton")
+            )
+        ).validate();
+    }
 }
