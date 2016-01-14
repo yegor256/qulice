@@ -167,5 +167,22 @@
         <priority>3</priority>
     </rule>
 
-
+    <rule name="StaticAccessToStaticFields"
+          message="Static fields should be accessed in a static way [CLASS_NAME.FIELD_NAME]."
+          language="java"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            Avoid accessing static fields directly.
+        </description>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                            //Name[@Image = //FieldDeclaration[@Static='true']/@VariableName]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+        <priority>3</priority>
+    </rule>
 </ruleset>

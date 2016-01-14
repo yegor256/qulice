@@ -52,6 +52,13 @@ import org.junit.Test;
 public final class PMDValidatorTest {
 
     /**
+     * Error message for forbidding access to static fields
+     * other than with a static way.
+     * @checkstyle LineLength (2 lines)
+     */
+    private static final String STATIC_ACCESS = "%s\\[\\d+-\\d+\\]: Static fields should be accessed in a static way \\[CLASS_NAME.FIELD_NAME\\]\\.";
+
+    /**
      * Error message for forbidding instructions inside a constructor
      * other than field initialization or call to other contructors.
      * @checkstyle LineLength (2 lines)
@@ -312,6 +319,42 @@ public final class PMDValidatorTest {
                 RegexMatchers.containsPattern(
                     String.format(PMDValidatorTest.CODE_IN_CON, file)
                 )
+            )
+        ).validate();
+    }
+
+    /**
+     * PMDValidator accepts calls to static fields
+     * in a static way.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void acceptsCallToStaticFieldsInStaticWay()
+        throws Exception {
+        final String file = "StaticAccessToStaticFields.java";
+        new PMDAssert(
+            file, Matchers.is(true),
+            Matchers.not(
+                RegexMatchers.containsPattern(
+                    String.format(PMDValidatorTest.STATIC_ACCESS, file)
+                )
+            )
+        ).validate();
+    }
+
+    /**
+     * PMDValidator forbids calls to static fields
+     * in a non static way.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsCallToStaticFieldsInNonStaticWay()
+        throws Exception {
+        final String file = "NonStaticAccessToStaticFields.java";
+        new PMDAssert(
+            file, Matchers.is(false),
+            RegexMatchers.containsPattern(
+                String.format(PMDValidatorTest.STATIC_ACCESS, file)
             )
         ).validate();
     }
