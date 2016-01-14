@@ -71,6 +71,11 @@ public final class PMDValidatorTest {
     private static final String MULT_CON_INIT = "%s\\[\\d+-\\d+\\]: Avoid field initialization in several constructors.";
 
     /**
+     * Template for string inside brackets.
+     */
+    private static final String BRACKETS = "(%s)";
+
+    /**
      * PMDValidator can find violations in Java file(s).
      * @throws Exception If something wrong happens inside.
      */
@@ -328,7 +333,10 @@ public final class PMDValidatorTest {
             file,
             Matchers.is(false),
             Matchers.containsString(
-                String.format("(%s)", "CloneMethodMustBePublic")
+                String.format(
+                    PMDValidatorTest.BRACKETS,
+                    "CloneMethodMustBePublic"
+                )
             )
         ).validate();
     }
@@ -347,7 +355,10 @@ public final class PMDValidatorTest {
             file,
             Matchers.is(false),
             Matchers.containsString(
-                String.format("(%s)", "CloneMethodReturnTypeMustMatchClassName")
+                String.format(
+                    PMDValidatorTest.BRACKETS,
+                    "CloneMethodReturnTypeMustMatchClassName"
+                )
             )
         ).validate();
     }
@@ -365,7 +376,10 @@ public final class PMDValidatorTest {
             file,
             Matchers.is(false),
             Matchers.containsString(
-                String.format("(%s)", "SimplifiedTernary")
+                String.format(
+                    PMDValidatorTest.BRACKETS,
+                    "SimplifiedTernary"
+                )
             )
         ).validate();
     }
@@ -383,7 +397,10 @@ public final class PMDValidatorTest {
             file,
             Matchers.is(false),
             Matchers.containsString(
-                String.format("(%s)", "SingletonClassReturningNewInstance")
+                String.format(
+                    PMDValidatorTest.BRACKETS,
+                    "SingletonClassReturningNewInstance"
+                )
             )
         ).validate();
     }
@@ -401,7 +418,10 @@ public final class PMDValidatorTest {
             file,
             Matchers.is(false),
             Matchers.containsString(
-                String.format("(%s)", "SingleMethodSingleton")
+                String.format(
+                    PMDValidatorTest.BRACKETS,
+                    "SingleMethodSingleton"
+                )
             )
         ).validate();
     }
