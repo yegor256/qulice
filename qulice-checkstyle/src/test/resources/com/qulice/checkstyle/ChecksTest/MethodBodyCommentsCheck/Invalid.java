@@ -22,5 +22,21 @@ public final class Invalid {
 /* invalid comment */ final int second = 2;
         return first + second;
     }
+
+    public int invalidMultilineInside() {
+        /**
+         * invalid multiline comment
+         */
+    }
+
+    void submit() {
+        new Runnable() {
+            @Override
+            public void run() {
+                /* run
+                 */
+            }
+        };
+    }
 }
 
