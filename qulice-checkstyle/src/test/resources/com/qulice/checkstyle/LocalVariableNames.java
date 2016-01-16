@@ -8,6 +8,7 @@ package foo;
  * @version $Id$
  * @author John Smith (john@example.com)
  * @checkstyle HiddenField (100 lines)
+ * @since 1.0
  */
 public final class LocalVariableNames {
     /**

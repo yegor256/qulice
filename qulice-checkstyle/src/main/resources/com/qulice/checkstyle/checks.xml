@@ -310,7 +310,7 @@
         <module name="ClassTypeParameterName"/>
         <module name="ConstantName"/>
         <module name="LocalFinalVariableName">
-            <property name="format" value="^id$|^[a-z]{3,12}$"/>
+            <property name="format" value="^id$|^[a-z]{3,12}$" />
             <property name="tokens" value="VARIABLE_DEF"/>
         </module>
         <module name="LocalVariableName">
