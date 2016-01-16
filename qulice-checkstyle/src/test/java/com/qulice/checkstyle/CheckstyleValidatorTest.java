@@ -294,7 +294,7 @@ public final class CheckstyleValidatorTest {
         );
         MatcherAssert.assertThat(
             StringUtils.countMatches(result, "LocalVariableNames.java"),
-            Matchers.is(Tv.SEVEN)
+            Matchers.is(Tv.NINE)
         );
         MatcherAssert.assertThat(
             result,
@@ -302,17 +302,19 @@ public final class CheckstyleValidatorTest {
                 Matchers.not(
                     Matchers.stringContainsInOrder(
                         Arrays.asList(
-                            "aaa", "twelveletter", "ise"
+                            "aaa", "twelveletter", "ise", "id"
                         )
                     )
                 ),
                 Matchers.stringContainsInOrder(
                     Arrays.asList(
                         "Name 'prolongations' must match pattern",
-                        "Name 'camelCase' must match pattern '^[a-z]{3,12}$'.",
-                        "Name 'number1' must match pattern '^[a-z]{3,12}$'.",
-                        "Name 'ex' must match pattern '^[a-z]{3,12}$'.",
-                        "Name 'a' must match pattern '^[a-z]{3,12}$'.",
+                        "Name 'very_long_variable_id' must match pattern",
+                        "Name 'camelCase' must match pattern",
+                        "Name 'it' must match pattern '^id$|^[a-z]{3,12}$'.",
+                        "Name 'number1' must match pattern",
+                        "Name 'ex' must match pattern '^id$|^[a-z]{3,12}$'.",
+                        "Name 'a' must match pattern '^id$|^[a-z]{3,12}$'.",
                         "Name 'ae' must match pattern '^ex|[a-z]{3,12}$'.",
                         "Name 'e' must match pattern '^ex|[a-z]{3,12}$'."
                     )

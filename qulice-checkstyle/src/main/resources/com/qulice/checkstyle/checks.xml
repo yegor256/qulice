@@ -310,17 +310,17 @@
         <module name="ClassTypeParameterName"/>
         <module name="ConstantName"/>
         <module name="LocalFinalVariableName">
-            <property name="format" value="^[a-z]{3,12}$"/>
+            <property name="format" value="^id$|^[a-z]{3,12}$"/>
             <property name="tokens" value="VARIABLE_DEF"/>
         </module>
         <module name="LocalVariableName">
-            <property name="format" value="^[a-z]{3,12}$"/>
+            <property name="format" value="^id$|^[a-z]{3,12}$"/>
         </module>
         <module name="CatchParameterName">
             <property name="format" value="^ex|[a-z]{3,12}$"/>
         </module>
         <module name="MemberName">
-            <property name="format" value="^[a-z]{3,}$"/>
+            <property name="format" value="^id$|^[a-z]{3,}$"/>
         </module>
         <module name="MethodName">
             <property name="format" value="^[a-z]{2,}[a-zA-Z]+$"/>
