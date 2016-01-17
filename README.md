@@ -2,6 +2,7 @@
 
 [![Made By Teamed.io](http://img.teamed.io/btn.svg)](http://www.teamed.io)
 [![DevOps By Rultor.com](http://www.rultor.com/b/teamed/qulice)](http://www.rultor.com/p/teamed/qulice)
+[![We recommend IntelliJ IDEA](http://img.teamed.io/intellij-idea-recommend.svg)](https://www.jetbrains.com/idea/)
 
 [![Build Status](https://travis-ci.org/teamed/qulice.svg?branch=master)](https://travis-ci.org/teamed/qulice)
 [![Build status](https://ci.appveyor.com/api/projects/status/k8vw7rjdq06olx3b/branch/master?svg=true)](https://ci.appveyor.com/project/yegor256/qulice/branch/master)
