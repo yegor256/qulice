@@ -19,6 +19,6 @@ script:
   - set -e
   - pdd --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java
   - est --dir=est --file=/dev/null
-  - travis_wait ./years.sh
+  - ./years.sh
   - mvn clean install -Pqulice --errors
   - set +e
