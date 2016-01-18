@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2014, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,6 +36,7 @@ import org.junit.Test;
  * Simple test of the Main class.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 1.0
  */
 public final class MainTest {
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -270,11 +270,11 @@ public final class CheckstyleValidatorTest {
             "ConstructorParams.java", false,
             Matchers.allOf(
                 Matchers.containsString(
-                    "ConstructorParams.java[30]: 'number' hides a field."
+                    "ConstructorParams.java[31]: 'number' hides a field."
                 ),
                 Matchers.not(
                     Matchers.containsString(
-                        "ConstructorParams.java[21]: 'number' hides a field."
+                        "ConstructorParams.java[22]: 'number' hides a field."
                     )
                 )
             )
