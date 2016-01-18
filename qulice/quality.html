@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>qulice &#x2013; What is Quality for Qulice?</title>
+        <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
+                    <meta name="author" content="Yegor Bugayenko" />
+                            <script>
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-1963507-25']);
+                _gaq.push(['_trackPageview']);
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+                                                                                                                
+<link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
+                                                                                                                
+<link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
+                                            <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script>
+            $(document).ready(
+                function() {
+                    $(".menu-button").click(
+                        function() {
+                            if ($("#here-goes-menu").attr("class") == "menu-off") {
+                                $("#menu").clone().attr("class", "mobile-menu").appendTo("#here-goes-menu");
+                                $("#here-goes-menu").attr("class", "menu-on");
+                            } else {
+                                $(".mobile-menu").hide();
+                                $("#here-goes-menu").attr("class", "menu-off");
+                            }
+                        }
+                    );
+                }
+            );
+        </script>
+    </head>
+    <body>
+                <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <nav class="menu-section" role="navigation">
+                <ul class="menu" id="menu">
+                                                                                    <li>
+                            <span>Overview</span>
+                                                            <ul>
+                                                                                                    <li >
+                            <span>                        <a href="index.html" title="Introduction">Introduction</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="qulice-maven-plugin/usage.html" title="Quick Start">Quick Start</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li  class='active' >
+                            <span>                        <a href="quality.html" title="What is Quality?">What is Quality?</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                            <li>
+                            <span>Project Documentation</span>
+                                                            <ul>
+                                                                                                    <li >
+                            <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                        <li >
+                            <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
+                                                                                        </ul>
+                                                    </li>
+                                    </ul>
+            </nav>
+            <div class="right-side">
+                <main role="main">
+                    <div class="content">
+                        <header>
+                            <div class="logo">
+                                <a href="./"
+                                    title=" home page of Qulice.com ">
+                                    <img src="http://img.qulice.com/logo.svg"
+                                        alt="Qulice"
+                                                                                    width="214"
+                                                                                                                            height="60"
+                                                                                itemprop="image"
+                                    />
+                                </a>
+                            </div>
+                            <div class="teamed">
+                                <a href="http://www.teamed.io">
+                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
+                                </a>
+                            </div>
+                            <ul class="badges">
+                                <li>
+                                    <strong itemprop="version">0.15.3</strong>
+                                </li>
+                                <li>
+                                    
+                                    <time itemprop="datePublished" datetime="2016-01-18T10:18:56Z">
+                                        
+                                        18-Jan-2016
+                                    </time>
+                                </li>
+                                <li class="menu-button">menu</li>
+                            </ul>
+                        </header>
+                        <div id="here-goes-menu" class="menu-off"></div>
+                                                                            <a href="https://github.com/teamed/qulice">
+                                <img src="http://img.jcabi.com/fork-me.svg" class="fork-me"/>
+                            </a>
+                                                <article role="article" itemprop="articleBody">
+                            <!--  --><!-- Copyright (c) 2011-2016, Qulice.com --><!-- All rights reserved. --><!--  --><!-- Redistribution and use in source and binary forms, with or without --><!-- modification, are permitted provided that the following conditions --><!-- are met: 1) Redistributions of source code must retain the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer. 2) Redistributions in binary form must reproduce the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer in the documentation and/or other materials provided --><!-- with the distribution. 3) Neither the name of the Qulice.com nor --><!-- the names of its contributors may be used to endorse or promote --><!-- products derived from this software without specific prior written --><!-- permission. --><!--  --><!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS --><!-- "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT --><!-- NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND --><!-- FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL --><!-- THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, --><!-- INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES --><!-- (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR --><!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) --><!-- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, --><!-- STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) --><!-- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED --><!-- OF THE POSSIBILITY OF SUCH DAMAGE. --><!--  --><!-- @version $Id$ --><!--  --><div class="section">
+<h2><a name="What_is_Quality_and_how_to_achieve_it"></a>What is Quality and how to achieve it?</h2>
+<p>Quality Java code, as we understand it, compiles and complies to <a class="externalLink" href="http://en.wikipedia.org/wiki/Static_program_analysis">static analysis</a> rules. Qulice uses a number of open-source components (in order to avoid reinventing the wheel). We pre-configured these tools for your convenience and extended them with our specific rules.</p>
+<div class="section">
+<h3><a name="Checkstyle"></a>Checkstyle</h3>
+<p><a class="externalLink" href="http://checkstyle.sourceforge.net/checks.html">Inherited rules</a>.</p>
+<p>Our custom rules:</p>
+<ul>
+<li><a href="./qulice-checkstyle/apidocs-0.15.3/com/qulice/checkstyle/BracketsStructureCheck.html">BracketsStructure</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.15.3/com/qulice/checkstyle/ConstantUsageCheck.html">ConstantUsage</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.15.3/com/qulice/checkstyle/EmptyLinesCheck.html">EmptyLines</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.15.3/com/qulice/checkstyle/ImportCohesionCheck.html">ImportCohesion</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.15.3/com/qulice/checkstyle/JavadocLocationCheck.html">JavadocLocation</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.15.3/com/qulice/checkstyle/JavadocTagsCheck.html">JavadocTags</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.15.3/com/qulice/checkstyle/MethodBodyCommentsCheck.html">MethodBodyComments</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.15.3/com/qulice/checkstyle/MultilineJavadocTagsCheck.html">MultilineJavadocTags</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.15.3/com/qulice/checkstyle/NonStaticMethodCheck.html">NonStaticMethod</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.15.3/com/qulice/checkstyle/StringLiteralsConcatenationCheck.html">StringLiteralsConcatenation</a></li></ul>
+<p>If you want to disable some rule (this may happen, but try to avoid such situations at all cost):</p>
+<div class="source">
+<pre>/**
+ * @checkstyle ParameterNumber (3 lines)
+ */
+public void funcWithManyParams(int a, int b, int c, int d) {
+  // @checkstyle MagicNumber (1 line)
+  int num = 5;
+  // ...
+}</pre></div></div>
+<div class="section">
+<h3><a name="PMD"></a>PMD</h3>
+<p><a class="externalLink" href="http://pmd.sourceforge.net/rules/index.html">Inherited rules</a>.</p>
+<p>Rules can be disabled (again, try to avoid this at all cost):</p>
+<div class="source">
+<pre>@SuppressWarnings(&quot;PMD.UseConcurrentHashMap&quot;)
+public void func() {
+  Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
+  // ...
+}</pre></div></div>
+<div class="section">
+<h3><a name="Cobertura"></a>Cobertura</h3>
+<p>Every class, method, and package should be covered by unit tests. Qulice will complain when coverage is not sufficient. To enable cobertura checks add <tt>&lt;goal&gt;instrument&lt;/goal</tt>&gt; to plugin <tt>executions</tt> section:</p>
+<div class="source">
+<pre>&lt;build&gt;
+   &lt;plugins&gt;
+       &lt;plugin&gt;
+           &lt;groupId&gt;com.qulice&lt;/groupId&gt;
+           &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
+           &lt;version&gt;0.15.3&lt;/version&gt;
+           &lt;configuration&gt;
+               &lt;license&gt;file:${basedir}/LICENSE.txt&lt;/license&gt;
+           &lt;/configuration&gt;
+           &lt;executions&gt;
+               &lt;execution&gt;
+                   &lt;goals&gt;
+                       &lt;goal&gt;instrument&lt;/goal&gt;
+                       &lt;goal&gt;check&lt;/goal&gt;
+                   &lt;/goals&gt;
+               &lt;/execution&gt;
+           &lt;/executions&gt;
+       &lt;/plugin&gt;
+   &lt;/plugins&gt;
+&lt;/build&gt;</pre></div>
+<p>In order to get a visual presentation of your coverage add this to your <tt>pom.xml</tt>:</p>
+<div class="source">
+<pre>&lt;build&gt;
+  &lt;pluginManagement&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+        &lt;artifactId&gt;cobertura-maven-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.5.1&lt;/version&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/pluginManagement&gt;
+&lt;/build&gt;</pre></div>
+<p>And run <tt>mvn cobertura:cobertura</tt>. Then open <tt>target/site/cobertura/index.html</tt> in any browser.</p>
+<p>You can't disable Cobertura checks.</p></div>
+<div class="section">
+<h3><a name="CodeNarc"></a>CodeNarc</h3>
+<p><a class="externalLink" href="http://codenarc.sourceforge.net/codenarc-rule-index.html">Inherited rules</a>.</p>
+<p>You can't disable CodeNarc rules.</p></div></div>
+                        </article>
+                    </div>
+                </main>
+                <footer class="legal-notes">
+                    <div>
+                        Copyright &#169;
+                                                                            2011-2016
+                                            </div>
+                    <div>Qulice.com, All Rights Reserved.</div>
+                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                </footer>
+            </div>
+        </section>
+    </body>
+</html>
