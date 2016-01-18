@@ -21,6 +21,27 @@ public final class LocalVariableNames {
     private transient int id;
 
     /**
+     * Just a valid method.
+     *
+     * @param id
+     *  A valid parameter with name 'id'.
+     * @return Some value
+     */
+    static int validone(final int id) {
+        return id + 1;
+    }
+
+    /**
+     * Another valid method.
+     * @param parametername Another parameter that's valid.
+     */
+    static void validtwo(final int parametername) {
+        if (parametername == 1) {
+            throw new RuntimeException("Some error");
+        }
+    }
+
+    /**
      * Names that should not cause any violation.
      */
     void valid() {
@@ -53,5 +74,16 @@ public final class LocalVariableNames {
         } catch (final IllegalArgumentException e) {
             throw e;
         }
+    }
+
+    /**
+     * Just an invalid method that test all cases.
+     *
+     * @param it
+     *  An invalid parameter with name 'it'.
+     * @return Some value
+     */
+    static int invalid(final int it) {
+        return it + 1;
     }
 }
