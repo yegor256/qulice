@@ -166,6 +166,13 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <configuration>
+                    <path>${project.artifactId}</path>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>
