@@ -371,9 +371,8 @@ public final class PMDValidatorTest {
      */
     @Test
     public void forbidsNonPublicCloneMethod() throws Exception {
-        final String file = "CloneMethodMustBePublic.java";
         new PMDAssert(
-            file,
+            "CloneMethodMustBePublic.java",
             Matchers.is(false),
             Matchers.containsString(
                 String.format(
@@ -393,9 +392,8 @@ public final class PMDValidatorTest {
     @Test
     public void forbidsCloneMethodReturnTypeNotMatchingClassName()
         throws Exception {
-        final String file = "CloneMethodReturnTypeMustMatchClassName.java";
         new PMDAssert(
-            file,
+            "CloneMethodReturnTypeMustMatchClassName.java",
             Matchers.is(false),
             Matchers.containsString(
                 String.format(
@@ -414,9 +412,8 @@ public final class PMDValidatorTest {
     @Test
     public void forbidsNonSimplifiedTernaryOperators()
         throws Exception {
-        final String file = "SimplifiedTernary.java";
         new PMDAssert(
-            file,
+            "SimplifiedTernary.java",
             Matchers.is(false),
             Matchers.containsString(
                 String.format(
@@ -435,9 +432,8 @@ public final class PMDValidatorTest {
     @Test
     public void forbidsSingletonClassesReturningNewInstance()
         throws Exception {
-        final String file = "SingletonClassReturningNewInstance.java";
         new PMDAssert(
-            file,
+            "SingletonClassReturningNewInstance.java",
             Matchers.is(false),
             Matchers.containsString(
                 String.format(
@@ -456,9 +452,8 @@ public final class PMDValidatorTest {
     @Test
     public void forbidsSingletonWithMultipleGetInstanceMethods()
         throws Exception {
-        final String file = "SingleMethodSingleton.java";
         new PMDAssert(
-            file,
+            "SingleMethodSingleton.java",
             Matchers.is(false),
             Matchers.containsString(
                 String.format(
