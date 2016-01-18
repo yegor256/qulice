@@ -50,4 +50,8 @@ public interface ValidInterface {
      * Some method with no body
      */
     void method();
+
+    /* Some plain comment outside method*/
+    void method();
+    /* Another plain comment outside method */
 }

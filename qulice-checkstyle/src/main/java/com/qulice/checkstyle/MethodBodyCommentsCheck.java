@@ -103,7 +103,7 @@ public final class MethodBodyCommentsCheck extends Check {
         final boolean oneliner = start == end - 1;
         for (int pos = start; pos < end; ++pos) {
             final String line = lines[pos].trim();
-            if (line.startsWith("//")) {
+            if (line.startsWith("//") || line.startsWith("/*")) {
                 final String comment = line.substring(2).trim();
                 if (!comment.startsWith("@checkstyle") && !oneliner) {
                     this.log(pos + 1, "Comments in method body are prohibited");
