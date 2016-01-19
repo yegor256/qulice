@@ -423,44 +423,4 @@ public final class PMDValidatorTest {
             )
         ).validate();
     }
-
-    /**
-     * PMDValidator forbids non caching getInstance methods (PMD rule
-     * rulesets/java/design.xml/SingletonClassReturningNewInstance).
-     * @throws Exception If something wrong happens inside.
-     */
-    @Test
-    public void forbidsSingletonClassesReturningNewInstance()
-        throws Exception {
-        new PMDAssert(
-            "SingletonClassReturningNewInstance.java",
-            Matchers.is(false),
-            Matchers.containsString(
-                String.format(
-                    PMDValidatorTest.BRACKETS,
-                    "SingletonClassReturningNewInstance"
-                )
-            )
-        ).validate();
-    }
-
-    /**
-     * PMDValidator forbids singleton with multiple getInstance methods
-     * (PMD rule rulesets/java/design.xml/SingleMethodSingleton).
-     * @throws Exception If something wrong happens inside.
-     */
-    @Test
-    public void forbidsSingletonWithMultipleGetInstanceMethods()
-        throws Exception {
-        new PMDAssert(
-            "SingleMethodSingleton.java",
-            Matchers.is(false),
-            Matchers.containsString(
-                String.format(
-                    PMDValidatorTest.BRACKETS,
-                    "SingleMethodSingleton"
-                )
-            )
-        ).validate();
-    }
 }
