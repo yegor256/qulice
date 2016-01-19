@@ -78,6 +78,11 @@ public final class PMDValidatorTest {
     private static final String MULT_CON_INIT = "%s\\[\\d+-\\d+\\]: Avoid field initialization in several constructors.";
 
     /**
+     * Template for string inside brackets.
+     */
+    private static final String BRACKETS = "(%s)";
+
+    /**
      * PMDValidator can find violations in Java file(s).
      * @throws Exception If something wrong happens inside.
      */
@@ -355,6 +360,66 @@ public final class PMDValidatorTest {
             file, Matchers.is(false),
             RegexMatchers.containsPattern(
                 String.format(PMDValidatorTest.STATIC_ACCESS, file)
+            )
+        ).validate();
+    }
+
+    /**
+     * PMDValidator forbids non public clone methods (PMD rule
+     * rulesets/java/clone.xml/CloneMethodMustBePublic).
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsNonPublicCloneMethod() throws Exception {
+        new PMDAssert(
+            "CloneMethodMustBePublic.java",
+            Matchers.is(false),
+            Matchers.containsString(
+                String.format(
+                    PMDValidatorTest.BRACKETS,
+                    "CloneMethodMustBePublic"
+                )
+            )
+        ).validate();
+    }
+
+    /**
+     * PMDValidator forbids clone methods with return type not matching class
+     * name (PMD rule
+     * rulesets/java/clone.xml/CloneMethodReturnTypeMustMatchClassName).
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsCloneMethodReturnTypeNotMatchingClassName()
+        throws Exception {
+        new PMDAssert(
+            "CloneMethodReturnTypeMustMatchClassName.java",
+            Matchers.is(false),
+            Matchers.containsString(
+                String.format(
+                    PMDValidatorTest.BRACKETS,
+                    "CloneMethodReturnTypeMustMatchClassName"
+                )
+            )
+        ).validate();
+    }
+
+    /**
+     * PMDValidator forbids ternary operators that can be simplified (PMD rule
+     * rulesets/java/basic.xml/SimplifiedTernary).
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsNonSimplifiedTernaryOperators()
+        throws Exception {
+        new PMDAssert(
+            "SimplifiedTernary.java",
+            Matchers.is(false),
+            Matchers.containsString(
+                String.format(
+                    PMDValidatorTest.BRACKETS,
+                    "SimplifiedTernary"
+                )
             )
         ).validate();
     }
