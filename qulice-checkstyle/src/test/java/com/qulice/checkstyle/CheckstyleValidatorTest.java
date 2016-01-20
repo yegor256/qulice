@@ -29,6 +29,7 @@
  */
 package com.qulice.checkstyle;
 
+import com.google.common.base.Joiner;
 import com.jcabi.aspects.Tv;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
@@ -375,6 +376,33 @@ public final class CheckstyleValidatorTest {
             "ValidSemicolon.java", true,
             Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
         );
+    }
+
+    /**
+     * CheckstyleValidator does not produce errors when last thing
+     * in file are imports. The only exception that should be thrown is
+     * qulice ValidationException.
+     * @throws Exception In case of error
+     */
+    @Test(expected = ValidationException.class)
+    public void doesNotThrowExceptionIfImportsOnly() throws Exception {
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.rule.savePackageInfo(
+            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+        ).withLines(new String[] {"License-1.", "", "License-2."})
+            .withEol("\n")
+            .file();
+        final String crlf = "\r\n";
+        final String content = Joiner.on(crlf).join(
+            "package com.google;",
+            crlf,
+            "import java.util.*;"
+        );
+        final Environment env = mock.withParam(
+            CheckstyleValidatorTest.LICENSE_PROP,
+            this.toURL(license)
+        ).withFile("src/main/java/foo/Foo.java", content);
+        new CheckstyleValidator().validate(env);
     }
 
     /**
