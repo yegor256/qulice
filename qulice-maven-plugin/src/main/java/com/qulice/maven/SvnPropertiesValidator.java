@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,6 +52,7 @@ import org.apache.maven.project.MavenProject;
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @checkstyle LineLength (1 line)
  * @see <a href="http://svnbook.red-bean.com/en/1.5/svn.ref.properties.html">Properties in Subversion</a>
  */
 public final class SvnPropertiesValidator implements MavenValidator {
@@ -59,7 +60,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        if (this.isSvn(env.project())) {
+        if (SvnPropertiesValidator.isSvn(env.project())) {
             final File dir = new File(env.project().getBasedir(), "src");
             if (dir.exists()) {
                 this.validate(dir);
@@ -120,7 +121,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
      * @param project The Maven project
      * @return TRUE if yes
      */
-    private boolean isSvn(final MavenProject project) {
+    private static boolean isSvn(final MavenProject project) {
         return project.getScm() != null
             && project.getScm().getConnection() != null
             && project.getScm().getConnection().startsWith("scm:svn");
@@ -133,7 +134,9 @@ public final class SvnPropertiesValidator implements MavenValidator {
      */
     private boolean valid(final File file) {
         boolean valid = true;
-        final String style = this.propget(file, "svn:eol-style");
+        final String style = SvnPropertiesValidator.propget(
+            file, "svn:eol-style"
+        );
         if (!"native".equals(style)) {
             Logger.error(
                 this,
@@ -143,7 +146,9 @@ public final class SvnPropertiesValidator implements MavenValidator {
             );
             valid = false;
         }
-        final String keywords = this.propget(file, "svn:keywords");
+        final String keywords = SvnPropertiesValidator.propget(
+            file, "svn:keywords"
+        );
         if (!keywords.contains("Id")) {
             Logger.error(
                 this,
@@ -162,7 +167,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
      * @param name Property name
      * @return Property value
      */
-    private String propget(final File file, final String name) {
+    private static String propget(final File file, final String name) {
         final ProcessBuilder builder = new ProcessBuilder(
             "svn",
             "propget",

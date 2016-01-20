@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -96,7 +96,8 @@ public final class MojoExecutor {
 
     /**
      * Find and configure a mojor.
-     * @param coords Maven coordinates, e.g. "com.qulice:maven-qulice-plugin:1.0"
+     * @param coords Maven coordinates,
+     *  e.g. "com.qulice:maven-qulice-plugin:1.0"
      * @param goal Maven plugin goal to execute
      * @param config The configuration to set
      * @throws ValidationException If something is wrong inside

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -45,13 +45,28 @@ import javax.xml.transform.stream.StreamSource;
  * @version $Id$
  */
 public final class Prettifier {
+
+    /**
+     * Input XML.
+     */
+    private final transient String xml;
+
+    /**
+     * Constructor.
+     *
+     * @param xml Input XML.
+     */
+    public Prettifier(final String xml) {
+        this.xml = xml;
+    }
+
     /**
      * Prettify XML by indenting it.
-     * @param xml Input XML.
+     *
      * @return Formatted XML.
      * @checkstyle MultipleStringLiterals (9 lines)
      */
-    public String prettify(final String xml) {
+    public String prettify() {
         try {
             final Transformer transformer = TransformerFactory
                 .newInstance().newTransformer();
@@ -65,7 +80,7 @@ public final class Prettifier {
             );
             final StreamResult result = new StreamResult(new StringWriter());
             transformer.transform(
-                new StreamSource(new StringReader(xml)), result
+                new StreamSource(new StringReader(this.xml)), result
             );
             return String.format(
                 "%s%n",

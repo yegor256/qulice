@@ -7,6 +7,7 @@
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @author Some Name (some@name.com)
  * @version $Id$
+ * @since 0.28.3
  */
 public final class Invalid {
     public void main() {

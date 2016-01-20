@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -118,8 +118,8 @@ public final class CheckstyleValidatorTest {
     @Test
     public void acceptsInstanceMethodReferences() throws Exception {
         this.validateCheckstyle(
-                "InstanceMethodRef.java", true,
-                Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+            "InstanceMethodRef.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
         );
     }
 
@@ -270,11 +270,11 @@ public final class CheckstyleValidatorTest {
             "ConstructorParams.java", false,
             Matchers.allOf(
                 Matchers.containsString(
-                    "ConstructorParams.java[30]: 'number' hides a field."
+                    "ConstructorParams.java[31]: 'number' hides a field."
                 ),
                 Matchers.not(
                     Matchers.containsString(
-                        "ConstructorParams.java[21]: 'number' hides a field."
+                        "ConstructorParams.java[22]: 'number' hides a field."
                     )
                 )
             )
@@ -294,7 +294,7 @@ public final class CheckstyleValidatorTest {
         );
         MatcherAssert.assertThat(
             StringUtils.countMatches(result, "LocalVariableNames.java"),
-            Matchers.is(Tv.SEVEN)
+            Matchers.is(Tv.TEN)
         );
         MatcherAssert.assertThat(
             result,
@@ -302,19 +302,22 @@ public final class CheckstyleValidatorTest {
                 Matchers.not(
                     Matchers.stringContainsInOrder(
                         Arrays.asList(
-                            "aaa", "twelveletter", "ise"
+                            "aaa", "twelveletter", "ise", "id", "parametername"
                         )
                     )
                 ),
                 Matchers.stringContainsInOrder(
                     Arrays.asList(
                         "Name 'prolongations' must match pattern",
-                        "Name 'camelCase' must match pattern '^[a-z]{3,12}$'.",
-                        "Name 'number1' must match pattern '^[a-z]{3,12}$'.",
-                        "Name 'ex' must match pattern '^[a-z]{3,12}$'.",
-                        "Name 'a' must match pattern '^[a-z]{3,12}$'.",
+                        "Name 'very_long_variable_id' must match pattern",
+                        "Name 'camelCase' must match pattern",
+                        "Name 'it' must match pattern '^id$|^[a-z]{3,12}$'.",
+                        "Name 'number1' must match pattern",
+                        "Name 'ex' must match pattern '^id$|^[a-z]{3,12}$'.",
+                        "Name 'a' must match pattern '^id$|^[a-z]{3,12}$'.",
                         "Name 'ae' must match pattern '^ex|[a-z]{3,12}$'.",
-                        "Name 'e' must match pattern '^ex|[a-z]{3,12}$'."
+                        "Name 'e' must match pattern '^ex|[a-z]{3,12}$'.",
+                        "Name 'it' must match pattern '^id$|^[a-z]{3,}$'."
                     )
                 )
             )

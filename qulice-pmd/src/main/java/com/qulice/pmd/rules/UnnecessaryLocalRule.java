@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -82,8 +82,7 @@ public final class UnnecessaryLocalRule extends AbstractJavaRule {
      * @param data Context.
      * @param name Variable name.
      */
-    @SuppressWarnings({ "PMD.AvoidInstantiatingObjectsInLoops",
-        "PMD.UseConcurrentHashMap" })
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private void usages(final JavaNode node, final Object data,
         final ASTVariableDeclarator name) {
         final Map<NameDeclaration, List<NameOccurrence>> vars = name

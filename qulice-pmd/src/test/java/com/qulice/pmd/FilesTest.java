@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@ public final class FilesTest {
         final Environment env = new Environment.Mock()
             .withFile("src/main/java/Main.java", source)
             .withFile("src/main/resources/test.properties", "prop=1");
-        final Collection<DataSource> found = new Files().getSources(env);
+        final Collection<DataSource> found = new Files(env).sources();
         MatcherAssert.assertThat(found.size(), Matchers.is(1));
         MatcherAssert.assertThat(
             IOUtils.toString(found.iterator().next().getInputStream()),

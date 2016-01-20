@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
  *
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -375,11 +375,8 @@
                         <artifactId>qulice-maven-plugin</artifactId>
                         <configuration>
                             <excludes combine.children="append">
-                                <!--
-                                @todo #370:30min Fix all FindBugs problems reported in qulice-maven-plugin
-                                 and remove the FindBugs exclude below.
-                                -->
-                                <exclude>findbugs:.*</exclude>
+                                <!-- generated class -->
+                                <exclude>findbugs:com.qulice.maven.HelpMojo</exclude>
                                 <exclude>checkstyle:/src/it/.*</exclude>
                                 <exclude>pmd:.*/src/it/.*</exclude>
                                 <exclude>xml:/src/it/.*</exclude>

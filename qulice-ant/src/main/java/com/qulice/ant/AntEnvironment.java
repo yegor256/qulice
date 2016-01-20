@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -110,11 +110,11 @@ public final class AntEnvironment implements Environment {
 
     @Override
     public String param(final String name, final String value) {
-        String propValue = this.project.getProperty(name);
-        if (propValue == null) {
-            propValue = value;
+        String property = this.project.getProperty(name);
+        if (property == null) {
+            property = value;
         }
-        return propValue;
+        return property;
     }
 
     @Override

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -184,6 +184,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     /**
      * Do the real execution.
      * @throws MojoFailureException If some failure inside
+     * @checkstyle NonStaticMethod (2 lines)
      */
     protected abstract void doExecute() throws MojoFailureException;
 

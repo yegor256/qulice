@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,9 +33,9 @@ import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 /**
@@ -61,6 +61,7 @@ import java.util.regex.Pattern;
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @checkstyle LineLength (1 line)
  * @see <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">Keywords substitution in Subversion</a>
  */
 public final class JavadocTagsCheck extends Check {
@@ -68,8 +69,8 @@ public final class JavadocTagsCheck extends Check {
     /**
      * Map of tag and its pattern.
      */
-    private final transient ConcurrentMap<String, Pattern> tags =
-        new ConcurrentHashMap<String, Pattern>();
+    private final transient Map<String, Pattern> tags =
+        new HashMap<String, Pattern>();
 
     @Override
     public void init() {
@@ -79,6 +80,11 @@ public final class JavadocTagsCheck extends Check {
             Pattern.compile("^([A-Z](\\.|[a-z]+) )+\\([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\)$")
         );
         this.tags.put("version", Pattern.compile("^\\$Id.*\\$$"));
+        this.tags.put(
+            "since",
+            // @checkstyle LineLength (1 line)
+            Pattern.compile("^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$")
+        );
     }
 
     @Override
@@ -94,9 +100,9 @@ public final class JavadocTagsCheck extends Check {
         if (ast.getParent() == null) {
             final String[] lines = this.getLines();
             final int start = ast.getLineNo();
-            final int cstart = this.findCommentStart(lines, start);
-            final int cend = this.findCommentEnd(lines, start);
-            if ((cend > cstart) && (cstart >= 0)) {
+            final int cstart = JavadocTagsCheck.findCommentStart(lines, start);
+            final int cend = JavadocTagsCheck.findCommentEnd(lines, start);
+            if (cend > cstart && cstart >= 0) {
                 for (final String tag : this.tags.keySet()) {
                     this.matchTagFormat(lines, cstart, cend, tag);
                 }
@@ -126,7 +132,7 @@ public final class JavadocTagsCheck extends Check {
             return;
         }
         for (final Integer item : found) {
-            final String text = this.getTagText(lines[item]);
+            final String text = JavadocTagsCheck.getTagText(lines[item]);
             if (!this.tags.get(tag).matcher(text).matches()) {
                 this.log(
                     item + 1,
@@ -143,7 +149,7 @@ public final class JavadocTagsCheck extends Check {
      * @param line Line with the tag.
      * @return The text of the tag.
      */
-    private String getTagText(final String line) {
+    private static String getTagText(final String line) {
         return line.substring(
             line.indexOf(' ', line.indexOf('@')) + 1
         );
@@ -186,8 +192,8 @@ public final class JavadocTagsCheck extends Check {
      * @param start Start searching from this line number.
      * @return Line number with found starting comment or -1 otherwise.
      */
-    private int findCommentStart(final String[] lines, final int start) {
-        return this.findTrimmedTextUp(lines, start, "/**");
+    private static int findCommentStart(final String[] lines, final int start) {
+        return JavadocTagsCheck.findTrimmedTextUp(lines, start, "/**");
     }
 
     /**
@@ -196,8 +202,8 @@ public final class JavadocTagsCheck extends Check {
      * @param start Start searching from this line number.
      * @return Line number with found ending comment, or -1 if it wasn't found.
      */
-    private int findCommentEnd(final String[] lines, final int start) {
-        return this.findTrimmedTextUp(lines, start, "*/");
+    private static int findCommentEnd(final String[] lines, final int start) {
+        return JavadocTagsCheck.findTrimmedTextUp(lines, start, "*/");
     }
 
     /**
@@ -207,7 +213,7 @@ public final class JavadocTagsCheck extends Check {
      * @param text Text to find.
      * @return Line number with found text, or -1 if it wasn't found.
      */
-    private int findTrimmedTextUp(final String[] lines,
+    private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
         int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {

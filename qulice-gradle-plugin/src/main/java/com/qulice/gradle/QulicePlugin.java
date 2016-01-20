@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -44,7 +44,9 @@ public final class QulicePlugin implements Plugin<Project> {
      *  this method all the checks (Checkstyle, Findbugs etc.) should be
      *  performed.
      * @param project Gradle project, which Qulice should check.
-     * @todo #339:30min Design validator classes for Gradle.
+     * @todo #339:30min Design validator classes for Gradle. And remove the
+     *  NonStaticMethod exclude below.
+     * @checkstyle NonStaticMethod (2 lines)
      */
     public void apply(final Project project) {
         // Will be designed later

@@ -12,11 +12,12 @@ assets:
   s3cfg: yegor256/home#assets/s3cfg
 merge:
   script: |-
+    pdd --source=$(pwd) --verbose --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java
+    est --dir=est --file=/dev/null
+    ./years.sh
     mvn clean install -Pqulice-profile -Pqulice --errors --settings ../settings.xml
     mvn clean site -Psite --errors --settings ../settings.xml
     mvn clean
-    pdd --source=$(pwd) --verbose --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java
-    est --dir=est --file=/dev/null
   commanders:
   - caarlos0
   - carlosmiranda
@@ -25,6 +26,7 @@ merge:
   - ggajos
   - krzyk
   - longtimeago
+  - mkordas
   - pinaf
 deploy:
   script: |-

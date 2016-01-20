@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -79,8 +79,7 @@ public final class PMDValidator implements Validator {
      * @return Collection of <code>DataSource</code>s of source files.
      */
     private Collection<DataSource> getSources(final Environment environment) {
-        final Files files = new Files();
-        final Collection<DataSource> sources = files.getSources(environment);
+        final Collection<DataSource> sources = new Files(environment).sources();
         if (sources.isEmpty()) {
             Logger.info(this, "No files to check with PMD");
         }

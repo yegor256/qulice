@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -66,7 +66,7 @@ final class DependenciesValidator implements MavenValidator {
             Logger.info(this, "No dependency analysis in this project");
             return;
         }
-        final Collection<String> unused = this.unused(env);
+        final Collection<String> unused = DependenciesValidator.unused(env);
         if (!unused.isEmpty()) {
             Logger.warn(
                 this,
@@ -75,7 +75,7 @@ final class DependenciesValidator implements MavenValidator {
                 StringUtils.join(unused, DependenciesValidator.SEP)
             );
         }
-        final Collection<String> used = this.used(env);
+        final Collection<String> used = DependenciesValidator.used(env);
         if (!used.isEmpty()) {
             Logger.warn(
                 this,
@@ -99,7 +99,8 @@ final class DependenciesValidator implements MavenValidator {
      * @param env The environment
      * @return The result of analysis
      */
-    private ProjectDependencyAnalysis analyze(final MavenEnvironment env) {
+    private static ProjectDependencyAnalysis analyze(
+        final MavenEnvironment env) {
         try {
             return ((ProjectDependencyAnalyzer)
                 ((PlexusContainer)
@@ -120,11 +121,12 @@ final class DependenciesValidator implements MavenValidator {
      * @param env Environment
      * @return Collection of unused artifacts
      */
-    private Collection<String> used(final MavenEnvironment env) {
-        final ProjectDependencyAnalysis analysis = this.analyze(env);
+    private static Collection<String> used(final MavenEnvironment env) {
+        final ProjectDependencyAnalysis analysis =
+            DependenciesValidator.analyze(env);
         final Collection<String> used = new LinkedList<String>();
         for (final Object artifact : analysis.getUsedUndeclaredArtifacts()) {
-            used.add(((Artifact) artifact).toString());
+            used.add(artifact.toString());
         }
         return used;
     }
@@ -134,8 +136,9 @@ final class DependenciesValidator implements MavenValidator {
      * @param env Environment
      * @return Collection of unused artifacts
      */
-    private Collection<String> unused(final MavenEnvironment env) {
-        final ProjectDependencyAnalysis analysis = this.analyze(env);
+    private static Collection<String> unused(final MavenEnvironment env) {
+        final ProjectDependencyAnalysis analysis =
+            DependenciesValidator.analyze(env);
         final Collection<String> unused = new LinkedList<String>();
         for (final Object obj : analysis.getUnusedDeclaredArtifacts()) {
             final Artifact artifact = (Artifact) obj;

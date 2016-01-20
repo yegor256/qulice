@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@ public final class SnapshotsValidator implements MavenValidator {
         throws ValidationException {
         if (!env.exclude("snapshots", "")) {
             final String version = env.project().getVersion();
-            if (!this.isSnapshot(version)) {
+            if (!SnapshotsValidator.isSnapshot(version)) {
                 this.check(env);
             }
         }
@@ -63,7 +63,7 @@ public final class SnapshotsValidator implements MavenValidator {
     private void check(final MavenEnvironment env) throws ValidationException {
         int errors = 0;
         for (final Extension ext : env.project().getBuildExtensions()) {
-            if (this.isSnapshot(ext.getVersion())) {
+            if (SnapshotsValidator.isSnapshot(ext.getVersion())) {
                 Logger.warn(
                     this,
                     "%s build extension is SNAPSHOT",
@@ -73,7 +73,7 @@ public final class SnapshotsValidator implements MavenValidator {
             }
         }
         for (final Plugin plugin : env.project().getBuildPlugins()) {
-            if (this.isSnapshot(plugin.getVersion())) {
+            if (SnapshotsValidator.isSnapshot(plugin.getVersion())) {
                 Logger.warn(
                     this,
                     "%s build plugin is SNAPSHOT",
@@ -83,7 +83,7 @@ public final class SnapshotsValidator implements MavenValidator {
             }
         }
         for (final Dependency dep : env.project().getDependencies()) {
-            if (this.isSnapshot(dep.getVersion())) {
+            if (SnapshotsValidator.isSnapshot(dep.getVersion())) {
                 Logger.warn(
                     this,
                     "%s dependency is SNAPSHOT",
@@ -111,7 +111,7 @@ public final class SnapshotsValidator implements MavenValidator {
      * @param version The version
      * @return TRUE if yes
      */
-    private boolean isSnapshot(final String version) {
+    private static boolean isSnapshot(final String version) {
         return version.endsWith("-SNAPSHOT");
     }
 

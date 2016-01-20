@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -59,10 +59,12 @@ public final class JavadocLocationCheck extends Check {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (this.isField(ast)) {
+        if (JavadocLocationCheck.isField(ast)) {
             final int current = ast.getLineNo();
-            final int end = this.findCommentEnd(this.getLines(), current);
-            if (end > this.getCommentMinimum(ast)) {
+            final int end = JavadocLocationCheck.findCommentEnd(
+                this.getLines(), current
+            );
+            if (end > JavadocLocationCheck.getCommentMinimum(ast)) {
                 this.report(current, end);
             }
         }
@@ -90,11 +92,11 @@ public final class JavadocLocationCheck extends Check {
      * @param node Node to be checked for Java docs.
      * @return Mimimum line number of the end of the comment.
      */
-    private int getCommentMinimum(final DetailAST node) {
+    private static int getCommentMinimum(final DetailAST node) {
         int minimum = 0;
         final DetailAST parent = node.getParent();
         if (null == parent) {
-            if (!this.isFirst(node)) {
+            if (!JavadocLocationCheck.isFirst(node)) {
                 final DetailAST object = node
                     .getPreviousSibling()
                     .findFirstToken(TokenTypes.OBJBLOCK);
@@ -119,7 +121,7 @@ public final class JavadocLocationCheck extends Check {
      * @return True if there are no any nodes before this one, else -
      *  {@code false}.
      */
-    private boolean isFirst(final DetailAST node) {
+    private static boolean isFirst(final DetailAST node) {
         final DetailAST previous = node.getPreviousSibling();
         return null == previous;
     }
@@ -131,7 +133,7 @@ public final class JavadocLocationCheck extends Check {
      * @param node Node to check
      * @return Is it a Javadoc-required entity?
      */
-    private boolean isField(final DetailAST node) {
+    private static boolean isField(final DetailAST node) {
         boolean yes = true;
         if (TokenTypes.VARIABLE_DEF == node.getType()) {
             yes = TokenTypes.OBJBLOCK == node.getParent().getType();
@@ -145,8 +147,8 @@ public final class JavadocLocationCheck extends Check {
      * @param start Start searching from this line number.
      * @return Line number with found ending comment, or -1 if it wasn't found.
      */
-    private int findCommentEnd(final String[] lines, final int start) {
-        return this.findTrimmedTextUp(lines, start, "*/");
+    private static int findCommentEnd(final String[] lines, final int start) {
+        return JavadocLocationCheck.findTrimmedTextUp(lines, start, "*/");
     }
 
     /**
@@ -156,7 +158,7 @@ public final class JavadocLocationCheck extends Check {
      * @param text Text to find.
      * @return Line number with found text, or -1 if it wasn't found.
      */
-    private int findTrimmedTextUp(final String[] lines,
+    private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
         int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {

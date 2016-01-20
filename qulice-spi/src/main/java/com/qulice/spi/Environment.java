@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,11 +34,11 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
@@ -123,6 +123,7 @@ public interface Environment {
 
     /**
      * Mock of {@link Environment}.
+     * @checkstyle NonStaticMethodCheck (500 lines)
      */
     final class Mock implements Environment {
         /**
@@ -136,7 +137,7 @@ public interface Environment {
         /**
          * Map of params.
          */
-        private final transient ConcurrentMap<String, String> params;
+        private final transient Map<String, String> params;
         /**
          * Exclude patterns.
          */
@@ -146,9 +147,12 @@ public interface Environment {
          * Public ctor.
          * @throws IOException If some IO problem
          */
+        @SuppressWarnings(
+            "PMD.ConstructorOnlyInitializesOrCallOtherConstructors"
+            )
         public Mock() throws IOException {
-            this.params = new ConcurrentHashMap<String, String>();
-            this.classpath = new HashSet<String>(0);
+            this.params = new HashMap<String, String>();
+            this.classpath = new HashSet<String>(1);
             final File temp = File.createTempFile(
                 "mock", ".qulice",
                 new File(System.getProperty("java.io.tmpdir"))

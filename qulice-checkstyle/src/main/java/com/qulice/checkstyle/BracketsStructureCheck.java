@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -72,7 +72,7 @@ public final class BracketsStructureCheck extends Check {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if ((ast.getType() == TokenTypes.METHOD_CALL)
+        if (ast.getType() == TokenTypes.METHOD_CALL
             || ast.getType() == TokenTypes.LITERAL_NEW) {
             this.checkParams(ast);
         } else {

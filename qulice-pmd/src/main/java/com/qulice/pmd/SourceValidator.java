@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -75,10 +75,6 @@ public final class SourceValidator {
         this.context = new RuleContext();
         this.listener = new PmdListener(env);
         this.config = new PMDConfiguration();
-        this.config.setRuleSets("com/qulice/pmd/ruleset.xml");
-        final Report report = new Report();
-        report.addListener(this.listener);
-        this.context.setReport(report);
     }
 
     /**
@@ -87,9 +83,12 @@ public final class SourceValidator {
      * @param path Base path.
      */
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public void validate(
-        final Collection<DataSource> sources, final String path
-    ) {
+    public void validate(final Collection<DataSource> sources,
+        final String path) {
+        this.config.setRuleSets("com/qulice/pmd/ruleset.xml");
+        final Report report = new Report();
+        report.addListener(this.listener);
+        this.context.setReport(report);
         for (final DataSource source : sources) {
             final String name = source.getNiceFileName(false, path);
             this.context.setSourceCodeFilename(name);

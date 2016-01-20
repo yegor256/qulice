@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -93,12 +93,12 @@ public final class FindBugsValidatorTest {
         final byte[] bytecode = new BytecodeMocker()
             .withSource("class Foo { public Foo clone() { return this; } }")
             .mock();
-        final byte[] anotherbytecode = new BytecodeMocker()
+        final byte[] another = new BytecodeMocker()
             .withSource("class Bar { public Bar clone() { return this; } }")
             .mock();
         final Environment env = new Environment.Mock()
             .withFile("target/classes/Foo.class", bytecode)
-            .withFile("target/classes/Bar.class", anotherbytecode)
+            .withFile("target/classes/Bar.class", another)
             .withExcludes("Foo,Bar")
             .withDefaultClasspath();
         new FindBugsValidator().validate(env);

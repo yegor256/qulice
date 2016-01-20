@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -77,8 +77,8 @@ public final class MethodBodyCommentsCheck extends Check {
                     ostart = ostart.findFirstToken(token);
                 }
             }
-            if ((ostart != null)
-                && (ostart.getType() == tokens[tokens.length - 1])) {
+            if (ostart != null
+                && ostart.getType() == tokens[tokens.length - 1]) {
                 Arrays.fill(
                     lines, ostart.getLineNo(),
                     ostart.findFirstToken(TokenTypes.RCURLY).getLineNo(), ""
@@ -103,7 +103,7 @@ public final class MethodBodyCommentsCheck extends Check {
         final boolean oneliner = start == end - 1;
         for (int pos = start; pos < end; ++pos) {
             final String line = lines[pos].trim();
-            if (line.startsWith("//")) {
+            if (line.startsWith("//") || line.startsWith("/*")) {
                 final String comment = line.substring(2).trim();
                 if (!comment.startsWith("@checkstyle") && !oneliner) {
                     this.log(pos + 1, "Comments in method body are prohibited");

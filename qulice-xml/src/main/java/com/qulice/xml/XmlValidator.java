@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -119,7 +119,7 @@ public final class XmlValidator implements Validator {
                     throw new ValidationException(ex);
                 }
                 if (this.format) {
-                    this.formatting(
+                    XmlValidator.formatting(
                         file.toString(), FileUtils.readFileToString(file)
                     );
                 }
@@ -140,15 +140,15 @@ public final class XmlValidator implements Validator {
      * @param before XML to check.
      * @throws ValidationException In case of validation error.
      */
-    private void formatting(final String name, final String before)
+    private static void formatting(final String name, final String before)
         throws ValidationException {
         // @checkstyle MultipleStringLiterals (3 lines)
-        final String after = new Prettifier().prettify(before)
+        final String after = new Prettifier(before).prettify()
             .replace("\r\n", "\n");
         final String bnormalized = before.replace("\r\n", "\n");
         final List<String> blines =
             Arrays.asList(bnormalized.split(XmlValidator.ESCAPED_EOL, -1));
-        final Patch filter = this.filter(
+        final Patch filter = XmlValidator.filter(
             DiffUtils.diff(
                 blines,
                 Arrays.asList(after.split(XmlValidator.ESCAPED_EOL, -1))
@@ -182,7 +182,7 @@ public final class XmlValidator implements Validator {
      *  attribute, this is also wrong - all attributes on new line should be
      *  indented by 4 spaces.
      */
-    private Patch filter(final Patch diff) {
+    private static Patch filter(final Patch diff) {
         final Patch patch = new Patch();
         for (final Delta delta : diff.getDeltas()) {
             final List<?> prev = delta.getOriginal().getLines();

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2015, Qulice.com
+ * Copyright (c) 2011-2016, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -87,7 +87,7 @@ public final class MethodsOrderCheck extends Check {
         MethodsOrderCheck.Modifiers prev = MethodsOrderCheck.Modifiers.PUB;
         for (final DetailAST method : methods) {
             final MethodsOrderCheck.Modifiers mtype =
-                this.getModifierType(method);
+                MethodsOrderCheck.getModifierType(method);
             if (mtype.getOrder() < prev.getOrder()) {
                 this.log(
                     method.getLineNo(),
@@ -104,7 +104,7 @@ public final class MethodsOrderCheck extends Check {
      * @param method DetailAST of method
      * @return Element of {@code Modifiers} enum
      */
-    private MethodsOrderCheck.Modifiers getModifierType(
+    private static MethodsOrderCheck.Modifiers getModifierType(
         final DetailAST method
     ) {
         final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);
@@ -113,7 +113,6 @@ public final class MethodsOrderCheck extends Check {
                 MethodsOrderCheck.Modifiers.PUB.getType()
             )
         ).or(
-            // @checkstyle IndentationCheck (12 lines)
             Optional.fromNullable(
                 modifiers.findFirstToken(
                     MethodsOrderCheck.Modifiers.PROT.getType()
