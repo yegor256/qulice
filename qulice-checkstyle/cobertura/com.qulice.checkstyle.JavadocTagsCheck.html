@@ -149,7 +149,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment"> * @see &lt;a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html"&gt;Keywords substitution in Subversion&lt;/a&gt;</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment"> */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsCovered">&nbsp;19</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> JavadocTagsCheck <span class="keyword">extends</span> Check {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsCovered">&nbsp;20</td>  <td class="src"><pre class="src">&nbsp;<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">class</span> JavadocTagsCheck <span class="keyword">extends</span> Check {</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;68</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;69</td>  <td class="nbHits">&nbsp;</td>
@@ -158,7 +158,7 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     * Map of tag and its pattern.</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;71</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;72</td>  <td class="nbHitsCovered">&nbsp;19</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">transient</span> Map&lt;String, Pattern&gt; tags =</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;72</td>  <td class="nbHitsCovered">&nbsp;20</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">transient</span> Map&lt;String, Pattern&gt; tags =</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;73</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">new</span> HashMap&lt;String, Pattern&gt;();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
@@ -167,7 +167,7 @@
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;76</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> init() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;77</td>  <td class="nbHitsCovered">&nbsp;19</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.tags.put(</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;77</td>  <td class="nbHitsCovered">&nbsp;20</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.tags.put(</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;78</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="string">"author"</span>,</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;79</td>  <td class="nbHits">&nbsp;</td>
@@ -176,8 +176,8 @@
   <td class="src"><pre class="src">&nbsp;            Pattern.compile(<span class="string">"^([A-Z](\\.|[a-z]+) )+\\([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\)$"</span>)</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;81</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        );</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;82</td>  <td class="nbHitsCovered">&nbsp;19</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.tags.put(<span class="string">"version"</span>, Pattern.compile(<span class="string">"^\\$Id.*\\$$"</span>));</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;83</td>  <td class="nbHitsCovered">&nbsp;19</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.tags.put(</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;82</td>  <td class="nbHitsCovered">&nbsp;20</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.tags.put(<span class="string">"version"</span>, Pattern.compile(<span class="string">"^\\$Id.*\\$$"</span>));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;83</td>  <td class="nbHitsCovered">&nbsp;20</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.tags.put(</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;84</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            <span class="string">"since"</span>,</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;85</td>  <td class="nbHits">&nbsp;</td>
@@ -186,14 +186,14 @@
   <td class="src"><pre class="src">&nbsp;            Pattern.compile(<span class="string">"^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"</span>)</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;87</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        );</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;88</td>  <td class="nbHitsCovered">&nbsp;19</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;88</td>  <td class="nbHitsCovered">&nbsp;20</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;89</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;90</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;91</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">int</span>[] getDefaultTokens() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;92</td>  <td class="nbHitsCovered">&nbsp;19</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]{</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;92</td>  <td class="nbHitsCovered">&nbsp;20</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]{</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;93</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            TokenTypes.CLASS_DEF,</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;94</td>  <td class="nbHits">&nbsp;</td>
@@ -326,9 +326,9 @@
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> <span class="keyword">int</span> end, <span class="keyword">final</span> String tag) {</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;169</td>  <td class="nbHitsCovered">&nbsp;66</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> String prefix = String.format(<span class="string">" * @%s "</span>, tag);</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;170</td>  <td class="nbHitsCovered">&nbsp;66</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> List&lt;Integer&gt; found = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(1);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;171</td>  <td class="nbHitsCovered"><a title="Line 171: Conditional coverage 100% (2/2).">&nbsp;447</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 171: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> pos = start; pos &lt;= end; pos += 1) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;172</td>  <td class="nbHitsCovered">&nbsp;381</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> String line = lines[pos];</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;173</td>  <td class="nbHitsCovered"><a title="Line 173: Conditional coverage 100% (2/2).">&nbsp;381</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 173: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (line.contains(String.format(<span class="string">"@%s "</span>, tag))) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;171</td>  <td class="nbHitsCovered"><a title="Line 171: Conditional coverage 100% (2/2).">&nbsp;448</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 171: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> pos = start; pos &lt;= end; pos += 1) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;172</td>  <td class="nbHitsCovered">&nbsp;383</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> String line = lines[pos];</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;173</td>  <td class="nbHitsCovered"><a title="Line 173: Conditional coverage 100% (2/2).">&nbsp;383</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 173: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (line.contains(String.format(<span class="string">"@%s "</span>, tag))) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;174</td>  <td class="nbHitsUncovered"><a title="Line 174: Conditional coverage 50% (1/2).">&nbsp;62</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 174: Conditional coverage 50% (1/2).">                <span class="keyword">if</span> (!line.startsWith(prefix)) {</a></span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;175</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;                    <span class="keyword">this</span>.log(</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;176</td>  <td class="nbHits">&nbsp;</td>
@@ -411,8 +411,8 @@
 <tr>  <td class="numLine">&nbsp;217</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> <span class="keyword">int</span> start, <span class="keyword">final</span> String text) {</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;218</td>  <td class="nbHitsCovered">&nbsp;44</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> found = -1;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;219</td>  <td class="nbHitsUncovered"><a title="Line 219: Conditional coverage 50% (1/2).">&nbsp;195</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 219: Conditional coverage 50% (1/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> pos = start - 1; pos &gt;= 0; pos -= 1) {</a></span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;220</td>  <td class="nbHitsCovered"><a title="Line 220: Conditional coverage 100% (2/2).">&nbsp;195</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 220: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (lines[pos].trim().equals(text)) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;219</td>  <td class="nbHitsUncovered"><a title="Line 219: Conditional coverage 50% (1/2).">&nbsp;196</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 219: Conditional coverage 50% (1/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> pos = start - 1; pos &gt;= 0; pos -= 1) {</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;220</td>  <td class="nbHitsCovered"><a title="Line 220: Conditional coverage 100% (2/2).">&nbsp;196</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 220: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (lines[pos].trim().equals(text)) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;221</td>  <td class="nbHitsCovered">&nbsp;44</td>  <td class="src"><pre class="src">&nbsp;                found = pos;</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;222</td>  <td class="nbHitsCovered">&nbsp;44</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">break</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;223</td>  <td class="nbHits">&nbsp;</td>
@@ -430,6 +430,6 @@
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 1/19/16 7:13 AM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 1/20/16 11:35 AM.</div>
 </body>
 </html>
