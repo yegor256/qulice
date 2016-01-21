@@ -76,6 +76,7 @@ public final class ChecksTest {
         "MethodBodyCommentsCheck",
         "RequireThisCheck",
         "ProtectedMethodInFinalClassCheck",
+        "NoJavadocForOverrideMethods",
         "NonStaticMethodCheck",
         "ConstantUsageCheck",
     };
