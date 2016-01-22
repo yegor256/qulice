@@ -326,6 +326,32 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can allow only properly ordered Javadoc at-clauses.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void allowsOnlyProperlyOrderedAtClauses() throws Exception {
+        final String result = this.runValidation(
+            "AtClauseOrder.java", false
+        );
+        MatcherAssert.assertThat(
+            StringUtils.countMatches(result, "AtClauseOrder.java"),
+            Matchers.is(Tv.FOUR)
+        );
+        MatcherAssert.assertThat(
+            result,
+            Matchers.stringContainsInOrder(
+                Arrays.asList(
+                    "[23]: At-clauses have to appear in the order ",
+                    "[50]: At-clauses have to appear in the order ",
+                    "[60]: At-clauses have to appear in the order ",
+                    "[61]: At-clauses have to appear in the order "
+                )
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator will fail if  Windows EOL-s are used.
      * @throws Exception If something wrong happens inside
      */
@@ -333,7 +359,7 @@ public final class CheckstyleValidatorTest {
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
         this.validateCheckstyle(
             "WindowsEol.java", false,
-            Matchers.containsString("LICENSE found")
+            Matchers.containsString("LICENSE found:")
         );
     }
 
