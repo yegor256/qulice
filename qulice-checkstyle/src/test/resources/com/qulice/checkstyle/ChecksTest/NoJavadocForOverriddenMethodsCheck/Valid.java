@@ -24,4 +24,16 @@ public final class Valid {
      */
     public void doc() {
     }
+    
+    //@todo
+    @Override
+    public void good() {
+    }
+    
+    /* 
+    comment
+    */
+    @Override
+    public void well() {
+    }
 }

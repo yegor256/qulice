@@ -3,10 +3,10 @@
  * only as a text resource in integration.ChecksIT.
  */
 
-public final class Valid {
+public final class Invalid {
 
     @Override
-    public void overriden() {
+    public void overridden() {
     }
 
     /**
@@ -23,7 +23,4 @@ public final class Valid {
     public void inherited() {
     }
 
-    @Override
-    public void good() {
-    }
 }
