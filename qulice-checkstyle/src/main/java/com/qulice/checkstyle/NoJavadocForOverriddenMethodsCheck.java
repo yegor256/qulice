@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 
 /**
- * Checks that there is no javadoc for inherited methods.
+ * Checks that there is no Javadoc for inherited methods.
  * Users may have a different understanding of your method
  * based on whether they examine the method in the supertype
  * or the subtype and it may cause confusion.
@@ -63,7 +63,7 @@ public final class NoJavadocForOverriddenMethodsCheck extends Check {
                 ast.getLineNo()
             );
             if (javadoc != null) {
-                log(ast, "Overridden methods should not have javadoc");
+                log(ast, "Overridden methods should not have Javadoc");
             }
         }
     }

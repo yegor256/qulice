@@ -5,10 +5,6 @@
 
 public final class Invalid {
 
-    @Override
-    public void overridden() {
-    }
-
     /**
      * Javadoc.
      */
@@ -23,4 +19,8 @@ public final class Invalid {
     public void inherited() {
     }
 
+    /** Javadoc. */
+    @Override
+    public void inherited() {
+    }
 }
