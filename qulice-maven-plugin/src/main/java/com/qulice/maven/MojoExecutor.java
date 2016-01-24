@@ -129,15 +129,16 @@ public final class MojoExecutor {
         );
         final MojoExecution execution = new MojoExecution(descriptor, xpp);
         final Mojo mojo = this.mojo(execution);
-        Logger.info(this, "Calling %s:%s...", coords, goal);
         try {
+            Logger.info(this, "Calling %s:%s...", coords, goal);
             mojo.execute();
         } catch (final MojoExecutionException ex) {
             throw new IllegalArgumentException(ex);
         } catch (final MojoFailureException ex) {
             throw new ValidationException(ex);
+        } finally {
+            this.manager.releaseMojo(mojo, execution);
         }
-        this.manager.releaseMojo(mojo, execution);
     }
 
     /**
