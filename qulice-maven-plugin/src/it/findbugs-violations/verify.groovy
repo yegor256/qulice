@@ -33,10 +33,5 @@
  * Validate that the build really failed and violations were reported.
  */
 
-// @todo #60 This validation doesn't work at the moment because of
-//  incorrect classpath generation in DefaultMavenEnvironment. There is
-//  some problem which leads to incomplete classpath being passed to
-//  com.qulice.findbugs.Wrap class.
-
 def log = new File(basedir, 'build.log')
 assert log.text.contains('com.qulice.foo.Main.list is or uses a map or set of URLs, which can be a performance hog')
