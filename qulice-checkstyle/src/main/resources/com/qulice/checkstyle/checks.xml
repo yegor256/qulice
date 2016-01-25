@@ -273,6 +273,11 @@
         <module name="JavadocMethod"/>
         <module name="JavadocVariable"/>
         <module name="JavadocStyle"/>
+        <module name="AtclauseOrder">
+            <property name="tagOrder" value="@author, @version, @param, @return,
+                @throws, @exception, @see, @since, @serial, @serialField,
+                @serialData, @deprecated, @todo, @checkstyle"/>
+        </module>
 
         <!-- Metrics. -->
         <module name="BooleanExpressionComplexity"/>

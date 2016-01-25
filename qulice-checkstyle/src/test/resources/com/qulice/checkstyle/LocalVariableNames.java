@@ -5,10 +5,10 @@ package foo;
 
 /**
  * Simple.
- * @version $Id$
  * @author John Smith (john@example.com)
- * @checkstyle HiddenField (100 lines)
+ * @version $Id$
  * @since 1.0
+ * @checkstyle HiddenField (100 lines)
  */
 public final class LocalVariableNames {
     /**

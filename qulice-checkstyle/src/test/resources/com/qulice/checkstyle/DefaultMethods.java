@@ -8,8 +8,8 @@ import java.util.function.Consumer;
 
 /**
  * Simple.
- * @version $Id$
  * @author John Smith (john@example.com)
+ * @version $Id$
  * @since 1.0
  */
 public interface DefaultMethods {
