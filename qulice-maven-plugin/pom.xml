@@ -294,15 +294,7 @@
                         <pomInclude>codenarc-violations/pom.xml</pomInclude>
                         <pomInclude>findbugs-exclude/pom.xml</pomInclude>
                         <pomInclude>findbugs-violations/pom.xml</pomInclude>
-                        <!--
-                         @todo #281 Dependency-violations is broken.
-                          As it uses maven-dependency-analyzer 1.4.
-                          The latter depends on ASM3. We can't add ASM3 in classpath as
-                          findbugs and PMD depends on ASM5.
-                          Find a way to upgrade maven-dependency-analyzer to use ASM5.
-                          After fix uncomment next line
-                          <pomInclude>dependency-violations/pom.xml</pomInclude>
-                        -->
+                        <pomInclude>dependency-violations/pom.xml</pomInclude>
                         <pomInclude>multi-module/pom.xml</pomInclude>
                         <pomInclude>multi-run/pom.xml</pomInclude>
                         <pomInclude>relocation/pom.xml</pomInclude>
