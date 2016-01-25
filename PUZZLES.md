@@ -1,6 +1,6 @@
 ## Puzzles
 
-There are 14 active puzzles (73 total):
+There are 12 active puzzles (73 total):
 
 
 <del>unknown</del> [`?`](../master/?)<br/>
@@ -45,13 +45,13 @@ There are 14 active puzzles (73 total):
 &nbsp;&nbsp;&nbsp;&nbsp;<del>149-29796bc9</del> [`FindBugsValidatorTest.java:91-94`](../master/qulice-findbugs/src/test/java/com/qulice/findbugs/FindBugsValidatorTest.java#L91-L94)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<del>262-9a421520</del> [`verify.groovy:37-41`](../master/qulice-maven-plugin/src/it/checkstyle-exceptions/verify.groovy#L37-L41)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<del>123-3eeb54ce</del> [`some.xml:3-4`](../master/qulice-maven-plugin/src/it/checkstyle-violations/src/main/resources/some.xml#L3-L4)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[#388](https://github.com/teamed/qulice/issues/388):[**60-2649436b**](https://github.com/teamed/qulice/issues/388) [`verify.groovy:36-39`](../master/qulice-maven-plugin/src/it/findbugs-violations/verify.groovy#L36-L39)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[#388](https://github.com/teamed/qulice/issues/388):[<del>60-2649436b</del>](https://github.com/teamed/qulice/issues/388) [`verify.groovy:36-39`](../master/qulice-maven-plugin/src/it/findbugs-violations/verify.groovy#L36-L39)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#354](https://github.com/teamed/qulice/issues/354):[**246-77de21a5**](https://github.com/teamed/qulice/issues/354) [`XmlValidatorTest.java:91-95`](../master/qulice-xml/src/test/java/com/qulice/xml/XmlValidatorTest.java#L91-L95)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>260</del>](https://github.com/teamed/qulice/issues/260) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#356](https://github.com/teamed/qulice/issues/356):[**260-dc51e6f4**](https://github.com/teamed/qulice/issues/356) [`MethodBodyCommentsCheck.java:50-51`](../master/qulice-checkstyle/src/main/java/com/qulice/checkstyle/MethodBodyCommentsCheck.java#L50-L51)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>260-1576b183</del> [`MethodBodyCommentsCheck.java:52-53`](../master/qulice-checkstyle/src/main/java/com/qulice/checkstyle/MethodBodyCommentsCheck.java#L52-L53)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>281</del>](https://github.com/teamed/qulice/issues/281) [`?`](../master/?)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#365](https://github.com/teamed/qulice/issues/365):[**281-2350cdf0**](https://github.com/teamed/qulice/issues/365) [`pom.xml:296-302`](../master/qulice-maven-plugin/pom.xml#L296-L302)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#365](https://github.com/teamed/qulice/issues/365):[<del>281-2350cdf0</del>](https://github.com/teamed/qulice/issues/365) [`pom.xml:296-302`](../master/qulice-maven-plugin/pom.xml#L296-L302)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>308</del>](https://github.com/teamed/qulice/issues/308) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>308-45ddd042</del> [`pom.xml:134-136`](../master/pom.xml#L134-L136)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>333</del>](https://github.com/teamed/qulice/issues/333) [`?`](../master/?)<br/>
