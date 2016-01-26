@@ -9,16 +9,21 @@ env:
   global:
     - MAVEN_OPTS="-XX:MaxPermSize=2g -Xmx4g"
     - JAVA_OPTS="-XX:MaxPermSize=2g -Xmx4g"
+  matrix:
+    - COMMAND="mvn clean install -Pqulice --errors"
+    - COMMAND="mvn com.qulice:qulice-maven-plugin:1.0-SNAPSHOT:check -Dqulice.excludes='xml:.*'"
 install:
   - set -e
   - travis_retry sudo apt-get install -y --fix-missing libmagic1 libmagic-dev
   - gem install --no-ri --no-rdoc pdd
   - gem install --no-ri --no-rdoc est
+  - mvn install -DskipTests -Dinvoker.skip
+  - mvn clean
   - set +e
 script:
   - set -e
   - pdd --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java,qulice-checkstyle/src/test/resources/com/qulice/checkstyle/AtClauseOrder.java
   - est --dir=est --file=/dev/null
   - ./years.sh
-  - mvn clean install -Pqulice --errors
+  - eval $COMMAND
   - set +e
