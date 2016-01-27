@@ -432,11 +432,12 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * Test catch parameter names.
+     * CheckstyleValidator can distinguish between valid and invalid
+     * catch parameter names.
      * @throws Exception In case of error
      */
     @Test
-    public void testCatchParameterNames() throws Exception {
+    public void distinguishesValidCatchParameterNames() throws Exception {
         final String result = this.runValidation(
             "CatchParameterNames.java", false
         );
