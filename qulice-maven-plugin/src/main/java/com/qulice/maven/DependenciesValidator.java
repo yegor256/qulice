@@ -28,7 +28,6 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.qulice.maven;
-// @checkstyle LineLength (20 lines)
 
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
