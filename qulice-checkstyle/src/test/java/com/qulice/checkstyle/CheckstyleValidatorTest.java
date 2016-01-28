@@ -312,13 +312,13 @@ public final class CheckstyleValidatorTest {
                         "Name 'prolongations' must match pattern",
                         "Name 'very_long_variable_id' must match pattern",
                         "Name 'camelCase' must match pattern",
-                        "Name 'it' must match pattern '^id$|^[a-z]{3,12}$'.",
+                        "Name 'it' must match pattern",
                         "Name 'number1' must match pattern",
-                        "Name 'ex' must match pattern '^id$|^[a-z]{3,12}$'.",
-                        "Name 'a' must match pattern '^id$|^[a-z]{3,12}$'.",
-                        "Name 'ae' must match pattern '^ex|[a-z]{3,12}$'.",
-                        "Name 'e' must match pattern '^ex|[a-z]{3,12}$'.",
-                        "Name 'it' must match pattern '^id$|^[a-z]{3,}$'."
+                        "Name 'ex' must match pattern",
+                        "Name 'a' must match pattern",
+                        "Name 'ae' must match pattern",
+                        "Name 'e' must match pattern",
+                        "Name 'it' must match pattern"
                     )
                 )
             )
@@ -429,6 +429,32 @@ public final class CheckstyleValidatorTest {
             this.toURL(license)
         ).withFile("src/main/java/foo/Foo.java", content);
         new CheckstyleValidator().validate(env);
+    }
+
+    /**
+     * CheckstyleValidator can distinguish between valid and invalid
+     * catch parameter names.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void distinguishesValidCatchParameterNames() throws Exception {
+        final String result = this.runValidation(
+            "CatchParameterNames.java", false
+        );
+        MatcherAssert.assertThat(
+            StringUtils.countMatches(result, "CatchParameterNames"),
+            Matchers.is(Tv.THREE)
+        );
+        MatcherAssert.assertThat(
+            result,
+            Matchers.stringContainsInOrder(
+                Arrays.asList(
+                    "[27]: Name 'ex_invalid_1' must match pattern",
+                    "[29]: Name '$xxx' must match pattern",
+                    "[31]: Name '_exp' must match pattern"
+                )
+            )
+        );
     }
 
     /**
