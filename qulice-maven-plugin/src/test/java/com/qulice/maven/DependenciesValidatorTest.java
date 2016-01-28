@@ -29,10 +29,13 @@
  */
 package com.qulice.maven;
 
+import com.google.common.base.Joiner;
+import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.plugin.testing.stubs.ArtifactStub;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
@@ -55,6 +58,16 @@ public final class DependenciesValidatorTest {
      * Plexus hint.
      */
     private static final String HINT = "default";
+
+    /**
+     * Compile scope.
+     */
+    private static final String SCOPE = "compile";
+
+    /**
+     * Jar type.
+     */
+    private static final String TYPE = "jar";
 
     /**
      * DependencyValidator can pass on when no violations are found.
@@ -94,11 +107,11 @@ public final class DependenciesValidatorTest {
     }
 
     /**
-     * Dependencies in runtime scope should be ignored.
+     * DependencyValidator can ignore runtime scope dependencies.
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void testWithRuntimeScope() throws Exception {
+    public void ignoresRuntimeScope() throws Exception {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
         final Artifact artifact = Mockito.mock(Artifact.class);
@@ -113,6 +126,74 @@ public final class DependenciesValidatorTest {
             analyzer
         ).mock();
         new DependenciesValidator().validate(env);
+    }
+
+    /**
+     * DependencyValidator can exclude used undeclared dependencies.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void excludesUsedUndeclaredDependencies() throws Exception {
+        final ProjectDependencyAnalysis analysis =
+            Mockito.mock(ProjectDependencyAnalysis.class);
+        final Set<Artifact> used = new HashSet<Artifact>();
+        final ArtifactStub artifact = new ArtifactStub();
+        artifact.setGroupId("group");
+        artifact.setArtifactId("artifact");
+        artifact.setScope(DependenciesValidatorTest.SCOPE);
+        artifact.setVersion("2.3.4");
+        artifact.setType(DependenciesValidatorTest.TYPE);
+        used.add(artifact);
+        Mockito.doReturn(used).when(analysis).getUsedUndeclaredArtifacts();
+        final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
+        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
+            DependenciesValidatorTest.ROLE,
+            DependenciesValidatorTest.HINT,
+            analyzer
+        ).mock();
+        new DependenciesValidator().validate(
+            new MavenEnvironment.Wrap(
+                new Environment.Mock().withExcludes(
+                    Joiner.on(':').join(
+                        artifact.getGroupId(), artifact.getArtifactId()
+                    )
+                ), env
+            )
+        );
+    }
+
+    /**
+     * DependencyValidator can exclude unused declared dependencies.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void excludesUnusedDeclaredDependencies() throws Exception {
+        final ProjectDependencyAnalysis analysis =
+            Mockito.mock(ProjectDependencyAnalysis.class);
+        final Set<Artifact> unused = new HashSet<Artifact>();
+        final ArtifactStub artifact = new ArtifactStub();
+        artifact.setGroupId("othergroup");
+        artifact.setArtifactId("otherartifact");
+        artifact.setScope(DependenciesValidatorTest.SCOPE);
+        artifact.setVersion("1.2.3");
+        artifact.setType(DependenciesValidatorTest.TYPE);
+        unused.add(artifact);
+        Mockito.doReturn(unused).when(analysis).getUnusedDeclaredArtifacts();
+        final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
+        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
+            DependenciesValidatorTest.ROLE,
+            DependenciesValidatorTest.HINT,
+            analyzer
+        ).mock();
+        new DependenciesValidator().validate(
+            new MavenEnvironment.Wrap(
+                new Environment.Mock().withExcludes(
+                    Joiner.on(':').join(
+                        artifact.getGroupId(), artifact.getArtifactId()
+                    )
+                ), env
+            )
+        );
     }
 
     /**

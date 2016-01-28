@@ -28,8 +28,10 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 package com.qulice.maven;
-// @checkstyle LineLength (20 lines)
 
+import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2;
 import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
 import java.util.Collection;
@@ -49,6 +51,7 @@ import org.codehaus.plexus.context.ContextException;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.16
  */
 final class DependenciesValidator implements MavenValidator {
 
@@ -60,13 +63,18 @@ final class DependenciesValidator implements MavenValidator {
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
+        final Collection<String> excludes = env.excludes("dependencies");
         if (!env.outdir().exists()
             || "pom".equals(env.project().getPackaging())
-            || env.exclude("dependencies", "")) {
+            || excludes.contains(".*")
+            ) {
             Logger.info(this, "No dependency analysis in this project");
             return;
         }
-        final Collection<String> unused = DependenciesValidator.unused(env);
+        final Collection<String> unused = Collections2.filter(
+            DependenciesValidator.unused(env),
+            Predicates.not(new DependenciesValidator.ExcludePredicate(excludes))
+        );
         if (!unused.isEmpty()) {
             Logger.warn(
                 this,
@@ -75,7 +83,10 @@ final class DependenciesValidator implements MavenValidator {
                 StringUtils.join(unused, DependenciesValidator.SEP)
             );
         }
-        final Collection<String> used = DependenciesValidator.used(env);
+        final Collection<String> used = Collections2.filter(
+            DependenciesValidator.used(env),
+            Predicates.not(new DependenciesValidator.ExcludePredicate(excludes))
+        );
         if (!used.isEmpty()) {
             Logger.warn(
                 this,
@@ -84,7 +95,7 @@ final class DependenciesValidator implements MavenValidator {
                 StringUtils.join(used, DependenciesValidator.SEP)
             );
         }
-        final Integer failures = used.size() + unused.size();
+        final int failures = used.size() + unused.size();
         if (failures > 0) {
             throw new ValidationException(
                 "%d dependency problem(s) found",
@@ -150,4 +161,34 @@ final class DependenciesValidator implements MavenValidator {
         return unused;
     }
 
+    /**
+     * Predicate for excluded dependencies.
+     */
+    private static class ExcludePredicate implements Predicate<String> {
+
+        /**
+         * List of excludes.
+         */
+        private final transient Collection<String> excludes;
+
+        /**
+         * Constructor.
+         * @param excludes List of excludes.
+         */
+        ExcludePredicate(final Collection<String> excludes) {
+            this.excludes = excludes;
+        }
+
+        @Override
+        public boolean apply(final String name) {
+            boolean ignore = false;
+            for (final String exclude : this.excludes) {
+                if (name.startsWith(exclude)) {
+                    ignore = true;
+                    break;
+                }
+            }
+            return ignore;
+        }
+    }
 }
