@@ -344,7 +344,7 @@
         </module>
         <module name="LineLength">
             <property name="max" value="80"/>
-            <property name="ignorePattern" value="^import .*$"/>
+            <property name="ignorePattern" value="^import .*$|https?://[\w\d-]+\.[\w\d]+"/>
         </module>
         <module name="AnonInnerLength" />
         <module name="MethodLength"/>

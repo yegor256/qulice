@@ -458,6 +458,18 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * Test if URLs are valid despite having a line length over 80.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void doesNotRejectUrlsInLongLines() throws Exception {
+        this.validateCheckstyle(
+            "UrlInLongLine.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
