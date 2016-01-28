@@ -131,13 +131,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.15.4</strong>
+                                    <strong itemprop="version">0.15.5</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2016-01-20T12:02:47Z">
+                                    <time itemprop="datePublished" datetime="2016-01-28T02:52:17Z">
                                         
-                                        20-Jan-2016
+                                        28-Jan-2016
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -154,7 +154,7 @@
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.15.4&lt;/version&gt;
+      &lt;version&gt;0.15.5&lt;/version&gt;
       &lt;configuration&gt;
         &lt;excludes&gt;
           &lt;exclude&gt;checkstyle:/src/examples/.*&lt;/exclude&gt;
@@ -168,7 +168,8 @@
 <p>Every <tt>exclude</tt> item is a regular expression. The following exclusion prefixes are supported now (the list may actually be longer): <tt>checkstyle:</tt>, <tt>pmd:</tt>, <tt>findbugs:</tt>, <tt>codenarc:</tt>, <tt>dependencies:</tt>, <tt>cobertura:</tt>, <tt>jslint:</tt>, <tt>duplicatefinder:</tt>.</p>
 <p>Exclude for CodeNarc is a bit different, as CodeNarc consumes ant-style expressions. For example: 1) <tt>codenarc:**/*.groovy</tt> excludes all <tt>.groovy</tt> files in all folders; 2) <tt>codenarc:**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy</tt> excludes <tt>Main.groovy</tt> and <tt>Main2.groovy</tt> in appropriate packages.</p>
 <p>Exclude for jslint also uses ant-style expressions, for example: 1) <b>jslint:**/*.js</b> excludes all <b>.js</b> files in all folders; 2) <b>jslint:**/bar/main.js,**/foo/other.js</b> excludes <b>main.js</b> and <b>other.js</b> in the appropriate fodlers.</p>
-<p>Exclude for Findbug is a bit different, as expression has to be either an exact class name or start with the ~ character the rest of content is interpreted as a Java regular expression. For example: 1) <tt>findbugs:~com.qulice.foo.*</tt> excludes all classes in package com.qulice.foo; 2) <tt>findbugs:com.qulice.foo.Bar</tt> excludes only class Bar in appropriate packages. See http://findbugs.sourceforge.net/manual/filter.html</p></div>
+<p>Exclude for Findbug is a bit different, as expression has to be either an exact class name or start with the ~ character the rest of content is interpreted as a Java regular expression. For example: 1) <tt>findbugs:~com.qulice.foo.*</tt> excludes all classes in package com.qulice.foo; 2) <tt>findbugs:com.qulice.foo.Bar</tt> excludes only class Bar in appropriate packages. See http://findbugs.sourceforge.net/manual/filter.html</p>
+<p>Dependencies exclude uses syntax of groupId:artifactId, so to exclude e.g. guava library you should add <tt>dependencies:com.google.guava:guava</tt> as an exclude. Multiple exclude tags can be provided to exclude multiple dependencies. To exclude all dependency checks <tt>dependencies:.*</tt> should be used.</p></div>
                         </article>
                     </div>
                 </main>
