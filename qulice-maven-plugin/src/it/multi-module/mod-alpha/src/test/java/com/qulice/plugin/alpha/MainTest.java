@@ -29,7 +29,8 @@
  */
 package com.qulice.plugin.alpha;
 
-import org.junit.Assert;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
@@ -45,9 +46,9 @@ public final class MainTest {
      */
     @Test
     public void testSquare() {
-        Assert.assertEquals(1, Main.square(1));
+        MatcherAssert.assertThat(1, Matchers.is(Main.square(1)));
         // @checkstyle MagicNumber (1 line)
-        Assert.assertEquals(4, Main.square(2));
+        MatcherAssert.assertThat(4, Matchers.is(Main.square(2)));
     }
 
 }
