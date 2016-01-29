@@ -470,6 +470,18 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * Test if spaces are permitted between anonymous inner classes's methods.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void doesNotRejectSpaceBetweenAnonInnerClasses() throws Exception {
+        this.validateCheckstyle(
+            "AnonymousInnerClass.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL

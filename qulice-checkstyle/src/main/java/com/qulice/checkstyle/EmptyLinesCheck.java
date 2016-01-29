@@ -64,7 +64,9 @@ public final class EmptyLinesCheck extends Check {
     @Override
     public void visitToken(final DetailAST ast) {
         final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
-        if (opening != null) {
+        final String text = ast.getParent().getPreviousSibling().getText();
+        if (opening != null
+            && !"AnonymousInnerClass".equals(text)) {
             final DetailAST closing =
                 opening.findFirstToken(TokenTypes.RCURLY);
             final int first = opening.getLineNo();
