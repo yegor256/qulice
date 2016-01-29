@@ -129,9 +129,7 @@ public final class ProhibitOldStyleAssertionsRule extends AbstractJUnitRule {
                 ProhibitOldStyleAssertionsRule.extractPrefixFrom(expression);
             final String img =
                 ProhibitOldStyleAssertionsRule.extractImageFrom(prefix);
-            assrt = img.startsWith("assert") || img.startsWith("fail")
-                || img.startsWith("Assert.assert")
-                || img.startsWith("Assert.fail");
+            assrt = img.startsWith("assert") || img.startsWith("Assert.assert");
         } catch (final IllegalArgumentException ex) {
             assrt = false;
         }

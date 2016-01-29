@@ -469,4 +469,24 @@ public final class PMDValidatorTest {
         ).validate();
     }
 
+    /**
+     * PMDValidator allows Assert.fail().
+     *
+     * Custom Rule {@link com.qulice.pmd.rules.ProhibitOldStyleAssertionsRule}
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowAssertFail()
+        throws Exception {
+        final String file = "AllowAssertFail.java";
+        new PMDAssert(
+            file, Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString(
+                    PMDValidatorTest.OLD_ASSERTIONS
+                )
+            )
+        ).validate();
+    }
+
 }
