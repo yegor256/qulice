@@ -83,6 +83,12 @@ public final class PMDValidatorTest {
     private static final String BRACKETS = "(%s)";
 
     /**
+     * Pattern using old style assertions.
+     * @checkstyle LineLength (2 lines)
+     */
+    private static final String OLD_ASSERTIONS = "Avoid to use old style assertions";
+
+    /**
      * PMDValidator can find violations in Java file(s).
      * @throws Exception If something wrong happens inside.
      */
@@ -435,10 +441,31 @@ public final class PMDValidatorTest {
     @Test
     public void prohibitStaticImportsOldStyleAssertionsInTests()
         throws Exception {
-        final String file = "OldStyleJUnitAssertion.java";
+        final String file = "OldStyleJUnitAssertionImportBlock.java";
         new PMDAssert(
             file, Matchers.is(false),
-            Matchers.containsString("Avoid to use old style assertions")
+            Matchers.containsString(
+                PMDValidatorTest.OLD_ASSERTIONS
+            )
+        ).validate();
+    }
+
+    /**
+     * PMDValidator prohibit old style junit assertion in test methods like
+     * Assert.assertEquals.
+     *
+     * Custom Rule {@link com.qulice.pmd.rules.ProhibitOldStyleAssertionsRule}
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void prohibitOldStyleAssertionsInTestMethods()
+        throws Exception {
+        final String file = "OldStyleJUnitAssertionTestMethod.java";
+        new PMDAssert(
+            file, Matchers.is(false),
+            Matchers.containsString(
+                PMDValidatorTest.OLD_ASSERTIONS
+            )
         ).validate();
     }
 

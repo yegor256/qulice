@@ -29,7 +29,13 @@
  */
 package com.qulice.pmd.rules;
 
+import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTName;
+import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTPrimaryPrefix;
+import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
 import net.sourceforge.pmd.lang.java.rule.junit.AbstractJUnitRule;
 
 /**
@@ -46,6 +52,15 @@ public final class ProhibitOldStyleAssertionsRule extends AbstractJUnitRule {
         "org.junit.Assert.assert",
         "junit.framework.Assert.assert",
     };
+
+    @Override
+    public Object visit(final ASTMethodDeclaration method, final Object data) {
+        if (this.isJUnitMethod(method, data)
+            && this.containsOldStyleAssert(method.getBlock())) {
+            this.addViolation(data, method);
+        }
+        return data;
+    }
 
     @Override
     public Object visit(final ASTImportDeclaration imp, final Object data) {
@@ -73,6 +88,113 @@ public final class ProhibitOldStyleAssertionsRule extends AbstractJUnitRule {
             }
         }
         return matches;
+    }
+
+    /**
+     * Recursively verifies if node contains old style assert statements.
+     * @param node Root statement node to search
+     * @return True if statement contains old style assertions, false otherwise
+     */
+    private boolean containsOldStyleAssert(
+        final Node node
+    ) {
+        boolean found = false;
+        if (node instanceof ASTStatementExpression
+            && ProhibitOldStyleAssertionsRule.isAssertStatement(node)) {
+            found = true;
+        }
+        if (!found) {
+            for (int iter = 0; iter < node.jjtGetNumChildren(); iter += 1) {
+                final Node child = node.jjtGetChild(iter);
+                if (this.containsOldStyleAssert(child)) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Tells if the statement is an assert statement or not.
+     * @param statement Root node to search assert statements
+     * @return True is statement is assert, false otherwise
+     */
+    private static boolean isAssertStatement(final Node statement) {
+        boolean assrt;
+        try {
+            final ASTPrimaryExpression expression =
+                ProhibitOldStyleAssertionsRule.extractExpressionFrom(statement);
+            final ASTPrimaryPrefix prefix =
+                ProhibitOldStyleAssertionsRule.extractPrefixFrom(expression);
+            final String img =
+                ProhibitOldStyleAssertionsRule.extractImageFrom(prefix);
+            assrt = img.startsWith("assert") || img.startsWith("fail")
+                || img.startsWith("Assert.assert")
+                || img.startsWith("Assert.fail");
+        } catch (final IllegalArgumentException ex) {
+            assrt = false;
+        }
+        return assrt;
+    }
+
+    /**
+     * Extract primary expression from Node.
+     * @param node Expression Statement
+     * @return Primary expression.
+     * @throws IllegalArgumentException if no primary expression found
+     */
+    private static ASTPrimaryExpression extractExpressionFrom(final Node node) {
+        ASTPrimaryExpression expression = null;
+        if (node != null && node.jjtGetNumChildren() > 0
+            && node.jjtGetChild(0) instanceof ASTPrimaryExpression) {
+            expression = (ASTPrimaryExpression) node.jjtGetChild(0);
+        }
+        if (expression == null) {
+            throw new IllegalArgumentException(
+                "No primary expression found in node"
+            );
+        }
+        return expression;
+    }
+
+    /**
+     * Extract primary prefix from primary expression.
+     * @param node Primary Expression
+     * @return Primary prefix.
+     * @throws IllegalArgumentException if no primary prefix found
+     */
+    private static ASTPrimaryPrefix extractPrefixFrom(
+        final Node node) {
+        ASTPrimaryPrefix prefix = null;
+        if (node.jjtGetNumChildren() > 0
+            && node.jjtGetChild(0) instanceof ASTPrimaryPrefix) {
+            prefix = (ASTPrimaryPrefix) node.jjtGetChild(0);
+        }
+        if (prefix == null) {
+            throw new IllegalArgumentException(
+                "No Primary statement found in node"
+            );
+        }
+        return prefix;
+    }
+
+    /**
+     * Extract image from primary prefix.
+     * @param node Primary prefix
+     * @return Image statement
+     * @throws IllegalArgumentException if no image found in node
+     */
+    private static String extractImageFrom(final Node node) {
+        String image = null;
+        if (node.jjtGetNumChildren() > 0
+            && node.jjtGetChild(0) instanceof ASTName) {
+            image = ((ASTName) node.jjtGetChild(0)).getImage();
+        }
+        if (image == null) {
+            throw new IllegalArgumentException("No image found in node");
+        }
+        return image;
     }
 
 }
