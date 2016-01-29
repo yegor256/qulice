@@ -423,4 +423,23 @@ public final class PMDValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PMDValidator prohibit old style junit assertion in import block like
+     * import static org.junit.Assert.assert*
+     * import static junit.framework.Assert.assert*.
+     *
+     * Custom Rule {@link com.qulice.pmd.rules.ProhibitOldStyleAssertionsRule}
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void prohibitStaticImportsOldStyleAssertionsInTests()
+        throws Exception {
+        final String file = "OldStyleJUnitAssertion.java";
+        new PMDAssert(
+            file, Matchers.is(false),
+            Matchers.containsString("Avoid to use old style assertions")
+        ).validate();
+    }
+
 }
