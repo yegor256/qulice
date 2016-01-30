@@ -75,7 +75,10 @@ public final class StringLiteralsConcatenationCheck extends Check {
             TokenTypes.PLUS_ASSIGN
         );
         for (final DetailAST plus : pluses) {
-            if (plus.getChildCount(TokenTypes.STRING_LITERAL) > 0) {
+            if (!this.findChildASTsOfType(
+                plus,
+                TokenTypes.STRING_LITERAL
+            ).isEmpty()) {
                 this.log(plus, "Concatenation of string literals prohibited");
             }
         }
