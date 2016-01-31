@@ -42,6 +42,9 @@ import java.util.regex.Pattern;
  * your code and make it more cohesive and readable. The bottom line is
  * that every method should look solid and do just <b>one thing</b>.
  *
+ * This class is <b>not</b> thread safe. It relies on building a list of line
+ * ranges by visiting each method definition and each anonymous inner type.
+ *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
@@ -53,29 +56,59 @@ public final class EmptyLinesCheck extends Check {
      */
     private static final Pattern PATTERN = Pattern.compile("^\\s*$");
 
+    /**
+     * Line ranges of all anonymous inner types.
+     */
+    private final transient LineRanges anons = new LineRanges();
+
+    /**
+     * Line ranges of all method and constructor bodies.
+     */
+    private final transient LineRanges methods = new LineRanges();
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.OBJBLOCK,
         };
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-        final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
-        if (opening != null) {
-            final DetailAST closing =
-                opening.findFirstToken(TokenTypes.RCURLY);
-            final int first = opening.getLineNo();
-            final int last = closing.getLineNo();
-            final String[] lines = this.getLines();
-            for (int line = first; line < last; line += 1) {
-                if (EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
-                    this.log(line + 1, "Empty line inside method");
-                }
+        if (ast.getType() == TokenTypes.OBJBLOCK
+            && ast.getParent() != null
+            && ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
+            final DetailAST left = ast.findFirstToken(TokenTypes.LCURLY);
+            final DetailAST right = ast.findFirstToken(TokenTypes.RCURLY);
+            if (left != null && right != null) {
+                this.anons.add(
+                    new LineRange(left.getLineNo(), right.getLineNo())
+                );
+            }
+        } else if (ast.getType() == TokenTypes.METHOD_DEF
+            || ast.getType() == TokenTypes.CTOR_DEF) {
+            final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
+            if (opening != null) {
+                final DetailAST closing =
+                    opening.findFirstToken(TokenTypes.RCURLY);
+                final int first = opening.getLineNo();
+                final int last = closing.getLineNo();
+                this.methods.add(new LineRange(first, last));
             }
         }
     }
 
+    @Override
+    public void finishTree(final DetailAST root) {
+        final String[] lines = this.getLines();
+        for (int line = 0; line < lines.length; line += 1) {
+            if (this.methods.inRange(line + 1) && !this.anons.inRange(line + 1)
+                && EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
+                this.log(line + 1, "Empty line inside method");
+            }
+        }
+        super.finishTree(root);
+    }
 }
