@@ -64,8 +64,21 @@ public final class LineRange {
      * @param line The proposed line number to check.
      * @return True if the proposed line number is within range.
      */
-    public boolean inRange(final int line) {
+    public boolean within(final int line) {
         return line >= this.first() && line <= this.last();
+    }
+
+    /**
+     * Is the proposed range entirely within the LineRange.
+     * Example, tiven a LineRange of [10, 50], the proposed range of
+     * [12,48] should be within side that. And the method should return true.
+     * @param range The proposed LineRange to check.
+     * @return True if the proposed is entirely within LineRange.
+     */
+    public boolean within(final LineRange range) {
+        return range != null
+            && range.first() >= this.first()
+            && range.last()  <= this.last();
     }
 
     /**

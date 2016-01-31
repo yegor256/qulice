@@ -9,12 +9,13 @@ package foo;
  * @version $Id$
  * @since 1.0
  */
-public final class AnonymousInnerClass {
+public final class AnonymousInnerClassPass {
     /**
      * Method with space inbetween anonymous innter class methods.
      */
     public void methodwithAnonymousInnerClass() {
         final Runnable runnable = new Runnable() {
+
             @Override
             public void run() {
                 this.doSomething();
@@ -22,8 +23,10 @@ public final class AnonymousInnerClass {
 
             private void doSomething() {
             }
+
         };
         final Runnable runnables = new Runnable() {
+
             @Override
             public void run() {
                 this.doSomething();
@@ -31,6 +34,8 @@ public final class AnonymousInnerClass {
 
             private void doSomething() {
             }
+
         };
     }
+
 }

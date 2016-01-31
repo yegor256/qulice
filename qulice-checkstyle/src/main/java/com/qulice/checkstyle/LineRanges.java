@@ -33,6 +33,7 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  * Represent a set of LineRange objects. For example, an instance of this class
@@ -51,11 +52,19 @@ public final class LineRanges {
         new ArrayList<LineRange>(20);
 
     /**
-     * Adds a line range to the internal hashset.
-     * @param line The line range to add to the hash set
+     * Adds a line range to the internal collection.
+     * @param line The line range to add to the collection
      */
     public void add(final LineRange line) {
         this.lines.add(line);
+    }
+
+    /**
+     * Expses the iterator of the internal collection.
+     * @return Iterator pointing to the internal collections elements.
+     */
+    public Iterator<LineRange> iterate() {
+        return this.lines.iterator();
     }
 
     /**
@@ -69,6 +78,26 @@ public final class LineRanges {
     }
 
     /**
+     * Gets the subset of LineRanges that are within all proposed ranges. Does
+     * not return null; instead, returns empty range if there are no matches.
+     * @param ranges The ranges to filter on.
+     * @return Returns all LineRange elements that are within range.
+     */
+    public LineRanges within(final LineRanges ranges) {
+        final LineRanges result = new LineRanges();
+        final Iterator<LineRange> iterator = ranges.iterate();
+        while (iterator.hasNext()) {
+            final LineRange next = iterator.next();
+            for (final LineRange line : this.lines) {
+                if (next.within(line)) {
+                    result.add(line);
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
      * Predicate to determine if a proposed line is within range of any of
      * the line ranges.
      */
@@ -77,19 +106,19 @@ public final class LineRanges {
         /**
          * The proposed line.
          */
-        private final transient int line;
+        private final transient int proposed;
 
         /**
          * Default constructor.
-         * @param row The proposed line to check against all the line ranges.
+         * @param line The proposed line to check against all the line ranges.
          */
-        private LineWithAny(final int row) {
-            this.line = row;
+        private LineWithAny(final int line) {
+            this.proposed = line;
         }
 
         @Override
         public boolean apply(final LineRange range) {
-            return range != null && range.inRange(this.line);
+            return range != null && range.within(this.proposed);
         }
     }
 }

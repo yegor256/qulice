@@ -470,6 +470,49 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * Ensures that spaces can exist outside of of methods that are within
+     * anonymous inner classes.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void doesNotRejectSpaceInsideAnonClass() throws Exception {
+        this.validateCheckstyle(
+            "AnonymousInnerClassPass.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
+     * Test if spaces are permitted between anonymous inner classes's methods.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void doesRejectSpaceBetweenAllMethods() throws Exception {
+        final String result = this.runValidation(
+            "AnonymousInnerClassFail.java", false
+        );
+        MatcherAssert.assertThat(
+            result,
+            Matchers.stringContainsInOrder(
+                Arrays.asList(
+                    "[17]: Empty line inside method (EmptyLinesCheck)",
+                    "[21]: Empty line inside method (EmptyLinesCheck)",
+                    "[23]: Empty line inside method (EmptyLinesCheck)",
+                    "[27]: Empty line inside method (EmptyLinesCheck)",
+                    "[30]: Empty line inside method (EmptyLinesCheck)",
+                    "[34]: Empty line inside method (EmptyLinesCheck)",
+                    "[36]: Empty line inside method (EmptyLinesCheck)",
+                    "[40]: Empty line inside method (EmptyLinesCheck)",
+                    "[43]: Empty line inside method (EmptyLinesCheck)",
+                    "[50]: Empty line inside method (EmptyLinesCheck)",
+                    "[52]: Empty line inside method (EmptyLinesCheck)",
+                    "[54]: Empty line inside method (EmptyLinesCheck)"
+                )
+            )
+        );
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL

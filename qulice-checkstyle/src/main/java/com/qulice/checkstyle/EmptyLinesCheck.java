@@ -104,11 +104,25 @@ public final class EmptyLinesCheck extends Check {
     public void finishTree(final DetailAST root) {
         final String[] lines = this.getLines();
         for (int line = 0; line < lines.length; line += 1) {
-            if (this.methods.inRange(line + 1) && !this.anons.inRange(line + 1)
+            if (this.methods.inRange(line + 1)
+                && this.validInnerClassMethod(line + 1)
                 && EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
                 this.log(line + 1, "Empty line inside method");
             }
         }
         super.finishTree(root);
+    }
+
+    /**
+     * If this is within a valid anonymous class, make sure that is still
+     * directly inside of a method of that anonymous inner class.
+     * Note: This implementation only checks one level deep, as nesting
+     * anonymous inner classes should never been done.
+     * @param line The line to check if it is within a method or not.
+     * @return True if the line is directly inside of a method.
+     */
+    private boolean validInnerClassMethod(final int line) {
+        return !this.anons.inRange(line)
+            || this.methods.within(this.anons).inRange(line);
     }
 }
