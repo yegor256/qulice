@@ -48,15 +48,15 @@ public final class LineRanges {
     /**
      * ArrayList of line ranges.
      */
-    private final transient Collection<LineRange> lines =
-        new ArrayList<LineRange>(20);
+    private final transient LineRanges.LocalCollection lines =
+        new LineRanges.LocalCollection();
 
     /**
      * Adds a line range to the internal collection.
      * @param line The line range to add to the collection
      */
     public void add(final LineRange line) {
-        this.lines.add(line);
+        this.lines.collection().add(line);
     }
 
     /**
@@ -64,7 +64,7 @@ public final class LineRanges {
      * @return Iterator pointing to the internal collections elements.
      */
     public Iterator<LineRange> iterate() {
-        return this.lines.iterator();
+        return this.lines.collection().iterator();
     }
 
     /**
@@ -73,7 +73,8 @@ public final class LineRanges {
      * @return True if the proposed line number is within any line range.
      */
     public boolean inRange(final int line) {
-        return !this.lines.isEmpty() && FluentIterable.from(this.lines)
+        return !this.lines.collection().isEmpty()
+            && FluentIterable.from(this.lines.collection())
             .anyMatch(new LineRanges.LineWithAny(line));
     }
 
@@ -88,7 +89,7 @@ public final class LineRanges {
         final Iterator<LineRange> iterator = ranges.iterate();
         while (iterator.hasNext()) {
             final LineRange next = iterator.next();
-            for (final LineRange line : this.lines) {
+            for (final LineRange line : this.lines.collection()) {
                 if (next.within(line)) {
                     result.add(line);
                 }
@@ -101,7 +102,7 @@ public final class LineRanges {
      * Clears the internal collection.
      */
     public void clear() {
-        this.lines.clear();
+        this.lines.collection().clear();
     }
 
     /**
@@ -126,6 +127,27 @@ public final class LineRanges {
         @Override
         public boolean apply(final LineRange range) {
             return range != null && range.within(this.proposed);
+        }
+    }
+
+    /**
+     * Thread safety via ThreadLocal.
+     */
+    private static final class LocalCollection
+        extends ThreadLocal<Collection<LineRange>> {
+
+        /**
+         * Internal Collection.
+         */
+        private final transient Collection<LineRange> ranges =
+            new ArrayList<LineRange>(20);
+
+        /**
+         * Get the collection specific to the current thread only.
+         * @return The collection for this thread.
+         */
+        public Collection<LineRange> collection() {
+            return this.ranges;
         }
     }
 }

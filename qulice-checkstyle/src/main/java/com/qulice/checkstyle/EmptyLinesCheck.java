@@ -42,11 +42,13 @@ import java.util.regex.Pattern;
  * your code and make it more cohesive and readable. The bottom line is
  * that every method should look solid and do just <b>one thing</b>.
  *
- * This class is <b>not</b> thread safe. It relies on building a list of line
- * ranges by visiting each method definition and each anonymous inner type.
+ * This class is thread safe. It relies on building a list of line ranges by
+ * visiting each method definition and each anonymous inner type. It stores
+ * these references in a non-static thread local.
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Jimmy Spivey (JimDeanSpivey@gmail.com)
  * @version $Id$
  */
 public final class EmptyLinesCheck extends Check {
