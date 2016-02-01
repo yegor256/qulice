@@ -110,6 +110,8 @@ public final class EmptyLinesCheck extends Check {
                 this.log(line + 1, "Empty line inside method");
             }
         }
+        this.methods.clear();
+        this.anons.clear();
         super.finishTree(root);
     }
 

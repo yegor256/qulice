@@ -98,6 +98,13 @@ public final class LineRanges {
     }
 
     /**
+     * Clears the internal collection.
+     */
+    public void clear() {
+        this.lines.clear();
+    }
+
+    /**
      * Predicate to determine if a proposed line is within range of any of
      * the line ranges.
      */
