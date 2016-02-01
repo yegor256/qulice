@@ -34,4 +34,9 @@ public class Bar {
 
     // this method is not static, but it is native
     public native void someNativeMethod();
+
+    public void someUnimplementedMethod() {
+        // this method is not yet implemented
+        throw new UnsupportedOperationException();
+    }
 }
