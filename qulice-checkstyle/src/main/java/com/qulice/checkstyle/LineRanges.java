@@ -36,7 +36,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * Represent a set of LineRange objects. For example, an instance of this class
+ * Represents a set of LineRange objects. For example, an instance of this class
  * could represent all the line ranges for methods in a given Java source code
  * file.
  *
@@ -131,7 +131,7 @@ public final class LineRanges {
     }
 
     /**
-     * Thread safety via ThreadLocal.
+     * Thread-safe collection of line ranges.
      */
     private static final class LocalCollection
         extends ThreadLocal<Collection<LineRange>> {

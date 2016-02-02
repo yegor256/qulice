@@ -70,7 +70,7 @@ public final class LineRange {
 
     /**
      * Is the given range entirely within the LineRange. Example, given a
-     * LineRange of [10, 50], the proposed range of [12,48] should be within
+     * LineRange of [10, 50], the given range of [12,48] should be within
      * side that. And the method should return true.
      * @param range The given LineRange to check.
      * @return True if the given is entirely within this LineRange.
