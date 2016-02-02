@@ -55,17 +55,17 @@ public final class SourceValidator {
     /**
      * Rule context.
      */
-    private final transient RuleContext context;
+    private final RuleContext context;
 
     /**
      * Report listener.
      */
-    private final transient PmdListener listener;
+    private final PmdListener listener;
 
     /**
      * Rules.
      */
-    private final transient PMDConfiguration config;
+    private final PMDConfiguration config;
 
     /**
      * Creates new instance of <code>SourceValidator</code>.

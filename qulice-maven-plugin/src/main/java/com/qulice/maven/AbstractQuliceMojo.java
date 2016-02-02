@@ -55,32 +55,32 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     /**
      * Environment to pass to validators.
      */
-    private final transient DefaultMavenEnvironment environment =
+    private final DefaultMavenEnvironment environment =
         new DefaultMavenEnvironment();
 
     /**
      * Maven project, to be injected by Maven itself.
      */
     @Component
-    private transient MavenProject project;
+    private MavenProject project;
 
     /**
      * Maven session, to be injected by Maven itself.
      */
     @Component
-    private transient MavenSession session;
+    private MavenSession session;
 
     /**
      * Maven plugin manager, to be injected by Maven itself.
      */
     @Component
-    private transient MavenPluginManager manager;
+    private MavenPluginManager manager;
 
     /**
      * Shall we skip execution?
      */
     @Parameter(property = "qulice.skip", defaultValue = "false")
-    private transient boolean skip;
+    private boolean skip;
 
     /**
      * Location of License file. If it is an absolute file name you should
@@ -89,14 +89,14 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      * @since 0.1
      */
     @Parameter(property = "qulice.license", defaultValue = "LICENSE.txt")
-    private transient String license = "LICENSE.txt";
+    private String license = "LICENSE.txt";
 
     /**
      * List of regular expressions to exclude.
      * @since 0.4
      */
     @Parameter(property = "qulice.excludes")
-    private final transient Collection<String> excludes =
+    private final Collection<String> excludes =
         new LinkedList<String>();
 
     /**
@@ -108,7 +108,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         property = "qulice.asserts",
         required = false
     )
-    private final transient Collection<String> asserts =
+    private final Collection<String> asserts =
         new LinkedList<String>();
 
     /**

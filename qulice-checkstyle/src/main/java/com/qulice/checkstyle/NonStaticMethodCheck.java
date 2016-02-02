@@ -61,7 +61,7 @@ public final class NonStaticMethodCheck extends Check {
      * Files to exclude from this check.
      * This is mostly to exclude JUnit tests.
      */
-    private transient Pattern exclude = Pattern.compile("^$");
+    private Pattern exclude = Pattern.compile("^$");
 
     /**
      * Exclude files matching given pattern.

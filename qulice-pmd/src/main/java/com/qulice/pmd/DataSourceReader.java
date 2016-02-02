@@ -49,7 +49,7 @@ public final class DataSourceReader {
     /**
      * Data source.
      */
-    private final transient DataSource source;
+    private final DataSource source;
 
     /**
      * Creates new instance of <code>DataSourceReader</code> with the specified

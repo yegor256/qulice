@@ -65,17 +65,17 @@ public final class MojoExecutor {
     /**
      * Plugin manager.
      */
-    private final transient MavenPluginManager manager;
+    private final MavenPluginManager manager;
 
     /**
      * Maven session.
      */
-    private final transient MavenSession session;
+    private final MavenSession session;
 
     /**
      * Helper for plugin manager.
      */
-    private final transient DefaultMavenPluginManagerHelper helper;
+    private final DefaultMavenPluginManagerHelper helper;
 
     /**
      * Public ctor.
