@@ -184,7 +184,7 @@ public final class AntEnvironment implements Environment {
         /**
          * URLs for class loading.
          */
-        private final transient List<URL> urls;
+        private final List<URL> urls;
 
         /**
          * Constructor.

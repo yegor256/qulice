@@ -49,12 +49,12 @@ final class CheckstyleListener implements AuditListener {
     /**
      * Environment.
      */
-    private final transient Environment env;
+    private final Environment env;
 
     /**
      * Collection of events collected.
      */
-    private final transient List<AuditEvent> all;
+    private final List<AuditEvent> all;
 
     /**
      * Public ctor.

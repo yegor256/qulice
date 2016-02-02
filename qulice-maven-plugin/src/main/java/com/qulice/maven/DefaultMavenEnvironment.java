@@ -302,7 +302,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         /**
          * URLs for class loading.
          */
-        private final transient List<URL> urls;
+        private final List<URL> urls;
 
         /**
          * Constructor.
@@ -328,7 +328,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         /**
          * Path to match.
          */
-        private final transient String name;
+        private final String name;
 
         /**
          * Constructor.
@@ -355,7 +355,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         /**
          * Name of checker.
          */
-        private final transient String checker;
+        private final String checker;
 
         /**
          * Constructor.
