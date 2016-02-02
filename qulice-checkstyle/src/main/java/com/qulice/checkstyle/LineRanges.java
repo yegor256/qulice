@@ -52,7 +52,7 @@ public final class LineRanges {
         new LineRanges.LocalCollection();
 
     /**
-     * Adds a line range to the internal collection.
+     * Adds a line range to the collection.
      * @param line The line range to add to the collection
      */
     public void add(final LineRange line) {
@@ -60,17 +60,17 @@ public final class LineRanges {
     }
 
     /**
-     * Expses the iterator of the internal collection.
+     * Returns an iterator for this collection.
      * @return Iterator pointing to the internal collections elements.
      */
-    public Iterator<LineRange> iterate() {
+    public Iterator<LineRange> iterator() {
         return this.lines.collection().iterator();
     }
 
     /**
-     * Detects if the proposed line number is with any of the line ranges.
-     * @param line The proposed line number to check
-     * @return True if the proposed line number is within any line range.
+     * Detects if the given line number is within any of the line ranges.
+     * @param line The given line number to check
+     * @return True if the given line number is within any line range.
      */
     public boolean inRange(final int line) {
         return !this.lines.collection().isEmpty()
@@ -79,14 +79,14 @@ public final class LineRanges {
     }
 
     /**
-     * Gets the subset of LineRanges that are within all proposed ranges. Does
+     * Gets the subset of LineRanges that are within all given ranges. Does
      * not return null; instead, returns empty range if there are no matches.
      * @param ranges The ranges to filter on.
      * @return Returns all LineRange elements that are within range.
      */
     public LineRanges within(final LineRanges ranges) {
         final LineRanges result = new LineRanges();
-        final Iterator<LineRange> iterator = ranges.iterate();
+        final Iterator<LineRange> iterator = ranges.iterator();
         while (iterator.hasNext()) {
             final LineRange next = iterator.next();
             for (final LineRange line : this.lines.collection()) {
@@ -99,34 +99,34 @@ public final class LineRanges {
     }
 
     /**
-     * Clears the internal collection.
+     * Clears the collection.
      */
     public void clear() {
         this.lines.collection().clear();
     }
 
     /**
-     * Predicate to determine if a proposed line is within range of any of
+     * Predicate to determine if a given line is within range of any of
      * the line ranges.
      */
     private static final class LineWithAny implements Predicate<LineRange> {
 
         /**
-         * The proposed line.
+         * The given line.
          */
-        private final transient int proposed;
+        private final transient int given;
 
         /**
          * Default constructor.
-         * @param line The proposed line to check against all the line ranges.
+         * @param line The given line to check against all the line ranges.
          */
         private LineWithAny(final int line) {
-            this.proposed = line;
+            this.given = line;
         }
 
         @Override
         public boolean apply(final LineRange range) {
-            return range != null && range.within(this.proposed);
+            return range != null && range.within(this.given);
         }
     }
 

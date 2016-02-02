@@ -93,11 +93,11 @@ public final class EmptyLinesCheck extends Check {
             || ast.getType() == TokenTypes.CTOR_DEF) {
             final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
             if (opening != null) {
-                final DetailAST closing =
+                final DetailAST right =
                     opening.findFirstToken(TokenTypes.RCURLY);
-                final int first = opening.getLineNo();
-                final int last = closing.getLineNo();
-                this.methods.add(new LineRange(first, last));
+                this.methods.add(
+                    new LineRange(opening.getLineNo(), right.getLineNo())
+                );
             }
         }
     }
@@ -105,7 +105,7 @@ public final class EmptyLinesCheck extends Check {
     @Override
     public void finishTree(final DetailAST root) {
         final String[] lines = this.getLines();
-        for (int line = 0; line < lines.length; line += 1) {
+        for (int line = 0; line < lines.length; ++line) {
             if (this.methods.inRange(line + 1)
                 && this.validInnerClassMethod(line + 1)
                 && EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
