@@ -470,12 +470,12 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator can ensure that spaces can exist outside of methods
-     * that are within anonymous inner classes.
+     * CheckstyleValidator can allow spaces between methods of anonymous
+     * classes.
      * @throws Exception In case of error
      */
     @Test
-    public void doesNotRejectSpaceInsideAnonClass() throws Exception {
+    public void allowsSpacesBetwenMethodsOfAnonymousClasses() throws Exception {
         this.validateCheckstyle(
             "BlankLinesOutsideMethodsPass.java", true,
             Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
@@ -483,11 +483,12 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * Test if spaces are permitted between anonymous inner classes's methods.
+     * CheckstyleValidator can reject spaces inside methods, regardless of
+     * whether they are inside of an anonymous method or not.
      * @throws Exception In case of error
      */
     @Test
-    public void doesRejectSpaceBetweenAllMethods() throws Exception {
+    public void rejectsSpacesInsideMethods() throws Exception {
         final String result = this.runValidation(
             "BlankLinesInsideMethodsFail.java", false
         );
