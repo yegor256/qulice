@@ -42,8 +42,13 @@ import java.util.regex.Pattern;
  * your code and make it more cohesive and readable. The bottom line is
  * that every method should look solid and do just <b>one thing</b>.
  *
+ * This class is thread safe. It relies on building a list of line ranges by
+ * visiting each method definition and each anonymous inner type. It stores
+ * these references in a non-static thread local.
+ *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Jimmy Spivey (JimDeanSpivey@gmail.com)
  * @version $Id$
  */
 public final class EmptyLinesCheck extends Check {
@@ -53,29 +58,75 @@ public final class EmptyLinesCheck extends Check {
      */
     private static final Pattern PATTERN = Pattern.compile("^\\s*$");
 
+    /**
+     * Line ranges of all anonymous inner types.
+     */
+    private final transient LineRanges anons = new LineRanges();
+
+    /**
+     * Line ranges of all method and constructor bodies.
+     */
+    private final transient LineRanges methods = new LineRanges();
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.OBJBLOCK,
         };
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-        final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
-        if (opening != null) {
-            final DetailAST closing =
-                opening.findFirstToken(TokenTypes.RCURLY);
-            final int first = opening.getLineNo();
-            final int last = closing.getLineNo();
-            final String[] lines = this.getLines();
-            for (int line = first; line < last; line += 1) {
-                if (EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
-                    this.log(line + 1, "Empty line inside method");
-                }
+        if (ast.getType() == TokenTypes.OBJBLOCK
+            && ast.getParent() != null
+            && ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
+            final DetailAST left = ast.findFirstToken(TokenTypes.LCURLY);
+            final DetailAST right = ast.findFirstToken(TokenTypes.RCURLY);
+            if (left != null && right != null) {
+                this.anons.add(
+                    new LineRange(left.getLineNo(), right.getLineNo())
+                );
+            }
+        } else if (ast.getType() == TokenTypes.METHOD_DEF
+            || ast.getType() == TokenTypes.CTOR_DEF) {
+            final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
+            if (opening != null) {
+                final DetailAST right =
+                    opening.findFirstToken(TokenTypes.RCURLY);
+                this.methods.add(
+                    new LineRange(opening.getLineNo(), right.getLineNo())
+                );
             }
         }
     }
 
+    @Override
+    public void finishTree(final DetailAST root) {
+        final String[] lines = this.getLines();
+        for (int line = 0; line < lines.length; ++line) {
+            if (this.methods.inRange(line + 1)
+                && this.validInnerClassMethod(line + 1)
+                && EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
+                this.log(line + 1, "Empty line inside method");
+            }
+        }
+        this.methods.clear();
+        this.anons.clear();
+        super.finishTree(root);
+    }
+
+    /**
+     * If this is within a valid anonymous class, make sure that is still
+     * directly inside of a method of that anonymous inner class.
+     * Note: This implementation only checks one level deep, as nesting
+     * anonymous inner classes should never been done.
+     * @param line The line to check if it is within a method or not.
+     * @return True if the line is directly inside of a method.
+     */
+    private boolean validInnerClassMethod(final int line) {
+        return !this.anons.inRange(line)
+            || this.methods.within(this.anons).inRange(line);
+    }
 }

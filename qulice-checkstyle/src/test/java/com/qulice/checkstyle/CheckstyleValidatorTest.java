@@ -470,6 +470,50 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can allow spaces between methods of anonymous
+     * classes.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void allowsSpacesBetwenMethodsOfAnonymousClasses() throws Exception {
+        this.validateCheckstyle(
+            "BlankLinesOutsideMethodsPass.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
+     * CheckstyleValidator can reject spaces inside methods, regardless of
+     * whether they are inside of an anonymous method or not.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void rejectsSpacesInsideMethods() throws Exception {
+        final String result = this.runValidation(
+            "BlankLinesInsideMethodsFail.java", false
+        );
+        MatcherAssert.assertThat(
+            result,
+            Matchers.stringContainsInOrder(
+                Arrays.asList(
+                    "[17]: Empty line inside method (EmptyLinesCheck)",
+                    "[21]: Empty line inside method (EmptyLinesCheck)",
+                    "[23]: Empty line inside method (EmptyLinesCheck)",
+                    "[27]: Empty line inside method (EmptyLinesCheck)",
+                    "[30]: Empty line inside method (EmptyLinesCheck)",
+                    "[34]: Empty line inside method (EmptyLinesCheck)",
+                    "[36]: Empty line inside method (EmptyLinesCheck)",
+                    "[40]: Empty line inside method (EmptyLinesCheck)",
+                    "[43]: Empty line inside method (EmptyLinesCheck)",
+                    "[50]: Empty line inside method (EmptyLinesCheck)",
+                    "[52]: Empty line inside method (EmptyLinesCheck)",
+                    "[54]: Empty line inside method (EmptyLinesCheck)"
+                )
+            )
+        );
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
