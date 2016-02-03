@@ -63,6 +63,7 @@ import org.xembly.Xembler;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class FindBugsValidator implements Validator {
 

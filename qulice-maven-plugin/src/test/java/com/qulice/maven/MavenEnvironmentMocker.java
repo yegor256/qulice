@@ -45,6 +45,7 @@ import org.slf4j.impl.StaticLoggerBinder;
  * Mocker of {@link MavenProject}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.4
  */
 @SuppressWarnings("PMD.TooManyMethods")
 public final class MavenEnvironmentMocker {

@@ -41,6 +41,7 @@ import org.apache.commons.io.IOUtils;
  * Mocks bytecode.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class BytecodeMocker {
 

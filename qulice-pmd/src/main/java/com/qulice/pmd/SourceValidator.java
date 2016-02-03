@@ -49,6 +49,7 @@ import net.sourceforge.pmd.util.datasource.DataSource;
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class SourceValidator {
 

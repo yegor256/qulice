@@ -36,6 +36,7 @@ package com.qulice.checkstyle;
  *
  * @author Jimmy Spivey (JimDeanSpivey@gmail.com)
  * @version $Id$
+ * @since 0.16
  */
 public final class LineRange {
 

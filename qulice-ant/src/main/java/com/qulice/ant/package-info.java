@@ -33,5 +33,6 @@
  *
  * @author Yuriy Alevohin (alevohin@mail.ru)
  * @version $Id$
+ * @since 0.13
  */
 package com.qulice.ant;

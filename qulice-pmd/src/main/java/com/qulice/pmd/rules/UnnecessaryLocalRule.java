@@ -45,6 +45,7 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
+ * @since 0.4
  */
 public final class UnnecessaryLocalRule extends AbstractJavaRule {
     @Override

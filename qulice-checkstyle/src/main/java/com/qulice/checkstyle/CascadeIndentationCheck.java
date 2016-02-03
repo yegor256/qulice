@@ -44,6 +44,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @author Hamdi Douss (douss.hamdi@gmail.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class CascadeIndentationCheck extends AbstractFileSetCheck {
     /**
@@ -58,11 +59,12 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
             final String line = lines.get(pos);
             final int current = CascadeIndentationCheck.indentation(line);
             if (CascadeIndentationCheck.inCommentBlock(line)
-                || line.length() == 0) {
+                || line.isEmpty()) {
                 continue;
             }
             if (current > previous
-                && current != previous + LINE_INDENT_DIFF) {
+                && current != previous
+                + CascadeIndentationCheck.LINE_INDENT_DIFF) {
                 this.log(
                     pos + 1,
                     String.format(

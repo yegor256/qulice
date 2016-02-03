@@ -50,6 +50,7 @@ import org.apache.commons.io.FileUtils;
  *
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
+ * @since 0.6
  */
 public final class PomXpathValidator implements MavenValidator {
 

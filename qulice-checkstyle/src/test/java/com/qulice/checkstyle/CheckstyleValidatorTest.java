@@ -51,6 +51,7 @@ import org.junit.Test;
  * Test case for {@link CheckstyleValidator} class.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  * @checkstyle MultipleStringLiterals (300 lines)
  * @todo #412:30min Split this class into smaller ones and remove PMD
  *  exclude `TooManyMethods`. Good candidates for moving out of this class

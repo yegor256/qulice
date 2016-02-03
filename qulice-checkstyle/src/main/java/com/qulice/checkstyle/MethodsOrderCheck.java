@@ -44,6 +44,7 @@ import java.util.Map;
  * Right order is: public, protected and private
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
+ * @since 0.6
  */
 public final class MethodsOrderCheck extends Check {
 
@@ -184,12 +185,13 @@ public final class MethodsOrderCheck extends Check {
         private static Map<Integer, MethodsOrderCheck.Modifiers> mdos;
 
         static {
-            mdos = ImmutableMap.<Integer, Modifiers>builder()
-                .put(PUB.getType(), PUB)
-                .put(PROT.getType(), PROT)
-                .put(-1, DEF)
-                .put(PRIV.getType(), PRIV)
-                .build();
+            MethodsOrderCheck.Modifiers.mdos =
+                ImmutableMap.<Integer, MethodsOrderCheck.Modifiers>builder()
+                    .put(PUB.getType(), PUB)
+                    .put(PROT.getType(), PROT)
+                    .put(-1, DEF)
+                    .put(PRIV.getType(), PRIV)
+                    .build();
         }
 
         /**

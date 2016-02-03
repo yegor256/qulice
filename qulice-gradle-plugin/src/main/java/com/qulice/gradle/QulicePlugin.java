@@ -36,7 +36,7 @@ import org.gradle.api.Project;
  * Main class of the Qulice Gradle plugin.
  * @author Dmitri Pisarenko (dp@altruix.co)
  * @version $Id$
- * @since 1.0
+ * @since 0.13
  */
 public final class QulicePlugin implements Plugin<Project> {
     /**

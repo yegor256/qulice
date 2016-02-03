@@ -51,6 +51,7 @@ import org.apache.tools.ant.types.Path;
  * @checkstyle ClassDataAbstractionCouplingCheck (170 lines)
  * @author Yuriy Alevohin (alevohin@mail.ru)
  * @version $Id$
+ * @since 0.13
  */
 public final class QuliceTask extends Task {
 

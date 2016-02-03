@@ -51,7 +51,7 @@ import org.codehaus.plexus.context.ContextException;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.16
+ * @since 0.3
  */
 final class DependenciesValidator implements MavenValidator {
 
