@@ -29,6 +29,7 @@
  */
 package com.qulice.findbugs;
 
+import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import org.junit.Test;
@@ -49,6 +50,30 @@ public final class FindBugsValidatorTest {
     public void passesCorrectFilesWithNoExceptions() throws Exception {
         final Environment env = new Environment.Mock()
             .withFile("src/main/java/Main.java", "class Main { int x = 0; }")
+            .withDefaultClasspath();
+        new FindBugsValidator().validate(env);
+    }
+
+    /**
+     * FindbugsValidator can report incorrectly added throws.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test(expected = ValidationException.class)
+    public void reportsIncorrectlyAddedThrows() throws Exception {
+        final byte[] bytecode = new BytecodeMocker()
+            .withSource(
+                Joiner.on("\n").join(
+                    "package test;",
+                    "final class Main {",
+                    "public void foo() throws InterruptedException {",
+                    "System.out.println(\"test\");",
+                    "}",
+                    "}"
+                )
+            )
+            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile("target/classes/Main.class", bytecode)
             .withDefaultClasspath();
         new FindBugsValidator().validate(env);
     }
@@ -89,7 +114,7 @@ public final class FindBugsValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void excludesSeveralIncorrectClassFormCheck() throws Exception {
+    public void excludesSeveralIncorrectClassFromCheck() throws Exception {
         final byte[] bytecode = new BytecodeMocker()
             .withSource("class Foo { public Foo clone() { return this; } }")
             .mock();
