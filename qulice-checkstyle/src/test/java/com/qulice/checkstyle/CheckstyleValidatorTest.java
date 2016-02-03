@@ -52,7 +52,7 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.3
- * @checkstyle MultipleStringLiterals (300 lines)
+ * @checkstyle MultipleStringLiterals (400 lines)
  * @todo #412:30min Split this class into smaller ones and remove PMD
  *  exclude `TooManyMethods`. Good candidates for moving out of this class
  *  are all that use `validateCheckstyle` method.
