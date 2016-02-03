@@ -101,10 +101,13 @@ public final class NonStaticMethodCheck extends Check {
         if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
             return;
         }
+        final boolean thrownocatch =
+            method.branchContains(TokenTypes.LITERAL_THROW)
+                && !method.branchContains(TokenTypes.LITERAL_CATCH);
         if (!AnnotationUtility.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
             && !method.branchContains(TokenTypes.LITERAL_THIS)
-            && !method.branchContains(TokenTypes.LITERAL_THROW)) {
+            && !thrownocatch) {
             final int line = method.getLineNo();
             this.log(
                 line,
