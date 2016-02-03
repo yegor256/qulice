@@ -377,6 +377,18 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can allow proper indentation in complex annotations.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void allowsProperIndentationInAnnotations() throws Exception {
+        this.validateCheckstyle(
+            "AnnotationIndentation.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
      * Fail validation with extra semicolon in the end
      * of try-with-resources head.
      * @throws Exception If something wrong happens inside
