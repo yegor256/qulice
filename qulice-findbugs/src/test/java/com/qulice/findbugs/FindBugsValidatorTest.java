@@ -35,7 +35,7 @@ import com.qulice.spi.ValidationException;
 import org.junit.Test;
 
 /**
- * Test case for {@link FindbugsValidator}.
+ * Test case for {@link FindBugsValidator}.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @checkstyle MultipleStringLiteralsCheck (200 lines)
@@ -67,6 +67,30 @@ public final class FindBugsValidatorTest {
                     "final class Main {",
                     "public void foo() throws InterruptedException {",
                     "System.out.println(\"test\");",
+                    "}",
+                    "}"
+                )
+            )
+            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile("target/classes/Main.class", bytecode)
+            .withDefaultClasspath();
+        new FindBugsValidator().validate(env);
+    }
+
+    /**
+     * FindbugsValidator can ignore correct throws.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void ignoresCorrectlyAddedThrows() throws Exception {
+        final byte[] bytecode = new BytecodeMocker()
+            .withSource(
+                Joiner.on("\n").join(
+                    "package test;",
+                    "final class Main {",
+                    "public void foo() throws InterruptedException {",
+                    "Thread.sleep(1);",
                     "}",
                     "}"
                 )
