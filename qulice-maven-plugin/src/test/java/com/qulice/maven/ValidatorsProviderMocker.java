@@ -38,6 +38,7 @@ import org.mockito.Mockito;
  * Mocker of ValidatorsProvider.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.4
  */
 final class ValidatorsProviderMocker {
 

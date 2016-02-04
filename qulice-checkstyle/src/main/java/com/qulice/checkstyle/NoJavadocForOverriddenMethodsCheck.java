@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  *
  * @author Hamdi Douss (douss.hamdi@gmail.com)
  * @version $Id$
- * @since 0.15.5
+ * @since 0.16
  */
 public final class NoJavadocForOverriddenMethodsCheck extends Check {
 

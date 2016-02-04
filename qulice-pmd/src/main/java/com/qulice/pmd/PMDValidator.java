@@ -43,6 +43,7 @@ import net.sourceforge.pmd.util.datasource.DataSource;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class PMDValidator implements Validator {
 

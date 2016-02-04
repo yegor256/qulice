@@ -59,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class BracketsStructureCheck extends Check {
 

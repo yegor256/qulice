@@ -47,6 +47,7 @@ import java.util.Arrays;
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  * @todo #260 Add handling of multiple anonymous classes inside methods by
  *  looking at the recursive tree.
  */

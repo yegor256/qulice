@@ -58,6 +58,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class MultilineJavadocTagsCheck extends Check {
 

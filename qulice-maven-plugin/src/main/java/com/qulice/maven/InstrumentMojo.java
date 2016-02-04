@@ -40,6 +40,7 @@ import org.apache.maven.plugins.annotations.Mojo;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
 @Mojo(name = "instrument", defaultPhase = LifecyclePhase.PROCESS_CLASSES)
 public final class InstrumentMojo extends AbstractQuliceMojo {

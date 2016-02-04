@@ -42,6 +42,7 @@ import java.util.Iterator;
  *
  * @author Jimmy Spivey (JimDeanSpivey@gmail.com)
  * @version $Id$
+ * @since 0.16
  */
 public final class LineRanges {
 

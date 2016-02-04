@@ -46,6 +46,7 @@ import org.codenarc.rule.Violation;
  *
  * @author Pavlo Shamrai (pshamrai@gmail.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class CodeNarcValidator implements Validator {
 

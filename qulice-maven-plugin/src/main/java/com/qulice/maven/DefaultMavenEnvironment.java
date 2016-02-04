@@ -62,6 +62,7 @@ import org.codehaus.plexus.context.Context;
  * @checkstyle ClassDataAbstractionCouplingCheck (300 lines)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
 @SuppressWarnings("PMD.TooManyMethods")
 public final class DefaultMavenEnvironment implements MavenEnvironment {

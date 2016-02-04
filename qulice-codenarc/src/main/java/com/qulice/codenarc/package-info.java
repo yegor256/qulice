@@ -33,5 +33,6 @@
  *
  * @author Pavlo Shamrai (pshamrai@gmail.com)
  * @version $Id$
+ * @since 0.3
  */
 package com.qulice.codenarc;

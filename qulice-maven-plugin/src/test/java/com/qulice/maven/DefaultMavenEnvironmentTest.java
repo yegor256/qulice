@@ -41,6 +41,7 @@ import org.mockito.Mockito;
  * Test case for {@link DefaultMavenEnvironment} class.
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
+ * @since 0.8
  * @checkstyle MultipleStringLiterals (500 lines)
  */
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")

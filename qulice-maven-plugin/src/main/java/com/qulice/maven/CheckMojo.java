@@ -42,6 +42,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
 @Mojo(name = "check", defaultPhase = LifecyclePhase.VERIFY,
     requiresDependencyResolution = ResolutionScope.TEST)

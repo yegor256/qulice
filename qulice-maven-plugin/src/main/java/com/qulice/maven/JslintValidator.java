@@ -37,6 +37,7 @@ import java.util.Properties;
  *
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
+ * @since 0.7
  */
 public final class JslintValidator implements MavenValidator {
 

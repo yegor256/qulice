@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @author Hamdi Douss (douss.hamdi@gmail.com)
  * @version $Id$
+ * @since 0.15
  */
 public final class FinalSemicolonInTryWithResourcesCheck extends Check {
 

@@ -41,6 +41,7 @@ import net.sourceforge.pmd.util.datasource.FileDataSource;
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
+ * @since 0.3
  */
 @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
 public final class Files {
