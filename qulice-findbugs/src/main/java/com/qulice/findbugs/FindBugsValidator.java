@@ -29,8 +29,10 @@
  */
 package com.qulice.findbugs;
 
+import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
 import com.jcabi.log.VerboseProcess;
+import com.mebigfatguy.fbcontrib.FBContrib;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
@@ -63,7 +65,9 @@ import org.xembly.Xembler;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
+@SuppressWarnings("PMD.ExcessiveImports")
 public final class FindBugsValidator implements Validator {
 
     /**
@@ -103,15 +107,16 @@ public final class FindBugsValidator implements Validator {
         args.add(env.basedir().getPath());
         args.add(env.outdir().getPath());
         // @checkstyle MultipleStringLiteralsCheck (2 lines)
-        args.add(StringUtils.join(env.classpath(), ",")
-            .replace("\\", "/")
+        args.add(
+            StringUtils.join(env.classpath(), ",").replace("\\", "/")
         );
         final Iterable<String> excludes = env.excludes("findbugs");
+        args.add(this.jar(FBContrib.class).toString());
         if (excludes.iterator().hasNext()) {
             args.add(FindBugsValidator.excludes(env, excludes));
         }
         return new VerboseProcess(
-            new ProcessBuilder(args), Level.ALL, Level.ALL
+            new ProcessBuilder(args), Level.INFO, Level.INFO
         ).stdout();
     }
 
@@ -134,7 +139,9 @@ public final class FindBugsValidator implements Validator {
                     this.jar(ClassVisitor.class),
                     this.jar(When.class),
                     this.jar(FormatterNumberFormatException.class),
-                    this.jar(StringEscapeUtils.class)
+                    this.jar(StringEscapeUtils.class),
+                    this.jar(FBContrib.class),
+                    this.jar(Iterables.class)
                 ),
                 // @checkstyle MultipleStringLiteralsCheck (1 line)
                 System.getProperty("path.separator")

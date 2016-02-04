@@ -51,6 +51,7 @@ import org.junit.Test;
  * Test case for {@link CheckstyleValidator} class.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  * @checkstyle MultipleStringLiterals (300 lines)
  * @todo #412:30min Split this class into smaller ones and remove PMD
  *  exclude `TooManyMethods`. Good candidates for moving out of this class
@@ -466,6 +467,50 @@ public final class CheckstyleValidatorTest {
         this.validateCheckstyle(
             "UrlInLongLine.java", true,
             Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
+     * CheckstyleValidator can allow spaces between methods of anonymous
+     * classes.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void allowsSpacesBetwenMethodsOfAnonymousClasses() throws Exception {
+        this.validateCheckstyle(
+            "BlankLinesOutsideMethodsPass.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
+     * CheckstyleValidator can reject spaces inside methods, regardless of
+     * whether they are inside of an anonymous method or not.
+     * @throws Exception In case of error
+     */
+    @Test
+    public void rejectsSpacesInsideMethods() throws Exception {
+        final String result = this.runValidation(
+            "BlankLinesInsideMethodsFail.java", false
+        );
+        MatcherAssert.assertThat(
+            result,
+            Matchers.stringContainsInOrder(
+                Arrays.asList(
+                    "[17]: Empty line inside method (EmptyLinesCheck)",
+                    "[21]: Empty line inside method (EmptyLinesCheck)",
+                    "[23]: Empty line inside method (EmptyLinesCheck)",
+                    "[27]: Empty line inside method (EmptyLinesCheck)",
+                    "[30]: Empty line inside method (EmptyLinesCheck)",
+                    "[34]: Empty line inside method (EmptyLinesCheck)",
+                    "[36]: Empty line inside method (EmptyLinesCheck)",
+                    "[40]: Empty line inside method (EmptyLinesCheck)",
+                    "[43]: Empty line inside method (EmptyLinesCheck)",
+                    "[50]: Empty line inside method (EmptyLinesCheck)",
+                    "[52]: Empty line inside method (EmptyLinesCheck)",
+                    "[54]: Empty line inside method (EmptyLinesCheck)"
+                )
+            )
         );
     }
 

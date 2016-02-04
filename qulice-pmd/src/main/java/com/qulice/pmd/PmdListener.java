@@ -44,6 +44,7 @@ import net.sourceforge.pmd.stat.Metric;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
+ * @since 0.3
  */
 final class PmdListener implements ReportListener {
 

@@ -29,21 +29,32 @@
  */
 package com.qulice.findbugs;
 
+import com.google.common.base.Function;
+import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2;
+import com.jcabi.aspects.Tv;
+import com.mebigfatguy.fbcontrib.utils.BugType;
+import edu.umd.cs.findbugs.BugInstance;
 import edu.umd.cs.findbugs.BugReporter;
 import edu.umd.cs.findbugs.Detector;
 import edu.umd.cs.findbugs.DetectorFactoryCollection;
 import edu.umd.cs.findbugs.FindBugs2;
+import edu.umd.cs.findbugs.Plugin;
+import edu.umd.cs.findbugs.PluginException;
 import edu.umd.cs.findbugs.PrintingBugReporter;
 import edu.umd.cs.findbugs.Project;
 import edu.umd.cs.findbugs.config.UserPreferences;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Executed by {@link FindBugsValidator}, but in a new process.
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class Wrap {
 
@@ -67,9 +78,45 @@ public final class Wrap {
      * @param args Arguments
      */
     public static void run(final String... args) {
+        final Project project =
+            Wrap.project(args[0], args[1], args[2].split(","));
+        try {
+            Plugin.loadCustomPlugin(new File(args[Tv.THREE]), project);
+        } catch (final PluginException ex) {
+            throw new IllegalStateException(ex);
+        }
         final FindBugs2 findbugs = new FindBugs2();
-        findbugs.setProject(Wrap.project(args[0], args[1], args[2].split(",")));
-        final BugReporter reporter = new PrintingBugReporter();
+        findbugs.setProject(project);
+        final Collection<String> ignored = Collections2.filter(
+            Collections2.transform(
+                Arrays.asList(BugType.values()),
+                new Function<BugType, String>() {
+                    @Override
+                    public String apply(final BugType bug) {
+                        final String name;
+                        if (bug == null) {
+                            name = "Missing";
+                        } else {
+                            name = bug.name();
+                        }
+                        return name;
+                    }
+                }
+            ),
+            Predicates.not(
+                Predicates.equalTo(
+                    BugType.BED_BOGUS_EXCEPTION_DECLARATION.name()
+                )
+            )
+        );
+        final BugReporter reporter = new PrintingBugReporter() {
+            @Override
+            protected void doReportBug(final BugInstance bug) {
+                if (!ignored.contains(bug.getType())) {
+                    super.doReportBug(bug);
+                }
+            }
+        };
         reporter.getProjectStats().getProfiler().start(findbugs.getClass());
         reporter.setPriorityThreshold(Detector.LOW_PRIORITY);
         findbugs.setBugReporter(reporter);
@@ -82,9 +129,8 @@ public final class Wrap {
         findbugs.setNoClassOk(true);
         findbugs.setScanNestedArchives(true);
         try {
-            // @checkstyle MagicNumberCheck (2 lines)
-            if (args.length > 3) {
-                findbugs.addFilter(args[3], false);
+            if (args.length > Tv.FOUR) {
+                findbugs.addFilter(args[Tv.FOUR], false);
             }
             findbugs.execute();
         } catch (final IOException ex) {

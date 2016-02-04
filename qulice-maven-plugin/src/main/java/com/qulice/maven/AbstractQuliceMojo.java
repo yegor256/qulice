@@ -48,6 +48,7 @@ import org.slf4j.impl.StaticLoggerBinder;
  *
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
 public abstract class AbstractQuliceMojo extends AbstractMojo
     implements Contextualizable {
@@ -86,14 +87,12 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      * Location of License file. If it is an absolute file name you should
      * prepend it with "file:" prefix. Otherwise it is treated like a resource
      * name and will be found in classpath (if available).
-     * @since 0.1
      */
     @Parameter(property = "qulice.license", defaultValue = "LICENSE.txt")
     private transient String license = "LICENSE.txt";
 
     /**
      * List of regular expressions to exclude.
-     * @since 0.4
      */
     @Parameter(property = "qulice.excludes")
     private final transient Collection<String> excludes =
@@ -101,7 +100,6 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * List of xpath queries to validate pom.xml.
-     * @since 0.5
      * @checkstyle IndentationCheck (5 lines)
      */
     @Parameter(

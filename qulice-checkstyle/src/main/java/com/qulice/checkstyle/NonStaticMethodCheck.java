@@ -54,6 +54,7 @@ import java.util.regex.Pattern;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
+ * @since 0.3
  */
 public final class NonStaticMethodCheck extends Check {
 
@@ -103,7 +104,8 @@ public final class NonStaticMethodCheck extends Check {
         }
         if (!AnnotationUtility.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
-            && !method.branchContains(TokenTypes.LITERAL_THIS)) {
+            && !method.branchContains(TokenTypes.LITERAL_THIS)
+            && !method.branchContains(TokenTypes.LITERAL_THROW)) {
             final int line = method.getLineNo();
             this.log(
                 line,

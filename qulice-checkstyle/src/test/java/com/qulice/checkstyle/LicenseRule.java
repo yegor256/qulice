@@ -42,6 +42,7 @@ import org.junit.runners.model.Statement;
  * Builder of {@code LICENSE.txt} content.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.4
  */
 public final class LicenseRule implements TestRule {
 

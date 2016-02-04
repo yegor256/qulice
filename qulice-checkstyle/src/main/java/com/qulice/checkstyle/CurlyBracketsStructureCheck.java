@@ -59,6 +59,7 @@ import java.util.List;
  *
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
+ * @since 0.6
  */
 public final class CurlyBracketsStructureCheck extends Check {
 

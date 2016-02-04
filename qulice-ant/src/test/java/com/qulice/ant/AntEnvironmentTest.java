@@ -37,6 +37,7 @@ import org.junit.Test;
  *
  * @author Yuriy Alevohin (alevohin@mail.ru)
  * @version $Id$
+ * @since 0.13
  * @todo #337 Implement unit tests at AntEnvironmentTest
  */
 public class AntEnvironmentTest {

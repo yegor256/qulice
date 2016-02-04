@@ -8,18 +8,25 @@ public final class Invalid {
 	    String str = "a" + "b";
 	}
     }
-    
+
     public void foo2() {
 	String a = "a";
 	String str = a + "b";
     }
-    
+
     public void foo3() {
 	System.out.println("File not found: " + file);
     }
-    
+
     public void foo4() {
 	String x = "x";
 	x += "done";
+    }
+
+    public void foo5() {
+        final Exception ex = new RuntimeException();
+        throw new IllegalStateException("Failed to create checker"
+            + " test" + ex.getMessage(), ex
+        );
     }
 }

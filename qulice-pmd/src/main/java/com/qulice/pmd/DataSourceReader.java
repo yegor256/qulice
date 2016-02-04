@@ -43,6 +43,7 @@ import org.apache.commons.lang3.CharEncoding;
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class DataSourceReader {
 

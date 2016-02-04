@@ -59,6 +59,7 @@ import java.util.List;
  * @author Dzmitry Petrushenka (dpetruha@gmail.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
+ * @since 0.3
  */
 public final class StringLiteralsConcatenationCheck extends Check {
 
@@ -75,7 +76,10 @@ public final class StringLiteralsConcatenationCheck extends Check {
             TokenTypes.PLUS_ASSIGN
         );
         for (final DetailAST plus : pluses) {
-            if (plus.getChildCount(TokenTypes.STRING_LITERAL) > 0) {
+            if (!this.findChildASTsOfType(
+                plus,
+                TokenTypes.STRING_LITERAL
+            ).isEmpty()) {
                 this.log(plus, "Concatenation of string literals prohibited");
             }
         }

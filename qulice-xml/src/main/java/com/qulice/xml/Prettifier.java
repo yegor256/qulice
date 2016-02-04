@@ -43,6 +43,7 @@ import javax.xml.transform.stream.StreamSource;
  *
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
+ * @since 0.9
  */
 public final class Prettifier {
 

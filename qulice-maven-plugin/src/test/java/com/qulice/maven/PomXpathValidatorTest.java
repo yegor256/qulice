@@ -39,6 +39,7 @@ import org.junit.Test;
  * Test case for {@link PomXpathValidator} class.
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
+ * @since 0.6
  */
 public final class PomXpathValidatorTest {
 

@@ -42,6 +42,7 @@ import org.junit.Test;
  * Test case for {@link Files} class.
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
+ * @since 0.7
  */
 public final class FilesTest {
 
