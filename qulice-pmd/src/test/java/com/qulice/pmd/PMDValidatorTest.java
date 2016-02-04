@@ -31,6 +31,7 @@ package com.qulice.pmd;
 
 import com.google.common.base.Joiner;
 import com.jcabi.matchers.RegexMatchers;
+import com.qulice.pmd.rules.ProhibitPlainJunitAssertionsRule;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
@@ -83,10 +84,10 @@ public final class PMDValidatorTest {
     private static final String BRACKETS = "(%s)";
 
     /**
-     * Pattern using old style assertions.
+     * Pattern using plain JUnit assertions.
      * @checkstyle LineLength (2 lines)
      */
-    private static final String OLD_ASSERTIONS = "Avoid to use old style assertions";
+    private static final String OLD_ASSERTIONS = "Avoid using Plain JUnit assertions";
 
     /**
      * PMDValidator can find violations in Java file(s).
@@ -431,17 +432,17 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * PMDValidator prohibit old style junit assertion in import block like
+     * PMDValidator prohibit plain JUnit assertion in import block like
      * import static org.junit.Assert.assert*
      * import static junit.framework.Assert.assert*.
      *
-     * Custom Rule {@link com.qulice.pmd.rules.ProhibitOldStyleAssertionsRule}
+     * Custom Rule {@link ProhibitPlainJunitAssertionsRule}
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void prohibitStaticImportsOldStyleAssertionsInTests()
+    public void prohibitStaticImportsPlainAssertionsInTests()
         throws Exception {
-        final String file = "OldStyleJUnitAssertionImportBlock.java";
+        final String file = "PlainJUnitAssertionImportBlock.java";
         new PMDAssert(
             file, Matchers.is(false),
             Matchers.containsString(
@@ -451,16 +452,16 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * PMDValidator prohibit old style junit assertion in test methods like
+     * PMDValidator prohibit plain JUnit assertion in test methods like
      * Assert.assertEquals.
      *
-     * Custom Rule {@link com.qulice.pmd.rules.ProhibitOldStyleAssertionsRule}
+     * Custom Rule {@link ProhibitPlainJunitAssertionsRule}
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void prohibitOldStyleAssertionsInTestMethods()
+    public void prohibitPlainJunitAssertionsInTestMethods()
         throws Exception {
-        final String file = "OldStyleJUnitAssertionTestMethod.java";
+        final String file = "PlainJUnitAssertionTestMethod.java";
         new PMDAssert(
             file, Matchers.is(false),
             Matchers.containsString(
@@ -472,7 +473,7 @@ public final class PMDValidatorTest {
     /**
      * PMDValidator allows Assert.fail().
      *
-     * Custom Rule {@link com.qulice.pmd.rules.ProhibitOldStyleAssertionsRule}
+     * Custom Rule {@link ProhibitPlainJunitAssertionsRule}
      * @throws Exception If something wrong happens inside.
      */
     @Test

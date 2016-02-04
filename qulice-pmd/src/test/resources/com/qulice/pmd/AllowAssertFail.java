@@ -7,7 +7,7 @@ import org.junit.Test;
 public class AllowAssertFail {
 
     @Test
-    public void prohibitOldStyleAssertionsInTests() throws Exception {
+    public void prohibitPlainJunitAssertionsInTests() throws Exception {
         Matchers.assertThat("errorMessage", "expected", Matchers.is("actual"));
         Assert.fail("fail test");
     }

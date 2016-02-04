@@ -3,10 +3,10 @@ package com.qulice.pmd;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-public class OldStyleJUnitAssertion {
+public class PlainJUnitAssertion {
 
     @Test
-    public void prohibitOldStyleAssertionsInTests() throws Exception {
+    public void prohibitPlainJunitAssertionsInTests() throws Exception {
         assertEquals("errorMessage", "expected", "actual");
     }
 }

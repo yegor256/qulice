@@ -86,11 +86,11 @@
         <exclude name="JUnitTestsShouldIncludeAssert"/>
     </rule>
 
-    <rule name="ProhibitOldStyleAssertionsRule"
-        message="Avoid to use old style assertions"
-        class="com.qulice.pmd.rules.ProhibitOldStyleAssertionsRule">
+    <rule name="ProhibitPlainJunitAssertionsRule"
+        message="Avoid using Plain JUnit assertions"
+        class="com.qulice.pmd.rules.ProhibitPlainJunitAssertionsRule">
         <description>
-            Instead of using old style JUnit assertions like org.junit.Assert.assert*
+            Instead of using plain JUnit assertions like org.junit.Assert.assert*
             junit.framework.Assert.assert* - use Matchers from package org.hamcrest
         </description>
     </rule>
