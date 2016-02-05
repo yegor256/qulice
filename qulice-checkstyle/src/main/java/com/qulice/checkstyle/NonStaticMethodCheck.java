@@ -31,6 +31,7 @@ package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 import java.util.regex.Pattern;
@@ -56,6 +57,11 @@ import java.util.regex.Pattern;
  * @version $Id$
  */
 public final class NonStaticMethodCheck extends Check {
+
+    /**
+     * The number of lines in a method if the method only throws an exception.
+     */
+    private static final int ONLY_THROW_LEN = 3;
 
     /**
      * Files to exclude from this check.
@@ -92,7 +98,8 @@ public final class NonStaticMethodCheck extends Check {
     /**
      * Check that non static class method refer {@code this}. Methods that
      * are {@code native}, {@code abstract} or annotated with {@code @Override}
-     * are excluded.
+     * are excluded.  Additionally, if the method only throws an exception, it
+     * too is excluded.
      * @param method DetailAST of method
      */
     private void checkClassMethod(final DetailAST method) {
@@ -101,13 +108,13 @@ public final class NonStaticMethodCheck extends Check {
         if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
             return;
         }
-        final boolean thrownocatch =
+        final boolean onlythrow =
             method.branchContains(TokenTypes.LITERAL_THROW)
-                && !method.branchContains(TokenTypes.LITERAL_CATCH);
+                && this.getMethodLength(method) == ONLY_THROW_LEN;
         if (!AnnotationUtility.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
             && !method.branchContains(TokenTypes.LITERAL_THIS)
-            && !thrownocatch) {
+            && !onlythrow) {
             final int line = method.getLineNo();
             this.log(
                 line,
@@ -126,5 +133,32 @@ public final class NonStaticMethodCheck extends Check {
         final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.branchContains(TokenTypes.ABSTRACT)
             || modifiers.branchContains(TokenTypes.LITERAL_NATIVE);
+    }
+
+    /**
+     * Determines the number of lines, excluding empty lines and comments in
+     * a method.  Thus it's the number of lines from the opening curly brace
+     * to the closing curly brace, inclusive.
+     * @param method Method to count
+     * @return The number of lines as an int
+     */
+    private int getMethodLength(final DetailAST method) {
+        final DetailAST openingbrace = method.findFirstToken(TokenTypes.SLIST);
+        int length = 0;
+        if (openingbrace != null) {
+            final DetailAST closingbrace =
+                openingbrace.findFirstToken(TokenTypes.RCURLY);
+            final int lastline = closingbrace.getLineNo();
+            final int firstline = openingbrace.getLineNo();
+            length = lastline - firstline + 1;
+            final FileContents contents = this.getFileContents();
+            for (int line = firstline - 1; line < lastline; line += 1) {
+                if (contents.lineIsBlank(line)
+                    || contents.lineIsComment(line)) {
+                    length -= 1;
+                }
+            }
+        }
+        return length;
     }
 }
