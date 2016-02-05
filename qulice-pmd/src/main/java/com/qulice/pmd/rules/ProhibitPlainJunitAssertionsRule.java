@@ -43,6 +43,7 @@ import net.sourceforge.pmd.lang.java.rule.junit.AbstractJUnitRule;
  * @author Viktor Kuchyn (kuchin.victor@gmail.com)
  * @version $Id$
  */
+
 public final class ProhibitPlainJunitAssertionsRule extends AbstractJUnitRule {
 
     /**
