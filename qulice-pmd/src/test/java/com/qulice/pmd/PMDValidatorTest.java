@@ -86,9 +86,9 @@ public final class PMDValidatorTest {
 
     /**
      * Pattern using plain JUnit assertions.
-     * @checkstyle LineLength (2 lines)
      */
-    private static final String OLD_ASSERTIONS = "Avoid using Plain JUnit assertions";
+    private static final String PLAIN_ASSERTIONS =
+        "Avoid using Plain JUnit assertions";
 
     /**
      * PMDValidator can find violations in Java file(s).
@@ -433,7 +433,7 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * PMDValidator prohibit plain JUnit assertion in import block like
+     * PMDValidator can prohibit plain JUnit assertion in import block like
      * import static org.junit.Assert.assert*
      * import static junit.framework.Assert.assert*.
      *
@@ -441,51 +441,51 @@ public final class PMDValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void prohibitStaticImportsPlainAssertionsInTests()
+    public void prohibitsStaticImportsPlainAssertionsInTests()
         throws Exception {
-        final String file = "PlainJUnitAssertionImportBlock.java";
+        final String file = "PlainJUnitAssertionStaticImportBlock.java";
         new PMDAssert(
             file, Matchers.is(false),
             Matchers.containsString(
-                PMDValidatorTest.OLD_ASSERTIONS
+                PMDValidatorTest.PLAIN_ASSERTIONS
             )
         ).validate();
     }
 
     /**
-     * PMDValidator prohibit plain JUnit assertion in test methods like
+     * PMDValidator can prohibit plain JUnit assertion in test methods like
      * Assert.assertEquals.
      *
      * Custom Rule {@link ProhibitPlainJunitAssertionsRule}
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void prohibitPlainJunitAssertionsInTestMethods()
+    public void prohibitsPlainJunitAssertionsInTestMethods()
         throws Exception {
         final String file = "PlainJUnitAssertionTestMethod.java";
         new PMDAssert(
             file, Matchers.is(false),
             Matchers.containsString(
-                PMDValidatorTest.OLD_ASSERTIONS
+                PMDValidatorTest.PLAIN_ASSERTIONS
             )
         ).validate();
     }
 
     /**
-     * PMDValidator allows Assert.fail().
+     * PMDValidator can allow Assert.fail().
      *
      * Custom Rule {@link ProhibitPlainJunitAssertionsRule}
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowAssertFail()
+    public void allowsAssertFail()
         throws Exception {
         final String file = "AllowAssertFail.java";
         new PMDAssert(
             file, Matchers.is(true),
             Matchers.not(
                 Matchers.containsString(
-                    PMDValidatorTest.OLD_ASSERTIONS
+                    PMDValidatorTest.PLAIN_ASSERTIONS
                 )
             )
         ).validate();

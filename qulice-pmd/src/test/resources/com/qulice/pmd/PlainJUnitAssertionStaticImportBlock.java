@@ -3,7 +3,7 @@ package com.qulice.pmd;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-public class PlainJUnitAssertion {
+public class PlainJUnitAssertionStaticImportBlock {
 
     @Test
     public void prohibitPlainJunitAssertionsInTests() throws Exception {
