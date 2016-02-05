@@ -108,9 +108,10 @@ public final class NonStaticMethodCheck extends Check {
         if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
             return;
         }
+        final int maxlen = NonStaticMethodCheck.ONLY_THROW_LEN;
         final boolean onlythrow =
             method.branchContains(TokenTypes.LITERAL_THROW)
-                && this.getMethodLength(method) == ONLY_THROW_LEN;
+                && this.getMethodLength(method) == maxlen;
         if (!AnnotationUtility.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
             && !method.branchContains(TokenTypes.LITERAL_THIS)
