@@ -193,6 +193,32 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can report Apache Commons {@code CharEncoding} class
+     * usages.
+     * @throws Exception when error.
+     */
+    @Test
+    public void reportsAllCharEncodingUsages() throws Exception {
+        final String violation = StringUtils.join(
+            "DoNotUseCharEncoding.java[%s]: ",
+            "Use java.nio.charset.StandardCharsets instead"
+        );
+        this.validateCheckstyle(
+            "DoNotUseCharEncoding.java", false,
+            Matchers.stringContainsInOrder(
+                Arrays.asList(
+                    String.format(violation, "6"),
+                    String.format(violation, "7"),
+                    String.format(violation, "8"),
+                    String.format(violation, "22"),
+                    String.format(violation, "23"),
+                    String.format(violation, "24")
+                )
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator accepts the valid indentation
      * refused by forceStrictCondition.
      * @throws Exception when error.
