@@ -59,11 +59,6 @@ import java.util.regex.Pattern;
 public final class NonStaticMethodCheck extends Check {
 
     /**
-     * The number of lines in a method if the method only throws an exception.
-     */
-    private static final int ONLY_THROW_LEN = 3;
-
-    /**
      * Files to exclude from this check.
      * This is mostly to exclude JUnit tests.
      */
@@ -108,10 +103,10 @@ public final class NonStaticMethodCheck extends Check {
         if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
             return;
         }
-        final int maxlen = NonStaticMethodCheck.ONLY_THROW_LEN;
         final boolean onlythrow =
             method.branchContains(TokenTypes.LITERAL_THROW)
-                && this.getMethodLength(method) == maxlen;
+                && !method.branchContains(TokenTypes.LCURLY)
+                && this.countSemiColons(method) == 1;
         if (!AnnotationUtility.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
             && !method.branchContains(TokenTypes.LITERAL_THIS)
@@ -137,29 +132,28 @@ public final class NonStaticMethodCheck extends Check {
     }
 
     /**
-     * Determines the number of lines, excluding empty lines and comments in
-     * a method.  Thus it's the number of lines from the opening curly brace
-     * to the closing curly brace, inclusive.
+     * Determines the number semicolons in a method excluding those in
+     * comments.
      * @param method Method to count
-     * @return The number of lines as an int
+     * @return The number of semicolons in the method as an int
      */
-    private int getMethodLength(final DetailAST method) {
+    private int countSemiColons(final DetailAST method) {
         final DetailAST openingbrace = method.findFirstToken(TokenTypes.SLIST);
-        int length = 0;
+        int count = 0;
         if (openingbrace != null) {
             final DetailAST closingbrace =
                 openingbrace.findFirstToken(TokenTypes.RCURLY);
             final int lastline = closingbrace.getLineNo();
             final int firstline = openingbrace.getLineNo();
-            length = lastline - firstline + 1;
             final FileContents contents = this.getFileContents();
             for (int line = firstline - 1; line < lastline; line += 1) {
-                if (contents.lineIsBlank(line)
-                    || contents.lineIsComment(line)) {
-                    length -= 1;
+                if (!contents.lineIsBlank(line)
+                    && !contents.lineIsComment(line)
+                    && contents.getLine(line).contains(";")) {
+                    count += 1;
                 }
             }
         }
-        return length;
+        return count;
     }
 }
