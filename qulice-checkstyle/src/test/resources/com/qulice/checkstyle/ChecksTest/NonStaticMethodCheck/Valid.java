@@ -39,4 +39,13 @@ public class Bar {
         // this method is not yet implemented
         throw new UnsupportedOperationException();
     }
+
+    public void anotherThrowsExceptionMethod() {
+        // this methods throws an exception with a description that spans
+        // more than one and and has a commented out line of code.
+        // throw new OldException();
+        throw new IllegalStateException("This method is not to be called," +
+            " because it has a really long description that spans more than" +
+            " one line.");
+    }
 }

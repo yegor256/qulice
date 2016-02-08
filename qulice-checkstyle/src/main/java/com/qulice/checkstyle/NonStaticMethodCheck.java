@@ -31,6 +31,7 @@ package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.Check;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 import java.util.regex.Pattern;
@@ -93,7 +94,8 @@ public final class NonStaticMethodCheck extends Check {
     /**
      * Check that non static class method refer {@code this}. Methods that
      * are {@code native}, {@code abstract} or annotated with {@code @Override}
-     * are excluded.
+     * are excluded.  Additionally, if the method only throws an exception, it
+     * too is excluded.
      * @param method DetailAST of method
      */
     private void checkClassMethod(final DetailAST method) {
@@ -102,10 +104,14 @@ public final class NonStaticMethodCheck extends Check {
         if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
             return;
         }
+        final boolean onlythrow =
+            method.branchContains(TokenTypes.LITERAL_THROW)
+                && !method.branchContains(TokenTypes.LCURLY)
+                && this.countSemiColons(method) == 1;
         if (!AnnotationUtility.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
             && !method.branchContains(TokenTypes.LITERAL_THIS)
-            && !method.branchContains(TokenTypes.LITERAL_THROW)) {
+            && !onlythrow) {
             final int line = method.getLineNo();
             this.log(
                 line,
@@ -124,5 +130,31 @@ public final class NonStaticMethodCheck extends Check {
         final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);
         return modifiers.branchContains(TokenTypes.ABSTRACT)
             || modifiers.branchContains(TokenTypes.LITERAL_NATIVE);
+    }
+
+    /**
+     * Determines the number semicolons in a method excluding those in
+     * comments.
+     * @param method Method to count
+     * @return The number of semicolons in the method as an int
+     */
+    private int countSemiColons(final DetailAST method) {
+        final DetailAST openingbrace = method.findFirstToken(TokenTypes.SLIST);
+        int count = 0;
+        if (openingbrace != null) {
+            final DetailAST closingbrace =
+                openingbrace.findFirstToken(TokenTypes.RCURLY);
+            final int lastline = closingbrace.getLineNo();
+            final int firstline = openingbrace.getLineNo();
+            final FileContents contents = this.getFileContents();
+            for (int line = firstline - 1; line < lastline; line += 1) {
+                if (!contents.lineIsBlank(line)
+                    && !contents.lineIsComment(line)
+                    && contents.getLine(line).contains(";")) {
+                    count += 1;
+                }
+            }
+        }
+        return count;
     }
 }
