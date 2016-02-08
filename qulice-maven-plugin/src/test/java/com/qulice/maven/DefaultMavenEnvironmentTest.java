@@ -128,4 +128,24 @@ public class DefaultMavenEnvironmentTest {
             Matchers.notNullValue()
         );
     }
+
+    /**
+     * DefaultMavenEnvironment can produce empty collection when no matches
+     * with checker.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public final void emptyExcludesWhenNotMatchesChecker() throws Exception {
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setExcludes(
+            ImmutableList.<String>builder()
+                .add("checkstyle:**/src/ex1/Main.groovy")
+                .add("pmd:**/src/ex2/Main2.groovy")
+                .build()
+        );
+        MatcherAssert.assertThat(
+            env.excludes("dependencies"),
+            Matchers.<String>empty()
+        );
+    }
 }

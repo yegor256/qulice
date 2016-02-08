@@ -31,6 +31,7 @@ package com.qulice.maven;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
@@ -238,10 +239,11 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public Collection<String> excludes(final String checker) {
-        return Collections2.transform(
+        final Collection<String> excludes = Collections2.transform(
             this.exc,
             new DefaultMavenEnvironment.CheckerExcludes(checker)
         );
+        return Collections2.filter(excludes, Predicates.notNull());
     }
 
     /**
