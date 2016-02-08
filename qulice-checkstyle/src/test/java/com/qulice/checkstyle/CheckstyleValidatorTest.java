@@ -406,6 +406,32 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator cannot demand methods to be static in files with
+     * names ending with {@code ITCase}.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void acceptsNonStaticMethodsInIt() throws Exception {
+        this.validateCheckstyle(
+            "ValidIT.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
+     * CheckstyleValidator cannot demand methods to be static in files with
+     * names ending with {@code IT}.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void acceptsNonStaticMethodsInItCases() throws Exception {
+        this.validateCheckstyle(
+            "ValidITCase.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
      * CheckstyleValidator does not produce errors when last thing
      * in file are imports. The only exception that should be thrown is
      * qulice ValidationException.

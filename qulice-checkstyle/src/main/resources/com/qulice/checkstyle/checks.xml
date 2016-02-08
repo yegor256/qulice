@@ -382,7 +382,7 @@
         <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
         <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
         <module name="com.qulice.checkstyle.NonStaticMethodCheck">
-            <property name="excludeFileNamePattern" value=".*Test\.java"/>
+            <property name="excludeFileNamePattern" value=".*(Test|IT|ITCase)\.java"/>
         </module>
         <module name="com.qulice.checkstyle.ProtectedMethodInFinalClassCheck"/>
         <module name="com.qulice.checkstyle.FinalSemicolonInTryWithResourcesCheck"/>

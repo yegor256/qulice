@@ -124,7 +124,6 @@ public interface Environment {
 
     /**
      * Mock of {@link Environment}.
-     * @checkstyle NonStaticMethodCheck (500 lines)
      */
     final class Mock implements Environment {
         /**
