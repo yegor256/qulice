@@ -16,4 +16,11 @@ public class InvalidTest {
     public synchronized String name() {
         return "method with non-native and non-abstract modifier";
     }
+    public String name() {
+        try {
+            ThatClass.name();
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
 }
