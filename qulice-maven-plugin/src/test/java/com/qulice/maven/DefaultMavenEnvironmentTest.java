@@ -133,19 +133,25 @@ public class DefaultMavenEnvironmentTest {
      * DefaultMavenEnvironment can produce empty collection when no matches
      * with checker.
      * @throws Exception If something wrong happens inside
+     * @todo Ideally integration test required to reproduce NPE described in
+     *  #676. It should contains at least one exclude rule in
+     *  configuration.excludes block and dependency (I got it
+     *  locally with org.hibernate:hibernate-annotations:3.5.6-Final.
+     *  I suppose, dependency must be compile-time scope but it is only my
+     *  suggestions as far as junit with hamcrest didn't work.
      */
     @Test
-    public final void emptyExcludesWhenNotMatchesChecker() throws Exception {
+    public final void producesEmptyExcludesWhenNoMatches() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         env.setExcludes(
-            ImmutableList.<String>builder()
-                .add("checkstyle:**/src/ex1/Main.groovy")
-                .add("pmd:**/src/ex2/Main2.groovy")
-                .build()
+            ImmutableList.of(
+                "checkstyle:**/src/ex1/Main.groovy",
+                "pmd:**/src/ex2/Main2.groovy"
+            )
         );
         MatcherAssert.assertThat(
             env.excludes("dependencies"),
-            Matchers.<String>empty()
+            Matchers.empty()
         );
     }
 }
