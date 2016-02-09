@@ -133,8 +133,8 @@ public class DefaultMavenEnvironmentTest {
      * DefaultMavenEnvironment can produce empty collection when no matches
      * with checker.
      * @throws Exception If something wrong happens inside
-     * @todo Ideally integration test required to reproduce NPE described in
-     *  #676. It should contains at least one exclude rule in
+     * @todo #676:30min Ideally integration test required to reproduce NPE.
+     *  It should contains at least one exclude rule in
      *  configuration.excludes block and dependency (I got it
      *  locally with org.hibernate:hibernate-annotations:3.5.6-Final.
      *  I suppose, dependency must be compile-time scope but it is only my
