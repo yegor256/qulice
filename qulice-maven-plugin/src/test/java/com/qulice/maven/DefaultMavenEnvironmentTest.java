@@ -136,7 +136,7 @@ public class DefaultMavenEnvironmentTest {
      * @todo #676:30min Ideally integration test is required to reproduce NPE
      *  in issue #676.
      *  To reproduce problem firstly revert changes marked with #676, then
-     *  add to pom.xml of it project at least one exclude rule in
+     *  add to pom.xml of IT project at least one exclude rule in
      *  configuration.excludes block and dependency (in my case worked
      *  org.hibernate:hibernate-annotations:3.5.6-Final).
      *  Suggestion is that dependency must be compile-time scope as far as
