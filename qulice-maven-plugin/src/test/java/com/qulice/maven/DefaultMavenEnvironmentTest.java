@@ -133,7 +133,7 @@ public class DefaultMavenEnvironmentTest {
      * DefaultMavenEnvironment can produce empty collection when no matches
      * with checker.
      * @throws Exception If something wrong happens inside
-     * @todo #676:30min Ideally integration test required to reproduce NPE
+     * @todo #676:30min Ideally integration test is required to reproduce NPE
      *  in issue #676.
      *  To reproduce problem - add to pom.xml at least one exclude rule in
      *  configuration.excludes block and dependency (in my case worked
