@@ -379,6 +379,11 @@ public final class CheckstyleValidatorTest {
     /**
      * CheckstyleValidator can allow proper indentation in complex annotations.
      * @throws Exception If something wrong happens inside
+     * @todo #411:30min Sample code provided in #411 should be considered as
+     *  invalid. Find a way how to do that by either custom check, or updating
+     *  Checkstyle whenever IndentationCheck there will be more reliable. As for
+     *  Checkstyle 6.15 there's no ready solution for that. Right now Qulice
+     *  allows both correct and incorrect code from #411.
      */
     @Test
     public void allowsProperIndentationInAnnotations() throws Exception {
