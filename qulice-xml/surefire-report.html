@@ -94,7 +94,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.16/index.html" title="JavaDocs">JavaDocs</a>
+                            <span>                        <a href="apidocs-0.16.1/index.html" title="JavaDocs">JavaDocs</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -133,13 +133,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.16</strong>
+                                    <strong itemprop="version">0.16.1</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2016-02-03T08:06:31Z">
+                                    <time itemprop="datePublished" datetime="2016-02-09T09:45:29Z">
                                         
-                                        03-Feb-2016
+                                        09-Feb-2016
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -183,7 +183,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>1</td>
 <td>8.333%</td>
-<td>0.234</td></tr></table><br />
+<td>0.529</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
@@ -204,7 +204,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>1</td>
 <td>8.333%</td>
-<td>0.234</td></tr></table><br />
+<td>0.529</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
 <h3><a name="com.qulice.xml"></a>com.qulice.xml</h3><a name="com.qulice.xml"></a>
@@ -226,7 +226,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>1</td>
 <td>8.333%</td>
-<td>0.234</td></tr></table></div><br /></div>
+<td>0.529</td></tr></table></div><br /></div>
 <div class="section">
 <h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
@@ -237,23 +237,23 @@ function toggleDisplay(elementId) {
 <td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationIfNoSchemaLocationSpecified"><img src="images/icon_error_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationIfNoSchemaLocationSpecified">passesValidationIfNoSchemaLocationSpecified</a>
 <div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_passesValidationIfNoSchemaLocationSpecified&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_passesValidationIfNoSchemaLocationSpecifiedoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_passesValidationIfNoSchemaLocationSpecifiedon"> - </span>[ Detail ]</a></div></td>
-<td>0.197</td></tr>
+<td>0.322</td></tr>
 <tr class="b">
 <td></td>
-<td>Could not initialize class com.jcabi.xml.XMLDocument</td>
+<td>javax.xml.parsers.DocumentBuilderFactory.setFeature(Ljava/lang/String;Z)V</td>
 <td></td></tr>
 <tr class="a">
 <td></td>
 <td>
 <div id="com_qulice_xml_XmlValidatorTest_passesValidationIfNoSchemaLocationSpecifiederror" style="display:none;">
 <div>
-<pre>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:103)at com.qulice.xml.XmlValidatorTest.passesValidationIfNoSchemaLocationSpecified(XmlValidatorTest.java:192)</pre></div></div></td>
+<pre>java.lang.AbstractMethodError: javax.xml.parsers.DocumentBuilderFactory.setFeature(Ljava/lang/String;Z)Vat com.jcabi.xml.XMLDocument.&lt;clinit&gt;(XMLDocument.java:121)at com.qulice.xml.XmlValidator.validate(XmlValidator.java:104)at com.qulice.xml.XmlValidatorTest.passesValidationIfNoSchemaLocationSpecified(XmlValidatorTest.java:193)</pre></div></div></td>
 <td></td></tr>
 <tr class="b">
 <td><a href="#com.qulice.xml.XmlValidatorTest.failsValidationOnWrongFile"><img src="images/icon_error_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.xml.XmlValidatorTest.failsValidationOnWrongFile">failsValidationOnWrongFile</a>
 <div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_failsValidationOnWrongFile&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_failsValidationOnWrongFileoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_failsValidationOnWrongFileon"> - </span>[ Detail ]</a></div></td>
-<td>0.196</td></tr>
+<td>0.32</td></tr>
 <tr class="a">
 <td></td>
 <td>Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td>
@@ -263,22 +263,13 @@ function toggleDisplay(elementId) {
 <td>
 <div id="com_qulice_xml_XmlValidatorTest_failsValidationOnWrongFileerror" style="display:none;">
 <div>
-<pre>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:28)at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387)at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)at java.lang.Thread.run(Thread.java:745)Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:103)at com.qulice.xml.XmlValidatorTest.failsValidationOnWrongFile(XmlValidatorTest.java:56)</pre></div></div></td>
-<td></td></tr>
-<tr class="a">
-<td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationIfSchemaIsNotAccessible"><img src="images/icon_warning_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationIfSchemaIsNotAccessible">passesValidationIfSchemaIsNotAccessible</a>
-<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_passesValidationIfSchemaIsNotAccessible&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_passesValidationIfSchemaIsNotAccessibleoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_passesValidationIfSchemaIsNotAccessibleon"> - </span>[ Detail ]</a></div></td>
-<td>0</td></tr>
-<tr class="b">
-<td></td>
-<td>skipped</td>
+<pre>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:28)at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387)at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)at java.lang.Thread.run(Thread.java:745)Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:104)at com.qulice.xml.XmlValidatorTest.failsValidationOnWrongFile(XmlValidatorTest.java:57)</pre></div></div></td>
 <td></td></tr>
 <tr class="a">
 <td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationIfCommentsAreBeforeParentTag"><img src="images/icon_error_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationIfCommentsAreBeforeParentTag">passesValidationIfCommentsAreBeforeParentTag</a>
 <div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_passesValidationIfCommentsAreBeforeParentTag&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_passesValidationIfCommentsAreBeforeParentTagoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_passesValidationIfCommentsAreBeforeParentTagon"> - </span>[ Detail ]</a></div></td>
-<td>0.179</td></tr>
+<td>0.524</td></tr>
 <tr class="b">
 <td></td>
 <td>Could not initialize class com.jcabi.xml.XMLDocument</td>
@@ -288,33 +279,22 @@ function toggleDisplay(elementId) {
 <td>
 <div id="com_qulice_xml_XmlValidatorTest_passesValidationIfCommentsAreBeforeParentTagerror" style="display:none;">
 <div>
-<pre>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:103)at com.qulice.xml.XmlValidatorTest.passesValidationIfCommentsAreBeforeParentTag(XmlValidatorTest.java:261)</pre></div></div></td>
+<pre>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:104)at com.qulice.xml.XmlValidatorTest.passesValidationIfCommentsAreBeforeParentTag(XmlValidatorTest.java:262)</pre></div></div></td>
 <td></td></tr>
 <tr class="b">
-<td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationWithMultipleSchemas"><img src="images/icon_error_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationWithMultipleSchemas">passesValidationWithMultipleSchemas</a>
-<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_passesValidationWithMultipleSchemas&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_passesValidationWithMultipleSchemasoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_passesValidationWithMultipleSchemason"> - </span>[ Detail ]</a></div></td>
-<td>0.214</td></tr>
+<td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationIfSchemaIsNotAccessible"><img src="images/icon_warning_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationIfSchemaIsNotAccessible">passesValidationIfSchemaIsNotAccessible</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_passesValidationIfSchemaIsNotAccessible&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_passesValidationIfSchemaIsNotAccessibleoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_passesValidationIfSchemaIsNotAccessibleon"> - </span>[ Detail ]</a></div></td>
+<td>0</td></tr>
 <tr class="a">
 <td></td>
-<td>Could not initialize class com.jcabi.xml.XMLDocument</td>
+<td>skipped</td>
 <td></td></tr>
-<tr class="b">
-<td></td>
-<td>
-<div id="com_qulice_xml_XmlValidatorTest_passesValidationWithMultipleSchemaserror" style="display:none;">
-<div>
-<pre>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:103)at com.qulice.xml.XmlValidatorTest.passesValidationWithMultipleSchemas(XmlValidatorTest.java:218)</pre></div></div></td>
-<td></td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>passesValidationForClasspathSchema</td>
-<td>0.034</td></tr>
 <tr class="b">
 <td><a href="#com.qulice.xml.XmlValidatorTest.informsAboutMissingEOLAtEOF"><img src="images/icon_error_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.xml.XmlValidatorTest.informsAboutMissingEOLAtEOF">informsAboutMissingEOLAtEOF</a>
 <div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_informsAboutMissingEOLAtEOF&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_informsAboutMissingEOLAtEOFoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_informsAboutMissingEOLAtEOFon"> - </span>[ Detail ]</a></div></td>
-<td>0.175</td></tr>
+<td>0.273</td></tr>
 <tr class="a">
 <td></td>
 <td>Could not initialize class com.jcabi.xml.XMLDocument</td>
@@ -324,13 +304,13 @@ function toggleDisplay(elementId) {
 <td>
 <div id="com_qulice_xml_XmlValidatorTest_informsAboutMissingEOLAtEOFerror" style="display:none;">
 <div>
-<pre>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:103)at com.qulice.xml.XmlValidatorTest.informsAboutMissingEOLAtEOF(XmlValidatorTest.java:104)</pre></div></div></td>
+<pre>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:104)at com.qulice.xml.XmlValidatorTest.informsAboutMissingEOLAtEOF(XmlValidatorTest.java:105)</pre></div></div></td>
 <td></td></tr>
 <tr class="a">
 <td><a href="#com.qulice.xml.XmlValidatorTest.failsValidationOnIncorrectlyFormattedFile"><img src="images/icon_error_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.xml.XmlValidatorTest.failsValidationOnIncorrectlyFormattedFile">failsValidationOnIncorrectlyFormattedFile</a>
 <div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_failsValidationOnIncorrectlyFormattedFile&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_failsValidationOnIncorrectlyFormattedFileoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_failsValidationOnIncorrectlyFormattedFileon"> - </span>[ Detail ]</a></div></td>
-<td>0.173</td></tr>
+<td>0.269</td></tr>
 <tr class="b">
 <td></td>
 <td>Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td>
@@ -340,61 +320,81 @@ function toggleDisplay(elementId) {
 <td>
 <div id="com_qulice_xml_XmlValidatorTest_failsValidationOnIncorrectlyFormattedFileerror" style="display:none;">
 <div>
-<pre>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:28)at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387)at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)at java.lang.Thread.run(Thread.java:745)Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:103)at com.qulice.xml.XmlValidatorTest.failsValidationOnIncorrectlyFormattedFile(XmlValidatorTest.java:131)</pre></div></div></td>
+<pre>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:28)at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387)at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)at java.lang.Thread.run(Thread.java:745)Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:104)at com.qulice.xml.XmlValidatorTest.failsValidationOnIncorrectlyFormattedFile(XmlValidatorTest.java:132)</pre></div></div></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>passesValidationForClasspathSchema</td>
+<td>0.126</td></tr>
+<tr class="a">
+<td><a href="#com.qulice.xml.XmlValidatorTest.failsValidationWithMultipleSchemas"><img src="images/icon_error_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.xml.XmlValidatorTest.failsValidationWithMultipleSchemas">failsValidationWithMultipleSchemas</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_failsValidationWithMultipleSchemas&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_failsValidationWithMultipleSchemasoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_failsValidationWithMultipleSchemason"> - </span>[ Detail ]</a></div></td>
+<td>0.191</td></tr>
+<tr class="b">
+<td></td>
+<td>Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td>
+<td></td></tr>
+<tr class="a">
+<td></td>
+<td>
+<div id="com_qulice_xml_XmlValidatorTest_failsValidationWithMultipleSchemaserror" style="display:none;">
+<div>
+<pre>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:28)at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387)at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)at java.lang.Thread.run(Thread.java:745)Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:104)at com.qulice.xml.XmlValidatorTest.failsValidationWithMultipleSchemas(XmlValidatorTest.java:244)</pre></div></div></td>
+<td></td></tr>
+<tr class="b">
+<td><a href="#com.qulice.xml.XmlValidatorTest.failValidationWithNoSchemaLocationAttr"><img src="images/icon_error_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.xml.XmlValidatorTest.failValidationWithNoSchemaLocationAttr">failValidationWithNoSchemaLocationAttr</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_failValidationWithNoSchemaLocationAttr&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_failValidationWithNoSchemaLocationAttroff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_failValidationWithNoSchemaLocationAttron"> - </span>[ Detail ]</a></div></td>
+<td>0.192</td></tr>
+<tr class="a">
+<td></td>
+<td>Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td>
+<td></td></tr>
+<tr class="b">
+<td></td>
+<td>
+<div id="com_qulice_xml_XmlValidatorTest_failValidationWithNoSchemaLocationAttrerror" style="display:none;">
+<div>
+<pre>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:28)at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387)at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)at java.lang.Thread.run(Thread.java:745)Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:104)at com.qulice.xml.XmlValidatorTest.failValidationWithNoSchemaLocationAttr(XmlValidatorTest.java:172)</pre></div></div></td>
+<td></td></tr>
+<tr class="a">
+<td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationWithMultipleSchemas"><img src="images/icon_error_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationWithMultipleSchemas">passesValidationWithMultipleSchemas</a>
+<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_passesValidationWithMultipleSchemas&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_passesValidationWithMultipleSchemasoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_passesValidationWithMultipleSchemason"> - </span>[ Detail ]</a></div></td>
+<td>0.189</td></tr>
+<tr class="b">
+<td></td>
+<td>Could not initialize class com.jcabi.xml.XMLDocument</td>
+<td></td></tr>
+<tr class="a">
+<td></td>
+<td>
+<div id="com_qulice_xml_XmlValidatorTest_passesValidationWithMultipleSchemaserror" style="display:none;">
+<div>
+<pre>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:104)at com.qulice.xml.XmlValidatorTest.passesValidationWithMultipleSchemas(XmlValidatorTest.java:219)</pre></div></div></td>
 <td></td></tr>
 <tr class="b">
 <td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationOnCorrectFile"><img src="images/icon_error_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.xml.XmlValidatorTest.passesValidationOnCorrectFile">passesValidationOnCorrectFile</a>
 <div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_passesValidationOnCorrectFile&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_passesValidationOnCorrectFileoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_passesValidationOnCorrectFileon"> - </span>[ Detail ]</a></div></td>
-<td>0.171</td></tr>
+<td>0.187</td></tr>
 <tr class="a">
 <td></td>
-<td>javax.xml.parsers.DocumentBuilderFactory.setFeature(Ljava/lang/String;Z)V</td>
+<td>Could not initialize class com.jcabi.xml.XMLDocument</td>
 <td></td></tr>
 <tr class="b">
 <td></td>
 <td>
 <div id="com_qulice_xml_XmlValidatorTest_passesValidationOnCorrectFileerror" style="display:none;">
 <div>
-<pre>java.lang.AbstractMethodError: javax.xml.parsers.DocumentBuilderFactory.setFeature(Ljava/lang/String;Z)Vat com.jcabi.xml.XMLDocument.&lt;clinit&gt;(XMLDocument.java:121)at com.qulice.xml.XmlValidator.validate(XmlValidator.java:103)at com.qulice.xml.XmlValidatorTest.passesValidationOnCorrectFile(XmlValidatorTest.java:72)</pre></div></div></td>
-<td></td></tr>
-<tr class="a">
-<td><a href="#com.qulice.xml.XmlValidatorTest.failValidationWithNoSchemaLocationAttr"><img src="images/icon_error_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.xml.XmlValidatorTest.failValidationWithNoSchemaLocationAttr">failValidationWithNoSchemaLocationAttr</a>
-<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_failValidationWithNoSchemaLocationAttr&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_failValidationWithNoSchemaLocationAttroff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_failValidationWithNoSchemaLocationAttron"> - </span>[ Detail ]</a></div></td>
-<td>0.171</td></tr>
-<tr class="b">
-<td></td>
-<td>Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td>
-<td></td></tr>
-<tr class="a">
-<td></td>
-<td>
-<div id="com_qulice_xml_XmlValidatorTest_failValidationWithNoSchemaLocationAttrerror" style="display:none;">
-<div>
-<pre>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:28)at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387)at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)at java.lang.Thread.run(Thread.java:745)Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:103)at com.qulice.xml.XmlValidatorTest.failValidationWithNoSchemaLocationAttr(XmlValidatorTest.java:171)</pre></div></div></td>
-<td></td></tr>
-<tr class="b">
-<td><a href="#com.qulice.xml.XmlValidatorTest.failsValidationWithMultipleSchemas"><img src="images/icon_error_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.xml.XmlValidatorTest.failsValidationWithMultipleSchemas">failsValidationWithMultipleSchemas</a>
-<div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_failsValidationWithMultipleSchemas&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_failsValidationWithMultipleSchemasoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_failsValidationWithMultipleSchemason"> - </span>[ Detail ]</a></div></td>
-<td>0.171</td></tr>
-<tr class="a">
-<td></td>
-<td>Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td>
-<td></td></tr>
-<tr class="b">
-<td></td>
-<td>
-<div id="com_qulice_xml_XmlValidatorTest_failsValidationWithMultipleSchemaserror" style="display:none;">
-<div>
-<pre>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:28)at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387)at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)at java.lang.Thread.run(Thread.java:745)Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:103)at com.qulice.xml.XmlValidatorTest.failsValidationWithMultipleSchemas(XmlValidatorTest.java:243)</pre></div></div></td>
+<pre>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:104)at com.qulice.xml.XmlValidatorTest.passesValidationOnCorrectFile(XmlValidatorTest.java:73)</pre></div></div></td>
 <td></td></tr>
 <tr class="a">
 <td><a href="#com.qulice.xml.XmlValidatorTest.failValidationWithoutSchema"><img src="images/icon_error_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.xml.XmlValidatorTest.failValidationWithoutSchema">failValidationWithoutSchema</a>
 <div class="detailToggle" style="display:inline"><a href="javascript:toggleDisplay(&apos;com_qulice_xml_XmlValidatorTest_failValidationWithoutSchema&apos;);"><span style="display:inline;" id="com_qulice_xml_XmlValidatorTest_failValidationWithoutSchemaoff"> + </span><span style="display:none;" id="com_qulice_xml_XmlValidatorTest_failValidationWithoutSchemaon"> - </span>[ Detail ]</a></div></td>
-<td>0.169</td></tr>
+<td>0.179</td></tr>
 <tr class="b">
 <td></td>
 <td>Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td>
@@ -404,7 +404,7 @@ function toggleDisplay(elementId) {
 <td>
 <div id="com_qulice_xml_XmlValidatorTest_failValidationWithoutSchemaerror" style="display:none;">
 <div>
-<pre>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:28)at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387)at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)at java.lang.Thread.run(Thread.java:745)Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:103)at com.qulice.xml.XmlValidatorTest.failValidationWithoutSchema(XmlValidatorTest.java:81)</pre></div></div></td>
+<pre>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;at org.junit.internal.runners.statements.ExpectException.evaluate(ExpectException.java:28)at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)at org.apache.maven.surefire.junitcore.pc.Scheduler$1.run(Scheduler.java:387)at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)at java.util.concurrent.FutureTask.run(FutureTask.java:262)at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)at java.lang.Thread.run(Thread.java:745)Caused by: java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocumentat com.qulice.xml.XmlValidator.validate(XmlValidator.java:104)at com.qulice.xml.XmlValidatorTest.failValidationWithoutSchema(XmlValidatorTest.java:82)</pre></div></div></td>
 <td></td></tr></table></div><br /></div>
 <div class="section">
 <h2><a name="Failure_Details"></a>Failure Details</h2><a name="Failure_Details"></a>
@@ -415,11 +415,11 @@ function toggleDisplay(elementId) {
 <td><a name="com.qulice.xml.XmlValidatorTest.passesValidationIfNoSchemaLocationSpecified"></a>passesValidationIfNoSchemaLocationSpecified</td></tr>
 <tr class="b">
 <td></td>
-<td>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocument</td></tr>        
+<td>java.lang.AbstractMethodError: javax.xml.parsers.DocumentBuilderFactory.setFeature(Ljava/lang/String;Z)V</td></tr>            
 <tr class="a">
 <td></td>
 <td>
-<div id="passesValidationIfNoSchemaLocationSpecifiederror">com.qulice.xml.XmlValidatorTest:192</div></td></tr>
+<div id="passesValidationIfNoSchemaLocationSpecifiederror">com.qulice.xml.XmlValidatorTest:193</div></td></tr>
 <tr class="b">
 <td><img src="images/icon_error_sml.gif" alt="" /></td>
 <td><a name="com.qulice.xml.XmlValidatorTest.failsValidationOnWrongFile"></a>failsValidationOnWrongFile</td></tr>
@@ -429,13 +429,7 @@ function toggleDisplay(elementId) {
 <tr class="b">
 <td></td>
 <td>
-<div id="failsValidationOnWrongFileerror">com.qulice.xml.XmlValidatorTest:56</div></td></tr>
-<tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
-<td><a name="com.qulice.xml.XmlValidatorTest.passesValidationIfSchemaIsNotAccessible"></a>passesValidationIfSchemaIsNotAccessible</td></tr>
-<tr class="b">
-<td></td>
-<td>skipped: skipped</td></tr>
+<div id="failsValidationOnWrongFileerror">com.qulice.xml.XmlValidatorTest:57</div></td></tr>
 <tr class="a">
 <td><img src="images/icon_error_sml.gif" alt="" /></td>
 <td><a name="com.qulice.xml.XmlValidatorTest.passesValidationIfCommentsAreBeforeParentTag"></a>passesValidationIfCommentsAreBeforeParentTag</td></tr>
@@ -445,7 +439,53 @@ function toggleDisplay(elementId) {
 <tr class="a">
 <td></td>
 <td>
-<div id="passesValidationIfCommentsAreBeforeParentTagerror">com.qulice.xml.XmlValidatorTest:261</div></td></tr>
+<div id="passesValidationIfCommentsAreBeforeParentTagerror">com.qulice.xml.XmlValidatorTest:262</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><a name="com.qulice.xml.XmlValidatorTest.passesValidationIfSchemaIsNotAccessible"></a>passesValidationIfSchemaIsNotAccessible</td></tr>
+<tr class="a">
+<td></td>
+<td>skipped: skipped</td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" alt="" /></td>
+<td><a name="com.qulice.xml.XmlValidatorTest.informsAboutMissingEOLAtEOF"></a>informsAboutMissingEOLAtEOF</td></tr>
+<tr class="a">
+<td></td>
+<td>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocument</td></tr>        
+<tr class="b">
+<td></td>
+<td>
+<div id="informsAboutMissingEOLAtEOFerror">com.qulice.xml.XmlValidatorTest:105</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" alt="" /></td>
+<td><a name="com.qulice.xml.XmlValidatorTest.failsValidationOnIncorrectlyFormattedFile"></a>failsValidationOnIncorrectlyFormattedFile</td></tr>
+<tr class="b">
+<td></td>
+<td>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td></tr>                                                        
+<tr class="a">
+<td></td>
+<td>
+<div id="failsValidationOnIncorrectlyFormattedFileerror">com.qulice.xml.XmlValidatorTest:132</div></td></tr>
+<tr class="b">
+<td><img src="images/icon_error_sml.gif" alt="" /></td>
+<td><a name="com.qulice.xml.XmlValidatorTest.failsValidationWithMultipleSchemas"></a>failsValidationWithMultipleSchemas</td></tr>
+<tr class="a">
+<td></td>
+<td>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td></tr>                                                        
+<tr class="b">
+<td></td>
+<td>
+<div id="failsValidationWithMultipleSchemaserror">com.qulice.xml.XmlValidatorTest:244</div></td></tr>
+<tr class="a">
+<td><img src="images/icon_error_sml.gif" alt="" /></td>
+<td><a name="com.qulice.xml.XmlValidatorTest.failValidationWithNoSchemaLocationAttr"></a>failValidationWithNoSchemaLocationAttr</td></tr>
+<tr class="b">
+<td></td>
+<td>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td></tr>                                                        
+<tr class="a">
+<td></td>
+<td>
+<div id="failValidationWithNoSchemaLocationAttrerror">com.qulice.xml.XmlValidatorTest:172</div></td></tr>
 <tr class="b">
 <td><img src="images/icon_error_sml.gif" alt="" /></td>
 <td><a name="com.qulice.xml.XmlValidatorTest.passesValidationWithMultipleSchemas"></a>passesValidationWithMultipleSchemas</td></tr>
@@ -455,57 +495,17 @@ function toggleDisplay(elementId) {
 <tr class="b">
 <td></td>
 <td>
-<div id="passesValidationWithMultipleSchemaserror">com.qulice.xml.XmlValidatorTest:218</div></td></tr>
+<div id="passesValidationWithMultipleSchemaserror">com.qulice.xml.XmlValidatorTest:219</div></td></tr>
 <tr class="a">
 <td><img src="images/icon_error_sml.gif" alt="" /></td>
-<td><a name="com.qulice.xml.XmlValidatorTest.informsAboutMissingEOLAtEOF"></a>informsAboutMissingEOLAtEOF</td></tr>
+<td><a name="com.qulice.xml.XmlValidatorTest.passesValidationOnCorrectFile"></a>passesValidationOnCorrectFile</td></tr>
 <tr class="b">
 <td></td>
 <td>java.lang.NoClassDefFoundError: Could not initialize class com.jcabi.xml.XMLDocument</td></tr>        
 <tr class="a">
 <td></td>
 <td>
-<div id="informsAboutMissingEOLAtEOFerror">com.qulice.xml.XmlValidatorTest:104</div></td></tr>
-<tr class="b">
-<td><img src="images/icon_error_sml.gif" alt="" /></td>
-<td><a name="com.qulice.xml.XmlValidatorTest.failsValidationOnIncorrectlyFormattedFile"></a>failsValidationOnIncorrectlyFormattedFile</td></tr>
-<tr class="a">
-<td></td>
-<td>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td></tr>                                                        
-<tr class="b">
-<td></td>
-<td>
-<div id="failsValidationOnIncorrectlyFormattedFileerror">com.qulice.xml.XmlValidatorTest:131</div></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" /></td>
-<td><a name="com.qulice.xml.XmlValidatorTest.passesValidationOnCorrectFile"></a>passesValidationOnCorrectFile</td></tr>
-<tr class="b">
-<td></td>
-<td>java.lang.AbstractMethodError: javax.xml.parsers.DocumentBuilderFactory.setFeature(Ljava/lang/String;Z)V</td></tr>            
-<tr class="a">
-<td></td>
-<td>
-<div id="passesValidationOnCorrectFileerror">com.qulice.xml.XmlValidatorTest:72</div></td></tr>
-<tr class="b">
-<td><img src="images/icon_error_sml.gif" alt="" /></td>
-<td><a name="com.qulice.xml.XmlValidatorTest.failValidationWithNoSchemaLocationAttr"></a>failValidationWithNoSchemaLocationAttr</td></tr>
-<tr class="a">
-<td></td>
-<td>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td></tr>                                                        
-<tr class="b">
-<td></td>
-<td>
-<div id="failValidationWithNoSchemaLocationAttrerror">com.qulice.xml.XmlValidatorTest:171</div></td></tr>
-<tr class="a">
-<td><img src="images/icon_error_sml.gif" alt="" /></td>
-<td><a name="com.qulice.xml.XmlValidatorTest.failsValidationWithMultipleSchemas"></a>failsValidationWithMultipleSchemas</td></tr>
-<tr class="b">
-<td></td>
-<td>java.lang.Exception: Unexpected exception, expected&lt;com.qulice.spi.ValidationException&gt; but was&lt;java.lang.NoClassDefFoundError&gt;</td></tr>                                                        
-<tr class="a">
-<td></td>
-<td>
-<div id="failsValidationWithMultipleSchemaserror">com.qulice.xml.XmlValidatorTest:243</div></td></tr>
+<div id="passesValidationOnCorrectFileerror">com.qulice.xml.XmlValidatorTest:73</div></td></tr>
 <tr class="b">
 <td><img src="images/icon_error_sml.gif" alt="" /></td>
 <td><a name="com.qulice.xml.XmlValidatorTest.failValidationWithoutSchema"></a>failValidationWithoutSchema</td></tr>
@@ -515,7 +515,7 @@ function toggleDisplay(elementId) {
 <tr class="b">
 <td></td>
 <td>
-<div id="failValidationWithoutSchemaerror">com.qulice.xml.XmlValidatorTest:81</div></td></tr></table><br /></div>
+<div id="failValidationWithoutSchemaerror">com.qulice.xml.XmlValidatorTest:82</div></td></tr></table><br /></div>
                         </article>
                     </div>
                 </main>
