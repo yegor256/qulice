@@ -133,12 +133,13 @@ public class DefaultMavenEnvironmentTest {
      * DefaultMavenEnvironment can produce empty collection when no matches
      * with checker.
      * @throws Exception If something wrong happens inside
-     * @todo #676:30min Ideally integration test required to reproduce NPE.
-     *  It should contains at least one exclude rule in
-     *  configuration.excludes block and dependency (I got it
-     *  locally with org.hibernate:hibernate-annotations:3.5.6-Final.
-     *  I suppose, dependency must be compile-time scope but it is only my
-     *  suggestions as far as junit with hamcrest didn't work.
+     * @todo #676:30min Ideally integration test required to reproduce NPE
+     *  in issue #676.
+     *  To reproduce problem - add to pom.xml at least one exclude rule in
+     *  configuration.excludes block and dependency (in my case worked
+     *  org.hibernate:hibernate-annotations:3.5.6-Final).
+     *  Suggestion is that dependency must be compile-time scope as far as
+     *  JUnit didn't work as test-scope dependency.
      */
     @Test
     public final void producesEmptyExcludesWhenNoMatches() throws Exception {
