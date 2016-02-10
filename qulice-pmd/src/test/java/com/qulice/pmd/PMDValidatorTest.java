@@ -91,12 +91,6 @@ public final class PMDValidatorTest {
         "Avoid using Plain JUnit assertions";
 
     /**
-     * Template for using non transient fields.
-     */
-    private static final String NON_TRANSIENT =
-        "Found non-transient, non-static member.";
-
-    /**
      * PMDValidator can find violations in Java file(s).
      * @throws Exception If something wrong happens inside.
      */
@@ -507,7 +501,9 @@ public final class PMDValidatorTest {
         new PMDAssert(
             file, Matchers.is(true),
             Matchers.not(
-                Matchers.containsString(PMDValidatorTest.NON_TRANSIENT)
+                Matchers.containsString(
+                    "Found non-transient, non-static member."
+                )
             )
         ).validate();
     }
