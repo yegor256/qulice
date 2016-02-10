@@ -149,6 +149,11 @@
         <property name="message" value="Using class as a lock is a bad practice (use class variable instead)"/>
     </module>
     <module name="RegexpSingleline">
+        <property name="format" value="org\.apache\.commons\.(codec|lang3?)\.CharEncoding"/>
+        <property name="fileExtensions" value="java"/>
+        <property name="message" value="Use 'java.nio.charset.StandardCharsets' instead"/>
+    </module>
+    <module name="RegexpSingleline">
         <property name="format" value="^(?! *(/\*\*|\*|//)).*[\.\-\+%/\*&lt;&gt;] *$"/>
         <property name="fileExtensions" value="java"/>
         <property name="message" value="Line cannot end with this symbol, move it to the next line"/>

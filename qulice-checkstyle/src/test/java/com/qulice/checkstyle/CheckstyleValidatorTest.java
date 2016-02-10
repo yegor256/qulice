@@ -52,7 +52,7 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.3
- * @checkstyle MultipleStringLiterals (300 lines)
+ * @checkstyle MultipleStringLiterals (400 lines)
  * @todo #412:30min Split this class into smaller ones and remove PMD
  *  exclude `TooManyMethods`. Good candidates for moving out of this class
  *  are all that use `validateCheckstyle` method.
@@ -187,6 +187,32 @@ public final class CheckstyleValidatorTest {
                     "Line is longer than 80 characters (found 82)",
                     "TooLongLines.java[14]",
                     "Line is longer than 80 characters (found 85)"
+                )
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator can report Apache Commons {@code CharEncoding} class
+     * usages.
+     * @throws Exception when error.
+     */
+    @Test
+    public void reportsAllCharEncodingUsages() throws Exception {
+        final String violation = StringUtils.join(
+            "DoNotUseCharEncoding.java[%s]: ",
+            "Use java.nio.charset.StandardCharsets instead"
+        );
+        this.validateCheckstyle(
+            "DoNotUseCharEncoding.java", false,
+            Matchers.stringContainsInOrder(
+                Arrays.asList(
+                    String.format(violation, "6"),
+                    String.format(violation, "7"),
+                    String.format(violation, "8"),
+                    String.format(violation, "22"),
+                    String.format(violation, "23"),
+                    String.format(violation, "24")
                 )
             )
         );
