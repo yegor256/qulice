@@ -1,6 +1,6 @@
 ## Puzzles
 
-There are 12 active puzzles (73 total):
+There are 14 active puzzles (77 total):
 
 
 <del>unknown</del> [`?`](../master/?)<br/>
@@ -76,3 +76,7 @@ There are 12 active puzzles (73 total):
 &nbsp;&nbsp;&nbsp;&nbsp;[#569](https://github.com/teamed/qulice/issues/569):[<del>569</del>](https://github.com/teamed/qulice/issues/569) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#609](https://github.com/teamed/qulice/issues/609):[<del>569-cd6c2a10</del>](https://github.com/teamed/qulice/issues/609) [`PMDDisabledRulesTest.java:44-47`](../master/qulice-pmd/src/test/java/com/qulice/pmd/PMDDisabledRulesTest.java#L44-L47)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#612](https://github.com/teamed/qulice/issues/612):[**339-f214ff2b**](https://github.com/teamed/qulice/issues/612) [`QulicePlugin.java:47-48`](../master/qulice-gradle-plugin/src/main/java/com/qulice/gradle/QulicePlugin.java#L47-L48)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[#411](https://github.com/teamed/qulice/issues/411):[<del>411</del>](https://github.com/teamed/qulice/issues/411) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**411-71c8871e**]() [`CheckstyleValidatorTest.java:383-387`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L383-L387)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[#676](https://github.com/teamed/qulice/issues/676):[<del>676</del>](https://github.com/teamed/qulice/issues/676) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#699](https://github.com/teamed/qulice/issues/699):[**676-be080182**](https://github.com/teamed/qulice/issues/699) [`DefaultMavenEnvironmentTest.java:136-143`](../master/qulice-maven-plugin/src/test/java/com/qulice/maven/DefaultMavenEnvironmentTest.java#L136-L143)<br/>

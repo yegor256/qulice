@@ -6,8 +6,8 @@ Role | Members
 ---|---
 PM | @davvd
 CR | @darkled, @caarlos0, @carlosmiranda, @dmzaytsev, @pinaf, @ggajos, @hdouss, @mkordas, @longtimeago
-DEV | @kitsook, @dskalenko, @guiandmag, @happy-neko, @jimdeanspivey, @jrdalpra, @gumbelmj, @prahladyeri, @vkuchyn
-IMP | @kitsook, @dskalenko, @guiandmag, @happy-neko, @jimdeanspivey, @jrdalpra, @gumbelmj, @prahladyeri, @vkuchyn
+DEV | @kitsook, @dskalenko, @bdragan, @guiandmag, @happy-neko, @jimdeanspivey, @jrdalpra, @gumbelmj, @prahladyeri, @vkuchyn
+IMP | @kitsook, @dskalenko, @bdragan, @guiandmag, @happy-neko, @jimdeanspivey, @jrdalpra, @gumbelmj, @prahladyeri, @vkuchyn
 ARC | @krzyk
 DES | 
 PO | @yegor256
