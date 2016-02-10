@@ -496,7 +496,7 @@ public final class PMDValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowNonTransientFields() throws Exception {
+    public void allowsNonTransientFields() throws Exception {
         final String file = "AllowNonTransientFields.java";
         new PMDAssert(
             file, Matchers.is(true),
