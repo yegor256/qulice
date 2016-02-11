@@ -80,6 +80,7 @@ public final class ChecksTest {
         "NoJavadocForOverriddenMethodsCheck",
         "NonStaticMethodCheck",
         "ConstantUsageCheck",
+        "JavadocEmptyLineCheck",
     };
 
     /**

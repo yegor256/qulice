@@ -61,4 +61,13 @@ public final class Invalid {
      */
     public void main1() {
     }
+
+    /**
+     *
+     * Some text
+     *
+     */
+    public void main3(){
+
+    }
 }
