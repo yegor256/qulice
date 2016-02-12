@@ -25,11 +25,9 @@ public final class Valid {
     public Valid() {}
 
     /**
-     *
      * There is no empty Javadoc line
      * @param param - param.
      * @return Param.
-     *
      */
     public String method(final String param) {
         return param;
@@ -48,6 +46,13 @@ public final class Valid {
      * Second.
      */
     public void method3() {
+    }
+
+    /** Some text
+     *
+     */
+    public void method4() {
+
     }
 
     private static class InnerValid {

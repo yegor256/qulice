@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Check for empty line at the start and at the end of javadoc.
+ * Check for empty line at the start and at the end of Javadoc.
  * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
  * @since 0.17
@@ -46,6 +46,8 @@ public final class JavadocEmptyLineCheck extends Check {
         return new int[] {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
@@ -58,7 +60,7 @@ public final class JavadocEmptyLineCheck extends Check {
         final int start = ast.getLineNo();
         final int cstart =
             JavadocEmptyLineCheck.findCommentStart(lines, start) + 1;
-        if (JavadocEmptyLineCheck.isNodeHasJavaDoc(ast, cstart)) {
+        if (JavadocEmptyLineCheck.isNodeHavingJavaDoc(ast, cstart)) {
             if (JavadocEmptyLineCheck.isJavadocLineEmpty(lines[cstart])) {
                 this.log(cstart + 1, "Empty javadoc line at the beginning");
             }
@@ -71,32 +73,40 @@ public final class JavadocEmptyLineCheck extends Check {
     }
 
     /**
-     * Check if javadoc Line Empty.
-     * @param line Java doc line
-     * @return Is Javadoc Line Empty
+     * Check if Javadoc Line Empty.
+     * @param line Javadoc line
+     * @return True when Javadoc Line is Empty
      */
     private static boolean isJavadocLineEmpty(final String line) {
         return null != line && "*".equals(line.trim());
     }
 
     /**
-     * Check if node has java doc.
-     * @param node Node to be checked for Java docs.
+     * Check if node has Javadoc.
+     * @param node Node to be checked for Javadoc.
      * @param start Line number where comment starts.
-     * @return Is node has java doc
+     * @return True when node has Javadoc
      */
-    private static boolean isNodeHasJavaDoc(final DetailAST node,
+    private static boolean isNodeHavingJavaDoc(final DetailAST node,
         final int start) {
-        int cprevious = 0;
-        final DetailAST previous = node.getPreviousSibling();
-        if (null != previous) {
-            cprevious = previous.getLineNo();
-        }
-        return start > cprevious;
+        return start > getLineNoOfPreviousNode(node);
     }
 
     /**
-     * Find javadoc starting comment.
+     * Returns line number of previous node
+     * @param node - Current node
+     * @return Line number of previous node
+     */
+    private static int getLineNoOfPreviousNode(final DetailAST node){
+        int start = 0;
+        final DetailAST previous = node.getPreviousSibling();
+        if (null != previous) {
+            start = previous.getLineNo();
+        }
+        return start;
+    }
+    /**
+     * Find Javadoc starting comment.
      * @param lines List of lines to check.
      * @param start Start searching from this line number.
      * @return Line number with found starting comment or -1 otherwise.
@@ -106,8 +116,8 @@ public final class JavadocEmptyLineCheck extends Check {
     }
 
     /**
-     * Find javadoc ending comment.
-     * @param lines List of lines to check.
+     * Find Javadoc ending comment.
+     * @param lines Array of lines to check.
      * @param start Start searching from this line number.
      * @return Line number with found ending comment, or -1 if it wasn't found.
      */
@@ -117,7 +127,7 @@ public final class JavadocEmptyLineCheck extends Check {
 
     /**
      * Find a text in lines, by going up.
-     * @param lines List of lines to check.
+     * @param lines Array of lines to check.
      * @param start Start searching from this line number.
      * @param text Text to find.
      * @return Line number with found text, or -1 if it wasn't found.
