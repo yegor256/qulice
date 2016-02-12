@@ -93,11 +93,11 @@ public final class JavadocEmptyLineCheck extends Check {
     }
 
     /**
-     * Returns line number of previous node
-     * @param node - Current node
+     * Returns line number of previous node.
+     * @param node Current node.
      * @return Line number of previous node
      */
-    private static int getLineNoOfPreviousNode(final DetailAST node){
+    private static int getLineNoOfPreviousNode(final DetailAST node) {
         int start = 0;
         final DetailAST previous = node.getPreviousSibling();
         if (null != previous) {
