@@ -316,6 +316,10 @@
         <module name="RedundantModifier"/>
 
         <!-- Checks for Naming Conventions. -->
+        <module name="AbbreviationAsWordInNameCheck">
+            <property name="allowedAbbreviations" value="IT"/>
+            <property name="allowedAbbreviationLength" value="1"/>
+        </module>
         <module name="AbstractClassName"/>
         <module name="ClassTypeParameterName"/>
         <module name="ConstantName"/>

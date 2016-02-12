@@ -584,6 +584,65 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can reject uppercase Abbreviations in naming
+     * outside of final static fields.
+     *
+     * @throws Exception In case of error
+     */
+    @Test
+    public void rejectsUppercaseAbbreviations() throws Exception {
+        final String result = this.runValidation(
+            "InvalidAbbreviationAsWordInNameXML.java", false
+        );
+        final String violation = StringUtils.join(
+            "InvalidAbbreviationAsWordInNameXML.java[%s]: ",
+            "Abbreviation in name '%s' ",
+            "must contain no more than '1' capital letters. ",
+            "(AbbreviationAsWordInNameCheck)"
+        );
+        MatcherAssert.assertThat(
+            result,
+            Matchers.stringContainsInOrder(
+                Arrays.asList(
+                    String.format(
+                        violation, "13", "InvalidAbbreviationAsWordInNameXML"
+                    ),
+                    String.format(
+                        violation, "17", "InvalidHTML"
+                    )
+                )
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator can allow IT as an uppercase abbreviation.
+     *
+     * @throws Exception In case of error
+     */
+    @Test
+    public void allowsITUppercaseAbbreviation() throws Exception {
+        this.validateCheckstyle(
+            "ValidAbbreviationAsWordInNameIT.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
+     * CheckstyleValidator can allow final static fields and overrides
+     * to have uppercase abbreviations.
+     *
+     * @throws Exception In case of error
+     */
+    @Test
+    public void allowsUppercaseAbbreviationExceptions() throws Exception {
+        this.validateCheckstyle(
+            "ValidAbbreviationAsWordInName.java", true,
+            Matchers.containsString(CheckstyleValidatorTest.NO_VIOLATIONS)
+        );
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
