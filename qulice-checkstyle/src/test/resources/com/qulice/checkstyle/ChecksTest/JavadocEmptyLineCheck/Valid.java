@@ -1,4 +1,9 @@
 /**
+ * There is no empty Javadoc line at the beginning
+ */
+package com.qulice.checkstyle;
+
+/**
  * This is not a real Java class. It won't be compiled ever. It is used
  * only as a text resource in integration.ChecksIT.
  */
@@ -99,7 +104,7 @@ interface I1 {
 /**
  * There is no empty Javadoc line.
  */
-enum ValidEnum{
+enum ValidEnum {
 
     /**
      * There is no empty Javadoc line at the beginning.
@@ -111,7 +116,6 @@ enum ValidEnum{
      */
     private final String name;
 
-
     /**
      * There is no empty Javadoc line at the end.
      */
@@ -120,4 +124,14 @@ enum ValidEnum{
     }
 }
 
+/**
+ * There is no empty Javadoc line.
+ */
+public @interface MyAnnotation {
 
+    /**
+     * There is no empty Javadoc line.
+     * @return Return
+     */
+    int someValue();
+}

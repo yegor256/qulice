@@ -34,7 +34,21 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Check for empty line at the start and at the end of Javadoc.
+ * Check for empty line at the beginning and at the end of Javadoc.
+ *
+ * <p>You can't have empty line at the beginning and at the end of Javadoc.
+ *
+ * <p>Incorrect format is the following (of a class Javadoc):
+ * <pre>
+ * &#47;**
+ *  <span style="color:red" >*</span>
+ *  * This is my class.
+ *  <span style="color:red" >*</span>
+ *  *&#47;
+ * public final class Foo {
+ *     // ...
+ * </pre>
+ *
  * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
  * @since 0.17
@@ -44,8 +58,11 @@ public final class JavadocEmptyLineCheck extends Check {
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
+            TokenTypes.PACKAGE_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.ANNOTATION_DEF,
+            TokenTypes.ANNOTATION_FIELD_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.VARIABLE_DEF,
@@ -57,28 +74,28 @@ public final class JavadocEmptyLineCheck extends Check {
     @Override
     public void visitToken(final DetailAST ast) {
         final String[] lines = this.getLines();
-        final int start = ast.getLineNo();
-        final int cstart =
-            JavadocEmptyLineCheck.findCommentStart(lines, start) + 1;
-        if (JavadocEmptyLineCheck.isNodeHavingJavaDoc(ast, cstart)) {
-            if (JavadocEmptyLineCheck.isJavadocLineEmpty(lines[cstart])) {
-                this.log(cstart + 1, "Empty javadoc line at the beginning");
+        final int current = ast.getLineNo();
+        final int start =
+            JavadocEmptyLineCheck.findCommentStart(lines, current) + 1;
+        if (JavadocEmptyLineCheck.isNodeHavingJavadoc(ast, start)) {
+            if (JavadocEmptyLineCheck.isJavadocLineEmpty(lines[start])) {
+                this.log(start + 1, "Empty Javadoc line at the beginning");
             }
-            final int cend =
-                JavadocEmptyLineCheck.findCommentEnd(lines, start) - 1;
-            if (JavadocEmptyLineCheck.isJavadocLineEmpty(lines[cend])) {
-                this.log(cend + 1, "Empty javadoc line at the end");
+            final int end =
+                JavadocEmptyLineCheck.findCommentEnd(lines, current) - 1;
+            if (JavadocEmptyLineCheck.isJavadocLineEmpty(lines[end])) {
+                this.log(end + 1, "Empty Javadoc line at the end");
             }
         }
     }
 
     /**
-     * Check if Javadoc Line Empty.
+     * Check if Javadoc line is empty.
      * @param line Javadoc line
-     * @return True when Javadoc Line is Empty
+     * @return True when Javadoc line is empty
      */
     private static boolean isJavadocLineEmpty(final String line) {
-        return null != line && "*".equals(line.trim());
+        return "*".equals(line.trim());
     }
 
     /**
@@ -87,7 +104,7 @@ public final class JavadocEmptyLineCheck extends Check {
      * @param start Line number where comment starts.
      * @return True when node has Javadoc
      */
-    private static boolean isNodeHavingJavaDoc(final DetailAST node,
+    private static boolean isNodeHavingJavadoc(final DetailAST node,
         final int start) {
         return start > getLineNoOfPreviousNode(node);
     }
@@ -100,7 +117,7 @@ public final class JavadocEmptyLineCheck extends Check {
     private static int getLineNoOfPreviousNode(final DetailAST node) {
         int start = 0;
         final DetailAST previous = node.getPreviousSibling();
-        if (null != previous) {
+        if (previous != null) {
             start = previous.getLineNo();
         }
         return start;
