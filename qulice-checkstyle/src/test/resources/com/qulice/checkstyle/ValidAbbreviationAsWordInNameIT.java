@@ -11,7 +11,7 @@ package foo.bar;
  */
 public class ValidAbbreviationAsWordInNameIT {
     /**
-     * Valid name on inner class, because the IT abbreviation is allow.
+     * Valid name on inner class, because the IT abbreviation is allowed.
      */
     class ValidInnerIT {
     }
