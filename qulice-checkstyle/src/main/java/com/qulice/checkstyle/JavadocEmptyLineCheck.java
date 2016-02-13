@@ -36,9 +36,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Check for empty line at the beginning and at the end of Javadoc.
  *
- * <p>You can't have empty line at the beginning and at the end of Javadoc.
+ * <p>You can't have empty line at the beginning or at the end of Javadoc.
  *
- * <p>Incorrect format is the following (of a class Javadoc):
+ * <p>The following red lines in class Javadoc will be reported as violations.
  * <pre>
  * &#47;**
  *  <span style="color:red" >*</span>

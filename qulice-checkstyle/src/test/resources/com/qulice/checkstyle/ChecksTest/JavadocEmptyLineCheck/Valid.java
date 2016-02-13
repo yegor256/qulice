@@ -39,8 +39,8 @@ public final class Valid {
     }
 
     /*
-     *
      * It's not Javadoc, just some comment
+     *
      */
     public void method2() {
     }
