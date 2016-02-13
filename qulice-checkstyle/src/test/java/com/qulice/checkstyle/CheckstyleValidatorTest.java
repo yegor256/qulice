@@ -584,7 +584,7 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator can reject uppercase Abbreviations in naming
+     * CheckstyleValidator can reject uppercase abbreviations in naming
      * outside of final static fields.
      *
      * @throws Exception In case of error
