@@ -499,7 +499,24 @@
 <a class="jxr_linenumber" name="L491" href="#L491">491</a>         ).validate();
 <a class="jxr_linenumber" name="L492" href="#L492">492</a>     }
 <a class="jxr_linenumber" name="L493" href="#L493">493</a> 
-<a class="jxr_linenumber" name="L494" href="#L494">494</a> }
+<a class="jxr_linenumber" name="L494" href="#L494">494</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L495" href="#L495">495</a> <em class="jxr_javadoccomment">     * PMDValidator can allow non-static, non-transient fields.</em>
+<a class="jxr_linenumber" name="L496" href="#L496">496</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside.</em>
+<a class="jxr_linenumber" name="L497" href="#L497">497</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L498" href="#L498">498</a>     @Test
+<a class="jxr_linenumber" name="L499" href="#L499">499</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsNonTransientFields() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L500" href="#L500">500</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"AllowNonTransientFields.java"</span>;
+<a class="jxr_linenumber" name="L501" href="#L501">501</a>         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/pmd/PMDAssert.html">PMDAssert</a>(
+<a class="jxr_linenumber" name="L502" href="#L502">502</a>             file, Matchers.is(<strong class="jxr_keyword">true</strong>),
+<a class="jxr_linenumber" name="L503" href="#L503">503</a>             Matchers.not(
+<a class="jxr_linenumber" name="L504" href="#L504">504</a>                 Matchers.containsString(
+<a class="jxr_linenumber" name="L505" href="#L505">505</a>                     <span class="jxr_string">"Found non-transient, non-static member."</span>
+<a class="jxr_linenumber" name="L506" href="#L506">506</a>                 )
+<a class="jxr_linenumber" name="L507" href="#L507">507</a>             )
+<a class="jxr_linenumber" name="L508" href="#L508">508</a>         ).validate();
+<a class="jxr_linenumber" name="L509" href="#L509">509</a>     }
+<a class="jxr_linenumber" name="L510" href="#L510">510</a> 
+<a class="jxr_linenumber" name="L511" href="#L511">511</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2016 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
