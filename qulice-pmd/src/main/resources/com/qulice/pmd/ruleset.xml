@@ -208,7 +208,8 @@
             <property name="xpath">
                 <value>
                     <![CDATA[
-                            //MethodDeclaration[@Static='true' and @Public='true'
+                        //ClassOrInterfaceBodyDeclaration[
+                            MethodDeclaration[@Static='true' and @Public='true'
                               and not (
                                MethodDeclarator[
                                 count(FormalParameters/FormalParameter)=1
@@ -217,7 +218,12 @@
                                 and FormalParameters/FormalParameter[@Varargs='true']
                                ] and not(ResultType/Type)
                               )
-                            ]
+                            ] and (
+                                Annotation/MarkerAnnotation/Name[@Image!='BeforeClass' and @Image!='AfterClass'
+                                  and @Image!='Parameterized.Parameters']
+                                or not (Annotation)
+                            )
+                        ]
                     ]]>
                 </value>
             </property>

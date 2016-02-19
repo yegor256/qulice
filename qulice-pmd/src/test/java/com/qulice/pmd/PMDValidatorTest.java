@@ -546,4 +546,22 @@ public final class PMDValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PMDValidator can allow JUnit public static methods marked with:
+     * BeforeClass annotation.
+     * AfterClass annotation.
+     * Parameterized.Parameters annotation.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsJunitFrameworkPublicStaticMethods() throws Exception {
+        new PMDAssert(
+            "JunitStaticPublicMethods.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString(PMDValidatorTest.STATIC_METHODS)
+            )
+        ).validate();
+    }
 }
