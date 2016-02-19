@@ -196,4 +196,23 @@
         </properties>
         <priority>3</priority>
     </rule>
+
+    <rule name="ProhibitPublicStaticMethods"
+          message="Public static methods are prohibited."
+          language="java"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            Public static methods are prohibited.
+        </description>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                            //MethodDeclaration[@Static='true' and @Public='true']
+                    ]]>
+                </value>
+            </property>
+        </properties>
+        <priority>3</priority>
+    </rule>
 </ruleset>
