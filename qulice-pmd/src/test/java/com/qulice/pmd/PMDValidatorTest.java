@@ -525,4 +525,19 @@ public final class PMDValidatorTest {
             Matchers.containsString("Public static methods are prohibited")
         ).validate();
     }
+
+    /**
+     * PMDValidator can allow public static void main(String...args) method.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsPublicStaticMainMethod() throws Exception {
+        new PMDAssert(
+            "StaticPublicVoidMainMethod.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString("Public static methods are prohibited")
+            )
+        ).validate();
+    }
 }

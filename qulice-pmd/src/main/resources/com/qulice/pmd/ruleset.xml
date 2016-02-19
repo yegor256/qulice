@@ -208,7 +208,16 @@
             <property name="xpath">
                 <value>
                     <![CDATA[
-                            //MethodDeclaration[@Static='true' and @Public='true']
+                            //MethodDeclaration[@Static='true' and @Public='true'
+                              and not (
+                               MethodDeclarator[
+                                count(FormalParameters/FormalParameter)=1
+                                and @Image='main'
+                                and FormalParameters/FormalParameter[1]/Type/ReferenceType/ClassOrInterfaceType[@Image='String']
+                                and FormalParameters/FormalParameter[@Varargs='true']
+                               ] and not(ResultType/Type)
+                              )
+                            ]
                     ]]>
                 </value>
             </property>
