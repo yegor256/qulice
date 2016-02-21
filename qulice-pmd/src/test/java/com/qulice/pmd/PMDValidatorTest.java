@@ -42,7 +42,6 @@ import org.apache.log4j.SimpleLayout;
 import org.apache.log4j.WriterAppender;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -347,12 +346,8 @@ public final class PMDValidatorTest {
      * PMDValidator accepts calls to static fields
      * in a static way.
      * @throws Exception If something wrong happens inside.
-     * @todo #659:30min remove rule StaticAccessToStaticFields. After
-     *  ProhibitPublicStaticMethods rule was provided, this one is not
-     *  relevant yet.
      */
     @Test
-    @Ignore
     public void acceptsCallToStaticFieldsInStaticWay()
         throws Exception {
         final String file = "StaticAccessToStaticFields.java";
