@@ -61,7 +61,9 @@
         <exclude name="GuardLogStatementJavaUtil"/>
     </rule>
     <rule ref="rulesets/java/optimizations.xml"/>
-    <rule ref="rulesets/java/strings.xml"/>
+    <rule ref="rulesets/java/strings.xml">
+        <exclude name="AvoidDuplicateLiterals"/>
+    </rule>
     <rule ref="rulesets/java/sunsecure.xml"/>
     <rule ref="rulesets/java/unnecessary.xml"/>
     <rule ref="rulesets/java/unusedcode.xml"/>
@@ -195,5 +197,18 @@
             </property>
         </properties>
         <priority>3</priority>
+    </rule>
+    <rule name="AvoidDuplicateLiterals"
+          message="The String literal {0} appears {1} times in this file; the first occurrence is on line {2}"
+          class="net.sourceforge.pmd.lang.java.rule.strings.AvoidDuplicateLiteralsRule">
+        <description>
+            Code containing duplicate String literals can usually be improved by declaring the String as a constant field.
+        </description>
+        <priority>3</priority>
+        <properties>
+            <property name="maxDuplicateLiterals">
+                <value>2</value>
+            </property>
+        </properties>
     </rule>
 </ruleset>
