@@ -84,7 +84,7 @@ public final class Violations {
     /**
      * Test class.
      */
-    private final class Foo {
+    private static final class Foo {
         /**
          * Name.
          */

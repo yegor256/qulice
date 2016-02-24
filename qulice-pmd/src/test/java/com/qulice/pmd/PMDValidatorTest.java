@@ -543,9 +543,9 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * PMDValidator can allow JUnit public static methods marked with:
-     * BeforeClass annotation.
-     * AfterClass annotation.
+     * PMDValidator can allow JUnit public static methods marked with:<br>
+     * BeforeClass annotation.<br>
+     * AfterClass annotation.<br>
      * Parameterized.Parameters annotation.
      * @throws Exception If something wrong happens inside.
      */
