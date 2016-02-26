@@ -35,18 +35,28 @@ package com.qulice.foo;
  * @version $Id$
  * @since 0.17
  */
-public final class WithoutDuplicateStringLiterals {
+public final class SuppressDuplicateStringLiterals {
 
     /**
      * Construcor.
      */
-    private WithoutDuplicateStringLiterals() { }
+    private SuppressDuplicateStringLiterals() { }
 
     /**
-     * Method without duplicate string literals.
+     * Method with two duplicate string literals.
      * @return Formated string
      */
-    public static String methodWithoutDuplicateStringLiterals() {
-        return String.format("%s", "test");
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
+    public static String methodWithTwoDuplicateStringLiterals() {
+        return String.format("%s%s", "test", "test");
+    }
+
+    /**
+     * Method with four duplicate string literals.
+     * @return Formated string
+     */
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
+    public static String methodWithFourDuplicateStringLiterals() {
+        return String.format("%s%s%s%s", "test", "test", "test", "test");
     }
 }

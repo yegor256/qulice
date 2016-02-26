@@ -33,7 +33,7 @@ package com.qulice.foo;
  * Class with four duplicate string literals.
  * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
- * @since 1.0
+ * @since 0.17
  */
 public final class FourDuplicateStringLiterals {
 
@@ -43,8 +43,7 @@ public final class FourDuplicateStringLiterals {
     private FourDuplicateStringLiterals() { }
 
     /**
-     * Method with four
-     * duplicate string literals.
+     * Method with four duplicate string literals.
      * @return Formated string
      */
     public static String methodWithFourDuplicateStringLiterals() {
