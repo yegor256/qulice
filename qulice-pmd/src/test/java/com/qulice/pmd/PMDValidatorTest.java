@@ -91,6 +91,12 @@ public final class PMDValidatorTest {
         "Avoid using Plain JUnit assertions";
 
     /**
+     * Error message used to inform about using public static method.
+     */
+    private static final String STATIC_METHODS =
+        "Public static methods are prohibited";
+
+    /**
      * PMDValidator can find violations in Java file(s).
      * @throws Exception If something wrong happens inside.
      */
@@ -508,4 +514,49 @@ public final class PMDValidatorTest {
         ).validate();
     }
 
+    /**
+     * PMDValidator can prohibit public static methods.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void prohibitsPublicStaticMethods() throws Exception {
+        new PMDAssert(
+            "StaticPublicMethod.java",
+            Matchers.is(false),
+            Matchers.containsString(PMDValidatorTest.STATIC_METHODS)
+        ).validate();
+    }
+
+    /**
+     * PMDValidator can allow public static void main(String...args) method.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsPublicStaticMainMethod() throws Exception {
+        new PMDAssert(
+            "StaticPublicVoidMainMethod.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString(PMDValidatorTest.STATIC_METHODS)
+            )
+        ).validate();
+    }
+
+    /**
+     * PMDValidator can allow JUnit public static methods marked with:<br>
+     * BeforeClass annotation.<br>
+     * AfterClass annotation.<br>
+     * Parameterized.Parameters annotation.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsJunitFrameworkPublicStaticMethods() throws Exception {
+        new PMDAssert(
+            "JunitStaticPublicMethods.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString(PMDValidatorTest.STATIC_METHODS)
+            )
+        ).validate();
+    }
 }

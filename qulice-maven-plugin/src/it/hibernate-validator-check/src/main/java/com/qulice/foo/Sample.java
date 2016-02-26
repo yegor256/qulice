@@ -11,18 +11,13 @@ package com.qulice.foo;
  * @since 1.0
  */
 public final class Sample {
-    /**
-     * Utility constructor.
-     */
-    private Sample() {
-        // do nothing
-    }
 
     /**
      * Test method.
      * @return Stream.
+     * @checkstyle NonStaticMethod (2 lines)
      */
-    public static String test() {
+    public String test() {
         return "oops";
     }
 }

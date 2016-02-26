@@ -42,26 +42,21 @@ public final class Violations {
     private Integer var;
 
     /**
-     * Utility constructor.
-     */
-    private Violations() {
-        // do nothing
-    }
-
-    /**
      * Calculate square of a number.
      * @param num The number
      * @return The square
+     * @checkstyle NonStaticMethod (2 lines)
      */
-    public static int square(final int num) {
+    public int square(final int num) {
         return num * num;
     }
 
     /**
      * Returns Foo.
      * @return Foo.
+     * @checkstyle NonStaticMethod (2 lines)
      */
-    public static Foo doSmth() {
+    public Foo doSmth() {
         final String name = "test".toUpperCase();
         return new Foo(name);
     }
@@ -69,8 +64,9 @@ public final class Violations {
     /**
      * Returns Foo again.
      * @return Foo.
+     * @checkstyle NonStaticMethod (2 lines)
      */
-    public static Foo doSmthElse() {
+    public Foo doSmthElse() {
         String name = "other";
         name = String.format("%s append", name);
         return new Foo(name);
@@ -78,8 +74,9 @@ public final class Violations {
 
     /**
      * Prints something.
+     * @checkstyle NonStaticMethod (2 lines)
      */
-    public static void print() {
+    public void print() {
         final String message = "hello";
         System.out.println(message);
     }
