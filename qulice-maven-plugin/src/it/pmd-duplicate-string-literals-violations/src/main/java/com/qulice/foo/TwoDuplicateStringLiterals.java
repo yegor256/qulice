@@ -35,6 +35,7 @@ package com.qulice.foo;
  * @version $Id$
  * @since 0.17
  */
+@SuppressWarnings("PMD.ProhibitPublicStaticMethods")
 public final class TwoDuplicateStringLiterals {
 
     /**

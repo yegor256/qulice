@@ -37,8 +37,8 @@ def log = new File(basedir, 'build.log')
 assert !log.text.contains('MultipleStringLiteralsCheck')
 assert !log.text.contains('WithoutDuplicateStringLiterals.java')
 assert log.text.contains('No Checkstyle violations found')
-assert log.text.contains('FourDuplicateStringLiterals.java[50-50]: The String '
-    + 'literal "test" appears 4 times in this file; the first occurrence is on line 50 (AvoidDuplicateLiterals)')
-assert log.text.contains('TwoDuplicateStringLiterals.java[50-50]: The String '
-    + 'literal "test" appears 2 times in this file; the first occurrence is on line 50 (AvoidDuplicateLiterals)')
+assert log.text.contains('FourDuplicateStringLiterals.java[51-51]: The String '
+    + 'literal "test" appears 4 times in this file; the first occurrence is on line 51 (AvoidDuplicateLiterals)')
+assert log.text.contains('TwoDuplicateStringLiterals.java[51-51]: The String '
+    + 'literal "test" appears 2 times in this file; the first occurrence is on line 51 (AvoidDuplicateLiterals)')
 assert log.text.contains('Failure: 2 PMD violations')
