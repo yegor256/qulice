@@ -37,7 +37,7 @@ import com.qulice.pmd.PMDValidator;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.ValidationResult;
+import com.qulice.spi.Violation;
 import com.qulice.spi.Validator;
 import com.qulice.xml.XmlValidator;
 import java.io.File;
@@ -146,15 +146,15 @@ public final class QuliceTask extends Task {
      */
     private static void validate(final Environment env)
         throws ValidationException {
-        final Collection<ValidationResult> results =
-            new LinkedList<ValidationResult>();
+        final Collection<Violation> results =
+            new LinkedList<Violation>();
         for (final File file : env.files("*.*")) {
             for (final ResourceValidator validator
                 : QuliceTask.validators(env)) {
                 results.addAll(validator.validate(file));
             }
         }
-        for (final ValidationResult result : results) {
+        for (final Violation result : results) {
             Logger.info(
                 QuliceTask.class, "%s: %s", result.file(), result.message()
             );

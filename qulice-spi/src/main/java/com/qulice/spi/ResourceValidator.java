@@ -46,7 +46,7 @@ public interface ResourceValidator {
      * @param file File to validate
      * @return Validation results
      */
-    Collection<ValidationResult> validate(File file);
+    Collection<Violation> validate(File file);
 
     /**
      * Name of this validator.

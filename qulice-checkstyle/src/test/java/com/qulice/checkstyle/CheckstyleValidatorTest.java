@@ -32,7 +32,7 @@ package com.qulice.checkstyle;
 import com.google.common.base.Joiner;
 import com.jcabi.aspects.Tv;
 import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationResult;
+import com.qulice.spi.Violation;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
@@ -104,13 +104,13 @@ public final class CheckstyleValidatorTest {
             CheckstyleValidatorTest.LICENSE_PROP,
             this.toURL(license)
         ).withFile(String.format("src/main/java/foo/%s", name), content);
-        final Collection<ValidationResult> results =
+        final Collection<Violation> results =
             new CheckstyleValidator(env)
                 .validate(env.files(name).iterator().next());
         MatcherAssert.assertThat(
             results,
             Matchers.hasItem(
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "Line does not match expected header line of", name
                 )
             )
@@ -178,15 +178,15 @@ public final class CheckstyleValidatorTest {
     @Test
     @SuppressWarnings("unchecked")
     public void reportsErrorWhenCommentOrJavadocIsTooLong() throws Exception {
-        final Collection<ValidationResult> results =
+        final Collection<Violation> results =
             this.runValidation("TooLongLines.java", false);
         MatcherAssert.assertThat(
             results,
             Matchers.hasItems(
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "Line is longer than 80 characters (found 82)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "Line is longer than 80 characters (found 85)", ""
                 )
             )
@@ -206,28 +206,28 @@ public final class CheckstyleValidatorTest {
             "Use java.nio.charset.StandardCharsets instead"
         );
         final String file = "DoNotUseCharEncoding.java";
-        final Collection<ValidationResult> results = this.runValidation(
+        final Collection<Violation> results = this.runValidation(
             file, false
         );
         MatcherAssert.assertThat(
             results,
             Matchers.hasItems(
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     String.format(violation, "6"), file
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     String.format(violation, "7"), file
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     String.format(violation, "8"), file
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     String.format(violation, "22"), file
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     String.format(violation, "23"), file
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     String.format(violation, "24"), file
                 )
             )
@@ -303,19 +303,19 @@ public final class CheckstyleValidatorTest {
     @Test
     public void acceptsConstructorParametersNamedJustLikeFields()
         throws Exception {
-        final Collection<ValidationResult> results =
+        final Collection<Violation> results =
             this.runValidation("ConstructorParams.java", false);
         MatcherAssert.assertThat(
             results,
             Matchers.allOf(
                 Matchers.hasItem(
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "[31]: 'number' hides a field.", ""
                     )
                 ),
                 Matchers.not(
                     Matchers.hasItem(
-                        new CheckstyleValidatorTest.ValidationResultMatcher(
+                        new ViolationMatcher(
                             "[22]: 'number' hides a field.", ""
                         )
                     )
@@ -333,7 +333,7 @@ public final class CheckstyleValidatorTest {
     @Test
     @SuppressWarnings("unchecked")
     public void allowsOnlyProperlyNamedLocalVariables() throws Exception {
-        final Collection<ValidationResult> results = this.runValidation(
+        final Collection<Violation> results = this.runValidation(
             "LocalVariableNames.java", false
         );
         MatcherAssert.assertThat(results, Matchers.hasSize(Tv.TEN));
@@ -342,52 +342,52 @@ public final class CheckstyleValidatorTest {
             Matchers.allOf(
                 Matchers.not(
                     Matchers.hasItems(
-                        new CheckstyleValidatorTest.ValidationResultMatcher(
+                        new ViolationMatcher(
                             "aaa", ""
                         ),
-                        new CheckstyleValidatorTest.ValidationResultMatcher(
+                        new ViolationMatcher(
                             "twelveletter", ""
                         ),
-                        new CheckstyleValidatorTest.ValidationResultMatcher(
+                        new ViolationMatcher(
                             "ise", ""
                         ),
-                        new CheckstyleValidatorTest.ValidationResultMatcher(
+                        new ViolationMatcher(
                             "id", ""
                         ),
-                        new CheckstyleValidatorTest.ValidationResultMatcher(
+                        new ViolationMatcher(
                             "parametername", ""
                         )
                     )
                 ),
                 Matchers.hasItems(
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "Name 'prolongations' must match pattern", ""
                     ),
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "Name 'very_long_variable_id' must match pattern", ""
                     ),
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "Name 'camelCase' must match pattern", ""
                     ),
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "Name 'it' must match pattern", ""
                     ),
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "Name 'number1' must match pattern", ""
                     ),
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "Name 'ex' must match pattern", ""
                     ),
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "Name 'a' must match pattern", ""
                     ),
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "Name 'ae' must match pattern", ""
                     ),
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "Name 'e' must match pattern", ""
                     ),
-                    new CheckstyleValidatorTest.ValidationResultMatcher(
+                    new ViolationMatcher(
                         "Name 'it' must match pattern", ""
                     )
                 )
@@ -402,23 +402,23 @@ public final class CheckstyleValidatorTest {
     @Test
     @SuppressWarnings("unchecked")
     public void allowsOnlyProperlyOrderedAtClauses() throws Exception {
-        final Collection<ValidationResult> results = this.runValidation(
+        final Collection<Violation> results = this.runValidation(
             "AtClauseOrder.java", false
         );
         MatcherAssert.assertThat(results, Matchers.hasSize(Tv.FOUR));
         MatcherAssert.assertThat(
             results,
             Matchers.hasItems(
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[23]: At-clauses have to appear in the order ", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[50]: At-clauses have to appear in the order ", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[60]: At-clauses have to appear in the order ", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[61]: At-clauses have to appear in the order ", ""
                 )
             )
@@ -531,13 +531,13 @@ public final class CheckstyleValidatorTest {
             CheckstyleValidatorTest.LICENSE_PROP,
             this.toURL(license)
         ).withFile(String.format("src/main/java/foo/%s", name), content);
-        final Collection<ValidationResult> results =
+        final Collection<Violation> results =
             new CheckstyleValidator(env).validate(
                 env.files(name).iterator().next()
             );
         MatcherAssert.assertThat(
             results,
-            Matchers.not(Matchers.<ValidationResult>empty())
+            Matchers.not(Matchers.<Violation>empty())
         );
     }
 
@@ -549,20 +549,20 @@ public final class CheckstyleValidatorTest {
     @Test
     @SuppressWarnings("unchecked")
     public void distinguishesValidCatchParameterNames() throws Exception {
-        final Collection<ValidationResult> results = this.runValidation(
+        final Collection<Violation> results = this.runValidation(
             "CatchParameterNames.java", false
         );
         MatcherAssert.assertThat(results, Matchers.hasSize(Tv.THREE));
         MatcherAssert.assertThat(
             results,
             Matchers.hasItems(
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[27]: Name 'ex_invalid_1' must match pattern", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[29]: Name '$xxx' must match pattern", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[31]: Name '_exp' must match pattern", ""
                 )
             )
@@ -597,46 +597,46 @@ public final class CheckstyleValidatorTest {
     @Test
     @SuppressWarnings("unchecked")
     public void rejectsSpacesInsideMethods() throws Exception {
-        final Collection<ValidationResult> result = this.runValidation(
+        final Collection<Violation> result = this.runValidation(
             "BlankLinesInsideMethodsFail.java", false
         );
         MatcherAssert.assertThat(
             result,
             Matchers.hasItems(
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[17]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[21]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[23]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[27]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[30]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[34]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[36]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[40]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[43]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[50]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[52]: Empty line inside method (EmptyLinesCheck)", ""
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     "[54]: Empty line inside method (EmptyLinesCheck)", ""
                 )
             )
@@ -653,7 +653,7 @@ public final class CheckstyleValidatorTest {
     @SuppressWarnings("unchecked")
     public void rejectsUppercaseAbbreviations() throws Exception {
         final String file = "InvalidAbbreviationAsWordInNameXML.java";
-        final Collection<ValidationResult> results = this.runValidation(
+        final Collection<Violation> results = this.runValidation(
             file, false
         );
         final String violation = StringUtils.join(
@@ -665,13 +665,13 @@ public final class CheckstyleValidatorTest {
         MatcherAssert.assertThat(
             results,
             Matchers.hasItems(
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     String.format(
                         violation, "13", "InvalidAbbreviationAsWordInNameXML"
                     ),
                     file
                 ),
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     String.format(violation, "17", "InvalidHTML"), file
                 )
             )
@@ -720,7 +720,7 @@ public final class CheckstyleValidatorTest {
         MatcherAssert.assertThat(
             this.runValidation(file, result),
             Matchers.hasItem(
-                new CheckstyleValidatorTest.ValidationResultMatcher(
+                new ViolationMatcher(
                     message, file
                 )
             )
@@ -734,7 +734,7 @@ public final class CheckstyleValidatorTest {
      * @return String containing validation results in textual form.
      * @throws IOException In case of error
      */
-    private Collection<ValidationResult> runValidation(final String file,
+    private Collection<Violation> runValidation(final String file,
         final boolean result) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule.savePackageInfo(
@@ -751,19 +751,19 @@ public final class CheckstyleValidatorTest {
                     this.getClass().getResourceAsStream(file)
                 )
             );
-        final Collection<ValidationResult> results =
+        final Collection<Violation> results =
             new CheckstyleValidator(env).validate(
                 env.files(file).iterator().next()
             );
         if (result) {
             MatcherAssert.assertThat(
                 results,
-                Matchers.<ValidationResult>empty()
+                Matchers.<Violation>empty()
             );
         } else {
             MatcherAssert.assertThat(
                 results,
-                Matchers.not(Matchers.<ValidationResult>empty())
+                Matchers.not(Matchers.<Violation>empty())
             );
         }
         return results;
@@ -772,8 +772,8 @@ public final class CheckstyleValidatorTest {
     /**
      * Validation results matcher.
      */
-    private static final class ValidationResultMatcher extends
-        TypeSafeMatcher<ValidationResult> {
+    private static final class ViolationMatcher extends
+        TypeSafeMatcher<Violation> {
 
         /**
          * Message to check.
@@ -790,14 +790,14 @@ public final class CheckstyleValidatorTest {
          * @param message Message to check
          * @param file File to check
          */
-        ValidationResultMatcher(final String message, final String file) {
+        ViolationMatcher(final String message, final String file) {
             super();
             this.message = message;
             this.file = file;
         }
 
         @Override
-        public boolean matchesSafely(final ValidationResult item) {
+        public boolean matchesSafely(final Violation item) {
             return item.message().contains(this.message)
                 && item.file().endsWith(this.file);
         }

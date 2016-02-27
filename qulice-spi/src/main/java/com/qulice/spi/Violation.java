@@ -54,6 +54,10 @@ public interface Violation {
 
     /**
      * Default validation result.
+     * @todo #61:30min Let's split the message part into lines, message and
+     *  check name. After it is done fix
+     *  CheckstyleValidatorTest.ViolationsMatcher to handle all those parameters
+     *  and fix all failing tests.
      */
     @EqualsAndHashCode
     @ToString

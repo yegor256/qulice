@@ -32,7 +32,7 @@ package com.qulice.maven;
 import com.jcabi.log.Logger;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.ValidationException;
-import com.qulice.spi.ValidationResult;
+import com.qulice.spi.Violation;
 import com.qulice.spi.Validator;
 import java.io.File;
 import java.util.Collection;
@@ -86,15 +86,15 @@ public final class CheckMojo extends AbstractQuliceMojo {
      * @throws ValidationException If any of them fail
      */
     private void run() throws ValidationException {
-        final Collection<ValidationResult> results =
-            new LinkedList<ValidationResult>();
+        final Collection<Violation> results =
+            new LinkedList<Violation>();
         for (final File file : this.env().files("*.*")) {
             for (final ResourceValidator validator
                 : this.provider.externalResource()) {
                 results.addAll(validator.validate(file));
             }
         }
-        for (final ValidationResult result : results) {
+        for (final Violation result : results) {
             Logger.info(
                 this,
                 "%s%s",

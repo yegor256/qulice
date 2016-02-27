@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
-import com.qulice.spi.ValidationResult;
+import com.qulice.spi.Violation;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -95,19 +95,19 @@ public final class CheckstyleValidator implements ResourceValidator {
 
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public Collection<ValidationResult> validate(final File file) {
+    public Collection<Violation> validate(final File file) {
         try {
             this.checker.process(Collections.singletonList(file));
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to process files", ex);
         }
         final List<AuditEvent> events = this.listener.events();
-        final Collection<ValidationResult> results =
-            new LinkedList<ValidationResult>();
+        final Collection<Violation> results =
+            new LinkedList<Violation>();
         for (final AuditEvent event : events) {
             final String check = event.getSourceName();
             results.add(
-                new ValidationResult.Default(
+                new Violation.Default(
                     String.format(
                         "[%d]: %s (%s)",
                         event.getLine(),
