@@ -27,40 +27,30 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.spi;
 
-import com.qulice.spi.ResourceValidator;
-import com.qulice.spi.Validator;
+import java.io.File;
 import java.util.Collection;
-import java.util.Set;
 
 /**
- * Provider of validators.
+ * Validator.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
- * @since 0.3
+ * @since 0.17
  */
-interface ValidatorsProvider {
+public interface ResourceValidator {
 
     /**
-     * Get a collection of internal validators.
-     * @return List of them
-     * @see CheckMojo#execute()
+     * Validate and throws exception if there are any problems.
+     * @param file File to validate
+     * @return Validation results
      */
-    Set<MavenValidator> internal();
+    Collection<ValidationResult> validate(File file);
 
     /**
-     * Get a collection of external validators.
-     * @return List of them
-     * @see CheckMojo#execute()
+     * Name of this validator.
+     * @return Name of this validator.
      */
-    Set<Validator> external();
-
-    /**
-     * Get a collection of external validators.
-     * @return List of them
-     * @see CheckMojo#execute()
-     */
-    Collection<ResourceValidator> externalResource();
+    String name();
 }

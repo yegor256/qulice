@@ -27,40 +27,67 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
+package com.qulice.spi;
 
-import com.qulice.spi.ResourceValidator;
-import com.qulice.spi.Validator;
-import java.util.Collection;
-import java.util.Set;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 /**
- * Provider of validators.
- *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * Validation result.
+ * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
- * @since 0.3
+ * @since 0.17
  */
-interface ValidatorsProvider {
+public interface ValidationResult {
 
     /**
-     * Get a collection of internal validators.
-     * @return List of them
-     * @see CheckMojo#execute()
+     * Validation message.
+     * @return Validation message.
      */
-    Set<MavenValidator> internal();
+    String message();
 
     /**
-     * Get a collection of external validators.
-     * @return List of them
-     * @see CheckMojo#execute()
+     * Validated file.
+     * @return Validated file.
      */
-    Set<Validator> external();
+    String file();
 
     /**
-     * Get a collection of external validators.
-     * @return List of them
-     * @see CheckMojo#execute()
+     * Default validation result.
      */
-    Collection<ResourceValidator> externalResource();
+    @EqualsAndHashCode
+    @ToString
+    class Default implements ValidationResult {
+
+        /**
+         * Validation message.
+         */
+        private final String msg;
+
+        /**
+         * Validated file.
+         */
+        private final String res;
+
+        /**
+         * Constructor.
+         * @param msg Validation message
+         * @param res Vallidated file
+         */
+        public Default(final String msg, final String res) {
+            this.msg = msg;
+            this.res = res;
+        }
+
+        @Override
+        public String message() {
+            return this.msg;
+        }
+
+        @Override
+        public String file() {
+            return this.res;
+        }
+    }
+
 }

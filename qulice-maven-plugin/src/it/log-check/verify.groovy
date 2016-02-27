@@ -32,8 +32,6 @@
  */
 
 def log = new File(basedir, 'build.log')
-assert log.text.contains('Starting Checkstyle validator')
-assert log.text.contains('Finishing Checkstyle validator')
 assert log.text.contains('Starting PMD validator')
 assert log.text.contains('Finishing PMD validator')
 assert log.text.contains('Starting XML validator')

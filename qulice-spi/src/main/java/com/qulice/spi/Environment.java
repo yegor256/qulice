@@ -191,8 +191,7 @@ public interface Environment {
          * @throws IOException If some IO problem
          */
         public Environment.Mock withFile(final String name,
-            final String content)
-            throws IOException {
+            final String content) throws IOException {
             final File file = new File(this.basedir, name);
             FileUtils.writeStringToFile(file, content);
             return this;
@@ -206,8 +205,7 @@ public interface Environment {
          * @throws IOException If some IO problem
          */
         public Environment.Mock withFile(final String name,
-            final byte[] bytes)
-            throws IOException {
+            final byte[] bytes) throws IOException {
             final File file = new File(this.basedir, name);
             FileUtils.writeByteArrayToFile(file, bytes);
             return this;
@@ -276,10 +274,7 @@ public interface Environment {
         public Collection<File> files(final String pattern) {
             final Collection<File> files = new LinkedList<File>();
             final IOFileFilter filter = new WildcardFileFilter(pattern);
-            final String[] dirs = new String[] {
-                "src",
-            };
-            for (final String dir : dirs) {
+            for (final String dir : new String[]{"src"}) {
                 final File sources = new File(this.basedir(), dir);
                 if (sources.exists()) {
                     files.addAll(

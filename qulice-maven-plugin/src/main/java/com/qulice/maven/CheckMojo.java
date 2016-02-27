@@ -30,8 +30,14 @@
 package com.qulice.maven;
 
 import com.jcabi.log.Logger;
+import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.ValidationException;
+import com.qulice.spi.ValidationResult;
 import com.qulice.spi.Validator;
+import java.io.File;
+import java.util.Collection;
+import java.util.LinkedList;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -52,7 +58,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
      * Provider of validators.
      */
     private transient ValidatorsProvider provider =
-        new DefaultValidatorsProvider();
+        new DefaultValidatorsProvider(this.env());
 
     @Override
     public void doExecute() throws MojoFailureException {
@@ -80,6 +86,32 @@ public final class CheckMojo extends AbstractQuliceMojo {
      * @throws ValidationException If any of them fail
      */
     private void run() throws ValidationException {
+        final Collection<ValidationResult> results =
+            new LinkedList<ValidationResult>();
+        for (final File file : this.env().files("*.*")) {
+            for (final ResourceValidator validator
+                : this.provider.externalResource()) {
+                results.addAll(validator.validate(file));
+            }
+        }
+        for (final ValidationResult result : results) {
+            Logger.info(
+                this,
+                "%s%s",
+                StringUtils.removeStart(
+                    result.file(),
+                    String.format(
+                        "%s/", this.session().getExecutionRootDirectory()
+                    )
+                ),
+                result.message()
+            );
+        }
+        if (!results.isEmpty()) {
+            throw new ValidationException(
+                String.format("There are %d violations", results.size())
+           );
+        }
         for (final Validator validator : this.provider.external()) {
             Logger.info(this, "Starting %s validator", validator.name());
             validator.validate(this.env());
