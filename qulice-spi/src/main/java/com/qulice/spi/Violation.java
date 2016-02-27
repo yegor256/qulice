@@ -38,7 +38,7 @@ import lombok.ToString;
  * @version $Id$
  * @since 0.17
  */
-public interface ValidationResult {
+public interface Violation {
 
     /**
      * Validation message.
@@ -57,7 +57,7 @@ public interface ValidationResult {
      */
     @EqualsAndHashCode
     @ToString
-    class Default implements ValidationResult {
+    class Default implements Violation {
 
         /**
          * Validation message.
