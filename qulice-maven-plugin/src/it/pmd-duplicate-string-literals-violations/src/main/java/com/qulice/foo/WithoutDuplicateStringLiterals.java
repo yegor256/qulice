@@ -35,19 +35,13 @@ package com.qulice.foo;
  * @version $Id$
  * @since 0.17
  */
-@SuppressWarnings("PMD.ProhibitPublicStaticMethods")
 public final class WithoutDuplicateStringLiterals {
-
-    /**
-     * Construcor.
-     */
-    private WithoutDuplicateStringLiterals() { }
 
     /**
      * Method without duplicate string literals.
      * @return Formated string
      */
-    public static String methodWithoutDuplicateStringLiterals() {
-        return String.format("%s", "test");
+    public String methodWithoutDuplicateStringLiterals() {
+        return String.format("%s%s", "test", this.toString());
     }
 }

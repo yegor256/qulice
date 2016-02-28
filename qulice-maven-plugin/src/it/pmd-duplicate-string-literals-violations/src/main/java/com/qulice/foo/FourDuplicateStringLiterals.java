@@ -35,19 +35,15 @@ package com.qulice.foo;
  * @version $Id$
  * @since 0.17
  */
-@SuppressWarnings("PMD.ProhibitPublicStaticMethods")
 public final class FourDuplicateStringLiterals {
-
-    /**
-     * Construcor.
-     */
-    private FourDuplicateStringLiterals() { }
 
     /**
      * Method with four duplicate string literals.
      * @return Formated string
      */
-    public static String methodWithFourDuplicateStringLiterals() {
-        return String.format("%s%s%s%s", "test", "test", "test", "test");
+    public String methodWithFourDuplicateStringLiterals() {
+        return String.format(
+            "%s%s%s%s%s", "test", "test", "test", "test", this.toString()
+        );
     }
 }

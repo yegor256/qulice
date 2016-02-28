@@ -35,19 +35,13 @@ package com.qulice.foo;
  * @version $Id$
  * @since 0.17
  */
-@SuppressWarnings("PMD.ProhibitPublicStaticMethods")
 public final class TwoDuplicateStringLiterals {
-
-    /**
-     * Construcor.
-     */
-    private TwoDuplicateStringLiterals() { }
 
     /**
      * Method with two duplicate string literals.
      * @return Formated string
      */
-    public static String methodWithTwoDuplicateStringLiterals() {
-        return String.format("%s%s", "test", "test");
+    public String methodWithTwoDuplicateStringLiterals() {
+        return String.format("%s%s%s", "test", "test", this.toString());
     }
 }
