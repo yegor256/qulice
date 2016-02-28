@@ -196,4 +196,38 @@
         </properties>
         <priority>3</priority>
     </rule>
+
+    <rule name="ProhibitPublicStaticMethods"
+          message="Public static methods are prohibited."
+          language="java"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            Public static methods are prohibited.
+        </description>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                        //ClassOrInterfaceBodyDeclaration[
+                            MethodDeclaration[@Static='true' and @Public='true'
+                              and not (
+                               MethodDeclarator[
+                                count(FormalParameters/FormalParameter)=1
+                                and @Image='main'
+                                and FormalParameters/FormalParameter[1]/Type/ReferenceType/ClassOrInterfaceType[@Image='String']
+                                and FormalParameters/FormalParameter[@Varargs='true']
+                               ] and not(ResultType/Type)
+                              )
+                            ] and (
+                                Annotation/MarkerAnnotation/Name[@Image!='BeforeClass' and @Image!='AfterClass'
+                                  and @Image!='Parameterized.Parameters']
+                                or not (Annotation)
+                            )
+                        ]
+                    ]]>
+                </value>
+            </property>
+        </properties>
+        <priority>3</priority>
+    </rule>
 </ruleset>
