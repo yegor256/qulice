@@ -62,6 +62,13 @@
     </rule>
     <rule ref="rulesets/java/optimizations.xml"/>
     <rule ref="rulesets/java/strings.xml"/>
+    <rule ref="rulesets/java/strings.xml/AvoidDuplicateLiterals">
+        <properties>
+            <property name="maxDuplicateLiterals">
+                <value>2</value>
+            </property>
+        </properties>
+    </rule>
     <rule ref="rulesets/java/sunsecure.xml"/>
     <rule ref="rulesets/java/unnecessary.xml"/>
     <rule ref="rulesets/java/unusedcode.xml"/>
