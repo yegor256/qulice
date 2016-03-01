@@ -37,7 +37,6 @@ def log = new File(basedir, 'build.log')
 assert !log.text.contains('MultipleStringLiteralsCheck')
 assert !log.text.contains('SuppressDuplicateStringLiterals.java')
 assert !log.text.contains('WithoutDuplicateStringLiterals.java')
-assert log.text.contains('No Checkstyle violations found')
 assert log.text.contains('FourDuplicateStringLiterals.java[46-46]: The String '
     + 'literal "test" appears 4 times in this file; the first occurrence is on line 46 (AvoidDuplicateLiterals)')
 assert log.text.contains('TwoDuplicateStringLiterals.java[45-45]: The String '
