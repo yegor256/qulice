@@ -69,7 +69,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      * Maven session, to be injected by Maven itself.
      */
     @Component
-    private transient MavenSession session;
+    private transient MavenSession sess;
 
     /**
      * Maven plugin manager, to be injected by Maven itself.
@@ -166,7 +166,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.environment.setProperty("license", this.license);
         this.environment.setProject(this.project);
         this.environment.setMojoExecutor(
-            new MojoExecutor(this.manager, this.session)
+            new MojoExecutor(this.manager, this.sess)
         );
         this.environment.setExcludes(this.excludes);
         this.environment.setAsser(this.asserts);
@@ -177,6 +177,14 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
             "Qulice quality check completed in %[nano]s",
             System.nanoTime() - start
         );
+    }
+
+    /**
+     * Current maven session.
+     * @return Current maven session
+     */
+    public final MavenSession session() {
+        return this.sess;
     }
 
     /**

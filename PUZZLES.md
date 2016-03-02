@@ -1,6 +1,6 @@
 ## Puzzles
 
-There are 14 active puzzles (77 total):
+There are 19 active puzzles (83 total):
 
 
 <del>unknown</del> [`?`](../master/?)<br/>
@@ -41,7 +41,7 @@ There are 14 active puzzles (77 total):
 &nbsp;&nbsp;&nbsp;&nbsp;<del>1-d234717c</del> [`checks.xml:366-369`](../master/qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml#L366-L369)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<del>1-6974f5e9</del> [`checks.xml:225-229`](../master/qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml#L225-L229)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>149-fa59b6ee</del>](https://github.com/teamed/qulice/issues/352) [`FindBugsValidator.java:66-71`](../master/qulice-findbugs/src/main/java/com/qulice/findbugs/FindBugsValidator.java#L66-L71)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#421](https://github.com/teamed/qulice/issues/421):[<del>352-f6cf61e2</del>](https://github.com/teamed/qulice/issues/421) [`pom.xml:51-53`](../master/qulice-maven-plugin/src/it/findbugs-exclude/pom.xml#L51-L53)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>352-f6cf61e2</del> [`pom.xml:51-53`](../master/qulice-maven-plugin/src/it/findbugs-exclude/pom.xml#L51-L53)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<del>149-29796bc9</del> [`FindBugsValidatorTest.java:91-94`](../master/qulice-findbugs/src/test/java/com/qulice/findbugs/FindBugsValidatorTest.java#L91-L94)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<del>262-9a421520</del> [`verify.groovy:37-41`](../master/qulice-maven-plugin/src/it/checkstyle-exceptions/verify.groovy#L37-L41)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<del>123-3eeb54ce</del> [`some.xml:3-4`](../master/qulice-maven-plugin/src/it/checkstyle-violations/src/main/resources/some.xml#L3-L4)<br/>
@@ -55,10 +55,10 @@ There are 14 active puzzles (77 total):
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>308</del>](https://github.com/teamed/qulice/issues/308) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>308-45ddd042</del> [`pom.xml:134-136`](../master/pom.xml#L134-L136)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>333</del>](https://github.com/teamed/qulice/issues/333) [`?`](../master/?)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#370](https://github.com/teamed/qulice/issues/370):[<del>333-37771839</del>](https://github.com/teamed/qulice/issues/370) [`pom.xml:207-208`](../master/qulice-findbugs/pom.xml#L207-L208)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#590](https://github.com/teamed/qulice/issues/590):[<del>370-69914ea1</del>](https://github.com/teamed/qulice/issues/590) [`pom.xml:379-380`](../master/qulice-maven-plugin/pom.xml#L379-L380)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<del>333-37771839</del>](https://github.com/teamed/qulice/issues/370) [`pom.xml:207-208`](../master/qulice-findbugs/pom.xml#L207-L208)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>370-69914ea1</del> [`pom.xml:379-380`](../master/qulice-maven-plugin/pom.xml#L379-L380)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>339</del>](https://github.com/teamed/qulice/issues/339) [`?`](../master/?)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#422](https://github.com/teamed/qulice/issues/422):[<del>339-6f043704</del>](https://github.com/teamed/qulice/issues/422) [`QulicePlugin.java:47-47`](../master/qulice-gradle-plugin/src/main/java/com/qulice/gradle/QulicePlugin.java#L47-L47)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>339-6f043704</del> [`QulicePlugin.java:47-47`](../master/qulice-gradle-plugin/src/main/java/com/qulice/gradle/QulicePlugin.java#L47-L47)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>280</del>](https://github.com/teamed/qulice/issues/280) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#423](https://github.com/teamed/qulice/issues/423):[**280-4ce4d8c5**](https://github.com/teamed/qulice/issues/423) [`pom.xml:66-72`](../master/qulice-xml/pom.xml#L66-L72)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<del>337.-8e901889</del> [`AntEnvironment.java:168-168`](../master/qulice-ant/src/main/java/com/qulice/ant/AntEnvironment.java#L168-L168)<br/>
@@ -71,12 +71,18 @@ There are 14 active puzzles (77 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#497](https://github.com/teamed/qulice/issues/497):[**447-94597ea9**](https://github.com/teamed/qulice/issues/497) [`CheckstyleValidatorTest.java:214-216`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L214-L216)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>412</del>](https://github.com/teamed/qulice/issues/412) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#505](https://github.com/teamed/qulice/issues/505):[**412-bd044e76**](https://github.com/teamed/qulice/issues/505) [`CheckstyleValidatorTest.java:51-53`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L51-L53)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[#544](https://github.com/teamed/qulice/issues/544):[<del>544</del>](https://github.com/teamed/qulice/issues/544) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[<del>544</del>](https://github.com/teamed/qulice/issues/544) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#596](https://github.com/teamed/qulice/issues/596):[**544-c37b2cc3**](https://github.com/teamed/qulice/issues/596) [`PMDEmptyTest.java:48-50`](../master/qulice-pmd/src/test/java/com/qulice/pmd/PMDEmptyTest.java#L48-L50)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[#569](https://github.com/teamed/qulice/issues/569):[<del>569</del>](https://github.com/teamed/qulice/issues/569) [`?`](../master/?)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#609](https://github.com/teamed/qulice/issues/609):[<del>569-cd6c2a10</del>](https://github.com/teamed/qulice/issues/609) [`PMDDisabledRulesTest.java:44-47`](../master/qulice-pmd/src/test/java/com/qulice/pmd/PMDDisabledRulesTest.java#L44-L47)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[<del>569</del>](https://github.com/teamed/qulice/issues/569) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>569-cd6c2a10</del> [`PMDDisabledRulesTest.java:44-47`](../master/qulice-pmd/src/test/java/com/qulice/pmd/PMDDisabledRulesTest.java#L44-L47)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#612](https://github.com/teamed/qulice/issues/612):[**339-f214ff2b**](https://github.com/teamed/qulice/issues/612) [`QulicePlugin.java:47-48`](../master/qulice-gradle-plugin/src/main/java/com/qulice/gradle/QulicePlugin.java#L47-L48)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#411](https://github.com/teamed/qulice/issues/411):[<del>411</del>](https://github.com/teamed/qulice/issues/411) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#700](https://github.com/teamed/qulice/issues/700):[**411-71c8871e**](https://github.com/teamed/qulice/issues/700) [`CheckstyleValidatorTest.java:383-387`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L383-L387)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#676](https://github.com/teamed/qulice/issues/676):[<del>676</del>](https://github.com/teamed/qulice/issues/676) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#699](https://github.com/teamed/qulice/issues/699):[**676-be080182**](https://github.com/teamed/qulice/issues/699) [`DefaultMavenEnvironmentTest.java:136-143`](../master/qulice-maven-plugin/src/test/java/com/qulice/maven/DefaultMavenEnvironmentTest.java#L136-L143)<br/>
+[#61](https://github.com/teamed/qulice/issues/61):[<del>61</del>](https://github.com/teamed/qulice/issues/61) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[**61-61fa67ee**]() [`CheckstyleValidatorTest.java:442-444`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L442-L444)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[**61-1d39a5c7**]() [`DefaultValidatorsProvider.java:78-80`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L78-L80)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[**61-832eca62**]() [`DefaultValidatorsProvider.java:81-83`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L81-L83)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[**61-1e86e587**]() [`DefaultValidatorsProvider.java:84-86`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L84-L86)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[**61-654de8aa**]() [`Violation.java:57-60`](../master/qulice-spi/src/main/java/com/qulice/spi/Violation.java#L57-L60)<br/>

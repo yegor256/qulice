@@ -101,15 +101,6 @@ final class CheckstyleListener implements AuditListener {
         );
         if (!this.env.exclude("checkstyle", name)) {
             this.all.add(event);
-            final String check = event.getSourceName();
-            Logger.error(
-                this,
-                "%s[%d]: %s (%s)",
-                name,
-                event.getLine(),
-                event.getMessage(),
-                check.substring(check.lastIndexOf('.') + 1)
-            );
         }
     }
 

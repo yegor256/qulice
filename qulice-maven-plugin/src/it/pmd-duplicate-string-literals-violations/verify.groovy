@@ -1,5 +1,6 @@
 /**
- * Copyright (c) 2011-2016, Qulice.com
+ *
+ * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,41 +27,18 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.maven;
-
-import com.qulice.spi.ResourceValidator;
-import com.qulice.spi.Validator;
-import java.util.Collection;
-import java.util.Set;
-
-/**
- * Provider of validators.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * Validate that the build really failed and violations were reported
+ * because of PMD AvoidDuplicateLiterals.
  * @version $Id$
- * @since 0.3
+ * @since 0.17
  */
-interface ValidatorsProvider {
-
-    /**
-     * Get a collection of internal validators.
-     * @return List of them
-     * @see CheckMojo#execute()
-     */
-    Set<MavenValidator> internal();
-
-    /**
-     * Get a collection of external validators.
-     * @return List of them
-     * @see CheckMojo#execute()
-     */
-    Set<Validator> external();
-
-    /**
-     * Get a collection of external validators.
-     * @return List of them
-     * @see CheckMojo#execute()
-     */
-    Collection<ResourceValidator> externalResource();
-}
+def log = new File(basedir, 'build.log')
+assert !log.text.contains('MultipleStringLiteralsCheck')
+assert !log.text.contains('SuppressDuplicateStringLiterals.java')
+assert !log.text.contains('WithoutDuplicateStringLiterals.java')
+assert log.text.contains('FourDuplicateStringLiterals.java[46-46]: The String '
+    + 'literal "test" appears 4 times in this file; the first occurrence is on line 46 (AvoidDuplicateLiterals)')
+assert log.text.contains('TwoDuplicateStringLiterals.java[45-45]: The String '
+    + 'literal "test" appears 2 times in this file; the first occurrence is on line 45 (AvoidDuplicateLiterals)')
+assert log.text.contains('Failure: 2 PMD violations')

@@ -27,40 +27,23 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.maven;
-
-import com.qulice.spi.ResourceValidator;
-import com.qulice.spi.Validator;
-import java.util.Collection;
-import java.util.Set;
+package com.qulice.foo;
 
 /**
- * Provider of validators.
- *
- * @author Yegor Bugayenko (yegor@tpc2.com)
+ * Class with four duplicate string literals.
+ * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
- * @since 0.3
+ * @since 0.17
  */
-interface ValidatorsProvider {
+public final class FourDuplicateStringLiterals {
 
     /**
-     * Get a collection of internal validators.
-     * @return List of them
-     * @see CheckMojo#execute()
+     * Method with four duplicate string literals.
+     * @return Formated string
      */
-    Set<MavenValidator> internal();
-
-    /**
-     * Get a collection of external validators.
-     * @return List of them
-     * @see CheckMojo#execute()
-     */
-    Set<Validator> external();
-
-    /**
-     * Get a collection of external validators.
-     * @return List of them
-     * @see CheckMojo#execute()
-     */
-    Collection<ResourceValidator> externalResource();
+    public String methodWithFourDuplicateStringLiterals() {
+        return String.format(
+            "%s%s%s%s%s", "test", "test", "test", "test", this.toString()
+        );
+    }
 }

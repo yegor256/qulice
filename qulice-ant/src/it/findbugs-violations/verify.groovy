@@ -34,7 +34,5 @@
  */
 
 def log = new File(basedir, 'build.log')
-assert log.text.contains('No Checkstyle violations found in 2 files')
 assert log.text.contains('No PMD violations found in 2 files')
-assert log.text.contains('CodeNarc not required')
 assert log.text.contains('com.qulice.foo.Main.list is or uses a map or set of URLs, which can be a performance hog')

@@ -35,12 +35,14 @@ import com.qulice.codenarc.CodeNarcValidator;
 import com.qulice.findbugs.FindBugsValidator;
 import com.qulice.pmd.PMDValidator;
 import com.qulice.spi.Environment;
+import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
+import com.qulice.spi.Violation;
 import com.qulice.xml.XmlValidator;
 import java.io.File;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.Collection;
+import java.util.LinkedList;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import org.apache.tools.ant.types.Path;
@@ -144,22 +146,47 @@ public final class QuliceTask extends Task {
      */
     private static void validate(final Environment env)
         throws ValidationException {
+        final Collection<Violation> results =
+            new LinkedList<Violation>();
+        for (final File file : env.files("*.*")) {
+            for (final ResourceValidator validator
+                : QuliceTask.validators(env)) {
+                results.addAll(validator.validate(file));
+            }
+        }
+        for (final Violation result : results) {
+            Logger.info(
+                QuliceTask.class, "%s: %s", result.file(), result.message()
+            );
+        }
         for (final Validator validator : QuliceTask.validators()) {
             validator.validate(env);
         }
     }
 
     /**
-     * Create set of Validators.
-     * @return Set of Validators.
+     * Create collection of validators.
+     * @return Collection of validators.
      */
-    private static Set<Validator> validators() {
-        final Set<Validator> validators = new LinkedHashSet<Validator>();
-        validators.add(new CheckstyleValidator());
+    private static Collection<Validator> validators() {
+        final Collection<Validator> validators = new LinkedList<Validator>();
         validators.add(new PMDValidator());
+        validators.add(new FindBugsValidator());
         validators.add(new XmlValidator());
         validators.add(new CodeNarcValidator());
-        validators.add(new FindBugsValidator());
+        return validators;
+    }
+
+    /**
+     * Create collection of validators.
+     * @param env Environment to use.
+     * @return Collection of validators.
+     */
+    private static Collection<ResourceValidator> validators(
+        final Environment env) {
+        final Collection<ResourceValidator> validators =
+            new LinkedList<ResourceValidator>();
+        validators.add(new CheckstyleValidator(env));
         return validators;
     }
 }

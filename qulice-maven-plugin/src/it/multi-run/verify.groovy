@@ -33,4 +33,4 @@
  */
 
 def log = new File(basedir, 'build.log')
-assert log.text.contains('Finishing Checkstyle validator')
+assert log.text.contains('Qulice quality check completed')

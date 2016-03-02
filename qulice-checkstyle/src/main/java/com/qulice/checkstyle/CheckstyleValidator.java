@@ -38,13 +38,14 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
+import com.qulice.spi.ResourceValidator;
+import com.qulice.spi.Violation;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -60,49 +61,64 @@ import org.xml.sax.InputSource;
  * @since 0.3
  * @checkstyle ClassDataAbstractionCoupling (260 lines)
  */
-public final class CheckstyleValidator implements Validator {
+public final class CheckstyleValidator implements ResourceValidator {
 
     /**
-     * {@inheritDoc}
+     * Checkstyle checker.
      */
-    @Override
-    public void validate(final Environment env) throws ValidationException {
-        final Collection<File> files = env.files("*.*");
-        if (files.isEmpty()) {
-            Logger.info(this, "No files to check with Checkstyle");
-            return;
-        }
-        final Checker checker;
-        checker = new Checker();
-        checker.setClassLoader(env.classloader());
-        checker.setModuleClassLoader(
+    private final transient Checker checker;
+
+    /**
+     * Listener of checkstyle messages.
+      */
+    private final transient CheckstyleListener listener;
+
+    /**
+     * Constructor.
+     * @param env Environment to use.
+     */
+    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
+    public CheckstyleValidator(final Environment env) {
+        this.checker = new Checker();
+        this.checker.setClassLoader(env.classloader());
+        this.checker.setModuleClassLoader(
             Thread.currentThread().getContextClassLoader()
         );
         try {
-            checker.configure(this.configuration(env));
+            this.checker.configure(this.configuration(env));
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to configure checker", ex);
         }
-        final CheckstyleListener listener = new CheckstyleListener(env);
-        checker.addListener(listener);
+        this.listener = new CheckstyleListener(env);
+        this.checker.addListener(this.listener);
+    }
+
+    @Override
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+    public Collection<Violation> validate(final File file) {
         try {
-            checker.process(new LinkedList<File>(files));
+            this.checker.process(Collections.singletonList(file));
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to process files", ex);
         }
-        checker.destroy();
-        final List<AuditEvent> events = listener.events();
-        if (!events.isEmpty()) {
-            throw new ValidationException(
-                "%d Checkstyle violations (see log above)",
-                events.size()
+        final List<AuditEvent> events = this.listener.events();
+        final Collection<Violation> results =
+            new LinkedList<Violation>();
+        for (final AuditEvent event : events) {
+            final String check = event.getSourceName();
+            results.add(
+                new Violation.Default(
+                    String.format(
+                        "[%d]: %s (%s)",
+                        event.getLine(),
+                        event.getMessage(),
+                        check.substring(check.lastIndexOf('.') + 1)
+                    ),
+                    event.getFileName()
+                )
             );
         }
-        Logger.info(
-            this,
-            "No Checkstyle violations found in %d files",
-            files.size()
-        );
+        return results;
     }
 
     @Override public String name() {
@@ -111,7 +127,7 @@ public final class CheckstyleValidator implements Validator {
 
     /**
      * Load checkstyle configuration.
-     * @param env The environemt
+     * @param env The environment
      * @return The configuration just loaded
      * @see #validate()
      */
@@ -128,10 +144,7 @@ public final class CheckstyleValidator implements Validator {
             );
         }
         final Properties props = new Properties();
-        props.setProperty(
-            "cache.file",
-            cache.getPath()
-        );
+        props.setProperty("cache.file", cache.getPath());
         props.setProperty("header", this.header(env));
         final InputSource src = new InputSource(
             this.getClass().getResourceAsStream("checks.xml")
@@ -178,7 +191,7 @@ public final class CheckstyleValidator implements Validator {
         }
         builder.append(" */");
         final String license = builder.toString();
-        Logger.info(this, "LICENSE found: %s", url);
+        Logger.debug(this, "LICENSE found: %s", url);
         Logger.debug(
             this,
             "LICENSE full text after parsing:\n%s",
