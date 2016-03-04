@@ -1,6 +1,6 @@
 ## Puzzles
 
-There are 19 active puzzles (83 total):
+There are 18 active puzzles (83 total):
 
 
 <del>unknown</del> [`?`](../master/?)<br/>
@@ -79,9 +79,9 @@ There are 19 active puzzles (83 total):
 &nbsp;&nbsp;&nbsp;&nbsp;[#411](https://github.com/teamed/qulice/issues/411):[<del>411</del>](https://github.com/teamed/qulice/issues/411) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#700](https://github.com/teamed/qulice/issues/700):[**411-71c8871e**](https://github.com/teamed/qulice/issues/700) [`CheckstyleValidatorTest.java:383-387`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L383-L387)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#676](https://github.com/teamed/qulice/issues/676):[<del>676</del>](https://github.com/teamed/qulice/issues/676) [`?`](../master/?)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#699](https://github.com/teamed/qulice/issues/699):[**676-be080182**](https://github.com/teamed/qulice/issues/699) [`DefaultMavenEnvironmentTest.java:136-143`](../master/qulice-maven-plugin/src/test/java/com/qulice/maven/DefaultMavenEnvironmentTest.java#L136-L143)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#699](https://github.com/teamed/qulice/issues/699):[<del>676-be080182</del>](https://github.com/teamed/qulice/issues/699) [`DefaultMavenEnvironmentTest.java:136-143`](../master/qulice-maven-plugin/src/test/java/com/qulice/maven/DefaultMavenEnvironmentTest.java#L136-L143)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#61](https://github.com/teamed/qulice/issues/61):[<del>61</del>](https://github.com/teamed/qulice/issues/61) [`?`](../master/?)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**61-61fa67ee**]() [`CheckstyleValidatorTest.java:442-444`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L442-L444)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#742](https://github.com/teamed/qulice/issues/742):[**61-61fa67ee**](https://github.com/teamed/qulice/issues/742) [`CheckstyleValidatorTest.java:442-444`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L442-L444)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**61-1d39a5c7**]() [`DefaultValidatorsProvider.java:78-80`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L78-L80)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#740](https://github.com/teamed/qulice/issues/740):[**61-832eca62**](https://github.com/teamed/qulice/issues/740) [`DefaultValidatorsProvider.java:81-83`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L81-L83)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[**61-1e86e587**]() [`DefaultValidatorsProvider.java:84-86`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L84-L86)<br/>
