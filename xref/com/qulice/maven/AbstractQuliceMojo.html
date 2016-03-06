@@ -77,7 +77,7 @@
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  <em class="jxr_javadoccomment">     * Maven session, to be injected by Maven itself.</em>
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>      @Component
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">transient</strong> MavenSession session;
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">transient</strong> MavenSession sess;
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">     * Maven plugin manager, to be injected by Maven itself.</em>
@@ -174,7 +174,7 @@
 <a class="jxr_linenumber" name="L166" href="#L166">166</a>         <strong class="jxr_keyword">this</strong>.environment.setProperty(<span class="jxr_string">"license"</span>, <strong class="jxr_keyword">this</strong>.license);
 <a class="jxr_linenumber" name="L167" href="#L167">167</a>         <strong class="jxr_keyword">this</strong>.environment.setProject(<strong class="jxr_keyword">this</strong>.project);
 <a class="jxr_linenumber" name="L168" href="#L168">168</a>         <strong class="jxr_keyword">this</strong>.environment.setMojoExecutor(
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>             <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/maven/MojoExecutor.html">MojoExecutor</a>(<strong class="jxr_keyword">this</strong>.manager, <strong class="jxr_keyword">this</strong>.session)
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>             <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/maven/MojoExecutor.html">MojoExecutor</a>(<strong class="jxr_keyword">this</strong>.manager, <strong class="jxr_keyword">this</strong>.sess)
 <a class="jxr_linenumber" name="L170" href="#L170">170</a>         );
 <a class="jxr_linenumber" name="L171" href="#L171">171</a>         <strong class="jxr_keyword">this</strong>.environment.setExcludes(<strong class="jxr_keyword">this</strong>.excludes);
 <a class="jxr_linenumber" name="L172" href="#L172">172</a>         <strong class="jxr_keyword">this</strong>.environment.setAsser(<strong class="jxr_keyword">this</strong>.asserts);
@@ -188,21 +188,29 @@
 <a class="jxr_linenumber" name="L180" href="#L180">180</a>     }
 <a class="jxr_linenumber" name="L181" href="#L181">181</a> 
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L183" href="#L183">183</a> <em class="jxr_javadoccomment">     * Do the real execution.</em>
-<a class="jxr_linenumber" name="L184" href="#L184">184</a> <em class="jxr_javadoccomment">     * @throws MojoFailureException If some failure inside</em>
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> <em class="jxr_javadoccomment">     * @checkstyle NonStaticMethod (2 lines)</em>
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">void</strong> doExecute() <strong class="jxr_keyword">throws</strong> MojoFailureException;
-<a class="jxr_linenumber" name="L188" href="#L188">188</a> 
-<a class="jxr_linenumber" name="L189" href="#L189">189</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L190" href="#L190">190</a> <em class="jxr_javadoccomment">     * Get the environment.</em>
-<a class="jxr_linenumber" name="L191" href="#L191">191</a> <em class="jxr_javadoccomment">     * @return The environment</em>
-<a class="jxr_linenumber" name="L192" href="#L192">192</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/maven/MavenEnvironment.html">MavenEnvironment</a> env() {
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.environment;
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>     }
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> <em class="jxr_javadoccomment">     * Current maven session.</em>
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> <em class="jxr_javadoccomment">     * @return Current maven session</em>
+<a class="jxr_linenumber" name="L185" href="#L185">185</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> MavenSession session() {
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.sess;
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>     }
+<a class="jxr_linenumber" name="L189" href="#L189">189</a> 
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L191" href="#L191">191</a> <em class="jxr_javadoccomment">     * Do the real execution.</em>
+<a class="jxr_linenumber" name="L192" href="#L192">192</a> <em class="jxr_javadoccomment">     * @throws MojoFailureException If some failure inside</em>
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> <em class="jxr_javadoccomment">     * @checkstyle NonStaticMethod (2 lines)</em>
+<a class="jxr_linenumber" name="L194" href="#L194">194</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">void</strong> doExecute() <strong class="jxr_keyword">throws</strong> MojoFailureException;
 <a class="jxr_linenumber" name="L196" href="#L196">196</a> 
-<a class="jxr_linenumber" name="L197" href="#L197">197</a> }
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L198" href="#L198">198</a> <em class="jxr_javadoccomment">     * Get the environment.</em>
+<a class="jxr_linenumber" name="L199" href="#L199">199</a> <em class="jxr_javadoccomment">     * @return The environment</em>
+<a class="jxr_linenumber" name="L200" href="#L200">200</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/maven/MavenEnvironment.html">MavenEnvironment</a> env() {
+<a class="jxr_linenumber" name="L202" href="#L202">202</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.environment;
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>     }
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> 
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2016 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
