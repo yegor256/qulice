@@ -710,7 +710,7 @@ public final class CheckstyleValidatorTest {
             file, false
         );
         final String violation = StringUtils.join(
-            "[21]: Better to use diamond operator where possible ",
+            "[27]: Better to use diamond operator where possible ",
             "(DiamondOperatorCheck)"
         );
         MatcherAssert.assertThat(results, Matchers.hasSize(1));
