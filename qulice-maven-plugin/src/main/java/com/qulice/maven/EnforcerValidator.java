@@ -55,7 +55,7 @@ public final class EnforcerValidator implements MavenValidator {
             final Properties java = new Properties();
             rules.put("requireJavaVersion", java);
             // @checkstyle MultipleStringLiterals (1 line)
-            java.put("version", "1.6");
+            java.put("version", "1.7");
             env.executor().execute(
                 "org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1",
                 "enforce",
