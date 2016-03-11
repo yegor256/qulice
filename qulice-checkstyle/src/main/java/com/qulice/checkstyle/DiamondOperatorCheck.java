@@ -68,10 +68,7 @@ public final class DiamondOperatorCheck extends Check {
                     instance, TokenTypes.TYPE_ARGUMENTS
                 );
             if (generic.equalsTree(type)) {
-                log(
-                    type,
-                    "Better to use diamond operator where possible"
-                );
+                log(type, "Use diamond operator");
             }
         }
     }

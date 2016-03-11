@@ -706,22 +706,25 @@ public final class CheckstyleValidatorTest {
     @Test
     public void rejectsNonDiamondOperatorUsage() throws Exception {
         final String file = "InvalidDiamondsUsage.java";
-        final Collection<Violation> results = this.runValidation(
-            file, false
-        );
-        final String violation = StringUtils.join(
-            "[27]: Better to use diamond operator where possible ",
-            "(DiamondOperatorCheck)"
-        );
-        MatcherAssert.assertThat(results, Matchers.hasSize(1));
         MatcherAssert.assertThat(
-            results,
-            Matchers.hasItem(
+            this.runValidation(file, false),
+            Matchers.contains(
                 new CheckstyleValidatorTest.ViolationMatcher(
-                    violation, file
+                    "[27]: Use diamond operator (DiamondOperatorCheck)", file
                 )
             )
         );
+    }
+
+    /**
+     * CheckstyleValidator can allow diamond operator usage.
+     * @throws Exception If error
+     * @todo #715:30min add test for next situation
+     *  `return new ArrayList<String>();`
+     */
+    @Test
+    public void allowsDiamondOperatorUsage() throws Exception {
+        this.runValidation("ValidDiamondsUsage.java", true);
     }
 
     /**
