@@ -127,22 +127,23 @@ public final class PMDValidatorTest {
                 "}"
             )
         );
-        final StringWriter writer = new StringWriter();
-        Logger.getRootLogger().addAppender(
-            new WriterAppender(new SimpleLayout(), writer)
-        );
-        final Validator validator = new PMDValidator();
-        boolean thrown = false;
-        try {
-            validator.validate(env);
-        } catch (final ValidationException ex) {
-            thrown = true;
+        try (final StringWriter writer = new StringWriter()) {
+            Logger.getRootLogger().addAppender(
+                new WriterAppender(new SimpleLayout(), writer)
+            );
+            final Validator validator = new PMDValidator();
+            boolean thrown = false;
+            try {
+                validator.validate(env);
+            } catch (final ValidationException ex) {
+                thrown = true;
+            }
+            MatcherAssert.assertThat(thrown, Matchers.is(Matchers.is(true)));
+            MatcherAssert.assertThat(
+                writer.toString(),
+                Matchers.not(Matchers.containsString("(UnusedPrivateMethod)"))
+            );
         }
-        MatcherAssert.assertThat(thrown, Matchers.is(Matchers.is(true)));
-        MatcherAssert.assertThat(
-            writer.toString(),
-            Matchers.not(Matchers.containsString("(UnusedPrivateMethod)"))
-        );
     }
 
     /**
@@ -168,24 +169,27 @@ public final class PMDValidatorTest {
                 "}"
             )
         );
-        final StringWriter writer = new StringWriter();
-        final Appender appender = new WriterAppender(
-            new SimpleLayout(),
-            writer
-        );
-        try {
-            Logger.getRootLogger().addAppender(appender);
-            new PMDValidator().validate(env);
-            writer.flush();
-            MatcherAssert.assertThat(
-                writer.toString(),
-                Matchers.allOf(
-                    Matchers.not(Matchers.containsString("UnusedPrivateField")),
-                    Matchers.containsString("No PMD violations found")
-                )
+        try (final StringWriter writer = new StringWriter()) {
+            final Appender appender = new WriterAppender(
+                new SimpleLayout(),
+                writer
             );
-        } finally {
-            Logger.getRootLogger().removeAppender(appender);
+            try {
+                Logger.getRootLogger().addAppender(appender);
+                new PMDValidator().validate(env);
+                writer.flush();
+                MatcherAssert.assertThat(
+                    writer.toString(),
+                    Matchers.allOf(
+                        Matchers.not(
+                            Matchers.containsString("UnusedPrivateField")
+                        ),
+                        Matchers.containsString("No PMD violations found")
+                    )
+                );
+            } finally {
+                Logger.getRootLogger().removeAppender(appender);
+            }
         }
     }
 
