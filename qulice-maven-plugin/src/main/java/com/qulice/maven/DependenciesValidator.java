@@ -135,7 +135,7 @@ final class DependenciesValidator implements MavenValidator {
     private static Collection<String> used(final MavenEnvironment env) {
         final ProjectDependencyAnalysis analysis =
             DependenciesValidator.analyze(env);
-        final Collection<String> used = new LinkedList<String>();
+        final Collection<String> used = new LinkedList<>();
         for (final Object artifact : analysis.getUsedUndeclaredArtifacts()) {
             used.add(artifact.toString());
         }
@@ -150,7 +150,7 @@ final class DependenciesValidator implements MavenValidator {
     private static Collection<String> unused(final MavenEnvironment env) {
         final ProjectDependencyAnalysis analysis =
             DependenciesValidator.analyze(env);
-        final Collection<String> unused = new LinkedList<String>();
+        final Collection<String> unused = new LinkedList<>();
         for (final Object obj : analysis.getUnusedDeclaredArtifacts()) {
             final Artifact artifact = (Artifact) obj;
             if (!artifact.getScope().equals(Artifact.SCOPE_COMPILE)) {

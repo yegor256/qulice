@@ -100,7 +100,7 @@ public final class FindBugsValidator implements Validator {
      * @return Output of findbugs
      */
     private String findbugs(final Environment env) {
-        final List<String> args = new LinkedList<String>();
+        final List<String> args = new LinkedList<>();
         args.add("java");
         args.addAll(this.options());
         args.add(Wrap.class.getName());
@@ -125,7 +125,7 @@ public final class FindBugsValidator implements Validator {
      * @return Options
      */
     private Collection<String> options() {
-        final Collection<String> opts = new LinkedList<String>();
+        final Collection<String> opts = new LinkedList<>();
         opts.add("-classpath");
         opts.add(
             StringUtils.join(

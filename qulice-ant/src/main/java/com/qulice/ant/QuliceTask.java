@@ -146,8 +146,7 @@ public final class QuliceTask extends Task {
      */
     private static void validate(final Environment env)
         throws ValidationException {
-        final Collection<Violation> results =
-            new LinkedList<Violation>();
+        final Collection<Violation> results = new LinkedList<>();
         for (final File file : env.files("*.*")) {
             for (final ResourceValidator validator
                 : QuliceTask.validators(env)) {
@@ -169,7 +168,7 @@ public final class QuliceTask extends Task {
      * @return Collection of validators.
      */
     private static Collection<Validator> validators() {
-        final Collection<Validator> validators = new LinkedList<Validator>();
+        final Collection<Validator> validators = new LinkedList<>();
         validators.add(new PMDValidator());
         validators.add(new FindBugsValidator());
         validators.add(new XmlValidator());
@@ -184,8 +183,7 @@ public final class QuliceTask extends Task {
      */
     private static Collection<ResourceValidator> validators(
         final Environment env) {
-        final Collection<ResourceValidator> validators =
-            new LinkedList<ResourceValidator>();
+        final Collection<ResourceValidator> validators = new LinkedList<>();
         validators.add(new CheckstyleValidator(env));
         return validators;
     }

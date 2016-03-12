@@ -102,8 +102,7 @@ public final class CheckstyleValidator implements ResourceValidator {
             throw new IllegalStateException("Failed to process files", ex);
         }
         final List<AuditEvent> events = this.listener.events();
-        final Collection<Violation> results =
-            new LinkedList<Violation>();
+        final Collection<Violation> results = new LinkedList<>();
         for (final AuditEvent event : events) {
             final String check = event.getSourceName();
             results.add(

@@ -117,7 +117,7 @@ public final class SourceValidator {
         PMD.processFiles(
             this.config,
             factory,
-            new LinkedList<DataSource>(Collections.singleton(source)),
+            new LinkedList<>(Collections.singleton(source)),
             this.context,
             Collections.<Renderer>emptyList()
         );

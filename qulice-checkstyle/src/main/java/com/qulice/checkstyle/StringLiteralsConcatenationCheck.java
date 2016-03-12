@@ -96,7 +96,7 @@ public final class StringLiteralsConcatenationCheck extends Check {
      */
     private List<DetailAST> findChildASTsOfType(final DetailAST tree,
         final int... types) {
-        final List<DetailAST> children = new LinkedList<DetailAST>();
+        final List<DetailAST> children = new LinkedList<>();
         DetailAST child = tree.getFirstChild();
         while (child != null) {
             if (StringLiteralsConcatenationCheck.isOfType(child, types)) {

@@ -62,8 +62,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
 
     @Override
     public Set<MavenValidator> internal() {
-        final Set<MavenValidator> validators =
-            new LinkedHashSet<MavenValidator>();
+        final Set<MavenValidator> validators = new LinkedHashSet<>();
         validators.add(new PomXpathValidator());
         validators.add(new EnforcerValidator());
         validators.add(new DuplicateFinderValidator());
@@ -86,8 +85,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
     //  to move it to externalResource method and make sure all the tests pass.
     @Override
     public Set<Validator> external() {
-        final Set<Validator> validators =
-            new LinkedHashSet<Validator>();
+        final Set<Validator> validators = new LinkedHashSet<>();
         validators.add(new com.qulice.pmd.PMDValidator());
         validators.add(new com.qulice.findbugs.FindBugsValidator());
         validators.add(new com.qulice.xml.XmlValidator());
