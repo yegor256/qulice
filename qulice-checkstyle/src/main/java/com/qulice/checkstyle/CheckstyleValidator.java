@@ -108,13 +108,11 @@ public final class CheckstyleValidator implements ResourceValidator {
             final String check = event.getSourceName();
             results.add(
                 new Violation.Default(
-                    String.format(
-                        "[%d]: %s (%s)",
-                        event.getLine(),
-                        event.getMessage(),
-                        check.substring(check.lastIndexOf('.') + 1)
-                    ),
-                    event.getFileName()
+                    this.name(),
+                    check.substring(check.lastIndexOf('.') + 1),
+                    event.getFileName(),
+                    String.valueOf(event.getLine()),
+                    event.getMessage()
                 )
             );
         }

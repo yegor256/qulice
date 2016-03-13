@@ -97,14 +97,17 @@ public final class CheckMojo extends AbstractQuliceMojo {
         for (final Violation result : results) {
             Logger.info(
                 this,
-                "%s%s",
+                "%s: %s[%s]: %s (%s)",
+                result.validator(),
                 StringUtils.removeStart(
                     result.file(),
                     String.format(
                         "%s/", this.session().getExecutionRootDirectory()
                     )
                 ),
-                result.message()
+                result.lines(),
+                result.message(),
+                result.name()
             );
         }
         if (!results.isEmpty()) {
