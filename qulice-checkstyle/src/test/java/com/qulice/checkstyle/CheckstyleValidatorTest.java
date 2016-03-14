@@ -677,6 +677,34 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can reject non diamond operator usage.
+     * @throws Exception If error
+     */
+    @Test
+    public void rejectsNonDiamondOperatorUsage() throws Exception {
+        final String file = "InvalidDiamondsUsage.java";
+        MatcherAssert.assertThat(
+            this.runValidation(file, false),
+            Matchers.contains(
+                new CheckstyleValidatorTest.ViolationMatcher(
+                    "[21]: Use diamond operator (DiamondOperatorCheck)", file
+                )
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator can allow diamond operator usage.
+     * @throws Exception If error
+     * @todo #715:30min add test for next situation
+     *  `return new ArrayList<String>();`
+     */
+    @Test
+    public void allowsDiamondOperatorUsage() throws Exception {
+        this.runValidation("ValidDiamondsUsage.java", true);
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
