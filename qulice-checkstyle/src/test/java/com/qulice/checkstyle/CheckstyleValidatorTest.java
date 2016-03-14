@@ -687,7 +687,7 @@ public final class CheckstyleValidatorTest {
             this.runValidation(file, false),
             Matchers.contains(
                 new CheckstyleValidatorTest.ViolationMatcher(
-                    "[21]: Use diamond operator (DiamondOperatorCheck)", file
+                    "Use diamond operator", file, "21", "DiamondOperatorCheck"
                 )
             )
         );
