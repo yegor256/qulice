@@ -1,6 +1,6 @@
 ## Puzzles
 
-There are 18 active puzzles (83 total):
+There are 19 active puzzles (85 total):
 
 
 <del>unknown</del> [`?`](../master/?)<br/>
@@ -86,3 +86,5 @@ There are 18 active puzzles (83 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#740](https://github.com/teamed/qulice/issues/740):[**61-832eca62**](https://github.com/teamed/qulice/issues/740) [`DefaultValidatorsProvider.java:81-83`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L81-L83)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#745](https://github.com/teamed/qulice/issues/745):[**61-1e86e587**](https://github.com/teamed/qulice/issues/745) [`DefaultValidatorsProvider.java:84-86`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L84-L86)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#741](https://github.com/teamed/qulice/issues/741):[**61-654de8aa**](https://github.com/teamed/qulice/issues/741) [`Violation.java:57-60`](../master/qulice-spi/src/main/java/com/qulice/spi/Violation.java#L57-L60)<br/>
+[#715](https://github.com/teamed/qulice/issues/715):[<del>715</del>](https://github.com/teamed/qulice/issues/715) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[**715-04710633**]() [`CheckstyleValidatorTest.java:722-723`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L722-L723)<br/>
