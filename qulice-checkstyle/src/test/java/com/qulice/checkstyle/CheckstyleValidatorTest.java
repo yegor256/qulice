@@ -603,7 +603,7 @@ public final class CheckstyleValidatorTest {
         MatcherAssert.assertThat(
             result,
             Matchers.hasItems(
-                // @checkstyle MultipleStringLiterals (1 line)
+                // @checkstyle MultipleStringLiterals (12 line)
                 new ViolationMatcher(message, file, "17", name),
                 new ViolationMatcher(message, file, "21", name),
                 new ViolationMatcher(message, file, "23", name),
@@ -687,6 +687,7 @@ public final class CheckstyleValidatorTest {
             this.runValidation(file, false),
             Matchers.contains(
                 new CheckstyleValidatorTest.ViolationMatcher(
+                    // @checkstyle MultipleStringLiterals (1 line)
                     "Use diamond operator", file, "21", "DiamondOperatorCheck"
                 )
             )
