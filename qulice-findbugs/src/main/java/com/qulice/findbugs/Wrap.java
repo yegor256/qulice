@@ -48,6 +48,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Executed by {@link FindBugsValidator}, but in a new process.
@@ -76,6 +77,12 @@ public final class Wrap {
     /**
      * Run it.
      * @param args Arguments
+     * @todo #706:30min When jcabi/jcabi-maven-plugin#48 is fixed, add
+     *  BugType.BED_BOGUS_EXCEPTION_DECLARATION.name() to the predicates below,
+     *  enable reportsIncorrectlyAddedThrows test and use `unwoven` directory
+     *  for findbugs check, instead of classes directory (see
+     *  jcabi/jcabi-maven-plugin#48 and #706 for details) and document that
+     *  on qulice.com.
      */
     public static void run(final String... args) {
         final Project project =
@@ -103,11 +110,7 @@ public final class Wrap {
                     }
                 }
             ),
-            Predicates.not(
-                Predicates.equalTo(
-                    BugType.BED_BOGUS_EXCEPTION_DECLARATION.name()
-                )
-            )
+            Predicates.not(Predicates.in(Collections.<String>emptyList()))
         );
         final BugReporter reporter = new PrintingBugReporter() {
             @Override
