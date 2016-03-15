@@ -57,7 +57,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
     /**
      * Provider of validators.
      */
-    private transient ValidatorsProvider provider =
+    private ValidatorsProvider provider =
         new DefaultValidatorsProvider(this.env());
 
     @Override

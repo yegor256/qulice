@@ -79,7 +79,7 @@ public final class CheckstyleValidatorTest {
      * @checkstyle VisibilityModifierCheck (5 lines)
      */
     @Rule
-    public final transient LicenseRule rule = new LicenseRule();
+    public final LicenseRule rule = new LicenseRule();
 
     /**
      * CheckstyleValidator can catch checkstyle violations.
@@ -784,22 +784,22 @@ public final class CheckstyleValidatorTest {
         /**
          * Message to check.
          */
-        private final transient String message;
+        private final String message;
 
         /**
          * File to check.
          */
-        private final transient String file;
+        private final String file;
 
         /**
          * Expected line.
          */
-        private final transient String line;
+        private final String line;
 
         /**
          * Check name.
          */
-        private final transient String check;
+        private final String check;
 
         /**
          * Constructor.

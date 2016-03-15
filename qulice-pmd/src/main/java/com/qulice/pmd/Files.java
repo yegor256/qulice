@@ -49,7 +49,7 @@ public final class Files {
     /**
      * The environment.
      */
-    private final transient Environment environment;
+    private final Environment environment;
 
     /**
      * Constructor.

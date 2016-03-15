@@ -89,11 +89,11 @@ interface MavenEnvironment extends Environment {
         /**
          * Parent environment.
          */
-        private final transient Environment env;
+        private final Environment env;
         /**
          * Parent maven environment.
          */
-        private final transient MavenEnvironment menv;
+        private final MavenEnvironment menv;
         /**
          * Public ctor.
          * @param penv Parent env

@@ -48,7 +48,7 @@ public final class PmdDisabledRulesTest {
     /**
      * Disabled rule name.
      */
-    private final transient String rule;
+    private final String rule;
 
     /**
      * Constructor.

@@ -71,33 +71,33 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     /**
      * Maven project.
      */
-    private transient MavenProject iproject;
+    private MavenProject iproject;
 
     /**
      * Plexus context.
      */
-    private transient Context icontext;
+    private Context icontext;
 
     /**
      * Plugin configuration.
      */
-    private final transient Properties iproperties = new Properties();
+    private final Properties iproperties = new Properties();
 
     /**
      * MOJO executor.
      */
-    private transient MojoExecutor exectr;
+    private MojoExecutor exectr;
 
     /**
      * Excludes, regular expressions.
      */
-    private final transient Collection<String> exc =
+    private final Collection<String> exc =
         new LinkedList<String>();
 
     /**
      * Xpath queries for pom.xml validation.
      */
-    private final transient Collection<String> asser =
+    private final Collection<String> asser =
         new LinkedList<String>();
 
     @Override
@@ -305,7 +305,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         /**
          * URLs for class loading.
          */
-        private final transient List<URL> urls;
+        private final List<URL> urls;
 
         /**
          * Constructor.
@@ -331,7 +331,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         /**
          * Path to match.
          */
-        private final transient String name;
+        private final String name;
 
         /**
          * Constructor.
@@ -358,7 +358,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         /**
          * Name of checker.
          */
-        private final transient String checker;
+        private final String checker;
 
         /**
          * Constructor.

@@ -148,7 +148,7 @@ public final class CodeNarcValidatorTest {
         /**
          * List of logged messages.
          */
-        private final transient Collection<String> messages =
+        private final Collection<String> messages =
             new ConcurrentLinkedQueue<String>();
         @Override
         public void doAppend(final LoggingEvent event) {

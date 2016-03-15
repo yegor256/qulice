@@ -69,7 +69,7 @@ public final class JavadocTagsCheck extends Check {
     /**
      * Map of tag and its pattern.
      */
-    private final transient Map<String, Pattern> tags =
+    private final Map<String, Pattern> tags =
         new HashMap<String, Pattern>();
 
     @Override

@@ -129,19 +129,19 @@ public interface Environment {
         /**
          * The basedir.
          */
-        private final transient File basedir;
+        private final File basedir;
         /**
          * Files for classpath.
          */
-        private final transient Set<String> classpath;
+        private final Set<String> classpath;
         /**
          * Map of params.
          */
-        private final transient Map<String, String> params;
+        private final Map<String, String> params;
         /**
          * Exclude patterns.
          */
-        private transient String excl;
+        private String excl;
 
         /**
          * Public ctor.

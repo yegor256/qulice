@@ -50,7 +50,7 @@ public final class Prettifier {
     /**
      * Input XML.
      */
-    private final transient String xml;
+    private final String xml;
 
     /**
      * Constructor.

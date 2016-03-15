@@ -49,17 +49,17 @@ final class PmdAssert {
     /**
      * File to validate.
      */
-    private final transient String file;
+    private final String file;
 
     /**
      * Expected build status, true means success.
      */
-    private final transient Matcher<Boolean> result;
+    private final Matcher<Boolean> result;
 
     /**
      * Matcher that needs to match.
      */
-    private final transient Matcher<String> matcher;
+    private final Matcher<String> matcher;
 
     /**
      * Constructor.

@@ -48,7 +48,7 @@ public final class BytecodeMocker {
     /**
      * The source code.
      */
-    private transient String source;
+    private String source;
 
     /**
      * Use this source code.

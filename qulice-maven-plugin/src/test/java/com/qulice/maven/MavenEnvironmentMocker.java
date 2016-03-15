@@ -53,22 +53,22 @@ public final class MavenEnvironmentMocker {
     /**
      * Env mocker.
      */
-    private final transient Environment.Mock ienv;
+    private final Environment.Mock ienv;
 
     /**
      * Project.
      */
-    private transient MavenProjectMocker prj;
+    private MavenProjectMocker prj;
 
     /**
      * Plexus container, mock.
      */
-    private final transient PlexusContainer container;
+    private final PlexusContainer container;
 
     /**
      * Xpath queries to test pom.xml.
      */
-    private transient Collection<String> ass;
+    private Collection<String> ass;
 
     /**
      * Public ctor.

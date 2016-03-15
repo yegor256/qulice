@@ -46,7 +46,7 @@ public final class MavenProjectMocker {
     /**
      * Mock of project.
      */
-    private final transient MavenProject project =
+    private final MavenProject project =
         Mockito.mock(MavenProject.class);
 
     /**

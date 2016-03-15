@@ -66,12 +66,12 @@ public final class CheckstyleValidator implements ResourceValidator {
     /**
      * Checkstyle checker.
      */
-    private final transient Checker checker;
+    private final Checker checker;
 
     /**
      * Listener of checkstyle messages.
       */
-    private final transient CheckstyleListener listener;
+    private final CheckstyleListener listener;
 
     /**
      * Constructor.

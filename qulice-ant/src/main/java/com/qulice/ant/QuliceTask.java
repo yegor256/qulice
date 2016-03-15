@@ -60,17 +60,17 @@ public final class QuliceTask extends Task {
     /**
      * Sources dirs.
      */
-    private transient Path sources;
+    private Path sources;
 
     /**
      * Classes dir (only one dir is supported).
      */
-    private transient File classes;
+    private File classes;
 
     /**
      * Classpath dirs and files.
      */
-    private transient Path classpath;
+    private Path classpath;
 
     /**
      * Set source dirs.
