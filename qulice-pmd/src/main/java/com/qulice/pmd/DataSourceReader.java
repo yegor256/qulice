@@ -31,12 +31,10 @@ package com.qulice.pmd;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import net.sourceforge.pmd.util.datasource.DataSource;
-import org.apache.commons.lang3.CharEncoding;
 
 /**
  * Bridge between <code>DataSource</code> and <code>Reader</code>.
@@ -66,18 +64,14 @@ public final class DataSourceReader {
      * @return Buffered reader.
      */
     public Reader getReader() {
-        InputStream input = null;
         try {
-            input = this.source.getInputStream();
+            return new BufferedReader(
+                new InputStreamReader(
+                    this.source.getInputStream(), StandardCharsets.UTF_8
+                )
+            );
         } catch (final IOException ex) {
             throw new IllegalArgumentException(ex);
         }
-        Reader reader = null;
-        try {
-            reader = new InputStreamReader(input, CharEncoding.UTF_8);
-        } catch (final UnsupportedEncodingException exception) {
-            throw new IllegalArgumentException(exception);
-        }
-        return new BufferedReader(reader);
     }
 }

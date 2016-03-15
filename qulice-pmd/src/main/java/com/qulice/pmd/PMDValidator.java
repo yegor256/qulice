@@ -45,7 +45,7 @@ import net.sourceforge.pmd.util.datasource.DataSource;
  * @version $Id$
  * @since 0.3
  */
-public final class PMDValidator implements Validator {
+public final class PmdValidator implements Validator {
 
     @Override
     public void validate(final Environment env) throws ValidationException {

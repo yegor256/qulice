@@ -49,11 +49,6 @@ public final class FinalSemicolonInTryWithResourcesCheck extends Check {
         };
     }
 
-    /**
-     * Implementation relies on existence of semicolon inside of
-     * RESOURCE_SPECIFICATION token as interpreted by Checkstyle.
-     * @param ast RESOURCE_SPECIFICATION token
-     */
     @Override
     public void visitToken(final DetailAST ast) {
         final int semicolons = ast.getChildCount(TokenTypes.SEMI);

@@ -45,13 +45,13 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
- * Test case for {@link PMDValidator} class.
+ * Test case for {@link PmdValidator} class.
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.3
  */
 @SuppressWarnings("PMD.TooManyMethods")
-public final class PMDValidatorTest {
+public final class PmdValidatorTest {
 
     /**
      * Error message for forbidding access to static fields
@@ -97,19 +97,19 @@ public final class PMDValidatorTest {
         "Public static methods are prohibited";
 
     /**
-     * PMDValidator can find violations in Java file(s).
+     * PmdValidator can find violations in Java file(s).
      * @throws Exception If something wrong happens inside.
      */
     @Test(expected = ValidationException.class)
     public void findsProblemsInJavaFiles() throws Exception {
         final Environment env = new Environment.Mock()
             .withFile("src/main/java/Main.java", "class Main { int x = 0; }");
-        final Validator validator = new PMDValidator();
+        final Validator validator = new PmdValidator();
         validator.validate(env);
     }
 
     /**
-     * PMDValidator can understand method references.
+     * PmdValidator can understand method references.
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -131,7 +131,7 @@ public final class PMDValidatorTest {
         Logger.getRootLogger().addAppender(
             new WriterAppender(new SimpleLayout(), writer)
         );
-        final Validator validator = new PMDValidator();
+        final Validator validator = new PmdValidator();
         boolean thrown = false;
         try {
             validator.validate(env);
@@ -146,7 +146,7 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * PMDValidator does not think that constant is unused when it is used
+     * PmdValidator does not think that constant is unused when it is used
      * just from the inner class.
      * @throws Exception If something wrong happens inside.
      */
@@ -175,7 +175,7 @@ public final class PMDValidatorTest {
         );
         try {
             Logger.getRootLogger().addAppender(appender);
-            new PMDValidator().validate(env);
+            new PmdValidator().validate(env);
             writer.flush();
             MatcherAssert.assertThat(
                 writer.toString(),
@@ -190,41 +190,41 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * PMDValidator can allow field initialization when constructor is missing.
+     * PmdValidator can allow field initialization when constructor is missing.
      * @throws Exception If something wrong happens inside.
      */
     @Test
     public void allowsFieldInitializationWhenConstructorIsMissing()
         throws Exception {
         final String file = "FieldInitNoConstructor.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(false),
             Matchers.not(
                 RegexMatchers.containsPattern(
-                    String.format(PMDValidatorTest.NO_CON_INIT, file)
+                    String.format(PmdValidatorTest.NO_CON_INIT, file)
                 )
             )
         ).validate();
     }
 
     /**
-     * PMDValidator can forbid field initialization when constructor exists.
+     * PmdValidator can forbid field initialization when constructor exists.
      * @throws Exception If something wrong happens inside.
      */
     @Test
     public void forbidsFieldInitializationWhenConstructorExists()
         throws Exception {
         final String file = "FieldInitConstructor.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(false),
             RegexMatchers.containsPattern(
-                String.format(PMDValidatorTest.NO_CON_INIT, file)
+                String.format(PmdValidatorTest.NO_CON_INIT, file)
             )
         ).validate();
     }
 
     /**
-     * PMDValidator can allow static field initialization when constructor
+     * PmdValidator can allow static field initialization when constructor
      * exists.
      * @throws Exception If something wrong happens inside.
      */
@@ -232,18 +232,18 @@ public final class PMDValidatorTest {
     public void allowsStaticFieldInitializationWhenConstructorExists()
         throws Exception {
         final String file = "StaticFieldInitConstructor.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(true),
             Matchers.not(
                 RegexMatchers.containsPattern(
-                    String.format(PMDValidatorTest.NO_CON_INIT, file)
+                    String.format(PmdValidatorTest.NO_CON_INIT, file)
                 )
             )
         ).validate();
     }
 
     /**
-     * PMDValidator can forbid field initialization in several constructors.
+     * PmdValidator can forbid field initialization in several constructors.
      * Only one constructor should do real work. Others - delegate to it.
      * @throws Exception If something wrong happens inside.
      */
@@ -251,16 +251,16 @@ public final class PMDValidatorTest {
     public void forbidsFieldInitializationInSeveralConstructors()
         throws Exception {
         final String file = "FieldInitSeveralConstructors.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(false),
             RegexMatchers.containsPattern(
-                String.format(PMDValidatorTest.MULT_CON_INIT, file)
+                String.format(PmdValidatorTest.MULT_CON_INIT, file)
             )
         ).validate();
     }
 
     /**
-     * PMDValidator can allow field initialization in one constructor.
+     * PmdValidator can allow field initialization in one constructor.
      * Only one constructor should do real work. Others - delegate to it.
      * @throws Exception If something wrong happens inside.
      */
@@ -268,46 +268,46 @@ public final class PMDValidatorTest {
     public void allowsFieldInitializationInOneConstructor()
         throws Exception {
         final String file = "FieldInitOneConstructor.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(true),
             Matchers.not(
                 RegexMatchers.containsPattern(
-                    String.format(PMDValidatorTest.MULT_CON_INIT, file)
+                    String.format(PmdValidatorTest.MULT_CON_INIT, file)
                 )
             )
         ).validate();
     }
 
     /**
-     * PMDValidator forbids unnecessary final modifier for methods.
+     * PmdValidator forbids unnecessary final modifier for methods.
      * @throws Exception If something wrong happens inside.
      */
     @Test
     public void forbidsUnnecessaryFinalModifier()
         throws Exception {
         final String file = "UnnecessaryFinalModifier.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(false),
             Matchers.containsString("Unnecessary final modifier")
         ).validate();
     }
 
     /**
-     * PMDValidator forbid useless parentheses.
+     * PmdValidator forbid useless parentheses.
      * @throws Exception If something wrong happens inside.
      */
     @Test
     public void forbidsUselessParentheses()
         throws Exception {
         final String file = "UselessParentheses.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(false),
             Matchers.containsString("Useless parentheses")
         ).validate();
     }
 
     /**
-     * PMDValidator forbids code in constructor
+     * PmdValidator forbids code in constructor
      * other than field initialization.
      * @throws Exception If something wrong happens inside.
      */
@@ -315,16 +315,16 @@ public final class PMDValidatorTest {
     public void forbidsCodeInConstructor()
         throws Exception {
         final String file = "CodeInConstructor.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(false),
             RegexMatchers.containsPattern(
-                String.format(PMDValidatorTest.CODE_IN_CON, file)
+                String.format(PmdValidatorTest.CODE_IN_CON, file)
             )
         ).validate();
     }
 
     /**
-     * PMDValidator accepts calls to other constructors
+     * PmdValidator accepts calls to other constructors
      * or call to super class constructor in constructors.
      * @throws Exception If something wrong happens inside.
      */
@@ -332,18 +332,18 @@ public final class PMDValidatorTest {
     public void acceptsCallToConstructorInConstructor()
         throws Exception {
         final String file = "CallToConstructorInConstructor.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(true),
             Matchers.not(
                 RegexMatchers.containsPattern(
-                    String.format(PMDValidatorTest.CODE_IN_CON, file)
+                    String.format(PmdValidatorTest.CODE_IN_CON, file)
                 )
             )
         ).validate();
     }
 
     /**
-     * PMDValidator accepts calls to static fields
+     * PmdValidator accepts calls to static fields
      * in a static way.
      * @throws Exception If something wrong happens inside.
      */
@@ -351,18 +351,18 @@ public final class PMDValidatorTest {
     public void acceptsCallToStaticFieldsInStaticWay()
         throws Exception {
         final String file = "StaticAccessToStaticFields.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(true),
             Matchers.not(
                 RegexMatchers.containsPattern(
-                    String.format(PMDValidatorTest.STATIC_ACCESS, file)
+                    String.format(PmdValidatorTest.STATIC_ACCESS, file)
                 )
             )
         ).validate();
     }
 
     /**
-     * PMDValidator forbids calls to static fields
+     * PmdValidator forbids calls to static fields
      * in a non static way.
      * @throws Exception If something wrong happens inside.
      */
@@ -370,27 +370,27 @@ public final class PMDValidatorTest {
     public void forbidsCallToStaticFieldsInNonStaticWay()
         throws Exception {
         final String file = "NonStaticAccessToStaticFields.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(false),
             RegexMatchers.containsPattern(
-                String.format(PMDValidatorTest.STATIC_ACCESS, file)
+                String.format(PmdValidatorTest.STATIC_ACCESS, file)
             )
         ).validate();
     }
 
     /**
-     * PMDValidator forbids non public clone methods (PMD rule
+     * PmdValidator forbids non public clone methods (PMD rule
      * rulesets/java/clone.xml/CloneMethodMustBePublic).
      * @throws Exception If something wrong happens inside.
      */
     @Test
     public void forbidsNonPublicCloneMethod() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "CloneMethodMustBePublic.java",
             Matchers.is(false),
             Matchers.containsString(
                 String.format(
-                    PMDValidatorTest.BRACKETS,
+                    PmdValidatorTest.BRACKETS,
                     "CloneMethodMustBePublic"
                 )
             )
@@ -398,7 +398,7 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * PMDValidator forbids clone methods with return type not matching class
+     * PmdValidator forbids clone methods with return type not matching class
      * name (PMD rule
      * rulesets/java/clone.xml/CloneMethodReturnTypeMustMatchClassName).
      * @throws Exception If something wrong happens inside.
@@ -406,12 +406,12 @@ public final class PMDValidatorTest {
     @Test
     public void forbidsCloneMethodReturnTypeNotMatchingClassName()
         throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "CloneMethodReturnTypeMustMatchClassName.java",
             Matchers.is(false),
             Matchers.containsString(
                 String.format(
-                    PMDValidatorTest.BRACKETS,
+                    PmdValidatorTest.BRACKETS,
                     "CloneMethodReturnTypeMustMatchClassName"
                 )
             )
@@ -419,19 +419,19 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * PMDValidator forbids ternary operators that can be simplified (PMD rule
+     * PmdValidator forbids ternary operators that can be simplified (PMD rule
      * rulesets/java/basic.xml/SimplifiedTernary).
      * @throws Exception If something wrong happens inside.
      */
     @Test
     public void forbidsNonSimplifiedTernaryOperators()
         throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "SimplifiedTernary.java",
             Matchers.is(false),
             Matchers.containsString(
                 String.format(
-                    PMDValidatorTest.BRACKETS,
+                    PmdValidatorTest.BRACKETS,
                     "SimplifiedTernary"
                 )
             )
@@ -439,7 +439,7 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * PMDValidator can prohibit plain JUnit assertion in import block like
+     * PmdValidator can prohibit plain JUnit assertion in import block like
      * import static org.junit.Assert.assert*
      * import static junit.framework.Assert.assert*.
      *
@@ -450,16 +450,16 @@ public final class PMDValidatorTest {
     public void prohibitsStaticImportsPlainAssertionsInTests()
         throws Exception {
         final String file = "PlainJUnitAssertionStaticImportBlock.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(false),
             Matchers.containsString(
-                PMDValidatorTest.PLAIN_ASSERTIONS
+                PmdValidatorTest.PLAIN_ASSERTIONS
             )
         ).validate();
     }
 
     /**
-     * PMDValidator can prohibit plain JUnit assertion in test methods like
+     * PmdValidator can prohibit plain JUnit assertion in test methods like
      * Assert.assertEquals.
      *
      * Custom Rule {@link ProhibitPlainJunitAssertionsRule}
@@ -469,16 +469,16 @@ public final class PMDValidatorTest {
     public void prohibitsPlainJunitAssertionsInTestMethods()
         throws Exception {
         final String file = "PlainJUnitAssertionTestMethod.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(false),
             Matchers.containsString(
-                PMDValidatorTest.PLAIN_ASSERTIONS
+                PmdValidatorTest.PLAIN_ASSERTIONS
             )
         ).validate();
     }
 
     /**
-     * PMDValidator can allow Assert.fail().
+     * PmdValidator can allow Assert.fail().
      *
      * Custom Rule {@link ProhibitPlainJunitAssertionsRule}
      * @throws Exception If something wrong happens inside.
@@ -487,24 +487,24 @@ public final class PMDValidatorTest {
     public void allowsAssertFail()
         throws Exception {
         final String file = "AllowAssertFail.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(true),
             Matchers.not(
                 Matchers.containsString(
-                    PMDValidatorTest.PLAIN_ASSERTIONS
+                    PmdValidatorTest.PLAIN_ASSERTIONS
                 )
             )
         ).validate();
     }
 
     /**
-     * PMDValidator can allow non-static, non-transient fields.
+     * PmdValidator can allow non-static, non-transient fields.
      * @throws Exception If something wrong happens inside.
      */
     @Test
     public void allowsNonTransientFields() throws Exception {
         final String file = "AllowNonTransientFields.java";
-        new PMDAssert(
+        new PmdAssert(
             file, Matchers.is(true),
             Matchers.not(
                 Matchers.containsString(
@@ -515,35 +515,35 @@ public final class PMDValidatorTest {
     }
 
     /**
-     * PMDValidator can prohibit public static methods.
+     * PmdValidator can prohibit public static methods.
      * @throws Exception If something wrong happens inside.
      */
     @Test
     public void prohibitsPublicStaticMethods() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "StaticPublicMethod.java",
             Matchers.is(false),
-            Matchers.containsString(PMDValidatorTest.STATIC_METHODS)
+            Matchers.containsString(PmdValidatorTest.STATIC_METHODS)
         ).validate();
     }
 
     /**
-     * PMDValidator can allow public static void main(String...args) method.
+     * PmdValidator can allow public static void main(String...args) method.
      * @throws Exception If something wrong happens inside.
      */
     @Test
     public void allowsPublicStaticMainMethod() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "StaticPublicVoidMainMethod.java",
             Matchers.is(true),
             Matchers.not(
-                Matchers.containsString(PMDValidatorTest.STATIC_METHODS)
+                Matchers.containsString(PmdValidatorTest.STATIC_METHODS)
             )
         ).validate();
     }
 
     /**
-     * PMDValidator can allow JUnit public static methods marked with:<br>
+     * PmdValidator can allow JUnit public static methods marked with:<br>
      * BeforeClass annotation.<br>
      * AfterClass annotation.<br>
      * Parameterized.Parameters annotation.
@@ -551,11 +551,11 @@ public final class PMDValidatorTest {
      */
     @Test
     public void allowsJunitFrameworkPublicStaticMethods() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "JunitStaticPublicMethods.java",
             Matchers.is(true),
             Matchers.not(
-                Matchers.containsString(PMDValidatorTest.STATIC_METHODS)
+                Matchers.containsString(PmdValidatorTest.STATIC_METHODS)
             )
         ).validate();
     }

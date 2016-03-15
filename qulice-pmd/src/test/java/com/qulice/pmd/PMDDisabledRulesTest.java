@@ -43,7 +43,7 @@ import org.junit.runners.Parameterized;
  * @since 0.16
  */
 @RunWith(Parameterized.class)
-public final class PMDDisabledRulesTest {
+public final class PmdDisabledRulesTest {
 
     /**
      * Disabled rule name.
@@ -54,7 +54,7 @@ public final class PMDDisabledRulesTest {
      * Constructor.
      * @param rule Disabled rule name.
      */
-    public PMDDisabledRulesTest(final String rule) {
+    public PmdDisabledRulesTest(final String rule) {
         this.rule = rule;
     }
 
@@ -74,12 +74,12 @@ public final class PMDDisabledRulesTest {
     }
 
     /**
-     * PMDValidator has rules disabled.
+     * PmdValidator has rules disabled.
      * @throws Exception In case of error.
      */
     @Test
     public void disablesRules() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             String.format("%s.java", this.rule),
             Matchers.any(Boolean.class),
             Matchers.not(

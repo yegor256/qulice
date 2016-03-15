@@ -45,7 +45,7 @@ import net.sourceforge.pmd.renderers.Renderer;
 import net.sourceforge.pmd.util.datasource.DataSource;
 
 /**
- * Validates source files via <code>PMDValidator</code>.
+ * Validates source files via <code>PmdValidator</code>.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$

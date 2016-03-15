@@ -75,7 +75,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         return validators;
     }
 
-    // @todo #61:30min Make PMDValidator inherit from ResourceValidator and use
+    // @todo #61:30min Make PmdValidator inherit from ResourceValidator and use
     //  it similarly to CheckstyleValidator. Move it to externalResource method
     //  and make sure all the tests pass.
     // @todo #61:30min Make FindBugsValidator inherit from ResourceValidator and
@@ -88,7 +88,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
     public Set<Validator> external() {
         final Set<Validator> validators =
             new LinkedHashSet<Validator>();
-        validators.add(new com.qulice.pmd.PMDValidator());
+        validators.add(new com.qulice.pmd.PmdValidator());
         validators.add(new com.qulice.findbugs.FindBugsValidator());
         validators.add(new com.qulice.xml.XmlValidator());
         validators.add(new com.qulice.codenarc.CodeNarcValidator());

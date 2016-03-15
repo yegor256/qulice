@@ -33,7 +33,7 @@ import com.jcabi.log.Logger;
 import com.qulice.checkstyle.CheckstyleValidator;
 import com.qulice.codenarc.CodeNarcValidator;
 import com.qulice.findbugs.FindBugsValidator;
-import com.qulice.pmd.PMDValidator;
+import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.ValidationException;
@@ -50,10 +50,10 @@ import org.apache.tools.ant.types.Path;
 /**
  * Ant Task for Qulice.
  *
- * @checkstyle ClassDataAbstractionCouplingCheck (170 lines)
  * @author Yuriy Alevohin (alevohin@mail.ru)
  * @version $Id$
  * @since 0.13
+ * @checkstyle ClassDataAbstractionCouplingCheck (170 lines)
  */
 public final class QuliceTask extends Task {
 
@@ -170,7 +170,7 @@ public final class QuliceTask extends Task {
      */
     private static Collection<Validator> validators() {
         final Collection<Validator> validators = new LinkedList<Validator>();
-        validators.add(new PMDValidator());
+        validators.add(new PmdValidator());
         validators.add(new FindBugsValidator());
         validators.add(new XmlValidator());
         validators.add(new CodeNarcValidator());

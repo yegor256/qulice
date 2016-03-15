@@ -51,10 +51,10 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.3
- * @checkstyle MultipleStringLiterals (400 lines)
  * @todo #412:30min Split this class into smaller ones and remove PMD
  *  exclude `TooManyMethods`. Good candidates for moving out of this class
  *  are all that use `validateCheckstyle` method.
+ * @checkstyle MultipleStringLiterals (400 lines)
  */
 @SuppressWarnings({ "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals" })
 public final class CheckstyleValidatorTest {
@@ -102,7 +102,7 @@ public final class CheckstyleValidatorTest {
         final String name = "Foo.java";
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
+            this.toUrl(license)
         ).withFile(String.format("src/main/java/foo/%s", name), content);
         final Collection<Violation> results =
             new CheckstyleValidator(env)
@@ -523,7 +523,7 @@ public final class CheckstyleValidatorTest {
         final String name = "Foo.java";
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
+            this.toUrl(license)
         ).withFile(String.format("src/main/java/foo/%s", name), content);
         final Collection<Violation> results =
             new CheckstyleValidator(env).validate(
@@ -698,7 +698,7 @@ public final class CheckstyleValidatorTest {
      * CheckstyleValidator can allow diamond operator usage.
      * @throws Exception If error
      * @todo #715:30min add test for next situation
-     *  `return new ArrayList<String>();`
+     *  `return new ArrayList&lt;String&gt;();`
      */
     @Test
     public void allowsDiamondOperatorUsage() throws Exception {
@@ -710,7 +710,7 @@ public final class CheckstyleValidatorTest {
      * @param file The file
      * @return The URL
      */
-    private String toURL(final File file) {
+    private String toUrl(final File file) {
         return String.format("file:%s", file);
     }
 
@@ -749,7 +749,7 @@ public final class CheckstyleValidatorTest {
             .withEol("\n").file();
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
+            this.toUrl(license)
         )
             .withFile(
                 String.format("src/main/java/foo/%s", file),

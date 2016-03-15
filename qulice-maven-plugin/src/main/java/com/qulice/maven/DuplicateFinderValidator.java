@@ -41,7 +41,6 @@ import org.apache.commons.collections.CollectionUtils;
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
  * @since 0.5
- * @checkstyle LineLength (8 lines)
  * @todo #250 Maven-duplicate-finder-plugin should support exclusions.
  *  Let's add exclusions of following formats (examples):
  *  - duplicate:about.html

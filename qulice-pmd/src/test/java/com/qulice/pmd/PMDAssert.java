@@ -45,7 +45,7 @@ import org.hamcrest.MatcherAssert;
  * @version $Id$
  * @since 0.16
  */
-final class PMDAssert {
+final class PmdAssert {
     /**
      * File to validate.
      */
@@ -67,7 +67,7 @@ final class PMDAssert {
      * @param result Expected build status.
      * @param matcher Matcher that needs to match.
      */
-    PMDAssert(final String file, final Matcher<Boolean> result,
+    PmdAssert(final String file, final Matcher<Boolean> result,
         final Matcher<String> matcher) {
         this.file = file;
         this.result = result;
@@ -93,7 +93,7 @@ final class PMDAssert {
             );
             boolean valid = true;
             try {
-                new PMDValidator().validate(env);
+                new PmdValidator().validate(env);
             } catch (final ValidationException ex) {
                 valid = false;
             }

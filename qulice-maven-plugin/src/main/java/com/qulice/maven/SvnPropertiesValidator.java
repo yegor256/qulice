@@ -52,9 +52,8 @@ import org.apache.maven.project.MavenProject;
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
- * @since 0.3
- * @checkstyle LineLength (1 line)
  * @see <a href="http://svnbook.red-bean.com/en/1.5/svn.ref.properties.html">Properties in Subversion</a>
+ * @since 0.3
  */
 public final class SvnPropertiesValidator implements MavenValidator {
 
