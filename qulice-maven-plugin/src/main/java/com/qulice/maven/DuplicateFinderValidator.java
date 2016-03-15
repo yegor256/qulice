@@ -46,8 +46,10 @@ import org.apache.commons.collections.CollectionUtils;
  *  - duplicate:about.html
  *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5
  *  - duplicate:org.codehaus.groovy.ast.expr.RegexExpression
- *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5|xml-apis:xml-apis:1.0.0|about.html
- *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5|xml-apis:xml-apis:1.0.0|org.w3c.dom.UserDataHandler
+ *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5
+ *  |xml-apis:xml-apis:1.0.0|about.html
+ *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5
+ *  |xml-apis:xml-apis:1.0.0|org.w3c.dom.UserDataHandler
  *  See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953
  *  and https://github.com/teamed/qulice/issues/250 for details
  */
