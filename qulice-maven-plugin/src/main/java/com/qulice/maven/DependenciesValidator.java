@@ -118,11 +118,8 @@ final class DependenciesValidator implements MavenValidator {
                     env.context().get(PlexusConstants.PLEXUS_KEY)
                 ).lookup(ProjectDependencyAnalyzer.ROLE, "default")
             ).analyze(env.project());
-        } catch (final ContextException ex) {
-            throw new IllegalStateException(ex);
-        } catch (final ComponentLookupException ex) {
-            throw new IllegalStateException(ex);
-        } catch (final ProjectDependencyAnalyzerException ex) {
+        } catch (final ContextException | ComponentLookupException
+            | ProjectDependencyAnalyzerException ex) {
             throw new IllegalStateException(ex);
         }
     }
@@ -135,7 +132,7 @@ final class DependenciesValidator implements MavenValidator {
     private static Collection<String> used(final MavenEnvironment env) {
         final ProjectDependencyAnalysis analysis =
             DependenciesValidator.analyze(env);
-        final Collection<String> used = new LinkedList<String>();
+        final Collection<String> used = new LinkedList<>();
         for (final Object artifact : analysis.getUsedUndeclaredArtifacts()) {
             used.add(artifact.toString());
         }
@@ -150,7 +147,7 @@ final class DependenciesValidator implements MavenValidator {
     private static Collection<String> unused(final MavenEnvironment env) {
         final ProjectDependencyAnalysis analysis =
             DependenciesValidator.analyze(env);
-        final Collection<String> unused = new LinkedList<String>();
+        final Collection<String> unused = new LinkedList<>();
         for (final Object obj : analysis.getUnusedDeclaredArtifacts()) {
             final Artifact artifact = (Artifact) obj;
             if (!artifact.getScope().equals(Artifact.SCOPE_COMPILE)) {

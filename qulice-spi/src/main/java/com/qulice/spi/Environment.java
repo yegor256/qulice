@@ -151,8 +151,8 @@ public interface Environment {
             "PMD.ConstructorOnlyInitializesOrCallOtherConstructors"
             )
         public Mock() throws IOException {
-            this.params = new HashMap<String, String>();
-            this.classpath = new HashSet<String>(1);
+            this.params = new HashMap<>();
+            this.classpath = new HashSet<>(1);
             final File temp = File.createTempFile(
                 "mock", ".qulice",
                 new File(System.getProperty("java.io.tmpdir"))
@@ -272,7 +272,7 @@ public interface Environment {
         @Override
         @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
         public Collection<File> files(final String pattern) {
-            final Collection<File> files = new LinkedList<File>();
+            final Collection<File> files = new LinkedList<>();
             final IOFileFilter filter = new WildcardFileFilter(pattern);
             for (final String dir : new String[]{"src"}) {
                 final File sources = new File(this.basedir(), dir);

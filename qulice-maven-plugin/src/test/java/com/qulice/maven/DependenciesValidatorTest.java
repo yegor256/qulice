@@ -95,7 +95,7 @@ public final class DependenciesValidatorTest {
     public void catchesDependencyProblemsAndThrowsException() throws Exception {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
-        final Set<Artifact> unused = new HashSet<Artifact>();
+        final Set<Artifact> unused = new HashSet<>();
         unused.add(Mockito.mock(Artifact.class));
         Mockito.doReturn(unused).when(analysis).getUsedUndeclaredArtifacts();
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
@@ -116,7 +116,7 @@ public final class DependenciesValidatorTest {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
         final Artifact artifact = Mockito.mock(Artifact.class);
-        final Set<Artifact> unused = new HashSet<Artifact>();
+        final Set<Artifact> unused = new HashSet<>();
         unused.add(artifact);
         Mockito.doReturn(unused).when(analysis).getUnusedDeclaredArtifacts();
         Mockito.doReturn(Artifact.SCOPE_RUNTIME).when(artifact).getScope();
@@ -137,7 +137,7 @@ public final class DependenciesValidatorTest {
     public void excludesUsedUndeclaredDependencies() throws Exception {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
-        final Set<Artifact> used = new HashSet<Artifact>();
+        final Set<Artifact> used = new HashSet<>();
         final ArtifactStub artifact = new ArtifactStub();
         artifact.setGroupId("group");
         artifact.setArtifactId("artifact");
@@ -171,7 +171,7 @@ public final class DependenciesValidatorTest {
     public void excludesUnusedDeclaredDependencies() throws Exception {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
-        final Set<Artifact> unused = new HashSet<Artifact>();
+        final Set<Artifact> unused = new HashSet<>();
         final ArtifactStub artifact = new ArtifactStub();
         artifact.setGroupId("othergroup");
         artifact.setArtifactId("otherartifact");

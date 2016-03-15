@@ -86,8 +86,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
      * @throws ValidationException If any of them fail
      */
     private void run() throws ValidationException {
-        final Collection<Violation> results =
-            new LinkedList<Violation>();
+        final Collection<Violation> results = new LinkedList<>();
         for (final File file : this.env().files("*.*")) {
             for (final ResourceValidator validator
                 : this.provider.externalResource()) {

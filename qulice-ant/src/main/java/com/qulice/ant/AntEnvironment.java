@@ -121,7 +121,7 @@ public final class AntEnvironment implements Environment {
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public ClassLoader classloader() {
-        final List<URL> urls = new LinkedList<URL>();
+        final List<URL> urls = new LinkedList<>();
         try {
             for (final String path : this.classpath()) {
                 urls.add(
@@ -149,7 +149,7 @@ public final class AntEnvironment implements Environment {
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<File> files(final String pattern) {
-        final Collection<File> files = new LinkedList<File>();
+        final Collection<File> files = new LinkedList<>();
         final IOFileFilter filter = new WildcardFileFilter(pattern);
         for (final String dir : this.sources.list()) {
             final File source = new File(dir);

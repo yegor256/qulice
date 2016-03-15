@@ -77,7 +77,7 @@ public final class MavenEnvironmentMocker {
     public MavenEnvironmentMocker() throws IOException {
         this.prj = new MavenProjectMocker();
         this.container = Mockito.mock(PlexusContainer.class);
-        this.ass = new LinkedList<String>();
+        this.ass = new LinkedList<>();
         this.ienv = new Environment.Mock();
     }
 

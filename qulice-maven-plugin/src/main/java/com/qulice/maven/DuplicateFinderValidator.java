@@ -73,7 +73,7 @@ public final class DuplicateFinderValidator implements MavenValidator {
                     Collections.singleton("META-INF/.*")
                 )
             );
-            final Collection<Properties> deps = new LinkedList<Properties>();
+            final Collection<Properties> deps = new LinkedList<>();
             //  for (String sdep : env.excludes("duplicate")) {
             //      if (StringUtils.countMatches(sdep, ":") == 2) {
             //          String[] parts = sdep.split(":");

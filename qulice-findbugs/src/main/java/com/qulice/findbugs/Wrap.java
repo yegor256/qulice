@@ -133,9 +133,7 @@ public final class Wrap {
                 findbugs.addFilter(args[Tv.FOUR], false);
             }
             findbugs.execute();
-        } catch (final IOException ex) {
-            throw new IllegalStateException(ex);
-        } catch (final InterruptedException ex) {
+        } catch (final IOException | InterruptedException ex) {
             throw new IllegalStateException(ex);
         }
     }

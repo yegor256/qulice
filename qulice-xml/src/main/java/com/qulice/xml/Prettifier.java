@@ -29,8 +29,11 @@
  */
 package com.qulice.xml;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.Writer;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -68,7 +71,10 @@ public final class Prettifier {
      * @checkstyle MultipleStringLiterals (9 lines)
      */
     public String prettify() {
-        try {
+        try (
+            final Writer writer = new StringWriter();
+            final Reader reader = new StringReader(this.xml)
+        ) {
             final Transformer transformer = TransformerFactory
                 .newInstance().newTransformer();
             transformer.setOutputProperty(OutputKeys.METHOD, "xml");
@@ -79,10 +85,8 @@ public final class Prettifier {
             transformer.setOutputProperty(
                 "{http://xml.apache.org/xslt}indent-amount", "2"
             );
-            final StreamResult result = new StreamResult(new StringWriter());
-            transformer.transform(
-                new StreamSource(new StringReader(this.xml)), result
-            );
+            final StreamResult result = new StreamResult(writer);
+            transformer.transform(new StreamSource(reader), result);
             return String.format(
                 "%s%n",
                 result.getWriter().toString()
@@ -91,7 +95,7 @@ public final class Prettifier {
                     .replaceFirst("\\?><!--", "?>\n<!--")
                     .trim()
             );
-        } catch (final TransformerException ex) {
+        } catch (final TransformerException | IOException ex) {
             throw new IllegalStateException(ex);
         }
     }

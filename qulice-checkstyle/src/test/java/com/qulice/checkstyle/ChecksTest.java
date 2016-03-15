@@ -103,7 +103,7 @@ public final class ChecksTest {
     @Parameterized.Parameters
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public static Collection<Object[]> dirs() {
-        final Collection<Object[]> dirs = new LinkedList<Object[]>();
+        final Collection<Object[]> dirs = new LinkedList<>();
         for (final String url : ChecksTest.CHECKS) {
             dirs.add(new Object[] {url});
         }
@@ -190,7 +190,7 @@ public final class ChecksTest {
                 true
             )
         );
-        final List<File> files = new ArrayList<File>(0);
+        final List<File> files = new ArrayList<>(0);
         files.add(
             new File(
                 this.getClass().getResource(
@@ -210,8 +210,7 @@ public final class ChecksTest {
         /**
          * List of events received.
          */
-        private final transient List<AuditEvent> events =
-            new LinkedList<AuditEvent>();
+        private final transient List<AuditEvent> events = new LinkedList<>();
         @Override
         public Object answer(final InvocationOnMock invocation) {
             this.events.add((AuditEvent) invocation.getArguments()[0]);
@@ -238,7 +237,7 @@ public final class ChecksTest {
          * @return The test summary of all events
          */
         public String summary() {
-            final List<String> msgs = new LinkedList<String>();
+            final List<String> msgs = new LinkedList<>();
             for (final AuditEvent event : this.events) {
                 msgs.add(
                     String.format(
