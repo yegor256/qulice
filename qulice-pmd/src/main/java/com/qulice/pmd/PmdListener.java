@@ -29,7 +29,6 @@
  */
 package com.qulice.pmd;
 
-import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import java.util.Collection;
 import java.util.Collections;
@@ -79,15 +78,6 @@ final class PmdListener implements ReportListener {
         );
         if (!this.env.exclude("pmd", name)) {
             this.violations.add(violation);
-            Logger.error(
-                this,
-                "%s[%d-%d]: %s (%s)",
-                name,
-                violation.getBeginLine(),
-                violation.getEndLine(),
-                violation.getDescription(),
-                violation.getRule().getName()
-            );
         }
     }
 

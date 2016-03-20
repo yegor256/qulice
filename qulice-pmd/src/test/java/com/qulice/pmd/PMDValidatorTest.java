@@ -33,13 +33,9 @@ import com.google.common.base.Joiner;
 import com.jcabi.matchers.RegexMatchers;
 import com.qulice.pmd.rules.ProhibitPlainJunitAssertionsRule;
 import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
-import java.io.StringWriter;
-import org.apache.log4j.Appender;
-import org.apache.log4j.Logger;
-import org.apache.log4j.SimpleLayout;
-import org.apache.log4j.WriterAppender;
+import com.qulice.spi.Violation;
+import java.io.File;
+import java.util.Collection;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -100,12 +96,15 @@ public final class PMDValidatorTest {
      * PMDValidator can find violations in Java file(s).
      * @throws Exception If something wrong happens inside.
      */
-    @Test(expected = ValidationException.class)
+    @Test
     public void findsProblemsInJavaFiles() throws Exception {
+        final String file = "src/main/java/Main.java";
         final Environment env = new Environment.Mock()
-            .withFile("src/main/java/Main.java", "class Main { int x = 0; }");
-        final Validator validator = new PMDValidator();
-        validator.validate(env);
+            .withFile(file, "class Main { int x = 0; }");
+        MatcherAssert.assertThat(
+            new PMDValidator(env).validate(new File(env.basedir(), file)),
+            Matchers.not(Matchers.<Violation>empty())
+        );
     }
 
     /**
@@ -114,36 +113,26 @@ public final class PMDValidatorTest {
      */
     @Test
     public void understandsMethodReferences() throws Exception {
+        final String file = "src/main/java/Other.java";
         // @checkstyle MultipleStringLiteralsCheck (10 lines)
         final Environment env = new Environment.Mock().withFile(
-            "src/main/java/Other.java",
+            file,
             Joiner.on('\n').join(
                 "import java.util.ArrayList;",
                 "class Other {",
                 "    public static void test() {",
                 "        new ArrayList<String>().forEach(Other::other);",
                 "    }",
-                "    private static void other(String some) {}",
+                "    private static void other(String some) {// body}",
                 "}"
             )
         );
-        try (final StringWriter writer = new StringWriter()) {
-            Logger.getRootLogger().addAppender(
-                new WriterAppender(new SimpleLayout(), writer)
-            );
-            final Validator validator = new PMDValidator();
-            boolean thrown = false;
-            try {
-                validator.validate(env);
-            } catch (final ValidationException ex) {
-                thrown = true;
-            }
-            MatcherAssert.assertThat(thrown, Matchers.is(Matchers.is(true)));
-            MatcherAssert.assertThat(
-                writer.toString(),
-                Matchers.not(Matchers.containsString("(UnusedPrivateMethod)"))
-            );
-        }
+        final Collection<Violation> violations =
+            new PMDValidator(env).validate(new File(env.basedir(), file));
+        MatcherAssert.assertThat(
+            violations,
+            Matchers.<Violation>empty()
+        );
     }
 
     /**
@@ -154,8 +143,9 @@ public final class PMDValidatorTest {
     @Test
     public void doesNotComplainAboutConstantsInInnerClasses() throws Exception {
         // @checkstyle MultipleStringLiteralsCheck (10 lines)
+        final String file = "src/main/java/foo/Foo.java";
         final Environment env = new Environment.Mock().withFile(
-            "src/main/java/foo/Foo.java",
+            file,
             Joiner.on('\n').join(
                 "package foo;",
                 "interface Foo {",
@@ -169,28 +159,10 @@ public final class PMDValidatorTest {
                 "}"
             )
         );
-        try (final StringWriter writer = new StringWriter()) {
-            final Appender appender = new WriterAppender(
-                new SimpleLayout(),
-                writer
-            );
-            try {
-                Logger.getRootLogger().addAppender(appender);
-                new PMDValidator().validate(env);
-                writer.flush();
-                MatcherAssert.assertThat(
-                    writer.toString(),
-                    Matchers.allOf(
-                        Matchers.not(
-                            Matchers.containsString("UnusedPrivateField")
-                        ),
-                        Matchers.containsString("No PMD violations found")
-                    )
-                );
-            } finally {
-                Logger.getRootLogger().removeAppender(appender);
-            }
-        }
+        MatcherAssert.assertThat(
+            new PMDValidator(env).validate(new File(env.basedir(), file)),
+            Matchers.<Violation>empty()
+        );
     }
 
     /**
