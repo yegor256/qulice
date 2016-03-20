@@ -41,6 +41,7 @@ import com.qulice.spi.Validator;
 import com.qulice.spi.Violation;
 import com.qulice.xml.XmlValidator;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import org.apache.tools.ant.BuildException;
@@ -155,7 +156,13 @@ public final class QuliceTask extends Task {
         }
         for (final Violation result : results) {
             Logger.info(
-                QuliceTask.class, "%s: %s", result.file(), result.message()
+                QuliceTask.class,
+                "%s: %s[%s]: %s (%s)",
+                result.validator(),
+                result.file(),
+                result.lines(),
+                result.message(),
+                result.name()
             );
         }
         for (final Validator validator : QuliceTask.validators()) {
@@ -168,12 +175,11 @@ public final class QuliceTask extends Task {
      * @return Collection of validators.
      */
     private static Collection<Validator> validators() {
-        final Collection<Validator> validators = new LinkedList<>();
-        validators.add(new PMDValidator());
-        validators.add(new FindBugsValidator());
-        validators.add(new XmlValidator());
-        validators.add(new CodeNarcValidator());
-        return validators;
+        return Arrays.asList(
+            new FindBugsValidator(),
+            new XmlValidator(),
+            new CodeNarcValidator()
+        );
     }
 
     /**
@@ -183,8 +189,9 @@ public final class QuliceTask extends Task {
      */
     private static Collection<ResourceValidator> validators(
         final Environment env) {
-        final Collection<ResourceValidator> validators = new LinkedList<>();
-        validators.add(new CheckstyleValidator(env));
-        return validators;
+        return Arrays.asList(
+            new CheckstyleValidator(env),
+            new PMDValidator(env)
+        );
     }
 }
