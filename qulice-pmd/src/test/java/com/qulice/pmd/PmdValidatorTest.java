@@ -168,24 +168,27 @@ public final class PmdValidatorTest {
                 "}"
             )
         );
-        final StringWriter writer = new StringWriter();
-        final Appender appender = new WriterAppender(
-            new SimpleLayout(),
-            writer
-        );
-        try {
-            Logger.getRootLogger().addAppender(appender);
-            new PmdValidator().validate(env);
-            writer.flush();
-            MatcherAssert.assertThat(
-                writer.toString(),
-                Matchers.allOf(
-                    Matchers.not(Matchers.containsString("UnusedPrivateField")),
-                    Matchers.containsString("No PMD violations found")
-                )
+        try (final StringWriter writer = new StringWriter()) {
+            final Appender appender = new WriterAppender(
+                new SimpleLayout(),
+                writer
             );
-        } finally {
-            Logger.getRootLogger().removeAppender(appender);
+            try {
+                Logger.getRootLogger().addAppender(appender);
+                new PmdValidator().validate(env);
+                writer.flush();
+                MatcherAssert.assertThat(
+                    writer.toString(),
+                    Matchers.allOf(
+                        Matchers.not(
+                            Matchers.containsString("UnusedPrivateField")
+                        ),
+                        Matchers.containsString("No PMD violations found")
+                    )
+                );
+            } finally {
+                Logger.getRootLogger().removeAppender(appender);
+            }
         }
     }
 

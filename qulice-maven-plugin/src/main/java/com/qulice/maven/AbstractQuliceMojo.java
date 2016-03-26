@@ -95,8 +95,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      * List of regular expressions to exclude.
      */
     @Parameter(property = "qulice.excludes")
-    private final Collection<String> excludes =
-        new LinkedList<String>();
+    private final Collection<String> excludes = new LinkedList<>();
 
     /**
      * List of xpath queries to validate pom.xml.
@@ -106,8 +105,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         property = "qulice.asserts",
         required = false
     )
-    private final Collection<String> asserts =
-        new LinkedList<String>();
+    private final Collection<String> asserts = new LinkedList<>();
 
     /**
      * Set Maven Project (used mostly for unit testing).

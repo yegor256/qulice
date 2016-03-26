@@ -63,7 +63,7 @@ final class PmdListener implements ReportListener {
      * @param environ Environment
      */
     PmdListener(final Environment environ) {
-        this.violations = new LinkedList<RuleViolation>();
+        this.violations = new LinkedList<>();
         this.env = environ;
     }
 

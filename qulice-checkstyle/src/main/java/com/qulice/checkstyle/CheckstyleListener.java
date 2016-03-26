@@ -62,7 +62,7 @@ final class CheckstyleListener implements AuditListener {
      * @param environ The environment
      */
     CheckstyleListener(final Environment environ) {
-        this.all = new LinkedList<AuditEvent>();
+        this.all = new LinkedList<>();
         this.env = environ;
     }
 

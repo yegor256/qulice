@@ -69,8 +69,7 @@ public final class JavadocTagsCheck extends Check {
     /**
      * Map of tag and its pattern.
      */
-    private final Map<String, Pattern> tags =
-        new HashMap<String, Pattern>();
+    private final Map<String, Pattern> tags = new HashMap<>();
 
     @Override
     public void init() {
@@ -167,7 +166,7 @@ public final class JavadocTagsCheck extends Check {
     private List<Integer> findTagLineNum(final String[] lines, final int start,
         final int end, final String tag) {
         final String prefix = String.format(" * @%s ", tag);
-        final List<Integer> found = new ArrayList<Integer>(1);
+        final List<Integer> found = new ArrayList<>(1);
         for (int pos = start; pos <= end; pos += 1) {
             final String line = lines[pos];
             if (line.contains(String.format("@%s ", tag))) {

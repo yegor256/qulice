@@ -140,8 +140,8 @@ public final class LineRanges {
         /**
          * Internal Collection.
          */
-        private final Collection<LineRange> ranges =
-            new ArrayList<LineRange>(20);
+        private final transient Collection<LineRange> ranges =
+            new ArrayList<>(20);
 
         /**
          * Get the collection specific to the current thread only.

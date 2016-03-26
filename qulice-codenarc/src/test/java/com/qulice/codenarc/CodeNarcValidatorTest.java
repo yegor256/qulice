@@ -149,7 +149,7 @@ public final class CodeNarcValidatorTest {
          * List of logged messages.
          */
         private final Collection<String> messages =
-            new ConcurrentLinkedQueue<String>();
+            new ConcurrentLinkedQueue<>();
         @Override
         public void doAppend(final LoggingEvent event) {
             this.messages.add(event.getMessage().toString());

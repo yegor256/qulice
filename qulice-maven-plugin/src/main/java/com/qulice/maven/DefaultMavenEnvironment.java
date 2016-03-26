@@ -91,14 +91,12 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     /**
      * Excludes, regular expressions.
      */
-    private final Collection<String> exc =
-        new LinkedList<String>();
+    private final Collection<String> exc = new LinkedList<>();
 
     /**
      * Xpath queries for pom.xml validation.
      */
-    private final Collection<String> asser =
-        new LinkedList<String>();
+    private final Collection<String> asser = new LinkedList<>();
 
     @Override
     public String param(final String name, final String value) {
@@ -127,7 +125,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<String> classpath() {
-        final Collection<String> paths = new LinkedList<String>();
+        final Collection<String> paths = new LinkedList<>();
         final String blank = "%20";
         final String whitespace = " ";
         try {
@@ -157,7 +155,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public ClassLoader classloader() {
-        final List<URL> urls = new LinkedList<URL>();
+        final List<URL> urls = new LinkedList<>();
         for (final String path : this.classpath()) {
             try {
                 urls.add(
@@ -209,7 +207,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<File> files(final String pattern) {
-        final Collection<File> files = new LinkedList<File>();
+        final Collection<File> files = new LinkedList<>();
         final IOFileFilter filter = new WildcardFileFilter(pattern);
         final String[] dirs = {
             "src",

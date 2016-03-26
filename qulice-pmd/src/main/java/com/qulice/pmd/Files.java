@@ -64,7 +64,7 @@ public final class Files {
      * @return Collection of data sources.
      */
     public Collection<DataSource> sources() {
-        final Collection<DataSource> sources = new LinkedList<DataSource>();
+        final Collection<DataSource> sources = new LinkedList<>();
         for (final File file : this.environment.files("*.java")) {
             sources.add(new FileDataSource(file));
         }
