@@ -51,7 +51,7 @@ import net.sourceforge.pmd.util.datasource.DataSource;
  * @version $Id$
  * @since 0.3
  */
-public final class SourceValidator {
+final class SourceValidator {
 
     /**
      * Rule context.
@@ -72,7 +72,7 @@ public final class SourceValidator {
      * Creates new instance of <code>SourceValidator</code>.
      * @param env Environment
      */
-    public SourceValidator(final Environment env) {
+    SourceValidator(final Environment env) {
         this.context = new RuleContext();
         this.listener = new PmdListener(env);
         this.config = new PMDConfiguration();
@@ -82,10 +82,11 @@ public final class SourceValidator {
      * Performs validation of the input source files.
      * @param sources Input source files.
      * @param path Base path.
+     * @return Collection of violations.
      */
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public void validate(final Collection<DataSource> sources,
-        final String path) {
+    public Collection<RuleViolation> validate(
+        final Collection<DataSource> sources, final String path) {
         this.config.setRuleSets("com/qulice/pmd/ruleset.xml");
         final Report report = new Report();
         report.addListener(this.listener);
@@ -96,13 +97,6 @@ public final class SourceValidator {
             this.context.setSourceCodeFile(new File(name));
             this.validateOne(source);
         }
-    }
-
-    /**
-     * Returns violations to take place while validation.
-     * @return Collection of violations.
-     */
-    public Collection<RuleViolation> getViolations() {
         return this.listener.getViolations();
     }
 
