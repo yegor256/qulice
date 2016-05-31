@@ -82,7 +82,7 @@ public final class MethodsOrderCheck extends Check {
     /**
      * Checks order of methods.
      *
-     * @param methods Iterable&lt;DetailAST&gt; methods
+     * @param methods @code{Iterable<DetailAST>} methods
      */
     private void checkOrder(final Iterable<DetailAST> methods) {
         MethodsOrderCheck.Modifiers prev = MethodsOrderCheck.Modifiers.PUB;

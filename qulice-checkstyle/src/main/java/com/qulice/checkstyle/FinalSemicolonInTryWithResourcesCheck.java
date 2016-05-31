@@ -34,7 +34,9 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that try-with-resources does not end with a semicolon.
+ * Checks that try-with-resources does not end with a semicolon. Implementation
+ * relies on existence of semicolon inside of RESOURCE_SPECIFICATION token
+ * as interpreted by Checkstyle.
  *
  * @author Hamdi Douss (douss.hamdi@gmail.com)
  * @version $Id$
