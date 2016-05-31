@@ -698,7 +698,7 @@ public final class CheckstyleValidatorTest {
      * CheckstyleValidator can allow diamond operator usage.
      * @throws Exception If error
      * @todo #715:30min add test for next situation
-     *  `return @code{new ArrayList<String>();}`
+     *  `@code{return new ArrayList&lt;String&gt;();}`
      */
     @Test
     public void allowsDiamondOperatorUsage() throws Exception {
