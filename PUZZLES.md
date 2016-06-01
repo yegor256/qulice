@@ -88,5 +88,5 @@ There are 18 active puzzles (87 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>61-654de8aa</del> [`Violation.java:57-60`](../master/qulice-spi/src/main/java/com/qulice/spi/Violation.java#L57-L60)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>715</del>](https://github.com/teamed/qulice/issues/715) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#752](https://github.com/teamed/qulice/issues/752):[<del>715-04710633</del>](https://github.com/teamed/qulice/issues/752) [`CheckstyleValidatorTest.java:722-723`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L722-L723)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;[**715-2a207c32**]() [`CheckstyleValidatorTest.java:700-701`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L700-L701)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[#776](https://github.com/teamed/qulice/issues/776):[**715-2a207c32**](https://github.com/teamed/qulice/issues/776) [`CheckstyleValidatorTest.java:700-701`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L700-L701)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[**250-1b26b28c**]() [`DuplicateFinderValidator.java:44-54`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java#L44-L54)<br/>
