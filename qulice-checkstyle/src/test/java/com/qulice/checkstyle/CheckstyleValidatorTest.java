@@ -106,7 +106,7 @@ public final class CheckstyleValidatorTest {
         ).withFile(String.format("src/main/java/foo/%s", name), content);
         final Collection<Violation> results =
             new CheckstyleValidator(env)
-                .validate(env.files(name).iterator().next());
+                .validate(env.files(name));
         MatcherAssert.assertThat(
             results,
             Matchers.hasItem(
@@ -526,9 +526,7 @@ public final class CheckstyleValidatorTest {
             this.toUrl(license)
         ).withFile(String.format("src/main/java/foo/%s", name), content);
         final Collection<Violation> results =
-            new CheckstyleValidator(env).validate(
-                env.files(name).iterator().next()
-            );
+            new CheckstyleValidator(env).validate(env.files(name));
         MatcherAssert.assertThat(
             results,
             Matchers.not(Matchers.<Violation>empty())
@@ -759,7 +757,7 @@ public final class CheckstyleValidatorTest {
             );
         final Collection<Violation> results =
             new CheckstyleValidator(env).validate(
-                env.files(file).iterator().next()
+                env.files(file)
             );
         if (result) {
             MatcherAssert.assertThat(

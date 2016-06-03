@@ -43,10 +43,10 @@ public interface ResourceValidator {
 
     /**
      * Validate and throws exception if there are any problems.
-     * @param file File to validate
+     * @param files Files to validate
      * @return Validation results
      */
-    Collection<Violation> validate(File file);
+    Collection<Violation> validate(Collection<File> files);
 
     /**
      * Name of this validator.

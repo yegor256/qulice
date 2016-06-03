@@ -87,27 +87,29 @@ public final class CheckMojo extends AbstractQuliceMojo {
      */
     private void run() throws ValidationException {
         final Collection<Violation> results = new LinkedList<>();
-        for (final File file : this.env().files("*.*")) {
-            for (final ResourceValidator validator
-                : this.provider.externalResource()) {
-                results.addAll(validator.validate(file));
+        final Collection<File> files = this.env().files("*.*");
+        if (!files.isEmpty()) {
+            final Collection<ResourceValidator> validators =
+                this.provider.externalResource();
+            for (final ResourceValidator validator : validators) {
+                results.addAll(validator.validate(files));
             }
-        }
-        for (final Violation result : results) {
-            Logger.info(
-                this,
-                "%s: %s[%s]: %s (%s)",
-                result.validator(),
-                StringUtils.removeStart(
-                    result.file(),
-                    String.format(
-                        "%s/", this.session().getExecutionRootDirectory()
-                    )
-                ),
-                result.lines(),
-                result.message(),
-                result.name()
-            );
+            for (final Violation result : results) {
+                Logger.info(
+                    this,
+                    "%s: %s[%s]: %s (%s)",
+                    result.validator(),
+                    StringUtils.removeStart(
+                        result.file(),
+                        String.format(
+                            "%s/", this.session().getExecutionRootDirectory()
+                            )
+                        ),
+                        result.lines(),
+                        result.message(),
+                        result.name()
+                );
+            }
         }
         if (!results.isEmpty()) {
             throw new ValidationException(

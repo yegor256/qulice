@@ -29,6 +29,7 @@
  */
 package com.qulice.checkstyle;
 
+import com.google.common.collect.Lists;
 import com.jcabi.aspects.Tv;
 import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -45,7 +46,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -95,9 +95,9 @@ public final class CheckstyleValidator implements ResourceValidator {
 
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public Collection<Violation> validate(final File file) {
+    public Collection<Violation> validate(final Collection<File> files) {
         try {
-            this.checker.process(Collections.singletonList(file));
+            this.checker.process(Lists.newArrayList(files));
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to process files", ex);
         }
