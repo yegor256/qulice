@@ -59,10 +59,10 @@
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment"> * @author Yegor Bugayenko (yegor@tpc2.com)</em>
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment"> * @version $Id$</em>
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment"> * @since 0.3</em>
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment"> * @checkstyle MultipleStringLiterals (400 lines)</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment"> * @todo #412:30min Split this class into smaller ones and remove PMD</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment"> *  exclude `TooManyMethods`. Good candidates for moving out of this class</em>
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment"> *  are all that use `validateCheckstyle` method.</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment"> * @todo #412:30min Split this class into smaller ones and remove PMD</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment"> *  exclude `TooManyMethods`. Good candidates for moving out of this class</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment"> *  are all that use `validateCheckstyle` method.</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment"> * @checkstyle MultipleStringLiterals (400 lines)</em>
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  @SuppressWarnings({ <span class="jxr_string">"PMD.TooManyMethods"</span>, <span class="jxr_string">"PMD.AvoidDuplicateLiterals"</span> })
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">CheckstyleValidatorTest</a> {
@@ -87,7 +87,7 @@
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">     * @checkstyle VisibilityModifierCheck (5 lines)</em>
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>      @Rule
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> <a href="../../../com/qulice/checkstyle/LicenseRule.html">LicenseRule</a> rule = <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/LicenseRule.html">LicenseRule</a>();
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <a href="../../../com/qulice/checkstyle/LicenseRule.html">LicenseRule</a> rule = <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/LicenseRule.html">LicenseRule</a>();
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">     * CheckstyleValidator can catch checkstyle violations.</em>
@@ -110,11 +110,11 @@
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"Foo.java"</span>;
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>         <strong class="jxr_keyword">final</strong> Environment env = mock.withParam(
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>             CheckstyleValidatorTest.LICENSE_PROP,
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>             <strong class="jxr_keyword">this</strong>.toURL(license)
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>             <strong class="jxr_keyword">this</strong>.toUrl(license)
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>         ).withFile(String.format(<span class="jxr_string">"src/main/java/foo/%s"</span>, name), content);
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results =
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>             <strong class="jxr_keyword">new</strong> CheckstyleValidator(env)
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>                 .validate(env.files(name).iterator().next());
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>                 .validate(env.files(name));
 <a class="jxr_linenumber" name="L110" href="#L110">110</a>         MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>             results,
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>             Matchers.hasItem(
@@ -209,122 +209,122 @@
 <a class="jxr_linenumber" name="L201" href="#L201">201</a>     @Test
 <a class="jxr_linenumber" name="L202" href="#L202">202</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
 <a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reportsAllCharEncodingUsages() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>         <strong class="jxr_keyword">final</strong> String violation = StringUtils.join(
-<a class="jxr_linenumber" name="L205" href="#L205">205</a>             <span class="jxr_string">"[%s]: "</span>,
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>             <span class="jxr_string">"Use java.nio.charset.StandardCharsets instead"</span>
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>         );
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"DoNotUseCharEncoding.java"</span>;
-<a class="jxr_linenumber" name="L209" href="#L209">209</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>             file, false
-<a class="jxr_linenumber" name="L211" href="#L211">211</a>         );
-<a class="jxr_linenumber" name="L212" href="#L212">212</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L213" href="#L213">213</a>             results,
-<a class="jxr_linenumber" name="L214" href="#L214">214</a>             Matchers.hasItems(
-<a class="jxr_linenumber" name="L215" href="#L215">215</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L216" href="#L216">216</a>                     String.format(violation, <span class="jxr_string">"6"</span>), file
-<a class="jxr_linenumber" name="L217" href="#L217">217</a>                 ),
-<a class="jxr_linenumber" name="L218" href="#L218">218</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>                     String.format(violation, <span class="jxr_string">"7"</span>), file
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>                 ),
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>                     String.format(violation, <span class="jxr_string">"8"</span>), file
-<a class="jxr_linenumber" name="L223" href="#L223">223</a>                 ),
-<a class="jxr_linenumber" name="L224" href="#L224">224</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L225" href="#L225">225</a>                     String.format(violation, <span class="jxr_string">"22"</span>), file
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>                 ),
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L228" href="#L228">228</a>                     String.format(violation, <span class="jxr_string">"23"</span>), file
-<a class="jxr_linenumber" name="L229" href="#L229">229</a>                 ),
-<a class="jxr_linenumber" name="L230" href="#L230">230</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L231" href="#L231">231</a>                     String.format(violation, <span class="jxr_string">"24"</span>), file
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>                 )
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>             )
-<a class="jxr_linenumber" name="L234" href="#L234">234</a>         );
-<a class="jxr_linenumber" name="L235" href="#L235">235</a>     }
-<a class="jxr_linenumber" name="L236" href="#L236">236</a> 
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L238" href="#L238">238</a> <em class="jxr_javadoccomment">     * CheckstyleValidator accepts the valid indentation</em>
-<a class="jxr_linenumber" name="L239" href="#L239">239</a> <em class="jxr_javadoccomment">     * refused by forceStrictCondition.</em>
-<a class="jxr_linenumber" name="L240" href="#L240">240</a> <em class="jxr_javadoccomment">     * @throws Exception when error.</em>
-<a class="jxr_linenumber" name="L241" href="#L241">241</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>     @Test
-<a class="jxr_linenumber" name="L243" href="#L243">243</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsValidIndentation() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L244" href="#L244">244</a>         <strong class="jxr_keyword">this</strong>.runValidation(
-<a class="jxr_linenumber" name="L245" href="#L245">245</a>             <span class="jxr_string">"ValidIndentation.java"</span>, <strong class="jxr_keyword">true</strong>
-<a class="jxr_linenumber" name="L246" href="#L246">246</a>         );
-<a class="jxr_linenumber" name="L247" href="#L247">247</a>     }
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> 
-<a class="jxr_linenumber" name="L249" href="#L249">249</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">     * CheckstyleValidator reports an error when any method contains more</em>
-<a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">     * than one return statement.</em>
-<a class="jxr_linenumber" name="L252" href="#L252">252</a> <em class="jxr_javadoccomment">     * @throws Exception when error.</em>
-<a class="jxr_linenumber" name="L253" href="#L253">253</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>     @Test
-<a class="jxr_linenumber" name="L255" href="#L255">255</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reportsErrorOnMoreThanOneReturnStatement() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L256" href="#L256">256</a>         <strong class="jxr_keyword">this</strong>.validate(
-<a class="jxr_linenumber" name="L257" href="#L257">257</a>             <span class="jxr_string">"ReturnCount.java"</span>, false,
-<a class="jxr_linenumber" name="L258" href="#L258">258</a>             <span class="jxr_string">"Return count is 2 (max allowed is 1)"</span>
-<a class="jxr_linenumber" name="L259" href="#L259">259</a>         );
-<a class="jxr_linenumber" name="L260" href="#L260">260</a>     }
-<a class="jxr_linenumber" name="L261" href="#L261">261</a> 
-<a class="jxr_linenumber" name="L262" href="#L262">262</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L263" href="#L263">263</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can accept default methods with final modifiers.</em>
-<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L265" href="#L265">265</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L266" href="#L266">266</a>     @Test
-<a class="jxr_linenumber" name="L267" href="#L267">267</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsDefaultMethodsWithFinalModifiers() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L268" href="#L268">268</a>         <strong class="jxr_keyword">this</strong>.runValidation(
-<a class="jxr_linenumber" name="L269" href="#L269">269</a>             <span class="jxr_string">"DefaultMethods.java"</span>, <strong class="jxr_keyword">true</strong>
-<a class="jxr_linenumber" name="L270" href="#L270">270</a>         );
-<a class="jxr_linenumber" name="L271" href="#L271">271</a>     }
-<a class="jxr_linenumber" name="L272" href="#L272">272</a> 
-<a class="jxr_linenumber" name="L273" href="#L273">273</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L274" href="#L274">274</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can accept author which has only a single name.</em>
-<a class="jxr_linenumber" name="L275" href="#L275">275</a> <em class="jxr_javadoccomment">     * This is to support case where authro wants to use a nick instead of</em>
-<a class="jxr_linenumber" name="L276" href="#L276">276</a> <em class="jxr_javadoccomment">     * first and last name.</em>
-<a class="jxr_linenumber" name="L277" href="#L277">277</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L278" href="#L278">278</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L279" href="#L279">279</a>     @Test
-<a class="jxr_linenumber" name="L280" href="#L280">280</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsSingleNameAuthor() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L281" href="#L281">281</a>         <strong class="jxr_keyword">this</strong>.runValidation(
-<a class="jxr_linenumber" name="L282" href="#L282">282</a>             <span class="jxr_string">"AuthorTag.java"</span>, <strong class="jxr_keyword">true</strong>
-<a class="jxr_linenumber" name="L283" href="#L283">283</a>         );
-<a class="jxr_linenumber" name="L284" href="#L284">284</a>     }
-<a class="jxr_linenumber" name="L285" href="#L285">285</a> 
-<a class="jxr_linenumber" name="L286" href="#L286">286</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L287" href="#L287">287</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can accept constant used in method annotation.</em>
-<a class="jxr_linenumber" name="L288" href="#L288">288</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L289" href="#L289">289</a> <em class="jxr_javadoccomment">     * @todo #447:30min Right now ConstantUsageCheck takes into account</em>
-<a class="jxr_linenumber" name="L290" href="#L290">290</a> <em class="jxr_javadoccomment">     *  usage of constants inside method annotations, add handling of constants</em>
-<a class="jxr_linenumber" name="L291" href="#L291">291</a> <em class="jxr_javadoccomment">     *  used in field and class annotations.</em>
-<a class="jxr_linenumber" name="L292" href="#L292">292</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L293" href="#L293">293</a>     @Test
-<a class="jxr_linenumber" name="L294" href="#L294">294</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsConstantUsedInMethodAnnotation() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L295" href="#L295">295</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"AnnotationConstant.java"</span>, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L296" href="#L296">296</a>     }
-<a class="jxr_linenumber" name="L297" href="#L297">297</a> 
-<a class="jxr_linenumber" name="L298" href="#L298">298</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L299" href="#L299">299</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow constructor parameters named just like</em>
-<a class="jxr_linenumber" name="L300" href="#L300">300</a> <em class="jxr_javadoccomment">     * fields.</em>
-<a class="jxr_linenumber" name="L301" href="#L301">301</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L302" href="#L302">302</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L303" href="#L303">303</a>     @Test
-<a class="jxr_linenumber" name="L304" href="#L304">304</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsConstructorParametersNamedJustLikeFields()
-<a class="jxr_linenumber" name="L305" href="#L305">305</a>         <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L306" href="#L306">306</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results =
-<a class="jxr_linenumber" name="L307" href="#L307">307</a>             <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ConstructorParams.java"</span>, false);
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>         <strong class="jxr_keyword">final</strong> String message =
+<a class="jxr_linenumber" name="L205" href="#L205">205</a>             <span class="jxr_string">"Use java.nio.charset.StandardCharsets instead"</span>;
+<a class="jxr_linenumber" name="L206" href="#L206">206</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"DoNotUseCharEncoding.java"</span>;
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>             file, false
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>         );
+<a class="jxr_linenumber" name="L210" href="#L210">210</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"RegexpSinglelineCheck"</span>;
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>             results,
+<a class="jxr_linenumber" name="L213" href="#L213">213</a>             Matchers.hasItems(
+<a class="jxr_linenumber" name="L214" href="#L214">214</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L215" href="#L215">215</a>                     message, file, <span class="jxr_string">"6"</span>, name
+<a class="jxr_linenumber" name="L216" href="#L216">216</a>                 ),
+<a class="jxr_linenumber" name="L217" href="#L217">217</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L218" href="#L218">218</a>                     message, file, <span class="jxr_string">"7"</span>, name
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>                 ),
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>                     message, file, <span class="jxr_string">"8"</span>, name
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>                 ),
+<a class="jxr_linenumber" name="L223" href="#L223">223</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L224" href="#L224">224</a>                     message, file, <span class="jxr_string">"22"</span>, name
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>                 ),
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L227" href="#L227">227</a>                     message, file, <span class="jxr_string">"23"</span>, name
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>                 ),
+<a class="jxr_linenumber" name="L229" href="#L229">229</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>                     message, file, <span class="jxr_string">"24"</span>, name
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>                 )
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>             )
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>         );
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>     }
+<a class="jxr_linenumber" name="L235" href="#L235">235</a> 
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L237" href="#L237">237</a> <em class="jxr_javadoccomment">     * CheckstyleValidator accepts the valid indentation</em>
+<a class="jxr_linenumber" name="L238" href="#L238">238</a> <em class="jxr_javadoccomment">     * refused by forceStrictCondition.</em>
+<a class="jxr_linenumber" name="L239" href="#L239">239</a> <em class="jxr_javadoccomment">     * @throws Exception when error.</em>
+<a class="jxr_linenumber" name="L240" href="#L240">240</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>     @Test
+<a class="jxr_linenumber" name="L242" href="#L242">242</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsValidIndentation() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L243" href="#L243">243</a>         <strong class="jxr_keyword">this</strong>.runValidation(
+<a class="jxr_linenumber" name="L244" href="#L244">244</a>             <span class="jxr_string">"ValidIndentation.java"</span>, <strong class="jxr_keyword">true</strong>
+<a class="jxr_linenumber" name="L245" href="#L245">245</a>         );
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>     }
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> 
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">     * CheckstyleValidator reports an error when any method contains more</em>
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">     * than one return statement.</em>
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">     * @throws Exception when error.</em>
+<a class="jxr_linenumber" name="L252" href="#L252">252</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>     @Test
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reportsErrorOnMoreThanOneReturnStatement() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L255" href="#L255">255</a>         <strong class="jxr_keyword">this</strong>.validate(
+<a class="jxr_linenumber" name="L256" href="#L256">256</a>             <span class="jxr_string">"ReturnCount.java"</span>, false,
+<a class="jxr_linenumber" name="L257" href="#L257">257</a>             <span class="jxr_string">"Return count is 2 (max allowed is 1)"</span>
+<a class="jxr_linenumber" name="L258" href="#L258">258</a>         );
+<a class="jxr_linenumber" name="L259" href="#L259">259</a>     }
+<a class="jxr_linenumber" name="L260" href="#L260">260</a> 
+<a class="jxr_linenumber" name="L261" href="#L261">261</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L262" href="#L262">262</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can accept default methods with final modifiers.</em>
+<a class="jxr_linenumber" name="L263" href="#L263">263</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L265" href="#L265">265</a>     @Test
+<a class="jxr_linenumber" name="L266" href="#L266">266</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsDefaultMethodsWithFinalModifiers() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L267" href="#L267">267</a>         <strong class="jxr_keyword">this</strong>.runValidation(
+<a class="jxr_linenumber" name="L268" href="#L268">268</a>             <span class="jxr_string">"DefaultMethods.java"</span>, <strong class="jxr_keyword">true</strong>
+<a class="jxr_linenumber" name="L269" href="#L269">269</a>         );
+<a class="jxr_linenumber" name="L270" href="#L270">270</a>     }
+<a class="jxr_linenumber" name="L271" href="#L271">271</a> 
+<a class="jxr_linenumber" name="L272" href="#L272">272</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L273" href="#L273">273</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can accept author which has only a single name.</em>
+<a class="jxr_linenumber" name="L274" href="#L274">274</a> <em class="jxr_javadoccomment">     * This is to support case where authro wants to use a nick instead of</em>
+<a class="jxr_linenumber" name="L275" href="#L275">275</a> <em class="jxr_javadoccomment">     * first and last name.</em>
+<a class="jxr_linenumber" name="L276" href="#L276">276</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L277" href="#L277">277</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L278" href="#L278">278</a>     @Test
+<a class="jxr_linenumber" name="L279" href="#L279">279</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsSingleNameAuthor() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L280" href="#L280">280</a>         <strong class="jxr_keyword">this</strong>.runValidation(
+<a class="jxr_linenumber" name="L281" href="#L281">281</a>             <span class="jxr_string">"AuthorTag.java"</span>, <strong class="jxr_keyword">true</strong>
+<a class="jxr_linenumber" name="L282" href="#L282">282</a>         );
+<a class="jxr_linenumber" name="L283" href="#L283">283</a>     }
+<a class="jxr_linenumber" name="L284" href="#L284">284</a> 
+<a class="jxr_linenumber" name="L285" href="#L285">285</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L286" href="#L286">286</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can accept constant used in method annotation.</em>
+<a class="jxr_linenumber" name="L287" href="#L287">287</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L288" href="#L288">288</a> <em class="jxr_javadoccomment">     * @todo #447:30min Right now ConstantUsageCheck takes into account</em>
+<a class="jxr_linenumber" name="L289" href="#L289">289</a> <em class="jxr_javadoccomment">     *  usage of constants inside method annotations, add handling of constants</em>
+<a class="jxr_linenumber" name="L290" href="#L290">290</a> <em class="jxr_javadoccomment">     *  used in field and class annotations.</em>
+<a class="jxr_linenumber" name="L291" href="#L291">291</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L292" href="#L292">292</a>     @Test
+<a class="jxr_linenumber" name="L293" href="#L293">293</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsConstantUsedInMethodAnnotation() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L294" href="#L294">294</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"AnnotationConstant.java"</span>, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L295" href="#L295">295</a>     }
+<a class="jxr_linenumber" name="L296" href="#L296">296</a> 
+<a class="jxr_linenumber" name="L297" href="#L297">297</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L298" href="#L298">298</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow constructor parameters named just like</em>
+<a class="jxr_linenumber" name="L299" href="#L299">299</a> <em class="jxr_javadoccomment">     * fields.</em>
+<a class="jxr_linenumber" name="L300" href="#L300">300</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L301" href="#L301">301</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L302" href="#L302">302</a>     @Test
+<a class="jxr_linenumber" name="L303" href="#L303">303</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsConstructorParametersNamedJustLikeFields()
+<a class="jxr_linenumber" name="L304" href="#L304">304</a>         <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L305" href="#L305">305</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"ConstructorParams.java"</span>;
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(file, false);
+<a class="jxr_linenumber" name="L307" href="#L307">307</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"HiddenFieldCheck"</span>;
 <a class="jxr_linenumber" name="L308" href="#L308">308</a>         MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L309" href="#L309">309</a>             results,
 <a class="jxr_linenumber" name="L310" href="#L310">310</a>             Matchers.allOf(
 <a class="jxr_linenumber" name="L311" href="#L311">311</a>                 Matchers.hasItem(
 <a class="jxr_linenumber" name="L312" href="#L312">312</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L313" href="#L313">313</a>                         <span class="jxr_string">"[31]: 'number' hides a field."</span>, <span class="jxr_string">""</span>
+<a class="jxr_linenumber" name="L313" href="#L313">313</a>                         <span class="jxr_string">"'number' hides a field."</span>, file, <span class="jxr_string">"31"</span>, name
 <a class="jxr_linenumber" name="L314" href="#L314">314</a>                     )
 <a class="jxr_linenumber" name="L315" href="#L315">315</a>                 ),
 <a class="jxr_linenumber" name="L316" href="#L316">316</a>                 Matchers.not(
 <a class="jxr_linenumber" name="L317" href="#L317">317</a>                     Matchers.hasItem(
 <a class="jxr_linenumber" name="L318" href="#L318">318</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L319" href="#L319">319</a>                             <span class="jxr_string">"[22]: 'number' hides a field."</span>, <span class="jxr_string">""</span>
+<a class="jxr_linenumber" name="L319" href="#L319">319</a>                             <span class="jxr_string">"'number' hides a field."</span>, file, <span class="jxr_string">"22"</span>, name
 <a class="jxr_linenumber" name="L320" href="#L320">320</a>                         )
 <a class="jxr_linenumber" name="L321" href="#L321">321</a>                     )
 <a class="jxr_linenumber" name="L322" href="#L322">322</a>                 )
@@ -341,482 +341,534 @@
 <a class="jxr_linenumber" name="L333" href="#L333">333</a>     @Test
 <a class="jxr_linenumber" name="L334" href="#L334">334</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
 <a class="jxr_linenumber" name="L335" href="#L335">335</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsOnlyProperlyNamedLocalVariables() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L336" href="#L336">336</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(
-<a class="jxr_linenumber" name="L337" href="#L337">337</a>             <span class="jxr_string">"LocalVariableNames.java"</span>, false
-<a class="jxr_linenumber" name="L338" href="#L338">338</a>         );
-<a class="jxr_linenumber" name="L339" href="#L339">339</a>         MatcherAssert.assertThat(results, Matchers.hasSize(Tv.TEN));
-<a class="jxr_linenumber" name="L340" href="#L340">340</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L341" href="#L341">341</a>             results,
-<a class="jxr_linenumber" name="L342" href="#L342">342</a>             Matchers.allOf(
-<a class="jxr_linenumber" name="L343" href="#L343">343</a>                 Matchers.not(
-<a class="jxr_linenumber" name="L344" href="#L344">344</a>                     Matchers.hasItems(
-<a class="jxr_linenumber" name="L345" href="#L345">345</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L346" href="#L346">346</a>                             <span class="jxr_string">"aaa"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L347" href="#L347">347</a>                         ),
-<a class="jxr_linenumber" name="L348" href="#L348">348</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L349" href="#L349">349</a>                             <span class="jxr_string">"twelveletter"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L350" href="#L350">350</a>                         ),
-<a class="jxr_linenumber" name="L351" href="#L351">351</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L352" href="#L352">352</a>                             <span class="jxr_string">"ise"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L353" href="#L353">353</a>                         ),
-<a class="jxr_linenumber" name="L354" href="#L354">354</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L355" href="#L355">355</a>                             <span class="jxr_string">"id"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L356" href="#L356">356</a>                         ),
-<a class="jxr_linenumber" name="L357" href="#L357">357</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L358" href="#L358">358</a>                             <span class="jxr_string">"parametername"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L359" href="#L359">359</a>                         )
-<a class="jxr_linenumber" name="L360" href="#L360">360</a>                     )
-<a class="jxr_linenumber" name="L361" href="#L361">361</a>                 ),
-<a class="jxr_linenumber" name="L362" href="#L362">362</a>                 Matchers.hasItems(
+<a class="jxr_linenumber" name="L336" href="#L336">336</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"LocalVariableNames.java"</span>;
+<a class="jxr_linenumber" name="L337" href="#L337">337</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(
+<a class="jxr_linenumber" name="L338" href="#L338">338</a>             file, false
+<a class="jxr_linenumber" name="L339" href="#L339">339</a>         );
+<a class="jxr_linenumber" name="L340" href="#L340">340</a>         MatcherAssert.assertThat(results, Matchers.hasSize(Tv.TEN));
+<a class="jxr_linenumber" name="L341" href="#L341">341</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L342" href="#L342">342</a>             results,
+<a class="jxr_linenumber" name="L343" href="#L343">343</a>             Matchers.allOf(
+<a class="jxr_linenumber" name="L344" href="#L344">344</a>                 Matchers.not(
+<a class="jxr_linenumber" name="L345" href="#L345">345</a>                     Matchers.hasItems(
+<a class="jxr_linenumber" name="L346" href="#L346">346</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(<span class="jxr_string">"aaa"</span>, file),
+<a class="jxr_linenumber" name="L347" href="#L347">347</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(<span class="jxr_string">"twelveletter"</span>, file),
+<a class="jxr_linenumber" name="L348" href="#L348">348</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(<span class="jxr_string">"ise"</span>, file),
+<a class="jxr_linenumber" name="L349" href="#L349">349</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(<span class="jxr_string">"id"</span>, file),
+<a class="jxr_linenumber" name="L350" href="#L350">350</a>                         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(<span class="jxr_string">"parametername"</span>, file)
+<a class="jxr_linenumber" name="L351" href="#L351">351</a>                     )
+<a class="jxr_linenumber" name="L352" href="#L352">352</a>                 ),
+<a class="jxr_linenumber" name="L353" href="#L353">353</a>                 Matchers.hasItems(
+<a class="jxr_linenumber" name="L354" href="#L354">354</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L355" href="#L355">355</a>                         <span class="jxr_string">"Name 'prolongations' must match pattern"</span>, file
+<a class="jxr_linenumber" name="L356" href="#L356">356</a>                     ),
+<a class="jxr_linenumber" name="L357" href="#L357">357</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L358" href="#L358">358</a>                         <span class="jxr_string">"Name 'very_long_variable_id' must match pattern"</span>, file
+<a class="jxr_linenumber" name="L359" href="#L359">359</a>                     ),
+<a class="jxr_linenumber" name="L360" href="#L360">360</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L361" href="#L361">361</a>                         <span class="jxr_string">"Name 'camelCase' must match pattern"</span>, file
+<a class="jxr_linenumber" name="L362" href="#L362">362</a>                     ),
 <a class="jxr_linenumber" name="L363" href="#L363">363</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L364" href="#L364">364</a>                         <span class="jxr_string">"Name 'prolongations' must match pattern"</span>, <span class="jxr_string">""</span>
+<a class="jxr_linenumber" name="L364" href="#L364">364</a>                         <span class="jxr_string">"Name 'it' must match pattern"</span>, file
 <a class="jxr_linenumber" name="L365" href="#L365">365</a>                     ),
 <a class="jxr_linenumber" name="L366" href="#L366">366</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L367" href="#L367">367</a>                         <span class="jxr_string">"Name 'very_long_variable_id' must match pattern"</span>, <span class="jxr_string">""</span>
+<a class="jxr_linenumber" name="L367" href="#L367">367</a>                         <span class="jxr_string">"Name 'number1' must match pattern"</span>, file
 <a class="jxr_linenumber" name="L368" href="#L368">368</a>                     ),
 <a class="jxr_linenumber" name="L369" href="#L369">369</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L370" href="#L370">370</a>                         <span class="jxr_string">"Name 'camelCase' must match pattern"</span>, <span class="jxr_string">""</span>
+<a class="jxr_linenumber" name="L370" href="#L370">370</a>                         <span class="jxr_string">"Name 'ex' must match pattern"</span>, file
 <a class="jxr_linenumber" name="L371" href="#L371">371</a>                     ),
 <a class="jxr_linenumber" name="L372" href="#L372">372</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L373" href="#L373">373</a>                         <span class="jxr_string">"Name 'it' must match pattern"</span>, <span class="jxr_string">""</span>
+<a class="jxr_linenumber" name="L373" href="#L373">373</a>                         <span class="jxr_string">"Name 'a' must match pattern"</span>, file
 <a class="jxr_linenumber" name="L374" href="#L374">374</a>                     ),
 <a class="jxr_linenumber" name="L375" href="#L375">375</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L376" href="#L376">376</a>                         <span class="jxr_string">"Name 'number1' must match pattern"</span>, <span class="jxr_string">""</span>
+<a class="jxr_linenumber" name="L376" href="#L376">376</a>                         <span class="jxr_string">"Name 'ae' must match pattern"</span>, file
 <a class="jxr_linenumber" name="L377" href="#L377">377</a>                     ),
 <a class="jxr_linenumber" name="L378" href="#L378">378</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L379" href="#L379">379</a>                         <span class="jxr_string">"Name 'ex' must match pattern"</span>, <span class="jxr_string">""</span>
+<a class="jxr_linenumber" name="L379" href="#L379">379</a>                         <span class="jxr_string">"Name 'e' must match pattern"</span>, file
 <a class="jxr_linenumber" name="L380" href="#L380">380</a>                     ),
 <a class="jxr_linenumber" name="L381" href="#L381">381</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L382" href="#L382">382</a>                         <span class="jxr_string">"Name 'a' must match pattern"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L383" href="#L383">383</a>                     ),
-<a class="jxr_linenumber" name="L384" href="#L384">384</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L385" href="#L385">385</a>                         <span class="jxr_string">"Name 'ae' must match pattern"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L386" href="#L386">386</a>                     ),
-<a class="jxr_linenumber" name="L387" href="#L387">387</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L388" href="#L388">388</a>                         <span class="jxr_string">"Name 'e' must match pattern"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L389" href="#L389">389</a>                     ),
-<a class="jxr_linenumber" name="L390" href="#L390">390</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L391" href="#L391">391</a>                         <span class="jxr_string">"Name 'it' must match pattern"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L392" href="#L392">392</a>                     )
-<a class="jxr_linenumber" name="L393" href="#L393">393</a>                 )
-<a class="jxr_linenumber" name="L394" href="#L394">394</a>             )
-<a class="jxr_linenumber" name="L395" href="#L395">395</a>         );
-<a class="jxr_linenumber" name="L396" href="#L396">396</a>     }
-<a class="jxr_linenumber" name="L397" href="#L397">397</a> 
-<a class="jxr_linenumber" name="L398" href="#L398">398</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L399" href="#L399">399</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow only properly ordered Javadoc at-clauses.</em>
-<a class="jxr_linenumber" name="L400" href="#L400">400</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L401" href="#L401">401</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L402" href="#L402">402</a>     @Test
-<a class="jxr_linenumber" name="L403" href="#L403">403</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L404" href="#L404">404</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsOnlyProperlyOrderedAtClauses() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L405" href="#L405">405</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(
-<a class="jxr_linenumber" name="L406" href="#L406">406</a>             <span class="jxr_string">"AtClauseOrder.java"</span>, false
-<a class="jxr_linenumber" name="L407" href="#L407">407</a>         );
-<a class="jxr_linenumber" name="L408" href="#L408">408</a>         MatcherAssert.assertThat(results, Matchers.hasSize(Tv.FOUR));
-<a class="jxr_linenumber" name="L409" href="#L409">409</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L410" href="#L410">410</a>             results,
-<a class="jxr_linenumber" name="L411" href="#L411">411</a>             Matchers.hasItems(
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>                         <span class="jxr_string">"Name 'it' must match pattern"</span>, file
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>                     )
+<a class="jxr_linenumber" name="L384" href="#L384">384</a>                 )
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>             )
+<a class="jxr_linenumber" name="L386" href="#L386">386</a>         );
+<a class="jxr_linenumber" name="L387" href="#L387">387</a>     }
+<a class="jxr_linenumber" name="L388" href="#L388">388</a> 
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L390" href="#L390">390</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow only properly ordered Javadoc at-clauses.</em>
+<a class="jxr_linenumber" name="L391" href="#L391">391</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L392" href="#L392">392</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>     @Test
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsOnlyProperlyOrderedAtClauses() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L396" href="#L396">396</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"AtClauseOrder.java"</span>;
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(
+<a class="jxr_linenumber" name="L398" href="#L398">398</a>             file, false
+<a class="jxr_linenumber" name="L399" href="#L399">399</a>         );
+<a class="jxr_linenumber" name="L400" href="#L400">400</a>         MatcherAssert.assertThat(results, Matchers.hasSize(Tv.FOUR));
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>         <strong class="jxr_keyword">final</strong> String message = <span class="jxr_string">"At-clauses have to appear in the order"</span>;
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"AtclauseOrderCheck"</span>;
+<a class="jxr_linenumber" name="L403" href="#L403">403</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>             results,
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>             Matchers.hasItems(
+<a class="jxr_linenumber" name="L406" href="#L406">406</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L407" href="#L407">407</a>                     message, file, <span class="jxr_string">"23"</span>, name
+<a class="jxr_linenumber" name="L408" href="#L408">408</a>                 ),
+<a class="jxr_linenumber" name="L409" href="#L409">409</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L410" href="#L410">410</a>                     message, file, <span class="jxr_string">"50"</span>, name
+<a class="jxr_linenumber" name="L411" href="#L411">411</a>                 ),
 <a class="jxr_linenumber" name="L412" href="#L412">412</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L413" href="#L413">413</a>                     <span class="jxr_string">"[23]: At-clauses have to appear in the order "</span>, <span class="jxr_string">""</span>
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>                     message, file, <span class="jxr_string">"60"</span>, name
 <a class="jxr_linenumber" name="L414" href="#L414">414</a>                 ),
 <a class="jxr_linenumber" name="L415" href="#L415">415</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L416" href="#L416">416</a>                     <span class="jxr_string">"[50]: At-clauses have to appear in the order "</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L417" href="#L417">417</a>                 ),
-<a class="jxr_linenumber" name="L418" href="#L418">418</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L419" href="#L419">419</a>                     <span class="jxr_string">"[60]: At-clauses have to appear in the order "</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L420" href="#L420">420</a>                 ),
-<a class="jxr_linenumber" name="L421" href="#L421">421</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L422" href="#L422">422</a>                     <span class="jxr_string">"[61]: At-clauses have to appear in the order "</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L423" href="#L423">423</a>                 )
-<a class="jxr_linenumber" name="L424" href="#L424">424</a>             )
-<a class="jxr_linenumber" name="L425" href="#L425">425</a>         );
-<a class="jxr_linenumber" name="L426" href="#L426">426</a>     }
-<a class="jxr_linenumber" name="L427" href="#L427">427</a> 
-<a class="jxr_linenumber" name="L428" href="#L428">428</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L429" href="#L429">429</a> <em class="jxr_javadoccomment">     * CheckstyleValidator will fail if  Windows EOL-s are used.</em>
-<a class="jxr_linenumber" name="L430" href="#L430">430</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
-<a class="jxr_linenumber" name="L431" href="#L431">431</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L432" href="#L432">432</a>     @Test
-<a class="jxr_linenumber" name="L433" href="#L433">433</a>     @Ignore
-<a class="jxr_linenumber" name="L434" href="#L434">434</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> passesWindowsEndsOfLineWithoutException() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L435" href="#L435">435</a>         <strong class="jxr_keyword">this</strong>.validate(<span class="jxr_string">"WindowsEol.java"</span>, false, <span class="jxr_string">"LICENSE found:"</span>);
-<a class="jxr_linenumber" name="L436" href="#L436">436</a>     }
-<a class="jxr_linenumber" name="L437" href="#L437">437</a> 
-<a class="jxr_linenumber" name="L438" href="#L438">438</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L439" href="#L439">439</a> <em class="jxr_javadoccomment">     * Fail validation with Windows-style formatting of the license and</em>
-<a class="jxr_linenumber" name="L440" href="#L440">440</a> <em class="jxr_javadoccomment">     * Linux-style formatting of the sources.</em>
-<a class="jxr_linenumber" name="L441" href="#L441">441</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
-<a class="jxr_linenumber" name="L442" href="#L442">442</a> <em class="jxr_javadoccomment">     * @todo #61:30min This test and passesWindowsEndsOfLineWithoutException</em>
-<a class="jxr_linenumber" name="L443" href="#L443">443</a> <em class="jxr_javadoccomment">     *  should be refactored to gather log4j logs and validate that they work</em>
-<a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">     *  correctly. (see changes done in #61)</em>
-<a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L446" href="#L446">446</a>     @Test
-<a class="jxr_linenumber" name="L447" href="#L447">447</a>     @Ignore
-<a class="jxr_linenumber" name="L448" href="#L448">448</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testWindowsEndsOfLineWithLinuxSources() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L449" href="#L449">449</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"WindowsEolLinux.java"</span>, false);
-<a class="jxr_linenumber" name="L450" href="#L450">450</a>     }
-<a class="jxr_linenumber" name="L451" href="#L451">451</a> 
-<a class="jxr_linenumber" name="L452" href="#L452">452</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow proper indentation in complex annotations.</em>
-<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
-<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">     * @todo #411:30min Sample code provided in #411 should be considered as</em>
-<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">     *  invalid. Find a way how to do that by either custom check, or updating</em>
-<a class="jxr_linenumber" name="L457" href="#L457">457</a> <em class="jxr_javadoccomment">     *  Checkstyle whenever IndentationCheck there will be more reliable. As for</em>
-<a class="jxr_linenumber" name="L458" href="#L458">458</a> <em class="jxr_javadoccomment">     *  Checkstyle 6.15 there's no ready solution for that. Right now Qulice</em>
-<a class="jxr_linenumber" name="L459" href="#L459">459</a> <em class="jxr_javadoccomment">     *  allows both correct and incorrect code from #411.</em>
-<a class="jxr_linenumber" name="L460" href="#L460">460</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L461" href="#L461">461</a>     @Test
-<a class="jxr_linenumber" name="L462" href="#L462">462</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsProperIndentationInAnnotations() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L463" href="#L463">463</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"AnnotationIndentation.java"</span>, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L464" href="#L464">464</a>     }
-<a class="jxr_linenumber" name="L465" href="#L465">465</a> 
-<a class="jxr_linenumber" name="L466" href="#L466">466</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     * Fail validation with extra semicolon in the end</em>
-<a class="jxr_linenumber" name="L468" href="#L468">468</a> <em class="jxr_javadoccomment">     * of try-with-resources head.</em>
-<a class="jxr_linenumber" name="L469" href="#L469">469</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
-<a class="jxr_linenumber" name="L470" href="#L470">470</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L471" href="#L471">471</a>     @Test
-<a class="jxr_linenumber" name="L472" href="#L472">472</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testExtraSemicolonInTryWithResources() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L473" href="#L473">473</a>         <strong class="jxr_keyword">this</strong>.validate(
-<a class="jxr_linenumber" name="L474" href="#L474">474</a>             <span class="jxr_string">"ExtraSemicolon.java"</span>, false,
-<a class="jxr_linenumber" name="L475" href="#L475">475</a>             <span class="jxr_string">"Extra semicolon in the end of try-with-resources head."</span>
-<a class="jxr_linenumber" name="L476" href="#L476">476</a>         );
-<a class="jxr_linenumber" name="L477" href="#L477">477</a>     }
-<a class="jxr_linenumber" name="L478" href="#L478">478</a> 
-<a class="jxr_linenumber" name="L479" href="#L479">479</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L480" href="#L480">480</a> <em class="jxr_javadoccomment">     * Accepts try-with-resources without extra semicolon</em>
-<a class="jxr_linenumber" name="L481" href="#L481">481</a> <em class="jxr_javadoccomment">     * at the end of the head.</em>
-<a class="jxr_linenumber" name="L482" href="#L482">482</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
-<a class="jxr_linenumber" name="L483" href="#L483">483</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L484" href="#L484">484</a>     @Test
-<a class="jxr_linenumber" name="L485" href="#L485">485</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsTryWithResourcesWithoutSemicolon() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L486" href="#L486">486</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidSemicolon.java"</span>, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L487" href="#L487">487</a>     }
-<a class="jxr_linenumber" name="L488" href="#L488">488</a> 
-<a class="jxr_linenumber" name="L489" href="#L489">489</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L490" href="#L490">490</a> <em class="jxr_javadoccomment">     * CheckstyleValidator cannot demand methods to be static in files with</em>
-<a class="jxr_linenumber" name="L491" href="#L491">491</a> <em class="jxr_javadoccomment">     * names ending with {@code ITCase}.</em>
-<a class="jxr_linenumber" name="L492" href="#L492">492</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
-<a class="jxr_linenumber" name="L493" href="#L493">493</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L494" href="#L494">494</a>     @Test
-<a class="jxr_linenumber" name="L495" href="#L495">495</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsNonStaticMethodsInIt() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L496" href="#L496">496</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidIT.java"</span>, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L497" href="#L497">497</a>     }
-<a class="jxr_linenumber" name="L498" href="#L498">498</a> 
-<a class="jxr_linenumber" name="L499" href="#L499">499</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L500" href="#L500">500</a> <em class="jxr_javadoccomment">     * CheckstyleValidator cannot demand methods to be static in files with</em>
-<a class="jxr_linenumber" name="L501" href="#L501">501</a> <em class="jxr_javadoccomment">     * names ending with {@code IT}.</em>
-<a class="jxr_linenumber" name="L502" href="#L502">502</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
-<a class="jxr_linenumber" name="L503" href="#L503">503</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L504" href="#L504">504</a>     @Test
-<a class="jxr_linenumber" name="L505" href="#L505">505</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsNonStaticMethodsInItCases() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L506" href="#L506">506</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidITCase.java"</span>, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L507" href="#L507">507</a>     }
-<a class="jxr_linenumber" name="L508" href="#L508">508</a> 
-<a class="jxr_linenumber" name="L509" href="#L509">509</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L510" href="#L510">510</a> <em class="jxr_javadoccomment">     * CheckstyleValidator does not produce errors when last thing</em>
-<a class="jxr_linenumber" name="L511" href="#L511">511</a> <em class="jxr_javadoccomment">     * in file are imports. The only exception that should be thrown is</em>
-<a class="jxr_linenumber" name="L512" href="#L512">512</a> <em class="jxr_javadoccomment">     * qulice ValidationException.</em>
-<a class="jxr_linenumber" name="L513" href="#L513">513</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L514" href="#L514">514</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L515" href="#L515">515</a>     @Test
-<a class="jxr_linenumber" name="L516" href="#L516">516</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doesNotThrowExceptionIfImportsOnly() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L517" href="#L517">517</a>         <strong class="jxr_keyword">final</strong> Environment.Mock mock = <strong class="jxr_keyword">new</strong> Environment.Mock();
-<a class="jxr_linenumber" name="L518" href="#L518">518</a>         <strong class="jxr_keyword">final</strong> File license = <strong class="jxr_keyword">this</strong>.rule.savePackageInfo(
-<a class="jxr_linenumber" name="L519" href="#L519">519</a>             <strong class="jxr_keyword">new</strong> File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-<a class="jxr_linenumber" name="L520" href="#L520">520</a>         ).withLines(<span class="jxr_string">"License-1."</span>, <span class="jxr_string">""</span>, <span class="jxr_string">"License-2."</span>)
-<a class="jxr_linenumber" name="L521" href="#L521">521</a>             .withEol(<span class="jxr_string">"\n"</span>)
-<a class="jxr_linenumber" name="L522" href="#L522">522</a>             .file();
-<a class="jxr_linenumber" name="L523" href="#L523">523</a>         <strong class="jxr_keyword">final</strong> String crlf = <span class="jxr_string">"\r\n"</span>;
-<a class="jxr_linenumber" name="L524" href="#L524">524</a>         <strong class="jxr_keyword">final</strong> String content = Joiner.on(crlf).join(
-<a class="jxr_linenumber" name="L525" href="#L525">525</a>             <span class="jxr_string">"package com.google;"</span>,
-<a class="jxr_linenumber" name="L526" href="#L526">526</a>             crlf,
-<a class="jxr_linenumber" name="L527" href="#L527">527</a>             <span class="jxr_string">"import java.util.*;"</span>
-<a class="jxr_linenumber" name="L528" href="#L528">528</a>         );
-<a class="jxr_linenumber" name="L529" href="#L529">529</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"Foo.java"</span>;
-<a class="jxr_linenumber" name="L530" href="#L530">530</a>         <strong class="jxr_keyword">final</strong> Environment env = mock.withParam(
-<a class="jxr_linenumber" name="L531" href="#L531">531</a>             CheckstyleValidatorTest.LICENSE_PROP,
-<a class="jxr_linenumber" name="L532" href="#L532">532</a>             <strong class="jxr_keyword">this</strong>.toURL(license)
-<a class="jxr_linenumber" name="L533" href="#L533">533</a>         ).withFile(String.format(<span class="jxr_string">"src/main/java/foo/%s"</span>, name), content);
-<a class="jxr_linenumber" name="L534" href="#L534">534</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results =
-<a class="jxr_linenumber" name="L535" href="#L535">535</a>             <strong class="jxr_keyword">new</strong> CheckstyleValidator(env).validate(
-<a class="jxr_linenumber" name="L536" href="#L536">536</a>                 env.files(name).iterator().next()
-<a class="jxr_linenumber" name="L537" href="#L537">537</a>             );
-<a class="jxr_linenumber" name="L538" href="#L538">538</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L539" href="#L539">539</a>             results,
-<a class="jxr_linenumber" name="L540" href="#L540">540</a>             Matchers.not(Matchers.&lt;Violation&gt;empty())
-<a class="jxr_linenumber" name="L541" href="#L541">541</a>         );
-<a class="jxr_linenumber" name="L542" href="#L542">542</a>     }
-<a class="jxr_linenumber" name="L543" href="#L543">543</a> 
-<a class="jxr_linenumber" name="L544" href="#L544">544</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L545" href="#L545">545</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can distinguish between valid and invalid</em>
-<a class="jxr_linenumber" name="L546" href="#L546">546</a> <em class="jxr_javadoccomment">     * catch parameter names.</em>
-<a class="jxr_linenumber" name="L547" href="#L547">547</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L548" href="#L548">548</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L549" href="#L549">549</a>     @Test
-<a class="jxr_linenumber" name="L550" href="#L550">550</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L551" href="#L551">551</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> distinguishesValidCatchParameterNames() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L552" href="#L552">552</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(
-<a class="jxr_linenumber" name="L553" href="#L553">553</a>             <span class="jxr_string">"CatchParameterNames.java"</span>, false
-<a class="jxr_linenumber" name="L554" href="#L554">554</a>         );
-<a class="jxr_linenumber" name="L555" href="#L555">555</a>         MatcherAssert.assertThat(results, Matchers.hasSize(Tv.THREE));
-<a class="jxr_linenumber" name="L556" href="#L556">556</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L557" href="#L557">557</a>             results,
-<a class="jxr_linenumber" name="L558" href="#L558">558</a>             Matchers.hasItems(
-<a class="jxr_linenumber" name="L559" href="#L559">559</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L560" href="#L560">560</a>                     <span class="jxr_string">"[27]: Name 'ex_invalid_1' must match pattern"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L561" href="#L561">561</a>                 ),
-<a class="jxr_linenumber" name="L562" href="#L562">562</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L563" href="#L563">563</a>                     <span class="jxr_string">"[29]: Name '$xxx' must match pattern"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L564" href="#L564">564</a>                 ),
-<a class="jxr_linenumber" name="L565" href="#L565">565</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L566" href="#L566">566</a>                     <span class="jxr_string">"[31]: Name '_exp' must match pattern"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L567" href="#L567">567</a>                 )
-<a class="jxr_linenumber" name="L568" href="#L568">568</a>             )
-<a class="jxr_linenumber" name="L569" href="#L569">569</a>         );
-<a class="jxr_linenumber" name="L570" href="#L570">570</a>     }
-<a class="jxr_linenumber" name="L571" href="#L571">571</a> 
-<a class="jxr_linenumber" name="L572" href="#L572">572</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L573" href="#L573">573</a> <em class="jxr_javadoccomment">     * Test if URLs are valid despite having a line length over 80.</em>
-<a class="jxr_linenumber" name="L574" href="#L574">574</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L575" href="#L575">575</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L576" href="#L576">576</a>     @Test
-<a class="jxr_linenumber" name="L577" href="#L577">577</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doesNotRejectUrlsInLongLines() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L578" href="#L578">578</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"UrlInLongLine.java"</span>, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L579" href="#L579">579</a>     }
-<a class="jxr_linenumber" name="L580" href="#L580">580</a> 
-<a class="jxr_linenumber" name="L581" href="#L581">581</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L582" href="#L582">582</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow spaces between methods of anonymous</em>
-<a class="jxr_linenumber" name="L583" href="#L583">583</a> <em class="jxr_javadoccomment">     * classes.</em>
-<a class="jxr_linenumber" name="L584" href="#L584">584</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L585" href="#L585">585</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L586" href="#L586">586</a>     @Test
-<a class="jxr_linenumber" name="L587" href="#L587">587</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsSpacesBetweenMethodsOfAnonymousClasses()
-<a class="jxr_linenumber" name="L588" href="#L588">588</a>         <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L589" href="#L589">589</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"BlankLinesOutsideMethodsPass.java"</span>, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L590" href="#L590">590</a>     }
-<a class="jxr_linenumber" name="L591" href="#L591">591</a> 
-<a class="jxr_linenumber" name="L592" href="#L592">592</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L593" href="#L593">593</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can reject spaces inside methods, regardless of</em>
-<a class="jxr_linenumber" name="L594" href="#L594">594</a> <em class="jxr_javadoccomment">     * whether they are inside of an anonymous method or not.</em>
-<a class="jxr_linenumber" name="L595" href="#L595">595</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L596" href="#L596">596</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L597" href="#L597">597</a>     @Test
-<a class="jxr_linenumber" name="L598" href="#L598">598</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L599" href="#L599">599</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> rejectsSpacesInsideMethods() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L600" href="#L600">600</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; result = <strong class="jxr_keyword">this</strong>.runValidation(
-<a class="jxr_linenumber" name="L601" href="#L601">601</a>             <span class="jxr_string">"BlankLinesInsideMethodsFail.java"</span>, false
-<a class="jxr_linenumber" name="L602" href="#L602">602</a>         );
-<a class="jxr_linenumber" name="L603" href="#L603">603</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L604" href="#L604">604</a>             result,
-<a class="jxr_linenumber" name="L605" href="#L605">605</a>             Matchers.hasItems(
-<a class="jxr_linenumber" name="L606" href="#L606">606</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L607" href="#L607">607</a>                     <span class="jxr_string">"[17]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L608" href="#L608">608</a>                 ),
-<a class="jxr_linenumber" name="L609" href="#L609">609</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L610" href="#L610">610</a>                     <span class="jxr_string">"[21]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L611" href="#L611">611</a>                 ),
-<a class="jxr_linenumber" name="L612" href="#L612">612</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L613" href="#L613">613</a>                     <span class="jxr_string">"[23]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L614" href="#L614">614</a>                 ),
-<a class="jxr_linenumber" name="L615" href="#L615">615</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L616" href="#L616">616</a>                     <span class="jxr_string">"[27]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L617" href="#L617">617</a>                 ),
-<a class="jxr_linenumber" name="L618" href="#L618">618</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L619" href="#L619">619</a>                     <span class="jxr_string">"[30]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L620" href="#L620">620</a>                 ),
-<a class="jxr_linenumber" name="L621" href="#L621">621</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L622" href="#L622">622</a>                     <span class="jxr_string">"[34]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L623" href="#L623">623</a>                 ),
-<a class="jxr_linenumber" name="L624" href="#L624">624</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L625" href="#L625">625</a>                     <span class="jxr_string">"[36]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L626" href="#L626">626</a>                 ),
-<a class="jxr_linenumber" name="L627" href="#L627">627</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L628" href="#L628">628</a>                     <span class="jxr_string">"[40]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L629" href="#L629">629</a>                 ),
-<a class="jxr_linenumber" name="L630" href="#L630">630</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L631" href="#L631">631</a>                     <span class="jxr_string">"[43]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L632" href="#L632">632</a>                 ),
-<a class="jxr_linenumber" name="L633" href="#L633">633</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L634" href="#L634">634</a>                     <span class="jxr_string">"[50]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L635" href="#L635">635</a>                 ),
-<a class="jxr_linenumber" name="L636" href="#L636">636</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L637" href="#L637">637</a>                     <span class="jxr_string">"[52]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L638" href="#L638">638</a>                 ),
-<a class="jxr_linenumber" name="L639" href="#L639">639</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L640" href="#L640">640</a>                     <span class="jxr_string">"[54]: Empty line inside method (EmptyLinesCheck)"</span>, <span class="jxr_string">""</span>
-<a class="jxr_linenumber" name="L641" href="#L641">641</a>                 )
-<a class="jxr_linenumber" name="L642" href="#L642">642</a>             )
-<a class="jxr_linenumber" name="L643" href="#L643">643</a>         );
-<a class="jxr_linenumber" name="L644" href="#L644">644</a>     }
-<a class="jxr_linenumber" name="L645" href="#L645">645</a> 
-<a class="jxr_linenumber" name="L646" href="#L646">646</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L647" href="#L647">647</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can reject uppercase abbreviations in naming</em>
-<a class="jxr_linenumber" name="L648" href="#L648">648</a> <em class="jxr_javadoccomment">     * outside of final static fields.</em>
-<a class="jxr_linenumber" name="L649" href="#L649">649</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L650" href="#L650">650</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L651" href="#L651">651</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L652" href="#L652">652</a>     @Test
-<a class="jxr_linenumber" name="L653" href="#L653">653</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L654" href="#L654">654</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> rejectsUppercaseAbbreviations() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L655" href="#L655">655</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"InvalidAbbreviationAsWordInNameXML.java"</span>;
-<a class="jxr_linenumber" name="L656" href="#L656">656</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(
-<a class="jxr_linenumber" name="L657" href="#L657">657</a>             file, false
-<a class="jxr_linenumber" name="L658" href="#L658">658</a>         );
-<a class="jxr_linenumber" name="L659" href="#L659">659</a>         <strong class="jxr_keyword">final</strong> String violation = StringUtils.join(
-<a class="jxr_linenumber" name="L660" href="#L660">660</a>             <span class="jxr_string">"[%s]: "</span>,
-<a class="jxr_linenumber" name="L661" href="#L661">661</a>             <span class="jxr_string">"Abbreviation in name '%s' "</span>,
-<a class="jxr_linenumber" name="L662" href="#L662">662</a>             <span class="jxr_string">"must contain no more than '1' capital letters. "</span>,
-<a class="jxr_linenumber" name="L663" href="#L663">663</a>             <span class="jxr_string">"(AbbreviationAsWordInNameCheck)"</span>
-<a class="jxr_linenumber" name="L664" href="#L664">664</a>         );
-<a class="jxr_linenumber" name="L665" href="#L665">665</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L666" href="#L666">666</a>             results,
-<a class="jxr_linenumber" name="L667" href="#L667">667</a>             Matchers.hasItems(
-<a class="jxr_linenumber" name="L668" href="#L668">668</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L669" href="#L669">669</a>                     String.format(
-<a class="jxr_linenumber" name="L670" href="#L670">670</a>                         violation, <span class="jxr_string">"13"</span>, <span class="jxr_string">"InvalidAbbreviationAsWordInNameXML"</span>
-<a class="jxr_linenumber" name="L671" href="#L671">671</a>                     ),
-<a class="jxr_linenumber" name="L672" href="#L672">672</a>                     file
-<a class="jxr_linenumber" name="L673" href="#L673">673</a>                 ),
-<a class="jxr_linenumber" name="L674" href="#L674">674</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L675" href="#L675">675</a>                     String.format(violation, <span class="jxr_string">"17"</span>, <span class="jxr_string">"InvalidHTML"</span>), file
-<a class="jxr_linenumber" name="L676" href="#L676">676</a>                 )
-<a class="jxr_linenumber" name="L677" href="#L677">677</a>             )
-<a class="jxr_linenumber" name="L678" href="#L678">678</a>         );
-<a class="jxr_linenumber" name="L679" href="#L679">679</a>     }
-<a class="jxr_linenumber" name="L680" href="#L680">680</a> 
-<a class="jxr_linenumber" name="L681" href="#L681">681</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L682" href="#L682">682</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow IT as an uppercase abbreviation.</em>
-<a class="jxr_linenumber" name="L683" href="#L683">683</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L684" href="#L684">684</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L685" href="#L685">685</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L686" href="#L686">686</a>     @Test
-<a class="jxr_linenumber" name="L687" href="#L687">687</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsITUppercaseAbbreviation() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L688" href="#L688">688</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidAbbreviationAsWordInNameIT.java"</span>, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L689" href="#L689">689</a>     }
-<a class="jxr_linenumber" name="L690" href="#L690">690</a> 
-<a class="jxr_linenumber" name="L691" href="#L691">691</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L692" href="#L692">692</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow final static fields and overrides</em>
-<a class="jxr_linenumber" name="L693" href="#L693">693</a> <em class="jxr_javadoccomment">     * to have uppercase abbreviations.</em>
-<a class="jxr_linenumber" name="L694" href="#L694">694</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L695" href="#L695">695</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L696" href="#L696">696</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L697" href="#L697">697</a>     @Test
-<a class="jxr_linenumber" name="L698" href="#L698">698</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsUppercaseAbbreviationExceptions() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L699" href="#L699">699</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidAbbreviationAsWordInName.java"</span>, <strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L700" href="#L700">700</a>     }
-<a class="jxr_linenumber" name="L701" href="#L701">701</a> 
-<a class="jxr_linenumber" name="L702" href="#L702">702</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L703" href="#L703">703</a> <em class="jxr_javadoccomment">     * Convert file name to URL.</em>
-<a class="jxr_linenumber" name="L704" href="#L704">704</a> <em class="jxr_javadoccomment">     * @param file The file</em>
-<a class="jxr_linenumber" name="L705" href="#L705">705</a> <em class="jxr_javadoccomment">     * @return The URL</em>
-<a class="jxr_linenumber" name="L706" href="#L706">706</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L707" href="#L707">707</a>     <strong class="jxr_keyword">private</strong> String toURL(<strong class="jxr_keyword">final</strong> File file) {
-<a class="jxr_linenumber" name="L708" href="#L708">708</a>         <strong class="jxr_keyword">return</strong> String.format(<span class="jxr_string">"file:%s"</span>, file);
-<a class="jxr_linenumber" name="L709" href="#L709">709</a>     }
-<a class="jxr_linenumber" name="L710" href="#L710">710</a> 
-<a class="jxr_linenumber" name="L711" href="#L711">711</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L712" href="#L712">712</a> <em class="jxr_javadoccomment">     * Validates that checkstyle reported given violation.</em>
-<a class="jxr_linenumber" name="L713" href="#L713">713</a> <em class="jxr_javadoccomment">     * @param file File to check.</em>
-<a class="jxr_linenumber" name="L714" href="#L714">714</a> <em class="jxr_javadoccomment">     * @param result Expected validation result.</em>
-<a class="jxr_linenumber" name="L715" href="#L715">715</a> <em class="jxr_javadoccomment">     * @param message Message to match</em>
-<a class="jxr_linenumber" name="L716" href="#L716">716</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
-<a class="jxr_linenumber" name="L717" href="#L717">717</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L718" href="#L718">718</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> validate(<strong class="jxr_keyword">final</strong> String file, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> result,
-<a class="jxr_linenumber" name="L719" href="#L719">719</a>         <strong class="jxr_keyword">final</strong> String message) <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L720" href="#L720">720</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L721" href="#L721">721</a>             <strong class="jxr_keyword">this</strong>.runValidation(file, result),
-<a class="jxr_linenumber" name="L722" href="#L722">722</a>             Matchers.hasItem(
-<a class="jxr_linenumber" name="L723" href="#L723">723</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
-<a class="jxr_linenumber" name="L724" href="#L724">724</a>                     message, file
-<a class="jxr_linenumber" name="L725" href="#L725">725</a>                 )
-<a class="jxr_linenumber" name="L726" href="#L726">726</a>             )
-<a class="jxr_linenumber" name="L727" href="#L727">727</a>         );
-<a class="jxr_linenumber" name="L728" href="#L728">728</a>     }
-<a class="jxr_linenumber" name="L729" href="#L729">729</a> 
-<a class="jxr_linenumber" name="L730" href="#L730">730</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L731" href="#L731">731</a> <em class="jxr_javadoccomment">     * Returns string with Checkstyle validation results.</em>
-<a class="jxr_linenumber" name="L732" href="#L732">732</a> <em class="jxr_javadoccomment">     * @param file File to check.</em>
-<a class="jxr_linenumber" name="L733" href="#L733">733</a> <em class="jxr_javadoccomment">     * @param result Expected validation result.</em>
-<a class="jxr_linenumber" name="L734" href="#L734">734</a> <em class="jxr_javadoccomment">     * @return String containing validation results in textual form.</em>
-<a class="jxr_linenumber" name="L735" href="#L735">735</a> <em class="jxr_javadoccomment">     * @throws IOException In case of error</em>
-<a class="jxr_linenumber" name="L736" href="#L736">736</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L737" href="#L737">737</a>     <strong class="jxr_keyword">private</strong> Collection&lt;Violation&gt; runValidation(<strong class="jxr_keyword">final</strong> String file,
-<a class="jxr_linenumber" name="L738" href="#L738">738</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> result) <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L739" href="#L739">739</a>         <strong class="jxr_keyword">final</strong> Environment.Mock mock = <strong class="jxr_keyword">new</strong> Environment.Mock();
-<a class="jxr_linenumber" name="L740" href="#L740">740</a>         <strong class="jxr_keyword">final</strong> File license = <strong class="jxr_keyword">this</strong>.rule.savePackageInfo(
-<a class="jxr_linenumber" name="L741" href="#L741">741</a>             <strong class="jxr_keyword">new</strong> File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-<a class="jxr_linenumber" name="L742" href="#L742">742</a>         ).withLines(CheckstyleValidatorTest.LICENSE)
-<a class="jxr_linenumber" name="L743" href="#L743">743</a>             .withEol(<span class="jxr_string">"\n"</span>).file();
-<a class="jxr_linenumber" name="L744" href="#L744">744</a>         <strong class="jxr_keyword">final</strong> Environment env = mock.withParam(
-<a class="jxr_linenumber" name="L745" href="#L745">745</a>             CheckstyleValidatorTest.LICENSE_PROP,
-<a class="jxr_linenumber" name="L746" href="#L746">746</a>             <strong class="jxr_keyword">this</strong>.toURL(license)
-<a class="jxr_linenumber" name="L747" href="#L747">747</a>         )
-<a class="jxr_linenumber" name="L748" href="#L748">748</a>             .withFile(
-<a class="jxr_linenumber" name="L749" href="#L749">749</a>                 String.format(<span class="jxr_string">"src/main/java/foo/%s"</span>, file),
-<a class="jxr_linenumber" name="L750" href="#L750">750</a>                 IOUtils.toString(
-<a class="jxr_linenumber" name="L751" href="#L751">751</a>                     <strong class="jxr_keyword">this</strong>.getClass().getResourceAsStream(file)
-<a class="jxr_linenumber" name="L752" href="#L752">752</a>                 )
-<a class="jxr_linenumber" name="L753" href="#L753">753</a>             );
-<a class="jxr_linenumber" name="L754" href="#L754">754</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results =
-<a class="jxr_linenumber" name="L755" href="#L755">755</a>             <strong class="jxr_keyword">new</strong> CheckstyleValidator(env).validate(
-<a class="jxr_linenumber" name="L756" href="#L756">756</a>                 env.files(file).iterator().next()
+<a class="jxr_linenumber" name="L416" href="#L416">416</a>                     message, file, <span class="jxr_string">"61"</span>, name
+<a class="jxr_linenumber" name="L417" href="#L417">417</a>                 )
+<a class="jxr_linenumber" name="L418" href="#L418">418</a>             )
+<a class="jxr_linenumber" name="L419" href="#L419">419</a>         );
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>     }
+<a class="jxr_linenumber" name="L421" href="#L421">421</a> 
+<a class="jxr_linenumber" name="L422" href="#L422">422</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">     * CheckstyleValidator will fail if  Windows EOL-s are used.</em>
+<a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
+<a class="jxr_linenumber" name="L425" href="#L425">425</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L426" href="#L426">426</a>     @Test
+<a class="jxr_linenumber" name="L427" href="#L427">427</a>     @Ignore
+<a class="jxr_linenumber" name="L428" href="#L428">428</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> passesWindowsEndsOfLineWithoutException() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L429" href="#L429">429</a>         <strong class="jxr_keyword">this</strong>.validate(<span class="jxr_string">"WindowsEol.java"</span>, false, <span class="jxr_string">"LICENSE found:"</span>);
+<a class="jxr_linenumber" name="L430" href="#L430">430</a>     }
+<a class="jxr_linenumber" name="L431" href="#L431">431</a> 
+<a class="jxr_linenumber" name="L432" href="#L432">432</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L433" href="#L433">433</a> <em class="jxr_javadoccomment">     * Fail validation with Windows-style formatting of the license and</em>
+<a class="jxr_linenumber" name="L434" href="#L434">434</a> <em class="jxr_javadoccomment">     * Linux-style formatting of the sources.</em>
+<a class="jxr_linenumber" name="L435" href="#L435">435</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
+<a class="jxr_linenumber" name="L436" href="#L436">436</a> <em class="jxr_javadoccomment">     * @todo #61:30min This test and passesWindowsEndsOfLineWithoutException</em>
+<a class="jxr_linenumber" name="L437" href="#L437">437</a> <em class="jxr_javadoccomment">     *  should be refactored to gather log4j logs and validate that they work</em>
+<a class="jxr_linenumber" name="L438" href="#L438">438</a> <em class="jxr_javadoccomment">     *  correctly. (see changes done in #61)</em>
+<a class="jxr_linenumber" name="L439" href="#L439">439</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L440" href="#L440">440</a>     @Test
+<a class="jxr_linenumber" name="L441" href="#L441">441</a>     @Ignore
+<a class="jxr_linenumber" name="L442" href="#L442">442</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testWindowsEndsOfLineWithLinuxSources() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L443" href="#L443">443</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"WindowsEolLinux.java"</span>, false);
+<a class="jxr_linenumber" name="L444" href="#L444">444</a>     }
+<a class="jxr_linenumber" name="L445" href="#L445">445</a> 
+<a class="jxr_linenumber" name="L446" href="#L446">446</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow proper indentation in complex annotations.</em>
+<a class="jxr_linenumber" name="L448" href="#L448">448</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">     * @todo #411:30min Sample code provided in #411 should be considered as</em>
+<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">     *  invalid. Find a way how to do that by either custom check, or updating</em>
+<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">     *  Checkstyle whenever IndentationCheck there will be more reliable. As for</em>
+<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">     *  Checkstyle 6.15 there's no ready solution for that. Right now Qulice</em>
+<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">     *  allows both correct and incorrect code from #411.</em>
+<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L455" href="#L455">455</a>     @Test
+<a class="jxr_linenumber" name="L456" href="#L456">456</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsProperIndentationInAnnotations() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L457" href="#L457">457</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"AnnotationIndentation.java"</span>, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L458" href="#L458">458</a>     }
+<a class="jxr_linenumber" name="L459" href="#L459">459</a> 
+<a class="jxr_linenumber" name="L460" href="#L460">460</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L461" href="#L461">461</a> <em class="jxr_javadoccomment">     * Fail validation with extra semicolon in the end</em>
+<a class="jxr_linenumber" name="L462" href="#L462">462</a> <em class="jxr_javadoccomment">     * of try-with-resources head.</em>
+<a class="jxr_linenumber" name="L463" href="#L463">463</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
+<a class="jxr_linenumber" name="L464" href="#L464">464</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L465" href="#L465">465</a>     @Test
+<a class="jxr_linenumber" name="L466" href="#L466">466</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testExtraSemicolonInTryWithResources() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L467" href="#L467">467</a>         <strong class="jxr_keyword">this</strong>.validate(
+<a class="jxr_linenumber" name="L468" href="#L468">468</a>             <span class="jxr_string">"ExtraSemicolon.java"</span>, false,
+<a class="jxr_linenumber" name="L469" href="#L469">469</a>             <span class="jxr_string">"Extra semicolon in the end of try-with-resources head."</span>
+<a class="jxr_linenumber" name="L470" href="#L470">470</a>         );
+<a class="jxr_linenumber" name="L471" href="#L471">471</a>     }
+<a class="jxr_linenumber" name="L472" href="#L472">472</a> 
+<a class="jxr_linenumber" name="L473" href="#L473">473</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L474" href="#L474">474</a> <em class="jxr_javadoccomment">     * Accepts try-with-resources without extra semicolon</em>
+<a class="jxr_linenumber" name="L475" href="#L475">475</a> <em class="jxr_javadoccomment">     * at the end of the head.</em>
+<a class="jxr_linenumber" name="L476" href="#L476">476</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
+<a class="jxr_linenumber" name="L477" href="#L477">477</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L478" href="#L478">478</a>     @Test
+<a class="jxr_linenumber" name="L479" href="#L479">479</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsTryWithResourcesWithoutSemicolon() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L480" href="#L480">480</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidSemicolon.java"</span>, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L481" href="#L481">481</a>     }
+<a class="jxr_linenumber" name="L482" href="#L482">482</a> 
+<a class="jxr_linenumber" name="L483" href="#L483">483</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L484" href="#L484">484</a> <em class="jxr_javadoccomment">     * CheckstyleValidator cannot demand methods to be static in files with</em>
+<a class="jxr_linenumber" name="L485" href="#L485">485</a> <em class="jxr_javadoccomment">     * names ending with {@code ITCase}.</em>
+<a class="jxr_linenumber" name="L486" href="#L486">486</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
+<a class="jxr_linenumber" name="L487" href="#L487">487</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L488" href="#L488">488</a>     @Test
+<a class="jxr_linenumber" name="L489" href="#L489">489</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsNonStaticMethodsInIt() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L490" href="#L490">490</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidIT.java"</span>, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L491" href="#L491">491</a>     }
+<a class="jxr_linenumber" name="L492" href="#L492">492</a> 
+<a class="jxr_linenumber" name="L493" href="#L493">493</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L494" href="#L494">494</a> <em class="jxr_javadoccomment">     * CheckstyleValidator cannot demand methods to be static in files with</em>
+<a class="jxr_linenumber" name="L495" href="#L495">495</a> <em class="jxr_javadoccomment">     * names ending with {@code IT}.</em>
+<a class="jxr_linenumber" name="L496" href="#L496">496</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
+<a class="jxr_linenumber" name="L497" href="#L497">497</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L498" href="#L498">498</a>     @Test
+<a class="jxr_linenumber" name="L499" href="#L499">499</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> acceptsNonStaticMethodsInItCases() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L500" href="#L500">500</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidITCase.java"</span>, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L501" href="#L501">501</a>     }
+<a class="jxr_linenumber" name="L502" href="#L502">502</a> 
+<a class="jxr_linenumber" name="L503" href="#L503">503</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L504" href="#L504">504</a> <em class="jxr_javadoccomment">     * CheckstyleValidator does not produce errors when last thing</em>
+<a class="jxr_linenumber" name="L505" href="#L505">505</a> <em class="jxr_javadoccomment">     * in file are imports. The only exception that should be thrown is</em>
+<a class="jxr_linenumber" name="L506" href="#L506">506</a> <em class="jxr_javadoccomment">     * qulice ValidationException.</em>
+<a class="jxr_linenumber" name="L507" href="#L507">507</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L508" href="#L508">508</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L509" href="#L509">509</a>     @Test
+<a class="jxr_linenumber" name="L510" href="#L510">510</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doesNotThrowExceptionIfImportsOnly() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L511" href="#L511">511</a>         <strong class="jxr_keyword">final</strong> Environment.Mock mock = <strong class="jxr_keyword">new</strong> Environment.Mock();
+<a class="jxr_linenumber" name="L512" href="#L512">512</a>         <strong class="jxr_keyword">final</strong> File license = <strong class="jxr_keyword">this</strong>.rule.savePackageInfo(
+<a class="jxr_linenumber" name="L513" href="#L513">513</a>             <strong class="jxr_keyword">new</strong> File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+<a class="jxr_linenumber" name="L514" href="#L514">514</a>         ).withLines(<span class="jxr_string">"License-1."</span>, <span class="jxr_string">""</span>, <span class="jxr_string">"License-2."</span>)
+<a class="jxr_linenumber" name="L515" href="#L515">515</a>             .withEol(<span class="jxr_string">"\n"</span>)
+<a class="jxr_linenumber" name="L516" href="#L516">516</a>             .file();
+<a class="jxr_linenumber" name="L517" href="#L517">517</a>         <strong class="jxr_keyword">final</strong> String crlf = <span class="jxr_string">"\r\n"</span>;
+<a class="jxr_linenumber" name="L518" href="#L518">518</a>         <strong class="jxr_keyword">final</strong> String content = Joiner.on(crlf).join(
+<a class="jxr_linenumber" name="L519" href="#L519">519</a>             <span class="jxr_string">"package com.google;"</span>,
+<a class="jxr_linenumber" name="L520" href="#L520">520</a>             crlf,
+<a class="jxr_linenumber" name="L521" href="#L521">521</a>             <span class="jxr_string">"import java.util.*;"</span>
+<a class="jxr_linenumber" name="L522" href="#L522">522</a>         );
+<a class="jxr_linenumber" name="L523" href="#L523">523</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"Foo.java"</span>;
+<a class="jxr_linenumber" name="L524" href="#L524">524</a>         <strong class="jxr_keyword">final</strong> Environment env = mock.withParam(
+<a class="jxr_linenumber" name="L525" href="#L525">525</a>             CheckstyleValidatorTest.LICENSE_PROP,
+<a class="jxr_linenumber" name="L526" href="#L526">526</a>             <strong class="jxr_keyword">this</strong>.toUrl(license)
+<a class="jxr_linenumber" name="L527" href="#L527">527</a>         ).withFile(String.format(<span class="jxr_string">"src/main/java/foo/%s"</span>, name), content);
+<a class="jxr_linenumber" name="L528" href="#L528">528</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results =
+<a class="jxr_linenumber" name="L529" href="#L529">529</a>             <strong class="jxr_keyword">new</strong> CheckstyleValidator(env).validate(env.files(name));
+<a class="jxr_linenumber" name="L530" href="#L530">530</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L531" href="#L531">531</a>             results,
+<a class="jxr_linenumber" name="L532" href="#L532">532</a>             Matchers.not(Matchers.&lt;Violation&gt;empty())
+<a class="jxr_linenumber" name="L533" href="#L533">533</a>         );
+<a class="jxr_linenumber" name="L534" href="#L534">534</a>     }
+<a class="jxr_linenumber" name="L535" href="#L535">535</a> 
+<a class="jxr_linenumber" name="L536" href="#L536">536</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L537" href="#L537">537</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can distinguish between valid and invalid</em>
+<a class="jxr_linenumber" name="L538" href="#L538">538</a> <em class="jxr_javadoccomment">     * catch parameter names.</em>
+<a class="jxr_linenumber" name="L539" href="#L539">539</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L540" href="#L540">540</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L541" href="#L541">541</a>     @Test
+<a class="jxr_linenumber" name="L542" href="#L542">542</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L543" href="#L543">543</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> distinguishesValidCatchParameterNames() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L544" href="#L544">544</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"CatchParameterNames.java"</span>;
+<a class="jxr_linenumber" name="L545" href="#L545">545</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(
+<a class="jxr_linenumber" name="L546" href="#L546">546</a>             file, false
+<a class="jxr_linenumber" name="L547" href="#L547">547</a>         );
+<a class="jxr_linenumber" name="L548" href="#L548">548</a>         MatcherAssert.assertThat(results, Matchers.hasSize(Tv.THREE));
+<a class="jxr_linenumber" name="L549" href="#L549">549</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"CatchParameterNameCheck"</span>;
+<a class="jxr_linenumber" name="L550" href="#L550">550</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L551" href="#L551">551</a>             results,
+<a class="jxr_linenumber" name="L552" href="#L552">552</a>             Matchers.hasItems(
+<a class="jxr_linenumber" name="L553" href="#L553">553</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L554" href="#L554">554</a>                     <em class="jxr_comment">// @checkstyle MultipleStringLiterals (1 line)</em>
+<a class="jxr_linenumber" name="L555" href="#L555">555</a>                     <span class="jxr_string">"Name 'ex_invalid_1' must match pattern"</span>, file, <span class="jxr_string">"27"</span>, name
+<a class="jxr_linenumber" name="L556" href="#L556">556</a>                 ),
+<a class="jxr_linenumber" name="L557" href="#L557">557</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L558" href="#L558">558</a>                     <span class="jxr_string">"Name '$xxx' must match pattern"</span>, file, <span class="jxr_string">"29"</span>, name
+<a class="jxr_linenumber" name="L559" href="#L559">559</a>                 ),
+<a class="jxr_linenumber" name="L560" href="#L560">560</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L561" href="#L561">561</a>                     <span class="jxr_string">"Name '_exp' must match pattern"</span>, file, <span class="jxr_string">"31"</span>, name
+<a class="jxr_linenumber" name="L562" href="#L562">562</a>                 )
+<a class="jxr_linenumber" name="L563" href="#L563">563</a>             )
+<a class="jxr_linenumber" name="L564" href="#L564">564</a>         );
+<a class="jxr_linenumber" name="L565" href="#L565">565</a>     }
+<a class="jxr_linenumber" name="L566" href="#L566">566</a> 
+<a class="jxr_linenumber" name="L567" href="#L567">567</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L568" href="#L568">568</a> <em class="jxr_javadoccomment">     * Test if URLs are valid despite having a line length over 80.</em>
+<a class="jxr_linenumber" name="L569" href="#L569">569</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L570" href="#L570">570</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L571" href="#L571">571</a>     @Test
+<a class="jxr_linenumber" name="L572" href="#L572">572</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doesNotRejectUrlsInLongLines() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L573" href="#L573">573</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"UrlInLongLine.java"</span>, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L574" href="#L574">574</a>     }
+<a class="jxr_linenumber" name="L575" href="#L575">575</a> 
+<a class="jxr_linenumber" name="L576" href="#L576">576</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L577" href="#L577">577</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow spaces between methods of anonymous</em>
+<a class="jxr_linenumber" name="L578" href="#L578">578</a> <em class="jxr_javadoccomment">     * classes.</em>
+<a class="jxr_linenumber" name="L579" href="#L579">579</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L580" href="#L580">580</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L581" href="#L581">581</a>     @Test
+<a class="jxr_linenumber" name="L582" href="#L582">582</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsSpacesBetweenMethodsOfAnonymousClasses()
+<a class="jxr_linenumber" name="L583" href="#L583">583</a>         <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L584" href="#L584">584</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"BlankLinesOutsideMethodsPass.java"</span>, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L585" href="#L585">585</a>     }
+<a class="jxr_linenumber" name="L586" href="#L586">586</a> 
+<a class="jxr_linenumber" name="L587" href="#L587">587</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L588" href="#L588">588</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can reject spaces inside methods, regardless of</em>
+<a class="jxr_linenumber" name="L589" href="#L589">589</a> <em class="jxr_javadoccomment">     * whether they are inside of an anonymous method or not.</em>
+<a class="jxr_linenumber" name="L590" href="#L590">590</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L591" href="#L591">591</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L592" href="#L592">592</a>     @Test
+<a class="jxr_linenumber" name="L593" href="#L593">593</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L594" href="#L594">594</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> rejectsSpacesInsideMethods() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L595" href="#L595">595</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"BlankLinesInsideMethodsFail.java"</span>;
+<a class="jxr_linenumber" name="L596" href="#L596">596</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; result = <strong class="jxr_keyword">this</strong>.runValidation(
+<a class="jxr_linenumber" name="L597" href="#L597">597</a>             file, false
+<a class="jxr_linenumber" name="L598" href="#L598">598</a>         );
+<a class="jxr_linenumber" name="L599" href="#L599">599</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"EmptyLinesCheck"</span>;
+<a class="jxr_linenumber" name="L600" href="#L600">600</a>         <strong class="jxr_keyword">final</strong> String message = <span class="jxr_string">"Empty line inside method"</span>;
+<a class="jxr_linenumber" name="L601" href="#L601">601</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L602" href="#L602">602</a>             result,
+<a class="jxr_linenumber" name="L603" href="#L603">603</a>             Matchers.hasItems(
+<a class="jxr_linenumber" name="L604" href="#L604">604</a>                 <em class="jxr_comment">// @checkstyle MultipleStringLiterals (12 line)</em>
+<a class="jxr_linenumber" name="L605" href="#L605">605</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"17"</span>, name),
+<a class="jxr_linenumber" name="L606" href="#L606">606</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"21"</span>, name),
+<a class="jxr_linenumber" name="L607" href="#L607">607</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"23"</span>, name),
+<a class="jxr_linenumber" name="L608" href="#L608">608</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"27"</span>, name),
+<a class="jxr_linenumber" name="L609" href="#L609">609</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"30"</span>, name),
+<a class="jxr_linenumber" name="L610" href="#L610">610</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"34"</span>, name),
+<a class="jxr_linenumber" name="L611" href="#L611">611</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"36"</span>, name),
+<a class="jxr_linenumber" name="L612" href="#L612">612</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"40"</span>, name),
+<a class="jxr_linenumber" name="L613" href="#L613">613</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"43"</span>, name),
+<a class="jxr_linenumber" name="L614" href="#L614">614</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"50"</span>, name),
+<a class="jxr_linenumber" name="L615" href="#L615">615</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"52"</span>, name),
+<a class="jxr_linenumber" name="L616" href="#L616">616</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(message, file, <span class="jxr_string">"54"</span>, name)
+<a class="jxr_linenumber" name="L617" href="#L617">617</a>             )
+<a class="jxr_linenumber" name="L618" href="#L618">618</a>         );
+<a class="jxr_linenumber" name="L619" href="#L619">619</a>     }
+<a class="jxr_linenumber" name="L620" href="#L620">620</a> 
+<a class="jxr_linenumber" name="L621" href="#L621">621</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L622" href="#L622">622</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can reject uppercase abbreviations in naming</em>
+<a class="jxr_linenumber" name="L623" href="#L623">623</a> <em class="jxr_javadoccomment">     * outside of final static fields.</em>
+<a class="jxr_linenumber" name="L624" href="#L624">624</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L625" href="#L625">625</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L626" href="#L626">626</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L627" href="#L627">627</a>     @Test
+<a class="jxr_linenumber" name="L628" href="#L628">628</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L629" href="#L629">629</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> rejectsUppercaseAbbreviations() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L630" href="#L630">630</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"InvalidAbbreviationAsWordInNameXML.java"</span>;
+<a class="jxr_linenumber" name="L631" href="#L631">631</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">this</strong>.runValidation(
+<a class="jxr_linenumber" name="L632" href="#L632">632</a>             file, false
+<a class="jxr_linenumber" name="L633" href="#L633">633</a>         );
+<a class="jxr_linenumber" name="L634" href="#L634">634</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"AbbreviationAsWordInNameCheck"</span>;
+<a class="jxr_linenumber" name="L635" href="#L635">635</a>         <strong class="jxr_keyword">final</strong> String message = StringUtils.join(
+<a class="jxr_linenumber" name="L636" href="#L636">636</a>             <span class="jxr_string">"Abbreviation in name '%s' "</span>,
+<a class="jxr_linenumber" name="L637" href="#L637">637</a>             <span class="jxr_string">"must contain no more than '1' capital letters."</span>
+<a class="jxr_linenumber" name="L638" href="#L638">638</a>         );
+<a class="jxr_linenumber" name="L639" href="#L639">639</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L640" href="#L640">640</a>             results,
+<a class="jxr_linenumber" name="L641" href="#L641">641</a>             Matchers.hasItems(
+<a class="jxr_linenumber" name="L642" href="#L642">642</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L643" href="#L643">643</a>                     String.format(
+<a class="jxr_linenumber" name="L644" href="#L644">644</a>                         message, <span class="jxr_string">"InvalidAbbreviationAsWordInNameXML"</span>
+<a class="jxr_linenumber" name="L645" href="#L645">645</a>                     ),
+<a class="jxr_linenumber" name="L646" href="#L646">646</a>                     file, <span class="jxr_string">"13"</span>, name
+<a class="jxr_linenumber" name="L647" href="#L647">647</a>                 ),
+<a class="jxr_linenumber" name="L648" href="#L648">648</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L649" href="#L649">649</a>                     String.format(message, <span class="jxr_string">"InvalidHTML"</span>), file,
+<a class="jxr_linenumber" name="L650" href="#L650">650</a>                     <span class="jxr_string">"17"</span>, name
+<a class="jxr_linenumber" name="L651" href="#L651">651</a>                 )
+<a class="jxr_linenumber" name="L652" href="#L652">652</a>             )
+<a class="jxr_linenumber" name="L653" href="#L653">653</a>         );
+<a class="jxr_linenumber" name="L654" href="#L654">654</a>     }
+<a class="jxr_linenumber" name="L655" href="#L655">655</a> 
+<a class="jxr_linenumber" name="L656" href="#L656">656</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L657" href="#L657">657</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow IT as an uppercase abbreviation.</em>
+<a class="jxr_linenumber" name="L658" href="#L658">658</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L659" href="#L659">659</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L660" href="#L660">660</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L661" href="#L661">661</a>     @Test
+<a class="jxr_linenumber" name="L662" href="#L662">662</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsITUppercaseAbbreviation() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L663" href="#L663">663</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidAbbreviationAsWordInNameIT.java"</span>, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L664" href="#L664">664</a>     }
+<a class="jxr_linenumber" name="L665" href="#L665">665</a> 
+<a class="jxr_linenumber" name="L666" href="#L666">666</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L667" href="#L667">667</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow final static fields and overrides</em>
+<a class="jxr_linenumber" name="L668" href="#L668">668</a> <em class="jxr_javadoccomment">     * to have uppercase abbreviations.</em>
+<a class="jxr_linenumber" name="L669" href="#L669">669</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L670" href="#L670">670</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L671" href="#L671">671</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L672" href="#L672">672</a>     @Test
+<a class="jxr_linenumber" name="L673" href="#L673">673</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsUppercaseAbbreviationExceptions() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L674" href="#L674">674</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidAbbreviationAsWordInName.java"</span>, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L675" href="#L675">675</a>     }
+<a class="jxr_linenumber" name="L676" href="#L676">676</a> 
+<a class="jxr_linenumber" name="L677" href="#L677">677</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L678" href="#L678">678</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can reject non diamond operator usage.</em>
+<a class="jxr_linenumber" name="L679" href="#L679">679</a> <em class="jxr_javadoccomment">     * @throws Exception If error</em>
+<a class="jxr_linenumber" name="L680" href="#L680">680</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L681" href="#L681">681</a>     @Test
+<a class="jxr_linenumber" name="L682" href="#L682">682</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> rejectsNonDiamondOperatorUsage() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L683" href="#L683">683</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"InvalidDiamondsUsage.java"</span>;
+<a class="jxr_linenumber" name="L684" href="#L684">684</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L685" href="#L685">685</a>             <strong class="jxr_keyword">this</strong>.runValidation(file, false),
+<a class="jxr_linenumber" name="L686" href="#L686">686</a>             Matchers.contains(
+<a class="jxr_linenumber" name="L687" href="#L687">687</a>                 <strong class="jxr_keyword">new</strong> CheckstyleValidatorTest.ViolationMatcher(
+<a class="jxr_linenumber" name="L688" href="#L688">688</a>                     <em class="jxr_comment">// @checkstyle MultipleStringLiterals (1 line)</em>
+<a class="jxr_linenumber" name="L689" href="#L689">689</a>                     <span class="jxr_string">"Use diamond operator"</span>, file, <span class="jxr_string">"21"</span>, <span class="jxr_string">"DiamondOperatorCheck"</span>
+<a class="jxr_linenumber" name="L690" href="#L690">690</a>                 )
+<a class="jxr_linenumber" name="L691" href="#L691">691</a>             )
+<a class="jxr_linenumber" name="L692" href="#L692">692</a>         );
+<a class="jxr_linenumber" name="L693" href="#L693">693</a>     }
+<a class="jxr_linenumber" name="L694" href="#L694">694</a> 
+<a class="jxr_linenumber" name="L695" href="#L695">695</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L696" href="#L696">696</a> <em class="jxr_javadoccomment">     * CheckstyleValidator can allow diamond operator usage.</em>
+<a class="jxr_linenumber" name="L697" href="#L697">697</a> <em class="jxr_javadoccomment">     * @throws Exception If error</em>
+<a class="jxr_linenumber" name="L698" href="#L698">698</a> <em class="jxr_javadoccomment">     * @todo #715:30min add test for next situation</em>
+<a class="jxr_linenumber" name="L699" href="#L699">699</a> <em class="jxr_javadoccomment">     *  {@code return new ArrayList&lt;String&gt;();}</em>
+<a class="jxr_linenumber" name="L700" href="#L700">700</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L701" href="#L701">701</a>     @Test
+<a class="jxr_linenumber" name="L702" href="#L702">702</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> allowsDiamondOperatorUsage() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L703" href="#L703">703</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidDiamondsUsage.java"</span>, <strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L704" href="#L704">704</a>     }
+<a class="jxr_linenumber" name="L705" href="#L705">705</a> 
+<a class="jxr_linenumber" name="L706" href="#L706">706</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L707" href="#L707">707</a> <em class="jxr_javadoccomment">     * Convert file name to URL.</em>
+<a class="jxr_linenumber" name="L708" href="#L708">708</a> <em class="jxr_javadoccomment">     * @param file The file</em>
+<a class="jxr_linenumber" name="L709" href="#L709">709</a> <em class="jxr_javadoccomment">     * @return The URL</em>
+<a class="jxr_linenumber" name="L710" href="#L710">710</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L711" href="#L711">711</a>     <strong class="jxr_keyword">private</strong> String toUrl(<strong class="jxr_keyword">final</strong> File file) {
+<a class="jxr_linenumber" name="L712" href="#L712">712</a>         <strong class="jxr_keyword">return</strong> String.format(<span class="jxr_string">"file:%s"</span>, file);
+<a class="jxr_linenumber" name="L713" href="#L713">713</a>     }
+<a class="jxr_linenumber" name="L714" href="#L714">714</a> 
+<a class="jxr_linenumber" name="L715" href="#L715">715</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L716" href="#L716">716</a> <em class="jxr_javadoccomment">     * Validates that checkstyle reported given violation.</em>
+<a class="jxr_linenumber" name="L717" href="#L717">717</a> <em class="jxr_javadoccomment">     * @param file File to check.</em>
+<a class="jxr_linenumber" name="L718" href="#L718">718</a> <em class="jxr_javadoccomment">     * @param result Expected validation result.</em>
+<a class="jxr_linenumber" name="L719" href="#L719">719</a> <em class="jxr_javadoccomment">     * @param message Message to match</em>
+<a class="jxr_linenumber" name="L720" href="#L720">720</a> <em class="jxr_javadoccomment">     * @throws Exception In case of error</em>
+<a class="jxr_linenumber" name="L721" href="#L721">721</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L722" href="#L722">722</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> validate(<strong class="jxr_keyword">final</strong> String file, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> result,
+<a class="jxr_linenumber" name="L723" href="#L723">723</a>         <strong class="jxr_keyword">final</strong> String message) <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L724" href="#L724">724</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L725" href="#L725">725</a>             <strong class="jxr_keyword">this</strong>.runValidation(file, result),
+<a class="jxr_linenumber" name="L726" href="#L726">726</a>             Matchers.hasItem(
+<a class="jxr_linenumber" name="L727" href="#L727">727</a>                 <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L728" href="#L728">728</a>                     message, file
+<a class="jxr_linenumber" name="L729" href="#L729">729</a>                 )
+<a class="jxr_linenumber" name="L730" href="#L730">730</a>             )
+<a class="jxr_linenumber" name="L731" href="#L731">731</a>         );
+<a class="jxr_linenumber" name="L732" href="#L732">732</a>     }
+<a class="jxr_linenumber" name="L733" href="#L733">733</a> 
+<a class="jxr_linenumber" name="L734" href="#L734">734</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L735" href="#L735">735</a> <em class="jxr_javadoccomment">     * Returns string with Checkstyle validation results.</em>
+<a class="jxr_linenumber" name="L736" href="#L736">736</a> <em class="jxr_javadoccomment">     * @param file File to check.</em>
+<a class="jxr_linenumber" name="L737" href="#L737">737</a> <em class="jxr_javadoccomment">     * @param result Expected validation result.</em>
+<a class="jxr_linenumber" name="L738" href="#L738">738</a> <em class="jxr_javadoccomment">     * @return String containing validation results in textual form.</em>
+<a class="jxr_linenumber" name="L739" href="#L739">739</a> <em class="jxr_javadoccomment">     * @throws IOException In case of error</em>
+<a class="jxr_linenumber" name="L740" href="#L740">740</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L741" href="#L741">741</a>     <strong class="jxr_keyword">private</strong> Collection&lt;Violation&gt; runValidation(<strong class="jxr_keyword">final</strong> String file,
+<a class="jxr_linenumber" name="L742" href="#L742">742</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> result) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L743" href="#L743">743</a>         <strong class="jxr_keyword">final</strong> Environment.Mock mock = <strong class="jxr_keyword">new</strong> Environment.Mock();
+<a class="jxr_linenumber" name="L744" href="#L744">744</a>         <strong class="jxr_keyword">final</strong> File license = <strong class="jxr_keyword">this</strong>.rule.savePackageInfo(
+<a class="jxr_linenumber" name="L745" href="#L745">745</a>             <strong class="jxr_keyword">new</strong> File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+<a class="jxr_linenumber" name="L746" href="#L746">746</a>         ).withLines(CheckstyleValidatorTest.LICENSE)
+<a class="jxr_linenumber" name="L747" href="#L747">747</a>             .withEol(<span class="jxr_string">"\n"</span>).file();
+<a class="jxr_linenumber" name="L748" href="#L748">748</a>         <strong class="jxr_keyword">final</strong> Environment env = mock.withParam(
+<a class="jxr_linenumber" name="L749" href="#L749">749</a>             CheckstyleValidatorTest.LICENSE_PROP,
+<a class="jxr_linenumber" name="L750" href="#L750">750</a>             <strong class="jxr_keyword">this</strong>.toUrl(license)
+<a class="jxr_linenumber" name="L751" href="#L751">751</a>         )
+<a class="jxr_linenumber" name="L752" href="#L752">752</a>             .withFile(
+<a class="jxr_linenumber" name="L753" href="#L753">753</a>                 String.format(<span class="jxr_string">"src/main/java/foo/%s"</span>, file),
+<a class="jxr_linenumber" name="L754" href="#L754">754</a>                 IOUtils.toString(
+<a class="jxr_linenumber" name="L755" href="#L755">755</a>                     <strong class="jxr_keyword">this</strong>.getClass().getResourceAsStream(file)
+<a class="jxr_linenumber" name="L756" href="#L756">756</a>                 )
 <a class="jxr_linenumber" name="L757" href="#L757">757</a>             );
-<a class="jxr_linenumber" name="L758" href="#L758">758</a>         <strong class="jxr_keyword">if</strong> (result) {
-<a class="jxr_linenumber" name="L759" href="#L759">759</a>             MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L760" href="#L760">760</a>                 results,
-<a class="jxr_linenumber" name="L761" href="#L761">761</a>                 Matchers.&lt;Violation&gt;empty()
-<a class="jxr_linenumber" name="L762" href="#L762">762</a>             );
-<a class="jxr_linenumber" name="L763" href="#L763">763</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L764" href="#L764">764</a>             MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L765" href="#L765">765</a>                 results,
-<a class="jxr_linenumber" name="L766" href="#L766">766</a>                 Matchers.not(Matchers.&lt;Violation&gt;empty())
-<a class="jxr_linenumber" name="L767" href="#L767">767</a>             );
-<a class="jxr_linenumber" name="L768" href="#L768">768</a>         }
-<a class="jxr_linenumber" name="L769" href="#L769">769</a>         <strong class="jxr_keyword">return</strong> results;
-<a class="jxr_linenumber" name="L770" href="#L770">770</a>     }
-<a class="jxr_linenumber" name="L771" href="#L771">771</a> 
-<a class="jxr_linenumber" name="L772" href="#L772">772</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L773" href="#L773">773</a> <em class="jxr_javadoccomment">     * Validation results matcher.</em>
-<a class="jxr_linenumber" name="L774" href="#L774">774</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L775" href="#L775">775</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a> <strong class="jxr_keyword">extends</strong>
-<a class="jxr_linenumber" name="L776" href="#L776">776</a>         TypeSafeMatcher&lt;Violation&gt; {
-<a class="jxr_linenumber" name="L777" href="#L777">777</a> 
-<a class="jxr_linenumber" name="L778" href="#L778">778</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L779" href="#L779">779</a> <em class="jxr_javadoccomment">         * Message to check.</em>
-<a class="jxr_linenumber" name="L780" href="#L780">780</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L781" href="#L781">781</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> String message;
-<a class="jxr_linenumber" name="L782" href="#L782">782</a> 
-<a class="jxr_linenumber" name="L783" href="#L783">783</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L784" href="#L784">784</a> <em class="jxr_javadoccomment">         * File to check.</em>
-<a class="jxr_linenumber" name="L785" href="#L785">785</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L786" href="#L786">786</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> String file;
-<a class="jxr_linenumber" name="L787" href="#L787">787</a> 
-<a class="jxr_linenumber" name="L788" href="#L788">788</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L789" href="#L789">789</a> <em class="jxr_javadoccomment">         * Constructor.</em>
-<a class="jxr_linenumber" name="L790" href="#L790">790</a> <em class="jxr_javadoccomment">         * @param message Message to check</em>
-<a class="jxr_linenumber" name="L791" href="#L791">791</a> <em class="jxr_javadoccomment">         * @param file File to check</em>
-<a class="jxr_linenumber" name="L792" href="#L792">792</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L793" href="#L793">793</a>         <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(<strong class="jxr_keyword">final</strong> String message, <strong class="jxr_keyword">final</strong> String file) {
-<a class="jxr_linenumber" name="L794" href="#L794">794</a>             <strong class="jxr_keyword">super</strong>();
-<a class="jxr_linenumber" name="L795" href="#L795">795</a>             <strong class="jxr_keyword">this</strong>.message = message;
-<a class="jxr_linenumber" name="L796" href="#L796">796</a>             <strong class="jxr_keyword">this</strong>.file = file;
-<a class="jxr_linenumber" name="L797" href="#L797">797</a>         }
-<a class="jxr_linenumber" name="L798" href="#L798">798</a> 
-<a class="jxr_linenumber" name="L799" href="#L799">799</a>         @Override
-<a class="jxr_linenumber" name="L800" href="#L800">800</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> Violation item) {
-<a class="jxr_linenumber" name="L801" href="#L801">801</a>             <strong class="jxr_keyword">return</strong> item.message().contains(<strong class="jxr_keyword">this</strong>.message)
-<a class="jxr_linenumber" name="L802" href="#L802">802</a>                 &amp;&amp; item.file().endsWith(<strong class="jxr_keyword">this</strong>.file);
-<a class="jxr_linenumber" name="L803" href="#L803">803</a>         }
-<a class="jxr_linenumber" name="L804" href="#L804">804</a> 
-<a class="jxr_linenumber" name="L805" href="#L805">805</a>         @Override
-<a class="jxr_linenumber" name="L806" href="#L806">806</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> describeTo(<strong class="jxr_keyword">final</strong> Description description) {
-<a class="jxr_linenumber" name="L807" href="#L807">807</a>             description.appendText(<span class="jxr_string">"doesn't match"</span>);
-<a class="jxr_linenumber" name="L808" href="#L808">808</a>         }
-<a class="jxr_linenumber" name="L809" href="#L809">809</a>     }
-<a class="jxr_linenumber" name="L810" href="#L810">810</a> 
-<a class="jxr_linenumber" name="L811" href="#L811">811</a> }
+<a class="jxr_linenumber" name="L758" href="#L758">758</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results =
+<a class="jxr_linenumber" name="L759" href="#L759">759</a>             <strong class="jxr_keyword">new</strong> CheckstyleValidator(env).validate(
+<a class="jxr_linenumber" name="L760" href="#L760">760</a>                 env.files(file)
+<a class="jxr_linenumber" name="L761" href="#L761">761</a>             );
+<a class="jxr_linenumber" name="L762" href="#L762">762</a>         <strong class="jxr_keyword">if</strong> (result) {
+<a class="jxr_linenumber" name="L763" href="#L763">763</a>             MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L764" href="#L764">764</a>                 results,
+<a class="jxr_linenumber" name="L765" href="#L765">765</a>                 Matchers.&lt;Violation&gt;empty()
+<a class="jxr_linenumber" name="L766" href="#L766">766</a>             );
+<a class="jxr_linenumber" name="L767" href="#L767">767</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L768" href="#L768">768</a>             MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L769" href="#L769">769</a>                 results,
+<a class="jxr_linenumber" name="L770" href="#L770">770</a>                 Matchers.not(Matchers.&lt;Violation&gt;empty())
+<a class="jxr_linenumber" name="L771" href="#L771">771</a>             );
+<a class="jxr_linenumber" name="L772" href="#L772">772</a>         }
+<a class="jxr_linenumber" name="L773" href="#L773">773</a>         <strong class="jxr_keyword">return</strong> results;
+<a class="jxr_linenumber" name="L774" href="#L774">774</a>     }
+<a class="jxr_linenumber" name="L775" href="#L775">775</a> 
+<a class="jxr_linenumber" name="L776" href="#L776">776</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L777" href="#L777">777</a> <em class="jxr_javadoccomment">     * Validation results matcher.</em>
+<a class="jxr_linenumber" name="L778" href="#L778">778</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L779" href="#L779">779</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a> <strong class="jxr_keyword">extends</strong>
+<a class="jxr_linenumber" name="L780" href="#L780">780</a>         TypeSafeMatcher&lt;Violation&gt; {
+<a class="jxr_linenumber" name="L781" href="#L781">781</a> 
+<a class="jxr_linenumber" name="L782" href="#L782">782</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L783" href="#L783">783</a> <em class="jxr_javadoccomment">         * Message to check.</em>
+<a class="jxr_linenumber" name="L784" href="#L784">784</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L785" href="#L785">785</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String message;
+<a class="jxr_linenumber" name="L786" href="#L786">786</a> 
+<a class="jxr_linenumber" name="L787" href="#L787">787</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L788" href="#L788">788</a> <em class="jxr_javadoccomment">         * File to check.</em>
+<a class="jxr_linenumber" name="L789" href="#L789">789</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L790" href="#L790">790</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String file;
+<a class="jxr_linenumber" name="L791" href="#L791">791</a> 
+<a class="jxr_linenumber" name="L792" href="#L792">792</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L793" href="#L793">793</a> <em class="jxr_javadoccomment">         * Expected line.</em>
+<a class="jxr_linenumber" name="L794" href="#L794">794</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L795" href="#L795">795</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String line;
+<a class="jxr_linenumber" name="L796" href="#L796">796</a> 
+<a class="jxr_linenumber" name="L797" href="#L797">797</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L798" href="#L798">798</a> <em class="jxr_javadoccomment">         * Check name.</em>
+<a class="jxr_linenumber" name="L799" href="#L799">799</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L800" href="#L800">800</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String check;
+<a class="jxr_linenumber" name="L801" href="#L801">801</a> 
+<a class="jxr_linenumber" name="L802" href="#L802">802</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L803" href="#L803">803</a> <em class="jxr_javadoccomment">         * Constructor.</em>
+<a class="jxr_linenumber" name="L804" href="#L804">804</a> <em class="jxr_javadoccomment">         * @param message Message to check</em>
+<a class="jxr_linenumber" name="L805" href="#L805">805</a> <em class="jxr_javadoccomment">         * @param line Line to check</em>
+<a class="jxr_linenumber" name="L806" href="#L806">806</a> <em class="jxr_javadoccomment">         * @param file File to check</em>
+<a class="jxr_linenumber" name="L807" href="#L807">807</a> <em class="jxr_javadoccomment">         * @param check Check name</em>
+<a class="jxr_linenumber" name="L808" href="#L808">808</a> <em class="jxr_javadoccomment">         * @checkstyle ParameterNumber (3 lines)</em>
+<a class="jxr_linenumber" name="L809" href="#L809">809</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L810" href="#L810">810</a>         <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(<strong class="jxr_keyword">final</strong> String message, <strong class="jxr_keyword">final</strong> String file,
+<a class="jxr_linenumber" name="L811" href="#L811">811</a>             <strong class="jxr_keyword">final</strong> String line, <strong class="jxr_keyword">final</strong> String check) {
+<a class="jxr_linenumber" name="L812" href="#L812">812</a>             <strong class="jxr_keyword">super</strong>();
+<a class="jxr_linenumber" name="L813" href="#L813">813</a>             <strong class="jxr_keyword">this</strong>.message = message;
+<a class="jxr_linenumber" name="L814" href="#L814">814</a>             <strong class="jxr_keyword">this</strong>.file = file;
+<a class="jxr_linenumber" name="L815" href="#L815">815</a>             <strong class="jxr_keyword">this</strong>.line = line;
+<a class="jxr_linenumber" name="L816" href="#L816">816</a>             <strong class="jxr_keyword">this</strong>.check = check;
+<a class="jxr_linenumber" name="L817" href="#L817">817</a>         }
+<a class="jxr_linenumber" name="L818" href="#L818">818</a> 
+<a class="jxr_linenumber" name="L819" href="#L819">819</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L820" href="#L820">820</a> <em class="jxr_javadoccomment">         * Constructor.</em>
+<a class="jxr_linenumber" name="L821" href="#L821">821</a> <em class="jxr_javadoccomment">         * @param message Message to check</em>
+<a class="jxr_linenumber" name="L822" href="#L822">822</a> <em class="jxr_javadoccomment">         * @param file File to check</em>
+<a class="jxr_linenumber" name="L823" href="#L823">823</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L824" href="#L824">824</a>         <a href="../../../com/qulice/checkstyle/CheckstyleValidatorTest.html">ViolationMatcher</a>(<strong class="jxr_keyword">final</strong> String message, <strong class="jxr_keyword">final</strong> String file) {
+<a class="jxr_linenumber" name="L825" href="#L825">825</a>             <strong class="jxr_keyword">this</strong>(message, file, <span class="jxr_string">""</span>, <span class="jxr_string">""</span>);
+<a class="jxr_linenumber" name="L826" href="#L826">826</a>         }
+<a class="jxr_linenumber" name="L827" href="#L827">827</a> 
+<a class="jxr_linenumber" name="L828" href="#L828">828</a>         @Override
+<a class="jxr_linenumber" name="L829" href="#L829">829</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> matchesSafely(<strong class="jxr_keyword">final</strong> Violation item) {
+<a class="jxr_linenumber" name="L830" href="#L830">830</a>             <strong class="jxr_keyword">return</strong> item.message().contains(<strong class="jxr_keyword">this</strong>.message)
+<a class="jxr_linenumber" name="L831" href="#L831">831</a>                 &amp;&amp; item.file().endsWith(<strong class="jxr_keyword">this</strong>.file)
+<a class="jxr_linenumber" name="L832" href="#L832">832</a>                 &amp;&amp; <strong class="jxr_keyword">this</strong>.lineMatches(item)
+<a class="jxr_linenumber" name="L833" href="#L833">833</a>                 &amp;&amp; <strong class="jxr_keyword">this</strong>.checkMatches(item);
+<a class="jxr_linenumber" name="L834" href="#L834">834</a>         }
+<a class="jxr_linenumber" name="L835" href="#L835">835</a> 
+<a class="jxr_linenumber" name="L836" href="#L836">836</a>         @Override
+<a class="jxr_linenumber" name="L837" href="#L837">837</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> describeTo(<strong class="jxr_keyword">final</strong> Description description) {
+<a class="jxr_linenumber" name="L838" href="#L838">838</a>             description.appendText(<span class="jxr_string">"doesn't match"</span>);
+<a class="jxr_linenumber" name="L839" href="#L839">839</a>         }
+<a class="jxr_linenumber" name="L840" href="#L840">840</a> 
+<a class="jxr_linenumber" name="L841" href="#L841">841</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L842" href="#L842">842</a> <em class="jxr_javadoccomment">         * Check name matches.</em>
+<a class="jxr_linenumber" name="L843" href="#L843">843</a> <em class="jxr_javadoccomment">         * @param item Item to check.</em>
+<a class="jxr_linenumber" name="L844" href="#L844">844</a> <em class="jxr_javadoccomment">         * @return True if check name matches.</em>
+<a class="jxr_linenumber" name="L845" href="#L845">845</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L846" href="#L846">846</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> checkMatches(<strong class="jxr_keyword">final</strong> Violation item) {
+<a class="jxr_linenumber" name="L847" href="#L847">847</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.check.isEmpty()
+<a class="jxr_linenumber" name="L848" href="#L848">848</a>                 || !<strong class="jxr_keyword">this</strong>.check.isEmpty() &amp;&amp; item.name().equals(<strong class="jxr_keyword">this</strong>.check);
+<a class="jxr_linenumber" name="L849" href="#L849">849</a>         }
+<a class="jxr_linenumber" name="L850" href="#L850">850</a> 
+<a class="jxr_linenumber" name="L851" href="#L851">851</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L852" href="#L852">852</a> <em class="jxr_javadoccomment">         * Check that given line matches.</em>
+<a class="jxr_linenumber" name="L853" href="#L853">853</a> <em class="jxr_javadoccomment">         * @param item Item to check.</em>
+<a class="jxr_linenumber" name="L854" href="#L854">854</a> <em class="jxr_javadoccomment">         * @return True if line matches.</em>
+<a class="jxr_linenumber" name="L855" href="#L855">855</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L856" href="#L856">856</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> lineMatches(<strong class="jxr_keyword">final</strong> Violation item) {
+<a class="jxr_linenumber" name="L857" href="#L857">857</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.line.isEmpty()
+<a class="jxr_linenumber" name="L858" href="#L858">858</a>                 || !<strong class="jxr_keyword">this</strong>.line.isEmpty() &amp;&amp; item.lines().equals(<strong class="jxr_keyword">this</strong>.line);
+<a class="jxr_linenumber" name="L859" href="#L859">859</a>         }
+<a class="jxr_linenumber" name="L860" href="#L860">860</a> 
+<a class="jxr_linenumber" name="L861" href="#L861">861</a>     }
+<a class="jxr_linenumber" name="L862" href="#L862">862</a> 
+<a class="jxr_linenumber" name="L863" href="#L863">863</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2016 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>

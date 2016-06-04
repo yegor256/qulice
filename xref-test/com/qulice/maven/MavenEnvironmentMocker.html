@@ -61,22 +61,22 @@
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     * Env mocker.</em>
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> Environment.Mock ienv;
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Environment.Mock ienv;
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">     * Project.</em>
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">transient</strong> <a href="../../../com/qulice/maven/MavenProjectMocker.html">MavenProjectMocker</a> prj;
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">private</strong> <a href="../../../com/qulice/maven/MavenProjectMocker.html">MavenProjectMocker</a> prj;
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">     * Plexus container, mock.</em>
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> PlexusContainer container;
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> PlexusContainer container;
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  <em class="jxr_javadoccomment">     * Xpath queries to test pom.xml.</em>
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">transient</strong> Collection&lt;String&gt; ass;
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">private</strong> Collection&lt;String&gt; ass;
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">     * Public ctor.</em>
@@ -85,7 +85,7 @@
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>      <strong class="jxr_keyword">public</strong> <a href="../../../com/qulice/maven/MavenEnvironmentMocker.html">MavenEnvironmentMocker</a>() <strong class="jxr_keyword">throws</strong> IOException {
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">this</strong>.prj = <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/maven/MavenProjectMocker.html">MavenProjectMocker</a>();
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>          <strong class="jxr_keyword">this</strong>.container = Mockito.mock(PlexusContainer.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>          <strong class="jxr_keyword">this</strong>.ass = <strong class="jxr_keyword">new</strong> LinkedList&lt;String&gt;();
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          <strong class="jxr_keyword">this</strong>.ass = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>          <strong class="jxr_keyword">this</strong>.ienv = <strong class="jxr_keyword">new</strong> Environment.Mock();
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>      }
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  

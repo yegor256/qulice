@@ -141,34 +141,32 @@
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>                 findbugs.addFilter(args[Tv.FOUR], false);
 <a class="jxr_linenumber" name="L134" href="#L134">134</a>             }
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>             findbugs.execute();
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IOException ex) {
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IOException | InterruptedException ex) {
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(ex);
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> InterruptedException ex) {
-<a class="jxr_linenumber" name="L139" href="#L139">139</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(ex);
-<a class="jxr_linenumber" name="L140" href="#L140">140</a>         }
-<a class="jxr_linenumber" name="L141" href="#L141">141</a>     }
-<a class="jxr_linenumber" name="L142" href="#L142">142</a> 
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment">     * Create project.</em>
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> <em class="jxr_javadoccomment">     * @param basedir Base dir</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">     * @param outdir Output dir (with classes)</em>
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">     * @param paths Paths of a classpath</em>
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">     * @return The project</em>
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L150" href="#L150">150</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Project project(<strong class="jxr_keyword">final</strong> String basedir, <strong class="jxr_keyword">final</strong> String outdir,
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">final</strong> String... paths) {
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>         <strong class="jxr_keyword">final</strong> Project project = <strong class="jxr_keyword">new</strong> Project();
-<a class="jxr_linenumber" name="L153" href="#L153">153</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String jar : paths) {
-<a class="jxr_linenumber" name="L154" href="#L154">154</a>             <strong class="jxr_keyword">if</strong> (!jar.equals(outdir)) {
-<a class="jxr_linenumber" name="L155" href="#L155">155</a>                 project.addAuxClasspathEntry(jar);
-<a class="jxr_linenumber" name="L156" href="#L156">156</a>             }
-<a class="jxr_linenumber" name="L157" href="#L157">157</a>         }
-<a class="jxr_linenumber" name="L158" href="#L158">158</a>         project.addFile(outdir);
-<a class="jxr_linenumber" name="L159" href="#L159">159</a>         project.addSourceDir(<strong class="jxr_keyword">new</strong> File(basedir, <span class="jxr_string">"src/main/java"</span>).getPath());
-<a class="jxr_linenumber" name="L160" href="#L160">160</a>         <strong class="jxr_keyword">return</strong> project;
-<a class="jxr_linenumber" name="L161" href="#L161">161</a>     }
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> 
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> }
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>         }
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>     }
+<a class="jxr_linenumber" name="L140" href="#L140">140</a> 
+<a class="jxr_linenumber" name="L141" href="#L141">141</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">     * Create project.</em>
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">     * @param basedir Base dir</em>
+<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment">     * @param outdir Output dir (with classes)</em>
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> <em class="jxr_javadoccomment">     * @param paths Paths of a classpath</em>
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">     * @return The project</em>
+<a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Project project(<strong class="jxr_keyword">final</strong> String basedir, <strong class="jxr_keyword">final</strong> String outdir,
+<a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">final</strong> String... paths) {
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>         <strong class="jxr_keyword">final</strong> Project project = <strong class="jxr_keyword">new</strong> Project();
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String jar : paths) {
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>             <strong class="jxr_keyword">if</strong> (!jar.equals(outdir)) {
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>                 project.addAuxClasspathEntry(jar);
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>             }
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>         }
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>         project.addFile(outdir);
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>         project.addSourceDir(<strong class="jxr_keyword">new</strong> File(basedir, <span class="jxr_string">"src/main/java"</span>).getPath());
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>         <strong class="jxr_keyword">return</strong> project;
+<a class="jxr_linenumber" name="L159" href="#L159">159</a>     }
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> 
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2016 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>

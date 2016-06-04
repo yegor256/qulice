@@ -156,8 +156,8 @@
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>         <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">         * List of logged messages.</em>
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> Collection&lt;String&gt; messages =
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>             <strong class="jxr_keyword">new</strong> ConcurrentLinkedQueue&lt;String&gt;();
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Collection&lt;String&gt; messages =
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>             <strong class="jxr_keyword">new</strong> ConcurrentLinkedQueue&lt;&gt;();
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>         @Override
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doAppend(<strong class="jxr_keyword">final</strong> LoggingEvent event) {
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>             <strong class="jxr_keyword">this</strong>.messages.add(event.getMessage().toString());

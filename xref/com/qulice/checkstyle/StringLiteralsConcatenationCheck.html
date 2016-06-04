@@ -78,13 +78,13 @@
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>      @Override
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> visitToken(<strong class="jxr_keyword">final</strong> DetailAST ast) {
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>          <strong class="jxr_keyword">final</strong> List&lt;DetailAST&gt; pluses = <strong class="jxr_keyword">this</strong>.findChildASTsOfType(
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>          <strong class="jxr_keyword">final</strong> List&lt;DetailAST&gt; pluses = <strong class="jxr_keyword">this</strong>.findChildAstsOfType(
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>              ast,
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>              TokenTypes.PLUS,
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>              TokenTypes.PLUS_ASSIGN
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>          );
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> DetailAST plus : pluses) {
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>              <strong class="jxr_keyword">if</strong> (!<strong class="jxr_keyword">this</strong>.findChildASTsOfType(
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>              <strong class="jxr_keyword">if</strong> (!<strong class="jxr_keyword">this</strong>.findChildAstsOfType(
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>                  plus,
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>                  TokenTypes.STRING_LITERAL
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>              ).isEmpty()) {
@@ -102,15 +102,15 @@
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     *  &lt;tt&gt;types&lt;/tt&gt;.</em>
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_javadoccomment">     * @see TokenTypes</em>
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>      <strong class="jxr_keyword">private</strong> List&lt;DetailAST&gt; findChildASTsOfType(<strong class="jxr_keyword">final</strong> DetailAST tree,
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>      <strong class="jxr_keyword">private</strong> List&lt;DetailAST&gt; findChildAstsOfType(<strong class="jxr_keyword">final</strong> DetailAST tree,
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong>... types) {
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>          <strong class="jxr_keyword">final</strong> List&lt;DetailAST&gt; children = <strong class="jxr_keyword">new</strong> LinkedList&lt;DetailAST&gt;();
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>          <strong class="jxr_keyword">final</strong> List&lt;DetailAST&gt; children = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>         DetailAST child = tree.getFirstChild();
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>         <strong class="jxr_keyword">while</strong> (child != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>             <strong class="jxr_keyword">if</strong> (StringLiteralsConcatenationCheck.isOfType(child, types)) {
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>                 children.add(child);
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>             } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>                 children.addAll(<strong class="jxr_keyword">this</strong>.findChildASTsOfType(child, types));
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>                 children.addAll(<strong class="jxr_keyword">this</strong>.findChildAstsOfType(child, types));
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>             }
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>             child = child.getNextSibling();
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>         }

@@ -94,7 +94,7 @@
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">     * Current directory we're working with.</em>
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> String dir;
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String dir;
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     * Public ctor.</em>
@@ -111,7 +111,7 @@
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>     @Parameterized.Parameters
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>     @SuppressWarnings(<span class="jxr_string">"PMD.AvoidInstantiatingObjectsInLoops"</span>)
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> Collection&lt;Object[]&gt; dirs() {
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Object[]&gt; dirs = <strong class="jxr_keyword">new</strong> LinkedList&lt;Object[]&gt;();
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Object[]&gt; dirs = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String url : ChecksTest.CHECKS) {
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>             dirs.add(<strong class="jxr_keyword">new</strong> Object[] {url});
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>         }
@@ -198,7 +198,7 @@
 <a class="jxr_linenumber" name="L190" href="#L190">190</a>                 <strong class="jxr_keyword">true</strong>
 <a class="jxr_linenumber" name="L191" href="#L191">191</a>             )
 <a class="jxr_linenumber" name="L192" href="#L192">192</a>         );
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>         <strong class="jxr_keyword">final</strong> List&lt;File&gt; files = <strong class="jxr_keyword">new</strong> ArrayList&lt;File&gt;(0);
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>         <strong class="jxr_keyword">final</strong> List&lt;File&gt; files = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(0);
 <a class="jxr_linenumber" name="L194" href="#L194">194</a>         files.add(
 <a class="jxr_linenumber" name="L195" href="#L195">195</a>             <strong class="jxr_keyword">new</strong> File(
 <a class="jxr_linenumber" name="L196" href="#L196">196</a>                 <strong class="jxr_keyword">this</strong>.getClass().getResource(
@@ -218,49 +218,48 @@
 <a class="jxr_linenumber" name="L210" href="#L210">210</a>         <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L211" href="#L211">211</a> <em class="jxr_javadoccomment">         * List of events received.</em>
 <a class="jxr_linenumber" name="L212" href="#L212">212</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L213" href="#L213">213</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> List&lt;AuditEvent&gt; events =
-<a class="jxr_linenumber" name="L214" href="#L214">214</a>             <strong class="jxr_keyword">new</strong> LinkedList&lt;AuditEvent&gt;();
-<a class="jxr_linenumber" name="L215" href="#L215">215</a>         @Override
-<a class="jxr_linenumber" name="L216" href="#L216">216</a>         <strong class="jxr_keyword">public</strong> Object answer(<strong class="jxr_keyword">final</strong> InvocationOnMock invocation) {
-<a class="jxr_linenumber" name="L217" href="#L217">217</a>             <strong class="jxr_keyword">this</strong>.events.add((AuditEvent) invocation.getArguments()[0]);
-<a class="jxr_linenumber" name="L218" href="#L218">218</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>         }
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L221" href="#L221">221</a> <em class="jxr_javadoccomment">         * Do we have this message for this line?</em>
-<a class="jxr_linenumber" name="L222" href="#L222">222</a> <em class="jxr_javadoccomment">         * @param line The number of the line</em>
-<a class="jxr_linenumber" name="L223" href="#L223">223</a> <em class="jxr_javadoccomment">         * @param msg The message we're looking for</em>
-<a class="jxr_linenumber" name="L224" href="#L224">224</a> <em class="jxr_javadoccomment">         * @return This message was reported for the give line?</em>
-<a class="jxr_linenumber" name="L225" href="#L225">225</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> has(<strong class="jxr_keyword">final</strong> Integer line, <strong class="jxr_keyword">final</strong> String msg) {
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>             <strong class="jxr_keyword">boolean</strong> has = false;
-<a class="jxr_linenumber" name="L228" href="#L228">228</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> AuditEvent event : <strong class="jxr_keyword">this</strong>.events) {
-<a class="jxr_linenumber" name="L229" href="#L229">229</a>                 <strong class="jxr_keyword">if</strong> (event.getLine() == line &amp;&amp; event.getMessage().equals(msg)) {
-<a class="jxr_linenumber" name="L230" href="#L230">230</a>                     has = <strong class="jxr_keyword">true</strong>;
-<a class="jxr_linenumber" name="L231" href="#L231">231</a>                     <strong class="jxr_keyword">break</strong>;
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>                 }
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>             }
-<a class="jxr_linenumber" name="L234" href="#L234">234</a>             <strong class="jxr_keyword">return</strong> has;
-<a class="jxr_linenumber" name="L235" href="#L235">235</a>         }
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L237" href="#L237">237</a> <em class="jxr_javadoccomment">         * Returns full summary.</em>
-<a class="jxr_linenumber" name="L238" href="#L238">238</a> <em class="jxr_javadoccomment">         * @return The test summary of all events</em>
-<a class="jxr_linenumber" name="L239" href="#L239">239</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L240" href="#L240">240</a>         <strong class="jxr_keyword">public</strong> String summary() {
-<a class="jxr_linenumber" name="L241" href="#L241">241</a>             <strong class="jxr_keyword">final</strong> List&lt;String&gt; msgs = <strong class="jxr_keyword">new</strong> LinkedList&lt;String&gt;();
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> AuditEvent event : <strong class="jxr_keyword">this</strong>.events) {
-<a class="jxr_linenumber" name="L243" href="#L243">243</a>                 msgs.add(
-<a class="jxr_linenumber" name="L244" href="#L244">244</a>                     String.format(
-<a class="jxr_linenumber" name="L245" href="#L245">245</a>                         <span class="jxr_string">"%s:%s"</span>,
-<a class="jxr_linenumber" name="L246" href="#L246">246</a>                         event.getLine(),
-<a class="jxr_linenumber" name="L247" href="#L247">247</a>                         event.getMessage()
-<a class="jxr_linenumber" name="L248" href="#L248">248</a>                     )
-<a class="jxr_linenumber" name="L249" href="#L249">249</a>                 );
-<a class="jxr_linenumber" name="L250" href="#L250">250</a>             }
-<a class="jxr_linenumber" name="L251" href="#L251">251</a>             <strong class="jxr_keyword">return</strong> StringUtils.join(msgs, <span class="jxr_string">"; "</span>);
-<a class="jxr_linenumber" name="L252" href="#L252">252</a>         }
-<a class="jxr_linenumber" name="L253" href="#L253">253</a>     }
-<a class="jxr_linenumber" name="L254" href="#L254">254</a> 
-<a class="jxr_linenumber" name="L255" href="#L255">255</a> }
+<a class="jxr_linenumber" name="L213" href="#L213">213</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> List&lt;AuditEvent&gt; events = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
+<a class="jxr_linenumber" name="L214" href="#L214">214</a>         @Override
+<a class="jxr_linenumber" name="L215" href="#L215">215</a>         <strong class="jxr_keyword">public</strong> Object answer(<strong class="jxr_keyword">final</strong> InvocationOnMock invocation) {
+<a class="jxr_linenumber" name="L216" href="#L216">216</a>             <strong class="jxr_keyword">this</strong>.events.add((AuditEvent) invocation.getArguments()[0]);
+<a class="jxr_linenumber" name="L217" href="#L217">217</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L218" href="#L218">218</a>         }
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L220" href="#L220">220</a> <em class="jxr_javadoccomment">         * Do we have this message for this line?</em>
+<a class="jxr_linenumber" name="L221" href="#L221">221</a> <em class="jxr_javadoccomment">         * @param line The number of the line</em>
+<a class="jxr_linenumber" name="L222" href="#L222">222</a> <em class="jxr_javadoccomment">         * @param msg The message we're looking for</em>
+<a class="jxr_linenumber" name="L223" href="#L223">223</a> <em class="jxr_javadoccomment">         * @return This message was reported for the give line?</em>
+<a class="jxr_linenumber" name="L224" href="#L224">224</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>         <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> has(<strong class="jxr_keyword">final</strong> Integer line, <strong class="jxr_keyword">final</strong> String msg) {
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>             <strong class="jxr_keyword">boolean</strong> has = false;
+<a class="jxr_linenumber" name="L227" href="#L227">227</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> AuditEvent event : <strong class="jxr_keyword">this</strong>.events) {
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>                 <strong class="jxr_keyword">if</strong> (event.getLine() == line &amp;&amp; event.getMessage().equals(msg)) {
+<a class="jxr_linenumber" name="L229" href="#L229">229</a>                     has = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>                     <strong class="jxr_keyword">break</strong>;
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>                 }
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>             }
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>             <strong class="jxr_keyword">return</strong> has;
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>         }
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L236" href="#L236">236</a> <em class="jxr_javadoccomment">         * Returns full summary.</em>
+<a class="jxr_linenumber" name="L237" href="#L237">237</a> <em class="jxr_javadoccomment">         * @return The test summary of all events</em>
+<a class="jxr_linenumber" name="L238" href="#L238">238</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L239" href="#L239">239</a>         <strong class="jxr_keyword">public</strong> String summary() {
+<a class="jxr_linenumber" name="L240" href="#L240">240</a>             <strong class="jxr_keyword">final</strong> List&lt;String&gt; msgs = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> AuditEvent event : <strong class="jxr_keyword">this</strong>.events) {
+<a class="jxr_linenumber" name="L242" href="#L242">242</a>                 msgs.add(
+<a class="jxr_linenumber" name="L243" href="#L243">243</a>                     String.format(
+<a class="jxr_linenumber" name="L244" href="#L244">244</a>                         <span class="jxr_string">"%s:%s"</span>,
+<a class="jxr_linenumber" name="L245" href="#L245">245</a>                         event.getLine(),
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>                         event.getMessage()
+<a class="jxr_linenumber" name="L247" href="#L247">247</a>                     )
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>                 );
+<a class="jxr_linenumber" name="L249" href="#L249">249</a>             }
+<a class="jxr_linenumber" name="L250" href="#L250">250</a>             <strong class="jxr_keyword">return</strong> StringUtils.join(msgs, <span class="jxr_string">"; "</span>);
+<a class="jxr_linenumber" name="L251" href="#L251">251</a>         }
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>     }
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> 
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2016 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>

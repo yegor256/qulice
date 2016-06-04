@@ -65,7 +65,7 @@
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">     * Provider of validators.</em>
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">transient</strong> <a href="../../../com/qulice/maven/ValidatorsProvider.html">ValidatorsProvider</a> provider =
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">private</strong> <a href="../../../com/qulice/maven/ValidatorsProvider.html">ValidatorsProvider</a> provider =
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>          <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/maven/DefaultValidatorsProvider.html">DefaultValidatorsProvider</a>(<strong class="jxr_keyword">this</strong>.env());
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      @Override
@@ -94,43 +94,47 @@
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">     * @throws ValidationException If any of them fail</em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> run() <strong class="jxr_keyword">throws</strong> ValidationException {
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>          <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results =
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>              <strong class="jxr_keyword">new</strong> LinkedList&lt;Violation&gt;();
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> File file : <strong class="jxr_keyword">this</strong>.env().files(<span class="jxr_string">"*.*"</span>)) {
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>              <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> ResourceValidator validator
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>                  : <strong class="jxr_keyword">this</strong>.provider.externalResource()) {
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>                  results.addAll(validator.validate(file));
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>              }
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          }
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Violation result : results) {
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>              Logger.info(
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>                  <strong class="jxr_keyword">this</strong>,
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>                 <span class="jxr_string">"%s%s"</span>,
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>                 StringUtils.removeStart(
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>                     result.file(),
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>                     String.format(
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>                         <span class="jxr_string">"%s/"</span>, <strong class="jxr_keyword">this</strong>.session().getExecutionRootDirectory()
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>                     )
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>                 ),
-<a class="jxr_linenumber" name="L107" href="#L107">107</a>                 result.message()
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>             );
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>         }
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>         <strong class="jxr_keyword">if</strong> (!results.isEmpty()) {
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/spi/ValidationException.html">ValidationException</a>(
-<a class="jxr_linenumber" name="L112" href="#L112">112</a>                 String.format(<span class="jxr_string">"There are %d violations"</span>, results.size())
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>            );
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>         }
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Validator validator : <strong class="jxr_keyword">this</strong>.provider.external()) {
-<a class="jxr_linenumber" name="L116" href="#L116">116</a>             Logger.info(<strong class="jxr_keyword">this</strong>, <span class="jxr_string">"Starting %s validator"</span>, validator.name());
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>             validator.validate(<strong class="jxr_keyword">this</strong>.env());
-<a class="jxr_linenumber" name="L118" href="#L118">118</a>             Logger.info(<strong class="jxr_keyword">this</strong>, <span class="jxr_string">"Finishing %s validator"</span>, validator.name());
-<a class="jxr_linenumber" name="L119" href="#L119">119</a>         }
-<a class="jxr_linenumber" name="L120" href="#L120">120</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> MavenValidator validator : <strong class="jxr_keyword">this</strong>.provider.internal()) {
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>          <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">final</strong> Collection&lt;File&gt; files = <strong class="jxr_keyword">this</strong>.env().files(<span class="jxr_string">"*.*"</span>);
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>          <strong class="jxr_keyword">if</strong> (!files.isEmpty()) {
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>              <strong class="jxr_keyword">final</strong> Collection&lt;ResourceValidator&gt; validators =
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>                  <strong class="jxr_keyword">this</strong>.provider.externalResource();
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>              <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> ResourceValidator validator : validators) {
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>                  results.addAll(validator.validate(files));
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>              }
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>              <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Violation result : results) {
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>                  Logger.info(
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>                      <strong class="jxr_keyword">this</strong>,
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>                     <span class="jxr_string">"%s: %s[%s]: %s (%s)"</span>,
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>                     result.validator(),
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>                     StringUtils.removeStart(
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>                         result.file(),
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>                         String.format(
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>                             <span class="jxr_string">"%s/"</span>, <strong class="jxr_keyword">this</strong>.session().getExecutionRootDirectory()
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>                             )
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>                         ),
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>                         result.lines(),
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>                         result.message(),
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>                         result.name()
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>                 );
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>             }
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>         }
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>         <strong class="jxr_keyword">if</strong> (!results.isEmpty()) {
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/spi/ValidationException.html">ValidationException</a>(
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>                 String.format(<span class="jxr_string">"There are %d violations"</span>, results.size())
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>            );
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>         }
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Validator validator : <strong class="jxr_keyword">this</strong>.provider.external()) {
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>             Logger.info(<strong class="jxr_keyword">this</strong>, <span class="jxr_string">"Starting %s validator"</span>, validator.name());
 <a class="jxr_linenumber" name="L121" href="#L121">121</a>             validator.validate(<strong class="jxr_keyword">this</strong>.env());
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>         }
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>     }
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> 
-<a class="jxr_linenumber" name="L125" href="#L125">125</a> }
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>             Logger.info(<strong class="jxr_keyword">this</strong>, <span class="jxr_string">"Finishing %s validator"</span>, validator.name());
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>         }
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> MavenValidator validator : <strong class="jxr_keyword">this</strong>.provider.internal()) {
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>             validator.validate(<strong class="jxr_keyword">this</strong>.env());
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>         }
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>     }
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> 
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2016 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>

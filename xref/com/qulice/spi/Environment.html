@@ -137,19 +137,19 @@
 <a class="jxr_linenumber" name="L129" href="#L129">129</a>         <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">         * The basedir.</em>
 <a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> File basedir;
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> File basedir;
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>         <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">         * Files for classpath.</em>
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> Set&lt;String&gt; classpath;
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Set&lt;String&gt; classpath;
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>         <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L138" href="#L138">138</a> <em class="jxr_javadoccomment">         * Map of params.</em>
 <a class="jxr_linenumber" name="L139" href="#L139">139</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L140" href="#L140">140</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">transient</strong> Map&lt;String, String&gt; params;
+<a class="jxr_linenumber" name="L140" href="#L140">140</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Map&lt;String, String&gt; params;
 <a class="jxr_linenumber" name="L141" href="#L141">141</a>         <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">         * Exclude patterns.</em>
 <a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">transient</strong> String excl;
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>         <strong class="jxr_keyword">private</strong> String excl;
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> 
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>         <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">         * Public ctor.</em>
@@ -159,8 +159,8 @@
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>             <span class="jxr_string">"PMD.ConstructorOnlyInitializesOrCallOtherConstructors"</span>
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>             )
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>         <strong class="jxr_keyword">public</strong> <a href="../../../com/qulice/spi/Environment.html">Mock</a>() <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L154" href="#L154">154</a>             <strong class="jxr_keyword">this</strong>.params = <strong class="jxr_keyword">new</strong> HashMap&lt;String, String&gt;();
-<a class="jxr_linenumber" name="L155" href="#L155">155</a>             <strong class="jxr_keyword">this</strong>.classpath = <strong class="jxr_keyword">new</strong> HashSet&lt;String&gt;(1);
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>             <strong class="jxr_keyword">this</strong>.params = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>             <strong class="jxr_keyword">this</strong>.classpath = <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(1);
 <a class="jxr_linenumber" name="L156" href="#L156">156</a>             <strong class="jxr_keyword">final</strong> File temp = File.createTempFile(
 <a class="jxr_linenumber" name="L157" href="#L157">157</a>                 <span class="jxr_string">"mock"</span>, <span class="jxr_string">".qulice"</span>,
 <a class="jxr_linenumber" name="L158" href="#L158">158</a>                 <strong class="jxr_keyword">new</strong> File(System.getProperty(<span class="jxr_string">"java.io.tmpdir"</span>))
@@ -280,7 +280,7 @@
 <a class="jxr_linenumber" name="L272" href="#L272">272</a>         @Override
 <a class="jxr_linenumber" name="L273" href="#L273">273</a>         @SuppressWarnings(<span class="jxr_string">"PMD.AvoidInstantiatingObjectsInLoops"</span>)
 <a class="jxr_linenumber" name="L274" href="#L274">274</a>         <strong class="jxr_keyword">public</strong> Collection&lt;File&gt; files(<strong class="jxr_keyword">final</strong> String pattern) {
-<a class="jxr_linenumber" name="L275" href="#L275">275</a>             <strong class="jxr_keyword">final</strong> Collection&lt;File&gt; files = <strong class="jxr_keyword">new</strong> LinkedList&lt;File&gt;();
+<a class="jxr_linenumber" name="L275" href="#L275">275</a>             <strong class="jxr_keyword">final</strong> Collection&lt;File&gt; files = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
 <a class="jxr_linenumber" name="L276" href="#L276">276</a>             <strong class="jxr_keyword">final</strong> IOFileFilter filter = <strong class="jxr_keyword">new</strong> WildcardFileFilter(pattern);
 <a class="jxr_linenumber" name="L277" href="#L277">277</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String dir : <strong class="jxr_keyword">new</strong> String[]{<span class="jxr_string">"src"</span>}) {
 <a class="jxr_linenumber" name="L278" href="#L278">278</a>                 <strong class="jxr_keyword">final</strong> File sources = <strong class="jxr_keyword">new</strong> File(<strong class="jxr_keyword">this</strong>.basedir(), dir);
