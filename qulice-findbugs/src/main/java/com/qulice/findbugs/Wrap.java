@@ -30,7 +30,6 @@
 package com.qulice.findbugs;
 
 import com.google.common.base.Function;
-import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.jcabi.aspects.Tv;
 import com.mebigfatguy.fbcontrib.utils.BugType;
@@ -76,6 +75,12 @@ public final class Wrap {
     /**
      * Run it.
      * @param args Arguments
+     * @todo #706  Temporary disable BED_BOGUS_EXCEPTION_DECLARATION check,
+     *  it will be enable after fix
+     *  https://github.com/jcabi/jcabi-maven-plugin/issues/48
+     * @checkstyle MethodBodyCommentsCheck (50 lines)
+     * @checkstyle CommentsIndentationCheck (50 lines)
+     * @checkstyle TrailingCommentCheck (50 lines)
      */
     public static void run(final String... args) {
         final Project project =
@@ -87,7 +92,7 @@ public final class Wrap {
         }
         final FindBugs2 findbugs = new FindBugs2();
         findbugs.setProject(project);
-        final Collection<String> ignored = Collections2.filter(
+        final Collection<String> ignored = //Collections2.filter(
             Collections2.transform(
                 Arrays.asList(BugType.values()),
                 new Function<BugType, String>() {
@@ -102,12 +107,12 @@ public final class Wrap {
                         return name;
                     }
                 }
-            ),
-            Predicates.not(
-                Predicates.equalTo(
-                    BugType.BED_BOGUS_EXCEPTION_DECLARATION.name()
-                )
-            )
+            //),
+            //Predicates.not(
+            //    Predicates.equalTo(
+            //        BugType.BED_BOGUS_EXCEPTION_DECLARATION.name()
+            //    )
+            //)
         );
         final BugReporter reporter = new PrintingBugReporter() {
             @Override
