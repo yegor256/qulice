@@ -29,20 +29,39 @@
  */
 package com.qulice.foo;
 
+import com.jcabi.aspects.RetryOnFailure;
 import java.io.IOException;
+import java.net.Socket;
 
 /**
- * Test socket.
+ * Test class with using jcabi-aspects annotation.
  *
  * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
  * @since 0.17
  */
-public interface TestSocket {
+public final class TestSocket {
 
     /**
-     * Connect method.
-     * @throws IOException In case of error
+     * Socket.
      */
-    void connect() throws IOException;
+    private final Socket socket;
+
+    /**
+     * Constructor.
+     * @param socket Socket
+     */
+    public TestSocket(final Socket socket) {
+        this.socket = socket;
+    }
+
+    /**
+     * Close method.
+     *
+     * @throws IOException If something wrong happens inside
+     */
+    @RetryOnFailure
+    public void close() throws IOException {
+        this.socket.close();
+    }
 }

@@ -35,3 +35,4 @@
 def log = new File(basedir, 'build.log')
 assert !log.text.contains('M C BED: Non derivable method')
 assert !log.text.contains('declares throwing an exception that isn\'t thrown')
+assert log.text.contains('Finishing FindBugs validator')

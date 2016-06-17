@@ -41,12 +41,11 @@
             <groupId>com.jcabi</groupId>
             <artifactId>jcabi-aspects</artifactId>
             <version>0.22.5</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.aspectj</groupId>
-                    <artifactId>aspectjrt</artifactId>
-                </exclusion>
-            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.8.7</version>
         </dependency>
     </dependencies>
     <build>

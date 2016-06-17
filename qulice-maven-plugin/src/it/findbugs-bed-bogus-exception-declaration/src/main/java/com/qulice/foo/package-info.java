@@ -27,4 +27,12 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+
+/**
+ * Test for findbugs bed bogus exception declaration.
+ *
+ * @author Denys Skalenko (d.skalenko@gmail.com)
+ * @version $Id$
+ * @since 0.17
+ */
 package com.qulice.foo;

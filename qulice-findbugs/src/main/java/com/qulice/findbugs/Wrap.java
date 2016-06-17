@@ -75,12 +75,13 @@ public final class Wrap {
     /**
      * Run it.
      * @param args Arguments
-     * @todo #706  Temporary disable BED_BOGUS_EXCEPTION_DECLARATION check,
-     *  it will be enable after fix
-     *  https://github.com/jcabi/jcabi-maven-plugin/issues/48
-     * @checkstyle MethodBodyCommentsCheck (50 lines)
-     * @checkstyle CommentsIndentationCheck (50 lines)
-     * @checkstyle TrailingCommentCheck (50 lines)
+     * @todo #706:30min Temporary disable BED_BOGUS_EXCEPTION_DECLARATION check
+     *  because of https://github.com/teamed/qulice/issues/706#issuecomment-225943946.
+     *  After enabling check - test
+     *  FindBugsValidatorTest.reportsIncorrectlyAddedThrows should pass
+     *  and findbugs-bed-bogus-exception-declaration should fail.
+     *  For the moment third item is done from comment
+     *  https://github.com/teamed/qulice/issues/706#issuecomment-184611854
      */
     public static void run(final String... args) {
         final Project project =
@@ -92,9 +93,8 @@ public final class Wrap {
         }
         final FindBugs2 findbugs = new FindBugs2();
         findbugs.setProject(project);
-        final Collection<String> ignored = //Collections2.filter(
-            Collections2.transform(
-                Arrays.asList(BugType.values()),
+        final Collection<String> ignored = Collections2.transform(
+            Arrays.asList(BugType.values()),
                 new Function<BugType, String>() {
                     @Override
                     public String apply(final BugType bug) {
@@ -107,12 +107,6 @@ public final class Wrap {
                         return name;
                     }
                 }
-            //),
-            //Predicates.not(
-            //    Predicates.equalTo(
-            //        BugType.BED_BOGUS_EXCEPTION_DECLARATION.name()
-            //    )
-            //)
         );
         final BugReporter reporter = new PrintingBugReporter() {
             @Override
