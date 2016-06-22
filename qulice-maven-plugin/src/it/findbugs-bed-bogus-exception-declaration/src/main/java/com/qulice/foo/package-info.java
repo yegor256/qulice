@@ -29,8 +29,11 @@
  */
 
 /**
- * Test for findbugs bed bogus exception declaration.
- *
+ * When annotation from jcabi-aspects is used on a method that throws correct
+ *  exception and jcabi-maven-plugin is used. In that case findbug can't
+ *  find out that the exception is thrown because AspectJ does some magic
+ *  with bytecode.
+ *  This test reproduces described issue.
  * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
  * @since 0.17

@@ -35,7 +35,6 @@ import java.net.Socket;
 
 /**
  * Test class with using jcabi-aspects annotation.
- *
  * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
  * @since 0.17
@@ -57,7 +56,6 @@ public final class TestSocket {
 
     /**
      * Close method.
-     *
      * @throws IOException If something wrong happens inside
      */
     @RetryOnFailure

@@ -75,11 +75,11 @@ public final class Wrap {
     /**
      * Run it.
      * @param args Arguments
-     * @todo #706:30min Temporary disable BED_BOGUS_EXCEPTION_DECLARATION check
-     *  because of https://github.com/teamed/qulice/issues/706#issuecomment-225943946.
-     *  After enabling check - test
-     *  FindBugsValidatorTest.reportsIncorrectlyAddedThrows should pass
-     *  and findbugs-bed-bogus-exception-declaration should fail.
+     * @todo #706:30min After fix issue mentioned in comment
+     *  https://github.com/teamed/qulice/issues/706#issuecomment-225943946
+     *  rollback the changes done in #706 then remove @Ignore above
+     *  FindBugsValidatorTest.reportsIncorrectlyAddedThrows test
+     *  and fix test findbugs-bed-bogus-exception-declaration.
      *  For the moment third item is done from comment
      *  https://github.com/teamed/qulice/issues/706#issuecomment-184611854
      */
