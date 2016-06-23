@@ -59,7 +59,6 @@ public final class FindBugsValidatorTest {
     /**
      * FindbugsValidator can report incorrectly added throws.
      * @throws Exception If something wrong happens inside
-     * @todo #706:30min Remove @Ignore after performing of puzzle in Wrap.java.
      */
     @Ignore
     @Test(expected = ValidationException.class)
