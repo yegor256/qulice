@@ -699,6 +699,7 @@ public final class CheckstyleValidatorTest {
      *  {@code return new ArrayList<String>();}
      */
     @Test
+    @Ignore
     public void allowsDiamondOperatorUsage() throws Exception {
         this.runValidation("ValidDiamondsUsage.java", true);
     }

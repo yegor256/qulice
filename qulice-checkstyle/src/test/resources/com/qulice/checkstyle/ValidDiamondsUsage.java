@@ -26,4 +26,23 @@ public final class ValidDiamondsUsage {
         list.add("First element");
         return list;
     }
+
+    @Override
+    public Response act(final Request req) throws IOException {
+        final RqForm.Smart smart = new RqForm.Smart();
+        return smart;
+    }
+
+    /**
+     * RqForm.
+     */
+    interface RqForm extends Request {
+
+        /**
+         * Smart.
+         */
+        final class Smart implements RqForm {
+
+        }
+    }
 }
