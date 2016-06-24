@@ -30,9 +30,9 @@
 
 /**
  * Test reproduces case when FindBugs can't find out if the exception
- *  is thrown, because AspectJ does some magic with bytecode
- *  when annotation from jcabi-aspects is used,
- *  even on a method that throws correct exception.
+ * is thrown, because AspectJ does some magic with bytecode
+ * when annotation from jcabi-aspects is used,
+ * even on a method that throws correct exception.
  *
  * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
