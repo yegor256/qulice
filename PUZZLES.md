@@ -1,6 +1,6 @@
 ## Puzzles
 
-There are 18 active puzzles (87 total):
+There are 19 active puzzles (89 total):
 
 
 <del>unknown</del> [`?`](../master/?)<br/>
@@ -90,3 +90,5 @@ There are 18 active puzzles (87 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#752](https://github.com/teamed/qulice/issues/752):[<del>715-04710633</del>](https://github.com/teamed/qulice/issues/752) [`CheckstyleValidatorTest.java:722-723`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L722-L723)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#776](https://github.com/teamed/qulice/issues/776):[**715-2a207c32**](https://github.com/teamed/qulice/issues/776) [`CheckstyleValidatorTest.java:700-701`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L700-L701)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[#777](https://github.com/teamed/qulice/issues/777):[**250-1b26b28c**](https://github.com/teamed/qulice/issues/777) [`DuplicateFinderValidator.java:44-54`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java#L44-L54)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[#706](https://github.com/teamed/qulice/issues/706):[<del>706</del>](https://github.com/teamed/qulice/issues/706) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#787](https://github.com/teamed/qulice/issues/787):[**706-72bdab5d**](https://github.com/teamed/qulice/issues/787) [`Wrap.java:78-84`](../master/qulice-findbugs/src/main/java/com/qulice/findbugs/Wrap.java#L78-L84)<br/>
