@@ -62,10 +62,10 @@ public final class PmdValidatorTest {
 
     /**
      * Error message for forbidding instructions inside a constructor
-     * other than field initialization or call to other contructors.
+     * other than field initialization or call to other constructors.
      * @checkstyle LineLength (2 lines)
      */
-    private static final String CODE_IN_CON = "%s\\[\\d+-\\d+\\]: Only field initialization or call to other contructors in a constructor";
+    private static final String CODE_IN_CON = "%s\\[\\d+-\\d+\\]: Only field initialization or call to other constructors in a constructor";
 
     /**
      * Pattern for non-constructor field initialization.
