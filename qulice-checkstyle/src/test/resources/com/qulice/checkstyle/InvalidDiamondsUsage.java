@@ -22,4 +22,25 @@ public final class InvalidDiamondsUsage {
         list.addAll(Arrays.asList(args));
         return list;
     }
+
+    /**
+     * Act.
+     */
+    public static void act() {
+        final RqForm.Smart<String> smart = new RqForm.Smart<String>();
+    }
+
+    /**
+     * RqForm.
+     */
+    interface RqForm {
+
+        /**
+         * Smart.
+         * @param <E> generic parament
+         */
+        final class Smart<E> implements RqForm {
+
+        }
+    }
 }
