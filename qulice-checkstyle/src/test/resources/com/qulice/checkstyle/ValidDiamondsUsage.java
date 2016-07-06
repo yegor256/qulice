@@ -27,16 +27,17 @@ public final class ValidDiamondsUsage {
         return list;
     }
 
-    @Override
-    public Response act(final Request req) throws IOException {
+    /**
+     * Act.
+     */
+    public static void act() {
         final RqForm.Smart smart = new RqForm.Smart();
-        return smart;
     }
 
     /**
      * RqForm.
      */
-    interface RqForm extends Request {
+    interface RqForm {
 
         /**
          * Smart.

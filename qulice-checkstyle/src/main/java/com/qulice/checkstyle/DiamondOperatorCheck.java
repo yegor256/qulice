@@ -109,6 +109,9 @@ public final class DiamondOperatorCheck extends Check {
                 .getFirstChildNodeOfType(result, type);
             if (child == null) {
                 result = result.getNextSibling();
+                if(result != null && result.getType() != type) {
+                    result = null;
+                }
             }
         }
         return result;
