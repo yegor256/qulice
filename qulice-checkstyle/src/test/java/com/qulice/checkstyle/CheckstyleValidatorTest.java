@@ -685,12 +685,10 @@ public final class CheckstyleValidatorTest {
         final String name = "DiamondOperatorCheck";
         final String message = "Use diamond operator";
         MatcherAssert.assertThat(
-                this.runValidation(file, false),
-                Matchers.hasItems(
-                        new ViolationMatcher(
-                                message, file, "21", name),
-                        new ViolationMatcher(
-                                message, file, "30", name)
+            this.runValidation(file, false),
+            Matchers.hasItems(
+                new ViolationMatcher(message, file, "21", name),
+                new ViolationMatcher(message, file, "31", name)
                 )
         );
     }

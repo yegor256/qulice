@@ -28,21 +28,23 @@ public final class ValidDiamondsUsage {
     }
 
     /**
-     * Act.
+     * Correct diamonds usage when instantiate an inner class type,
+     * because there is no way that the diamond operator can be applied.
      */
-    public static void act() {
-        final RqForm.Smart smart = new RqForm.Smart();
+    public static void innerClassUsage() {
+        final SimpleInterface.InnerClass inner =
+            new SimpleInterface.InnerClass();
     }
 
     /**
-     * RqForm.
+     * Simple interface, used as wrapper.
      */
-    interface RqForm {
+    interface SimpleInterface {
 
         /**
-         * Smart.
+         * Inner class.
          */
-        final class Smart implements RqForm {
+        final class InnerClass implements SimpleInterface {
 
         }
     }

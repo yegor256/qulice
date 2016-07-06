@@ -24,22 +24,23 @@ public final class InvalidDiamondsUsage {
     }
 
     /**
-     * Act.
+     * Wrong diamonds usage when instantiate an inner class type.
      */
-    public static void act() {
-        final RqForm.Smart<String> smart = new RqForm.Smart<String>();
+    public static void innerClassUsage() {
+        final SimpleInterface.InnerClass<String> inner =
+            new SimpleInterface.InnerClass<String>();
     }
 
     /**
-     * RqForm.
+     * Simple interface, used as wrapper.
      */
-    interface RqForm {
+    interface SimpleInterface {
 
         /**
-         * Smart.
+         * Inner class with generic parament.
          * @param <E> generic parament
          */
-        final class Smart<E> implements RqForm {
+        final class InnerClass<E> implements SimpleInterface {
 
         }
     }

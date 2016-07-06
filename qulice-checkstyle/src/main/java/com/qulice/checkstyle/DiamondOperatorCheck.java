@@ -49,10 +49,10 @@ public final class DiamondOperatorCheck extends Check {
 
     @Override
     public void visitToken(final DetailAST node) {
-        final DetailAST generic = DiamondOperatorCheck.getFirstChildNodeOfType(
-            node.findFirstToken(TokenTypes.TYPE),
-            TokenTypes.TYPE_ARGUMENTS
-        );
+        final DetailAST generic = DiamondOperatorCheck
+            .findFirstChildNodeOfType(
+                node.findFirstToken(TokenTypes.TYPE), TokenTypes.TYPE_ARGUMENTS
+            );
         final DetailAST assign = node.findFirstToken(TokenTypes.ASSIGN);
         final DetailAST instance;
         if (assign == null || generic == null) {
@@ -64,7 +64,7 @@ public final class DiamondOperatorCheck extends Check {
             && DiamondOperatorCheck.isNotObjectBlock(instance)
             && DiamondOperatorCheck.isNotArray(instance)) {
             final DetailAST type =
-                DiamondOperatorCheck.getFirstChildNodeOfType(
+                DiamondOperatorCheck.findFirstChildNodeOfType(
                     instance, TokenTypes.TYPE_ARGUMENTS
                 );
             if (generic.equalsTree(type)) {
@@ -94,24 +94,22 @@ public final class DiamondOperatorCheck extends Check {
     }
 
     /**
-     * Gets the return type of method or field type.
+     * Returns the first child node of a specified type, even
+     * in case when node contains as child an inner class type.
      *
      * @param node AST subtree to process.
      * @param type Type of token
      * @return Child node of specified type
      */
-    private static DetailAST getFirstChildNodeOfType(
+    private static DetailAST findFirstChildNodeOfType(
         final DetailAST node, final int type
     ) {
-        DetailAST result = node.getFirstChild();
-        if (result != null && result.getType() != type) {
-            final DetailAST child = DiamondOperatorCheck
-                .getFirstChildNodeOfType(result, type);
-            if (child == null) {
-                result = result.getNextSibling();
-                if(result != null && result.getType() != type) {
-                    result = null;
-                }
+        DetailAST result = node.findFirstToken(type);
+        if (result == null) {
+            final DetailAST dot = node.findFirstToken(TokenTypes.DOT);
+            if (dot != null) {
+                result = DiamondOperatorCheck
+                    .findFirstChildNodeOfType(dot, type);
             }
         }
         return result;
