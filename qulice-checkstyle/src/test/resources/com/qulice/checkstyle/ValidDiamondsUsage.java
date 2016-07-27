@@ -28,12 +28,11 @@ public final class ValidDiamondsUsage {
     }
 
     /**
-     * Correct diamonds usage when instantiate an inner class type,
-     * because there is no way that the diamond operator can be applied.
+     * Correct diamonds usage when instantiate an inner class type.
      */
     public static void innerClassUsage() {
-        final SimpleInterface.InnerClass inner =
-            new SimpleInterface.InnerClass();
+        final SimpleInterface.InnerClass<String> inner =
+            new SimpleInterface.InnerClass<>();
     }
 
     /**
@@ -42,9 +41,10 @@ public final class ValidDiamondsUsage {
     interface SimpleInterface {
 
         /**
-         * Inner class.
+         * Inner class with generic parameter.
+         * @param <E> generic parameter
          */
-        final class InnerClass implements SimpleInterface {
+        final class InnerClass<E> implements SimpleInterface {
 
         }
     }

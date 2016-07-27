@@ -37,8 +37,8 @@ public final class InvalidDiamondsUsage {
     interface SimpleInterface {
 
         /**
-         * Inner class with generic parament.
-         * @param <E> generic parament
+         * Inner class with generic parameter.
+         * @param <E> generic parameter
          */
         final class InnerClass<E> implements SimpleInterface {
 
