@@ -94,8 +94,7 @@ public final class DiamondOperatorCheck extends Check {
     }
 
     /**
-     * Returns the first child node of a specified type, even
-     * in case when node contains as child an inner class type.
+     * Returns the first child node of a specified type.
      *
      * @param node AST subtree to process.
      * @param type Type of token
@@ -106,10 +105,10 @@ public final class DiamondOperatorCheck extends Check {
     ) {
         DetailAST result = node.findFirstToken(type);
         if (result == null) {
-            final DetailAST dot = node.findFirstToken(TokenTypes.DOT);
-            if (dot != null) {
+            final DetailAST child = node.getFirstChild();
+            if (child != null) {
                 result = DiamondOperatorCheck
-                    .findFirstChildNodeOfType(dot, type);
+                    .findFirstChildNodeOfType(child, type);
             }
         }
         return result;
