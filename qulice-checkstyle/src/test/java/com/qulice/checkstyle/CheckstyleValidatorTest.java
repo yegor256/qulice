@@ -679,16 +679,17 @@ public final class CheckstyleValidatorTest {
      * @throws Exception If error
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void rejectsNonDiamondOperatorUsage() throws Exception {
         final String file = "InvalidDiamondsUsage.java";
+        final String name = "DiamondOperatorCheck";
+        final String message = "Use diamond operator";
         MatcherAssert.assertThat(
             this.runValidation(file, false),
-            Matchers.contains(
-                new CheckstyleValidatorTest.ViolationMatcher(
-                    // @checkstyle MultipleStringLiterals (1 line)
-                    "Use diamond operator", file, "21", "DiamondOperatorCheck"
+            Matchers.hasItems(
+                new ViolationMatcher(message, file, "21", name),
+                new ViolationMatcher(message, file, "31", name)
                 )
-            )
         );
     }
 

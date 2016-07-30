@@ -22,4 +22,26 @@ public final class InvalidDiamondsUsage {
         list.addAll(Arrays.asList(args));
         return list;
     }
+
+    /**
+     * Wrong diamonds usage when instantiate an inner class type.
+     */
+    public static void innerClassUsage() {
+        final SimpleInterface.InnerClass<String> inner =
+            new SimpleInterface.InnerClass<String>();
+    }
+
+    /**
+     * Simple interface, used as wrapper.
+     */
+    interface SimpleInterface {
+
+        /**
+         * Inner class with generic parameter.
+         * @param <E> generic parameter
+         */
+        final class InnerClass<E> implements SimpleInterface {
+
+        }
+    }
 }
