@@ -57,10 +57,10 @@
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>      @Override
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> visitToken(<strong class="jxr_keyword">final</strong> DetailAST node) {
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>          <strong class="jxr_keyword">final</strong> DetailAST <strong class="jxr_keyword">generic</strong> = DiamondOperatorCheck.getFirstChildNodeOfType(
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>              node.findFirstToken(TokenTypes.TYPE),
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>              TokenTypes.TYPE_ARGUMENTS
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>          );
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>          <strong class="jxr_keyword">final</strong> DetailAST <strong class="jxr_keyword">generic</strong> = <a href="../../../com/qulice/checkstyle/DiamondOperatorCheck.html">DiamondOperatorCheck</a>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>              .findFirstChildNodeOfType(
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>                  node.findFirstToken(TokenTypes.TYPE), TokenTypes.TYPE_ARGUMENTS
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>              );
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>          <strong class="jxr_keyword">final</strong> DetailAST assign = node.findFirstToken(TokenTypes.ASSIGN);
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>          <strong class="jxr_keyword">final</strong> DetailAST instance;
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>          <strong class="jxr_keyword">if</strong> (assign == <strong class="jxr_keyword">null</strong> || <strong class="jxr_keyword">generic</strong> == <strong class="jxr_keyword">null</strong>) {
@@ -72,7 +72,7 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>              &amp;&amp; DiamondOperatorCheck.isNotObjectBlock(instance)
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>              &amp;&amp; DiamondOperatorCheck.isNotArray(instance)) {
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>              <strong class="jxr_keyword">final</strong> DetailAST type =
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>                  DiamondOperatorCheck.getFirstChildNodeOfType(
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>                  DiamondOperatorCheck.findFirstChildNodeOfType(
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>                      instance, TokenTypes.TYPE_ARGUMENTS
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>                  );
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>              <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">generic</strong>.equalsTree(type)) {
@@ -102,21 +102,21 @@
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>      }
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">     * Gets the return type of method or field type.</em>
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">     * Returns the first child node of a specified type.</em>
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">     *</em>
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     * @param node AST subtree to process.</em>
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">     * @param type Type of token</em>
 <a class="jxr_linenumber" name="L101" href="#L101">101</a> <em class="jxr_javadoccomment">     * @return Child node of specified type</em>
 <a class="jxr_linenumber" name="L102" href="#L102">102</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> DetailAST getFirstChildNodeOfType(
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> DetailAST findFirstChildNodeOfType(
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>         <strong class="jxr_keyword">final</strong> DetailAST node, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> type
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>     ) {
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>         DetailAST result = node.getFirstChild();
-<a class="jxr_linenumber" name="L107" href="#L107">107</a>         <strong class="jxr_keyword">if</strong> (result != <strong class="jxr_keyword">null</strong> &amp;&amp; result.getType() != type) {
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>             <strong class="jxr_keyword">final</strong> DetailAST child = <a href="../../../com/qulice/checkstyle/DiamondOperatorCheck.html">DiamondOperatorCheck</a>
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>                 .getFirstChildNodeOfType(result, type);
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>             <strong class="jxr_keyword">if</strong> (child == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>                 result = result.getNextSibling();
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         DetailAST result = node.findFirstToken(type);
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>         <strong class="jxr_keyword">if</strong> (result == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>             <strong class="jxr_keyword">final</strong> DetailAST child = node.getFirstChild();
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>             <strong class="jxr_keyword">if</strong> (child != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>                 result = <a href="../../../com/qulice/checkstyle/DiamondOperatorCheck.html">DiamondOperatorCheck</a>
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>                     .findFirstChildNodeOfType(child, type);
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>             }
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>         }
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>         <strong class="jxr_keyword">return</strong> result;
