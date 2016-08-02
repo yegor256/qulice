@@ -67,6 +67,9 @@
             <property name="maxDuplicateLiterals">
                 <value>2</value>
             </property>
+            <property name="skipAnnotations">
+                <value>true</value>
+            </property>
         </properties>
     </rule>
     <rule ref="rulesets/java/sunsecure.xml"/>

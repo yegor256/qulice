@@ -562,4 +562,19 @@ public final class PmdValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PmdValidator can allow duplicates literals in annotations.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsDuplicateLiteralsInAnnotations() throws Exception {
+        new PmdAssert(
+            "AllowsDuplicateLiteralsInAnnotations.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString("AvoidDuplicateLiterals")
+            )
+        ).validate();
+    }
 }
