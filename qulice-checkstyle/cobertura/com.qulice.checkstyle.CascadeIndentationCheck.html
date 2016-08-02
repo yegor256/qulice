@@ -129,16 +129,16 @@
 <tr>  <td class="numLine">&nbsp;56</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> processFiltered(<span class="keyword">final</span> File file, <span class="keyword">final</span> List&lt;String&gt; lines) {</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;57</td>  <td class="nbHitsCovered">&nbsp;30</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> previous = 0;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsCovered"><a title="Line 58: Conditional coverage 100% (2/2).">&nbsp;949</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 58: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> pos = 0; pos &lt; lines.size(); pos += 1) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;59</td>  <td class="nbHitsCovered">&nbsp;919</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> String line = lines.get(pos);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;60</td>  <td class="nbHitsCovered">&nbsp;919</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> <span class="keyword">int</span> current = CascadeIndentationCheck.indentation(line);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;61</td>  <td class="nbHitsCovered"><a title="Line 61: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;919</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 61: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">            <span class="keyword">if</span> (CascadeIndentationCheck.inCommentBlock(line)</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;58</td>  <td class="nbHitsCovered"><a title="Line 58: Conditional coverage 100% (2/2).">&nbsp;993</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 58: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> pos = 0; pos &lt; lines.size(); pos += 1) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;59</td>  <td class="nbHitsCovered">&nbsp;963</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> String line = lines.get(pos);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;60</td>  <td class="nbHitsCovered">&nbsp;963</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">final</span> <span class="keyword">int</span> current = CascadeIndentationCheck.indentation(line);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;61</td>  <td class="nbHitsCovered"><a title="Line 61: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;963</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 61: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">            <span class="keyword">if</span> (CascadeIndentationCheck.inCommentBlock(line)</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;62</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                || line.isEmpty()) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;63</td>  <td class="nbHitsCovered">&nbsp;96</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">continue</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;63</td>  <td class="nbHitsCovered">&nbsp;104</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">continue</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;64</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsCovered"><a title="Line 65: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;354</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 65: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">            <span class="keyword">if</span> (current &gt; previous</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;65</td>  <td class="nbHitsCovered"><a title="Line 65: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">&nbsp;370</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 65: Conditional coverage 100% (4/4) [each condition: 100%, 100%].">            <span class="keyword">if</span> (current &gt; previous</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;66</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                &amp;&amp; current != previous</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;67</td>  <td class="nbHits">&nbsp;</td>
@@ -168,7 +168,7 @@
   <td class="src"><pre class="src">&nbsp;                );</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;80</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;81</td>  <td class="nbHitsCovered">&nbsp;354</td>  <td class="src"><pre class="src">&nbsp;            previous = current;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;81</td>  <td class="nbHitsCovered">&nbsp;370</td>  <td class="src"><pre class="src">&nbsp;            previous = current;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;82</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;83</td>  <td class="nbHitsCovered">&nbsp;30</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
@@ -186,8 +186,8 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;90</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> inCommentBlock(<span class="keyword">final</span> String line) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;91</td>  <td class="nbHitsCovered">&nbsp;919</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> String trimmed = line.trim();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;92</td>  <td class="nbHitsUncovered"><a title="Line 92: Conditional coverage 87% (7/8) [each condition: 100%, 100%, 100%, 50%].">&nbsp;919</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 92: Conditional coverage 87% (7/8) [each condition: 100%, 100%, 100%, 50%].">        <span class="keyword">return</span> trimmed.length() &gt; 0</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;91</td>  <td class="nbHitsCovered">&nbsp;963</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> String trimmed = line.trim();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;92</td>  <td class="nbHitsUncovered"><a title="Line 92: Conditional coverage 87% (7/8) [each condition: 100%, 100%, 100%, 50%].">&nbsp;963</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 92: Conditional coverage 87% (7/8) [each condition: 100%, 100%, 100%, 50%].">        <span class="keyword">return</span> trimmed.length() &gt; 0</a></span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;93</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            &amp;&amp; (trimmed.charAt(0) == <span class="string">'*'</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;94</td>  <td class="nbHits">&nbsp;</td>
@@ -212,16 +212,16 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;104</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> indentation(<span class="keyword">final</span> String line) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;105</td>  <td class="nbHitsCovered">&nbsp;919</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> result = 0;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;106</td>  <td class="nbHitsCovered"><a title="Line 106: Conditional coverage 100% (2/2).">&nbsp;3974</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 106: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> pos = 0; pos &lt; line.length(); pos += 1) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;107</td>  <td class="nbHitsCovered"><a title="Line 107: Conditional coverage 100% (2/2).">&nbsp;3878</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 107: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (!Character.isWhitespace(line.charAt(pos))) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;108</td>  <td class="nbHitsCovered">&nbsp;823</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">break</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;105</td>  <td class="nbHitsCovered">&nbsp;963</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">int</span> result = 0;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;106</td>  <td class="nbHitsCovered"><a title="Line 106: Conditional coverage 100% (2/2).">&nbsp;4248</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 106: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">int</span> pos = 0; pos &lt; line.length(); pos += 1) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;107</td>  <td class="nbHitsCovered"><a title="Line 107: Conditional coverage 100% (2/2).">&nbsp;4144</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 107: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (!Character.isWhitespace(line.charAt(pos))) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;108</td>  <td class="nbHitsCovered">&nbsp;859</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">break</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;109</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;110</td>  <td class="nbHitsCovered">&nbsp;3055</td>  <td class="src"><pre class="src">&nbsp;            result += 1;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;110</td>  <td class="nbHitsCovered">&nbsp;3285</td>  <td class="src"><pre class="src">&nbsp;            result += 1;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;111</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;112</td>  <td class="nbHitsCovered">&nbsp;919</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> result;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;112</td>  <td class="nbHitsCovered">&nbsp;963</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> result;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;113</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;114</td>  <td class="nbHits">&nbsp;</td>
@@ -230,6 +230,6 @@
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 6/4/16 2:55 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 8/2/16 7:47 PM.</div>
 </body>
 </html>

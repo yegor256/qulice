@@ -159,7 +159,7 @@
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;72</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">void</span> visitToken(<span class="keyword">final</span> DetailAST ast) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;73</td>  <td class="nbHitsCovered">&nbsp;39</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> List&lt;DetailAST&gt; pluses = <span class="keyword">this</span>.findChildAstsOfType(</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;73</td>  <td class="nbHitsCovered">&nbsp;43</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> List&lt;DetailAST&gt; pluses = <span class="keyword">this</span>.findChildAstsOfType(</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;74</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            ast,</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;75</td>  <td class="nbHits">&nbsp;</td>
@@ -168,7 +168,7 @@
   <td class="src"><pre class="src">&nbsp;            TokenTypes.PLUS_ASSIGN</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;77</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        );</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;78</td>  <td class="nbHitsCovered"><a title="Line 78: Conditional coverage 100% (2/2).">&nbsp;39</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 78: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">final</span> DetailAST plus : pluses) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;78</td>  <td class="nbHitsCovered"><a title="Line 78: Conditional coverage 100% (2/2).">&nbsp;43</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 78: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">final</span> DetailAST plus : pluses) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;79</td>  <td class="nbHitsCovered"><a title="Line 79: Conditional coverage 100% (2/2).">&nbsp;15</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 79: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (!<span class="keyword">this</span>.findChildAstsOfType(</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;80</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;                plus,</pre></td></tr>
@@ -180,7 +180,7 @@
 <tr>  <td class="numLine">&nbsp;84</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;85</td>  <td class="nbHitsCovered">&nbsp;15</td>  <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;86</td>  <td class="nbHitsCovered">&nbsp;39</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;86</td>  <td class="nbHitsCovered">&nbsp;43</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;87</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;88</td>  <td class="nbHits">&nbsp;</td>
@@ -205,20 +205,20 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> List&lt;DetailAST&gt; findChildAstsOfType(<span class="keyword">final</span> DetailAST tree,</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;98</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> <span class="keyword">int</span>... types) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;99</td>  <td class="nbHitsCovered">&nbsp;2270</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> List&lt;DetailAST&gt; children = <span class="keyword">new</span> LinkedList&lt;&gt;();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;100</td>  <td class="nbHitsCovered">&nbsp;2270</td>  <td class="src"><pre class="src">&nbsp;        DetailAST child = tree.getFirstChild();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;101</td>  <td class="nbHitsCovered"><a title="Line 101: Conditional coverage 100% (2/2).">&nbsp;4508</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 101: Conditional coverage 100% (2/2).">        <span class="keyword">while</span> (child != <span class="keyword">null</span>) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;102</td>  <td class="nbHitsCovered"><a title="Line 102: Conditional coverage 100% (2/2).">&nbsp;2238</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 102: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (StringLiteralsConcatenationCheck.isOfType(child, types)) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;99</td>  <td class="nbHitsCovered">&nbsp;2434</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">final</span> List&lt;DetailAST&gt; children = <span class="keyword">new</span> LinkedList&lt;&gt;();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;100</td>  <td class="nbHitsCovered">&nbsp;2434</td>  <td class="src"><pre class="src">&nbsp;        DetailAST child = tree.getFirstChild();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;101</td>  <td class="nbHitsCovered"><a title="Line 101: Conditional coverage 100% (2/2).">&nbsp;4832</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 101: Conditional coverage 100% (2/2).">        <span class="keyword">while</span> (child != <span class="keyword">null</span>) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;102</td>  <td class="nbHitsCovered"><a title="Line 102: Conditional coverage 100% (2/2).">&nbsp;2398</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 102: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (StringLiteralsConcatenationCheck.isOfType(child, types)) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;103</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;                children.add(child);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;104</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            } <span class="keyword">else</span> {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;105</td>  <td class="nbHitsCovered">&nbsp;2216</td>  <td class="src"><pre class="src">&nbsp;                children.addAll(<span class="keyword">this</span>.findChildAstsOfType(child, types));</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;105</td>  <td class="nbHitsCovered">&nbsp;2376</td>  <td class="src"><pre class="src">&nbsp;                children.addAll(<span class="keyword">this</span>.findChildAstsOfType(child, types));</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;106</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;107</td>  <td class="nbHitsCovered">&nbsp;2238</td>  <td class="src"><pre class="src">&nbsp;            child = child.getNextSibling();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;107</td>  <td class="nbHitsCovered">&nbsp;2398</td>  <td class="src"><pre class="src">&nbsp;            child = child.getNextSibling();</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;108</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;109</td>  <td class="nbHitsCovered">&nbsp;2270</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> children;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;109</td>  <td class="nbHitsCovered">&nbsp;2434</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> children;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;110</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;111</td>  <td class="nbHits">&nbsp;</td>
@@ -239,22 +239,22 @@
   <td class="src"><pre class="src">&nbsp;<span class="comment">     */</span></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;119</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> isOfType(<span class="keyword">final</span> DetailAST ast, <span class="keyword">final</span> <span class="keyword">int</span>... types) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;120</td>  <td class="nbHitsCovered">&nbsp;2238</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> yes = <span class="keyword">false</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;121</td>  <td class="nbHitsCovered"><a title="Line 121: Conditional coverage 100% (2/2).">&nbsp;6622</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 121: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">final</span> <span class="keyword">int</span> type : types) {</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;122</td>  <td class="nbHitsCovered"><a title="Line 122: Conditional coverage 100% (2/2).">&nbsp;4406</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 122: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (ast.getType() == type) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;120</td>  <td class="nbHitsCovered">&nbsp;2398</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">boolean</span> yes = <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;121</td>  <td class="nbHitsCovered"><a title="Line 121: Conditional coverage 100% (2/2).">&nbsp;7102</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 121: Conditional coverage 100% (2/2).">        <span class="keyword">for</span> (<span class="keyword">final</span> <span class="keyword">int</span> type : types) {</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;122</td>  <td class="nbHitsCovered"><a title="Line 122: Conditional coverage 100% (2/2).">&nbsp;4726</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 122: Conditional coverage 100% (2/2).">            <span class="keyword">if</span> (ast.getType() == type) {</a></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;123</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;                yes = <span class="keyword">true</span>;</pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;124</td>  <td class="nbHitsCovered">&nbsp;22</td>  <td class="src"><pre class="src">&nbsp;                <span class="keyword">break</span>;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;125</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;            }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;126</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;        }</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;127</td>  <td class="nbHitsCovered">&nbsp;2238</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> yes;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;127</td>  <td class="nbHitsCovered">&nbsp;2398</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> yes;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;128</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;129</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 6/4/16 2:55 PM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 8/2/16 7:47 PM.</div>
 </body>
 </html>
