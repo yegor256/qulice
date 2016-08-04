@@ -564,7 +564,7 @@ public final class PmdValidatorTest {
     }
 
     /**
-     * PmdValidator can allow duplicates literals in annotations.
+     * PmdValidator can allow duplicate literals in annotations.
      * @throws Exception If something wrong happens inside.
      */
     @Test
