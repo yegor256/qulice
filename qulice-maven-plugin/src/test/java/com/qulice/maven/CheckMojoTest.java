@@ -89,7 +89,7 @@ public final class CheckMojoTest {
         Mockito.verify(internal).validate(Mockito.any(MavenEnvironment.class));
         Mockito.verify(external).validate(Mockito.any(Environment.class));
         Mockito.verify(rexternal, Mockito.atLeastOnce())
-            .validate(Mockito.any(File.class));
+            .validate(Mockito.anyCollectionOf(File.class));
     }
 
 }

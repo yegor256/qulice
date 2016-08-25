@@ -36,6 +36,7 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collection;
+import java.util.Collections;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -102,7 +103,9 @@ public final class PmdValidatorTest {
         final Environment env = new Environment.Mock()
             .withFile(file, "class Main { int x = 0; }");
         MatcherAssert.assertThat(
-            new PMDValidator(env).validate(new File(env.basedir(), file)),
+            new PmdValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            ),
             Matchers.not(Matchers.<Violation>empty())
         );
     }
@@ -127,8 +130,9 @@ public final class PmdValidatorTest {
                 "}"
             )
         );
-        final Collection<Violation> violations =
-            new PMDValidator(env).validate(new File(env.basedir(), file));
+        final Collection<Violation> violations = new PmdValidator(env).validate(
+            Collections.singletonList(new File(env.basedir(), file))
+        );
         MatcherAssert.assertThat(
             violations,
             Matchers.<Violation>empty()
@@ -160,7 +164,9 @@ public final class PmdValidatorTest {
             )
         );
         MatcherAssert.assertThat(
-            new PMDValidator(env).validate(new File(env.basedir(), file)),
+            new PmdValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            ),
             Matchers.<Violation>empty()
         );
     }

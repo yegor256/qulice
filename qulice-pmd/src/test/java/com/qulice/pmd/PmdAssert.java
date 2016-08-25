@@ -33,6 +33,7 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collection;
+import java.util.Collections;
 import org.apache.commons.io.IOUtils;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
@@ -85,8 +86,9 @@ final class PmdAssert {
                 this.getClass().getResourceAsStream(this.file)
             )
         );
-        final Collection<Violation> violations =
-            new PMDValidator(env).validate(new File(env.basedir(), name));
+        final Collection<Violation> violations = new PmdValidator(env).validate(
+            Collections.singletonList(new File(env.basedir(), name))
+        );
         MatcherAssert.assertThat(violations.isEmpty(), this.result);
         final StringBuilder builder = new StringBuilder();
         for (final Violation violation : violations) {

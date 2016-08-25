@@ -193,7 +193,7 @@ public final class QuliceTask extends Task {
         final Environment env) {
         return Arrays.asList(
             new CheckstyleValidator(env),
-            new PMDValidator(env)
+            new PmdValidator(env)
         );
     }
 }

@@ -34,7 +34,6 @@ import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import net.sourceforge.pmd.RuleViolation;
 import net.sourceforge.pmd.util.datasource.DataSource;
@@ -47,7 +46,7 @@ import net.sourceforge.pmd.util.datasource.FileDataSource;
  * @version $Id$
  * @since 0.3
  */
-public final class PMDValidator implements ResourceValidator {
+public final class PmdValidator implements ResourceValidator {
 
     /**
      * Environment to use.
@@ -58,17 +57,20 @@ public final class PMDValidator implements ResourceValidator {
      * Constructor.
      * @param env Environment to use.
      */
-    public PMDValidator(final Environment env) {
+    public PmdValidator(final Environment env) {
         this.env = env;
     }
 
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public Collection<Violation> validate(final File file) {
+    public Collection<Violation> validate(final Collection<File> files) {
         final SourceValidator validator = new SourceValidator(this.env);
+        final Collection<DataSource> sources = new LinkedList<>();
+        for (final File file : files) {
+            sources.add(new FileDataSource(file));
+        }
         final Collection<RuleViolation> breaches = validator.validate(
-            Collections.<DataSource>singletonList(new FileDataSource(file)),
-            this.env.basedir().getPath()
+            sources, this.env.basedir().getPath()
         );
         final Collection<Violation> violations = new LinkedList<>();
         for (final RuleViolation breach : breaches) {
