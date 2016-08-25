@@ -33,7 +33,7 @@ import org.hamcrest.Matchers;
 import org.junit.Test;
 
 /**
- * Test case for {@link PMDValidator} class.
+ * Test case for {@link PmdValidator} class.
  * @author Prahlad Yeri (prahladyeri@yahoo.com)
  * @version $Id$
  * @since 0.15
@@ -42,14 +42,14 @@ import org.junit.Test;
  *  remove override of maven-surefire-plugin configuration in qulice-pmd pom.xml
  */
 @SuppressWarnings("PMD.TooManyMethods")
-public final class PMDEmptyTest {
+public final class PmdEmptyTest {
     /**
      * Makes sure that empty static initializers fail with an error.
      * @throws Exception when something goes wrong
      */
     @Test
     public void failsForEmptyStaticInitializer() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "EmptyStaticInitializer.java",
             Matchers.is(false),
             Matchers.containsString(
@@ -64,7 +64,7 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyStatementBlock() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "EmptyStatementBlock.java",
             Matchers.is(false),
             Matchers.containsString(
@@ -79,7 +79,7 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyInitializer() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "EmptyInitializer.java",
             Matchers.is(false),
             Matchers.containsString(
@@ -94,7 +94,7 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyNonLoopStatement() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "EmptyStatementNotInLoop.java",
             Matchers.is(false),
             Matchers.containsString(
@@ -109,7 +109,7 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptySynchronizedBlock() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "EmptySynchronizedBlock.java",
             Matchers.is(false),
             Matchers.containsString(
@@ -124,7 +124,7 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptySwitchStatement() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "EmptySwitchStmt.java",
             Matchers.is(false),
             Matchers.containsString(
@@ -139,7 +139,7 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyFinallyBlock() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "EmptyFinallyBlock.java",
             Matchers.is(false),
             Matchers.containsString("Avoid empty finally blocks")
@@ -152,7 +152,7 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyWhileStatement() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "EmptyWhileStmt.java",
             Matchers.is(false),
             Matchers.containsString("Avoid empty while statements")
@@ -165,7 +165,7 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyIfStatement() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "EmptyIfStmt.java",
             Matchers.is(false),
             Matchers.containsString("Avoid empty if statements")
@@ -178,7 +178,7 @@ public final class PMDEmptyTest {
      */
     @Test
     public void failsForEmptyCatchBlock() throws Exception {
-        new PMDAssert(
+        new PmdAssert(
             "EmptyCatchBlock.java",
             Matchers.is(false),
             Matchers.containsString("Avoid empty catch blocks")

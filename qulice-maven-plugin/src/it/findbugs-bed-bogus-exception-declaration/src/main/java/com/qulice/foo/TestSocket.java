@@ -27,30 +27,39 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.spi;
+package com.qulice.foo;
 
-import java.io.File;
-import java.util.Collection;
+import com.jcabi.aspects.RetryOnFailure;
+import java.io.IOException;
+import java.net.Socket;
 
 /**
- * Validator.
- *
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
+ * Test class with using jcabi-aspects annotation.
+ * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
  * @since 0.17
  */
-public interface ResourceValidator {
+public final class TestSocket {
 
     /**
-     * Validate and throws exception if there are any problems.
-     * @param files Files to validate
-     * @return Validation results
+     * Socket.
      */
-    Collection<Violation> validate(Collection<File> files);
+    private final Socket socket;
 
     /**
-     * Name of this validator.
-     * @return Name of this validator.
+     * Constructor.
+     * @param socket Socket
      */
-    String name();
+    public TestSocket(final Socket socket) {
+        this.socket = socket;
+    }
+
+    /**
+     * Close method.
+     * @throws IOException If something wrong happens inside
+     */
+    @RetryOnFailure
+    public void close() throws IOException {
+        this.socket.close();
+    }
 }

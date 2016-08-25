@@ -49,22 +49,22 @@ public final class LicenseRule implements TestRule {
     /**
      * The text.
      */
-    private transient String[] lines;
+    private String[] lines;
 
     /**
      * EOL.
      */
-    private transient String eol;
+    private String eol;
 
     /**
      * Package name.
      */
-    private transient String pkg = "foo";
+    private String pkg = "foo";
 
     /**
      * Directory for package-info.java.
      */
-    private transient File directory;
+    private File directory;
 
     @Override
     public Statement apply(final Statement statement,

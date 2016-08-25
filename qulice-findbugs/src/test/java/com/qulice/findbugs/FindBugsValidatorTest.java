@@ -32,6 +32,7 @@ package com.qulice.findbugs;
 import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -59,6 +60,7 @@ public final class FindBugsValidatorTest {
      * FindbugsValidator can report incorrectly added throws.
      * @throws Exception If something wrong happens inside
      */
+    @Ignore
     @Test(expected = ValidationException.class)
     public void reportsIncorrectlyAddedThrows() throws Exception {
         final byte[] bytecode = new BytecodeMocker()

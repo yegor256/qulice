@@ -43,21 +43,21 @@ import org.hamcrest.MatcherAssert;
  * @version $Id$
  * @since 0.16
  */
-final class PMDAssert {
+final class PmdAssert {
     /**
      * File to validate.
      */
-    private final transient String file;
+    private final String file;
 
     /**
      * Expected build status, true means success.
      */
-    private final transient Matcher<Boolean> result;
+    private final Matcher<Boolean> result;
 
     /**
      * Matcher that needs to match.
      */
-    private final transient Matcher<String> matcher;
+    private final Matcher<String> matcher;
 
     /**
      * Constructor.
@@ -65,7 +65,7 @@ final class PMDAssert {
      * @param result Expected build status.
      * @param matcher Matcher that needs to match.
      */
-    PMDAssert(final String file, final Matcher<Boolean> result,
+    PmdAssert(final String file, final Matcher<Boolean> result,
         final Matcher<String> matcher) {
         this.file = file;
         this.result = result;

@@ -41,14 +41,15 @@ import org.apache.commons.collections.CollectionUtils;
  * @author Paul Polishchuk (ppol@ua.fm)
  * @version $Id$
  * @since 0.5
- * @checkstyle LineLength (8 lines)
  * @todo #250 Maven-duplicate-finder-plugin should support exclusions.
  *  Let's add exclusions of following formats (examples):
  *  - duplicate:about.html
  *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5
  *  - duplicate:org.codehaus.groovy.ast.expr.RegexExpression
- *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5|xml-apis:xml-apis:1.0.0|about.html
- *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5|xml-apis:xml-apis:1.0.0|org.w3c.dom.UserDataHandler
+ *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5
+ *  |xml-apis:xml-apis:1.0.0|about.html
+ *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5
+ *  |xml-apis:xml-apis:1.0.0|org.w3c.dom.UserDataHandler
  *  See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953
  *  and https://github.com/teamed/qulice/issues/250 for details
  */

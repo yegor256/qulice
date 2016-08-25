@@ -49,7 +49,7 @@ public final class LineRanges {
     /**
      * ArrayList of line ranges.
      */
-    private final transient LineRanges.LocalCollection lines =
+    private final LineRanges.LocalCollection lines =
         new LineRanges.LocalCollection();
 
     /**
@@ -115,7 +115,7 @@ public final class LineRanges {
         /**
          * The given line.
          */
-        private final transient int given;
+        private final int given;
 
         /**
          * Default constructor.

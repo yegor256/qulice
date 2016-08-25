@@ -86,7 +86,7 @@ public final class ChecksTest {
     /**
      * Current directory we're working with.
      */
-    private final transient String dir;
+    private final String dir;
 
     /**
      * Public ctor.
@@ -210,7 +210,7 @@ public final class ChecksTest {
         /**
          * List of events received.
          */
-        private final transient List<AuditEvent> events = new LinkedList<>();
+        private final List<AuditEvent> events = new LinkedList<>();
         @Override
         public Object answer(final InvocationOnMock invocation) {
             this.events.add((AuditEvent) invocation.getArguments()[0]);

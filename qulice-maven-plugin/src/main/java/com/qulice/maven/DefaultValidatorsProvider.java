@@ -51,7 +51,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
     /**
      * Environment to use for validation.
      */
-    private final transient Environment env;
+    private final Environment env;
 
     /**
      * Constructor.

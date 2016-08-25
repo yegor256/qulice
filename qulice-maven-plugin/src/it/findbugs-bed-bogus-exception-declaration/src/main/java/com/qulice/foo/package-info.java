@@ -27,67 +27,15 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.pmd;
-
-import java.util.Arrays;
-import java.util.Collection;
-import org.hamcrest.Matchers;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 /**
- * Tests for disabled rules.
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
+ * Test reproduces case when FindBugs can't find out if the exception
+ * is thrown, because AspectJ does some magic with bytecode
+ * when annotation from jcabi-aspects is used,
+ * even on a method that throws correct exception.
+ *
+ * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
- * @since 0.16
+ * @since 0.17
  */
-@RunWith(Parameterized.class)
-public final class PMDDisabledRulesTest {
-
-    /**
-     * Disabled rule name.
-     */
-    private final transient String rule;
-
-    /**
-     * Constructor.
-     * @param rule Disabled rule name.
-     */
-    public PMDDisabledRulesTest(final String rule) {
-        this.rule = rule;
-    }
-
-    /**
-     * Collection of disabled rules.
-     * @return Collection of disabled rules.
-     */
-    @Parameterized.Parameters
-    public static Collection<String[]> parameters() {
-        return Arrays.asList(
-            new String[][] {
-                {"UseConcurrentHashMap"},
-                {"DoNotUseThreads"},
-                {"AvoidUsingVolatile"},
-            }
-        );
-    }
-
-    /**
-     * PMDValidator has rules disabled.
-     * @throws Exception In case of error.
-     */
-    @Test
-    public void disablesRules() throws Exception {
-        new PMDAssert(
-            String.format("%s.java", this.rule),
-            Matchers.any(Boolean.class),
-            Matchers.not(
-                Matchers.containsString(
-                    String.format("(%s)", this.rule)
-                )
-            )
-        ).validate();
-    }
-
-}
+package com.qulice.foo;

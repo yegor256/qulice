@@ -45,7 +45,7 @@ import net.sourceforge.pmd.renderers.Renderer;
 import net.sourceforge.pmd.util.datasource.DataSource;
 
 /**
- * Validates source files via <code>PMDValidator</code>.
+ * Validates source files via <code>PmdValidator</code>.
  *
  * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
  * @version $Id$
@@ -56,17 +56,17 @@ final class SourceValidator {
     /**
      * Rule context.
      */
-    private final transient RuleContext context;
+    private final RuleContext context;
 
     /**
      * Report listener.
      */
-    private final transient PmdListener listener;
+    private final PmdListener listener;
 
     /**
      * Rules.
      */
-    private final transient PMDConfiguration config;
+    private final PMDConfiguration config;
 
     /**
      * Creates new instance of <code>SourceValidator</code>.

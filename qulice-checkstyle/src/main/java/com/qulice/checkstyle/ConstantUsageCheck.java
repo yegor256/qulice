@@ -50,10 +50,7 @@ public final class ConstantUsageCheck extends Check {
         };
     }
 
-    /**
-     * {@inheritDoc}
-     * @checkstyle NestedIfDepth (35 lines)
-     */
+    // @checkstyle NestedIfDepth (35 lines)
     @Override
     public void visitToken(final DetailAST ast) {
         if (ConstantUsageCheck.isField(ast)

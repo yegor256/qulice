@@ -46,7 +46,7 @@ final class ValidatorsProviderMocker {
     /**
      * List of external validators.
      */
-    private final transient Set<Validator> external = new HashSet<>();
+    private final Set<Validator> external = new HashSet<>();
 
     /**
      * List of external resource validators.
@@ -56,7 +56,7 @@ final class ValidatorsProviderMocker {
     /**
      * List of internal validators.
      */
-    private final transient Set<MavenValidator> internal = new HashSet<>();
+    private final Set<MavenValidator> internal = new HashSet<>();
 
     /**
      * With this external validator.

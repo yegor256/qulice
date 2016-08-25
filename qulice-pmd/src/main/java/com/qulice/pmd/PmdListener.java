@@ -50,12 +50,12 @@ final class PmdListener implements ReportListener {
     /**
      * Environment.
      */
-    private final transient Environment env;
+    private final Environment env;
 
     /**
      * Violations.
      */
-    private final transient Collection<RuleViolation> violations;
+    private final Collection<RuleViolation> violations;
 
     /**
      * Public ctor.
