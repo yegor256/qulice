@@ -70,9 +70,6 @@ import org.xembly.Xembler;
 @SuppressWarnings("PMD.ExcessiveImports")
 public final class FindBugsValidator implements Validator {
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void validate(final Environment env) throws ValidationException {
         if (env.outdir().exists()) {
@@ -218,7 +215,7 @@ public final class FindBugsValidator implements Validator {
             );
         }
         final String path = res.getFile().replaceAll("\\!.*$", "");
-        File file;
+        final File file;
         if ("jar".equals(FilenameUtils.getExtension(path))) {
             file = new File(URI.create(path).getPath());
         } else {

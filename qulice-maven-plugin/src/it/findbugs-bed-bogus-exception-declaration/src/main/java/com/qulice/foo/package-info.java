@@ -27,47 +27,15 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.pmd;
-
-import com.qulice.spi.Environment;
-import java.io.File;
-import java.util.Collection;
-import java.util.LinkedList;
-import net.sourceforge.pmd.util.datasource.DataSource;
-import net.sourceforge.pmd.util.datasource.FileDataSource;
 
 /**
- * Contains methods to work with source files.
+ * Test reproduces case when FindBugs can't find out if the exception
+ * is thrown, because AspectJ does some magic with bytecode
+ * when annotation from jcabi-aspects is used,
+ * even on a method that throws correct exception.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
+ * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
- * @since 0.3
+ * @since 0.17
  */
-@SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-public final class Files {
-
-    /**
-     * The environment.
-     */
-    private final transient Environment environment;
-
-    /**
-     * Constructor.
-     * @param environment The environment.
-     */
-    public Files(final Environment environment) {
-        this.environment = environment;
-    }
-
-    /**
-     * Get full list of files to process.
-     * @return Collection of data sources.
-     */
-    public Collection<DataSource> sources() {
-        final Collection<DataSource> sources = new LinkedList<>();
-        for (final File file : this.environment.files("*.java")) {
-            sources.add(new FileDataSource(file));
-        }
-        return sources;
-    }
-}
+package com.qulice.foo;

@@ -93,7 +93,7 @@ public final class XmlValidatorTest {
      * @throws Exception In case of error.
      */
     @Test
-    public void informsAboutMissingEOLAtEOF() throws Exception {
+    public void informsAboutMissingEolAtEof() throws Exception {
         final Environment env = new Environment.Mock().withFile(
             "src/main/resources/valid5.xml",
             // @checkstyle LineLength (1 line)

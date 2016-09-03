@@ -41,4 +41,3 @@ assert log.text.contains('FourDuplicateStringLiterals.java[46-46]: The String '
     + 'literal "test" appears 4 times in this file; the first occurrence is on line 46 (AvoidDuplicateLiterals)')
 assert log.text.contains('TwoDuplicateStringLiterals.java[45-45]: The String '
     + 'literal "test" appears 2 times in this file; the first occurrence is on line 45 (AvoidDuplicateLiterals)')
-assert log.text.contains('Failure: 2 PMD violations')

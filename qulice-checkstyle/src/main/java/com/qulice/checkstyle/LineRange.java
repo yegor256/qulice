@@ -43,12 +43,12 @@ public final class LineRange {
     /**
      * The first (alpha) line number in the range.
      */
-    private final transient int alpha;
+    private final int alpha;
 
     /**
      * The last (omega) line number in the range.
      */
-    private final transient int omega;
+    private final int omega;
 
     /**
      * Default constructor.

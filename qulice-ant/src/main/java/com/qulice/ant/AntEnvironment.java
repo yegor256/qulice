@@ -60,20 +60,20 @@ public final class AntEnvironment implements Environment {
     /**
      * Ant project.
      */
-    private final transient Project project;
+    private final Project project;
     /**
      * Sources dirs.
      */
-    private final transient Path sources;
+    private final Path sources;
     /**
      * Classes dir (only one dir is supported).
      */
-    private final transient File classes;
+    private final File classes;
     /**
      * Classpath dirs and files.
      */
     @SuppressWarnings("PMD.AvoidFieldNameMatchingMethodName")
-    private final transient Path classpath;
+    private final Path classpath;
 
     /**
      * Public ctor.
@@ -185,7 +185,7 @@ public final class AntEnvironment implements Environment {
         /**
          * URLs for class loading.
          */
-        private final transient List<URL> urls;
+        private final List<URL> urls;
 
         /**
          * Constructor.

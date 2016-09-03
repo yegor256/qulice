@@ -30,12 +30,11 @@
 package com.qulice.pmd;
 
 import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
-import java.io.StringWriter;
+import com.qulice.spi.Violation;
+import java.io.File;
+import java.util.Collection;
+import java.util.Collections;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
-import org.apache.log4j.SimpleLayout;
-import org.apache.log4j.WriterAppender;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 
@@ -45,21 +44,21 @@ import org.hamcrest.MatcherAssert;
  * @version $Id$
  * @since 0.16
  */
-final class PMDAssert {
+final class PmdAssert {
     /**
      * File to validate.
      */
-    private final transient String file;
+    private final String file;
 
     /**
      * Expected build status, true means success.
      */
-    private final transient Matcher<Boolean> result;
+    private final Matcher<Boolean> result;
 
     /**
      * Matcher that needs to match.
      */
-    private final transient Matcher<String> matcher;
+    private final Matcher<String> matcher;
 
     /**
      * Constructor.
@@ -67,7 +66,7 @@ final class PMDAssert {
      * @param result Expected build status.
      * @param matcher Matcher that needs to match.
      */
-    PMDAssert(final String file, final Matcher<Boolean> result,
+    PmdAssert(final String file, final Matcher<Boolean> result,
         final Matcher<String> matcher) {
         this.file = file;
         this.result = result;
@@ -80,28 +79,29 @@ final class PMDAssert {
      */
     public void validate() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
-        final StringWriter writer = new StringWriter();
-        final WriterAppender appender =
-            new WriterAppender(new SimpleLayout(), writer);
-        try {
-            Logger.getRootLogger().addAppender(appender);
-            final Environment env = mock.withFile(
-                String.format("src/main/java/foo/%s", this.file),
-                IOUtils.toString(
-                    this.getClass().getResourceAsStream(this.file)
+        final String name = String.format("src/main/java/foo/%s", this.file);
+        final Environment env = mock.withFile(
+            name,
+            IOUtils.toString(
+                this.getClass().getResourceAsStream(this.file)
+            )
+        );
+        final Collection<Violation> violations = new PmdValidator(env).validate(
+            Collections.singletonList(new File(env.basedir(), name))
+        );
+        MatcherAssert.assertThat(violations.isEmpty(), this.result);
+        final StringBuilder builder = new StringBuilder();
+        for (final Violation violation : violations) {
+            builder.append(
+                String.format(
+                    "PMD: %s[%s]: %s (%s)\n",
+                    this.file,
+                    violation.lines(),
+                    violation.message(),
+                    violation.name()
                 )
             );
-            boolean valid = true;
-            try {
-                new PMDValidator().validate(env);
-            } catch (final ValidationException ex) {
-                valid = false;
-            }
-            writer.flush();
-            MatcherAssert.assertThat(valid, this.result);
-            MatcherAssert.assertThat(writer.toString(), this.matcher);
-        } finally {
-            Logger.getRootLogger().removeAppender(appender);
         }
+        MatcherAssert.assertThat(builder.toString(), this.matcher);
     }
 }

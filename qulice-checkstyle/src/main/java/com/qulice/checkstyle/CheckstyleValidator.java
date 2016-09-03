@@ -29,6 +29,7 @@
  */
 package com.qulice.checkstyle;
 
+import com.google.common.collect.Lists;
 import com.jcabi.aspects.Tv;
 import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -45,7 +46,6 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -66,12 +66,12 @@ public final class CheckstyleValidator implements ResourceValidator {
     /**
      * Checkstyle checker.
      */
-    private final transient Checker checker;
+    private final Checker checker;
 
     /**
      * Listener of checkstyle messages.
       */
-    private final transient CheckstyleListener listener;
+    private final CheckstyleListener listener;
 
     /**
      * Constructor.
@@ -95,9 +95,9 @@ public final class CheckstyleValidator implements ResourceValidator {
 
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public Collection<Violation> validate(final File file) {
+    public Collection<Violation> validate(final Collection<File> files) {
         try {
-            this.checker.process(Collections.singletonList(file));
+            this.checker.process(Lists.newArrayList(files));
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to process files", ex);
         }
@@ -167,7 +167,7 @@ public final class CheckstyleValidator implements ResourceValidator {
      */
     private String header(final Environment env) {
         final String name = env.param("license", "LICENSE.txt");
-        final URL url = CheckstyleValidator.toURL(env, name);
+        final URL url = CheckstyleValidator.toUrl(env, name);
         final String content;
         try {
             content = IOUtils.toString(url.openStream())
@@ -204,7 +204,7 @@ public final class CheckstyleValidator implements ResourceValidator {
      * @return The URL
      * @see #header(Environment)
      */
-    private static URL toURL(final Environment env, final String name) {
+    private static URL toUrl(final Environment env, final String name) {
         final URL url;
         if (name.startsWith("file:")) {
             try {

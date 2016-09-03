@@ -30,11 +30,12 @@
 package com.qulice.maven;
 
 import com.qulice.checkstyle.CheckstyleValidator;
+import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Validator;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -50,7 +51,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
     /**
      * Environment to use for validation.
      */
-    private final transient Environment env;
+    private final Environment env;
 
     /**
      * Constructor.
@@ -74,9 +75,6 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         return validators;
     }
 
-    // @todo #61:30min Make PMDValidator inherit from ResourceValidator and use
-    //  it similarly to CheckstyleValidator. Move it to externalResource method
-    //  and make sure all the tests pass.
     // @todo #61:30min Make FindBugsValidator inherit from ResourceValidator and
     //  use it similarly to CheckstyleValidator. Remember to move it to
     //  externalResource method and make sure all the tests pass.
@@ -86,7 +84,6 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
     @Override
     public Set<Validator> external() {
         final Set<Validator> validators = new LinkedHashSet<>();
-        validators.add(new com.qulice.pmd.PMDValidator());
         validators.add(new com.qulice.findbugs.FindBugsValidator());
         validators.add(new com.qulice.xml.XmlValidator());
         validators.add(new com.qulice.codenarc.CodeNarcValidator());
@@ -95,8 +92,9 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
 
     @Override
     public Collection<ResourceValidator> externalResource() {
-        return Collections.<ResourceValidator>singleton(
-            new CheckstyleValidator(this.env)
+        return Arrays.asList(
+            new CheckstyleValidator(this.env),
+            new PmdValidator(this.env)
         );
     }
 }

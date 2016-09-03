@@ -51,10 +51,10 @@ import org.junit.Test;
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @version $Id$
  * @since 0.3
- * @checkstyle MultipleStringLiterals (400 lines)
  * @todo #412:30min Split this class into smaller ones and remove PMD
  *  exclude `TooManyMethods`. Good candidates for moving out of this class
  *  are all that use `validateCheckstyle` method.
+ * @checkstyle MultipleStringLiterals (400 lines)
  */
 @SuppressWarnings({ "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals" })
 public final class CheckstyleValidatorTest {
@@ -79,7 +79,7 @@ public final class CheckstyleValidatorTest {
      * @checkstyle VisibilityModifierCheck (5 lines)
      */
     @Rule
-    public final transient LicenseRule rule = new LicenseRule();
+    public final LicenseRule rule = new LicenseRule();
 
     /**
      * CheckstyleValidator can catch checkstyle violations.
@@ -102,11 +102,11 @@ public final class CheckstyleValidatorTest {
         final String name = "Foo.java";
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
+            this.toUrl(license)
         ).withFile(String.format("src/main/java/foo/%s", name), content);
         final Collection<Violation> results =
             new CheckstyleValidator(env)
-                .validate(env.files(name).iterator().next());
+                .validate(env.files(name));
         MatcherAssert.assertThat(
             results,
             Matchers.hasItem(
@@ -523,12 +523,10 @@ public final class CheckstyleValidatorTest {
         final String name = "Foo.java";
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
+            this.toUrl(license)
         ).withFile(String.format("src/main/java/foo/%s", name), content);
         final Collection<Violation> results =
-            new CheckstyleValidator(env).validate(
-                env.files(name).iterator().next()
-            );
+            new CheckstyleValidator(env).validate(env.files(name));
         MatcherAssert.assertThat(
             results,
             Matchers.not(Matchers.<Violation>empty())
@@ -681,16 +679,17 @@ public final class CheckstyleValidatorTest {
      * @throws Exception If error
      */
     @Test
+    @SuppressWarnings("unchecked")
     public void rejectsNonDiamondOperatorUsage() throws Exception {
         final String file = "InvalidDiamondsUsage.java";
+        final String name = "DiamondOperatorCheck";
+        final String message = "Use diamond operator";
         MatcherAssert.assertThat(
             this.runValidation(file, false),
-            Matchers.contains(
-                new CheckstyleValidatorTest.ViolationMatcher(
-                    // @checkstyle MultipleStringLiterals (1 line)
-                    "Use diamond operator", file, "21", "DiamondOperatorCheck"
+            Matchers.hasItems(
+                new ViolationMatcher(message, file, "21", name),
+                new ViolationMatcher(message, file, "31", name)
                 )
-            )
         );
     }
 
@@ -698,7 +697,7 @@ public final class CheckstyleValidatorTest {
      * CheckstyleValidator can allow diamond operator usage.
      * @throws Exception If error
      * @todo #715:30min add test for next situation
-     *  `return new ArrayList<String>();`
+     *  {@code return new ArrayList<String>();}
      */
     @Test
     public void allowsDiamondOperatorUsage() throws Exception {
@@ -710,7 +709,7 @@ public final class CheckstyleValidatorTest {
      * @param file The file
      * @return The URL
      */
-    private String toURL(final File file) {
+    private String toUrl(final File file) {
         return String.format("file:%s", file);
     }
 
@@ -749,7 +748,7 @@ public final class CheckstyleValidatorTest {
             .withEol("\n").file();
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
-            this.toURL(license)
+            this.toUrl(license)
         )
             .withFile(
                 String.format("src/main/java/foo/%s", file),
@@ -759,7 +758,7 @@ public final class CheckstyleValidatorTest {
             );
         final Collection<Violation> results =
             new CheckstyleValidator(env).validate(
-                env.files(file).iterator().next()
+                env.files(file)
             );
         if (result) {
             MatcherAssert.assertThat(
@@ -784,22 +783,22 @@ public final class CheckstyleValidatorTest {
         /**
          * Message to check.
          */
-        private final transient String message;
+        private final String message;
 
         /**
          * File to check.
          */
-        private final transient String file;
+        private final String file;
 
         /**
          * Expected line.
          */
-        private final transient String line;
+        private final String line;
 
         /**
          * Check name.
          */
-        private final transient String check;
+        private final String check;
 
         /**
          * Constructor.

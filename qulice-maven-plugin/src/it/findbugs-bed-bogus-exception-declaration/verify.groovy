@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2011-2016, Qulice.com
+ * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,41 +26,12 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-package com.qulice.pmd;
-
-import com.qulice.spi.Environment;
-import java.io.IOException;
-import java.util.Collection;
-import net.sourceforge.pmd.util.datasource.DataSource;
-import org.apache.commons.io.IOUtils;
-import org.hamcrest.MatcherAssert;
-import org.hamcrest.Matchers;
-import org.junit.Test;
-
-/**
- * Test case for {@link Files} class.
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
+ *  Validate that the build doesn't fail with M C BED when
+ *  we use annotation from jcabi-aspects and jcabi-maven-plugin plugin.
  * @version $Id$
- * @since 0.7
+ * @since 0.17
  */
-public final class FilesTest {
-
-    /**
-     * Should provide only java files.
-     * @throws IOException In case of problem.
-     */
-    @Test
-    public void providesOnlyJavaFiles() throws IOException {
-        final String source = "class Cls{}";
-        final Environment env = new Environment.Mock()
-            .withFile("src/main/java/Main.java", source)
-            .withFile("src/main/resources/test.properties", "prop=1");
-        final Collection<DataSource> found = new Files(env).sources();
-        MatcherAssert.assertThat(found.size(), Matchers.is(1));
-        MatcherAssert.assertThat(
-            IOUtils.toString(found.iterator().next().getInputStream()),
-            Matchers.equalTo(source)
-        );
-    }
-}
+def log = new File(basedir, 'build.log')
+assert !log.text.contains('M C BED: Non derivable method')
+assert !log.text.contains('declares throwing an exception that isn\'t thrown')
+assert log.text.contains('Finishing FindBugs validator')

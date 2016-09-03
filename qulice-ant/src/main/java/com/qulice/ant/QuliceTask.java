@@ -33,7 +33,7 @@ import com.jcabi.log.Logger;
 import com.qulice.checkstyle.CheckstyleValidator;
 import com.qulice.codenarc.CodeNarcValidator;
 import com.qulice.findbugs.FindBugsValidator;
-import com.qulice.pmd.PMDValidator;
+import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.ValidationException;
@@ -41,6 +41,7 @@ import com.qulice.spi.Validator;
 import com.qulice.spi.Violation;
 import com.qulice.xml.XmlValidator;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import org.apache.tools.ant.BuildException;
@@ -50,27 +51,27 @@ import org.apache.tools.ant.types.Path;
 /**
  * Ant Task for Qulice.
  *
- * @checkstyle ClassDataAbstractionCouplingCheck (170 lines)
  * @author Yuriy Alevohin (alevohin@mail.ru)
  * @version $Id$
  * @since 0.13
+ * @checkstyle ClassDataAbstractionCouplingCheck (170 lines)
  */
 public final class QuliceTask extends Task {
 
     /**
      * Sources dirs.
      */
-    private transient Path sources;
+    private Path sources;
 
     /**
      * Classes dir (only one dir is supported).
      */
-    private transient File classes;
+    private File classes;
 
     /**
      * Classpath dirs and files.
      */
-    private transient Path classpath;
+    private Path classpath;
 
     /**
      * Set source dirs.
@@ -147,16 +148,24 @@ public final class QuliceTask extends Task {
     private static void validate(final Environment env)
         throws ValidationException {
         final Collection<Violation> results = new LinkedList<>();
-        for (final File file : env.files("*.*")) {
-            for (final ResourceValidator validator
-                : QuliceTask.validators(env)) {
-                results.addAll(validator.validate(file));
+        final Collection<File> files = env.files("*.*");
+        if (!files.isEmpty()) {
+            final Collection<ResourceValidator> validators =
+                QuliceTask.validators(env);
+            for (final ResourceValidator validator : validators) {
+                results.addAll(validator.validate(files));
             }
-        }
-        for (final Violation result : results) {
-            Logger.info(
-                QuliceTask.class, "%s: %s", result.file(), result.message()
-            );
+            for (final Violation result : results) {
+                Logger.info(
+                    QuliceTask.class,
+                    "%s: %s[%s]: %s (%s)",
+                    result.validator(),
+                    result.file(),
+                    result.lines(),
+                    result.message(),
+                    result.name()
+                );
+            }
         }
         for (final Validator validator : QuliceTask.validators()) {
             validator.validate(env);
@@ -168,12 +177,11 @@ public final class QuliceTask extends Task {
      * @return Collection of validators.
      */
     private static Collection<Validator> validators() {
-        final Collection<Validator> validators = new LinkedList<>();
-        validators.add(new PMDValidator());
-        validators.add(new FindBugsValidator());
-        validators.add(new XmlValidator());
-        validators.add(new CodeNarcValidator());
-        return validators;
+        return Arrays.asList(
+            new FindBugsValidator(),
+            new XmlValidator(),
+            new CodeNarcValidator()
+        );
     }
 
     /**
@@ -183,8 +191,9 @@ public final class QuliceTask extends Task {
      */
     private static Collection<ResourceValidator> validators(
         final Environment env) {
-        final Collection<ResourceValidator> validators = new LinkedList<>();
-        validators.add(new CheckstyleValidator(env));
-        return validators;
+        return Arrays.asList(
+            new CheckstyleValidator(env),
+            new PmdValidator(env)
+        );
     }
 }

@@ -70,13 +70,13 @@ public final class StringLiteralsConcatenationCheck extends Check {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        final List<DetailAST> pluses = this.findChildASTsOfType(
+        final List<DetailAST> pluses = this.findChildAstsOfType(
             ast,
             TokenTypes.PLUS,
             TokenTypes.PLUS_ASSIGN
         );
         for (final DetailAST plus : pluses) {
-            if (!this.findChildASTsOfType(
+            if (!this.findChildAstsOfType(
                 plus,
                 TokenTypes.STRING_LITERAL
             ).isEmpty()) {
@@ -94,7 +94,7 @@ public final class StringLiteralsConcatenationCheck extends Check {
      *  <tt>types</tt>.
      * @see TokenTypes
      */
-    private List<DetailAST> findChildASTsOfType(final DetailAST tree,
+    private List<DetailAST> findChildAstsOfType(final DetailAST tree,
         final int... types) {
         final List<DetailAST> children = new LinkedList<>();
         DetailAST child = tree.getFirstChild();
@@ -102,7 +102,7 @@ public final class StringLiteralsConcatenationCheck extends Check {
             if (StringLiteralsConcatenationCheck.isOfType(child, types)) {
                 children.add(child);
             } else {
-                children.addAll(this.findChildASTsOfType(child, types));
+                children.addAll(this.findChildAstsOfType(child, types));
             }
             child = child.getNextSibling();
         }

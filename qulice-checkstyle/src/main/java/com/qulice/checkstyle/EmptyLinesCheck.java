@@ -62,12 +62,12 @@ public final class EmptyLinesCheck extends Check {
     /**
      * Line ranges of all anonymous inner types.
      */
-    private final transient LineRanges anons = new LineRanges();
+    private final LineRanges anons = new LineRanges();
 
     /**
      * Line ranges of all method and constructor bodies.
      */
-    private final transient LineRanges methods = new LineRanges();
+    private final LineRanges methods = new LineRanges();
 
     @Override
     public int[] getDefaultTokens() {

@@ -166,7 +166,7 @@ final class DependenciesValidator implements MavenValidator {
         /**
          * List of excludes.
          */
-        private final transient Collection<String> excludes;
+        private final Collection<String> excludes;
 
         /**
          * Constructor.

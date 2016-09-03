@@ -82,7 +82,7 @@ public final class MethodsOrderCheck extends Check {
     /**
      * Checks order of methods.
      *
-     * @param methods Iterable<DetailAST> methods
+     * @param methods Nodes representing class methods
      */
     private void checkOrder(final Iterable<DetailAST> methods) {
         MethodsOrderCheck.Modifiers prev = MethodsOrderCheck.Modifiers.PUB;
@@ -126,7 +126,7 @@ public final class MethodsOrderCheck extends Check {
                 )
             )
         ).orNull();
-        MethodsOrderCheck.Modifiers mod;
+        final MethodsOrderCheck.Modifiers mod;
         if (modifier == null) {
             mod = MethodsOrderCheck.Modifiers.DEF;
         } else {

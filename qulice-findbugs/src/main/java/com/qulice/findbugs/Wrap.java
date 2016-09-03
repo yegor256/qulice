@@ -30,7 +30,6 @@
 package com.qulice.findbugs;
 
 import com.google.common.base.Function;
-import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.jcabi.aspects.Tv;
 import com.mebigfatguy.fbcontrib.utils.BugType;
@@ -76,6 +75,13 @@ public final class Wrap {
     /**
      * Run it.
      * @param args Arguments
+     * @todo #706:30min After fix issue mentioned in comment
+     *  https://github.com/teamed/qulice/issues/706#issuecomment-225943946
+     *  rollback the changes done in #706 then remove @Ignore above
+     *  FindBugsValidatorTest.reportsIncorrectlyAddedThrows test
+     *  and fix test findbugs-bed-bogus-exception-declaration.
+     *  For the moment third item is done from comment
+     *  https://github.com/teamed/qulice/issues/706#issuecomment-184611854
      */
     public static void run(final String... args) {
         final Project project =
@@ -87,9 +93,8 @@ public final class Wrap {
         }
         final FindBugs2 findbugs = new FindBugs2();
         findbugs.setProject(project);
-        final Collection<String> ignored = Collections2.filter(
-            Collections2.transform(
-                Arrays.asList(BugType.values()),
+        final Collection<String> ignored = Collections2.transform(
+            Arrays.asList(BugType.values()),
                 new Function<BugType, String>() {
                     @Override
                     public String apply(final BugType bug) {
@@ -102,12 +107,6 @@ public final class Wrap {
                         return name;
                     }
                 }
-            ),
-            Predicates.not(
-                Predicates.equalTo(
-                    BugType.BED_BOGUS_EXCEPTION_DECLARATION.name()
-                )
-            )
         );
         final BugReporter reporter = new PrintingBugReporter() {
             @Override

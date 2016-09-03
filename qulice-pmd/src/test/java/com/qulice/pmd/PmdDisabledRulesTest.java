@@ -27,30 +27,67 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.spi;
+package com.qulice.pmd;
 
-import java.io.File;
+import java.util.Arrays;
 import java.util.Collection;
+import org.hamcrest.Matchers;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 /**
- * Validator.
- *
+ * Tests for disabled rules.
  * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
  * @version $Id$
- * @since 0.17
+ * @since 0.16
  */
-public interface ResourceValidator {
+@RunWith(Parameterized.class)
+public final class PmdDisabledRulesTest {
 
     /**
-     * Validate and throws exception if there are any problems.
-     * @param files Files to validate
-     * @return Validation results
+     * Disabled rule name.
      */
-    Collection<Violation> validate(Collection<File> files);
+    private final String rule;
 
     /**
-     * Name of this validator.
-     * @return Name of this validator.
+     * Constructor.
+     * @param rule Disabled rule name.
      */
-    String name();
+    public PmdDisabledRulesTest(final String rule) {
+        this.rule = rule;
+    }
+
+    /**
+     * Collection of disabled rules.
+     * @return Collection of disabled rules.
+     */
+    @Parameterized.Parameters
+    public static Collection<String[]> parameters() {
+        return Arrays.asList(
+            new String[][] {
+                {"UseConcurrentHashMap"},
+                {"DoNotUseThreads"},
+                {"AvoidUsingVolatile"},
+            }
+        );
+    }
+
+    /**
+     * PmdValidator has rules disabled.
+     * @throws Exception In case of error.
+     */
+    @Test
+    public void disablesRules() throws Exception {
+        new PmdAssert(
+            String.format("%s.java", this.rule),
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString(
+                    String.format("(%s)", this.rule)
+                )
+            )
+        ).validate();
+    }
+
 }

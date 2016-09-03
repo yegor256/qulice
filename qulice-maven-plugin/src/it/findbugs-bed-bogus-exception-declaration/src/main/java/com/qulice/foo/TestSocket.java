@@ -27,67 +27,39 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.pmd;
+package com.qulice.foo;
 
-import java.util.Arrays;
-import java.util.Collection;
-import org.hamcrest.Matchers;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import com.jcabi.aspects.RetryOnFailure;
+import java.io.IOException;
+import java.net.Socket;
 
 /**
- * Tests for disabled rules.
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
+ * Test class with using jcabi-aspects annotation.
+ * @author Denys Skalenko (d.skalenko@gmail.com)
  * @version $Id$
- * @since 0.16
+ * @since 0.17
  */
-@RunWith(Parameterized.class)
-public final class PMDDisabledRulesTest {
+public final class TestSocket {
 
     /**
-     * Disabled rule name.
+     * Socket.
      */
-    private final transient String rule;
+    private final Socket socket;
 
     /**
      * Constructor.
-     * @param rule Disabled rule name.
+     * @param socket Socket
      */
-    public PMDDisabledRulesTest(final String rule) {
-        this.rule = rule;
+    public TestSocket(final Socket socket) {
+        this.socket = socket;
     }
 
     /**
-     * Collection of disabled rules.
-     * @return Collection of disabled rules.
+     * Close method.
+     * @throws IOException If something wrong happens inside
      */
-    @Parameterized.Parameters
-    public static Collection<String[]> parameters() {
-        return Arrays.asList(
-            new String[][] {
-                {"UseConcurrentHashMap"},
-                {"DoNotUseThreads"},
-                {"AvoidUsingVolatile"},
-            }
-        );
+    @RetryOnFailure
+    public void close() throws IOException {
+        this.socket.close();
     }
-
-    /**
-     * PMDValidator has rules disabled.
-     * @throws Exception In case of error.
-     */
-    @Test
-    public void disablesRules() throws Exception {
-        new PMDAssert(
-            String.format("%s.java", this.rule),
-            Matchers.any(Boolean.class),
-            Matchers.not(
-                Matchers.containsString(
-                    String.format("(%s)", this.rule)
-                )
-            )
-        ).validate();
-    }
-
 }

@@ -1,6 +1,6 @@
 ## Puzzles
 
-There are 18 active puzzles (85 total):
+There are 18 active puzzles (89 total):
 
 
 <del>unknown</del> [`?`](../master/?)<br/>
@@ -28,7 +28,7 @@ There are 18 active puzzles (85 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>152-5f54d891</del> [`DefaultMavenEnvironment.java:56-58`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultMavenEnvironment.java#L56-L58)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<del>152-ea9dc1d7</del>](https://github.com/teamed/qulice/issues/250) [`DuplicateFinderValidator.java:40-40`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java#L40-L40)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#309](https://github.com/teamed/qulice/issues/309):[**250-bd6aad88**](https://github.com/teamed/qulice/issues/309) [`DuplicateFinderValidator.java:58-60`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java#L58-L60)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#310](https://github.com/teamed/qulice/issues/310):[**250-70b42373**](https://github.com/teamed/qulice/issues/310) [`DuplicateFinderValidator.java:45-53`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java#L45-L53)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>250-70b42373</del> [`DuplicateFinderValidator.java:45-53`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java#L45-L53)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>152-25766266</del> [`DuplicateFinderValidator.java:47-49`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java#L47-L49)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>151</del>](https://github.com/tpc2/qulice/issues/151) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<del>151-1b555c82</del>](https://github.com/teamed/qulice/issues/251) [`JslintValidator.java:40-42`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/JslintValidator.java#L40-L42)<br/>
@@ -82,9 +82,13 @@ There are 18 active puzzles (85 total):
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>676-be080182</del> [`DefaultMavenEnvironmentTest.java:136-143`](../master/qulice-maven-plugin/src/test/java/com/qulice/maven/DefaultMavenEnvironmentTest.java#L136-L143)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>61</del>](https://github.com/teamed/qulice/issues/61) [`?`](../master/?)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#742](https://github.com/teamed/qulice/issues/742):[**61-61fa67ee**](https://github.com/teamed/qulice/issues/742) [`CheckstyleValidatorTest.java:442-444`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L442-L444)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#746](https://github.com/teamed/qulice/issues/746):[**61-1d39a5c7**](https://github.com/teamed/qulice/issues/746) [`DefaultValidatorsProvider.java:78-80`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L78-L80)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#746](https://github.com/teamed/qulice/issues/746):[<del>61-1d39a5c7</del>](https://github.com/teamed/qulice/issues/746) [`DefaultValidatorsProvider.java:78-80`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L78-L80)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#740](https://github.com/teamed/qulice/issues/740):[**61-832eca62**](https://github.com/teamed/qulice/issues/740) [`DefaultValidatorsProvider.java:81-83`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L81-L83)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#745](https://github.com/teamed/qulice/issues/745):[**61-1e86e587**](https://github.com/teamed/qulice/issues/745) [`DefaultValidatorsProvider.java:84-86`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DefaultValidatorsProvider.java#L84-L86)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>61-654de8aa</del> [`Violation.java:57-60`](../master/qulice-spi/src/main/java/com/qulice/spi/Violation.java#L57-L60)<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;[<del>715</del>](https://github.com/teamed/qulice/issues/715) [`?`](../master/?)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#752](https://github.com/teamed/qulice/issues/752):[**715-04710633**](https://github.com/teamed/qulice/issues/752) [`CheckstyleValidatorTest.java:722-723`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L722-L723)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<del>715-04710633</del> [`CheckstyleValidatorTest.java:722-723`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L722-L723)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[#776](https://github.com/teamed/qulice/issues/776):[**715-2a207c32**](https://github.com/teamed/qulice/issues/776) [`CheckstyleValidatorTest.java:700-701`](../master/qulice-checkstyle/src/test/java/com/qulice/checkstyle/CheckstyleValidatorTest.java#L700-L701)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[#777](https://github.com/teamed/qulice/issues/777):[**250-1b26b28c**](https://github.com/teamed/qulice/issues/777) [`DuplicateFinderValidator.java:44-54`](../master/qulice-maven-plugin/src/main/java/com/qulice/maven/DuplicateFinderValidator.java#L44-L54)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;[<del>706</del>](https://github.com/teamed/qulice/issues/706) [`?`](../master/?)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[#787](https://github.com/teamed/qulice/issues/787):[**706-72bdab5d**](https://github.com/teamed/qulice/issues/787) [`Wrap.java:78-84`](../master/qulice-findbugs/src/main/java/com/qulice/findbugs/Wrap.java#L78-L84)<br/>

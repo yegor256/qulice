@@ -26,4 +26,26 @@ public final class ValidDiamondsUsage {
         list.add("First element");
         return list;
     }
+
+    /**
+     * Correct diamonds usage when instantiate an inner class type.
+     */
+    public static void innerClassUsage() {
+        final SimpleInterface.InnerClass<String> inner =
+            new SimpleInterface.InnerClass<>();
+    }
+
+    /**
+     * Simple interface, used as wrapper.
+     */
+    interface SimpleInterface {
+
+        /**
+         * Inner class with generic parameter.
+         * @param <E> generic parameter
+         */
+        final class InnerClass<E> implements SimpleInterface {
+
+        }
+    }
 }

@@ -29,6 +29,7 @@
  */
 package com.qulice.maven;
 
+import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Validator;
 import java.util.HashSet;
 import java.util.Set;
@@ -45,12 +46,17 @@ final class ValidatorsProviderMocker {
     /**
      * List of external validators.
      */
-    private final transient Set<Validator> external = new HashSet<>();
+    private final Set<Validator> external = new HashSet<>();
+
+    /**
+     * List of external resource validators.
+     */
+    private final transient Set<ResourceValidator> rexternal = new HashSet<>();
 
     /**
      * List of internal validators.
      */
-    private final transient Set<MavenValidator> internal = new HashSet<>();
+    private final Set<MavenValidator> internal = new HashSet<>();
 
     /**
      * With this external validator.
@@ -59,6 +65,17 @@ final class ValidatorsProviderMocker {
      */
     public ValidatorsProviderMocker withExternal(final Validator validator) {
         this.external.add(validator);
+        return this;
+    }
+
+    /**
+     * With this external resource validator.
+     * @param validator The validator
+     * @return This object
+     */
+    public ValidatorsProviderMocker withExternalResource(
+        final ResourceValidator validator) {
+        this.rexternal.add(validator);
         return this;
     }
 
@@ -82,6 +99,7 @@ final class ValidatorsProviderMocker {
             Mockito.mock(ValidatorsProvider.class);
         Mockito.doReturn(this.internal).when(provider).internal();
         Mockito.doReturn(this.external).when(provider).external();
+        Mockito.doReturn(this.rexternal).when(provider).externalResource();
         return provider;
     }
 

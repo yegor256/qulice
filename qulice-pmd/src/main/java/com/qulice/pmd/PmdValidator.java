@@ -29,14 +29,15 @@
  */
 package com.qulice.pmd;
 
-import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
-import com.qulice.spi.ValidationException;
-import com.qulice.spi.Validator;
+import com.qulice.spi.ResourceValidator;
+import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collection;
+import java.util.LinkedList;
 import net.sourceforge.pmd.RuleViolation;
 import net.sourceforge.pmd.util.datasource.DataSource;
+import net.sourceforge.pmd.util.datasource.FileDataSource;
 
 /**
  * Validates source code with PMD.
@@ -45,46 +46,53 @@ import net.sourceforge.pmd.util.datasource.DataSource;
  * @version $Id$
  * @since 0.3
  */
-public final class PMDValidator implements Validator {
+public final class PmdValidator implements ResourceValidator {
+
+    /**
+     * Environment to use.
+     */
+    private final transient Environment env;
+
+    /**
+     * Constructor.
+     * @param env Environment to use.
+     */
+    public PmdValidator(final Environment env) {
+        this.env = env;
+    }
 
     @Override
-    public void validate(final Environment env) throws ValidationException {
-        final SourceValidator validator = new SourceValidator(env);
-        final Collection<DataSource> sources = this.getSources(env);
-        final File base = env.basedir();
-        final String path = base.getPath();
-        validator.validate(sources, path);
-        final Collection<RuleViolation> violations = validator.getViolations();
-        final int size = violations.size();
-        if (!violations.isEmpty()) {
-            throw new ValidationException(
-                "%d PMD violations (see log above)",
-                size
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+    public Collection<Violation> validate(final Collection<File> files) {
+        final SourceValidator validator = new SourceValidator(this.env);
+        final Collection<DataSource> sources = new LinkedList<>();
+        for (final File file : files) {
+            sources.add(new FileDataSource(file));
+        }
+        final Collection<RuleViolation> breaches = validator.validate(
+            sources, this.env.basedir().getPath()
+        );
+        final Collection<Violation> violations = new LinkedList<>();
+        for (final RuleViolation breach : breaches) {
+            violations.add(
+                new Violation.Default(
+                    this.name(),
+                    breach.getRule().getName(),
+                    breach.getFilename(),
+                    String.format(
+                        "%d-%d",
+                        breach.getBeginLine(), breach.getEndLine()
+                    ),
+                    breach.getDescription()
+                )
             );
         }
-        Logger.info(
-            this,
-            "No PMD violations found in %d files",
-            sources.size()
-        );
+        return violations;
     }
 
     @Override
     public String name() {
         return "PMD";
-    }
-
-    /**
-     * Retrieves <code>DataSource</code>s from <code>Environment</code>.
-     * @param environment Environment.
-     * @return Collection of <code>DataSource</code>s of source files.
-     */
-    private Collection<DataSource> getSources(final Environment environment) {
-        final Collection<DataSource> sources = new Files(environment).sources();
-        if (sources.isEmpty()) {
-            Logger.info(this, "No files to check with PMD");
-        }
-        return sources;
     }
 
 }

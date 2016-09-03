@@ -53,10 +53,7 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
      */
     private static final String IMPORT = "import ";
 
-    /**
-     * {@inheritDoc}
-     * @checkstyle ExecutableStatementCount (42 lines)
-     */
+    // @checkstyle ExecutableStatementCount (42 lines)
     @Override
     public void processFiltered(final File file, final List<String> lines) {
         int first = -1;

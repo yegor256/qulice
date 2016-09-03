@@ -72,7 +72,7 @@ public final class XmlValidator implements Validator {
     /**
      * Should XML format be checked.
      */
-    private final transient boolean format;
+    private final boolean format;
 
     /**
      * Constructor.
