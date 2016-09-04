@@ -705,6 +705,17 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can allow usage of string literals on either sides.
+     * E.g. both txt.equals("contents") and "contents".equals(txt) is valid.
+     * @throws Exception If error
+     */
+    @Test
+    public void allowsStringLiteralsOnBothSideInComparisons()
+        throws Exception {
+        this.runValidation("ValidLiteralComparisonCheck.java", true);
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
