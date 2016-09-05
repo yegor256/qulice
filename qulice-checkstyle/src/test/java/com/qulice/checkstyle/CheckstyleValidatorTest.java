@@ -706,7 +706,8 @@ public final class CheckstyleValidatorTest {
 
     /**
      * CheckstyleValidator can allow usage of string literals on either sides.
-     * E.g. both {@code txt.equals("contents")} and {@code "contents".equals(txt)} are valid.
+     * E.g. both {@code txt.equals("contents")} 
+     * and {@code "contents".equals(txt)} are valid.
      * @throws Exception If error
      */
     @Test
