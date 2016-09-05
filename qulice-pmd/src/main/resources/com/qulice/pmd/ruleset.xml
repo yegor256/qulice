@@ -106,6 +106,15 @@
             junit.framework.Assert.assert* - use Matchers from package org.hamcrest
         </description>
     </rule>
+    
+    <rule name="UseStringIsEmptyRule"
+        message="Do not check for empty string using String.size(). Use String.isEmpty() instead"
+        class="com.qulice.pmd.rules.UseStringIsEmptyRule">
+        <description>
+            Method String.isEmpty() should be used when testing for empty string, rather than using
+            String.size() compared to 0
+        </description>
+    </rule>
 
     <rule ref="rulesets/java/naming.xml">
         <exclude name="ShortClassName"/>
