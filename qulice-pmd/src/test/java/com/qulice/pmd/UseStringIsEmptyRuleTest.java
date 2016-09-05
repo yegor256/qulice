@@ -29,6 +29,9 @@
  */
 package com.qulice.pmd;
 
+import org.hamcrest.Matchers;
+import org.junit.Test;
+
 /**
  * Test case for {@link UseStringIsEmptyRule}.
  * @author Mihai Andronache (amihaiemil@gmail.com)
@@ -38,4 +41,23 @@ package com.qulice.pmd;
  */
 public final class UseStringIsEmptyRuleTest {
 
+    /**
+     * Error message used to inform about using public static method.
+     */
+    private static final String EMPTY_LENGTH_COMPARISON =
+        "Use String.isEmpty() when checking for empty string";
+	
+	/**
+	 * UseStringIsEmptyRule can detect when String.length() is compared to 0.
+	 * @throws Exception If something goes wrong
+	 */
+	@Test
+	public void detectsLengthEqualsZero() throws Exception {
+		new PmdAssert(
+	        "StringLengthEqualsZero.java", Matchers.is(false),
+	        Matchers.containsString(
+	            UseStringIsEmptyRuleTest.EMPTY_LENGTH_COMPARISON
+	        )
+	    ).validate();
+    }
 }

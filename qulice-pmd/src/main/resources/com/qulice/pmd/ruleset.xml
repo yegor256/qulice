@@ -108,11 +108,11 @@
     </rule>
     
     <rule name="UseStringIsEmptyRule"
-        message="Do not check for empty string using String.size(). Use String.isEmpty() instead"
+        message="Use String.isEmpty() when checking for empty string"
         class="com.qulice.pmd.rules.UseStringIsEmptyRule">
         <description>
             Method String.isEmpty() should be used when testing for empty string, rather than using
-            String.size() compared to 0
+            String.length() compared to 0
         </description>
     </rule>
 

@@ -33,7 +33,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
@@ -47,11 +46,10 @@ import net.sourceforge.pmd.lang.java.symboltable.ClassScope;
 import net.sourceforge.pmd.lang.java.symboltable.JavaNameOccurrence;
 import net.sourceforge.pmd.lang.java.symboltable.MethodNameDeclaration;
 import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
-import net.sourceforge.pmd.util.CollectionUtil;
 import net.sourceforge.pmd.util.StringUtil;
 
 /**
- * Rule to prohibit use of String.size() when checking for empty string.
+ * Rule to prohibit use of String.length() when checking for empty string.
  * String.isEmpty() should be used instead. 
  * @author Mihai Andronache (amihaiemil@gmail.com)
  * @version $Id$
@@ -80,7 +78,7 @@ public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
 	@Override
 	public boolean isTargetMethod(JavaNameOccurrence occ) {
         if (occ.getNameForWhichThisIsAQualifier() != null) {
-            if (occ.getLocation().getImage().endsWith(".size")) {
+            if (occ.getLocation().getImage().endsWith(".length()")) {
                 return true;
             }
         }
@@ -89,12 +87,15 @@ public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
 
     @Override
     public Object visit(ASTPrimarySuffix node, Object data) {
-        if (node.getImage() != null && node.getImage().endsWith("size")) {
+        if (node.getImage() != null && node.getImage().endsWith("length")) {
             ASTClassOrInterfaceType type = getTypeOfPrimaryPrefix(node);
             if (type == null) {
                 type = getTypeOfMethodCall(node);
             }
-            if (this.appliesToClassName(type.getType().getSimpleName())) {
+            if (
+                type != null &&
+                this.appliesToClassName(type.getType().getSimpleName())
+            ) {
                 Node expr = node.jjtGetParent().jjtGetParent();
                 checkNodeAndReport(data, node, expr);
             }
@@ -106,8 +107,8 @@ public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
         ASTPrimarySuffix node) {
         ASTClassOrInterfaceType type = null;
         ASTName methodName = node.jjtGetParent()
-                .getFirstChildOfType(ASTPrimaryPrefix.class)
-                .getFirstChildOfType(ASTName.class);
+            .getFirstChildOfType(ASTPrimaryPrefix.class)
+            .getFirstChildOfType(ASTName.class);
         if (methodName != null) {
             ClassScope classScope = node.getScope()
                 .getEnclosingScope(ClassScope.class);
