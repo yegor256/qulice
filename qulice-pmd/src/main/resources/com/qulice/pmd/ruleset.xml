@@ -106,7 +106,7 @@
             junit.framework.Assert.assert* - use Matchers from package org.hamcrest
         </description>
     </rule>
-    
+
     <rule name="UseStringIsEmptyRule"
         message="Use String.isEmpty() when checking for empty string"
         class="com.qulice.pmd.rules.UseStringIsEmptyRule">

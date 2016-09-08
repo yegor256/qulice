@@ -37,27 +37,57 @@ import org.junit.Test;
  * @author Mihai Andronache (amihaiemil@gmail.com)
  * @version $Id$
  * @since 0.18
- *
  */
 public final class UseStringIsEmptyRuleTest {
 
     /**
      * Error message used to inform about using public static method.
      */
-    private static final String EMPTY_LENGTH_COMPARISON =
+    private static final String ERR_MESSAGE =
         "Use String.isEmpty() when checking for empty string";
-	
-	/**
-	 * UseStringIsEmptyRule can detect when String.length() is compared to 0.
-	 * @throws Exception If something goes wrong
-	 */
-	@Test
-	public void detectsLengthEqualsZero() throws Exception {
-		new PmdAssert(
-	        "StringLengthEqualsZero.java", Matchers.is(false),
-	        Matchers.containsString(
-	            UseStringIsEmptyRuleTest.EMPTY_LENGTH_COMPARISON
-	        )
-	    ).validate();
+
+    /**
+     * UseStringIsEmptyRule can detect when String.length() is compared to 0.
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    public void detectsLengthEqualsZero() throws Exception {
+        new PmdAssert(
+            "StringLengthEqualsZero.java", Matchers.is(false),
+            Matchers.containsString(
+                UseStringIsEmptyRuleTest.ERR_MESSAGE
+            )
+        ).validate();
     }
+
+    /**
+     * UseStringIsEmptyRule can detect when String.length() >= 1,
+     * when the String is returned by a method.
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    public void detectsLengthGreaterOrEqualOne() throws Exception {
+        new PmdAssert(
+            "StringFromMethodLength.java", Matchers.is(false),
+            Matchers.containsString(
+                UseStringIsEmptyRuleTest.ERR_MESSAGE
+            )
+        ).validate();
+    }
+
+    /**
+     * UseStringIsEmptyRule can detect when String.length() < 1,
+     * when the String is a local variable.
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    public void detectsLengthLessThanOne() throws Exception {
+        new PmdAssert(
+            "LocalStringLength.java", Matchers.is(false),
+            Matchers.containsString(
+                UseStringIsEmptyRuleTest.ERR_MESSAGE
+            )
+        ).validate();
+    }
+
 }
