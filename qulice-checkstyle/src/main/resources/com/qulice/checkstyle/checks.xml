@@ -119,24 +119,24 @@
     JavaDoc regexp checks
     -->
     <module name="RegexpSingleline">
-        <property name="format" value="\* +@return +[^A-Z]"/>
+        <property name="format" value="\* +@return +[^A-Z\u4e00-\u9fa5]"/>
         <property name="fileExtensions" value="java"/>
-        <property name="message" value="@return tag description should start with capital letter"/>
+        <property name="message" value="@return tag description should start with capital letter or Chinese characters"/>
     </module>
     <module name="RegexpSingleline">
-        <property name="format" value="\* +@param +\w+ +[^A-Z]"/>
+        <property name="format" value="\* +@param +\w+ +[^A-Z\u4e00-\u9fa5]"/>
         <property name="fileExtensions" value="java"/>
-        <property name="message" value="@param tag description should start with capital letter"/>
+        <property name="message" value="@param tag description should start with capital letter or Chinese characters"/>
     </module>
     <module name="RegexpSingleline">
-        <property name="format" value="/\*\* +[^A-Z\{]"/>
+        <property name="format" value="/\*\* +[^A-Z\u4e00-\u9fa5\{]"/>
         <property name="fileExtensions" value="java"/>
-        <property name="message" value="First sentence in a comment should start with a capital letter"/>
+        <property name="message" value="First sentence in a comment should start with a capital letter or Chinese characters"/>
     </module>
     <module name="RegexpMultiline">
-        <property name="format" value="/\*\*\W+\* +[^A-Z\{]"/>
+        <property name="format" value="/\*\*\s+\* +[^A-Z\u4e00-\u9fa5\{]"/>
         <property name="fileExtensions" value="java"/>
-        <property name="message" value="First sentence in a comment should start with a capital letter"/>
+        <property name="message" value="First sentence in a comment should start with a capital letter or Chinese characters"/>
     </module>
     <module name="RegexpSingleline">
         <property name="format" value="synchronized +\(this\) +\{"/>
@@ -327,7 +327,7 @@
             <property name="tokens" value="VARIABLE_DEF"/>
         </module>
         <module name="LocalVariableName">
-            <property name="format" value="^(id|[a-z]{3,12})$"/>
+            <property name="format" value="^(id?|[a-z]{3,12})$"/>
         </module>
         <module name="CatchParameterName">
             <property name="format" value="^(ex|[a-z]{3,12})$"/>
