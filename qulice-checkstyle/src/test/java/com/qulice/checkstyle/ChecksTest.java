@@ -233,7 +233,7 @@ public final class ChecksTest {
             return has;
         }
         /**
-         * Returns full summary.
+         * Returns full summary and more.
          * @return The test summary of all events
          */
         public String summary() {
