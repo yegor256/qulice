@@ -58,8 +58,7 @@ Qulice can't catch them, that's why this wiki page...
 #### Proxy
 
 In order to download schemas required for XML validation you might need proxy
-setup. Maven proxy is not supported, but standard [JVM proxy]
-(https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html)
+setup. Maven proxy is not supported, but standard [JVM proxy](https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html)
 works fine. To use it just add `-Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`
 to your `MAVEN_OPTS` environment variable or to Maven command, e.g.
 `mvn clean verify -Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`.
