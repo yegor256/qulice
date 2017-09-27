@@ -30,8 +30,8 @@
 package com.qulice.maven;
 
 import com.qulice.spi.ValidationException;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Properties;
 import org.apache.commons.collections.CollectionUtils;
@@ -71,7 +71,7 @@ public final class DuplicateFinderValidator implements MavenValidator {
                 "ignoredResources",
                 CollectionUtils.union(
                     env.excludes("duplicate"),
-                    Collections.singleton("META-INF/.*")
+                    Arrays.asList("META-INF/.*", "module-info.class")
                 )
             );
             final Collection<Properties> deps = new LinkedList<>();

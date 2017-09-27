@@ -40,12 +40,12 @@ assert log.text.contains('tabs.txt[1]: Line contains a tab character. (FileTabCh
 assert log.text.findAll('Brackets.java.*(HeaderCheck)').empty
 //assert log.text.contains('Violations.java[6]: This method must be static, because it does not refer to "this"')
 assert log.text.contains('Brackets.java[57]: Closing bracket should be on a new line (BracketsStructureCheck)')
-assert log.text.contains('Violations.java[16]: Parameter txt should be final. (FinalParametersCheck)')
-assert log.text.contains('Violations.java[29]: Parameter ex should be final. (FinalParametersCheck)')
+assert log.text.contains('Violations.java[14]: Parameter txt should be final. (FinalParametersCheck)')
+assert log.text.contains('Violations.java[25]: Parameter ex should be final. (FinalParametersCheck)')
 assert log.text.contains('NewLines.java[4]: Lines in file should end with Unix-like end of line')
 assert log.text.contains('newlines.txt[3]: Lines in file should end with Unix-like end of line')
-assert log.text.contains('Violations.java[39]: ArrayList should be initialized with a size parameter')
-assert log.text.contains('Violations.java[40]: ArrayList should be initialized with a size parameter')
+assert log.text.contains('Violations.java[33]: ArrayList should be initialized with a size parameter')
+assert log.text.contains('Violations.java[34]: ArrayList should be initialized with a size parameter')
 assert log.text.findAll('Pdd.java.*: .todo tag has wrong format').empty
 assert !log.text.contains('Got an exception - java.lang.NullPointerException')
 //assert !log.text.contains('SomeTest.java[5]: This method must be static, because it does not refer to "this"')

@@ -286,8 +286,8 @@
                     With this construct you can exclude certain IT projects.
                     -->
                     <pomIncludes>
-                        <pomInclude>checkstyle-exceptions/pom.xml</pomInclude>
                         <pomInclude>checkstyle-violations/pom.xml</pomInclude>
+                        <pomInclude>checkstyle-exceptions/pom.xml</pomInclude>
                         <pomInclude>checkstyle-newlines/pom.xml</pomInclude>
                         <pomInclude>checkstyle-locale/pom.xml</pomInclude>
                         <pomInclude>pmd-violations/pom.xml</pomInclude>
