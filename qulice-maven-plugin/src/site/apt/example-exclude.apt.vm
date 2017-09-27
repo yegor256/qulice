@@ -63,20 +63,8 @@ Exclude
 
   Every <<<exclude>>> item is a regular expression. The following
   exclusion prefixes are supported now (the list may actually be longer):
-  <<<checkstyle:>>>, <<<pmd:>>>, <<<findbugs:>>>, <<<codenarc:>>>,
-  <<<dependencies:>>>, <<<cobertura:>>>, <<<jslint:>>>, <<<duplicatefinder:>>>.
-
-  Exclude for CodeNarc is a bit different, as CodeNarc consumes ant-style
-  expressions. For example:
-  1) <<<codenarc:**/*.groovy>>> excludes all <<<.groovy>>> files in all
-  folders;
-  2) <<<codenarc:**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy>>> excludes
-  <<<Main.groovy>>> and <<<Main2.groovy>>> in appropriate packages.
-
-  Exclude for jslint also uses ant-style expressions, for example:
-  1) <<jslint:**/*.js>> excludes all <<.js>> files in all folders;
-  2) <<jslint:**/bar/main.js,**/foo/other.js>> excludes <<main.js>> and
-  <<other.js>> in the appropriate fodlers.
+  <<<checkstyle:>>>, <<<pmd:>>>, <<<findbugs:>>>,
+  <<<dependencies:>>>, <<<cobertura:>>>, <<<duplicatefinder:>>>.
 
   Exclude for Findbug is a bit different, as expression has to be either an
   exact class name or start with the ~ character the rest of content is
