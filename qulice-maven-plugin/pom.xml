@@ -109,11 +109,6 @@
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
-            <artifactId>qulice-codenarc</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.qulice</groupId>
             <artifactId>qulice-findbugs</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -286,7 +281,6 @@
                         <pomInclude>checkstyle-newlines/pom.xml</pomInclude>
                         <pomInclude>checkstyle-locale/pom.xml</pomInclude>
                         <pomInclude>pmd-violations/pom.xml</pomInclude>
-                        <pomInclude>codenarc-violations/pom.xml</pomInclude>
                         <pomInclude>findbugs-exclude/pom.xml</pomInclude>
                         <pomInclude>findbugs-violations/pom.xml</pomInclude>
                         <pomInclude>dependency-violations/pom.xml</pomInclude>
@@ -321,11 +315,6 @@
                     </dependency>
                     <dependency>
                         <groupId>${project.groupId}</groupId>
-                        <artifactId>qulice-codenarc</artifactId>
-                        <version>${project.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>${project.groupId}</groupId>
                         <artifactId>qulice-findbugs</artifactId>
                         <version>${project.version}</version>
                     </dependency>
@@ -337,11 +326,6 @@
                     <dependency>
                         <groupId>${project.groupId}</groupId>
                         <artifactId>qulice-spi</artifactId>
-                        <version>${project.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>${project.groupId}</groupId>
-                        <artifactId>qulice-xml</artifactId>
                         <version>${project.version}</version>
                     </dependency>
                 </dependencies>

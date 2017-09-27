@@ -30,7 +30,6 @@
 package com.qulice.maven;
 
 import com.qulice.checkstyle.CheckstyleValidator;
-import com.qulice.codenarc.CodeNarcValidator;
 import com.qulice.findbugs.FindBugsValidator;
 import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
@@ -80,14 +79,10 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
     // @todo #61:30min Make FindBugsValidator inherit from ResourceValidator and
     //  use it similarly to CheckstyleValidator. Remember to move it to
     //  externalResource method and make sure all the tests pass.
-    // @todo #61:30min Make XmlValidator and CodeNarcValidator inherit from
-    //  ResourceValidator and use it similarly to CheckstyleValidator. Remember
-    //  to move it to externalResource method and make sure all the tests pass.
     @Override
     public Set<Validator> external() {
         final Set<Validator> validators = new LinkedHashSet<>();
         validators.add(new FindBugsValidator());
-        validators.add(new CodeNarcValidator());
         return validators;
     }
 

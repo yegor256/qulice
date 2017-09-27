@@ -72,17 +72,7 @@
         </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
-            <artifactId>qulice-codenarc</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.qulice</groupId>
             <artifactId>qulice-findbugs</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.qulice</groupId>
-            <artifactId>qulice-xml</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -121,11 +111,9 @@
                     </pomIncludes>
                     <extraArtifacts>
                         <extraArtifact>${project.groupId}:qulice-checkstyle:${project.version}:jar</extraArtifact>
-                        <extraArtifact>${project.groupId}:qulice-codenarc:${project.version}:jar</extraArtifact>
                         <extraArtifact>${project.groupId}:qulice-findbugs:${project.version}:jar</extraArtifact>
                         <extraArtifact>${project.groupId}:qulice-pmd:${project.version}:jar</extraArtifact>
                         <extraArtifact>${project.groupId}:qulice-spi:${project.version}:jar</extraArtifact>
-                        <extraArtifact>${project.groupId}:qulice-xml:${project.version}:jar</extraArtifact>
                     </extraArtifacts>
                 </configuration>
                 <dependencies>

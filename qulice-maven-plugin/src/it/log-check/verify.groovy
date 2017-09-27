@@ -34,6 +34,4 @@
 def log = new File(basedir, 'build.log')
 assert log.text.contains('Starting FindBugs validator')
 assert log.text.contains('Finishing FindBugs validator')
-assert log.text.contains('Starting CodeNarc validator')
-assert log.text.contains('Finishing CodeNarc validator')
 

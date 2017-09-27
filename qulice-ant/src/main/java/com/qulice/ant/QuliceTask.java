@@ -31,7 +31,6 @@ package com.qulice.ant;
 
 import com.jcabi.log.Logger;
 import com.qulice.checkstyle.CheckstyleValidator;
-import com.qulice.codenarc.CodeNarcValidator;
 import com.qulice.findbugs.FindBugsValidator;
 import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
@@ -39,7 +38,6 @@ import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import com.qulice.spi.Violation;
-import com.qulice.xml.XmlValidator;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
@@ -177,10 +175,8 @@ public final class QuliceTask extends Task {
      * @return Collection of validators.
      */
     private static Collection<Validator> validators() {
-        return Arrays.asList(
-            new FindBugsValidator(),
-            new XmlValidator(),
-            new CodeNarcValidator()
+        return Arrays.<Validator>asList(
+            new FindBugsValidator()
         );
     }
 
