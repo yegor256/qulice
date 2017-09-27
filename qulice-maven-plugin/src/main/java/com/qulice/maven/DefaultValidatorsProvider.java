@@ -30,6 +30,8 @@
 package com.qulice.maven;
 
 import com.qulice.checkstyle.CheckstyleValidator;
+import com.qulice.codenarc.CodeNarcValidator;
+import com.qulice.findbugs.FindBugsValidator;
 import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
@@ -84,9 +86,8 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
     @Override
     public Set<Validator> external() {
         final Set<Validator> validators = new LinkedHashSet<>();
-        validators.add(new com.qulice.findbugs.FindBugsValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
+        validators.add(new FindBugsValidator());
+        validators.add(new CodeNarcValidator());
         return validators;
     }
 

@@ -11,7 +11,7 @@ env:
     - JAVA_OPTS="-XX:MaxPermSize=2g -Xmx4g"
   matrix:
     - COMMAND="mvn clean install -Pqulice --errors"
-    - COMMAND="mvn com.qulice:qulice-maven-plugin:1.0-SNAPSHOT:check -Dqulice.excludes='xml:.*' --fail-never"
+    - COMMAND="mvn com.qulice:qulice-maven-plugin:1.0-SNAPSHOT:check --fail-never"
 install:
   - set -e
   - travis_retry sudo apt-get install -y --fix-missing libmagic1 libmagic-dev
