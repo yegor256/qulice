@@ -5,6 +5,7 @@ architect:
 install:
 - sudo gem install --no-ri --no-rdoc pdd
 - sudo gem install --no-ri --no-rdoc est
+- sudo gem install --no-ri --no-rdoc xcop
 assets:
   secring.gpg: zerocracy/home#assets/secring.gpg
   settings.xml: zerocracy/home#assets/qulice/settings.xml

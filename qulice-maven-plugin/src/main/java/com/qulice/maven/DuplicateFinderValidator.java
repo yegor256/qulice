@@ -70,12 +70,12 @@ public final class DuplicateFinderValidator implements MavenValidator {
             props.put(
                 "ignoredResources",
                 CollectionUtils.union(
-                    env.excludes("duplicate"),
+                    env.excludes("duplicatefinder"),
                     Arrays.asList("META-INF/.*", "module-info.class")
                 )
             );
             final Collection<Properties> deps = new LinkedList<>();
-            //  for (String sdep : env.excludes("duplicate")) {
+            //  for (String sdep : env.excludes("duplicatefinder")) {
             //      if (StringUtils.countMatches(sdep, ":") == 2) {
             //          String[] parts = sdep.split(":");
             //          Properties main = new Properties();
