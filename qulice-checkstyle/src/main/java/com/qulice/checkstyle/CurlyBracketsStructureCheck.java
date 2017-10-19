@@ -30,7 +30,7 @@
 package com.qulice.checkstyle;
 
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.List;
@@ -61,7 +61,7 @@ import java.util.List;
  * @version $Id$
  * @since 0.6
  */
-public final class CurlyBracketsStructureCheck extends Check {
+public final class CurlyBracketsStructureCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {

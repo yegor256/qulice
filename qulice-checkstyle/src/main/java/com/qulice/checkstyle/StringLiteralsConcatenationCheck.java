@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.LinkedList;
@@ -61,7 +61,7 @@ import java.util.List;
  * @version $Id$
  * @since 0.3
  */
-public final class StringLiteralsConcatenationCheck extends Check {
+public final class StringLiteralsConcatenationCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {

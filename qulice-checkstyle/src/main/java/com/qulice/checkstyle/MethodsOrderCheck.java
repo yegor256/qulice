@@ -32,7 +32,7 @@ package com.qulice.checkstyle;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.List;
@@ -46,7 +46,7 @@ import java.util.Map;
  * @version $Id$
  * @since 0.6
  */
-public final class MethodsOrderCheck extends Check {
+public final class MethodsOrderCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {

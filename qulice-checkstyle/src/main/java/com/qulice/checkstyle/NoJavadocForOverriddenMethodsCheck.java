@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * @version $Id$
  * @since 0.16
  */
-public final class NoJavadocForOverriddenMethodsCheck extends Check {
+public final class NoJavadocForOverriddenMethodsCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {

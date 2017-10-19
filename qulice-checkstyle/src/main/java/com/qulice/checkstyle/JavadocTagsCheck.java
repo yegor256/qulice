@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.ArrayList;
@@ -64,7 +64,7 @@ import java.util.regex.Pattern;
  * @see <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">Keywords substitution in Subversion</a>
  * @since 0.3
  */
-public final class JavadocTagsCheck extends Check {
+public final class JavadocTagsCheck extends AbstractCheck {
 
     /**
      * Map of tag and its pattern.

@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -61,7 +61,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @version $Id$
  * @since 0.3
  */
-public final class BracketsStructureCheck extends Check {
+public final class BracketsStructureCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {

@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.Arrays;
@@ -51,7 +51,7 @@ import java.util.Arrays;
  * @todo #260 Add handling of multiple anonymous classes inside methods by
  *  looking at the recursive tree.
  */
-public final class MethodBodyCommentsCheck extends Check {
+public final class MethodBodyCommentsCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {

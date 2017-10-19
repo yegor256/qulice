@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.regex.Pattern;
@@ -52,7 +52,7 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since 0.3
  */
-public final class EmptyLinesCheck extends Check {
+public final class EmptyLinesCheck extends AbstractCheck {
 
     /**
      * Pattern for empty line check.

@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * @version $Id$
  * @since 0.15
  */
-public final class FinalSemicolonInTryWithResourcesCheck extends Check {
+public final class FinalSemicolonInTryWithResourcesCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {

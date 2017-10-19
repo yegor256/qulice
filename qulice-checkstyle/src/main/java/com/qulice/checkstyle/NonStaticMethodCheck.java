@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -57,7 +57,7 @@ import java.util.regex.Pattern;
  * @version $Id$
  * @since 0.3
  */
-public final class NonStaticMethodCheck extends Check {
+public final class NonStaticMethodCheck extends AbstractCheck {
 
     /**
      * Files to exclude from this check.
