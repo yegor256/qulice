@@ -6,6 +6,7 @@
 /**
  * @author Yegor Bugayenko (yegor@tpc2.com)
  * @author Some Name (some@name.com)
+ * @author Elena Ihde-Simon (elena.ihde-simon@posteo.de)
  * @version $Id$
  * @since 0.28.3
  */
