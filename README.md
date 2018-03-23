@@ -1,5 +1,7 @@
 <img src="http://img.qulice.com/logo.svg" width="200px" height="55px"/>
 
+[![Donate via Zerocracy](https://www.0crat.com/contrib-badge/C3T49A35L.svg)](https://www.0crat.com/contrib/C3T49A35L)
+
 [![EO principles respected here](http://www.elegantobjects.org/badge.svg)](http://www.elegantobjects.org)
 [![Managed by Zerocracy](https://www.0crat.com/badge/C3T49A35L.svg)](https://www.0crat.com/p/C3T49A35L)
 [![DevOps By Rultor.com](http://www.rultor.com/b/teamed/qulice)](http://www.rultor.com/p/teamed/qulice)
