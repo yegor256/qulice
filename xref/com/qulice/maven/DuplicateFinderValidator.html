@@ -7,7 +7,7 @@
 <body>
 <div id="overview"><a href="../../../../apidocs/com/qulice/maven/DuplicateFinderValidator.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Copyright (c) 2011-2016, Qulice.com</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_javadoccomment"> * Copyright (c) 2011-2018, Qulice.com</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_javadoccomment"> * All rights reserved.</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_javadoccomment"> * Redistribution and use in source and binary forms, with or without</em>
@@ -38,8 +38,8 @@
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">package</strong> com.qulice.maven;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> com.qulice.spi.ValidationException;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> java.util.Collections;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.util.Arrays;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> java.util.LinkedList;
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> java.util.Properties;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.collections.CollectionUtils;
@@ -78,12 +78,12 @@
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>              props.put(
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>                  <span class="jxr_string">"ignoredResources"</span>,
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>                  CollectionUtils.union(
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>                      env.excludes(<span class="jxr_string">"duplicate"</span>),
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>                      Collections.singleton(<span class="jxr_string">"META-INF/.*"</span>)
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>                      env.excludes(<span class="jxr_string">"duplicatefinder"</span>),
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>                      Arrays.asList(<span class="jxr_string">"META-INF/.*"</span>, <span class="jxr_string">"module-info.class"</span>)
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>                  )
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>              );
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>              <strong class="jxr_keyword">final</strong> Collection&lt;Properties&gt; deps = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>              <em class="jxr_comment">//  for (String sdep : env.excludes("duplicate")) {</em>
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>              <em class="jxr_comment">//  for (String sdep : env.excludes("duplicatefinder")) {</em>
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>              <em class="jxr_comment">//      if (StringUtils.countMatches(sdep, ":") == 2) {</em>
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>              <em class="jxr_comment">//          String[] parts = sdep.split(":");</em>
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>              <em class="jxr_comment">//          Properties main = new Properties();</em>
@@ -107,6 +107,6 @@
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  }
 </pre>
 <hr/>
-<div id="footer">Copyright &#169; 2011&#x2013;2016 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
+<div id="footer">Copyright &#169; 2011&#x2013;2018 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
 </body>
 </html>
