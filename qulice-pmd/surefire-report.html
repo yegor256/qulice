@@ -94,7 +94,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.17/index.html" title="JavaDocs">JavaDocs</a>
+                            <span>                        <a href="apidocs-0.17.2/index.html" title="Javadoc">Javadoc</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -133,13 +133,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.17</strong>
+                                    <strong itemprop="version">0.17.2</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2016-08-02T07:54:08Z">
+                                    <time itemprop="datePublished" datetime="2018-04-27T09:37:04Z">
                                         
-                                        02-Aug-2016
+                                        27-Apr-2018
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -183,7 +183,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>20.945</td></tr></table><br />
+<td>4.863</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></div>
 <div class="section">
 <h2><a name="Package_List"></a>Package List</h2><a name="Package_List"></a>
@@ -204,7 +204,7 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>20.945</td></tr></table><br />
+<td>4.863</td></tr></table><br />
 <p>Note: package statistics are not computed recursively, they only sum up all of its testsuites numbers.</p>
 <div class="section">
 <h3><a name="com.qulice.pmd"></a>com.qulice.pmd</h3><a name="com.qulice.pmd"></a>
@@ -219,14 +219,14 @@ function toggleDisplay(elementId) {
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td><a href="#com.qulice.pmdPmdValidatorTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.pmdPmdValidatorTest">PmdValidatorTest</a></td>
-<td>24</td>
+<td><a href="#com.qulice.pmdPmdDisabledRulesTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.pmdPmdDisabledRulesTest">PmdDisabledRulesTest</a></td>
+<td>3</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>5.863</td></tr>
+<td>2.342</td></tr>
 <tr class="a">
 <td><a href="#com.qulice.pmdPmdEmptyTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
 <td><a href="#com.qulice.pmdPmdEmptyTest">PmdEmptyTest</a></td>
@@ -235,199 +235,187 @@ function toggleDisplay(elementId) {
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>4.607</td></tr>
+<td>0.867</td></tr>
 <tr class="b">
-<td><a href="#com.qulice.pmdFilesTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.pmdFilesTest">FilesTest</a></td>
-<td>1</td>
+<td><a href="#com.qulice.pmdPmdValidatorTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
+<td><a href="#com.qulice.pmdPmdValidatorTest">PmdValidatorTest</a></td>
+<td>25</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>100%</td>
-<td>0.002</td></tr>
-<tr class="a">
-<td><a href="#com.qulice.pmdPmdDisabledRulesTest"><img src="images/icon_success_sml.gif" alt="" /></a></td>
-<td><a href="#com.qulice.pmdPmdDisabledRulesTest">PmdDisabledRulesTest</a></td>
-<td>3</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>100%</td>
-<td>10.473</td></tr></table></div><br /></div>
+<td>1.654</td></tr></table></div><br /></div>
 <div class="section">
 <h2><a name="Test_Cases"></a>Test Cases</h2><a name="Test_Cases"></a>
 <p>[<a href="#Summary">Summary</a>] [<a href="#Package_List">Package List</a>] [<a href="#Test_Cases">Test Cases</a>]</p>
 <div class="section">
-<h3><a name="PmdValidatorTest"></a>PmdValidatorTest</h3><a name="com.qulice.pmdPmdValidatorTest"></a>
+<h3><a name="PmdDisabledRulesTest"></a>PmdDisabledRulesTest</h3><a name="com.qulice.pmdPmdDisabledRulesTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>forbidsNonSimplifiedTernaryOperators</td>
-<td>1.154</td></tr>
+<td>disablesRules[2]</td>
+<td>0.782</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>acceptsCallToStaticFieldsInStaticWay</td>
-<td>0.855</td></tr>
+<td>disablesRules[1]</td>
+<td>0.779</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>forbidsFieldInitializationWhenConstructorExists</td>
-<td>0.705</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>forbidsFieldInitializationInSeveralConstructors</td>
-<td>0.576</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>allowsJunitFrameworkPublicStaticMethods</td>
-<td>0.426</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>allowsPublicStaticMainMethod</td>
-<td>0.278</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>forbidsCloneMethodReturnTypeNotMatchingClassName</td>
-<td>0.196</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>prohibitsPublicStaticMethods</td>
-<td>0.177</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>forbidsNonPublicCloneMethod</td>
-<td>0.15</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>forbidsUnnecessaryFinalModifier</td>
-<td>0.093</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>prohibitsPlainJunitAssertionsInTestMethods</td>
-<td>0.161</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>understandsMethodReferences</td>
-<td>0.079</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>doesNotComplainAboutConstantsInInnerClasses</td>
-<td>0.07</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>acceptsCallToConstructorInConstructor</td>
-<td>0.104</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>forbidsUselessParentheses</td>
-<td>0.081</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>allowsNonTransientFields</td>
-<td>0.057</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>allowsFieldInitializationInOneConstructor</td>
-<td>0.09</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>prohibitsStaticImportsPlainAssertionsInTests</td>
-<td>0.081</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>forbidsCodeInConstructor</td>
-<td>0.087</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>forbidsCallToStaticFieldsInNonStaticWay</td>
-<td>0.067</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>allowsFieldInitializationWhenConstructorIsMissing</td>
-<td>0.13</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>allowsStaticFieldInitializationWhenConstructorExists</td>
-<td>0.069</td></tr>
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>findsProblemsInJavaFiles</td>
-<td>0.059</td></tr>
-<tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>allowsAssertFail</td>
-<td>0.068</td></tr></table></div>
+<td>disablesRules[0]</td>
+<td>0.781</td></tr></table></div>
 <div class="section">
 <h3><a name="PmdEmptyTest"></a>PmdEmptyTest</h3><a name="com.qulice.pmdPmdEmptyTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsForEmptyFinallyBlock</td>
-<td>0.872</td></tr>
+<td>0.127</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsForEmptyStatementBlock</td>
-<td>0.949</td></tr>
+<td>0.124</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsForEmptySynchronizedBlock</td>
-<td>0.79</td></tr>
+<td>0.087</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsForEmptyInitializer</td>
-<td>0.329</td></tr>
+<td>0.076</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsForEmptyIfStatement</td>
-<td>0.419</td></tr>
+<td>0.082</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsForEmptyNonLoopStatement</td>
-<td>0.406</td></tr>
+<td>0.077</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsForEmptyWhileStatement</td>
-<td>0.272</td></tr>
+<td>0.106</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsForEmptyCatchBlock</td>
-<td>0.294</td></tr>
+<td>0.076</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsForEmptySwitchStatement</td>
-<td>0.151</td></tr>
+<td>0.068</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
 <td>failsForEmptyStaticInitializer</td>
-<td>0.119</td></tr></table></div>
+<td>0.042</td></tr></table></div>
 <div class="section">
-<h3><a name="FilesTest"></a>FilesTest</h3><a name="com.qulice.pmdFilesTest"></a>
+<h3><a name="PmdValidatorTest"></a>PmdValidatorTest</h3><a name="com.qulice.pmdPmdValidatorTest"></a>
 <table border="1" class="bodyTable">
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>providesOnlyJavaFiles</td>
-<td>0.002</td></tr></table></div>
-<div class="section">
-<h3><a name="PmdDisabledRulesTest"></a>PmdDisabledRulesTest</h3><a name="com.qulice.pmdPmdDisabledRulesTest"></a>
-<table border="1" class="bodyTable">
-<tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>disablesRules[0]</td>
-<td>3.498</td></tr>
+<td>forbidsNonSimplifiedTernaryOperators</td>
+<td>0.126</td></tr>
 <tr class="b">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>disablesRules[1]</td>
-<td>3.496</td></tr>
+<td>acceptsCallToStaticFieldsInStaticWay</td>
+<td>0.117</td></tr>
 <tr class="a">
 <td><img src="images/icon_success_sml.gif" alt="" /></td>
-<td>disablesRules[2]</td>
-<td>3.479</td></tr></table></div><br /></div>
+<td>forbidsFieldInitializationWhenConstructorExists</td>
+<td>0.083</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>forbidsFieldInitializationInSeveralConstructors</td>
+<td>0.087</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>allowsJunitFrameworkPublicStaticMethods</td>
+<td>0.082</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>allowsPublicStaticMainMethod</td>
+<td>0.077</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>forbidsCloneMethodReturnTypeNotMatchingClassName</td>
+<td>0.107</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>allowsDuplicateLiteralsInAnnotations</td>
+<td>0.073</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>prohibitsPublicStaticMethods</td>
+<td>0.054</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>forbidsNonPublicCloneMethod</td>
+<td>0.067</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>forbidsUnnecessaryFinalModifier</td>
+<td>0.048</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>prohibitsPlainJunitAssertionsInTestMethods</td>
+<td>0.09</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>understandsMethodReferences</td>
+<td>0.03</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>doesNotComplainAboutConstantsInInnerClasses</td>
+<td>0.054</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>acceptsCallToConstructorInConstructor</td>
+<td>0.057</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>forbidsUselessParentheses</td>
+<td>0.055</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>allowsNonTransientFields</td>
+<td>0.053</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>allowsFieldInitializationInOneConstructor</td>
+<td>0.054</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>prohibitsStaticImportsPlainAssertionsInTests</td>
+<td>0.048</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>forbidsCodeInConstructor</td>
+<td>0.054</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>forbidsCallToStaticFieldsInNonStaticWay</td>
+<td>0.047</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>allowsFieldInitializationWhenConstructorIsMissing</td>
+<td>0.047</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>allowsStaticFieldInitializationWhenConstructorExists</td>
+<td>0.049</td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>findsProblemsInJavaFiles</td>
+<td>0.043</td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td>allowsAssertFail</td>
+<td>0.046</td></tr></table></div><br /></div>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2016
+                                                                            2011-2018
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
