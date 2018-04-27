@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -26,5 +26,12 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/**
+ * Package docs.
+ * @author John Smith (abc@example.com)
+ * @version $Id$
+ * @since 0.1
  */
 package com.qulice.foo;

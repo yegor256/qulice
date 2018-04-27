@@ -1,4 +1,4 @@
-/**
+/*
  * Some text.
  * And other.
  */

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *

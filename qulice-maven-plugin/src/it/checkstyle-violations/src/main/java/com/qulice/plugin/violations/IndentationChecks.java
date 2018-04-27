@@ -1,4 +1,4 @@
-/**
+/*
  * Test file.
  */
 package com.qulice.plugin.violations;
