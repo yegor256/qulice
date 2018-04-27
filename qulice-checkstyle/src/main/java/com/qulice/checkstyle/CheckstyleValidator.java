@@ -177,7 +177,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         }
         final StringBuilder builder = new StringBuilder(Tv.HUNDRED);
         final String eol = System.getProperty("line.separator");
-        builder.append("/**").append(eol);
+        builder.append("/*").append(eol);
         for (final String line
             : StringUtils.splitPreserveAllTokens(content, eol)) {
             builder.append(" *");
