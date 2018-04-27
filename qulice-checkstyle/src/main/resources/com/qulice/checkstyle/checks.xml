@@ -256,7 +256,11 @@
         <module name="DefaultComesLast"/>
         <module name="FallThrough"/>
         <module name="MultipleVariableDeclarations"/>
-        <module name="RequireThis"/>
+        <module name="RequireThis">
+            <property name="checkFields" value="true"/>
+            <property name="checkMethods" value="true"/>
+            <property name="validateOnlyOverlapping" value="false"/>
+        </module>
         <module name="UnnecessaryParentheses"/>
         <module name="OneStatementPerLine"/>
 

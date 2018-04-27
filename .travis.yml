@@ -7,11 +7,8 @@ cache:
     - $HOME/.m2
 env:
   global:
-    - MAVEN_OPTS="-XX:MaxPermSize=2g -Xmx4g"
-    - JAVA_OPTS="-XX:MaxPermSize=2g -Xmx4g"
-  matrix:
-    - COMMAND="mvn clean install -Pqulice --errors"
-    - COMMAND="mvn com.qulice:qulice-maven-plugin:1.0-SNAPSHOT:check --fail-never"
+    - MAVEN_OPTS="-Xmx4g"
+    - JAVA_OPTS="-Xmx4g"
 install:
   - set -e
   - travis_retry sudo apt-get install -y --fix-missing libmagic1 libmagic-dev
@@ -23,8 +20,8 @@ install:
   - set +e
 script:
   - set -e
-  - pdd --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java,qulice-checkstyle/src/test/resources/com/qulice/checkstyle/AtClauseOrder.java
+  - pdd --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java,qulice-checkstyle/src/test/resources/**,qulice-checkstyle/src/test/resources/com/qulice/checkstyle/AtClauseOrder.java
   - est --dir=est --file=/dev/null
   - ./years.sh
-  - eval $COMMAND
+  - mvn clean install -Pqulice --errors
   - set +e

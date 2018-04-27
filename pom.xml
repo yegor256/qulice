@@ -146,6 +146,24 @@
                         </archive>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <configuration>
+                        <tags>
+                            <tag>
+                                <name>todo</name>
+                                <placement>a</placement>
+                                <head>todo:</head>
+                            </tag>
+                            <tag>
+                                <name>checkstyle</name>
+                                <placement>a</placement>
+                                <head>checkstyle:</head>
+                            </tag>
+                        </tags>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>

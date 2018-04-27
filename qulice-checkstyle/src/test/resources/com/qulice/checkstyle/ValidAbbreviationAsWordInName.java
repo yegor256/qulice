@@ -21,7 +21,7 @@ public class ValidAbbreviationAsWordInName extends SomeClass {
 
     @Override
     public final String UPPERCASE() {
-        return CONST_VALUE;
+        return ValidAbbreviationAsWordInName.CONST_VALUE;
     }
 
     /**
