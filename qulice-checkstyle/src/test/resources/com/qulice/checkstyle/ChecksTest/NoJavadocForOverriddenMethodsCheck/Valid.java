@@ -25,7 +25,7 @@ public final class Valid {
     public void doc() {
     }
     
-    //@todo
+    //todo
     @Override
     public void good() {
     }
