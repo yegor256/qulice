@@ -131,13 +131,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.17</strong>
+                                    <strong itemprop="version">0.17.2</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2016-08-02T08:15:57Z">
+                                    <time itemprop="datePublished" datetime="2018-04-27T09:49:54Z">
                                         
-                                        02-Aug-2016
+                                        27-Apr-2018
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -145,7 +145,7 @@
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article role="article" itemprop="articleBody">
-                            <!--  --><!-- Copyright (c) 2011-2016, Qulice.com --><!-- All rights reserved. --><!--  --><!-- Redistribution and use in source and binary forms, with or without --><!-- modification, are permitted provided that the following conditions --><!-- are met: 1) Redistributions of source code must retain the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer. 2) Redistributions in binary form must reproduce the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer in the documentation and/or other materials provided --><!-- with the distribution. 3) Neither the name of the Qulice.com nor --><!-- the names of its contributors may be used to endorse or promote --><!-- products derived from this software without specific prior written --><!-- permission. --><!--  --><!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS --><!-- "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT --><!-- NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND --><!-- FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL --><!-- THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, --><!-- INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES --><!-- (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR --><!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) --><!-- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, --><!-- STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) --><!-- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED --><!-- OF THE POSSIBILITY OF SUCH DAMAGE. --><!--  --><!-- @version $Id$ --><!--  --><div class="section">
+                            <!--  --><!-- Copyright (c) 2011-2018, Qulice.com --><!-- All rights reserved. --><!--  --><!-- Redistribution and use in source and binary forms, with or without --><!-- modification, are permitted provided that the following conditions --><!-- are met: 1) Redistributions of source code must retain the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer. 2) Redistributions in binary form must reproduce the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer in the documentation and/or other materials provided --><!-- with the distribution. 3) Neither the name of the Qulice.com nor --><!-- the names of its contributors may be used to endorse or promote --><!-- products derived from this software without specific prior written --><!-- permission. --><!--  --><!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS --><!-- "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT --><!-- NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND --><!-- FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL --><!-- THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, --><!-- INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES --><!-- (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR --><!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) --><!-- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, --><!-- STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) --><!-- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED --><!-- OF THE POSSIBILITY OF SUCH DAMAGE. --><!--  --><!-- @version $Id$ --><!--  --><div class="section">
 <h2><a name="Exclude"></a>Exclude</h2>
 <p>You can exclude anything, using plugin configuration:</p>
 <div class="source">
@@ -154,7 +154,7 @@
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.17&lt;/version&gt;
+      &lt;version&gt;0.17.2&lt;/version&gt;
       &lt;configuration&gt;
         &lt;excludes&gt;
           &lt;exclude&gt;checkstyle:/src/examples/.*&lt;/exclude&gt;
@@ -165,9 +165,7 @@
     &lt;/plugin&gt;
   &lt;/plugins&gt;
 &lt;/build&gt;</pre></div>
-<p>Every <tt>exclude</tt> item is a regular expression. The following exclusion prefixes are supported now (the list may actually be longer): <tt>checkstyle:</tt>, <tt>pmd:</tt>, <tt>findbugs:</tt>, <tt>codenarc:</tt>, <tt>dependencies:</tt>, <tt>cobertura:</tt>, <tt>jslint:</tt>, <tt>duplicatefinder:</tt>.</p>
-<p>Exclude for CodeNarc is a bit different, as CodeNarc consumes ant-style expressions. For example: 1) <tt>codenarc:**/*.groovy</tt> excludes all <tt>.groovy</tt> files in all folders; 2) <tt>codenarc:**/src/ex1/Main.groovy,**/src/ex2/Main2.groovy</tt> excludes <tt>Main.groovy</tt> and <tt>Main2.groovy</tt> in appropriate packages.</p>
-<p>Exclude for jslint also uses ant-style expressions, for example: 1) <b>jslint:**/*.js</b> excludes all <b>.js</b> files in all folders; 2) <b>jslint:**/bar/main.js,**/foo/other.js</b> excludes <b>main.js</b> and <b>other.js</b> in the appropriate fodlers.</p>
+<p>Every <tt>exclude</tt> item is a regular expression. The following exclusion prefixes are supported now (the list may actually be longer): <tt>checkstyle:</tt>, <tt>pmd:</tt>, <tt>findbugs:</tt>, <tt>dependencies:</tt>, <tt>cobertura:</tt>, <tt>duplicatefinder:</tt>.</p>
 <p>Exclude for Findbug is a bit different, as expression has to be either an exact class name or start with the ~ character the rest of content is interpreted as a Java regular expression. For example: 1) <tt>findbugs:~com.qulice.foo.*</tt> excludes all classes in package com.qulice.foo; 2) <tt>findbugs:com.qulice.foo.Bar</tt> excludes only class Bar in appropriate packages. See http://findbugs.sourceforge.net/manual/filter.html</p>
 <p>Dependencies exclude uses syntax of groupId:artifactId, so to exclude e.g. guava library you should add <tt>dependencies:com.google.guava:guava</tt> as an exclude. Multiple exclude tags can be provided to exclude multiple dependencies. To exclude all dependency checks <tt>dependencies:.*</tt> should be used.</p></div>
                         </article>
@@ -176,7 +174,7 @@
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2016
+                                                                            2011-2018
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
