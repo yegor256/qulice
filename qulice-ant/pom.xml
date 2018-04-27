@@ -124,11 +124,6 @@
                     </dependency>
                     <dependency>
                         <groupId>${project.groupId}</groupId>
-                        <artifactId>qulice-codenarc</artifactId>
-                        <version>${project.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>${project.groupId}</groupId>
                         <artifactId>qulice-findbugs</artifactId>
                         <version>${project.version}</version>
                     </dependency>
@@ -140,11 +135,6 @@
                     <dependency>
                         <groupId>${project.groupId}</groupId>
                         <artifactId>qulice-spi</artifactId>
-                        <version>${project.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>${project.groupId}</groupId>
-                        <artifactId>qulice-xml</artifactId>
                         <version>${project.version}</version>
                     </dependency>
                 </dependencies>
