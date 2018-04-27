@@ -299,11 +299,9 @@
                     </pomIncludes>
                     <extraArtifacts>
                         <extraArtifact>${project.groupId}:qulice-checkstyle:${project.version}:jar</extraArtifact>
-                        <extraArtifact>${project.groupId}:qulice-codenarc:${project.version}:jar</extraArtifact>
                         <extraArtifact>${project.groupId}:qulice-findbugs:${project.version}:jar</extraArtifact>
                         <extraArtifact>${project.groupId}:qulice-pmd:${project.version}:jar</extraArtifact>
                         <extraArtifact>${project.groupId}:qulice-spi:${project.version}:jar</extraArtifact>
-                        <extraArtifact>${project.groupId}:qulice-xml:${project.version}:jar</extraArtifact>
                     </extraArtifacts>
                 </configuration>
                 <dependencies>
