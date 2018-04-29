@@ -677,12 +677,11 @@ public final class CheckstyleValidatorTest {
     /**
      * CheckstyleValidator can allow diamond operator usage.
      * @throws Exception If error
-     * @todo #715:30min add test for next situation
-     *  {@code return new ArrayList<String>();}
      */
     @Test
     public void allowsDiamondOperatorUsage() throws Exception {
         this.runValidation("ValidDiamondsUsage.java", true);
+        this.runValidation("DiamondUsageNotNeeded.java", true);
     }
 
     /**
