@@ -681,6 +681,15 @@ public final class CheckstyleValidatorTest {
     @Test
     public void allowsDiamondOperatorUsage() throws Exception {
         this.runValidation("ValidDiamondsUsage.java", true);
+    }
+
+    /**
+     * CheckstyleValidator allows class name instead of diamond in case
+     * of return statement.
+     * @throws Exception If error
+     */
+    @Test
+    public void allowsFullGenericOperatorUsage() throws Exception {
         this.runValidation("DiamondUsageNotNeeded.java", true);
     }
 
