@@ -33,10 +33,13 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Check if the class/interface javadoc contains properly formatted author
@@ -71,14 +74,11 @@ public final class JavadocTagsCheck extends AbstractCheck {
      */
     private final Map<String, Pattern> tags = new HashMap<>();
 
-    @Override
-    public void init() {
-        this.tags.put(
-            "since",
-            // @checkstyle LineLength (1 line)
-            Pattern.compile("^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$")
-        );
-    }
+    /**
+     * List of prohibited javadoc tags.
+     */
+    private final Collection<String> prohibited =
+        Arrays.asList("author", "version");
 
     @Override
     public int[] getDefaultTokens() {
@@ -89,6 +89,16 @@ public final class JavadocTagsCheck extends AbstractCheck {
     }
 
     @Override
+    public void init() {
+        this.tags.put(
+            "since",
+            Pattern.compile(
+                "^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+            )
+        );
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getParent() == null) {
             final String[] lines = this.getLines();
@@ -96,12 +106,90 @@ public final class JavadocTagsCheck extends AbstractCheck {
             final int cstart = JavadocTagsCheck.findCommentStart(lines, start);
             final int cend = JavadocTagsCheck.findCommentEnd(lines, start);
             if (cend > cstart && cstart >= 0) {
+                for (final String tag : this.prohibited) {
+                    this.findProhibited(lines, start, cstart, cend, tag);
+                }
                 for (final String tag : this.tags.keySet()) {
                     this.matchTagFormat(lines, cstart, cend, tag);
                 }
             } else {
                 this.log(0, "Problem finding class/interface comment");
             }
+        }
+    }
+
+    /**
+     * Get the text of the given tag.
+     * @param line Line with the tag.
+     * @return The text of the tag.
+     */
+    private static String getTagText(final String line) {
+        return line.substring(
+            line.indexOf(' ', line.indexOf('@')) + 1
+        );
+    }
+
+    /**
+     * Find a text in lines, by going up.
+     * @param lines List of lines to check.
+     * @param start Start searching from this line number.
+     * @param text Text to find.
+     * @return Line number with found text, or -1 if it wasn't found.
+     */
+    private static int findTrimmedTextUp(final String[] lines,
+        final int start, final String text) {
+        int found = -1;
+        for (int pos = start - 1; pos >= 0; pos -= 1) {
+            if (lines[pos].trim().equals(text)) {
+                found = pos;
+                break;
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Find javadoc starting comment.
+     * @param lines List of lines to check.
+     * @param start Start searching from this line number.
+     * @return Line number with found starting comment or -1 otherwise.
+     */
+    private static int findCommentStart(final String[] lines, final int start) {
+        return JavadocTagsCheck.findTrimmedTextUp(lines, start, "/**");
+    }
+
+    /**
+     * Find javadoc ending comment.
+     * @param lines List of lines to check.
+     * @param start Start searching from this line number.
+     * @return Line number with found ending comment, or -1 if it wasn't found.
+     */
+    private static int findCommentEnd(final String[] lines, final int start) {
+        return JavadocTagsCheck.findTrimmedTextUp(lines, start, "*/");
+    }
+
+    /**
+     * Check if the tag text matches the format from pattern.
+     * @param lines List of all lines.
+     * @param start Line number where AST starts.
+     * @param cstart Line number where comment starts.
+     * @param cend Line number where comment ends.
+     * @param tag Name of the tag.
+     * @checkstyle ParameterNumber (3 lines)
+     */
+    private void findProhibited(final String[] lines, final int start,
+        final int cstart, final int cend, final String tag) {
+        final List<Integer> found =
+            this.findTagLineNum(lines, cstart, cend, tag);
+        if (!found.isEmpty()) {
+            this.log(
+                start + 1,
+                StringUtils.join(
+                    "Prohibited ''@{0}'' tag in",
+                    " class/interface comment"
+                ),
+                tag
+            );
         }
     }
 
@@ -138,17 +226,6 @@ public final class JavadocTagsCheck extends AbstractCheck {
     }
 
     /**
-     * Get the text of the given tag.
-     * @param line Line with the tag.
-     * @return The text of the tag.
-     */
-    private static String getTagText(final String line) {
-        return line.substring(
-            line.indexOf(' ', line.indexOf('@')) + 1
-        );
-    }
-
-    /**
      * Find given tag in comment lines.
      * @param lines Lines to search for the tag.
      * @param start Starting line number.
@@ -178,45 +255,5 @@ public final class JavadocTagsCheck extends AbstractCheck {
         }
         return found;
     }
-
-    /**
-     * Find javadoc starting comment.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @return Line number with found starting comment or -1 otherwise.
-     */
-    private static int findCommentStart(final String[] lines, final int start) {
-        return JavadocTagsCheck.findTrimmedTextUp(lines, start, "/**");
-    }
-
-    /**
-     * Find javadoc ending comment.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @return Line number with found ending comment, or -1 if it wasn't found.
-     */
-    private static int findCommentEnd(final String[] lines, final int start) {
-        return JavadocTagsCheck.findTrimmedTextUp(lines, start, "*/");
-    }
-
-    /**
-     * Find a text in lines, by going up.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @param text Text to find.
-     * @return Line number with found text, or -1 if it wasn't found.
-     */
-    private static int findTrimmedTextUp(final String[] lines,
-        final int start, final String text) {
-        int found = -1;
-        for (int pos = start - 1; pos >= 0; pos -= 1) {
-            if (lines[pos].trim().equals(text)) {
-                found = pos;
-                break;
-            }
-        }
-        return found;
-    }
-
 }
 

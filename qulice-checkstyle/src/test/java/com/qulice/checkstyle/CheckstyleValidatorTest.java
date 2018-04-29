@@ -221,13 +221,13 @@ public final class CheckstyleValidatorTest {
                     message, file, "8", name
                 ),
                 new ViolationMatcher(
+                    message, file, "20", name
+                ),
+                new ViolationMatcher(
+                    message, file, "21", name
+                ),
+                new ViolationMatcher(
                     message, file, "22", name
-                ),
-                new ViolationMatcher(
-                    message, file, "23", name
-                ),
-                new ViolationMatcher(
-                    message, file, "24", name
                 )
             )
         );
@@ -270,19 +270,6 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator can accept author which has only a single name.
-     * This is to support case where authro wants to use a nick instead of
-     * first and last name.
-     * @throws Exception In case of error
-     */
-    @Test
-    public void acceptsSingleNameAuthor() throws Exception {
-        this.runValidation(
-            "AuthorTag.java", true
-        );
-    }
-
-    /**
      * CheckstyleValidator can accept constant used in method annotation.
      * @throws Exception In case of error
      * @todo #447:30min Right now ConstantUsageCheck takes into account
@@ -310,13 +297,13 @@ public final class CheckstyleValidatorTest {
             Matchers.allOf(
                 Matchers.hasItem(
                     new ViolationMatcher(
-                        "'number' hides a field.", file, "31", name
+                        "'number' hides a field.", file, "29", name
                     )
                 ),
                 Matchers.not(
                     Matchers.hasItem(
                         new ViolationMatcher(
-                            "'number' hides a field.", file, "22", name
+                            "'number' hides a field.", file, "20", name
                         )
                     )
                 )
@@ -397,23 +384,17 @@ public final class CheckstyleValidatorTest {
         final Collection<Violation> results = this.runValidation(
             file, false
         );
-        MatcherAssert.assertThat(results, Matchers.hasSize(Tv.FOUR));
+        MatcherAssert.assertThat(results, Matchers.hasSize(2));
         final String message = "At-clauses have to appear in the order";
         final String name = "AtclauseOrderCheck";
         MatcherAssert.assertThat(
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
-                    message, file, "23", name
+                    message, file, "21", name
                 ),
                 new ViolationMatcher(
-                    message, file, "50", name
-                ),
-                new ViolationMatcher(
-                    message, file, "60", name
-                ),
-                new ViolationMatcher(
-                    message, file, "61", name
+                    message, file, "48", name
                 )
             )
         );
@@ -552,13 +533,13 @@ public final class CheckstyleValidatorTest {
             Matchers.hasItems(
                 new ViolationMatcher(
                     // @checkstyle MultipleStringLiterals (1 line)
-                    "Name 'ex_invalid_1' must match pattern", file, "27", name
+                    "Name 'ex_invalid_1' must match pattern", file, "25", name
                 ),
                 new ViolationMatcher(
-                    "Name '$xxx' must match pattern", file, "29", name
+                    "Name '$xxx' must match pattern", file, "27", name
                 ),
                 new ViolationMatcher(
-                    "Name '_exp' must match pattern", file, "31", name
+                    "Name '_exp' must match pattern", file, "29", name
                 )
             )
         );
@@ -602,18 +583,18 @@ public final class CheckstyleValidatorTest {
             result,
             Matchers.hasItems(
                 // @checkstyle MultipleStringLiterals (12 line)
-                new ViolationMatcher(message, file, "17", name),
+                new ViolationMatcher(message, file, "15", name),
+                new ViolationMatcher(message, file, "19", name),
                 new ViolationMatcher(message, file, "21", name),
-                new ViolationMatcher(message, file, "23", name),
-                new ViolationMatcher(message, file, "27", name),
-                new ViolationMatcher(message, file, "30", name),
+                new ViolationMatcher(message, file, "25", name),
+                new ViolationMatcher(message, file, "28", name),
+                new ViolationMatcher(message, file, "32", name),
                 new ViolationMatcher(message, file, "34", name),
-                new ViolationMatcher(message, file, "36", name),
-                new ViolationMatcher(message, file, "40", name),
-                new ViolationMatcher(message, file, "43", name),
+                new ViolationMatcher(message, file, "38", name),
+                new ViolationMatcher(message, file, "41", name),
+                new ViolationMatcher(message, file, "48", name),
                 new ViolationMatcher(message, file, "50", name),
-                new ViolationMatcher(message, file, "52", name),
-                new ViolationMatcher(message, file, "54", name)
+                new ViolationMatcher(message, file, "52", name)
             )
         );
     }
@@ -643,11 +624,11 @@ public final class CheckstyleValidatorTest {
                     String.format(
                         message, "InvalidAbbreviationAsWordInNameXML"
                     ),
-                    file, "13", name
+                    file, "11", name
                 ),
                 new ViolationMatcher(
                     String.format(message, "InvalidHTML"), file,
-                    "17", name
+                    "15", name
                 )
             )
         );
@@ -687,8 +668,8 @@ public final class CheckstyleValidatorTest {
         MatcherAssert.assertThat(
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher(message, file, "21", name),
-                new ViolationMatcher(message, file, "31", name)
+                new ViolationMatcher(message, file, "19", name),
+                new ViolationMatcher(message, file, "29", name)
                 )
         );
     }

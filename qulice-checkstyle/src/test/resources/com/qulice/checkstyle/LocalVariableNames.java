@@ -5,8 +5,6 @@ package foo;
 
 /**
  * Simple.
- * @author John Smith (john@example.com)
- * @version $Id$
  * @since 1.0
  * @checkstyle HiddenField (100 lines)
  */

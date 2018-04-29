@@ -4,36 +4,17 @@
  */
 
 /**
- * This comment doesn't have 'author' and 'version' tags.
+ * This comment has author and version tags.
+ * @author Some Name (some@name.com)
+ * @version $Id$
  */
-public final class Invalid {
+public final class ProhibitedTagsAndMissingSince {
     public void main() {
     }
 }
 
 /**
- * @author John Smith - incorrect format of author
- * @version 1.1 - incorrect format
- * @since a1.0 - incorrect format
+ * @since a1.0
  */
-public final class InvalidAuthor {
-}
-
-/**
- * @author First Author (first@author.com)
- * @author second author has incorrect format
- * @author Third Author (third@author.com)
- * @since 1.0
- * @version $Id$
- */
-public final class TwoValidAndOneInvalidAuthor {
-}
-
-/**
- * @author first author has incorrect format
- * @author second author has incorrect format
- * @since 1.0
- * @version $Id$
- */
-public final class TwoInvalidAuthors {
+public final class InvalidSince {
 }

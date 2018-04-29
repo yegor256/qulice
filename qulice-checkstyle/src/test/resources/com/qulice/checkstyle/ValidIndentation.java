@@ -5,8 +5,6 @@ package foo.bar;
 
 /**
  * Simple.
- * @author John Smith (john@example.com)
- * @version $Id$
  * @since 1.0
  */
 public class ValidIndentation {

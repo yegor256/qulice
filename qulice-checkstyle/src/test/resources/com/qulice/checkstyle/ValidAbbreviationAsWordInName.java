@@ -8,8 +8,6 @@ package foo.bar;
  * Contains overridden method for which otherwise invalid uppercase use is
  * allowed.
  *
- * @author John Smith (john@example.com)
- * @version $Id$
  * @since 1.0
  */
 public class ValidAbbreviationAsWordInName extends SomeClass {

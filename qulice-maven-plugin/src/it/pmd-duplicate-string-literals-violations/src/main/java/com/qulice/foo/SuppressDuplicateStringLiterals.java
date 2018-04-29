@@ -31,8 +31,6 @@ package com.qulice.foo;
 
 /**
  * Class without duplicate string literals.
- * @author Denys Skalenko (d.skalenko@gmail.com)
- * @version $Id$
  * @since 0.17
  */
 public final class SuppressDuplicateStringLiterals {

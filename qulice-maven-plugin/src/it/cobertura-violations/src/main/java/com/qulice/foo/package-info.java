@@ -31,7 +31,5 @@
 /**
  * Simple classes to test.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  */
 package com.qulice.foo;

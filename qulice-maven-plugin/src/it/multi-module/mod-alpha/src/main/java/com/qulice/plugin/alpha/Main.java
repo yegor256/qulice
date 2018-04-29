@@ -32,8 +32,6 @@ package com.qulice.plugin.alpha;
 /**
  * Sample class.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 1.0
  */
 @SuppressWarnings("PMD.ProhibitPublicStaticMethods")

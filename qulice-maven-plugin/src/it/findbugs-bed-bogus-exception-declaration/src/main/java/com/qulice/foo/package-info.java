@@ -34,8 +34,6 @@
  * when annotation from jcabi-aspects is used,
  * even on a method that throws correct exception.
  *
- * @author Denys Skalenko (d.skalenko@gmail.com)
- * @version $Id$
  * @since 0.17
  */
 package com.qulice.foo;

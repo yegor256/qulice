@@ -31,8 +31,6 @@ package com.qulice.foo;
 
 /**
  * Sample class.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 1.0
  */
 public final class Violations {

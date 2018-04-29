@@ -6,8 +6,6 @@ package foo;
 /**
  * Correct Javadoc for class {@link AtClauseOrder}.
  *
- * @author John Smith (john@example.com)
- * @version $Id$
  * @see AtClauseOrder
  * @serial Serial
  * @serialField
@@ -57,8 +55,6 @@ public final class AtClauseOrder {
      * Just a class with inavlid Javadoc.
      *
      * @since 1.0
-     * @version $Id$
-     * @author John Smith (john@example.com)
      */
     private class Class {
     }
