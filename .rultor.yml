@@ -13,7 +13,7 @@ assets:
   s3cfg: zerocracy/home#assets/s3cfg
 merge:
   script: |-
-    pdd --source=$(pwd) --verbose --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java,qulice-checkstyle/src/test/resources/com/qulice/checkstyle/AtClauseOrder.java,qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml,qulice-checkstyle/src/test/resources/**/*
+    pdd --source=$(pwd) --verbose --file=/dev/null 
     est --dir=est --file=/dev/null
     ./years.sh
     mvn clean install -Pqulice-profile -Pqulice --errors --settings ../settings.xml
@@ -34,7 +34,7 @@ deploy:
   script: |-
     mvn clean deploy -Pqulice-profile -Pqulice --errors --settings ../settings.xml
     mvn clean
-    pdd --source=$(pwd) --verbose --file=qulice.xml --exclude=qulice-maven-plugin/src/it/**/*.java,qulice-checkstyle/src/test/resources/com/qulice/checkstyle/AtClauseOrder.java,qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml,qulice-checkstyle/src/test/resources/**/*
+    pdd --source=$(pwd) --verbose --file=qulice.xml 
     s3cmd --no-progress put qulice.xml --config=../s3cfg s3://pdd.teamed.io/qulice.xml
     est --dir=./est --verbose --file=qulice.xml --format=xml
     s3cmd --no-progress put qulice.xml --config=../s3cfg s3://est.teamed.io/qulice.xml
