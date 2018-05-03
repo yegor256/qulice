@@ -107,6 +107,15 @@
         </description>
     </rule>
 
+    <rule name="UseStringIsEmptyRule"
+        message="Use String.isEmpty() when checking for empty string"
+        class="com.qulice.pmd.rules.UseStringIsEmptyRule">
+        <description>
+            Method String.isEmpty() should be used when testing for empty string, rather than using
+            String.length() compared to 0
+        </description>
+    </rule>
+
     <rule ref="rulesets/java/naming.xml">
         <exclude name="ShortClassName"/>
         <exclude name="ShortVariable"/>
