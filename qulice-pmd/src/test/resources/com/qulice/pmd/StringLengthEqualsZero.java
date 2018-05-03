@@ -9,7 +9,7 @@ public final class StringLengthEqualsZero {
     }
 
     public boolean sizeIsZero() {
-        return somestring.length == 0;
+        return somestring.length() == 0;
     }
 
 }
