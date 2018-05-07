@@ -250,4 +250,22 @@
         </properties>
         <priority>3</priority>
     </rule>
+    <rule name="ProhibitFilesCreateFileInTests"
+          message="Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder"
+          language="java"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            Files.createFile shouldn't be used in tests.
+        </description>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                        //ClassOrInterfaceDeclaration[ends-with(@Image, 'Test')]//PrimaryPrefix/Name[@Image='Files.createFile']
+                    ]]>
+                </value>
+            </property>
+        </properties>
+        <priority>3</priority>
+    </rule>
 </ruleset>

@@ -306,6 +306,17 @@ public final class PmdValidatorTest {
     }
 
     /**
+     * PmdValidator forbids usage of Files.createFile.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsFilesCreateFile()
+        throws Exception {
+        final String file = "FilesCreateFileTest.java";
+        new PmdAssert(file,Matchers.is(false), Matchers.containsString("Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder")).validate();
+    }
+
+    /**
      * PmdValidator accepts calls to other constructors
      * or call to super class constructor in constructors.
      * @throws Exception If something wrong happens inside.
