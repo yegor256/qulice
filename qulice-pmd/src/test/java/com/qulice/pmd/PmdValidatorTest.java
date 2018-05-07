@@ -94,6 +94,13 @@ public final class PmdValidatorTest {
         "Public static methods are prohibited";
 
     /**
+     * Error text for Files.createFile.
+     */
+    private static final String FILES_CREATE_ERROR =
+        // @checkstyle LineLength (1 line)
+        "Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder";
+
+    /**
      * PmdValidator can find violations in Java file(s).
      * @throws Exception If something wrong happens inside.
      */
@@ -306,12 +313,35 @@ public final class PmdValidatorTest {
     }
 
     /**
-     * PmdValidator forbids usage of Files.createFile.
+     * PmdValidator forbids usage of Files.createFile in tests.
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsFilesCreateFile() throws Exception {
-        new PmdAssert("FilesCreateFileTest.java",Matchers.is(false), Matchers.containsString("Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder")).validate();
+    public void forbidsFilesCreateFileInTests() throws Exception {
+        new PmdAssert(
+            "FilesCreateFileTest.java",
+            Matchers.is(false),
+            Matchers.containsString(
+                PmdValidatorTest.FILES_CREATE_ERROR
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator allows usage of Files.createFile outside of tests.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsFilesCreateFileOutsideOfTests() throws Exception {
+        new PmdAssert(
+            "FilesCreateFileOther.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString(
+                    PmdValidatorTest.FILES_CREATE_ERROR
+                )
+            )
+        ).validate();
     }
 
     /**
