@@ -96,7 +96,7 @@ public final class PmdValidatorTest {
     /**
      * Error text for Files.createFile.
      */
-    private static final String FILES_CREATE_ERROR =
+    private static final String FILES_CREATE_ERR =
         // @checkstyle LineLength (1 line)
         "Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder";
 
@@ -322,7 +322,7 @@ public final class PmdValidatorTest {
             "FilesCreateFileTest.java",
             Matchers.is(false),
             Matchers.containsString(
-                PmdValidatorTest.FILES_CREATE_ERROR
+                PmdValidatorTest.FILES_CREATE_ERR
             )
         ).validate();
     }
@@ -338,7 +338,7 @@ public final class PmdValidatorTest {
             Matchers.is(true),
             Matchers.not(
                 Matchers.containsString(
-                    PmdValidatorTest.FILES_CREATE_ERROR
+                    PmdValidatorTest.FILES_CREATE_ERR
                 )
             )
         ).validate();
