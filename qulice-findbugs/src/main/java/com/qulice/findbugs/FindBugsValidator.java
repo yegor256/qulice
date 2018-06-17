@@ -37,11 +37,14 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import edu.umd.cs.findbugs.FindBugs2;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import edu.umd.cs.findbugs.formatStringChecker.FormatterNumberFormatException;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -53,12 +56,14 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.dom4j.Document;
 import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.io.XMLWriter;
 import org.jaxen.JaxenException;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.tree.ClassNode;
-import org.xembly.Directives;
-import org.xembly.Xembler;
 
 /**
  * Validates source code and compiled binaries with FindBugs.
@@ -181,17 +186,27 @@ public final class FindBugsValidator implements Validator {
      * @param excludes Exclude patterns
      * @return XML with findbugs excludes
      */
+    @SuppressFBWarnings(
+        value = "XFB_XML_FACTORY_BYPASS",
+        justification = "No other way to create dom4j XMLWriter"
+    )
     private static String generateExcludes(final Iterable<String> excludes) {
-        final Directives directives = new Directives()
-            .add("FindBugsFilter")
-            .add("Match")
-            .add("Or");
+        final Document document = DocumentHelper.createDocument();
+        final Element root = document
+            .addElement("FindBugsFilter")
+            .addElement("Match")
+            .addElement("Or");
         for (final String exclude : excludes) {
             if (exclude != null) {
-                directives.add("Class").attr("name", exclude).up();
+                root.addElement("Class").addAttribute("name", exclude);
             }
         }
-        return new Xembler(directives).xmlQuietly();
+        try (final ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+            new XMLWriter(out).write(document);
+            return new String(out.toByteArray(), StandardCharsets.UTF_8);
+        } catch (final IOException ex) {
+            throw new IllegalStateException(ex);
+        }
     }
 
     /**
