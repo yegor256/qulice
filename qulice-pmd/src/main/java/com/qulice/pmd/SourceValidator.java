@@ -29,6 +29,7 @@
  */
 package com.qulice.pmd;
 
+import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import java.io.File;
 import java.util.Collection;
@@ -93,6 +94,7 @@ final class SourceValidator {
         this.context.setReport(report);
         for (final DataSource source : sources) {
             final String name = source.getNiceFileName(false, path);
+            Logger.debug(this, "Processing file: %s", name);
             this.context.setSourceCodeFilename(name);
             this.context.setSourceCodeFile(new File(name));
             this.validateOne(source);
