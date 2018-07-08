@@ -69,7 +69,6 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         validators.add(new EnforcerValidator());
         validators.add(new DuplicateFinderValidator());
         validators.add(new SvnPropertiesValidator());
-        validators.add(new CoberturaValidator());
         validators.add(new DependenciesValidator());
         validators.add(new SnapshotsValidator());
         return validators;

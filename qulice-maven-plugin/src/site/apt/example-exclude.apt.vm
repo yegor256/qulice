@@ -64,7 +64,7 @@ Exclude
   Every <<<exclude>>> item is a regular expression. The following
   exclusion prefixes are supported now (the list may actually be longer):
   <<<checkstyle:>>>, <<<pmd:>>>, <<<findbugs:>>>,
-  <<<dependencies:>>>, <<<cobertura:>>>, <<<duplicatefinder:>>>.
+  <<<dependencies:>>>, <<<duplicatefinder:>>>.
 
   Exclude for Findbug is a bit different, as expression has to be either an
   exact class name or start with the ~ character the rest of content is
