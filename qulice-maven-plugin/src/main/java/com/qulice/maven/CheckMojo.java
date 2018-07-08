@@ -37,6 +37,7 @@ import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -87,12 +88,15 @@ public final class CheckMojo extends AbstractQuliceMojo {
      */
     private void run() throws ValidationException {
         final Collection<Violation> results = new LinkedList<>();
-        final Collection<File> files = this.env().files("*.*");
+        final MavenEnvironment env = this.env();
+        final Collection<File> files = env.files("*.*");
         if (!files.isEmpty()) {
             final Collection<ResourceValidator> validators =
                 this.provider.externalResource();
             for (final ResourceValidator validator : validators) {
-                results.addAll(validator.validate(files));
+                results.addAll(
+                    validator.validate(CheckMojo.filter(env, files, validator))
+                );
             }
             for (final Violation result : results) {
                 Logger.info(
@@ -118,12 +122,34 @@ public final class CheckMojo extends AbstractQuliceMojo {
         }
         for (final Validator validator : this.provider.external()) {
             Logger.info(this, "Starting %s validator", validator.name());
-            validator.validate(this.env());
+            validator.validate(env);
             Logger.info(this, "Finishing %s validator", validator.name());
         }
         for (final MavenValidator validator : this.provider.internal()) {
-            validator.validate(this.env());
+            validator.validate(env);
         }
     }
 
+    /**
+     * Filter files based on excludes.
+     * @param env Maven environment
+     * @param files Files to exclude
+     * @param validator Validator to use
+     * @return Filtered files
+     */
+    private static Collection<File> filter(final MavenEnvironment env,
+        final Collection<File> files, final ResourceValidator validator) {
+        final Collection<File> filtered = new LinkedList<>();
+        for (final File file : files) {
+            if (
+                !env.exclude(
+                    validator.name().toLowerCase(Locale.ENGLISH),
+                    file.toString()
+                )
+            ) {
+                filtered.add(file);
+            }
+        }
+        return filtered;
+    }
 }

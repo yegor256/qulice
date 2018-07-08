@@ -46,6 +46,9 @@
                 <version>@project.version@</version>
                 <configuration>
                     <license>file:${basedir}/LICENSE.txt</license>
+                    <excludes>
+                        <exclude>pmd:.*\.tex</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>

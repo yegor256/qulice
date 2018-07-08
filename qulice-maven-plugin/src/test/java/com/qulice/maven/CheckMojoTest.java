@@ -69,8 +69,10 @@ public final class CheckMojoTest {
     public void validatesUsingAllProvidedValidators() throws Exception {
         final CheckMojo mojo = new CheckMojo();
         final Validator external = Mockito.mock(Validator.class);
+        Mockito.when(external.name()).thenReturn("somename");
         final ResourceValidator rexternal =
             Mockito.mock(ResourceValidator.class);
+        Mockito.when(rexternal.name()).thenReturn("other");
         final MavenValidator internal = Mockito.mock(MavenValidator.class);
         final ValidatorsProvider provider = new ValidatorsProviderMocker()
             .withInternal(internal)
