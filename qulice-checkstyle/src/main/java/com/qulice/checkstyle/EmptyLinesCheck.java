@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -46,10 +46,6 @@ import java.util.regex.Pattern;
  * visiting each method definition and each anonymous inner type. It stores
  * these references in a non-static thread local.
  *
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @author Jimmy Spivey (JimDeanSpivey@gmail.com)
- * @version $Id$
  * @since 0.3
  */
 public final class EmptyLinesCheck extends AbstractCheck {

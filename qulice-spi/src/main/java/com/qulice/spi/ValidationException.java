@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -32,8 +32,6 @@ package com.qulice.spi;
 /**
  * Exception thrown by a validator, if it fails.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 public final class ValidationException extends Exception {

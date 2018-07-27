@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -37,8 +37,6 @@ import org.junit.Test;
 
 /**
  * Test case for {@link PomXpathValidator} class.
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.6
  */
 public final class PomXpathValidatorTest {

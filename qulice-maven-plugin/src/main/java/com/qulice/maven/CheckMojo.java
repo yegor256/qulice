@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -47,8 +47,6 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 /**
  * Check the project and find all possible violations.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 @Mojo(name = "check", defaultPhase = LifecyclePhase.VERIFY,

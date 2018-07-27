@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -40,8 +40,6 @@ import org.hamcrest.MatcherAssert;
 
 /**
  * PMD Validator assertions.
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @version $Id$
  * @since 0.16
  */
 final class PmdAssert {

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -51,10 +51,6 @@ import java.util.regex.Pattern;
  * Such methods don't have body so detection based on {@code this} doesn't
  * make sense for them.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.3
  */
 public final class NonStaticMethodCheck extends AbstractCheck {

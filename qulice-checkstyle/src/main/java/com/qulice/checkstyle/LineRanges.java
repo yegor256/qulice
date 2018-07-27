@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -40,8 +40,6 @@ import java.util.Iterator;
  * could represent all the line ranges for methods in a given Java source code
  * file.
  *
- * @author Jimmy Spivey (JimDeanSpivey@gmail.com)
- * @version $Id$
  * @since 0.16
  */
 public final class LineRanges {

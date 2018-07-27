@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -43,8 +43,6 @@ import org.junit.Test;
 
 /**
  * Test case for {@link PmdValidator} class.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 @SuppressWarnings("PMD.TooManyMethods")
@@ -122,9 +120,9 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void understandsMethodReferences() throws Exception {
         final String file = "src/main/java/Other.java";
-        // @checkstyle MultipleStringLiteralsCheck (10 lines)
         final Environment env = new Environment.Mock().withFile(
             file,
             Joiner.on('\n').join(
@@ -152,8 +150,8 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void doesNotComplainAboutConstantsInInnerClasses() throws Exception {
-        // @checkstyle MultipleStringLiteralsCheck (10 lines)
         final String file = "src/main/java/foo/Foo.java";
         final Environment env = new Environment.Mock().withFile(
             file,

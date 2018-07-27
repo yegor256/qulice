@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -48,8 +48,6 @@ import org.apache.commons.io.FileUtils;
  * <li>Each xpath query should end with /text()</li>
  * </ol>
  *
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.6
  */
 public final class PomXpathValidator implements MavenValidator {

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -36,8 +36,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Checks if possible to use Diamond operator in generic instances creation.
  *
- * @author Viktor Kuchyn (kuchin.victor@gmail.com)
- * @version $Id$
  * @since 0.17
  */
 public final class DiamondOperatorCheck extends AbstractCheck {

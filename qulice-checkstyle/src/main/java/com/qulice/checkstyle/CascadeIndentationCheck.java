@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -42,8 +42,6 @@ import org.apache.commons.lang3.StringUtils;
  * </ul>
  * All other cases must cause a failure.
  *
- * @author Hamdi Douss (douss.hamdi@gmail.com)
- * @version $Id$
  * @since 0.3
  */
 public final class CascadeIndentationCheck extends AbstractFileSetCheck {
@@ -89,7 +87,7 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
      */
     private static boolean inCommentBlock(final String line) {
         final String trimmed = line.trim();
-        return trimmed.length() > 0
+        return !trimmed.isEmpty()
             && (trimmed.charAt(0) == '*'
                 || trimmed.startsWith("/*")
                 || trimmed.startsWith("*/")

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -36,8 +36,6 @@ import java.util.regex.Pattern;
 
 /**
  * Performs multiline regexp match only if a regexp condition passes.
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @version $Id$
  * @since 0.5
  */
 public final class ConditionalRegexpMultilineCheck extends

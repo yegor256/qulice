@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -40,8 +40,6 @@ import org.junit.runners.model.Statement;
 
 /**
  * Builder of {@code LICENSE.txt} content.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.4
  */
 public final class LicenseRule implements TestRule {
@@ -135,12 +133,12 @@ public final class LicenseRule implements TestRule {
      * Save package-info.java to the directory.
      * @param dir The directory
      * @throws IOException If something wrong happens inside
-     * @checkstyle MultipleStringLiterals (20 lines)
      */
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private void makePackageInfo(final File dir) throws IOException {
         final File info = new File(dir, "package-info.java");
         final StringBuilder body = new StringBuilder(Tv.HUNDRED);
-        body.append("/**").append(this.eol);
+        body.append("/*").append(this.eol);
         for (final String line : this.lines) {
             body.append(" *");
             if (!line.isEmpty()) {
@@ -151,8 +149,6 @@ public final class LicenseRule implements TestRule {
         body.append(" */").append(this.eol)
             .append("/**").append(this.eol)
             .append(" * Hm...").append(this.eol)
-            .append(" * @version $Id $").append(this.eol)
-            .append(" * @author John Doe (j@qulice.com)").append(this.eol)
             .append(" */").append(this.eol)
             .append("package ").append(this.pkg)
             .append(';').append(this.eol);

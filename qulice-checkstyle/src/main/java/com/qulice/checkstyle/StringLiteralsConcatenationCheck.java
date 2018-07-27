@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -56,9 +56,6 @@ import java.util.List;
  * <p>There are two alternatives to concatenation: {@link StringBuilder}
  * and {@link String#format(String,Object[])}.
  *
- * @author Dzmitry Petrushenka (dpetruha@gmail.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 public final class StringLiteralsConcatenationCheck extends AbstractCheck {

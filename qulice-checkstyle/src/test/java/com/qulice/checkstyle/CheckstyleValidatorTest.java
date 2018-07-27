@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -48,13 +48,10 @@ import org.junit.Test;
 
 /**
  * Test case for {@link CheckstyleValidator} class.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  * @todo #412:30min Split this class into smaller ones and remove PMD
  *  exclude `TooManyMethods`. Good candidates for moving out of this class
  *  are all that use `validateCheckstyle` method.
- * @checkstyle MultipleStringLiterals (400 lines)
  */
 @SuppressWarnings({ "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals" })
 public final class CheckstyleValidatorTest {
@@ -520,7 +517,7 @@ public final class CheckstyleValidatorTest {
      * @throws Exception In case of error
      */
     @Test
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "PMD.AvoidDuplicateLiterals"})
     public void distinguishesValidCatchParameterNames() throws Exception {
         final String file = "CatchParameterNames.java";
         final Collection<Violation> results = this.runValidation(
@@ -532,7 +529,6 @@ public final class CheckstyleValidatorTest {
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
-                    // @checkstyle MultipleStringLiterals (1 line)
                     "Name 'ex_invalid_1' must match pattern", file, "25", name
                 ),
                 new ViolationMatcher(
@@ -571,7 +567,7 @@ public final class CheckstyleValidatorTest {
      * @throws Exception In case of error
      */
     @Test
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "PMD.AvoidDuplicateLiterals"})
     public void rejectsSpacesInsideMethods() throws Exception {
         final String file = "BlankLinesInsideMethodsFail.java";
         final Collection<Violation> result = this.runValidation(
@@ -582,7 +578,6 @@ public final class CheckstyleValidatorTest {
         MatcherAssert.assertThat(
             result,
             Matchers.hasItems(
-                // @checkstyle MultipleStringLiterals (12 line)
                 new ViolationMatcher(message, file, "15", name),
                 new ViolationMatcher(message, file, "19", name),
                 new ViolationMatcher(message, file, "21", name),

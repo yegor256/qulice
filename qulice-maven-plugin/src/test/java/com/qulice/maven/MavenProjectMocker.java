@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -37,8 +37,6 @@ import org.mockito.Mockito;
 
 /**
  * Mocker of {@link MavenProject}.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.4
  */
 public final class MavenProjectMocker {

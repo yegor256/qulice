@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -46,8 +46,6 @@ import org.slf4j.impl.StaticLoggerBinder;
 /**
  * Abstract mojo.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 public abstract class AbstractQuliceMojo extends AbstractMojo

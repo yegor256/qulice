@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -51,8 +51,6 @@ import java.util.Collection;
 /**
  * Executed by {@link FindBugsValidator}, but in a new process.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 public final class Wrap {
@@ -83,7 +81,7 @@ public final class Wrap {
      *  For the moment third item is done from comment
      *  https://github.com/teamed/qulice/issues/706#issuecomment-184611854
      */
-    public static void run(final String... args) {
+    private static void run(final String... args) {
         final Project project =
             Wrap.project(args[0], args[1], args[2].split(","));
         try {

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -40,9 +40,6 @@ import java.util.List;
  * lines between them. If you need to separate them because the list is too
  * big - it's time to refactor the class and make is smaller.
  *
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 @SuppressWarnings("PMD.CyclomaticComplexity")

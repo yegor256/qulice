@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -34,8 +34,6 @@ import org.junit.Test;
 
 /**
  * Test case for {@link UseStringIsEmptyRule}.
- * @author Mihai Andronache (amihaiemil@gmail.com)
- * @version $Id$
  * @since 0.18
  */
 public final class UseStringIsEmptyRuleTest {

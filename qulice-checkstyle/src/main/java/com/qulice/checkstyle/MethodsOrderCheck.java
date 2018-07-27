@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -42,8 +42,6 @@ import java.util.Map;
  * Checks the order of methods declaration.
  *
  * Right order is: public, protected and private
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.6
  */
 public final class MethodsOrderCheck extends AbstractCheck {
@@ -130,7 +128,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
         if (modifier == null) {
             mod = MethodsOrderCheck.Modifiers.DEF;
         } else {
-            mod = MethodsOrderCheck.Modifiers.getByType(modifier.getType());
+            mod = getByType(modifier.getType());
         }
         return mod;
     }
@@ -152,6 +150,15 @@ public final class MethodsOrderCheck extends AbstractCheck {
             child = child.getNextSibling();
         }
         return children;
+    }
+
+    /**
+     * Get Modifiers enum constant by TokenType id.
+     * @param type TokenType
+     * @return Modifiers constant
+     */
+    private static MethodsOrderCheck.Modifiers getByType(final int type) {
+        return MethodsOrderCheck.Modifiers.mdos.get(type);
     }
 
     /**
@@ -212,15 +219,6 @@ public final class MethodsOrderCheck extends AbstractCheck {
         Modifiers(final Integer typ, final Integer ord) {
             this.type = typ;
             this.order = ord;
-        }
-
-        /**
-         * Get Modifiers enum constant by TokenType id.
-         * @param type TokenType
-         * @return Modifiers constant
-         */
-        public static MethodsOrderCheck.Modifiers getByType(final int type) {
-            return MethodsOrderCheck.Modifiers.mdos.get(type);
         }
 
         /**

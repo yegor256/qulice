@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -31,8 +31,6 @@
 /**
  * Gradle plugin.
  *
- * @author Dmitri Pisarenko (dp@altruix.co)
- * @version $Id$
  * @since 0.13
  */
 package com.qulice.gradle;

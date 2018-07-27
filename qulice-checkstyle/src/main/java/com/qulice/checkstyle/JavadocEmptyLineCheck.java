@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -49,8 +49,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     // ...
  * </pre>
  *
- * @author Denys Skalenko (d.skalenko@gmail.com)
- * @version $Id$
  * @since 0.17
  */
 public final class JavadocEmptyLineCheck extends AbstractCheck {

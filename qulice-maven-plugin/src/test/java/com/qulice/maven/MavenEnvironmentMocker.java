@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -43,8 +43,6 @@ import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Mocker of {@link MavenProject}.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.4
  */
 @SuppressWarnings("PMD.TooManyMethods")

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -37,8 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that constant, declared as private field of class is used more than
  * once.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id$
  * @since 0.3
  */
 public final class ConstantUsageCheck extends AbstractCheck {

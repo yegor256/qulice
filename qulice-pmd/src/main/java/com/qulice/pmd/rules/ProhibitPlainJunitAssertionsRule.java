@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -40,8 +40,6 @@ import net.sourceforge.pmd.lang.java.rule.junit.AbstractJUnitRule;
 
 /**
  * Rule to check plain assertions in JUnit tests.
- * @author Viktor Kuchyn (kuchin.victor@gmail.com)
- * @version $Id$
  * @since 0.17
  */
 public final class ProhibitPlainJunitAssertionsRule extends AbstractJUnitRule {

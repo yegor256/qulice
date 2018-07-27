@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -43,8 +43,6 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 /**
  * Rule to check unnecessary local variables.
  *
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @version $Id$
  * @since 0.4
  */
 public final class UnnecessaryLocalRule extends AbstractJavaRule {

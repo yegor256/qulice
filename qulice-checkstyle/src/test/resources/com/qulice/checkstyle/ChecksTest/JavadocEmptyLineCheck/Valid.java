@@ -1,4 +1,4 @@
-/**
+/*
  * There is no empty Javadoc line at the beginning
  */
 package com.qulice.checkstyle;

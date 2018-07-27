@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -38,8 +38,6 @@ import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Validate with maven-duplicate-finder-plugin.
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.5
  * @todo #250 Maven-duplicate-finder-plugin should support exclusions.
  *  Let's add exclusions of following formats (examples):
@@ -55,12 +53,12 @@ import org.apache.commons.collections.CollectionUtils;
  */
 public final class DuplicateFinderValidator implements MavenValidator {
 
-    // @checkstyle MultipleStringLiterals (20 lines)
     // @checkstyle MethodBodyCommentsCheck (50 lines)
     // @todo #250 Fix a problem with maven configuration of duplicate finder
     //  plugin in commented out code below, and enable
     //  duplicate-finder-ignore-deps IT in pom.xml.
     @Override
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void validate(final MavenEnvironment env)
         throws ValidationException {
         if (!env.exclude("duplicatefinder", "")) {

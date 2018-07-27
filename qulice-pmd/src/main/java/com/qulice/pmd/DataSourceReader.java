@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -39,8 +39,6 @@ import net.sourceforge.pmd.util.datasource.DataSource;
 /**
  * Bridge between <code>DataSource</code> and <code>Reader</code>.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id$
  * @since 0.3
  */
 public final class DataSourceReader {

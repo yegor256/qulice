@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -40,8 +40,6 @@ import java.util.List;
  *
  * <p>If your method contain protected methods than it can't be final
  *
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.6
  */
 public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {

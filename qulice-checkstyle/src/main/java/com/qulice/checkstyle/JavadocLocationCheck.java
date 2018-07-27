@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -39,10 +39,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>You can't have empty lines between javadoc block and
  * a class/method/variable. They should stay together, always.
  *
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 public final class JavadocLocationCheck extends AbstractCheck {

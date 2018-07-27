@@ -30,11 +30,9 @@
  *
  * Validate that the build really failed and violations were reported
  * because of PMD AvoidDuplicateLiterals.
- * @version $Id$
  * @since 0.17
  */
 def log = new File(basedir, 'build.log')
-assert !log.text.contains('MultipleStringLiteralsCheck')
 assert !log.text.contains('SuppressDuplicateStringLiterals.java')
 assert !log.text.contains('WithoutDuplicateStringLiterals.java')
 assert log.text.contains('FourDuplicateStringLiterals.java[44-44]: The String '

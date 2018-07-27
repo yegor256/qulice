@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -56,8 +56,6 @@ import org.xml.sax.InputSource;
 /**
  * Validator with Checkstyle.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  * @checkstyle ClassDataAbstractionCoupling (260 lines)
  */

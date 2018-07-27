@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -49,8 +49,6 @@ import org.apache.tools.ant.types.Path;
 /**
  * Ant Task for Qulice.
  *
- * @author Yuriy Alevohin (alevohin@mail.ru)
- * @version $Id$
  * @since 0.13
  * @checkstyle ClassDataAbstractionCouplingCheck (170 lines)
  */

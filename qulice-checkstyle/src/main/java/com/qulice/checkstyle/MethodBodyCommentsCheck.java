@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -44,9 +44,6 @@ import java.util.Arrays;
  * comment to a method javadoc block or add a logging mechanism with the same
  * text.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  * @todo #260 Add handling of multiple anonymous classes inside methods by
  *  looking at the recursive tree.

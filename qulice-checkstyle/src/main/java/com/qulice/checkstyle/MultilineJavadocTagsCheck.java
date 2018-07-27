@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -56,8 +56,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * javadoc tags, or else it will treated as part of the latest tag and
  * qulice will complain.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id$
  * @since 0.3
  */
 public final class MultilineJavadocTagsCheck extends AbstractCheck {

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -35,14 +35,12 @@ import java.util.Properties;
 /**
  * Validate with maven-enforcer-plugin.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 public final class EnforcerValidator implements MavenValidator {
 
-    // @checkstyle MultipleStringLiterals (20 lines)
     @Override
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void validate(final MavenEnvironment env)
         throws ValidationException {
         if (!env.exclude("enforcer", "")) {
@@ -54,7 +52,6 @@ public final class EnforcerValidator implements MavenValidator {
             maven.put("version", "3.0");
             final Properties java = new Properties();
             rules.put("requireJavaVersion", java);
-            // @checkstyle MultipleStringLiterals (1 line)
             java.put("version", "1.7");
             env.executor().execute(
                 "org.apache.maven.plugins:maven-enforcer-plugin:1.0-beta-1",

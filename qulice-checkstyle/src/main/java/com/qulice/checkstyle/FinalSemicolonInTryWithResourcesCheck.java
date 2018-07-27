@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -38,8 +38,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * relies on existence of semicolon inside of RESOURCE_SPECIFICATION token
  * as interpreted by Checkstyle.
  *
- * @author Hamdi Douss (douss.hamdi@gmail.com)
- * @version $Id$
  * @since 0.15
  */
 public final class FinalSemicolonInTryWithResourcesCheck extends AbstractCheck {

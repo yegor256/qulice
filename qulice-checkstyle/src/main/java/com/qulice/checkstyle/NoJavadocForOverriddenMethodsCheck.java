@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -42,8 +42,6 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * based on whether they examine the method in the supertype
  * or the subtype and it may cause confusion.
  *
- * @author Hamdi Douss (douss.hamdi@gmail.com)
- * @version $Id$
  * @since 0.16
  */
 public final class NoJavadocForOverriddenMethodsCheck extends AbstractCheck {

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -56,9 +56,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>In other words, when you open a bracket and can't close it at the same
  * line - you should leave it as the last symbol at this line.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 public final class BracketsStructureCheck extends AbstractCheck {

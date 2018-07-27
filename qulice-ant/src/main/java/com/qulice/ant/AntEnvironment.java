@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -51,8 +51,6 @@ import org.apache.tools.ant.types.Path;
 
 /**
  * Environment, passed from ant task to validators.
- * @author Yuriy Alevohin (alevohin@mail.ru)
- * @version $Id$
  * @since 0.13
  */
 public final class AntEnvironment implements Environment {

@@ -31,8 +31,6 @@ package com.qulice.plugin.violations;
 
 /**
  * Validation of constants check.
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @version $Id$
  */
 public final class Constants {
 

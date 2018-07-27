@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -57,8 +57,6 @@ import java.util.List;
  * block as fast as possible. When you look at a block of code you should be
  * able to see where it starts and where it ends.
  *
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.6
  */
 public final class CurlyBracketsStructureCheck extends AbstractCheck {

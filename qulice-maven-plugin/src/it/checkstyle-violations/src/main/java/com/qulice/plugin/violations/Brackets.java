@@ -33,8 +33,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Validation of bracket structure check.
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @version $Id$
  */
 public final class Brackets {
 

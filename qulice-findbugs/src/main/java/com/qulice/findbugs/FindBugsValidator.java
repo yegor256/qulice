@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -68,17 +68,14 @@ import org.objectweb.asm.tree.ClassNode;
 /**
  * Validates source code and compiled binaries with FindBugs.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
-@SuppressWarnings("PMD.ExcessiveImports")
+@SuppressWarnings({"PMD.ExcessiveImports", "PMD.AvoidDuplicateLiterals"})
 public final class FindBugsValidator implements Validator {
 
     @Override
     public void validate(final Environment env) throws ValidationException {
         if (env.outdir().exists()) {
-            // @checkstyle MultipleStringLiteralsCheck (1 line)
             if (!env.exclude("findbugs", "")) {
                 this.check(this.findbugs(env));
             }
@@ -101,6 +98,7 @@ public final class FindBugsValidator implements Validator {
      * @param env Environment
      * @return Output of findbugs
      */
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private String findbugs(final Environment env) {
         final List<String> args = new LinkedList<>();
         args.add("java");
@@ -108,7 +106,6 @@ public final class FindBugsValidator implements Validator {
         args.add(Wrap.class.getName());
         args.add(env.basedir().getPath());
         args.add(env.outdir().getPath());
-        // @checkstyle MultipleStringLiteralsCheck (2 lines)
         args.add(
             StringUtils.join(env.classpath(), ",").replace("\\", "/")
         );
@@ -126,6 +123,7 @@ public final class FindBugsValidator implements Validator {
      * Java options.
      * @return Options
      */
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private Collection<String> options() {
         final Collection<String> opts = new LinkedList<>();
         opts.add("-classpath");
@@ -145,7 +143,6 @@ public final class FindBugsValidator implements Validator {
                     this.jar(FBContrib.class),
                     this.jar(Iterables.class)
                 ),
-                // @checkstyle MultipleStringLiteralsCheck (1 line)
                 System.getProperty("path.separator")
             ).replace("\\", "/")
         );
@@ -214,10 +211,9 @@ public final class FindBugsValidator implements Validator {
      * @param resource Name of resource
      * @return The file
      */
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private File jar(final Class<?> resource) {
-        final String name = resource.getName()
-            // @checkstyle MultipleStringLiteralsCheck (1 line)
-            .replace(".", "/");
+        final String name = resource.getName().replace(".", "/");
         final URL res = this.getClass().getResource(
             String.format("/%s.class", name)
         );

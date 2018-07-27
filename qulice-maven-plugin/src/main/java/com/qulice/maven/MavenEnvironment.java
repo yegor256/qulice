@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -39,8 +39,6 @@ import org.codehaus.plexus.context.Context;
 /**
  * Environment, passed from MOJO to validators.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 @SuppressWarnings("PMD.TooManyMethods")
