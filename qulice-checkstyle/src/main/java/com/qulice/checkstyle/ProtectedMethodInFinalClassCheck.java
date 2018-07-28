@@ -33,6 +33,7 @@ import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
 import java.util.List;
 
 /**
@@ -75,7 +76,8 @@ public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {
             )
         ) {
             if (method.findFirstToken(TokenTypes.MODIFIERS)
-                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null) {
+                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null
+                && !AnnotationUtility.containsAnnotation(method, "Override")) {
                 this.log(
                     method.getLineNo(),
                     "Final class should not contain protected methods"

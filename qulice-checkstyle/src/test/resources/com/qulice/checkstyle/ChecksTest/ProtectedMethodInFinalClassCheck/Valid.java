@@ -16,4 +16,15 @@ public final class Valid {
     private static class Bar {
         protected void valid() {}
     }
+
+    private abstract static class Foo {
+        protected void valid();
+    }
+
+    private final static class FooChild extends Foo {
+        @Override
+        protected void valid() {
+            return;
+        }
+    }
 }
