@@ -36,7 +36,8 @@ import lombok.ToString;
  * Validation result.
  * @since 0.17
  */
-public interface Violation {
+@SuppressWarnings("PMD.TooManyMethods")
+public interface Violation extends Comparable<Violation> {
 
     /**
      * Name of the validator that generated this violation information.
@@ -143,6 +144,10 @@ public interface Violation {
             return this.msg;
         }
 
+        @Override
+        public int compareTo(final Violation other) {
+            return this.vldtr.compareToIgnoreCase(other.validator());
+        }
     }
 
 }
