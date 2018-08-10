@@ -529,13 +529,13 @@ public final class CheckstyleValidatorTest {
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
-                    "Name 'ex_invalid_1' must match pattern", file, "25", name
+                    "Name 'ex_invalid_1' must match pattern", file, "26", name
                 ),
                 new ViolationMatcher(
-                    "Name '$xxx' must match pattern", file, "27", name
+                    "Name '$xxx' must match pattern", file, "28", name
                 ),
                 new ViolationMatcher(
-                    "Name '_exp' must match pattern", file, "29", name
+                    "Name '_exp' must match pattern", file, "30", name
                 )
             )
         );

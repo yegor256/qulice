@@ -13,6 +13,7 @@ public final class LocalVariableNames {
      * Just a field.
      */
     private transient int field;
+
     /**
      * Just an id.
      */

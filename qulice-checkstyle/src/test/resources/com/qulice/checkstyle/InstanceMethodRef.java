@@ -14,6 +14,7 @@ public final class InstanceMethodRef {
         Collections.singletonList("1")
             .forEach(this::doSomething);
     }
+
     /**
      * Method to be referenced.
      * @param value Value to print

@@ -12,6 +12,7 @@ public final class ValidSemicolon {
      * Dummy data.
      */
     private int dat = 1;
+
     /**
      * Method without extra semicolon in the end
      * of try-with-resources head.

@@ -16,6 +16,7 @@ public final class CatchParameterNames {
      * Dummy variable.
      */
     private int var;
+
     /**
      * Invalid exception parameter name.
      */
