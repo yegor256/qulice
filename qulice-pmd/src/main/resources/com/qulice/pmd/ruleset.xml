@@ -59,7 +59,9 @@
     <rule ref="rulesets/java/logging-java.xml">
         <exclude name="GuardLogStatementJavaUtil"/>
     </rule>
-    <rule ref="rulesets/java/optimizations.xml"/>
+    <rule ref="rulesets/java/optimizations.xml">
+        <exclude name="AvoidInstantiatingObjectsInLoops"/>
+    </rule>
     <rule ref="rulesets/java/strings.xml"/>
     <rule ref="rulesets/java/strings.xml/AvoidDuplicateLiterals">
         <properties>
