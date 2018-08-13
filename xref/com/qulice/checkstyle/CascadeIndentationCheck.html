@@ -38,8 +38,8 @@
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">package</strong> com.qulice.checkstyle;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> java.io.File;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> java.util.List;
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.FileText;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> java.io.File;
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.lang3.StringUtils;
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">/**</em>
@@ -59,7 +59,7 @@
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> LINE_INDENT_DIFF = 4;
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      @Override
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> processFiltered(<strong class="jxr_keyword">final</strong> File file, <strong class="jxr_keyword">final</strong> List&lt;String&gt; lines) {
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> processFiltered(<strong class="jxr_keyword">final</strong> File file, <strong class="jxr_keyword">final</strong> FileText lines) {
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>          <strong class="jxr_keyword">int</strong> previous = 0;
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> pos = 0; pos &lt; lines.size(); pos += 1) {
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>              <strong class="jxr_keyword">final</strong> String line = lines.get(pos);

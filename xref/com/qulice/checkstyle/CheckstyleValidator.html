@@ -157,7 +157,7 @@
 <a class="jxr_linenumber" name="L149" href="#L149">149</a>             config = ConfigurationLoader.loadConfiguration(
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>                 src,
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>                 <strong class="jxr_keyword">new</strong> PropertiesExpander(props),
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>                 <strong class="jxr_keyword">true</strong>
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>                 ConfigurationLoader.IgnoredModulesOptions.OMIT
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>             );
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> CheckstyleException ex) {
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(<span class="jxr_string">"Failed to load config"</span>, ex);

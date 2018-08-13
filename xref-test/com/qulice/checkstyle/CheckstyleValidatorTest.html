@@ -143,7 +143,7 @@
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>         <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">this</strong>.validate(
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>             <span class="jxr_string">"ParametrizedClass.java"</span>, false,
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>             <span class="jxr_string">"Type Javadoc comment is missing an @param &lt;T&gt; tag."</span>
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>             <span class="jxr_string">"Type Javadoc comment is missing @param &lt;T&gt; tag."</span>
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>         );
 <a class="jxr_linenumber" name="L140" href="#L140">140</a>     }
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> 
@@ -259,7 +259,7 @@
 <a class="jxr_linenumber" name="L251" href="#L251">251</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reportsErrorOnMoreThanOneReturnStatement() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L252" href="#L252">252</a>         <strong class="jxr_keyword">this</strong>.validate(
 <a class="jxr_linenumber" name="L253" href="#L253">253</a>             <span class="jxr_string">"ReturnCount.java"</span>, false,
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>             <span class="jxr_string">"Return count is 2 (max allowed is 1)"</span>
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>             <span class="jxr_string">"Return count is 2 (max allowed for non-void methods/lambdas is 1)"</span>
 <a class="jxr_linenumber" name="L255" href="#L255">255</a>         );
 <a class="jxr_linenumber" name="L256" href="#L256">256</a>     }
 <a class="jxr_linenumber" name="L257" href="#L257">257</a> 
@@ -618,7 +618,7 @@
 <a class="jxr_linenumber" name="L610" href="#L610">610</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"AbbreviationAsWordInNameCheck"</span>;
 <a class="jxr_linenumber" name="L611" href="#L611">611</a>         <strong class="jxr_keyword">final</strong> String message = StringUtils.join(
 <a class="jxr_linenumber" name="L612" href="#L612">612</a>             <span class="jxr_string">"Abbreviation in name '%s' "</span>,
-<a class="jxr_linenumber" name="L613" href="#L613">613</a>             <span class="jxr_string">"must contain no more than '1' capital letters."</span>
+<a class="jxr_linenumber" name="L613" href="#L613">613</a>             <span class="jxr_string">"must contain no more than '2' consecutive capital letters."</span>
 <a class="jxr_linenumber" name="L614" href="#L614">614</a>         );
 <a class="jxr_linenumber" name="L615" href="#L615">615</a>         MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L616" href="#L616">616</a>             results,

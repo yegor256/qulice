@@ -83,58 +83,68 @@
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>      }
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>      @Override
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> visitToken(<strong class="jxr_keyword">final</strong> DetailAST ast) {
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>          <strong class="jxr_keyword">if</strong> (ast.getType() == TokenTypes.OBJBLOCK
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>              &amp;&amp; ast.getParent() != <strong class="jxr_keyword">null</strong>
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>              &amp;&amp; ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>              <strong class="jxr_keyword">final</strong> DetailAST left = ast.findFirstToken(TokenTypes.LCURLY);
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>              <strong class="jxr_keyword">final</strong> DetailAST right = ast.findFirstToken(TokenTypes.RCURLY);
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>              <strong class="jxr_keyword">if</strong> (left != <strong class="jxr_keyword">null</strong> &amp;&amp; right != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>                  <strong class="jxr_keyword">this</strong>.anons.add(
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>                      <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/LineRange.html">LineRange</a>(left.getLineNo(), right.getLineNo())
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>                  );
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>              }
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>          } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ast.getType() == TokenTypes.METHOD_DEF
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>              || ast.getType() == TokenTypes.CTOR_DEF) {
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>              <strong class="jxr_keyword">final</strong> DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>              <strong class="jxr_keyword">if</strong> (opening != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>                  <strong class="jxr_keyword">final</strong> DetailAST right =
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>                      opening.findFirstToken(TokenTypes.RCURLY);
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>                  <strong class="jxr_keyword">this</strong>.methods.add(
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>                      <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/LineRange.html">LineRange</a>(opening.getLineNo(), right.getLineNo())
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong>[] getAcceptableTokens() {
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.getDefaultTokens();
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>      }
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>      @Override
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong>[] getRequiredTokens() {
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.getDefaultTokens();
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>      }
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>      @Override
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> visitToken(<strong class="jxr_keyword">final</strong> DetailAST ast) {
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>          <strong class="jxr_keyword">if</strong> (ast.getType() == TokenTypes.OBJBLOCK
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>              &amp;&amp; ast.getParent() != <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>              &amp;&amp; ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>              <strong class="jxr_keyword">final</strong> DetailAST left = ast.findFirstToken(TokenTypes.LCURLY);
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>              <strong class="jxr_keyword">final</strong> DetailAST right = ast.findFirstToken(TokenTypes.RCURLY);
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>              <strong class="jxr_keyword">if</strong> (left != <strong class="jxr_keyword">null</strong> &amp;&amp; right != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>                  <strong class="jxr_keyword">this</strong>.anons.add(
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>                      <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/LineRange.html">LineRange</a>(left.getLineNo(), right.getLineNo())
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>                  );
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>              }
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>          }
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>     }
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> 
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>     @Override
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> finishTree(<strong class="jxr_keyword">final</strong> DetailAST root) {
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>         <strong class="jxr_keyword">final</strong> String[] lines = <strong class="jxr_keyword">this</strong>.getLines();
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> line = 0; line &lt; lines.length; ++line) {
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>             <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.methods.inRange(line + 1)
-<a class="jxr_linenumber" name="L107" href="#L107">107</a>                 &amp;&amp; <strong class="jxr_keyword">this</strong>.validInnerClassMethod(line + 1)
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>                 &amp;&amp; EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>                 <strong class="jxr_keyword">this</strong>.log(line + 1, <span class="jxr_string">"Empty line inside method"</span>);
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>             }
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>         }
-<a class="jxr_linenumber" name="L112" href="#L112">112</a>         <strong class="jxr_keyword">this</strong>.methods.clear();
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>         <strong class="jxr_keyword">this</strong>.anons.clear();
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>         <strong class="jxr_keyword">super</strong>.finishTree(root);
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>     }
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">     * If this is within a valid anonymous class, make sure that is still</em>
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     * directly inside of a method of that anonymous inner class.</em>
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">     * Note: This implementation only checks one level deep, as nesting</em>
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">     * anonymous inner classes should never been done.</em>
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">     * @param line The line to check if it is within a method or not.</em>
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     * @return True if the line is directly inside of a method.</em>
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L125" href="#L125">125</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> validInnerClassMethod(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> line) {
-<a class="jxr_linenumber" name="L126" href="#L126">126</a>         <strong class="jxr_keyword">return</strong> !<strong class="jxr_keyword">this</strong>.anons.inRange(line)
-<a class="jxr_linenumber" name="L127" href="#L127">127</a>             || <strong class="jxr_keyword">this</strong>.methods.within(<strong class="jxr_keyword">this</strong>.anons).inRange(line);
-<a class="jxr_linenumber" name="L128" href="#L128">128</a>     }
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> }
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>          } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (ast.getType() == TokenTypes.METHOD_DEF
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>             || ast.getType() == TokenTypes.CTOR_DEF) {
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>             <strong class="jxr_keyword">final</strong> DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>             <strong class="jxr_keyword">if</strong> (opening != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>                 <strong class="jxr_keyword">final</strong> DetailAST right =
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>                     opening.findFirstToken(TokenTypes.RCURLY);
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>                 <strong class="jxr_keyword">this</strong>.methods.add(
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>                     <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/checkstyle/LineRange.html">LineRange</a>(opening.getLineNo(), right.getLineNo())
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>                 );
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>             }
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>         }
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>     }
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>     @Override
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> finishTree(<strong class="jxr_keyword">final</strong> DetailAST root) {
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>         <strong class="jxr_keyword">final</strong> String[] lines = <strong class="jxr_keyword">this</strong>.getLines();
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> line = 0; line &lt; lines.length; ++line) {
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>             <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.methods.inRange(line + 1)
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>                 &amp;&amp; <strong class="jxr_keyword">this</strong>.validInnerClassMethod(line + 1)
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>                 &amp;&amp; EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>                 <strong class="jxr_keyword">this</strong>.log(line + 1, <span class="jxr_string">"Empty line inside method"</span>);
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>             }
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>         }
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>         <strong class="jxr_keyword">this</strong>.methods.clear();
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>         <strong class="jxr_keyword">this</strong>.anons.clear();
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>         <strong class="jxr_keyword">super</strong>.finishTree(root);
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>     }
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> 
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment">     * If this is within a valid anonymous class, make sure that is still</em>
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment">     * directly inside of a method of that anonymous inner class.</em>
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">     * Note: This implementation only checks one level deep, as nesting</em>
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment">     * anonymous inner classes should never been done.</em>
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment">     * @param line The line to check if it is within a method or not.</em>
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment">     * @return True if the line is directly inside of a method.</em>
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> validInnerClassMethod(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> line) {
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">return</strong> !<strong class="jxr_keyword">this</strong>.anons.inRange(line)
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>             || <strong class="jxr_keyword">this</strong>.methods.within(<strong class="jxr_keyword">this</strong>.anons).inRange(line);
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>     }
+<a class="jxr_linenumber" name="L139" href="#L139">139</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2018 <a href="http://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
