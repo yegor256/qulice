@@ -29,9 +29,9 @@
  */
 package com.qulice.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck;
 import java.io.File;
-import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -46,9 +46,9 @@ public final class ConditionalRegexpMultilineCheck extends
     private Pattern condition = Pattern.compile(".");
 
     @Override
-    public void processFiltered(final File file, final List<String> lines) {
+    public void processFiltered(final File file, final FileText lines) {
         boolean found = false;
-        for (final String line: lines) {
+        for (final String line: lines.toLinesArray()) {
             if (this.condition.matcher(line).find()) {
                 found = true;
                 break;

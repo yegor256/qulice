@@ -69,6 +69,16 @@ public final class MultilineJavadocTagsCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         final String[] lines = this.getLines();
         final int start = ast.getLineNo();

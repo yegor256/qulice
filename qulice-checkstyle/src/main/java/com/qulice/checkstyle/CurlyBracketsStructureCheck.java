@@ -69,6 +69,16 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.ARRAY_INIT) {
             this.checkParams(ast);

@@ -51,7 +51,7 @@ public final class PmdEmptyTest {
             "EmptyStaticInitializer.java",
             Matchers.is(false),
             Matchers.containsString(
-                "Empty static initializer was found"
+                "Empty initializer was found (EmptyInitializer)"
             )
         ).validate();
     }

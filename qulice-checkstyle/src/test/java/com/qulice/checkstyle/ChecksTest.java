@@ -185,7 +185,7 @@ public final class ChecksTest {
             ConfigurationLoader.loadConfiguration(
                 src,
                 new PropertiesExpander(new Properties()),
-                true
+                ConfigurationLoader.IgnoredModulesOptions.OMIT
             )
         );
         final List<File> files = new ArrayList<>(0);

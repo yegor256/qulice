@@ -33,8 +33,8 @@ import com.qulice.spi.Environment;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
-import net.sourceforge.pmd.ReportListener;
 import net.sourceforge.pmd.RuleViolation;
+import net.sourceforge.pmd.ThreadSafeReportListener;
 import net.sourceforge.pmd.stat.Metric;
 
 /**
@@ -42,7 +42,7 @@ import net.sourceforge.pmd.stat.Metric;
  *
  * @since 0.3
  */
-final class PmdListener implements ReportListener {
+final class PmdListener implements ThreadSafeReportListener {
 
     /**
      * Environment.

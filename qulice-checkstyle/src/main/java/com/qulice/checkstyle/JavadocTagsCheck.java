@@ -86,6 +86,16 @@ public final class JavadocTagsCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void init() {
         this.tags.put(
             "since",

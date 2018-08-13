@@ -48,6 +48,16 @@ public final class ConstantUsageCheck extends AbstractCheck {
         };
     }
 
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
     // @checkstyle NestedIfDepth (35 lines)
     @Override
     public void visitToken(final DetailAST ast) {

@@ -172,17 +172,15 @@
     <!--
     Enable suppressions
     -->
-    <module name="SuppressWithNearbyCommentFilter">
-        <property name="commentFormat" value="@checkstyle (\w+) \((\d+) lines?\)"/>
-        <property name="checkFormat" value="$1"/>
-        <property name="influenceFormat" value="$2"/>
-    </module>
-
     <module name="TreeWalker">
         <property name="cacheFile" value="${cache.file}" />
 
-        <!-- to enable suppressions -->
-        <module name="FileContentsHolder"/>
+        <module name="SuppressWithNearbyCommentFilter">
+            <property name="commentFormat" value="@checkstyle (\w+) \((\d+) lines?\)"/>
+            <property name="checkFormat" value="$1"/>
+            <property name="influenceFormat" value="$2"/>
+        </module>
+
 
         <!-- Checks for annotations. -->
         <module name="AnnotationUseStyle">

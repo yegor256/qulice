@@ -69,6 +69,16 @@ public final class BracketsStructureCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.METHOD_CALL
             || ast.getType() == TokenTypes.LITERAL_NEW) {

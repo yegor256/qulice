@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 /**
  * Checks that there is no Javadoc for inherited methods.
@@ -54,8 +54,18 @@ public final class NoJavadocForOverriddenMethodsCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
-        if (AnnotationUtility.containsAnnotation(ast, "Override")) {
+        if (AnnotationUtil.containsAnnotation(ast, "Override")) {
             final FileContents contents = getFileContents();
             final TextBlock javadoc = contents.getJavadocBefore(
                 ast.getLineNo()

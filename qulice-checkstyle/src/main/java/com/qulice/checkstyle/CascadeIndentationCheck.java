@@ -30,8 +30,8 @@
 package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import java.io.File;
-import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -51,7 +51,7 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
     private static final int LINE_INDENT_DIFF = 4;
 
     @Override
-    public void processFiltered(final File file, final List<String> lines) {
+    public void processFiltered(final File file, final FileText lines) {
         int previous = 0;
         for (int pos = 0; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);

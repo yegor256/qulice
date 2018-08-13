@@ -1,7 +1,7 @@
 /*
  * Hello.
  */
-package foo.bar;
+package foo;
 
 /**
  * Uppercase abbreviation XML in class name is not allowed.

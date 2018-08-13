@@ -50,6 +50,16 @@ public final class FinalSemicolonInTryWithResourcesCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         final int semicolons = ast.getChildCount(TokenTypes.SEMI);
         if (semicolons > 0) {

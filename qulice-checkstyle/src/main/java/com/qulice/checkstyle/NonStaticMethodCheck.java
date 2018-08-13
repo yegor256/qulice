@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import java.util.regex.Pattern;
 
 /**
@@ -77,6 +77,16 @@ public final class NonStaticMethodCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         if (this.exclude.matcher(this.getFileContents().getFileName())
             .find()) {
@@ -104,7 +114,7 @@ public final class NonStaticMethodCheck extends AbstractCheck {
             method.branchContains(TokenTypes.LITERAL_THROW)
                 && !method.branchContains(TokenTypes.LCURLY)
                 && this.countSemiColons(method) == 1;
-        if (!AnnotationUtility.containsAnnotation(method, "Override")
+        if (!AnnotationUtil.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
             && !method.branchContains(TokenTypes.LITERAL_THIS)
             && !onlythrow) {

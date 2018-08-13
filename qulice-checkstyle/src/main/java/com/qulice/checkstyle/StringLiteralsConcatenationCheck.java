@@ -66,6 +66,16 @@ public final class StringLiteralsConcatenationCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         final List<DetailAST> pluses = this.findChildAstsOfType(
             ast,

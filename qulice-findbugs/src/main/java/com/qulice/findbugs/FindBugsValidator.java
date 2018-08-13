@@ -198,7 +198,7 @@ public final class FindBugsValidator implements Validator {
                 root.addElement("Class").addAttribute("name", exclude);
             }
         }
-        try (final ByteArrayOutputStream out = new ByteArrayOutputStream()) {
+        try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             new XMLWriter(out).write(document);
             return new String(out.toByteArray(), StandardCharsets.UTF_8);
         } catch (final IOException ex) {

@@ -149,7 +149,7 @@ public final class CheckstyleValidator implements ResourceValidator {
             config = ConfigurationLoader.loadConfiguration(
                 src,
                 new PropertiesExpander(props),
-                true
+                ConfigurationLoader.IgnoredModulesOptions.OMIT
             );
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to load config", ex);

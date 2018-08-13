@@ -39,7 +39,7 @@ deploy:
     est --dir=./est --verbose --file=qulice.xml --format=xml
     s3cmd --no-progress put qulice.xml --config=../s3cfg s3://est.teamed.io/qulice.xml
 env:
-  MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
+  MAVEN_OPTS: -Xmx1g
 release:
   script: |-
     mvn versions:set "-DnewVersion=${tag}"

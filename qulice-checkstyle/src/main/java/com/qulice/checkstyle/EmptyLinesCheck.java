@@ -75,6 +75,16 @@ public final class EmptyLinesCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.OBJBLOCK
             && ast.getParent() != null

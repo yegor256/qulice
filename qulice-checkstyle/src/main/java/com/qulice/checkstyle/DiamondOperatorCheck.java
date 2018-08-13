@@ -46,6 +46,16 @@ public final class DiamondOperatorCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST node) {
         final DetailAST generic = DiamondOperatorCheck
             .findFirstChildNodeOfType(

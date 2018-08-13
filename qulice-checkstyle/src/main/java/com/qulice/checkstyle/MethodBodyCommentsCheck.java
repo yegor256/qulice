@@ -59,6 +59,16 @@ public final class MethodBodyCommentsCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         final DetailAST start = ast.findFirstToken(TokenTypes.SLIST);
         final String[] lines = Arrays.copyOf(

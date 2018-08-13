@@ -123,6 +123,11 @@
                 <artifactId>jcabi-xml</artifactId>
                 <version>0.17.1</version>
             </dependency>
+            <dependency>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-runtime</artifactId>
+                <version>4.7.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <build>
@@ -131,8 +136,8 @@
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
-                        <source>1.7</source>
-                        <target>1.7</target>
+                        <source>8</source>
+                        <target>8</target>
                     </configuration>
                 </plugin>
                 <plugin>

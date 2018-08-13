@@ -55,6 +55,16 @@ public final class JavadocLocationCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         if (JavadocLocationCheck.isField(ast)) {
             final int current = ast.getLineNo();

@@ -70,6 +70,16 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         final String[] lines = this.getLines();
         final int current = ast.getLineNo();

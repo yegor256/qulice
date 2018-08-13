@@ -275,7 +275,7 @@ public final class PmdValidatorTest {
         final String file = "UnnecessaryFinalModifier.java";
         new PmdAssert(
             file, Matchers.is(false),
-            Matchers.containsString("Unnecessary final modifier")
+            Matchers.containsString("Unnecessary modifier 'final'")
         ).validate();
     }
 

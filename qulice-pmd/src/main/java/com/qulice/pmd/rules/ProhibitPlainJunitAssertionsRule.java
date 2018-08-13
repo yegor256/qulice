@@ -36,7 +36,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryPrefix;
 import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
-import net.sourceforge.pmd.lang.java.rule.junit.AbstractJUnitRule;
+import net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule;
 
 /**
  * Rule to check plain assertions in JUnit tests.

@@ -135,7 +135,7 @@ public final class CheckstyleValidatorTest {
         throws Exception {
         this.validate(
             "ParametrizedClass.java", false,
-            "Type Javadoc comment is missing an @param <T> tag."
+            "Type Javadoc comment is missing @param <T> tag."
         );
     }
 
@@ -251,7 +251,7 @@ public final class CheckstyleValidatorTest {
     public void reportsErrorOnMoreThanOneReturnStatement() throws Exception {
         this.validate(
             "ReturnCount.java", false,
-            "Return count is 2 (max allowed is 1)"
+            "Return count is 2 (max allowed for non-void methods/lambdas is 1)"
         );
     }
 
@@ -610,7 +610,7 @@ public final class CheckstyleValidatorTest {
         final String name = "AbbreviationAsWordInNameCheck";
         final String message = StringUtils.join(
             "Abbreviation in name '%s' ",
-            "must contain no more than '1' capital letters."
+            "must contain no more than '2' consecutive capital letters."
         );
         MatcherAssert.assertThat(
             results,

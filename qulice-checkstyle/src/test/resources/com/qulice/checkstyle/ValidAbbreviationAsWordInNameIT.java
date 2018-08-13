@@ -1,7 +1,7 @@
 /*
  * Hello.
  */
-package foo.bar;
+package foo;
 
 /**
  * Uppercase abbreviation IT in class name is allowed.

@@ -30,8 +30,8 @@
 package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import java.io.File;
-import java.util.List;
 
 /**
  * Check if import lines are all together without any empty lines or comments.
@@ -52,7 +52,7 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
 
     // @checkstyle ExecutableStatementCount (42 lines)
     @Override
-    public void processFiltered(final File file, final List<String> lines) {
+    public void processFiltered(final File file, final FileText lines) {
         int first = -1;
         int last = -1;
         for (int pos = 0; pos < lines.size(); pos += 1) {
@@ -80,7 +80,7 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
      * @return True if check is failed
      */
     private boolean check(final int first, final int last,
-        final List<String> lines
+        final FileText lines
     ) {
         boolean failure = false;
         if (first == 0 || !lines.get(first - 1).isEmpty()) {

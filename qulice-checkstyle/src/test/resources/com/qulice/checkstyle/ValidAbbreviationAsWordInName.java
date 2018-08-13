@@ -1,7 +1,7 @@
 /*
  * Hello.
  */
-package foo.bar;
+package foo;
 
 /**
  * Classname contains no abbreviations.
