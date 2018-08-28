@@ -29,6 +29,9 @@
  */
 package com.qulice.foo;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * Sample class.
  * @since 1.0
@@ -99,6 +102,13 @@ public final class Violations {
         @Override
         public String toString() {
             return this.name;
+        }
+
+        public String something() {
+            return Stream.of(" one", " two")
+                .map(str -> str.trim())
+                .collect(Collectors.joining());
+
         }
     }
 }
