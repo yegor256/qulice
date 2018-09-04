@@ -13,6 +13,8 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice)
 [![codebeat badge](https://codebeat.co/badges/9454ea39-1f11-4f6b-b086-ec5a2d658174)](https://codebeat.co/projects/github-com-teamed-qulice)
 [![Dependencies](https://www.versioneye.com/user/projects/561aa18ea193340f2f001188/badge.svg?style=flat)](https://www.versioneye.com/user/projects/561aa18ea193340f2f001188)
+[![Code Quality: Java](https://img.shields.io/lgtm/grade/java/g/teamed/qulice.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/teamed/qulice/context:java)
+[![Total Alerts](https://img.shields.io/lgtm/alerts/g/teamed/qulice.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/teamed/qulice/alerts)
 
 Qulice is a static analysis quality control instrument for Java
 projects. It combines all the best static analysis instruments
