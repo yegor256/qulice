@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
  *
- * Copyright (c) 2011-2016, Qulice.com
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,40 +29,51 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @version $Id$
  -->
 <ruleset name="Qulice Ruleset"
-    xmlns="http://pmd.sf.net/ruleset/1.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
-    xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
     <description>
         This ruleset checks code for potential mess
     </description>
 
-    <rule ref="rulesets/java/basic.xml">
-        <exclude name="AvoidThreadGroup"/>
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="JUnitTestsShouldIncludeAssert"/>
     </rule>
-    <rule ref="rulesets/java/empty.xml"/>
-    <rule ref="rulesets/java/braces.xml"/>
-    <rule ref="rulesets/java/clone.xml" />
-    <rule ref="rulesets/java/codesize.xml" />
-    <rule ref="rulesets/java/design.xml"/>
-    <rule ref="rulesets/java/finalizers.xml"/>
-    <rule ref="rulesets/java/imports.xml"/>
-    <rule ref="rulesets/java/j2ee.xml">
-        <exclude name="DoNotUseThreads"/>
+    <rule ref="category/java/codestyle.xml">
+        <exclude name="AtLeastOneConstructor"/>
+        <exclude name="AvoidFinalLocalVariable"/>
+        <exclude name="ShortClassName"/>
+        <exclude name="ShortVariable"/>
+        <exclude name="AbstractNaming"/>
+        <exclude name="ClassNamingConventions"/>
+        <exclude name="CommentDefaultAccessModifier"/>
     </rule>
-    <rule ref="rulesets/java/javabeans.xml">
+    <rule ref="category/java/design.xml">
+        <exclude name="LoosePackageCoupling"/>
+        <exclude name="LawOfDemeter"/>
+        <exclude name="SignatureDeclareThrowsException"/>
+    </rule>
+    <rule ref="category/java/documentation.xml">
+        <exclude name="CommentRequired"/>
+        <exclude name="CommentSize"/>
+    </rule>
+    <rule ref="category/java/errorprone.xml">
+        <exclude name="DataflowAnomalyAnalysis"/>
+        <exclude name="AvoidLiteralsInIfCondition"/>
         <exclude name="BeanMembersShouldSerialize"/>
     </rule>
-    <rule ref="rulesets/java/logging-java.xml">
-        <exclude name="GuardLogStatementJavaUtil"/>
+    <rule ref="category/java/performance.xml">
+        <exclude name="AvoidInstantiatingObjectsInLoops"/>
     </rule>
-    <rule ref="rulesets/java/optimizations.xml"/>
-    <rule ref="rulesets/java/strings.xml"/>
-    <rule ref="rulesets/java/strings.xml/AvoidDuplicateLiterals">
+    <rule ref="category/java/multithreading.xml">
+        <exclude name="AvoidUsingVolatile"/>
+        <exclude name="UseConcurrentHashMap"/>
+        <exclude name="DoNotUseThreads"/>
+    </rule>
+    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
         <properties>
             <property name="maxDuplicateLiterals">
                 <value>2</value>
@@ -72,51 +83,24 @@
             </property>
         </properties>
     </rule>
-    <rule ref="rulesets/java/sunsecure.xml"/>
-    <rule ref="rulesets/java/unnecessary.xml"/>
-    <rule ref="rulesets/java/unusedcode.xml"/>
-
-    <rule ref="rulesets/java/coupling.xml">
-        <exclude name="LoosePackageCoupling"/>
-        <exclude name="LawOfDemeter"/>
-    </rule>
-
-    <rule ref="rulesets/java/controversial.xml">
-        <exclude name="AtLeastOneConstructor"/>
-        <exclude name="AvoidFinalLocalVariable"/>
-        <exclude name="AvoidLiteralsInIfCondition"/>
-        <exclude name="DataflowAnomalyAnalysis"/>
-        <exclude name="UseConcurrentHashMap"/>
-        <exclude name="AvoidUsingVolatile"/>
-    </rule>
-
-    <rule ref="rulesets/java/typeresolution.xml">
-        <exclude name="SignatureDeclareThrowsException"/>
-    </rule>
-
-    <rule ref="rulesets/java/junit.xml">
-        <exclude name="JUnitTestsShouldIncludeAssert"/>
-    </rule>
 
     <rule name="ProhibitPlainJunitAssertionsRule"
-        message="Avoid using Plain JUnit assertions"
-        class="com.qulice.pmd.rules.ProhibitPlainJunitAssertionsRule">
+          message="Avoid using Plain JUnit assertions"
+          class="com.qulice.pmd.rules.ProhibitPlainJunitAssertionsRule">
         <description>
             Instead of using plain JUnit assertions like org.junit.Assert.assert*
             junit.framework.Assert.assert* - use Matchers from package org.hamcrest
         </description>
     </rule>
 
-    <rule ref="rulesets/java/naming.xml">
-        <exclude name="ShortClassName"/>
-        <exclude name="ShortVariable"/>
+    <rule name="UseStringIsEmptyRule"
+          message="Use String.isEmpty() when checking for empty string"
+          class="com.qulice.pmd.rules.UseStringIsEmptyRule">
+        <description>
+            Method String.isEmpty() should be used when testing for empty string, rather than using
+            String.length() compared to 0
+        </description>
     </rule>
-
-    <rule ref="rulesets/java/strictexception.xml">
-        <exclude name="SignatureDeclareThrowsException"/>
-    </rule>
-
-    <rule ref="rulesets/jsp/basic-jsf.xml"/>
 
     <rule name="UnnecessaryLocalRule"
           message="Avoid creating unnecessary local variables like ''{0}''"
@@ -131,6 +115,7 @@
             Avoid doing field initialization outside class constructor.
             Such initialization is allowed only when there is no constructor.
         </description>
+        <priority>3</priority>
         <properties>
             <property name="xpath">
                 <value>
@@ -142,7 +127,6 @@
                 </value>
             </property>
         </properties>
-        <priority>3</priority>
     </rule>
 
     <rule name="OnlyOneConstructorShouldDoInitialization"
@@ -154,6 +138,7 @@
             Only one main constructor should do real work.
             Other constructors should delegate initialization to it.
         </description>
+        <priority>3</priority>
         <properties>
             <property name="xpath">
                 <value>
@@ -164,7 +149,6 @@
                 </value>
             </property>
         </properties>
-        <priority>3</priority>
     </rule>
 
     <rule name="ConstructorOnlyInitializesOrCallOtherConstructors"
@@ -176,6 +160,7 @@
             The only exception should be calling other constructors
             or calling super class constructor.
         </description>
+        <priority>3</priority>
         <properties>
             <property name="xpath">
                 <value>
@@ -185,7 +170,6 @@
                 </value>
             </property>
         </properties>
-        <priority>3</priority>
     </rule>
 
     <rule name="StaticAccessToStaticFields"
@@ -195,6 +179,7 @@
         <description>
             Avoid accessing static fields directly.
         </description>
+        <priority>3</priority>
         <properties>
             <property name="xpath">
                 <value>
@@ -204,7 +189,6 @@
                 </value>
             </property>
         </properties>
-        <priority>3</priority>
     </rule>
 
     <rule name="ProhibitPublicStaticMethods"
@@ -214,6 +198,7 @@
         <description>
             Public static methods are prohibited.
         </description>
+        <priority>3</priority>
         <properties>
             <property name="xpath">
                 <value>
@@ -238,6 +223,23 @@
                 </value>
             </property>
         </properties>
+    </rule>
+    <rule name="ProhibitFilesCreateFileInTests"
+          message="Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder"
+          language="java"
+          class="net.sourceforge.pmd.lang.rule.XPathRule">
+        <description>
+            Files.createFile shouldn't be used in tests.
+        </description>
         <priority>3</priority>
+        <properties>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+                        //ClassOrInterfaceDeclaration[ends-with(@Image, 'Test')]//PrimaryPrefix/Name[@Image='Files.createFile']
+                    ]]>
+                </value>
+            </property>
+        </properties>
     </rule>
 </ruleset>

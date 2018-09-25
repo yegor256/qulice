@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
- * Copyright (c) 2011-2016, Qulice.com
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -63,13 +63,23 @@
         <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>6.15</version>
+            <version>8.11</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.abego.treelayout</groupId>
                     <artifactId>org.abego.treelayout.core</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>net.sf.saxon</groupId>
+                    <artifactId>Saxon-HE</artifactId>
+                </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.saxon</groupId>
+            <artifactId>saxon</artifactId>
+            <version>9.1.0.8</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -100,6 +110,7 @@
     <profiles>
         <profile>
             <id>qulice</id>
+            <!-- @todo #123:30min Dummy todo to test if it works -->
             <build>
                 <plugins>
                     <plugin>

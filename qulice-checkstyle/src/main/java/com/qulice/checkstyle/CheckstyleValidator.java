@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,8 +56,6 @@ import org.xml.sax.InputSource;
 /**
  * Validator with Checkstyle.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  * @checkstyle ClassDataAbstractionCoupling (260 lines)
  */
@@ -151,7 +149,7 @@ public final class CheckstyleValidator implements ResourceValidator {
             config = ConfigurationLoader.loadConfiguration(
                 src,
                 new PropertiesExpander(props),
-                true
+                ConfigurationLoader.IgnoredModulesOptions.OMIT
             );
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to load config", ex);
@@ -177,7 +175,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         }
         final StringBuilder builder = new StringBuilder(Tv.HUNDRED);
         final String eol = System.getProperty("line.separator");
-        builder.append("/**").append(eol);
+        builder.append("/*").append(eol);
         for (final String line
             : StringUtils.splitPreserveAllTokens(content, eol)) {
             builder.append(" *");

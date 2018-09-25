@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,8 +34,6 @@ package com.qulice.checkstyle;
  * instance of this class. The alpha line could be the method definition and
  * the omega line could be the end closing bracket.
  *
- * @author Jimmy Spivey (JimDeanSpivey@gmail.com)
- * @version $Id$
  * @since 0.16
  */
 public final class LineRange {

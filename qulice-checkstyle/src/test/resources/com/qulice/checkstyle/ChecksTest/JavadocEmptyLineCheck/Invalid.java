@@ -1,4 +1,4 @@
-/**
+/*
  *
  * Empty javadoc line at the beginning.
  */

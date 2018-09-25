@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -56,11 +56,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * javadoc tags, or else it will treated as part of the latest tag and
  * qulice will complain.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id$
  * @since 0.3
  */
-public final class MultilineJavadocTagsCheck extends Check {
+public final class MultilineJavadocTagsCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
@@ -68,6 +66,16 @@ public final class MultilineJavadocTagsCheck extends Check {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override

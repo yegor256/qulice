@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -49,11 +49,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     // ...
  * </pre>
  *
- * @author Denys Skalenko (d.skalenko@gmail.com)
- * @version $Id$
  * @since 0.17
  */
-public final class JavadocEmptyLineCheck extends Check {
+public final class JavadocEmptyLineCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
@@ -69,6 +67,16 @@ public final class JavadocEmptyLineCheck extends Check {
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override

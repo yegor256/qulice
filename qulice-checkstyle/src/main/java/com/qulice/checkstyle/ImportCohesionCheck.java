@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,8 +30,8 @@
 package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import java.io.File;
-import java.util.List;
 
 /**
  * Check if import lines are all together without any empty lines or comments.
@@ -40,9 +40,6 @@ import java.util.List;
  * lines between them. If you need to separate them because the list is too
  * big - it's time to refactor the class and make is smaller.
  *
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 @SuppressWarnings("PMD.CyclomaticComplexity")
@@ -55,7 +52,7 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
 
     // @checkstyle ExecutableStatementCount (42 lines)
     @Override
-    public void processFiltered(final File file, final List<String> lines) {
+    public void processFiltered(final File file, final FileText lines) {
         int first = -1;
         int last = -1;
         for (int pos = 0; pos < lines.size(); pos += 1) {
@@ -83,7 +80,7 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
      * @return True if check is failed
      */
     private boolean check(final int first, final int last,
-        final List<String> lines
+        final FileText lines
     ) {
         boolean failure = false;
         if (first == 0 || !lines.get(first - 1).isEmpty()) {

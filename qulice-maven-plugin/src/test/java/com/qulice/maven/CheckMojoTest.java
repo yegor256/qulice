@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,8 +41,6 @@ import org.mockito.Mockito;
 
 /**
  * Test case for {@link CheckMojo} class.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 public final class CheckMojoTest {
@@ -69,8 +67,10 @@ public final class CheckMojoTest {
     public void validatesUsingAllProvidedValidators() throws Exception {
         final CheckMojo mojo = new CheckMojo();
         final Validator external = Mockito.mock(Validator.class);
+        Mockito.when(external.name()).thenReturn("somename");
         final ResourceValidator rexternal =
             Mockito.mock(ResourceValidator.class);
+        Mockito.when(rexternal.name()).thenReturn("other");
         final MavenValidator internal = Mockito.mock(MavenValidator.class);
         final ValidatorsProvider provider = new ValidatorsProviderMocker()
             .withInternal(internal)

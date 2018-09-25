@@ -1,7 +1,7 @@
-/**
+/*
  * Hello.
  */
-package foo.bar;
+package foo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +9,6 @@ import java.util.List;
 /**
  * Better to use diamond operator where possible.
  *
- * @author John Smith (john@example.com)
- * @version $Id$
  * @since 1.0
  */
 public final class ValidDiamondsUsage {

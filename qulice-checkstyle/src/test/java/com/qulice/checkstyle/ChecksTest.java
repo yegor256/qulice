@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,6 @@ import org.xml.sax.InputSource;
 
 /**
  * Integration test case for all checkstyle checks.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 @RunWith(Parameterized.class)
@@ -187,7 +185,7 @@ public final class ChecksTest {
             ConfigurationLoader.loadConfiguration(
                 src,
                 new PropertiesExpander(new Properties()),
-                true
+                ConfigurationLoader.IgnoredModulesOptions.OMIT
             )
         );
         final List<File> files = new ArrayList<>(0);

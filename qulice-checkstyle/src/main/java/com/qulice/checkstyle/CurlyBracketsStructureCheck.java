@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,7 +30,7 @@
 package com.qulice.checkstyle;
 
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.List;
@@ -57,17 +57,25 @@ import java.util.List;
  * block as fast as possible. When you look at a block of code you should be
  * able to see where it starts and where it ends.
  *
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.6
  */
-public final class CurlyBracketsStructureCheck extends Check {
+public final class CurlyBracketsStructureCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.ARRAY_INIT,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,6 +29,7 @@
  */
 package com.qulice.pmd;
 
+import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import java.io.File;
 import java.util.Collection;
@@ -41,14 +42,12 @@ import net.sourceforge.pmd.RuleContext;
 import net.sourceforge.pmd.RulePriority;
 import net.sourceforge.pmd.RuleSetFactory;
 import net.sourceforge.pmd.RuleViolation;
-import net.sourceforge.pmd.renderers.Renderer;
+import net.sourceforge.pmd.util.ResourceLoader;
 import net.sourceforge.pmd.util.datasource.DataSource;
 
 /**
  * Validates source files via <code>PmdValidator</code>.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id$
  * @since 0.3
  */
 final class SourceValidator {
@@ -88,15 +87,38 @@ final class SourceValidator {
     public Collection<RuleViolation> validate(
         final Collection<DataSource> sources, final String path) {
         this.config.setRuleSets("com/qulice/pmd/ruleset.xml");
+        this.config.setThreads(0);
+        this.config.setMinimumPriority(RulePriority.LOW);
+        this.config.setIgnoreIncrementalAnalysis(true);
+        this.config.setShowSuppressedViolations(true);
         final Report report = new Report();
         report.addListener(this.listener);
         this.context.setReport(report);
         for (final DataSource source : sources) {
             final String name = source.getNiceFileName(false, path);
+            Logger.debug(this, "Processing file: %s", name);
             this.context.setSourceCodeFilename(name);
             this.context.setSourceCodeFile(new File(name));
             this.validateOne(source);
         }
+        report.errors().forEachRemaining(
+            error -> Logger.error(
+                this,
+                "Processing error in %s: (%s) %s, %s[exception]",
+                error.getFile(),
+                error.getMsg(),
+                error.getDetail(),
+                error.getError()
+            )
+        );
+        report.configErrors().forEachRemaining(
+            error -> Logger.error(
+                this,
+                "Config error %s: %s",
+                error.rule().getName(),
+                error.issue()
+            )
+        );
         return this.listener.getViolations();
     }
 
@@ -105,15 +127,18 @@ final class SourceValidator {
      * @param source Input source file
      */
     private void validateOne(final DataSource source) {
-        final RuleSetFactory factory = new RuleSetFactory();
-        // @checkstyle MagicNumber (1 line)
-        factory.setMinimumPriority(RulePriority.valueOf(5));
+        final RuleSetFactory factory = new RuleSetFactory(
+            new ResourceLoader(),
+            RulePriority.LOW,
+            false,
+            true
+        );
         PMD.processFiles(
             this.config,
             factory,
             new LinkedList<>(Collections.singleton(source)),
             this.context,
-            Collections.<Renderer>emptyList()
+            Collections.emptyList()
         );
     }
 }

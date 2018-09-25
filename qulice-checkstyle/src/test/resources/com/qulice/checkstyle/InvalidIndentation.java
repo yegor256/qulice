@@ -1,12 +1,10 @@
-/**
+/*
  * Hello.
  */
 package foo.bar;
 
 /**
  * Simple.
- * @author John Smith (john@example.com)
- * @version $Id$
  */
 public class InvalidIndentation {
     /**

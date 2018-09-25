@@ -1,4 +1,4 @@
-/**
+/*
  * LICENSE.
  */
 package foo;
@@ -8,8 +8,6 @@ import java.util.List;
 /**
  * This is not a real Java class. It won't be compiled ever. It is used
  * only as a text resource in integration.ChecksIT.
- * @author John Doe (john@example.com)
- * @version $Id$
  */
 public final class Valid {
     /**

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,19 +33,16 @@ import com.qulice.spi.Environment;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
-import net.sourceforge.pmd.ReportListener;
 import net.sourceforge.pmd.RuleViolation;
+import net.sourceforge.pmd.ThreadSafeReportListener;
 import net.sourceforge.pmd.stat.Metric;
 
 /**
  * Listener of PMD errors.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id$
  * @since 0.3
  */
-final class PmdListener implements ReportListener {
+final class PmdListener implements ThreadSafeReportListener {
 
     /**
      * Environment.

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.regex.Pattern;
@@ -46,13 +46,9 @@ import java.util.regex.Pattern;
  * visiting each method definition and each anonymous inner type. It stores
  * these references in a non-static thread local.
  *
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @author Jimmy Spivey (JimDeanSpivey@gmail.com)
- * @version $Id$
  * @since 0.3
  */
-public final class EmptyLinesCheck extends Check {
+public final class EmptyLinesCheck extends AbstractCheck {
 
     /**
      * Pattern for empty line check.
@@ -76,6 +72,16 @@ public final class EmptyLinesCheck extends Check {
             TokenTypes.CTOR_DEF,
             TokenTypes.OBJBLOCK,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override

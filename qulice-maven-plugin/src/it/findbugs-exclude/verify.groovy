@@ -30,7 +30,6 @@ import java.nio.file.Files
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @version $Id$
  *
  * Validate that the build really failed and violations were reported.
  */

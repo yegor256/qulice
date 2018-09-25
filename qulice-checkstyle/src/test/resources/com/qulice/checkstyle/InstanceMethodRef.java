@@ -1,11 +1,9 @@
-/**
+/*
  * Hello.
  */
 package foo;
 /**
  * Simple.
- * @author John Smith (john@example.com)
- * @version $Id $
  * @since 1.0
  */
 public final class InstanceMethodRef {
@@ -16,6 +14,7 @@ public final class InstanceMethodRef {
         Collections.singletonList("1")
             .forEach(this::doSomething);
     }
+
     /**
      * Method to be referenced.
      * @param value Value to print

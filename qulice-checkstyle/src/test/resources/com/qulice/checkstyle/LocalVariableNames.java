@@ -1,12 +1,10 @@
-/**
+/*
  * Hello.
  */
 package foo;
 
 /**
  * Simple.
- * @author John Smith (john@example.com)
- * @version $Id$
  * @since 1.0
  * @checkstyle HiddenField (100 lines)
  */
@@ -15,6 +13,7 @@ public final class LocalVariableNames {
      * Just a field.
      */
     private transient int field;
+
     /**
      * Just an id.
      */

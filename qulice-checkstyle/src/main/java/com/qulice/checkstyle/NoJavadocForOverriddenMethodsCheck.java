@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,12 +29,12 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 /**
  * Checks that there is no Javadoc for inherited methods.
@@ -42,11 +42,9 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
  * based on whether they examine the method in the supertype
  * or the subtype and it may cause confusion.
  *
- * @author Hamdi Douss (douss.hamdi@gmail.com)
- * @version $Id$
  * @since 0.16
  */
-public final class NoJavadocForOverriddenMethodsCheck extends Check {
+public final class NoJavadocForOverriddenMethodsCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
@@ -56,8 +54,18 @@ public final class NoJavadocForOverriddenMethodsCheck extends Check {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
-        if (AnnotationUtility.containsAnnotation(ast, "Override")) {
+        if (AnnotationUtil.containsAnnotation(ast, "Override")) {
             final FileContents contents = getFileContents();
             final TextBlock javadoc = contents.getJavadocBefore(
                 ast.getLineNo()

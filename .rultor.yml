@@ -5,14 +5,15 @@ architect:
 install:
 - sudo gem install --no-ri --no-rdoc pdd
 - sudo gem install --no-ri --no-rdoc est
+- sudo gem install --no-ri --no-rdoc xcop
 assets:
-  secring.gpg: yegor256/home#assets/secring.gpg
-  settings.xml: yegor256/home#assets/qulice/settings.xml
-  pubring.gpg: yegor256/home#assets/pubring.gpg
-  s3cfg: yegor256/home#assets/s3cfg
+  secring.gpg: zerocracy/home#assets/secring.gpg
+  settings.xml: zerocracy/home#assets/qulice/settings.xml
+  pubring.gpg: zerocracy/home#assets/pubring.gpg
+  s3cfg: zerocracy/home#assets/s3cfg
 merge:
   script: |-
-    pdd --source=$(pwd) --verbose --file=/dev/null --exclude=qulice-maven-plugin/src/it/**/*.java,qulice-checkstyle/src/test/resources/com/qulice/checkstyle/AtClauseOrder.java
+    pdd --source=$(pwd) --verbose --file=/dev/null 
     est --dir=est --file=/dev/null
     ./years.sh
     mvn clean install -Pqulice-profile -Pqulice --errors --settings ../settings.xml
@@ -28,18 +29,17 @@ merge:
   - krzyk
   - longtimeago
   - mkordas
-  - original-brownbear
   - pinaf
 deploy:
   script: |-
     mvn clean deploy -Pqulice-profile -Pqulice --errors --settings ../settings.xml
     mvn clean
-    pdd --source=$(pwd) --verbose --file=qulice.xml --exclude=qulice-maven-plugin/src/it/**/*.java,qulice-checkstyle/src/test/resources/com/qulice/checkstyle/AtClauseOrder.java
+    pdd --source=$(pwd) --verbose --file=qulice.xml 
     s3cmd --no-progress put qulice.xml --config=../s3cfg s3://pdd.teamed.io/qulice.xml
     est --dir=./est --verbose --file=qulice.xml --format=xml
     s3cmd --no-progress put qulice.xml --config=../s3cfg s3://est.teamed.io/qulice.xml
 env:
-  MAVEN_OPTS: -XX:MaxPermSize=256m -Xmx1g
+  MAVEN_OPTS: -Xmx1g
 release:
   script: |-
     mvn versions:set "-DnewVersion=${tag}"

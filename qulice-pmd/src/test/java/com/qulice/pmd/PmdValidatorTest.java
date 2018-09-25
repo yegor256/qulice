@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -43,8 +43,6 @@ import org.junit.Test;
 
 /**
  * Test case for {@link PmdValidator} class.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 @SuppressWarnings("PMD.TooManyMethods")
@@ -94,6 +92,13 @@ public final class PmdValidatorTest {
         "Public static methods are prohibited";
 
     /**
+     * Error text for Files.createFile.
+     */
+    private static final String FILES_CREATE_ERR =
+        // @checkstyle LineLength (1 line)
+        "Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder";
+
+    /**
      * PmdValidator can find violations in Java file(s).
      * @throws Exception If something wrong happens inside.
      */
@@ -115,9 +120,9 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void understandsMethodReferences() throws Exception {
         final String file = "src/main/java/Other.java";
-        // @checkstyle MultipleStringLiteralsCheck (10 lines)
         final Environment env = new Environment.Mock().withFile(
             file,
             Joiner.on('\n').join(
@@ -145,8 +150,8 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void doesNotComplainAboutConstantsInInnerClasses() throws Exception {
-        // @checkstyle MultipleStringLiteralsCheck (10 lines)
         final String file = "src/main/java/foo/Foo.java";
         final Environment env = new Environment.Mock().withFile(
             file,
@@ -270,7 +275,7 @@ public final class PmdValidatorTest {
         final String file = "UnnecessaryFinalModifier.java";
         new PmdAssert(
             file, Matchers.is(false),
-            Matchers.containsString("Unnecessary final modifier")
+            Matchers.containsString("Unnecessary modifier 'final'")
         ).validate();
     }
 
@@ -301,6 +306,38 @@ public final class PmdValidatorTest {
             file, Matchers.is(false),
             RegexMatchers.containsPattern(
                 String.format(PmdValidatorTest.CODE_IN_CON, file)
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator forbids usage of Files.createFile in tests.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsFilesCreateFileInTests() throws Exception {
+        new PmdAssert(
+            "FilesCreateFileTest.java",
+            Matchers.is(false),
+            Matchers.containsString(
+                PmdValidatorTest.FILES_CREATE_ERR
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator allows usage of Files.createFile outside of tests.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsFilesCreateFileOutsideOfTests() throws Exception {
+        new PmdAssert(
+            "FilesCreateFileOther.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString(
+                    PmdValidatorTest.FILES_CREATE_ERR
+                )
             )
         ).validate();
     }

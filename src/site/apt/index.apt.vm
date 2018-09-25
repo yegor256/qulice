@@ -7,7 +7,7 @@
  ------
 
 ~~
-~~ Copyright (c) 2011-2016, Qulice.com
+~~ Copyright (c) 2011-2018, Qulice.com
 ~~ All rights reserved.
 ~~
 ~~ Redistribution and use in source and binary forms, with or without
@@ -35,7 +35,6 @@
 ~~ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 ~~ OF THE POSSIBILITY OF SUCH DAMAGE.
 ~~
-~~ @version $Id$
 ~~
 
 Source Code Quality Police (Qulice)
@@ -51,8 +50,6 @@ Source Code Quality Police (Qulice)
 
    * {{{http://maven.apache.org/plugins/maven-enforcer-plugin/enforce-mojo.html}maven-enforcer-plugin}}
 
-   * {{{http://mojo.codehaus.org/jslint-maven-plugin/}jslint-maven-plugin}}
-
    * {{{https://github.com/ning/maven-duplicate-finder-plugin}maven-duplicate-finder-plugin}}
 
    * {{{http://checkstyle.sourceforge.net/}Checkstyle}}
@@ -60,10 +57,6 @@ Source Code Quality Police (Qulice)
    * {{{http://pmd.sourceforge.net/}PMD}}
 
    * {{{http://findbugs.sourceforge.net/}FindBugs}}
-
-   * {{{http://cobertura.sourceforge.net/}Cobertura}}
-
-   * {{{http://codenarc.sourceforge.net/}CodeNarc}}
 
   Just add our {{{./qulice-maven-plugin/}qulice-maven-plugin}} to your
   Maven project and start following out

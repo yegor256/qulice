@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,9 +30,10 @@
 package com.qulice.checkstyle;
 
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import java.util.List;
 
 /**
@@ -40,17 +41,25 @@ import java.util.List;
  *
  * <p>If your method contain protected methods than it can't be final
  *
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.6
  */
-public final class ProtectedMethodInFinalClassCheck extends Check {
+public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
             TokenTypes.CLASS_DEF,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override
@@ -77,7 +86,8 @@ public final class ProtectedMethodInFinalClassCheck extends Check {
             )
         ) {
             if (method.findFirstToken(TokenTypes.MODIFIERS)
-                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null) {
+                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null
+                && !AnnotationUtil.containsAnnotation(method, "Override")) {
                 this.log(
                     method.getLineNo(),
                     "Final class should not contain protected methods"

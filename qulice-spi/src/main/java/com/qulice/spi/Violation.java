@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,11 +34,10 @@ import lombok.ToString;
 
 /**
  * Validation result.
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @version $Id$
  * @since 0.17
  */
-public interface Violation {
+@SuppressWarnings("PMD.TooManyMethods")
+public interface Violation extends Comparable<Violation> {
 
     /**
      * Name of the validator that generated this violation information.
@@ -145,6 +144,10 @@ public interface Violation {
             return this.msg;
         }
 
+        @Override
+        public int compareTo(final Violation other) {
+            return this.vldtr.compareToIgnoreCase(other.validator());
+        }
     }
 
 }

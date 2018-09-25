@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -35,8 +35,6 @@ import java.net.Socket;
 
 /**
  * Test class with using jcabi-aspects annotation.
- * @author Denys Skalenko (d.skalenko@gmail.com)
- * @version $Id$
  * @since 0.17
  */
 public final class TestSocket {

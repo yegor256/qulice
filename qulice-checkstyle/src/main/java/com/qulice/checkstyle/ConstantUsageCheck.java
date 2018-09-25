@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -37,17 +37,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that constant, declared as private field of class is used more than
  * once.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @version $Id$
  * @since 0.3
  */
-public final class ConstantUsageCheck extends Check {
+public final class ConstantUsageCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
         return new int[]{
             TokenTypes.VARIABLE_DEF,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     // @checkstyle NestedIfDepth (35 lines)

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -38,8 +38,6 @@ import org.junit.runners.Parameterized;
 
 /**
  * Tests for disabled rules.
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @version $Id$
  * @since 0.16
  */
 @RunWith(Parameterized.class)

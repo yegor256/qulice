@@ -1,0 +1,29 @@
+\usepackage{setspace}
+  \linespread{1.2}
+\usepackage{xcolor}
+  \definecolor{zblue}{rgb}{0,0.5765,0.8196}
+\usepackage{hyperref}
+  \hypersetup{colorlinks=true,urlcolor=zblue,pdfborder={0 0 0}}
+\usepackage{mathpazo}
+\usepackage{graphicx}
+\usepackage[absolute]{textpos}
+  \TPGrid{16}{16}
+\usepackage[top=2\TPVertModule, bottom=4\TPVertModule, left=2\TPHorizModule, right=2\TPHorizModule]{geometry}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \renewcommand{\headrulewidth}{0pt}
+  \fancyhf{}
+  \lfoot{
+    \begin{textblock}{14}[0,0](1,12){
+      \color{gray}\footnotesize\texttt{\pgp}
+    }\end{textblock}
+  }
+
+\begin{document}
+\setlength{\topskip}{0mm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\raggedright
+\large
+\interfootnotelinepenalty=10000

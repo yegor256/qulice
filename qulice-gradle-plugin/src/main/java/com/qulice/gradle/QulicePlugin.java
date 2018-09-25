@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,8 +34,6 @@ import org.gradle.api.Project;
 
 /**
  * Main class of the Qulice Gradle plugin.
- * @author Dmitri Pisarenko (dp@altruix.co)
- * @version $Id$
  * @since 0.13
  */
 public final class QulicePlugin implements Plugin<Project> {

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.LinkedList;
@@ -56,16 +56,23 @@ import java.util.List;
  * <p>There are two alternatives to concatenation: {@link StringBuilder}
  * and {@link String#format(String,Object[])}.
  *
- * @author Dzmitry Petrushenka (dpetruha@gmail.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
-public final class StringLiteralsConcatenationCheck extends Check {
+public final class StringLiteralsConcatenationCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
         return new int[] {TokenTypes.OBJBLOCK};
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override

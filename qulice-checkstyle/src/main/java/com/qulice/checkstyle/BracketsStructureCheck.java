@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -56,12 +56,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>In other words, when you open a bracket and can't close it at the same
  * line - you should leave it as the last symbol at this line.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
-public final class BracketsStructureCheck extends Check {
+public final class BracketsStructureCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
@@ -69,6 +66,16 @@ public final class BracketsStructureCheck extends Check {
             TokenTypes.LITERAL_NEW,
             TokenTypes.METHOD_CALL,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override

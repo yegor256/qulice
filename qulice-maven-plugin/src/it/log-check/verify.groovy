@@ -28,14 +28,9 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * @version $Id$
  */
 
 def log = new File(basedir, 'build.log')
-assert log.text.contains('Starting XML validator')
-assert log.text.contains('Finishing XML validator')
 assert log.text.contains('Starting FindBugs validator')
 assert log.text.contains('Finishing FindBugs validator')
-assert log.text.contains('Starting CodeNarc validator')
-assert log.text.contains('Finishing CodeNarc validator')
 

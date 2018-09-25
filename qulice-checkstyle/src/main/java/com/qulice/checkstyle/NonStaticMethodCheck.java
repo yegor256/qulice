@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,11 +29,11 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.AnnotationUtility;
+import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import java.util.regex.Pattern;
 
 /**
@@ -51,13 +51,9 @@ import java.util.regex.Pattern;
  * Such methods don't have body so detection based on {@code this} doesn't
  * make sense for them.
  *
- * @author Dmitry Bashkin (dmitry.bashkin@qulice.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.3
  */
-public final class NonStaticMethodCheck extends Check {
+public final class NonStaticMethodCheck extends AbstractCheck {
 
     /**
      * Files to exclude from this check.
@@ -78,6 +74,16 @@ public final class NonStaticMethodCheck extends Check {
         return new int[] {
             TokenTypes.METHOD_DEF,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override
@@ -108,7 +114,7 @@ public final class NonStaticMethodCheck extends Check {
             method.branchContains(TokenTypes.LITERAL_THROW)
                 && !method.branchContains(TokenTypes.LCURLY)
                 && this.countSemiColons(method) == 1;
-        if (!AnnotationUtility.containsAnnotation(method, "Override")
+        if (!AnnotationUtil.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
             && !method.branchContains(TokenTypes.LITERAL_THIS)
             && !onlythrow) {

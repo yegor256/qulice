@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -36,12 +36,10 @@ import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryPrefix;
 import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
-import net.sourceforge.pmd.lang.java.rule.junit.AbstractJUnitRule;
+import net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule;
 
 /**
  * Rule to check plain assertions in JUnit tests.
- * @author Viktor Kuchyn (kuchin.victor@gmail.com)
- * @version $Id$
  * @since 0.17
  */
 public final class ProhibitPlainJunitAssertionsRule extends AbstractJUnitRule {

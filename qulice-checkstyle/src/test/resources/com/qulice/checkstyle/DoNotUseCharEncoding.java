@@ -1,4 +1,4 @@
-/**
+/*
  * Hello.
  */
 package foo;
@@ -9,8 +9,6 @@ import org.apache.commons.lang3.CharEncoding;
 
 /**
  * Simple.
- * @author John Smith (john@example.com)
- * @version $Id$
  * @since 1.0
  */
 public final class DoNotUseCharEncoding {

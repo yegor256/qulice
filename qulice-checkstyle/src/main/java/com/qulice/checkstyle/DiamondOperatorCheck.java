@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,22 +29,30 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks if possible to use Diamond operator in generic instances creation.
  *
- * @author Viktor Kuchyn (kuchin.victor@gmail.com)
- * @version $Id$
  * @since 0.17
  */
-public final class DiamondOperatorCheck extends Check {
+public final class DiamondOperatorCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
         return new int[]{TokenTypes.VARIABLE_DEF};
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override

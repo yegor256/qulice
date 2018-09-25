@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,8 +34,6 @@
  * when annotation from jcabi-aspects is used,
  * even on a method that throws correct exception.
  *
- * @author Denys Skalenko (d.skalenko@gmail.com)
- * @version $Id$
  * @since 0.17
  */
 package com.qulice.foo;

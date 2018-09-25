@@ -8,6 +8,10 @@
  -->
 <module name="Checker">
     <module name="TreeWalker">
-        <module name="RequireThis"/>
+        <module name="RequireThis">
+            <property name="checkFields" value="true"/>
+            <property name="checkMethods" value="true"/>
+            <property name="validateOnlyOverlapping" value="false"/>
+        </module>
     </module>
 </module>

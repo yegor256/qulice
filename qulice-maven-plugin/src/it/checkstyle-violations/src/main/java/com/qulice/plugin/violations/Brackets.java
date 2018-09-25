@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,8 +33,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Validation of bracket structure check.
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @version $Id$
  */
 public final class Brackets {
 

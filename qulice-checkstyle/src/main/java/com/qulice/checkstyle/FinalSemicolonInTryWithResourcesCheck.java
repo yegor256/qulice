@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,7 +29,7 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -38,17 +38,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * relies on existence of semicolon inside of RESOURCE_SPECIFICATION token
  * as interpreted by Checkstyle.
  *
- * @author Hamdi Douss (douss.hamdi@gmail.com)
- * @version $Id$
  * @since 0.15
  */
-public final class FinalSemicolonInTryWithResourcesCheck extends Check {
+public final class FinalSemicolonInTryWithResourcesCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
         return new int[]{
             TokenTypes.RESOURCE_SPECIFICATION,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override

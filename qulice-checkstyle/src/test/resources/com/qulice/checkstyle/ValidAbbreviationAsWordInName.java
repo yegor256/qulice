@@ -1,15 +1,13 @@
-/**
+/*
  * Hello.
  */
-package foo.bar;
+package foo;
 
 /**
  * Classname contains no abbreviations.
  * Contains overridden method for which otherwise invalid uppercase use is
  * allowed.
  *
- * @author John Smith (john@example.com)
- * @version $Id$
  * @since 1.0
  */
 public class ValidAbbreviationAsWordInName extends SomeClass {
@@ -21,7 +19,7 @@ public class ValidAbbreviationAsWordInName extends SomeClass {
 
     @Override
     public final String UPPERCASE() {
-        return CONST_VALUE;
+        return ValidAbbreviationAsWordInName.CONST_VALUE;
     }
 
     /**

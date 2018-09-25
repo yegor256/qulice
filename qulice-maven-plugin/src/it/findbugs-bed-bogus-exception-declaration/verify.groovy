@@ -28,7 +28,6 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *  Validate that the build doesn't fail with M C BED when
  *  we use annotation from jcabi-aspects and jcabi-maven-plugin plugin.
- * @version $Id$
  * @since 0.17
  */
 def log = new File(basedir, 'build.log')

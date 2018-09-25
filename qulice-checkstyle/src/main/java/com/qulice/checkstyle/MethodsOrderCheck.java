@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -32,7 +32,7 @@ package com.qulice.checkstyle;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.List;
@@ -42,11 +42,9 @@ import java.util.Map;
  * Checks the order of methods declaration.
  *
  * Right order is: public, protected and private
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.6
  */
-public final class MethodsOrderCheck extends Check {
+public final class MethodsOrderCheck extends AbstractCheck {
 
     @Override
     public int[] getDefaultTokens() {
@@ -54,6 +52,16 @@ public final class MethodsOrderCheck extends Check {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
         };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
     }
 
     @Override
@@ -130,7 +138,7 @@ public final class MethodsOrderCheck extends Check {
         if (modifier == null) {
             mod = MethodsOrderCheck.Modifiers.DEF;
         } else {
-            mod = MethodsOrderCheck.Modifiers.getByType(modifier.getType());
+            mod = getByType(modifier.getType());
         }
         return mod;
     }
@@ -152,6 +160,15 @@ public final class MethodsOrderCheck extends Check {
             child = child.getNextSibling();
         }
         return children;
+    }
+
+    /**
+     * Get Modifiers enum constant by TokenType id.
+     * @param type TokenType
+     * @return Modifiers constant
+     */
+    private static MethodsOrderCheck.Modifiers getByType(final int type) {
+        return MethodsOrderCheck.Modifiers.mdos.get(type);
     }
 
     /**
@@ -212,15 +229,6 @@ public final class MethodsOrderCheck extends Check {
         Modifiers(final Integer typ, final Integer ord) {
             this.type = typ;
             this.order = ord;
-        }
-
-        /**
-         * Get Modifiers enum constant by TokenType id.
-         * @param type TokenType
-         * @return Modifiers constant
-         */
-        public static MethodsOrderCheck.Modifiers getByType(final int type) {
-            return MethodsOrderCheck.Modifiers.mdos.get(type);
         }
 
         /**

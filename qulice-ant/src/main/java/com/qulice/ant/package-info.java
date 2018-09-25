@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,8 +31,6 @@
 /**
  * Ant task for Qulice.
  *
- * @author Yuriy Alevohin (alevohin@mail.ru)
- * @version $Id$
  * @since 0.13
  */
 package com.qulice.ant;

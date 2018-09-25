@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,6 +30,7 @@
 package com.qulice.maven;
 
 import com.qulice.checkstyle.CheckstyleValidator;
+import com.qulice.findbugs.FindBugsValidator;
 import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
@@ -42,8 +43,6 @@ import java.util.Set;
 /**
  * Provider of validators.
  *
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */
@@ -68,9 +67,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         validators.add(new EnforcerValidator());
         validators.add(new DuplicateFinderValidator());
         validators.add(new SvnPropertiesValidator());
-        validators.add(new CoberturaValidator());
         validators.add(new DependenciesValidator());
-        validators.add(new JslintValidator());
         validators.add(new SnapshotsValidator());
         return validators;
     }
@@ -78,15 +75,10 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
     // @todo #61:30min Make FindBugsValidator inherit from ResourceValidator and
     //  use it similarly to CheckstyleValidator. Remember to move it to
     //  externalResource method and make sure all the tests pass.
-    // @todo #61:30min Make XmlValidator and CodeNarcValidator inherit from
-    //  ResourceValidator and use it similarly to CheckstyleValidator. Remember
-    //  to move it to externalResource method and make sure all the tests pass.
     @Override
     public Set<Validator> external() {
         final Set<Validator> validators = new LinkedHashSet<>();
-        validators.add(new com.qulice.findbugs.FindBugsValidator());
-        validators.add(new com.qulice.xml.XmlValidator());
-        validators.add(new com.qulice.codenarc.CodeNarcValidator());
+        validators.add(new FindBugsValidator());
         return validators;
     }
 

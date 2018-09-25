@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,7 +31,6 @@ package com.qulice.ant;
 
 import com.jcabi.log.Logger;
 import com.qulice.checkstyle.CheckstyleValidator;
-import com.qulice.codenarc.CodeNarcValidator;
 import com.qulice.findbugs.FindBugsValidator;
 import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
@@ -39,7 +38,6 @@ import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import com.qulice.spi.Violation;
-import com.qulice.xml.XmlValidator;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
@@ -51,8 +49,6 @@ import org.apache.tools.ant.types.Path;
 /**
  * Ant Task for Qulice.
  *
- * @author Yuriy Alevohin (alevohin@mail.ru)
- * @version $Id$
  * @since 0.13
  * @checkstyle ClassDataAbstractionCouplingCheck (170 lines)
  */
@@ -177,10 +173,8 @@ public final class QuliceTask extends Task {
      * @return Collection of validators.
      */
     private static Collection<Validator> validators() {
-        return Arrays.asList(
-            new FindBugsValidator(),
-            new XmlValidator(),
-            new CodeNarcValidator()
+        return Arrays.<Validator>asList(
+            new FindBugsValidator()
         );
     }
 

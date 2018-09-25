@@ -1,13 +1,11 @@
-/**
+/*
  * Hello.
  */
-package foo.bar;
+package foo;
 
 /**
  * Uppercase abbreviation XML in class name is not allowed.
  *
- * @author John Smith (john@example.com)
- * @version $Id$
  * @since 1.0
  */
 public class InvalidAbbreviationAsWordInNameXML {

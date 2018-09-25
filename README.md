@@ -1,12 +1,17 @@
 <img src="http://img.qulice.com/logo.svg" width="200px" height="55px"/>
 
-[![Made By Teamed.io](http://img.teamed.io/btn.svg)](http://www.teamed.io)
+[![Donate via Zerocracy](https://www.0crat.com/contrib-badge/C3T49A35L.svg)](https://www.0crat.com/contrib/C3T49A35L)
+
+[![EO principles respected here](http://www.elegantobjects.org/badge.svg)](http://www.elegantobjects.org)
+[![Managed by Zerocracy](https://www.0crat.com/badge/C3T49A35L.svg)](https://www.0crat.com/p/C3T49A35L)
 [![DevOps By Rultor.com](http://www.rultor.com/b/teamed/qulice)](http://www.rultor.com/p/teamed/qulice)
-[![We recommend IntelliJ IDEA](http://img.teamed.io/intellij-idea-recommend.svg)](https://www.jetbrains.com/idea/)
+[![We recommend IntelliJ IDEA](http://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
 [![Build Status](https://travis-ci.org/teamed/qulice.svg?branch=master)](https://travis-ci.org/teamed/qulice)
+[![PDD status](http://www.0pdd.com/svg?name=teamed/qulice)](http://www.0pdd.com/p?name=teamed/qulice)
 [![Build status](https://ci.appveyor.com/api/projects/status/k8vw7rjdq06olx3b/branch/master?svg=true)](https://ci.appveyor.com/project/yegor256/qulice/branch/master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice)
+[![codebeat badge](https://codebeat.co/badges/9454ea39-1f11-4f6b-b086-ec5a2d658174)](https://codebeat.co/projects/github-com-teamed-qulice)
 [![Dependencies](https://www.versioneye.com/user/projects/561aa18ea193340f2f001188/badge.svg?style=flat)](https://www.versioneye.com/user/projects/561aa18ea193340f2f001188)
 
 Qulice is a static analysis quality control instrument for Java
@@ -45,6 +50,8 @@ accessible from your `PATH` environment variable (e.g. if you have JDK 1.8.0
 installed in Windows your PATH should contain something like `C:\Program
 Files\Java\jdk1.8.0\bin`).
 
+Also rememer that we support Maven version >= 3.1.0.
+
 The path to license has to be declared in the following format:
 `file:${basedir}/LICENSE.txt`, it's the default value, one can use any full path
 instead of `${basedir}`.
@@ -56,8 +63,7 @@ Qulice can't catch them, that's why this wiki page...
 #### Proxy
 
 In order to download schemas required for XML validation you might need proxy
-setup. Maven proxy is not supported, but standard [JVM proxy]
-(https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html)
+setup. Maven proxy is not supported, but standard [JVM proxy](https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html)
 works fine. To use it just add `-Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`
 to your `MAVEN_OPTS` environment variable or to Maven command, e.g.
 `mvn clean verify -Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`.

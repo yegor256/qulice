@@ -1,4 +1,4 @@
-/**
+/*
  * Hello.
  */
 package foo;
@@ -8,8 +8,6 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * Simple.
- * @author John Smith (john@example.com)
- * @version $Id$
  * @since 1.0
  * @checkstyle HiddenField (100 lines)
  */
@@ -18,6 +16,7 @@ public final class CatchParameterNames {
      * Dummy variable.
      */
     private int var;
+
     /**
      * Invalid exception parameter name.
      */

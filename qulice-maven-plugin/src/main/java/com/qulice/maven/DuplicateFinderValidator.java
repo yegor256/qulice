@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,16 +30,14 @@
 package com.qulice.maven;
 
 import com.qulice.spi.ValidationException;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Properties;
 import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Validate with maven-duplicate-finder-plugin.
- * @author Paul Polishchuk (ppol@ua.fm)
- * @version $Id$
  * @since 0.5
  * @todo #250 Maven-duplicate-finder-plugin should support exclusions.
  *  Let's add exclusions of following formats (examples):
@@ -55,12 +53,12 @@ import org.apache.commons.collections.CollectionUtils;
  */
 public final class DuplicateFinderValidator implements MavenValidator {
 
-    // @checkstyle MultipleStringLiterals (20 lines)
     // @checkstyle MethodBodyCommentsCheck (50 lines)
     // @todo #250 Fix a problem with maven configuration of duplicate finder
     //  plugin in commented out code below, and enable
     //  duplicate-finder-ignore-deps IT in pom.xml.
     @Override
+    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void validate(final MavenEnvironment env)
         throws ValidationException {
         if (!env.exclude("duplicatefinder", "")) {
@@ -70,12 +68,12 @@ public final class DuplicateFinderValidator implements MavenValidator {
             props.put(
                 "ignoredResources",
                 CollectionUtils.union(
-                    env.excludes("duplicate"),
-                    Collections.singleton("META-INF/.*")
+                    env.excludes("duplicatefinder"),
+                    Arrays.asList("META-INF/.*", "module-info.class")
                 )
             );
             final Collection<Properties> deps = new LinkedList<>();
-            //  for (String sdep : env.excludes("duplicate")) {
+            //  for (String sdep : env.excludes("duplicatefinder")) {
             //      if (StringUtils.countMatches(sdep, ":") == 2) {
             //          String[] parts = sdep.split(":");
             //          Properties main = new Properties();

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,8 +30,8 @@
 package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import java.io.File;
-import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -42,8 +42,6 @@ import org.apache.commons.lang3.StringUtils;
  * </ul>
  * All other cases must cause a failure.
  *
- * @author Hamdi Douss (douss.hamdi@gmail.com)
- * @version $Id$
  * @since 0.3
  */
 public final class CascadeIndentationCheck extends AbstractFileSetCheck {
@@ -53,7 +51,7 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
     private static final int LINE_INDENT_DIFF = 4;
 
     @Override
-    public void processFiltered(final File file, final List<String> lines) {
+    public void processFiltered(final File file, final FileText lines) {
         int previous = 0;
         for (int pos = 0; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);
@@ -89,7 +87,7 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
      */
     private static boolean inCommentBlock(final String line) {
         final String trimmed = line.trim();
-        return trimmed.length() > 0
+        return !trimmed.isEmpty()
             && (trimmed.charAt(0) == '*'
                 || trimmed.startsWith("/*")
                 || trimmed.startsWith("*/")

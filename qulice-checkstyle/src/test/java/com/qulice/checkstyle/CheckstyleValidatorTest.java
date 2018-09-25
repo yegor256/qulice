@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,13 +48,10 @@ import org.junit.Test;
 
 /**
  * Test case for {@link CheckstyleValidator} class.
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  * @todo #412:30min Split this class into smaller ones and remove PMD
  *  exclude `TooManyMethods`. Good candidates for moving out of this class
  *  are all that use `validateCheckstyle` method.
- * @checkstyle MultipleStringLiterals (400 lines)
  */
 @SuppressWarnings({ "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals" })
 public final class CheckstyleValidatorTest {
@@ -138,7 +135,7 @@ public final class CheckstyleValidatorTest {
         throws Exception {
         this.validate(
             "ParametrizedClass.java", false,
-            "Type Javadoc comment is missing an @param <T> tag."
+            "Type Javadoc comment is missing @param <T> tag."
         );
     }
 
@@ -221,13 +218,13 @@ public final class CheckstyleValidatorTest {
                     message, file, "8", name
                 ),
                 new ViolationMatcher(
+                    message, file, "20", name
+                ),
+                new ViolationMatcher(
+                    message, file, "21", name
+                ),
+                new ViolationMatcher(
                     message, file, "22", name
-                ),
-                new ViolationMatcher(
-                    message, file, "23", name
-                ),
-                new ViolationMatcher(
-                    message, file, "24", name
                 )
             )
         );
@@ -254,7 +251,7 @@ public final class CheckstyleValidatorTest {
     public void reportsErrorOnMoreThanOneReturnStatement() throws Exception {
         this.validate(
             "ReturnCount.java", false,
-            "Return count is 2 (max allowed is 1)"
+            "Return count is 2 (max allowed for non-void methods/lambdas is 1)"
         );
     }
 
@@ -266,19 +263,6 @@ public final class CheckstyleValidatorTest {
     public void acceptsDefaultMethodsWithFinalModifiers() throws Exception {
         this.runValidation(
             "DefaultMethods.java", true
-        );
-    }
-
-    /**
-     * CheckstyleValidator can accept author which has only a single name.
-     * This is to support case where authro wants to use a nick instead of
-     * first and last name.
-     * @throws Exception In case of error
-     */
-    @Test
-    public void acceptsSingleNameAuthor() throws Exception {
-        this.runValidation(
-            "AuthorTag.java", true
         );
     }
 
@@ -310,13 +294,13 @@ public final class CheckstyleValidatorTest {
             Matchers.allOf(
                 Matchers.hasItem(
                     new ViolationMatcher(
-                        "'number' hides a field.", file, "31", name
+                        "'number' hides a field.", file, "29", name
                     )
                 ),
                 Matchers.not(
                     Matchers.hasItem(
                         new ViolationMatcher(
-                            "'number' hides a field.", file, "22", name
+                            "'number' hides a field.", file, "20", name
                         )
                     )
                 )
@@ -397,23 +381,17 @@ public final class CheckstyleValidatorTest {
         final Collection<Violation> results = this.runValidation(
             file, false
         );
-        MatcherAssert.assertThat(results, Matchers.hasSize(Tv.FOUR));
+        MatcherAssert.assertThat(results, Matchers.hasSize(2));
         final String message = "At-clauses have to appear in the order";
         final String name = "AtclauseOrderCheck";
         MatcherAssert.assertThat(
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
-                    message, file, "23", name
+                    message, file, "21", name
                 ),
                 new ViolationMatcher(
-                    message, file, "50", name
-                ),
-                new ViolationMatcher(
-                    message, file, "60", name
-                ),
-                new ViolationMatcher(
-                    message, file, "61", name
+                    message, file, "48", name
                 )
             )
         );
@@ -539,7 +517,7 @@ public final class CheckstyleValidatorTest {
      * @throws Exception In case of error
      */
     @Test
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "PMD.AvoidDuplicateLiterals"})
     public void distinguishesValidCatchParameterNames() throws Exception {
         final String file = "CatchParameterNames.java";
         final Collection<Violation> results = this.runValidation(
@@ -551,14 +529,13 @@ public final class CheckstyleValidatorTest {
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
-                    // @checkstyle MultipleStringLiterals (1 line)
-                    "Name 'ex_invalid_1' must match pattern", file, "27", name
+                    "Name 'ex_invalid_1' must match pattern", file, "26", name
                 ),
                 new ViolationMatcher(
-                    "Name '$xxx' must match pattern", file, "29", name
+                    "Name '$xxx' must match pattern", file, "28", name
                 ),
                 new ViolationMatcher(
-                    "Name '_exp' must match pattern", file, "31", name
+                    "Name '_exp' must match pattern", file, "30", name
                 )
             )
         );
@@ -590,7 +567,7 @@ public final class CheckstyleValidatorTest {
      * @throws Exception In case of error
      */
     @Test
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "PMD.AvoidDuplicateLiterals"})
     public void rejectsSpacesInsideMethods() throws Exception {
         final String file = "BlankLinesInsideMethodsFail.java";
         final Collection<Violation> result = this.runValidation(
@@ -601,19 +578,18 @@ public final class CheckstyleValidatorTest {
         MatcherAssert.assertThat(
             result,
             Matchers.hasItems(
-                // @checkstyle MultipleStringLiterals (12 line)
-                new ViolationMatcher(message, file, "17", name),
+                new ViolationMatcher(message, file, "15", name),
+                new ViolationMatcher(message, file, "19", name),
                 new ViolationMatcher(message, file, "21", name),
-                new ViolationMatcher(message, file, "23", name),
-                new ViolationMatcher(message, file, "27", name),
-                new ViolationMatcher(message, file, "30", name),
+                new ViolationMatcher(message, file, "25", name),
+                new ViolationMatcher(message, file, "28", name),
+                new ViolationMatcher(message, file, "32", name),
                 new ViolationMatcher(message, file, "34", name),
-                new ViolationMatcher(message, file, "36", name),
-                new ViolationMatcher(message, file, "40", name),
-                new ViolationMatcher(message, file, "43", name),
+                new ViolationMatcher(message, file, "38", name),
+                new ViolationMatcher(message, file, "41", name),
+                new ViolationMatcher(message, file, "48", name),
                 new ViolationMatcher(message, file, "50", name),
-                new ViolationMatcher(message, file, "52", name),
-                new ViolationMatcher(message, file, "54", name)
+                new ViolationMatcher(message, file, "52", name)
             )
         );
     }
@@ -634,7 +610,7 @@ public final class CheckstyleValidatorTest {
         final String name = "AbbreviationAsWordInNameCheck";
         final String message = StringUtils.join(
             "Abbreviation in name '%s' ",
-            "must contain no more than '1' capital letters."
+            "must contain no more than '2' consecutive capital letters."
         );
         MatcherAssert.assertThat(
             results,
@@ -643,11 +619,11 @@ public final class CheckstyleValidatorTest {
                     String.format(
                         message, "InvalidAbbreviationAsWordInNameXML"
                     ),
-                    file, "13", name
+                    file, "11", name
                 ),
                 new ViolationMatcher(
                     String.format(message, "InvalidHTML"), file,
-                    "17", name
+                    "15", name
                 )
             )
         );
@@ -687,8 +663,8 @@ public final class CheckstyleValidatorTest {
         MatcherAssert.assertThat(
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher(message, file, "21", name),
-                new ViolationMatcher(message, file, "31", name)
+                new ViolationMatcher(message, file, "19", name),
+                new ViolationMatcher(message, file, "29", name)
                 )
         );
     }
@@ -696,12 +672,32 @@ public final class CheckstyleValidatorTest {
     /**
      * CheckstyleValidator can allow diamond operator usage.
      * @throws Exception If error
-     * @todo #715:30min add test for next situation
-     *  {@code return new ArrayList<String>();}
      */
     @Test
     public void allowsDiamondOperatorUsage() throws Exception {
         this.runValidation("ValidDiamondsUsage.java", true);
+    }
+
+    /**
+     * CheckstyleValidator allows class name instead of diamond in case
+     * of return statement.
+     * @throws Exception If error
+     */
+    @Test
+    public void allowsFullGenericOperatorUsage() throws Exception {
+        this.runValidation("DiamondUsageNotNeeded.java", true);
+    }
+
+    /**
+     * CheckstyleValidator can allow usage of string literals on either sides.
+     * E.g. both {@code txt.equals("contents")}
+     * and {@code "contents".equals(txt)} are valid.
+     * @throws Exception If error
+     */
+    @Test
+    public void allowsStringLiteralsOnBothSideInComparisons()
+        throws Exception {
+        this.runValidation("ValidLiteralComparisonCheck.java", true);
     }
 
     /**

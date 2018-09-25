@@ -1,0 +1,11 @@
+--source=.
+--verbose
+--exclude=target/**/*
+--exclude=qulice-*/target/**/*
+--exclude=src/main/resources/images/**/*
+--exclude=qulice-checkstyle/src/main/resources/com/qulice/checkstyle/checks.xml
+--exclude=qulice-checkstyle/src/test/resources/**/*
+--exclude=qulice-checkstyle/src/test/resources/com/qulice/checkstyle/AtClauseOrder.java
+--rule min-words:4
+--rule min-estimate:0
+--rule max-estimate:120

@@ -9,8 +9,6 @@ public class Violations {
 
     /**
      * Test method.
-     * @todo #123 First
-     *  second
      */
     public final void foreach() {
         for (String txt : new String[] {"test"}) {
@@ -20,8 +18,6 @@ public class Violations {
 
     /**
      * Missing final in catch.
-     * @todo #123 First
-     *  second
      */
     public final void catchFinal() {
         try {
@@ -32,8 +28,6 @@ public class Violations {
     }
     /**
      * ArrayList without initializer.
-     * @todo #123 Make this
-     *  a better text.
      */
     public final void arrayLists() {
         System.out.println(new ArrayList<Integer>());

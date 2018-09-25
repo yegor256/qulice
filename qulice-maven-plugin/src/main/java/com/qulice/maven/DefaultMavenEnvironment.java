@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -61,8 +61,6 @@ import org.codehaus.plexus.context.Context;
  * Environment, passed from MOJO to validators.
  *
  * @checkstyle ClassDataAbstractionCouplingCheck (300 lines)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @since 0.3
  */
 @SuppressWarnings("PMD.TooManyMethods")

@@ -1,5 +1,5 @@
-/**
- * Copyright (c) 2011-2016, Qulice.com
+/*
+ * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,14 +29,17 @@
  */
 package com.qulice.checkstyle;
 
-import com.puppycrawl.tools.checkstyle.api.Check;
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Check if the class/interface javadoc contains properly formatted author
@@ -58,33 +61,21 @@ import java.util.regex.Pattern;
  * <p>"&#36;Id&#36;" will be replaced by a full text automatically
  * by Subversion as explained in their documentation (see link below).
  *
- * @author Krzysztof Krason (Krzysztof.Krason@gmail.com)
- * @author Yegor Bugayenko (yegor@tpc2.com)
- * @version $Id$
  * @see <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">Keywords substitution in Subversion</a>
  * @since 0.3
  */
-public final class JavadocTagsCheck extends Check {
+public final class JavadocTagsCheck extends AbstractCheck {
 
     /**
      * Map of tag and its pattern.
      */
     private final Map<String, Pattern> tags = new HashMap<>();
 
-    @Override
-    public void init() {
-        this.tags.put(
-            "author",
-            // @checkstyle LineLength (1 line)
-            Pattern.compile("^([A-Z](\\.|[a-z]+) )+\\([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}\\)$")
-        );
-        this.tags.put("version", Pattern.compile("^\\$Id.*\\$$"));
-        this.tags.put(
-            "since",
-            // @checkstyle LineLength (1 line)
-            Pattern.compile("^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$")
-        );
-    }
+    /**
+     * List of prohibited javadoc tags.
+     */
+    private final Collection<String> prohibited =
+        Arrays.asList("author", "version");
 
     @Override
     public int[] getDefaultTokens() {
@@ -95,6 +86,26 @@ public final class JavadocTagsCheck extends Check {
     }
 
     @Override
+    public int[] getAcceptableTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public void init() {
+        this.tags.put(
+            "since",
+            Pattern.compile(
+                "^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+            )
+        );
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getParent() == null) {
             final String[] lines = this.getLines();
@@ -102,12 +113,90 @@ public final class JavadocTagsCheck extends Check {
             final int cstart = JavadocTagsCheck.findCommentStart(lines, start);
             final int cend = JavadocTagsCheck.findCommentEnd(lines, start);
             if (cend > cstart && cstart >= 0) {
+                for (final String tag : this.prohibited) {
+                    this.findProhibited(lines, start, cstart, cend, tag);
+                }
                 for (final String tag : this.tags.keySet()) {
                     this.matchTagFormat(lines, cstart, cend, tag);
                 }
             } else {
                 this.log(0, "Problem finding class/interface comment");
             }
+        }
+    }
+
+    /**
+     * Get the text of the given tag.
+     * @param line Line with the tag.
+     * @return The text of the tag.
+     */
+    private static String getTagText(final String line) {
+        return line.substring(
+            line.indexOf(' ', line.indexOf('@')) + 1
+        );
+    }
+
+    /**
+     * Find a text in lines, by going up.
+     * @param lines List of lines to check.
+     * @param start Start searching from this line number.
+     * @param text Text to find.
+     * @return Line number with found text, or -1 if it wasn't found.
+     */
+    private static int findTrimmedTextUp(final String[] lines,
+        final int start, final String text) {
+        int found = -1;
+        for (int pos = start - 1; pos >= 0; pos -= 1) {
+            if (lines[pos].trim().equals(text)) {
+                found = pos;
+                break;
+            }
+        }
+        return found;
+    }
+
+    /**
+     * Find javadoc starting comment.
+     * @param lines List of lines to check.
+     * @param start Start searching from this line number.
+     * @return Line number with found starting comment or -1 otherwise.
+     */
+    private static int findCommentStart(final String[] lines, final int start) {
+        return JavadocTagsCheck.findTrimmedTextUp(lines, start, "/**");
+    }
+
+    /**
+     * Find javadoc ending comment.
+     * @param lines List of lines to check.
+     * @param start Start searching from this line number.
+     * @return Line number with found ending comment, or -1 if it wasn't found.
+     */
+    private static int findCommentEnd(final String[] lines, final int start) {
+        return JavadocTagsCheck.findTrimmedTextUp(lines, start, "*/");
+    }
+
+    /**
+     * Check if the tag text matches the format from pattern.
+     * @param lines List of all lines.
+     * @param start Line number where AST starts.
+     * @param cstart Line number where comment starts.
+     * @param cend Line number where comment ends.
+     * @param tag Name of the tag.
+     * @checkstyle ParameterNumber (3 lines)
+     */
+    private void findProhibited(final String[] lines, final int start,
+        final int cstart, final int cend, final String tag) {
+        final List<Integer> found =
+            this.findTagLineNum(lines, cstart, cend, tag);
+        if (!found.isEmpty()) {
+            this.log(
+                start + 1,
+                StringUtils.join(
+                    "Prohibited ''@{0}'' tag in",
+                    " class/interface comment"
+                ),
+                tag
+            );
         }
     }
 
@@ -144,17 +233,6 @@ public final class JavadocTagsCheck extends Check {
     }
 
     /**
-     * Get the text of the given tag.
-     * @param line Line with the tag.
-     * @return The text of the tag.
-     */
-    private static String getTagText(final String line) {
-        return line.substring(
-            line.indexOf(' ', line.indexOf('@')) + 1
-        );
-    }
-
-    /**
      * Find given tag in comment lines.
      * @param lines Lines to search for the tag.
      * @param start Starting line number.
@@ -184,45 +262,5 @@ public final class JavadocTagsCheck extends Check {
         }
         return found;
     }
-
-    /**
-     * Find javadoc starting comment.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @return Line number with found starting comment or -1 otherwise.
-     */
-    private static int findCommentStart(final String[] lines, final int start) {
-        return JavadocTagsCheck.findTrimmedTextUp(lines, start, "/**");
-    }
-
-    /**
-     * Find javadoc ending comment.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @return Line number with found ending comment, or -1 if it wasn't found.
-     */
-    private static int findCommentEnd(final String[] lines, final int start) {
-        return JavadocTagsCheck.findTrimmedTextUp(lines, start, "*/");
-    }
-
-    /**
-     * Find a text in lines, by going up.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @param text Text to find.
-     * @return Line number with found text, or -1 if it wasn't found.
-     */
-    private static int findTrimmedTextUp(final String[] lines,
-        final int start, final String text) {
-        int found = -1;
-        for (int pos = start - 1; pos >= 0; pos -= 1) {
-            if (lines[pos].trim().equals(text)) {
-                found = pos;
-                break;
-            }
-        }
-        return found;
-    }
-
 }
 
