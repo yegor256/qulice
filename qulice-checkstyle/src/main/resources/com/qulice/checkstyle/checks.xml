@@ -153,6 +153,11 @@
         <property name="message" value="Use 'java.nio.charset.StandardCharsets' instead"/>
     </module>
     <module name="RegexpSingleline">
+        <property name="format" value="com\.google\.common\.base\.Charsets"/>
+        <property name="fileExtensions" value="java"/>
+        <property name="message" value="Use 'java.nio.charset.StandardCharsets' instead"/>
+    </module>
+    <module name="RegexpSingleline">
         <property name="format" value="^(?! *(/\*\*|\*|/\*|//)).*[\.\-\+%/\*&lt;&gt;] *$"/>
         <property name="fileExtensions" value="java"/>
         <property name="message" value="Line cannot end with this symbol, move it to the next line"/>

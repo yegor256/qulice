@@ -41,6 +41,11 @@
     <packaging>jar</packaging>
     <name>qulice-checkstyle</name>
     <dependencies>
+                    <dependency>
+                <groupId>org.cactoos</groupId>
+                <artifactId>cactoos</artifactId>
+                <version>0.38</version>
+            </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-spi</artifactId>
