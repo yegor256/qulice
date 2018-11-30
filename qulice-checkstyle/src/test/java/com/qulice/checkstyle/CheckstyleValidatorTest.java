@@ -38,10 +38,12 @@ import java.io.IOException;
 import java.util.Collection;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.cactoos.list.ListOf;
 import org.hamcrest.Description;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
@@ -221,24 +223,32 @@ public final class CheckstyleValidatorTest {
         final String name = "RegexpSinglelineCheck";
         MatcherAssert.assertThat(
             results,
-            Matchers.hasItems(
-                new ViolationMatcher(
-                    message, file, "6", name
-                ),
-                new ViolationMatcher(
-                    message, file, "7", name
-                ),
-                new ViolationMatcher(
-                    message, file, "8", name
-                ),
-                new ViolationMatcher(
-                    message, file, "20", name
-                ),
-                new ViolationMatcher(
-                    message, file, "21", name
-                ),
-                new ViolationMatcher(
-                    message, file, "22", name
+            new IsIterableContainingInOrder<>(
+                new ListOf<>(
+                    new ViolationMatcher(
+                        message, file, "6", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "7", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "8", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "9", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "22", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "23", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "24", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "25", name
+                    )
                 )
             )
         );
