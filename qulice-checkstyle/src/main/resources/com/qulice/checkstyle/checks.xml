@@ -169,9 +169,11 @@
         <property name="fileExtensions" value="java"/>
     </module>
 
-    <!--
-    Enable suppressions
-    -->
+    <module name="SuppressionFilter">
+        <property name="file" value="${project.basedir}/src/main/resources/com/qulice/checkstyle/suppressions.xml"/>
+        <property name="optional" value="false"/>
+    </module>
+
     <module name="TreeWalker">
         <property name="cacheFile" value="${cache.file}" />
 

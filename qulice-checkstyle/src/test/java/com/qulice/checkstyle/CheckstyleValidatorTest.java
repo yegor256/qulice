@@ -53,7 +53,11 @@ import org.junit.Test;
  *  exclude `TooManyMethods`. Good candidates for moving out of this class
  *  are all that use `validateCheckstyle` method.
  */
-@SuppressWarnings({ "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals" })
+@SuppressWarnings(
+    {
+        "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals", "PMD.GodClass"
+    }
+)
 public final class CheckstyleValidatorTest {
 
     /**
@@ -165,6 +169,16 @@ public final class CheckstyleValidatorTest {
             false,
             "Indentation (14) must be same or less than"
         );
+    }
+
+    /**
+     * CheckstyleValidator does not report an error when there is no JavaDoc
+     * on method in JUnit tests.
+     * @throws Exception when error.
+     */
+    @Test
+    public void doesNotReportErrorWhenMissingJavadocInTests() throws Exception {
+        this.runValidation("MissingJavadocTest.java", true);
     }
 
     /**
