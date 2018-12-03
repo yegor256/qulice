@@ -33,6 +33,19 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @link http://checkstyle.sourceforge.net/config.html
+ * @todo #772:30min Checkstyle and PMD rules overlap. Let's get rid of
+ *  checkstyle and PMD overlapping rules removing the checkstyle ones and making
+ *  sure that PMD ones have at least the same threshold as the removed
+ *  checkstyle checks (that is, we don't reduce code quality).
+ *  Following checks are equivalent:
+ *  checkstyle -> PMD
+ *  JavaNCSS (method and class) -> NcssMethodCount, NcssConstructorCount,
+ *                                 NcssTypeCount
+ *  CyclomaticComplexity -> CyclomaticComplexity, StdCyclomaticComplexity,
+ *                                 ModifiedCyclomaticComplexity
+ *  NPathComplexity->NPathComplexity
+ *  MethodLength -> ExcessiveMethodLength
+ *  IllegalCatch -> AvoidCatchingGenericException
  -->
 <module name="Checker">
     <!--
@@ -272,7 +285,6 @@
         <module name="AvoidStaticImport" />
         <module name="IllegalImport"/>
         <module name="RedundantImport"/>
-        <module name="UnusedImports"/>
         <module name="ImportOrder"/>
 
         <module name="NoLineWrap"/>
