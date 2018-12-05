@@ -29,34 +29,20 @@
  */
 package com.qulice.spotbugs;
 
-import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
-import java.util.Collection;
-import java.util.LinkedList;
 
 /**
  * Validates source code and compiled binaries with SpotBugs.
  *
  * @since 0.19
  */
-@SuppressWarnings({"PMD.ExcessiveImports", "PMD.AvoidDuplicateLiterals"})
 public final class SpotBugsValidator implements Validator {
 
     @Override
     public void validate(final Environment env) throws ValidationException {
-        if (env.outdir().exists()) {
-            if (!env.exclude("spotbugs", "")) {
-                this.check(SpotBugsValidator.spotbugs(env));
-            }
-        } else {
-            Logger.info(
-                this,
-                "No classes at %s, no SpotBugs validation",
-                env.outdir()
-            );
-        }
+        throw new UnsupportedOperationException("validate not implemented");
     }
 
     @Override
@@ -64,43 +50,4 @@ public final class SpotBugsValidator implements Validator {
         return "SpotBugs";
     }
 
-    /**
-     * Start spotbugs and return its output.
-     * @param env Environment
-     * @return Output of spotbugs
-     */
-    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
-    private static String spotbugs(final Environment env) {
-        throw new UnsupportedOperationException("spotbugs not implemented");
-    }
-
-    /**
-     * Java options.
-     * @return Options
-     */
-    private static Collection<String> options() {
-        return new LinkedList<>();
-    }
-
-    /**
-     * Check report for errors.
-     * @param report The report
-     * @throws ValidationException If it contains errors
-     */
-    private void check(final String report) throws ValidationException {
-        int total = 0;
-        for (final String line
-            : report.split(System.getProperty("line.separator"))) {
-            if (line.matches("[a-zA-Z ]+: .*")) {
-                Logger.warn(this, "SpotBugs: %s", line);
-                ++total;
-            }
-        }
-        if (total > 0) {
-            throw new ValidationException(
-                "%d SpotBugs violations (see log above)",
-                total
-            );
-        }
-    }
 }
