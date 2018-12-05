@@ -35,7 +35,7 @@ import org.junit.Test;
 
 /**
  * Test case for {@link SpotBugsValidator}.
- * @since 0.3
+ * @since 0.19
  * @todo #884:30min Continue migration from FindBugs to SpotBugs. Implement
  *  SpotBugsValidator for this and then uncomment SpotBugsValidatorTest class
  *  so the minimal tests on this class can be run. Then, after all is set,

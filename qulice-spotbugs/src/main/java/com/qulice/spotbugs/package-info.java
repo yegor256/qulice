@@ -31,6 +31,6 @@
 /**
  * SpotBugs validator.
  *
- * @since 0.17
+ * @since 0.19
  */
 package com.qulice.spotbugs;

@@ -30,22 +30,16 @@
 package com.qulice.spotbugs;
 
 import com.jcabi.log.Logger;
-import com.jcabi.log.VerboseProcess;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.logging.Level;
-import org.cactoos.text.JoinedText;
-import org.cactoos.text.ReplacedText;
-import org.cactoos.text.UncheckedText;
 
 /**
  * Validates source code and compiled binaries with SpotBugs.
  *
- * @since 0.17
+ * @since 0.19
  */
 @SuppressWarnings({"PMD.ExcessiveImports", "PMD.AvoidDuplicateLiterals"})
 public final class SpotBugsValidator implements Validator {
@@ -67,7 +61,7 @@ public final class SpotBugsValidator implements Validator {
 
     @Override
     public String name() {
-        return "FindBugs";
+        return "SpotBugs";
     }
 
     /**
@@ -77,26 +71,7 @@ public final class SpotBugsValidator implements Validator {
      */
     @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private static String spotbugs(final Environment env) {
-        final List<String> args = new LinkedList<>();
-        args.add("java");
-        args.addAll(SpotBugsValidator.options());
-        args.add(env.basedir().getPath());
-        args.add(env.outdir().getPath());
-        args.add(
-            new UncheckedText(
-                new ReplacedText(
-                    new JoinedText(
-                        ",",
-                        env.classpath()
-                    ),
-                    "\\",
-                    "/"
-                )
-            ).asString()
-        );
-        return new VerboseProcess(
-            new ProcessBuilder(args), Level.INFO, Level.INFO
-        ).stdout();
+        throw new UnsupportedOperationException("spotbugs not implemented");
     }
 
     /**
