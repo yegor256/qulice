@@ -89,8 +89,8 @@ public final class EmptyLinesCheck extends AbstractCheck {
         if (ast.getType() == TokenTypes.OBJBLOCK
             && ast.getParent() != null
             && ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
-            final DetailAST left = ast.findFirstToken(TokenTypes.LCURLY);
-            final DetailAST right = ast.findFirstToken(TokenTypes.RCURLY);
+            final DetailAST left = ast.getFirstChild();
+            final DetailAST right = ast.getLastChild();
             if (left != null && right != null) {
                 this.anons.add(
                     new LineRange(left.getLineNo(), right.getLineNo())
