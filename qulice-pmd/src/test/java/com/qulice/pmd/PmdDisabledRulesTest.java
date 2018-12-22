@@ -69,6 +69,7 @@ public final class PmdDisabledRulesTest {
                 {"AvoidUsingVolatile"},
                 {"DefaultPackage"},
                 {"ExcessiveImports"},
+                {"PositionLiteralsFirstInComparisons"},
             }
         );
     }

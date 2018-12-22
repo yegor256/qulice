@@ -41,6 +41,8 @@
 
     <rule ref="category/java/bestpractices.xml">
         <exclude name="JUnitTestsShouldIncludeAssert"/>
+        <exclude name="PositionLiteralsFirstInComparisons"/>
+        <exclude name="PositionLiteralsFirstInCaseInsensitiveComparisons"/>
     </rule>
     <rule ref="category/java/codestyle.xml">
         <exclude name="AtLeastOneConstructor"/>
