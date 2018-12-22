@@ -68,6 +68,7 @@
         <exclude name="DataflowAnomalyAnalysis"/>
         <exclude name="AvoidLiteralsInIfCondition"/>
         <exclude name="BeanMembersShouldSerialize"/>
+        <exclude name="MissingSerialVersionUID"/>
     </rule>
     <rule ref="category/java/performance.xml">
         <exclude name="AvoidInstantiatingObjectsInLoops"/>

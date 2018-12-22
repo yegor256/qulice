@@ -70,6 +70,7 @@ public final class PmdDisabledRulesTest {
                 {"DefaultPackage"},
                 {"ExcessiveImports"},
                 {"PositionLiteralsFirstInComparisons"},
+                {"MissingSerialVersionUID"},
             }
         );
     }
