@@ -67,6 +67,8 @@ public final class PmdDisabledRulesTest {
                 {"UseConcurrentHashMap"},
                 {"DoNotUseThreads"},
                 {"AvoidUsingVolatile"},
+                {"DefaultPackage"},
+                {"ExcessiveImports"},
             }
         );
     }

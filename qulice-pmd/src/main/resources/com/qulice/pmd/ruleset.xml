@@ -50,11 +50,13 @@
         <exclude name="AbstractNaming"/>
         <exclude name="ClassNamingConventions"/>
         <exclude name="CommentDefaultAccessModifier"/>
+        <exclude name="DefaultPackage"/>
     </rule>
     <rule ref="category/java/design.xml">
         <exclude name="LoosePackageCoupling"/>
         <exclude name="LawOfDemeter"/>
         <exclude name="SignatureDeclareThrowsException"/>
+        <exclude name="ExcessiveImports"/>
     </rule>
     <rule ref="category/java/documentation.xml">
         <exclude name="CommentRequired"/>
