@@ -197,10 +197,10 @@ public final class CheckstyleValidatorTest {
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
-                    "Line is longer than 80 characters (found 82)", ""
+                    "Line is longer than 100 characters (found 104)", ""
                 ),
                 new ViolationMatcher(
-                    "Line is longer than 80 characters (found 85)", ""
+                    "Line is longer than 100 characters (found 103)", ""
                 )
             )
         );
