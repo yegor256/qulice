@@ -38,6 +38,9 @@ import org.junit.Test;
 /**
  * Test case for {@link UseStringIsEmptyRule}.
  * @since 0.18
+ * @todo #950:30min UseStringIsEmptyRuleTest is not comparing all possible
+ *  targets. Implement the tests for the remaining targets (see complete list in
+ *  UseStringIsEmptyRule#getComparisonTargets).
  */
 public final class UseStringIsEmptyRuleTest {
 
