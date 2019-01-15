@@ -39,6 +39,8 @@ import java.util.Collection;
 import java.util.Collections;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.hamcrest.core.IsEqual;
+import org.hamcrest.core.IsNot;
 import org.junit.Test;
 
 /**
@@ -306,6 +308,24 @@ public final class PmdValidatorTest {
             file, Matchers.is(false),
             RegexMatchers.containsPattern(
                 String.format(PmdValidatorTest.CODE_IN_CON, file)
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator allows lambda in constructor.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowsLambdaInConstructor()
+        throws Exception {
+        final String file = "LambdaInConstructor.java";
+        new PmdAssert(
+            file, new IsEqual<>(true),
+            new IsNot<>(
+                RegexMatchers.containsPattern(
+                    String.format(PmdValidatorTest.CODE_IN_CON, file)
+                )
             )
         ).validate();
     }
