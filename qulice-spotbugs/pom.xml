@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <!--
+ *
  * Copyright (c) 2011-2018, Qulice.com
  * All rights reserved.
  *
@@ -27,6 +28,7 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -37,70 +39,30 @@
         <artifactId>qulice</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <artifactId>qulice-checkstyle</artifactId>
+    <artifactId>qulice-spotbugs</artifactId>
     <packaging>jar</packaging>
-    <name>qulice-checkstyle</name>
+    <name>qulice-spotbugs</name>
     <dependencies>
-        <dependency>
-            <groupId>org.cactoos</groupId>
-            <artifactId>cactoos</artifactId>
-            <version>0.38</version>
-        </dependency>
         <dependency>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-spi</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.jcabi</groupId>
-            <artifactId>jcabi-log</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jcabi</groupId>
-            <artifactId>jcabi-aspects</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>8.15</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.abego.treelayout</groupId>
-                    <artifactId>org.abego.treelayout.core</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>net.sf.saxon</groupId>
-                    <artifactId>Saxon-HE</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>net.sourceforge.saxon</groupId>
-            <artifactId>saxon</artifactId>
-            <version>9.1.0.8</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
         </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
-                    <argLine>-Duser.language=en -Duser.country=US</argLine>
+                    <archive>
+                        <manifestEntries>
+                            <Main-Class>com.qulice.findbugs.Wrap</Main-Class>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
             <plugin>
@@ -115,7 +77,6 @@
     <profiles>
         <profile>
             <id>qulice</id>
-            <!-- @todo #123:30min Dummy todo to test if it works -->
             <build>
                 <plugins>
                     <plugin>
@@ -123,10 +84,7 @@
                         <artifactId>qulice-maven-plugin</artifactId>
                         <configuration>
                             <excludes combine.children="append">
-                                <exclude>checkstyle:/src/test/resources/com/qulice/checkstyle/.*</exclude>
-                                <exclude>pmd:.*/src/test/resources/.*</exclude>
-                                <exclude>xml:/src/main/resources/com/qulice/checkstyle/checks.xml</exclude>
-                                <exclude>xml:/src/test/resources/com/qulice/checkstyle/ChecksTest/.*</exclude>
+                                <exclude>duplicatefinder:.*</exclude>
                             </excludes>
                         </configuration>
                     </plugin>

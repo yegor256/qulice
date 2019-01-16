@@ -38,10 +38,12 @@ import java.io.IOException;
 import java.util.Collection;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.cactoos.list.ListOf;
 import org.hamcrest.Description;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
@@ -53,7 +55,11 @@ import org.junit.Test;
  *  exclude `TooManyMethods`. Good candidates for moving out of this class
  *  are all that use `validateCheckstyle` method.
  */
-@SuppressWarnings({ "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals" })
+@SuppressWarnings(
+    {
+        "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals", "PMD.GodClass"
+    }
+)
 public final class CheckstyleValidatorTest {
 
     /**
@@ -168,6 +174,16 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator does not report an error when there is no JavaDoc
+     * on method in JUnit tests.
+     * @throws Exception when error.
+     */
+    @Test
+    public void doesNotReportErrorWhenMissingJavadocInTests() throws Exception {
+        this.runValidation("MissingJavadocTest.java", true);
+    }
+
+    /**
      * CheckstyleValidator reports an error when comment or Javadoc has too
      * long line.
      * @throws Exception when error.
@@ -181,10 +197,10 @@ public final class CheckstyleValidatorTest {
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
-                    "Line is longer than 80 characters (found 82)", ""
+                    "Line is longer than 100 characters (found 104)", ""
                 ),
                 new ViolationMatcher(
-                    "Line is longer than 80 characters (found 85)", ""
+                    "Line is longer than 100 characters (found 103)", ""
                 )
             )
         );
@@ -207,24 +223,32 @@ public final class CheckstyleValidatorTest {
         final String name = "RegexpSinglelineCheck";
         MatcherAssert.assertThat(
             results,
-            Matchers.hasItems(
-                new ViolationMatcher(
-                    message, file, "6", name
-                ),
-                new ViolationMatcher(
-                    message, file, "7", name
-                ),
-                new ViolationMatcher(
-                    message, file, "8", name
-                ),
-                new ViolationMatcher(
-                    message, file, "20", name
-                ),
-                new ViolationMatcher(
-                    message, file, "21", name
-                ),
-                new ViolationMatcher(
-                    message, file, "22", name
+            new IsIterableContainingInOrder<>(
+                new ListOf<>(
+                    new ViolationMatcher(
+                        message, file, "6", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "7", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "8", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "9", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "22", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "23", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "24", name
+                    ),
+                    new ViolationMatcher(
+                        message, file, "25", name
+                    )
                 )
             )
         );

@@ -41,6 +41,8 @@
 
     <rule ref="category/java/bestpractices.xml">
         <exclude name="JUnitTestsShouldIncludeAssert"/>
+        <exclude name="PositionLiteralsFirstInComparisons"/>
+        <exclude name="PositionLiteralsFirstInCaseInsensitiveComparisons"/>
     </rule>
     <rule ref="category/java/codestyle.xml">
         <exclude name="AtLeastOneConstructor"/>
@@ -50,11 +52,14 @@
         <exclude name="AbstractNaming"/>
         <exclude name="ClassNamingConventions"/>
         <exclude name="CommentDefaultAccessModifier"/>
+        <exclude name="DefaultPackage"/>
+        <exclude name="LinguisticNaming"/>
     </rule>
     <rule ref="category/java/design.xml">
         <exclude name="LoosePackageCoupling"/>
         <exclude name="LawOfDemeter"/>
         <exclude name="SignatureDeclareThrowsException"/>
+        <exclude name="ExcessiveImports"/>
     </rule>
     <rule ref="category/java/documentation.xml">
         <exclude name="CommentRequired"/>
@@ -64,6 +69,7 @@
         <exclude name="DataflowAnomalyAnalysis"/>
         <exclude name="AvoidLiteralsInIfCondition"/>
         <exclude name="BeanMembersShouldSerialize"/>
+        <exclude name="MissingSerialVersionUID"/>
     </rule>
     <rule ref="category/java/performance.xml">
         <exclude name="AvoidInstantiatingObjectsInLoops"/>

@@ -33,6 +33,19 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @link http://checkstyle.sourceforge.net/config.html
+ * @todo #772:30min Checkstyle and PMD rules overlap. Let's get rid of
+ *  checkstyle and PMD overlapping rules removing the checkstyle ones and making
+ *  sure that PMD ones have at least the same threshold as the removed
+ *  checkstyle checks (that is, we don't reduce code quality).
+ *  Following checks are equivalent:
+ *  checkstyle -> PMD
+ *  JavaNCSS (method and class) -> NcssMethodCount, NcssConstructorCount,
+ *                                 NcssTypeCount
+ *  CyclomaticComplexity -> CyclomaticComplexity, StdCyclomaticComplexity,
+ *                                 ModifiedCyclomaticComplexity
+ *  NPathComplexity->NPathComplexity
+ *  MethodLength -> ExcessiveMethodLength
+ *  IllegalCatch -> AvoidCatchingGenericException
  -->
 <module name="Checker">
     <!--
@@ -153,6 +166,11 @@
         <property name="message" value="Use 'java.nio.charset.StandardCharsets' instead"/>
     </module>
     <module name="RegexpSingleline">
+        <property name="format" value="com\.google\.common\.base\.Charsets"/>
+        <property name="fileExtensions" value="java"/>
+        <property name="message" value="Use 'java.nio.charset.StandardCharsets' instead"/>
+    </module>
+    <module name="RegexpSingleline">
         <property name="format" value="^(?! *(/\*\*|\*|/\*|//)).*[\.\-\+%/\*&lt;&gt;] *$"/>
         <property name="fileExtensions" value="java"/>
         <property name="message" value="Line cannot end with this symbol, move it to the next line"/>
@@ -169,9 +187,11 @@
         <property name="fileExtensions" value="java"/>
     </module>
 
-    <!--
-    Enable suppressions
-    -->
+    <module name="SuppressionFilter">
+        <property name="file" value="/com/qulice/checkstyle/suppressions.xml"/>
+        <property name="optional" value="false"/>
+    </module>
+
     <module name="TreeWalker">
         <property name="cacheFile" value="${cache.file}" />
 
@@ -265,7 +285,6 @@
         <module name="AvoidStaticImport" />
         <module name="IllegalImport"/>
         <module name="RedundantImport"/>
-        <module name="UnusedImports"/>
         <module name="ImportOrder"/>
 
         <module name="NoLineWrap"/>
@@ -350,7 +369,7 @@
             <property name="max" value="20"/>
         </module>
         <module name="LineLength">
-            <property name="max" value="80"/>
+            <property name="max" value="100"/>
             <property name="ignorePattern" value="^import .*$|^\s+\*\s.*https?:\/\/.+"/>
         </module>
         <module name="AnonInnerLength" />

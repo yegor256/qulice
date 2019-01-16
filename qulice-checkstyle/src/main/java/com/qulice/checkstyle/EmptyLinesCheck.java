@@ -32,7 +32,9 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Comparator;
 import java.util.regex.Pattern;
+import java.util.stream.StreamSupport;
 
 /**
  * Check for empty lines inside methods and constructors.
@@ -86,11 +88,12 @@ public final class EmptyLinesCheck extends AbstractCheck {
 
     @Override
     public void visitToken(final DetailAST ast) {
+        this.getLine(ast.getLastChild().getLine());
         if (ast.getType() == TokenTypes.OBJBLOCK
             && ast.getParent() != null
             && ast.getParent().getType() == TokenTypes.LITERAL_NEW) {
-            final DetailAST left = ast.findFirstToken(TokenTypes.LCURLY);
-            final DetailAST right = ast.findFirstToken(TokenTypes.RCURLY);
+            final DetailAST left = ast.getFirstChild();
+            final DetailAST right = ast.getLastChild();
             if (left != null && right != null) {
                 this.anons.add(
                     new LineRange(left.getLineNo(), right.getLineNo())
@@ -114,8 +117,8 @@ public final class EmptyLinesCheck extends AbstractCheck {
         final String[] lines = this.getLines();
         for (int line = 0; line < lines.length; ++line) {
             if (this.methods.inRange(line + 1)
-                && this.validInnerClassMethod(line + 1)
-                && EmptyLinesCheck.PATTERN.matcher(lines[line]).find()) {
+                && EmptyLinesCheck.PATTERN.matcher(lines[line]).find()
+                && this.insideMethod(line + 1)) {
                 this.log(line + 1, "Empty line inside method");
             }
         }
@@ -132,8 +135,29 @@ public final class EmptyLinesCheck extends AbstractCheck {
      * @param line The line to check if it is within a method or not.
      * @return True if the line is directly inside of a method.
      */
-    private boolean validInnerClassMethod(final int line) {
-        return !this.anons.inRange(line)
-            || this.methods.within(this.anons).inRange(line);
+    private boolean insideMethod(final int line) {
+        final int method = EmptyLinesCheck.linesBetweenBraces(
+            line, this.methods::iterator, Integer.MIN_VALUE
+        );
+        final int clazz = EmptyLinesCheck.linesBetweenBraces(
+            line, this.anons::iterator, Integer.MAX_VALUE
+        );
+        return method < clazz;
+    }
+
+    /**
+     * Find number of lines between braces that contain a given line.
+     * @param line Line to check
+     * @param iterator Iterable of line ranges
+     * @param def Default value if line is not within ranges
+     * @return Number of lines between braces
+     */
+    private static int linesBetweenBraces(final int line,
+        final Iterable<LineRange> iterator, final int def) {
+        return StreamSupport.stream(iterator.spliterator(), false)
+            .filter(r -> r.within(line))
+            .min(Comparator.comparingInt(r -> r.last() - r.first()))
+            .map(r -> r.last() - r.first())
+            .orElse(def);
     }
 }

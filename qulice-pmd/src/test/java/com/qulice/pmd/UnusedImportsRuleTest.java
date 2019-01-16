@@ -29,67 +29,36 @@
  */
 package com.qulice.pmd;
 
-import java.util.Arrays;
-import java.util.Collection;
-import org.hamcrest.Matchers;
+import org.hamcrest.core.IsEqual;
+import org.hamcrest.core.StringStartsWith;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 /**
- * Tests for disabled rules.
- * @since 0.16
+ * Test case for LocalVariableCouldBeFinal.
+ *
+ * @since 0.18
  */
-@RunWith(Parameterized.class)
-public final class PmdDisabledRulesTest {
+public class UnusedImportsRuleTest {
 
     /**
-     * Disabled rule name.
-     */
-    private final String rule;
-
-    /**
-     * Constructor.
-     * @param rule Disabled rule name.
-     */
-    public PmdDisabledRulesTest(final String rule) {
-        this.rule = rule;
-    }
-
-    /**
-     * Collection of disabled rules.
-     * @return Collection of disabled rules.
-     */
-    @Parameterized.Parameters
-    public static Collection<String[]> parameters() {
-        return Arrays.asList(
-            new String[][] {
-                {"UseConcurrentHashMap"},
-                {"DoNotUseThreads"},
-                {"AvoidUsingVolatile"},
-                {"DefaultPackage"},
-                {"ExcessiveImports"},
-                {"PositionLiteralsFirstInComparisons"},
-                {"MissingSerialVersionUID"},
-            }
-        );
-    }
-
-    /**
-     * PmdValidator has rules disabled.
-     * @throws Exception In case of error.
+     * UnusedImport can detect when the class has an unused import line and
+     * show error message correctly.
+     *
+     * @throws Exception If something goes wrong
      */
     @Test
-    public void disablesRules() throws Exception {
+    public final void detectUnusedImportLine() throws Exception {
         new PmdAssert(
-            String.format("%s.java", this.rule),
-            Matchers.any(Boolean.class),
-            Matchers.not(
-                Matchers.containsString(
-                    String.format("(%s)", this.rule)
-                )
+            "UnusedImports.java",
+            new IsEqual<>(false),
+            new StringStartsWith(
+                String.join(
+                    " ",
+                    "PMD: UnusedImports.java[3-3]: Avoid unused imports such",
+                    "as 'unused.bar.foo.UnusedImport'",
+                    "(UnusedImports)"
+                ).trim()
             )
         ).validate();
     }
-
 }

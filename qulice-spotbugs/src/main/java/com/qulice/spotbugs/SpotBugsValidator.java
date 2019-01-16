@@ -27,69 +27,27 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.qulice.pmd;
+package com.qulice.spotbugs;
 
-import java.util.Arrays;
-import java.util.Collection;
-import org.hamcrest.Matchers;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import com.qulice.spi.Environment;
+import com.qulice.spi.ValidationException;
+import com.qulice.spi.Validator;
 
 /**
- * Tests for disabled rules.
- * @since 0.16
+ * Validates source code and compiled binaries with SpotBugs.
+ *
+ * @since 0.19
  */
-@RunWith(Parameterized.class)
-public final class PmdDisabledRulesTest {
+public final class SpotBugsValidator implements Validator {
 
-    /**
-     * Disabled rule name.
-     */
-    private final String rule;
-
-    /**
-     * Constructor.
-     * @param rule Disabled rule name.
-     */
-    public PmdDisabledRulesTest(final String rule) {
-        this.rule = rule;
+    @Override
+    public void validate(final Environment env) throws ValidationException {
+        throw new UnsupportedOperationException("validate not implemented");
     }
 
-    /**
-     * Collection of disabled rules.
-     * @return Collection of disabled rules.
-     */
-    @Parameterized.Parameters
-    public static Collection<String[]> parameters() {
-        return Arrays.asList(
-            new String[][] {
-                {"UseConcurrentHashMap"},
-                {"DoNotUseThreads"},
-                {"AvoidUsingVolatile"},
-                {"DefaultPackage"},
-                {"ExcessiveImports"},
-                {"PositionLiteralsFirstInComparisons"},
-                {"MissingSerialVersionUID"},
-            }
-        );
-    }
-
-    /**
-     * PmdValidator has rules disabled.
-     * @throws Exception In case of error.
-     */
-    @Test
-    public void disablesRules() throws Exception {
-        new PmdAssert(
-            String.format("%s.java", this.rule),
-            Matchers.any(Boolean.class),
-            Matchers.not(
-                Matchers.containsString(
-                    String.format("(%s)", this.rule)
-                )
-            )
-        ).validate();
+    @Override
+    public String name() {
+        return "SpotBugs";
     }
 
 }
