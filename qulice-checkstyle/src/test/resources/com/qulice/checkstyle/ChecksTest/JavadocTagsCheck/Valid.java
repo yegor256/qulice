@@ -6,7 +6,17 @@
 /**
  * @since 0.28.3
  */
-public final class Invalid {
+public final class Valid {
     public void main() {
+    }
+
+    /**
+     * Inner.
+     *
+     * @since 3.14
+    */
+    private final static class Inner {
+        public void other() {
+        }
     }
 }

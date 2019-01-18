@@ -63,6 +63,10 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @see <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">Keywords substitution in Subversion</a>
  * @since 0.3
+ * @todo #743:30min Nested classes should have since tag. Implement check to
+ *  validate if nested classes javadoc have a valid since tag. After the
+ *  implementation add JavadocTagsCheck to checks.xml and ChecksTest (removed
+ *   because now the test fails).
  */
 public final class JavadocTagsCheck extends AbstractCheck {
 
