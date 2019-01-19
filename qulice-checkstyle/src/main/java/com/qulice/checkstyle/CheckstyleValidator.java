@@ -169,8 +169,10 @@ public final class CheckstyleValidator implements ResourceValidator {
         final URL url = CheckstyleValidator.toUrl(env, name);
         final String content;
         try {
-            content = IOUtils.toString(url.openStream(), Charset.defaultCharset())
-                .trim().replaceAll("[\\r\\n]+$", "");
+            content = IOUtils.toString(
+                url.openStream(),
+                Charset.defaultCharset()
+            ).trim().replaceAll("[\\r\\n]+$", "");
         } catch (final IOException ex) {
             throw new IllegalStateException("Failed to read license", ex);
         }

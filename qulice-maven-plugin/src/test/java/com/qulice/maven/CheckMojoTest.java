@@ -32,7 +32,6 @@ package com.qulice.maven;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Validator;
-import java.io.File;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;

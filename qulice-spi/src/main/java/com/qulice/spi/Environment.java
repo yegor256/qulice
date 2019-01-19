@@ -192,7 +192,11 @@ public interface Environment {
         public Environment.Mock withFile(final String name,
             final String content) throws IOException {
             final File file = new File(this.basedir, name);
-            FileUtils.writeStringToFile(file, content, Charset.defaultCharset());
+            FileUtils.writeStringToFile(
+                file,
+                content,
+                Charset.defaultCharset()
+            );
             return this;
         }
 
