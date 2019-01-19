@@ -107,7 +107,7 @@ public final class FindBugsValidatorTest {
      * FindbugsValidator throw exception for invalid file.
      * @throws Exception If something wrong happens inside
      * @todo #989 Failing test must be fixed. I ignored it, because it
-     * should not interfere with other development happening on master.
+     *  should not interfere with other development happening on master.
      */
     @Ignore
     @Test(expected = ValidationException.class)
