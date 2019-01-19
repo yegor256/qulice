@@ -35,6 +35,7 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -773,7 +774,8 @@ public final class CheckstyleValidatorTest {
             .withFile(
                 String.format("src/main/java/foo/%s", file),
                 IOUtils.toString(
-                    this.getClass().getResourceAsStream(file)
+                    this.getClass().getResourceAsStream(file),
+                    Charset.defaultCharset()
                 )
             );
         final Collection<Violation> results =

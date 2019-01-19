@@ -35,6 +35,7 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.FileUtils;
 
@@ -93,7 +94,7 @@ public final class PomXpathValidator implements MavenValidator {
                             "pom.xml"
                         )
                     ),
-                    Charsets.UTF_8
+                    StandardCharsets.UTF_8
                 )
             ).registerNs("pom", "http://maven.apache.org/POM/4.0.0");
         } catch (final IOException exc) {

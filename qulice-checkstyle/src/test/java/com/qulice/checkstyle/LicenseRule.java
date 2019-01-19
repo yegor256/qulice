@@ -32,6 +32,7 @@ package com.qulice.checkstyle;
 import com.jcabi.aspects.Tv;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.rules.TestRule;
@@ -121,7 +122,8 @@ public final class LicenseRule implements TestRule {
         FileUtils.forceDeleteOnExit(license);
         FileUtils.writeStringToFile(
             license,
-            StringUtils.join(this.lines, this.eol)
+            StringUtils.join(this.lines, this.eol),
+            Charset.defaultCharset()
         );
         if (this.directory != null) {
             this.makePackageInfo(this.directory);
@@ -152,7 +154,11 @@ public final class LicenseRule implements TestRule {
             .append(" */").append(this.eol)
             .append("package ").append(this.pkg)
             .append(';').append(this.eol);
-        FileUtils.writeStringToFile(info, body.toString());
+        FileUtils.writeStringToFile(
+            info,
+            body.toString(),
+            Charset.defaultCharset()
+        );
     }
 
 }

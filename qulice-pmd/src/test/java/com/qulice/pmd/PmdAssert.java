@@ -32,6 +32,7 @@ package com.qulice.pmd;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Collections;
 import org.apache.commons.io.IOUtils;
@@ -81,7 +82,8 @@ final class PmdAssert {
         final Environment env = mock.withFile(
             name,
             IOUtils.toString(
-                this.getClass().getResourceAsStream(this.file)
+                this.getClass().getResourceAsStream(this.file),
+                Charset.defaultCharset()
             )
         );
         final Collection<Violation> violations = new PmdValidator(env).validate(

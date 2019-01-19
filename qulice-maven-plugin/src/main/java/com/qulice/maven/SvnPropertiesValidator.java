@@ -32,6 +32,7 @@ package com.qulice.maven;
 import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -175,7 +176,10 @@ public final class SvnPropertiesValidator implements MavenValidator {
         try {
             final Process process = builder.start();
             process.waitFor();
-            return IOUtils.toString(process.getInputStream()).trim();
+            return IOUtils.toString(
+                process.getInputStream(),
+                Charset.defaultCharset()
+            ).trim();
         } catch (final java.io.IOException ex) {
             throw new IllegalArgumentException(ex);
         } catch (final InterruptedException ex) {

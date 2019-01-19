@@ -30,6 +30,7 @@
 package com.qulice.maven;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.Collections;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -55,7 +56,8 @@ public final class PomXpathValidatorTest {
             )
         ).mock();
         final String pom = IOUtils.toString(
-            this.getClass().getResourceAsStream("PomXpathValidator/pom.xml")
+            this.getClass().getResourceAsStream("PomXpathValidator/pom.xml"),
+            Charset.defaultCharset()
         );
         FileUtils.write(
             new File(
@@ -63,7 +65,8 @@ public final class PomXpathValidatorTest {
                     "%s%spom.xml", env.basedir(), File.separator
                 )
             ),
-            pom
+            pom,
+            Charset.defaultCharset()
         );
         new PomXpathValidator().validate(env);
     }
