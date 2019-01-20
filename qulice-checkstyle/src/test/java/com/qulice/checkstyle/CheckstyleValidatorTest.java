@@ -675,6 +675,22 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can allow final static fields and overrides
+     * to have uppercase abbreviations.
+     *
+     * @throws Exception In case of error
+     * @todo #897:30min Allow lambdas and generics to be places at end of line.
+     *  RegexpSingleline is too strict and not allow generics and lambdas
+     *  being placed at end of lines. Correct this behavior and uncomment test
+     *  below.
+     */
+    @Ignore
+    @Test
+    public void checkLambdaAndGenericsAtEndOfLine() throws Exception {
+        this.runValidation("ValidLambdaAndGenericsAtEndOfLine.java", true);
+    }
+
+    /**
      * CheckstyleValidator can reject non diamond operator usage.
      * @throws Exception If error
      */
