@@ -45,13 +45,14 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.cactoos.text.ReplacedText;
+import org.cactoos.text.TextOf;
+import org.cactoos.text.TrimmedText;
 import org.xml.sax.InputSource;
 
 /**
@@ -169,10 +170,15 @@ public final class CheckstyleValidator implements ResourceValidator {
         final URL url = CheckstyleValidator.toUrl(env, name);
         final String content;
         try {
-            content = IOUtils.toString(
-                url.openStream(),
-                Charset.defaultCharset()
-            ).trim().replaceAll("[\\r\\n]+$", "");
+            content = new ReplacedText(
+                new TrimmedText(
+                    new TextOf(
+                        url.openStream()
+                    )
+                ),
+                "[\\r\\n]+$",
+                ""
+            ).asString();
         } catch (final IOException ex) {
             throw new IllegalStateException("Failed to read license", ex);
         }

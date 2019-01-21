@@ -32,11 +32,12 @@ package com.qulice.maven;
 import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
 import java.io.File;
-import java.nio.charset.Charset;
 import java.util.Collection;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.apache.maven.project.MavenProject;
+import org.cactoos.text.TextOf;
+import org.cactoos.text.TrimmedText;
+import org.cactoos.text.UncheckedText;
 
 /**
  * Check for required svn properties in all text files.
@@ -176,10 +177,13 @@ public final class SvnPropertiesValidator implements MavenValidator {
         try {
             final Process process = builder.start();
             process.waitFor();
-            return IOUtils.toString(
-                process.getInputStream(),
-                Charset.defaultCharset()
-            ).trim();
+            return new UncheckedText(
+                new TrimmedText(
+                    new TextOf(
+                        process.getInputStream()
+                    )
+                )
+            ).asString();
         } catch (final java.io.IOException ex) {
             throw new IllegalArgumentException(ex);
         } catch (final InterruptedException ex) {

@@ -35,11 +35,12 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Collection;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.cactoos.io.ResourceOf;
 import org.cactoos.list.ListOf;
+import org.cactoos.text.FormattedText;
+import org.cactoos.text.JoinedText;
+import org.cactoos.text.TextOf;
 import org.hamcrest.Description;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -55,6 +56,8 @@ import org.junit.Test;
  * @todo #412:30min Split this class into smaller ones and remove PMD
  *  exclude `TooManyMethods`. Good candidates for moving out of this class
  *  are all that use `validateCheckstyle` method.
+ * @checkstyle ClassDataAbstractionCoupling (800 lines)
+ *  Can also be removed after splitting up this class into smaller ones.
  */
 @SuppressWarnings(
     {
@@ -633,10 +636,11 @@ public final class CheckstyleValidatorTest {
             file, false
         );
         final String name = "AbbreviationAsWordInNameCheck";
-        final String message = StringUtils.join(
-            "Abbreviation in name '%s' ",
+        final String message = new JoinedText(
+            " ",
+            "Abbreviation in name '%s'",
             "must contain no more than '2' consecutive capital letters."
-        );
+        ).asString();
         MatcherAssert.assertThat(
             results,
             Matchers.hasItems(
@@ -773,10 +777,11 @@ public final class CheckstyleValidatorTest {
         )
             .withFile(
                 String.format("src/main/java/foo/%s", file),
-                IOUtils.toString(
-                    this.getClass().getResourceAsStream(file),
-                    Charset.defaultCharset()
-                )
+                new TextOf(
+                    new ResourceOf(
+                        new FormattedText("com/qulice/checkstyle/%s", file)
+                    )
+                ).asString()
             );
         final Collection<Violation> results =
             new CheckstyleValidator(env).validate(

@@ -33,7 +33,8 @@ import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Collections;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
+import org.cactoos.io.ResourceOf;
+import org.cactoos.text.TextOf;
 import org.junit.Test;
 
 /**
@@ -55,10 +56,9 @@ public final class PomXpathValidatorTest {
                 "/pom:project/pom:dependencies/pom:dependency[pom:artifactId='commons-io']/pom:version[.='1.2.5']/text()"
             )
         ).mock();
-        final String pom = IOUtils.toString(
-            this.getClass().getResourceAsStream("PomXpathValidator/pom.xml"),
-            Charset.defaultCharset()
-        );
+        final String pom = new TextOf(
+            new ResourceOf("com/qulice/maven/PomXpathValidator/pom.xml")
+        ).asString();
         FileUtils.write(
             new File(
                 String.format(

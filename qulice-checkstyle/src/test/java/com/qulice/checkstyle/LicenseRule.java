@@ -34,7 +34,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.cactoos.text.JoinedText;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -122,7 +122,7 @@ public final class LicenseRule implements TestRule {
         FileUtils.forceDeleteOnExit(license);
         FileUtils.writeStringToFile(
             license,
-            StringUtils.join(this.lines, this.eol),
+            new JoinedText(this.eol, this.lines).asString(),
             Charset.defaultCharset()
         );
         if (this.directory != null) {

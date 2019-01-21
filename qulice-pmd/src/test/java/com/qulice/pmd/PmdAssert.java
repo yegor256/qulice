@@ -75,6 +75,8 @@ final class PmdAssert {
     /**
      * Validated given file against PMD.
      * @throws Exception In case of error.
+     * @todo #966:5min Add Cactoos dependency to qulice-pmd and replace IOUtils
+     *  usage with Cactoos alternatives `TextOf` and `ResourceOf`
      */
     public void validate() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
