@@ -31,7 +31,7 @@ package com.qulice.spi;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -195,7 +195,7 @@ public interface Environment {
             FileUtils.writeStringToFile(
                 file,
                 content,
-                Charset.defaultCharset()
+                StandardCharsets.UTF_8
             );
             return this;
         }

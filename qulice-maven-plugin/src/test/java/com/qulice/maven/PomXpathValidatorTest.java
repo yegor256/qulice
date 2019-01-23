@@ -30,7 +30,7 @@
 package com.qulice.maven;
 
 import java.io.File;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import org.apache.commons.io.FileUtils;
 import org.cactoos.io.ResourceOf;
@@ -66,7 +66,7 @@ public final class PomXpathValidatorTest {
                 )
             ),
             pom,
-            Charset.defaultCharset()
+            StandardCharsets.UTF_8
         );
         new PomXpathValidator().validate(env);
     }

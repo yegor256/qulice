@@ -33,7 +33,7 @@ import com.google.common.io.Files;
 import com.jcabi.log.Logger;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -70,7 +70,7 @@ public final class BytecodeMocker {
         FileUtils.writeStringToFile(
             input,
             this.source,
-            Charset.defaultCharset()
+            StandardCharsets.UTF_8
         );
         final ProcessBuilder builder = new ProcessBuilder(
             "javac",
@@ -92,7 +92,7 @@ public final class BytecodeMocker {
                     "Failed to compile '%s':%n%s", this.source,
                     IOUtils.toString(
                         process.getErrorStream(),
-                        Charset.defaultCharset()
+                        StandardCharsets.UTF_8
                     )
                 )
             );

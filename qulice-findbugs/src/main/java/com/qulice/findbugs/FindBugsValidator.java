@@ -44,7 +44,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
@@ -169,7 +168,7 @@ public final class FindBugsValidator implements Validator {
             FileUtils.writeStringToFile(
                 new File(path),
                 FindBugsValidator.generateExcludes(excludes),
-                Charset.defaultCharset()
+                StandardCharsets.UTF_8
             );
         } catch (final IOException exc) {
             throw new IllegalStateException(
