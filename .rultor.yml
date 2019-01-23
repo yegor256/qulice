@@ -3,9 +3,9 @@ architect:
 - yegor256
 - davvd
 install:
-- sudo gem install --no-ri --no-rdoc pdd
-- sudo gem install --no-ri --no-rdoc est
-- sudo gem install --no-ri --no-rdoc xcop
+- sudo gem install --no-document pdd
+- sudo gem install --no-document est
+- sudo gem install --no-document xcop
 assets:
   secring.gpg: zerocracy/home#assets/secring.gpg
   settings.xml: zerocracy/home#assets/qulice/settings.xml
