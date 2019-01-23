@@ -30,11 +30,17 @@
 package com.qulice.pmd;
 
 import org.hamcrest.Matchers;
+import org.hamcrest.core.IsEqual;
+import org.hamcrest.core.StringContains;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
  * Test case for {@link UseStringIsEmptyRule}.
  * @since 0.18
+ * @todo #950:30min UseStringIsEmptyRuleTest is not comparing all possible
+ *  targets. Implement the tests for the remaining targets (see complete list in
+ *  UseStringIsEmptyRule#getComparisonTargets).
  */
 public final class UseStringIsEmptyRuleTest {
 
@@ -88,4 +94,85 @@ public final class UseStringIsEmptyRuleTest {
         ).validate();
     }
 
+    /**
+     * UseStringIsEmptyRule can detect when this.String.length() is compared to
+     * 0.
+     * @throws Exception If something goes wrong
+     */
+    @Ignore
+    @Test
+    public void detectsLengthEqualsZeroThis() throws Exception {
+        new PmdAssert(
+            "StringLengthEqualsZeroThis.java", new IsEqual<>(false),
+            new StringContains(UseStringIsEmptyRuleTest.ERR_MESSAGE)
+        ).validate();
+    }
+
+    /**
+     * UseStringIsEmptyRule can detect when this.String.length() >= 1.
+     * @throws Exception If something goes wrong
+     */
+    @Ignore
+    @Test
+    public void detectsLengthGreaterOrEqualOneThis() throws Exception {
+        new PmdAssert(
+            "StringLengthGreaterOrEqualOneThis.java", new IsEqual<>(false),
+            new StringContains(UseStringIsEmptyRuleTest.ERR_MESSAGE)
+        ).validate();
+    }
+
+    /**
+     * UseStringIsEmptyRule can detect when this.String.length() < 1.
+     * @throws Exception If something goes wrong
+     */
+    @Ignore
+    @Test
+    public void detectsLengthLessThanOneThis() throws Exception {
+        new PmdAssert(
+            "StringLengthLessThanOneThis.java", new IsEqual<>(false),
+            new StringContains(UseStringIsEmptyRuleTest.ERR_MESSAGE)
+        ).validate();
+    }
+
+    /**
+     * UseStringIsEmptyRule can detect when this.String.length() is compared to
+     * 0, when String is returned by a method.
+     * @throws Exception If something goes wrong
+     */
+    @Ignore
+    @Test
+    public void detectsLengthEqualsZeroMethod() throws Exception {
+        new PmdAssert(
+            "StringLengthEqualsZeroMethod.java", new IsEqual<>(false),
+            new StringContains(UseStringIsEmptyRuleTest.ERR_MESSAGE)
+        ).validate();
+    }
+
+    /**
+     * UseStringIsEmptyRule can detect when this.String.length() >= 1, when
+     * String is returned by a method.
+     * @throws Exception If something goes wrong
+     */
+    @Ignore
+    @Test
+    public void detectsLengthGreaterOrEqualOneMethod() throws Exception {
+        new PmdAssert(
+            "StringLengthGreaterOrEqualOneMethod.java", new IsEqual<>(false),
+            new StringContains(UseStringIsEmptyRuleTest.ERR_MESSAGE)
+        ).validate();
+    }
+
+    /**
+     * UseStringIsEmptyRule can detect when this.String.length() < 1, when
+     * String is returned by a method.
+     * @throws Exception If something goes wrong
+     */
+    @Ignore
+    @Test
+    public void detectsLengthLessThanOneMethod() throws Exception {
+        new PmdAssert(
+            "StringLengthLessThanOneMethod.java", new IsEqual<>(false),
+            new StringContains(UseStringIsEmptyRuleTest.ERR_MESSAGE)
+        ).validate();
+    }
 }
