@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
  * Checks if inner classes are properly accessed using their qualified name
  * with the outer class.
  *
- * @since 0.19.10
+ * @since 0.18
  * @todo #738:30min Static inner classes should be qualified with outer class
  *  Implement QualifyInnerClassCheck so it follows what defined in
  *  QualifyInnerClassCheck test and add this check to checks.xml and CheckTest.
