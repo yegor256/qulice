@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2018, Qulice.com
+ * Copyright (c) 2011-2019, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,11 +37,17 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import java.util.List;
 
 /**
- * Checks that final class doesn't contain protected methods.
- *
- * <p>If your method contain protected methods than it can't be final
+ * Checks that final class doesn't contain protected methods unless they are
+ * overriding protected methods from superclass.
  *
  * @since 0.6
+ * @todo #917:30min Make ProtectedMethodInFinalClassCheck stricter.
+ *  ProtectedMethodInFinalClassCheck must check if the protected method in final
+ *  class isn't overriding some default method from abstract parent class and
+ *  fail if so. The Invalid class for tests is already implemented. After the
+ *  change in ProtectedMethodInFinalClassCheck complete the tests adding the
+ *  following line to violations.txt:
+ *  23:Protected method is overriding default scoped method
  */
 public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2018, Qulice.com
+ * Copyright (c) 2011-2019, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,12 +50,12 @@ import net.sourceforge.pmd.util.StringUtil;
  * Rule to prohibit use of String.length() when checking for empty string.
  * String.isEmpty() should be used instead.
  * @since 0.18
- * @todo #801:30min This rule currently doesn't complain if the string is
+ * @todo #950:30min Correct this class so it  complains if the string is
  *  prefixed with this when length is called (e.g. somestring.length() works
  *  but this.somestring.length() does not). The same happens in with a method
- *  call (this.method().length() does not work). Check if possible and if it
- *  is, extend this rule to also catch this case. More about how to write PMD
- *  rules here: http://pmd.sourceforge.net/pmd-4.3/howtowritearule.html.
+ *  call (this.method().length() does not work). More about how to write PMD
+ *  rules here: http://pmd.sourceforge.net/pmd-4.3/howtowritearule.html. Then
+ *  ignore the tests on UseStringIsEmptyRuleTest.
  */
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
