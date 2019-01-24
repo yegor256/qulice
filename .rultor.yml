@@ -12,12 +12,12 @@ assets:
   s3cfg: zerocracy/home#assets/s3cfg
 merge:
   script: |-
+    mvn clean
     pdd --source=$(pwd) --verbose --file=/dev/null 
     est --dir=est --file=/dev/null
     ./years.sh
     mvn clean install -Pqulice-profile -Pqulice --errors --settings ../settings.xml
     mvn clean site -Psite --errors --settings ../settings.xml
-    mvn clean
   commanders:
   - carlosmiranda
   - darkled
@@ -45,6 +45,7 @@ release:
     git commit -am "${tag}"
     mvn clean deploy -Pqulice-profile -Pqulice -Psonatype --errors --settings ../settings.xml
     mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml || echo 'site-deploy failed'
+    mvn clean
   commanders:
   - krzyk
   - yegor256
