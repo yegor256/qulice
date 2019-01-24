@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2018, Qulice.com
+ * Copyright (c) 2011-2019, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 /**
  * Checks if the classes in the file are final.
  *
- * @since 0.18.10
+ * @since 0.18
  * @todo #920:30min Qulice should prohibit any non-final class. Tests for
  *  this check have already been implemented in ProhibitNonFinalClassesCheck
  *  folder. After the implementation of this class add config.xml to folder
