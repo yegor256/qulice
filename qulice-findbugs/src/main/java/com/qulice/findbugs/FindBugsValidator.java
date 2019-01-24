@@ -167,7 +167,8 @@ public final class FindBugsValidator implements Validator {
         try {
             FileUtils.writeStringToFile(
                 new File(path),
-                FindBugsValidator.generateExcludes(excludes)
+                FindBugsValidator.generateExcludes(excludes),
+                StandardCharsets.UTF_8
             );
         } catch (final IOException exc) {
             throw new IllegalStateException(

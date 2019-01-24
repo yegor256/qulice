@@ -31,6 +31,7 @@ package com.qulice.spi;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -191,7 +192,11 @@ public interface Environment {
         public Environment.Mock withFile(final String name,
             final String content) throws IOException {
             final File file = new File(this.basedir, name);
-            FileUtils.writeStringToFile(file, content);
+            FileUtils.writeStringToFile(
+                file,
+                content,
+                StandardCharsets.UTF_8
+            );
             return this;
         }
 

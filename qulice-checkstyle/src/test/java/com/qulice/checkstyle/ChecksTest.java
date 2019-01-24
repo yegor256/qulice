@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -122,7 +123,8 @@ public final class ChecksTest {
             IOUtils.toString(
                 this.getClass().getResourceAsStream(
                     String.format("%s/violations.txt", this.dir)
-                )
+                ),
+                StandardCharsets.UTF_8
             ),
             "\n"
         );

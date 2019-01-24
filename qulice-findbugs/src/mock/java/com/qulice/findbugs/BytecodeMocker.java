@@ -33,6 +33,7 @@ import com.google.common.io.Files;
 import com.jcabi.log.Logger;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -66,7 +67,11 @@ public final class BytecodeMocker {
     public byte[] mock() throws IOException {
         final File outdir = Files.createTempDir();
         final File input = File.createTempFile("input", ".java");
-        FileUtils.writeStringToFile(input, this.source);
+        FileUtils.writeStringToFile(
+            input,
+            this.source,
+            StandardCharsets.UTF_8
+        );
         final ProcessBuilder builder = new ProcessBuilder(
             "javac",
             "-d",
@@ -85,7 +90,10 @@ public final class BytecodeMocker {
             throw new IllegalStateException(
                 String.format(
                     "Failed to compile '%s':%n%s", this.source,
-                    IOUtils.toString(process.getErrorStream())
+                    IOUtils.toString(
+                        process.getErrorStream(),
+                        StandardCharsets.UTF_8
+                    )
                 )
             );
         }

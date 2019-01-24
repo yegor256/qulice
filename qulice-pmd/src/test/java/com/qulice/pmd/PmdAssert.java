@@ -32,6 +32,7 @@ package com.qulice.pmd;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.Collections;
 import org.apache.commons.io.IOUtils;
@@ -74,6 +75,8 @@ final class PmdAssert {
     /**
      * Validated given file against PMD.
      * @throws Exception In case of error.
+     * @todo #966:5min Add Cactoos dependency to qulice-pmd and replace IOUtils
+     *  usage with Cactoos alternatives `TextOf` and `ResourceOf`
      */
     public void validate() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
@@ -81,7 +84,8 @@ final class PmdAssert {
         final Environment env = mock.withFile(
             name,
             IOUtils.toString(
-                this.getClass().getResourceAsStream(this.file)
+                this.getClass().getResourceAsStream(this.file),
+                StandardCharsets.UTF_8
             )
         );
         final Collection<Violation> violations = new PmdValidator(env).validate(

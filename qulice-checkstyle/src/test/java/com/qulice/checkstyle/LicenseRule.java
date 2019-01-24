@@ -32,8 +32,9 @@ package com.qulice.checkstyle;
 import com.jcabi.aspects.Tv;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.cactoos.text.JoinedText;
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
@@ -121,7 +122,8 @@ public final class LicenseRule implements TestRule {
         FileUtils.forceDeleteOnExit(license);
         FileUtils.writeStringToFile(
             license,
-            StringUtils.join(this.lines, this.eol)
+            new JoinedText(this.eol, this.lines).asString(),
+            StandardCharsets.UTF_8
         );
         if (this.directory != null) {
             this.makePackageInfo(this.directory);
@@ -152,7 +154,11 @@ public final class LicenseRule implements TestRule {
             .append(" */").append(this.eol)
             .append("package ").append(this.pkg)
             .append(';').append(this.eol);
-        FileUtils.writeStringToFile(info, body.toString());
+        FileUtils.writeStringToFile(
+            info,
+            body.toString(),
+            StandardCharsets.UTF_8
+        );
     }
 
 }
