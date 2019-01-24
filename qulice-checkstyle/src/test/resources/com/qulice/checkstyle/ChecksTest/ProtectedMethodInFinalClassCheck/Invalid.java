@@ -13,4 +13,15 @@ public final class Invalid {
     private static final class Bar {
        protected void valid() {}
     }
+
+    private abstract static class Foo {
+        void valid() {};
+    }
+
+    private final static class FooChild extends Invalid.Foo {
+        @Override
+        protected void valid() {
+            return;
+        }
+    }
 }
