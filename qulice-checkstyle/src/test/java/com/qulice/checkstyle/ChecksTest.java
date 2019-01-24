@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2018, Qulice.com
+ * Copyright (c) 2011-2019, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -68,7 +68,6 @@ public final class ChecksTest {
         "StringLiteralsConcatenationCheck",
         "EmptyLinesCheck",
         "ImportCohesionCheck",
-        "JavadocTagsCheck",
         "BracketsStructureCheck",
         "CurlyBracketsStructureCheck",
         "JavadocLocationCheck",

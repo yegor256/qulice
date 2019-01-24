@@ -11,9 +11,8 @@ env:
 install:
   - set -e
   - travis_retry sudo apt-get install -y --fix-missing libmagic1 libmagic-dev
-  - gem install --no-ri --no-rdoc pdd
-  - gem install --no-ri --no-rdoc est
-  - gem install --no-ri --no-rdoc xcop
+  - gem install --no-document pdd
+  - gem install --no-document est
   - mvn install -DskipTests -Dinvoker.skip
   - mvn clean
   - set +e

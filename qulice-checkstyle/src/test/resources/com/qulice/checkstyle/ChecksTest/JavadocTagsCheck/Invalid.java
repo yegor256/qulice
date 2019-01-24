@@ -16,3 +16,15 @@ public final class ProhibitedTagsAndMissingSince {
  */
 public final class InvalidSince {
 }
+
+/**
+ * This class have an inner class with no since tag.
+ * @since 1.0
+ */
+public final class InvalidInner {
+    /**
+     * Inner class without since tag.
+     */
+    public final class InvalidInnerSince {
+    }
+}
