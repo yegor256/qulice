@@ -6,6 +6,9 @@ public final class Valid {
     private static final Invalid INSTANCE = new Invalid();
     private static final int[] OTHER_INSTANCE = { 1, 2, 3, 4 };
     private static final int NUMBER = 5;
+    private static final int DERIVED = 5 * Valid.BASE;
+    private static final int BASE = 1;
+    private static final int OTHERDERIVED = 2 * Valid.BASE;
     private static final long serialVersionUID = 1L;
     private final transient OutputStream stream = new ByteArrayOutputStream();
     protected String NAME = "DDD";
@@ -14,6 +17,8 @@ public final class Valid {
     private static final String NAME = "name";
     static {
         System.out.println(INSTANCE.toString());
+        System.out.println(DERIVED.toString());
+        System.out.println(OTHERDERIVED.toString());
     }
     {
         System.out.println("Before start");
