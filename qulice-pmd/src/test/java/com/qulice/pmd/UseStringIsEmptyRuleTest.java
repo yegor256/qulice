@@ -36,12 +36,19 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- * Test case for {@link UseStringIsEmptyRule}.
+ * Test case for {@link com.qulice.pmd.rules.UseStringIsEmptyRule}.
  * @since 0.18
- * @todo #950:30min UseStringIsEmptyRuleTest is not comparing all possible
- *  targets. Implement the tests for the remaining targets (see complete list in
- *  UseStringIsEmptyRule#getComparisonTargets).
+ * @todo #1000:30min UseStringIsEmptyRuleTest is not comparing all possible
+ *  targets. Implement the tests for the remaining targets (see
+ *  complete list in UseStringIsEmptyRule#getComparisonTargets). Conditions
+ *  that must be tested are checking string length when the String is the
+ *  result of a method (this.method().length()) and when the String is a class
+ *  field (this.somestring.length()). Use the same name and file pattern used
+ *  in the test methods, appending 'This' or 'Method' suffix to indicate
+ *  which access type the test relates to (field or method), renaming the
+ *  tests if needed.
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class UseStringIsEmptyRuleTest {
 
     /**
@@ -49,6 +56,36 @@ public final class UseStringIsEmptyRuleTest {
      */
     private static final String ERR_MESSAGE =
         "Use String.isEmpty() when checking for empty string";
+
+    /**
+     * UseStringIsEmptyRule can detect when String.length() < 1,
+     * when the String is a local variable.
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    public void detectsLengthLessThanOne() throws Exception {
+        new PmdAssert(
+            "StringLengthLessThanOne.java", Matchers.is(false),
+            Matchers.containsString(
+                UseStringIsEmptyRuleTest.ERR_MESSAGE
+            )
+        ).validate();
+    }
+
+    /**
+     * UseStringIsEmptyRule can detect when String.length() > 0,
+     * when the String is a local variable.
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    public void detectsLengthGreaterThanZero() throws Exception {
+        new PmdAssert(
+            "StringLengthGreaterThanZero.java", Matchers.is(false),
+            Matchers.containsString(
+                UseStringIsEmptyRuleTest.ERR_MESSAGE
+            )
+        ).validate();
+    }
 
     /**
      * UseStringIsEmptyRule can detect when String.length() is compared to 0.
@@ -65,14 +102,14 @@ public final class UseStringIsEmptyRuleTest {
     }
 
     /**
-     * UseStringIsEmptyRule can detect when String.length() >= 1,
-     * when the String is returned by a method.
+     * UseStringIsEmptyRule can detect when String.length() != 1,
+     * when the String is a local variable.
      * @throws Exception If something goes wrong
      */
     @Test
-    public void detectsLengthGreaterOrEqualOne() throws Exception {
+    public void detectsLengthNotEqualsZero() throws Exception {
         new PmdAssert(
-            "StringFromMethodLength.java", Matchers.is(false),
+            "StringLengthNotEqualsZero.java", Matchers.is(false),
             Matchers.containsString(
                 UseStringIsEmptyRuleTest.ERR_MESSAGE
             )
@@ -80,14 +117,44 @@ public final class UseStringIsEmptyRuleTest {
     }
 
     /**
-     * UseStringIsEmptyRule can detect when String.length() < 1,
+     * UseStringIsEmptyRule can detect when String.length() >= 0,
+     * when the String is returned by a method.
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    public void detectsLengthGreaterOrEqualZero() throws Exception {
+        new PmdAssert(
+            "StringLengthGreaterOrEqualZero.java", Matchers.is(false),
+            Matchers.containsString(
+                UseStringIsEmptyRuleTest.ERR_MESSAGE
+            )
+        ).validate();
+    }
+
+    /**
+     * UseStringIsEmptyRule can detect when String.length() >= 1,
+     * when the String is returned by a method.
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    public void detectsLengthGreaterOrEqualOne() throws Exception {
+        new PmdAssert(
+            "StringLengthGreaterOrEqualOne.java", Matchers.is(false),
+            Matchers.containsString(
+                UseStringIsEmptyRuleTest.ERR_MESSAGE
+            )
+        ).validate();
+    }
+
+    /**
+     * UseStringIsEmptyRule can detect when String.length() <= 0,
      * when the String is a local variable.
      * @throws Exception If something goes wrong
      */
     @Test
-    public void detectsLengthLessThanOne() throws Exception {
+    public void detectsLengthLessOrEqualZero() throws Exception {
         new PmdAssert(
-            "LocalStringLength.java", Matchers.is(false),
+            "StringLengthLessOrEqualZero.java", Matchers.is(false),
             Matchers.containsString(
                 UseStringIsEmptyRuleTest.ERR_MESSAGE
             )
