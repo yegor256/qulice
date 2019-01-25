@@ -30,8 +30,11 @@
 package com.qulice.pmd;
 
 import org.hamcrest.Matchers;
+import org.hamcrest.collection.IsIn;
 import org.hamcrest.core.IsEqual;
+import org.hamcrest.core.IsSame;
 import org.hamcrest.core.StringContains;
+import org.hamcrest.object.HasToString;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -65,8 +68,8 @@ public final class UseStringIsEmptyRuleTest {
     @Test
     public void detectsLengthLessThanOne() throws Exception {
         new PmdAssert(
-            "StringLengthLessThanOne.java", Matchers.is(false),
-            Matchers.containsString(
+            "StringLengthLessThanOne.java", new IsEqual<>(false),
+            new StringContains(
                 UseStringIsEmptyRuleTest.ERR_MESSAGE
             )
         ).validate();
@@ -80,8 +83,8 @@ public final class UseStringIsEmptyRuleTest {
     @Test
     public void detectsLengthGreaterThanZero() throws Exception {
         new PmdAssert(
-            "StringLengthGreaterThanZero.java", Matchers.is(false),
-            Matchers.containsString(
+            "StringLengthGreaterThanZero.java", new IsEqual<>(false),
+            new StringContains(
                 UseStringIsEmptyRuleTest.ERR_MESSAGE
             )
         ).validate();
@@ -94,8 +97,8 @@ public final class UseStringIsEmptyRuleTest {
     @Test
     public void detectsLengthEqualsZero() throws Exception {
         new PmdAssert(
-            "StringLengthEqualsZero.java", Matchers.is(false),
-            Matchers.containsString(
+            "StringLengthEqualsZero.java", new IsEqual<>(false),
+            new StringContains(
                 UseStringIsEmptyRuleTest.ERR_MESSAGE
             )
         ).validate();
@@ -109,8 +112,8 @@ public final class UseStringIsEmptyRuleTest {
     @Test
     public void detectsLengthNotEqualsZero() throws Exception {
         new PmdAssert(
-            "StringLengthNotEqualsZero.java", Matchers.is(false),
-            Matchers.containsString(
+            "StringLengthNotEqualsZero.java", new IsEqual<>(false),
+            new StringContains(
                 UseStringIsEmptyRuleTest.ERR_MESSAGE
             )
         ).validate();
@@ -124,8 +127,8 @@ public final class UseStringIsEmptyRuleTest {
     @Test
     public void detectsLengthGreaterOrEqualZero() throws Exception {
         new PmdAssert(
-            "StringLengthGreaterOrEqualZero.java", Matchers.is(false),
-            Matchers.containsString(
+            "StringLengthGreaterOrEqualZero.java", new IsEqual<>(false),
+            new StringContains(
                 UseStringIsEmptyRuleTest.ERR_MESSAGE
             )
         ).validate();
@@ -139,8 +142,8 @@ public final class UseStringIsEmptyRuleTest {
     @Test
     public void detectsLengthGreaterOrEqualOne() throws Exception {
         new PmdAssert(
-            "StringLengthGreaterOrEqualOne.java", Matchers.is(false),
-            Matchers.containsString(
+            "StringLengthGreaterOrEqualOne.java", new IsEqual<>(false),
+            new StringContains(
                 UseStringIsEmptyRuleTest.ERR_MESSAGE
             )
         ).validate();
@@ -154,8 +157,8 @@ public final class UseStringIsEmptyRuleTest {
     @Test
     public void detectsLengthLessOrEqualZero() throws Exception {
         new PmdAssert(
-            "StringLengthLessOrEqualZero.java", Matchers.is(false),
-            Matchers.containsString(
+            "StringLengthLessOrEqualZero.java", new IsEqual<>(false),
+            new StringContains(
                 UseStringIsEmptyRuleTest.ERR_MESSAGE
             )
         ).validate();
