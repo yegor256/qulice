@@ -29,12 +29,8 @@
  */
 package com.qulice.pmd;
 
-import org.hamcrest.Matchers;
-import org.hamcrest.collection.IsIn;
 import org.hamcrest.core.IsEqual;
-import org.hamcrest.core.IsSame;
 import org.hamcrest.core.StringContains;
-import org.hamcrest.object.HasToString;
 import org.junit.Ignore;
 import org.junit.Test;
 
