@@ -35,12 +35,14 @@ public final class ValidDiamondsUsage {
 
     /**
      * Simple interface, used as wrapper.
+     * @since 1.0
      */
     interface SimpleInterface {
 
         /**
          * Inner class with generic parameter.
          * @param <E> generic parameter
+         * @since 1.0
          */
         final class InnerClass<E> implements SimpleInterface {
 
