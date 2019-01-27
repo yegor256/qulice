@@ -67,7 +67,7 @@ public final class SpotBugsValidatorTest {
             .withFile(
                 "target/classes/Foo.class",
                 "class Foo { public Foo clone() { return this; } }"
-            ).withExcludes("Foo").withDefaultClasspath();
+            ).withExcludes("any check", "Foo").withDefaultClasspath();
         new SpotBugsValidator().validate(env);
     }
 
@@ -84,7 +84,7 @@ public final class SpotBugsValidatorTest {
             ).withFile(
                 "target/classes/Bar.java",
                 "class Bar { public Bar clone() { return this; } }"
-            ).withExcludes("Foo,Bar")
+            ).withExcludes("not implemented", "Foo,Bar")
             .withDefaultClasspath();
         new SpotBugsValidator().validate(env);
     }

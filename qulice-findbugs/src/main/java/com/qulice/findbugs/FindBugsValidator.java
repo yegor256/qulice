@@ -109,14 +109,42 @@ public final class FindBugsValidator implements Validator {
         args.add(
             StringUtils.join(env.classpath(), ",").replace("\\", "/")
         );
-        final Iterable<String> excludes = env.excludes("findbugs");
         args.add(this.jar(FBContrib.class).toString());
-        if (excludes.iterator().hasNext()) {
-            args.add(FindBugsValidator.excludes(env, excludes));
-        }
+        FindBugsValidator.populateExcludes(args, env);
         return new VerboseProcess(
             new ProcessBuilder(args), Level.INFO, Level.INFO
         ).stdout();
+    }
+
+    /**
+     * Takes exclusions from the rules.
+     * Either from the file filter like:
+     * findbugs-filter:dir/path.xml
+     * or from the class exclusion like
+     * findbugs:org.package.Class
+     * @param args Argument list that will be populated
+     * @param env Environment
+     */
+    private static void populateExcludes(final List<String> args,
+        final Environment env) {
+        final Collection<String> filter = env.excludes("findbugs-filter");
+        if (filter.size() > 1) {
+            throw new IllegalStateException(
+                "Only one findbugs-filter file allowed"
+            );
+        }
+        final Collection<String> excludes = env.excludes("findbugs");
+        if (!filter.isEmpty() && !excludes.isEmpty()) {
+            throw new IllegalStateException(
+                "You can't combine findbugs and findbugs-filter together"
+            );
+        }
+        if (!filter.isEmpty()) {
+            args.add(filter.iterator().next());
+        }
+        if (!excludes.isEmpty()) {
+            args.add(FindBugsValidator.excludes(env, excludes));
+        }
     }
 
     /**

@@ -32,6 +32,12 @@ package com.qulice.findbugs;
 import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
+import java.io.File;
+import java.io.FileOutputStream;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.io.XMLWriter;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -129,7 +135,7 @@ public final class FindBugsValidatorTest {
             .mock();
         final Environment env = new Environment.Mock()
             .withFile("target/classes/Foo.class", bytecode)
-            .withExcludes("Foo")
+            .withExcludes("findbugs", "Foo")
             .withDefaultClasspath();
         new FindBugsValidator().validate(env);
     }
@@ -149,8 +155,93 @@ public final class FindBugsValidatorTest {
         final Environment env = new Environment.Mock()
             .withFile("target/classes/Foo.class", bytecode)
             .withFile("target/classes/Bar.class", another)
-            .withExcludes("Foo,Bar")
+            .withExcludes("findbugs", "Foo,Bar")
             .withDefaultClasspath();
+        new FindBugsValidator().validate(env);
+    }
+
+    /**
+     * Test of findbugs-filter
+     * Having a class with the same name as interface (Remote)
+     * violates findbugs rule NM_SAME_SIMPLE_NAME_AS_INTERFACE
+     * so we disable the rule by providing the file.
+     * @throws Exception If something wrong
+     */
+    @Test
+    public void excludesFileFilter() throws Exception {
+        final File tmp = File.createTempFile("findbugs-filter", ".xml");
+        final Document document = DocumentHelper.createDocument();
+        final Element match = document
+            .addElement("FindBugsFilter")
+            .addElement("Match");
+        match.addElement("Bug").addAttribute(
+            "pattern",
+            "NM_SAME_SIMPLE_NAME_AS_INTERFACE"
+        );
+        match.addElement("Class").addAttribute(
+            "name",
+            "Remote"
+        );
+        new XMLWriter(
+            new FileOutputStream(tmp)
+        ).write(document);
+        final byte[] bytecode = new BytecodeMocker()
+            .withSource("class Remote implements java.rmi.Remote { }")
+            .mock();
+        final Environment env = new Environment.Mock()
+            .withFile("target/classes/Remote.class", bytecode)
+            .withDefaultClasspath()
+            .withExcludes(
+                "findbugs-filter",
+                tmp.getAbsolutePath()
+            );
+        new FindBugsValidator().validate(env);
+    }
+
+    /**
+     * Test of findbugs-filter exception.
+     * There can only be one file filter
+     * @throws Exception Illegal config
+     */
+    @Test(expected = IllegalStateException.class)
+    public void haveTwoFileFiltersIsIncorrect() throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "target/classes/Remote.class",
+                new BytecodeMocker()
+                    .withSource("class Remote implements java.rmi.Remote { }")
+                    .mock()
+            )
+            .withDefaultClasspath()
+            .withExcludes(
+                "findbugs-filter",
+                "file.xml,file2.xml"
+            );
+        new FindBugsValidator().validate(env);
+    }
+
+    /**
+     * Either file filter or class filters exception is allowed.
+     * but not both together
+     * @throws Exception Illegal config
+     */
+    @Test(expected = IllegalStateException.class)
+    public void mixClassesAndFileFiltersIsIncorrect() throws Exception {
+        final Environment env = new Environment.Mock()
+            .withFile(
+                "target/classes/Remote.class",
+                new BytecodeMocker()
+                    .withSource("class Remote implements java.rmi.Remote { }")
+                    .mock()
+            )
+            .withDefaultClasspath()
+            .withExcludes(
+                "findbugs-filter",
+                "file.xml"
+            ).withExcludes(
+                "findbugs",
+                "org.company.Class"
+            );
         new FindBugsValidator().validate(env);
     }
 

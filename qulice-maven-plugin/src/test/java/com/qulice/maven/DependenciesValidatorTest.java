@@ -153,6 +153,7 @@ public final class DependenciesValidatorTest {
         new DependenciesValidator().validate(
             new MavenEnvironment.Wrap(
                 new Environment.Mock().withExcludes(
+                    "dependencies",
                     Joiner.on(':').join(
                         artifact.getGroupId(), artifact.getArtifactId()
                     )
@@ -187,6 +188,7 @@ public final class DependenciesValidatorTest {
         new DependenciesValidator().validate(
             new MavenEnvironment.Wrap(
                 new Environment.Mock().withExcludes(
+                    "dependencies",
                     Joiner.on(':').join(
                         artifact.getGroupId(), artifact.getArtifactId()
                     )

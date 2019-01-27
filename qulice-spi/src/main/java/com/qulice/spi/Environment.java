@@ -38,6 +38,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.apache.commons.io.FileUtils;
@@ -140,7 +141,7 @@ public interface Environment {
         /**
          * Exclude patterns.
          */
-        private String excl;
+        private final Map<String, List<String>> excl;
 
         /**
          * Public ctor.
@@ -170,6 +171,7 @@ public interface Environment {
             this.classpath.add(
                 this.outdir().getAbsolutePath().replace(File.separatorChar, '/')
             );
+            this.excl = new HashMap<>();
         }
         /**
          * With this param and its value.
@@ -216,13 +218,19 @@ public interface Environment {
 
         /**
          * With exclude patterns.
+         * @param check Name of the checker
          * @param excludes Exclude patterns
          * @return This object
          */
-        public Environment.Mock withExcludes(final String excludes) {
-            this.excl = excludes;
+        public Environment.Mock withExcludes(final String check,
+            final String excludes) {
+            this.excl.put(
+                check,
+                Arrays.asList(excludes.split(","))
+            );
             return this;
         }
+
         /**
          * With default classpath.
          * @return This object
@@ -298,13 +306,8 @@ public interface Environment {
 
         @Override
         public Collection<String> excludes(final String checker) {
-            final Collection<String> exc;
-            if (this.excl == null) {
-                exc = Collections.emptyList();
-            } else {
-                exc = Arrays.asList(this.excl.split(","));
-            }
-            return exc;
+            return this.excl.getOrDefault(checker, Collections.emptyList());
         }
+
     }
 }
