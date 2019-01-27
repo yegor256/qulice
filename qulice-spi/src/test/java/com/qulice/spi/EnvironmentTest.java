@@ -32,7 +32,7 @@ package com.qulice.spi;
 import java.io.File;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Environment}.

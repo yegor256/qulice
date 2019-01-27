@@ -32,7 +32,7 @@ package com.qulice.maven;
 import com.qulice.spi.Environment;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link ValidatorsProvider} class.

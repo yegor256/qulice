@@ -178,12 +178,6 @@
             <artifactId>maven-plugin-testing-harness</artifactId>
             <version>3.1.0</version>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
@@ -223,6 +217,14 @@
             <artifactId>hibernate-validator</artifactId>
             <version>5.0.0.Final</version>
             <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
         </dependency>
     </dependencies>
     <build>

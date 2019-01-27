@@ -46,9 +46,9 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.collection.IsIterableContainingInOrder;
-import org.junit.Ignore;
 import org.junit.Rule;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link CheckstyleValidator} class.
@@ -430,7 +430,7 @@ public final class CheckstyleValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    @Ignore
+    @Disabled
     public void passesWindowsEndsOfLineWithoutException() throws Exception {
         this.validate("WindowsEol.java", false, "LICENSE found:");
     }
@@ -444,7 +444,7 @@ public final class CheckstyleValidatorTest {
      *  correctly. (see changes done in #61)
      */
     @Test
-    @Ignore
+    @Disabled
     public void testWindowsEndsOfLineWithLinuxSources() throws Exception {
         this.runValidation("WindowsEolLinux.java", false);
     }
@@ -689,7 +689,7 @@ public final class CheckstyleValidatorTest {
      *  being placed at end of lines. Correct this behavior and uncomment test
      *  below.
      */
-    @Ignore
+    @Disabled
     @Test
     public void checkLambdaAndGenericsAtEndOfLine() throws Exception {
         this.runValidation("ValidLambdaAndGenericsAtEndOfLine.java", true);

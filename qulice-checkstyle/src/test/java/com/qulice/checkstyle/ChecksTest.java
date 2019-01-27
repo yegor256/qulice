@@ -45,8 +45,9 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ParameterResolver;
 import org.junit.runners.Parameterized;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
@@ -57,7 +58,7 @@ import org.xml.sax.InputSource;
  * Integration test case for all checkstyle checks.
  * @since 0.3
  */
-@RunWith(Parameterized.class)
+@ExtendWith(ParameterResolver.class)
 public final class ChecksTest {
 
     /**
