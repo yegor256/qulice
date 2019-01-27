@@ -69,6 +69,11 @@ public final class DependenciesValidatorTest {
     private static final String TYPE = "jar";
 
     /**
+     * Dependencies check.
+     */
+    private static final String DEPENDENCIES = "dependencies";
+
+    /**
      * DependencyValidator can pass on when no violations are found.
      * @throws Exception If something wrong happens inside
      */
@@ -153,7 +158,7 @@ public final class DependenciesValidatorTest {
         new DependenciesValidator().validate(
             new MavenEnvironment.Wrap(
                 new Environment.Mock().withExcludes(
-                    "dependencies",
+                    DependenciesValidatorTest.DEPENDENCIES,
                     Joiner.on(':').join(
                         artifact.getGroupId(), artifact.getArtifactId()
                     )
@@ -188,7 +193,7 @@ public final class DependenciesValidatorTest {
         new DependenciesValidator().validate(
             new MavenEnvironment.Wrap(
                 new Environment.Mock().withExcludes(
-                    "dependencies",
+                    DependenciesValidatorTest.DEPENDENCIES,
                     Joiner.on(':').join(
                         artifact.getGroupId(), artifact.getArtifactId()
                     )
