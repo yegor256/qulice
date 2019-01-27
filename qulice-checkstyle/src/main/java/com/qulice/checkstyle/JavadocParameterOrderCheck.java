@@ -30,36 +30,216 @@
 package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Checks method parameters order to comply with what is defined in method
  * javadoc.
  *
  * @since 0.18.10
- * @todo #847:30min Enforce right parameter order in javadoc. Checkstyle must
- *  check if parameter order in javadoc is the same as is in the method
- *  signature. Implement this check and add its tests to checks.xml under
- *  custom checks.
  */
+@SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.LongVariable"})
 public final class JavadocParameterOrderCheck extends AbstractCheck {
+
+    /**
+    * Compiled regexp to match Javadoc tags that take an argument.
+    */
+    private static final Pattern MATCH_JAVADOC_ARG = CommonUtil.createPattern(
+        "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(param)\\s+(\\S+)\\s+\\S*"
+    );
+
+    /**
+    * Compiled regexp to match first part of multilineJavadoc tags.
+    */
+    private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START =
+        CommonUtil.createPattern(
+            "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(param)\\s+(\\S+)\\s*$"
+        );
+
+    /**
+    * Compiled regexp to look for a continuation of the comment.
+    */
+    private static final Pattern MATCH_JAVADOC_MULTILINE_CONT =
+        CommonUtil.createPattern("(\\*/|@|[^\\s\\*])");
+
+    /**
+    * Multiline finished at end of comment.
+    */
+    private static final String END_JAVADOC = "*/";
+
+    /**
+    * Multiline finished at next Javadoc.
+    */
+    private static final String NEXT_TAG = "@";
+
     @Override
     public int[] getDefaultTokens() {
-        throw new UnsupportedOperationException(
-            "getDefaultTokens() not implemented"
-        );
+        return new int[] {
+            TokenTypes.CTOR_DEF,
+            TokenTypes.METHOD_DEF,
+        };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        throw new UnsupportedOperationException(
-            "getAcceptableTokens() not implemented"
-        );
+        return this.getDefaultTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        throw new UnsupportedOperationException(
-            "getRequiredTokens() not implemented"
-        );
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public void visitToken(final DetailAST ast) {
+        final FileContents contents = getFileContents();
+        final TextBlock doc = contents.getJavadocBefore(ast.getLineNo());
+        if (doc != null) {
+            final List<JavadocTag> tags = getMethodTags(doc);
+            final List<DetailAST> parameters = getParameters(ast);
+            for (int param = 0; param < parameters.size(); param = param + 1) {
+                if (!parameters.get(param).getText().equals(
+                    tags.get(param).getFirstArg()
+                    )
+                ) {
+                    this.log(
+                        tags.get(param).getLineNo(),
+                        // @checkstyle LineLength (1 line)
+                        "Javadoc parameter order different than method signature"
+                    );
+                }
+            }
+        }
+    }
+
+    /**
+     * Returns the param tags in a javadoc comment.
+     *
+     * @param comment The Javadoc comment
+     * @return The param tags found
+     */
+    private static List<JavadocTag> getMethodTags(final TextBlock comment) {
+        final String[] lines = comment.getText();
+        final List<JavadocTag> tags = new ArrayList<>(0);
+        int current = comment.getStartLineNo() - 1;
+        final int start = comment.getStartColNo();
+        for (int line = 0; line < lines.length; line = line + 1) {
+            current = current + 1;
+            final Matcher docmatcher =
+                MATCH_JAVADOC_ARG.matcher(lines[line]);
+            final Matcher multiline =
+                MATCH_JAVADOC_ARG_MULTILINE_START.matcher(lines[line]);
+            if (docmatcher.find()) {
+                final int col = calculateTagColumn(
+                    docmatcher, line, start
+                );
+                tags.add(
+                    new JavadocTag(
+                        current,
+                        col,
+                        docmatcher.group(1),
+                        docmatcher.group(2)
+                    )
+                );
+            } else if (multiline.find()) {
+                final int col =
+                    calculateTagColumn(
+                        multiline,
+                        line,
+                        start
+                    );
+                tags.addAll(
+                    getMultilineArgTags(
+                        multiline,
+                        col,
+                        lines,
+                        line,
+                        current
+                    )
+                );
+            }
+        }
+        return tags;
+    }
+
+    /**
+     * Calculates column number using Javadoc tag matcher.
+     * @param matcher Found javadoc tag matcher
+     * @param line Line number of Javadoc tag in comment
+     * @param start Column number of Javadoc comment beginning
+     * @return Column number
+     */
+    private static int calculateTagColumn(
+        final Matcher matcher, final int line, final int start
+    ) {
+        int col = matcher.start(1) - 1;
+        if (line == 0) {
+            col += start;
+        }
+        return col;
+    }
+
+    /**
+     * Gets multiline Javadoc tags with arguments.
+     * @param matcher Javadoc tag Matcher
+     * @param column Column number of Javadoc tag
+     * @param lines Comment text lines
+     * @param index Line number that contains the javadoc tag
+     * @param line Javadoc tag line number in file
+     * @return Javadoc tags with arguments
+     * @checkstyle ParameterNumberCheck (30 lines)
+     */
+    private static List<JavadocTag> getMultilineArgTags(
+        final Matcher matcher, final int column, final String[] lines,
+        final int index, final int line) {
+        final List<JavadocTag> tags = new ArrayList<>(0);
+        final String paramone = matcher.group(1);
+        final String paramtwo = matcher.group(2);
+        int remindex = index + 1;
+        while (remindex < lines.length) {
+            final Matcher multiline =
+                MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remindex]);
+            if (multiline.find()) {
+                remindex = lines.length;
+                final String lfin = multiline.group(1);
+                if (!lfin.equals(JavadocParameterOrderCheck.NEXT_TAG)
+                    && !lfin.equals(JavadocParameterOrderCheck.END_JAVADOC)) {
+                    tags.add(new JavadocTag(line, column, paramone, paramtwo));
+                }
+            }
+            remindex = remindex + 1;
+        }
+        return tags;
+    }
+
+    /**
+     * Computes the parameter nodes for a method.
+     *
+     * @param ast The method node.
+     * @return The list of parameter nodes for ast.
+     */
+    private static List<DetailAST> getParameters(final DetailAST ast) {
+        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
+        final List<DetailAST> value = new ArrayList<>(0);
+        DetailAST child = params.getFirstChild();
+        while (child != null) {
+            if (child.getType() == TokenTypes.PARAMETER_DEF) {
+                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
+                if (ident != null) {
+                    value.add(ident);
+                }
+            }
+            child = child.getNextSibling();
+        }
+        return value;
     }
 }

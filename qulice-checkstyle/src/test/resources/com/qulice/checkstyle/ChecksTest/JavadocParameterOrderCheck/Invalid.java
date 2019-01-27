@@ -10,6 +10,20 @@ package com.qulice.checkstyle;
 public final class Invalid {
 
     /**
+     * A field.
+     */
+    private final String field;
+
+    /**
+     * Javadoc with parameters in same order than the constructor signature.
+     * @param bparam - param b.
+     * @param aparam - param a.
+     */
+    Invalid(final String aparam, final String bparam) {
+        this.field = bparam.concat(aparam);
+    }
+
+    /**
      * Javadoc with parameters in different order than the method signature.
      * @param bparam - param b.
      * @param aparam - param a.

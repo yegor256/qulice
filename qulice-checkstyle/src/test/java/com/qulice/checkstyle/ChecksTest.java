@@ -79,6 +79,7 @@ public final class ChecksTest {
         "NonStaticMethodCheck",
         "ConstantUsageCheck",
         "JavadocEmptyLineCheck",
+        "JavadocParameterOrderCheck",
     };
 
     /**
