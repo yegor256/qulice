@@ -143,11 +143,12 @@
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
                 <version>5.3.1</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
-                <version>5.1.0</version>
+                <version>5.3.1</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>
@@ -189,6 +190,38 @@
                                 <head>checkstyle:</head>
                             </tag>
                         </tags>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.0.0-M3</version>
+                    <configuration>
+                        <useFile>false</useFile>
+                        <runOrder>random</runOrder>
+                        <trimStackTrace>false</trimStackTrace>
+                        <failIfNoTests>false</failIfNoTests>
+                        <failIfNoSpecifiedTests>true</failIfNoSpecifiedTests>
+                        <parallel>all</parallel>
+                        <parallelTestsTimeoutInSeconds>0</parallelTestsTimeoutInSeconds>
+                        <parallelTestsTimeoutForcedInSeconds>0</parallelTestsTimeoutForcedInSeconds>
+                        <perCoreThreadCount>true</perCoreThreadCount>
+                        <threadCount>4</threadCount>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.0.0-M3</version>
+                    <configuration>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <failIfNoSpecifiedTests>false</failIfNoSpecifiedTests>
+                        <forkCount>0</forkCount>
+                        <parallel>all</parallel>
+                        <parallelTestsTimeoutForcedInSeconds>0</parallelTestsTimeoutForcedInSeconds>
+                        <parallelTestsTimeoutInSeconds>0</parallelTestsTimeoutInSeconds>
+                        <perCoreThreadCount>true</perCoreThreadCount>
+                        <runOrder>random</runOrder>
+                        <threadCount>8</threadCount>
+                        <trimStackTrace>false</trimStackTrace>
                     </configuration>
                 </plugin>
             </plugins>
