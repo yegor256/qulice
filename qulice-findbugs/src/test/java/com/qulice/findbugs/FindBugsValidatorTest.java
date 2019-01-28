@@ -49,6 +49,21 @@ import org.junit.Test;
 public final class FindBugsValidatorTest {
 
     /**
+     * Having a class with the same name as interface (Remote).
+     * violates findbugs rule NM_SAME_SIMPLE_NAME_AS_INTERFACE
+     * Class name
+     */
+    public static final String REMOTE_FILE = "target/classes/Remote.class";
+
+    /**
+     * Having a class with the same name as interface (Remote)
+     * violates findbugs rule NM_SAME_SIMPLE_NAME_AS_INTERFACE.
+     * Source code
+     * @checkstyle LineLengthCheck (2 lines)
+     */
+    public static final String REMOTE_SOURCE = "class Remote implements java.rmi.Remote { }";
+
+    /**
      * FindbugsValidator can pass correct files with no exceptions.
      * @throws Exception If something wrong happens inside
      */
@@ -135,7 +150,7 @@ public final class FindBugsValidatorTest {
             .mock();
         final Environment env = new Environment.Mock()
             .withFile("target/classes/Foo.class", bytecode)
-            .withExcludes("findbugs", "Foo")
+            .withExcludes(FindBugsValidator.EXCLUDE, "Foo")
             .withDefaultClasspath();
         new FindBugsValidator().validate(env);
     }
@@ -155,7 +170,7 @@ public final class FindBugsValidatorTest {
         final Environment env = new Environment.Mock()
             .withFile("target/classes/Foo.class", bytecode)
             .withFile("target/classes/Bar.class", another)
-            .withExcludes("findbugs", "Foo,Bar")
+            .withExcludes(FindBugsValidator.EXCLUDE, "Foo,Bar")
             .withDefaultClasspath();
         new FindBugsValidator().validate(env);
     }
@@ -164,12 +179,14 @@ public final class FindBugsValidatorTest {
      * Test of findbugs-filter
      * Having a class with the same name as interface (Remote)
      * violates findbugs rule NM_SAME_SIMPLE_NAME_AS_INTERFACE
-     * so we disable the rule by providing the file.
+     * so we disable the rule by providing the filter file.
      * @throws Exception If something wrong
      */
     @Test
     public void excludesFileFilter() throws Exception {
-        final File tmp = File.createTempFile("findbugs-filter", ".xml");
+        final File tmp = File.createTempFile(
+            FindBugsValidator.EXCLUDE_FILTER, ".xml"
+        );
         final Document document = DocumentHelper.createDocument();
         final Element match = document
             .addElement("FindBugsFilter")
@@ -185,14 +202,16 @@ public final class FindBugsValidatorTest {
         new XMLWriter(
             new FileOutputStream(tmp)
         ).write(document);
-        final byte[] bytecode = new BytecodeMocker()
-            .withSource("class Remote implements java.rmi.Remote { }")
-            .mock();
         final Environment env = new Environment.Mock()
-            .withFile("target/classes/Remote.class", bytecode)
+            .withFile(
+                FindBugsValidatorTest.REMOTE_FILE,
+                new BytecodeMocker()
+                    .withSource(FindBugsValidatorTest.REMOTE_SOURCE)
+                    .mock()
+            )
             .withDefaultClasspath()
             .withExcludes(
-                "findbugs-filter",
+                FindBugsValidator.EXCLUDE_FILTER,
                 tmp.getAbsolutePath()
             );
         new FindBugsValidator().validate(env);
@@ -207,14 +226,14 @@ public final class FindBugsValidatorTest {
     public void haveTwoFileFiltersIsIncorrect() throws Exception {
         final Environment env = new Environment.Mock()
             .withFile(
-                "target/classes/Remote.class",
+                FindBugsValidatorTest.REMOTE_FILE,
                 new BytecodeMocker()
-                    .withSource("class Remote implements java.rmi.Remote { }")
+                    .withSource(FindBugsValidatorTest.REMOTE_SOURCE)
                     .mock()
             )
             .withDefaultClasspath()
             .withExcludes(
-                "findbugs-filter",
+                FindBugsValidator.EXCLUDE_FILTER,
                 "file.xml,file2.xml"
             );
         new FindBugsValidator().validate(env);
@@ -229,17 +248,17 @@ public final class FindBugsValidatorTest {
     public void mixClassesAndFileFiltersIsIncorrect() throws Exception {
         final Environment env = new Environment.Mock()
             .withFile(
-                "target/classes/Remote.class",
+                FindBugsValidatorTest.REMOTE_FILE,
                 new BytecodeMocker()
-                    .withSource("class Remote implements java.rmi.Remote { }")
+                    .withSource(FindBugsValidatorTest.REMOTE_SOURCE)
                     .mock()
             )
             .withDefaultClasspath()
             .withExcludes(
-                "findbugs-filter",
+                FindBugsValidator.EXCLUDE_FILTER,
                 "file.xml"
             ).withExcludes(
-                "findbugs",
+                FindBugsValidator.EXCLUDE,
                 "org.company.Class"
             );
         new FindBugsValidator().validate(env);

@@ -73,10 +73,21 @@ import org.objectweb.asm.tree.ClassNode;
 @SuppressWarnings({"PMD.ExcessiveImports", "PMD.AvoidDuplicateLiterals"})
 public final class FindBugsValidator implements Validator {
 
+    /**
+     * Exclude whole classes classes by FQN class name.
+     */
+    public static final String EXCLUDE = "findbugs";
+
+    /**
+     * Exclude using findbugs-filter configuration.
+     * http://findbugs.sourceforge.net/manual/filter.html.
+     */
+    public static final String EXCLUDE_FILTER = "findbugs-filter";
+
     @Override
     public void validate(final Environment env) throws ValidationException {
         if (env.outdir().exists()) {
-            if (!env.exclude("findbugs", "")) {
+            if (!env.exclude(FindBugsValidator.EXCLUDE, "")) {
                 this.check(this.findbugs(env));
             }
         } else {
@@ -127,13 +138,17 @@ public final class FindBugsValidator implements Validator {
      */
     private static void populateExcludes(final List<String> args,
         final Environment env) {
-        final Collection<String> filter = env.excludes("findbugs-filter");
+        final Collection<String> filter = env.excludes(
+            FindBugsValidator.EXCLUDE_FILTER
+        );
         if (filter.size() > 1) {
             throw new IllegalStateException(
                 "Only one findbugs-filter file allowed"
             );
         }
-        final Collection<String> excludes = env.excludes("findbugs");
+        final Collection<String> excludes = env.excludes(
+            FindBugsValidator.EXCLUDE
+        );
         if (!filter.isEmpty() && !excludes.isEmpty()) {
             throw new IllegalStateException(
                 "You can't combine findbugs and findbugs-filter together"
