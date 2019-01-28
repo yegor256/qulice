@@ -35,7 +35,7 @@ import java.util.Collections;
 import org.apache.commons.io.FileUtils;
 import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * Test case for {@link PomXpathValidator} class.

@@ -39,7 +39,7 @@ import org.apache.maven.plugin.testing.stubs.ArtifactStub;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.mockito.Mockito;
 
 /**
@@ -89,7 +89,7 @@ public final class DependenciesValidatorTest {
      * DependencyValidator can catch dependency problems.
      * @throws Exception If something wrong happens inside
      */
-    @org.junit.Test(expected = ValidationException.class)
+    @Test(expected = ValidationException.class)
     public void catchesDependencyProblemsAndThrowsException() throws Exception {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);

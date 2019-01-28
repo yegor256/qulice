@@ -134,6 +134,11 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.7</version>
             </dependency>
+            <!--
+            @todo #939:30min Upgrade to Junit5. Continue to upgrade to Junit5
+             updating qulice-maven-plugin sub-module and removing remaining
+             junit4 tags.
+            -->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
