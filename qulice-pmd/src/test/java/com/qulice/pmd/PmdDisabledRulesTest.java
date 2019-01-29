@@ -33,15 +33,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.ParameterResolver;
+import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 /**
  * Tests for disabled rules.
  * @since 0.16
  */
-@ExtendWith(ParameterResolver.class)
+@RunWith(Parameterized.class)
 public final class PmdDisabledRulesTest {
 
     /**
