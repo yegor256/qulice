@@ -32,7 +32,7 @@ package com.qulice.pmd;
 import java.util.Arrays;
 import java.util.Collection;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
