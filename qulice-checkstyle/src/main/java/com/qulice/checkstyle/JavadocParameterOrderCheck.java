@@ -54,7 +54,7 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
      * Compiled regexp to match Javadoc tags that take an argument.
      */
     private static final Pattern MATCH_JAVADOC_ARG = Pattern.compile(
-        "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(param)\\s+(\\S+)\\s+\\S*", 0
+        "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(param)\\s+(\\S+)\\s+\\S*"
     );
 
     /**
@@ -62,14 +62,14 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
      */
     private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START =
         Pattern.compile(
-            "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(param)\\s+(\\S+)\\s*$", 0
+            "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(param)\\s+(\\S+)\\s*$"
         );
 
     /**
      * Compiled regexp to look for a continuation of the comment.
      */
     private static final Pattern MATCH_JAVADOC_MULTILINE_CONT =
-        Pattern.compile("(\\*/|@|[^\\s\\*])", 0);
+        Pattern.compile("(\\*/|@|[^\\s\\*])");
 
     /**
      * Multiline finished at end of comment.
