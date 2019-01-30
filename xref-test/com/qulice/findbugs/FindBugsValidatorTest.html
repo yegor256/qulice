@@ -40,8 +40,8 @@
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">import</strong> com.google.common.base.Joiner;
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">import</strong> com.qulice.spi.Environment;
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">import</strong> com.qulice.spi.ValidationException;
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> org.junit.Ignore;
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> org.junit.Test;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Disabled;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> * Test case for {@link FindBugsValidator}.</em>
@@ -66,8 +66,8 @@
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">     * FindbugsValidator can report incorrectly added throws.</em>
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>      @Ignore
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>      @Test(expected = ValidationException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      @Disabled
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>      @org.junit.Test(expected = ValidationException.<strong class="jxr_keyword">class</strong>)
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> reportsIncorrectlyAddedThrows() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>          <strong class="jxr_keyword">final</strong> byte[] bytecode = <strong class="jxr_keyword">new</strong> BytecodeMocker()
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>              .withSource(
@@ -115,7 +115,7 @@
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">     * FindbugsValidator throw exception for invalid file.</em>
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>     @Test(expected = ValidationException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>     @org.junit.Test(expected = ValidationException.<strong class="jxr_keyword">class</strong>)
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> throwsExceptionOnViolation() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>         <strong class="jxr_keyword">final</strong> byte[] bytecode = <strong class="jxr_keyword">new</strong> BytecodeMocker()
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>             .withSource(<span class="jxr_string">"class Foo { public Foo clone() { return this; } }"</span>)

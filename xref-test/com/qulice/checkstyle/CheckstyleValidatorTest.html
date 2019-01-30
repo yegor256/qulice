@@ -54,9 +54,9 @@
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">import</strong> org.hamcrest.Matchers;
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  <strong class="jxr_keyword">import</strong> org.hamcrest.TypeSafeMatcher;
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  <strong class="jxr_keyword">import</strong> org.hamcrest.collection.IsIterableContainingInOrder;
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <strong class="jxr_keyword">import</strong> org.junit.Ignore;
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <strong class="jxr_keyword">import</strong> org.junit.Rule;
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <strong class="jxr_keyword">import</strong> org.junit.Test;
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <strong class="jxr_keyword">import</strong> org.junit.Rule;
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Disabled;
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment"> * Test case for {@link CheckstyleValidator} class.</em>
@@ -438,7 +438,7 @@
 <a class="jxr_linenumber" name="L430" href="#L430">430</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
 <a class="jxr_linenumber" name="L431" href="#L431">431</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L432" href="#L432">432</a>     @Test
-<a class="jxr_linenumber" name="L433" href="#L433">433</a>     @Ignore
+<a class="jxr_linenumber" name="L433" href="#L433">433</a>     @Disabled
 <a class="jxr_linenumber" name="L434" href="#L434">434</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> passesWindowsEndsOfLineWithoutException() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L435" href="#L435">435</a>         <strong class="jxr_keyword">this</strong>.validate(<span class="jxr_string">"WindowsEol.java"</span>, false, <span class="jxr_string">"LICENSE found:"</span>);
 <a class="jxr_linenumber" name="L436" href="#L436">436</a>     }
@@ -452,7 +452,7 @@
 <a class="jxr_linenumber" name="L444" href="#L444">444</a> <em class="jxr_javadoccomment">     *  correctly. (see changes done in #61)</em>
 <a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L446" href="#L446">446</a>     @Test
-<a class="jxr_linenumber" name="L447" href="#L447">447</a>     @Ignore
+<a class="jxr_linenumber" name="L447" href="#L447">447</a>     @Disabled
 <a class="jxr_linenumber" name="L448" href="#L448">448</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testWindowsEndsOfLineWithLinuxSources() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L449" href="#L449">449</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"WindowsEolLinux.java"</span>, false);
 <a class="jxr_linenumber" name="L450" href="#L450">450</a>     }
@@ -697,7 +697,7 @@
 <a class="jxr_linenumber" name="L689" href="#L689">689</a> <em class="jxr_javadoccomment">     *  being placed at end of lines. Correct this behavior and uncomment test</em>
 <a class="jxr_linenumber" name="L690" href="#L690">690</a> <em class="jxr_javadoccomment">     *  below.</em>
 <a class="jxr_linenumber" name="L691" href="#L691">691</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L692" href="#L692">692</a>     @Ignore
+<a class="jxr_linenumber" name="L692" href="#L692">692</a>     @Disabled
 <a class="jxr_linenumber" name="L693" href="#L693">693</a>     @Test
 <a class="jxr_linenumber" name="L694" href="#L694">694</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> checkLambdaAndGenericsAtEndOfLine() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L695" href="#L695">695</a>         <strong class="jxr_keyword">this</strong>.runValidation(<span class="jxr_string">"ValidLambdaAndGenericsAtEndOfLine.java"</span>, <strong class="jxr_keyword">true</strong>);
