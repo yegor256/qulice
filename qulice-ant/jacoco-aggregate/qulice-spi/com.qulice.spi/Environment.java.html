@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Environment.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-ant</a> &gt; <a href="../index.html" class="el_bundle">qulice-spi</a> &gt; <a href="index.source.html" class="el_package">com.qulice.spi</a> &gt; <span class="el_source">Environment.java</span></div><h1>Environment.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011-2019, Qulice.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.spi;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.IOFileFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
+
+/**
+ * Environment.
+ *
+ * @since 0.3
+ */
+@SuppressWarnings(&quot;PMD.TooManyMethods&quot;)
+public interface Environment {
+
+    /**
+     * Get project's basedir.
+     * @return The directory
+     */
+    File basedir();
+
+    /**
+     * Get directory to keep temporary files in.
+     * @return The directory
+     */
+    File tempdir();
+
+    /**
+     * Get directory where &lt;tt&gt;.class&lt;/tt&gt; files are stored.
+     * @return The directory
+     */
+    File outdir();
+
+    /**
+     * Get parameter by name, and return default if it's not set.
+     * @param name The name of parameter
+     * @param value Default value to return as default
+     * @return The value
+     */
+    String param(String name, String value);
+
+    /**
+     * Get classloader for this project.
+     * @return The classloader
+     */
+    ClassLoader classloader();
+
+    /**
+     * Get list of paths in classpath.
+     * @return The collection of paths
+     */
+    Collection&lt;String&gt; classpath();
+
+    /**
+     * Returns the files matching the specified pattern.
+     *
+     * &lt;p&gt;The pattern matching scheme used is wildcard matching. The characters
+     * '?' and '*' represents single or multiple wildcard characters,
+     * respectively. Pattern matching is case sensitive.
+     *
+     * @param pattern File name pattern.
+     * @return Collection of files, matching the specified pattern.
+     */
+    Collection&lt;File&gt; files(String pattern);
+
+    /**
+     * Shall this item be excluded from report?
+     * @param check Name of the check that is asking
+     * @param name File or any other item, which is subject of validation
+     * @return TRUE if it should be ignored
+     */
+    boolean exclude(String check, String name);
+
+    /**
+     * List of exclude patterns for given checker.
+     * Each list element will contain exactly one exclude pattern which,
+     * depending on the plugin that uses the excludes might be either wildcard
+     * (CodeNarc) pattern or regex pattern (FindBugs).
+     * @param checker Name of the checker that is asking (pmd, codenarc ...)
+     * @return Exclude patterns
+     */
+    Collection&lt;String&gt; excludes(String checker);
+
+    /**
+     * Mock of {@link Environment}.
+     */
+<span class="nc bnc" id="L127" title="All 2 branches missed.">    final class Mock implements Environment {</span>
+        /**
+         * The basedir.
+         */
+        private final File basedir;
+        /**
+         * Files for classpath.
+         */
+        private final Set&lt;String&gt; classpath;
+        /**
+         * Map of params.
+         */
+        private final Map&lt;String, String&gt; params;
+        /**
+         * Exclude patterns.
+         */
+        private String excl;
+
+        /**
+         * Public ctor.
+         * @throws IOException If some IO problem
+         */
+        @SuppressWarnings(
+            &quot;PMD.ConstructorOnlyInitializesOrCallOtherConstructors&quot;
+            )
+<span class="nc" id="L152">        public Mock() throws IOException {</span>
+<span class="nc" id="L153">            this.params = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L154">            this.classpath = new HashSet&lt;&gt;(1);</span>
+<span class="nc" id="L155">            final File temp = File.createTempFile(</span>
+                &quot;mock&quot;, &quot;.qulice&quot;,
+<span class="nc" id="L157">                new File(System.getProperty(&quot;java.io.tmpdir&quot;))</span>
+            );
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (!temp.delete()) {</span>
+<span class="nc" id="L160">                throw new IllegalStateException(&quot;files collision&quot;);</span>
+            }
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (!temp.mkdirs()) {</span>
+<span class="nc" id="L163">                throw new IllegalStateException(&quot;mkdir failed&quot;);</span>
+            }
+<span class="nc" id="L165">            FileUtils.forceDeleteOnExit(temp);</span>
+<span class="nc" id="L166">            this.basedir = new File(temp, &quot;basedir&quot;);</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (this.basedir.mkdirs()) {</span>
+<span class="nc bnc" id="L168" title="All 4 branches missed.">                assert this.basedir != null;</span>
+            }
+<span class="nc" id="L170">            this.classpath.add(</span>
+<span class="nc" id="L171">                this.outdir().getAbsolutePath().replace(File.separatorChar, '/')</span>
+            );
+<span class="nc" id="L173">        }</span>
+        /**
+         * With this param and its value.
+         * @param name Param name
+         * @param value Param value
+         * @return This object
+         */
+        public Environment.Mock withParam(final String name,
+            final String value) {
+<span class="nc" id="L182">            this.params.put(name, value);</span>
+<span class="nc" id="L183">            return this;</span>
+        }
+        /**
+         * With this file on board.
+         * @param name File name related to basedir
+         * @param content File content to write
+         * @return This object
+         * @throws IOException If some IO problem
+         */
+        public Environment.Mock withFile(final String name,
+            final String content) throws IOException {
+<span class="nc" id="L194">            final File file = new File(this.basedir, name);</span>
+<span class="nc" id="L195">            FileUtils.writeStringToFile(</span>
+                file,
+                content,
+                StandardCharsets.UTF_8
+            );
+<span class="nc" id="L200">            return this;</span>
+        }
+
+        /**
+         * With this file on board.
+         * @param name File name related to basedir
+         * @param bytes File content to write
+         * @return This object
+         * @throws IOException If some IO problem
+         */
+        public Environment.Mock withFile(final String name,
+            final byte[] bytes) throws IOException {
+<span class="nc" id="L212">            final File file = new File(this.basedir, name);</span>
+<span class="nc" id="L213">            FileUtils.writeByteArrayToFile(file, bytes);</span>
+<span class="nc" id="L214">            return this;</span>
+        }
+
+        /**
+         * With exclude patterns.
+         * @param excludes Exclude patterns
+         * @return This object
+         */
+        public Environment.Mock withExcludes(final String excludes) {
+<span class="nc" id="L223">            this.excl = excludes;</span>
+<span class="nc" id="L224">            return this;</span>
+        }
+        /**
+         * With default classpath.
+         * @return This object
+         */
+        @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
+        public Environment.Mock withDefaultClasspath() {
+<span class="nc" id="L232">            Collections.addAll(</span>
+                this.classpath,
+<span class="nc" id="L234">                System.getProperty(&quot;java.class.path&quot;)</span>
+<span class="nc" id="L235">                    .split(System.getProperty(&quot;path.separator&quot;))</span>
+            );
+<span class="nc" id="L237">            return this;</span>
+        }
+        @Override
+        public File basedir() {
+<span class="nc" id="L241">            return this.basedir;</span>
+        }
+        @Override
+        public File tempdir() {
+<span class="nc" id="L245">            final File file = new File(this.basedir, &quot;target/tempdir&quot;);</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
+<span class="nc bnc" id="L247" title="All 4 branches missed.">                assert file != null;</span>
+            }
+<span class="nc" id="L249">            return file;</span>
+        }
+        @Override
+        public File outdir() {
+<span class="nc" id="L253">            final File file = new File(this.basedir, &quot;target/classes&quot;);</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
+<span class="nc bnc" id="L255" title="All 4 branches missed.">                assert file != null;</span>
+            }
+<span class="nc" id="L257">            return file;</span>
+        }
+        @Override
+        public String param(final String name, final String value) {
+<span class="nc" id="L261">            String val = this.params.get(name);</span>
+<span class="nc bnc" id="L262" title="All 2 branches missed.">            if (val == null) {</span>
+<span class="nc" id="L263">                val = value;</span>
+            }
+<span class="nc" id="L265">            return val;</span>
+        }
+        @Override
+        public ClassLoader classloader() {
+<span class="nc" id="L269">            return Thread.currentThread().getContextClassLoader();</span>
+        }
+        @Override
+        public Collection&lt;String&gt; classpath() {
+<span class="nc" id="L273">            return Collections.unmodifiableCollection(this.classpath);</span>
+        }
+        @Override
+        @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
+        public Collection&lt;File&gt; files(final String pattern) {
+<span class="nc" id="L278">            final Collection&lt;File&gt; files = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L279">            final IOFileFilter filter = new WildcardFileFilter(pattern);</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">            for (final String dir : new String[]{&quot;src&quot;}) {</span>
+<span class="nc" id="L281">                final File sources = new File(this.basedir(), dir);</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">                if (sources.exists()) {</span>
+<span class="nc" id="L283">                    files.addAll(</span>
+<span class="nc" id="L284">                        FileUtils.listFiles(</span>
+                            sources,
+                            filter,
+                            DirectoryFileFilter.INSTANCE
+                        )
+                    );
+                }
+            }
+<span class="nc" id="L292">            return files;</span>
+        }
+        @Override
+        public boolean exclude(final String check, final String name) {
+<span class="nc" id="L296">            return false;</span>
+        }
+
+        @Override
+        public Collection&lt;String&gt; excludes(final String checker) {
+            final Collection&lt;String&gt; exc;
+<span class="nc bnc" id="L302" title="All 2 branches missed.">            if (this.excl == null) {</span>
+<span class="nc" id="L303">                exc = Collections.emptyList();</span>
+            } else {
+<span class="nc" id="L305">                exc = Arrays.asList(this.excl.split(&quot;,&quot;));</span>
+            }
+<span class="nc" id="L307">            return exc;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
