@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SourceValidator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd</a> &gt; <span class="el_source">SourceValidator.java</span></div><h1>SourceValidator.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011-2019, Qulice.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.pmd;
+
+import com.jcabi.log.Logger;
+import com.qulice.spi.Environment;
+import java.io.File;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import net.sourceforge.pmd.PMD;
+import net.sourceforge.pmd.PMDConfiguration;
+import net.sourceforge.pmd.Report;
+import net.sourceforge.pmd.RuleContext;
+import net.sourceforge.pmd.RulePriority;
+import net.sourceforge.pmd.RuleSetFactory;
+import net.sourceforge.pmd.RuleViolation;
+import net.sourceforge.pmd.util.ResourceLoader;
+import net.sourceforge.pmd.util.datasource.DataSource;
+
+/**
+ * Validates source files via &lt;code&gt;PmdValidator&lt;/code&gt;.
+ *
+ * @since 0.3
+ */
+final class SourceValidator {
+
+    /**
+     * Rule context.
+     */
+    private final RuleContext context;
+
+    /**
+     * Report listener.
+     */
+    private final PmdListener listener;
+
+    /**
+     * Rules.
+     */
+    private final PMDConfiguration config;
+
+    /**
+     * Creates new instance of &lt;code&gt;SourceValidator&lt;/code&gt;.
+     * @param env Environment
+     */
+<span class="nc" id="L74">    SourceValidator(final Environment env) {</span>
+<span class="nc" id="L75">        this.context = new RuleContext();</span>
+<span class="nc" id="L76">        this.listener = new PmdListener(env);</span>
+<span class="nc" id="L77">        this.config = new PMDConfiguration();</span>
+<span class="nc" id="L78">    }</span>
+
+    /**
+     * Performs validation of the input source files.
+     * @param sources Input source files.
+     * @param path Base path.
+     * @return Collection of violations.
+     */
+    @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
+    public Collection&lt;RuleViolation&gt; validate(
+        final Collection&lt;DataSource&gt; sources, final String path) {
+<span class="nc" id="L89">        this.config.setRuleSets(&quot;com/qulice/pmd/ruleset.xml&quot;);</span>
+<span class="nc" id="L90">        this.config.setThreads(0);</span>
+<span class="nc" id="L91">        this.config.setMinimumPriority(RulePriority.LOW);</span>
+<span class="nc" id="L92">        this.config.setIgnoreIncrementalAnalysis(true);</span>
+<span class="nc" id="L93">        this.config.setShowSuppressedViolations(true);</span>
+<span class="nc" id="L94">        final Report report = new Report();</span>
+<span class="nc" id="L95">        report.addListener(this.listener);</span>
+<span class="nc" id="L96">        this.context.setReport(report);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        for (final DataSource source : sources) {</span>
+<span class="nc" id="L98">            final String name = source.getNiceFileName(false, path);</span>
+<span class="nc" id="L99">            Logger.debug(this, &quot;Processing file: %s&quot;, name);</span>
+<span class="nc" id="L100">            this.context.setSourceCodeFilename(name);</span>
+<span class="nc" id="L101">            this.context.setSourceCodeFile(new File(name));</span>
+<span class="nc" id="L102">            this.validateOne(source);</span>
+<span class="nc" id="L103">        }</span>
+<span class="nc" id="L104">        report.errors().forEachRemaining(</span>
+<span class="nc" id="L105">            error -&gt; Logger.error(</span>
+                this,
+                &quot;Processing error in %s: (%s) %s, %s[exception]&quot;,
+<span class="nc" id="L108">                error.getFile(),</span>
+<span class="nc" id="L109">                error.getMsg(),</span>
+<span class="nc" id="L110">                error.getDetail(),</span>
+<span class="nc" id="L111">                error.getError()</span>
+            )
+        );
+<span class="nc" id="L114">        report.configErrors().forEachRemaining(</span>
+<span class="nc" id="L115">            error -&gt; Logger.error(</span>
+                this,
+                &quot;Config error %s: %s&quot;,
+<span class="nc" id="L118">                error.rule().getName(),</span>
+<span class="nc" id="L119">                error.issue()</span>
+            )
+        );
+<span class="nc" id="L122">        return this.listener.getViolations();</span>
+    }
+
+    /**
+     * Performs validation of one file.
+     * @param source Input source file
+     */
+    private void validateOne(final DataSource source) {
+<span class="nc" id="L130">        final RuleSetFactory factory = new RuleSetFactory(</span>
+            new ResourceLoader(),
+            RulePriority.LOW,
+            false,
+            true
+        );
+<span class="nc" id="L136">        PMD.processFiles(</span>
+            this.config,
+            factory,
+<span class="nc" id="L139">            new LinkedList&lt;&gt;(Collections.singleton(source)),</span>
+            this.context,
+<span class="nc" id="L141">            Collections.emptyList()</span>
+        );
+<span class="nc" id="L143">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

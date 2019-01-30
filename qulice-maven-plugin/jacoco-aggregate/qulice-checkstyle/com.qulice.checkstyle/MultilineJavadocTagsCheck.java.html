@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>MultilineJavadocTagsCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">MultilineJavadocTagsCheck.java</span></div><h1>MultilineJavadocTagsCheck.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011-2019, Qulice.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.checkstyle;
+
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+/**
+ * Check indents in multi line JavaDoc tags.
+ *
+ * &lt;p&gt;This is how you should format javadoc tags that need a few lines:
+ *
+ * &lt;pre&gt;
+ * &amp;#47;**
+ *  * This is my new method.
+ *  * &amp;#64;param text Some text information, provided to the
+ *  *  method by another class
+ *  * &amp;#64;todo #123 I will implement it later, when more information
+ *  *  come to light and I have documentation supplied by
+ *  *  AAA team in the office accross the street
+ *  *&amp;#47;
+ * public void func() {
+ *     // ...
+ * }
+ * &lt;/pre&gt;
+ *
+ * &lt;p&gt;Keep in mind that all free-text information should go &lt;b&gt;before&lt;/b&gt;
+ * javadoc tags, or else it will treated as part of the latest tag and
+ * qulice will complain.
+ *
+ * @since 0.3
+ */
+<span class="nc" id="L61">public final class MultilineJavadocTagsCheck extends AbstractCheck {</span>
+
+    @Override
+    public int[] getDefaultTokens() {
+<span class="nc" id="L65">        return new int[] {</span>
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+        };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+<span class="nc" id="L73">        return this.getDefaultTokens();</span>
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+<span class="nc" id="L78">        return this.getDefaultTokens();</span>
+    }
+
+    @Override
+    public void visitToken(final DetailAST ast) {
+<span class="nc" id="L83">        final String[] lines = this.getLines();</span>
+<span class="nc" id="L84">        final int start = ast.getLineNo();</span>
+<span class="nc" id="L85">        final int cstart =</span>
+<span class="nc" id="L86">            MultilineJavadocTagsCheck.findCommentStart(lines, start) + 1;</span>
+<span class="nc" id="L87">        final int cend =</span>
+<span class="nc" id="L88">            MultilineJavadocTagsCheck.findCommentEnd(lines, start) - 1;</span>
+<span class="nc bnc" id="L89" title="All 4 branches missed.">        if (cend &gt;= cstart &amp;&amp; cstart &gt;= 0) {</span>
+<span class="nc" id="L90">            this.checkJavaDoc(lines, cstart, cend);</span>
+        } else {
+<span class="nc" id="L92">            this.log(0, &quot;Can't find method comment&quot;);</span>
+        }
+<span class="nc" id="L94">    }</span>
+
+    /**
+     * Checks method's Java Doc for satisfy indentation rules.
+     * @param lines Code of the whole class.
+     * @param start Start line of the Java Doc.
+     * @param end End line of the Java Doc.
+     */
+    private void checkJavaDoc(final String[] lines, final int start,
+        final int end) {
+<span class="nc" id="L104">        boolean tagged = false;</span>
+<span class="nc" id="L105">        int index = -1;</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        for (int current = start; current &lt;= end; current += 1) {</span>
+<span class="nc" id="L107">            final String line = lines[current];</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            if (line.contains(&quot;* @&quot;)) {</span>
+<span class="nc" id="L109">                tagged = true;</span>
+<span class="nc" id="L110">                index = line.indexOf('@');</span>
+            } else {
+<span class="nc bnc" id="L112" title="All 2 branches missed.">                if (tagged) {</span>
+<span class="nc" id="L113">                    final int comment = line.indexOf('*');</span>
+<span class="nc" id="L114">                    int text = comment + 1;</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">                    while (text &lt; line.length()</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">                        &amp;&amp; line.charAt(text) == ' ') {</span>
+<span class="nc" id="L117">                        text += 1;</span>
+                    }
+<span class="nc bnc" id="L119" title="All 2 branches missed.">                    if (text != index + 1) {</span>
+<span class="nc" id="L120">                        this.log(</span>
+                            current + 1,
+                            &quot;Should contain one indentation space&quot;
+                        );
+                    }
+                }
+            }
+        }
+<span class="nc" id="L128">    }</span>
+
+    /**
+     * Find javadoc starting comment.
+     * @param lines List of lines to check.
+     * @param start Start searching from this line number.
+     * @return Line number with found starting comment or -1 otherwise.
+     */
+    private static int findCommentStart(final String[] lines, final int start) {
+<span class="nc" id="L137">        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;/**&quot;);</span>
+    }
+
+    /**
+     * Find javadoc ending comment.
+     * @param lines List of lines to check.
+     * @param start Start searching from this line number.
+     * @return Line number with found ending comment, or -1 if it wasn't found.
+     */
+    private static int findCommentEnd(final String[] lines, final int start) {
+<span class="nc" id="L147">        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;*/&quot;);</span>
+    }
+
+    /**
+     * Find a text in lines, by going up.
+     * @param lines List of lines to check.
+     * @param start Start searching from this line number.
+     * @param text Text to find.
+     * @return Line number with found text, or -1 if it wasn't found.
+     */
+    private static int findTrimmedTextUp(final String[] lines,
+        final int start, final String text) {
+<span class="nc" id="L159">        int found = -1;</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">        for (int pos = start - 1; pos &gt;= 0; pos -= 1) {</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            if (lines[pos].trim().equals(text)) {</span>
+<span class="nc" id="L162">                found = pos;</span>
+<span class="nc" id="L163">                break;</span>
+            }
+        }
+<span class="nc" id="L166">        return found;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

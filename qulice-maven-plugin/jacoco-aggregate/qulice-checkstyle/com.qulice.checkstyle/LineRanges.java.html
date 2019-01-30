@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>LineRanges.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">LineRanges.java</span></div><h1>LineRanges.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011-2019, Qulice.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.checkstyle;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.FluentIterable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+
+/**
+ * Represents a set of LineRange objects. For example, an instance of this class
+ * could represent all the line ranges for methods in a given Java source code
+ * file.
+ *
+ * @since 0.16
+ */
+<span class="nc" id="L45">public final class LineRanges {</span>
+
+    /**
+     * ArrayList of line ranges.
+     */
+<span class="nc" id="L50">    private final LineRanges.LocalCollection lines =</span>
+        new LineRanges.LocalCollection();
+
+    /**
+     * Adds a line range to the collection.
+     * @param line The line range to add to the collection
+     */
+    public void add(final LineRange line) {
+<span class="nc" id="L58">        this.lines.collection().add(line);</span>
+<span class="nc" id="L59">    }</span>
+
+    /**
+     * Returns an iterator for this collection.
+     * @return Iterator pointing to the internal collections elements.
+     */
+    public Iterator&lt;LineRange&gt; iterator() {
+<span class="nc" id="L66">        return this.lines.collection().iterator();</span>
+    }
+
+    /**
+     * Detects if the given line number is within any of the line ranges.
+     * @param line The given line number to check
+     * @return True if the given line number is within any line range.
+     */
+    public boolean inRange(final int line) {
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        return !this.lines.collection().isEmpty()</span>
+<span class="nc" id="L76">            &amp;&amp; FluentIterable.from(this.lines.collection())</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            .anyMatch(new LineRanges.LineWithAny(line));</span>
+    }
+
+    /**
+     * Gets the subset of LineRanges that are within all given ranges. Does
+     * not return null; instead, returns empty range if there are no matches.
+     * @param ranges The ranges to filter on.
+     * @return Returns all LineRange elements that are within range.
+     */
+    public LineRanges within(final LineRanges ranges) {
+<span class="nc" id="L87">        final LineRanges result = new LineRanges();</span>
+<span class="nc" id="L88">        final Iterator&lt;LineRange&gt; iterator = ranges.iterator();</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">        while (iterator.hasNext()) {</span>
+<span class="nc" id="L90">            final LineRange next = iterator.next();</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            for (final LineRange line : this.lines.collection()) {</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">                if (next.within(line)) {</span>
+<span class="nc" id="L93">                    result.add(line);</span>
+                }
+<span class="nc" id="L95">            }</span>
+<span class="nc" id="L96">        }</span>
+<span class="nc" id="L97">        return result;</span>
+    }
+
+    /**
+     * Clears the collection.
+     */
+    public void clear() {
+<span class="nc" id="L104">        this.lines.collection().clear();</span>
+<span class="nc" id="L105">    }</span>
+
+    /**
+     * Predicate to determine if a given line is within range of any of
+     * the line ranges.
+     */
+    private static final class LineWithAny implements Predicate&lt;LineRange&gt; {
+
+        /**
+         * The given line.
+         */
+        private final int given;
+
+        /**
+         * Default constructor.
+         * @param line The given line to check against all the line ranges.
+         */
+<span class="nc" id="L122">        private LineWithAny(final int line) {</span>
+<span class="nc" id="L123">            this.given = line;</span>
+<span class="nc" id="L124">        }</span>
+
+        @Override
+        public boolean apply(final LineRange range) {
+<span class="nc bnc" id="L128" title="All 4 branches missed.">            return range != null &amp;&amp; range.within(this.given);</span>
+        }
+    }
+
+    /**
+     * Thread-safe collection of line ranges.
+     */
+<span class="nc" id="L135">    private static final class LocalCollection</span>
+        extends ThreadLocal&lt;Collection&lt;LineRange&gt;&gt; {
+
+        /**
+         * Internal Collection.
+         */
+<span class="nc" id="L141">        private final transient Collection&lt;LineRange&gt; ranges =</span>
+            new ArrayList&lt;&gt;(20);
+
+        /**
+         * Get the collection specific to the current thread only.
+         * @return The collection for this thread.
+         */
+        public Collection&lt;LineRange&gt; collection() {
+<span class="nc" id="L149">            return this.ranges;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

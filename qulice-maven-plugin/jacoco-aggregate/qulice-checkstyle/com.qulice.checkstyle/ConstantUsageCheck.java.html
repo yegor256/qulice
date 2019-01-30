@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ConstantUsageCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">ConstantUsageCheck.java</span></div><h1>ConstantUsageCheck.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011-2019, Qulice.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.checkstyle;
+
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+/**
+ * Checks that constant, declared as private field of class is used more than
+ * once.
+ *
+ * @since 0.3
+ */
+<span class="nc" id="L42">public final class ConstantUsageCheck extends AbstractCheck {</span>
+
+    @Override
+    public int[] getDefaultTokens() {
+<span class="nc" id="L46">        return new int[]{</span>
+            TokenTypes.VARIABLE_DEF,
+        };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+<span class="nc" id="L53">        return this.getDefaultTokens();</span>
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+<span class="nc" id="L58">        return this.getDefaultTokens();</span>
+    }
+
+    // @checkstyle NestedIfDepth (35 lines)
+    @Override
+    public void visitToken(final DetailAST ast) {
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (ConstantUsageCheck.isField(ast)</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            &amp;&amp; ConstantUsageCheck.isFinal(ast)) {</span>
+<span class="nc" id="L66">            final DetailAST namenode = ast.findFirstToken(TokenTypes.IDENT);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (!&quot;serialVersionUID&quot;.equals(this.getText(namenode))) {</span>
+<span class="nc" id="L68">                this.checkField(ast, namenode);</span>
+            }
+        }
+<span class="nc" id="L71">    }</span>
+
+    /**
+     * Check that constant, declared as private field of class
+     * is used more than ones.
+     * @param ast Node which contains VARIABLE_DEF
+     * @param namenode Node which contains variable name
+     */
+    private void checkField(final DetailAST ast, final DetailAST namenode) {
+<span class="nc" id="L80">        final String name = namenode.getText();</span>
+<span class="nc" id="L81">        final int line = namenode.getLineNo();</span>
+<span class="nc" id="L82">        DetailAST variable = ast.getNextSibling();</span>
+<span class="nc" id="L83">        int counter = 0;</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">        while (null != variable) {</span>
+<span class="nc bnc" id="L85" title="All 3 branches missed.">            switch (variable.getType()) {</span>
+                case TokenTypes.VARIABLE_DEF:
+<span class="nc" id="L87">                    counter += this.parseVarDef(variable, name);</span>
+<span class="nc" id="L88">                    break;</span>
+                case TokenTypes.CLASS_DEF:
+<span class="nc" id="L90">                    counter += this.parseDef(</span>
+                        variable, name, TokenTypes.OBJBLOCK
+                    );
+<span class="nc" id="L93">                    break;</span>
+                default:
+<span class="nc" id="L95">                    counter += this.parseDef(variable, name, TokenTypes.SLIST);</span>
+                    break;
+            }
+<span class="nc" id="L98">            variable = variable.getNextSibling();</span>
+        }
+<span class="nc bnc" id="L100" title="All 4 branches missed.">        if (counter == 0 &amp;&amp; ConstantUsageCheck.isPrivate(ast)) {</span>
+<span class="nc" id="L101">            this.log(</span>
+                line,
+<span class="nc" id="L103">                String.format(&quot;Private constant \&quot;%s\&quot; is not used&quot;, name)</span>
+            );
+        }
+<span class="nc" id="L106">    }</span>
+
+    /**
+     * Parses the variable definition and increments the counter
+     * if name is found.
+     * @param variable DetailAST of variable definition
+     * @param name Name of constant we search for
+     * @return Zero if not found, 1 otherwise
+     */
+    private int parseVarDef(final DetailAST variable, final String name) {
+<span class="nc" id="L116">        int counter = 0;</span>
+<span class="nc" id="L117">        final DetailAST assign =</span>
+<span class="nc" id="L118">            variable.findFirstToken(TokenTypes.ASSIGN);</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">        if (assign != null) {</span>
+<span class="nc" id="L120">            DetailAST expression =</span>
+<span class="nc" id="L121">                assign.findFirstToken(TokenTypes.EXPR);</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">            if (expression == null) {</span>
+<span class="nc" id="L123">                expression = assign.findFirstToken(</span>
+                    TokenTypes.ARRAY_INIT
+                );
+            }
+<span class="nc" id="L127">            final String text = this.getText(expression);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (text.contains(name)) {</span>
+<span class="nc" id="L129">                ++counter;</span>
+            }
+        }
+<span class="nc" id="L132">        return counter;</span>
+    }
+
+    /**
+     * Returns text representation of the specified node, including it's
+     * children.
+     * @param node Node, containing text.
+     * @return Text representation of the node.
+     */
+    private String getText(final DetailAST node) {
+        final String ret;
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        if (0 == node.getChildCount()) {</span>
+<span class="nc" id="L144">            ret = node.getText();</span>
+        } else {
+<span class="nc" id="L146">            final StringBuilder result = new StringBuilder();</span>
+<span class="nc" id="L147">            DetailAST child = node.getFirstChild();</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            while (null != child) {</span>
+<span class="nc" id="L149">                final String text = this.getText(child);</span>
+<span class="nc" id="L150">                result.append(text);</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">                if (&quot;.&quot;.equals(node.getText())</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">                    &amp;&amp; child.getNextSibling() != null) {</span>
+<span class="nc" id="L153">                    result.append(node.getText());</span>
+                }
+<span class="nc" id="L155">                child = child.getNextSibling();</span>
+<span class="nc" id="L156">            }</span>
+<span class="nc" id="L157">            ret = result.toString();</span>
+        }
+<span class="nc" id="L159">        return ret;</span>
+    }
+
+    /**
+     * Returns &lt;code&gt;true&lt;/code&gt; if specified node has parent node of type
+     * &lt;code&gt;OBJBLOCK&lt;/code&gt;.
+     * @param node Node to check.
+     * @return True if parent node is &lt;code&gt;OBJBLOCK&lt;/code&gt;, else
+     *  returns &lt;code&gt;false&lt;/code&gt;.
+     */
+    private static boolean isField(final DetailAST node) {
+<span class="nc" id="L170">        final DetailAST parent = node.getParent();</span>
+<span class="nc bnc" id="L171" title="All 2 branches missed.">        return TokenTypes.OBJBLOCK == parent.getType();</span>
+    }
+
+    /**
+     * Returns true if specified node has modifiers of type &lt;code&gt;FINAL&lt;/code&gt;.
+     * @param node Node to check.
+     * @return True if specified node contains modifiers of type
+     *  &lt;code&gt;FINAL&lt;/code&gt;, else returns &lt;code&gt;false&lt;/code&gt;.
+     */
+    private static boolean isFinal(final DetailAST node) {
+<span class="nc" id="L181">        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc" id="L182">        return modifiers.branchContains(TokenTypes.FINAL);</span>
+    }
+
+    /**
+     * Returns true if specified node has modifiers of type
+     * &lt;code&gt;PRIVATE&lt;/code&gt;.
+     * @param node Node to check.
+     * @return True if specified node contains modifiers of type
+     *  &lt;code&gt;PRIVATE&lt;/code&gt;, else returns &lt;code&gt;false&lt;/code&gt;.
+     */
+    private static boolean isPrivate(final DetailAST node) {
+<span class="nc" id="L193">        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc" id="L194">        return modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);</span>
+    }
+
+    /**
+     * Parses the body of the definition (either method or inner class) and
+     * increments counter each time when it founds constant name.
+     * @param definition Tree node, containing definition.
+     * @param name Constant name to search.
+     * @param type Type of definition start.
+     * @return Number of found constant usages.
+     */
+    private int parseDef(final DetailAST definition, final String name,
+        final int type) {
+<span class="nc" id="L207">        int counter = 0;</span>
+<span class="nc" id="L208">        final DetailAST modifiers =</span>
+<span class="nc" id="L209">            definition.findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">        if (modifiers != null) {</span>
+<span class="nc" id="L211">            counter += this.parseAnnotation(modifiers, name);</span>
+        }
+<span class="nc" id="L213">        final DetailAST opening = definition.findFirstToken(type);</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">        if (null != opening) {</span>
+<span class="nc" id="L215">            final DetailAST closing = opening.findFirstToken(TokenTypes.RCURLY);</span>
+<span class="nc" id="L216">            final int start = opening.getLineNo();</span>
+<span class="nc" id="L217">            final int end = closing.getLineNo() - 1;</span>
+<span class="nc" id="L218">            final String[] lines = this.getLines();</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">            for (int pos = start; pos &lt; end; pos += 1) {</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">                if (lines[pos].contains(name)) {</span>
+<span class="nc" id="L221">                    counter += 1;</span>
+                }
+            }
+        }
+<span class="nc" id="L225">        return counter;</span>
+    }
+
+    /**
+     * Parses the annotation value pair and increments the counter
+     * if name is found.
+     * @param modifiers DetailAST of variable definition
+     * @param name Name of constant we search for
+     * @return Zero if not found, 1 otherwise
+     */
+    private int parseAnnotation(final DetailAST modifiers, final String name) {
+<span class="nc" id="L236">        int counter = 0;</span>
+<span class="nc" id="L237">        final DetailAST variable =</span>
+<span class="nc" id="L238">            modifiers.findFirstToken(TokenTypes.ANNOTATION);</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">        if (variable != null) {</span>
+<span class="nc" id="L240">            final String txt = this.getText(variable);</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (txt.contains(name)) {</span>
+<span class="nc" id="L242">                ++counter;</span>
+            }
+        }
+<span class="nc" id="L245">        return counter;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

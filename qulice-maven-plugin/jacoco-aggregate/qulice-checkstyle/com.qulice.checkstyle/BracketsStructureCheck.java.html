@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>BracketsStructureCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">BracketsStructureCheck.java</span></div><h1>BracketsStructureCheck.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011-2019, Qulice.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.checkstyle;
+
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+/**
+ * Checks node/closing brackets to be the last symbols on the line.
+ *
+ * &lt;p&gt;This is how a correct bracket structure should look like:
+ *
+ * &lt;pre&gt;
+ * String text = String.format(
+ *   &quot;some text: %s&quot;,
+ *   new Foo().with(
+ *     &quot;abc&quot;,
+ *     &quot;foo&quot;
+ *   )
+ * );
+ * &lt;/pre&gt;
+ *
+ * &lt;p&gt;The motivation for such formatting is simple - we want to see the entire
+ * block as fast as possible. When you look at a block of code you should be
+ * able to see where it starts and where it ends. In exactly the same way
+ * we organize curled brackets.
+ *
+ * &lt;p&gt;In other words, when you open a bracket and can't close it at the same
+ * line - you should leave it as the last symbol at this line.
+ *
+ * @since 0.3
+ */
+<span class="nc" id="L61">public final class BracketsStructureCheck extends AbstractCheck {</span>
+
+    @Override
+    public int[] getDefaultTokens() {
+<span class="nc" id="L65">        return new int[] {</span>
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.METHOD_CALL,
+        };
+    }
+
+    @Override
+    public int[] getAcceptableTokens() {
+<span class="nc" id="L73">        return this.getDefaultTokens();</span>
+    }
+
+    @Override
+    public int[] getRequiredTokens() {
+<span class="nc" id="L78">        return this.getDefaultTokens();</span>
+    }
+
+    @Override
+    public void visitToken(final DetailAST ast) {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.METHOD_CALL</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            || ast.getType() == TokenTypes.LITERAL_NEW) {</span>
+<span class="nc" id="L85">            this.checkParams(ast);</span>
+        } else {
+<span class="nc" id="L87">            final DetailAST brackets = ast.findFirstToken(TokenTypes.LPAREN);</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (brackets != null) {</span>
+<span class="nc" id="L89">                this.checkParams(brackets);</span>
+            }
+        }
+<span class="nc" id="L92">    }</span>
+
+    /**
+     * Checks params statement to satisfy the rule.
+     * @param node Tree node, containing method call statement.
+     */
+    private void checkParams(final DetailAST node) {
+<span class="nc" id="L99">        final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        if (closing != null) {</span>
+<span class="nc" id="L101">            this.checkLines(node, node.getLineNo(), closing.getLineNo());</span>
+        }
+<span class="nc" id="L103">    }</span>
+
+    /**
+     * Checks params statement to satisfy the rule.
+     * @param node Tree node, containing method call statement.
+     * @param start First line
+     * @param end Final line
+     */
+    private void checkLines(final DetailAST node, final int start,
+        final int end) {
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (start != end) {</span>
+<span class="nc" id="L114">            final DetailAST elist = node.findFirstToken(TokenTypes.ELIST);</span>
+<span class="nc" id="L115">            final int pline = elist.getLineNo();</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            if (pline == start) {</span>
+<span class="nc" id="L117">                this.log(pline, &quot;Parameters should start on a new line&quot;);</span>
+            }
+<span class="nc" id="L119">            this.checkExpressionList(elist, end);</span>
+        }
+<span class="nc" id="L121">    }</span>
+
+    /**
+     * Checks expression list if closing bracket is on new line.
+     * @param elist Tree node, containing expression list
+     * @param end Final line
+     */
+    private void checkExpressionList(final DetailAST elist, final int end) {
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        if (elist.getChildCount() &gt; 0) {</span>
+<span class="nc" id="L130">            final DetailAST last = elist.getLastChild();</span>
+<span class="nc" id="L131">            final int lline = last.getLineNo();</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (lline == end) {</span>
+<span class="nc" id="L133">                this.log(lline, &quot;Closing bracket should be on a new line&quot;);</span>
+            }
+        }
+<span class="nc" id="L136">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
