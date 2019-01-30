@@ -7,7 +7,7 @@ package foo;
  * Simple.
  * @since 1.0
  */
-public final class ValidLambda {
+public final class ValidLambdaAndGenericsAtEndOfLine {
 
     /**
      * Final.
