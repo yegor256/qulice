@@ -684,10 +684,6 @@ public final class CheckstyleValidatorTest {
      * to have uppercase abbreviations.
      *
      * @throws Exception In case of error
-     * @todo #897:30min Allow lambdas and generics to be places at end of line.
-     *  RegexpSingleline is too strict and not allow generics and lambdas
-     *  being placed at end of lines. Correct this behavior and uncomment test
-     *  below.
      */
     @Disabled
     @Test
