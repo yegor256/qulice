@@ -35,8 +35,8 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -51,34 +51,34 @@ import java.util.regex.Pattern;
 public final class JavadocParameterOrderCheck extends AbstractCheck {
 
     /**
-    * Compiled regexp to match Javadoc tags that take an argument.
-    */
-    private static final Pattern MATCH_JAVADOC_ARG = CommonUtil.createPattern(
-        "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(param)\\s+(\\S+)\\s+\\S*"
+     * Compiled regexp to match Javadoc tags that take an argument.
+     */
+    private static final Pattern MATCH_JAVADOC_ARG = Pattern.compile(
+        "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(param)\\s+(\\S+)\\s+\\S*", 0
     );
 
     /**
-    * Compiled regexp to match first part of multilineJavadoc tags.
-    */
+     * Compiled regexp to match first part of multilineJavadoc tags.
+     */
     private static final Pattern MATCH_JAVADOC_ARG_MULTILINE_START =
-        CommonUtil.createPattern(
-            "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(param)\\s+(\\S+)\\s*$"
+        Pattern.compile(
+            "^\\s*(?>\\*|\\/\\*\\*)?\\s*@(param)\\s+(\\S+)\\s*$", 0
         );
 
     /**
-    * Compiled regexp to look for a continuation of the comment.
-    */
+     * Compiled regexp to look for a continuation of the comment.
+     */
     private static final Pattern MATCH_JAVADOC_MULTILINE_CONT =
-        CommonUtil.createPattern("(\\*/|@|[^\\s\\*])");
+        Pattern.compile("(\\*/|@|[^\\s\\*])", 0);
 
     /**
-    * Multiline finished at end of comment.
-    */
+     * Multiline finished at end of comment.
+     */
     private static final String END_JAVADOC = "*/";
 
     /**
-    * Multiline finished at next Javadoc.
-    */
+     * Multiline finished at next Javadoc.
+     */
     private static final String NEXT_TAG = "@";
 
     @Override
@@ -129,7 +129,7 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
      */
     private static List<JavadocTag> getMethodTags(final TextBlock comment) {
         final String[] lines = comment.getText();
-        final List<JavadocTag> tags = new ArrayList<>(0);
+        final List<JavadocTag> tags = new LinkedList<>();
         int current = comment.getStartLineNo() - 1;
         final int start = comment.getStartColNo();
         for (int line = 0; line < lines.length; line = line + 1) {

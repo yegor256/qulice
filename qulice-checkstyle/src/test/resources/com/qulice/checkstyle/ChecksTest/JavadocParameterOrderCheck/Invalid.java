@@ -15,7 +15,8 @@ public final class Invalid {
     private final String field;
 
     /**
-     * Javadoc with parameters in same order than the constructor signature.
+     * Javadoc with parameters in different order than the constructor
+     *  signature.
      * @param bparam - param b.
      * @param aparam - param a.
      */
