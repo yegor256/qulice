@@ -89,19 +89,26 @@
             <artifactId>jcabi-aspects</artifactId>
             <scope>provided</scope>
         </dependency>
-	<dependency>
-	    <groupId>org.apache.ant</groupId>
-	    <artifactId>ant</artifactId>
-	    <version>1.9.4</version>
-	</dependency>
+        <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant</artifactId>
+            <version>1.9.4</version>
+        </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
-
             <plugin>
                 <artifactId>maven-invoker-plugin</artifactId>
                 <configuration combine.children="append">

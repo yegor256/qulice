@@ -63,10 +63,6 @@ import org.apache.commons.lang3.StringUtils;
  *
  * @see <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">Keywords substitution in Subversion</a>
  * @since 0.3
- * @todo #743:30min Nested classes should have since tag. Implement check to
- *  validate if nested classes javadoc have a valid since tag. After the
- *  implementation add JavadocTagsCheck to checks.xml and ChecksTest (removed
- *  because now the test fails).
  */
 public final class JavadocTagsCheck extends AbstractCheck {
 
@@ -111,21 +107,19 @@ public final class JavadocTagsCheck extends AbstractCheck {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (ast.getParent() == null) {
-            final String[] lines = this.getLines();
-            final int start = ast.getLineNo();
-            final int cstart = JavadocTagsCheck.findCommentStart(lines, start);
-            final int cend = JavadocTagsCheck.findCommentEnd(lines, start);
-            if (cend > cstart && cstart >= 0) {
-                for (final String tag : this.prohibited) {
-                    this.findProhibited(lines, start, cstart, cend, tag);
-                }
-                for (final String tag : this.tags.keySet()) {
-                    this.matchTagFormat(lines, cstart, cend, tag);
-                }
-            } else {
-                this.log(0, "Problem finding class/interface comment");
+        final String[] lines = this.getLines();
+        final int start = ast.getLineNo();
+        final int cstart = JavadocTagsCheck.findCommentStart(lines, start);
+        final int cend = JavadocTagsCheck.findCommentEnd(lines, start);
+        if (cend > cstart && cstart >= 0) {
+            for (final String tag : this.prohibited) {
+                this.findProhibited(lines, start, cstart, cend, tag);
             }
+            for (final String tag : this.tags.keySet()) {
+                this.matchTagFormat(lines, cstart, cend, tag);
+            }
+        } else {
+            this.log(0, "Problem finding class/interface comment");
         }
     }
 
@@ -252,7 +246,7 @@ public final class JavadocTagsCheck extends AbstractCheck {
         for (int pos = start; pos <= end; pos += 1) {
             final String line = lines[pos];
             if (line.contains(String.format("@%s ", tag))) {
-                if (!line.startsWith(prefix)) {
+                if (!line.trim().startsWith(prefix.trim())) {
                     this.log(
                         start + pos + 1,
                         "Line with ''@{0}'' does not start with a ''{1}''",

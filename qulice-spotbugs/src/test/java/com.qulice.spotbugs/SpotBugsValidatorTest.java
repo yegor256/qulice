@@ -30,8 +30,8 @@
 package com.qulice.spotbugs;
 
 import com.qulice.spi.Environment;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link SpotBugsValidator}.
@@ -42,7 +42,7 @@ import org.junit.Test;
  *  remove FindBugs references from pom and from qulice executions.
  */
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
-@Ignore
+@Disabled
 public final class SpotBugsValidatorTest {
 
     /**

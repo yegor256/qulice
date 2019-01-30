@@ -80,6 +80,7 @@ public final class ChecksTest {
         "ConstantUsageCheck",
         "JavadocEmptyLineCheck",
         "JavadocParameterOrderCheck",
+        "JavadocTagsCheck",
     };
 
     /**

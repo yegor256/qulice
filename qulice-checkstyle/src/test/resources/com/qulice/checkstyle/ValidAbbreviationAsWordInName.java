@@ -24,6 +24,7 @@ public class ValidAbbreviationAsWordInName extends SomeClass {
 
     /**
      * ValidInnerHtml example class having the abbreviation in camelcase.
+     * @since 1.0
      */
     public class ValidInnerHtml {
     }

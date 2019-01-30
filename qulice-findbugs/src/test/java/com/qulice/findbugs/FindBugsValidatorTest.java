@@ -32,8 +32,8 @@ package com.qulice.findbugs;
 import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link FindBugsValidator}.
@@ -58,8 +58,8 @@ public final class FindBugsValidatorTest {
      * FindbugsValidator can report incorrectly added throws.
      * @throws Exception If something wrong happens inside
      */
-    @Ignore
-    @Test(expected = ValidationException.class)
+    @Disabled
+    @org.junit.Test(expected = ValidationException.class)
     public void reportsIncorrectlyAddedThrows() throws Exception {
         final byte[] bytecode = new BytecodeMocker()
             .withSource(
@@ -107,7 +107,7 @@ public final class FindBugsValidatorTest {
      * FindbugsValidator throw exception for invalid file.
      * @throws Exception If something wrong happens inside
      */
-    @Test(expected = ValidationException.class)
+    @org.junit.Test(expected = ValidationException.class)
     public void throwsExceptionOnViolation() throws Exception {
         final byte[] bytecode = new BytecodeMocker()
             .withSource("class Foo { public Foo clone() { return this; } }")
