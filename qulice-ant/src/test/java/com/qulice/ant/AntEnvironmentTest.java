@@ -29,8 +29,8 @@
  */
 package com.qulice.ant;
 
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for AntEnvironment.
@@ -45,7 +45,7 @@ public class AntEnvironmentTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    @Ignore
+    @Disabled
     @SuppressWarnings("PMD.UncommentedEmptyMethodBody")
     public void buildsClassloader() throws Exception {
     }
@@ -55,7 +55,7 @@ public class AntEnvironmentTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    @Ignore
+    @Disabled
     @SuppressWarnings("PMD.UncommentedEmptyMethodBody")
     public void returnsFiles() throws Exception {
     }
@@ -65,7 +65,7 @@ public class AntEnvironmentTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    @Ignore
+    @Disabled
     @SuppressWarnings("PMD.UncommentedEmptyMethodBody")
     public void excludesFiles() throws Exception {
     }
