@@ -31,7 +31,7 @@ package com.qulice.pmd;
 
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.StringStartsWith;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for LocalVariableCouldBeFinal.

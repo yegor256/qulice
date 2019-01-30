@@ -31,8 +31,8 @@ package com.qulice.pmd;
 
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.StringContains;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link com.qulice.pmd.rules.UseStringIsEmptyRule}.
@@ -165,7 +165,7 @@ public final class UseStringIsEmptyRuleTest {
      * 0.
      * @throws Exception If something goes wrong
      */
-    @Ignore
+    @Disabled
     @Test
     public void detectsLengthEqualsZeroThis() throws Exception {
         new PmdAssert(
@@ -178,7 +178,7 @@ public final class UseStringIsEmptyRuleTest {
      * UseStringIsEmptyRule can detect when this.String.length() >= 1.
      * @throws Exception If something goes wrong
      */
-    @Ignore
+    @Disabled
     @Test
     public void detectsLengthGreaterOrEqualOneThis() throws Exception {
         new PmdAssert(
@@ -191,7 +191,7 @@ public final class UseStringIsEmptyRuleTest {
      * UseStringIsEmptyRule can detect when this.String.length() < 1.
      * @throws Exception If something goes wrong
      */
-    @Ignore
+    @Disabled
     @Test
     public void detectsLengthLessThanOneThis() throws Exception {
         new PmdAssert(
@@ -205,7 +205,7 @@ public final class UseStringIsEmptyRuleTest {
      * 0, when String is returned by a method.
      * @throws Exception If something goes wrong
      */
-    @Ignore
+    @Disabled
     @Test
     public void detectsLengthEqualsZeroMethod() throws Exception {
         new PmdAssert(
@@ -219,7 +219,7 @@ public final class UseStringIsEmptyRuleTest {
      * String is returned by a method.
      * @throws Exception If something goes wrong
      */
-    @Ignore
+    @Disabled
     @Test
     public void detectsLengthGreaterOrEqualOneMethod() throws Exception {
         new PmdAssert(
@@ -233,7 +233,7 @@ public final class UseStringIsEmptyRuleTest {
      * String is returned by a method.
      * @throws Exception If something goes wrong
      */
-    @Ignore
+    @Disabled
     @Test
     public void detectsLengthLessThanOneMethod() throws Exception {
         new PmdAssert(
