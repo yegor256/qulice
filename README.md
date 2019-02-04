@@ -50,7 +50,7 @@ accessible from your `PATH` environment variable (e.g. if you have JDK 1.8.0
 installed in Windows your PATH should contain something like `C:\Program
 Files\Java\jdk1.8.0\bin`).
 
-Also rememer that we support Maven version >= 3.1.0.
+Also remember that we support Maven version >= 3.1.0.
 
 The path to license has to be declared in the following format:
 `file:${basedir}/LICENSE.txt`, it's the default value, one can use any full path
