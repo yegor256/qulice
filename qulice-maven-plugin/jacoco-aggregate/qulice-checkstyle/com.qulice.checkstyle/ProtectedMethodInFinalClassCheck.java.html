@@ -41,63 +41,63 @@ import java.util.List;
  * overriding protected methods from superclass.
  *
  * @since 0.6
- * @todo #917:30min Make ProtectedMethodInFinalClassCheck stricter.
- *  ProtectedMethodInFinalClassCheck must check if the protected method in final
- *  class isn't overriding some default method from abstract parent class and
- *  fail if so. The Invalid class for tests is already implemented. After the
- *  change in ProtectedMethodInFinalClassCheck complete the tests adding the
- *  following line to violations.txt:
- *  23:Protected method is overriding default scoped method
  */
-<span class="nc" id="L52">public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {</span>
+<span class="nc" id="L45">public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {</span>
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L56">        return new int[] {</span>
+<span class="nc" id="L49">        return new int[] {</span>
             TokenTypes.CLASS_DEF,
         };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L63">        return this.getDefaultTokens();</span>
+<span class="nc" id="L56">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L68">        return this.getDefaultTokens();</span>
+<span class="nc" id="L61">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF) {</span>
-<span class="nc" id="L74">            final DetailAST modifiers = ast.findFirstToken(</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF) {</span>
+<span class="nc" id="L67">            final DetailAST modifiers = ast.findFirstToken(</span>
                 TokenTypes.MODIFIERS
             );
-<span class="nc bnc" id="L77" title="All 2 branches missed.">            if (modifiers.findFirstToken(TokenTypes.FINAL) != null) {</span>
-<span class="nc" id="L78">                this.checkMethods(ast);</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">            if (modifiers.findFirstToken(TokenTypes.FINAL) != null) {</span>
+<span class="nc" id="L71">                this.checkMethods(ast);</span>
             }
         }
-<span class="nc" id="L81">    }</span>
+<span class="nc" id="L74">    }</span>
 
     /**
      * Checks methods in current class have no protected modifier.
      * @param ast DetailAST of CLASS_DEF
      */
     private void checkMethods(final DetailAST ast) {
-<span class="nc" id="L88">        final DetailAST objblock = ast.findFirstToken(TokenTypes.OBJBLOCK);</span>
+<span class="nc" id="L81">        final DetailAST objblock = ast.findFirstToken(TokenTypes.OBJBLOCK);</span>
         for (final DetailAST method
-<span class="nc bnc" id="L90" title="All 2 branches missed.">            : ProtectedMethodInFinalClassCheck.findAllChildren(</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            : ProtectedMethodInFinalClassCheck.findAllChildren(</span>
                 objblock, TokenTypes.METHOD_DEF
             )
         ) {
-<span class="nc" id="L94">            if (method.findFirstToken(TokenTypes.MODIFIERS)</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null</span>
-<span class="nc bnc" id="L96" title="All 2 branches missed.">                &amp;&amp; !AnnotationUtil.containsAnnotation(method, &quot;Override&quot;)) {</span>
-<span class="nc" id="L97">                this.log(</span>
-<span class="nc" id="L98">                    method.getLineNo(),</span>
-                    &quot;Final class should not contain protected methods&quot;
-                );
+<span class="nc" id="L87">            if (method</span>
+<span class="nc" id="L88">                .findFirstToken(TokenTypes.MODIFIERS)</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null) {</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">                if (AnnotationUtil.containsAnnotation(method, &quot;Override&quot;)) {</span>
+<span class="nc" id="L91">                    this.log(</span>
+<span class="nc" id="L92">                        method.getLineNo(),</span>
+                        &quot;Protected method is overriding default scoped method&quot;
+                    );
+                } else {
+<span class="nc" id="L96">                    this.log(</span>
+<span class="nc" id="L97">                        method.getLineNo(),</span>
+                        &quot;Final class should not contain protected methods&quot;
+                    );
+                }
             }
 <span class="nc" id="L102">        }</span>
 <span class="nc" id="L103">    }</span>
