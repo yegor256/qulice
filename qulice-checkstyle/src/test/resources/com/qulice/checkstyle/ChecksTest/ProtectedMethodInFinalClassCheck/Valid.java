@@ -20,11 +20,4 @@ public final class Valid {
     private abstract static class Foo {
         protected void valid();
     }
-
-    private final static class FooChild extends Foo {
-        @Override
-        protected void valid() {
-            return;
-        }
-    }
 }

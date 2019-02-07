@@ -91,13 +91,20 @@ public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {
                 objblock, TokenTypes.METHOD_DEF
             )
         ) {
-            if (method.findFirstToken(TokenTypes.MODIFIERS)
-                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null
-                && !AnnotationUtil.containsAnnotation(method, "Override")) {
-                this.log(
-                    method.getLineNo(),
-                    "Final class should not contain protected methods"
-                );
+            if (method
+                .findFirstToken(TokenTypes.MODIFIERS)
+                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null) {
+                if (AnnotationUtil.containsAnnotation(method, "Override")) {
+                    this.log(
+                        method.getLineNo(),
+                        "Protected method is overriding default scoped method"
+                    );
+                } else {
+                    this.log(
+                        method.getLineNo(),
+                        "Final class should not contain protected methods"
+                    );
+                }
             }
         }
     }
