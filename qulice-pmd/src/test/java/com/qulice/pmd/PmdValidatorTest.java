@@ -41,6 +41,8 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
+import org.hamcrest.core.StringContains;
+import org.hamcrest.object.HasToString;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -610,6 +612,26 @@ public final class PmdValidatorTest {
             Matchers.is(true),
             Matchers.not(
                 Matchers.containsString("AvoidDuplicateLiterals")
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator does not require constructor with super().
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void dontRequireSuperInConstructor()
+        throws Exception {
+        final String file = "DontCallSuperInConstructor.java";
+        new PmdAssert(
+            file,
+            new IsEqual<>(true),
+            new IsNot<>(
+                new StringContains(
+                    "CallSuperInConstructor"
+                )
             )
         ).validate();
     }
