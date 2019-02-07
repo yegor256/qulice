@@ -82,7 +82,6 @@ public final class FindBugsValidatorTest {
                 new FindBugsValidator().validate(env);
             }
         );
-
     }
 
     /**
