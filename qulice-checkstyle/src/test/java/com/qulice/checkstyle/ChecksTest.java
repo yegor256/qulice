@@ -81,6 +81,7 @@ public final class ChecksTest {
         "JavadocEmptyLineCheck",
         "JavadocParameterOrderCheck",
         "JavadocTagsCheck",
+        "ProhibitNonFinalClassesCheck",
     };
 
     /**
