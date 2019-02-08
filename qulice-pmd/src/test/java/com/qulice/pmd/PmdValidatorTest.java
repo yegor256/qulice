@@ -615,24 +615,4 @@ public final class PmdValidatorTest {
             )
         ).validate();
     }
-
-    /**
-     * PmdValidator does not require constructor with super().
-     *
-     * @throws Exception If something wrong happens inside.
-     */
-    @Test
-    public void dontRequireSuperInConstructor()
-        throws Exception {
-        final String file = "DontCallSuperInConstructor.java";
-        new PmdAssert(
-            file,
-            new IsEqual<>(true),
-            new IsNot<>(
-                new StringContains(
-                    "CallSuperInConstructor"
-                )
-            )
-        ).validate();
-    }
 }

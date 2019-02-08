@@ -1,15 +1,15 @@
 package foo;
 
-public final class DontCallSuperInConstructor {
+public final class CallSuperInConstructor {
 
     private final int number;
     private final int other;
 
-    public DontCallSuperInConstructor(final int parameter) {
+    public CallSuperInConstructor(final int parameter) {
         this(parameter, parameter * 2);
     }
 
-    public DontCallSuperInConstructor(final int parameter, final int other) {
+    public CallSuperInConstructor(final int parameter, final int other) {
         this.number = parameter;
         this.another = other;
     }
