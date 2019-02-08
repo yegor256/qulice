@@ -32,6 +32,7 @@ package com.qulice.findbugs;
 import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -59,24 +60,28 @@ public final class FindBugsValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Disabled
-    @org.junit.Test(expected = ValidationException.class)
+    @Test
     public void reportsIncorrectlyAddedThrows() throws Exception {
-        final byte[] bytecode = new BytecodeMocker()
-            .withSource(
-                Joiner.on("\n").join(
-                    "package test;",
-                    "final class Main {",
-                    "public void foo() throws InterruptedException {",
-                    "System.out.println(\"test\");",
-                    "}",
-                    "}"
-                )
-            )
-            .mock();
-        final Environment env = new Environment.Mock()
-            .withFile("target/classes/Main.class", bytecode)
-            .withDefaultClasspath();
-        new FindBugsValidator().validate(env);
+        Assertions.assertThrows(
+            ValidationException.class,
+            () -> {
+                final byte[] bytecode = new BytecodeMocker()
+                .withSource(
+                    Joiner.on("\n").join(
+                        "package test;",
+                        "final class Main {",
+                        "public void foo() throws InterruptedException {",
+                        "System.out.println(\"test\");",
+                        "}",
+                        "}"
+                    )
+                ).mock();
+                final Environment env = new Environment.Mock()
+                    .withFile("target/classes/Main.class", bytecode)
+                    .withDefaultClasspath();
+                new FindBugsValidator().validate(env);
+            }
+        );
     }
 
     /**
@@ -107,15 +112,21 @@ public final class FindBugsValidatorTest {
      * FindbugsValidator throw exception for invalid file.
      * @throws Exception If something wrong happens inside
      */
-    @org.junit.Test(expected = ValidationException.class)
+    @Test
     public void throwsExceptionOnViolation() throws Exception {
-        final byte[] bytecode = new BytecodeMocker()
-            .withSource("class Foo { public Foo clone() { return this; } }")
-            .mock();
-        final Environment env = new Environment.Mock()
-            .withFile("target/classes/Foo.class", bytecode)
-            .withDefaultClasspath();
-        new FindBugsValidator().validate(env);
+        Assertions.assertThrows(
+            ValidationException.class,
+            () -> {
+                final byte[] bytecode = new BytecodeMocker()
+                    .withSource(
+                        "class Foo { public Foo clone() { return this; } }"
+                    ).mock();
+                final Environment env = new Environment.Mock()
+                    .withFile("target/classes/Foo.class", bytecode)
+                    .withDefaultClasspath();
+                new FindBugsValidator().validate(env);
+            }
+        );
     }
 
     /**
