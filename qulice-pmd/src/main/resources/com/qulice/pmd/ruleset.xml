@@ -31,221 +31,221 @@
  *
  -->
 <ruleset name="Qulice Ruleset"
-         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+     xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
+  <description>
+    This ruleset checks code for potential mess
+  </description>
+
+  <rule ref="category/java/bestpractices.xml">
+    <exclude name="JUnitTestsShouldIncludeAssert"/>
+    <exclude name="PositionLiteralsFirstInComparisons"/>
+    <exclude name="PositionLiteralsFirstInCaseInsensitiveComparisons"/>
+  </rule>
+  <rule ref="category/java/codestyle.xml">
+    <exclude name="AtLeastOneConstructor"/>
+    <exclude name="AvoidFinalLocalVariable"/>
+    <exclude name="ShortClassName"/>
+    <exclude name="ShortVariable"/>
+    <exclude name="AbstractNaming"/>
+    <exclude name="ClassNamingConventions"/>
+    <exclude name="CommentDefaultAccessModifier"/>
+    <exclude name="DefaultPackage"/>
+    <exclude name="LinguisticNaming"/>
+  </rule>
+  <rule ref="category/java/design.xml">
+    <exclude name="LoosePackageCoupling"/>
+    <exclude name="LawOfDemeter"/>
+    <exclude name="SignatureDeclareThrowsException"/>
+    <exclude name="ExcessiveImports"/>
+  </rule>
+  <rule ref="category/java/documentation.xml">
+    <exclude name="CommentRequired"/>
+    <exclude name="CommentSize"/>
+  </rule>
+  <rule ref="category/java/errorprone.xml">
+    <exclude name="DataflowAnomalyAnalysis"/>
+    <exclude name="AvoidLiteralsInIfCondition"/>
+    <exclude name="BeanMembersShouldSerialize"/>
+    <exclude name="MissingSerialVersionUID"/>
+  </rule>
+  <rule ref="category/java/performance.xml">
+    <exclude name="AvoidInstantiatingObjectsInLoops"/>
+  </rule>
+  <rule ref="category/java/multithreading.xml">
+    <exclude name="AvoidUsingVolatile"/>
+    <exclude name="UseConcurrentHashMap"/>
+    <exclude name="DoNotUseThreads"/>
+  </rule>
+  <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
+    <properties>
+      <property name="maxDuplicateLiterals">
+        <value>2</value>
+      </property>
+      <property name="skipAnnotations">
+        <value>true</value>
+      </property>
+    </properties>
+  </rule>
+
+  <rule name="ProhibitPlainJunitAssertionsRule"
+      message="Avoid using Plain JUnit assertions"
+      class="com.qulice.pmd.rules.ProhibitPlainJunitAssertionsRule">
     <description>
-        This ruleset checks code for potential mess
+      Instead of using plain JUnit assertions like org.junit.Assert.assert*
+      junit.framework.Assert.assert* - use Matchers from package org.hamcrest
     </description>
+  </rule>
 
-    <rule ref="category/java/bestpractices.xml">
-        <exclude name="JUnitTestsShouldIncludeAssert"/>
-        <exclude name="PositionLiteralsFirstInComparisons"/>
-        <exclude name="PositionLiteralsFirstInCaseInsensitiveComparisons"/>
-    </rule>
-    <rule ref="category/java/codestyle.xml">
-        <exclude name="AtLeastOneConstructor"/>
-        <exclude name="AvoidFinalLocalVariable"/>
-        <exclude name="ShortClassName"/>
-        <exclude name="ShortVariable"/>
-        <exclude name="AbstractNaming"/>
-        <exclude name="ClassNamingConventions"/>
-        <exclude name="CommentDefaultAccessModifier"/>
-        <exclude name="DefaultPackage"/>
-        <exclude name="LinguisticNaming"/>
-    </rule>
-    <rule ref="category/java/design.xml">
-        <exclude name="LoosePackageCoupling"/>
-        <exclude name="LawOfDemeter"/>
-        <exclude name="SignatureDeclareThrowsException"/>
-        <exclude name="ExcessiveImports"/>
-    </rule>
-    <rule ref="category/java/documentation.xml">
-        <exclude name="CommentRequired"/>
-        <exclude name="CommentSize"/>
-    </rule>
-    <rule ref="category/java/errorprone.xml">
-        <exclude name="DataflowAnomalyAnalysis"/>
-        <exclude name="AvoidLiteralsInIfCondition"/>
-        <exclude name="BeanMembersShouldSerialize"/>
-        <exclude name="MissingSerialVersionUID"/>
-    </rule>
-    <rule ref="category/java/performance.xml">
-        <exclude name="AvoidInstantiatingObjectsInLoops"/>
-    </rule>
-    <rule ref="category/java/multithreading.xml">
-        <exclude name="AvoidUsingVolatile"/>
-        <exclude name="UseConcurrentHashMap"/>
-        <exclude name="DoNotUseThreads"/>
-    </rule>
-    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
-        <properties>
-            <property name="maxDuplicateLiterals">
-                <value>2</value>
-            </property>
-            <property name="skipAnnotations">
-                <value>true</value>
-            </property>
-        </properties>
-    </rule>
+  <rule name="UseStringIsEmptyRule"
+      message="Use String.isEmpty() when checking for empty string"
+      class="com.qulice.pmd.rules.UseStringIsEmptyRule">
+    <description>
+      Method String.isEmpty() should be used when testing for empty string, rather than using
+      String.length() compared to 0
+    </description>
+  </rule>
 
-    <rule name="ProhibitPlainJunitAssertionsRule"
-          message="Avoid using Plain JUnit assertions"
-          class="com.qulice.pmd.rules.ProhibitPlainJunitAssertionsRule">
-        <description>
-            Instead of using plain JUnit assertions like org.junit.Assert.assert*
-            junit.framework.Assert.assert* - use Matchers from package org.hamcrest
-        </description>
-    </rule>
+  <rule name="UnnecessaryLocalRule"
+      message="Avoid creating unnecessary local variables like ''{0}''"
+      class="com.qulice.pmd.rules.UnnecessaryLocalRule">
+  </rule>
 
-    <rule name="UseStringIsEmptyRule"
-          message="Use String.isEmpty() when checking for empty string"
-          class="com.qulice.pmd.rules.UseStringIsEmptyRule">
-        <description>
-            Method String.isEmpty() should be used when testing for empty string, rather than using
-            String.length() compared to 0
-        </description>
-    </rule>
+  <rule name="ConstructorShouldDoInitialization"
+      message="Avoid doing field initialization outside constructor."
+      language="java"
+      class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <description>
+      Avoid doing field initialization outside class constructor.
+      Such initialization is allowed only when there is no constructor.
+    </description>
+    <priority>3</priority>
+    <properties>
+      <property name="xpath">
+        <value>
+          <![CDATA[
+            //ClassOrInterfaceBody
+            [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>0]
+            [count(ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static='false']/VariableDeclarator/VariableInitializer)>0]
+          ]]>
+        </value>
+      </property>
+    </properties>
+  </rule>
 
-    <rule name="UnnecessaryLocalRule"
-          message="Avoid creating unnecessary local variables like ''{0}''"
-          class="com.qulice.pmd.rules.UnnecessaryLocalRule">
-    </rule>
+  <rule name="OnlyOneConstructorShouldDoInitialization"
+      message="Avoid field initialization in several constructors."
+      language="java"
+      class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <description>
+      Avoid doing field initialization in several constructors.
+      Only one main constructor should do real work.
+      Other constructors should delegate initialization to it.
+    </description>
+    <priority>3</priority>
+    <properties>
+      <property name="xpath">
+        <value>
+          <![CDATA[
+              //ClassOrInterfaceBody[count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>1]
+              [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration[BlockStatement])>1]
+          ]]>
+        </value>
+      </property>
+    </properties>
+  </rule>
 
-    <rule name="ConstructorShouldDoInitialization"
-          message="Avoid doing field initialization outside constructor."
-          language="java"
-          class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <description>
-            Avoid doing field initialization outside class constructor.
-            Such initialization is allowed only when there is no constructor.
-        </description>
-        <priority>3</priority>
-        <properties>
-            <property name="xpath">
-                <value>
-                    <![CDATA[
-                        //ClassOrInterfaceBody
-                        [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>0]
-                        [count(ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static='false']/VariableDeclarator/VariableInitializer)>0]
-                    ]]>
-                </value>
-            </property>
-        </properties>
-    </rule>
+  <rule name="ConstructorOnlyInitializesOrCallOtherConstructors"
+      message="Only field initialization or call to other constructors in a constructor."
+      language="java"
+      class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <description>
+      Avoid putting anything other than field assignments into constructors.
+      The only exception should be calling other constructors
+      or calling super class constructor.
+    </description>
+    <priority>3</priority>
+    <properties>
+      <property name="xpath">
+        <value>
+          <![CDATA[
+              //ConstructorDeclaration/BlockStatement[count(Statement/StatementExpression/PrimaryExpression[count(following-sibling::AssignmentOperator[1])>0]/PrimaryPrefix[@ThisModifier="true"])!=count(*)]
+          ]]>
+        </value>
+      </property>
+    </properties>
+  </rule>
 
-    <rule name="OnlyOneConstructorShouldDoInitialization"
-          message="Avoid field initialization in several constructors."
-          language="java"
-          class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <description>
-            Avoid doing field initialization in several constructors.
-            Only one main constructor should do real work.
-            Other constructors should delegate initialization to it.
-        </description>
-        <priority>3</priority>
-        <properties>
-            <property name="xpath">
-                <value>
-                    <![CDATA[
-                            //ClassOrInterfaceBody[count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>1]
-                            [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration[BlockStatement])>1]
-                    ]]>
-                </value>
-            </property>
-        </properties>
-    </rule>
+  <rule name="StaticAccessToStaticFields"
+      message="Static fields should be accessed in a static way [CLASS_NAME.FIELD_NAME]."
+      language="java"
+      class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <description>
+      Avoid accessing static fields directly.
+    </description>
+    <priority>3</priority>
+    <properties>
+      <property name="xpath">
+        <value>
+          <![CDATA[
+              //Name[@Image = //FieldDeclaration[@Static='true']/@VariableName]
+          ]]>
+        </value>
+      </property>
+    </properties>
+  </rule>
 
-    <rule name="ConstructorOnlyInitializesOrCallOtherConstructors"
-          message="Only field initialization or call to other constructors in a constructor."
-          language="java"
-          class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <description>
-            Avoid putting anything other than field assignments into constructors.
-            The only exception should be calling other constructors
-            or calling super class constructor.
-        </description>
-        <priority>3</priority>
-        <properties>
-            <property name="xpath">
-                <value>
-                    <![CDATA[
-                            //ConstructorDeclaration/BlockStatement[count(Statement/StatementExpression/PrimaryExpression[count(following-sibling::AssignmentOperator[1])>0]/PrimaryPrefix[@ThisModifier="true"])!=count(*)]
-                    ]]>
-                </value>
-            </property>
-        </properties>
-    </rule>
-
-    <rule name="StaticAccessToStaticFields"
-          message="Static fields should be accessed in a static way [CLASS_NAME.FIELD_NAME]."
-          language="java"
-          class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <description>
-            Avoid accessing static fields directly.
-        </description>
-        <priority>3</priority>
-        <properties>
-            <property name="xpath">
-                <value>
-                    <![CDATA[
-                            //Name[@Image = //FieldDeclaration[@Static='true']/@VariableName]
-                    ]]>
-                </value>
-            </property>
-        </properties>
-    </rule>
-
-    <rule name="ProhibitPublicStaticMethods"
-          message="Public static methods are prohibited."
-          language="java"
-          class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <description>
-            Public static methods are prohibited.
-        </description>
-        <priority>3</priority>
-        <properties>
-            <property name="xpath">
-                <value>
-                    <![CDATA[
-                        //ClassOrInterfaceBodyDeclaration[
-                            MethodDeclaration[@Static='true' and @Public='true'
-                              and not (
-                               MethodDeclarator[
-                                count(FormalParameters/FormalParameter)=1
-                                and @Image='main'
-                                and FormalParameters/FormalParameter[1]/Type/ReferenceType/ClassOrInterfaceType[@Image='String']
-                                and FormalParameters/FormalParameter[@Varargs='true']
-                               ] and not(ResultType/Type)
-                              )
-                            ] and (
-                                Annotation/MarkerAnnotation/Name[@Image!='BeforeClass' and @Image!='AfterClass'
-                                  and @Image!='Parameterized.Parameters']
-                                or not (Annotation)
-                            )
-                        ]
-                    ]]>
-                </value>
-            </property>
-        </properties>
-    </rule>
-    <rule name="ProhibitFilesCreateFileInTests"
-          message="Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder"
-          language="java"
-          class="net.sourceforge.pmd.lang.rule.XPathRule">
-        <description>
-            Files.createFile shouldn't be used in tests.
-        </description>
-        <priority>3</priority>
-        <properties>
-            <property name="xpath">
-                <value>
-                    <![CDATA[
-                        //ClassOrInterfaceDeclaration[ends-with(@Image, 'Test')]//PrimaryPrefix/Name[@Image='Files.createFile']
-                    ]]>
-                </value>
-            </property>
-        </properties>
-    </rule>
+  <rule name="ProhibitPublicStaticMethods"
+      message="Public static methods are prohibited."
+      language="java"
+      class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <description>
+      Public static methods are prohibited.
+    </description>
+    <priority>3</priority>
+    <properties>
+      <property name="xpath">
+        <value>
+          <![CDATA[
+            //ClassOrInterfaceBodyDeclaration[
+              MethodDeclaration[@Static='true' and @Public='true'
+                and not (
+                 MethodDeclarator[
+                count(FormalParameters/FormalParameter)=1
+                and @Image='main'
+                and FormalParameters/FormalParameter[1]/Type/ReferenceType/ClassOrInterfaceType[@Image='String']
+                and FormalParameters/FormalParameter[@Varargs='true']
+                 ] and not(ResultType/Type)
+                )
+              ] and (
+                Annotation/MarkerAnnotation/Name[@Image!='BeforeClass' and @Image!='AfterClass'
+                  and @Image!='Parameterized.Parameters']
+                or not (Annotation)
+              )
+            ]
+          ]]>
+        </value>
+      </property>
+    </properties>
+  </rule>
+  <rule name="ProhibitFilesCreateFileInTests"
+      message="Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder"
+      language="java"
+      class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <description>
+      Files.createFile shouldn't be used in tests.
+    </description>
+    <priority>3</priority>
+    <properties>
+      <property name="xpath">
+        <value>
+          <![CDATA[
+            //ClassOrInterfaceDeclaration[ends-with(@Image, 'Test')]//PrimaryPrefix/Name[@Image='Files.createFile']
+          ]]>
+        </value>
+      </property>
+    </properties>
+  </rule>
 </ruleset>
