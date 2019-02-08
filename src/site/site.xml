@@ -28,37 +28,34 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  -->
-<project xmlns="http://maven.apache.org/DECORATION/1.3.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd"
-    name="qulice">
-    <skin>
-        <groupId>com.jcabi</groupId>
-        <artifactId>jcabi-maven-skin</artifactId>
-        <version>1.4</version>
-    </skin>
-    <googleAnalyticsAccountId>UA-1963507-25</googleAnalyticsAccountId>
-    <bannerLeft>
-        <name>Qulice</name>
-        <src>http://img.qulice.com/logo.svg</src>
-        <href>http://www.qulice.com/</href>
-        <title>home page of Qulice.com</title>
-        <width>214</width>
-        <height>60</height>
-    </bannerLeft>
-    <body>
-        <head>
-            <link href="http://img.qulice.com/favicon.gif" rel="shortcut icon"/>
-            <link href="https://plus.google.com/u/0/114792568016408327418?rel=author" rel="author"/>
-        </head>
-        <breadcrumbs>
-            <item name="qulice.com" href="http://www.qulice.com"/>
-        </breadcrumbs>
-        <menu name="Overview">
-            <item name="Introduction" href="./index.html"/>
-            <item name="Quick Start" href="./qulice-maven-plugin/usage.html"/>
-            <item name="What is Quality?" href="./quality.html"/>
-        </menu>
-        <menu ref="reports"/>
-    </body>
+<project xmlns="http://maven.apache.org/DECORATION/1.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/DECORATION/1.3.0 http://maven.apache.org/xsd/decoration-1.3.0.xsd" name="qulice">
+  <skin>
+    <groupId>com.jcabi</groupId>
+    <artifactId>jcabi-maven-skin</artifactId>
+    <version>1.4</version>
+  </skin>
+  <googleAnalyticsAccountId>UA-1963507-25</googleAnalyticsAccountId>
+  <bannerLeft>
+    <name>Qulice</name>
+    <src>http://img.qulice.com/logo.svg</src>
+    <href>http://www.qulice.com/</href>
+    <title>home page of Qulice.com</title>
+    <width>214</width>
+    <height>60</height>
+  </bannerLeft>
+  <body>
+    <head>
+      <link href="http://img.qulice.com/favicon.gif" rel="shortcut icon"/>
+      <link href="https://plus.google.com/u/0/114792568016408327418?rel=author" rel="author"/>
+    </head>
+    <breadcrumbs>
+      <item name="qulice.com" href="http://www.qulice.com"/>
+    </breadcrumbs>
+    <menu name="Overview">
+      <item name="Introduction" href="./index.html"/>
+      <item name="Quick Start" href="./qulice-maven-plugin/usage.html"/>
+      <item name="What is Quality?" href="./quality.html"/>
+    </menu>
+    <menu ref="reports"/>
+  </body>
 </project>
