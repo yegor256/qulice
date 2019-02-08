@@ -30,7 +30,9 @@
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.qulice</groupId>
@@ -40,6 +42,12 @@
   <artifactId>qulice-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <name>qulice-maven-plugin</name>
+  <!--
+  @todo #1019:30min Upgrade to Junit5. Finish JUnit upgrade to JUnit5 by
+   upgrading it in qulice-maven-plugin submodules. Qulice-maven-plugin
+   presents some build error that does not trigger any bulid failure, so maybe
+   they must be corrected first.
+  -->
   <properties>
     <maven.version>3.0.5</maven.version>
   </properties>
