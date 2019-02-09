@@ -71,6 +71,7 @@ public final class PmdDisabledRulesTest {
                 {"ExcessiveImports"},
                 {"PositionLiteralsFirstInComparisons"},
                 {"MissingSerialVersionUID"},
+                {"CallSuperInConstructor"},
             }
         );
     }
