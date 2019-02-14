@@ -30,18 +30,21 @@
 package com.qulice.findbugs;
 
 import com.qulice.spi.Environment;
-import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.IntStream;
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
-import org.dom4j.tree.BaseElement;
+import java.util.regex.Pattern;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Document;
+import org.w3c.dom.DocumentFragment;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 /**
  * Encapsulates the exclusion rules.
@@ -63,17 +66,28 @@ public class FindBugsExcludes {
     }
 
     /**
-     * Exclusions as FindBugs filter XML file.
-     * @return XML
+     * Converts the exclusion to the FindBugs exclusion filter XML.
+     * http://findbugs.sourceforge.net/manual/filter.html
+     * @return Document XML
      */
     public final Document asXml() {
-        final Document document = DocumentHelper.createDocument();
-        final FindBugsExcludes.ExcludesXml xml = new FindBugsExcludes
-            .ExcludesXml(
-                document.addElement("FindBugsFilter")
+        try {
+            final Document doc = DocumentBuilderFactory.newInstance()
+                .newDocumentBuilder()
+                .newDocument();
+            final FindBugsExcludes.Xml xml = new FindBugsExcludes.Xml(doc);
+            final Node root = doc.appendChild(
+                doc.createElement("FindBugsFilter")
             );
-        this.env.excludes("findbugs").stream().forEach(xml::addExclude);
-        return document;
+            this.env.excludes("findbugs").stream()
+                .map(Pattern.compile(":")::split)
+                .map(xml::createMatchNode)
+                .filter(Node::hasChildNodes)
+                .forEach(root::appendChild);
+            return doc;
+        } catch (final ParserConfigurationException exc) {
+            throw new IllegalStateException(exc);
+        }
     }
 
     /**
@@ -82,83 +96,102 @@ public class FindBugsExcludes {
      * @return List of arguments (zero or one)
      * @throws IOException If temp file cannot be created
      */
-    public final Collection<String> asArguments() throws IOException {
+    public final List<String> asArguments() throws IOException {
         final Document document = this.asXml();
-        final Element root = document.getRootElement();
         final List<String> arguments = new LinkedList<>();
-        if (root.hasContent()) {
-            final Path temp = Files.createTempFile(
-                this.env.tempdir().toPath(),
+        if (document.getDocumentElement().hasChildNodes()) {
+            final File file = File.createTempFile(
                 "findbug_excludes_",
-                ".xml"
+                ".xml",
+                this.env.tempdir()
             );
-            final BufferedWriter writer = Files.newBufferedWriter(temp);
-            document.write(writer);
-            writer.close();
-            arguments.add(temp.toFile().getAbsolutePath());
+            try {
+                TransformerFactory.newInstance()
+                    .newTransformer()
+                    .transform(
+                        new DOMSource(document),
+                        new StreamResult(file)
+                    );
+            } catch (final TransformerException exc) {
+                throw new IOException(exc);
+            }
+            arguments.add(file.getAbsolutePath());
         }
         return arguments;
     }
 
     /**
-     * Converts the exclusion expressions to the FindBugs exclusion filter XML.
-     * http://findbugs.sourceforge.net/manual/filter.html
+     * XML Wrapper.
      */
-    static class ExcludesXml {
-
+    private static final class Xml {
         /**
-         * Name constant.
+         * Constant.
          */
         private static final String NAME = "name";
+        /**
+         * XML Document.
+         */
+        private final Document doc;
 
         /**
-         * Root XML Element of the FindBugs exclusion filter.
+         * Ctor.
+         * @param document W3C Document
          */
-        private final Element root;
-
-        /**
-         * Constructor.
-         * @param root Root element
-         */
-        ExcludesXml(final Element root) {
-            this.root = root;
+        private Xml(final Document document) {
+            this.doc = document;
         }
 
         /**
-         * Converts the exclusion expression into a XML element.
-         * @param exclude An exclusion expression
+         * Creates the <Match/> element for filter.
+         * @param names Names of the expression (class, method, rule)
+         * @return Node Match node
          */
-        public void addExclude(final String exclude) {
-            if (!exclude.isEmpty()) {
-                final Element match = new BaseElement("Match");
-                final String[] names = exclude.split(":");
-                IntStream.range(0, names.length).forEachOrdered(
-                    i -> {
-                        final String name = names[i];
-                        if (!name.isEmpty()) {
-                            switch (i) {
-                                case 0:
-                                    match.addElement("Class")
-                                        .addAttribute(ExcludesXml.NAME, name);
-                                    break;
-                                case 1:
-                                    match.addElement("Method")
-                                        .addAttribute(ExcludesXml.NAME, name);
-                                    break;
-                                case 2:
-                                    match.addElement("Bug")
-                                        .addAttribute("pattern", name);
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    }
-                );
-                if (match.hasContent()) {
-                    this.root.add(match);
-                }
+        @SuppressWarnings("PMD.UseStringIsEmptyRule")
+        private Node createMatchNode(final String... names) {
+            final Node match = this.doc.createElement("Match");
+            if (names.length > 0) {
+                match.appendChild(
+                    this.createChild(
+                    "Class",
+                    FindBugsExcludes.Xml.NAME,
+                    names[0]
+                ));
             }
+            if (names.length > 1) {
+                match.appendChild(
+                    this.createChild(
+                    "Method",
+                    FindBugsExcludes.Xml.NAME,
+                    names[1]
+                ));
+            }
+            if (names.length > 2) {
+                match.appendChild(
+                    this.createChild(
+                    "Bug",
+                    "pattern",
+                    names[2]
+                ));
+            }
+            return match;
+        }
+
+        /**
+         * Adds a child node.
+         * @param tag Tag name of the child
+         * @param key Attribute name
+         * @param value Attribute value
+         * @return Created child node
+         */
+        private Node createChild(final String tag, final String key,
+            final String value) {
+            final DocumentFragment fragment = this.doc.createDocumentFragment();
+            if (!value.isEmpty()) {
+                final Element child = this.doc.createElement(tag);
+                child.setAttribute(key, value);
+                fragment.appendChild(child);
+            }
+            return fragment;
         }
     }
 }

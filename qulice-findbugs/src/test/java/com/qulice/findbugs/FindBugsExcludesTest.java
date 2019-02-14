@@ -32,18 +32,19 @@ package com.qulice.findbugs;
 import com.qulice.spi.Environment;
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.List;
+import javax.xml.parsers.DocumentBuilderFactory;
 import org.cactoos.list.ListOf;
-import org.dom4j.Document;
-import org.dom4j.io.SAXReader;
 import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.hamcrest.collection.IsEmptyCollection;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
+import org.hamcrest.xml.HasXPath;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.w3c.dom.Document;
 
 /**
  * Test for exclusion filters.
@@ -52,11 +53,28 @@ import org.mockito.Mockito;
  * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)
  * @since 0.18.15
  */
-@SuppressWarnings({
-    "PMD.TooManyMethods",
-    "PMD.AvoidDuplicateLiterals"
-    })
+@SuppressWarnings("PMD.TooManyMethods")
 class FindBugsExcludesTest {
+
+    /**
+     * Count matches.
+     */
+    public static final String COUNT_MATCH = "count(/FindBugsFilter/Match)";
+
+    /**
+     * Count classes.
+     */
+    public static final String COUNT_CLASS = "count(//Match/Class)";
+
+    /**
+     * Count methods.
+     */
+    public static final String COUNT_METHOD = "count(//Match/Method)";
+
+    /**
+     * Count filter nodes.
+     */
+    public static final String COUNT_FILTER = "count(/FindBugsFilter)";
 
     @Test
     public void ifCantCreateTempFile() {
@@ -74,21 +92,21 @@ class FindBugsExcludesTest {
 
     @Test
     public void noExcludesNoArguments() throws Exception {
-        final Environment env = new Environment.Mock()
-            .withExcludes("");
+        final List<String> arguments = new FindBugsExcludes(
+            new Environment.Mock().withExcludes("")
+        ).asArguments();
         MatcherAssert.assertThat(
             "The arguments were not empty for empty excludes",
-            new FindBugsExcludes(env).asArguments(),
+            arguments,
             new IsEmptyCollection<>()
         );
     }
 
     @Test
     public void notEmptyExcludesShouldBeNotEmptyArguments() throws Exception {
-        final Environment env = new Environment.Mock()
-            .withExcludes("Foo,Bar");
-        final Collection<String> arguments = new FindBugsExcludes(env)
-            .asArguments();
+        final List<String> arguments = new FindBugsExcludes(
+            new Environment.Mock().withExcludes("Foo,Bar")
+        ).asArguments();
         MatcherAssert.assertThat(
             "The argument was empty for not empty excludes",
             arguments,
@@ -101,162 +119,344 @@ class FindBugsExcludesTest {
             arguments.size(),
             new IsEqual<>(1)
         );
-        new FindBugsExcludesTest.ExcludesXml(
-            new SAXReader().read(arguments.iterator().next())
-        ).assertXpath("count(/FindBugsFilter)=1");
+        final Document doc = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder()
+            .parse(arguments.get(0));
+        MatcherAssert.assertThat(
+            doc,
+            new HasXPath(
+                FindBugsExcludesTest.COUNT_FILTER,
+                new IsEqual<>("1")
+            )
+        );
     }
 
     @Test
     public void argumentIsReadableXml() throws Exception {
-        final Iterator<String> iter = new FindBugsExcludes(
-            new Environment.Mock()
-            .withExcludes("ClassToExclude,AnotherClass")
-        ).asArguments().iterator();
-        final ExcludesXml xml = new ExcludesXml(
-            new SAXReader().read(iter.next())
+        final List<String> arguments = new FindBugsExcludes(
+            new Environment.Mock().withExcludes("ClassToExclude,AnotherClass")
+        ).asArguments();
+        MatcherAssert.assertThat(
+            arguments.isEmpty(),
+            new IsEqual<>(false)
         );
-        xml.assertXpath("count(/FindBugsFilter)=1");
-        xml.assertXpath("count(/FindBugsFilter/Match)=2");
-    }
-
-    @Test
-    public void noExclude() throws IOException {
-        final ExcludesXml xml = new ExcludesXml("");
-        xml.assertXpath("count(/FindBugsFilter)=1");
-        xml.assertXpath("count(/FindBugsFilter/Match)=0");
-    }
-
-    @Test
-    public void emptyClassNotEmptyMethodEmptyRule() throws IOException {
-        final ExcludesXml xml = new ExcludesXml(":toString");
-        xml.assertXpath("count(//Match)=1");
-        xml.assertXpath("count(//Match/Method)=1");
-        final ExcludesXml same = new ExcludesXml(":toString:");
-        same.assertXpath("count(//Match)=1");
-        same.assertXpath("count(//Match/Method[@name='toString'])=1");
-    }
-
-    @Test
-    public void emptyClassEmptyMethodEmptyRule() throws IOException {
-        final ExcludesXml xml = new ExcludesXml(":,::,:::");
-        xml.assertXpath("count(/FindBugsFilter)=1");
-        xml.assertXpath("count(/FindBugsFilter/Match)=0");
-        xml.assertXpath("count(//Match)=0");
-    }
-
-    @Test
-    public void singleClass() throws IOException {
-        final ExcludesXml xml = new ExcludesXml("Foo");
-        xml.assertXpath("count(/FindBugsFilter/Match)=1");
-        xml.assertXpath("count(/FindBugsFilter/Match/Class[@name='Foo'])=1");
-        xml.assertXpath("count(/FindBugsFilter/Match[Class[@name='Foo']]/Method)=0");
-        xml.assertXpath("count(/FindBugsFilter/Match[Class[@name='Foo']]/Bug)=0");
-    }
-
-    @Test
-    public void multipleClasses() throws IOException {
-        final ExcludesXml xml = new ExcludesXml("Alice:set:FI_EMPTY,Bob:get");
-        xml.assertXpath("count(//Match)=2");
-        xml.assertXpath("count(//Class)=2");
-        xml.assertXpath("count(//Method)=2");
-        xml.assertXpath("count(//Bug)=1");
-        xml.assertXpath("count(//Match/Class[@name='Alice'])=1");
-        xml.assertXpath("count(//Match[Class[@name='Alice']]/Method[@name='set'])=1");
-        xml.assertXpath("count(//Match[Class[@name='Alice'] and Method[@name='set']]/Bug[@pattern='FI_EMPTY'])=1");
-        xml.assertXpath("count(//Match/Class[@name='Bob'])=1");
-        xml.assertXpath("count(//Match[Class[@name='Bob']]/Method[@name='get'])=1");
-        xml.assertXpath("count(//Match[Class[@name='Bob']]/Bug)=0");
-    }
-
-    @Test
-    public void classMethod() throws IOException {
-        final ExcludesXml xml = new ExcludesXml("MyClass:myMethod");
-        xml.assertXpath("count(/FindBugsFilter/Match[Class[@name='MyClass']]/Method[@name='myMethod'])=1");
-    }
-
-    @Test
-    public void classMethodRule() throws IOException {
-        final ExcludesXml xml = new ExcludesXml("MyClass:myMethod:DLS_DEAD_LOCAL_STORE");
-        xml.assertXpath("count(//Match)=1");
-        xml.assertXpath("count(//Match/Class[@name='MyClass'])=1");
-        xml.assertXpath("count(//Match[Class[@name='MyClass'] and Method[@name='myMethod']]/Bug[@pattern='DLS_DEAD_LOCAL_STORE'])=1");
-    }
-
-    @Test
-    public void wholeClassOneRule() throws IOException {
-        final ExcludesXml xml = new ExcludesXml("MyClass::FI_USELESS");
-        xml.assertXpath("count(//Match)=1");
-        xml.assertXpath("count(//Match/Class[@name='MyClass'])=1");
-        xml.assertXpath("count(//Match/Method)=0");
-        xml.assertXpath("count(//Match/Bug[@pattern='FI_USELESS'])=1");
-    }
-
-    @Test
-    public void anyClassOneRule() throws IOException {
-        final ExcludesXml xml = new ExcludesXml("::DM_EXIT");
-        xml.assertXpath("count(//Class)=0");
-        xml.assertXpath("count(//Method)=0");
-        xml.assertXpath("count(//Match)=1");
-        xml.assertXpath("count(//Match/*)=1");
-        xml.assertXpath("count(//Match/Bug[@pattern='DM_EXIT'])=1");
-    }
-
-    @Test
-    public void tooManyColonsAreIgnored() throws IOException {
-        final ExcludesXml xml = new ExcludesXml("MyClass:myMethod:DM_EXIT:::");
-        xml.assertXpath("count(/FindBugsFilter)=1");
-        xml.assertXpath("count(//Match)=1");
-        xml.assertXpath("count(//Match/Class[@name='MyClass'])=1");
-        xml.assertXpath("count(//Match/Method[@name='myMethod'])=1");
-        xml.assertXpath("count(//Match/Bug[@pattern='DM_EXIT'])=1");
-    }
-
-    /**
-     * To simplify the XML assertions.
-     */
-    static class ExcludesXml {
-        /**
-         * XML contents.
-         */
-        private final Document xml;
-
-        /**
-         * Ctor.
-         * @param xml The XML document that will be tested
-         */
-        ExcludesXml(final Document xml) {
-            this.xml = xml;
-        }
-
-        /**
-         * Ctor.
-         * @param excludes The excludes that the XML will be generated from.
-         * @throws IOException
-         */
-        ExcludesXml(final String excludes) throws IOException {
-            this(
-                new FindBugsExcludes(
-                    new Environment.Mock()
-                        .withExcludes(excludes)
-                ).asXml()
-            );
-        }
-
-        /**
-         * Checks if the XPATH in the xml is true.
-         * @param xpath
-         */
-        public final void assertXpath(final String xpath) {
-            MatcherAssert.assertThat(
-                String.format(
-                    "Xpath expression '%s' incorrect on xml: '%s'",
-                    xpath,
-                    this.xml.asXML()
+        final Document doc = DocumentBuilderFactory.newInstance()
+            .newDocumentBuilder()
+            .parse(arguments.get(0));
+        MatcherAssert.assertThat(
+            doc,
+            Matchers.allOf(
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_FILTER,
+                    new IsEqual<>("1")
                 ),
-                this.xml.createXPath(xpath).booleanValueOf(this.xml),
-                new IsEqual<>(true)
-            );
-        }
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_MATCH,
+                    new IsEqual<>("2")
+                )
+            )
+        );
+    }
+
+    @Test
+    public void noExclude() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes("")
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_MATCH,
+                    new IsEqual<>("0")
+                ),
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_METHOD,
+                    new IsEqual<>("0")
+                )
+            )
+        );
+    }
+
+    @Test
+    public void emptyClassNotEmptyMethod() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes(":toString")
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_MATCH,
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/Method[@name='toString'])",
+                    new IsEqual<>("1")
+                )
+            )
+        );
+    }
+
+    @Test
+    public void emptyClassNotEmptyMethodEmptyRule() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes(":equals:")
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_MATCH,
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/Method[@name='equals'])",
+                    new IsEqual<>("1")
+                )
+            )
+        );
+    }
+
+    @Test
+    public void emptyClassEmptyMethodEmptyRule() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes(":,::,:::")
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_FILTER,
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_MATCH,
+                    new IsEqual<>("0")
+                )
+            )
+        );
+    }
+
+    @Test
+    public void singleClass() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes("Foo")
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_MATCH,
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/Class[@name='Foo'])",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match[Class[@name='Foo']]/Method)",
+                    new IsEqual<>("0")
+                ),
+                new HasXPath(
+                    "count(//Match[Class[@name='Foo']]/Bug)",
+                    new IsEqual<>("0")
+                )
+            )
+        );
+    }
+
+    @Test
+    public void multipleClasses() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes("Alice:set:FI_EMPTY,Bob:get")
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    "count(//Match)",
+                    new IsEqual<>("2")
+                ),
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_CLASS,
+                    new IsEqual<>("2")
+                ),
+                new HasXPath(
+                    "count(//Method)",
+                    new IsEqual<>("2")
+                ),
+                new HasXPath(
+                    "count(//Bug)",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/Class[@name='Alice'])",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match[Class[@name='Alice']]/Method[@name='set'])",
+                    new IsEqual<>("1")
+                )
+            )
+        );
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    "count(//Match[Class[@name='Alice'] and Method[@name='set']]/Bug[@pattern='FI_EMPTY'])",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/Class[@name='Bob'])",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match[Class[@name='Bob']]/Method[@name='get'])",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match[Class[@name='Bob']]/Bug)",
+                    new IsEqual<>("0")
+                )
+            )
+        );
+    }
+
+    @Test
+    public void classMethod() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes("MyClass:myMethod")
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            new HasXPath(
+                "count(/FindBugsFilter/Match[Class[@name='MyClass']]/Method[@name='myMethod'])",
+                new IsEqual<>("1")
+            )
+        );
+    }
+
+    @Test
+    public void classMethodRule() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes(
+                "Myclass:myMethod:DLS_DEAD_LOCAL_STORE"
+            )
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_MATCH,
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/Class[@name='Myclass'])",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match[Class[@name='Myclass'] and Method[@name='myMethod']]/Bug[@pattern='DLS_DEAD_LOCAL_STORE'])",
+                    new IsEqual<>("1")
+                )
+            )
+        );
+    }
+
+    @Test
+    public void wholeClassOneRule() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes("MyClass::FI_USELESS")
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_CLASS,
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_MATCH,
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/Class[@name='MyClass'])",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_METHOD,
+                    new IsEqual<>("0")
+                ),
+                new HasXPath(
+                    "count(//Match/Bug[@pattern='FI_USELESS'])",
+                    new IsEqual<>("1")
+                )
+            )
+        );
+    }
+
+    @Test
+    public void anyClassOneRule() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes("::DM_EXIT")
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_CLASS,
+                    new IsEqual<>("0")
+                ),
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_METHOD,
+                    new IsEqual<>("0")
+                ),
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_MATCH,
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/*)",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/Bug[@pattern='DM_EXIT'])",
+                    new IsEqual<>("1")
+                )
+            )
+        );
+    }
+
+    @Test
+    public void tooManyColonsAreIgnored() throws Exception {
+        final Document xml = new FindBugsExcludes(
+            new Environment.Mock().withExcludes("MyClass:myMethod:FI_EMPTY:::")
+        ).asXml();
+        MatcherAssert.assertThat(
+            xml,
+            Matchers.allOf(
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_FILTER,
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    FindBugsExcludesTest.COUNT_MATCH,
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(/FindBugsFilter/Match/Class[@name='MyClass'])",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/Method[@name='myMethod'])",
+                    new IsEqual<>("1")
+                ),
+                new HasXPath(
+                    "count(//Match/Bug[@pattern='FI_EMPTY'])",
+                    new IsEqual<>("1")
+                )
+            )
+        );
     }
 }
 
