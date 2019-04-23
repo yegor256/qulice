@@ -104,20 +104,7 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         final FileContents contents = getFileContents();
         final TextBlock doc = contents.getJavadocBefore(ast.getLineNo());
         if (doc != null) {
-            final List<JavadocTag> tags = getMethodTags(doc);
-            final List<DetailAST> parameters = getParameters(ast);
-            for (int param = 0; param < parameters.size(); param = param + 1) {
-                if (!parameters.get(param).getText().equals(
-                    tags.get(param).getFirstArg()
-                    )
-                ) {
-                    this.log(
-                        tags.get(param).getLineNo(),
-                        // @checkstyle LineLength (1 line)
-                        "Javadoc parameter order different than method signature"
-                    );
-                }
-            }
+            this.checkParameters(ast, doc);
         }
     }
 
@@ -241,5 +228,35 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
             child = child.getNextSibling();
         }
         return value;
+    }
+
+    /**
+     * Checks method parameters order to comply with what is defined in method
+     * javadoc.
+     * @param ast The method node.
+     * @param doc Javadoc text block.
+     */
+    private void checkParameters(final DetailAST ast, final TextBlock doc) {
+        final List<JavadocTag> tags = getMethodTags(doc);
+        final List<DetailAST> parameters = getParameters(ast);
+        if (tags.size() == parameters.size()) {
+            for (int param = 0; param < parameters.size(); param = param + 1) {
+                final String parameter = parameters.get(param).getText();
+                final JavadocTag tag = tags.get(param);
+                if (!parameter.equals(tag.getFirstArg())) {
+                    this.log(
+                        tag.getLineNo(),
+                        // @checkstyle LineLength (1 line)
+                        "Javadoc parameter order different than method signature"
+                    );
+                }
+            }
+        } else {
+            this.log(
+                ast.getLineNo(),
+                // @checkstyle LineLength (1 line)
+                "Number of javadoc parameters different than method signature"
+            );
+        }
     }
 }
