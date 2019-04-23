@@ -33,4 +33,22 @@ public final class Invalid {
     public String method(final String aparam, final String bparam) {
         return bparam + aparam;
     }
+
+    /**
+     * Javadoc with a different number of parameters than in the method
+     *  signature.
+     * @param eparam - param e.
+     * @return Param.
+     */
+    public String method2(final String cparam, final String dparam) {
+        return cparam + dparam;
+    }
+
+    /**
+     * Javadoc without parameters for a method with several parameters.
+     * @return Param.
+     */
+    public String method3(final String hparam) {
+        return hparam;
+    }
 }
