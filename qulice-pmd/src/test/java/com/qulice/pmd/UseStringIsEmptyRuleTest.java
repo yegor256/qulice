@@ -165,7 +165,6 @@ public final class UseStringIsEmptyRuleTest {
      * 0.
      * @throws Exception If something goes wrong
      */
-    @Disabled
     @Test
     public void detectsLengthEqualsZeroThis() throws Exception {
         new PmdAssert(
@@ -178,7 +177,6 @@ public final class UseStringIsEmptyRuleTest {
      * UseStringIsEmptyRule can detect when this.String.length() >= 1.
      * @throws Exception If something goes wrong
      */
-    @Disabled
     @Test
     public void detectsLengthGreaterOrEqualOneThis() throws Exception {
         new PmdAssert(
@@ -191,7 +189,6 @@ public final class UseStringIsEmptyRuleTest {
      * UseStringIsEmptyRule can detect when this.String.length() < 1.
      * @throws Exception If something goes wrong
      */
-    @Disabled
     @Test
     public void detectsLengthLessThanOneThis() throws Exception {
         new PmdAssert(
