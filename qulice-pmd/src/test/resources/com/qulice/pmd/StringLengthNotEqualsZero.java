@@ -2,7 +2,33 @@ package foo;
 
 public final class StringLengthNotEqualsZero {
 
-    public boolean sizeIsNotZero(final String somestring) {
+    private final String somestring;
+
+    public StringLengthNotEqualsZero(final String str) {
+        this.somestring = str;
+    }
+
+    public String someMethod() {
+        return this.somestring;
+    }
+
+    public boolean lengthOnMethodWithThis() {
+        return this.someMethod().length() != 0;
+    }
+
+    public boolean lengthOnMethodWithThisInversed() {
+        return 0 != this.someMethod().length();
+    }
+
+    public boolean lengthOnFieldWithThis() {
+        return this.somestring.length() != 0;
+    }
+
+    public boolean lengthOnFieldWithThisInversed() {
+        return 0 != this.somestring.length();
+    }
+
+    public boolean lengthOnVariable(final String somestring) {
         return somestring.length() != 0;
     }
 
