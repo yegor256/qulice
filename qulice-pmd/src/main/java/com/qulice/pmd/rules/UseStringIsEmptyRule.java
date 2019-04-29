@@ -35,25 +35,23 @@ import java.util.List;
 import java.util.Map;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTResultType;
+import net.sourceforge.pmd.lang.java.ast.ASTType;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
 import net.sourceforge.pmd.lang.java.ast.JavaNode;
 import net.sourceforge.pmd.lang.java.rule.AbstractInefficientZeroCheck;
 import net.sourceforge.pmd.lang.java.symboltable.JavaNameOccurrence;
+import net.sourceforge.pmd.lang.java.symboltable.MethodNameDeclaration;
 import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
+import net.sourceforge.pmd.lang.symboltable.Scope;
 import net.sourceforge.pmd.util.StringUtil;
 
 /**
  * Rule to prohibit use of String.length() when checking for empty string.
  * String.isEmpty() should be used instead.
  * @since 0.18
- * @todo #950:30min Correct this class so it  complains if the string is
- *  prefixed with this when length is called (e.g. somestring.length() works
- *  but this.somestring.length() does not). The same happens in with a method
- *  call (this.method().length() does not work). More about how to write PMD
- *  rules here: http://pmd.sourceforge.net/pmd-4.3/howtowritearule.html. Then
- *  ignore the tests on UseStringIsEmptyRuleTest.
  */
-@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
 
     @Override
@@ -85,20 +83,52 @@ public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
         if (type != null
             || this.appliesToClassName(node.getNameDeclaration().getTypeImage())
         ) {
-            final List<NameOccurrence> declars = node.getUsages();
-            for (final NameOccurrence occ : declars) {
-                final JavaNameOccurrence jocc = (JavaNameOccurrence) occ;
-                if (this.isTargetMethod(jocc)) {
-                    final JavaNode location = jocc.getLocation();
-                    final Node expr = location.getFirstParentOfType(
-                        ASTExpression.class
-                    );
-                    this.checkNodeAndReport(
-                        data, jocc.getLocation(), expr.jjtGetChild(0)
-                    );
-                }
+            final List<NameOccurrence> declarations = node.getUsages();
+            this.checkDeclarations(declarations, data);
+        }
+        node.childrenAccept(this, data);
+        return data;
+    }
+
+    @Override
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
+        final ASTResultType result = node.getResultType();
+        if (!result.isVoid()) {
+            final ASTType type = (ASTType) result.jjtGetChild(0);
+            if (this.appliesToClassName(type.getTypeImage())) {
+                final Scope scope = node.getScope().getParent();
+                final MethodNameDeclaration method = new MethodNameDeclaration(
+                    node.getMethodDeclarator()
+                );
+                final List<NameOccurrence> declarations = scope
+                    .getDeclarations(MethodNameDeclaration.class)
+                    .get(method);
+                this.checkDeclarations(declarations, data);
             }
         }
+        node.childrenAccept(this, data);
         return data;
+    }
+
+    /**
+     * Checks all uses of a variable or method with a String type.
+     * @param occurrences Variable or method occurrences.
+     * @param data Rule context.
+     */
+    private void checkDeclarations(
+        final Iterable<NameOccurrence> occurrences, final Object data
+    ) {
+        for (final NameOccurrence occurrence : occurrences) {
+            final JavaNameOccurrence jocc = (JavaNameOccurrence) occurrence;
+            if (this.isTargetMethod(jocc)) {
+                final JavaNode location = jocc.getLocation();
+                final Node expr = location.getFirstParentOfType(
+                    ASTExpression.class
+                );
+                this.checkNodeAndReport(
+                    data, occurrence.getLocation(), expr.jjtGetChild(0)
+                );
+            }
+        }
     }
 }

@@ -31,7 +31,6 @@ package com.qulice.pmd;
 
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.StringContains;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -202,7 +201,6 @@ public final class UseStringIsEmptyRuleTest {
      * 0, when String is returned by a method.
      * @throws Exception If something goes wrong
      */
-    @Disabled
     @Test
     public void detectsLengthEqualsZeroMethod() throws Exception {
         new PmdAssert(
@@ -216,7 +214,6 @@ public final class UseStringIsEmptyRuleTest {
      * String is returned by a method.
      * @throws Exception If something goes wrong
      */
-    @Disabled
     @Test
     public void detectsLengthGreaterOrEqualOneMethod() throws Exception {
         new PmdAssert(
@@ -230,7 +227,6 @@ public final class UseStringIsEmptyRuleTest {
      * String is returned by a method.
      * @throws Exception If something goes wrong
      */
-    @Disabled
     @Test
     public void detectsLengthLessThanOneMethod() throws Exception {
         new PmdAssert(
