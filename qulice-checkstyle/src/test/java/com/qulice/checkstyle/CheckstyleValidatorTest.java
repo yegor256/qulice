@@ -39,7 +39,7 @@ import java.util.Collection;
 import org.cactoos.io.ResourceOf;
 import org.cactoos.list.ListOf;
 import org.cactoos.text.FormattedText;
-import org.cactoos.text.JoinedText;
+import org.cactoos.text.Joined;
 import org.cactoos.text.TextOf;
 import org.hamcrest.Description;
 import org.hamcrest.MatcherAssert;
@@ -636,7 +636,7 @@ public final class CheckstyleValidatorTest {
             file, false
         );
         final String name = "AbbreviationAsWordInNameCheck";
-        final String message = new JoinedText(
+        final String message = new Joined(
             " ",
             "Abbreviation in name '%s'",
             "must contain no more than '2' consecutive capital letters."
