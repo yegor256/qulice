@@ -47,7 +47,7 @@
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> org.cactoos.io.ResourceOf;
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> org.cactoos.list.ListOf;
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">import</strong> org.cactoos.text.FormattedText;
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">import</strong> org.cactoos.text.JoinedText;
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <strong class="jxr_keyword">import</strong> org.cactoos.text.Joined;
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">import</strong> org.cactoos.text.TextOf;
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  <strong class="jxr_keyword">import</strong> org.hamcrest.Description;
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  <strong class="jxr_keyword">import</strong> org.hamcrest.MatcherAssert;
@@ -644,7 +644,7 @@
 <a class="jxr_linenumber" name="L636" href="#L636">636</a>             file, false
 <a class="jxr_linenumber" name="L637" href="#L637">637</a>         );
 <a class="jxr_linenumber" name="L638" href="#L638">638</a>         <strong class="jxr_keyword">final</strong> String name = <span class="jxr_string">"AbbreviationAsWordInNameCheck"</span>;
-<a class="jxr_linenumber" name="L639" href="#L639">639</a>         <strong class="jxr_keyword">final</strong> String message = <strong class="jxr_keyword">new</strong> JoinedText(
+<a class="jxr_linenumber" name="L639" href="#L639">639</a>         <strong class="jxr_keyword">final</strong> String message = <strong class="jxr_keyword">new</strong> Joined(
 <a class="jxr_linenumber" name="L640" href="#L640">640</a>             <span class="jxr_string">" "</span>,
 <a class="jxr_linenumber" name="L641" href="#L641">641</a>             <span class="jxr_string">"Abbreviation in name '%s'"</span>,
 <a class="jxr_linenumber" name="L642" href="#L642">642</a>             <span class="jxr_string">"must contain no more than '2' consecutive capital letters."</span>
