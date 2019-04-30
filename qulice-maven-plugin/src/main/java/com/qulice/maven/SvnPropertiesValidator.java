@@ -36,7 +36,7 @@ import java.util.Collection;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.project.MavenProject;
 import org.cactoos.text.TextOf;
-import org.cactoos.text.TrimmedText;
+import org.cactoos.text.Trimmed;
 import org.cactoos.text.UncheckedText;
 
 /**
@@ -178,7 +178,7 @@ public final class SvnPropertiesValidator implements MavenValidator {
             final Process process = builder.start();
             process.waitFor();
             return new UncheckedText(
-                new TrimmedText(
+                new Trimmed(
                     new TextOf(
                         process.getInputStream()
                     )

@@ -50,9 +50,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
-import org.cactoos.text.ReplacedText;
+import org.cactoos.text.Replaced;
 import org.cactoos.text.TextOf;
-import org.cactoos.text.TrimmedText;
+import org.cactoos.text.Trimmed;
 import org.xml.sax.InputSource;
 
 /**
@@ -170,8 +170,8 @@ public final class CheckstyleValidator implements ResourceValidator {
         final URL url = CheckstyleValidator.toUrl(env, name);
         final String content;
         try {
-            content = new ReplacedText(
-                new TrimmedText(
+            content = new Replaced(
+                new Trimmed(
                     new TextOf(
                         url.openStream()
                     )

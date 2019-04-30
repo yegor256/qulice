@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import org.cactoos.text.JoinedText;
+import org.cactoos.text.Joined;
 import org.cactoos.text.UncheckedText;
 
 /**
@@ -160,7 +160,7 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
             } else {
                 qualified =
                 new UncheckedText(
-                    new JoinedText(
+                    new Joined(
                         ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR,
                         pack,
                         name
@@ -170,7 +170,7 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
         } else {
             qualified =
                 new UncheckedText(
-                    new JoinedText(
+                    new Joined(
                         ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR,
                         outer,
                         name
