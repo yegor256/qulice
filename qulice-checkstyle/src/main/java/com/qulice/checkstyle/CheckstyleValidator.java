@@ -126,7 +126,7 @@ public final class CheckstyleValidator implements ResourceValidator {
      * Load checkstyle configuration.
      * @param env The environment
      * @return The configuration just loaded
-     * @see #validate()
+     * @see #validate(Collection)
      */
     private Configuration configuration(final Environment env) {
         final File cache =
@@ -163,7 +163,7 @@ public final class CheckstyleValidator implements ResourceValidator {
      * Create header content, from file.
      * @param env The environment
      * @return The content of header
-     * @see #configuration()
+     * @see #configuration(Environment)
      */
     private String header(final Environment env) {
         final String name = env.param("license", "LICENSE.txt");
