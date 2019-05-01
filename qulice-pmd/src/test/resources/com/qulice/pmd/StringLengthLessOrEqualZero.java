@@ -8,7 +8,27 @@ public final class StringLengthMinorOrEqualsThanZero {
         this.somestring = str;
     }
 
-    public boolean sizeMinorOrEqualsThanZero() {
+    public String someMethod() {
+        return this.somestring;
+    }
+
+    public boolean lengthOnMethodWithThis() {
+        return this.someMethod().length() <= 0;
+    }
+
+    public boolean lengthOnMethodWithThisInversed() {
+        return 0 >= this.someMethod().length();
+    }
+
+    public boolean lengthOnFieldWithThis() {
+        return this.somestring.length() <= 0;
+    }
+
+    public boolean lengthOnFieldWithThisInversed() {
+        return 0 >= this.somestring.length();
+    }
+
+    public boolean lengthOnVariable(final String somestring) {
         return somestring.length() <= 0;
     }
 

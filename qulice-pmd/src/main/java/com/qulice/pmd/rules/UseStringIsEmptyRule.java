@@ -33,31 +33,25 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;
+import net.sourceforge.pmd.lang.ast.Node;
+import net.sourceforge.pmd.lang.java.ast.ASTExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTName;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimaryPrefix;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimarySuffix;
 import net.sourceforge.pmd.lang.java.ast.ASTResultType;
+import net.sourceforge.pmd.lang.java.ast.ASTType;
+import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
+import net.sourceforge.pmd.lang.java.ast.JavaNode;
 import net.sourceforge.pmd.lang.java.rule.AbstractInefficientZeroCheck;
-import net.sourceforge.pmd.lang.java.symboltable.ClassScope;
 import net.sourceforge.pmd.lang.java.symboltable.JavaNameOccurrence;
 import net.sourceforge.pmd.lang.java.symboltable.MethodNameDeclaration;
 import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
+import net.sourceforge.pmd.lang.symboltable.Scope;
 import net.sourceforge.pmd.util.StringUtil;
 
 /**
  * Rule to prohibit use of String.length() when checking for empty string.
  * String.isEmpty() should be used instead.
  * @since 0.18
- * @todo #950:30min Correct this class so it  complains if the string is
- *  prefixed with this when length is called (e.g. somestring.length() works
- *  but this.somestring.length() does not). The same happens in with a method
- *  call (this.method().length() does not work). More about how to write PMD
- *  rules here: http://pmd.sourceforge.net/pmd-4.3/howtowritearule.html. Then
- *  ignore the tests on UseStringIsEmptyRuleTest.
  */
-@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
 
     @Override
@@ -79,75 +73,62 @@ public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
 
     @Override
     public boolean isTargetMethod(final JavaNameOccurrence occ) {
-        boolean target = false;
-        if (occ.getNameForWhichThisIsAQualifier() != null
-            && occ.getLocation().getImage().endsWith(".length")
-        ) {
-            target = true;
-        }
-        return target;
+        final NameOccurrence name = occ.getNameForWhichThisIsAQualifier();
+        return name != null && "length".equals(name.getImage());
     }
 
     @Override
-    public Object visit(final ASTPrimarySuffix node, final Object data) {
-        if (node.getImage() != null && node.getImage().endsWith("length")) {
-            ASTClassOrInterfaceType type = getTypeOfPrimaryPrefix(node);
-            if (type == null) {
-                type = getTypeOfMethodCall(node);
-            }
-            if (type != null
-                && this.appliesToClassName(type.getType().getSimpleName())
-            ) {
-                checkNodeAndReport(
-                    data, node, node.jjtGetParent().jjtGetParent()
+    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
+        final Node type = node.getTypeNameNode();
+        if (type != null
+            || this.appliesToClassName(node.getNameDeclaration().getTypeImage())
+        ) {
+            final List<NameOccurrence> declarations = node.getUsages();
+            this.checkDeclarations(declarations, data);
+        }
+        node.childrenAccept(this, data);
+        return data;
+    }
+
+    @Override
+    public Object visit(final ASTMethodDeclaration node, final Object data) {
+        final ASTResultType result = node.getResultType();
+        if (!result.isVoid()) {
+            final ASTType type = (ASTType) result.jjtGetChild(0);
+            if (this.appliesToClassName(type.getTypeImage())) {
+                final Scope scope = node.getScope().getParent();
+                final MethodNameDeclaration method = new MethodNameDeclaration(
+                    node.getMethodDeclarator()
                 );
+                final List<NameOccurrence> declarations = scope
+                    .getDeclarations(MethodNameDeclaration.class)
+                    .get(method);
+                this.checkDeclarations(declarations, data);
             }
         }
+        node.childrenAccept(this, data);
         return data;
     }
 
     /**
-     * Get the type returned by the method call.
-     * @param node Node suffix
-     * @return The type or null if it's not found
+     * Checks all uses of a variable or method with a String type.
+     * @param occurrences Variable or method occurrences.
+     * @param data Rule context.
      */
-    private static ASTClassOrInterfaceType getTypeOfMethodCall(
-        final ASTPrimarySuffix node) {
-        ASTClassOrInterfaceType type = null;
-        final ASTName method = node.jjtGetParent()
-            .getFirstChildOfType(ASTPrimaryPrefix.class)
-            .getFirstChildOfType(ASTName.class);
-        if (method != null) {
-            final ClassScope scope = node.getScope()
-                .getEnclosingScope(ClassScope.class);
-            final Map<MethodNameDeclaration, List<NameOccurrence>> methods =
-                scope.getMethodDeclarations();
-            //@checkstyle LineLengthCheck (1 line)
-            for (final Map.Entry<MethodNameDeclaration, List<NameOccurrence>> entry
-                : methods.entrySet()) {
-                if (entry.getKey().getName().equals(method.getImage())) {
-                    type = entry.getKey().getNode()
-                        .getFirstParentOfType(ASTMethodDeclaration.class)
-                        .getFirstChildOfType(ASTResultType.class)
-                        .getFirstDescendantOfType(
-                            ASTClassOrInterfaceType.class
-                        );
-                    break;
-                }
+    private void checkDeclarations(
+        final Iterable<NameOccurrence> occurrences, final Object data
+    ) {
+        for (final NameOccurrence occurrence : occurrences) {
+            final JavaNameOccurrence jocc = (JavaNameOccurrence) occurrence;
+            if (this.isTargetMethod(jocc)) {
+                final JavaNode location = jocc.getLocation();
+                final Node expr = location.getFirstParentOfType(
+                    ASTExpression.class
+                );
+                this.checkNodeAndReport(
+                    data, occurrence.getLocation(), expr.jjtGetChild(0)
+                );
             }
         }
-        return type;
-    }
-
-    /**
-     * Get the type of the primary prefix.
-     * @param node Node suffix
-     * @return The type or null if it's not found.
-     */
-    private static ASTClassOrInterfaceType getTypeOfPrimaryPrefix(
-        final ASTPrimarySuffix node) {
-        return node.jjtGetParent()
-            .getFirstChildOfType(ASTPrimaryPrefix.class)
-            .getFirstDescendantOfType(ASTClassOrInterfaceType.class);
     }
 }
