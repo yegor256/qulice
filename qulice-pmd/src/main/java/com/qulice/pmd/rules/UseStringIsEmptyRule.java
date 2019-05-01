@@ -36,6 +36,7 @@ import java.util.Map;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTReferenceType;
 import net.sourceforge.pmd.lang.java.ast.ASTResultType;
 import net.sourceforge.pmd.lang.java.ast.ASTType;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
@@ -78,27 +79,39 @@ public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
     }
 
     @Override
-    public Object visit(final ASTVariableDeclaratorId node, final Object data) {
-        final Node type = node.getTypeNameNode();
-        if (type != null
-            || this.appliesToClassName(node.getNameDeclaration().getTypeImage())
-        ) {
-            final List<NameOccurrence> declarations = node.getUsages();
-            this.checkDeclarations(declarations, data);
+    public Object visit(
+        final ASTVariableDeclaratorId variable, final Object data
+    ) {
+        final Node node = variable.getTypeNameNode();
+        if (node instanceof ASTReferenceType) {
+            final Class<?> clazz = variable.getType();
+            final String type = variable.getNameDeclaration().getTypeImage();
+            if (clazz != null && !clazz.isArray()
+                && this.appliesToClassName(type)
+            ) {
+                final List<NameOccurrence> declarations = variable.getUsages();
+                this.checkDeclarations(declarations, data);
+            }
         }
-        node.childrenAccept(this, data);
+        variable.childrenAccept(this, data);
         return data;
     }
 
     @Override
-    public Object visit(final ASTMethodDeclaration node, final Object data) {
-        final ASTResultType result = node.getResultType();
+    public Object visit(
+        final ASTMethodDeclaration declaration, final Object data
+    ) {
+        final ASTResultType result = declaration.getResultType();
         if (!result.isVoid()) {
-            final ASTType type = (ASTType) result.jjtGetChild(0);
-            if (this.appliesToClassName(type.getTypeImage())) {
-                final Scope scope = node.getScope().getParent();
+            final ASTType node = (ASTType) result.jjtGetChild(0);
+            final Class<?> clazz = node.getType();
+            final String type = node.getTypeImage();
+            if (clazz != null && !clazz.isArray()
+                && this.appliesToClassName(type)
+            ) {
+                final Scope scope = declaration.getScope().getParent();
                 final MethodNameDeclaration method = new MethodNameDeclaration(
-                    node.getMethodDeclarator()
+                    declaration.getMethodDeclarator()
                 );
                 final List<NameOccurrence> declarations = scope
                     .getDeclarations(MethodNameDeclaration.class)
@@ -106,7 +119,7 @@ public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
                 this.checkDeclarations(declarations, data);
             }
         }
-        node.childrenAccept(this, data);
+        declaration.childrenAccept(this, data);
         return data;
     }
 
