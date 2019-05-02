@@ -33,6 +33,8 @@ import org.hamcrest.Matcher;
 import org.hamcrest.core.CombinableMatcher;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.StringContains;
+import org.hamcrest.text.IsEmptyString;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -69,6 +71,20 @@ public final class UseStringIsEmptyRuleTest {
                 .and(containsMatcher(file, 24))
                 .and(containsMatcher(file, 28))
                 .and(containsMatcher(file, 32))
+        ).validate();
+    }
+
+    /**
+     * UseStringIsEmpty not detect when used String[].length, when checking for
+     *  empty string.
+     * @throws Exception If something goes wrong.
+     */
+    @Test
+    public void notDetectOnArrayOfStrings() throws Exception {
+        new PmdAssert(
+            "ArrayOfStringsLengthGreaterThanZero.java",
+            new IsEqual<>(true),
+            new IsEmptyString()
         ).validate();
     }
 
