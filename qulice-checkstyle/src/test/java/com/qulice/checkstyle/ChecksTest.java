@@ -37,17 +37,16 @@ import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Stream;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -57,75 +56,25 @@ import org.xml.sax.InputSource;
  * Integration test case for all checkstyle checks.
  * @since 0.3
  */
-@RunWith(Parameterized.class)
 public final class ChecksTest {
 
     /**
-     * Directories where test scripts are located.
-     */
-    private static final String[] CHECKS = {
-        "MethodsOrderCheck",
-        "MultilineJavadocTagsCheck",
-        "StringLiteralsConcatenationCheck",
-        "EmptyLinesCheck",
-        "ImportCohesionCheck",
-        "BracketsStructureCheck",
-        "CurlyBracketsStructureCheck",
-        "JavadocLocationCheck",
-        "MethodBodyCommentsCheck",
-        "RequireThisCheck",
-        "ProtectedMethodInFinalClassCheck",
-        "NoJavadocForOverriddenMethodsCheck",
-        "NonStaticMethodCheck",
-        "ConstantUsageCheck",
-        "JavadocEmptyLineCheck",
-        "JavadocParameterOrderCheck",
-        "JavadocTagsCheck",
-        "ProhibitNonFinalClassesCheck",
-    };
-
-    /**
-     * Current directory we're working with.
-     */
-    private final String dir;
-
-    /**
-     * Public ctor.
-     * @param name The name of the check to work with
-     */
-    public ChecksTest(final String name) {
-        this.dir = String.format("ChecksTest/%s", name);
-    }
-
-    /**
-     * Returns full list of checks.
-     * @return The list
-     */
-    @Parameterized.Parameters
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public static Collection<Object[]> dirs() {
-        final Collection<Object[]> dirs = new LinkedList<>();
-        for (final String url : ChecksTest.CHECKS) {
-            dirs.add(new Object[] {url});
-        }
-        return dirs;
-    }
-
-    /**
      * Test checkstyle for true positive.
+     * @param dir Directory where test scripts are located.
      * @throws Exception If something goes wrong
      */
-    @Test
-    public void testCheckstyleTruePositive() throws Exception {
+    @ParameterizedTest
+    @MethodSource("checks")
+    public void testCheckstyleTruePositive(final String dir) throws Exception {
         final AuditListener listener = Mockito.mock(AuditListener.class);
         final Collector collector = new ChecksTest.Collector();
         Mockito.doAnswer(collector).when(listener)
             .addError(Mockito.any(AuditEvent.class));
-        this.check("/Invalid.java", listener);
+        this.check(dir, "/Invalid.java", listener);
         final String[] violations = StringUtils.split(
             IOUtils.toString(
                 this.getClass().getResourceAsStream(
-                    String.format("%s/violations.txt", this.dir)
+                    String.format("%s/violations.txt", dir)
                 ),
                 StandardCharsets.UTF_8
             ),
@@ -142,7 +91,7 @@ public final class ChecksTest {
                         "Line no.%d ('%s') not reported by %s: '%s'",
                         pos,
                         needle,
-                        this.dir,
+                        dir,
                         collector.summary()
                     ),
                     Matchers.is(true)
@@ -153,15 +102,17 @@ public final class ChecksTest {
 
     /**
      * Test checkstyle for true negative.
+     * @param dir Directory where test scripts are located.
      * @throws Exception If something goes wrong
      */
-    @Test
-    public void testCheckstyleTrueNegative() throws Exception {
+    @ParameterizedTest
+    @MethodSource("checks")
+    public void testCheckstyleTrueNegative(final String dir) throws Exception {
         final AuditListener listener = Mockito.mock(AuditListener.class);
         final Collector collector = new ChecksTest.Collector();
         Mockito.doAnswer(collector).when(listener)
             .addError(Mockito.any(AuditEvent.class));
-        this.check("/Valid.java", listener);
+        this.check(dir, "/Valid.java", listener);
         MatcherAssert.assertThat(collector.summary(), Matchers.equalTo(""));
         Mockito.verify(listener, Mockito.times(0))
             .addError(Mockito.any(AuditEvent.class));
@@ -169,16 +120,18 @@ public final class ChecksTest {
 
     /**
      * Check one file.
+     * @param dir Directory where test scripts are located.
      * @param name The name of the check
      * @param listener The listener
      * @throws Exception If something goes wrong inside
      */
-    private void check(final String name, final AuditListener listener)
-        throws Exception {
+    private void check(
+        final String dir, final String name, final AuditListener listener
+    ) throws Exception {
         final Checker checker = new Checker();
         final InputSource src = new InputSource(
             this.getClass().getResourceAsStream(
-                String.format("%s/config.xml", this.dir)
+                String.format("%s/config.xml", dir)
             )
         );
         checker.setClassLoader(Thread.currentThread().getContextClassLoader());
@@ -196,7 +149,7 @@ public final class ChecksTest {
         files.add(
             new File(
                 this.getClass().getResource(
-                    String.format("%s%s", this.dir, name)
+                    String.format("%s%s", dir, name)
                 ).getFile()
             )
         );
@@ -206,18 +159,49 @@ public final class ChecksTest {
     }
 
     /**
+     * Returns full list of checks.
+     * @return The list
+     */
+    @SuppressWarnings("PMD.UnusedPrivateMethod")
+    private static Stream<String> checks() {
+        return Stream.of(
+            "MethodsOrderCheck",
+            "MultilineJavadocTagsCheck",
+            "StringLiteralsConcatenationCheck",
+            "EmptyLinesCheck",
+            "ImportCohesionCheck",
+            "BracketsStructureCheck",
+            "CurlyBracketsStructureCheck",
+            "JavadocLocationCheck",
+            "MethodBodyCommentsCheck",
+            "RequireThisCheck",
+            "ProtectedMethodInFinalClassCheck",
+            "NoJavadocForOverriddenMethodsCheck",
+            "NonStaticMethodCheck",
+            "ConstantUsageCheck",
+            "JavadocEmptyLineCheck",
+            "JavadocParameterOrderCheck",
+            "JavadocTagsCheck",
+            "ProhibitNonFinalClassesCheck"
+        ).map(s -> String.format("ChecksTest/%s", s));
+    }
+
+    /**
      * Mocked collector of checkstyle events.
      */
     private static class Collector implements Answer<Object> {
+
         /**
          * List of events received.
          */
         private final List<AuditEvent> events = new LinkedList<>();
+
         @Override
         public Object answer(final InvocationOnMock invocation) {
             this.events.add((AuditEvent) invocation.getArguments()[0]);
             return null;
         }
+
         /**
          * Do we have this message for this line?
          * @param line The number of the line
@@ -234,6 +218,7 @@ public final class ChecksTest {
             }
             return has;
         }
+
         /**
          * Returns full summary.
          * @return The test summary of all events
