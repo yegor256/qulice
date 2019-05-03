@@ -42,12 +42,6 @@
     <artifactId>qulice-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
     <name>qulice-maven-plugin</name>
-    <!--
-    @todo #1019:30min Upgrade to Junit5. Finish JUnit upgrade to JUnit5 by
-     upgrading it in qulice-maven-plugin submodules. Qulice-maven-plugin
-     presents some build error that does not trigger any bulid failure, so maybe
-     they must be corrected first.
-    -->
     <properties>
         <maven.version>3.0.5</maven.version>
     </properties>
@@ -224,12 +218,6 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>5.3.1</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
