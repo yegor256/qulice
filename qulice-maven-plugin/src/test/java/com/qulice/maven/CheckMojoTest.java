@@ -35,7 +35,8 @@ import com.qulice.spi.Validator;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 
 /**
@@ -85,10 +86,12 @@ public final class CheckMojoTest {
         final Context context = Mockito.mock(Context.class);
         mojo.contextualize(context);
         mojo.execute();
-        Mockito.verify(internal).validate(Mockito.any(MavenEnvironment.class));
-        Mockito.verify(external).validate(Mockito.any(Environment.class));
+        Mockito.verify(internal)
+            .validate(ArgumentMatchers.any(MavenEnvironment.class));
+        Mockito.verify(external)
+            .validate(ArgumentMatchers.any(Environment.class));
         Mockito.verify(rexternal, Mockito.atLeastOnce())
-            .validate(Mockito.anyCollection());
+            .validate(ArgumentMatchers.anyCollection());
     }
 
 }

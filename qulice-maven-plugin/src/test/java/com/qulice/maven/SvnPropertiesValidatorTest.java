@@ -29,7 +29,7 @@
  */
 package com.qulice.maven;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link SvnPropertiesValidator}.
