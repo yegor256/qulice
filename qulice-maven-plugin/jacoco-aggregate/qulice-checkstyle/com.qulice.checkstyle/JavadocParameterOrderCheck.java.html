@@ -104,22 +104,9 @@ import java.util.regex.Pattern;
 <span class="nc" id="L104">        final FileContents contents = getFileContents();</span>
 <span class="nc" id="L105">        final TextBlock doc = contents.getJavadocBefore(ast.getLineNo());</span>
 <span class="nc bnc" id="L106" title="All 2 branches missed.">        if (doc != null) {</span>
-<span class="nc" id="L107">            final List&lt;JavadocTag&gt; tags = getMethodTags(doc);</span>
-<span class="nc" id="L108">            final List&lt;DetailAST&gt; parameters = getParameters(ast);</span>
-<span class="nc bnc" id="L109" title="All 2 branches missed.">            for (int param = 0; param &lt; parameters.size(); param = param + 1) {</span>
-<span class="nc bnc" id="L110" title="All 2 branches missed.">                if (!parameters.get(param).getText().equals(</span>
-<span class="nc" id="L111">                    tags.get(param).getFirstArg()</span>
-                    )
-                ) {
-<span class="nc" id="L114">                    this.log(</span>
-<span class="nc" id="L115">                        tags.get(param).getLineNo(),</span>
-                        // @checkstyle LineLength (1 line)
-                        &quot;Javadoc parameter order different than method signature&quot;
-                    );
-                }
-            }
+<span class="nc" id="L107">            this.checkParameters(ast, doc);</span>
         }
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L109">    }</span>
 
     /**
      * Returns the param tags in a javadoc comment.
@@ -128,37 +115,37 @@ import java.util.regex.Pattern;
      * @return The param tags found
      */
     private static List&lt;JavadocTag&gt; getMethodTags(final TextBlock comment) {
-<span class="nc" id="L131">        final String[] lines = comment.getText();</span>
-<span class="nc" id="L132">        final List&lt;JavadocTag&gt; tags = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L133">        int current = comment.getStartLineNo() - 1;</span>
-<span class="nc" id="L134">        final int start = comment.getStartColNo();</span>
-<span class="nc bnc" id="L135" title="All 2 branches missed.">        for (int line = 0; line &lt; lines.length; line = line + 1) {</span>
-<span class="nc" id="L136">            current = current + 1;</span>
-<span class="nc" id="L137">            final Matcher docmatcher =</span>
-<span class="nc" id="L138">                MATCH_JAVADOC_ARG.matcher(lines[line]);</span>
-<span class="nc" id="L139">            final Matcher multiline =</span>
-<span class="nc" id="L140">                MATCH_JAVADOC_ARG_MULTILINE_START.matcher(lines[line]);</span>
-<span class="nc bnc" id="L141" title="All 2 branches missed.">            if (docmatcher.find()) {</span>
-<span class="nc" id="L142">                final int col = calculateTagColumn(</span>
+<span class="nc" id="L118">        final String[] lines = comment.getText();</span>
+<span class="nc" id="L119">        final List&lt;JavadocTag&gt; tags = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L120">        int current = comment.getStartLineNo() - 1;</span>
+<span class="nc" id="L121">        final int start = comment.getStartColNo();</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        for (int line = 0; line &lt; lines.length; line = line + 1) {</span>
+<span class="nc" id="L123">            current = current + 1;</span>
+<span class="nc" id="L124">            final Matcher docmatcher =</span>
+<span class="nc" id="L125">                MATCH_JAVADOC_ARG.matcher(lines[line]);</span>
+<span class="nc" id="L126">            final Matcher multiline =</span>
+<span class="nc" id="L127">                MATCH_JAVADOC_ARG_MULTILINE_START.matcher(lines[line]);</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            if (docmatcher.find()) {</span>
+<span class="nc" id="L129">                final int col = calculateTagColumn(</span>
                     docmatcher, line, start
                 );
-<span class="nc" id="L145">                tags.add(</span>
+<span class="nc" id="L132">                tags.add(</span>
                     new JavadocTag(
                         current,
                         col,
-<span class="nc" id="L149">                        docmatcher.group(1),</span>
-<span class="nc" id="L150">                        docmatcher.group(2)</span>
+<span class="nc" id="L136">                        docmatcher.group(1),</span>
+<span class="nc" id="L137">                        docmatcher.group(2)</span>
                     )
                 );
-<span class="nc bnc" id="L153" title="All 2 branches missed.">            } else if (multiline.find()) {</span>
-<span class="nc" id="L154">                final int col =</span>
-<span class="nc" id="L155">                    calculateTagColumn(</span>
+<span class="nc bnc" id="L140" title="All 2 branches missed.">            } else if (multiline.find()) {</span>
+<span class="nc" id="L141">                final int col =</span>
+<span class="nc" id="L142">                    calculateTagColumn(</span>
                         multiline,
                         line,
                         start
                     );
-<span class="nc" id="L160">                tags.addAll(</span>
-<span class="nc" id="L161">                    getMultilineArgTags(</span>
+<span class="nc" id="L147">                tags.addAll(</span>
+<span class="nc" id="L148">                    getMultilineArgTags(</span>
                         multiline,
                         col,
                         lines,
@@ -168,7 +155,7 @@ import java.util.regex.Pattern;
                 );
             }
         }
-<span class="nc" id="L171">        return tags;</span>
+<span class="nc" id="L158">        return tags;</span>
     }
 
     /**
@@ -181,11 +168,11 @@ import java.util.regex.Pattern;
     private static int calculateTagColumn(
         final Matcher matcher, final int line, final int start
     ) {
-<span class="nc" id="L184">        int col = matcher.start(1) - 1;</span>
-<span class="nc bnc" id="L185" title="All 2 branches missed.">        if (line == 0) {</span>
-<span class="nc" id="L186">            col += start;</span>
+<span class="nc" id="L171">        int col = matcher.start(1) - 1;</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">        if (line == 0) {</span>
+<span class="nc" id="L173">            col += start;</span>
         }
-<span class="nc" id="L188">        return col;</span>
+<span class="nc" id="L175">        return col;</span>
     }
 
     /**
@@ -201,24 +188,24 @@ import java.util.regex.Pattern;
     private static List&lt;JavadocTag&gt; getMultilineArgTags(
         final Matcher matcher, final int column, final String[] lines,
         final int index, final int line) {
-<span class="nc" id="L204">        final List&lt;JavadocTag&gt; tags = new ArrayList&lt;&gt;(0);</span>
-<span class="nc" id="L205">        final String paramone = matcher.group(1);</span>
-<span class="nc" id="L206">        final String paramtwo = matcher.group(2);</span>
-<span class="nc" id="L207">        int remindex = index + 1;</span>
-<span class="nc bnc" id="L208" title="All 2 branches missed.">        while (remindex &lt; lines.length) {</span>
-<span class="nc" id="L209">            final Matcher multiline =</span>
-<span class="nc" id="L210">                MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remindex]);</span>
-<span class="nc bnc" id="L211" title="All 2 branches missed.">            if (multiline.find()) {</span>
-<span class="nc" id="L212">                remindex = lines.length;</span>
-<span class="nc" id="L213">                final String lfin = multiline.group(1);</span>
-<span class="nc bnc" id="L214" title="All 2 branches missed.">                if (!lfin.equals(JavadocParameterOrderCheck.NEXT_TAG)</span>
-<span class="nc bnc" id="L215" title="All 2 branches missed.">                    &amp;&amp; !lfin.equals(JavadocParameterOrderCheck.END_JAVADOC)) {</span>
-<span class="nc" id="L216">                    tags.add(new JavadocTag(line, column, paramone, paramtwo));</span>
+<span class="nc" id="L191">        final List&lt;JavadocTag&gt; tags = new ArrayList&lt;&gt;(0);</span>
+<span class="nc" id="L192">        final String paramone = matcher.group(1);</span>
+<span class="nc" id="L193">        final String paramtwo = matcher.group(2);</span>
+<span class="nc" id="L194">        int remindex = index + 1;</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">        while (remindex &lt; lines.length) {</span>
+<span class="nc" id="L196">            final Matcher multiline =</span>
+<span class="nc" id="L197">                MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remindex]);</span>
+<span class="nc bnc" id="L198" title="All 2 branches missed.">            if (multiline.find()) {</span>
+<span class="nc" id="L199">                remindex = lines.length;</span>
+<span class="nc" id="L200">                final String lfin = multiline.group(1);</span>
+<span class="nc bnc" id="L201" title="All 2 branches missed.">                if (!lfin.equals(JavadocParameterOrderCheck.NEXT_TAG)</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">                    &amp;&amp; !lfin.equals(JavadocParameterOrderCheck.END_JAVADOC)) {</span>
+<span class="nc" id="L203">                    tags.add(new JavadocTag(line, column, paramone, paramtwo));</span>
                 }
             }
-<span class="nc" id="L219">            remindex = remindex + 1;</span>
-<span class="nc" id="L220">        }</span>
-<span class="nc" id="L221">        return tags;</span>
+<span class="nc" id="L206">            remindex = remindex + 1;</span>
+<span class="nc" id="L207">        }</span>
+<span class="nc" id="L208">        return tags;</span>
     }
 
     /**
@@ -228,19 +215,49 @@ import java.util.regex.Pattern;
      * @return The list of parameter nodes for ast.
      */
     private static List&lt;DetailAST&gt; getParameters(final DetailAST ast) {
-<span class="nc" id="L231">        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);</span>
-<span class="nc" id="L232">        final List&lt;DetailAST&gt; value = new ArrayList&lt;&gt;(0);</span>
-<span class="nc" id="L233">        DetailAST child = params.getFirstChild();</span>
-<span class="nc bnc" id="L234" title="All 2 branches missed.">        while (child != null) {</span>
-<span class="nc bnc" id="L235" title="All 2 branches missed.">            if (child.getType() == TokenTypes.PARAMETER_DEF) {</span>
-<span class="nc" id="L236">                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);</span>
-<span class="nc bnc" id="L237" title="All 2 branches missed.">                if (ident != null) {</span>
-<span class="nc" id="L238">                    value.add(ident);</span>
+<span class="nc" id="L218">        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);</span>
+<span class="nc" id="L219">        final List&lt;DetailAST&gt; value = new ArrayList&lt;&gt;(0);</span>
+<span class="nc" id="L220">        DetailAST child = params.getFirstChild();</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        while (child != null) {</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">            if (child.getType() == TokenTypes.PARAMETER_DEF) {</span>
+<span class="nc" id="L223">                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);</span>
+<span class="nc bnc" id="L224" title="All 2 branches missed.">                if (ident != null) {</span>
+<span class="nc" id="L225">                    value.add(ident);</span>
                 }
             }
-<span class="nc" id="L241">            child = child.getNextSibling();</span>
+<span class="nc" id="L228">            child = child.getNextSibling();</span>
         }
-<span class="nc" id="L243">        return value;</span>
+<span class="nc" id="L230">        return value;</span>
     }
+
+    /**
+     * Checks method parameters order to comply with what is defined in method
+     * javadoc.
+     * @param ast The method node.
+     * @param doc Javadoc text block.
+     */
+    private void checkParameters(final DetailAST ast, final TextBlock doc) {
+<span class="nc" id="L240">        final List&lt;JavadocTag&gt; tags = getMethodTags(doc);</span>
+<span class="nc" id="L241">        final List&lt;DetailAST&gt; parameters = getParameters(ast);</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">        if (tags.size() == parameters.size()) {</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            for (int param = 0; param &lt; parameters.size(); param = param + 1) {</span>
+<span class="nc" id="L244">                final String parameter = parameters.get(param).getText();</span>
+<span class="nc" id="L245">                final JavadocTag tag = tags.get(param);</span>
+<span class="nc bnc" id="L246" title="All 2 branches missed.">                if (!parameter.equals(tag.getFirstArg())) {</span>
+<span class="nc" id="L247">                    this.log(</span>
+<span class="nc" id="L248">                        tag.getLineNo(),</span>
+                        // @checkstyle LineLength (1 line)
+                        &quot;Javadoc parameter order different than method signature&quot;
+                    );
+                }
+            }
+        } else {
+<span class="nc" id="L255">            this.log(</span>
+<span class="nc" id="L256">                ast.getLineNo(),</span>
+                // @checkstyle LineLength (1 line)
+                &quot;Number of javadoc parameters different than method signature&quot;
+            );
+        }
+<span class="nc" id="L261">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>

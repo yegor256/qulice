@@ -50,9 +50,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
-import org.cactoos.text.ReplacedText;
+import org.cactoos.text.Replaced;
 import org.cactoos.text.TextOf;
-import org.cactoos.text.TrimmedText;
+import org.cactoos.text.Trimmed;
 import org.xml.sax.InputSource;
 
 /**
@@ -126,7 +126,7 @@ public final class CheckstyleValidator implements ResourceValidator {
      * Load checkstyle configuration.
      * @param env The environment
      * @return The configuration just loaded
-     * @see #validate()
+     * @see #validate(Collection)
      */
     private Configuration configuration(final Environment env) {
 <span class="nc" id="L132">        final File cache =</span>
@@ -163,15 +163,15 @@ public final class CheckstyleValidator implements ResourceValidator {
      * Create header content, from file.
      * @param env The environment
      * @return The content of header
-     * @see #configuration()
+     * @see #configuration(Environment)
      */
     private String header(final Environment env) {
 <span class="nc" id="L169">        final String name = env.param(&quot;license&quot;, &quot;LICENSE.txt&quot;);</span>
 <span class="nc" id="L170">        final URL url = CheckstyleValidator.toUrl(env, name);</span>
         final String content;
         try {
-<span class="nc" id="L173">            content = new ReplacedText(</span>
-                new TrimmedText(
+<span class="nc" id="L173">            content = new Replaced(</span>
+                new Trimmed(
                     new TextOf(
 <span class="nc" id="L176">                        url.openStream()</span>
                     )

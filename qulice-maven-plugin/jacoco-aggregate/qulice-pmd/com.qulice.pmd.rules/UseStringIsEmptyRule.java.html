@@ -33,122 +33,116 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import net.sourceforge.pmd.lang.java.ast.ASTClassOrInterfaceType;
+import net.sourceforge.pmd.lang.ast.Node;
+import net.sourceforge.pmd.lang.java.ast.ASTExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTName;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimaryPrefix;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimarySuffix;
+import net.sourceforge.pmd.lang.java.ast.ASTReferenceType;
 import net.sourceforge.pmd.lang.java.ast.ASTResultType;
+import net.sourceforge.pmd.lang.java.ast.ASTType;
+import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
+import net.sourceforge.pmd.lang.java.ast.JavaNode;
 import net.sourceforge.pmd.lang.java.rule.AbstractInefficientZeroCheck;
-import net.sourceforge.pmd.lang.java.symboltable.ClassScope;
 import net.sourceforge.pmd.lang.java.symboltable.JavaNameOccurrence;
 import net.sourceforge.pmd.lang.java.symboltable.MethodNameDeclaration;
 import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
+import net.sourceforge.pmd.lang.symboltable.Scope;
 import net.sourceforge.pmd.util.StringUtil;
 
 /**
  * Rule to prohibit use of String.length() when checking for empty string.
  * String.isEmpty() should be used instead.
  * @since 0.18
- * @todo #950:30min Correct this class so it  complains if the string is
- *  prefixed with this when length is called (e.g. somestring.length() works
- *  but this.somestring.length() does not). The same happens in with a method
- *  call (this.method().length() does not work). More about how to write PMD
- *  rules here: http://pmd.sourceforge.net/pmd-4.3/howtowritearule.html. Then
- *  ignore the tests on UseStringIsEmptyRuleTest.
  */
-@SuppressWarnings(&quot;PMD.AvoidDuplicateLiterals&quot;)
-<span class="nc" id="L61">public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {</span>
+<span class="nc" id="L56">public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {</span>
 
     @Override
     public boolean appliesToClassName(final String name) {
-<span class="nc" id="L65">        return StringUtil.isSame(name, &quot;String&quot;, true, true, true);</span>
+<span class="nc" id="L60">        return StringUtil.isSame(name, &quot;String&quot;, true, true, true);</span>
     }
 
     @Override
     public Map&lt;String, List&lt;String&gt;&gt; getComparisonTargets() {
-<span class="nc" id="L70">        final Map&lt;String, List&lt;String&gt;&gt; rules = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L71">        rules.put(&quot;&lt;&quot;, Arrays.asList(&quot;1&quot;));</span>
-<span class="nc" id="L72">        rules.put(&quot;&gt;&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L73">        rules.put(&quot;==&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L74">        rules.put(&quot;!=&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L75">        rules.put(&quot;&gt;=&quot;, Arrays.asList(&quot;0&quot;, &quot;1&quot;));</span>
-<span class="nc" id="L76">        rules.put(&quot;&lt;=&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L77">        return rules;</span>
+<span class="nc" id="L65">        final Map&lt;String, List&lt;String&gt;&gt; rules = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L66">        rules.put(&quot;&lt;&quot;, Arrays.asList(&quot;1&quot;));</span>
+<span class="nc" id="L67">        rules.put(&quot;&gt;&quot;, Arrays.asList(&quot;0&quot;));</span>
+<span class="nc" id="L68">        rules.put(&quot;==&quot;, Arrays.asList(&quot;0&quot;));</span>
+<span class="nc" id="L69">        rules.put(&quot;!=&quot;, Arrays.asList(&quot;0&quot;));</span>
+<span class="nc" id="L70">        rules.put(&quot;&gt;=&quot;, Arrays.asList(&quot;0&quot;, &quot;1&quot;));</span>
+<span class="nc" id="L71">        rules.put(&quot;&lt;=&quot;, Arrays.asList(&quot;0&quot;));</span>
+<span class="nc" id="L72">        return rules;</span>
     }
 
     @Override
     public boolean isTargetMethod(final JavaNameOccurrence occ) {
-<span class="nc" id="L82">        boolean target = false;</span>
-<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (occ.getNameForWhichThisIsAQualifier() != null</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">            &amp;&amp; occ.getLocation().getImage().endsWith(&quot;.length&quot;)</span>
-        ) {
-<span class="nc" id="L86">            target = true;</span>
-        }
-<span class="nc" id="L88">        return target;</span>
+<span class="nc" id="L77">        final NameOccurrence name = occ.getNameForWhichThisIsAQualifier();</span>
+<span class="nc bnc" id="L78" title="All 4 branches missed.">        return name != null &amp;&amp; &quot;length&quot;.equals(name.getImage());</span>
     }
 
     @Override
-    public Object visit(final ASTPrimarySuffix node, final Object data) {
-<span class="nc bnc" id="L93" title="All 4 branches missed.">        if (node.getImage() != null &amp;&amp; node.getImage().endsWith(&quot;length&quot;)) {</span>
-<span class="nc" id="L94">            ASTClassOrInterfaceType type = getTypeOfPrimaryPrefix(node);</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (type == null) {</span>
-<span class="nc" id="L96">                type = getTypeOfMethodCall(node);</span>
-            }
-<span class="nc bnc" id="L98" title="All 2 branches missed.">            if (type != null</span>
-<span class="nc bnc" id="L99" title="All 2 branches missed.">                &amp;&amp; this.appliesToClassName(type.getType().getSimpleName())</span>
+    public Object visit(
+        final ASTVariableDeclaratorId variable, final Object data
+    ) {
+<span class="nc" id="L85">        final Node node = variable.getTypeNameNode();</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">        if (node instanceof ASTReferenceType) {</span>
+<span class="nc" id="L87">            final Class&lt;?&gt; clazz = variable.getType();</span>
+<span class="nc" id="L88">            final String type = variable.getNameDeclaration().getTypeImage();</span>
+<span class="nc bnc" id="L89" title="All 4 branches missed.">            if (clazz != null &amp;&amp; !clazz.isArray()</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">                &amp;&amp; this.appliesToClassName(type)</span>
             ) {
-<span class="nc" id="L101">                checkNodeAndReport(</span>
-<span class="nc" id="L102">                    data, node, node.jjtGetParent().jjtGetParent()</span>
+<span class="nc" id="L92">                final List&lt;NameOccurrence&gt; declarations = variable.getUsages();</span>
+<span class="nc" id="L93">                this.checkDeclarations(declarations, data);</span>
+            }
+        }
+<span class="nc" id="L96">        variable.childrenAccept(this, data);</span>
+<span class="nc" id="L97">        return data;</span>
+    }
+
+    @Override
+    public Object visit(
+        final ASTMethodDeclaration declaration, final Object data
+    ) {
+<span class="nc" id="L104">        final ASTResultType result = declaration.getResultType();</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (!result.isVoid()) {</span>
+<span class="nc" id="L106">            final ASTType node = (ASTType) result.jjtGetChild(0);</span>
+<span class="nc" id="L107">            final Class&lt;?&gt; clazz = node.getType();</span>
+<span class="nc" id="L108">            final String type = node.getTypeImage();</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            if (clazz != null &amp;&amp; !clazz.isArray()</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">                &amp;&amp; this.appliesToClassName(type)</span>
+            ) {
+<span class="nc" id="L112">                final Scope scope = declaration.getScope().getParent();</span>
+<span class="nc" id="L113">                final MethodNameDeclaration method = new MethodNameDeclaration(</span>
+<span class="nc" id="L114">                    declaration.getMethodDeclarator()</span>
+                );
+<span class="nc" id="L116">                final List&lt;NameOccurrence&gt; declarations = scope</span>
+<span class="nc" id="L117">                    .getDeclarations(MethodNameDeclaration.class)</span>
+<span class="nc" id="L118">                    .get(method);</span>
+<span class="nc" id="L119">                this.checkDeclarations(declarations, data);</span>
+            }
+        }
+<span class="nc" id="L122">        declaration.childrenAccept(this, data);</span>
+<span class="nc" id="L123">        return data;</span>
+    }
+
+    /**
+     * Checks all uses of a variable or method with a String type.
+     * @param occurrences Variable or method occurrences.
+     * @param data Rule context.
+     */
+    private void checkDeclarations(
+        final Iterable&lt;NameOccurrence&gt; occurrences, final Object data
+    ) {
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        for (final NameOccurrence occurrence : occurrences) {</span>
+<span class="nc" id="L135">            final JavaNameOccurrence jocc = (JavaNameOccurrence) occurrence;</span>
+<span class="nc bnc" id="L136" title="All 2 branches missed.">            if (this.isTargetMethod(jocc)) {</span>
+<span class="nc" id="L137">                final JavaNode location = jocc.getLocation();</span>
+<span class="nc" id="L138">                final Node expr = location.getFirstParentOfType(</span>
+                    ASTExpression.class
+                );
+<span class="nc" id="L141">                this.checkNodeAndReport(</span>
+<span class="nc" id="L142">                    data, occurrence.getLocation(), expr.jjtGetChild(0)</span>
                 );
             }
-        }
-<span class="nc" id="L106">        return data;</span>
-    }
-
-    /**
-     * Get the type returned by the method call.
-     * @param node Node suffix
-     * @return The type or null if it's not found
-     */
-    private static ASTClassOrInterfaceType getTypeOfMethodCall(
-        final ASTPrimarySuffix node) {
-<span class="nc" id="L116">        ASTClassOrInterfaceType type = null;</span>
-<span class="nc" id="L117">        final ASTName method = node.jjtGetParent()</span>
-<span class="nc" id="L118">            .getFirstChildOfType(ASTPrimaryPrefix.class)</span>
-<span class="nc" id="L119">            .getFirstChildOfType(ASTName.class);</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">        if (method != null) {</span>
-<span class="nc" id="L121">            final ClassScope scope = node.getScope()</span>
-<span class="nc" id="L122">                .getEnclosingScope(ClassScope.class);</span>
-<span class="nc" id="L123">            final Map&lt;MethodNameDeclaration, List&lt;NameOccurrence&gt;&gt; methods =</span>
-<span class="nc" id="L124">                scope.getMethodDeclarations();</span>
-            //@checkstyle LineLengthCheck (1 line)
-            for (final Map.Entry&lt;MethodNameDeclaration, List&lt;NameOccurrence&gt;&gt; entry
-<span class="nc bnc" id="L127" title="All 2 branches missed.">                : methods.entrySet()) {</span>
-<span class="nc bnc" id="L128" title="All 2 branches missed.">                if (entry.getKey().getName().equals(method.getImage())) {</span>
-<span class="nc" id="L129">                    type = entry.getKey().getNode()</span>
-<span class="nc" id="L130">                        .getFirstParentOfType(ASTMethodDeclaration.class)</span>
-<span class="nc" id="L131">                        .getFirstChildOfType(ASTResultType.class)</span>
-<span class="nc" id="L132">                        .getFirstDescendantOfType(</span>
-                            ASTClassOrInterfaceType.class
-                        );
-<span class="nc" id="L135">                    break;</span>
-                }
-<span class="nc" id="L137">            }</span>
-        }
-<span class="nc" id="L139">        return type;</span>
-    }
-
-    /**
-     * Get the type of the primary prefix.
-     * @param node Node suffix
-     * @return The type or null if it's not found.
-     */
-    private static ASTClassOrInterfaceType getTypeOfPrimaryPrefix(
-        final ASTPrimarySuffix node) {
-<span class="nc" id="L149">        return node.jjtGetParent()</span>
-<span class="nc" id="L150">            .getFirstChildOfType(ASTPrimaryPrefix.class)</span>
-<span class="nc" id="L151">            .getFirstDescendantOfType(ASTClassOrInterfaceType.class);</span>
-    }
+<span class="nc" id="L145">        }</span>
+<span class="nc" id="L146">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
