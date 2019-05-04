@@ -45,8 +45,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mockito;
@@ -59,33 +57,6 @@ import org.xml.sax.InputSource;
  * @since 0.3
  */
 public final class ChecksTest {
-
-    /**
-     * Disabled test case.
-     */
-    private static final String DISABLED = "ChecksTest/JavadocParameterOrderCheck";
-
-    /**
-     * Disabled JavadocParameterOrderCheck.
-     * Test checkstyle for true positive.
-     * @throws Exception If something goes wrong
-     */
-    @Disabled
-    @Test
-    public void testJavadocParameterOrderCheckTruePositive() throws Exception {
-        this.testCheckstyleTruePositive(DISABLED);
-    }
-
-    /**
-     * Disabled JavadocParameterOrderCheck.
-     * Test checkstyle for true positive.
-     * @throws Exception If something goes wrong
-     */
-    @Disabled
-    @Test
-    public void testJavadocParameterOrderCheckTrueNegative() throws Exception {
-        this.testCheckstyleTrueNegative(DISABLED);
-    }
 
     /**
      * Test checkstyle for true negative.
@@ -202,6 +173,7 @@ public final class ChecksTest {
             "BracketsStructureCheck",
             "CurlyBracketsStructureCheck",
             "JavadocLocationCheck",
+            "JavadocParameterOrderCheck",
             "MethodBodyCommentsCheck",
             "RequireThisCheck",
             "ProtectedMethodInFinalClassCheck",
