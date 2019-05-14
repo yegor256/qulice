@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Parameters.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle.parameters</a> &gt; <span class="el_source">Parameters.java</span></div><h1>Parameters.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011-2019, Qulice.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.checkstyle.parameters;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * Abstract parameters. Is used for Generic type parameters or
+ *  method(constructor) arguments.
+ *
+ * @since 0.18.18
+ */
+public class Parameters {
+
+    /**
+     * Class, interface, constructor or method definition node.
+     */
+    private final DetailAST node;
+
+    /**
+     * Parent TokenType (TYPE_PARAMETERS or PARAMETERS).
+     * @see com.puppycrawl.tools.checkstyle.api.TokenTypes
+     */
+    private final int parent;
+
+    /**
+     * Childs TokenType (TYPE_PARAMETER or PARAMETER_DEF).
+     * @see com.puppycrawl.tools.checkstyle.api.TokenTypes
+     */
+    private final int childs;
+
+    /**
+     * Primary ctor.
+     * @param node Class, interface, constructor or method definition node.
+     * @param parent Parent TokenType (TYPE_PARAMETERS or PARAMETERS).
+     * @param childs Childs TokenType (TYPE_PARAMETER or PARAMETER_DEF).
+     */
+    public Parameters(
+        final DetailAST node, final int parent, final int childs
+<span class="nc" id="L70">    ) {</span>
+<span class="nc" id="L71">        this.node = node;</span>
+<span class="nc" id="L72">        this.parent = parent;</span>
+<span class="nc" id="L73">        this.childs = childs;</span>
+<span class="nc" id="L74">    }</span>
+
+    /**
+     * Return number of arguments.
+     * @return Number of parameters.
+     */
+    public final int count() {
+        final int result;
+<span class="nc" id="L82">        final DetailAST params = this.node.findFirstToken(this.parent);</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (params == null) {</span>
+<span class="nc" id="L84">            result = 0;</span>
+        } else {
+<span class="nc" id="L86">            result = params.getChildCount(this.childs);</span>
+        }
+<span class="nc" id="L88">        return result;</span>
+    }
+
+    /**
+     * Return parameters for this node.
+     * @return Parameters for this node.
+     */
+    public final List&lt;DetailAST&gt; parameters() {
+        final List&lt;DetailAST&gt; result;
+<span class="nc" id="L97">        final int count = this.count();</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        if (count == 0) {</span>
+<span class="nc" id="L99">            result = Collections.emptyList();</span>
+        } else {
+<span class="nc" id="L101">            final DetailAST params = this.node.findFirstToken(this.parent);</span>
+<span class="nc" id="L102">            result = new ArrayList&lt;&gt;(count);</span>
+<span class="nc" id="L103">            DetailAST child = params.getFirstChild();</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            while (child != null) {</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">                if (child.getType() == this.childs) {</span>
+<span class="nc" id="L106">                    result.add(child);</span>
+                }
+<span class="nc" id="L108">                child = child.getNextSibling();</span>
+            }
+        }
+<span class="nc" id="L111">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
