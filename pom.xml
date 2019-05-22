@@ -33,7 +33,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <parent>
     <groupId>com.jcabi</groupId>
     <artifactId>parent</artifactId>
-    <version>0.49.4</version>
+    <version>0.49.5</version>
   </parent>
   <groupId>com.qulice</groupId>
   <artifactId>qulice</artifactId>
@@ -231,6 +231,28 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <inherited>true</inherited>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <configuration>
+              <target>
+                <patternset id="xcop.excludes">
+                  <exclude name="qulice-ant/**"/>
+                  <exclude name="qulice-checkstyle/**"/>
+                  <exclude name="qulice-findbugs/**"/>
+                  <exclude name="qulice-gradle-plugin/**"/>
+                  <exclude name="qulice-maven-plugin/**"/>
+                  <exclude name="qulice-pmd/**"/>
+                  <exclude name="qulice-spi/**"/>
+                  <exclude name="qulice-spotbugs/**"/>
+                </patternset>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <inherited>true</inherited>
         <groupId>org.apache.maven.plugins</groupId>
