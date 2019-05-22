@@ -59,7 +59,7 @@ import org.xml.sax.InputSource;
 public final class ChecksTest {
 
     /**
-     * Test checkstyle for true positive.
+     * Test checkstyle for true negative.
      * @param dir Directory where test scripts are located.
      * @throws Exception If something goes wrong
      */
@@ -173,6 +173,7 @@ public final class ChecksTest {
             "BracketsStructureCheck",
             "CurlyBracketsStructureCheck",
             "JavadocLocationCheck",
+            "JavadocParameterOrderCheck",
             "MethodBodyCommentsCheck",
             "RequireThisCheck",
             "ProtectedMethodInFinalClassCheck",
@@ -180,7 +181,6 @@ public final class ChecksTest {
             "NonStaticMethodCheck",
             "ConstantUsageCheck",
             "JavadocEmptyLineCheck",
-            "JavadocParameterOrderCheck",
             "JavadocTagsCheck",
             "ProhibitNonFinalClassesCheck"
         ).map(s -> String.format("ChecksTest/%s", s));

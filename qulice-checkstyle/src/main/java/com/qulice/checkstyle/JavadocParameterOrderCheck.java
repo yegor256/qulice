@@ -35,9 +35,12 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+import com.qulice.checkstyle.parameters.Arguments;
+import com.qulice.checkstyle.parameters.TypeParameters;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -84,6 +87,8 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
     @Override
     public int[] getDefaultTokens() {
         return new int[] {
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.CLASS_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
         };
@@ -101,7 +106,7 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        final FileContents contents = getFileContents();
+        final FileContents contents = this.getFileContents();
         final TextBlock doc = contents.getJavadocBefore(ast.getLineNo());
         if (doc != null) {
             this.checkParameters(ast, doc);
@@ -209,28 +214,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
     }
 
     /**
-     * Computes the parameter nodes for a method.
-     *
-     * @param ast The method node.
-     * @return The list of parameter nodes for ast.
-     */
-    private static List<DetailAST> getParameters(final DetailAST ast) {
-        final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-        final List<DetailAST> value = new ArrayList<>(0);
-        DetailAST child = params.getFirstChild();
-        while (child != null) {
-            if (child.getType() == TokenTypes.PARAMETER_DEF) {
-                final DetailAST ident = child.findFirstToken(TokenTypes.IDENT);
-                if (ident != null) {
-                    value.add(ident);
-                }
-            }
-            child = child.getNextSibling();
-        }
-        return value;
-    }
-
-    /**
      * Checks method parameters order to comply with what is defined in method
      * javadoc.
      * @param ast The method node.
@@ -238,19 +221,17 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
      */
     private void checkParameters(final DetailAST ast, final TextBlock doc) {
         final List<JavadocTag> tags = getMethodTags(doc);
-        final List<DetailAST> parameters = getParameters(ast);
-        if (tags.size() == parameters.size()) {
-            for (int param = 0; param < parameters.size(); param = param + 1) {
-                final String parameter = parameters.get(param).getText();
-                final JavadocTag tag = tags.get(param);
-                if (!parameter.equals(tag.getFirstArg())) {
-                    this.log(
-                        tag.getLineNo(),
-                        // @checkstyle LineLength (1 line)
-                        "Javadoc parameter order different than method signature"
-                    );
-                }
-            }
+        final Arguments args = new Arguments(ast);
+        final TypeParameters types = new TypeParameters(ast);
+        final int count = args.count() + types.count();
+        if (tags.size() == count) {
+            final Consumer<JavadocTag> logger = (tag) -> this.log(
+                tag.getLineNo(),
+                // @checkstyle LineLength (1 line)
+                "Javadoc parameter order different than method signature"
+            );
+            args.checkOrder(tags, logger);
+            types.checkOrder(tags, logger);
         } else {
             this.log(
                 ast.getLineNo(),

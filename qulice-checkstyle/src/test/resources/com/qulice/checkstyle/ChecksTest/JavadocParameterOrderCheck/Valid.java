@@ -32,4 +32,24 @@ public final class Valid {
     public String method(final String bparam, final String aparam) {
         return bparam + aparam;
     }
+
+    /**
+     * Correct order of parameters.
+     * @param list List.
+     * @param index Index.
+     * @param <T> Type.
+     * @return Element.
+     */
+    public <T> T get(final List<T> list, final int index) {
+        return list.get(index);
+    }
+
+    /**
+     * Correct order of parameters.
+     * @param <K> Key.
+     * @param <V> Value.
+     */
+    public final static class Entry<K, V> {
+
+    }
 }

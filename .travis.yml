@@ -13,6 +13,7 @@ install:
   - travis_retry sudo apt-get install -y --fix-missing libmagic1 libmagic-dev
   - gem install --no-document pdd
   - gem install --no-document est
+  - gem install --no-document xcop
   - mvn install -DskipTests -Dinvoker.skip
   - mvn clean
   - set +e

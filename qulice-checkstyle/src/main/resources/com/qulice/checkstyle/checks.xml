@@ -1,449 +1,393 @@
 <?xml version="1.0"?>
-<!DOCTYPE module PUBLIC
-    "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
-    "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 <!--
- *
- * Copyright (c) 2011-2019, Qulice.com
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * @link http://checkstyle.sourceforge.net/config.html
- * @todo #772:30min Checkstyle and PMD rules overlap. Let's get rid of
- *  checkstyle and PMD overlapping rules removing the checkstyle ones and making
- *  sure that PMD ones have at least the same threshold as the removed
- *  checkstyle checks (that is, we don't reduce code quality).
- *  Following checks are equivalent:
- *  checkstyle -> PMD
- *  JavaNCSS (method and class) -> NcssMethodCount, NcssConstructorCount,
- *                                 NcssTypeCount
- *  CyclomaticComplexity -> CyclomaticComplexity, StdCyclomaticComplexity,
- *                                 ModifiedCyclomaticComplexity
- *  NPathComplexity->NPathComplexity
- *  MethodLength -> ExcessiveMethodLength
- *  IllegalCatch -> AvoidCatchingGenericException
- -->
+Copyright (c) 2011-2019, Qulice.com
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions
+are met: 1) Redistributions of source code must retain the above
+copyright notice, this list of conditions and the following
+disclaimer. 2) Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following
+disclaimer in the documentation and/or other materials provided
+with the distribution. 3) Neither the name of the Qulice.com nor
+the names of its contributors may be used to endorse or promote
+products derived from this software without specific prior written
+permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 <module name="Checker">
-    <!--
+  <!--
     Enforces English locale to be independent from the
     default locale which may vary between environments.
     -->
-    <property name="localeLanguage" value="en"/>
-
-    <!--
+  <property name="localeLanguage" value="en"/>
+  <!--
     Checks that each Java package has a Javadoc file
     used for commenting.
     -->
-    <module name="JavadocPackage"/>
-
-    <!--
+  <module name="JavadocPackage"/>
+  <!--
     Checks whether files end with a new line.
     -->
-    <module name="NewlineAtEndOfFile">
-        <property name="fileExtensions" value="java"/>
-        <property name="lineSeparator" value="lf"/>
-    </module>
-
-    <!--
+  <module name="NewlineAtEndOfFile">
+    <property name="fileExtensions" value="java"/>
+    <property name="lineSeparator" value="lf"/>
+  </module>
+  <!--
     Checks that property files contain the same keys.
     -->
-    <module name="Translation"/>
-
-    <!-- Checks for duplicate code -->
-    <!-- https://sourceforge.net/p/checkstyle/bugs/693/ -->
-    <!-- <module name="StrictDuplicateCode"/> -->
-
-    <!--
+  <module name="Translation"/>
+  <!-- Checks for duplicate code -->
+  <!-- https://sourceforge.net/p/checkstyle/bugs/693/ -->
+  <!-- <module name="StrictDuplicateCode"/> -->
+  <!--
     Maximum number of lines in any .java file is limited.
     -->
-    <module name="FileLength">
-        <property name="max" value="1000"/>
-        <property name="fileExtensions" value="java"/>
-    </module>
-
-    <!--
+  <module name="FileLength">
+    <property name="max" value="1000"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
+  <!--
     TAB chars are not allowed anywhere.
     -->
-    <module name="FileTabCharacter">
-        <property name="eachLine" value="true"/>
-        <property name="fileExtensions" value="java,txt,xml,xsl,xsd,properties,groovy,vm,MF,sh,sql,tokens,g,spec,css,csv"/>
-    </module>
-
-    <!--
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="true"/>
+    <property name="fileExtensions" value="java,txt,xml,xsl,xsd,properties,groovy,vm,MF,sh,sql,tokens,g,spec,css,csv"/>
+  </module>
+  <!--
     Trailing spaces are not allowed anywhere.
     -->
-    <module name="RegexpSingleline">
-        <property name="format" value="\s+$"/>
-        <property name="message" value="Line has trailing spaces."/>
-    </module>
-
-    <!--
+  <module name="RegexpSingleline">
+    <property name="format" value="\s+$"/>
+    <property name="message" value="Line has trailing spaces."/>
+  </module>
+  <!--
     C++ style inline comment is not allowed.
     -->
-    <module name="RegexpSingleline">
-        <property name="format" value="/\*.*\*/"/>
-        <property name="message" value="This kind of comment is not allowed."/>
-    </module>
-
-    <!--
+  <module name="RegexpSingleline">
+    <property name="format" value="/\*.*\*/"/>
+    <property name="message" value="This kind of comment is not allowed."/>
+  </module>
+  <!--
     Windows line endings are not allowed.
     -->
-    <module name="RegexpMultiline">
-        <property name="format" value="\r\n$"/>
-        <property name="message"
-                  value="Lines in file should end with Unix-like end of line"/>
-    </module>
-
-    <!--
+  <module name="RegexpMultiline">
+    <property name="format" value="\r\n$"/>
+    <property name="message" value="Lines in file should end with Unix-like end of line"/>
+  </module>
+  <!--
     Two consecutive empty lines are not allowed.
     -->
-    <module name="RegexpMultiline">
-        <property name="format" value="\r?\n[ \t\x0B\f]*\r?\n[ \t\x0B\f]*\r?\n"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="Two consecutive empty lines"/>
-    </module>
-
-    <!--
+  <module name="RegexpMultiline">
+    <property name="format" value="\r?\n[ \t\x0B\f]*\r?\n[ \t\x0B\f]*\r?\n"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="Two consecutive empty lines"/>
+  </module>
+  <!--
     JavaDoc regexp checks
     -->
-    <module name="RegexpSingleline">
-        <property name="format" value="\* +@return +[^A-Z]"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="@return tag description should start with capital letter"/>
+  <module name="RegexpSingleline">
+    <property name="format" value="\* +@return +[^A-Z]"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="@return tag description should start with capital letter"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="\* +@param +\w+ +[^A-Z]"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="@param tag description should start with capital letter"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="/\*\* +[^A-Z\{]"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="First sentence in a comment should start with a capital letter"/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="format" value="/\*\*\W+\* +[^A-Z\{]"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="First sentence in a comment should start with a capital letter"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="synchronized +\(this\) +\{"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="Using THIS as a lock is a bad practice (use class variable instead)"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="synchronized +\([\w\.]\.class\) +\{"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="Using class as a lock is a bad practice (use class variable instead)"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="org\.apache\.commons\.(codec|lang3?)\.CharEncoding"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="Use 'java.nio.charset.StandardCharsets' instead"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="com\.google\.common\.base\.Charsets"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="Use 'java.nio.charset.StandardCharsets' instead"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="^(?! *(/\*\*|\*|/\*|//)).*[\.\-\+%/\*&lt;&gt;](?&lt;!(-&gt;)|&lt;*[A-Za-z]&gt;) *$"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="Line cannot end with this symbol, move it to the next line"/>
+  </module>
+  <module name="RegexpSingleline">
+    <property name="format" value="^ *="/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message" value="Line cannot start with this symbol, move it to the previous line"/>
+  </module>
+  <!-- Checks for Header -->
+  <module name="Header">
+    <property name="header" value="${header}"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
+  <module name="SuppressionFilter">
+    <property name="file" value="/com/qulice/checkstyle/suppressions.xml"/>
+    <property name="optional" value="false"/>
+  </module>
+  <module name="TreeWalker">
+    <property name="cacheFile" value="${cache.file}"/>
+    <module name="SuppressWithNearbyCommentFilter">
+      <property name="commentFormat" value="@checkstyle (\w+) \((\d+) lines?\)"/>
+      <property name="checkFormat" value="$1"/>
+      <property name="influenceFormat" value="$2"/>
     </module>
-    <module name="RegexpSingleline">
-        <property name="format" value="\* +@param +\w+ +[^A-Z]"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="@param tag description should start with capital letter"/>
+    <!-- Checks for annotations. -->
+    <module name="AnnotationUseStyle">
+      <property name="elementStyle" value="compact_no_array"/>
+      <property name="trailingArrayComma" value="never"/>
+      <property name="closingParens" value="ignore"/>
     </module>
-    <module name="RegexpSingleline">
-        <property name="format" value="/\*\* +[^A-Z\{]"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="First sentence in a comment should start with a capital letter"/>
+    <module name="MissingDeprecated"/>
+    <module name="MissingOverride"/>
+    <module name="PackageAnnotation"/>
+    <module name="SuppressWarnings"/>
+    <!-- Checks for blocks. -->
+    <module name="EmptyBlock"/>
+    <module name="LeftCurly"/>
+    <module name="NeedBraces"/>
+    <module name="RightCurly"/>
+    <module name="AvoidNestedBlocks"/>
+    <!-- Checks for class design. -->
+    <module name="VisibilityModifier"/>
+    <module name="FinalClass"/>
+    <module name="InterfaceIsType"/>
+    <module name="HideUtilityClassConstructor"/>
+    <module name="DesignForExtension"/>
+    <module name="MutableException"/>
+    <module name="ThrowsCount"/>
+    <module name="InnerTypeLast"/>
+    <!-- Checks for common coding problems -->
+    <module name="ArrayTrailingComma"/>
+    <module name="AvoidInlineConditionals"/>
+    <module name="CovariantEquals"/>
+    <module name="EmptyStatement"/>
+    <module name="EqualsHashCode"/>
+    <module name="FinalLocalVariable"/>
+    <module name="HiddenField">
+      <property name="ignoreConstructorParameter" value="true"/>
     </module>
-    <module name="RegexpMultiline">
-        <property name="format" value="/\*\*\W+\* +[^A-Z\{]"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="First sentence in a comment should start with a capital letter"/>
+    <module name="IllegalInstantiation"/>
+    <module name="IllegalToken">
+      <property name="tokens" value="POST_INC, POST_DEC"/>
     </module>
-    <module name="RegexpSingleline">
-        <property name="format" value="synchronized +\(this\) +\{"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="Using THIS as a lock is a bad practice (use class variable instead)"/>
+    <module name="IllegalTokenText"/>
+    <module name="InnerAssignment"/>
+    <module name="MagicNumber"/>
+    <module name="MissingSwitchDefault"/>
+    <module name="ModifiedControlVariable"/>
+    <module name="SimplifyBooleanExpression"/>
+    <module name="SimplifyBooleanReturn"/>
+    <module name="StringLiteralEquality"/>
+    <module name="NestedForDepth"/>
+    <module name="NestedIfDepth"/>
+    <module name="NestedTryDepth"/>
+    <module name="NoClone"/>
+    <module name="NoFinalizer"/>
+    <module name="SuperClone"/>
+    <module name="SuperFinalize"/>
+    <module name="IllegalCatch"/>
+    <module name="IllegalThrows"/>
+    <module name="PackageDeclaration"/>
+    <module name="ReturnCount">
+      <property name="max" value="1"/>
     </module>
-    <module name="RegexpSingleline">
-        <property name="format" value="synchronized +\([\w\.]\.class\) +\{"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="Using class as a lock is a bad practice (use class variable instead)"/>
+    <module name="IllegalType"/>
+    <module name="DeclarationOrder"/>
+    <module name="ParameterAssignment"/>
+    <module name="ExplicitInitialization"/>
+    <module name="DefaultComesLast"/>
+    <module name="FallThrough"/>
+    <module name="MultipleVariableDeclarations"/>
+    <module name="RequireThis">
+      <property name="checkFields" value="true"/>
+      <property name="checkMethods" value="true"/>
+      <property name="validateOnlyOverlapping" value="false"/>
     </module>
-    <module name="RegexpSingleline">
-        <property name="format" value="org\.apache\.commons\.(codec|lang3?)\.CharEncoding"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="Use 'java.nio.charset.StandardCharsets' instead"/>
+    <module name="UnnecessaryParentheses"/>
+    <module name="OneStatementPerLine"/>
+    <!-- Checks for imports. -->
+    <module name="AvoidStarImport"/>
+    <module name="AvoidStaticImport"/>
+    <module name="IllegalImport"/>
+    <module name="RedundantImport"/>
+    <module name="ImportOrder"/>
+    <module name="NoLineWrap"/>
+    <!-- Checks for Javadoc comments. -->
+    <module name="JavadocType">
+      <property name="allowUnknownTags" value="true"/>
     </module>
-    <module name="RegexpSingleline">
-        <property name="format" value="com\.google\.common\.base\.Charsets"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="Use 'java.nio.charset.StandardCharsets' instead"/>
+    <module name="JavadocMethod"/>
+    <module name="JavadocVariable"/>
+    <module name="JavadocStyle"/>
+    <module name="AtclauseOrder">
+      <property name="tagOrder" value="@param, @return,                 @throws, @exception, @see, @since, @serial, @serialField,                 @serialData, @deprecated, @todo, @checkstyle"/>
     </module>
-    <module name="RegexpSingleline">
-        <property name="format" value="^(?! *(/\*\*|\*|/\*|//)).*[\.\-\+%/\*&lt;&gt;](?&lt;!(-&gt;)|&lt;*[A-Za-z]&gt;) *$"/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="Line cannot end with this symbol, move it to the next line"/>
-    </module>
-    <module name="RegexpSingleline">
-        <property name="format" value="^ *="/>
-        <property name="fileExtensions" value="java"/>
-        <property name="message" value="Line cannot start with this symbol, move it to the previous line"/>
-    </module>
-
-    <!-- Checks for Header -->
-    <module name="Header">
-        <property name="header" value="${header}"/>
-        <property name="fileExtensions" value="java"/>
-    </module>
-
-    <module name="SuppressionFilter">
-        <property name="file" value="/com/qulice/checkstyle/suppressions.xml"/>
-        <property name="optional" value="false"/>
-    </module>
-
-    <module name="TreeWalker">
-        <property name="cacheFile" value="${cache.file}" />
-
-        <module name="SuppressWithNearbyCommentFilter">
-            <property name="commentFormat" value="@checkstyle (\w+) \((\d+) lines?\)"/>
-            <property name="checkFormat" value="$1"/>
-            <property name="influenceFormat" value="$2"/>
-        </module>
-
-
-        <!-- Checks for annotations. -->
-        <module name="AnnotationUseStyle">
-            <property name="elementStyle" value="compact_no_array"/>
-            <property name="trailingArrayComma" value="never"/>
-            <property name="closingParens" value="ignore"/>
-        </module>
-        <module name="MissingDeprecated"/>
-        <module name="MissingOverride"/>
-        <module name="PackageAnnotation"/>
-        <module name="SuppressWarnings"/>
-
-        <!-- Checks for blocks. -->
-        <module name="EmptyBlock"/>
-        <module name="LeftCurly"/>
-        <module name="NeedBraces"/>
-        <module name="RightCurly"/>
-        <module name="AvoidNestedBlocks"/>
-
-        <!-- Checks for class design. -->
-        <module name="VisibilityModifier"/>
-        <module name="FinalClass"/>
-        <module name="InterfaceIsType"/>
-        <module name="HideUtilityClassConstructor"/>
-        <module name="DesignForExtension"/>
-        <module name="MutableException"/>
-        <module name="ThrowsCount" />
-        <module name="InnerTypeLast"/>
-
-        <!-- Checks for common coding problems -->
-        <module name="ArrayTrailingComma"/>
-        <module name="AvoidInlineConditionals"/>
-        <module name="CovariantEquals"/>
-        <module name="EmptyStatement"/>
-        <module name="EqualsHashCode"/>
-        <module name="FinalLocalVariable"/>
-        <module name="HiddenField">
-            <property name="ignoreConstructorParameter" value="true"/>
-        </module>
-        <module name="IllegalInstantiation"/>
-        <module name="IllegalToken">
-            <property name="tokens" value="POST_INC, POST_DEC"/>
-        </module>
-        <module name="IllegalTokenText" />
-        <module name="InnerAssignment"/>
-        <module name="MagicNumber"/>
-        <module name="MissingSwitchDefault"/>
-        <module name="ModifiedControlVariable"/>
-        <module name="SimplifyBooleanExpression"/>
-        <module name="SimplifyBooleanReturn"/>
-        <module name="StringLiteralEquality"/>
-        <module name="NestedForDepth"/>
-        <module name="NestedIfDepth"/>
-        <module name="NestedTryDepth"/>
-        <module name="NoClone"/>
-        <module name="NoFinalizer"/>
-        <module name="SuperClone"/>
-        <module name="SuperFinalize"/>
-        <module name="IllegalCatch"/>
-        <module name="IllegalThrows"/>
-        <module name="PackageDeclaration"/>
-        <module name="ReturnCount">
-            <property name="max" value="1"/>
-        </module>
-        <module name="IllegalType"/>
-        <module name="DeclarationOrder"/>
-        <module name="ParameterAssignment"/>
-        <module name="ExplicitInitialization"/>
-        <module name="DefaultComesLast"/>
-        <module name="FallThrough"/>
-        <module name="MultipleVariableDeclarations"/>
-        <module name="RequireThis">
-            <property name="checkFields" value="true"/>
-            <property name="checkMethods" value="true"/>
-            <property name="validateOnlyOverlapping" value="false"/>
-        </module>
-        <module name="UnnecessaryParentheses"/>
-        <module name="OneStatementPerLine"/>
-
-        <!-- Checks for imports. -->
-        <module name="AvoidStarImport" />
-        <module name="AvoidStaticImport" />
-        <module name="IllegalImport"/>
-        <module name="RedundantImport"/>
-        <module name="ImportOrder"/>
-
-        <module name="NoLineWrap"/>
-
-        <!-- Checks for Javadoc comments. -->
-        <module name="JavadocType">
-            <property name="allowUnknownTags" value="true"/>
-        </module>
-        <module name="JavadocMethod"/>
-        <module name="JavadocVariable"/>
-        <module name="JavadocStyle"/>
-        <module name="AtclauseOrder">
-            <property name="tagOrder" value="@param, @return,
-                @throws, @exception, @see, @since, @serial, @serialField,
-                @serialData, @deprecated, &#64;todo, @checkstyle"/>
-        </module>
-
-        <!-- Metrics. -->
-        <module name="BooleanExpressionComplexity"/>
-        <module name="ClassDataAbstractionCoupling"/>
-        <module name="ClassFanOutComplexity">
-            <!--
+    <!-- Metrics. -->
+    <module name="BooleanExpressionComplexity"/>
+    <module name="ClassDataAbstractionCoupling"/>
+    <module name="ClassFanOutComplexity">
+      <!--
             Total number of classes that a particular class
             depends on. We're increasing this value because
             default "20" is too low.
             -->
-            <property name="max" value="30"/>
-        </module>
-        <module name="CyclomaticComplexity"/>
-        <module name="NPathComplexity"/>
-        <module name="JavaNCSS"/>
-
-        <!-- Miscellaneous other checks. -->
-        <module name="TodoComment"/>
-        <module name="UpperEll"/>
-        <module name="ArrayTypeStyle"/>
-        <module name="FinalParameters">
-            <property name="tokens" value="CTOR_DEF,METHOD_DEF,FOR_EACH_CLAUSE,LITERAL_CATCH"/>
-        </module>
-        <module name="Indentation"/>
-        <module name="CommentsIndentation"/>
-        <module name="TrailingComment"/>
-        <module name="OuterTypeFilename"/>
-
-        <!-- Modifier Checks. -->
-        <module name="ModifierOrder"/>
-        <module name="RedundantModifier"/>
-
-        <!-- Checks for Naming Conventions. -->
-        <module name="AbbreviationAsWordInNameCheck">
-            <property name="allowedAbbreviations" value="IT"/>
-            <property name="allowedAbbreviationLength" value="1"/>
-        </module>
-        <module name="ClassTypeParameterName"/>
-        <module name="ConstantName"/>
-        <module name="LocalFinalVariableName">
-            <property name="format" value="^(id|[a-z]{3,12})$"/>
-            <property name="tokens" value="VARIABLE_DEF"/>
-        </module>
-        <module name="LocalVariableName">
-            <property name="format" value="^(id|[a-z]{3,12})$"/>
-        </module>
-        <module name="CatchParameterName">
-            <property name="format" value="^(ex|[a-z]{3,12})$"/>
-        </module>
-        <module name="MemberName">
-            <property name="format" value="^(id|[a-z]{3,12})$"/>
-        </module>
-        <module name="MethodName">
-            <property name="format" value="^[a-z]{2,}[a-zA-Z]+$"/>
-        </module>
-        <module name="MethodTypeParameterName"/>
-        <module name="PackageName"/>
-        <module name="ParameterName">
-            <property name="format" value="^(id|[a-z]{3,})$"/>
-        </module>
-        <module name="StaticVariableName"/>
-        <module name="TypeName"/>
-
-        <!-- Checks for Size Violations. -->
-        <module name="ExecutableStatementCount">
-            <property name="max" value="20"/>
-        </module>
-        <module name="LineLength">
-            <property name="max" value="100"/>
-            <property name="ignorePattern" value="^import .*$|^\s+\*\s.*https?:\/\/.+"/>
-        </module>
-        <module name="AnonInnerLength" />
-        <module name="MethodLength"/>
-        <module name="ParameterNumber">
-            <property name="max" value="3"/>
-        </module>
-        <module name="OuterTypeNumber"/>
-        <module name="MethodCount"/>
-
-        <!-- Checks for whitespace. -->
-        <module name="GenericWhitespace"/>
-        <module name="EmptyForInitializerPad"/>
-        <module name="EmptyForIteratorPad"/>
-        <module name="MethodParamPad"/>
-        <module name="NoWhitespaceAfter"/>
-        <module name="NoWhitespaceBefore"/>
-        <module name="OperatorWrap"/>
-        <module name="ParenPad"/>
-        <module name="TypecastParenPad"/>
-        <module name="WhitespaceAfter"/>
-        <module name="WhitespaceAround"/>
-        <module name="EmptyLineSeparator">
-            <property name="allowMultipleEmptyLines" value="false"/>
-            <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
-            <property name="tokens" value="IMPORT,CLASS_DEF,INTERFACE_DEF,ENUM_DEF,STATIC_INIT,INSTANCE_INIT,METHOD_DEF,CTOR_DEF,VARIABLE_DEF"/>
-        </module>
-
-        <!--
+      <property name="max" value="30"/>
+    </module>
+    <module name="CyclomaticComplexity"/>
+    <module name="NPathComplexity"/>
+    <module name="JavaNCSS"/>
+    <!-- Miscellaneous other checks. -->
+    <module name="TodoComment"/>
+    <module name="UpperEll"/>
+    <module name="ArrayTypeStyle"/>
+    <module name="FinalParameters">
+      <property name="tokens" value="CTOR_DEF,METHOD_DEF,FOR_EACH_CLAUSE,LITERAL_CATCH"/>
+    </module>
+    <module name="Indentation"/>
+    <module name="CommentsIndentation"/>
+    <module name="TrailingComment"/>
+    <module name="OuterTypeFilename"/>
+    <!-- Modifier Checks. -->
+    <module name="ModifierOrder"/>
+    <module name="RedundantModifier"/>
+    <!-- Checks for Naming Conventions. -->
+    <module name="AbbreviationAsWordInNameCheck">
+      <property name="allowedAbbreviations" value="IT"/>
+      <property name="allowedAbbreviationLength" value="1"/>
+    </module>
+    <module name="ClassTypeParameterName"/>
+    <module name="ConstantName"/>
+    <module name="LocalFinalVariableName">
+      <property name="format" value="^(id|[a-z]{3,12})$"/>
+      <property name="tokens" value="VARIABLE_DEF"/>
+    </module>
+    <module name="LocalVariableName">
+      <property name="format" value="^(id|[a-z]{3,12})$"/>
+    </module>
+    <module name="CatchParameterName">
+      <property name="format" value="^(ex|[a-z]{3,12})$"/>
+    </module>
+    <module name="MemberName">
+      <property name="format" value="^(id|[a-z]{3,12})$"/>
+    </module>
+    <module name="MethodName">
+      <property name="format" value="^[a-z]{2,}[a-zA-Z]+$"/>
+    </module>
+    <module name="MethodTypeParameterName"/>
+    <module name="PackageName"/>
+    <module name="ParameterName">
+      <property name="format" value="^(id|[a-z]{3,})$"/>
+    </module>
+    <module name="StaticVariableName"/>
+    <module name="TypeName"/>
+    <!-- Checks for Size Violations. -->
+    <module name="ExecutableStatementCount">
+      <property name="max" value="20"/>
+    </module>
+    <module name="LineLength">
+      <property name="max" value="100"/>
+      <property name="ignorePattern" value="^import .*$|^\s+\*\s.*https?:\/\/.+"/>
+    </module>
+    <module name="AnonInnerLength"/>
+    <module name="MethodLength"/>
+    <module name="ParameterNumber">
+      <property name="max" value="3"/>
+    </module>
+    <module name="OuterTypeNumber"/>
+    <module name="MethodCount"/>
+    <!-- Checks for whitespace. -->
+    <module name="GenericWhitespace"/>
+    <module name="EmptyForInitializerPad"/>
+    <module name="EmptyForIteratorPad"/>
+    <module name="MethodParamPad"/>
+    <module name="NoWhitespaceAfter"/>
+    <module name="NoWhitespaceBefore"/>
+    <module name="OperatorWrap"/>
+    <module name="ParenPad"/>
+    <module name="TypecastParenPad"/>
+    <module name="WhitespaceAfter"/>
+    <module name="WhitespaceAround"/>
+    <module name="EmptyLineSeparator">
+      <property name="allowMultipleEmptyLines" value="false"/>
+      <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
+      <property name="tokens" value="IMPORT,CLASS_DEF,INTERFACE_DEF,ENUM_DEF,STATIC_INIT,INSTANCE_INIT,METHOD_DEF,CTOR_DEF,VARIABLE_DEF"/>
+    </module>
+    <!--
         Our custom checkers.
         -->
-        <module name="com.qulice.checkstyle.BracketsStructureCheck"/>
-        <module name="com.qulice.checkstyle.CurlyBracketsStructureCheck"/>
-        <module name="com.qulice.checkstyle.EmptyLinesCheck"/>
-        <module name="com.qulice.checkstyle.StringLiteralsConcatenationCheck"/>
-        <module name="com.qulice.checkstyle.MultilineJavadocTagsCheck"/>
-        <module name="com.qulice.checkstyle.NoJavadocForOverriddenMethodsCheck"/>
-        <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/>
-        <module name="com.qulice.checkstyle.MethodsOrderCheck"/>
-        <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
-        <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
-        <module name="com.qulice.checkstyle.NonStaticMethodCheck">
-            <property name="excludeFileNamePattern" value=".*(Test|IT|ITCase)\.java"/>
-        </module>
-        <module name="com.qulice.checkstyle.ProtectedMethodInFinalClassCheck"/>
-        <module name="com.qulice.checkstyle.FinalSemicolonInTryWithResourcesCheck"/>
-        <module name="com.qulice.checkstyle.JavadocEmptyLineCheck"/>
-        <module name="com.qulice.checkstyle.DiamondOperatorCheck"/>
-        <module name="com.qulice.checkstyle.JavadocParameterOrderCheck"/>
-        <module name="com.qulice.checkstyle.JavadocTagsCheck"/>
+    <module name="com.qulice.checkstyle.BracketsStructureCheck"/>
+    <module name="com.qulice.checkstyle.CurlyBracketsStructureCheck"/>
+    <module name="com.qulice.checkstyle.EmptyLinesCheck"/>
+    <module name="com.qulice.checkstyle.StringLiteralsConcatenationCheck"/>
+    <module name="com.qulice.checkstyle.MultilineJavadocTagsCheck"/>
+    <module name="com.qulice.checkstyle.NoJavadocForOverriddenMethodsCheck"/>
+    <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/>
+    <module name="com.qulice.checkstyle.MethodsOrderCheck"/>
+    <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
+    <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
+    <module name="com.qulice.checkstyle.NonStaticMethodCheck">
+      <property name="excludeFileNamePattern" value=".*(Test|IT|ITCase)\.java"/>
     </module>
-
-    <!--
+    <module name="com.qulice.checkstyle.ProtectedMethodInFinalClassCheck"/>
+    <module name="com.qulice.checkstyle.FinalSemicolonInTryWithResourcesCheck"/>
+    <module name="com.qulice.checkstyle.JavadocEmptyLineCheck"/>
+    <module name="com.qulice.checkstyle.DiamondOperatorCheck"/>
+    <module name="com.qulice.checkstyle.JavadocParameterOrderCheck"/>
+    <module name="com.qulice.checkstyle.JavadocTagsCheck"/>
+  </module>
+  <!--
     Our custom checkers.
     -->
-    <module name="com.qulice.checkstyle.ImportCohesionCheck">
-        <property name="fileExtensions" value="java"/>
-    </module>
-    <module name="com.qulice.checkstyle.CascadeIndentationCheck">
-        <property name="fileExtensions" value="java"/>
-    </module>
-    <module name="com.qulice.checkstyle.ConditionalRegexpMultilineCheck">
-        <property name="condition" value="^import java\.util\.ArrayList;$"/>
-        <property name="format" value="new ArrayList(?:&lt;.*?&gt;)?\(\)"/>
-        <property name="message"
-                  value="ArrayList should be initialized with a size parameter"/>
-        <property name="fileExtensions" value="java"/>
-    </module>
-    <module name="RegexpMultiline">
-        <property name="format"
-                  value="new java.util.ArrayList(?:&lt;.*?&gt;)?\(\)"/>
-        <property name="message"
-                  value="ArrayList should be initialized with a size parameter"/>
-        <property name="fileExtensions" value="java"/>
-    </module>
-
+  <module name="com.qulice.checkstyle.ImportCohesionCheck">
+    <property name="fileExtensions" value="java"/>
+  </module>
+  <module name="com.qulice.checkstyle.CascadeIndentationCheck">
+    <property name="fileExtensions" value="java"/>
+  </module>
+  <module name="com.qulice.checkstyle.ConditionalRegexpMultilineCheck">
+    <property name="condition" value="^import java\.util\.ArrayList;$"/>
+    <property name="format" value="new ArrayList(?:&lt;.*?&gt;)?\(\)"/>
+    <property name="message" value="ArrayList should be initialized with a size parameter"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="format" value="new java.util.ArrayList(?:&lt;.*?&gt;)?\(\)"/>
+    <property name="message" value="ArrayList should be initialized with a size parameter"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
 </module>
