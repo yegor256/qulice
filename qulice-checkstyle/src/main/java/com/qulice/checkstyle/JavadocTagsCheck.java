@@ -74,8 +74,8 @@ public final class JavadocTagsCheck extends AbstractCheck {
     /**
      * List of prohibited javadoc tags.
      */
-    private final Collection<String> prohibited =
-        Arrays.asList("author", "version");
+    private final Collection<String> prohibited = Arrays.asList("version");
+        //Arrays.asList("author", "version");
 
     @Override
     public int[] getDefaultTokens() {
@@ -102,6 +102,10 @@ public final class JavadocTagsCheck extends AbstractCheck {
             Pattern.compile(
                 "^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
             )
+        );
+        this.tags.put(
+            "author",
+            Pattern.compile("^\\w+$")
         );
     }
 

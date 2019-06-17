@@ -136,7 +136,7 @@
         <property name="message" value="@return tag description should start with capital letter or Chinese characters"/>
     </module>
     <module name="RegexpSingleline">
-        <property name="format" value="\* +@param +\w+ +[^A-Z\u4e00-\u9fa5]"/>
+        <property name="format" value="\* +@param +\w+ +[^A-Z\u4e00-\u9fa5 ]"/>
         <property name="fileExtensions" value="java"/>
         <property name="message" value="@param tag description should start with capital letter or Chinese characters"/>
     </module>
@@ -182,10 +182,10 @@
     </module>
 
     <!-- Checks for Header -->
-    <module name="Header">
+    <!--<module name="Header">
         <property name="header" value="${header}"/>
         <property name="fileExtensions" value="java"/>
-    </module>
+    </module>-->
 
     <module name="SuppressionFilter">
         <property name="file" value="/com/qulice/checkstyle/suppressions.xml"/>
@@ -221,11 +221,15 @@
         <module name="AvoidNestedBlocks"/>
 
         <!-- Checks for class design. -->
-        <module name="VisibilityModifier"/>
+        <module name="VisibilityModifier">
+            <property name="protectedAllowed" value="true"/>
+        </module>
         <module name="FinalClass"/>
         <module name="InterfaceIsType"/>
         <module name="HideUtilityClassConstructor"/>
-        <module name="DesignForExtension"/>
+        <module name="DesignForExtension">
+            <property name="ignoredAnnotations" value="Bean, Override"/>
+        </module>
         <module name="MutableException"/>
         <module name="ThrowsCount" />
         <module name="InnerTypeLast"/>
@@ -236,7 +240,7 @@
         <module name="CovariantEquals"/>
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="FinalLocalVariable"/>
+        <!--<module name="FinalLocalVariable"/>-->
         <module name="HiddenField">
             <property name="ignoreConstructorParameter" value="true"/>
         </module>
@@ -259,7 +263,9 @@
         <module name="NoFinalizer"/>
         <module name="SuperClone"/>
         <module name="SuperFinalize"/>
-        <module name="IllegalCatch"/>
+        <module name="IllegalCatch">
+            <property name="illegalClassNames" value="java.lang.Throwable,RuntimeException,Error,Throwable,java.lang.Error,java.lang.RuntimeException"/>
+        </module>
         <module name="IllegalThrows"/>
         <module name="PackageDeclaration"/>
         <module name="ReturnCount">
@@ -322,7 +328,7 @@
         <module name="UpperEll"/>
         <module name="ArrayTypeStyle"/>
         <module name="FinalParameters">
-            <property name="tokens" value="CTOR_DEF,METHOD_DEF,FOR_EACH_CLAUSE,LITERAL_CATCH"/>
+            <property name="tokens" value="CTOR_DEF,METHOD_DEF"/>
         </module>
         <module name="Indentation"/>
         <module name="CommentsIndentation"/>
@@ -345,13 +351,13 @@
             <property name="tokens" value="VARIABLE_DEF"/>
         </module>
         <module name="LocalVariableName">
-            <property name="format" value="^(id?|[a-z]{3,12})$"/>
+            <property name="format" value="^(id?|[a-zA-Z]{3,})$"/>
         </module>
         <module name="CatchParameterName">
             <property name="format" value="^(ex|[a-z]{3,12})$"/>
         </module>
         <module name="MemberName">
-            <property name="format" value="^(id|[a-z]{3,12})$"/>
+            <property name="format" value="^(id|[a-zA-Z]{3,})$"/>
         </module>
         <module name="MethodName">
             <property name="format" value="^[a-z]{2,}[a-zA-Z]+$"/>
@@ -359,17 +365,17 @@
         <module name="MethodTypeParameterName"/>
         <module name="PackageName"/>
         <module name="ParameterName">
-            <property name="format" value="^(id|[a-z]{3,})$"/>
+            <property name="format" value="^(id|[a-zA-Z]{3,})$"/>
         </module>
         <module name="StaticVariableName"/>
         <module name="TypeName"/>
 
         <!-- Checks for Size Violations. -->
         <module name="ExecutableStatementCount">
-            <property name="max" value="20"/>
+            <property name="max" value="30"/>
         </module>
         <module name="LineLength">
-            <property name="max" value="100"/>
+            <property name="max" value="110"/>
             <property name="ignorePattern" value="^import .*$|^\s+\*\s.*https?:\/\/.+"/>
         </module>
         <module name="AnonInnerLength" />
@@ -430,13 +436,13 @@
     <module name="com.qulice.checkstyle.CascadeIndentationCheck">
         <property name="fileExtensions" value="java"/>
     </module>
-    <module name="com.qulice.checkstyle.ConditionalRegexpMultilineCheck">
+    <!--<module name="com.qulice.checkstyle.ConditionalRegexpMultilineCheck">
         <property name="condition" value="^import java\.util\.ArrayList;$"/>
         <property name="format" value="new ArrayList(?:&lt;.*?&gt;)?\(\)"/>
         <property name="message"
                   value="ArrayList should be initialized with a size parameter"/>
         <property name="fileExtensions" value="java"/>
-    </module>
+    </module>-->
     <module name="RegexpMultiline">
         <property name="format"
                   value="new java.util.ArrayList(?:&lt;.*?&gt;)?\(\)"/>

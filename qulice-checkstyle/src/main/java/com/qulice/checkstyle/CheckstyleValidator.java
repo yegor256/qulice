@@ -45,6 +45,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -165,11 +166,15 @@ public final class CheckstyleValidator implements ResourceValidator {
      */
     private String header(final Environment env) {
         final String name = env.param("license", "LICENSE.txt");
-        final URL url = CheckstyleValidator.toUrl(env, name);
         final String content;
+        final URL url;
         try {
-            content = IOUtils.toString(url.openStream())
+            url = CheckstyleValidator.toUrl(env, name);
+            content = IOUtils.toString(url.openStream(), Charset.defaultCharset())
                 .trim().replaceAll("[\\r\\n]+$", "");
+        } catch (IllegalStateException ex) {
+            Logger.error(ex, ex.getMessage());
+            return "";
         } catch (final IOException ex) {
             throw new IllegalStateException("Failed to read license", ex);
         }

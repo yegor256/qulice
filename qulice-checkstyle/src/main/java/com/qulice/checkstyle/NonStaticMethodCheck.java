@@ -117,14 +117,25 @@ public final class NonStaticMethodCheck extends AbstractCheck {
         if (!AnnotationUtil.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
             && !method.branchContains(TokenTypes.LITERAL_THIS)
-            && !onlythrow) {
+            && !onlythrow && !isSpringBean(method)) {
             final int line = method.getLineNo();
             this.log(
                 line,
                 // @checkstyle LineLength (1 line)
-                "This method must be static, because it does not refer to \"this\""
+                "This method must be static, because it does not refer to \"this\" " + isSpringBean(method)
             );
         }
+    }
+
+    /**
+     * Determines whether a method is spring bean.
+     * @param method Method to check.
+     * @return True if method is bean or not.
+     */
+    private static boolean isSpringBean(final DetailAST method) {
+        return AnnotationUtil.containsAnnotation(
+            method, "Bean"
+        );
     }
 
     /**
