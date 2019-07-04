@@ -23,8 +23,9 @@ and pre-configure them, including
 [PMD](https://pmd.github.io/). You don't need to use and configure them
 individually any more.
 
-Read more at [www.qulice.com](http://www.qulice.com). Also,
-read this blog post:
+Read more at [www.qulice.com](http://www.qulice.com).
+
+Also, read this blog post first:
 [_Strict Control of Java Code Quality_](http://www.yegor256.com/2014/08/13/strict-code-quality-control.html).
 
 Just add this plugin to your `pom.xml`:
