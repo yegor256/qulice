@@ -46,7 +46,7 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.collection.IsIterableContainingInOrder;
-import org.junit.Rule;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -82,11 +82,14 @@ public final class CheckstyleValidatorTest {
     private static final String LICENSE = "Hello.";
 
     /**
-     * License rule.
-     * @checkstyle VisibilityModifierCheck (5 lines)
+     * Rule for testing.
      */
-    @Rule
-    public final LicenseRule rule = new LicenseRule();
+    private License rule;
+
+    @BeforeEach
+    public void setRule() {
+        this.rule = new License();
+    }
 
     /**
      * CheckstyleValidator can catch checkstyle violations.

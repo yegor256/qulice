@@ -1,7 +1,5 @@
 <img src="http://img.qulice.com/logo.svg" width="200px" height="55px"/>
 
-[![Donate via Zerocracy](https://www.0crat.com/contrib-badge/C3T49A35L.svg)](https://www.0crat.com/contrib/C3T49A35L)
-
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![Managed by Zerocracy](https://www.0crat.com/badge/C3T49A35L.svg)](https://www.0crat.com/p/C3T49A35L)
 [![DevOps By Rultor.com](http://www.rultor.com/b/teamed/qulice)](http://www.rultor.com/p/teamed/qulice)
@@ -84,8 +82,3 @@ sending us your pull request please run full Maven build:
 > mvn clean install -Pqulice
 
 Keep in mind that JDK7 and Maven 3.1.0 are the lowest versions you may use.
-
-## Got questions?
-
-If you have questions or general suggestions, don't hesitate to submit
-a new [Github issue](https://github.com/tpc2/qulice/issues/new).

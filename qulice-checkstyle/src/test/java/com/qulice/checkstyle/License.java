@@ -35,15 +35,12 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.FileUtils;
 import org.cactoos.text.Joined;
-import org.junit.rules.TestRule;
-import org.junit.runner.Description;
-import org.junit.runners.model.Statement;
 
 /**
  * Builder of {@code LICENSE.txt} content.
  * @since 0.4
  */
-public final class LicenseRule implements TestRule {
+public final class License {
 
     /**
      * The text.
@@ -65,18 +62,12 @@ public final class LicenseRule implements TestRule {
      */
     private File directory;
 
-    @Override
-    public Statement apply(final Statement statement,
-        final Description description) {
-        return statement;
-    }
-
     /**
      * Use this EOL.
      * @param txt What to use as end-of-line character
      * @return This object
      */
-    public LicenseRule withEol(final String txt) {
+    public License withEol(final String txt) {
         this.eol = txt;
         return this;
     }
@@ -86,7 +77,7 @@ public final class LicenseRule implements TestRule {
      * @param lns The lines to use
      * @return This object
      */
-    public LicenseRule withLines(final String... lns) {
+    public License withLines(final String... lns) {
         this.lines = new String[lns.length];
         System.arraycopy(lns, 0, this.lines, 0, lns.length);
         return this;
@@ -97,7 +88,7 @@ public final class LicenseRule implements TestRule {
      * @param name The name of package
      * @return This object
      */
-    public LicenseRule withPackage(final String name) {
+    public License withPackage(final String name) {
         this.pkg = name;
         return this;
     }
@@ -107,7 +98,7 @@ public final class LicenseRule implements TestRule {
      * @param dir The folder to save to
      * @return This object
      */
-    public LicenseRule savePackageInfo(final File dir) {
+    public License savePackageInfo(final File dir) {
         this.directory = dir;
         return this;
     }

@@ -33,7 +33,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <parent>
     <groupId>com.jcabi</groupId>
     <artifactId>parent</artifactId>
-    <version>0.49.5</version>
+    <version>0.54.1</version>
   </parent>
   <groupId>com.qulice</groupId>
   <artifactId>qulice</artifactId>
@@ -50,43 +50,27 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <module>qulice-spotbugs</module>
     <module>qulice-gradle-plugin</module>
   </modules>
-  <description><![CDATA[
-        Quality control library, integrating together other static
-        analysis and validation tools and instruments.
-        ]]></description>
+  <description>Quality control library, integrating together other static analysis and validation tools and instruments.</description>
   <url>http://www.qulice.com</url>
   <inceptionYear>2011</inceptionYear>
   <organization>
     <name>Qulice.com</name>
-    <url>http://www.qulice.com</url>
+    <url>https://www.qulice.com</url>
   </organization>
   <licenses>
     <license>
       <name>BSD</name>
-      <url>http://www.qulice.com/LICENSE.txt</url>
+      <url>https://www.qulice.com/LICENSE.txt</url>
       <distribution>repo</distribution>
-      <comments><![CDATA[
-                This is free open source project, feel free to redistribute it,
-                always providing a link to qulice.com website.
-                ]]></comments>
     </license>
   </licenses>
-  <mailingLists>
-    <mailingList>
-      <name>Qulice Discussions</name>
-      <subscribe>qulice@googlegroups.com</subscribe>
-      <unsubscribe>qulice@googlegroups.com</unsubscribe>
-      <post>qulice@googlegroups.com</post>
-      <archive>http://groups.google.com/group/qulice</archive>
-    </mailingList>
-  </mailingLists>
   <developers>
     <developer>
       <id>1</id>
       <name>Yegor Bugayenko</name>
-      <email>yegor@tpc2.com</email>
-      <organization>tpc2.com</organization>
-      <organizationUrl>http://www.tpc2.com</organizationUrl>
+      <email>yegor256@gmail.com.com</email>
+      <organization>Zerocracy</organization>
+      <organizationUrl>https://www.zerocracy.com</organizationUrl>
       <roles>
         <role>Architect</role>
         <role>Developer</role>
@@ -110,27 +94,15 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <distributionManagement>
     <site>
       <id>github-pages</id>
-      <url>http://www.qulice.com</url>
+      <url>https://www.qulice.com</url>
     </site>
   </distributionManagement>
   <dependencyManagement>
     <dependencies>
-      <!-- Manual jcabi-xml version override until parent POM declares
-            version 0.17.1 or higher -->
       <dependency>
-        <groupId>com.jcabi</groupId>
-        <artifactId>jcabi-xml</artifactId>
-        <version>0.17.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.antlr</groupId>
-        <artifactId>antlr4-runtime</artifactId>
-        <version>4.7.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>3.7</version>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>2.0.0-alpha5</version>
       </dependency>
       <dependency>
         <groupId>org.cactoos</groupId>
@@ -161,13 +133,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <pluginManagement>
       <plugins>
         <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <source>8</source>
-            <target>8</target>
-          </configuration>
-        </plugin>
-        <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <configuration>
             <archive>
@@ -179,26 +144,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
           </configuration>
         </plugin>
         <plugin>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.0.0</version>
-          <configuration>
-            <tags>
-              <tag>
-                <name>todo</name>
-                <placement>a</placement>
-                <head>todo:</head>
-              </tag>
-              <tag>
-                <name>checkstyle</name>
-                <placement>a</placement>
-                <head>checkstyle:</head>
-              </tag>
-            </tags>
-          </configuration>
-        </plugin>
-        <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>3.0.0-M3</version>
           <configuration>
             <useFile>false</useFile>
             <runOrder>random</runOrder>
@@ -214,7 +160,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         </plugin>
         <plugin>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>3.0.0-M3</version>
           <configuration>
             <encoding>${project.build.sourceEncoding}</encoding>
             <failIfNoSpecifiedTests>false</failIfNoSpecifiedTests>
@@ -286,7 +231,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             <plugin>
               <groupId>com.qulice</groupId>
               <artifactId>qulice-maven-plugin</artifactId>
-              <version>0.17.4</version>
             </plugin>
           </plugins>
         </pluginManagement>
