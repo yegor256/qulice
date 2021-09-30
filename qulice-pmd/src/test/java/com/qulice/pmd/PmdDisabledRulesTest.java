@@ -32,35 +32,19 @@ package com.qulice.pmd;
 import java.util.Arrays;
 import java.util.Collection;
 import org.hamcrest.Matchers;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Tests for disabled rules.
  * @since 0.16
  */
-@RunWith(Parameterized.class)
 public final class PmdDisabledRulesTest {
-
-    /**
-     * Disabled rule name.
-     */
-    private final String rule;
-
-    /**
-     * Constructor.
-     * @param rule Disabled rule name.
-     */
-    public PmdDisabledRulesTest(final String rule) {
-        this.rule = rule;
-    }
 
     /**
      * Collection of disabled rules.
      * @return Collection of disabled rules.
      */
-    @Parameterized.Parameters
     public static Collection<String[]> parameters() {
         return Arrays.asList(
             new String[][] {
@@ -80,14 +64,15 @@ public final class PmdDisabledRulesTest {
      * PmdValidator has rules disabled.
      * @throws Exception In case of error.
      */
-    @Test
-    public void disablesRules() throws Exception {
+    @ParameterizedTest
+    @MethodSource("parameters")
+    public void disablesRules(final String rule) throws Exception {
         new PmdAssert(
-            String.format("%s.java", this.rule),
+            String.format("%s.java", rule),
             Matchers.any(Boolean.class),
             Matchers.not(
                 Matchers.containsString(
-                    String.format("(%s)", this.rule)
+                    String.format("(%s)", rule)
                 )
             )
         ).validate();
