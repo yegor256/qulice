@@ -5,9 +5,7 @@
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/qulice)](http://www.rultor.com/p/yegor256/qulice)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
-[![Build Status](https://travis-ci.org/yegor256/qulice.svg?branch=master)](https://travis-ci.org/yegor256/qulice)
 [![PDD status](http://www.0pdd.com/svg?name=yegor256/qulice)](http://www.0pdd.com/p?name=yegor256/qulice)
-[![Build status](https://ci.appveyor.com/api/projects/status/k8vw7rjdq06olx3b/branch/master?svg=true)](https://ci.appveyor.com/project/yegor256/qulice/branch/master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice)
 [![codebeat badge](https://codebeat.co/badges/9454ea39-1f11-4f6b-b086-ec5a2d658174)](https://codebeat.co/projects/github-com-teamed-qulice)
 
