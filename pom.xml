@@ -78,16 +78,16 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   </developers>
   <issueManagement>
     <system>GitHub</system>
-    <url>https://github.com/teamed/qulice/issues</url>
+    <url>https://github.com/yegor256/qulice/issues</url>
   </issueManagement>
   <scm>
-    <connection>scm:git:git@github.com:teamed/qulice.git</connection>
-    <developerConnection>scm:git:git@github.com:teamed/qulice.git</developerConnection>
-    <url>https://github.com/teamed/qulice</url>
+    <connection>scm:git:git@github.com:yegor256/qulice.git</connection>
+    <developerConnection>scm:git:git@github.com:yegor256/qulice.git</developerConnection>
+    <url>https://github.com/yegor256/qulice</url>
   </scm>
   <ciManagement>
     <system>travis</system>
-    <url>https://travis-ci.org/teamed/qulice</url>
+    <url>https://travis-ci.org/yegor256/qulice</url>
   </ciManagement>
   <distributionManagement>
     <site>
@@ -174,27 +174,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </plugins>
     </pluginManagement>
     <plugins>
-      <plugin>
-        <inherited>true</inherited>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <configuration>
-              <target>
-                <patternset id="xcop.excludes">
-                  <exclude name="qulice-ant/**"/>
-                  <exclude name="qulice-checkstyle/**"/>
-                  <exclude name="qulice-findbugs/**"/>
-                  <exclude name="qulice-maven-plugin/**"/>
-                  <exclude name="qulice-pmd/**"/>
-                  <exclude name="qulice-spi/**"/>
-                  <exclude name="qulice-spotbugs/**"/>
-                </patternset>
-              </target>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <inherited>true</inherited>
         <groupId>org.apache.maven.plugins</groupId>
