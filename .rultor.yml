@@ -1,52 +1,27 @@
-architect:
-- krzyk
-- yegor256
-- davvd
-install:
-- sudo gem install --no-document pdd
-- sudo gem install --no-document est
-- sudo gem install --no-document xcop
 assets:
   secring.gpg: yegor256/home#assets/secring.gpg
   settings.xml: yegor256/home#assets/qulice/settings.xml
   pubring.gpg: yegor256/home#assets/pubring.gpg
-  s3cfg: yegor256/home#assets/s3cfg
 merge:
   script: |-
     mvn clean
-    pdd --source=$(pwd) --verbose --file=/dev/null 
+    pdd --source=$(pwd) --verbose --file=/dev/null
     est --dir=est --file=/dev/null
     ./years.sh
     mvn clean install -Pqulice-profile -Pqulice --errors --settings ../settings.xml
     mvn clean site -Psite --errors --settings ../settings.xml
-  commanders:
-  - carlosmiranda
-  - darkled
-  - dmzaytsev
-  - essobedo
-  - ggajos
-  - hdouss
-  - krzyk
-  - longtimeago
-  - mkordas
-  - pinaf
 deploy:
   script: |-
     mvn clean deploy -Pqulice-profile -Pqulice --errors --settings ../settings.xml
     mvn clean
-    pdd --source=$(pwd) --verbose --file=qulice.xml 
+    pdd --source=$(pwd) --verbose --file=qulice.xml
     s3cmd --no-progress put qulice.xml --config=../s3cfg s3://pdd.teamed.io/qulice.xml
     est --dir=./est --verbose --file=qulice.xml --format=xml
     s3cmd --no-progress put qulice.xml --config=../s3cfg s3://est.teamed.io/qulice.xml
-env:
-  MAVEN_OPTS: -Xmx1g
 release:
   script: |-
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
     mvn clean deploy -Pqulice-profile -Pqulice -Psonatype --errors --settings ../settings.xml
-    mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml || echo 'site-deploy failed'
+    mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml
     mvn clean
-  commanders:
-  - krzyk
-  - yegor256
