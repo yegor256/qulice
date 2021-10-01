@@ -2,17 +2,17 @@
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![Managed by Zerocracy](https://www.0crat.com/badge/C3T49A35L.svg)](https://www.0crat.com/p/C3T49A35L)
-[![DevOps By Rultor.com](http://www.rultor.com/b/teamed/qulice)](http://www.rultor.com/p/teamed/qulice)
+[![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/qulice)](http://www.rultor.com/p/yegor256/qulice)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
-[![Build Status](https://travis-ci.org/teamed/qulice.svg?branch=master)](https://travis-ci.org/teamed/qulice)
-[![PDD status](http://www.0pdd.com/svg?name=teamed/qulice)](http://www.0pdd.com/p?name=teamed/qulice)
+[![Build Status](https://travis-ci.org/yegor256/qulice.svg?branch=master)](https://travis-ci.org/yegor256/qulice)
+[![PDD status](http://www.0pdd.com/svg?name=yegor256/qulice)](http://www.0pdd.com/p?name=yegor256/qulice)
 [![Build status](https://ci.appveyor.com/api/projects/status/k8vw7rjdq06olx3b/branch/master?svg=true)](https://ci.appveyor.com/project/yegor256/qulice/branch/master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice)
 [![codebeat badge](https://codebeat.co/badges/9454ea39-1f11-4f6b-b086-ec5a2d658174)](https://codebeat.co/projects/github-com-teamed-qulice)
 
-[![Hits-of-Code](https://hitsofcode.com/github/teamed/qulice)](https://hitsofcode.com/view/github/teamed/qulice)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/teamed/qulice/blob/master/LICENSE.txt)
+[![Hits-of-Code](https://hitsofcode.com/github/yegor256/qulice)](https://hitsofcode.com/view/github/yegor256/qulice)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/qulice/blob/master/LICENSE.txt)
 
 Qulice is a static analysis quality control instrument for Java
 projects. It combines all the best static analysis instruments
