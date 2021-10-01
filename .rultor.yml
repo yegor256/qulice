@@ -7,7 +7,6 @@ install: |
 merge:
   script: |-
     mvn clean install -Pqulice-profile -Pqulice --errors --batch-mode
-    ./years.sh
 deploy:
   script: |-
     mvn clean deploy -Pqulice-profile -Pqulice --errors --settings ../settings.xml
