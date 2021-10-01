@@ -10,7 +10,7 @@ env:
     - JAVA_OPTS="-Xmx4g"
 install:
   - set -e
-  - travis_retry sudo apt-get install -y --fix-missing libmagic1 libmagic-dev
+  - sudo apt-get install -y --fix-missing libmagic1 libmagic-dev
   - gem install --no-document pdd
   - gem install --no-document est
   - gem install --no-document xcop
