@@ -1,27 +1,21 @@
 assets:
+  settings.xml: yegor256/home#assets/jcabi/settings.xml
   secring.gpg: yegor256/home#assets/secring.gpg
-  settings.xml: yegor256/home#assets/qulice/settings.xml
   pubring.gpg: yegor256/home#assets/pubring.gpg
+install: |
+  pdd --file=/dev/null
 merge:
   script: |-
-    mvn clean
-    pdd --source=$(pwd) --verbose --file=/dev/null
-    est --dir=est --file=/dev/null
+    mvn clean install -Pqulice-profile -Pqulice --errors --batch-mode
     ./years.sh
-    mvn clean install -Pqulice-profile -Pqulice --errors --settings ../settings.xml
-    mvn clean site -Psite --errors --settings ../settings.xml
 deploy:
   script: |-
     mvn clean deploy -Pqulice-profile -Pqulice --errors --settings ../settings.xml
-    mvn clean
-    pdd --source=$(pwd) --verbose --file=qulice.xml
-    s3cmd --no-progress put qulice.xml --config=../s3cfg s3://pdd.teamed.io/qulice.xml
-    est --dir=./est --verbose --file=qulice.xml --format=xml
-    s3cmd --no-progress put qulice.xml --config=../s3cfg s3://est.teamed.io/qulice.xml
 release:
+  pre: false
   script: |-
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
-    mvn clean deploy -Pqulice-profile -Pqulice -Psonatype --errors --settings ../settings.xml
-    mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml
-    mvn clean
+    mvn clean deploy -Pqulice-profile -Psonatype --errors --settings ../settings.xml
+    # mvn clean deploy -Pqulice-profile -Pqulice -Psonatype --errors --settings ../settings.xml
+    # mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml
