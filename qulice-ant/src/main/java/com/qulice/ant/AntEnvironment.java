@@ -35,7 +35,6 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.Arrays;
 import java.util.Collection;
@@ -130,9 +129,8 @@ public final class AntEnvironment implements Environment {
         } catch (final MalformedURLException ex) {
             throw new IllegalStateException("Failed to build URL", ex);
         }
-        final URLClassLoader loader = AccessController.doPrivileged(
-            new AntEnvironment.PrivilegedClassLoader(urls)
-        );
+        final URLClassLoader loader =
+            new AntEnvironment.PrivilegedClassLoader(urls).run();
         for (final URL url : loader.getURLs()) {
             Logger.debug(this, "Classpath: %s", url);
         }

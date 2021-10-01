@@ -31,7 +31,6 @@ package com.qulice.findbugs;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Collections2;
-import com.jcabi.aspects.Tv;
 import com.mebigfatguy.fbcontrib.utils.BugType;
 import edu.umd.cs.findbugs.BugInstance;
 import edu.umd.cs.findbugs.BugReporter;
@@ -85,7 +84,7 @@ public final class Wrap {
         final Project project =
             Wrap.project(args[0], args[1], args[2].split(","));
         try {
-            Plugin.loadCustomPlugin(new File(args[Tv.THREE]), project);
+            Plugin.loadCustomPlugin(new File(args[3]), project);
         } catch (final PluginException ex) {
             throw new IllegalStateException(ex);
         }
@@ -126,8 +125,8 @@ public final class Wrap {
         findbugs.setNoClassOk(true);
         findbugs.setScanNestedArchives(true);
         try {
-            if (args.length > Tv.FOUR) {
-                findbugs.addFilter(args[Tv.FOUR], false);
+            if (args.length > 4) {
+                findbugs.addFilter(args[4], false);
             }
             findbugs.execute();
         } catch (final IOException | InterruptedException ex) {

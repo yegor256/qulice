@@ -29,11 +29,12 @@
  */
 package com.qulice.findbugs;
 
-import com.google.common.io.Files;
 import com.jcabi.log.Logger;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Collection;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -65,7 +66,7 @@ public final class BytecodeMocker {
      * @throws IOException If some problem
      */
     public byte[] mock() throws IOException {
-        final File outdir = Files.createTempDir();
+        final Path outdir = Files.createTempDirectory("");
         final File input = File.createTempFile("input", ".java");
         FileUtils.writeStringToFile(
             input,
@@ -75,7 +76,7 @@ public final class BytecodeMocker {
         final ProcessBuilder builder = new ProcessBuilder(
             "javac",
             "-d",
-            outdir.getPath(),
+            outdir.toString(),
             input.getPath()
         );
         final Process process = builder.start();
@@ -97,12 +98,12 @@ public final class BytecodeMocker {
                 )
             );
         }
-        final byte[] bytes = this.findIn(outdir);
+        final byte[] bytes = this.findIn(outdir.toFile());
         Logger.debug(
             this, "#mock(): produced %d bytes in bytecode for '%s'",
             bytes.length, this.source
         );
-        FileUtils.deleteDirectory(outdir);
+        FileUtils.deleteDirectory(outdir.toFile());
         return bytes;
     }
 

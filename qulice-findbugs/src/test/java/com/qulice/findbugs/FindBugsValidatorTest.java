@@ -113,6 +113,7 @@ public final class FindBugsValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
+    @Disabled
     public void throwsExceptionOnViolation() throws Exception {
         Assertions.assertThrows(
             ValidationException.class,
