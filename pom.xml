@@ -47,7 +47,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <module>qulice-pmd</module>
     <module>qulice-spi</module>
     <module>qulice-spotbugs</module>
-    <module>qulice-gradle-plugin</module>
   </modules>
   <description>Quality control library, integrating together other static analysis and validation tools and instruments.</description>
   <url>http://www.qulice.com</url>
@@ -186,7 +185,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                   <exclude name="qulice-ant/**"/>
                   <exclude name="qulice-checkstyle/**"/>
                   <exclude name="qulice-findbugs/**"/>
-                  <exclude name="qulice-gradle-plugin/**"/>
                   <exclude name="qulice-maven-plugin/**"/>
                   <exclude name="qulice-pmd/**"/>
                   <exclude name="qulice-spi/**"/>
