@@ -82,16 +82,20 @@ interface MavenEnvironment extends Environment {
 
     /**
      * Wrapper of maven environment.
+     *
+     * @since 0.1
      */
     final class Wrap implements MavenEnvironment {
         /**
          * Parent environment.
          */
         private final Environment env;
+
         /**
          * Parent maven environment.
          */
         private final MavenEnvironment menv;
+
         /**
          * Public ctor.
          * @param penv Parent env
@@ -102,62 +106,77 @@ interface MavenEnvironment extends Environment {
             this.env = penv;
             this.menv = pmenv;
         }
+
         @Override
         public File basedir() {
             return this.env.basedir();
         }
+
         @Override
         public File tempdir() {
             return this.env.tempdir();
         }
+
         @Override
         public File outdir() {
             return this.env.outdir();
         }
+
         @Override
         public String param(final String name, final String value) {
             return this.env.param(name, value);
         }
+
         @Override
         public ClassLoader classloader() {
             return this.env.classloader();
         }
+
         @Override
         public Collection<String> classpath() {
             return this.env.classpath();
         }
+
         @Override
         public MavenProject project() {
             return this.menv.project();
         }
+
         @Override
         public Properties properties() {
             return this.menv.properties();
         }
+
         @Override
         public Context context() {
             return this.menv.context();
         }
+
         @Override
         public Properties config() {
             return this.menv.config();
         }
+
         @Override
         public MojoExecutor executor() {
             return this.menv.executor();
         }
+
         @Override
         public Collection<String> asserts() {
             return this.menv.asserts();
         }
+
         @Override
         public Collection<File> files(final String pattern) {
             return this.env.files(pattern);
         }
+
         @Override
         public boolean exclude(final String check, final String name) {
             return this.env.exclude(check, name);
         }
+
         @Override
         public Collection<String> excludes(final String checker) {
             return this.env.excludes(checker);

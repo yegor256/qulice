@@ -188,6 +188,8 @@ public final class ChecksTest {
 
     /**
      * Mocked collector of checkstyle events.
+     *
+     * @since 0.1
      */
     private static class Collector implements Answer<Object> {
 

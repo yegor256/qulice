@@ -93,6 +93,7 @@ public final class QuliceTask extends Task {
     }
 
     @Override
+    @SuppressWarnings({ "PMD.GuardLogStatement", "PMD.PrematureDeclaration"})
     public void execute() {
         super.execute();
         final Environment env = this.environment();

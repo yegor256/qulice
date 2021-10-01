@@ -130,6 +130,7 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
         }
         return start;
     }
+
     /**
      * Find Javadoc starting comment.
      * @param lines List of lines to check.

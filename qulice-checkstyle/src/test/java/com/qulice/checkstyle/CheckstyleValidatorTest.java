@@ -106,7 +106,7 @@ public final class CheckstyleValidatorTest {
         final String content =
             // @checkstyle StringLiteralsConcatenation (4 lines)
             // @checkstyle RegexpSingleline (1 line)
-            "/**\n * License-3.\n *\n * License-2.\n */\n"
+            "/" + "**\n * License-3.\n *\n * License-2.\n */\n"
                 + "package foo;\n"
                 + "public class Foo { }\n";
         final String name = "Foo.java";
@@ -818,6 +818,8 @@ public final class CheckstyleValidatorTest {
 
     /**
      * Validation results matcher.
+     *
+     * @since 0.1
      */
     private static final class ViolationMatcher extends
         TypeSafeMatcher<Violation> {
@@ -845,8 +847,8 @@ public final class CheckstyleValidatorTest {
         /**
          * Constructor.
          * @param message Message to check
-         * @param line Line to check
          * @param file File to check
+         * @param line Line to check
          * @param check Check name
          * @checkstyle ParameterNumber (3 lines)
          */

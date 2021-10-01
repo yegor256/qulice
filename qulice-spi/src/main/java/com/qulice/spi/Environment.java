@@ -123,20 +123,25 @@ public interface Environment {
 
     /**
      * Mock of {@link Environment}.
+     *
+     * @since 0.1
      */
     final class Mock implements Environment {
         /**
          * The basedir.
          */
         private final File basedir;
+
         /**
          * Files for classpath.
          */
         private final Set<String> classpath;
+
         /**
          * Map of params.
          */
         private final Map<String, String> params;
+
         /**
          * Exclude patterns.
          */
@@ -171,6 +176,7 @@ public interface Environment {
                 this.outdir().getAbsolutePath().replace(File.separatorChar, '/')
             );
         }
+
         /**
          * With this param and its value.
          * @param name Param name
@@ -182,6 +188,7 @@ public interface Environment {
             this.params.put(name, value);
             return this;
         }
+
         /**
          * With this file on board.
          * @param name File name related to basedir
@@ -223,6 +230,7 @@ public interface Environment {
             this.excl = excludes;
             return this;
         }
+
         /**
          * With default classpath.
          * @return This object
@@ -236,10 +244,12 @@ public interface Environment {
             );
             return this;
         }
+
         @Override
         public File basedir() {
             return this.basedir;
         }
+
         @Override
         public File tempdir() {
             final File file = new File(this.basedir, "target/tempdir");
@@ -248,6 +258,7 @@ public interface Environment {
             }
             return file;
         }
+
         @Override
         public File outdir() {
             final File file = new File(this.basedir, "target/classes");
@@ -256,6 +267,7 @@ public interface Environment {
             }
             return file;
         }
+
         @Override
         public String param(final String name, final String value) {
             String val = this.params.get(name);
@@ -264,14 +276,17 @@ public interface Environment {
             }
             return val;
         }
+
         @Override
         public ClassLoader classloader() {
             return Thread.currentThread().getContextClassLoader();
         }
+
         @Override
         public Collection<String> classpath() {
             return Collections.unmodifiableCollection(this.classpath);
         }
+
         @Override
         @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
         public Collection<File> files(final String pattern) {
@@ -291,6 +306,7 @@ public interface Environment {
             }
             return files;
         }
+
         @Override
         public boolean exclude(final String check, final String name) {
             return false;

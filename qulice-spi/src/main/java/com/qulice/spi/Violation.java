@@ -34,6 +34,7 @@ import lombok.ToString;
 
 /**
  * Validation result.
+ *
  * @since 0.17
  */
 @SuppressWarnings("PMD.TooManyMethods")
@@ -71,6 +72,8 @@ public interface Violation extends Comparable<Violation> {
 
     /**
      * Default validation result.
+     *
+     * @since 0.1
      */
     @EqualsAndHashCode
     @ToString

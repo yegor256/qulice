@@ -41,10 +41,21 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 public final class PmdDisabledRulesTest {
 
-    /**
-     * Collection of disabled rules.
-     * @return Collection of disabled rules.
-     */
+    @ParameterizedTest
+    @MethodSource("parameters")
+    public void disablesRules(final String rule) throws Exception {
+        new PmdAssert(
+            String.format("%s.java", rule),
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString(
+                    String.format("(%s)", rule)
+                )
+            )
+        ).validate();
+    }
+
+    @SuppressWarnings("PMD.ProhibitPublicStaticMethods")
     public static Collection<String[]> parameters() {
         return Arrays.asList(
             new String[][] {
@@ -58,24 +69,6 @@ public final class PmdDisabledRulesTest {
                 {"CallSuperInConstructor"},
             }
         );
-    }
-
-    /**
-     * PmdValidator has rules disabled.
-     * @throws Exception In case of error.
-     */
-    @ParameterizedTest
-    @MethodSource("parameters")
-    public void disablesRules(final String rule) throws Exception {
-        new PmdAssert(
-            String.format("%s.java", rule),
-            Matchers.any(Boolean.class),
-            Matchers.not(
-                Matchers.containsString(
-                    String.format("(%s)", rule)
-                )
-            )
-        ).validate();
     }
 
 }

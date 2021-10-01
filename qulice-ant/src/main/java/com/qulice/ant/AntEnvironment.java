@@ -58,14 +58,17 @@ public final class AntEnvironment implements Environment {
      * Ant project.
      */
     private final Project project;
+
     /**
      * Sources dirs.
      */
     private final Path sources;
+
     /**
      * Classes dir (only one dir is supported).
      */
     private final File classes;
+
     /**
      * Classpath dirs and files.
      */
@@ -175,6 +178,8 @@ public final class AntEnvironment implements Environment {
 
     /**
      * Creates URL ClassLoadere in privileged block.
+     *
+     * @since 0.1
      */
     private static final class PrivilegedClassLoader implements
         PrivilegedAction<URLClassLoader> {

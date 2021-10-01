@@ -107,6 +107,8 @@ public final class LineRanges {
     /**
      * Predicate to determine if a given line is within range of any of
      * the line ranges.
+     *
+     * @since 0.1
      */
     private static final class LineWithAny implements Predicate<LineRange> {
 
@@ -131,6 +133,8 @@ public final class LineRanges {
 
     /**
      * Thread-safe collection of line ranges.
+     *
+     * @since 0.1
      */
     private static final class LocalCollection
         extends ThreadLocal<Collection<LineRange>> {

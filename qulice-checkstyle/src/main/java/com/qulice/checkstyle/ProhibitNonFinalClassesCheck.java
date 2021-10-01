@@ -197,7 +197,9 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
 
     /**
      * Maintains information about class' ctors.
-    */
+     *
+     * @since 0.1
+     */
     private static final class ClassDesc {
 
         /**

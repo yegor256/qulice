@@ -293,6 +293,8 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Creates URL ClassLoader in privileged block.
+     *
+     * @since 0.1
      */
     private static final class PrivilegedClassLoader implements
         PrivilegedAction<URLClassLoader> {
@@ -320,6 +322,8 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Checks if two paths are equal.
+     *
+     * @since 0.1
      */
     private static class PathPredicate implements Predicate<String> {
         /**
@@ -346,6 +350,8 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * Converts a checker exclude into exclude param.
      *
      * E.g. "checkstyle:.*" will become ".*".
+     *
+     * @since 0.1
      */
     private static class CheckerExcludes implements Function<String, String> {
 
