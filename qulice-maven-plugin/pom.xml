@@ -38,12 +38,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <artifactId>qulice-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <name>qulice-maven-plugin</name>
-  <!--
-    @todo #1019:30min Upgrade to Junit5. Finish JUnit upgrade to JUnit5 by
-     upgrading it in qulice-maven-plugin submodules. Qulice-maven-plugin
-     presents some build error that does not trigger any bulid failure, so maybe
-     they must be corrected first.
-    -->
   <properties>
     <maven.version>3.0.5</maven.version>
   </properties>
@@ -103,19 +97,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>jsr305</artifactId>
-      <version>2.0.3</version>
-    </dependency>
-    <dependency>
       <groupId>xerces</groupId>
       <artifactId>xmlParserAPIs</artifactId>
       <version>2.6.2</version>
-    </dependency>
-    <dependency>
-      <groupId>com.qulice</groupId>
-      <artifactId>qulice-findbugs</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
@@ -261,7 +245,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </plugin>
       <plugin>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.4</version>
+        <version>3.6.1</version>
         <configuration>
           <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
         </configuration>
@@ -278,17 +262,12 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         <artifactId>maven-invoker-plugin</artifactId>
         <configuration combine.children="append">
           <mergeUserSettings>true</mergeUserSettings>
-          <!--
-                    With this construct you can exclude certain IT projects.
-                    -->
           <pomIncludes>
             <pomInclude>checkstyle-violations/pom.xml</pomInclude>
             <pomInclude>checkstyle-exceptions/pom.xml</pomInclude>
             <pomInclude>checkstyle-newlines/pom.xml</pomInclude>
             <pomInclude>checkstyle-locale/pom.xml</pomInclude>
             <pomInclude>pmd-violations/pom.xml</pomInclude>
-            <pomInclude>findbugs-exclude/pom.xml</pomInclude>
-            <pomInclude>findbugs-violations/pom.xml</pomInclude>
             <pomInclude>dependency-violations/pom.xml</pomInclude>
             <pomInclude>dependency-violations-exclude/pom.xml</pomInclude>
             <pomInclude>multi-module/pom.xml</pomInclude>
@@ -301,11 +280,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             <pomInclude>hibernate-validator-check/pom.xml</pomInclude>
             <pomInclude>pmd-duplicate-string-literals-violations/pom.xml</pomInclude>
             <pomInclude>dependency-not-matches-exclude/pom.xml</pomInclude>
-            <pomInclude>findbugs-bed-bogus-exception-declaration/pom.xml</pomInclude>
           </pomIncludes>
           <extraArtifacts>
             <extraArtifact>${project.groupId}:qulice-checkstyle:${project.version}:jar</extraArtifact>
-            <extraArtifact>${project.groupId}:qulice-findbugs:${project.version}:jar</extraArtifact>
             <extraArtifact>${project.groupId}:qulice-pmd:${project.version}:jar</extraArtifact>
             <extraArtifact>${project.groupId}:qulice-spi:${project.version}:jar</extraArtifact>
           </extraArtifacts>
@@ -314,11 +291,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
           <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>qulice-checkstyle</artifactId>
-            <version>${project.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>qulice-findbugs</artifactId>
             <version>${project.version}</version>
           </dependency>
           <dependency>

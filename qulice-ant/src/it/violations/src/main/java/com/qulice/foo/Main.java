@@ -27,13 +27,36 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+package com.qulice.foo;
+
+import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
- * Test reproduces case when FindBugs can't find out if the exception
- * is thrown, because AspectJ does some magic with bytecode
- * when annotation from jcabi-aspects is used,
- * even on a method that throws correct exception.
- *
- * @since 0.17
+ * This is just a test class.
+ * @since 1.0
  */
-package com.qulice.foo;
+public final class Main {
+
+    /**
+     * List of some URLs.
+     */
+    private final transient Set<URL> list;
+
+    /**
+     * Test something.
+     */
+    public Main() {
+        this.list = new HashSet<URL>(500);
+    }
+
+    /**
+     * Get size of list.
+     * @return The size
+     */
+    public int size() {
+        return this.list.size();
+    }
+
+}

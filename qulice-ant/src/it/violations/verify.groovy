@@ -1,5 +1,6 @@
-/*
- * Copyright (c) 2011-2019, Qulice.com
+/**
+ *
+ * Copyright (c) 2011, Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,37 +27,10 @@
  * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ *
+ * Validate that the build really failed and violations were reported.
  */
-package com.qulice.foo;
 
-import java.net.URL;
-import java.util.HashSet;
-import java.util.Set;
-
-/**
- * This is just a test class.
- * @since 1.0
- */
-public final class Main {
-
-    /**
-     * List of some URLs.
-     */
-    private final transient Set<URL> list;
-
-    /**
-     * Test something.
-     */
-    public Main() {
-        this.list = new HashSet<URL>();
-    }
-
-    /**
-     * Get size of list.
-     * @return The size
-     */
-    public int size() {
-        return this.list.size();
-    }
-
-}
+def log = new File(basedir, 'build.log')
+assert log.text.contains('MagicNumberCheck')

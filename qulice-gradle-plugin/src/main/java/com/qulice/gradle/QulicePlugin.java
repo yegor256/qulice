@@ -39,7 +39,7 @@ import org.gradle.api.Project;
 public final class QulicePlugin implements Plugin<Project> {
     /**
      * This method is called, when a Gradle plugin is applied to a project. In
-     *  this method all the checks (Checkstyle, Findbugs etc.) should be
+     *  this method all the checks (Checkstyle, PMD etc.) should be
      *  performed.
      * @param project Gradle project, which Qulice should check.
      * @todo #339:30min Design validator classes for Gradle. And remove the

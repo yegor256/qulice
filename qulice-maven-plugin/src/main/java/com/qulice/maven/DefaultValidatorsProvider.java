@@ -30,7 +30,6 @@
 package com.qulice.maven;
 
 import com.qulice.checkstyle.CheckstyleValidator;
-import com.qulice.findbugs.FindBugsValidator;
 import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
@@ -72,13 +71,9 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
         return validators;
     }
 
-    // @todo #61:30min Make FindBugsValidator inherit from ResourceValidator and
-    //  use it similarly to CheckstyleValidator. Remember to move it to
-    //  externalResource method and make sure all the tests pass.
     @Override
     public Set<Validator> external() {
         final Set<Validator> validators = new LinkedHashSet<>();
-        validators.add(new FindBugsValidator());
         return validators;
     }
 

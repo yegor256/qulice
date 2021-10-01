@@ -7,7 +7,7 @@ public class Pdd {
      * @todo #123:2h This is also valid.
      */
     public void test() {
-        new Integer(1);
+        return;
     }
 
     /**

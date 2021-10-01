@@ -31,7 +31,6 @@ package com.qulice.ant;
 
 import com.jcabi.log.Logger;
 import com.qulice.checkstyle.CheckstyleValidator;
-import com.qulice.findbugs.FindBugsValidator;
 import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
@@ -97,14 +96,9 @@ public final class QuliceTask extends Task {
     public void execute() {
         super.execute();
         final Environment env = this.environment();
+        final long start = System.nanoTime();
         try {
-            final long start = System.nanoTime();
             QuliceTask.validate(env);
-            Logger.info(
-                this,
-                "Qulice quality check completed in %[nano]s",
-                System.nanoTime() - start
-            );
         } catch (final ValidationException ex) {
             Logger.info(
                 this,
@@ -112,6 +106,11 @@ public final class QuliceTask extends Task {
             );
             throw new BuildException("Failure", ex);
         }
+        Logger.info(
+            this,
+            "Qulice quality check completed in %[nano]s, no errors",
+            System.nanoTime() - start
+        );
     }
 
     /**
@@ -166,6 +165,11 @@ public final class QuliceTask extends Task {
         for (final Validator validator : QuliceTask.validators()) {
             validator.validate(env);
         }
+        if (!results.isEmpty()) {
+            throw new ValidationException(
+                String.format("%d violations, see log above", results.size())
+            );
+        }
     }
 
     /**
@@ -173,9 +177,7 @@ public final class QuliceTask extends Task {
      * @return Collection of validators.
      */
     private static Collection<Validator> validators() {
-        return Arrays.<Validator>asList(
-            new FindBugsValidator()
-        );
+        return Arrays.asList();
     }
 
     /**

@@ -41,14 +41,10 @@ import org.junit.jupiter.api.Test;
  *  so the minimal tests on this class can be run. Then, after all is set,
  *  remove FindBugs references from pom and from qulice executions.
  */
-@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 @Disabled
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 public final class SpotBugsValidatorTest {
 
-    /**
-     * SpotBugsValidatorTest can pass correct files with no exceptions.
-     * @throws Exception If something wrong happens inside
-     */
     @Test
     public void passesCorrectFilesWithNoExceptions() throws Exception {
         final Environment env = new Environment.Mock()
@@ -57,10 +53,6 @@ public final class SpotBugsValidatorTest {
         new SpotBugsValidator().validate(env);
     }
 
-    /**
-     * SpotBugs can exclude classes from check.
-     * @throws Exception If something wrong happens inside
-     */
     @Test
     public void excludesIncorrectClassFormCheck() throws Exception {
         final Environment env = new Environment.Mock()
@@ -71,10 +63,6 @@ public final class SpotBugsValidatorTest {
         new SpotBugsValidator().validate(env);
     }
 
-    /**
-     * FindbugsValidator can exclude several classes from check.
-     * @throws Exception If something wrong happens inside
-     */
     @Test
     public void excludesSeveralIncorrectClassFromCheck() throws Exception {
         final Environment env = new Environment.Mock()

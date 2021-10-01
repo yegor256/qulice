@@ -70,11 +70,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     </dependency>
     <dependency>
       <groupId>com.qulice</groupId>
-      <artifactId>qulice-findbugs</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.qulice</groupId>
       <artifactId>qulice-spi</artifactId>
       <version>${project.version}</version>
     </dependency>
@@ -112,11 +107,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         <configuration combine.children="append">
           <mergeUserSettings>false</mergeUserSettings>
           <pomIncludes>
-            <pomInclude>findbugs-violations/pom.xml</pomInclude>
+            <pomInclude>violations/pom.xml</pomInclude>
           </pomIncludes>
           <extraArtifacts>
             <extraArtifact>${project.groupId}:qulice-checkstyle:${project.version}:jar</extraArtifact>
-            <extraArtifact>${project.groupId}:qulice-findbugs:${project.version}:jar</extraArtifact>
             <extraArtifact>${project.groupId}:qulice-pmd:${project.version}:jar</extraArtifact>
             <extraArtifact>${project.groupId}:qulice-spi:${project.version}:jar</extraArtifact>
           </extraArtifacts>
@@ -125,11 +119,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
           <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>qulice-checkstyle</artifactId>
-            <version>${project.version}</version>
-          </dependency>
-          <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>qulice-findbugs</artifactId>
             <version>${project.version}</version>
           </dependency>
           <dependency>

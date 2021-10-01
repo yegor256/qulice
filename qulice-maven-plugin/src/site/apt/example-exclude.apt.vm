@@ -51,8 +51,7 @@ Exclude
       <configuration>
         <excludes>
           <exclude>checkstyle:/src/examples/.*</exclude>
-          <exclude>findbugs:~com.qulice.foo.*</exclude>
-          <exclude>findbugs:com.qulice.bar.Baz</exclude>
+          <exclude>dependencies:.*</exclude>
         </excludes>
       </configuration>
     </plugin>
@@ -62,17 +61,8 @@ Exclude
 
   Every <<<exclude>>> item is a regular expression. The following
   exclusion prefixes are supported now (the list may actually be longer):
-  <<<checkstyle:>>>, <<<pmd:>>>, <<<findbugs:>>>,
+  <<<checkstyle:>>>, <<<pmd:>>>,
   <<<dependencies:>>>, <<<duplicatefinder:>>>.
-
-  Exclude for Findbug is a bit different, as expression has to be either an
-  exact class name or start with the ~ character the rest of content is
-  interpreted as a Java regular expression. For example:
-  1) <<<findbugs:~com.qulice.foo.*>>> excludes all classes in package
-  com.qulice.foo;
-  2) <<<findbugs:com.qulice.foo.Bar>>> excludes only class Bar in appropriate
-  packages.
-  See http://findbugs.sourceforge.net/manual/filter.html
 
   Dependencies exclude uses syntax of groupId:artifactId, so to exclude e.g.
   guava library you should add <<<dependencies:com.google.guava:guava>>> as an

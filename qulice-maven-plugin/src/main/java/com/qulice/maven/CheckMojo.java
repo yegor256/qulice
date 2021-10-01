@@ -29,7 +29,6 @@
  */
 package com.qulice.maven;
 
-import com.jcabi.aspects.Tv;
 import com.jcabi.log.Logger;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.ValidationException;
@@ -66,7 +65,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
      * Executors for validators.
      */
     private final ExecutorService executors =
-        Executors.newFixedThreadPool(Tv.FIVE);
+        Executors.newFixedThreadPool(5);
 
     /**
      * Provider of validators.
@@ -110,7 +109,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
                 this.submit(env, files, validators);
             for (final Future<Collection<Violation>> future : futures) {
                 try {
-                    results.addAll(future.get(Tv.TEN, TimeUnit.MINUTES));
+                    results.addAll(future.get(10L, TimeUnit.MINUTES));
                 } catch (final InterruptedException ex) {
                     Thread.currentThread().interrupt();
                     throw new IllegalStateException(ex);

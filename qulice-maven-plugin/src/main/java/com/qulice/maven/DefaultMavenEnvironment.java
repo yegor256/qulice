@@ -40,7 +40,6 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -163,9 +162,8 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
-        final URLClassLoader loader = AccessController.doPrivilegedWithCombiner(
-            new DefaultMavenEnvironment.PrivilegedClassLoader(urls)
-        );
+        final URLClassLoader loader =
+            new DefaultMavenEnvironment.PrivilegedClassLoader(urls).run();
         for (final URL url : loader.getURLs()) {
             Logger.debug(this, "Classpath: %s", url);
         }
