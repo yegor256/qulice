@@ -15,6 +15,5 @@ release:
   script: |-
     mvn versions:set "-DnewVersion=${tag}"
     git commit -am "${tag}"
-    mvn clean deploy -Pqulice-profile -Psonatype --errors --settings ../settings.xml
-    # mvn clean deploy -Pqulice-profile -Pqulice -Psonatype --errors --settings ../settings.xml
-    # mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml
+    mvn clean deploy -Pqulice-profile -Pqulice -Psonatype --errors --settings ../settings.xml
+    mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml
