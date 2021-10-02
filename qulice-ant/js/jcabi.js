@@ -1,0 +1,1 @@
+$(document).ready(function(){$(".menu-button").click(function(){"menu-off"===$("#here-goes-menu").attr("class")?($("#menu").clone().attr("class","mobile-menu").appendTo("#here-goes-menu"),$("#here-goes-menu").attr("class","menu-on")):($(".mobile-menu").hide(),$("#here-goes-menu").attr("class","menu-off"))})});
