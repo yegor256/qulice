@@ -61,12 +61,10 @@ instead of `${basedir}`.
 
 Read this short summary of [typical mistakes](https://github.com/tpc2/qulice/wiki/mistakes)
 you may encounter in your project.
-Qulice can't catch them, that's why this wiki page...
-
-#### Proxy
 
 In order to download schemas required for XML validation you might need proxy
-setup. Maven proxy is not supported, but standard [JVM proxy](https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html)
+setup. Maven proxy is not supported, but standard 
+[JVM proxy](https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html)
 works fine. To use it just add `-Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`
 to your `MAVEN_OPTS` environment variable or to Maven command, e.g.
 `mvn clean verify -Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`.
@@ -78,6 +76,8 @@ your changes and apply them to the `master` branch shortly, provided
 they don't violate our quality standards. To avoid frustration, before
 sending us your pull request please run full Maven build:
 
-> mvn clean install -Pqulice
+```bash
+$ mvn clean install -Pqulice
+```
 
 Keep in mind that JDK7 and Maven 3.1.0 are the lowest versions you may use.
