@@ -42,7 +42,7 @@ Source Code Quality Police (Qulice)
   Qulice is a {{{http://en.wikipedia.org/wiki/Static_program_analysis}static analysis}}
   quality control instrument for
   Java projects. It combines a few static analysis tools and
-  pre-configure them. You don't need to use and configure them individually any more.
+  pre-configures them. You don't need to use and configure them individually any more.
 
   At the moment we integrate together:
 
@@ -56,7 +56,7 @@ Source Code Quality Police (Qulice)
 
    * {{{http://pmd.sourceforge.net/}PMD}}
 
-   * {{{http://findbugs.sourceforge.net/}FindBugs}}
+   * {{{https://spotbugs.github.io/}SpotBugs}}
 
   Just add our {{{./qulice-maven-plugin/}qulice-maven-plugin}} to your
   Maven project and start following out
