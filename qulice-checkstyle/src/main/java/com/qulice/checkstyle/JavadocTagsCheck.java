@@ -76,6 +76,16 @@ public final class JavadocTagsCheck extends AbstractCheck {
      */
     private final Collection<String> prohibited =
         Arrays.asList("author", "version");
+    
+    /**
+     * Suggested format of prohibited javadoc author tags.
+     */
+    private final String authorFormat = "&#64;author John Doe (john&#64;example.com)";
+
+    /**
+     * Suggested format of prohibited javadoc version tags.
+     */
+    private final String versionFormat = "&#64;version &#36;Id&#36;";
 
     @Override
     public int[] getDefaultTokens() {
@@ -187,13 +197,19 @@ public final class JavadocTagsCheck extends AbstractCheck {
         final List<Integer> found =
             this.findTagLineNum(lines, cstart, cend, tag);
         if (!found.isEmpty()) {
+            String format;
+            if (tag.equals(prohibited.toArray()[0])) {
+                format = authorFormat;
+            } else {
+                format = versionFormat;
+            }
             this.log(
                 start + 1,
                 StringUtils.join(
                     "Prohibited ''@{0}'' tag in",
-                    " class/interface comment"
+                    " class/interface comment does not match the format ''{1}''"
                 ),
-                tag
+                tag, format
             );
         }
     }
