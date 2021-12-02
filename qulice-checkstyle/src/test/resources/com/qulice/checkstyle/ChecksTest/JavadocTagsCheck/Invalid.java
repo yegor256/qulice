@@ -28,3 +28,11 @@ public final class InvalidInner {
     public final class InvalidInnerSince {
     }
 }
+
+/**
+ * This comment doesn't have a version tag with an acceptable format.
+ * @version $Id: $
+ * @since 1.0
+ */
+public final class InvalidVersion {
+}
