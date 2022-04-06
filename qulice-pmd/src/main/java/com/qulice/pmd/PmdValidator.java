@@ -65,7 +65,12 @@ public final class PmdValidator implements ResourceValidator {
         final SourceValidator validator = new SourceValidator(this.env);
         final Collection<DataSource> sources = new LinkedList<>();
         for (final File file : files) {
-            sources.add(new FileDataSource(file));
+            final String name = file.getPath().substring(
+                    this.env.basedir().toString().length()
+            );
+            if (!this.env.exclude("pmd", name)) {
+                sources.add(new FileDataSource(file));
+            }
         }
         final Collection<RuleViolation> breaches = validator.validate(
             sources, this.env.basedir().getPath()
