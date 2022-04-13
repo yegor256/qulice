@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.qulice.pmd","l":"PmdValidator"},{"p":"com.qulice.pmd.rules","l":"ProhibitPlainJunitAssertionsRule"},{"p":"com.qulice.pmd.rules","l":"UnnecessaryLocalRule"},{"p":"com.qulice.pmd.rules","l":"UseStringIsEmptyRule"}]
