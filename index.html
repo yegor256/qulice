@@ -140,13 +140,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.19.4</strong>
+                                    <strong itemprop="version">0.19.1</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2021-10-02T05:22:39Z">
+                                    <time itemprop="datePublished" datetime="2022-04-13T12:47:09Z">
                                         
-                                        02-Oct-2021
+                                        13-Apr-2022
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -159,7 +159,7 @@
                                                 <article itemprop="articleBody">
                             <section>
 <h2><a name="Source_Code_Quality_Police_.28Qulice.29"></a>Source Code Quality Police (Qulice)</h2>
-<p>Qulice is a <a class="externalLink" href="http://en.wikipedia.org/wiki/Static_program_analysis">static analysis</a> quality control instrument for Java projects. It combines a few static analysis tools and pre-configure them. You don't need to use and configure them individually any more.</p>
+<p>Qulice is a <a class="externalLink" href="http://en.wikipedia.org/wiki/Static_program_analysis">static analysis</a> quality control instrument for Java projects. It combines a few static analysis tools and pre-configures them. You don't need to use and configure them individually any more.</p>
 <p>At the moment we integrate together:</p>
 <ul>
 <li><a class="externalLink" href="http://maven.apache.org/plugins/maven-dependency-plugin/analyze-only-mojo.html">Maven dependency analysis</a></li>
@@ -167,7 +167,7 @@
 <li><a class="externalLink" href="https://github.com/ning/maven-duplicate-finder-plugin">maven-duplicate-finder-plugin</a></li>
 <li><a class="externalLink" href="http://checkstyle.sourceforge.net/">Checkstyle</a></li>
 <li><a class="externalLink" href="http://pmd.sourceforge.net/">PMD</a></li>
-<li><a class="externalLink" href="http://findbugs.sourceforge.net/">FindBugs</a></li></ul>
+<li><a class="externalLink" href="https://spotbugs.github.io/">SpotBugs</a></li></ul>
 <p>Just add our <a href="./qulice-maven-plugin/">qulice-maven-plugin</a> to your Maven project and start following out <a href="./quality.html">quality policy</a>:</p>
 <div class="source">
 <pre>&lt;build&gt;
@@ -175,7 +175,7 @@
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.19.4&lt;/version&gt;
+      &lt;version&gt;0.19.1&lt;/version&gt;
       &lt;configuration&gt;
         &lt;license&gt;file:${basedir}/LICENSE.txt&lt;/license&gt;
       &lt;/configuration&gt;
@@ -196,7 +196,7 @@
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2021
+                                                                            2011-2022
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
