@@ -40,6 +40,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <name>qulice-maven-plugin</name>
   <properties>
     <maven.version>3.0.5</maven.version>
+    <pmd.version>6.10.0</pmd.version>
   </properties>
   <dependencies>
     <dependency>
@@ -224,6 +225,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <version>5.0.0.Final</version>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <groupId>net.sourceforge.pmd</groupId>
+      <artifactId>pmd-core</artifactId>
+      <version>${pmd.version}</version>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -343,6 +349,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                 <exclude>findbugs:com.qulice.maven.HelpMojo</exclude>
                 <exclude>checkstyle:/src/it/.*</exclude>
                 <exclude>pmd:.*/src/it/.*</exclude>
+                <exclude>pmd:.*/src/test/resources/com/qulice/maven/ValidationExclusion/.*</exclude>
                 <exclude>xml:/src/it/.*</exclude>
                 <exclude>duplicatefinder:.*</exclude>
               </excludes>
