@@ -29,7 +29,6 @@
  */
 package com.qulice.checkstyle;
 
-import com.google.common.collect.Lists;
 import com.jcabi.aspects.Tv;
 import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -74,30 +73,37 @@ public final class CheckstyleValidator implements ResourceValidator {
     private final CheckstyleListener listener;
 
     /**
+     * Environment to use.
+     */
+    private final Environment env;
+
+    /**
      * Constructor.
      * @param env Environment to use.
      */
     @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public CheckstyleValidator(final Environment env) {
+        this.env = env;
         this.checker = new Checker();
-        this.checker.setClassLoader(env.classloader());
+        this.checker.setClassLoader(this.env.classloader());
         this.checker.setModuleClassLoader(
             Thread.currentThread().getContextClassLoader()
         );
         try {
-            this.checker.configure(this.configuration(env));
+            this.checker.configure(this.configuration());
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to configure checker", ex);
         }
-        this.listener = new CheckstyleListener(env);
+        this.listener = new CheckstyleListener(this.env);
         this.checker.addListener(this.listener);
     }
 
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<Violation> validate(final Collection<File> files) {
+        final List<File> sources = this.getNonExcludedFiles(files);
         try {
-            this.checker.process(Lists.newArrayList(files));
+            this.checker.process(sources);
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to process files", ex);
         }
@@ -123,14 +129,31 @@ public final class CheckstyleValidator implements ResourceValidator {
     }
 
     /**
+     * Filters out excluded files from further validation.
+     * @param files Files to validate
+     * @return List of relevant files
+     */
+    public List<File> getNonExcludedFiles(final Collection<File> files) {
+        final List<File> relevant = new LinkedList<>();
+        for (final File file : files) {
+            final String name = file.getPath().substring(
+                this.env.basedir().toString().length()
+            );
+            if (!this.env.exclude("checkstyle", name)) {
+                relevant.add(file);
+            }
+        }
+        return relevant;
+    }
+
+    /**
      * Load checkstyle configuration.
-     * @param env The environment
      * @return The configuration just loaded
      * @see #validate(Collection)
      */
-    private Configuration configuration(final Environment env) {
+    private Configuration configuration() {
         final File cache =
-            new File(env.tempdir(), "checkstyle/checkstyle.cache");
+            new File(this.env.tempdir(), "checkstyle/checkstyle.cache");
         final File parent = cache.getParentFile();
         if (!parent.exists() && !parent.mkdirs()) {
             throw new IllegalStateException(
@@ -142,7 +165,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         }
         final Properties props = new Properties();
         props.setProperty("cache.file", cache.getPath());
-        props.setProperty("header", this.header(env));
+        props.setProperty("header", this.header());
         final InputSource src = new InputSource(
             this.getClass().getResourceAsStream("checks.xml")
         );
@@ -161,13 +184,12 @@ public final class CheckstyleValidator implements ResourceValidator {
 
     /**
      * Create header content, from file.
-     * @param env The environment
      * @return The content of header
-     * @see #configuration(Environment)
+     * @see #configuration()
      */
-    private String header(final Environment env) {
-        final String name = env.param("license", "LICENSE.txt");
-        final URL url = CheckstyleValidator.toUrl(env, name);
+    private String header() {
+        final String name = this.env.param("license", "LICENSE.txt");
+        final URL url = this.toUrl(name);
         final String content;
         try {
             content = new Replaced(
@@ -206,12 +228,11 @@ public final class CheckstyleValidator implements ResourceValidator {
 
     /**
      * Convert file name to URL.
-     * @param env The environment
      * @param name The name of file
      * @return The URL
-     * @see #header(Environment)
+     * @see #header()
      */
-    private static URL toUrl(final Environment env, final String name) {
+    private URL toUrl(final String name) {
         final URL url;
         if (name.startsWith("file:")) {
             try {
@@ -220,7 +241,7 @@ public final class CheckstyleValidator implements ResourceValidator {
                 throw new IllegalStateException("Invalid URL", ex);
             }
         } else {
-            url = env.classloader().getResource(name);
+            url = this.env.classloader().getResource(name);
             if (url == null) {
                 throw new IllegalStateException(
                     String.format(
