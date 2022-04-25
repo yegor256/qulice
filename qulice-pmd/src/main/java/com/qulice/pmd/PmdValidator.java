@@ -63,15 +63,7 @@ public final class PmdValidator implements ResourceValidator {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<Violation> validate(final Collection<File> files) {
         final SourceValidator validator = new SourceValidator(this.env);
-        final Collection<DataSource> sources = new LinkedList<>();
-        for (final File file : files) {
-            final String name = file.getPath().substring(
-                this.env.basedir().toString().length()
-            );
-            if (!this.env.exclude("pmd", name)) {
-                sources.add(new FileDataSource(file));
-            }
-        }
+        final Collection<DataSource> sources = this.getNonExcludedFiles(files);
         final Collection<RuleViolation> breaches = validator.validate(
             sources, this.env.basedir().getPath()
         );
@@ -98,4 +90,21 @@ public final class PmdValidator implements ResourceValidator {
         return "PMD";
     }
 
+    /**
+     * Filters out excluded files from further validation.
+     * @param files Files to validate
+     * @return Relevant source files
+     */
+    public Collection<DataSource> getNonExcludedFiles(final Collection<File> files) {
+        final Collection<DataSource> sources = new LinkedList<>();
+        for (final File file : files) {
+            final String name = file.getPath().substring(
+                this.env.basedir().toString().length()
+            );
+            if (!this.env.exclude("pmd", name)) {
+                sources.add(new FileDataSource(file));
+            }
+        }
+        return sources;
+    }
 }
