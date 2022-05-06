@@ -9,7 +9,8 @@ merge:
     mvn clean install -Pqulice-profile -Pqulice --errors --batch-mode
 deploy:
   script: |-
-    mvn clean deploy -Pqulice-profile -Pqulice --errors --settings ../settings.xml
+    echo "Nothing to deploy"
+    exit -1
 release:
   pre: false
   script: |-
