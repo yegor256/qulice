@@ -140,7 +140,9 @@ public final class ConstantUsageCheck extends AbstractCheck {
      */
     private String getText(final DetailAST node) {
         final String ret;
-        if (0 == node.getChildCount()) {
+        if (node == null) {
+            ret = "";
+        } else if (0 == node.getChildCount()) {
             ret = node.getText();
         } else {
             final StringBuilder result = new StringBuilder();
