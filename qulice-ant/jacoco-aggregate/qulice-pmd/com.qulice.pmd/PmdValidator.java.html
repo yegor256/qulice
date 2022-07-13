@@ -63,40 +63,49 @@ public final class PmdValidator implements ResourceValidator {
     @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
     public Collection&lt;Violation&gt; validate(final Collection&lt;File&gt; files) {
 <span class="nc" id="L65">        final SourceValidator validator = new SourceValidator(this.env);</span>
-<span class="nc" id="L66">        final Collection&lt;DataSource&gt; sources = new LinkedList&lt;&gt;();</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">        for (final File file : files) {</span>
-<span class="nc" id="L68">            final String name = file.getPath().substring(</span>
-<span class="nc" id="L69">                this.env.basedir().toString().length()</span>
-            );
-<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (!this.env.exclude(&quot;pmd&quot;, name)) {</span>
-<span class="nc" id="L72">                sources.add(new FileDataSource(file));</span>
-            }
-<span class="nc" id="L74">        }</span>
-<span class="nc" id="L75">        final Collection&lt;RuleViolation&gt; breaches = validator.validate(</span>
-<span class="nc" id="L76">            sources, this.env.basedir().getPath()</span>
+<span class="nc" id="L66">        final Collection&lt;DataSource&gt; sources = this.getNonExcludedFiles(files);</span>
+<span class="nc" id="L67">        final Collection&lt;RuleViolation&gt; breaches = validator.validate(</span>
+<span class="nc" id="L68">            sources, this.env.basedir().getPath()</span>
         );
-<span class="nc" id="L78">        final Collection&lt;Violation&gt; violations = new LinkedList&lt;&gt;();</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">        for (final RuleViolation breach : breaches) {</span>
-<span class="nc" id="L80">            violations.add(</span>
+<span class="nc" id="L70">        final Collection&lt;Violation&gt; violations = new LinkedList&lt;&gt;();</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        for (final RuleViolation breach : breaches) {</span>
+<span class="nc" id="L72">            violations.add(</span>
                 new Violation.Default(
-<span class="nc" id="L82">                    this.name(),</span>
-<span class="nc" id="L83">                    breach.getRule().getName(),</span>
-<span class="nc" id="L84">                    breach.getFilename(),</span>
-<span class="nc" id="L85">                    String.format(</span>
+<span class="nc" id="L74">                    this.name(),</span>
+<span class="nc" id="L75">                    breach.getRule().getName(),</span>
+<span class="nc" id="L76">                    breach.getFilename(),</span>
+<span class="nc" id="L77">                    String.format(</span>
                         &quot;%d-%d&quot;,
-<span class="nc" id="L87">                        breach.getBeginLine(), breach.getEndLine()</span>
+<span class="nc" id="L79">                        breach.getBeginLine(), breach.getEndLine()</span>
                     ),
-<span class="nc" id="L89">                    breach.getDescription()</span>
+<span class="nc" id="L81">                    breach.getDescription()</span>
                 )
             );
-<span class="nc" id="L92">        }</span>
-<span class="nc" id="L93">        return violations;</span>
+<span class="nc" id="L84">        }</span>
+<span class="nc" id="L85">        return violations;</span>
     }
 
     @Override
     public String name() {
-<span class="nc" id="L98">        return &quot;PMD&quot;;</span>
+<span class="nc" id="L90">        return &quot;PMD&quot;;</span>
     }
 
+    /**
+     * Filters out excluded files from further validation.
+     * @param files Files to validate
+     * @return Relevant source files
+     */
+    public Collection&lt;DataSource&gt; getNonExcludedFiles(final Collection&lt;File&gt; files) {
+<span class="nc" id="L99">        final Collection&lt;DataSource&gt; sources = new LinkedList&lt;&gt;();</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        for (final File file : files) {</span>
+<span class="nc" id="L101">            final String name = file.getPath().substring(</span>
+<span class="nc" id="L102">                this.env.basedir().toString().length()</span>
+            );
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (!this.env.exclude(&quot;pmd&quot;, name)) {</span>
+<span class="nc" id="L105">                sources.add(new FileDataSource(file));</span>
+            }
+<span class="nc" id="L107">        }</span>
+<span class="nc" id="L108">        return sources;</span>
+    }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

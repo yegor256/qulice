@@ -140,23 +140,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      */
     private String getText(final DetailAST node) {
         final String ret;
-<span class="nc bnc" id="L143" title="All 2 branches missed.">        if (0 == node.getChildCount()) {</span>
-<span class="nc" id="L144">            ret = node.getText();</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">        if (node == null) {</span>
+<span class="nc" id="L144">            ret = &quot;&quot;;</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">        } else if (0 == node.getChildCount()) {</span>
+<span class="nc" id="L146">            ret = node.getText();</span>
         } else {
-<span class="nc" id="L146">            final StringBuilder result = new StringBuilder();</span>
-<span class="nc" id="L147">            DetailAST child = node.getFirstChild();</span>
-<span class="nc bnc" id="L148" title="All 2 branches missed.">            while (null != child) {</span>
-<span class="nc" id="L149">                final String text = this.getText(child);</span>
-<span class="nc" id="L150">                result.append(text);</span>
-<span class="nc bnc" id="L151" title="All 2 branches missed.">                if (&quot;.&quot;.equals(node.getText())</span>
-<span class="nc bnc" id="L152" title="All 2 branches missed.">                    &amp;&amp; child.getNextSibling() != null) {</span>
-<span class="nc" id="L153">                    result.append(node.getText());</span>
+<span class="nc" id="L148">            final StringBuilder result = new StringBuilder();</span>
+<span class="nc" id="L149">            DetailAST child = node.getFirstChild();</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            while (null != child) {</span>
+<span class="nc" id="L151">                final String text = this.getText(child);</span>
+<span class="nc" id="L152">                result.append(text);</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">                if (&quot;.&quot;.equals(node.getText())</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">                    &amp;&amp; child.getNextSibling() != null) {</span>
+<span class="nc" id="L155">                    result.append(node.getText());</span>
                 }
-<span class="nc" id="L155">                child = child.getNextSibling();</span>
-<span class="nc" id="L156">            }</span>
-<span class="nc" id="L157">            ret = result.toString();</span>
+<span class="nc" id="L157">                child = child.getNextSibling();</span>
+<span class="nc" id="L158">            }</span>
+<span class="nc" id="L159">            ret = result.toString();</span>
         }
-<span class="nc" id="L159">        return ret;</span>
+<span class="nc" id="L161">        return ret;</span>
     }
 
     /**
@@ -167,8 +169,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      *  returns &lt;code&gt;false&lt;/code&gt;.
      */
     private static boolean isField(final DetailAST node) {
-<span class="nc" id="L170">        final DetailAST parent = node.getParent();</span>
-<span class="nc bnc" id="L171" title="All 2 branches missed.">        return TokenTypes.OBJBLOCK == parent.getType();</span>
+<span class="nc" id="L172">        final DetailAST parent = node.getParent();</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        return TokenTypes.OBJBLOCK == parent.getType();</span>
     }
 
     /**
@@ -178,8 +180,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      *  &lt;code&gt;FINAL&lt;/code&gt;, else returns &lt;code&gt;false&lt;/code&gt;.
      */
     private static boolean isFinal(final DetailAST node) {
-<span class="nc" id="L181">        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);</span>
-<span class="nc" id="L182">        return modifiers.branchContains(TokenTypes.FINAL);</span>
+<span class="nc" id="L183">        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc" id="L184">        return modifiers.branchContains(TokenTypes.FINAL);</span>
     }
 
     /**
@@ -190,8 +192,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      *  &lt;code&gt;PRIVATE&lt;/code&gt;, else returns &lt;code&gt;false&lt;/code&gt;.
      */
     private static boolean isPrivate(final DetailAST node) {
-<span class="nc" id="L193">        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);</span>
-<span class="nc" id="L194">        return modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);</span>
+<span class="nc" id="L195">        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc" id="L196">        return modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);</span>
     }
 
     /**
@@ -204,25 +206,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      */
     private int parseDef(final DetailAST definition, final String name,
         final int type) {
-<span class="nc" id="L207">        int counter = 0;</span>
-<span class="nc" id="L208">        final DetailAST modifiers =</span>
-<span class="nc" id="L209">            definition.findFirstToken(TokenTypes.MODIFIERS);</span>
-<span class="nc bnc" id="L210" title="All 2 branches missed.">        if (modifiers != null) {</span>
-<span class="nc" id="L211">            counter += this.parseAnnotation(modifiers, name);</span>
+<span class="nc" id="L209">        int counter = 0;</span>
+<span class="nc" id="L210">        final DetailAST modifiers =</span>
+<span class="nc" id="L211">            definition.findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc bnc" id="L212" title="All 2 branches missed.">        if (modifiers != null) {</span>
+<span class="nc" id="L213">            counter += this.parseAnnotation(modifiers, name);</span>
         }
-<span class="nc" id="L213">        final DetailAST opening = definition.findFirstToken(type);</span>
-<span class="nc bnc" id="L214" title="All 2 branches missed.">        if (null != opening) {</span>
-<span class="nc" id="L215">            final DetailAST closing = opening.findFirstToken(TokenTypes.RCURLY);</span>
-<span class="nc" id="L216">            final int start = opening.getLineNo();</span>
-<span class="nc" id="L217">            final int end = closing.getLineNo() - 1;</span>
-<span class="nc" id="L218">            final String[] lines = this.getLines();</span>
-<span class="nc bnc" id="L219" title="All 2 branches missed.">            for (int pos = start; pos &lt; end; pos += 1) {</span>
-<span class="nc bnc" id="L220" title="All 2 branches missed.">                if (lines[pos].contains(name)) {</span>
-<span class="nc" id="L221">                    counter += 1;</span>
+<span class="nc" id="L215">        final DetailAST opening = definition.findFirstToken(type);</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        if (null != opening) {</span>
+<span class="nc" id="L217">            final DetailAST closing = opening.findFirstToken(TokenTypes.RCURLY);</span>
+<span class="nc" id="L218">            final int start = opening.getLineNo();</span>
+<span class="nc" id="L219">            final int end = closing.getLineNo() - 1;</span>
+<span class="nc" id="L220">            final String[] lines = this.getLines();</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">            for (int pos = start; pos &lt; end; pos += 1) {</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">                if (lines[pos].contains(name)) {</span>
+<span class="nc" id="L223">                    counter += 1;</span>
                 }
             }
         }
-<span class="nc" id="L225">        return counter;</span>
+<span class="nc" id="L227">        return counter;</span>
     }
 
     /**
@@ -233,16 +235,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @return Zero if not found, 1 otherwise
      */
     private int parseAnnotation(final DetailAST modifiers, final String name) {
-<span class="nc" id="L236">        int counter = 0;</span>
-<span class="nc" id="L237">        final DetailAST variable =</span>
-<span class="nc" id="L238">            modifiers.findFirstToken(TokenTypes.ANNOTATION);</span>
-<span class="nc bnc" id="L239" title="All 2 branches missed.">        if (variable != null) {</span>
-<span class="nc" id="L240">            final String txt = this.getText(variable);</span>
-<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (txt.contains(name)) {</span>
-<span class="nc" id="L242">                ++counter;</span>
+<span class="nc" id="L238">        int counter = 0;</span>
+<span class="nc" id="L239">        final DetailAST variable =</span>
+<span class="nc" id="L240">            modifiers.findFirstToken(TokenTypes.ANNOTATION);</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">        if (variable != null) {</span>
+<span class="nc" id="L242">            final String txt = this.getText(variable);</span>
+<span class="nc bnc" id="L243" title="All 2 branches missed.">            if (txt.contains(name)) {</span>
+<span class="nc" id="L244">                ++counter;</span>
             }
         }
-<span class="nc" id="L245">        return counter;</span>
+<span class="nc" id="L247">        return counter;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
