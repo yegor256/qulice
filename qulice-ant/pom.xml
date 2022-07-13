@@ -76,10 +76,12 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>com.jcabi</groupId>
       <artifactId>jcabi-log</artifactId>
+      <!-- version from parent -->
     </dependency>
     <dependency>
       <groupId>com.jcabi</groupId>
       <artifactId>jcabi-aspects</artifactId>
+      <!-- version from parent -->
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -90,14 +92,17 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
+      <!-- version from parent -->
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
+      <!-- version from parent -->
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
+      <!-- version from parent -->
     </dependency>
   </dependencies>
   <build>
