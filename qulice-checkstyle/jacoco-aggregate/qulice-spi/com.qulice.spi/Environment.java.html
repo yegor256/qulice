@@ -126,7 +126,7 @@ public interface Environment {
      *
      * @since 0.1
      */
-<span class="nc bnc" id="L129" title="All 2 branches missed.">    final class Mock implements Environment {</span>
+<span class="nc" id="L129">    final class Mock implements Environment {</span>
         /**
          * The basedir.
          */
@@ -170,7 +170,7 @@ public interface Environment {
 <span class="nc" id="L170">            FileUtils.forceDeleteOnExit(temp);</span>
 <span class="nc" id="L171">            this.basedir = new File(temp, &quot;basedir&quot;);</span>
 <span class="nc bnc" id="L172" title="All 2 branches missed.">            if (this.basedir.mkdirs()) {</span>
-<span class="nc bnc" id="L173" title="All 4 branches missed.">                assert this.basedir != null;</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">                assert this.basedir != null;</span>
             }
 <span class="nc" id="L175">            this.classpath.add(</span>
 <span class="nc" id="L176">                this.outdir().getAbsolutePath().replace(File.separatorChar, '/')</span>
@@ -254,7 +254,7 @@ public interface Environment {
         public File tempdir() {
 <span class="nc" id="L255">            final File file = new File(this.basedir, &quot;target/tempdir&quot;);</span>
 <span class="nc bnc" id="L256" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
-<span class="nc bnc" id="L257" title="All 4 branches missed.">                assert file != null;</span>
+<span class="nc bnc" id="L257" title="All 2 branches missed.">                assert file != null;</span>
             }
 <span class="nc" id="L259">            return file;</span>
         }
@@ -263,7 +263,7 @@ public interface Environment {
         public File outdir() {
 <span class="nc" id="L264">            final File file = new File(this.basedir, &quot;target/classes&quot;);</span>
 <span class="nc bnc" id="L265" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
-<span class="nc bnc" id="L266" title="All 4 branches missed.">                assert file != null;</span>
+<span class="nc bnc" id="L266" title="All 2 branches missed.">                assert file != null;</span>
             }
 <span class="nc" id="L268">            return file;</span>
         }
@@ -324,4 +324,4 @@ public interface Environment {
         }
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
