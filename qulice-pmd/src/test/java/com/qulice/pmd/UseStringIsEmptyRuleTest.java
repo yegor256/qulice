@@ -84,7 +84,7 @@ public final class UseStringIsEmptyRuleTest {
         new PmdAssert(
             "ArrayOfStringsLengthGreaterThanZero.java",
             new IsEqual<>(true),
-            new IsEmptyString()
+            IsEmptyString.emptyString()
         ).validate();
     }
 

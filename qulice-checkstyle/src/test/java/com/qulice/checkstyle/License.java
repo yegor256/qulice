@@ -34,6 +34,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.FileUtils;
+import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.Joined;
 
 /**
@@ -113,7 +114,7 @@ public final class License {
         FileUtils.forceDeleteOnExit(license);
         FileUtils.writeStringToFile(
             license,
-            new Joined(this.eol, this.lines).asString(),
+            new IoCheckedText(new Joined(this.eol, this.lines)).asString(),
             StandardCharsets.UTF_8
         );
         if (this.directory != null) {

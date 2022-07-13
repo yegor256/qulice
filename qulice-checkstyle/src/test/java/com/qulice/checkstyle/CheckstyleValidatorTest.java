@@ -39,6 +39,7 @@ import java.util.Collection;
 import org.cactoos.io.ResourceOf;
 import org.cactoos.list.ListOf;
 import org.cactoos.text.FormattedText;
+import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.Joined;
 import org.cactoos.text.TextOf;
 import org.hamcrest.Description;
@@ -792,9 +793,11 @@ public final class CheckstyleValidatorTest {
         )
             .withFile(
                 String.format("src/main/java/foo/%s", file),
-                new TextOf(
-                    new ResourceOf(
-                        new FormattedText("com/qulice/checkstyle/%s", file)
+                new IoCheckedText(
+                    new TextOf(
+                        new ResourceOf(
+                            new FormattedText("com/qulice/checkstyle/%s", file)
+                        )
                     )
                 ).asString()
             );
