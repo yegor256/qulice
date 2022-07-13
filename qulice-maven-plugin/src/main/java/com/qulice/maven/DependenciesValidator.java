@@ -50,6 +50,7 @@ import org.codehaus.plexus.context.ContextException;
  * Validator of dependencies.
  *
  * @since 0.3
+ * @checkstyle ReturnCountCheck (100 line)
  */
 final class DependenciesValidator implements MavenValidator {
 
@@ -62,11 +63,12 @@ final class DependenciesValidator implements MavenValidator {
     public void validate(final MavenEnvironment env)
         throws ValidationException {
         final Collection<String> excludes = env.excludes("dependencies");
-        if (!env.outdir().exists()
-            || "pom".equals(env.project().getPackaging())
-            || excludes.contains(".*")
-            ) {
+        if (!env.outdir().exists() || "pom".equals(env.project().getPackaging())) {
             Logger.info(this, "No dependency analysis in this project");
+            return;
+        }
+        if (excludes.contains(".*")) {
+            Logger.info(this, "Dependency analysis suppressed in the project via pom.xml");
             return;
         }
         final Collection<String> unused = Collections2.filter(
@@ -91,6 +93,13 @@ final class DependenciesValidator implements MavenValidator {
                 "Used undeclared dependencies found:%s%s",
                 DependenciesValidator.SEP,
                 StringUtils.join(used, DependenciesValidator.SEP)
+            );
+        }
+        if (!used.isEmpty() || !unused.isEmpty()) {
+            Logger.info(
+                this,
+                // @checkstyle LineLength (1 line)
+                "You can suppress this message by <exclude>dependencies:...</exclude> in pom.xml, where <...> is what the dependency name starts with (not a regular expression!)"
             );
         }
         final int failures = used.size() + unused.size();

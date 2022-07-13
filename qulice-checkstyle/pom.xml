@@ -152,6 +152,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
               <excludes combine.children="append">
                 <exclude>checkstyle:/src/test/resources/com/qulice/checkstyle/.*</exclude>
                 <exclude>pmd:.*/src/test/resources/.*</exclude>
+                <exclude>dependencies:org.antlr</exclude>
                 <exclude>xml:/src/main/resources/com/qulice/checkstyle/checks.xml</exclude>
                 <exclude>xml:/src/test/resources/com/qulice/checkstyle/ChecksTest/.*</exclude>
               </excludes>
