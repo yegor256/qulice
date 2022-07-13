@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>LineRanges.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">LineRanges.java</span></div><h1>LineRanges.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2019, Qulice.com
+ * Copyright (c) 2011-2022 Qulice.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -107,6 +107,8 @@ import java.util.Iterator;
     /**
      * Predicate to determine if a given line is within range of any of
      * the line ranges.
+     *
+     * @since 0.1
      */
     private static final class LineWithAny implements Predicate&lt;LineRange&gt; {
 
@@ -119,26 +121,28 @@ import java.util.Iterator;
          * Default constructor.
          * @param line The given line to check against all the line ranges.
          */
-<span class="nc" id="L122">        private LineWithAny(final int line) {</span>
-<span class="nc" id="L123">            this.given = line;</span>
-<span class="nc" id="L124">        }</span>
+<span class="nc" id="L124">        private LineWithAny(final int line) {</span>
+<span class="nc" id="L125">            this.given = line;</span>
+<span class="nc" id="L126">        }</span>
 
         @Override
         public boolean apply(final LineRange range) {
-<span class="nc bnc" id="L128" title="All 4 branches missed.">            return range != null &amp;&amp; range.within(this.given);</span>
+<span class="nc bnc" id="L130" title="All 4 branches missed.">            return range != null &amp;&amp; range.within(this.given);</span>
         }
     }
 
     /**
      * Thread-safe collection of line ranges.
+     *
+     * @since 0.1
      */
-<span class="nc" id="L135">    private static final class LocalCollection</span>
+<span class="nc" id="L139">    private static final class LocalCollection</span>
         extends ThreadLocal&lt;Collection&lt;LineRange&gt;&gt; {
 
         /**
          * Internal Collection.
          */
-<span class="nc" id="L141">        private final transient Collection&lt;LineRange&gt; ranges =</span>
+<span class="nc" id="L145">        private final transient Collection&lt;LineRange&gt; ranges =</span>
             new ArrayList&lt;&gt;(20);
 
         /**
@@ -146,8 +150,8 @@ import java.util.Iterator;
          * @return The collection for this thread.
          */
         public Collection&lt;LineRange&gt; collection() {
-<span class="nc" id="L149">            return this.ranges;</span>
+<span class="nc" id="L153">            return this.ranges;</span>
         }
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.7.201606060606</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

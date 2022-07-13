@@ -15,32 +15,12 @@
                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
                 })();
             </script>
-                                                                                                                
-<link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
-                                                                                                                
-<link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
-                                            <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-        <script>
-            $(document).ready(
-                function() {
-                    $(".menu-button").click(
-                        function() {
-                            if ($("#here-goes-menu").attr("class") == "menu-off") {
-                                $("#menu").clone().attr("class", "mobile-menu").appendTo("#here-goes-menu");
-                                $("#here-goes-menu").attr("class", "menu-on");
-                            } else {
-                                $(".mobile-menu").hide();
-                                $("#here-goes-menu").attr("class", "menu-off");
-                            }
-                        }
-                    );
-                }
-            );
-        </script>
+                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script src="./js/jcabi.js"></script>
     </head>
     <body>
-                <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
-            <nav class="menu-section" role="navigation">
+                <div class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <nav class="menu-section">
                 <ul class="menu" id="menu">
                                                                                     <li>
                             <span>Parent Project</span>
@@ -109,13 +89,13 @@
                                     </ul>
             </nav>
             <div class="right-side">
-                <main role="main">
+                <main>
                     <div class="content">
                         <header>
                             <div class="logo">
                                 <a href="../"
                                     title=" home page of Qulice.com ">
-                                    <img src="http://img.qulice.com/logo.svg"
+                                    <img src="https://camo.githubusercontent.com/21b0e8be23deb3c2743027b82fda3af26c04ebfbb43faf5fc73c01b66607f8bf/687474703a2f2f696d672e71756c6963652e636f6d2f6c6f676f2e737667"
                                         alt="Qulice"
                                                                                     width="214"
                                                                                                                             height="60"
@@ -123,50 +103,39 @@
                                     />
                                 </a>
                             </div>
-                            <div class="teamed">
-                                <a href="http://www.teamed.io">
-                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
-                                </a>
-                            </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.18.19</strong>
+                                    <strong itemprop="version">0.19.5</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2019-05-14T12:30:35Z">
+                                    <time itemprop="datePublished" datetime="2022-07-13T03:23:00Z">
                                         
-                                        14-May-2019
+                                        13-Jul-2022
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
                             </ul>
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
-                                                                        <article role="article" itemprop="articleBody">
+                                                                        <article itemprop="articleBody">
                             
   
-    <div class="section">
+    <section>
 <h2><a name="qulice:help"></a>qulice:help</h2>
       
 <p><b>Full name</b>:</p>
       
-<p>com.qulice:qulice-maven-plugin:0.18.19:help</p>
+<p>com.qulice:qulice-maven-plugin:0.19.5:help</p>
       
 <p><b>Description</b>:</p>
       
 <div>Display help information on qulice-maven-plugin.<br />
-Call <tt>mvn qulice:help -Ddetail=true
--Dgoal=&lt;goal-name&gt;</tt> to display parameter details.</div>
+Call <code>mvn qulice:help -Ddetail=true
+-Dgoal=&lt;goal-name&gt;</code> to display parameter details.</div>
       
 <p><b>Attributes</b>:</p>
-      
-<ul>
-        
-<li>The goal is thread-safe and supports parallel builds.</li>
-      </ul>
-      
-<div class="section">
+      <section>
 <h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
         
 <table class="bodyTable" border="0">
@@ -184,113 +153,112 @@ Call <tt>mvn qulice:help -Ddetail=true
           
 <tr class="b">
             
-<td><b><a href="#detail">detail</a></b></td>
+<td><code><a href="#detail">&lt;detail&gt;</a></code></td>
             
-<td><tt>boolean</tt></td>
+<td><code>boolean</code></td>
             
-<td><tt>-</tt></td>
+<td><code>-</code></td>
             
-<td>If <tt>true</tt>, display all settable properties for each
-goal.<br /><b>Default value is</b>: <tt>false</tt>.<br /><b>User property is</b>: <tt>detail</tt>.</td>
+<td>If <code>true</code>, display all settable properties for each
+goal.<br /><b>Default value is</b>: <code>false</code>.<br /><b>User property is</b>: <code>detail</code>.<br /></td>
           </tr>
           
 <tr class="a">
             
-<td><b><a href="#goal">goal</a></b></td>
+<td><code><a href="#goal">&lt;goal&gt;</a></code></td>
             
-<td><tt>String</tt></td>
+<td><code>String</code></td>
             
-<td><tt>-</tt></td>
+<td><code>-</code></td>
             
 <td>The name of the goal for which to show help. If unspecified, all
-goals will be displayed.<br /><b>User property is</b>: <tt>goal</tt>.</td>
+goals will be displayed.<br /><b>User property is</b>: <code>goal</code>.<br /></td>
           </tr>
           
 <tr class="b">
             
-<td><b><a href="#indentSize">indentSize</a></b></td>
+<td><code><a href="#indentSize">&lt;indentSize&gt;</a></code></td>
             
-<td><tt>int</tt></td>
+<td><code>int</code></td>
             
-<td><tt>-</tt></td>
+<td><code>-</code></td>
             
-<td>The number of spaces per indentation level, should be positive.<br /><b>Default value is</b>: <tt>2</tt>.<br /><b>User property is</b>: <tt>indentSize</tt>.</td>
+<td>The number of spaces per indentation level, should be positive.<br /><b>Default value is</b>: <code>2</code>.<br /><b>User property is</b>: <code>indentSize</code>.<br /></td>
           </tr>
           
 <tr class="a">
             
-<td><b><a href="#lineLength">lineLength</a></b></td>
+<td><code><a href="#lineLength">&lt;lineLength&gt;</a></code></td>
             
-<td><tt>int</tt></td>
+<td><code>int</code></td>
             
-<td><tt>-</tt></td>
+<td><code>-</code></td>
             
-<td>The maximum length of a display line, should be positive.<br /><b>Default value is</b>: <tt>80</tt>.<br /><b>User property is</b>: <tt>lineLength</tt>.</td>
+<td>The maximum length of a display line, should be positive.<br /><b>Default value is</b>: <code>80</code>.<br /><b>User property is</b>: <code>lineLength</code>.<br /></td>
           </tr>
         </table>
-      </div>
-      
-<div class="section">
+      </section>
+      <section>
 <h3><a name="Parameter_Details"></a>Parameter Details</h3>
+        <section>
+<h4><a name="a.3Cdetail.3E"></a><b><a name="detail">&lt;detail&gt;</a></b></h4>
         
-<p><b><a name="detail">detail</a>:</b></p>
-        
-<div>If <tt>true</tt>, display all settable properties for each
+<div>If <code>true</code>, display all settable properties for each
 goal.</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>boolean</tt></li>
+<li><b>Type</b>: <code>boolean</code></li>
           
-<li><b>Required</b>: <tt>No</tt></li>
+<li><b>Required</b>: <code>No</code></li>
           
-<li><b>User Property</b>: <tt>detail</tt></li>
+<li><b>User Property</b>: <code>detail</code></li>
           
-<li><b>Default</b>: <tt>false</tt></li>
-        </ul><hr />
-<p><b><a name="goal">goal</a>:</b></p>
+<li><b>Default</b>: <code>false</code></li>
+        </ul><hr /></section><section>
+<h4><a name="a.3Cgoal.3E"></a><b><a name="goal">&lt;goal&gt;</a></b></h4>
         
 <div>The name of the goal for which to show help. If unspecified, all
 goals will be displayed.</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>java.lang.String</tt></li>
+<li><b>Type</b>: <code>java.lang.String</code></li>
           
-<li><b>Required</b>: <tt>No</tt></li>
+<li><b>Required</b>: <code>No</code></li>
           
-<li><b>User Property</b>: <tt>goal</tt></li>
-        </ul><hr />
-<p><b><a name="indentSize">indentSize</a>:</b></p>
+<li><b>User Property</b>: <code>goal</code></li>
+        </ul><hr /></section><section>
+<h4><a name="a.3CindentSize.3E"></a><b><a name="indentSize">&lt;indentSize&gt;</a></b></h4>
         
 <div>The number of spaces per indentation level, should be positive.</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>int</tt></li>
+<li><b>Type</b>: <code>int</code></li>
           
-<li><b>Required</b>: <tt>No</tt></li>
+<li><b>Required</b>: <code>No</code></li>
           
-<li><b>User Property</b>: <tt>indentSize</tt></li>
+<li><b>User Property</b>: <code>indentSize</code></li>
           
-<li><b>Default</b>: <tt>2</tt></li>
-        </ul><hr />
-<p><b><a name="lineLength">lineLength</a>:</b></p>
+<li><b>Default</b>: <code>2</code></li>
+        </ul><hr /></section><section>
+<h4><a name="a.3ClineLength.3E"></a><b><a name="lineLength">&lt;lineLength&gt;</a></b></h4>
         
 <div>The maximum length of a display line, should be positive.</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>int</tt></li>
+<li><b>Type</b>: <code>int</code></li>
           
-<li><b>Required</b>: <tt>No</tt></li>
+<li><b>Required</b>: <code>No</code></li>
           
-<li><b>User Property</b>: <tt>lineLength</tt></li>
+<li><b>User Property</b>: <code>lineLength</code></li>
           
-<li><b>Default</b>: <tt>80</tt></li>
+<li><b>Default</b>: <code>80</code></li>
         </ul>
-      </div>
-    </div>
+      </section></section>
+    </section>
   
 
                         </article>
@@ -299,12 +267,12 @@ goals will be displayed.</div>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2019
+                                                                            2011-2022
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
-        </section>
+        </div>
     </body>
 </html>

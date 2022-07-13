@@ -16,32 +16,12 @@
                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
                 })();
             </script>
-                                                                                                                
-<link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
-                                                                                                                
-<link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
-                                            <script src="//code.jquery.com/jquery-2.1.0.min.js"></script>
-        <script>
-            $(document).ready(
-                function() {
-                    $(".menu-button").click(
-                        function() {
-                            if ($("#here-goes-menu").attr("class") == "menu-off") {
-                                $("#menu").clone().attr("class", "mobile-menu").appendTo("#here-goes-menu");
-                                $("#here-goes-menu").attr("class", "menu-on");
-                            } else {
-                                $(".mobile-menu").hide();
-                                $("#here-goes-menu").attr("class", "menu-off");
-                            }
-                        }
-                    );
-                }
-            );
-        </script>
+                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+        <script src="./js/jcabi.js"></script>
     </head>
     <body>
-                <section class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
-            <nav class="menu-section" role="navigation">
+                <div class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <nav class="menu-section">
                 <ul class="menu" id="menu">
                                                                                     <li>
                             <span>Parent Project</span>
@@ -110,13 +90,13 @@
                                     </ul>
             </nav>
             <div class="right-side">
-                <main role="main">
+                <main>
                     <div class="content">
                         <header>
                             <div class="logo">
                                 <a href="../"
                                     title=" home page of Qulice.com ">
-                                    <img src="http://img.qulice.com/logo.svg"
+                                    <img src="https://camo.githubusercontent.com/21b0e8be23deb3c2743027b82fda3af26c04ebfbb43faf5fc73c01b66607f8bf/687474703a2f2f696d672e71756c6963652e636f6d2f6c6f676f2e737667"
                                         alt="Qulice"
                                                                                     width="214"
                                                                                                                             height="60"
@@ -124,28 +104,23 @@
                                     />
                                 </a>
                             </div>
-                            <div class="teamed">
-                                <a href="http://www.teamed.io">
-                                    <img src="http://img.teamed.io/btn.svg" alt="teamed.io logo"/>
-                                </a>
-                            </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.18.19</strong>
+                                    <strong itemprop="version">0.19.5</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2019-05-14T12:30:04Z">
+                                    <time itemprop="datePublished" datetime="2022-07-13T03:22:58Z">
                                         
-                                        14-May-2019
+                                        13-Jul-2022
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
                             </ul>
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
-                                                                        <article role="article" itemprop="articleBody">
-                            <!--  --><!-- Copyright (c) 2011-2019, Qulice.com --><!-- All rights reserved. --><!--  --><!-- Redistribution and use in source and binary forms, with or without --><!-- modification, are permitted provided that the following conditions --><!-- are met: 1) Redistributions of source code must retain the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer. 2) Redistributions in binary form must reproduce the above --><!-- copyright notice, this list of conditions and the following --><!-- disclaimer in the documentation and/or other materials provided --><!-- with the distribution. 3) Neither the name of the Qulice.com nor --><!-- the names of its contributors may be used to endorse or promote --><!-- products derived from this software without specific prior written --><!-- permission. --><!--  --><!-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS --><!-- "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT --><!-- NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND --><!-- FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL --><!-- THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, --><!-- INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES --><!-- (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR --><!-- SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) --><!-- HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, --><!-- STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) --><!-- ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED --><!-- OF THE POSSIBILITY OF SUCH DAMAGE. --><!--  --><!--  --><div class="section">
+                                                                        <article itemprop="articleBody">
+                            <section>
 <h2><a name="Usage"></a>Usage</h2>
 <p>It's easy (you need to use Maven version &gt;= 3.1.0):</p>
 <div class="source">
@@ -154,7 +129,7 @@
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.18.19&lt;/version&gt;
+      &lt;version&gt;0.19.5&lt;/version&gt;
       &lt;configuration&gt;
         &lt;license&gt;file:${basedir}/LICENSE.txt&lt;/license&gt;
       &lt;/configuration&gt;
@@ -168,10 +143,10 @@
     &lt;/plugin&gt;
   &lt;/plugins&gt;
 &lt;/build&gt;</pre></div>
-<p>Pay attention to the <tt>license</tt> configuration parameter. It is mandatory and has to be provided, or else the default value will be used (<tt>./LICENSE.txt</tt>). You can refer to a file with <tt>file:</tt> prefix, as in the example above. Or you can refer to a resource from classpath (very useful when you want to keep your license in a dedicated child module.</p>
-<p>License text file should contain just text. Qulice converts this file to proper format and compares it with your source code file headers. For example, this is your <tt>LICENSE.txt</tt>:</p>
+<p>Pay attention to the <code>license</code> configuration parameter. It is mandatory and has to be provided, or else the default value will be used (<code>./LICENSE.txt</code>). You can refer to a file with <code>file:</code> prefix, as in the example above. Or you can refer to a resource from classpath (very useful when you want to keep your license in a dedicated child module.</p>
+<p>License text file should contain just text. Qulice converts this file to proper format and compares it with your source code file headers. For example, this is your <code>LICENSE.txt</code>:</p>
 <div class="source">
-<pre>Copyright (c) 2011-2019, Qulice.com
+<pre>Copyright (c) 2011-2022 Qulice.com
 All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
@@ -179,22 +154,21 @@ are met: no conditions.</pre></div>
 <p>This is what your Java sources should start from:</p>
 <div class="source">
 <pre>/**
- * Copyright (c) 2011-2019, Qulice.com
+ * Copyright (c) 2011-2022 Qulice.com
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met: no conditions.
- */</pre></div>
-<div class="section">
+ */</pre></div><section>
 <h3><a name="Multi-Module_Setup"></a>Multi-Module Setup</h3>
-<p>In a multi-module setup we recommend you to move all supplementary resource (assemblies, XML configurations, etc) to a separate &quot;tool kit&quot; sub-module. This module is the best place for <tt>LICENSE.txt</tt> file:</p>
+<p>In a multi-module setup we recommend you to move all supplementary resource (assemblies, XML configurations, etc) to a separate &quot;tool kit&quot; sub-module. This module is the best place for <code>LICENSE.txt</code> file:</p>
 <div class="source">
 <pre>&lt;build&gt;
   &lt;plugins&gt;
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.18.19&lt;/version&gt;
+      &lt;version&gt;0.19.5&lt;/version&gt;
       &lt;configuration&gt;
         &lt;license&gt;LICENSE.txt&lt;/license&gt;
       &lt;/configuration&gt;
@@ -215,10 +189,9 @@ are met: no conditions.</pre></div>
       &lt;/executions&gt;
     &lt;/plugin&gt;
   &lt;/plugins&gt;
-&lt;/build&gt;</pre></div></div>
-<div class="section">
+&lt;/build&gt;</pre></div></section><section>
 <h3><a name="Cutting_Edge_Version"></a>Cutting Edge Version</h3>
-<p>If you want to use current version of the product, you can do it with this configuration in your <tt>pom.xml</tt>:</p>
+<p>If you want to use current version of the product, you can do it with this configuration in your <code>pom.xml</code>:</p>
 <div class="source">
 <pre>&lt;pluginRepositories&gt;
   &lt;pluginRepository&gt;
@@ -235,19 +208,19 @@ are met: no conditions.</pre></div>
       [...]
     &lt;/plugin&gt;
   &lt;/plugins&gt;
-&lt;/build&gt;</pre></div></div></div>
+&lt;/build&gt;</pre></div></section></section>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2019
+                                                                            2011-2022
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
-        </section>
+        </div>
     </body>
 </html>
