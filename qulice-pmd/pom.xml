@@ -110,6 +110,16 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <artifactId>junit-jupiter-params</artifactId>
       <!-- version from parent -->
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <!-- version from parent -->
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <!-- version from parent -->
+    </dependency>
   </dependencies>
   <build>
     <plugins>

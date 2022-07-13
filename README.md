@@ -1,7 +1,6 @@
-<img src="http://img.qulice.com/logo.svg" width="200px" height="55px"/>
+<img alt="logo" src="http://img.qulice.com/logo.svg" width="200px" height="55px"/>
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
-[![Managed by Zerocracy](https://www.0crat.com/badge/C3T49A35L.svg)](https://www.0crat.com/p/C3T49A35L)
 [![DevOps By Rultor.com](http://www.rultor.com/b/yegor256/qulice)](http://www.rultor.com/p/yegor256/qulice)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
