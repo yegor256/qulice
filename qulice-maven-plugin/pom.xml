@@ -38,10 +38,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <artifactId>qulice-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <name>qulice-maven-plugin</name>
-  <properties>
-    <maven.version>3.0.5</maven.version>
-    <pmd.version>6.10.0</pmd.version>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>org.cactoos</groupId>
@@ -148,22 +144,22 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
-      <version>${maven.version}</version>
+      <version>3.0.5</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>${maven.version}</version>
+      <version>3.0.5</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-model</artifactId>
-      <version>${maven.version}</version>
+      <version>3.0.5</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-artifact</artifactId>
-      <version>${maven.version}</version>
+      <version>3.0.5</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
@@ -235,7 +231,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>net.sourceforge.pmd</groupId>
       <artifactId>pmd-core</artifactId>
-      <version>${pmd.version}</version>
+      <version>6.10.0</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
