@@ -33,4 +33,4 @@
  */
 
 def log = new File(basedir, 'build.log')
-assert log.text.contains('MagicNumberCheck')
+assert log.text.contains('ConstructorOnlyInitializesOrCallOtherConstructors')

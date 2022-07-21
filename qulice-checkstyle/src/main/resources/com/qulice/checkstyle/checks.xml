@@ -209,7 +209,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     </module>
     <module name="IllegalTokenText"/>
     <module name="InnerAssignment"/>
-    <module name="MagicNumber"/>
     <module name="MissingSwitchDefault"/>
     <module name="ModifiedControlVariable"/>
     <module name="SimplifyBooleanExpression"/>
@@ -261,7 +260,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     </module>
     <!-- Metrics. -->
     <module name="BooleanExpressionComplexity"/>
-    <module name="ClassDataAbstractionCoupling"/>
     <module name="ClassFanOutComplexity">
       <!--
             Total number of classes that a particular class
@@ -319,11 +317,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <module name="TypeName"/>
     <!-- Checks for Size Violations. -->
     <module name="ExecutableStatementCount">
-      <property name="max" value="20"/>
+      <property name="max" value="40"/>
     </module>
     <module name="LineLength">
       <property name="max" value="100"/>
-      <property name="ignorePattern" value="^import .*$|^\s+\*\s.*https?:\/\/.+"/>
+      <property name="ignorePattern" value="^import .*$|^\s+\*\s.*https?:\/\/.+|^\s+&quot;"/>
     </module>
     <module name="AnonInnerLength"/>
     <module name="MethodLength"/>

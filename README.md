@@ -8,7 +8,9 @@
 [![PDD status](http://www.0pdd.com/svg?name=yegor256/qulice)](http://www.0pdd.com/p?name=yegor256/qulice)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice)
 [![codebeat badge](https://codebeat.co/badges/9454ea39-1f11-4f6b-b086-ec5a2d658174)](https://codebeat.co/projects/github-com-teamed-qulice)
+[![codecov](https://codecov.io/gh/yegor256/qulice/branch/master/graph/badge.svg)](https://codecov.io/gh/yegor256/qulice)
 
+![Lines of code](https://img.shields.io/tokei/lines/github/yegor256/qulice)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/qulice)](https://hitsofcode.com/view/github/yegor256/qulice)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/qulice/blob/master/LICENSE.txt)
 
@@ -16,13 +18,13 @@ Qulice is a static analysis quality control instrument for Java
 projects. It combines all the best static analysis instruments
 and pre-configure them, including
 [Checkstyle](https://checkstyle.sourceforge.io/) and
-[PMD](https://pmd.github.io/). You don't need to use and configure them
-individually any more.
+[PMD](https://pmd.github.io/).
+You don't need to use and configure them individually any more.
 
-Read more at [www.qulice.com](http://www.qulice.com).
+Read more at [www.qulice.com](https://www.qulice.com).
 
 Also, read this blog post first:
-[_Strict Control of Java Code Quality_](http://www.yegor256.com/2014/08/13/strict-code-quality-control.html).
+[_Strict Control of Java Code Quality_](https://www.yegor256.com/2014/08/13/strict-code-quality-control.html).
 
 Just add this plugin to your `pom.xml`:
 
@@ -47,7 +49,7 @@ Just add this plugin to your `pom.xml`:
 </build>
 ```
 
-and make sure you have the JDK binaries (including the Java compiler `javac`)
+Then, make sure you have the JDK binaries (including the Java compiler `javac`)
 accessible from your `PATH` environment variable (e.g. if you have JDK 1.8.0
 installed in Windows your PATH should contain something like `C:\Program
 Files\Java\jdk1.8.0\bin`).
@@ -58,7 +60,7 @@ The path to license has to be declared in the following format:
 `file:${basedir}/LICENSE.txt`, it's the default value, one can use any full path
 instead of `${basedir}`.
 
-Read this short summary of [typical mistakes](https://github.com/tpc2/qulice/wiki/mistakes)
+Read this short summary of [typical mistakes](https://github.com/yegor256/qulice/wiki/mistakes)
 you may encounter in your project.
 
 In order to download schemas required for XML validation you might need proxy

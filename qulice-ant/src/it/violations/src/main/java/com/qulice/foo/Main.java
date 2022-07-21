@@ -49,6 +49,7 @@ public final class Main {
      */
     public Main() {
         this.list = new HashSet<URL>(500);
+        System.out.println("Hello, world!");
     }
 
     /**
