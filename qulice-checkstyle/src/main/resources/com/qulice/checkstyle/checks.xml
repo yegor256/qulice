@@ -327,6 +327,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <module name="MethodLength"/>
     <module name="ParameterNumber">
       <property name="max" value="3"/>
+      <property name="ignoreOverriddenMethods" value="true"/>
     </module>
     <module name="OuterTypeNumber"/>
     <module name="MethodCount"/>
