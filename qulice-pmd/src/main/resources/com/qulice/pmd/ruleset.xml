@@ -198,4 +198,23 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </property>
     </properties>
   </rule>
+  <rule name="ReturnEmptyCollectionRatherThanNull" language="java" class="net.sourceforge.pmd.lang.rule.XPathRule" message="Returned null collection was found (NullCollection).">
+    <description>
+            Any method that returns an collection (i.e. an array or a List), it is better to return
+            an empty one rather than a null reference.
+        </description>
+    <priority>1</priority>
+    <properties>
+      <property name="version" value="2.0"/>
+      <!--Solve priority confict-->
+      <property name="xpath">
+        <value><![CDATA[
+                        //MethodDeclaration[
+                        (./ResultType/Type[pmd-java:typeIs('java.util.Collection') 
+                          or pmd-java:typeIs('java.util.Map') or @ArrayType=true()]) and
+                        (./Block/BlockStatement/Statement/ReturnStatement/Expression/PrimaryExpression/PrimaryPrefix/Literal/NullLiteral)
+                        ]]]></value>
+      </property>
+    </properties>
+  </rule>
 </ruleset>
