@@ -45,7 +45,6 @@ public final class MainTest {
     @Test
     public void testSquare() {
         MatcherAssert.assertThat(1, Matchers.is(Main.square(1)));
-        // @checkstyle MagicNumber (1 line)
         MatcherAssert.assertThat(4, Matchers.is(Main.square(2)));
     }
 

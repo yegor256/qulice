@@ -63,7 +63,6 @@ public final class UseStringIsEmptyRuleTest {
         }
     )
     public void detectLengthComparisons(final String file) throws Exception {
-        // @checkstyle MagicNumber (7 lines)
         new PmdAssert(
             file, new IsEqual<>(false),
             new CombinableMatcher<>(containsMatcher(file, 16))

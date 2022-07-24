@@ -109,7 +109,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
                 this.submit(env, files, validators);
             for (final Future<Collection<Violation>> future : futures) {
                 try {
-                    // @checkstyle MagicNumber (1 line)
                     results.addAll(future.get(10L, TimeUnit.MINUTES));
                 } catch (final InterruptedException ex) {
                     Thread.currentThread().interrupt();
