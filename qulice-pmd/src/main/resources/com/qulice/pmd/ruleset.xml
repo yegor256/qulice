@@ -30,8 +30,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <ruleset xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Qulice Ruleset" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
   <description>
-        This ruleset checks code for potential mess
-    </description>
+    This ruleset checks code for potential mess
+  </description>
   <rule ref="category/java/bestpractices.xml">
     <exclude name="JUnitTestsShouldIncludeAssert"/>
     <exclude name="PositionLiteralsFirstInComparisons"/>
@@ -54,6 +54,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <exclude name="LawOfDemeter"/>
     <exclude name="SignatureDeclareThrowsException"/>
     <exclude name="ExcessiveImports"/>
+    <exclude name="CyclomaticComplexity"/>
   </rule>
   <rule ref="category/java/documentation.xml">
     <exclude name="CommentRequired"/>
@@ -85,135 +86,135 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   </rule>
   <rule name="ProhibitPlainJunitAssertionsRule" message="Avoid using Plain JUnit assertions" class="com.qulice.pmd.rules.ProhibitPlainJunitAssertionsRule">
     <description>
-            Instead of using plain JUnit assertions like org.junit.Assert.assert*
-            junit.framework.Assert.assert* - use Matchers from package org.hamcrest
-        </description>
+      Instead of using plain JUnit assertions like org.junit.Assert.assert*
+      junit.framework.Assert.assert* - use Matchers from package org.hamcrest
+    </description>
   </rule>
   <rule name="UseStringIsEmptyRule" message="Use String.isEmpty() when checking for empty string" class="com.qulice.pmd.rules.UseStringIsEmptyRule">
     <description>
-            Method String.isEmpty() should be used when testing for empty string, rather than using
-            String.length() compared to 0
-        </description>
+      Method String.isEmpty() should be used when testing for empty string, rather than using
+      String.length() compared to 0
+    </description>
   </rule>
   <rule name="UnnecessaryLocalRule" message="Avoid creating unnecessary local variables like ''{0}''" class="com.qulice.pmd.rules.UnnecessaryLocalRule">
     </rule>
   <rule name="ConstructorShouldDoInitialization" message="Avoid doing field initialization outside constructor." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
     <description>
-            Avoid doing field initialization outside class constructor.
-            Such initialization is allowed only when there is no constructor.
-        </description>
+      Avoid doing field initialization outside class constructor.
+      Such initialization is allowed only when there is no constructor.
+    </description>
     <priority>3</priority>
     <properties>
       <property name="xpath">
         <value><![CDATA[
-                        //ClassOrInterfaceBody
-                        [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>0]
-                        [count(ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static='false']/VariableDeclarator/VariableInitializer)>0]
-                    ]]></value>
+          //ClassOrInterfaceBody
+          [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>0]
+          [count(ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static='false']/VariableDeclarator/VariableInitializer)>0]
+        ]]></value>
       </property>
     </properties>
   </rule>
   <rule name="OnlyOneConstructorShouldDoInitialization" message="Avoid field initialization in several constructors." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
     <description>
-            Avoid doing field initialization in several constructors.
-            Only one main constructor should do real work.
-            Other constructors should delegate initialization to it.
-        </description>
+      Avoid doing field initialization in several constructors.
+      Only one main constructor should do real work.
+      Other constructors should delegate initialization to it.
+    </description>
     <priority>3</priority>
     <properties>
       <property name="xpath">
         <value><![CDATA[
-                            //ClassOrInterfaceBody[count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>1]
-                            [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration[BlockStatement])>1]
-                    ]]></value>
+          //ClassOrInterfaceBody[count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>1]
+          [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration[BlockStatement])>1]
+        ]]></value>
       </property>
     </properties>
   </rule>
   <rule name="ConstructorOnlyInitializesOrCallOtherConstructors" message="Only field initialization or call to other constructors in a constructor." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
     <description>
-            Avoid putting anything other than field assignments into constructors.
-            The only exception should be calling other constructors
-            or calling super class constructor.
-        </description>
+      Avoid putting anything other than field assignments into constructors.
+      The only exception should be calling other constructors
+      or calling super class constructor.
+    </description>
     <priority>3</priority>
     <properties>
       <property name="xpath">
         <value><![CDATA[
-                            //ConstructorDeclaration/BlockStatement[count(Statement/StatementExpression/PrimaryExpression[count(following-sibling::AssignmentOperator[1])>0]/PrimaryPrefix[@ThisModifier="true"])!=count(*)]
-                    ]]></value>
+          //ConstructorDeclaration/BlockStatement[count(Statement/StatementExpression/PrimaryExpression[count(following-sibling::AssignmentOperator[1])>0]/PrimaryPrefix[@ThisModifier="true"])!=count(*)]
+        ]]></value>
       </property>
     </properties>
   </rule>
   <rule name="StaticAccessToStaticFields" message="Static fields should be accessed in a static way [CLASS_NAME.FIELD_NAME]." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
     <description>
-            Avoid accessing static fields directly.
-        </description>
+      Avoid accessing static fields directly.
+    </description>
     <priority>3</priority>
     <properties>
       <property name="xpath">
         <value><![CDATA[
-                            //Name[@Image = //FieldDeclaration[@Static='true']/@VariableName]
-                    ]]></value>
+          //Name[@Image = //FieldDeclaration[@Static='true']/@VariableName]
+        ]]></value>
       </property>
     </properties>
   </rule>
   <rule name="ProhibitPublicStaticMethods" message="Public static methods are prohibited." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
     <description>
-            Public static methods are prohibited.
-        </description>
+      Public static methods are prohibited.
+    </description>
     <priority>3</priority>
     <properties>
       <property name="xpath">
         <value><![CDATA[
-                        //ClassOrInterfaceBodyDeclaration[
-                            MethodDeclaration[@Static='true' and @Public='true'
-                              and not (
-                               MethodDeclarator[
-                                count(FormalParameters/FormalParameter)=1
-                                and @Image='main'
-                                and FormalParameters/FormalParameter[1]/Type/ReferenceType/ClassOrInterfaceType[@Image='String']
-                                and FormalParameters/FormalParameter[@Varargs='true']
-                               ] and not(ResultType/Type)
-                              )
-                            ] and (
-                                Annotation/MarkerAnnotation/Name[@Image!='BeforeClass' and @Image!='AfterClass'
-                                  and @Image!='Parameterized.Parameters']
-                                or not (Annotation)
-                            )
-                        ]
-                    ]]></value>
+          //ClassOrInterfaceBodyDeclaration[
+            MethodDeclaration[@Static='true' and @Public='true'
+              and not (
+               MethodDeclarator[
+                count(FormalParameters/FormalParameter)=1
+                and @Image='main'
+                and FormalParameters/FormalParameter[1]/Type/ReferenceType/ClassOrInterfaceType[@Image='String']
+                and FormalParameters/FormalParameter[@Varargs='true']
+               ] and not(ResultType/Type)
+              )
+            ] and (
+                Annotation/MarkerAnnotation/Name[@Image!='BeforeClass' and @Image!='AfterClass'
+                  and @Image!='Parameterized.Parameters']
+                or not (Annotation)
+            )
+          ]
+      ]]></value>
       </property>
     </properties>
   </rule>
   <rule name="ProhibitFilesCreateFileInTests" message="Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder" language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
     <description>
-            Files.createFile shouldn't be used in tests.
-        </description>
+      Files.createFile shouldn't be used in tests.
+    </description>
     <priority>3</priority>
     <properties>
       <property name="xpath">
         <value><![CDATA[
-                        //ClassOrInterfaceDeclaration[ends-with(@Image, 'Test')]//PrimaryPrefix/Name[@Image='Files.createFile']
-                    ]]></value>
+          //ClassOrInterfaceDeclaration[ends-with(@Image, 'Test')]//PrimaryPrefix/Name[@Image='Files.createFile']
+        ]]></value>
       </property>
     </properties>
   </rule>
   <rule name="ReturnEmptyCollectionRatherThanNull" language="java" class="net.sourceforge.pmd.lang.rule.XPathRule" message="Returned null collection was found (NullCollection).">
     <description>
-            Any method that returns an collection (i.e. an array or a List), it is better to return
-            an empty one rather than a null reference.
-        </description>
+      Any method that returns an collection (i.e. an array or a List), it is better to return
+      an empty one rather than a null reference.
+    </description>
     <priority>1</priority>
     <properties>
       <property name="version" value="2.0"/>
       <!--Solve priority confict-->
       <property name="xpath">
         <value><![CDATA[
-                        //MethodDeclaration[
-                        (./ResultType/Type[pmd-java:typeIs('java.util.Collection') 
-                          or pmd-java:typeIs('java.util.Map') or @ArrayType=true()]) and
-                        (./Block/BlockStatement/Statement/ReturnStatement/Expression/PrimaryExpression/PrimaryPrefix/Literal/NullLiteral)
-                        ]]]></value>
+          //MethodDeclaration[
+          (./ResultType/Type[pmd-java:typeIs('java.util.Collection')
+            or pmd-java:typeIs('java.util.Map') or @ArrayType=true()]) and
+          (./Block/BlockStatement/Statement/ReturnStatement/Expression/PrimaryExpression/PrimaryPrefix/Literal/NullLiteral)
+        ]]]></value>
       </property>
     </properties>
   </rule>
