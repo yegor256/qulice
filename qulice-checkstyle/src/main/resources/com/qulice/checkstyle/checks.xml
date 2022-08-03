@@ -30,6 +30,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 <module name="Checker">
+  <property name="charset" value="UTF-8"/>
   <!--
     Enforces English locale to be independent from the
     default locale which may vary between environments.
