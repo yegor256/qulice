@@ -31,19 +31,19 @@ package com.qulice.plugin.alpha;
 
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Simple test of the Main class.
  * @since 1.0
  */
-public final class MainTest {
+final class MainTest {
 
     /**
      * Simple testing.
      */
     @Test
-    public void testSquare() {
+    void testSquare() {
         MatcherAssert.assertThat(1, Matchers.is(Main.square(1)));
         MatcherAssert.assertThat(4, Matchers.is(Main.square(2)));
     }

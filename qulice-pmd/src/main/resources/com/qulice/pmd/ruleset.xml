@@ -218,4 +218,41 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </property>
     </properties>
   </rule>
+  <rule name="JUnit5TestShouldBePackagePrivate" language="java" class="net.sourceforge.pmd.lang.rule.XPathRule" message="JUnit 5 tests should be package-private">
+    <description>
+      Reports JUnit 5 test classes and methods that are not package-private.
+      Contrary to JUnit 4 tests, which required public visibility to be run by the engine,
+      JUnit 5 tests can also be run if they’re package-private.
+      Marking them as such is a good practice to limit their visibility.
+    </description>
+    <priority>3</priority>
+    <properties>
+      <property name="version" value="2.0"/>
+      <!--Solve priority confict-->
+      <property name="xpath">
+        <value><![CDATA[
+          //ClassOrInterfaceDeclaration[
+          (: a Junit 5 test class, ie, it has methods with the annotation :)
+            @Interface=false() and
+            ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration
+              [Annotation//Name[
+                pmd-java:typeIs('org.junit.jupiter.api.Test') or pmd-java:typeIs('org.junit.jupiter.api.RepeatedTest')
+                or pmd-java:typeIs('org.junit.jupiter.api.TestFactory') or pmd-java:typeIs('org.junit.jupiter.api.TestTemplate')
+                or pmd-java:typeIs('org.junit.jupiter.params.ParameterizedTest')
+              ]]
+              [MethodDeclaration]
+          ]/(
+            self::*[@Abstract=false() and (@Public=true() or @Protected=true())]
+            | ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration
+              [Annotation//Name[
+                pmd-java:typeIs('org.junit.jupiter.api.Test') or pmd-java:typeIs('org.junit.jupiter.api.RepeatedTest')
+                or pmd-java:typeIs('org.junit.jupiter.api.TestFactory') or pmd-java:typeIs('org.junit.jupiter.api.TestTemplate')
+                or pmd-java:typeIs('org.junit.jupiter.params.ParameterizedTest')
+              ]]
+          /MethodDeclaration[@Public=true() or @Protected=true()]
+          )
+        ]]></value>
+      </property>
+    </properties>
+  </rule>
 </ruleset>

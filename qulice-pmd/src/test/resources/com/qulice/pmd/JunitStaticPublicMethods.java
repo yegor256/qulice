@@ -2,12 +2,12 @@ package foo.test;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
 import java.util.Collections;
 
-public class SomeTest {
+class SomeTest {
 
     @BeforeClass
     public static void beforeClass(){
@@ -15,7 +15,7 @@ public class SomeTest {
     }
 
     @Test
-    public void emptyTest(){
+    void emptyTest(){
         //test something
     }
 

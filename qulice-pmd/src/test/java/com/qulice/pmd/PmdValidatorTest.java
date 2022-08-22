@@ -613,4 +613,18 @@ public final class PmdValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PmdValidator can allow only package private methods,
+     * annotated @Test, @RepeatedTest, @TestFactory, @TestTemplate or @ParameterizedTest.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void testShouldBePackagePrivate() throws Exception {
+        new PmdAssert(
+            "TestShouldBePackagePrivate.java",
+            Matchers.is(false),
+            Matchers.containsString("JUnit5TestShouldBePackagePrivate")
+        ).validate();
+    }
 }
