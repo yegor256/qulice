@@ -219,11 +219,14 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     </properties>
   </rule>
   <rule name="JUnit5TestShouldBePackagePrivate" language="java" class="net.sourceforge.pmd.lang.rule.XPathRule" message="JUnit 5 tests should be package-private">
-    <description>
+    <description><![CDATA[
       Reports JUnit 5 test classes and methods that are not package-private.
       Contrary to JUnit 4 tests, which required public visibility to be run by the engine,
-      JUnit 5 tests can also be run if they’re package-private.
-      Marking them as such is a good practice to limit their visibility.
+      JUnit 5 tests can also be run if they're package-private. Marking them as such
+      is a good practice to limit their visibility.
+      Test methods are identified as those which use `@Test`, `@RepeatedTest`,
+      `@TestFactory`, `@TestTemplate` or `@ParameterizedTest`.
+    ]]>
     </description>
     <priority>3</priority>
     <properties>
