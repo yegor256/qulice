@@ -621,7 +621,21 @@
 <a class="jxr_linenumber" name="L613" href="#L613">613</a>             )
 <a class="jxr_linenumber" name="L614" href="#L614">614</a>         ).validate();
 <a class="jxr_linenumber" name="L615" href="#L615">615</a>     }
-<a class="jxr_linenumber" name="L616" href="#L616">616</a> }
+<a class="jxr_linenumber" name="L616" href="#L616">616</a> 
+<a class="jxr_linenumber" name="L617" href="#L617">617</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L618" href="#L618">618</a> <em class="jxr_javadoccomment">     * PmdValidator can allow only package private methods,</em>
+<a class="jxr_linenumber" name="L619" href="#L619">619</a> <em class="jxr_javadoccomment">     * annotated by @Test, @RepeatedTest, @TestFactory, @TestTemplate or @ParameterizedTest.</em>
+<a class="jxr_linenumber" name="L620" href="#L620">620</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside.</em>
+<a class="jxr_linenumber" name="L621" href="#L621">621</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L622" href="#L622">622</a>     @Test
+<a class="jxr_linenumber" name="L623" href="#L623">623</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testShouldBePackagePrivate() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L624" href="#L624">624</a>         <strong class="jxr_keyword">new</strong> <a href="../../../com/qulice/pmd/PmdAssert.html">PmdAssert</a>(
+<a class="jxr_linenumber" name="L625" href="#L625">625</a>             <span class="jxr_string">"TestShouldBePackagePrivate.java"</span>,
+<a class="jxr_linenumber" name="L626" href="#L626">626</a>             Matchers.is(false),
+<a class="jxr_linenumber" name="L627" href="#L627">627</a>             Matchers.containsString(<span class="jxr_string">"JUnit5TestShouldBePackagePrivate"</span>)
+<a class="jxr_linenumber" name="L628" href="#L628">628</a>         ).validate();
+<a class="jxr_linenumber" name="L629" href="#L629">629</a>     }
+<a class="jxr_linenumber" name="L630" href="#L630">630</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2022 <a href="https://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
