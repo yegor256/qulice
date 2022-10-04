@@ -32,6 +32,7 @@ package com.qulice.spi;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -157,16 +158,7 @@ public interface Environment {
         public Mock() throws IOException {
             this.params = new HashMap<>();
             this.classpath = new HashSet<>(1);
-            final File temp = File.createTempFile(
-                "mock", ".qulice",
-                new File(System.getProperty("java.io.tmpdir"))
-            );
-            if (!temp.delete()) {
-                throw new IllegalStateException("files collision");
-            }
-            if (!temp.mkdirs()) {
-                throw new IllegalStateException("mkdir failed");
-            }
+            final File temp = Files.createTempDirectory(new File(System.getProperty("java.io.tmpdir")).toPath(), "mock" + ".qulice").toFile();
             FileUtils.forceDeleteOnExit(temp);
             this.basedir = new File(temp, "basedir");
             if (this.basedir.mkdirs()) {
