@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Collection;
 import java.util.Collections;
 
-class SomeTest {
+final class SomeTest {
 
     @BeforeClass
     public static void beforeClass(){

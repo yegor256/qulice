@@ -257,4 +257,30 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </property>
     </properties>
   </rule>
+  <rule name="JUnitTestClassShouldBeFinal" language="java" class="net.sourceforge.pmd.lang.rule.XPathRule" message="JUnit test class should be final">
+    <description><![CDATA[
+      Reports on JUnit test classes declared non-final.
+    ]]></description>
+    <priority>3</priority>
+    <properties>
+      <property name="version" value="2.0"/>
+      <!--Solve priority confict-->
+      <property name="xpath">
+        <value><![CDATA[
+        //TypeDeclaration
+          //ClassOrInterfaceDeclaration[
+          (: a Junit 3,4 and 5 test class :)
+            @Interface=false() and
+            ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration
+              [Annotation//Name[
+                pmd-java:typeIs('junit.framework.TestCase')
+                or pmd-java:typeIs('org.junit.Test')
+                or pmd-java:typeIs('org.junit.jupiter.api.Test')
+              ]]
+          ]
+          [@Final = false()]
+        ]]></value>
+      </property>
+    </properties>
+  </rule>
 </ruleset>

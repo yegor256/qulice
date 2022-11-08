@@ -4,7 +4,7 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class AllowAssertFail {
+final class AllowAssertFail {
 
     @Test
     void prohibitPlainJunitAssertionsInTests() throws Exception {

@@ -627,4 +627,58 @@ public final class PmdValidatorTest {
             Matchers.containsString("JUnit5TestShouldBePackagePrivate")
         ).validate();
     }
+
+    /**
+     * PmdValidator can allow only final JUnit3 test classes.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowJunitThirdTestClassToBeFinal() throws Exception {
+        new PmdAssert(
+            "Junit3TestClassShouldBeFinal.java",
+            Matchers.is(false),
+            Matchers.containsString("JUnitTestClassShouldBeFinal")
+        ).validate();
+    }
+
+    /**
+     * PmdValidator can allow only final JUnit4 test classes.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowJunitFourthTestClassToBeFinal() throws Exception {
+        new PmdAssert(
+            "Junit4TestClassShouldBeFinal.java",
+            Matchers.is(false),
+            Matchers.containsString("JUnitTestClassShouldBeFinal")
+        ).validate();
+    }
+
+    /**
+     * PmdValidator can allow only final JUnit5 test classes.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowJunitFifthTestClassToBeFinal() throws Exception {
+        new PmdAssert(
+            "Junit5TestClassShouldBeFinal.java",
+            Matchers.is(false),
+            Matchers.containsString("JUnitTestClassShouldBeFinal")
+        ).validate();
+    }
+
+    /**
+     * PmdValidator can allow only final Junit test classes.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void allowJunitTestClassToBeFinal() throws Exception {
+        new PmdAssert(
+            "JunitTestClassIsFinal.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString("JUnitTestClassShouldBeFinal")
+            )
+        ).validate();
+    }
 }
