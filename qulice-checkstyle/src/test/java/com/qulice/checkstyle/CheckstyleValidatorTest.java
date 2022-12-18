@@ -468,6 +468,16 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can deny improper indentation in complex annotations.
+     * This is regression test for #411.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void rejectsImproperIndentationInAnnotations() throws Exception {
+        this.runValidation("AnnotationIndentationNegative.java", false);
+    }
+
+    /**
      * Fail validation with extra semicolon in the end
      * of try-with-resources head.
      * @throws Exception If something wrong happens inside
