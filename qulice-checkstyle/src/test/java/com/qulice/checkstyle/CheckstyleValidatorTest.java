@@ -786,12 +786,12 @@ public final class CheckstyleValidatorTest {
     /**
      * Returns string with Checkstyle validation results.
      * @param file File to check.
-     * @param result Expected validation result.
+     * @param passes Whether validation is expected to pass.
      * @return String containing validation results in textual form.
      * @throws IOException In case of error
      */
     private Collection<Violation> runValidation(final String file,
-        final boolean result) throws IOException {
+        final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.rule.savePackageInfo(
             new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
@@ -815,7 +815,7 @@ public final class CheckstyleValidatorTest {
             new CheckstyleValidator(env).validate(
                 env.files(file)
             );
-        if (result) {
+        if (passes) {
             MatcherAssert.assertThat(
                 results,
                 Matchers.<Violation>empty()
