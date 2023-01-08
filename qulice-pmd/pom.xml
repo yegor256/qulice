@@ -122,9 +122,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <plugins>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <parallel>classes</parallel>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>com.github.github</groupId>
