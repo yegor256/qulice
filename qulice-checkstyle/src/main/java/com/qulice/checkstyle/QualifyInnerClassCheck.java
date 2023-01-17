@@ -29,7 +29,12 @@
  */
 package com.qulice.checkstyle;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Checks if inner classes are properly accessed using their qualified name
@@ -41,24 +46,79 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
  *  QualifyInnerClassCheck test and add this check to checks.xml and CheckTest.
  */
 public final class QualifyInnerClassCheck extends AbstractCheck {
+    // FIXME: do we need to clear it in the end?
+    private Set<String> nestedClasses = new HashSet<>();
+
     @Override
     public int[] getDefaultTokens() {
-        throw new UnsupportedOperationException(
-            "getDefaultTokens() not implemented"
-        );
+        return new int[]{
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.LITERAL_NEW
+        };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-        throw new UnsupportedOperationException(
-            "getAcceptableTokens() not implemented"
-        );
+        return this.getDefaultTokens();
     }
 
     @Override
     public int[] getRequiredTokens() {
-        throw new UnsupportedOperationException(
-            "getRequiredTokens() not implemented"
-        );
+        return this.getDefaultTokens();
+    }
+
+    @Override
+    public void visitToken(final DetailAST ast) {
+        if (ast.getType() == TokenTypes.CLASS_DEF
+            || ast.getType() == TokenTypes.ENUM_DEF
+            || ast.getType() == TokenTypes.INTERFACE_DEF) {
+            this.visitClass(ast);
+        }
+        if (ast.getType() == TokenTypes.LITERAL_NEW) {
+            this.visitNewExpression(ast);
+        }
+    }
+
+    /**
+     * Checks if class to be instantiated is nested and unqualified
+     * @param expr EXPR LITERAL_NEW node that needs to be checked
+     */
+    private void visitNewExpression(final DetailAST expr) {
+        DetailAST child = expr.getFirstChild();
+        if (child.getType() == TokenTypes.DOT) {
+            // new Foo.Bar
+
+            // FIXME: check this case 
+        } else if (child.getType() == TokenTypes.IDENT) {
+            // new Foo
+            if (this.nestedClasses.contains(child.getText())) {
+                this.log(child, "Static inner class should be qualified with outer class");
+            }
+        } else {
+            throw new IllegalStateException("unexpected input " + child.getType());
+        }
+    }
+
+
+    /**
+     * @param node Class-like AST node that needs to be checked
+     */
+    private void visitClass(final DetailAST node) {
+        this.nestedClasses.add(getClassName(node));
+    }
+
+    /**
+     * @param clazz Class-like AST node
+     * @return class name
+     */
+    private static String getClassName(final DetailAST clazz) {
+        for (DetailAST child = clazz.getFirstChild(); child != null; child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.IDENT) {
+                return child.getText();
+            }
+        }
+        throw new IllegalStateException("unexpected input: can not find class name");
     }
 }

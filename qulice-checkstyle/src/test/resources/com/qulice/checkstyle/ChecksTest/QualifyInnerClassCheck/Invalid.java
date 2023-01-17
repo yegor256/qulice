@@ -4,7 +4,8 @@
  */
 public final class Invalid {
 
-    public void method(int num) {
+    public void methodBeforeDef(int num) {
+        // FIXME: this should be reported too
         new Bar(num);
     }
 
@@ -15,5 +16,9 @@ public final class Invalid {
         Bar(int num) {
             this.member = num;
         }
+    }
+
+    public void methodAfterDef(int num) {
+        new Bar(num);
     }
 }

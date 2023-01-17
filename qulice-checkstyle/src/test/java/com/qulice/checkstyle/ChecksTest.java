@@ -182,7 +182,8 @@ public final class ChecksTest {
             "ConstantUsageCheck",
             "JavadocEmptyLineCheck",
             "JavadocTagsCheck",
-            "ProhibitNonFinalClassesCheck"
+            "ProhibitNonFinalClassesCheck",
+            "QualifyInnerClassCheck"
         ).map(s -> String.format("ChecksTest/%s", s));
     }
 
