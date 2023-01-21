@@ -4,7 +4,7 @@
  */
 public final class Valid {
 
-    public void method(int num) {
+    public void methodBeforeDef(int num) {
         new Valid.Bar(num);
     }
 
@@ -14,5 +14,9 @@ public final class Valid {
         Bar(int num) {
             this.num = num;
         }
+    }
+
+    public void methodAfterDef(int num) {
+        new Valid.Bar(num);
     }
 }

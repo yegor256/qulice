@@ -5,7 +5,6 @@
 public final class Invalid {
 
     public void methodBeforeDef(int num) {
-        // FIXME: this should be reported too
         new Bar(num);
     }
 

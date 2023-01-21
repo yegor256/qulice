@@ -48,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class QualifyInnerClassCheck extends AbstractCheck {
     // FIXME: do we need to clear it in the end?
     private Set<String> nestedClasses = new HashSet<>();
+    private boolean rootClassVisited = false;
 
     @Override
     public int[] getDefaultTokens() {
@@ -74,7 +75,13 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
         if (ast.getType() == TokenTypes.CLASS_DEF
             || ast.getType() == TokenTypes.ENUM_DEF
             || ast.getType() == TokenTypes.INTERFACE_DEF) {
-            this.visitClass(ast);
+            if (!this.rootClassVisited) {
+                // this is first time we see a class, so let's assume
+                // that all other classes are (possibly indirectly) nested
+                // and manually scan for them
+                this.rootClassVisited = true;
+                this.scanClass(ast);
+            }
         }
         if (ast.getType() == TokenTypes.LITERAL_NEW) {
             this.visitNewExpression(ast);
@@ -90,23 +97,38 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
         if (child.getType() == TokenTypes.DOT) {
             // new Foo.Bar
 
-            // FIXME: check this case 
+            // FIXME: check this case
         } else if (child.getType() == TokenTypes.IDENT) {
             // new Foo
             if (this.nestedClasses.contains(child.getText())) {
                 this.log(child, "Static inner class should be qualified with outer class");
             }
         } else {
-            throw new IllegalStateException("unexpected input " + child.getType());
+            throw new IllegalStateException("unsupported input " + child.getType());
         }
     }
 
 
     /**
+     * Scans class for all nested sub-classes
+     * 
      * @param node Class-like AST node that needs to be checked
      */
-    private void visitClass(final DetailAST node) {
+    // FIXME: checkstyle discourages manual traversing of AST,
+    // but exactly this is happening here.
+    private void scanClass(final DetailAST node) {
         this.nestedClasses.add(getClassName(node));
+        DetailAST content = node.findFirstToken(TokenTypes.OBJBLOCK);
+        if (content == null) {
+            return;
+        }
+        for (DetailAST child = content.getFirstChild(); child != null; child  = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.CLASS_DEF
+             || child.getType() == TokenTypes.ENUM_DEF
+             || child.getType() == TokenTypes.INTERFACE_DEF) {
+                scanClass(child);
+            }
+        }
     }
 
     /**
