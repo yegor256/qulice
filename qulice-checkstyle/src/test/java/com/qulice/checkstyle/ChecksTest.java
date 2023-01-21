@@ -98,6 +98,13 @@ public final class ChecksTest {
                 )
             );
         }
+        MatcherAssert.assertThat(
+            collector.eventCount(), 
+            Matchers.describedAs(
+                String.format("Got more violations that expected for directory %s", dir),
+                Matchers.equalTo(violations.length)
+            )  
+        );
     }
 
     /**
@@ -203,6 +210,14 @@ public final class ChecksTest {
         public Object answer(final InvocationOnMock invocation) {
             this.events.add((AuditEvent) invocation.getArguments()[0]);
             return null;
+        }
+
+        /**
+         * How many messages do we have?
+         * @return Amount of messages reported
+         */
+        public int eventCount() {
+            return this.events.size();
         }
 
         /**
