@@ -45,6 +45,19 @@ assert log.text.contains('NewLines.java[4]: Lines in file should end with Unix-l
 assert log.text.contains('newlines.txt[3]: Lines in file should end with Unix-like end of line')
 assert log.text.contains('Violations.java[33]: ArrayList should be initialized with a size parameter')
 assert log.text.contains('Violations.java[34]: ArrayList should be initialized with a size parameter')
+
+assert log.text.contains('Pdd.java[0]: Problem finding class/interface comment (JavadocTagsCheck)')
+assert log.text.contains('Pdd.java[1]: Missing a header - not enough lines in file. (HeaderCheck)')
+assert log.text.contains('Pdd.java[17]: This method must be static, because it does not refer to "this" (NonStaticMethodCheck)')
+assert log.text.contains('Pdd.java[23]: \'METHOD_DEF\' should be separated from previous line. (EmptyLineSeparatorCheck)')
+assert log.text.contains('Pdd.java[23]: This method must be static, because it does not refer to "this" (NonStaticMethodCheck)')
+assert log.text.contains('Pdd.java[24]: Comments in method body are prohibited (MethodBodyCommentsCheck)')
+assert log.text.contains('Pdd.java[25]: Comments in method body are prohibited (MethodBodyCommentsCheck)')
+assert log.text.contains('Pdd.java[18-18]: System.out.println is used (SystemPrintln)')
+assert log.text.contains('Pdd.java[26-26]: System.out.println is used (SystemPrintln)')
+assert log.text.contains('Pdd.java[10-10]: Avoid unnecessary return statements (UnnecessaryReturn)')
+assert log.text.findAll('Pdd.java.*').size() == 10
+
 assert !log.text.contains('Got an exception - java.lang.NullPointerException')
 assert log.text.findAll('SomeTest.java .+ (JavadocMethodCheck)').isEmpty()
 assert !log.text.contains('IndentationChecks.java[19]: method call rparen at indentation level 12')

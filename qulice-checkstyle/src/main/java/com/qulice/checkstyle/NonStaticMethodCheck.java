@@ -111,14 +111,10 @@ public final class NonStaticMethodCheck extends AbstractCheck {
             return;
         }
         final BranchContains checker = new BranchContains(method);
-        final boolean onlythrow =
-            checker.check(TokenTypes.LITERAL_THROW)
-                && !checker.check(TokenTypes.LCURLY)
-                && this.countSemiColons(method) == 1;
         if (!AnnotationUtil.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
             && !checker.check(TokenTypes.LITERAL_THIS)
-            && !onlythrow) {
+            && !this.isExceptionFromCheck(method)) {
             final int line = method.getLineNo();
             this.log(
                 line,
@@ -126,6 +122,41 @@ public final class NonStaticMethodCheck extends AbstractCheck {
                 "This method must be static, because it does not refer to \"this\""
             );
         }
+    }
+
+    /**
+     * Determines whether a method is covered by an exception.
+     * @param method Method to check
+     * @return True is method should not be linted
+     */
+    private boolean isExceptionFromCheck(final DetailAST method) {
+        return this.isReturnOnlyMethod(method) || this.isThrowOnlyMethod(method);
+    }
+
+    /**
+     * Determines whether a method consists of a single throw statement.
+     * Such methods are allowed.
+     * @param method Method to check.
+     * @return True if method is throw-only.
+     */
+    private boolean isThrowOnlyMethod(final DetailAST method) {
+        final BranchContains checker = new BranchContains(method);
+        return checker.check(TokenTypes.LITERAL_THROW)
+            && !checker.check(TokenTypes.LCURLY)
+            && this.countSemiColons(method) == 1;
+    }
+
+    /**
+     * Determintes whether a method consists of a single return statement.
+     * Such methods are allowed.
+     * @param method Method to check.
+     * @return True if method is return-only.
+     */
+    private boolean isReturnOnlyMethod(final DetailAST method) {
+        final BranchContains checker = new BranchContains(method);
+        return checker.check(TokenTypes.LITERAL_RETURN)
+            && !checker.check(TokenTypes.LCURLY)
+            && this.countSemiColons(method) == 1;
     }
 
     /**

@@ -88,7 +88,7 @@ public final class ChecksTest {
                 collector.has(pos, needle),
                 Matchers.describedAs(
                     String.format(
-                        "Line no.%d ('%s') not reported by %s: '%s'",
+                        "Line no.%d ('%s') to be reported by %s: '%s'",
                         pos,
                         needle,
                         dir,
