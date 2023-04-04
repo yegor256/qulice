@@ -36,6 +36,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     default locale which may vary between environments.
     -->
   <property name="localeLanguage" value="en"/>
+  <!-- Speeds up style check for already validated files
+    -->
+  <property name="cacheFile" value="${cache.file}"/>
   <!--
     Checks that each Java package has a Javadoc file
     used for commenting.
@@ -162,8 +165,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <property name="file" value="/com/qulice/checkstyle/suppressions.xml"/>
     <property name="optional" value="false"/>
   </module>
+  <module name="LineLength">
+    <property name="max" value="100"/>
+    <property name="ignorePattern" value="^import .*$|^\s+\*\s.*https?:\/\/.+|^\s+&quot;"/>
+  </module>
   <module name="TreeWalker">
-    <property name="cacheFile" value="${cache.file}"/>
     <module name="SuppressWithNearbyCommentFilter">
       <property name="commentFormat" value="@checkstyle (\w+) \((\d+) lines?\)"/>
       <property name="checkFormat" value="$1"/>
@@ -319,10 +325,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Checks for Size Violations. -->
     <module name="ExecutableStatementCount">
       <property name="max" value="40"/>
-    </module>
-    <module name="LineLength">
-      <property name="max" value="100"/>
-      <property name="ignorePattern" value="^import .*$|^\s+\*\s.*https?:\/\/.+|^\s+&quot;"/>
     </module>
     <module name="AnonInnerLength"/>
     <module name="MethodLength"/>

@@ -110,13 +110,14 @@ public final class NonStaticMethodCheck extends AbstractCheck {
         if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {
             return;
         }
+        final BranchContains checker = new BranchContains(method);
         final boolean onlythrow =
-            method.branchContains(TokenTypes.LITERAL_THROW)
-                && !method.branchContains(TokenTypes.LCURLY)
+            checker.check(TokenTypes.LITERAL_THROW)
+                && !checker.check(TokenTypes.LCURLY)
                 && this.countSemiColons(method) == 1;
         if (!AnnotationUtil.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
-            && !method.branchContains(TokenTypes.LITERAL_THIS)
+            && !checker.check(TokenTypes.LITERAL_THIS)
             && !onlythrow) {
             final int line = method.getLineNo();
             this.log(
@@ -134,8 +135,9 @@ public final class NonStaticMethodCheck extends AbstractCheck {
      */
     private static boolean isInAbstractOrNativeMethod(final DetailAST method) {
         final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.branchContains(TokenTypes.ABSTRACT)
-            || modifiers.branchContains(TokenTypes.LITERAL_NATIVE);
+        final BranchContains checker = new BranchContains(modifiers);
+        return checker.check(TokenTypes.ABSTRACT)
+            || checker.check(TokenTypes.LITERAL_NATIVE);
     }
 
     /**

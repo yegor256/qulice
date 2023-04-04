@@ -69,7 +69,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>com.puppycrawl.tools</groupId>
       <artifactId>checkstyle</artifactId>
-      <version>8.15</version>
+      <version>8.45.1</version>
       <exclusions>
         <exclusion>
           <groupId>org.abego.treelayout</groupId>
@@ -155,6 +155,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                 <exclude>dependencies:org.antlr</exclude>
                 <exclude>xml:/src/main/resources/com/qulice/checkstyle/checks.xml</exclude>
                 <exclude>xml:/src/test/resources/com/qulice/checkstyle/ChecksTest/.*</exclude>
+                <exclude>duplicatefinder:</exclude>
               </excludes>
             </configuration>
           </plugin>

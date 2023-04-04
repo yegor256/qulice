@@ -407,18 +407,19 @@ public final class CheckstyleValidatorTest {
      * @throws Exception In case of error
      */
     @Test
-    @SuppressWarnings("unchecked")
     public void allowsOnlyProperlyOrderedAtClauses() throws Exception {
         final String file = "AtClauseOrder.java";
         final Collection<Violation> results = this.runValidation(
             file, false
         );
-        MatcherAssert.assertThat(results, Matchers.hasSize(2));
-        final String message = "At-clauses have to appear in the order";
+        final String message = "tags have to appear in the order";
         final String name = "AtclauseOrderCheck";
         MatcherAssert.assertThat(
             results,
-            Matchers.hasItems(
+            Matchers.contains(
+                new ViolationMatcher(
+                    message, file, "14", name
+                ),
                 new ViolationMatcher(
                     message, file, "21", name
                 ),
@@ -483,6 +484,15 @@ public final class CheckstyleValidatorTest {
             "ExtraSemicolon.java", false,
             "Extra semicolon in the end of try-with-resources head."
         );
+    }
+
+    /**
+     * Correctly parses Record type.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    public void testSupportsRecordTypes() throws Exception {
+        this.runValidation("ValidRecord.java", true);
     }
 
     /**
@@ -705,7 +715,6 @@ public final class CheckstyleValidatorTest {
      * @throws Exception If error
      */
     @Test
-    @SuppressWarnings("unchecked")
     public void rejectsNonDiamondOperatorUsage() throws Exception {
         final String file = "InvalidDiamondsUsage.java";
         final String name = "DiamondOperatorCheck";

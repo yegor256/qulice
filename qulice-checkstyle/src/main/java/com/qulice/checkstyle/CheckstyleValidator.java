@@ -53,7 +53,6 @@ import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.Replaced;
 import org.cactoos.text.TextOf;
 import org.cactoos.text.Trimmed;
-import org.cactoos.text.UncheckedText;
 import org.xml.sax.InputSource;
 
 /**
@@ -87,7 +86,6 @@ public final class CheckstyleValidator implements ResourceValidator {
     public CheckstyleValidator(final Environment env) {
         this.env = env;
         this.checker = new Checker();
-        this.checker.setClassLoader(this.env.classloader());
         this.checker.setModuleClassLoader(
             Thread.currentThread().getContextClassLoader()
         );

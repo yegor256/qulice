@@ -1,7 +1,7 @@
 /*
  * Hello.
  */
-package foo.bar;
+package foo;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,12 +31,14 @@ public final class InvalidDiamondsUsage {
 
     /**
      * Simple interface, used as wrapper.
+     * @since 1.0.0
      */
     interface SimpleInterface {
 
         /**
          * Inner class with generic parameter.
          * @param <E> generic parameter
+         * @since 1.0.0
          */
         final class InnerClass<E> implements SimpleInterface {
 

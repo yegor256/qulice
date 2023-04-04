@@ -28,8 +28,8 @@ public final class AtClauseOrder {
      *
      * @param input Valid parameter
      * @return Some value
-     * @exception Exception
      * @throws  Exception
+     * @exception Exception
      * @see AtClauseOrder
      * @since 1.0
      * @deprecated Reason
