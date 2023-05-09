@@ -263,6 +263,18 @@ public final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator accepts string literal which
+     * contains multiline comment.
+     * @throws Exception If test failed.
+     */
+    @Test
+    public void acceptsValidSingleLineComment() throws Exception {
+        this.runValidation(
+            "ValidSingleLineCommentCheck.java", true
+        );
+    }
+
+    /**
      * CheckstyleValidator accepts the valid indentation
      * refused by forceStrictCondition.
      * @throws Exception when error.

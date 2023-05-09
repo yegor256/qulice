@@ -78,14 +78,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <property name="message" value="Line has trailing spaces."/>
   </module>
   <!--
-    C++ style inline comment is not allowed.
-    -->
-  <module name="RegexpSingleline">
-    <property name="format" value="/\*.*\*/"/>
-    <property name="fileExtensions" value="java"/>
-    <property name="message" value="This kind of comment is not allowed."/>
-  </module>
-  <!--
     Windows line endings are not allowed.
     -->
   <module name="RegexpMultiline">

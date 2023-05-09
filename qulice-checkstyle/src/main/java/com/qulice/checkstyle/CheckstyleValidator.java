@@ -53,7 +53,6 @@ import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.Replaced;
 import org.cactoos.text.TextOf;
 import org.cactoos.text.Trimmed;
-import org.cactoos.text.UncheckedText;
 import org.xml.sax.InputSource;
 
 /**
