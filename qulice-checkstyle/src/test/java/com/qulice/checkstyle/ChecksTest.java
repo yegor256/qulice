@@ -141,7 +141,6 @@ public final class ChecksTest {
                 String.format("%s/config.xml", dir)
             )
         );
-        checker.setClassLoader(Thread.currentThread().getContextClassLoader());
         checker.setModuleClassLoader(
             Thread.currentThread().getContextClassLoader()
         );

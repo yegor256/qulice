@@ -71,6 +71,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             <exclude>pmd:/src/main/java/com/qulice/entity/model/.*</exclude>
             <exclude>findbugs:~com.qulice.entity.model.*</exclude>
             <exclude>xml:/src/main/java/com/qulice/entity/hibernate.cfg.xml</exclude>
+            <exclude>checkstyle:/src/main/java/com/qulice/entity/hibernate.cfg.xml</exclude>
           </excludes>
         </configuration>
         <executions>

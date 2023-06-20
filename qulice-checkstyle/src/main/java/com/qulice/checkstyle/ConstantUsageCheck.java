@@ -181,7 +181,7 @@ public final class ConstantUsageCheck extends AbstractCheck {
      */
     private static boolean isFinal(final DetailAST node) {
         final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.branchContains(TokenTypes.FINAL);
+        return modifiers.getChildCount(TokenTypes.FINAL) > 0;
     }
 
     /**
@@ -193,7 +193,7 @@ public final class ConstantUsageCheck extends AbstractCheck {
      */
     private static boolean isPrivate(final DetailAST node) {
         final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.branchContains(TokenTypes.LITERAL_PRIVATE);
+        return modifiers.getChildCount(TokenTypes.LITERAL_PRIVATE) > 0;
     }
 
     /**

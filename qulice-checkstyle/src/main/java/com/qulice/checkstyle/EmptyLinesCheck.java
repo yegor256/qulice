@@ -88,7 +88,7 @@ public final class EmptyLinesCheck extends AbstractCheck {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        this.getLine(ast.getLastChild().getLine());
+        this.getLine(ast.getLastChild().getLineNo() - 1);
         if (ast.getType() == TokenTypes.OBJBLOCK
             && ast.getParent() != null
             && ast.getParent().getType() == TokenTypes.LITERAL_NEW) {

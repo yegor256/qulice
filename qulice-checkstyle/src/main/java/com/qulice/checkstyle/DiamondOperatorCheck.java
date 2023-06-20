@@ -75,7 +75,7 @@ public final class DiamondOperatorCheck extends AbstractCheck {
                 DiamondOperatorCheck.findFirstChildNodeOfType(
                     instance, TokenTypes.TYPE_ARGUMENTS
                 );
-            if (generic.equalsTree(type)) {
+            if (new EqualsTree(generic).equalsTree(type)) {
                 log(type, "Use diamond operator");
             }
         }
