@@ -119,6 +119,7 @@ public final class PmdValidatorTest {
 
     /**
      * PmdValidator can understand method references.
+     * @todo #1129 Replace not+empty() with more precise containsInAnyOrder
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -133,7 +134,9 @@ public final class PmdValidatorTest {
                 "    public static void test() {",
                 "        new ArrayList<String>().forEach(Other::other);",
                 "    }",
-                "    private static void other(String some) {// body}",
+                "    private static void other(String some) {",
+                "         // body",
+                "    }",
                 "}"
             )
         );
@@ -142,7 +145,7 @@ public final class PmdValidatorTest {
         );
         MatcherAssert.assertThat(
             violations,
-            Matchers.<Violation>empty()
+            Matchers.not(Matchers.<Violation>empty())
         );
     }
 

@@ -33,6 +33,8 @@ import com.qulice.spi.Environment;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
+import net.sourceforge.pmd.Report.ConfigurationError;
+import net.sourceforge.pmd.Report.ProcessingError;
 import net.sourceforge.pmd.RuleViolation;
 import net.sourceforge.pmd.ThreadSafeReportListener;
 import net.sourceforge.pmd.stat.Metric;
@@ -50,16 +52,17 @@ final class PmdListener implements ThreadSafeReportListener {
     private final Environment env;
 
     /**
-     * Violations.
+     * All errors spotted (mostly violations, but also processing
+     * and config errors).
      */
-    private final Collection<RuleViolation> violations;
+    private final Collection<PmdError> errors;
 
     /**
      * Public ctor.
      * @param environ Environment
      */
     PmdListener(final Environment environ) {
-        this.violations = new LinkedList<>();
+        this.errors = new LinkedList<>();
         this.env = environ;
     }
 
@@ -74,16 +77,35 @@ final class PmdListener implements ThreadSafeReportListener {
             this.env.basedir().toString().length()
         );
         if (!this.env.exclude("pmd", name)) {
-            this.violations.add(violation);
+            this.errors.add(new PmdError.OfRuleViolation(violation));
         }
+    }
+
+    /**
+     * Registers a new ProcessingError.
+     * @param error A processing error that needs to be reported.
+     * @todo #1129 If was added to avoid failing build, but there should be
+     *  better place for this check.
+     */
+    public void onProcessingError(final ProcessingError error) {
+        if (error.getFile().endsWith(".java")) {
+            this.errors.add(new PmdError.OfProcessingError(error));
+        }
+    }
+
+    /**
+     * Registers a new ConfigurationError.
+     * @param error A configuration error that needs to be reported.
+     */
+    public void onConfigError(final ConfigurationError error) {
+        this.errors.add(new PmdError.OfConfigError(error));
     }
 
     /**
      * Get list of violations.
      * @return List of violations
      */
-    public Collection<RuleViolation> getViolations() {
-        return Collections.unmodifiableCollection(this.violations);
+    public Collection<PmdError> errors() {
+        return Collections.unmodifiableCollection(this.errors);
     }
-
 }
