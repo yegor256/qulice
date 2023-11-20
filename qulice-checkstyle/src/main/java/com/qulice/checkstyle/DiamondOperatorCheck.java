@@ -75,7 +75,7 @@ public final class DiamondOperatorCheck extends AbstractCheck {
                 DiamondOperatorCheck.findFirstChildNodeOfType(
                     instance, TokenTypes.TYPE_ARGUMENTS
                 );
-            if (new EqualsTree(generic).equalsTree(type)) {
+            if (!DiamondOperatorCheck.isDiamondOperatorUsed(type)) {
                 log(type, "Use diamond operator");
             }
         }
@@ -99,6 +99,18 @@ public final class DiamondOperatorCheck extends AbstractCheck {
      */
     private static boolean isNotObjectBlock(final DetailAST node) {
         return node.getLastChild().getType() != TokenTypes.OBJBLOCK;
+    }
+
+    /**
+     * Checks if node contains empty set of type parameters and
+     * comprises angle brackets only (<>).
+     * @param node Node of type arguments
+     * @return True if node contains angle brackets only
+     */
+    private static boolean isDiamondOperatorUsed(final DetailAST node) {
+        return node.getChildCount() == 2
+            && node.getFirstChild().getType() == TokenTypes.GENERIC_START
+            && node.getLastChild().getType() == TokenTypes.GENERIC_END;
     }
 
     /**
