@@ -36,6 +36,37 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Checks if possible to use Diamond operator in generic instances creation.
  *
+ * <p>Check is performed for variable declarations. Since parameterized types are invariant
+ * in generics, Diamond operator should always be used in variable declarations.</p>
+ *
+ * <p>For example,
+ * <pre>
+ *     private List&lt;Number&gt; numbers = new ArrayList&lt;Integer&gt;(); // error
+ * </pre>
+ * will return compilation error (because <code>ArrayList&lt;Integer&gt;</code> is not
+ * a subclass of <code>List&lt;Number&gt;</code>).
+ * </p>
+ * <p>Hence, the only possible way to create a generic instance is copying type arguments from
+ * the variable declaration.
+ * <pre>
+ *     private List&lt;Number&gt; numbers = new ArrayList&lt;Number&gt;();
+ * </pre>
+ * In that case, Diamond Operator should always be used.
+ * <pre>
+ *     private List&lt;Number&gt; numbers = new ArrayList&lt;&gt;();
+ * </pre>
+ * </p>
+ * <p>Exceptions to the rule above are wildcards, with them it's possible
+ * to have different type parameters for left and right parts of variable declaration.
+ * <pre>
+ *     // will compile
+ *     private List&lt;? extends Number&gt; numbers = new ArrayList&lt;Integer&gt;();
+ *     private List&lt;? super Integer&gt; list = new ArrayList&lt;Number&gt;();
+ *</pre>
+ * Although, this is not considered as good codestyle,
+ * so it's better to use diamond operator here either.
+ * </p>
+ *
  * @since 0.17
  */
 public final class DiamondOperatorCheck extends AbstractCheck {
