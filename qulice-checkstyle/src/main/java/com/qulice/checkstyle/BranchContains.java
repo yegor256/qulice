@@ -32,16 +32,17 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 /**
- * Temporary utility class.
+ * Utility class that checks the existence
+ * of tokens of specific type in the AST node subtree.
  *
  * Some checks used branchContains() method in DetailAST
  * which recursively searched node subtree for the child of a given type.
- * However, this method was deprecated in upstream, so here follows it's
- * simple re-implementation.
+ * However, this method was deprecated in upstream due to unintended too
+ * deep scanning. It is recommended to write traversal implementation
+ * for your needs by yourself to avoid unexpected side effects. So here follows it's
+ * simple implementation.
  *
  * @since 1.0
- *
- * @todo #1148 Avoid branchContains usages in checks and delete this class
  */
 class BranchContains {
     /**
