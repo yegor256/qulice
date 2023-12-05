@@ -38,8 +38,6 @@ public final class Brackets {
 
     /**
      * Simple method.
-     * @todo #123 Make this better
-     *  in multiple lines but different.
      */
     public void wrongBrackets() {
         new Foo(null, new int[]{1},
@@ -61,8 +59,6 @@ public final class Brackets {
 
     /**
      * Check brackets structure.
-     * @todo #123 Make this better
-     *  in multiple lines.
      */
     private final class Foo {
 
