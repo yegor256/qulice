@@ -145,7 +145,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </property>
     </properties>
   </rule>
-  <rule name="StaticAccessToStaticFields" message="Static fields should be accessed in a static way [CLASS_NAME.FIELD_NAME]." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
+  <rule name="AvoidDirectAccessToStaticFields" message="Static fields should be accessed in a static way [CLASS_NAME.FIELD_NAME]." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
     <description>
       Avoid accessing static fields directly.
     </description>
@@ -154,6 +154,25 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <property name="xpath">
         <value><![CDATA[
           //Name[@Image = //FieldDeclaration[@Static='true']/@VariableName]
+        ]]></value>
+      </property>
+    </properties>
+  </rule>
+  <rule name="AvoidAccessToStaticMembersViaThis" message="Static members should be accessed in a static way [CLASS_NAME.FIELD_NAME], not via instance reference." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <description>
+      Avoid accessing static fields or methods via instance with 'this' keyword.
+    </description>
+    <priority>3</priority>
+    <properties>
+      <property name="xpath">
+        <value><![CDATA[
+          //PrimaryExpression[
+            (./PrimaryPrefix[@ThisModifier='true']) and
+            (./PrimarySuffix[
+              @Image=//FieldDeclaration[@Static='true']/@VariableName
+              or @Image=//MethodDeclaration[@Static='true']/@MethodName
+            ])
+          ]
         ]]></value>
       </property>
     </properties>

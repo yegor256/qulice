@@ -58,6 +58,13 @@ public final class PmdValidatorTest {
     private static final String STATIC_ACCESS = "%s\\[\\d+-\\d+\\]: Static fields should be accessed in a static way \\[CLASS_NAME.FIELD_NAME\\]\\.";
 
     /**
+     * Error message for forbidding access to static members
+     * via instance reference using 'this' keyword.
+     * @checkstyle LineLength (2 lines)
+     */
+    private static final String STATIC_VIA_THIS = "%s\\[\\d+-\\d+\\]: Static members should be accessed in a static way \\[CLASS_NAME.FIELD_NAME\\], not via instance reference.";
+
+    /**
      * Error message for forbidding instructions inside a constructor
      * other than field initialization or call to other constructors.
      * @checkstyle LineLength (2 lines)
@@ -392,27 +399,68 @@ public final class PmdValidatorTest {
         final String file = "StaticAccessToStaticFields.java";
         new PmdAssert(
             file, Matchers.is(true),
-            Matchers.not(
-                RegexMatchers.containsPattern(
-                    String.format(PmdValidatorTest.STATIC_ACCESS, file)
+            Matchers.allOf(
+                Matchers.not(
+                    RegexMatchers.containsPattern(
+                        String.format(PmdValidatorTest.STATIC_ACCESS, file)
+                    )
+                ),
+                Matchers.not(
+                    RegexMatchers.containsPattern(
+                        String.format(PmdValidatorTest.STATIC_VIA_THIS, file)
+                    )
                 )
             )
         ).validate();
     }
 
     /**
-     * PmdValidator forbids calls to static fields
+     * PmdValidator forbids calls to static fields directly
      * in a non static way.
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsCallToStaticFieldsInNonStaticWay()
+    public void forbidsCallToStaticFieldsDirectly()
         throws Exception {
-        final String file = "NonStaticAccessToStaticFields.java";
+        final String file = "DirectAccessToStaticFields.java";
         new PmdAssert(
             file, Matchers.is(false),
             RegexMatchers.containsPattern(
                 String.format(PmdValidatorTest.STATIC_ACCESS, file)
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator forbids calls to static fields
+     * in a non static way via instance reference.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsCallToStaticFieldsViaThis()
+        throws Exception {
+        final String file = "AccessToStaticFieldsViaThis.java";
+        new PmdAssert(
+            file, Matchers.is(false),
+            RegexMatchers.containsPattern(
+                String.format(PmdValidatorTest.STATIC_VIA_THIS, file)
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator forbids calls to static methods
+     * in a non static way via instance reference.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    public void forbidsCallToStaticMethodsViaThis()
+        throws Exception {
+        final String file = "AccessToStaticMethodsViaThis.java";
+        new PmdAssert(
+            file, Matchers.is(false),
+            RegexMatchers.containsPattern(
+                String.format(PmdValidatorTest.STATIC_VIA_THIS, file)
             )
         ).validate();
     }
