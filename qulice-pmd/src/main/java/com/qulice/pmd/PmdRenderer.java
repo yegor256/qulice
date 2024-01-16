@@ -58,7 +58,7 @@ final class PmdRenderer extends AbstractPropertySource implements Renderer {
 
     @Override
     public String getDescription() {
-        return "TODO";
+        return "not implemented yet";
     }
 
     @Override
