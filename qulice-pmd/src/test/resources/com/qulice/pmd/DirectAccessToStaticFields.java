@@ -1,6 +1,6 @@
 package foo;
 
-public final class NonStaticAccessToStaticFields {
+public final class DirectAccessToStaticFields {
     private static int num = 1;
 
     public static int number() {
