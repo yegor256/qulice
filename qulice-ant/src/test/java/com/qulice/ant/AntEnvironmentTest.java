@@ -29,6 +29,8 @@
  */
 package com.qulice.ant;
 
+import com.qulice.spi.Environment;
+import java.io.File;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -42,12 +44,28 @@ public class AntEnvironmentTest {
 
     /**
      * AntEnvironment can build Classloader from org.apache.tools.ant.Project.
+     *
+     * It is also checked that this classloader does not depend on ant enviroment information.
      * @throws Exception If something wrong happens inside
      */
     @Test
     @Disabled
     @SuppressWarnings("PMD.UncommentedEmptyMethodBody")
     public void buildsClassloader() throws Exception {
+        final Environment env = new AntEnvironment(
+            new AntProject.Fake(
+                ignored -> {
+                    throw new UnsupportedOperationException();
+                },
+                () -> {
+                    throw new UnsupportedOperationException();
+                }
+            ),
+            new AntPath.Fake(new String[]{"/foo.java", "bar.java"}),
+            new File("/some/build/out"),
+            new AntPath.Fake(new String[]{"/libfoo", "/libbar"})
+        );
+        env.classloader();
     }
 
     /**

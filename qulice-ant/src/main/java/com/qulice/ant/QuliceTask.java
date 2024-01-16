@@ -129,10 +129,10 @@ public final class QuliceTask extends Task {
             throw new BuildException("classpath not defined for QuliceTask");
         }
         return new AntEnvironment(
-            this.getProject(),
-            this.sources,
+            new AntProject.Default(this.getProject()),
+            new AntPath.Default(this.sources),
             this.classes,
-            this.classpath
+            new AntPath.Default(this.classpath)
         );
     }
 
