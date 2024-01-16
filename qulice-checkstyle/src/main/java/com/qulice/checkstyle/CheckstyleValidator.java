@@ -47,6 +47,8 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -241,11 +243,9 @@ public final class CheckstyleValidator implements ResourceValidator {
         final URL url;
         if (name.startsWith("file:")) {
             try {
-                url = new URI(name).toURL();
+                url = Paths.get(name.substring(5)).toUri().toURL();
             } catch (final MalformedURLException ex) {
                 throw new IllegalStateException("Invalid URL", ex);
-            } catch (final URISyntaxException ex) {
-                throw new IllegalStateException("Invalid URI", ex);
             }
         } else {
             url = this.env.classloader().getResource(name);
