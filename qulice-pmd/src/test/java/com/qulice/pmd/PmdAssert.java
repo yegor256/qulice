@@ -72,7 +72,7 @@ final class PmdAssert {
     }
 
     /**
-     * Validated given file against PMD.
+     * Validates given file against PMD.
      * @throws Exception In case of error.
      */
     public void validate() throws Exception {
