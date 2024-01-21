@@ -36,7 +36,6 @@ import com.qulice.pmd.rules.ProhibitPlainJunitAssertionsRule;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
-import java.util.Collection;
 import java.util.Collections;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -127,34 +126,18 @@ public final class PmdValidatorTest {
 
     /**
      * PmdValidator can understand method references.
-     * @todo #1129 Replace not+empty() with more precise containsInAnyOrder
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void understandsMethodReferences() throws Exception {
-        final String file = "src/main/java/Other.java";
-        final Environment env = new Environment.Mock().withFile(
+        final String file = "UnderstandsMethodReferences.java";
+        new PmdAssert(
             file,
-            Joiner.on('\n').join(
-                "import java.util.ArrayList;",
-                "class Other {",
-                "    public static void test() {",
-                "        new ArrayList<String>().forEach(Other::other);",
-                "    }",
-                "    private static void other(String some) {",
-                "         // body",
-                "    }",
-                "}"
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString("(UnusedPrivateMethod)")
             )
-        );
-        final Collection<Violation> violations = new PmdValidator(env).validate(
-            Collections.singletonList(new File(env.basedir(), file))
-        );
-        MatcherAssert.assertThat(
-            violations,
-            Matchers.not(Matchers.<Violation>empty())
-        );
+        ).validate();
     }
 
     /**
