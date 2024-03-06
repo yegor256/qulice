@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>MethodBodyCommentsCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">MethodBodyCommentsCheck.java</span></div><h1>MethodBodyCommentsCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2022 Qulice.com
+ * Copyright (c) 2011-2024 Qulice.com
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,11 +49,11 @@ import java.util.Arrays;
  * @todo #260 Add handling of multiple anonymous classes inside methods by
  *  looking at the recursive tree.
  */
-<span class="nc" id="L51">public final class MethodBodyCommentsCheck extends AbstractCheck {</span>
+<span class="nc" id="L52">public final class MethodBodyCommentsCheck extends AbstractCheck {</span>
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L55">        return new int[] {</span>
+<span class="nc" id="L56">        return new int[] {</span>
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
         };
@@ -60,45 +61,45 @@ import java.util.Arrays;
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L63">        return this.getDefaultTokens();</span>
+<span class="nc" id="L64">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L68">        return this.getDefaultTokens();</span>
+<span class="nc" id="L69">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc" id="L73">        final DetailAST start = ast.findFirstToken(TokenTypes.SLIST);</span>
-<span class="nc" id="L74">        final String[] lines = Arrays.copyOf(</span>
-<span class="nc" id="L75">            this.getLines(), this.getLines().length</span>
+<span class="nc" id="L74">        final DetailAST start = ast.findFirstToken(TokenTypes.SLIST);</span>
+<span class="nc" id="L75">        final String[] lines = Arrays.copyOf(</span>
+<span class="nc" id="L76">            this.getLines(), this.getLines().length</span>
         );
-<span class="nc bnc" id="L77" title="All 2 branches missed.">        if (start != null) {</span>
-<span class="nc" id="L78">            DetailAST ostart = start.findFirstToken(TokenTypes.VARIABLE_DEF);</span>
-<span class="nc" id="L79">            final int[] tokens = {</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">        if (start != null) {</span>
+<span class="nc" id="L79">            DetailAST ostart = start.findFirstToken(TokenTypes.VARIABLE_DEF);</span>
+<span class="nc" id="L80">            final int[] tokens = {</span>
                 TokenTypes.ASSIGN, TokenTypes.EXPR,
                 TokenTypes.LITERAL_NEW, TokenTypes.OBJBLOCK,
             };
-<span class="nc bnc" id="L83" title="All 2 branches missed.">            for (final int token : tokens) {</span>
-<span class="nc bnc" id="L84" title="All 2 branches missed.">                if (ostart != null) {</span>
-<span class="nc" id="L85">                    ostart = ostart.findFirstToken(token);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            for (final int token : tokens) {</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">                if (ostart != null) {</span>
+<span class="nc" id="L86">                    ostart = ostart.findFirstToken(token);</span>
                 }
             }
-<span class="nc bnc" id="L88" title="All 2 branches missed.">            if (ostart != null</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">                &amp;&amp; ostart.getType() == tokens[tokens.length - 1]) {</span>
-<span class="nc" id="L90">                Arrays.fill(</span>
-<span class="nc" id="L91">                    lines, ostart.getLineNo(),</span>
-<span class="nc" id="L92">                    ostart.findFirstToken(TokenTypes.RCURLY).getLineNo(), &quot;&quot;</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            if (ostart != null</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">                &amp;&amp; ostart.getType() == tokens[tokens.length - 1]) {</span>
+<span class="nc" id="L91">                Arrays.fill(</span>
+<span class="nc" id="L92">                    lines, ostart.getLineNo(),</span>
+<span class="nc" id="L93">                    ostart.findFirstToken(TokenTypes.RCURLY).getLineNo(), &quot;&quot;</span>
                 );
             }
-<span class="nc" id="L95">            this.checkMethod(</span>
+<span class="nc" id="L96">            this.checkMethod(</span>
                 lines,
-<span class="nc" id="L97">                start.getLineNo(),</span>
-<span class="nc" id="L98">                start.findFirstToken(TokenTypes.RCURLY).getLineNo() - 1</span>
+<span class="nc" id="L98">                start.getLineNo(),</span>
+<span class="nc" id="L99">                start.findFirstToken(TokenTypes.RCURLY).getLineNo() - 1</span>
             );
         }
-<span class="nc" id="L101">    }</span>
+<span class="nc" id="L102">    }</span>
 
     /**
      * Checks method body for comments.
@@ -108,16 +109,16 @@ import java.util.Arrays;
      */
     private void checkMethod(final String[] lines, final int start,
         final int end) {
-<span class="nc bnc" id="L111" title="All 2 branches missed.">        final boolean oneliner = start == end - 1;</span>
-<span class="nc bnc" id="L112" title="All 2 branches missed.">        for (int pos = start; pos &lt; end; ++pos) {</span>
-<span class="nc" id="L113">            final String line = lines[pos].trim();</span>
-<span class="nc bnc" id="L114" title="All 4 branches missed.">            if (line.startsWith(&quot;//&quot;) || line.startsWith(&quot;/*&quot;)) {</span>
-<span class="nc" id="L115">                final String comment = line.substring(2).trim();</span>
-<span class="nc bnc" id="L116" title="All 4 branches missed.">                if (!comment.startsWith(&quot;@checkstyle&quot;) &amp;&amp; !oneliner) {</span>
-<span class="nc" id="L117">                    this.log(pos + 1, &quot;Comments in method body are prohibited&quot;);</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        final boolean oneliner = start == end - 1;</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        for (int pos = start; pos &lt; end; ++pos) {</span>
+<span class="nc" id="L114">            final String line = lines[pos].trim();</span>
+<span class="nc bnc" id="L115" title="All 4 branches missed.">            if (line.startsWith(&quot;//&quot;) || line.startsWith(&quot;/*&quot;)) {</span>
+<span class="nc" id="L116">                final String comment = line.substring(2).trim();</span>
+<span class="nc bnc" id="L117" title="All 4 branches missed.">                if (!comment.startsWith(&quot;@checkstyle&quot;) &amp;&amp; !oneliner) {</span>
+<span class="nc" id="L118">                    this.log(pos + 1, &quot;Comments in method body are prohibited&quot;);</span>
                 }
             }
         }
-<span class="nc" id="L121">    }</span>
+<span class="nc" id="L122">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PmdListener.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd</a> &gt; <span class="el_source">PmdListener.java</span></div><h1>PmdListener.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2022 Qulice.com
+ * Copyright (c) 2011-2024 Qulice.com
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -33,6 +34,8 @@ import com.qulice.spi.Environment;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
+import net.sourceforge.pmd.Report.ConfigurationError;
+import net.sourceforge.pmd.Report.ProcessingError;
 import net.sourceforge.pmd.RuleViolation;
 import net.sourceforge.pmd.ThreadSafeReportListener;
 import net.sourceforge.pmd.stat.Metric;
@@ -50,41 +53,61 @@ final class PmdListener implements ThreadSafeReportListener {
     private final Environment env;
 
     /**
-     * Violations.
+     * All errors spotted (mostly violations, but also processing
+     * and config errors).
      */
-    private final Collection&lt;RuleViolation&gt; violations;
+    private final Collection&lt;PmdError&gt; errors;
 
     /**
      * Public ctor.
      * @param environ Environment
      */
-<span class="nc" id="L61">    PmdListener(final Environment environ) {</span>
-<span class="nc" id="L62">        this.violations = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L63">        this.env = environ;</span>
-<span class="nc" id="L64">    }</span>
+<span class="nc" id="L65">    PmdListener(final Environment environ) {</span>
+<span class="nc" id="L66">        this.errors = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L67">        this.env = environ;</span>
+<span class="nc" id="L68">    }</span>
 
     @Override
     public void metricAdded(final Metric metric) {
         // ignore it
-<span class="nc" id="L69">    }</span>
+<span class="nc" id="L73">    }</span>
 
     @Override
     public void ruleViolationAdded(final RuleViolation violation) {
-<span class="nc" id="L73">        final String name = violation.getFilename().substring(</span>
-<span class="nc" id="L74">            this.env.basedir().toString().length()</span>
+<span class="nc" id="L77">        final String name = violation.getFilename().substring(</span>
+<span class="nc" id="L78">            this.env.basedir().toString().length()</span>
         );
-<span class="nc bnc" id="L76" title="All 2 branches missed.">        if (!this.env.exclude(&quot;pmd&quot;, name)) {</span>
-<span class="nc" id="L77">            this.violations.add(violation);</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (!this.env.exclude(&quot;pmd&quot;, name)) {</span>
+<span class="nc" id="L81">            this.errors.add(new PmdError.OfRuleViolation(violation));</span>
         }
-<span class="nc" id="L79">    }</span>
+<span class="nc" id="L83">    }</span>
+
+    /**
+     * Registers a new ProcessingError.
+     * @param error A processing error that needs to be reported.
+     * @todo #1129 If was added to avoid failing build, but there should be
+     *  better place for this check.
+     */
+    public void onProcessingError(final ProcessingError error) {
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (error.getFile().endsWith(&quot;.java&quot;)) {</span>
+<span class="nc" id="L93">            this.errors.add(new PmdError.OfProcessingError(error));</span>
+        }
+<span class="nc" id="L95">    }</span>
+
+    /**
+     * Registers a new ConfigurationError.
+     * @param error A configuration error that needs to be reported.
+     */
+    public void onConfigError(final ConfigurationError error) {
+<span class="nc" id="L102">        this.errors.add(new PmdError.OfConfigError(error));</span>
+<span class="nc" id="L103">    }</span>
 
     /**
      * Get list of violations.
      * @return List of violations
      */
-    public Collection&lt;RuleViolation&gt; getViolations() {
-<span class="nc" id="L86">        return Collections.unmodifiableCollection(this.violations);</span>
+    public Collection&lt;PmdError&gt; errors() {
+<span class="nc" id="L110">        return Collections.unmodifiableCollection(this.errors);</span>
     }
-
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>JavadocLocationCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">JavadocLocationCheck.java</span></div><h1>JavadocLocationCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2022 Qulice.com
+ * Copyright (c) 2011-2024 Qulice.com
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,11 +42,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 0.3
  */
-<span class="nc" id="L44">public final class JavadocLocationCheck extends AbstractCheck {</span>
+<span class="nc" id="L45">public final class JavadocLocationCheck extends AbstractCheck {</span>
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L48">        return new int[] {</span>
+<span class="nc" id="L49">        return new int[] {</span>
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.VARIABLE_DEF,
@@ -56,26 +57,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L59">        return this.getDefaultTokens();</span>
+<span class="nc" id="L60">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L64">        return this.getDefaultTokens();</span>
+<span class="nc" id="L65">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (JavadocLocationCheck.isField(ast)) {</span>
-<span class="nc" id="L70">            final int current = ast.getLineNo();</span>
-<span class="nc" id="L71">            final int end = JavadocLocationCheck.findCommentEnd(</span>
-<span class="nc" id="L72">                this.getLines(), current</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (JavadocLocationCheck.isField(ast)) {</span>
+<span class="nc" id="L71">            final int current = ast.getLineNo();</span>
+<span class="nc" id="L72">            final int end = JavadocLocationCheck.findCommentEnd(</span>
+<span class="nc" id="L73">                this.getLines(), current</span>
             );
-<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (end &gt; JavadocLocationCheck.getCommentMinimum(ast)) {</span>
-<span class="nc" id="L75">                this.report(current, end);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (end &gt; JavadocLocationCheck.getCommentMinimum(ast)) {</span>
+<span class="nc" id="L76">                this.report(current, end);</span>
             }
         }
-<span class="nc" id="L78">    }</span>
+<span class="nc" id="L79">    }</span>
 
     /**
      * Report empty lines between current and end line.
@@ -83,16 +84,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @param end Final line
      */
     private void report(final int current, final int end) {
-<span class="nc" id="L86">        final int diff = current - end;</span>
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (diff &gt; 1) {</span>
-<span class="nc bnc" id="L88" title="All 2 branches missed.">            for (int pos = 1; pos &lt; diff; pos += 1) {</span>
-<span class="nc" id="L89">                this.log(</span>
+<span class="nc" id="L87">        final int diff = current - end;</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (diff &gt; 1) {</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">            for (int pos = 1; pos &lt; diff; pos += 1) {</span>
+<span class="nc" id="L90">                this.log(</span>
                     end + pos,
                     &quot;Empty line between javadoc and subject&quot;
                 );
             }
         }
-<span class="nc" id="L95">    }</span>
+<span class="nc" id="L96">    }</span>
 
     /**
      * Returns mimimum line number of the end of the comment.
@@ -100,26 +101,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @return Mimimum line number of the end of the comment.
      */
     private static int getCommentMinimum(final DetailAST node) {
-<span class="nc" id="L103">        int minimum = 0;</span>
-<span class="nc" id="L104">        final DetailAST parent = node.getParent();</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">        if (null == parent) {</span>
-<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (!JavadocLocationCheck.isFirst(node)) {</span>
-<span class="nc" id="L107">                final DetailAST object = node</span>
-<span class="nc" id="L108">                    .getPreviousSibling()</span>
-<span class="nc" id="L109">                    .findFirstToken(TokenTypes.OBJBLOCK);</span>
+<span class="nc" id="L104">        int minimum = 0;</span>
+<span class="nc" id="L105">        final DetailAST parent = node.getParent();</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (null == parent) {</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (!JavadocLocationCheck.isFirst(node)) {</span>
+<span class="nc" id="L108">                final DetailAST object = node</span>
+<span class="nc" id="L109">                    .getPreviousSibling()</span>
+<span class="nc" id="L110">                    .findFirstToken(TokenTypes.OBJBLOCK);</span>
                 // @checkstyle NestedIfDepth (1 line)
-<span class="nc bnc" id="L111" title="All 2 branches missed.">                if (object != null) {</span>
-<span class="nc" id="L112">                    minimum = object.getLastChild().getLineNo();</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">                if (object != null) {</span>
+<span class="nc" id="L113">                    minimum = object.getLastChild().getLineNo();</span>
                 }
-<span class="nc" id="L114">            }</span>
+<span class="nc" id="L115">            }</span>
         } else {
-<span class="nc" id="L116">            DetailAST previous = node.getPreviousSibling();</span>
-<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (null == previous) {</span>
-<span class="nc" id="L118">                previous = parent;</span>
+<span class="nc" id="L117">            DetailAST previous = node.getPreviousSibling();</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (null == previous) {</span>
+<span class="nc" id="L119">                previous = parent;</span>
             }
-<span class="nc" id="L120">            minimum = previous.getLineNo();</span>
+<span class="nc" id="L121">            minimum = previous.getLineNo();</span>
         }
-<span class="nc" id="L122">        return minimum;</span>
+<span class="nc" id="L123">        return minimum;</span>
     }
 
     /**
@@ -129,8 +130,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      *  {@code false}.
      */
     private static boolean isFirst(final DetailAST node) {
-<span class="nc" id="L132">        final DetailAST previous = node.getPreviousSibling();</span>
-<span class="nc bnc" id="L133" title="All 2 branches missed.">        return null == previous;</span>
+<span class="nc" id="L133">        final DetailAST previous = node.getPreviousSibling();</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        return null == previous;</span>
     }
 
     /**
@@ -141,11 +142,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @return Is it a Javadoc-required entity?
      */
     private static boolean isField(final DetailAST node) {
-<span class="nc" id="L144">        boolean yes = true;</span>
-<span class="nc bnc" id="L145" title="All 2 branches missed.">        if (TokenTypes.VARIABLE_DEF == node.getType()) {</span>
-<span class="nc bnc" id="L146" title="All 2 branches missed.">            yes = TokenTypes.OBJBLOCK == node.getParent().getType();</span>
+<span class="nc" id="L145">        boolean yes = true;</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        if (TokenTypes.VARIABLE_DEF == node.getType()) {</span>
+<span class="nc bnc" id="L147" title="All 2 branches missed.">            yes = TokenTypes.OBJBLOCK == node.getParent().getType();</span>
         }
-<span class="nc" id="L148">        return yes;</span>
+<span class="nc" id="L149">        return yes;</span>
     }
 
     /**
@@ -155,7 +156,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @return Line number with found ending comment, or -1 if it wasn't found.
      */
     private static int findCommentEnd(final String[] lines, final int start) {
-<span class="nc" id="L158">        return JavadocLocationCheck.findTrimmedTextUp(lines, start, &quot;*/&quot;);</span>
+<span class="nc" id="L159">        return JavadocLocationCheck.findTrimmedTextUp(lines, start, &quot;*/&quot;);</span>
     }
 
     /**
@@ -167,14 +168,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      */
     private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
-<span class="nc" id="L170">        int found = -1;</span>
-<span class="nc bnc" id="L171" title="All 2 branches missed.">        for (int pos = start - 1; pos &gt;= 0; pos -= 1) {</span>
-<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (lines[pos].trim().equals(text)) {</span>
-<span class="nc" id="L173">                found = pos + 1;</span>
-<span class="nc" id="L174">                break;</span>
+<span class="nc" id="L171">        int found = -1;</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">        for (int pos = start - 1; pos &gt;= 0; pos -= 1) {</span>
+<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (lines[pos].trim().equals(text)) {</span>
+<span class="nc" id="L174">                found = pos + 1;</span>
+<span class="nc" id="L175">                break;</span>
             }
         }
-<span class="nc" id="L177">        return found;</span>
+<span class="nc" id="L178">        return found;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

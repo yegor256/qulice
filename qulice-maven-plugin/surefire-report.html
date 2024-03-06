@@ -79,13 +79,25 @@
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
                                                                                                                         <li >
                             <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
-                                                                                                    <li  class='active' >
-                            <span>                        <a href="surefire-report.html" title="Surefire Report">Surefire Report</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <ul>
+                                                                                                    <li >
+                            <span>                        <a href="xref/index.html" title="Source Xref">Source Xref</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li  class='active' >
+                            <span>                        <a href="surefire-report.html" title="Surefire">Surefire</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -103,19 +115,13 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.22.0/index.html" title="Javadoc">Javadoc</a>
+                            <span>                        <a href="apidocs-0.22.1/index.html" title="Javadoc">Javadoc</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
                             <span>                        <a href="jacoco-aggregate/index.html" title="JaCoCo Aggregate">JaCoCo Aggregate</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="plugin-info.html" title="Plugin Documentation">Plugin Documentation</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -133,7 +139,7 @@
                             <div class="logo">
                                 <a href="../"
                                     title=" home page of Qulice.com ">
-                                    <img src="https://camo.githubusercontent.com/21b0e8be23deb3c2743027b82fda3af26c04ebfbb43faf5fc73c01b66607f8bf/687474703a2f2f696d672e71756c6963652e636f6d2f6c6f676f2e737667"
+                                    <img src="../logo.svg"
                                         alt="Qulice"
                                                                                     width="214"
                                                                                                                             height="60"
@@ -143,13 +149,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.22.0</strong>
+                                    <strong itemprop="version">0.22.1</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2022-08-22T03:43:51Z">
+                                    <time itemprop="datePublished" datetime="2024-03-06T03:52:16Z">
                                         
-                                        22-Aug-2022
+                                        06-Mar-2024
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -158,39 +164,39 @@
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
                             <script type="text/javascript">
-//<![CDATA[
 function toggleDisplay(elementId) {
- var elm = document.getElementById(elementId + 'error');
- if (elm && typeof elm.style != "undefined") {
- if (elm.style.display == "none") {
- elm.style.display = "";
- document.getElementById(elementId + 'off').style.display = "none";
- document.getElementById(elementId + 'on').style.display = "inline";
- } else if (elm.style.display == "") { elm.style.display = "none";
- document.getElementById(elementId + 'off').style.display = "inline";
- document.getElementById(elementId + 'on').style.display = "none";
- } 
- } 
+ var elm = document.getElementById(elementId + '-error');
+ if (elm == null) {
+  elm = document.getElementById(elementId + '-failure');
  }
-//]]>
-</script><section>
-<h2><a name="Surefire_Report"></a>Surefire Report</h2></section><section>
-<h2><a name="Summary"></a>Summary</h2><a name="Summary"></a><br />
-<table border="1" class="bodyTable">
+ if (elm && typeof elm.style != "undefined") {
+  if (elm.style.display == "none") {
+   elm.style.display = "";
+   document.getElementById(elementId + '-off').style.display = "none";
+   document.getElementById(elementId + '-on').style.display = "inline";
+  } else if (elm.style.display == "") {   elm.style.display = "none";
+   document.getElementById(elementId + '-off').style.display = "inline";
+   document.getElementById(elementId + '-on').style.display = "none";
+  }
+ }
+ }</script><section>
+<h2><a name="Surefire_Report"></a>Surefire Report</h2></section><section><a id="Summary"></a>
+<h2><a name="Summary"></a>Summary</h2><br />
+<table border="0" class="bodyTable">
 <tr class="a">
 <th>Tests</th>
-<th>Errors </th>
+<th>Errors</th>
 <th>Failures</th>
 <th>Skipped</th>
 <th>Success Rate</th>
 <th>Time</th></tr>
 <tr class="b">
-<td>0</td>
+<td align="left">0</td>
 <td>0</td>
 <td>0</td>
 <td>0</td>
 <td>0%</td>
-<td>0</td></tr></table><br />
+<td>0 s</td></tr></table><br />
 <p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></section>
                         </article>
                     </div>
@@ -198,7 +204,7 @@ function toggleDisplay(elementId) {
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2022
+                                                                            2011-2024
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>

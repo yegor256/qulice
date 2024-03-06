@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>JavadocTagsCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">JavadocTagsCheck.java</span></div><h1>JavadocTagsCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2022 Qulice.com
+ * Copyright (c) 2011-2024 Qulice.com
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -64,22 +65,22 @@ import org.apache.commons.lang3.StringUtils;
  * @see &lt;a href=&quot;http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html&quot;&gt;Keywords substitution in Subversion&lt;/a&gt;
  * @since 0.3
  */
-<span class="nc" id="L67">public final class JavadocTagsCheck extends AbstractCheck {</span>
+<span class="nc" id="L68">public final class JavadocTagsCheck extends AbstractCheck {</span>
 
     /**
      * Map of tag and its pattern.
      */
-<span class="nc" id="L72">    private final Map&lt;String, Pattern&gt; tags = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L73">    private final Map&lt;String, Pattern&gt; tags = new HashMap&lt;&gt;();</span>
 
     /**
      * List of prohibited javadoc tags.
      */
-<span class="nc" id="L77">    private final Collection&lt;String&gt; prohibited =</span>
-<span class="nc" id="L78">        Arrays.asList(&quot;author&quot;, &quot;version&quot;);</span>
+<span class="nc" id="L78">    private final Collection&lt;String&gt; prohibited =</span>
+<span class="nc" id="L79">        Arrays.asList(&quot;author&quot;, &quot;version&quot;);</span>
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L82">        return new int[]{</span>
+<span class="nc" id="L83">        return new int[]{</span>
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
         };
@@ -87,41 +88,41 @@ import org.apache.commons.lang3.StringUtils;
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L90">        return this.getDefaultTokens();</span>
+<span class="nc" id="L91">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L95">        return this.getDefaultTokens();</span>
+<span class="nc" id="L96">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void init() {
-<span class="nc" id="L100">        this.tags.put(</span>
+<span class="nc" id="L101">        this.tags.put(</span>
             &quot;since&quot;,
-<span class="nc" id="L102">            Pattern.compile(</span>
+<span class="nc" id="L103">            Pattern.compile(</span>
                 &quot;^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$&quot;
             )
         );
-<span class="nc" id="L106">    }</span>
+<span class="nc" id="L107">    }</span>
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc" id="L110">        final String[] lines = this.getLines();</span>
-<span class="nc" id="L111">        final int start = ast.getLineNo();</span>
-<span class="nc" id="L112">        final int cstart = JavadocTagsCheck.findCommentStart(lines, start);</span>
-<span class="nc" id="L113">        final int cend = JavadocTagsCheck.findCommentEnd(lines, start);</span>
-<span class="nc bnc" id="L114" title="All 4 branches missed.">        if (cend &gt; cstart &amp;&amp; cstart &gt;= 0) {</span>
-<span class="nc bnc" id="L115" title="All 2 branches missed.">            for (final String tag : this.prohibited) {</span>
-<span class="nc" id="L116">                this.findProhibited(lines, start, cstart, cend, tag);</span>
-<span class="nc" id="L117">            }</span>
-<span class="nc bnc" id="L118" title="All 2 branches missed.">            for (final String tag : this.tags.keySet()) {</span>
-<span class="nc" id="L119">                this.matchTagFormat(lines, cstart, cend, tag);</span>
-<span class="nc" id="L120">            }</span>
+<span class="nc" id="L111">        final String[] lines = this.getLines();</span>
+<span class="nc" id="L112">        final int start = ast.getLineNo();</span>
+<span class="nc" id="L113">        final int cstart = JavadocTagsCheck.findCommentStart(lines, start);</span>
+<span class="nc" id="L114">        final int cend = JavadocTagsCheck.findCommentEnd(lines, start);</span>
+<span class="nc bnc" id="L115" title="All 4 branches missed.">        if (cend &gt; cstart &amp;&amp; cstart &gt;= 0) {</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            for (final String tag : this.prohibited) {</span>
+<span class="nc" id="L117">                this.findProhibited(lines, start, cstart, cend, tag);</span>
+<span class="nc" id="L118">            }</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">            for (final String tag : this.tags.keySet()) {</span>
+<span class="nc" id="L120">                this.matchTagFormat(lines, cstart, cend, tag);</span>
+<span class="nc" id="L121">            }</span>
         } else {
-<span class="nc" id="L122">            this.log(0, &quot;Problem finding class/interface comment&quot;);</span>
+<span class="nc" id="L123">            this.log(0, &quot;Problem finding class/interface comment&quot;);</span>
         }
-<span class="nc" id="L124">    }</span>
+<span class="nc" id="L125">    }</span>
 
     /**
      * Get the text of the given tag.
@@ -129,8 +130,8 @@ import org.apache.commons.lang3.StringUtils;
      * @return The text of the tag.
      */
     private static String getTagText(final String line) {
-<span class="nc" id="L132">        return line.substring(</span>
-<span class="nc" id="L133">            line.indexOf(' ', line.indexOf('@')) + 1</span>
+<span class="nc" id="L133">        return line.substring(</span>
+<span class="nc" id="L134">            line.indexOf(' ', line.indexOf('@')) + 1</span>
         );
     }
 
@@ -143,14 +144,14 @@ import org.apache.commons.lang3.StringUtils;
      */
     private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
-<span class="nc" id="L146">        int found = -1;</span>
-<span class="nc bnc" id="L147" title="All 2 branches missed.">        for (int pos = start - 1; pos &gt;= 0; pos -= 1) {</span>
-<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (lines[pos].trim().equals(text)) {</span>
-<span class="nc" id="L149">                found = pos;</span>
-<span class="nc" id="L150">                break;</span>
+<span class="nc" id="L147">        int found = -1;</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">        for (int pos = start - 1; pos &gt;= 0; pos -= 1) {</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (lines[pos].trim().equals(text)) {</span>
+<span class="nc" id="L150">                found = pos;</span>
+<span class="nc" id="L151">                break;</span>
             }
         }
-<span class="nc" id="L153">        return found;</span>
+<span class="nc" id="L154">        return found;</span>
     }
 
     /**
@@ -160,7 +161,7 @@ import org.apache.commons.lang3.StringUtils;
      * @return Line number with found starting comment or -1 otherwise.
      */
     private static int findCommentStart(final String[] lines, final int start) {
-<span class="nc" id="L163">        return JavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;/**&quot;);</span>
+<span class="nc" id="L164">        return JavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;/**&quot;);</span>
     }
 
     /**
@@ -170,7 +171,7 @@ import org.apache.commons.lang3.StringUtils;
      * @return Line number with found ending comment, or -1 if it wasn't found.
      */
     private static int findCommentEnd(final String[] lines, final int start) {
-<span class="nc" id="L173">        return JavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;*/&quot;);</span>
+<span class="nc" id="L174">        return JavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;*/&quot;);</span>
     }
 
     /**
@@ -184,19 +185,19 @@ import org.apache.commons.lang3.StringUtils;
      */
     private void findProhibited(final String[] lines, final int start,
         final int cstart, final int cend, final String tag) {
-<span class="nc" id="L187">        final List&lt;Integer&gt; found =</span>
-<span class="nc" id="L188">            this.findTagLineNum(lines, cstart, cend, tag);</span>
-<span class="nc bnc" id="L189" title="All 2 branches missed.">        if (!found.isEmpty()) {</span>
-<span class="nc" id="L190">            this.log(</span>
+<span class="nc" id="L188">        final List&lt;Integer&gt; found =</span>
+<span class="nc" id="L189">            this.findTagLineNum(lines, cstart, cend, tag);</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">        if (!found.isEmpty()) {</span>
+<span class="nc" id="L191">            this.log(</span>
                 start + 1,
-<span class="nc" id="L192">                StringUtils.join(</span>
+<span class="nc" id="L193">                StringUtils.join(</span>
                     &quot;Prohibited ''@{0}'' tag in&quot;,
                     &quot; class/interface comment&quot;
                 ),
                 tag
             );
         }
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L200">    }</span>
 
     /**
      * Check if the tag text matches the format from pattern.
@@ -208,27 +209,27 @@ import org.apache.commons.lang3.StringUtils;
      */
     private void matchTagFormat(final String[] lines, final int start,
         final int end, final String tag) {
-<span class="nc" id="L211">        final List&lt;Integer&gt; found = this.findTagLineNum(lines, start, end, tag);</span>
-<span class="nc bnc" id="L212" title="All 2 branches missed.">        if (found.isEmpty()) {</span>
-<span class="nc" id="L213">            this.log(</span>
+<span class="nc" id="L212">        final List&lt;Integer&gt; found = this.findTagLineNum(lines, start, end, tag);</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">        if (found.isEmpty()) {</span>
+<span class="nc" id="L214">            this.log(</span>
                 start + 1,
                 &quot;Missing ''@{0}'' tag in class/interface comment&quot;,
                 tag
             );
-<span class="nc" id="L218">            return;</span>
+<span class="nc" id="L219">            return;</span>
         }
-<span class="nc bnc" id="L220" title="All 2 branches missed.">        for (final Integer item : found) {</span>
-<span class="nc" id="L221">            final String text = JavadocTagsCheck.getTagText(lines[item]);</span>
-<span class="nc bnc" id="L222" title="All 2 branches missed.">            if (!this.tags.get(tag).matcher(text).matches()) {</span>
-<span class="nc" id="L223">                this.log(</span>
-<span class="nc" id="L224">                    item + 1,</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        for (final Integer item : found) {</span>
+<span class="nc" id="L222">            final String text = JavadocTagsCheck.getTagText(lines[item]);</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">            if (!this.tags.get(tag).matcher(text).matches()) {</span>
+<span class="nc" id="L224">                this.log(</span>
+<span class="nc" id="L225">                    item + 1,</span>
                     &quot;Tag text ''{0}'' does not match the pattern ''{1}''&quot;,
                     text,
-<span class="nc" id="L227">                    this.tags.get(tag).toString()</span>
+<span class="nc" id="L228">                    this.tags.get(tag).toString()</span>
                 );
             }
-<span class="nc" id="L230">        }</span>
-<span class="nc" id="L231">    }</span>
+<span class="nc" id="L231">        }</span>
+<span class="nc" id="L232">    }</span>
 
     /**
      * Find given tag in comment lines.
@@ -241,25 +242,25 @@ import org.apache.commons.lang3.StringUtils;
      */
     private List&lt;Integer&gt; findTagLineNum(final String[] lines, final int start,
         final int end, final String tag) {
-<span class="nc" id="L244">        final String prefix = String.format(&quot; * @%s &quot;, tag);</span>
-<span class="nc" id="L245">        final List&lt;Integer&gt; found = new ArrayList&lt;&gt;(1);</span>
-<span class="nc bnc" id="L246" title="All 2 branches missed.">        for (int pos = start; pos &lt;= end; pos += 1) {</span>
-<span class="nc" id="L247">            final String line = lines[pos];</span>
-<span class="nc bnc" id="L248" title="All 2 branches missed.">            if (line.contains(String.format(&quot;@%s &quot;, tag))) {</span>
-<span class="nc bnc" id="L249" title="All 2 branches missed.">                if (!line.trim().startsWith(prefix.trim())) {</span>
-<span class="nc" id="L250">                    this.log(</span>
+<span class="nc" id="L245">        final String prefix = String.format(&quot; * @%s &quot;, tag);</span>
+<span class="nc" id="L246">        final List&lt;Integer&gt; found = new ArrayList&lt;&gt;(1);</span>
+<span class="nc bnc" id="L247" title="All 2 branches missed.">        for (int pos = start; pos &lt;= end; pos += 1) {</span>
+<span class="nc" id="L248">            final String line = lines[pos];</span>
+<span class="nc bnc" id="L249" title="All 2 branches missed.">            if (line.contains(String.format(&quot;@%s &quot;, tag))) {</span>
+<span class="nc bnc" id="L250" title="All 2 branches missed.">                if (!line.trim().startsWith(prefix.trim())) {</span>
+<span class="nc" id="L251">                    this.log(</span>
                         start + pos + 1,
                         &quot;Line with ''@{0}'' does not start with a ''{1}''&quot;,
                         tag,
                         prefix
                     );
-<span class="nc" id="L256">                    break;</span>
+<span class="nc" id="L257">                    break;</span>
                 }
-<span class="nc" id="L258">                found.add(pos);</span>
+<span class="nc" id="L259">                found.add(pos);</span>
             }
         }
-<span class="nc" id="L261">        return found;</span>
+<span class="nc" id="L262">        return found;</span>
     }
 }
 
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
