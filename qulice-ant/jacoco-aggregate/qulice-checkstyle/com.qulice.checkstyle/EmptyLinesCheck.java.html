@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EmptyLinesCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-ant</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">EmptyLinesCheck.java</span></div><h1>EmptyLinesCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2022 Qulice.com
+ * Copyright (c) 2011-2024 Qulice.com
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,26 +51,26 @@ import java.util.stream.StreamSupport;
  *
  * @since 0.3
  */
-<span class="nc" id="L53">public final class EmptyLinesCheck extends AbstractCheck {</span>
+<span class="nc" id="L54">public final class EmptyLinesCheck extends AbstractCheck {</span>
 
     /**
      * Pattern for empty line check.
      */
-<span class="nc" id="L58">    private static final Pattern PATTERN = Pattern.compile(&quot;^\\s*$&quot;);</span>
+<span class="nc" id="L59">    private static final Pattern PATTERN = Pattern.compile(&quot;^\\s*$&quot;);</span>
 
     /**
      * Line ranges of all anonymous inner types.
      */
-<span class="nc" id="L63">    private final LineRanges anons = new LineRanges();</span>
+<span class="nc" id="L64">    private final LineRanges anons = new LineRanges();</span>
 
     /**
      * Line ranges of all method and constructor bodies.
      */
-<span class="nc" id="L68">    private final LineRanges methods = new LineRanges();</span>
+<span class="nc" id="L69">    private final LineRanges methods = new LineRanges();</span>
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L72">        return new int[] {</span>
+<span class="nc" id="L73">        return new int[] {</span>
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.OBJBLOCK,
@@ -78,54 +79,54 @@ import java.util.stream.StreamSupport;
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L81">        return this.getDefaultTokens();</span>
+<span class="nc" id="L82">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L86">        return this.getDefaultTokens();</span>
+<span class="nc" id="L87">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc" id="L91">        this.getLine(ast.getLastChild().getLine());</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.OBJBLOCK</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">            &amp;&amp; ast.getParent() != null</span>
-<span class="nc bnc" id="L94" title="All 2 branches missed.">            &amp;&amp; ast.getParent().getType() == TokenTypes.LITERAL_NEW) {</span>
-<span class="nc" id="L95">            final DetailAST left = ast.getFirstChild();</span>
-<span class="nc" id="L96">            final DetailAST right = ast.getLastChild();</span>
-<span class="nc bnc" id="L97" title="All 4 branches missed.">            if (left != null &amp;&amp; right != null) {</span>
-<span class="nc" id="L98">                this.anons.add(</span>
-<span class="nc" id="L99">                    new LineRange(left.getLineNo(), right.getLineNo())</span>
+<span class="nc" id="L92">        this.getLine(ast.getLastChild().getLineNo() - 1);</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.OBJBLOCK</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            &amp;&amp; ast.getParent() != null</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            &amp;&amp; ast.getParent().getType() == TokenTypes.LITERAL_NEW) {</span>
+<span class="nc" id="L96">            final DetailAST left = ast.getFirstChild();</span>
+<span class="nc" id="L97">            final DetailAST right = ast.getLastChild();</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            if (left != null &amp;&amp; right != null) {</span>
+<span class="nc" id="L99">                this.anons.add(</span>
+<span class="nc" id="L100">                    new LineRange(left.getLineNo(), right.getLineNo())</span>
                 );
             }
-<span class="nc bnc" id="L102" title="All 2 branches missed.">        } else if (ast.getType() == TokenTypes.METHOD_DEF</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">            || ast.getType() == TokenTypes.CTOR_DEF) {</span>
-<span class="nc" id="L104">            final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (opening != null) {</span>
-<span class="nc" id="L106">                final DetailAST right =</span>
-<span class="nc" id="L107">                    opening.findFirstToken(TokenTypes.RCURLY);</span>
-<span class="nc" id="L108">                this.methods.add(</span>
-<span class="nc" id="L109">                    new LineRange(opening.getLineNo(), right.getLineNo())</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        } else if (ast.getType() == TokenTypes.METHOD_DEF</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            || ast.getType() == TokenTypes.CTOR_DEF) {</span>
+<span class="nc" id="L105">            final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (opening != null) {</span>
+<span class="nc" id="L107">                final DetailAST right =</span>
+<span class="nc" id="L108">                    opening.findFirstToken(TokenTypes.RCURLY);</span>
+<span class="nc" id="L109">                this.methods.add(</span>
+<span class="nc" id="L110">                    new LineRange(opening.getLineNo(), right.getLineNo())</span>
                 );
             }
         }
-<span class="nc" id="L113">    }</span>
+<span class="nc" id="L114">    }</span>
 
     @Override
     public void finishTree(final DetailAST root) {
-<span class="nc" id="L117">        final String[] lines = this.getLines();</span>
-<span class="nc bnc" id="L118" title="All 2 branches missed.">        for (int line = 0; line &lt; lines.length; ++line) {</span>
-<span class="nc bnc" id="L119" title="All 2 branches missed.">            if (this.methods.inRange(line + 1)</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">                &amp;&amp; EmptyLinesCheck.PATTERN.matcher(lines[line]).find()</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">                &amp;&amp; this.insideMethod(line + 1)) {</span>
-<span class="nc" id="L122">                this.log(line + 1, &quot;Empty line inside method&quot;);</span>
+<span class="nc" id="L118">        final String[] lines = this.getLines();</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">        for (int line = 0; line &lt; lines.length; ++line) {</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (this.methods.inRange(line + 1)</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">                &amp;&amp; EmptyLinesCheck.PATTERN.matcher(lines[line]).find()</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">                &amp;&amp; this.insideMethod(line + 1)) {</span>
+<span class="nc" id="L123">                this.log(line + 1, &quot;Empty line inside method&quot;);</span>
             }
         }
-<span class="nc" id="L125">        this.methods.clear();</span>
-<span class="nc" id="L126">        this.anons.clear();</span>
-<span class="nc" id="L127">        super.finishTree(root);</span>
-<span class="nc" id="L128">    }</span>
+<span class="nc" id="L126">        this.methods.clear();</span>
+<span class="nc" id="L127">        this.anons.clear();</span>
+<span class="nc" id="L128">        super.finishTree(root);</span>
+<span class="nc" id="L129">    }</span>
 
     /**
      * If this is within a valid anonymous class, make sure that is still
@@ -136,13 +137,13 @@ import java.util.stream.StreamSupport;
      * @return True if the line is directly inside of a method.
      */
     private boolean insideMethod(final int line) {
-<span class="nc" id="L139">        final int method = EmptyLinesCheck.linesBetweenBraces(</span>
-<span class="nc" id="L140">            line, this.methods::iterator, Integer.MIN_VALUE</span>
+<span class="nc" id="L140">        final int method = EmptyLinesCheck.linesBetweenBraces(</span>
+<span class="nc" id="L141">            line, this.methods::iterator, Integer.MIN_VALUE</span>
         );
-<span class="nc" id="L142">        final int clazz = EmptyLinesCheck.linesBetweenBraces(</span>
-<span class="nc" id="L143">            line, this.anons::iterator, Integer.MAX_VALUE</span>
+<span class="nc" id="L143">        final int clazz = EmptyLinesCheck.linesBetweenBraces(</span>
+<span class="nc" id="L144">            line, this.anons::iterator, Integer.MAX_VALUE</span>
         );
-<span class="nc bnc" id="L145" title="All 2 branches missed.">        return method &lt; clazz;</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">        return method &lt; clazz;</span>
     }
 
     /**
@@ -154,11 +155,11 @@ import java.util.stream.StreamSupport;
      */
     private static int linesBetweenBraces(final int line,
         final Iterable&lt;LineRange&gt; iterator, final int def) {
-<span class="nc" id="L157">        return StreamSupport.stream(iterator.spliterator(), false)</span>
-<span class="nc" id="L158">            .filter(r -&gt; r.within(line))</span>
-<span class="nc" id="L159">            .min(Comparator.comparingInt(r -&gt; r.last() - r.first()))</span>
-<span class="nc" id="L160">            .map(r -&gt; r.last() - r.first())</span>
-<span class="nc" id="L161">            .orElse(def);</span>
+<span class="nc" id="L158">        return StreamSupport.stream(iterator.spliterator(), false)</span>
+<span class="nc" id="L159">            .filter(r -&gt; r.within(line))</span>
+<span class="nc" id="L160">            .min(Comparator.comparingInt(r -&gt; r.last() - r.first()))</span>
+<span class="nc" id="L161">            .map(r -&gt; r.last() - r.first())</span>
+<span class="nc" id="L162">            .orElse(def);</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

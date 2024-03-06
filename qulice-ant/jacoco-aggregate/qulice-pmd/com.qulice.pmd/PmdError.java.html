@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PmdError.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-ant</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd</a> &gt; <span class="el_source">PmdError.java</span></div><h1>PmdError.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011-2024 Qulice.com
+ *
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.pmd;
+
+import net.sourceforge.pmd.Report.ConfigurationError;
+import net.sourceforge.pmd.Report.ProcessingError;
+import net.sourceforge.pmd.RuleViolation;
+
+/**
+ * Represents one PMD error (usually it will be violation).
+ *
+ * @since 1.0
+ */
+public interface PmdError {
+    /**
+     * Returns error name which is short, fixed, human-readable category of
+     * the error.
+     * @return Error name.
+     */
+    String name();
+
+    /**
+     * Returns file name which caused this error.
+     * May return sentinel value if file information is not available.
+     * @return File name.
+     */
+    String fileName();
+
+    /**
+     * Returns formatted line range which cause this error.
+     * May return sentinel value if line information is not available.
+     * @return Formatted line range.
+     */
+    String lines();
+
+    /**
+     * Returns error description.
+     * @return Description.
+     */
+    String description();
+
+    /**
+     * PmdError backed by a RuleViolation.
+     * @since 1.0
+     */
+    final class OfRuleViolation implements PmdError {
+        /**
+         * Internal RuleViolation.
+         */
+        private final RuleViolation violation;
+
+        /**
+         * Creates a new PmdError, representing given RuleViolation.
+         * @param violation Internal RuleViolation.
+         */
+<span class="nc" id="L84">        public OfRuleViolation(final RuleViolation violation) {</span>
+<span class="nc" id="L85">            this.violation = violation;</span>
+<span class="nc" id="L86">        }</span>
+
+        @Override
+        public String name() {
+<span class="nc" id="L90">            return this.violation.getRule().getName();</span>
+        }
+
+        @Override
+        public String fileName() {
+<span class="nc" id="L95">            return this.violation.getFilename();</span>
+        }
+
+        @Override
+        public String lines() {
+<span class="nc" id="L100">            return String.format(</span>
+                &quot;%d-%d&quot;,
+<span class="nc" id="L102">                this.violation.getBeginLine(), this.violation.getEndLine()</span>
+            );
+        }
+
+        @Override
+        public String description() {
+<span class="nc" id="L108">            return this.violation.getDescription();</span>
+        }
+    }
+
+    /**
+     * PmdError backed by a ProcessingError.
+     * @since 1.0
+     */
+    final class OfProcessingError implements PmdError {
+        /**
+         * Internal ProcessingError.
+         */
+        private final ProcessingError error;
+
+        /**
+         * Creates a new PmdError, representing given ProcessingError.
+         * @param error Internal ProcessingError.
+         */
+<span class="nc" id="L126">        public OfProcessingError(final ProcessingError error) {</span>
+<span class="nc" id="L127">            this.error = error;</span>
+<span class="nc" id="L128">        }</span>
+
+        @Override
+        public String name() {
+<span class="nc" id="L132">            return &quot;ProcessingError&quot;;</span>
+        }
+
+        @Override
+        public String fileName() {
+<span class="nc" id="L137">            return this.error.getFile();</span>
+        }
+
+        @Override
+        public String lines() {
+<span class="nc" id="L142">            return &quot;unknown&quot;;</span>
+        }
+
+        @Override
+        public String description() {
+<span class="nc" id="L147">            return new StringBuilder()</span>
+<span class="nc" id="L148">                .append(this.error.getMsg())</span>
+<span class="nc" id="L149">                .append(&quot;: &quot;)</span>
+<span class="nc" id="L150">                .append(this.error.getDetail())</span>
+<span class="nc" id="L151">                .toString();</span>
+        }
+    }
+
+    /**
+     * PmdError backed by a ConfigError.
+     * @since 1.0
+     */
+    final class OfConfigError implements PmdError {
+        /**
+         * Internal ConfigError.
+         */
+        private final ConfigurationError error;
+
+        /**
+         * Creates a new PmdError, representing given ProcessingError.
+         * @param error Internal ProcessingError.
+         */
+<span class="nc" id="L169">        public OfConfigError(final ConfigurationError error) {</span>
+<span class="nc" id="L170">            this.error = error;</span>
+<span class="nc" id="L171">        }</span>
+
+        @Override
+        public String name() {
+<span class="nc" id="L175">            return &quot;ProcessingError&quot;;</span>
+        }
+
+        @Override
+        public String fileName() {
+<span class="nc" id="L180">            return &quot;unknown&quot;;</span>
+        }
+
+        @Override
+        public String lines() {
+<span class="nc" id="L185">            return &quot;unknown&quot;;</span>
+        }
+
+        @Override
+        public String description() {
+<span class="nc" id="L190">            return this.error.issue();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

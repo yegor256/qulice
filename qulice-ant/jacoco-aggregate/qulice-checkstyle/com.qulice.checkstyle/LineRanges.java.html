@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>LineRanges.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-ant</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">LineRanges.java</span></div><h1>LineRanges.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2022 Qulice.com
+ * Copyright (c) 2011-2024 Qulice.com
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,12 +43,12 @@ import java.util.Iterator;
  *
  * @since 0.16
  */
-<span class="nc" id="L45">public final class LineRanges {</span>
+<span class="nc" id="L46">public final class LineRanges {</span>
 
     /**
      * ArrayList of line ranges.
      */
-<span class="nc" id="L50">    private final LineRanges.LocalCollection lines =</span>
+<span class="nc" id="L51">    private final LineRanges.LocalCollection lines =</span>
         new LineRanges.LocalCollection();
 
     /**
@@ -55,15 +56,15 @@ import java.util.Iterator;
      * @param line The line range to add to the collection
      */
     public void add(final LineRange line) {
-<span class="nc" id="L58">        this.lines.collection().add(line);</span>
-<span class="nc" id="L59">    }</span>
+<span class="nc" id="L59">        this.lines.collection().add(line);</span>
+<span class="nc" id="L60">    }</span>
 
     /**
      * Returns an iterator for this collection.
      * @return Iterator pointing to the internal collections elements.
      */
     public Iterator&lt;LineRange&gt; iterator() {
-<span class="nc" id="L66">        return this.lines.collection().iterator();</span>
+<span class="nc" id="L67">        return this.lines.collection().iterator();</span>
     }
 
     /**
@@ -72,9 +73,9 @@ import java.util.Iterator;
      * @return True if the given line number is within any line range.
      */
     public boolean inRange(final int line) {
-<span class="nc bnc" id="L75" title="All 2 branches missed.">        return !this.lines.collection().isEmpty()</span>
-<span class="nc" id="L76">            &amp;&amp; FluentIterable.from(this.lines.collection())</span>
-<span class="nc bnc" id="L77" title="All 2 branches missed.">            .anyMatch(new LineRanges.LineWithAny(line));</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        return !this.lines.collection().isEmpty()</span>
+<span class="nc" id="L77">            &amp;&amp; FluentIterable.from(this.lines.collection())</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            .anyMatch(new LineRanges.LineWithAny(line));</span>
     }
 
     /**
@@ -84,25 +85,25 @@ import java.util.Iterator;
      * @return Returns all LineRange elements that are within range.
      */
     public LineRanges within(final LineRanges ranges) {
-<span class="nc" id="L87">        final LineRanges result = new LineRanges();</span>
-<span class="nc" id="L88">        final Iterator&lt;LineRange&gt; iterator = ranges.iterator();</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">        while (iterator.hasNext()) {</span>
-<span class="nc" id="L90">            final LineRange next = iterator.next();</span>
-<span class="nc bnc" id="L91" title="All 2 branches missed.">            for (final LineRange line : this.lines.collection()) {</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">                if (next.within(line)) {</span>
-<span class="nc" id="L93">                    result.add(line);</span>
+<span class="nc" id="L88">        final LineRanges result = new LineRanges();</span>
+<span class="nc" id="L89">        final Iterator&lt;LineRange&gt; iterator = ranges.iterator();</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        while (iterator.hasNext()) {</span>
+<span class="nc" id="L91">            final LineRange next = iterator.next();</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">            for (final LineRange line : this.lines.collection()) {</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">                if (next.within(line)) {</span>
+<span class="nc" id="L94">                    result.add(line);</span>
                 }
-<span class="nc" id="L95">            }</span>
-<span class="nc" id="L96">        }</span>
-<span class="nc" id="L97">        return result;</span>
+<span class="nc" id="L96">            }</span>
+<span class="nc" id="L97">        }</span>
+<span class="nc" id="L98">        return result;</span>
     }
 
     /**
      * Clears the collection.
      */
     public void clear() {
-<span class="nc" id="L104">        this.lines.collection().clear();</span>
-<span class="nc" id="L105">    }</span>
+<span class="nc" id="L105">        this.lines.collection().clear();</span>
+<span class="nc" id="L106">    }</span>
 
     /**
      * Predicate to determine if a given line is within range of any of
@@ -121,13 +122,13 @@ import java.util.Iterator;
          * Default constructor.
          * @param line The given line to check against all the line ranges.
          */
-<span class="nc" id="L124">        private LineWithAny(final int line) {</span>
-<span class="nc" id="L125">            this.given = line;</span>
-<span class="nc" id="L126">        }</span>
+<span class="nc" id="L125">        private LineWithAny(final int line) {</span>
+<span class="nc" id="L126">            this.given = line;</span>
+<span class="nc" id="L127">        }</span>
 
         @Override
         public boolean apply(final LineRange range) {
-<span class="nc bnc" id="L130" title="All 4 branches missed.">            return range != null &amp;&amp; range.within(this.given);</span>
+<span class="nc bnc" id="L131" title="All 4 branches missed.">            return range != null &amp;&amp; range.within(this.given);</span>
         }
     }
 
@@ -136,13 +137,13 @@ import java.util.Iterator;
      *
      * @since 0.1
      */
-<span class="nc" id="L139">    private static final class LocalCollection</span>
+<span class="nc" id="L140">    private static final class LocalCollection</span>
         extends ThreadLocal&lt;Collection&lt;LineRange&gt;&gt; {
 
         /**
          * Internal Collection.
          */
-<span class="nc" id="L145">        private final transient Collection&lt;LineRange&gt; ranges =</span>
+<span class="nc" id="L146">        private final transient Collection&lt;LineRange&gt; ranges =</span>
             new ArrayList&lt;&gt;(20);
 
         /**
@@ -150,8 +151,8 @@ import java.util.Iterator;
          * @return The collection for this thread.
          */
         public Collection&lt;LineRange&gt; collection() {
-<span class="nc" id="L153">            return this.ranges;</span>
+<span class="nc" id="L154">            return this.ranges;</span>
         }
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

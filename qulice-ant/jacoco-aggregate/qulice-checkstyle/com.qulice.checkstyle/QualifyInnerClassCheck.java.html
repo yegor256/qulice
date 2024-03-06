@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>QualifyInnerClassCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-ant</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">QualifyInnerClassCheck.java</span></div><h1>QualifyInnerClassCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2022 Qulice.com
+ * Copyright (c) 2011-2024 Qulice.com
+ *
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -30,6 +31,10 @@
 package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Checks if inner classes are properly accessed using their qualified name
@@ -40,26 +45,124 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
  *  Implement QualifyInnerClassCheck so it follows what defined in
  *  QualifyInnerClassCheck test and add this check to checks.xml and CheckTest.
  */
-<span class="nc" id="L43">public final class QualifyInnerClassCheck extends AbstractCheck {</span>
+<span class="nc" id="L48">public final class QualifyInnerClassCheck extends AbstractCheck {</span>
+    // FIXME: do we need to clear these fields in the end?
+    /**
+     * Set of all nested classes.
+     */
+<span class="nc" id="L53">    private Set&lt;String&gt; nested = new HashSet&lt;&gt;();</span>
+
+    /**
+     * Whether we already visited root class of the .java file.
+     */
+    private boolean root;
+
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L46">        throw new UnsupportedOperationException(</span>
-            &quot;getDefaultTokens() not implemented&quot;
-        );
+<span class="nc" id="L62">        return new int[]{</span>
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L53">        throw new UnsupportedOperationException(</span>
-            &quot;getAcceptableTokens() not implemented&quot;
-        );
+<span class="nc" id="L72">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L60">        throw new UnsupportedOperationException(</span>
-            &quot;getRequiredTokens() not implemented&quot;
-        );
+<span class="nc" id="L77">        return this.getDefaultTokens();</span>
+    }
+
+    @Override
+    public void visitToken(final DetailAST ast) {
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            || ast.getType() == TokenTypes.ENUM_DEF</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            || ast.getType() == TokenTypes.INTERFACE_DEF) {</span>
+<span class="nc" id="L85">            this.scanForNestedClassesIfNecessary(ast);</span>
+        }
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.LITERAL_NEW) {</span>
+<span class="nc" id="L88">            this.visitNewExpression(ast);</span>
+        }
+<span class="nc" id="L90">    }</span>
+
+    /**
+     * Checks if class to be instantiated is nested and unqualified.
+     *
+     * FIXME: currently only simple paths are detected
+     * (i.e. `new Foo`, but not `new Foo.Bar`)
+     * @param expr EXPR LITERAL_NEW node that needs to be checked
+     */
+    private void visitNewExpression(final DetailAST expr) {
+<span class="nc" id="L100">        final DetailAST child = expr.getFirstChild();</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        if (child.getType() == TokenTypes.IDENT) {</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (this.nested.contains(child.getText())) {</span>
+<span class="nc" id="L103">                this.log(child, &quot;Static inner class should be qualified with outer class&quot;);</span>
+            }
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        } else if (child.getType() != TokenTypes.DOT) {</span>
+<span class="nc" id="L106">            final String message = String.format(&quot;unsupported input %d&quot;, child.getType());</span>
+<span class="nc" id="L107">            throw new IllegalStateException(message);</span>
+        }
+<span class="nc" id="L109">    }</span>
+
+    /**
+     * If provided class is top-level, scans it for nested classes.
+     * FIXME: currently it assumes there can be only one top-level class
+     *
+     * @param node Class-like AST node
+     */
+    private void scanForNestedClassesIfNecessary(final DetailAST node) {
+<span class="nc bnc" id="L118" title="All 2 branches missed.">        if (!this.root) {</span>
+<span class="nc" id="L119">            this.root = true;</span>
+<span class="nc" id="L120">            this.scanClass(node);</span>
+        }
+<span class="nc" id="L122">    }</span>
+
+    /**
+     * Scans class for all nested sub-classes.
+     *
+     * FIXME: checkstyle discourages manual traversing of AST,
+     * but exactly this is happening here.
+     * @param node Class-like AST node that needs to be checked
+     */
+    private void scanClass(final DetailAST node) {
+<span class="nc" id="L132">        this.nested.add(getClassName(node));</span>
+<span class="nc" id="L133">        final DetailAST content = node.findFirstToken(TokenTypes.OBJBLOCK);</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        if (content == null) {</span>
+<span class="nc" id="L135">            return;</span>
+        }
+        for (
+<span class="nc" id="L138">            DetailAST child = content.getFirstChild();</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            child != null;</span>
+<span class="nc" id="L140">            child  = child.getNextSibling()</span>
+        ) {
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (child.getType() == TokenTypes.CLASS_DEF</span>
+<span class="nc bnc" id="L143" title="All 2 branches missed.">                || child.getType() == TokenTypes.ENUM_DEF</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">                || child.getType() == TokenTypes.INTERFACE_DEF) {</span>
+<span class="nc" id="L145">                this.scanClass(child);</span>
+            }
+        }
+<span class="nc" id="L148">    }</span>
+
+    /**
+     * Returns class name.
+     * @param clazz Class-like AST node
+     * @return Class name
+     */
+    private static String getClassName(final DetailAST clazz) {
+        for (
+<span class="nc" id="L157">            DetailAST child = clazz.getFirstChild();</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">            child != null;</span>
+<span class="nc" id="L159">            child = child.getNextSibling()</span>
+        ) {
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            if (child.getType() == TokenTypes.IDENT) {</span>
+<span class="nc" id="L162">                return child.getText();</span>
+            }
+        }
+<span class="nc" id="L165">        throw new IllegalStateException(&quot;unexpected input: can not find class name&quot;);</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
