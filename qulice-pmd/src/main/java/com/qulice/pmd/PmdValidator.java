@@ -98,9 +98,13 @@ public final class PmdValidator implements ResourceValidator {
             final String name = file.getPath().substring(
                 this.env.basedir().toString().length()
             );
-            if (!this.env.exclude("pmd", name)) {
-                sources.add(new FileDataSource(file));
+            if (this.env.exclude("pmd", name)) {
+                continue;
             }
+            if (!name.matches("^.*\\.java$")) {
+                continue;
+            }
+            sources.add(new FileDataSource(file));
         }
         return sources;
     }

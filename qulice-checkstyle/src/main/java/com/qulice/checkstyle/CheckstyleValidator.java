@@ -144,9 +144,13 @@ public final class CheckstyleValidator implements ResourceValidator {
             final String name = file.getPath().substring(
                 this.env.basedir().toString().length()
             );
-            if (!this.env.exclude("checkstyle", name)) {
-                relevant.add(file);
+            if (this.env.exclude("checkstyle", name)) {
+                continue;
             }
+            if (!name.matches("^.*\\.java$")) {
+                continue;
+            }
+            relevant.add(file);
         }
         return relevant;
     }
