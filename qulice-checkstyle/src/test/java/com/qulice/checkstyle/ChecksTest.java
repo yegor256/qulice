@@ -102,7 +102,10 @@ public final class ChecksTest {
         MatcherAssert.assertThat(
             collector.eventCount(),
             Matchers.describedAs(
-                String.format("Got more violations that expected for directory %s", dir),
+                String.format(
+                    "Got more violations that expected for directory %s (%s)",
+                    dir, collector.summary()
+                ),
                 Matchers.equalTo(violations.length)
             )
         );

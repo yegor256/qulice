@@ -67,14 +67,30 @@ public final class JavadocLocationCheck extends AbstractCheck {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (JavadocLocationCheck.isField(ast)) {
-            final int current = ast.getLineNo();
-            final int end = JavadocLocationCheck.findCommentEnd(
-                this.getLines(), current
-            );
-            if (end > JavadocLocationCheck.getCommentMinimum(ast)) {
-                this.report(current, end);
+        if (!JavadocLocationCheck.isField(ast)) {
+            return;
+        }
+        final String[] lines = this.getLines();
+        int current = ast.getLineNo();
+        boolean found = false;
+        final int start = current;
+        --current;
+        while (true) {
+            if (current <= 0) {
+                break;
             }
+            final String line = lines[current - 1].trim();
+            if (line.endsWith("*/")) {
+                found = true;
+                break;
+            }
+            if (!line.isEmpty()) {
+                break;
+            }
+            --current;
+        }
+        if (found) {
+            this.report(start, current);
         }
     }
 
@@ -87,51 +103,13 @@ public final class JavadocLocationCheck extends AbstractCheck {
         final int diff = current - end;
         if (diff > 1) {
             for (int pos = 1; pos < diff; pos += 1) {
+                System.out.printf("report=%d\n", end + pos);
                 this.log(
                     end + pos,
                     "Empty line between javadoc and subject"
                 );
             }
         }
-    }
-
-    /**
-     * Returns mimimum line number of the end of the comment.
-     * @param node Node to be checked for Java docs.
-     * @return Mimimum line number of the end of the comment.
-     */
-    private static int getCommentMinimum(final DetailAST node) {
-        int minimum = 0;
-        final DetailAST parent = node.getParent();
-        if (null == parent) {
-            if (!JavadocLocationCheck.isFirst(node)) {
-                final DetailAST object = node
-                    .getPreviousSibling()
-                    .findFirstToken(TokenTypes.OBJBLOCK);
-                // @checkstyle NestedIfDepth (1 line)
-                if (object != null) {
-                    minimum = object.getLastChild().getLineNo();
-                }
-            }
-        } else {
-            DetailAST previous = node.getPreviousSibling();
-            if (null == previous) {
-                previous = parent;
-            }
-            minimum = previous.getLineNo();
-        }
-        return minimum;
-    }
-
-    /**
-     * Checks the specified node: is it first element or not.
-     * @param node Node to be checked.
-     * @return True if there are no any nodes before this one, else -
-     *  {@code false}.
-     */
-    private static boolean isFirst(final DetailAST node) {
-        final DetailAST previous = node.getPreviousSibling();
-        return null == previous;
     }
 
     /**
@@ -147,34 +125,5 @@ public final class JavadocLocationCheck extends AbstractCheck {
             yes = TokenTypes.OBJBLOCK == node.getParent().getType();
         }
         return yes;
-    }
-
-    /**
-     * Find javadoc ending comment.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @return Line number with found ending comment, or -1 if it wasn't found.
-     */
-    private static int findCommentEnd(final String[] lines, final int start) {
-        return JavadocLocationCheck.findTrimmedTextUp(lines, start, "*/");
-    }
-
-    /**
-     * Find a text in lines, by going up.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @param text Text to find.
-     * @return Line number with found text, or -1 if it wasn't found.
-     */
-    private static int findTrimmedTextUp(final String[] lines,
-        final int start, final String text) {
-        int found = -1;
-        for (int pos = start - 1; pos >= 0; pos -= 1) {
-            if (lines[pos].trim().equals(text)) {
-                found = pos + 1;
-                break;
-            }
-        }
-        return found;
     }
 }

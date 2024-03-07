@@ -70,23 +70,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>com.puppycrawl.tools</groupId>
       <artifactId>checkstyle</artifactId>
-      <version>8.45.1</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.abego.treelayout</groupId>
-          <artifactId>org.abego.treelayout.core</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>net.sf.saxon</groupId>
-          <artifactId>Saxon-HE</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>net.sourceforge.saxon</groupId>
-      <artifactId>saxon</artifactId>
-      <version>9.1.0.8</version>
-      <scope>runtime</scope>
+      <version>10.9.3</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>

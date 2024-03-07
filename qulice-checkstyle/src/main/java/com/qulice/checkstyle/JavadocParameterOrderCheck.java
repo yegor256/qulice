@@ -106,6 +106,7 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void visitToken(final DetailAST ast) {
         final FileContents contents = this.getFileContents();
         final TextBlock doc = contents.getJavadocBefore(ast.getLineNo());

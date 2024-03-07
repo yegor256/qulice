@@ -65,6 +65,7 @@ public final class NoJavadocForOverriddenMethodsCheck extends AbstractCheck {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void visitToken(final DetailAST ast) {
         if (AnnotationUtil.containsAnnotation(ast, "Override")) {
             final FileContents contents = getFileContents();

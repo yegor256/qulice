@@ -18,6 +18,6 @@ public final class Valid {
                     }
                 };
             }
-        }
+        };
     }
 }

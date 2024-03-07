@@ -33,72 +33,73 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 <module name="Checker">
   <property name="charset" value="UTF-8"/>
   <!--
-    Enforces English locale to be independent from the
-    default locale which may vary between environments.
-    -->
+  Enforces English locale to be independent from the
+  default locale which may vary between environments.
+  -->
   <property name="localeLanguage" value="en"/>
-  <!-- Speeds up style check for already validated files
-    -->
+  <!--
+  Speeds up style check for already validated files
+  -->
   <property name="cacheFile" value="${cache.file}"/>
   <!--
-    Checks that each Java package has a Javadoc file
-    used for commenting.
-    -->
+  Checks that each Java package has a Javadoc file
+  used for commenting.
+  -->
   <module name="JavadocPackage"/>
   <!--
-    Checks whether files end with a new line.
-    -->
+  Checks whether files end with a new line.
+  -->
   <module name="NewlineAtEndOfFile">
     <property name="fileExtensions" value="java"/>
     <property name="lineSeparator" value="lf"/>
   </module>
   <!--
-    Checks that property files contain the same keys.
-    -->
+  Checks that property files contain the same keys.
+  -->
   <module name="Translation"/>
   <!-- Checks for duplicate code -->
   <!-- https://sourceforge.net/p/checkstyle/bugs/693/ -->
   <!-- <module name="StrictDuplicateCode"/> -->
   <!--
-    Maximum number of lines in any .java file is limited.
-    -->
+  Maximum number of lines in any .java file is limited.
+  -->
   <module name="FileLength">
     <property name="max" value="1000"/>
     <property name="fileExtensions" value="java"/>
   </module>
   <!--
-    TAB chars are not allowed anywhere.
-    -->
+  TAB chars are not allowed anywhere.
+  -->
   <module name="FileTabCharacter">
     <property name="eachLine" value="true"/>
     <property name="fileExtensions" value="java,txt,xml,xsl,xsd,properties,groovy,vm,MF,sh,sql,tokens,g,spec,css,csv"/>
   </module>
   <!--
-    Trailing spaces are not allowed anywhere.
-    -->
+  Trailing spaces are not allowed anywhere.
+  -->
   <module name="RegexpSingleline">
     <property name="format" value="\s+$"/>
     <property name="fileExtensions" value="java"/>
     <property name="message" value="Line has trailing spaces."/>
   </module>
   <!--
-    Windows line endings are not allowed.
-    -->
+  Windows line endings are not allowed.
+  -->
   <module name="RegexpMultiline">
     <property name="format" value="\r\n$"/>
     <property name="message" value="Lines in file should end with Unix-like end of line"/>
   </module>
   <!--
-    Two consecutive empty lines are not allowed.
-    -->
+  Two consecutive empty lines are not allowed.
+  -->
   <module name="RegexpMultiline">
     <property name="format" value="\r?\n[ \t\x0B\f]*\r?\n[ \t\x0B\f]*\r?\n"/>
     <property name="fileExtensions" value="java"/>
     <property name="message" value="Two consecutive empty lines"/>
   </module>
   <!--
-    JavaDoc regexp checks
-    -->
+  JavaDoc regexp checks
+  -->
   <module name="RegexpSingleline">
     <property name="format" value="\* +@return +[^A-Z]"/>
     <property name="fileExtensions" value="java"/>
@@ -256,16 +257,16 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <module name="JavadocVariable"/>
     <module name="JavadocStyle"/>
     <module name="AtclauseOrder">
-      <property name="tagOrder" value="@param, @return,                 @throws, @exception, @see, @since, @serial, @serialField,                 @serialData, @deprecated, @todo, @checkstyle"/>
+      <property name="tagOrder" value="@param, @return, @throws, @exception, @see, @since, @serial, @serialField,                 @serialData, @deprecated, @todo, @checkstyle"/>
     </module>
     <!-- Metrics. -->
     <module name="BooleanExpressionComplexity"/>
     <module name="ClassFanOutComplexity">
       <!--
-            Total number of classes that a particular class
-            depends on. We're increasing this value because
-            default "20" is too low.
-            -->
+      Total number of classes that a particular class
+      depends on. We're increasing this value because
+      default "20" is too low.
+      -->
       <property name="max" value="30"/>
     </module>
     <module name="CyclomaticComplexity"/>
@@ -345,8 +346,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <property name="tokens" value="IMPORT,CLASS_DEF,INTERFACE_DEF,ENUM_DEF,STATIC_INIT,INSTANCE_INIT,METHOD_DEF,CTOR_DEF,VARIABLE_DEF"/>
     </module>
     <!--
-        Our custom checkers.
-        -->
+    Our custom checkers.
+    -->
     <module name="com.qulice.checkstyle.BracketsStructureCheck"/>
     <module name="com.qulice.checkstyle.CurlyBracketsStructureCheck"/>
     <module name="com.qulice.checkstyle.EmptyLinesCheck"/>
@@ -368,8 +369,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <module name="com.qulice.checkstyle.JavadocTagsCheck"/>
   </module>
   <!--
-    Our custom checkers.
-    -->
+  Our custom checkers.
+  -->
   <module name="com.qulice.checkstyle.ImportCohesionCheck">
     <property name="fileExtensions" value="java"/>
   </module>

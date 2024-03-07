@@ -88,6 +88,7 @@ public final class NonStaticMethodCheck extends AbstractCheck {
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void visitToken(final DetailAST ast) {
         if (this.exclude.matcher(this.getFileContents().getFileName())
             .find()) {
@@ -147,6 +148,7 @@ public final class NonStaticMethodCheck extends AbstractCheck {
      * @param method Method to count
      * @return The number of semicolons in the method as an int
      */
+    @SuppressWarnings("deprecation")
     private int countSemiColons(final DetailAST method) {
         final DetailAST openingbrace = method.findFirstToken(TokenTypes.SLIST);
         int count = 0;

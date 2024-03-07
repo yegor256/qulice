@@ -42,7 +42,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <packaging>pom</packaging>
   <name>qulice</name>
   <modules>
-    <module>qulice-ant</module>
     <module>qulice-checkstyle</module>
     <module>qulice-maven-plugin</module>
     <module>qulice-pmd</module>
@@ -97,11 +96,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   </distributionManagement>
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.antlr</groupId>
-        <artifactId>antlr4-runtime</artifactId>
-        <version>4.13.1</version>
-      </dependency>
       <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>

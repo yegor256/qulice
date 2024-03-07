@@ -9,6 +9,8 @@ public final class Valid {
      */
     private int x = 0;
 
+    private int y = 0;
+
     /**
      * Public ctor.
      * @param num Some number
@@ -45,4 +47,8 @@ interface I1 {
      * Integer variable.
      */
     private int x = 0;
+}
+
+interface I2 {
+
 }

@@ -16,6 +16,6 @@ public class ValidIndentation {
             new Integer(
                 1
             )
-        )
+        );
     }
 }
