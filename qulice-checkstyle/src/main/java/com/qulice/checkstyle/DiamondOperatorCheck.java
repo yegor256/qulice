@@ -107,7 +107,7 @@ public final class DiamondOperatorCheck extends AbstractCheck {
                 DiamondOperatorCheck.findFirstChildNodeOfType(
                     instance, TokenTypes.TYPE_ARGUMENTS
                 );
-            if (!DiamondOperatorCheck.isDiamondOperatorUsed(type)) {
+            if (type != null && !DiamondOperatorCheck.isDiamondOperatorUsed(type)) {
                 log(type, "Use diamond operator");
             }
         }
@@ -150,7 +150,7 @@ public final class DiamondOperatorCheck extends AbstractCheck {
      *
      * @param node AST subtree to process.
      * @param type Type of token
-     * @return Child node of specified type
+     * @return Child node of specified type OR NULL!
      */
     private static DetailAST findFirstChildNodeOfType(
         final DetailAST node, final int type
