@@ -103,7 +103,6 @@ public final class JavadocLocationCheck extends AbstractCheck {
         final int diff = current - end;
         if (diff > 1) {
             for (int pos = 1; pos < diff; pos += 1) {
-                System.out.printf("report=%d\n", end + pos);
                 this.log(
                     end + pos,
                     "Empty line between javadoc and subject"
