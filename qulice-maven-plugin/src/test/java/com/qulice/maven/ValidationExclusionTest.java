@@ -54,7 +54,7 @@ import org.mockito.Mockito;
  * exclude files from validation.
  * @since 0.19
  */
-public class ValidationExclusionTest {
+final class ValidationExclusionTest {
     /**
      * Temporary directory for the project source folder.
      */
@@ -75,7 +75,7 @@ public class ValidationExclusionTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public final void excludePathFromPmdValidation() throws Exception {
+    void excludePathFromPmdValidation() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         final MavenProject project = Mockito.mock(MavenProject.class);
         final Path dir = Files.createTempDirectory(ValidationExclusionTest.TEMP_DIR);
@@ -116,7 +116,7 @@ public class ValidationExclusionTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public final void excludePathFromCheckstyleValidation() throws Exception {
+    void excludePathFromCheckstyleValidation() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         final MavenProject project = Mockito.mock(MavenProject.class);
         final Path dir = Files.createTempDirectory(ValidationExclusionTest.TEMP_DIR);

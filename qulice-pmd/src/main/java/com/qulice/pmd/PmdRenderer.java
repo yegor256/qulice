@@ -31,6 +31,7 @@
 package com.qulice.pmd;
 
 import java.io.Writer;
+import java.util.List;
 import net.sourceforge.pmd.Report;
 import net.sourceforge.pmd.properties.AbstractPropertySource;
 import net.sourceforge.pmd.renderers.Renderer;
@@ -41,6 +42,7 @@ import net.sourceforge.pmd.util.datasource.DataSource;
  *
  * @since 1.0
  */
+@SuppressWarnings("deprecation")
 final class PmdRenderer extends AbstractPropertySource implements Renderer {
     /**
      * This variable is union of all observed reports.
@@ -83,6 +85,11 @@ final class PmdRenderer extends AbstractPropertySource implements Renderer {
     }
 
     @Override
+    public void setUseShortNames(final List<String> list) {
+        // ignore it
+    }
+
+    @Override
     public Writer getWriter() {
         throw new UnsupportedOperationException("Unimplemented getWriter");
     }
@@ -114,6 +121,11 @@ final class PmdRenderer extends AbstractPropertySource implements Renderer {
 
     @Override
     public void flush() {
+        // ignore it
+    }
+
+    @Override
+    public void setReportFile(final String report) {
         // ignore it
     }
 

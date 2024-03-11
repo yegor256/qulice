@@ -64,7 +64,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <rule ref="category/java/errorprone.xml">
     <exclude name="DataflowAnomalyAnalysis"/>
     <exclude name="AvoidLiteralsInIfCondition"/>
-    <exclude name="BeanMembersShouldSerialize"/>
+    <exclude name="NonSerializableClass"/>
     <exclude name="MissingSerialVersionUID"/>
   </rule>
   <rule ref="category/java/performance.xml">
@@ -214,7 +214,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <properties>
       <property name="xpath">
         <value><![CDATA[
-          //ClassOrInterfaceDeclaration[ends-with(@Image, 'Test')]//PrimaryPrefix/Name[@Image='Files.createFile']
+          //ClassOrInterfaceDeclaration[ends-with(@SimpleName, 'Test')]//PrimaryPrefix/Name[@Image='Files.createFile']
         ]]></value>
       </property>
     </properties>

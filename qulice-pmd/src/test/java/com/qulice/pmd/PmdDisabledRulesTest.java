@@ -39,12 +39,13 @@ import org.junit.jupiter.params.provider.MethodSource;
 /**
  * Tests for disabled rules.
  * @since 0.16
+ * @checkstyle MethodsOrderCheck (77 lines)
  */
-public final class PmdDisabledRulesTest {
+final class PmdDisabledRulesTest {
 
     @ParameterizedTest
     @MethodSource("parameters")
-    public void disablesRules(final String rule) throws Exception {
+    void disablesRules(final String rule) throws Exception {
         new PmdAssert(
             String.format("%s.java", rule),
             Matchers.any(Boolean.class),

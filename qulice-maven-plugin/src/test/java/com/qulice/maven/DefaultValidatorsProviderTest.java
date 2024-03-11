@@ -40,10 +40,10 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link ValidatorsProvider} class.
  * @since 0.3
  */
-public final class DefaultValidatorsProviderTest {
+final class DefaultValidatorsProviderTest {
 
     @Test
-    public void producesCollectionOfValidators() throws Exception {
+    void producesCollectionOfValidators() throws Exception {
         MatcherAssert.assertThat(
             new DefaultValidatorsProvider(new Environment.Mock())
                 .internal().size(),
@@ -53,7 +53,7 @@ public final class DefaultValidatorsProviderTest {
 
     @Test
     @Disabled
-    public void producesCollectionOfExtValidators() throws Exception {
+    void producesCollectionOfExtValidators() throws Exception {
         MatcherAssert.assertThat(
             new DefaultValidatorsProvider(new Environment.Mock())
                 .external().size(),

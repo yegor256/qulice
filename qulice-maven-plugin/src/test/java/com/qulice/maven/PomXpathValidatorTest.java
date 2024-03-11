@@ -42,14 +42,14 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link PomXpathValidator} class.
  * @since 0.6
  */
-public final class PomXpathValidatorTest {
+final class PomXpathValidatorTest {
 
     /**
      * PomXpathValidator can validate pom.xml with xpath.
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void canValidatePomWithXpath() throws Exception {
+    void canValidatePomWithXpath() throws Exception {
         final MavenEnvironment env = new MavenEnvironmentMocker()
             .withAsserts(
                 Collections.singletonList(

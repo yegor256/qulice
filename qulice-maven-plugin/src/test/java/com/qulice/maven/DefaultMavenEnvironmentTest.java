@@ -43,14 +43,14 @@ import org.mockito.Mockito;
  * @since 0.8
  */
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
-public class DefaultMavenEnvironmentTest {
+final class DefaultMavenEnvironmentTest {
 
     /**
      * DefaultMavenEnvironment can produce list of excludes.
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public final void excludeAllFiles() throws Exception {
+    void excludeAllFiles() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         env.setExcludes(Collections.singletonList("codenarc:**/*.groovy"));
         MatcherAssert.assertThat(
@@ -64,7 +64,7 @@ public class DefaultMavenEnvironmentTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public final void emptyExclude() throws Exception {
+    void emptyExclude() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         env.setExcludes(Collections.<String>emptyList());
         MatcherAssert.assertThat(
@@ -78,7 +78,7 @@ public class DefaultMavenEnvironmentTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public final void noExclude() throws Exception {
+    void noExclude() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         MatcherAssert.assertThat(
             env.excludes("codenarc").iterator().hasNext(),
@@ -91,7 +91,7 @@ public class DefaultMavenEnvironmentTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public final void excludeSomeFiles() throws Exception {
+    void excludeSomeFiles() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         env.setExcludes(
             ImmutableList.<String>builder()
@@ -113,7 +113,7 @@ public class DefaultMavenEnvironmentTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public final void passPathsWithWhitespaces()  throws Exception {
+    void passPathsWithWhitespaces()  throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         final MavenProject project = Mockito.mock(MavenProject.class);
         Mockito.when(project.getRuntimeClasspathElements())
@@ -133,7 +133,7 @@ public class DefaultMavenEnvironmentTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public final void producesEmptyExcludesWhenNoMatches() throws Exception {
+    void producesEmptyExcludesWhenNoMatches() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         env.setExcludes(
             ImmutableList.of(

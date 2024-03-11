@@ -37,13 +37,14 @@ import net.sourceforge.pmd.lang.java.ast.ASTName;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTPrimaryPrefix;
 import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
-import net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule;
 
 /**
  * Rule to check plain assertions in JUnit tests.
  * @since 0.17
  */
-public final class ProhibitPlainJunitAssertionsRule extends AbstractJUnitRule {
+@SuppressWarnings("deprecation")
+public final class ProhibitPlainJunitAssertionsRule
+    extends net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule {
 
     /**
      * Mask of prohibited imports.

@@ -36,13 +36,10 @@ import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
-import net.sourceforge.pmd.PMD;
 import net.sourceforge.pmd.PMDConfiguration;
 import net.sourceforge.pmd.Report;
 import net.sourceforge.pmd.RuleContext;
 import net.sourceforge.pmd.RulePriority;
-import net.sourceforge.pmd.RuleSetFactory;
-import net.sourceforge.pmd.util.ResourceLoader;
 import net.sourceforge.pmd.util.datasource.DataSource;
 
 /**
@@ -50,6 +47,7 @@ import net.sourceforge.pmd.util.datasource.DataSource;
  *
  * @since 0.3
  */
+@SuppressWarnings("deprecation")
 final class SourceValidator {
     /**
      * Rule context.
@@ -123,13 +121,14 @@ final class SourceValidator {
      * @param source Input source file
      */
     private void validateOne(final DataSource source) {
-        final RuleSetFactory factory = new RuleSetFactory(
-            new ResourceLoader(),
+        final net.sourceforge.pmd.RuleSetFactory factory =
+            new net.sourceforge.pmd.RuleSetFactory(
+            new net.sourceforge.pmd.util.ResourceLoader(),
             RulePriority.LOW,
             false,
             true
         );
-        PMD.processFiles(
+        net.sourceforge.pmd.PMD.processFiles(
             this.config,
             factory,
             new LinkedList<>(Collections.singleton(source)),

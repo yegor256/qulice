@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
  *
  * @since 0.18
  */
-public class LocalVariableCouldBeFinalRuleTest {
+final class LocalVariableCouldBeFinalRuleTest {
 
     /**
      * LocalVariableCouldBeFinal can detect when variable is not
@@ -48,7 +48,7 @@ public class LocalVariableCouldBeFinalRuleTest {
      * @throws Exception If something goes wrong
      */
     @Test
-    public final void detectLocalVariableCouldBeFinal() throws Exception {
+    void detectLocalVariableCouldBeFinal() throws Exception {
         new PmdAssert(
             "LocalVariableCouldBeFinal.java",
             new IsEqual<>(false),

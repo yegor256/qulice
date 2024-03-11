@@ -37,15 +37,14 @@ import java.util.LinkedList;
 import net.sourceforge.pmd.Report.ConfigurationError;
 import net.sourceforge.pmd.Report.ProcessingError;
 import net.sourceforge.pmd.RuleViolation;
-import net.sourceforge.pmd.ThreadSafeReportListener;
-import net.sourceforge.pmd.stat.Metric;
 
 /**
  * Listener of PMD errors.
  *
  * @since 0.3
  */
-final class PmdListener implements ThreadSafeReportListener {
+@SuppressWarnings("deprecation")
+final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener {
 
     /**
      * Environment.
@@ -68,7 +67,7 @@ final class PmdListener implements ThreadSafeReportListener {
     }
 
     @Override
-    public void metricAdded(final Metric metric) {
+    public void metricAdded(final net.sourceforge.pmd.stat.Metric metric) {
         // ignore it
     }
 

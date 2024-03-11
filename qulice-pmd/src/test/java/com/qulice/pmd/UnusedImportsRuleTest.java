@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
  *
  * @since 0.18
  */
-public class UnusedImportsRuleTest {
+final class UnusedImportsRuleTest {
 
     /**
      * UnusedImport can detect when the class has an unused import line and
@@ -48,16 +48,16 @@ public class UnusedImportsRuleTest {
      * @throws Exception If something goes wrong
      */
     @Test
-    public final void detectUnusedImportLine() throws Exception {
+    void detectUnusedImportLine() throws Exception {
         new PmdAssert(
             "UnusedImports.java",
             new IsEqual<>(false),
             new StringStartsWith(
                 String.join(
                     " ",
-                    "PMD: UnusedImports.java[3-3]: Avoid unused imports such",
-                    "as 'unused.bar.foo.UnusedImport'",
-                    "(UnusedImports)"
+                    "PMD: UnusedImports.java[3-3]: Unused import",
+                    "'unused.bar.foo.UnusedImport'",
+                    "(UnnecessaryImport)"
                 ).trim()
             )
         ).validate();
