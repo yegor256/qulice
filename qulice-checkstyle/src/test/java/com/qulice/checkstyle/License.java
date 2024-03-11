@@ -30,7 +30,6 @@
  */
 package com.qulice.checkstyle;
 
-import com.jcabi.aspects.Tv;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -132,7 +131,7 @@ public final class License {
     @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private void makePackageInfo(final File dir) throws IOException {
         final File info = new File(dir, "package-info.java");
-        final StringBuilder body = new StringBuilder(Tv.HUNDRED);
+        final StringBuilder body = new StringBuilder(100);
         body.append("/*").append(this.eol);
         for (final String line : this.lines) {
             body.append(" *");

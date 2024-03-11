@@ -31,7 +31,6 @@
 package com.qulice.checkstyle;
 
 import com.google.common.base.Joiner;
-import com.jcabi.aspects.Tv;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
@@ -366,7 +365,7 @@ public final class CheckstyleValidatorTest {
         final Collection<Violation> results = this.runValidation(
             file, false
         );
-        MatcherAssert.assertThat(results, Matchers.hasSize(Tv.TEN));
+        MatcherAssert.assertThat(results, Matchers.hasSize(10));
         MatcherAssert.assertThat(
             results,
             Matchers.allOf(
@@ -583,7 +582,7 @@ public final class CheckstyleValidatorTest {
         final Collection<Violation> results = this.runValidation(
             file, false
         );
-        MatcherAssert.assertThat(results, Matchers.hasSize(Tv.THREE));
+        MatcherAssert.assertThat(results, Matchers.hasSize(3));
         final String name = "CatchParameterNameCheck";
         MatcherAssert.assertThat(
             results,

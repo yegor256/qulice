@@ -30,7 +30,6 @@
  */
 package com.qulice.checkstyle;
 
-import com.jcabi.aspects.Tv;
 import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -44,10 +43,7 @@ import com.qulice.spi.Violation;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -215,7 +211,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         } catch (final IOException ex) {
             throw new IllegalStateException("Failed to read license", ex);
         }
-        final StringBuilder builder = new StringBuilder(Tv.HUNDRED);
+        final StringBuilder builder = new StringBuilder(100);
         final String eol = System.getProperty("line.separator");
         builder.append("/*").append(eol);
         for (final String line
