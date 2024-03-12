@@ -49,7 +49,7 @@ final class EmptyCollectionRuleTest {
             "NullCollection.java",
             Matchers.is(false),
             Matchers.containsString(
-                "Returned null collection was found (NullCollection)."
+                "Return an empty collection rather than null. (ReturnEmptyCollectionRatherThanNull)"
             )
         ).validate();
     }

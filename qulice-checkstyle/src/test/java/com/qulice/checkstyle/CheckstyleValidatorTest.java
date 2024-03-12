@@ -437,6 +437,9 @@ final class CheckstyleValidatorTest {
                 ),
                 new ViolationMatcher(
                     message, file, "48", name
+                ),
+                new ViolationMatcher(
+                    "Class Class should be declared as final.", file, "59", "FinalClassCheck"
                 )
             )
         );

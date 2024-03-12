@@ -101,7 +101,6 @@ final class SourceValidator {
         for (final DataSource source : sources) {
             final String name = source.getNiceFileName(false, path);
             Logger.debug(this, "Processing file: %s", name);
-            this.context.setSourceCodeFilename(name);
             this.context.setSourceCodeFile(new File(name));
             this.validateOne(source);
         }
