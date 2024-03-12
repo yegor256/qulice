@@ -159,8 +159,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         ]]></value>
       </property>
     </properties>
-    <example>
-  <![CDATA[
+    <example><![CDATA[
   public final class DirectAccessToStaticFields {
     private static int num = 1;
 
@@ -168,8 +167,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         return num;
     }
   }
-  ]]>
-    </example>
+  ]]></example>
   </rule>
   <rule name="AvoidAccessToStaticMembersViaThis" message="Static members should be accessed in a static way [CLASS_NAME.FIELD_NAME], not via instance reference." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
     <description>
