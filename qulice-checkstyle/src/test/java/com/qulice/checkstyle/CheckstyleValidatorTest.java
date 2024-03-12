@@ -693,21 +693,20 @@ final class CheckstyleValidatorTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     void rejectsHiddenParameters() throws Exception {
         final String file = "HiddenParameter.java";
         final Collection<Violation> results = this.runValidation(
-                file, false
+            file, false
         );
         final String name = "HiddenFieldCheck";
         final String message = "'test' hides a field.";
         MatcherAssert.assertThat(
-                results,
-                Matchers.hasItems(
-                    new ViolationMatcher(
-                        message, file, "17", name
-                    )
+            results,
+            Matchers.hasItems(
+                new ViolationMatcher(
+                    message, file, "17", name
                 )
+            )
         );
     }
 
