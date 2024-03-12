@@ -121,7 +121,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+    @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "deprecation"})
     public Collection<String> classpath() {
         final Collection<String> paths = new LinkedList<>();
         final String blank = "%20";

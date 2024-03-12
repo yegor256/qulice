@@ -70,7 +70,13 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-exec</artifactId>
-      <version>1.1</version>
+      <version>1.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.sisu</groupId>
+      <artifactId>org.eclipse.sisu.plexus</artifactId>
+      <version>0.3.4</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.hamcrest</groupId>
@@ -145,7 +151,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
-      <version>3.0.5</version>
+      <version>3.8.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
