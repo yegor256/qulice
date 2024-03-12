@@ -149,8 +149,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   </rule>
   <!--
   @todo #1198 Rules for AvoidDirectAccessToStaticFields and AvoidAccessToStaticMembersViaThis produce
-   "WARNING: Use of deprecated attribute 'FieldDeclaration/@VariableName' by XPath rule ...,
-   please use VariableDeclaratorId/@Name instead"
+   WARNING: Use of deprecated attribute 'FieldDeclaration/@VariableName' by XPath rule ...,
+   please use VariableDeclaratorId/@Name instead
    Rules should be updated to avoid deprecated (replacement from the message does not work)
   -->
   <rule name="AvoidDirectAccessToStaticFields" message="Static fields should be accessed in a static way [CLASS_NAME.FIELD_NAME]." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
