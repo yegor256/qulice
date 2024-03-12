@@ -46,6 +46,7 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
  *
  * @since 0.4
  */
+@SuppressWarnings("deprecation")
 public final class UnnecessaryLocalRule extends AbstractJavaRule {
     @Override
     public Object visit(final ASTMethodDeclaration meth, final Object data) {

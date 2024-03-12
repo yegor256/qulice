@@ -38,18 +38,18 @@ import org.junit.jupiter.api.Test;
  * @since 0.15
  */
 @SuppressWarnings("PMD.TooManyMethods")
-public final class PmdEmptyTest {
+final class PmdEmptyTest {
     /**
      * Makes sure that empty static initializers fail with an error.
      * @throws Exception when something goes wrong
      */
     @Test
-    public void failsForEmptyStaticInitializer() throws Exception {
+    void failsForEmptyStaticInitializer() throws Exception {
         new PmdAssert(
             "EmptyStaticInitializer.java",
             Matchers.is(false),
             Matchers.containsString(
-                "Empty initializer was found (EmptyInitializer)"
+                "Empty initializer statement (EmptyControlStatement)"
             )
         ).validate();
     }
@@ -59,12 +59,12 @@ public final class PmdEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void failsForEmptyStatementBlock() throws Exception {
+    void failsForEmptyStatementBlock() throws Exception {
         new PmdAssert(
             "EmptyStatementBlock.java",
             Matchers.is(false),
             Matchers.containsString(
-                "Avoid empty block statements"
+                "Empty block "
             )
         ).validate();
     }
@@ -74,12 +74,12 @@ public final class PmdEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void failsForEmptyInitializer() throws Exception {
+    void failsForEmptyInitializer() throws Exception {
         new PmdAssert(
             "EmptyInitializer.java",
             Matchers.is(false),
             Matchers.containsString(
-                "Empty initializer was found"
+                "Empty initializer statement "
             )
         ).validate();
     }
@@ -89,12 +89,12 @@ public final class PmdEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void failsForEmptyNonLoopStatement() throws Exception {
+    void failsForEmptyNonLoopStatement() throws Exception {
         new PmdAssert(
             "EmptyStatementNotInLoop.java",
             Matchers.is(false),
             Matchers.containsString(
-                "An empty statement (semicolon) not part of a loop"
+                "Unnecessary semicolon "
             )
         ).validate();
     }
@@ -104,12 +104,12 @@ public final class PmdEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void failsForEmptySynchronizedBlock() throws Exception {
+    void failsForEmptySynchronizedBlock() throws Exception {
         new PmdAssert(
             "EmptySynchronizedBlock.java",
             Matchers.is(false),
             Matchers.containsString(
-                "Avoid empty synchronized blocks"
+                "Empty synchronized statement "
             )
         ).validate();
     }
@@ -119,12 +119,12 @@ public final class PmdEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void failsForEmptySwitchStatement() throws Exception {
+    void failsForEmptySwitchStatement() throws Exception {
         new PmdAssert(
             "EmptySwitchStmt.java",
             Matchers.is(false),
             Matchers.containsString(
-                "Avoid empty switch statements"
+                "Empty switch statement "
             )
         ).validate();
     }
@@ -134,11 +134,11 @@ public final class PmdEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void failsForEmptyFinallyBlock() throws Exception {
+    void failsForEmptyFinallyBlock() throws Exception {
         new PmdAssert(
             "EmptyFinallyBlock.java",
             Matchers.is(false),
-            Matchers.containsString("Avoid empty finally blocks")
+            Matchers.containsString("Empty finally clause")
         ).validate();
     }
 
@@ -147,11 +147,11 @@ public final class PmdEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void failsForEmptyWhileStatement() throws Exception {
+    void failsForEmptyWhileStatement() throws Exception {
         new PmdAssert(
             "EmptyWhileStmt.java",
             Matchers.is(false),
-            Matchers.containsString("Avoid empty while statements")
+            Matchers.containsString("Empty while statement ")
         ).validate();
     }
 
@@ -160,11 +160,11 @@ public final class PmdEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void failsForEmptyIfStatement() throws Exception {
+    void failsForEmptyIfStatement() throws Exception {
         new PmdAssert(
             "EmptyIfStmt.java",
             Matchers.is(false),
-            Matchers.containsString("Avoid empty if statements")
+            Matchers.containsString("Empty if statement ")
         ).validate();
     }
 
@@ -173,7 +173,7 @@ public final class PmdEmptyTest {
      * @throws Exception when something goes wrong
      */
     @Test
-    public void failsForEmptyCatchBlock() throws Exception {
+    void failsForEmptyCatchBlock() throws Exception {
         new PmdAssert(
             "EmptyCatchBlock.java",
             Matchers.is(false),

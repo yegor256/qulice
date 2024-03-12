@@ -61,13 +61,13 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     /**
      * Maven project, to be injected by Maven itself.
      */
-    @Component
+    @Parameter(defaultValue = "${project}", readonly = true)
     private MavenProject project;
 
     /**
      * Maven session, to be injected by Maven itself.
      */
-    @Component
+    @Parameter(defaultValue = "${session}", readonly = true)
     private MavenSession sess;
 
     /**

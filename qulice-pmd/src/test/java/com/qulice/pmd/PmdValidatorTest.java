@@ -48,7 +48,7 @@ import org.junit.jupiter.api.Test;
  * @since 0.3
  */
 @SuppressWarnings("PMD.TooManyMethods")
-public final class PmdValidatorTest {
+final class PmdValidatorTest {
 
     /**
      * Error message for forbidding access to static fields
@@ -112,7 +112,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void findsProblemsInJavaFiles() throws Exception {
+    void findsProblemsInJavaFiles() throws Exception {
         final String file = "src/main/java/Main.java";
         final Environment env = new Environment.Mock()
             .withFile(file, "class Main { int x = 0; }");
@@ -129,7 +129,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void understandsMethodReferences() throws Exception {
+    void understandsMethodReferences() throws Exception {
         final String file = "UnderstandsMethodReferences.java";
         new PmdAssert(
             file,
@@ -147,7 +147,7 @@ public final class PmdValidatorTest {
      */
     @Test
     @SuppressWarnings("PMD.AvoidDuplicateLiterals")
-    public void doesNotComplainAboutConstantsInInnerClasses() throws Exception {
+    void doesNotComplainAboutConstantsInInnerClasses() throws Exception {
         final String file = "src/main/java/foo/Foo.java";
         final Environment env = new Environment.Mock().withFile(
             file,
@@ -177,7 +177,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowsFieldInitializationWhenConstructorIsMissing()
+    void allowsFieldInitializationWhenConstructorIsMissing()
         throws Exception {
         final String file = "FieldInitNoConstructor.java";
         new PmdAssert(
@@ -195,7 +195,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsFieldInitializationWhenConstructorExists()
+    void forbidsFieldInitializationWhenConstructorExists()
         throws Exception {
         final String file = "FieldInitConstructor.java";
         new PmdAssert(
@@ -212,7 +212,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowsStaticFieldInitializationWhenConstructorExists()
+    void allowsStaticFieldInitializationWhenConstructorExists()
         throws Exception {
         final String file = "StaticFieldInitConstructor.java";
         new PmdAssert(
@@ -231,7 +231,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsFieldInitializationInSeveralConstructors()
+    void forbidsFieldInitializationInSeveralConstructors()
         throws Exception {
         final String file = "FieldInitSeveralConstructors.java";
         new PmdAssert(
@@ -248,7 +248,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowsFieldInitializationInOneConstructor()
+    void allowsFieldInitializationInOneConstructor()
         throws Exception {
         final String file = "FieldInitOneConstructor.java";
         new PmdAssert(
@@ -266,7 +266,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsUnnecessaryFinalModifier()
+    void forbidsUnnecessaryFinalModifier()
         throws Exception {
         final String file = "UnnecessaryFinalModifier.java";
         new PmdAssert(
@@ -280,7 +280,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsUselessParentheses()
+    void forbidsUselessParentheses()
         throws Exception {
         final String file = "UselessParentheses.java";
         new PmdAssert(
@@ -295,7 +295,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsCodeInConstructor()
+    void forbidsCodeInConstructor()
         throws Exception {
         final String file = "CodeInConstructor.java";
         new PmdAssert(
@@ -311,7 +311,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowsLambdaInConstructor()
+    void allowsLambdaInConstructor()
         throws Exception {
         final String file = "LambdaInConstructor.java";
         new PmdAssert(
@@ -329,7 +329,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsFilesCreateFileInTests() throws Exception {
+    void forbidsFilesCreateFileInTests() throws Exception {
         new PmdAssert(
             "FilesCreateFileTest.java",
             Matchers.is(false),
@@ -344,7 +344,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsFilesCreateFileOutsideOfTests() throws Exception {
+    void forbidsFilesCreateFileOutsideOfTests() throws Exception {
         new PmdAssert(
             "FilesCreateFileOther.java",
             Matchers.is(true),
@@ -362,7 +362,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void acceptsCallToConstructorInConstructor()
+    void acceptsCallToConstructorInConstructor()
         throws Exception {
         final String file = "CallToConstructorInConstructor.java";
         new PmdAssert(
@@ -381,7 +381,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void acceptsCallToStaticFieldsInStaticWay()
+    void acceptsCallToStaticFieldsInStaticWay()
         throws Exception {
         final String file = "StaticAccessToStaticFields.java";
         new PmdAssert(
@@ -407,7 +407,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsCallToStaticFieldsDirectly()
+    void forbidsCallToStaticFieldsDirectly()
         throws Exception {
         final String file = "DirectAccessToStaticFields.java";
         new PmdAssert(
@@ -424,7 +424,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsCallToStaticFieldsViaThis()
+    void forbidsCallToStaticFieldsViaThis()
         throws Exception {
         final String file = "AccessToStaticFieldsViaThis.java";
         new PmdAssert(
@@ -441,7 +441,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsCallToStaticMethodsViaThis()
+    void forbidsCallToStaticMethodsViaThis()
         throws Exception {
         final String file = "AccessToStaticMethodsViaThis.java";
         new PmdAssert(
@@ -458,7 +458,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsNonPublicCloneMethod() throws Exception {
+    void forbidsNonPublicCloneMethod() throws Exception {
         new PmdAssert(
             "CloneMethodMustBePublic.java",
             Matchers.is(false),
@@ -478,7 +478,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsCloneMethodReturnTypeNotMatchingClassName()
+    void forbidsCloneMethodReturnTypeNotMatchingClassName()
         throws Exception {
         new PmdAssert(
             "CloneMethodReturnTypeMustMatchClassName.java",
@@ -498,7 +498,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void forbidsNonSimplifiedTernaryOperators()
+    void forbidsNonSimplifiedTernaryOperators()
         throws Exception {
         new PmdAssert(
             "SimplifiedTernary.java",
@@ -521,7 +521,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void prohibitsStaticImportsPlainAssertionsInTests()
+    void prohibitsStaticImportsPlainAssertionsInTests()
         throws Exception {
         final String file = "PlainJUnitAssertionStaticImportBlock.java";
         new PmdAssert(
@@ -540,7 +540,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void prohibitsPlainJunitAssertionsInTestMethods()
+    void prohibitsPlainJunitAssertionsInTestMethods()
         throws Exception {
         final String file = "PlainJUnitAssertionTestMethod.java";
         new PmdAssert(
@@ -558,7 +558,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowsAssertFail()
+    void allowsAssertFail()
         throws Exception {
         final String file = "AllowAssertFail.java";
         new PmdAssert(
@@ -576,7 +576,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowsNonTransientFields() throws Exception {
+    void allowsNonTransientFields() throws Exception {
         final String file = "AllowNonTransientFields.java";
         new PmdAssert(
             file, Matchers.is(true),
@@ -593,7 +593,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void prohibitsPublicStaticMethods() throws Exception {
+    void prohibitsPublicStaticMethods() throws Exception {
         new PmdAssert(
             "StaticPublicMethod.java",
             Matchers.is(false),
@@ -606,7 +606,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowsPublicStaticMainMethod() throws Exception {
+    void allowsPublicStaticMainMethod() throws Exception {
         new PmdAssert(
             "StaticPublicVoidMainMethod.java",
             Matchers.is(true),
@@ -624,7 +624,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowsJunitFrameworkPublicStaticMethods() throws Exception {
+    void allowsJunitFrameworkPublicStaticMethods() throws Exception {
         new PmdAssert(
             "JunitStaticPublicMethods.java",
             Matchers.is(true),
@@ -639,7 +639,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowsDuplicateLiteralsInAnnotations() throws Exception {
+    void allowsDuplicateLiteralsInAnnotations() throws Exception {
         new PmdAssert(
             "AllowsDuplicateLiteralsInAnnotations.java",
             Matchers.is(true),
@@ -655,7 +655,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void testShouldBePackagePrivate() throws Exception {
+    void testShouldBePackagePrivate() throws Exception {
         new PmdAssert(
             "TestShouldBePackagePrivate.java",
             Matchers.is(false),
@@ -668,7 +668,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowJunitThirdTestClassToBeFinal() throws Exception {
+    void allowJunitThirdTestClassToBeFinal() throws Exception {
         new PmdAssert(
             "Junit3TestClassShouldBeFinal.java",
             Matchers.is(false),
@@ -681,7 +681,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowJunitFourthTestClassToBeFinal() throws Exception {
+    void allowJunitFourthTestClassToBeFinal() throws Exception {
         new PmdAssert(
             "Junit4TestClassShouldBeFinal.java",
             Matchers.is(false),
@@ -694,7 +694,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowJunitFifthTestClassToBeFinal() throws Exception {
+    void allowJunitFifthTestClassToBeFinal() throws Exception {
         new PmdAssert(
             "Junit5TestClassShouldBeFinal.java",
             Matchers.is(false),
@@ -707,7 +707,7 @@ public final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void allowJunitTestClassToBeFinal() throws Exception {
+    void allowJunitTestClassToBeFinal() throws Exception {
         new PmdAssert(
             "JunitTestClassIsFinal.java",
             Matchers.is(true),

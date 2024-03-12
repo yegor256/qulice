@@ -35,6 +35,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   </description>
   <rule ref="category/java/bestpractices.xml">
     <exclude name="JUnitTestsShouldIncludeAssert"/>
+    <exclude name="GuardLogStatement"/>
     <exclude name="PositionLiteralsFirstInComparisons"/>
     <exclude name="PositionLiteralsFirstInCaseInsensitiveComparisons"/>
   </rule>
@@ -64,7 +65,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   <rule ref="category/java/errorprone.xml">
     <exclude name="DataflowAnomalyAnalysis"/>
     <exclude name="AvoidLiteralsInIfCondition"/>
-    <exclude name="BeanMembersShouldSerialize"/>
+    <exclude name="NonSerializableClass"/>
     <exclude name="MissingSerialVersionUID"/>
   </rule>
   <rule ref="category/java/performance.xml">
@@ -158,6 +159,15 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         ]]></value>
       </property>
     </properties>
+    <example><![CDATA[
+  public final class DirectAccessToStaticFields {
+    private static int num = 1;
+
+    public static int number() {
+        return num;
+    }
+  }
+  ]]></example>
   </rule>
   <rule name="AvoidAccessToStaticMembersViaThis" message="Static members should be accessed in a static way [CLASS_NAME.FIELD_NAME], not via instance reference." language="java" class="net.sourceforge.pmd.lang.rule.XPathRule">
     <description>
@@ -191,10 +201,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
               and not (
                MethodDeclarator[
                 count(FormalParameters/FormalParameter)=1
-                and @Image='main'
                 and FormalParameters/FormalParameter[1]/Type/ReferenceType/ClassOrInterfaceType[@Image='String']
                 and FormalParameters/FormalParameter[@Varargs='true']
-               ] and not(ResultType/Type)
+               ] and not(ResultType/Type) and @Name='main'
               )
             ] and (
                 Annotation/MarkerAnnotation/Name[@Image!='BeforeClass' and @Image!='AfterClass'
@@ -214,65 +223,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <properties>
       <property name="xpath">
         <value><![CDATA[
-          //ClassOrInterfaceDeclaration[ends-with(@Image, 'Test')]//PrimaryPrefix/Name[@Image='Files.createFile']
-        ]]></value>
-      </property>
-    </properties>
-  </rule>
-  <rule name="ReturnEmptyCollectionRatherThanNull" language="java" class="net.sourceforge.pmd.lang.rule.XPathRule" message="Returned null collection was found (NullCollection).">
-    <description>
-      Any method that returns an collection (i.e. an array or a List), it is better to return
-      an empty one rather than a null reference.
-    </description>
-    <priority>1</priority>
-    <properties>
-      <property name="version" value="2.0"/>
-      <!--Solve priority confict-->
-      <property name="xpath">
-        <value><![CDATA[
-          //MethodDeclaration[
-          (./ResultType/Type[pmd-java:typeIs('java.util.Collection')
-            or pmd-java:typeIs('java.util.Map') or @ArrayType=true()]) and
-          (./Block/BlockStatement/Statement/ReturnStatement/Expression/PrimaryExpression/PrimaryPrefix/Literal/NullLiteral)
-        ]]]></value>
-      </property>
-    </properties>
-  </rule>
-  <rule name="JUnit5TestShouldBePackagePrivate" language="java" class="net.sourceforge.pmd.lang.rule.XPathRule" message="JUnit 5 tests should be package-private">
-    <description><![CDATA[
-      Reports JUnit 5 test classes and methods that are not package-private.
-      Contrary to JUnit 4 tests, which required public visibility to be run by the engine,
-      JUnit 5 tests can also be run if they're package-private. Marking them as such
-      is a good practice to limit their visibility.
-      Test methods are identified as those which use `@Test`, `@RepeatedTest`,
-      `@TestFactory`, `@TestTemplate` or `@ParameterizedTest`.
-    ]]></description>
-    <priority>3</priority>
-    <properties>
-      <property name="version" value="2.0"/>
-      <!--Solve priority confict-->
-      <property name="xpath">
-        <value><![CDATA[
-          //ClassOrInterfaceDeclaration[
-          (: a Junit 5 test class, ie, it has methods with the annotation :)
-            @Interface=false() and
-            ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration
-              [Annotation//Name[
-                pmd-java:typeIs('org.junit.jupiter.api.Test') or pmd-java:typeIs('org.junit.jupiter.api.RepeatedTest')
-                or pmd-java:typeIs('org.junit.jupiter.api.TestFactory') or pmd-java:typeIs('org.junit.jupiter.api.TestTemplate')
-                or pmd-java:typeIs('org.junit.jupiter.params.ParameterizedTest')
-              ]]
-              [MethodDeclaration]
-          ]/(
-            self::*[@Abstract=false() and (@Public=true() or @Protected=true())]
-            | ClassOrInterfaceBody/ClassOrInterfaceBodyDeclaration
-              [Annotation//Name[
-                pmd-java:typeIs('org.junit.jupiter.api.Test') or pmd-java:typeIs('org.junit.jupiter.api.RepeatedTest')
-                or pmd-java:typeIs('org.junit.jupiter.api.TestFactory') or pmd-java:typeIs('org.junit.jupiter.api.TestTemplate')
-                or pmd-java:typeIs('org.junit.jupiter.params.ParameterizedTest')
-              ]]
-          /MethodDeclaration[@Public=true() or @Protected=true()]
-          )
+          //ClassOrInterfaceDeclaration[ends-with(@SimpleName, 'Test')]//PrimaryPrefix/Name[@Image='Files.createFile']
         ]]></value>
       </property>
     </properties>

@@ -36,14 +36,14 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link SvnPropertiesValidator}.
  * @since 0.3
  */
-public final class SvnPropertiesValidatorTest {
+final class SvnPropertiesValidatorTest {
 
     /**
      * Let's simulate the property reading request.
      * @throws Exception If something goes wrong
      */
     @Test
-    public void testSimulatesSvnPropgetRequest() throws Exception {
+    void testSimulatesSvnPropgetRequest() throws Exception {
         final MavenValidator validator = new SvnPropertiesValidator();
         final MavenEnvironment env = new MavenEnvironmentMocker().mock();
         validator.validate(env);

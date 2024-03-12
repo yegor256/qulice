@@ -42,23 +42,25 @@ import net.sourceforge.pmd.lang.java.ast.ASTResultType;
 import net.sourceforge.pmd.lang.java.ast.ASTType;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
 import net.sourceforge.pmd.lang.java.ast.JavaNode;
-import net.sourceforge.pmd.lang.java.rule.AbstractInefficientZeroCheck;
 import net.sourceforge.pmd.lang.java.symboltable.JavaNameOccurrence;
 import net.sourceforge.pmd.lang.java.symboltable.MethodNameDeclaration;
 import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 import net.sourceforge.pmd.lang.symboltable.Scope;
-import net.sourceforge.pmd.util.StringUtil;
 
 /**
  * Rule to prohibit use of String.length() when checking for empty string.
  * String.isEmpty() should be used instead.
  * @since 0.18
  */
-public final class UseStringIsEmptyRule extends AbstractInefficientZeroCheck {
+@SuppressWarnings("deprecation")
+public final class UseStringIsEmptyRule
+    extends net.sourceforge.pmd.lang.java.rule.AbstractInefficientZeroCheck {
 
     @Override
     public boolean appliesToClassName(final String name) {
-        return StringUtil.isSame(name, "String", true, true, true);
+        return net.sourceforge.pmd.util.StringUtil.isSame(
+            name, "String", true, true, true
+        );
     }
 
     @Override

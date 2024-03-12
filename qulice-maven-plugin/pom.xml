@@ -70,7 +70,13 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-exec</artifactId>
-      <version>1.1</version>
+      <version>1.6.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.sisu</groupId>
+      <artifactId>org.eclipse.sisu.plexus</artifactId>
+      <version>0.3.4</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.hamcrest</groupId>
@@ -145,7 +151,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
-      <version>3.0.5</version>
+      <version>3.8.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -163,13 +169,13 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-artifact</artifactId>
-      <version>3.0.5</version>
+      <version>3.9.6</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.shared</groupId>
       <artifactId>maven-dependency-analyzer</artifactId>
-      <version>1.5</version>
+      <version>1.13.2</version>
       <exclusions>
         <exclusion>
           <groupId>org.apache.maven</groupId>
@@ -178,6 +184,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         <exclusion>
           <groupId>org.apache.maven</groupId>
           <artifactId>maven-artifact-manager</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.asm</groupId>
+          <artifactId>asm</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -230,17 +240,25 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <version>6.0.23.Final</version>
+      <version>8.0.1.Final</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.pmd</groupId>
       <artifactId>pmd-core</artifactId>
-      <version>6.10.0</version>
+      <version>6.55.0</version>
       <exclusions>
         <exclusion>
           <groupId>net.sourceforge.saxon</groupId>
           <artifactId>saxon</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.asm</groupId>
+          <artifactId>asm</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
         </exclusion>
       </exclusions>
     </dependency>

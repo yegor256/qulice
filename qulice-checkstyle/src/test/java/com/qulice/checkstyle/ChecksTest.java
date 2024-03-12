@@ -57,7 +57,7 @@ import org.xml.sax.InputSource;
  * Integration test case for all checkstyle checks.
  * @since 0.3
  */
-public final class ChecksTest {
+final class ChecksTest {
 
     /**
      * Test checkstyle for true negative.
@@ -66,7 +66,7 @@ public final class ChecksTest {
      */
     @ParameterizedTest
     @MethodSource("checks")
-    public void testCheckstyleTruePositive(final String dir) throws Exception {
+    void testCheckstyleTruePositive(final String dir) throws Exception {
         final AuditListener listener = Mockito.mock(AuditListener.class);
         final Collector collector = new ChecksTest.Collector();
         Mockito.doAnswer(collector).when(listener)
@@ -118,7 +118,7 @@ public final class ChecksTest {
      */
     @ParameterizedTest
     @MethodSource("checks")
-    public void testCheckstyleTrueNegative(final String dir) throws Exception {
+    void testCheckstyleTrueNegative(final String dir) throws Exception {
         final AuditListener listener = Mockito.mock(AuditListener.class);
         final Collector collector = new ChecksTest.Collector();
         Mockito.doAnswer(collector).when(listener)

@@ -58,6 +58,9 @@ public final class DuplicateFinderValidator implements MavenValidator {
     // @todo #250 Fix a problem with maven configuration of duplicate finder
     //  plugin in commented out code below, and enable
     //  duplicate-finder-ignore-deps IT in pom.xml.
+    // @todo #1198 Duplicate-finder-plugin was moved to
+    //  https://github.com/basepom/duplicate-finder-maven-plugin
+    //  Let's update it to the new version
     @Override
     @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void validate(final MavenEnvironment env)
@@ -88,7 +91,7 @@ public final class DuplicateFinderValidator implements MavenValidator {
             //  }
             props.put("ignoredDependencies", deps);
             env.executor().execute(
-                "com.ning.maven.plugins:maven-duplicate-finder-plugin:1.0.7",
+                "com.ning.maven.plugins:maven-duplicate-finder-plugin:1.0.9",
                 "check",
                 props
             );

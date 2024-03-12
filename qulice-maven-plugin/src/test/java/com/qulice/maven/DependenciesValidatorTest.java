@@ -48,12 +48,12 @@ import org.mockito.Mockito;
  * Test case for {@link DependenciesValidator} class.
  * @since 0.3
  */
-public final class DependenciesValidatorTest {
+final class DependenciesValidatorTest {
 
     /**
      * Plexus role.
      */
-    private static final String ROLE = ProjectDependencyAnalyzer.ROLE;
+    private static final String ROLE = ProjectDependencyAnalyzer.class.getName();
 
     /**
      * Plexus hint.
@@ -75,7 +75,7 @@ public final class DependenciesValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void passesIfNoDependencyProblemsFound() throws Exception {
+    void passesIfNoDependencyProblemsFound() throws Exception {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
         final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
@@ -92,7 +92,7 @@ public final class DependenciesValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void catchesDependencyProblemsAndThrowsException() throws Exception {
+    void catchesDependencyProblemsAndThrowsException() throws Exception {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
         final Set<Artifact> unused = new HashSet<>();
@@ -115,7 +115,7 @@ public final class DependenciesValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void ignoresRuntimeScope() throws Exception {
+    void ignoresRuntimeScope() throws Exception {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
         final Artifact artifact = Mockito.mock(Artifact.class);
@@ -137,7 +137,7 @@ public final class DependenciesValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void excludesUsedUndeclaredDependencies() throws Exception {
+    void excludesUsedUndeclaredDependencies() throws Exception {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
         final Set<Artifact> used = new HashSet<>();
@@ -171,7 +171,7 @@ public final class DependenciesValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void excludesUnusedDeclaredDependencies() throws Exception {
+    void excludesUnusedDeclaredDependencies() throws Exception {
         final ProjectDependencyAnalysis analysis =
             Mockito.mock(ProjectDependencyAnalysis.class);
         final Set<Artifact> unused = new HashSet<>();

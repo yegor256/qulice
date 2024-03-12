@@ -43,14 +43,14 @@ import org.mockito.Mockito;
  * Test case for {@link CheckMojo} class.
  * @since 0.3
  */
-public final class CheckMojoTest {
+final class CheckMojoTest {
 
     /**
      * CheckMojo can skip execution if "skip" flag is set.
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void skipsExecutionOnSkipFlag() throws Exception {
+    void skipsExecutionOnSkipFlag() throws Exception {
         final CheckMojo mojo = new CheckMojo();
         final Log log = Mockito.mock(Log.class);
         mojo.setLog(log);
@@ -64,7 +64,7 @@ public final class CheckMojoTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    public void validatesUsingAllProvidedValidators() throws Exception {
+    void validatesUsingAllProvidedValidators() throws Exception {
         final CheckMojo mojo = new CheckMojo();
         final Validator external = Mockito.mock(Validator.class);
         Mockito.when(external.name()).thenReturn("somename");

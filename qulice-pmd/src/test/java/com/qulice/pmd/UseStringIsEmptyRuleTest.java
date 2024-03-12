@@ -43,7 +43,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  * Test case for {@link com.qulice.pmd.rules.UseStringIsEmptyRule}.
  * @since 0.18
  */
-public final class UseStringIsEmptyRuleTest {
+final class UseStringIsEmptyRuleTest {
 
     /**
      * UseStringIsEmpty can detect when used String.length(), when checking for
@@ -63,7 +63,7 @@ public final class UseStringIsEmptyRuleTest {
             "StringLengthNotEqualsZero.java"
         }
     )
-    public void detectLengthComparisons(final String file) throws Exception {
+    void detectLengthComparisons(final String file) throws Exception {
         new PmdAssert(
             file, new IsEqual<>(false),
             new CombinableMatcher<>(containsMatcher(file, 16))
@@ -80,7 +80,7 @@ public final class UseStringIsEmptyRuleTest {
      * @throws Exception If something goes wrong.
      */
     @Test
-    public void notDetectOnArrayOfStrings() throws Exception {
+    void notDetectOnArrayOfStrings() throws Exception {
         new PmdAssert(
             "ArrayOfStringsLengthGreaterThanZero.java",
             new IsEqual<>(true),

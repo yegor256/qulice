@@ -39,14 +39,14 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link Environment}.
  * @since 0.3
  */
-public final class EnvironmentTest {
+final class EnvironmentTest {
 
     /**
      * Environment interface can be mocked/instantiated with Mocker.
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void canBeInstantiatedWithMocker() throws Exception {
+    void canBeInstantiatedWithMocker() throws Exception {
         final Environment env = new Environment.Mock();
         MatcherAssert.assertThat(env.basedir().exists(), Matchers.is(true));
         MatcherAssert.assertThat(env.tempdir().exists(), Matchers.is(true));
@@ -58,7 +58,7 @@ public final class EnvironmentTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void writesFileContentToTheDesignatedLocation() throws Exception {
+    void writesFileContentToTheDesignatedLocation() throws Exception {
         final String name = "src/main/java/Main.java";
         final String content = "class Main {}";
         final Environment env = new Environment.Mock()
@@ -72,7 +72,7 @@ public final class EnvironmentTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void writesByteArrayToTheDesignatedLocation() throws Exception {
+    void writesByteArrayToTheDesignatedLocation() throws Exception {
         final String name = "src/main/java/Foo.java";
         final byte[] bytes = "class Foo {}".getBytes();
         final Environment env = new Environment.Mock()
@@ -86,7 +86,7 @@ public final class EnvironmentTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void setsClasspathOnTheMock() throws Exception {
+    void setsClasspathOnTheMock() throws Exception {
         final Environment env = new Environment.Mock();
         MatcherAssert.assertThat(
             env.classpath().size(),
@@ -99,7 +99,7 @@ public final class EnvironmentTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    public void configuresParametersInMock() throws Exception {
+    void configuresParametersInMock() throws Exception {
         final String name = "alpha";
         final String value = "some complex value";
         final Environment env = new Environment.Mock()

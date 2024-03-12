@@ -151,7 +151,6 @@ public final class MojoExecutor {
         try {
             return this.helper.getPluginDescriptor(
                 plugin,
-                this.session.getCurrentProject().getRemotePluginRepositories(),
                 this.session
             ).getMojo(goal);
         } catch (final PluginResolutionException ex) {

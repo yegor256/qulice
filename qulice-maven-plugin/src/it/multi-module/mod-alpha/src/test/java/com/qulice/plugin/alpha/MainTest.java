@@ -45,8 +45,14 @@ final class MainTest {
      */
     @Test
     void testSquare() {
-        MatcherAssert.assertThat(1, Matchers.is(Main.square(1)));
-        MatcherAssert.assertThat(4, Matchers.is(Main.square(2)));
+        MatcherAssert.assertThat(
+            "Square for 1 should be 1",
+            1, Matchers.is(Main.square(1))
+        );
+        MatcherAssert.assertThat(
+            "Square for 2 should be 4",
+            4, Matchers.is(Main.square(2))
+        );
     }
 
 }
