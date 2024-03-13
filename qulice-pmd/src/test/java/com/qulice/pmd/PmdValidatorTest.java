@@ -42,6 +42,8 @@ import org.hamcrest.Matchers;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledForJreRange;
+import org.junit.jupiter.api.condition.JRE;
 
 /**
  * Test case for {@link PmdValidator} class.
@@ -713,6 +715,22 @@ final class PmdValidatorTest {
             Matchers.is(true),
             Matchers.not(
                 Matchers.containsString("JUnitTestClassShouldBeFinal")
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator can allow record classes.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    @EnabledForJreRange(min = JRE.JAVA_14, max = JRE.JAVA_21)
+    void allowRecordClasses() throws Exception {
+        new PmdAssert(
+            "RecordParsed.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString(PmdValidatorTest.STATIC_METHODS)
             )
         ).validate();
     }
