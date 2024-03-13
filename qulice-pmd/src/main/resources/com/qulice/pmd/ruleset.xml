@@ -153,9 +153,10 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     </description>
     <priority>3</priority>
     <properties>
+      <property name="version" value="2.0"/>
       <property name="xpath">
         <value><![CDATA[
-          //Name[@Image = //FieldDeclaration[@Static='true']/@VariableName]
+          //Name[@Image = //FieldDeclaration[@Static=true()]/VariableDeclarator/VariableDeclaratorId/@Name]
         ]]></value>
       </property>
     </properties>
@@ -175,13 +176,14 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     </description>
     <priority>3</priority>
     <properties>
+      <property name="version" value="2.0"/>
       <property name="xpath">
         <value><![CDATA[
           //PrimaryExpression[
-            (./PrimaryPrefix[@ThisModifier='true']) and
+            (./PrimaryPrefix[@ThisModifier=true()]) and
             (./PrimarySuffix[
-              @Image=//FieldDeclaration[@Static='true']/@VariableName
-              or @Image=//MethodDeclaration[@Static='true']/@MethodName
+              @Image=./ancestor::ClassOrInterfaceBody[1]/ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static=true()]/VariableDeclarator/VariableDeclaratorId/@Name
+              or @Image=./ancestor::ClassOrInterfaceBody[1]/ClassOrInterfaceBodyDeclaration/MethodDeclaration[@Static=true()]/@Name
             ])
           ]
         ]]></value>
