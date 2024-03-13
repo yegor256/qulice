@@ -73,18 +73,19 @@
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>      }
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      @Override
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> visitToken(<strong class="jxr_keyword">final</strong> DetailAST ast) {
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>          <strong class="jxr_keyword">if</strong> (AnnotationUtil.containsAnnotation(ast, <span class="jxr_string">"Override"</span>)) {
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>              <strong class="jxr_keyword">final</strong> FileContents contents = getFileContents();
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>              <strong class="jxr_keyword">final</strong> TextBlock javadoc = contents.getJavadocBefore(
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>                  ast.getLineNo()
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>              );
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>              <strong class="jxr_keyword">if</strong> (javadoc != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>                  log(ast, <span class="jxr_string">"Overridden methods should not have Javadoc"</span>);
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>              }
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>          }
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>      }
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  }
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      @SuppressWarnings(<span class="jxr_string">"deprecation"</span>)
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> visitToken(<strong class="jxr_keyword">final</strong> DetailAST ast) {
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <strong class="jxr_keyword">if</strong> (AnnotationUtil.containsAnnotation(ast, <span class="jxr_string">"Override"</span>)) {
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>              <strong class="jxr_keyword">final</strong> FileContents contents = getFileContents();
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>              <strong class="jxr_keyword">final</strong> TextBlock javadoc = contents.getJavadocBefore(
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>                  ast.getLineNo()
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>              );
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>              <strong class="jxr_keyword">if</strong> (javadoc != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>                  log(ast, <span class="jxr_string">"Overridden methods should not have Javadoc"</span>);
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>              }
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          }
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>      }
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2024 <a href="https://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
