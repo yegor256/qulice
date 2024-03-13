@@ -37,15 +37,14 @@ import java.util.LinkedList;
 import net.sourceforge.pmd.Report.ConfigurationError;
 import net.sourceforge.pmd.Report.ProcessingError;
 import net.sourceforge.pmd.RuleViolation;
-import net.sourceforge.pmd.ThreadSafeReportListener;
-import net.sourceforge.pmd.stat.Metric;
 
 /**
  * Listener of PMD errors.
  *
  * @since 0.3
  */
-final class PmdListener implements ThreadSafeReportListener {
+@SuppressWarnings(&quot;deprecation&quot;)
+final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener {
 
     /**
      * Environment.
@@ -62,25 +61,25 @@ final class PmdListener implements ThreadSafeReportListener {
      * Public ctor.
      * @param environ Environment
      */
-<span class="nc" id="L65">    PmdListener(final Environment environ) {</span>
-<span class="nc" id="L66">        this.errors = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L67">        this.env = environ;</span>
-<span class="nc" id="L68">    }</span>
+<span class="nc" id="L64">    PmdListener(final Environment environ) {</span>
+<span class="nc" id="L65">        this.errors = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L66">        this.env = environ;</span>
+<span class="nc" id="L67">    }</span>
 
     @Override
-    public void metricAdded(final Metric metric) {
+    public void metricAdded(final net.sourceforge.pmd.stat.Metric metric) {
         // ignore it
-<span class="nc" id="L73">    }</span>
+<span class="nc" id="L72">    }</span>
 
     @Override
     public void ruleViolationAdded(final RuleViolation violation) {
-<span class="nc" id="L77">        final String name = violation.getFilename().substring(</span>
-<span class="nc" id="L78">            this.env.basedir().toString().length()</span>
+<span class="nc" id="L76">        final String name = violation.getFilename().substring(</span>
+<span class="nc" id="L77">            this.env.basedir().toString().length()</span>
         );
-<span class="nc bnc" id="L80" title="All 2 branches missed.">        if (!this.env.exclude(&quot;pmd&quot;, name)) {</span>
-<span class="nc" id="L81">            this.errors.add(new PmdError.OfRuleViolation(violation));</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">        if (!this.env.exclude(&quot;pmd&quot;, name)) {</span>
+<span class="nc" id="L80">            this.errors.add(new PmdError.OfRuleViolation(violation));</span>
         }
-<span class="nc" id="L83">    }</span>
+<span class="nc" id="L82">    }</span>
 
     /**
      * Registers a new ProcessingError.
@@ -89,25 +88,25 @@ final class PmdListener implements ThreadSafeReportListener {
      *  better place for this check.
      */
     public void onProcessingError(final ProcessingError error) {
-<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (error.getFile().endsWith(&quot;.java&quot;)) {</span>
-<span class="nc" id="L93">            this.errors.add(new PmdError.OfProcessingError(error));</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (error.getFile().endsWith(&quot;.java&quot;)) {</span>
+<span class="nc" id="L92">            this.errors.add(new PmdError.OfProcessingError(error));</span>
         }
-<span class="nc" id="L95">    }</span>
+<span class="nc" id="L94">    }</span>
 
     /**
      * Registers a new ConfigurationError.
      * @param error A configuration error that needs to be reported.
      */
     public void onConfigError(final ConfigurationError error) {
-<span class="nc" id="L102">        this.errors.add(new PmdError.OfConfigError(error));</span>
-<span class="nc" id="L103">    }</span>
+<span class="nc" id="L101">        this.errors.add(new PmdError.OfConfigError(error));</span>
+<span class="nc" id="L102">    }</span>
 
     /**
      * Get list of violations.
      * @return List of violations
      */
     public Collection&lt;PmdError&gt; errors() {
-<span class="nc" id="L110">        return Collections.unmodifiableCollection(this.errors);</span>
+<span class="nc" id="L109">        return Collections.unmodifiableCollection(this.errors);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

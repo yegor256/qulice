@@ -88,15 +88,16 @@ import java.util.regex.Pattern;
     }
 
     @Override
+    @SuppressWarnings(&quot;deprecation&quot;)
     public void visitToken(final DetailAST ast) {
-<span class="nc" id="L92">        if (this.exclude.matcher(this.getFileContents().getFileName())</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">            .find()) {</span>
-<span class="nc" id="L94">            return;</span>
+<span class="nc" id="L93">        if (this.exclude.matcher(this.getFileContents().getFileName())</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            .find()) {</span>
+<span class="nc" id="L95">            return;</span>
         }
-<span class="nc bnc" id="L96" title="All 2 branches missed.">        if (TokenTypes.CLASS_DEF == ast.getParent().getParent().getType()) {</span>
-<span class="nc" id="L97">            this.checkClassMethod(ast);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (TokenTypes.CLASS_DEF == ast.getParent().getParent().getType()) {</span>
+<span class="nc" id="L98">            this.checkClassMethod(ast);</span>
         }
-<span class="nc" id="L99">    }</span>
+<span class="nc" id="L100">    }</span>
 
     /**
      * Check that non static class method refer {@code this}. Methods that
@@ -106,28 +107,28 @@ import java.util.regex.Pattern;
      * @param method DetailAST of method
      */
     private void checkClassMethod(final DetailAST method) {
-<span class="nc" id="L109">        final DetailAST modifiers = method</span>
-<span class="nc" id="L110">            .findFirstToken(TokenTypes.MODIFIERS);</span>
-<span class="nc bnc" id="L111" title="All 2 branches missed.">        if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {</span>
-<span class="nc" id="L112">            return;</span>
+<span class="nc" id="L110">        final DetailAST modifiers = method</span>
+<span class="nc" id="L111">            .findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">        if (modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null) {</span>
+<span class="nc" id="L113">            return;</span>
         }
-<span class="nc" id="L114">        final BranchContains checker = new BranchContains(method);</span>
-<span class="nc" id="L115">        final boolean onlythrow =</span>
-<span class="nc bnc" id="L116" title="All 2 branches missed.">            checker.check(TokenTypes.LITERAL_THROW)</span>
-<span class="nc bnc" id="L117" title="All 2 branches missed.">                &amp;&amp; !checker.check(TokenTypes.LCURLY)</span>
-<span class="nc bnc" id="L118" title="All 2 branches missed.">                &amp;&amp; this.countSemiColons(method) == 1;</span>
-<span class="nc bnc" id="L119" title="All 2 branches missed.">        if (!AnnotationUtil.containsAnnotation(method, &quot;Override&quot;)</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">            &amp;&amp; !isInAbstractOrNativeMethod(method)</span>
-<span class="nc bnc" id="L121" title="All 4 branches missed.">            &amp;&amp; !checker.check(TokenTypes.LITERAL_THIS)</span>
+<span class="nc" id="L115">        final BranchContains checker = new BranchContains(method);</span>
+<span class="nc" id="L116">        final boolean onlythrow =</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            checker.check(TokenTypes.LITERAL_THROW)</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">                &amp;&amp; !checker.check(TokenTypes.LCURLY)</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">                &amp;&amp; this.countSemiColons(method) == 1;</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        if (!AnnotationUtil.containsAnnotation(method, &quot;Override&quot;)</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            &amp;&amp; !isInAbstractOrNativeMethod(method)</span>
+<span class="nc bnc" id="L122" title="All 4 branches missed.">            &amp;&amp; !checker.check(TokenTypes.LITERAL_THIS)</span>
             &amp;&amp; !onlythrow) {
-<span class="nc" id="L123">            final int line = method.getLineNo();</span>
-<span class="nc" id="L124">            this.log(</span>
+<span class="nc" id="L124">            final int line = method.getLineNo();</span>
+<span class="nc" id="L125">            this.log(</span>
                 line,
                 // @checkstyle LineLength (1 line)
                 &quot;This method must be static, because it does not refer to \&quot;this\&quot;&quot;
             );
         }
-<span class="nc" id="L130">    }</span>
+<span class="nc" id="L131">    }</span>
 
     /**
      * Determines whether a method is {@code abstract} or {@code native}.
@@ -135,10 +136,10 @@ import java.util.regex.Pattern;
      * @return True if method is abstract or native.
      */
     private static boolean isInAbstractOrNativeMethod(final DetailAST method) {
-<span class="nc" id="L138">        final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);</span>
-<span class="nc" id="L139">        final BranchContains checker = new BranchContains(modifiers);</span>
-<span class="nc bnc" id="L140" title="All 2 branches missed.">        return checker.check(TokenTypes.ABSTRACT)</span>
-<span class="nc bnc" id="L141" title="All 2 branches missed.">            || checker.check(TokenTypes.LITERAL_NATIVE);</span>
+<span class="nc" id="L139">        final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc" id="L140">        final BranchContains checker = new BranchContains(modifiers);</span>
+<span class="nc bnc" id="L141" title="All 2 branches missed.">        return checker.check(TokenTypes.ABSTRACT)</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            || checker.check(TokenTypes.LITERAL_NATIVE);</span>
     }
 
     /**
@@ -147,24 +148,25 @@ import java.util.regex.Pattern;
      * @param method Method to count
      * @return The number of semicolons in the method as an int
      */
+    @SuppressWarnings(&quot;deprecation&quot;)
     private int countSemiColons(final DetailAST method) {
-<span class="nc" id="L151">        final DetailAST openingbrace = method.findFirstToken(TokenTypes.SLIST);</span>
-<span class="nc" id="L152">        int count = 0;</span>
-<span class="nc bnc" id="L153" title="All 2 branches missed.">        if (openingbrace != null) {</span>
-<span class="nc" id="L154">            final DetailAST closingbrace =</span>
-<span class="nc" id="L155">                openingbrace.findFirstToken(TokenTypes.RCURLY);</span>
-<span class="nc" id="L156">            final int lastline = closingbrace.getLineNo();</span>
-<span class="nc" id="L157">            final int firstline = openingbrace.getLineNo();</span>
-<span class="nc" id="L158">            final FileContents contents = this.getFileContents();</span>
-<span class="nc bnc" id="L159" title="All 2 branches missed.">            for (int line = firstline - 1; line &lt; lastline; line += 1) {</span>
-<span class="nc bnc" id="L160" title="All 2 branches missed.">                if (!contents.lineIsBlank(line)</span>
-<span class="nc bnc" id="L161" title="All 2 branches missed.">                    &amp;&amp; !contents.lineIsComment(line)</span>
-<span class="nc bnc" id="L162" title="All 2 branches missed.">                    &amp;&amp; contents.getLine(line).contains(&quot;;&quot;)) {</span>
-<span class="nc" id="L163">                    count += 1;</span>
+<span class="nc" id="L153">        final DetailAST openingbrace = method.findFirstToken(TokenTypes.SLIST);</span>
+<span class="nc" id="L154">        int count = 0;</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">        if (openingbrace != null) {</span>
+<span class="nc" id="L156">            final DetailAST closingbrace =</span>
+<span class="nc" id="L157">                openingbrace.findFirstToken(TokenTypes.RCURLY);</span>
+<span class="nc" id="L158">            final int lastline = closingbrace.getLineNo();</span>
+<span class="nc" id="L159">            final int firstline = openingbrace.getLineNo();</span>
+<span class="nc" id="L160">            final FileContents contents = this.getFileContents();</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">            for (int line = firstline - 1; line &lt; lastline; line += 1) {</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">                if (!contents.lineIsBlank(line)</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">                    &amp;&amp; !contents.lineIsComment(line)</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">                    &amp;&amp; contents.getLine(line).contains(&quot;;&quot;)) {</span>
+<span class="nc" id="L165">                    count += 1;</span>
                 }
             }
         }
-<span class="nc" id="L167">        return count;</span>
+<span class="nc" id="L169">        return count;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

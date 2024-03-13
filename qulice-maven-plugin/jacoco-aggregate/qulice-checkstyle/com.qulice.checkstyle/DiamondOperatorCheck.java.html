@@ -107,7 +107,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 <span class="nc" id="L107">                DiamondOperatorCheck.findFirstChildNodeOfType(</span>
                     instance, TokenTypes.TYPE_ARGUMENTS
                 );
-<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (!DiamondOperatorCheck.isDiamondOperatorUsed(type)) {</span>
+<span class="nc bnc" id="L110" title="All 4 branches missed.">            if (type != null &amp;&amp; !DiamondOperatorCheck.isDiamondOperatorUsed(type)) {</span>
 <span class="nc" id="L111">                log(type, &quot;Use diamond operator&quot;);</span>
             }
         }
@@ -150,7 +150,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      *
      * @param node AST subtree to process.
      * @param type Type of token
-     * @return Child node of specified type
+     * @return Child node of specified type OR NULL!
      */
     private static DetailAST findFirstChildNodeOfType(
         final DetailAST node, final int type

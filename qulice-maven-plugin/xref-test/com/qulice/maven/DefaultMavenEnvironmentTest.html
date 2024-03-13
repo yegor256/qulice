@@ -51,14 +51,14 @@
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * @since 0.8</em>
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  @SuppressWarnings(<span class="jxr_string">"PMD.AvoidDuplicateLiterals"</span>)
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="DefaultMavenEnvironmentTest" href="../../../com/qulice/maven/DefaultMavenEnvironmentTest.html#DefaultMavenEnvironmentTest">DefaultMavenEnvironmentTest</a> {
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="DefaultMavenEnvironmentTest" href="../../../com/qulice/maven/DefaultMavenEnvironmentTest.html#DefaultMavenEnvironmentTest">DefaultMavenEnvironmentTest</a> {
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment">     * DefaultMavenEnvironment can produce list of excludes.</em>
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      @Test
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> excludeAllFiles() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>      <strong class="jxr_keyword">void</strong> excludeAllFiles() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>          <strong class="jxr_keyword">final</strong> DefaultMavenEnvironment env = <strong class="jxr_keyword">new</strong> DefaultMavenEnvironment();
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>          env.setExcludes(Collections.singletonList(<span class="jxr_string">"codenarc:**/*.groovy"</span>));
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>          MatcherAssert.assertThat(
@@ -72,7 +72,7 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>      @Test
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> emptyExclude() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">void</strong> emptyExclude() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">final</strong> DefaultMavenEnvironment env = <strong class="jxr_keyword">new</strong> DefaultMavenEnvironment();
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>          env.setExcludes(Collections.&lt;String&gt;emptyList());
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>          MatcherAssert.assertThat(
@@ -86,7 +86,7 @@
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>      @Test
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> noExclude() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>      <strong class="jxr_keyword">void</strong> noExclude() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>          <strong class="jxr_keyword">final</strong> DefaultMavenEnvironment env = <strong class="jxr_keyword">new</strong> DefaultMavenEnvironment();
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>          MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>              env.excludes(<span class="jxr_string">"codenarc"</span>).iterator().hasNext(),
@@ -99,7 +99,7 @@
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>      @Test
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> excludeSomeFiles() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>      <strong class="jxr_keyword">void</strong> excludeSomeFiles() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>          <strong class="jxr_keyword">final</strong> DefaultMavenEnvironment env = <strong class="jxr_keyword">new</strong> DefaultMavenEnvironment();
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>          env.setExcludes(
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>              ImmutableList.&lt;String&gt;builder()
@@ -121,7 +121,7 @@
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
 <a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L115" href="#L115">115</a>     @Test
-<a class="jxr_linenumber" name="L116" href="#L116">116</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> passPathsWithWhitespaces()  <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>     <strong class="jxr_keyword">void</strong> passPathsWithWhitespaces()  <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L117" href="#L117">117</a>         <strong class="jxr_keyword">final</strong> DefaultMavenEnvironment env = <strong class="jxr_keyword">new</strong> DefaultMavenEnvironment();
 <a class="jxr_linenumber" name="L118" href="#L118">118</a>         <strong class="jxr_keyword">final</strong> MavenProject project = Mockito.mock(MavenProject.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L119" href="#L119">119</a>         Mockito.when(project.getRuntimeClasspathElements())
@@ -141,7 +141,7 @@
 <a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>     @Test
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">void</strong> producesEmptyExcludesWhenNoMatches() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>     <strong class="jxr_keyword">void</strong> producesEmptyExcludesWhenNoMatches() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>         <strong class="jxr_keyword">final</strong> DefaultMavenEnvironment env = <strong class="jxr_keyword">new</strong> DefaultMavenEnvironment();
 <a class="jxr_linenumber" name="L138" href="#L138">138</a>         env.setExcludes(
 <a class="jxr_linenumber" name="L139" href="#L139">139</a>             ImmutableList.of(

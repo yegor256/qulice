@@ -79,11 +79,11 @@
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
                                                                                                                         <li >
                             <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
                                                                                         </ul>
                                                     </li>
                                     </ul>
@@ -95,7 +95,7 @@
                             <div class="logo">
                                 <a href="../"
                                     title=" home page of Qulice.com ">
-                                    <img src="https://camo.githubusercontent.com/21b0e8be23deb3c2743027b82fda3af26c04ebfbb43faf5fc73c01b66607f8bf/687474703a2f2f696d672e71756c6963652e636f6d2f6c6f676f2e737667"
+                                    <img src="../logo.svg"
                                         alt="Qulice"
                                                                                     width="214"
                                                                                                                             height="60"
@@ -105,13 +105,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.22.0</strong>
+                                    <strong itemprop="version">0.22.2</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2022-08-22T03:43:52Z">
+                                    <time itemprop="datePublished" datetime="2024-03-13T08:00:26Z">
                                         
-                                        22-Aug-2022
+                                        13-Mar-2024
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -119,170 +119,80 @@
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
-                            
-  
-    <section>
-<h2><a name="qulice:check"></a>qulice:check</h2>
-      
-<p><b>Full name</b>:</p>
-      
-<p>com.qulice:qulice-maven-plugin:0.22.0:check</p>
-      
-<p><b>Description</b>:</p>
-      
-<div>Check the project and find all possible violations.</div>
-      
-<p><b>Attributes</b>:</p>
-      
+                            <section>
+<h2><a name="qulice:check"></a>qulice:check</h2><a name="qulice:check"></a>
+<p><strong>Full name</strong>:</p>
+<p>com.qulice:qulice-maven-plugin:0.22.2:check</p>
+<p><strong>Description</strong>:</p>
+<p>Check the project and find all possible violations.</p>
+<p><strong>Attributes</strong>:</p>
 <ul>
-        
 <li>Requires a Maven project to be executed.</li>
-        
 <li>Requires dependency resolution of artifacts in scope: <code>test</code>.</li>
-        
+<li>The goal is not marked as thread-safe and thus does not support parallel builds.</li>
 <li>Since version: <code>0.3</code>.</li>
-        
-<li>Binds by default to the <a class="externalLink" href="http://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycle phase</a>: <code>verify</code>.</li>
-      </ul>
-      <section>
-<h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
-        
-<table class="bodyTable" border="0">
-          
+<li>Binds by default to the <a class="externalLink" href="https://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycle phase</a>: <code>verify</code>.</li></ul><section>
+<h3><a name="Optional_Parameters"></a>Optional Parameters</h3><a name="Optional_Parameters"></a>
+<table border="0" class="bodyTable">
 <tr class="a">
-            
 <th>Name</th>
-            
 <th>Type</th>
-            
 <th>Since</th>
-            
-<th>Description</th>
-          </tr>
-          
+<th>Description</th></tr>
 <tr class="b">
-            
-<td><code><a href="#asserts">&lt;asserts&gt;</a></code></td>
-            
-<td><code>Collection</code></td>
-            
-<td><code>0.3</code></td>
-            
-<td>List of xpath queries to validate pom.xml.<br /><b>User property is</b>: <code>qulice.asserts</code>.<br /></td>
-          </tr>
-          
+<td align="left"><a href="#asserts"><code>&lt;asserts&gt;</code></a></td>
+<td><code>Collection&lt;String&gt;</code></td>
+<td><code>-</code></td>
+<td>List of xpath queries to validate pom.xml.<br /><strong>User Property</strong>: <code>qulice.asserts</code></td></tr>
 <tr class="a">
-            
-<td><code><a href="#excludes">&lt;excludes&gt;</a></code></td>
-            
-<td><code>Collection</code></td>
-            
-<td><code>0.3</code></td>
-            
-<td>List of regular expressions to exclude.<br /><b>User property is</b>: <code>qulice.excludes</code>.<br /></td>
-          </tr>
-          
+<td align="left"><a href="#excludes"><code>&lt;excludes&gt;</code></a></td>
+<td><code>Collection&lt;String&gt;</code></td>
+<td><code>-</code></td>
+<td>List of regular expressions to exclude.<br /><strong>User Property</strong>: <code>qulice.excludes</code></td></tr>
 <tr class="b">
-            
-<td><code><a href="#license">&lt;license&gt;</a></code></td>
-            
+<td align="left"><a href="#license"><code>&lt;license&gt;</code></a></td>
 <td><code>String</code></td>
-            
-<td><code>0.3</code></td>
-            
-<td>Location of License file. If it is an absolute file name you should
-prepend it with &quot;file:&quot; prefix. Otherwise it is treated like a
-resource name and will be found in classpath (if available).<br /><b>Default value is</b>: <code>LICENSE.txt</code>.<br /><b>User property is</b>: <code>qulice.license</code>.<br /></td>
-          </tr>
-          
+<td><code>-</code></td>
+<td>Location of License file. If it is an absolute file name you should prepend it with "file:" prefix. Otherwise it is treated like a resource name and will be found in classpath (if available).<br /><strong>Default</strong>: <code>LICENSE.txt</code><br /><strong>User Property</strong>: <code>qulice.license</code></td></tr>
 <tr class="a">
-            
-<td><code><a href="#skip">&lt;skip&gt;</a></code></td>
-            
+<td align="left"><a href="#skip"><code>&lt;skip&gt;</code></a></td>
 <td><code>boolean</code></td>
-            
-<td><code>0.3</code></td>
-            
-<td>Shall we skip execution?<br /><b>Default value is</b>: <code>false</code>.<br /><b>User property is</b>: <code>qulice.skip</code>.<br /></td>
-          </tr>
-        </table>
-      </section>
-      <section>
-<h3><a name="Parameter_Details"></a>Parameter Details</h3>
-        <section>
-<h4><a name="a.3Casserts.3E"></a><b><a name="asserts">&lt;asserts&gt;</a></b></h4>
-        
+<td><code>-</code></td>
+<td>Shall we skip execution?<br /><strong>Default</strong>: <code>false</code><br /><strong>User Property</strong>: <code>qulice.skip</code></td></tr></table></section><section>
+<h3><a name="Parameter_Details"></a>Parameter Details</h3><a name="Parameter_Details"></a><a name="asserts"><section>
+<h4><a name="a.3Casserts.3E"></a>&lt;asserts&gt;</h4><a name="a.3Casserts.3E"></a></a>
 <div>List of xpath queries to validate pom.xml.</div>
-        
 <ul>
-          
-<li><b>Type</b>: <code>java.util.Collection</code></li>
-          
-<li><b>Since</b>: <code>0.3</code></li>
-          
-<li><b>Required</b>: <code>No</code></li>
-          
-<li><b>User Property</b>: <code>qulice.asserts</code></li>
-        </ul><hr /></section><section>
-<h4><a name="a.3Cexcludes.3E"></a><b><a name="excludes">&lt;excludes&gt;</a></b></h4>
-        
+<li><strong>Type</strong>: <code>java.util.Collection&lt;java.lang.String&gt;</code></li>
+<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>User Property</strong>: <code>qulice.asserts</code></li></ul><hr /></section><a name="excludes"><section>
+<h4><a name="a.3Cexcludes.3E"></a>&lt;excludes&gt;</h4><a name="a.3Cexcludes.3E"></a></a>
 <div>List of regular expressions to exclude.</div>
-        
 <ul>
-          
-<li><b>Type</b>: <code>java.util.Collection</code></li>
-          
-<li><b>Since</b>: <code>0.3</code></li>
-          
-<li><b>Required</b>: <code>No</code></li>
-          
-<li><b>User Property</b>: <code>qulice.excludes</code></li>
-        </ul><hr /></section><section>
-<h4><a name="a.3Clicense.3E"></a><b><a name="license">&lt;license&gt;</a></b></h4>
-        
-<div>Location of License file. If it is an absolute file name you should
-prepend it with &quot;file:&quot; prefix. Otherwise it is treated like a
-resource name and will be found in classpath (if available).</div>
-        
+<li><strong>Type</strong>: <code>java.util.Collection&lt;java.lang.String&gt;</code></li>
+<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>User Property</strong>: <code>qulice.excludes</code></li></ul><hr /></section><a name="license"><section>
+<h4><a name="a.3Clicense.3E"></a>&lt;license&gt;</h4><a name="a.3Clicense.3E"></a></a>
+<div>Location of License file. If it is an absolute file name you should prepend it with "file:" prefix. Otherwise it is treated like a resource name and will be found in classpath (if available).</div>
 <ul>
-          
-<li><b>Type</b>: <code>java.lang.String</code></li>
-          
-<li><b>Since</b>: <code>0.3</code></li>
-          
-<li><b>Required</b>: <code>No</code></li>
-          
-<li><b>User Property</b>: <code>qulice.license</code></li>
-          
-<li><b>Default</b>: <code>LICENSE.txt</code></li>
-        </ul><hr /></section><section>
-<h4><a name="a.3Cskip.3E"></a><b><a name="skip">&lt;skip&gt;</a></b></h4>
-        
+<li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>User Property</strong>: <code>qulice.license</code></li>
+<li><strong>Default</strong>: <code>LICENSE.txt</code></li></ul><hr /></section><a name="skip"><section>
+<h4><a name="a.3Cskip.3E"></a>&lt;skip&gt;</h4><a name="a.3Cskip.3E"></a></a>
 <div>Shall we skip execution?</div>
-        
 <ul>
-          
-<li><b>Type</b>: <code>boolean</code></li>
-          
-<li><b>Since</b>: <code>0.3</code></li>
-          
-<li><b>Required</b>: <code>No</code></li>
-          
-<li><b>User Property</b>: <code>qulice.skip</code></li>
-          
-<li><b>Default</b>: <code>false</code></li>
-        </ul>
-      </section></section>
-    </section>
-  
-
+<li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>User Property</strong>: <code>qulice.skip</code></li>
+<li><strong>Default</strong>: <code>false</code></li></ul></section></section></section>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2022
+                                                                            2011-2024
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>

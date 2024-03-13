@@ -98,11 +98,15 @@ public final class PmdValidator implements ResourceValidator {
 <span class="nc" id="L98">            final String name = file.getPath().substring(</span>
 <span class="nc" id="L99">                this.env.basedir().toString().length()</span>
             );
-<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (!this.env.exclude(&quot;pmd&quot;, name)) {</span>
-<span class="nc" id="L102">                sources.add(new FileDataSource(file));</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (this.env.exclude(&quot;pmd&quot;, name)) {</span>
+<span class="nc" id="L102">                continue;</span>
             }
-<span class="nc" id="L104">        }</span>
-<span class="nc" id="L105">        return sources;</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (!name.matches(&quot;^.*\\.java$&quot;)) {</span>
+<span class="nc" id="L105">                continue;</span>
+            }
+<span class="nc" id="L107">            sources.add(new FileDataSource(file));</span>
+<span class="nc" id="L108">        }</span>
+<span class="nc" id="L109">        return sources;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -79,11 +79,11 @@
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
                                                                                                                         <li >
                             <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
                                                                                         </ul>
                                                     </li>
                                     </ul>
@@ -95,7 +95,7 @@
                             <div class="logo">
                                 <a href="../"
                                     title=" home page of Qulice.com ">
-                                    <img src="https://camo.githubusercontent.com/21b0e8be23deb3c2743027b82fda3af26c04ebfbb43faf5fc73c01b66607f8bf/687474703a2f2f696d672e71756c6963652e636f6d2f6c6f676f2e737667"
+                                    <img src="../logo.svg"
                                         alt="Qulice"
                                                                                     width="214"
                                                                                                                             height="60"
@@ -105,13 +105,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.22.0</strong>
+                                    <strong itemprop="version">0.22.2</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2022-08-22T03:43:52Z">
+                                    <time itemprop="datePublished" datetime="2024-03-13T08:00:26Z">
                                         
-                                        22-Aug-2022
+                                        13-Mar-2024
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -119,155 +119,79 @@
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
-                            
-  
-    <section>
-<h2><a name="qulice:help"></a>qulice:help</h2>
-      
-<p><b>Full name</b>:</p>
-      
-<p>com.qulice:qulice-maven-plugin:0.22.0:help</p>
-      
-<p><b>Description</b>:</p>
-      
-<div>Display help information on qulice-maven-plugin.<br />
-Call <code>mvn qulice:help -Ddetail=true
--Dgoal=&lt;goal-name&gt;</code> to display parameter details.</div>
-      
-<p><b>Attributes</b>:</p>
-      <section>
-<h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
-        
-<table class="bodyTable" border="0">
-          
+                            <section>
+<h2><a name="qulice:help"></a>qulice:help</h2><a name="qulice:help"></a>
+<p><strong>Full name</strong>:</p>
+<p>com.qulice:qulice-maven-plugin:0.22.2:help</p>
+<p><strong>Description</strong>:</p>
+<p>Display help information on qulice-maven-plugin.
+<br />
+ Call <code>mvn qulice:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</code> to display parameter details.</p>
+<p><strong>Attributes</strong>:</p>
+<ul>
+<li>The goal is thread-safe and supports parallel builds.</li></ul><section>
+<h3><a name="Optional_Parameters"></a>Optional Parameters</h3><a name="Optional_Parameters"></a>
+<table border="0" class="bodyTable">
 <tr class="a">
-            
 <th>Name</th>
-            
 <th>Type</th>
-            
 <th>Since</th>
-            
-<th>Description</th>
-          </tr>
-          
+<th>Description</th></tr>
 <tr class="b">
-            
-<td><code><a href="#detail">&lt;detail&gt;</a></code></td>
-            
+<td align="left"><a href="#detail"><code>&lt;detail&gt;</code></a></td>
 <td><code>boolean</code></td>
-            
 <td><code>-</code></td>
-            
-<td>If <code>true</code>, display all settable properties for each
-goal.<br /><b>Default value is</b>: <code>false</code>.<br /><b>User property is</b>: <code>detail</code>.<br /></td>
-          </tr>
-          
+<td>If <code>true</code>, display all settable properties for each goal.<br /><strong>Default</strong>: <code>false</code><br /><strong>User Property</strong>: <code>detail</code></td></tr>
 <tr class="a">
-            
-<td><code><a href="#goal">&lt;goal&gt;</a></code></td>
-            
+<td align="left"><a href="#goal"><code>&lt;goal&gt;</code></a></td>
 <td><code>String</code></td>
-            
 <td><code>-</code></td>
-            
-<td>The name of the goal for which to show help. If unspecified, all
-goals will be displayed.<br /><b>User property is</b>: <code>goal</code>.<br /></td>
-          </tr>
-          
+<td>The name of the goal for which to show help. If unspecified, all goals will be displayed.<br /><strong>User Property</strong>: <code>goal</code></td></tr>
 <tr class="b">
-            
-<td><code><a href="#indentSize">&lt;indentSize&gt;</a></code></td>
-            
+<td align="left"><a href="#indentSize"><code>&lt;indentSize&gt;</code></a></td>
 <td><code>int</code></td>
-            
 <td><code>-</code></td>
-            
-<td>The number of spaces per indentation level, should be positive.<br /><b>Default value is</b>: <code>2</code>.<br /><b>User property is</b>: <code>indentSize</code>.<br /></td>
-          </tr>
-          
+<td>The number of spaces per indentation level, should be positive.<br /><strong>Default</strong>: <code>2</code><br /><strong>User Property</strong>: <code>indentSize</code></td></tr>
 <tr class="a">
-            
-<td><code><a href="#lineLength">&lt;lineLength&gt;</a></code></td>
-            
+<td align="left"><a href="#lineLength"><code>&lt;lineLength&gt;</code></a></td>
 <td><code>int</code></td>
-            
 <td><code>-</code></td>
-            
-<td>The maximum length of a display line, should be positive.<br /><b>Default value is</b>: <code>80</code>.<br /><b>User property is</b>: <code>lineLength</code>.<br /></td>
-          </tr>
-        </table>
-      </section>
-      <section>
-<h3><a name="Parameter_Details"></a>Parameter Details</h3>
-        <section>
-<h4><a name="a.3Cdetail.3E"></a><b><a name="detail">&lt;detail&gt;</a></b></h4>
-        
-<div>If <code>true</code>, display all settable properties for each
-goal.</div>
-        
+<td>The maximum length of a display line, should be positive.<br /><strong>Default</strong>: <code>80</code><br /><strong>User Property</strong>: <code>lineLength</code></td></tr></table></section><section>
+<h3><a name="Parameter_Details"></a>Parameter Details</h3><a name="Parameter_Details"></a><a name="detail"><section>
+<h4><a name="a.3Cdetail.3E"></a>&lt;detail&gt;</h4><a name="a.3Cdetail.3E"></a></a>
+<div>If <code>true</code>, display all settable properties for each goal.</div>
 <ul>
-          
-<li><b>Type</b>: <code>boolean</code></li>
-          
-<li><b>Required</b>: <code>No</code></li>
-          
-<li><b>User Property</b>: <code>detail</code></li>
-          
-<li><b>Default</b>: <code>false</code></li>
-        </ul><hr /></section><section>
-<h4><a name="a.3Cgoal.3E"></a><b><a name="goal">&lt;goal&gt;</a></b></h4>
-        
-<div>The name of the goal for which to show help. If unspecified, all
-goals will be displayed.</div>
-        
+<li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>User Property</strong>: <code>detail</code></li>
+<li><strong>Default</strong>: <code>false</code></li></ul><hr /></section><a name="goal"><section>
+<h4><a name="a.3Cgoal.3E"></a>&lt;goal&gt;</h4><a name="a.3Cgoal.3E"></a></a>
+<div>The name of the goal for which to show help. If unspecified, all goals will be displayed.</div>
 <ul>
-          
-<li><b>Type</b>: <code>java.lang.String</code></li>
-          
-<li><b>Required</b>: <code>No</code></li>
-          
-<li><b>User Property</b>: <code>goal</code></li>
-        </ul><hr /></section><section>
-<h4><a name="a.3CindentSize.3E"></a><b><a name="indentSize">&lt;indentSize&gt;</a></b></h4>
-        
+<li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>User Property</strong>: <code>goal</code></li></ul><hr /></section><a name="indentSize"><section>
+<h4><a name="a.3CindentSize.3E"></a>&lt;indentSize&gt;</h4><a name="a.3CindentSize.3E"></a></a>
 <div>The number of spaces per indentation level, should be positive.</div>
-        
 <ul>
-          
-<li><b>Type</b>: <code>int</code></li>
-          
-<li><b>Required</b>: <code>No</code></li>
-          
-<li><b>User Property</b>: <code>indentSize</code></li>
-          
-<li><b>Default</b>: <code>2</code></li>
-        </ul><hr /></section><section>
-<h4><a name="a.3ClineLength.3E"></a><b><a name="lineLength">&lt;lineLength&gt;</a></b></h4>
-        
+<li><strong>Type</strong>: <code>int</code></li>
+<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>User Property</strong>: <code>indentSize</code></li>
+<li><strong>Default</strong>: <code>2</code></li></ul><hr /></section><a name="lineLength"><section>
+<h4><a name="a.3ClineLength.3E"></a>&lt;lineLength&gt;</h4><a name="a.3ClineLength.3E"></a></a>
 <div>The maximum length of a display line, should be positive.</div>
-        
 <ul>
-          
-<li><b>Type</b>: <code>int</code></li>
-          
-<li><b>Required</b>: <code>No</code></li>
-          
-<li><b>User Property</b>: <code>lineLength</code></li>
-          
-<li><b>Default</b>: <code>80</code></li>
-        </ul>
-      </section></section>
-    </section>
-  
-
+<li><strong>Type</strong>: <code>int</code></li>
+<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>User Property</strong>: <code>lineLength</code></li>
+<li><strong>Default</strong>: <code>80</code></li></ul></section></section></section>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2022
+                                                                            2011-2024
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>

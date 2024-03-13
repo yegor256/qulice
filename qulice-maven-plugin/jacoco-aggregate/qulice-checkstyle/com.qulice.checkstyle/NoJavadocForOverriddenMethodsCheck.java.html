@@ -65,16 +65,17 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
     }
 
     @Override
+    @SuppressWarnings(&quot;deprecation&quot;)
     public void visitToken(final DetailAST ast) {
-<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (AnnotationUtil.containsAnnotation(ast, &quot;Override&quot;)) {</span>
-<span class="nc" id="L70">            final FileContents contents = getFileContents();</span>
-<span class="nc" id="L71">            final TextBlock javadoc = contents.getJavadocBefore(</span>
-<span class="nc" id="L72">                ast.getLineNo()</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (AnnotationUtil.containsAnnotation(ast, &quot;Override&quot;)) {</span>
+<span class="nc" id="L71">            final FileContents contents = getFileContents();</span>
+<span class="nc" id="L72">            final TextBlock javadoc = contents.getJavadocBefore(</span>
+<span class="nc" id="L73">                ast.getLineNo()</span>
             );
-<span class="nc bnc" id="L74" title="All 2 branches missed.">            if (javadoc != null) {</span>
-<span class="nc" id="L75">                log(ast, &quot;Overridden methods should not have Javadoc&quot;);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (javadoc != null) {</span>
+<span class="nc" id="L76">                log(ast, &quot;Overridden methods should not have Javadoc&quot;);</span>
             }
         }
-<span class="nc" id="L78">    }</span>
+<span class="nc" id="L79">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

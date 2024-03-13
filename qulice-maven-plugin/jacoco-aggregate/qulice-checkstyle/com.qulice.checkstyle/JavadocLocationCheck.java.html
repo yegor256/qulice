@@ -67,16 +67,32 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (JavadocLocationCheck.isField(ast)) {</span>
-<span class="nc" id="L71">            final int current = ast.getLineNo();</span>
-<span class="nc" id="L72">            final int end = JavadocLocationCheck.findCommentEnd(</span>
-<span class="nc" id="L73">                this.getLines(), current</span>
-            );
-<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (end &gt; JavadocLocationCheck.getCommentMinimum(ast)) {</span>
-<span class="nc" id="L76">                this.report(current, end);</span>
-            }
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (!JavadocLocationCheck.isField(ast)) {</span>
+<span class="nc" id="L71">            return;</span>
         }
-<span class="nc" id="L79">    }</span>
+<span class="nc" id="L73">        final String[] lines = this.getLines();</span>
+<span class="nc" id="L74">        int current = ast.getLineNo();</span>
+<span class="nc" id="L75">        boolean found = false;</span>
+<span class="nc" id="L76">        final int start = current;</span>
+<span class="nc" id="L77">        --current;</span>
+        while (true) {
+<span class="nc bnc" id="L79" title="All 2 branches missed.">            if (current &lt;= 0) {</span>
+<span class="nc" id="L80">                break;</span>
+            }
+<span class="nc" id="L82">            final String line = lines[current - 1].trim();</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (line.endsWith(&quot;*/&quot;)) {</span>
+<span class="nc" id="L84">                found = true;</span>
+<span class="nc" id="L85">                break;</span>
+            }
+<span class="nc bnc" id="L87" title="All 2 branches missed.">            if (!line.isEmpty()) {</span>
+<span class="nc" id="L88">                break;</span>
+            }
+<span class="nc" id="L90">            --current;</span>
+<span class="nc" id="L91">        }</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        if (found) {</span>
+<span class="nc" id="L93">            this.report(start, current);</span>
+        }
+<span class="nc" id="L95">    }</span>
 
     /**
      * Report empty lines between current and end line.
@@ -84,55 +100,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @param end Final line
      */
     private void report(final int current, final int end) {
-<span class="nc" id="L87">        final int diff = current - end;</span>
-<span class="nc bnc" id="L88" title="All 2 branches missed.">        if (diff &gt; 1) {</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">            for (int pos = 1; pos &lt; diff; pos += 1) {</span>
-<span class="nc" id="L90">                this.log(</span>
+<span class="nc" id="L103">        final int diff = current - end;</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        if (diff &gt; 1) {</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            for (int pos = 1; pos &lt; diff; pos += 1) {</span>
+<span class="nc" id="L106">                this.log(</span>
                     end + pos,
                     &quot;Empty line between javadoc and subject&quot;
                 );
             }
         }
-<span class="nc" id="L96">    }</span>
-
-    /**
-     * Returns mimimum line number of the end of the comment.
-     * @param node Node to be checked for Java docs.
-     * @return Mimimum line number of the end of the comment.
-     */
-    private static int getCommentMinimum(final DetailAST node) {
-<span class="nc" id="L104">        int minimum = 0;</span>
-<span class="nc" id="L105">        final DetailAST parent = node.getParent();</span>
-<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (null == parent) {</span>
-<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (!JavadocLocationCheck.isFirst(node)) {</span>
-<span class="nc" id="L108">                final DetailAST object = node</span>
-<span class="nc" id="L109">                    .getPreviousSibling()</span>
-<span class="nc" id="L110">                    .findFirstToken(TokenTypes.OBJBLOCK);</span>
-                // @checkstyle NestedIfDepth (1 line)
-<span class="nc bnc" id="L112" title="All 2 branches missed.">                if (object != null) {</span>
-<span class="nc" id="L113">                    minimum = object.getLastChild().getLineNo();</span>
-                }
-<span class="nc" id="L115">            }</span>
-        } else {
-<span class="nc" id="L117">            DetailAST previous = node.getPreviousSibling();</span>
-<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (null == previous) {</span>
-<span class="nc" id="L119">                previous = parent;</span>
-            }
-<span class="nc" id="L121">            minimum = previous.getLineNo();</span>
-        }
-<span class="nc" id="L123">        return minimum;</span>
-    }
-
-    /**
-     * Checks the specified node: is it first element or not.
-     * @param node Node to be checked.
-     * @return True if there are no any nodes before this one, else -
-     *  {@code false}.
-     */
-    private static boolean isFirst(final DetailAST node) {
-<span class="nc" id="L133">        final DetailAST previous = node.getPreviousSibling();</span>
-<span class="nc bnc" id="L134" title="All 2 branches missed.">        return null == previous;</span>
-    }
+<span class="nc" id="L112">    }</span>
 
     /**
      * Returns {@code TRUE} if a specified node is something that should have
@@ -142,40 +119,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @return Is it a Javadoc-required entity?
      */
     private static boolean isField(final DetailAST node) {
-<span class="nc" id="L145">        boolean yes = true;</span>
-<span class="nc bnc" id="L146" title="All 2 branches missed.">        if (TokenTypes.VARIABLE_DEF == node.getType()) {</span>
-<span class="nc bnc" id="L147" title="All 2 branches missed.">            yes = TokenTypes.OBJBLOCK == node.getParent().getType();</span>
+<span class="nc" id="L122">        boolean yes = true;</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">        if (TokenTypes.VARIABLE_DEF == node.getType()) {</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            yes = TokenTypes.OBJBLOCK == node.getParent().getType();</span>
         }
-<span class="nc" id="L149">        return yes;</span>
-    }
-
-    /**
-     * Find javadoc ending comment.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @return Line number with found ending comment, or -1 if it wasn't found.
-     */
-    private static int findCommentEnd(final String[] lines, final int start) {
-<span class="nc" id="L159">        return JavadocLocationCheck.findTrimmedTextUp(lines, start, &quot;*/&quot;);</span>
-    }
-
-    /**
-     * Find a text in lines, by going up.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @param text Text to find.
-     * @return Line number with found text, or -1 if it wasn't found.
-     */
-    private static int findTrimmedTextUp(final String[] lines,
-        final int start, final String text) {
-<span class="nc" id="L171">        int found = -1;</span>
-<span class="nc bnc" id="L172" title="All 2 branches missed.">        for (int pos = start - 1; pos &gt;= 0; pos -= 1) {</span>
-<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (lines[pos].trim().equals(text)) {</span>
-<span class="nc" id="L174">                found = pos + 1;</span>
-<span class="nc" id="L175">                break;</span>
-            }
-        }
-<span class="nc" id="L178">        return found;</span>
+<span class="nc" id="L126">        return yes;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
