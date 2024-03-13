@@ -115,7 +115,7 @@
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>                 DiamondOperatorCheck.findFirstChildNodeOfType(
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>                     instance, TokenTypes.TYPE_ARGUMENTS
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>                 );
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>             <strong class="jxr_keyword">if</strong> (!DiamondOperatorCheck.isDiamondOperatorUsed(type)) {
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>             <strong class="jxr_keyword">if</strong> (type != <strong class="jxr_keyword">null</strong> &amp;&amp; !DiamondOperatorCheck.isDiamondOperatorUsed(type)) {
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>                 log(type, <span class="jxr_string">"Use diamond operator"</span>);
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>             }
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>         }
@@ -158,7 +158,7 @@
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">     *</em>
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">     * @param node AST subtree to process.</em>
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> <em class="jxr_javadoccomment">     * @param type Type of token</em>
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">     * @return Child node of specified type</em>
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">     * @return Child node of specified type OR NULL!</em>
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L155" href="#L155">155</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> DetailAST findFirstChildNodeOfType(
 <a class="jxr_linenumber" name="L156" href="#L156">156</a>         <strong class="jxr_keyword">final</strong> DetailAST node, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> type
