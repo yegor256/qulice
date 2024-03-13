@@ -1,0 +1,28 @@
+---
+name: up
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+concurrency:
+  group: up-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  up:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
+      - run: |-
+          git fetch --tags --force && \
+          latest=$(git tag --sort=creatordate | tail -1) && \
+          sed -E -i "s/<version>[^<]+/<version>${latest}/g" README.md
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          branch: version-up
+          commit-message: 'new version in README'
+          delete-branch: true
+          title: 'New version in README'
+          assignees: yegor256
+          base: master
