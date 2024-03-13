@@ -183,7 +183,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
             (./PrimaryPrefix[@ThisModifier=true()]) and
             (./PrimarySuffix[
               @Image=./ancestor::ClassOrInterfaceBody[1]/ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static=true()]/VariableDeclarator/VariableDeclaratorId/@Name
-              or @Image=./ancestor::ClassOrInterfaceBody[1]/ClassOrInterfaceBodyDeclaration/MethodDeclaration[@Static=true()]/@MethodName
+              or @Image=./ancestor::ClassOrInterfaceBody[1]/ClassOrInterfaceBodyDeclaration/MethodDeclaration[@Static=true()]/@Name
             ])
           ]
         ]]></value>
