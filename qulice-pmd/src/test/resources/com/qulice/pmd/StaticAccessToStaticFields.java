@@ -12,6 +12,21 @@ public final class StaticAccessToStaticFields {
     }
 
     public int addToNum(final int another) {
-        return another + StaticAccessToStaticFields.number();
+        return another + StaticAccessToStaticFields.number() + this.another();
+    }
+
+    class InternalClass {
+        final int num;
+
+        InternalClass(final int par) {
+            this.num = par;
+        }
+        static int another() {
+            return 1;
+        }
+
+        public int add(final int a) {
+            return a + this.num;
+        }
     }
 }

@@ -182,8 +182,8 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
           //PrimaryExpression[
             (./PrimaryPrefix[@ThisModifier=true()]) and
             (./PrimarySuffix[
-              @Image=//FieldDeclaration[@Static=true()]/VariableDeclarator/VariableDeclaratorId/@Name
-              or @Image=//MethodDeclaration[@Static=true()]/@MethodName
+              @Image=./ancestor::ClassOrInterfaceBody[1]/ClassOrInterfaceBodyDeclaration/FieldDeclaration[@Static=true()]/VariableDeclarator/VariableDeclaratorId/@Name
+              or @Image=./ancestor::ClassOrInterfaceBody[1]/ClassOrInterfaceBodyDeclaration/MethodDeclaration[@Static=true()]/@MethodName
             ])
           ]
         ]]></value>
