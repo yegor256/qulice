@@ -1,7 +1,6 @@
 /*
- * Welcome.
- *
- * Friend.
+ * Hello.
+ * World.
  */
 package foo;
 /**
