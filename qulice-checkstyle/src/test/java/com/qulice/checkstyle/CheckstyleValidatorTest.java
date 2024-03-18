@@ -50,6 +50,8 @@ import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 /**
  * Test case for {@link CheckstyleValidator} class.
@@ -467,15 +469,15 @@ final class CheckstyleValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
+    @EnabledOnOs(OS.WINDOWS)
     void testWindowsEndsOfLineWithLinuxSources() throws Exception {
         final String file = "WindowsEolLinux.java";
         final Environment.Mock mock = new Environment.Mock();
         final File license = this.createLicense(mock, "\r\n", "Hello.", "World.");
         final Environment env = this.configureEnvironment(mock, license, file);
-        final Collection<Violation> results =
-            new CheckstyleValidator(env).validate(
-                env.files(file)
-            );
+        final Collection<Violation> results = new CheckstyleValidator(env).validate(
+            env.files(file)
+        );
         final String message = "Line does not match expected header line of ' *'";
         final String name = "HeaderCheck";
         MatcherAssert.assertThat(
@@ -905,8 +907,7 @@ final class CheckstyleValidatorTest {
         throws IOException {
         return this.rule.savePackageInfo(
             new File(env.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(lines)
-            .withEol(eol).file();
+        ).withLines(lines).withEol(eol).file();
     }
 
     /**
