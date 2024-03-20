@@ -48,9 +48,15 @@ final class EnvironmentTest {
     @Test
     void canBeInstantiatedWithMocker() throws Exception {
         final Environment env = new Environment.Mock();
-        MatcherAssert.assertThat(env.basedir().exists(), Matchers.is(true));
-        MatcherAssert.assertThat(env.tempdir().exists(), Matchers.is(true));
-        MatcherAssert.assertThat(env.outdir().exists(), Matchers.is(true));
+        MatcherAssert.assertThat(
+            "Basedir should exist", env.basedir().exists(), Matchers.is(true)
+        );
+        MatcherAssert.assertThat(
+            "Tempdir should exist", env.tempdir().exists(), Matchers.is(true)
+        );
+        MatcherAssert.assertThat(
+            "Outdir should exist", env.outdir().exists(), Matchers.is(true)
+        );
     }
 
     /**
@@ -64,7 +70,10 @@ final class EnvironmentTest {
         final Environment env = new Environment.Mock()
             .withFile(name, content);
         final File file = new File(env.basedir(), name);
-        MatcherAssert.assertThat(file.exists(), Matchers.is(true));
+        MatcherAssert.assertThat(
+            "File should be created in basedir from string value",
+            file.exists(), Matchers.is(true)
+        );
     }
 
     /**
@@ -78,7 +87,10 @@ final class EnvironmentTest {
         final Environment env = new Environment.Mock()
             .withFile(name, bytes);
         final File file = new File(env.basedir(), name);
-        MatcherAssert.assertThat(file.exists(), Matchers.is(true));
+        MatcherAssert.assertThat(
+            "File should be created in basedir from bytes",
+            file.exists(), Matchers.is(true)
+        );
     }
 
     /**
@@ -89,6 +101,7 @@ final class EnvironmentTest {
     void setsClasspathOnTheMock() throws Exception {
         final Environment env = new Environment.Mock();
         MatcherAssert.assertThat(
+            "Classpath should be not empty",
             env.classpath().size(),
             Matchers.greaterThan(0)
         );
@@ -104,7 +117,10 @@ final class EnvironmentTest {
         final String value = "some complex value";
         final Environment env = new Environment.Mock()
             .withParam(name, value);
-        MatcherAssert.assertThat(env.param(name, ""), Matchers.equalTo(value));
+        MatcherAssert.assertThat(
+            "Environment variable should be set",
+            env.param(name, ""), Matchers.equalTo(value)
+        );
     }
 
 }

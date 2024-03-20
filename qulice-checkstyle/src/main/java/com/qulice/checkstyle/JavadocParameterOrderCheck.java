@@ -205,8 +205,8 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
             if (multiline.find()) {
                 remindex = lines.length;
                 final String lfin = multiline.group(1);
-                if (!lfin.equals(JavadocParameterOrderCheck.NEXT_TAG)
-                    && !lfin.equals(JavadocParameterOrderCheck.END_JAVADOC)) {
+                if (!JavadocParameterOrderCheck.NEXT_TAG.equals(lfin)
+                    && !JavadocParameterOrderCheck.END_JAVADOC.equals(lfin)) {
                     tags.add(new JavadocTag(line, column, paramone, paramtwo));
                 }
             }

@@ -50,7 +50,7 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
     /**
      * Set of all nested classes.
      */
-    private Set<String> nested = new HashSet<>();
+    private final Set<String> nested = new HashSet<>();
 
     /**
      * Whether we already visited root class of the .java file.

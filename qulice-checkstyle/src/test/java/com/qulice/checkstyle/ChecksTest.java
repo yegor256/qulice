@@ -202,7 +202,7 @@ final class ChecksTest {
      *
      * @since 0.1
      */
-    private static class Collector implements Answer<Object> {
+    private static final class Collector implements Answer<Object> {
 
         /**
          * List of events received.

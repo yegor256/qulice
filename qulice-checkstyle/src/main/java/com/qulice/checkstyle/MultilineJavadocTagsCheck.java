@@ -33,6 +33,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import org.cactoos.text.Sub;
 
 /**
  * Check indents in multi line JavaDoc tags.
@@ -100,6 +101,7 @@ public final class MultilineJavadocTagsCheck extends AbstractCheck {
      * @param start Start line of the Java Doc.
      * @param end End line of the Java Doc.
      */
+    @SuppressWarnings("PMD.InefficientEmptyStringCheck")
     private void checkJavaDoc(final String[] lines, final int start,
         final int end) {
         boolean tagged = false;
@@ -112,12 +114,13 @@ public final class MultilineJavadocTagsCheck extends AbstractCheck {
             } else {
                 if (tagged) {
                     final int comment = line.indexOf('*');
-                    int text = comment + 1;
-                    while (text < line.length()
-                        && line.charAt(text) == ' ') {
-                        text += 1;
-                    }
-                    if (text != index + 1) {
+                    final String sub = new Sub(
+                        line, comment + 1, index + 1
+                    ).toString();
+                    final String ext = new Sub(
+                        line, comment + 1, index + 2
+                    ).toString();
+                    if (!sub.trim().isEmpty() || ext.trim().isEmpty()) {
                         this.log(
                             current + 1,
                             "Should contain one indentation space"
