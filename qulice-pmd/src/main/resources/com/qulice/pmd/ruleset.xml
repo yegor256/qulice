@@ -256,4 +256,26 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </property>
     </properties>
   </rule>
+  <rule name="ConstantsOnRightSideOfComparison" language="java" class="net.sourceforge.pmd.lang.rule.XPathRule" message="Constants should be on the right side of comparisons.">
+    <description>
+      Enforces the code style guideline that constants (null, string literals, or numbers) should appear on the right side of comparison operators to reduce the risk of accidental assignment and improve readability.
+    </description>
+    <priority>3</priority>
+    <properties>
+      <property name="xpath">
+        <value><![CDATA[
+        //EqualityExpression[
+          (
+            PrimaryExpression/PrimaryPrefix/Literal
+            or
+            PrimaryExpression/PrimaryPrefix/Name[@Image='null']
+          )
+          and
+          PrimaryExpression/PrimarySuffix
+        ]
+        [not(./PrimaryExpression[1]/PrimaryPrefix/Literal or ./PrimaryExpression[1]/PrimaryPrefix/Name[@Image='null'])]
+        ]]></value>
+      </property>
+    </properties>
+  </rule>
 </ruleset>
