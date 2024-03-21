@@ -82,7 +82,7 @@ public final class ConstantUsageCheck extends AbstractCheck {
         final int line = namenode.getLineNo();
         DetailAST variable = ast.getNextSibling();
         int counter = 0;
-        while (variable != null) {
+        while (null != variable) {
             switch (variable.getType()) {
                 case TokenTypes.VARIABLE_DEF:
                     counter += this.parseVarDef(variable, name);
@@ -148,7 +148,7 @@ public final class ConstantUsageCheck extends AbstractCheck {
         } else {
             final StringBuilder result = new StringBuilder();
             DetailAST child = node.getFirstChild();
-            while (child != null) {
+            while (null != child) {
                 final String text = this.getText(child);
                 result.append(text);
                 if (".".equals(node.getText())
@@ -214,7 +214,7 @@ public final class ConstantUsageCheck extends AbstractCheck {
             counter += this.parseAnnotation(modifiers, name);
         }
         final DetailAST opening = definition.findFirstToken(type);
-        if (opening != null) {
+        if (null != opening) {
             final DetailAST closing = opening.findFirstToken(TokenTypes.RCURLY);
             final int start = opening.getLineNo();
             final int end = closing.getLineNo() - 1;
