@@ -256,9 +256,12 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       </property>
     </properties>
   </rule>
-  <rule name="ConstantsOnRightSideOfComparison" language="java" class="net.sourceforge.pmd.lang.rule.XPathRule" message="Constants should be on the right side of comparisons.">
+  <!-- /**
+ * @Todo Add tests cases for ConstantsOnRightSideOfComparison rule to ensure it works properly
+ */ -->
+  <rule name="ConstantsOnRightSideOfComparison" language="java" message="Constants should be on the right side of comparisons." class="net.sourceforge.pmd.lang.rule.XPathRule">
     <description>
-      Enforces the code style guideline that constants (null, string literals, or numbers) should appear on the right side of comparison operators to reduce the risk of accidental assignment and improve readability.
+      Enforces the code style guideline that constants (null or numbers) should appear on the right side of comparison operators ('==' and '!=') to reduce the risk of accidental assignment and improve readability.
     </description>
     <priority>3</priority>
     <properties>
@@ -266,14 +269,20 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         <value><![CDATA[
         //EqualityExpression[
           (
-            PrimaryExpression/PrimaryPrefix/Literal
-            or
-            PrimaryExpression/PrimaryPrefix/Name[@Image='null']
+            (
+              PrimaryExpression/PrimaryPrefix/Literal[@Float='true' or @Double='true' or @Int='true' or @Long='true']
+              or
+              PrimaryExpression/PrimaryPrefix/Name[@Image='null']
+            )
+            and
+            PrimaryExpression/PrimarySuffix
           )
           and
-          PrimaryExpression/PrimarySuffix
+          (
+            ./EqualityExpression[@Image='==' or @Image='!=']
+          )
         ]
-        [not(./PrimaryExpression[1]/PrimaryPrefix/Literal or ./PrimaryExpression[1]/PrimaryPrefix/Name[@Image='null'])]
+          [not(./PrimaryExpression[1]/PrimaryPrefix/Literal[@Float='true' or @Double='true' or @Int='true' or @Long='true'] or ./PrimaryExpression[1]/PrimaryPrefix/Name[@Image='null'])]
         ]]></value>
       </property>
     </properties>
