@@ -95,7 +95,6 @@ public final class SnapshotsValidator implements MavenValidator {
         if (errors > 0) {
             Logger.warn(
                 this,
-                // @checkstyle LineLength (1 line)
                 "The version of the project is not SNAPSHOT; there shouldn't not be any SNAPSHOT dependencies (%d found)",
                 errors
             );

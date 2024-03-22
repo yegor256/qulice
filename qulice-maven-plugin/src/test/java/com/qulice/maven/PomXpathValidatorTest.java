@@ -53,7 +53,6 @@ final class PomXpathValidatorTest {
         final MavenEnvironment env = new MavenEnvironmentMocker()
             .withAsserts(
                 Collections.singletonList(
-                // @checkstyle LineLength (1 line)
                 "/pom:project/pom:dependencies/pom:dependency[pom:artifactId='commons-io']/pom:version[.='1.2.5']/text()"
             )
         ).mock();

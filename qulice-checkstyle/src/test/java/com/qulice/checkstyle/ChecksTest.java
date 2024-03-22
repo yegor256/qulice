@@ -66,6 +66,7 @@ final class ChecksTest {
      */
     @ParameterizedTest
     @MethodSource("checks")
+    @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
     void testCheckstyleTruePositive(final String dir) throws Exception {
         final AuditListener listener = Mockito.mock(AuditListener.class);
         final Collector collector = new ChecksTest.Collector();
@@ -124,7 +125,11 @@ final class ChecksTest {
         Mockito.doAnswer(collector).when(listener)
             .addError(Mockito.any(AuditEvent.class));
         this.check(dir, "/Valid.java", listener);
-        MatcherAssert.assertThat(collector.summary(), Matchers.equalTo(""));
+        MatcherAssert.assertThat(
+            "Log should be empty for valid files",
+            collector.summary(),
+            Matchers.equalTo("")
+        );
         Mockito.verify(listener, Mockito.times(0))
             .addError(Mockito.any(AuditEvent.class));
     }

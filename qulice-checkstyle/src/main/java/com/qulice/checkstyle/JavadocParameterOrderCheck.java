@@ -229,7 +229,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         if (tags.size() == count) {
             final Consumer<JavadocTag> logger = tag -> this.log(
                 tag.getLineNo(),
-                // @checkstyle LineLength (1 line)
                 "Javadoc parameter order different than method signature"
             );
             args.checkOrder(tags, logger);
@@ -237,7 +236,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         } else {
             this.log(
                 ast.getLineNo(),
-                // @checkstyle LineLength (1 line)
                 "Number of javadoc parameters different than method signature"
             );
         }

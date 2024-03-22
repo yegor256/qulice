@@ -99,7 +99,6 @@ final class DependenciesValidator implements MavenValidator {
         if (!used.isEmpty() || !unused.isEmpty()) {
             Logger.info(
                 this,
-                // @checkstyle LineLength (1 line)
                 "You can suppress this message by <exclude>dependencies:...</exclude> in pom.xml, where <...> is what the dependency name starts with (not a regular expression!)"
             );
         }

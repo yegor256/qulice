@@ -59,7 +59,6 @@ public final class ConstantUsageCheck extends AbstractCheck {
         return this.getDefaultTokens();
     }
 
-    // @checkstyle NestedIfDepth (35 lines)
     @Override
     public void visitToken(final DetailAST ast) {
         if (ConstantUsageCheck.isField(ast)

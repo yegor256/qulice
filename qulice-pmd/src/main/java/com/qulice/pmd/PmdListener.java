@@ -55,14 +55,14 @@ final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener 
      * All errors spotted (mostly violations, but also processing
      * and config errors).
      */
-    private final Collection<PmdError> errors;
+    private final Collection<PmdError> violations;
 
     /**
      * Public ctor.
      * @param environ Environment
      */
     PmdListener(final Environment environ) {
-        this.errors = new LinkedList<>();
+        this.violations = new LinkedList<>();
         this.env = environ;
     }
 
@@ -77,7 +77,7 @@ final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener 
             this.env.basedir().toString().length()
         );
         if (!this.env.exclude("pmd", name)) {
-            this.errors.add(new PmdError.OfRuleViolation(violation));
+            this.violations.add(new PmdError.OfRuleViolation(violation));
         }
     }
 
@@ -89,7 +89,7 @@ final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener 
      */
     public void onProcessingError(final ProcessingError error) {
         if (error.getFile().endsWith(".java")) {
-            this.errors.add(new PmdError.OfProcessingError(error));
+            this.violations.add(new PmdError.OfProcessingError(error));
         }
     }
 
@@ -98,7 +98,7 @@ final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener 
      * @param error A configuration error that needs to be reported.
      */
     public void onConfigError(final ConfigurationError error) {
-        this.errors.add(new PmdError.OfConfigError(error));
+        this.violations.add(new PmdError.OfConfigError(error));
     }
 
     /**
@@ -106,6 +106,6 @@ final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener 
      * @return List of violations
      */
     public Collection<PmdError> errors() {
-        return Collections.unmodifiableCollection(this.errors);
+        return Collections.unmodifiableCollection(this.violations);
     }
 }
