@@ -71,7 +71,7 @@ public final class DuplicateFinderValidator implements MavenValidator {
             props.put("checkTestClasspath", "false");
             props.put("useResultFile", "false");
             props.put(
-                "ignoredResources",
+                "ignoredResourcePatterns",
                 CollectionUtils.union(
                     env.excludes("duplicatefinder"),
                     Arrays.asList("META-INF/.*", "module-info.class")

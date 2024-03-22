@@ -74,8 +74,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
 
     @Override
     public Set<Validator> external() {
-        final Set<Validator> validators = new LinkedHashSet<>();
-        return validators;
+        return new LinkedHashSet<>();
     }
 
     @Override

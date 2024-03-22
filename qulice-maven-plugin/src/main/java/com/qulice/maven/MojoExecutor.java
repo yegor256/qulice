@@ -82,7 +82,7 @@ public final class MojoExecutor {
      * @param mngr The manager
      * @param sesn Maven session
      */
-    @SuppressWarnings("PMD.NonStaticInitializer")
+    @SuppressWarnings({"PMD.NonStaticInitializer", "PMD.DoubleBraceInitialization"})
     public MojoExecutor(final MavenPluginManager mngr,
         final MavenSession sesn) {
         this.manager = mngr;
@@ -189,7 +189,7 @@ public final class MojoExecutor {
      * @see #execute(String,String,Properties)
      * @checkstyle ExecutableStatementCountCheck (100 lines)
      */
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+    @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.CognitiveComplexity"})
     private Xpp3Dom toXppDom(final Properties config, final String name) {
         final Xpp3Dom xpp = new Xpp3Dom(name);
         for (final Map.Entry<?, ?> entry : config.entrySet()) {
