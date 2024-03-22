@@ -124,7 +124,6 @@ public final class NonStaticMethodCheck extends AbstractCheck {
             final int line = method.getLineNo();
             this.log(
                 line,
-                // @checkstyle LineLength (1 line)
                 "This method must be static, because it does not refer to \"this\""
             );
         }

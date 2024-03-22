@@ -55,35 +55,36 @@ final class PmdValidatorTest {
     /**
      * Error message for forbidding access to static fields
      * other than with a static way.
-     * @checkstyle LineLength (2 lines)
+     * @checkstyle LineLengthCheck (40 lines)
      */
-    private static final String STATIC_ACCESS = "%s\\[\\d+-\\d+\\]: Static fields should be accessed in a static way \\[CLASS_NAME.FIELD_NAME\\]\\.";
+    private static final String STATIC_ACCESS =
+        "%s\\[\\d+-\\d+\\]: Static fields should be accessed in a static way \\[CLASS_NAME.FIELD_NAME\\]\\.";
 
     /**
      * Error message for forbidding access to static members
      * via instance reference using 'this' keyword.
-     * @checkstyle LineLength (2 lines)
      */
-    private static final String STATIC_VIA_THIS = "%s\\[\\d+-\\d+\\]: Static members should be accessed in a static way \\[CLASS_NAME.FIELD_NAME\\], not via instance reference.";
+    private static final String STATIC_VIA_THIS =
+        "%s\\[\\d+-\\d+\\]: Static members should be accessed in a static way \\[CLASS_NAME.FIELD_NAME\\], not via instance reference.";
 
     /**
      * Error message for forbidding instructions inside a constructor
      * other than field initialization or call to other constructors.
-     * @checkstyle LineLength (2 lines)
      */
-    private static final String CODE_IN_CON = "%s\\[\\d+-\\d+\\]: Only field initialization or call to other constructors in a constructor";
+    private static final String CODE_IN_CON =
+        "%s\\[\\d+-\\d+\\]: Only field initialization or call to other constructors in a constructor";
 
     /**
      * Pattern for non-constructor field initialization.
-     * @checkstyle LineLength (2 lines)
      */
-    private static final String NO_CON_INIT = "%s\\[\\d+-\\d+\\]: Avoid doing field initialization outside constructor.";
+    private static final String NO_CON_INIT =
+        "%s\\[\\d+-\\d+\\]: Avoid doing field initialization outside constructor.";
 
     /**
      * Pattern multiple constructors field initialization.
-     * @checkstyle LineLength (2 lines)
      */
-    private static final String MULT_CON_INIT = "%s\\[\\d+-\\d+\\]: Avoid field initialization in several constructors.";
+    private static final String MULT_CON_INIT =
+        "%s\\[\\d+-\\d+\\]: Avoid field initialization in several constructors.";
 
     /**
      * Template for string inside brackets.
@@ -106,7 +107,6 @@ final class PmdValidatorTest {
      * Error text for Files.createFile.
      */
     private static final String FILES_CREATE_ERR =
-        // @checkstyle LineLength (1 line)
         "Files.createFile should not be used in tests, replace them with @Rule TemporaryFolder";
 
     /**
@@ -119,6 +119,7 @@ final class PmdValidatorTest {
         final Environment env = new Environment.Mock()
             .withFile(file, "class Main { int x = 0; }");
         MatcherAssert.assertThat(
+            "Violations should be found",
             new PmdValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             ),
@@ -167,6 +168,7 @@ final class PmdValidatorTest {
             )
         );
         MatcherAssert.assertThat(
+            "Private constant in inner class is not a violation",
             new PmdValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             ),

@@ -87,7 +87,7 @@ final class SourceValidator {
      * @param path Base path.
      * @return Collection of violations.
      */
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+    @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.CloseResource"})
     public Collection<PmdError> validate(
         final Collection<DataSource> sources, final String path) {
         this.config.setRuleSets("com/qulice/pmd/ruleset.xml");
@@ -122,11 +122,11 @@ final class SourceValidator {
     private void validateOne(final DataSource source) {
         final net.sourceforge.pmd.RuleSetFactory factory =
             new net.sourceforge.pmd.RuleSetFactory(
-            new net.sourceforge.pmd.util.ResourceLoader(),
-            RulePriority.LOW,
-            false,
-            true
-        );
+                new net.sourceforge.pmd.util.ResourceLoader(),
+                RulePriority.LOW,
+                false,
+                true
+            );
         net.sourceforge.pmd.PMD.processFiles(
             this.config,
             factory,

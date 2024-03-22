@@ -97,7 +97,7 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
                 modifiers.findFirstToken(TokenTypes.FINAL) != null;
             final boolean isabstract =
                 modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
-            final String qualified = this.getQualifiedClassName(ast);
+            final String qualified = this.qualifiedClassName(ast);
             this.classes.push(
                 new ClassDesc(qualified, isfinal, isabstract)
             );
@@ -126,7 +126,7 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
      * @param classast Class to get qualified class name
      * @return Qualified class name of a class
     */
-    private String getQualifiedClassName(final DetailAST classast) {
+    private String qualifiedClassName(final DetailAST classast) {
         final String name = classast.findFirstToken(
             TokenTypes.IDENT
         ).getText();
@@ -160,13 +160,13 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
                 qualified = name;
             } else {
                 qualified =
-                new UncheckedText(
-                    new Joined(
-                        ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR,
-                        pack,
-                        name
-                    )
-                ).asString();
+                    new UncheckedText(
+                        new Joined(
+                            ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR,
+                            pack,
+                            name
+                        )
+                    ).asString();
             }
         } else {
             qualified =

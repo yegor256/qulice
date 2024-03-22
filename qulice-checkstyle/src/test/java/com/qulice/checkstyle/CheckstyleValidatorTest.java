@@ -119,6 +119,7 @@ final class CheckstyleValidatorTest {
             new CheckstyleValidator(env)
                 .validate(env.files(name));
         MatcherAssert.assertThat(
+            "Header validation is expected",
             results,
             Matchers.hasItem(
                 new ViolationMatcher(
@@ -202,6 +203,7 @@ final class CheckstyleValidatorTest {
         final Collection<Violation> results =
             this.runValidation("TooLongLines.java", false);
         MatcherAssert.assertThat(
+            "Two long lines should be found",
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
@@ -230,6 +232,7 @@ final class CheckstyleValidatorTest {
         );
         final String name = "RegexpSinglelineCheck";
         MatcherAssert.assertThat(
+            "8 violations should be found",
             results,
             new IsIterableContainingInOrder<>(
                 new ListOf<>(
@@ -334,6 +337,7 @@ final class CheckstyleValidatorTest {
         final Collection<Violation> results = this.runValidation(file, false);
         final String name = "HiddenFieldCheck";
         MatcherAssert.assertThat(
+            "Two hidden fields in ctor should be found",
             results,
             Matchers.allOf(
                 Matchers.hasItem(
@@ -365,8 +369,13 @@ final class CheckstyleValidatorTest {
         final Collection<Violation> results = this.runValidation(
             file, false
         );
-        MatcherAssert.assertThat(results, Matchers.hasSize(10));
         MatcherAssert.assertThat(
+            "10 total violations should be found",
+            results,
+            Matchers.hasSize(10)
+        );
+        MatcherAssert.assertThat(
+            "Only invalid variables name should be found",
             results,
             Matchers.allOf(
                 Matchers.not(
@@ -427,6 +436,7 @@ final class CheckstyleValidatorTest {
         final String message = "tags have to appear in the order";
         final String name = "AtclauseOrderCheck";
         MatcherAssert.assertThat(
+            "3 tags with wrong order should be found",
             results,
             Matchers.contains(
                 new ViolationMatcher(
@@ -568,6 +578,7 @@ final class CheckstyleValidatorTest {
         final Collection<Violation> results =
             new CheckstyleValidator(env).validate(env.files(name));
         MatcherAssert.assertThat(
+            "Validation error should exist",
             results,
             Matchers.not(Matchers.<Violation>empty())
         );
@@ -585,9 +596,14 @@ final class CheckstyleValidatorTest {
         final Collection<Violation> results = this.runValidation(
             file, false
         );
-        MatcherAssert.assertThat(results, Matchers.hasSize(3));
+        MatcherAssert.assertThat(
+            "Should be 3 violations",
+            results,
+            Matchers.hasSize(3)
+        );
         final String name = "CatchParameterNameCheck";
         MatcherAssert.assertThat(
+            "All naming violations should be found",
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
@@ -638,6 +654,7 @@ final class CheckstyleValidatorTest {
         final String name = "EmptyLinesCheck";
         final String message = "Empty line inside method";
         MatcherAssert.assertThat(
+            "All empty lines should be found",
             result,
             Matchers.hasItems(
                 new ViolationMatcher(message, file, "15", name),
@@ -676,6 +693,7 @@ final class CheckstyleValidatorTest {
             "must contain no more than '2' consecutive capital letters."
         ).asString();
         MatcherAssert.assertThat(
+            "All long abbreviations should be found",
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
@@ -701,6 +719,7 @@ final class CheckstyleValidatorTest {
         final String name = "HiddenFieldCheck";
         final String message = "'test' hides a field.";
         MatcherAssert.assertThat(
+            "Hidden parameter in methods should be found",
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
@@ -753,11 +772,12 @@ final class CheckstyleValidatorTest {
         final String name = "DiamondOperatorCheck";
         final String message = "Use diamond operator";
         MatcherAssert.assertThat(
+            "Two diamond violations should be found",
             this.runValidation(file, false),
             Matchers.hasItems(
                 new ViolationMatcher(message, file, "19", name),
                 new ViolationMatcher(message, file, "29", name)
-                )
+            )
         );
     }
 
@@ -808,6 +828,7 @@ final class CheckstyleValidatorTest {
      * @param message Message to match
      * @throws Exception In case of error
      */
+    @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
     private void validate(final String file, final boolean result,
         final String message) throws Exception {
         MatcherAssert.assertThat(
@@ -827,6 +848,7 @@ final class CheckstyleValidatorTest {
      * @return String containing validation results in textual form.
      * @throws IOException In case of error
      */
+    @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
     private Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();

@@ -205,8 +205,8 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
             if (multiline.find()) {
                 remindex = lines.length;
                 final String lfin = multiline.group(1);
-                if (!lfin.equals(JavadocParameterOrderCheck.NEXT_TAG)
-                    && !lfin.equals(JavadocParameterOrderCheck.END_JAVADOC)) {
+                if (!JavadocParameterOrderCheck.NEXT_TAG.equals(lfin)
+                    && !JavadocParameterOrderCheck.END_JAVADOC.equals(lfin)) {
                     tags.add(new JavadocTag(line, column, paramone, paramtwo));
                 }
             }
@@ -229,7 +229,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         if (tags.size() == count) {
             final Consumer<JavadocTag> logger = tag -> this.log(
                 tag.getLineNo(),
-                // @checkstyle LineLength (1 line)
                 "Javadoc parameter order different than method signature"
             );
             args.checkOrder(tags, logger);
@@ -237,7 +236,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         } else {
             this.log(
                 ast.getLineNo(),
-                // @checkstyle LineLength (1 line)
                 "Number of javadoc parameters different than method signature"
             );
         }

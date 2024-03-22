@@ -61,13 +61,14 @@ final class DependenciesValidator implements MavenValidator {
     private static final String SEP = "\n\t";
 
     @Override
+    @SuppressWarnings("PMD.OnlyOneReturn")
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        final Collection<String> excludes = env.excludes("dependencies");
         if (!env.outdir().exists() || "pom".equals(env.project().getPackaging())) {
             Logger.info(this, "No dependency analysis in this project");
             return;
         }
+        final Collection<String> excludes = env.excludes("dependencies");
         if (excludes.contains(".*")) {
             Logger.info(this, "Dependency analysis suppressed in the project via pom.xml");
             return;
@@ -99,7 +100,6 @@ final class DependenciesValidator implements MavenValidator {
         if (!used.isEmpty() || !unused.isEmpty()) {
             Logger.info(
                 this,
-                // @checkstyle LineLength (1 line)
                 "You can suppress this message by <exclude>dependencies:...</exclude> in pom.xml, where <...> is what the dependency name starts with (not a regular expression!)"
             );
         }
@@ -158,7 +158,7 @@ final class DependenciesValidator implements MavenValidator {
         final Collection<String> unused = new LinkedList<>();
         for (final Object obj : analysis.getUnusedDeclaredArtifacts()) {
             final Artifact artifact = (Artifact) obj;
-            if (!artifact.getScope().equals(Artifact.SCOPE_COMPILE)) {
+            if (!Artifact.SCOPE_COMPILE.equals(artifact.getScope())) {
                 continue;
             }
             unused.add(artifact.toString());

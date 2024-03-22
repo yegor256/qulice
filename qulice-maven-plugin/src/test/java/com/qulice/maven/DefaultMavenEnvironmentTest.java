@@ -47,13 +47,13 @@ final class DefaultMavenEnvironmentTest {
 
     /**
      * DefaultMavenEnvironment can produce list of excludes.
-     * @throws Exception If something wrong happens inside
      */
     @Test
-    void excludeAllFiles() throws Exception {
+    void excludeAllFiles() {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         env.setExcludes(Collections.singletonList("codenarc:**/*.groovy"));
         MatcherAssert.assertThat(
+            "Excludes should be returned",
             env.excludes("codenarc"),
             Matchers.contains("**/*.groovy")
         );
@@ -61,13 +61,13 @@ final class DefaultMavenEnvironmentTest {
 
     /**
      * DefaultMavenEnvironment can produce list of excludes from empty source.
-     * @throws Exception If something wrong happens inside
      */
     @Test
-    void emptyExclude() throws Exception {
+    void emptyExclude() {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         env.setExcludes(Collections.<String>emptyList());
         MatcherAssert.assertThat(
+            "Empty list should be returned",
             env.excludes("codenarc").iterator().hasNext(),
             Matchers.is(false)
         );
@@ -75,12 +75,12 @@ final class DefaultMavenEnvironmentTest {
 
     /**
      * DefaultMavenEnvironment can produce list of excludes without excludes.
-     * @throws Exception If something wrong happens inside
      */
     @Test
-    void noExclude() throws Exception {
+    void noExclude() {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         MatcherAssert.assertThat(
+            "Excludes should be empty list by default",
             env.excludes("codenarc").iterator().hasNext(),
             Matchers.is(false)
         );
@@ -88,10 +88,9 @@ final class DefaultMavenEnvironmentTest {
 
     /**
      * DefaultMavenEnvironment can produce list of excludes.
-     * @throws Exception If something wrong happens inside
      */
     @Test
-    void excludeSomeFiles() throws Exception {
+    void excludeSomeFiles() {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         env.setExcludes(
             ImmutableList.<String>builder()
@@ -100,6 +99,7 @@ final class DefaultMavenEnvironmentTest {
                 .build()
         );
         MatcherAssert.assertThat(
+            "Excludes should be returned as list",
             env.excludes("codenarc"),
             Matchers.containsInAnyOrder(
                 "**/src/ex1/Main.groovy",
@@ -122,6 +122,7 @@ final class DefaultMavenEnvironmentTest {
             );
         env.setProject(project);
         MatcherAssert.assertThat(
+            "ClassPath should be returned",
             env.classloader(),
             Matchers.notNullValue()
         );
@@ -130,10 +131,9 @@ final class DefaultMavenEnvironmentTest {
     /**
      * DefaultMavenEnvironment can produce empty collection when no matches
      * with checker.
-     * @throws Exception If something wrong happens inside
      */
     @Test
-    void producesEmptyExcludesWhenNoMatches() throws Exception {
+    void producesEmptyExcludesWhenNoMatches() {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         env.setExcludes(
             ImmutableList.of(
@@ -142,6 +142,7 @@ final class DefaultMavenEnvironmentTest {
             )
         );
         MatcherAssert.assertThat(
+            "Exclude dependencies should be empty",
             env.excludes("dependencies"),
             Matchers.empty()
         );

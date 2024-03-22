@@ -192,6 +192,7 @@ public final class CheckstyleValidator implements ResourceValidator {
      * @return The content of header
      * @see #configuration()
      */
+    @SuppressWarnings("PMD.InefficientEmptyStringCheck")
     private String header() {
         final String name = this.env.param("license", "LICENSE.txt");
         final URL url = this.toUrl(name);

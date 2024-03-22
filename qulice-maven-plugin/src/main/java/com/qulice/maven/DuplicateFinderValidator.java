@@ -69,8 +69,9 @@ public final class DuplicateFinderValidator implements MavenValidator {
             final Properties props = new Properties();
             props.put("failBuildInCaseOfConflict", "true");
             props.put("checkTestClasspath", "false");
+            props.put("useResultFile", "false");
             props.put(
-                "ignoredResources",
+                "ignoredResourcePatterns",
                 CollectionUtils.union(
                     env.excludes("duplicatefinder"),
                     Arrays.asList("META-INF/.*", "module-info.class")
@@ -91,7 +92,7 @@ public final class DuplicateFinderValidator implements MavenValidator {
             //  }
             props.put("ignoredDependencies", deps);
             env.executor().execute(
-                "com.ning.maven.plugins:maven-duplicate-finder-plugin:1.0.9",
+                "org.basepom.maven:duplicate-finder-maven-plugin:2.0.1",
                 "check",
                 props
             );

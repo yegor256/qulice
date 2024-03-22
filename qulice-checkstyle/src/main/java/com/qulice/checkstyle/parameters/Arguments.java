@@ -90,7 +90,6 @@ public class Arguments {
         final List<DetailAST> params = this.parameters.parameters();
         if (tags.size() < params.size()) {
             throw new IllegalStateException(
-                // @checkstyle LineLength (1 lines)
                 "Number of Javadoc parameters does not match the number of arguments"
             );
         }

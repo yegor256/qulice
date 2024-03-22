@@ -78,7 +78,7 @@ public interface Violation extends Comparable<Violation> {
      */
     @EqualsAndHashCode
     @ToString
-    class Default implements Violation {
+    final class Default implements Violation {
 
         /**
          * Name of the validator that generated this violation information.

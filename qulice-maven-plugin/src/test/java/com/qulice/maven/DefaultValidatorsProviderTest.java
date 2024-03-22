@@ -45,6 +45,7 @@ final class DefaultValidatorsProviderTest {
     @Test
     void producesCollectionOfValidators() throws Exception {
         MatcherAssert.assertThat(
+            "internal validators should be returned",
             new DefaultValidatorsProvider(new Environment.Mock())
                 .internal().size(),
             Matchers.greaterThan(0)
@@ -55,6 +56,7 @@ final class DefaultValidatorsProviderTest {
     @Disabled
     void producesCollectionOfExtValidators() throws Exception {
         MatcherAssert.assertThat(
+            "external validators should be returned",
             new DefaultValidatorsProvider(new Environment.Mock())
                 .external().size(),
             Matchers.greaterThan(0)
