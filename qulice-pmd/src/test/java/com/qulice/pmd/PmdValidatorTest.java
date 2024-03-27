@@ -736,4 +736,19 @@ final class PmdValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PmdValidator checks swagger annotation.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void allowsSwaggerAnnotations() throws Exception {
+        new PmdAssert(
+            "SwaggerApi.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString("RuleSetReferenceId")
+            )
+        ).validate();
+    }
 }
