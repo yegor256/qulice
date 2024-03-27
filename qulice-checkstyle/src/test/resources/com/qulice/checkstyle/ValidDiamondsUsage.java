@@ -5,6 +5,9 @@ package foo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import org.cactoos.map.MapEntry;
+import org.cactoos.map.MapOf;
 
 /**
  * Better to use diamond operator where possible.
@@ -31,6 +34,16 @@ public final class ValidDiamondsUsage {
     public static void innerClassUsage() {
         final SimpleInterface.InnerClass<String> inner =
             new SimpleInterface.InnerClass<>();
+    }
+
+    /**
+     * Correct non-diamonds, types required for inner entity.
+     */
+    public static void foo() {
+        final Map<String, String> params = new MapOf<String, String>(
+            new MapEntry<>("a", "foo"),
+            new MapEntry<>("b", "foo")
+        );
     }
 
     /**

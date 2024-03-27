@@ -101,8 +101,7 @@ public final class DiamondOperatorCheck extends AbstractCheck {
             instance = assign.getFirstChild().getFirstChild();
         }
         if (instance != null && instance.getType() == TokenTypes.LITERAL_NEW
-            && DiamondOperatorCheck.isNotObjectBlock(instance)
-            && DiamondOperatorCheck.isNotArray(instance)) {
+            && DiamondOperatorCheck.validUsage(instance)) {
             final DetailAST type =
                 DiamondOperatorCheck.findFirstChildNodeOfType(
                     instance, TokenTypes.TYPE_ARGUMENTS
@@ -111,6 +110,18 @@ public final class DiamondOperatorCheck extends AbstractCheck {
                 log(type, "Use diamond operator");
             }
         }
+    }
+
+    /**
+     * Checks if diamond is not required.
+     *
+     * @param node Node
+     * @return True if not array
+     */
+    private static boolean validUsage(final DetailAST node) {
+        return DiamondOperatorCheck.isNotObjectBlock(node)
+            && DiamondOperatorCheck.isNotArray(node)
+            && !DiamondOperatorCheck.isInitUsingDiamond(node);
     }
 
     /**
@@ -131,6 +142,44 @@ public final class DiamondOperatorCheck extends AbstractCheck {
      */
     private static boolean isNotObjectBlock(final DetailAST node) {
         return node.getLastChild().getType() != TokenTypes.OBJBLOCK;
+    }
+
+    /**
+     * Checks if node has initialization with diamond operator.
+     *
+     * @param node Node
+     * @return True if not object block
+     */
+    private static boolean isInitUsingDiamond(final DetailAST node) {
+        final DetailAST init = node.findFirstToken(TokenTypes.ELIST);
+        boolean typed = false;
+        if (init != null) {
+            final DetailAST inst = DiamondOperatorCheck.secondChild(init);
+            if (inst != null && inst.getType() == TokenTypes.LITERAL_NEW) {
+                typed =
+                    DiamondOperatorCheck.isDiamondOperatorUsed(
+                        inst.findFirstToken(TokenTypes.TYPE_ARGUMENTS)
+                    );
+            }
+        }
+        return typed;
+    }
+
+    /**
+     * Checks if node has initialization with diamond operator.
+     *
+     * @param node Node
+     * @return True if not object block
+     */
+    private static DetailAST secondChild(final DetailAST node) {
+        DetailAST result = null;
+        if (node != null) {
+            final DetailAST first = node.getFirstChild();
+            if (first != null) {
+                result = first.getFirstChild();
+            }
+        }
+        return result;
     }
 
     /**
