@@ -207,10 +207,16 @@ public final class MojoExecutor {
                 xpp.addChild(child);
             } else if (entry.getValue() instanceof Collection) {
                 final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
-                for (final Object val
-                    : Collection.class.cast(entry.getValue())) {
-                    final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
-                    if (val != null) {
+                for (final Object val : Collection.class.cast(entry.getValue())) {
+                    if (val instanceof Properties) {
+                        child.addChild(
+                            this.toXppDom(
+                                Properties.class.cast(val),
+                                entry.getKey().toString()
+                            ).getChild(0)
+                        );
+                    } else if (val != null) {
+                        final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
                         row.setValue(val.toString());
                         child.addChild(row);
                     }

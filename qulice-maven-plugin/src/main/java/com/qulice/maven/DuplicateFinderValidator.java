@@ -35,37 +35,23 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Properties;
+import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Validate with maven-duplicate-finder-plugin.
  * @since 0.5
- * @todo #250 Maven-duplicate-finder-plugin should support exclusions.
- *  Let's add exclusions of following formats (examples):
- *  - duplicate:about.html
- *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5
- *  - duplicate:org.codehaus.groovy.ast.expr.RegexExpression
- *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5
- *  |xml-apis:xml-apis:1.0.0|about.html
- *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5
- *  |xml-apis:xml-apis:1.0.0|org.w3c.dom.UserDataHandler
- *  See https://github.com/tpc2/qulice/issues/152#issuecomment-39028953
- *  and https://github.com/teamed/qulice/issues/250 for details
+ * @todo #1118 ignored dependencies and resources should be placed in different parameters,
+ *  and current implementation use ':' symbol as a flag if it is resource or dependency.
+ *  Resource can be presented as a regular expression with that symbol, can cause some problem.
  */
 public final class DuplicateFinderValidator implements MavenValidator {
 
-    // @checkstyle MethodBodyCommentsCheck (50 lines)
-    // @todo #250 Fix a problem with maven configuration of duplicate finder
-    //  plugin in commented out code below, and enable
-    //  duplicate-finder-ignore-deps IT in pom.xml.
-    // @todo #1198 Duplicate-finder-plugin was moved to
-    //  https://github.com/basepom/duplicate-finder-maven-plugin
-    //  Let's update it to the new version
     @Override
-    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        if (!env.exclude("duplicatefinder", "")) {
+        final String prefix = "duplicatefinder";
+        if (!env.exclude(prefix, "")) {
             final Properties props = new Properties();
             props.put("failBuildInCaseOfConflict", "true");
             props.put("checkTestClasspath", "false");
@@ -73,23 +59,28 @@ public final class DuplicateFinderValidator implements MavenValidator {
             props.put(
                 "ignoredResourcePatterns",
                 CollectionUtils.union(
-                    env.excludes("duplicatefinder"),
+                    env.excludes(prefix).stream()
+                        .filter(s -> !s.contains(":"))
+                        .collect(Collectors.toList()),
                     Arrays.asList("META-INF/.*", "module-info.class")
                 )
             );
             final Collection<Properties> deps = new LinkedList<>();
-            //  for (String sdep : env.excludes("duplicatefinder")) {
-            //      if (StringUtils.countMatches(sdep, ":") == 2) {
-            //          String[] parts = sdep.split(":");
-            //          Properties main = new Properties();
-            //          Properties prop = new Properties();
-            //          prop.put("groupId", parts[0]);
-            //          prop.put("artifactId", parts[1]);
-            //          prop.put("version", parts[2]);
-            //          main.put("dependency", prop);
-            //          deps.add(prop);
-            //      }
-            //  }
+            for (final String sdep : env.excludes(prefix)) {
+                final String[] parts = sdep.split(":");
+                if (parts.length < 2) {
+                    continue;
+                }
+                final Properties main = new Properties();
+                final Properties prop = new Properties();
+                prop.put("groupId", parts[0]);
+                prop.put("artifactId", parts[1]);
+                if (parts.length > 2) {
+                    prop.put("version", parts[2]);
+                }
+                main.put("dependency", prop);
+                deps.add(main);
+            }
             props.put("ignoredDependencies", deps);
             env.executor().execute(
                 "org.basepom.maven:duplicate-finder-maven-plugin:2.0.1",
