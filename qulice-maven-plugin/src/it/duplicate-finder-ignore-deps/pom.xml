@@ -47,13 +47,15 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
         <groupId>com.qulice</groupId>
         <artifactId>qulice-maven-plugin</artifactId>
         <version>@project.version@</version>
+        <configuration>
+          <excludes>
+            <exclude>duplicatefinder:org.apache.xmlgraphics:batik-ext:1.7</exclude>
+            <exclude>duplicatefinder:xml-apis:xml-apis</exclude>
+            <exclude>duplicatefinder:org.w3c.dom.*</exclude>
+          </excludes>
+        </configuration>
         <executions>
           <execution>
-            <configuration>
-              <excludes>
-                <exclude>duplicate:org.apache.xmlgraphics:batik-ext:1.7</exclude>
-              </excludes>
-            </configuration>
             <goals>
               <goal>check</goal>
             </goals>
