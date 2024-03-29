@@ -50,6 +50,8 @@ import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 /**
  * Test case for {@link CheckstyleValidator} class.
@@ -99,31 +101,20 @@ final class CheckstyleValidatorTest {
     @Test
     void catchesCheckstyleViolationsInLicense() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines("License-1.", "", "License-2.")
-            .withEol("\n")
-            .file();
-        final String content =
-            // @checkstyle StringLiteralsConcatenation (4 lines)
-            // @checkstyle RegexpSingleline (1 line)
-            "/" + "**\n * License-3.\n *\n * License-2.\n */\n"
-                + "package foo;\n"
-                + "public class Foo { }\n";
-        final String name = "Foo.java";
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toUrl(license)
-        ).withFile(String.format("src/main/java/foo/%s", name), content);
+        final File license = this.createLicense(
+            mock, "\n", "License-1.", "", "License-2."
+        );
+        final String file = "LicenseViolations.java";
+        final Environment env = this.configureEnvironment(mock, license, file);
         final Collection<Violation> results =
             new CheckstyleValidator(env)
-                .validate(env.files(name));
+                .validate(env.files(file));
         MatcherAssert.assertThat(
             "Header validation is expected",
             results,
             Matchers.hasItem(
                 new ViolationMatcher(
-                    "Line does not match expected header line of", name
+                    "Line does not match expected header line of", file
                 )
             )
         );
@@ -460,23 +451,51 @@ final class CheckstyleValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    @Disabled
-    void passesWindowsEndsOfLineWithoutException() throws Exception {
-        this.validate("WindowsEol.java", false, "LICENSE found:");
+    void prohibitWindowsEndsOfLine() throws Exception {
+        final String file = "WindowsEol.java";
+        final Collection<Violation> results = this.runValidation(file, false);
+        final String message = "Lines in file should end with Unix-like end of line";
+        final String name = "RegexpMultilineCheck";
+        MatcherAssert.assertThat(
+            results,
+            Matchers.contains(
+                new ViolationMatcher(
+                    "Expected line ending for file is LF(\\n), but CRLF(\\r\\n) is detected",
+                    file, "1", "NewlineAtEndOfFileCheck"
+                ),
+                new ViolationMatcher(
+                    message, file, "9", name
+                ),
+                new ViolationMatcher(
+                    message, file, "10", name
+                )
+            )
+        );
     }
 
     /**
      * Fail validation with Windows-style formatting of the license and
      * Linux-style formatting of the sources.
      * @throws Exception If something wrong happens inside
-     * @todo #61:30min This test and passesWindowsEndsOfLineWithoutException
-     *  should be refactored to gather log4j logs and validate that they work
-     *  correctly. (see changes done in #61)
      */
     @Test
-    @Disabled
+    @EnabledOnOs(OS.WINDOWS)
     void testWindowsEndsOfLineWithLinuxSources() throws Exception {
-        this.runValidation("WindowsEolLinux.java", false);
+        final String file = "WindowsEolLinux.java";
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.createLicense(mock, "\r\n", "Hello.", "World.");
+        final Environment env = this.configureEnvironment(mock, license, file);
+        final Collection<Violation> results = new CheckstyleValidator(env).validate(
+            env.files(file)
+        );
+        final String message = "Line does not match expected header line of ' *'";
+        final String name = "HeaderCheck";
+        MatcherAssert.assertThat(
+            results,
+            Matchers.contains(
+                new ViolationMatcher(message, file, "3", name)
+            )
+        );
     }
 
     /**
@@ -852,24 +871,8 @@ final class CheckstyleValidatorTest {
     private Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(CheckstyleValidatorTest.LICENSE)
-            .withEol("\n").file();
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toUrl(license)
-        )
-            .withFile(
-                String.format("src/main/java/foo/%s", file),
-                new IoCheckedText(
-                    new TextOf(
-                        new ResourceOf(
-                            new FormattedText("com/qulice/checkstyle/%s", file)
-                        )
-                    )
-                ).asString()
-            );
+        final File license = this.createLicense(mock, "\n", CheckstyleValidatorTest.LICENSE);
+        final Environment env = this.configureEnvironment(mock, license, file);
         final Collection<Violation> results =
             new CheckstyleValidator(env).validate(
                 env.files(file)
@@ -886,6 +889,47 @@ final class CheckstyleValidatorTest {
             );
         }
         return results;
+    }
+
+    /**
+     * Returns environment with attached license and file with sources to process with validator.
+     * @param env Environment mock to configure.
+     * @param license File with licence content.
+     * @param file File with sources.
+     * @return Configured environment mock with license and file.
+     * @throws IOException In case of error.
+     */
+    private Environment configureEnvironment(final Environment.Mock env, final File license,
+        final String file) throws IOException {
+        return env.withParam(
+            CheckstyleValidatorTest.LICENSE_PROP,
+            this.toUrl(license)
+        )
+            .withFile(
+                String.format("%s/%s", CheckstyleValidatorTest.DIRECTORY, file),
+                new IoCheckedText(
+                    new TextOf(
+                        new ResourceOf(
+                            new FormattedText("com/qulice/checkstyle/%s", file)
+                        )
+                    )
+                ).asString()
+            );
+    }
+
+    /**
+     * Creates a licence file in provided environment.
+     * @param env Environment where the licence file will be created.
+     * @param eol End of line symbol which will be used in license file.
+     * @param lines Text of license.
+     * @return File with license content attached to given environment.
+     * @throws IOException In case of error.
+     */
+    private File createLicense(final Environment env, final String eol, final String... lines)
+        throws IOException {
+        return this.rule.savePackageInfo(
+            new File(env.basedir(), CheckstyleValidatorTest.DIRECTORY)
+        ).withLines(lines).withEol(eol).file();
     }
 
     /**
@@ -974,7 +1018,5 @@ final class CheckstyleValidatorTest {
             return this.line.isEmpty()
                 || !this.line.isEmpty() && item.lines().equals(this.line);
         }
-
     }
-
 }
