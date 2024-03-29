@@ -57,8 +57,8 @@ public final class ProhibitPlainJunitAssertionsRule
     @Override
     public Object visit(final ASTMethodDeclaration method, final Object data) {
         if (this.isJUnitMethod(method, data)
-            && this.containsPlainJunitAssert(method.getBlock())) {
-            this.addViolation(data, method);
+            && this.containsPlainJunitAssert(method.getBody())) {
+            this.asCtx(data).addViolation(method);
         }
         return data;
     }
@@ -68,7 +68,7 @@ public final class ProhibitPlainJunitAssertionsRule
         for (final String element : ProhibitPlainJunitAssertionsRule
             .PROHIBITED) {
             if (imp.getImportedName().contains(element)) {
-                this.addViolation(data, imp);
+                this.asCtx(data).addViolation(imp);
                 break;
             }
         }

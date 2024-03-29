@@ -46,7 +46,6 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
  *
  * @since 0.4
  */
-@SuppressWarnings("deprecation")
 public final class UnnecessaryLocalRule extends AbstractJavaRule {
     @Override
     public Object visit(final ASTMethodDeclaration meth, final Object data) {
@@ -83,12 +82,10 @@ public final class UnnecessaryLocalRule extends AbstractJavaRule {
      * @param data Context.
      * @param name Variable name.
      */
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private void usages(final JavaNode node, final Object data,
         final ASTVariableDeclarator name) {
         final Map<NameDeclaration, List<NameOccurrence>> vars = name
             .getScope().getDeclarations();
-        // @checkstyle LineLength (1 line)
         for (final Map.Entry<NameDeclaration, List<NameOccurrence>> entry
             : vars.entrySet()) {
             final List<NameOccurrence> usages = entry.getValue();
@@ -97,8 +94,8 @@ public final class UnnecessaryLocalRule extends AbstractJavaRule {
             }
             for (final NameOccurrence occ: usages) {
                 if (occ.getLocation().equals(name)) {
-                    this.addViolation(
-                        data, node, new Object[]{name.getImage()}
+                    this.asCtx(data).addViolation(
+                        node, name.getImage()
                     );
                 }
             }
