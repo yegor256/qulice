@@ -205,7 +205,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<File> files(final String pattern) {
         final Collection<File> files = new LinkedList<>();
-        final IOFileFilter filter = new WildcardFileFilter(pattern);
+        final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();
         final String[] dirs = {
             "src",
         };

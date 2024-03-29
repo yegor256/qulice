@@ -30,6 +30,7 @@
  */
 package com.qulice.foo;
 
+import java.io.IOException;
 import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
 
@@ -44,7 +45,7 @@ public final class Sample {
      * @return Stream.
      * @checkstyle NonStaticMethod (2 lines)
      */
-    public InputStream test() {
-        return IOUtils.toInputStream("oops");
+    public InputStream test() throws IOException {
+        return IOUtils.toInputStream("oops", "UTF-8");
     }
 }

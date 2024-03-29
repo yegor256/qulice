@@ -44,10 +44,22 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <groupId>com.qulice</groupId>
       <artifactId>qulice-spi</artifactId>
       <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
+      <!-- version from parent -->
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
       <!-- version from parent -->
       <scope>test</scope>
     </dependency>
