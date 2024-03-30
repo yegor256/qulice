@@ -212,10 +212,9 @@ public final class CheckstyleValidator implements ResourceValidator {
             throw new IllegalStateException("Failed to read license", ex);
         }
         final StringBuilder builder = new StringBuilder(100);
-        final String eol = System.getProperty("line.separator");
+        final String eol = System.lineSeparator();
         builder.append("/*").append(eol);
-        for (final String line
-            : CheckstyleValidator.splitPreserve(content, eol)) {
+        for (final String line : CheckstyleValidator.splitPreserve(content, eol)) {
             builder.append(" *");
             if (!line.trim().isEmpty()) {
                 builder.append(' ').append(line.trim());
@@ -262,29 +261,25 @@ public final class CheckstyleValidator implements ResourceValidator {
     }
 
     /**
-     * Divide string using separator to the parts adding empty lines for
+     * Divide string using separators to the parts adding empty lines for
      * two consistently separators.
      * @param content String line
-     * @param separator Separator string
+     * @param separators Separators string
      * @return List of line parts
      */
-    private static List<String> splitPreserve(final String content, final String separator) {
+    private static List<String> splitPreserve(final String content, final String separators) {
         final List<String> tokens = new LinkedList<>();
+        final int len = content.length();
+        int ind = 0;
         int start = 0;
-        int end;
-        while (start < content.length()) {
-            end = content.indexOf(separator, start);
-            if (end == -1) {
-                tokens.add(content.substring(start));
-                break;
-            } else {
-                tokens.add(content.substring(start, end));
-                start = end + separator.length();
+        while (ind < len) {
+            if (separators.indexOf(content.charAt(ind)) > 0) {
+                tokens.add(content.substring(start, ind));
+                start = ind + 1;
             }
+            ++ind;
         }
-        if (content.lastIndexOf(separator) == content.length() - separator.length()) {
-            tokens.add("");
-        }
+        tokens.add(content.substring(start, ind));
         return tokens;
     }
 }
