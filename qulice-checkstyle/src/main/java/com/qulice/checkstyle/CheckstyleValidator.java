@@ -49,7 +49,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import org.apache.commons.lang3.StringUtils;
 import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.Replaced;
 import org.cactoos.text.TextOf;
@@ -216,7 +215,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         final String eol = System.getProperty("line.separator");
         builder.append("/*").append(eol);
         for (final String line
-            : StringUtils.splitPreserveAllTokens(content, eol)) {
+            : content.split(eol)) {
             builder.append(" *");
             if (!line.trim().isEmpty()) {
                 builder.append(' ').append(line.trim());

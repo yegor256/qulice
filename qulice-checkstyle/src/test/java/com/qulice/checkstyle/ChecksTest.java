@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Stream;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
+import org.cactoos.text.Joined;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -80,7 +80,7 @@ final class ChecksTest {
             StandardCharsets.UTF_8
             ).split("\n");
         for (final String line : violations) {
-            final String[] sectors = StringUtils.split(line, ":");
+            final String[] sectors = line.split(":");
             final Integer pos = Integer.valueOf(sectors[0]);
             final String needle = sectors[1].trim();
             MatcherAssert.assertThat(
@@ -257,7 +257,7 @@ final class ChecksTest {
                     )
                 );
             }
-            return StringUtils.join(msgs, "; ");
+            return new Joined("; ", msgs).toString();
         }
     }
 
