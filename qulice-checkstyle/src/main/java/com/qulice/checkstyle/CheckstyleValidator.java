@@ -273,7 +273,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         int ind = 0;
         int start = 0;
         while (ind < len) {
-            if (separators.indexOf(content.charAt(ind)) > 0) {
+            if (separators.indexOf(content.charAt(ind)) >= 0) {
                 tokens.add(content.substring(start, ind));
                 start = ind + 1;
             }
