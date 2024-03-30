@@ -189,6 +189,7 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
               <excludes combine.children="append">
                 <exclude>checkstyle:/src/test/resources/.*</exclude>
                 <exclude>pmd:.*/src/test/resources/.*</exclude>
+                <exclude>duplicatefinder:</exclude>
               </excludes>
             </configuration>
           </plugin>

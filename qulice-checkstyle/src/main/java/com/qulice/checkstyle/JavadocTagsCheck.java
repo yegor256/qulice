@@ -40,7 +40,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * Check if the class/interface javadoc contains properly formatted author
@@ -190,10 +189,7 @@ public final class JavadocTagsCheck extends AbstractCheck {
         if (!found.isEmpty()) {
             this.log(
                 start + 1,
-                StringUtils.join(
-                    "Prohibited ''@{0}'' tag in",
-                    " class/interface comment"
-                ),
+                "Prohibited ''@{0}'' tag in class/interface comment",
                 tag
             );
         }

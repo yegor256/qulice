@@ -73,15 +73,12 @@ final class ChecksTest {
         Mockito.doAnswer(collector).when(listener)
             .addError(Mockito.any(AuditEvent.class));
         this.check(dir, "/Invalid.java", listener);
-        final String[] violations = StringUtils.split(
-            IOUtils.toString(
-                this.getClass().getResourceAsStream(
-                    String.format("%s/violations.txt", dir)
-                ),
-                StandardCharsets.UTF_8
+        final String[] violations = IOUtils.toString(
+            this.getClass().getResourceAsStream(
+                String.format("%s/violations.txt", dir)
             ),
-            "\n"
-        );
+            StandardCharsets.UTF_8
+            ).split("\n");
         for (final String line : violations) {
             final String[] sectors = StringUtils.split(line, ":");
             final Integer pos = Integer.valueOf(sectors[0]);
