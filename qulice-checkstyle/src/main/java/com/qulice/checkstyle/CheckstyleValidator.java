@@ -279,7 +279,7 @@ public final class CheckstyleValidator implements ResourceValidator {
                 break;
             } else {
                 tokens.add(content.substring(start, end));
-                start = end + 1;
+                start = end + separator.length();
             }
         }
         if (content.lastIndexOf(separator) == content.length() - separator.length()) {
