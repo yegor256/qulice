@@ -36,7 +36,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Properties;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Plugin;
 import org.apache.maven.plugin.InvalidPluginDescriptorException;
@@ -105,7 +104,7 @@ public final class MojoExecutor {
     public void execute(final String coords, final String goal,
         final Properties config) throws ValidationException {
         final Plugin plugin = new Plugin();
-        final String[] sectors = StringUtils.split(coords, ':');
+        final String[] sectors = coords.split(":");
         plugin.setGroupId(sectors[0]);
         plugin.setArtifactId(sectors[1]);
         plugin.setVersion(sectors[2]);

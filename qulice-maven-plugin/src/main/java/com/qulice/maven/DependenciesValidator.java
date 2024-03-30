@@ -37,11 +37,11 @@ import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
 import java.util.Collection;
 import java.util.LinkedList;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzerException;
+import org.cactoos.text.Joined;
 import org.codehaus.plexus.PlexusConstants;
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
@@ -82,7 +82,7 @@ final class DependenciesValidator implements MavenValidator {
                 this,
                 "Unused declared dependencies found:%s%s",
                 DependenciesValidator.SEP,
-                StringUtils.join(unused, DependenciesValidator.SEP)
+                new Joined(DependenciesValidator.SEP, unused).toString()
             );
         }
         final Collection<String> used = Collections2.filter(
@@ -94,7 +94,7 @@ final class DependenciesValidator implements MavenValidator {
                 this,
                 "Used undeclared dependencies found:%s%s",
                 DependenciesValidator.SEP,
-                StringUtils.join(used, DependenciesValidator.SEP)
+                new Joined(DependenciesValidator.SEP, used)
             );
         }
         if (!used.isEmpty() || !unused.isEmpty()) {

@@ -106,8 +106,7 @@ final class CheckstyleValidatorTest {
             .file();
         final String content =
             // @checkstyle StringLiteralsConcatenation (4 lines)
-            // @checkstyle RegexpSingleline (1 line)
-            "/" + "**\n * License-3.\n *\n * License-2.\n */\n"
+            "/" + "*\n * License-3.\n *\n * License-2.\n */\n"
                 + "package foo;\n"
                 + "public class Foo { }\n";
         final String name = "Foo.java";

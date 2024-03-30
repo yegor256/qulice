@@ -47,7 +47,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -124,15 +123,15 @@ public final class CheckMojo extends AbstractQuliceMojo {
                     this,
                     "%s: %s[%s]: %s (%s)",
                     result.validator(),
-                    StringUtils.removeStart(
-                        result.file(),
+                    result.file().replace(
                         String.format(
                             "%s/", this.session().getExecutionRootDirectory()
-                            )
                         ),
-                        result.lines(),
-                        result.message(),
-                        result.name()
+                        ""
+                    ),
+                    result.lines(),
+                    result.message(),
+                    result.name()
                 );
             }
         }

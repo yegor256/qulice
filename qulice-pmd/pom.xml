@@ -44,10 +44,22 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <groupId>com.qulice</groupId>
       <artifactId>qulice-spi</artifactId>
       <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
+      <!-- version from parent -->
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
       <!-- version from parent -->
       <scope>test</scope>
     </dependency>
@@ -177,6 +189,11 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
               <excludes combine.children="append">
                 <exclude>checkstyle:/src/test/resources/.*</exclude>
                 <exclude>pmd:.*/src/test/resources/.*</exclude>
+                <!-- @todo #1:5min add commons-lang3 to exception after the
+                       next qulice version update.
+                       commons-lang3 library is used in pmd libs and make a duplicate
+                -->
+                <exclude>duplicatefinder:</exclude>
               </excludes>
             </configuration>
           </plugin>

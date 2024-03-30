@@ -33,7 +33,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import java.io.File;
-import org.apache.commons.lang3.StringUtils;
+import org.cactoos.text.Joined;
 
 /**
  * Make sure each line indentation is either:
@@ -67,11 +67,12 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
                 this.log(
                     pos + 1,
                     String.format(
-                        StringUtils.join(
+                        new Joined(
+                            "",
                             "Indentation (%d) must be same or ",
                             "less than previous line (%d), or ",
                             "bigger by exactly 4"
-                        ),
+                        ).toString(),
                         current,
                         previous
                     )

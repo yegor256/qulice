@@ -49,7 +49,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import org.apache.commons.lang3.StringUtils;
 import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.Replaced;
 import org.cactoos.text.TextOf;
@@ -213,10 +212,9 @@ public final class CheckstyleValidator implements ResourceValidator {
             throw new IllegalStateException("Failed to read license", ex);
         }
         final StringBuilder builder = new StringBuilder(100);
-        final String eol = System.getProperty("line.separator");
+        final String eol = System.lineSeparator();
         builder.append("/*").append(eol);
-        for (final String line
-            : StringUtils.splitPreserveAllTokens(content, eol)) {
+        for (final String line : CheckstyleValidator.splitPreserve(content, eol)) {
             builder.append(" *");
             if (!line.trim().isEmpty()) {
                 builder.append(' ').append(line.trim());
@@ -260,5 +258,28 @@ public final class CheckstyleValidator implements ResourceValidator {
             }
         }
         return url;
+    }
+
+    /**
+     * Divide string using separators to the parts adding empty lines for
+     * two consistently separators.
+     * @param content String line
+     * @param separators Separators string
+     * @return List of line parts
+     */
+    private static List<String> splitPreserve(final String content, final String separators) {
+        final List<String> tokens = new LinkedList<>();
+        final int len = content.length();
+        int ind = 0;
+        int start = 0;
+        while (ind < len) {
+            if (separators.indexOf(content.charAt(ind)) >= 0) {
+                tokens.add(content.substring(start, ind));
+                start = ind + 1;
+            }
+            ++ind;
+        }
+        tokens.add(content.substring(start, ind));
+        return tokens;
     }
 }
