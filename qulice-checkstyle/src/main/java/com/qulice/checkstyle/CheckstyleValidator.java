@@ -215,7 +215,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         final String eol = System.getProperty("line.separator");
         builder.append("/*").append(eol);
         for (final String line
-            : content.split(eol)) {
+            : CheckstyleValidator.splitPreserve(content, eol)) {
             builder.append(" *");
             if (!line.trim().isEmpty()) {
                 builder.append(' ').append(line.trim());
@@ -259,5 +259,32 @@ public final class CheckstyleValidator implements ResourceValidator {
             }
         }
         return url;
+    }
+
+    /**
+     * Divide string using separator to the parts adding empty lines for
+     * two consistently separators.
+     * @param content String line
+     * @param separator Separator string
+     * @return List of line parts
+     */
+    private static List<String> splitPreserve(final String content, final String separator) {
+        final List<String> tokens = new LinkedList<>();
+        int start = 0;
+        int end;
+        while (start < content.length()) {
+            end = content.indexOf(separator, start);
+            if (end == -1) {
+                tokens.add(content.substring(start));
+                break;
+            } else {
+                tokens.add(content.substring(start, end));
+                start = end + 1;
+            }
+        }
+        if (content.lastIndexOf(separator) == content.length() - separator.length()) {
+            tokens.add("");
+        }
+        return tokens;
     }
 }
