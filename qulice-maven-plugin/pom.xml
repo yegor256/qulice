@@ -71,6 +71,26 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <groupId>org.apache.maven.reporting</groupId>
       <artifactId>maven-reporting-exec</artifactId>
       <version>1.6.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.eclipse.aether</groupId>
+          <artifactId>aether-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.aether</groupId>
+          <artifactId>aether-util</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.resolver</groupId>
+      <artifactId>maven-resolver-api</artifactId>
+      <version>1.9.8</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.resolver</groupId>
+      <artifactId>maven-resolver-util</artifactId>
+      <version>1.9.8</version>
     </dependency>
     <dependency>
       <groupId>org.eclipse.sisu</groupId>
@@ -395,7 +415,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                 <exclude>pmd:.*/src/it/.*</exclude>
                 <exclude>pmd:.*/src/test/resources/com/qulice/maven/ValidationExclusion/.*</exclude>
                 <exclude>xml:/src/it/.*</exclude>
-                <exclude>duplicatefinder:.*</exclude>
               </excludes>
             </configuration>
           </plugin>
