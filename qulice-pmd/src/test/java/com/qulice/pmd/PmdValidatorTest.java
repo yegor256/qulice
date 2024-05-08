@@ -42,10 +42,8 @@ import org.hamcrest.Matchers;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledOnOs;
 import org.junit.jupiter.api.condition.EnabledForJreRange;
 import org.junit.jupiter.api.condition.JRE;
-import org.junit.jupiter.api.condition.OS;
 
 /**
  * Test case for {@link PmdValidator} class.
@@ -759,7 +757,6 @@ final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    @DisabledOnOs(OS.WINDOWS)
     void prohibitsUnicodeCharactersInMethodNames() throws Exception {
         new PmdAssert(
             "UnicodeCharactersInMethodNames.java",
