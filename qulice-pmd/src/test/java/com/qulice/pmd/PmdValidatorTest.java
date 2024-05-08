@@ -751,4 +751,17 @@ final class PmdValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PmdValidator can prohibit unicode characters in method names.
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void allowsUnicodeCharactersInMethodNames() throws Exception {
+        new PmdAssert(
+            "UnicodeCharactersInMethodNames.java",
+            Matchers.is(false),
+            Matchers.containsString("MethodNamingConventions")
+        ).validate();
+    }
 }
