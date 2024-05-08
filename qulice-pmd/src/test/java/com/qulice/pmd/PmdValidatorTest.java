@@ -760,7 +760,7 @@ final class PmdValidatorTest {
      */
     @Test
     @DisabledOnOs(OS.WINDOWS)
-    void allowsUnicodeCharactersInMethodNames() throws Exception {
+    void prohibitsUnicodeCharactersInMethodNames() throws Exception {
         new PmdAssert(
             "UnicodeCharactersInMethodNames.java",
             Matchers.is(false),
