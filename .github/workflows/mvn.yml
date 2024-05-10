@@ -1,5 +1,7 @@
 ---
 name: mvn
+env:
+  MAVEN_OPTS: "-Dfile.encoding=UTF-8"
 on:
   push:
     branches:
