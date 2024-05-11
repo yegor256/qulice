@@ -105,7 +105,7 @@
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>                  modifiers.findFirstToken(TokenTypes.FINAL) != <strong class="jxr_keyword">null</strong>;
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> isabstract =
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>                  modifiers.findFirstToken(TokenTypes.ABSTRACT) != <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>             <strong class="jxr_keyword">final</strong> String qualified = <strong class="jxr_keyword">this</strong>.getQualifiedClassName(ast);
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>             <strong class="jxr_keyword">final</strong> String qualified = <strong class="jxr_keyword">this</strong>.qualifiedClassName(ast);
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>             <strong class="jxr_keyword">this</strong>.classes.push(
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>                 <strong class="jxr_keyword">new</strong> ClassDesc(qualified, isfinal, isabstract)
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>             );
@@ -134,7 +134,7 @@
 <a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_javadoccomment">     * @param classast Class to get qualified class name</em>
 <a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_javadoccomment">     * @return Qualified class name of a class</em>
 <a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment">    */</em>
-<a class="jxr_linenumber" name="L129" href="#L129">129</a>     <strong class="jxr_keyword">private</strong> String getQualifiedClassName(<strong class="jxr_keyword">final</strong> DetailAST classast) {
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>     <strong class="jxr_keyword">private</strong> String qualifiedClassName(<strong class="jxr_keyword">final</strong> DetailAST classast) {
 <a class="jxr_linenumber" name="L130" href="#L130">130</a>         <strong class="jxr_keyword">final</strong> String name = classast.findFirstToken(
 <a class="jxr_linenumber" name="L131" href="#L131">131</a>             TokenTypes.IDENT
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>         ).getText();
@@ -168,13 +168,13 @@
 <a class="jxr_linenumber" name="L160" href="#L160">160</a>                 qualified = name;
 <a class="jxr_linenumber" name="L161" href="#L161">161</a>             } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L162" href="#L162">162</a>                 qualified =
-<a class="jxr_linenumber" name="L163" href="#L163">163</a>                 <strong class="jxr_keyword">new</strong> UncheckedText(
-<a class="jxr_linenumber" name="L164" href="#L164">164</a>                     <strong class="jxr_keyword">new</strong> Joined(
-<a class="jxr_linenumber" name="L165" href="#L165">165</a>                         ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR,
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>                         pack,
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>                         name
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>                     )
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>                 ).asString();
+<a class="jxr_linenumber" name="L163" href="#L163">163</a>                     <strong class="jxr_keyword">new</strong> UncheckedText(
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>                         <strong class="jxr_keyword">new</strong> Joined(
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>                             ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR,
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>                             pack,
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>                             name
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>                         )
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>                     ).asString();
 <a class="jxr_linenumber" name="L170" href="#L170">170</a>             }
 <a class="jxr_linenumber" name="L171" href="#L171">171</a>         } <strong class="jxr_keyword">else</strong> {
 <a class="jxr_linenumber" name="L172" href="#L172">172</a>             qualified =

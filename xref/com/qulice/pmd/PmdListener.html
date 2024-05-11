@@ -63,14 +63,14 @@
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     * All errors spotted (mostly violations, but also processing</em>
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">     * and config errors).</em>
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Collection&lt;PmdError&gt; errors;
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Collection&lt;PmdError&gt; violations;
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">     * Public ctor.</em>
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">     * @param environ Environment</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>      <a name="PmdListener" href="../../../com/qulice/pmd/PmdListener.html#PmdListener">PmdListener</a>(<strong class="jxr_keyword">final</strong> <a name="Environment" href="../../../com/qulice/spi/Environment.html#Environment">Environment</a> environ) {
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>          <strong class="jxr_keyword">this</strong>.errors = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>          <strong class="jxr_keyword">this</strong>.violations = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>          <strong class="jxr_keyword">this</strong>.env = environ;
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      }
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  
@@ -85,7 +85,7 @@
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>              <strong class="jxr_keyword">this</strong>.env.basedir().toString().length()
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>          );
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>          <strong class="jxr_keyword">if</strong> (!<strong class="jxr_keyword">this</strong>.env.exclude(<span class="jxr_string">"pmd"</span>, name)) {
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>              <strong class="jxr_keyword">this</strong>.errors.add(<strong class="jxr_keyword">new</strong> PmdError.OfRuleViolation(violation));
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>              <strong class="jxr_keyword">this</strong>.violations.add(<strong class="jxr_keyword">new</strong> PmdError.OfRuleViolation(violation));
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>          }
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>      }
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>  
@@ -97,7 +97,7 @@
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onProcessingError(<strong class="jxr_keyword">final</strong> ProcessingError error) {
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>          <strong class="jxr_keyword">if</strong> (error.getFile().endsWith(<span class="jxr_string">".java"</span>)) {
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>              <strong class="jxr_keyword">this</strong>.errors.add(<strong class="jxr_keyword">new</strong> PmdError.OfProcessingError(error));
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>              <strong class="jxr_keyword">this</strong>.violations.add(<strong class="jxr_keyword">new</strong> PmdError.OfProcessingError(error));
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>          }
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>      }
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
@@ -106,7 +106,7 @@
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">     * @param error A configuration error that needs to be reported.</em>
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> onConfigError(<strong class="jxr_keyword">final</strong> ConfigurationError error) {
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>         <strong class="jxr_keyword">this</strong>.errors.add(<strong class="jxr_keyword">new</strong> PmdError.OfConfigError(error));
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>         <strong class="jxr_keyword">this</strong>.violations.add(<strong class="jxr_keyword">new</strong> PmdError.OfConfigError(error));
 <a class="jxr_linenumber" name="L102" href="#L102">102</a>     }
 <a class="jxr_linenumber" name="L103" href="#L103">103</a> 
 <a class="jxr_linenumber" name="L104" href="#L104">104</a>     <em class="jxr_javadoccomment">/**</em>
@@ -114,7 +114,7 @@
 <a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_javadoccomment">     * @return List of violations</em>
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>     <strong class="jxr_keyword">public</strong> Collection&lt;PmdError&gt; errors() {
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>         <strong class="jxr_keyword">return</strong> Collections.unmodifiableCollection(<strong class="jxr_keyword">this</strong>.errors);
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>         <strong class="jxr_keyword">return</strong> Collections.unmodifiableCollection(<strong class="jxr_keyword">this</strong>.violations);
 <a class="jxr_linenumber" name="L110" href="#L110">110</a>     }
 <a class="jxr_linenumber" name="L111" href="#L111">111</a> }
 </pre>

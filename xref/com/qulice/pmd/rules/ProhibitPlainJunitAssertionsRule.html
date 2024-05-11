@@ -65,8 +65,8 @@
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>      @Override
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>      <strong class="jxr_keyword">public</strong> Object visit(<strong class="jxr_keyword">final</strong> ASTMethodDeclaration method, <strong class="jxr_keyword">final</strong> Object data) {
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>          <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.isJUnitMethod(method, data)
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>              &amp;&amp; <strong class="jxr_keyword">this</strong>.containsPlainJunitAssert(method.getBlock())) {
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>              <strong class="jxr_keyword">this</strong>.addViolation(data, method);
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>              &amp;&amp; <strong class="jxr_keyword">this</strong>.containsPlainJunitAssert(method.getBody())) {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>              <strong class="jxr_keyword">this</strong>.asCtx(data).addViolation(method);
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>          }
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>          <strong class="jxr_keyword">return</strong> data;
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>      }
@@ -76,7 +76,7 @@
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String element : <a name="ProhibitPlainJunitAssertionsRule" href="../../../../com/qulice/pmd/rules/ProhibitPlainJunitAssertionsRule.html#ProhibitPlainJunitAssertionsRule">ProhibitPlainJunitAssertionsRule</a>
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>              .PROHIBITED) {
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>              <strong class="jxr_keyword">if</strong> (imp.getImportedName().contains(element)) {
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>                  <strong class="jxr_keyword">this</strong>.addViolation(data, imp);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>                  <strong class="jxr_keyword">this</strong>.asCtx(data).addViolation(imp);
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>                  <strong class="jxr_keyword">break</strong>;
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>              }
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>          }

@@ -213,8 +213,8 @@
 <a class="jxr_linenumber" name="L205" href="#L205">205</a>             <strong class="jxr_keyword">if</strong> (multiline.find()) {
 <a class="jxr_linenumber" name="L206" href="#L206">206</a>                 remindex = lines.length;
 <a class="jxr_linenumber" name="L207" href="#L207">207</a>                 <strong class="jxr_keyword">final</strong> String lfin = multiline.group(1);
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>                 <strong class="jxr_keyword">if</strong> (!lfin.equals(JavadocParameterOrderCheck.NEXT_TAG)
-<a class="jxr_linenumber" name="L209" href="#L209">209</a>                     &amp;&amp; !lfin.equals(JavadocParameterOrderCheck.END_JAVADOC)) {
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>                 <strong class="jxr_keyword">if</strong> (!JavadocParameterOrderCheck.NEXT_TAG.equals(lfin)
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>                     &amp;&amp; !JavadocParameterOrderCheck.END_JAVADOC.equals(lfin)) {
 <a class="jxr_linenumber" name="L210" href="#L210">210</a>                     tags.add(<strong class="jxr_keyword">new</strong> JavadocTag(line, column, paramone, paramtwo));
 <a class="jxr_linenumber" name="L211" href="#L211">211</a>                 }
 <a class="jxr_linenumber" name="L212" href="#L212">212</a>             }
@@ -237,20 +237,18 @@
 <a class="jxr_linenumber" name="L229" href="#L229">229</a>         <strong class="jxr_keyword">if</strong> (tags.size() == count) {
 <a class="jxr_linenumber" name="L230" href="#L230">230</a>             <strong class="jxr_keyword">final</strong> Consumer&lt;JavadocTag&gt; logger = tag -&gt; <strong class="jxr_keyword">this</strong>.log(
 <a class="jxr_linenumber" name="L231" href="#L231">231</a>                 tag.getLineNo(),
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>                 <em class="jxr_comment">// @checkstyle LineLength (1 line)</em>
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>                 <span class="jxr_string">"Javadoc parameter order different than method signature"</span>
-<a class="jxr_linenumber" name="L234" href="#L234">234</a>             );
-<a class="jxr_linenumber" name="L235" href="#L235">235</a>             args.checkOrder(tags, logger);
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>             types.checkOrder(tags, logger);
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L238" href="#L238">238</a>             <strong class="jxr_keyword">this</strong>.log(
-<a class="jxr_linenumber" name="L239" href="#L239">239</a>                 ast.getLineNo(),
-<a class="jxr_linenumber" name="L240" href="#L240">240</a>                 <em class="jxr_comment">// @checkstyle LineLength (1 line)</em>
-<a class="jxr_linenumber" name="L241" href="#L241">241</a>                 <span class="jxr_string">"Number of javadoc parameters different than method signature"</span>
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>             );
-<a class="jxr_linenumber" name="L243" href="#L243">243</a>         }
-<a class="jxr_linenumber" name="L244" href="#L244">244</a>     }
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> }
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>                 <span class="jxr_string">"Javadoc parameter order different than method signature"</span>
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>             );
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>             args.checkOrder(tags, logger);
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>             types.checkOrder(tags, logger);
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>             <strong class="jxr_keyword">this</strong>.log(
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>                 ast.getLineNo(),
+<a class="jxr_linenumber" name="L239" href="#L239">239</a>                 <span class="jxr_string">"Number of javadoc parameters different than method signature"</span>
+<a class="jxr_linenumber" name="L240" href="#L240">240</a>             );
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>         }
+<a class="jxr_linenumber" name="L242" href="#L242">242</a>     }
+<a class="jxr_linenumber" name="L243" href="#L243">243</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2024 <a href="https://www.qulice.com">Qulice.com</a>. All rights reserved.</div>
