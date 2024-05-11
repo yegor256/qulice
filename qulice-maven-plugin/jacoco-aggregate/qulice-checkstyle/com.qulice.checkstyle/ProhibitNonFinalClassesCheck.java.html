@@ -97,7 +97,7 @@ import org.cactoos.text.UncheckedText;
 <span class="nc bnc" id="L97" title="All 2 branches missed.">                modifiers.findFirstToken(TokenTypes.FINAL) != null;</span>
 <span class="nc" id="L98">            final boolean isabstract =</span>
 <span class="nc bnc" id="L99" title="All 2 branches missed.">                modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;</span>
-<span class="nc" id="L100">            final String qualified = this.getQualifiedClassName(ast);</span>
+<span class="nc" id="L100">            final String qualified = this.qualifiedClassName(ast);</span>
 <span class="nc" id="L101">            this.classes.push(</span>
                 new ClassDesc(qualified, isfinal, isabstract)
             );
@@ -126,7 +126,7 @@ import org.cactoos.text.UncheckedText;
      * @param classast Class to get qualified class name
      * @return Qualified class name of a class
     */
-    private String getQualifiedClassName(final DetailAST classast) {
+    private String qualifiedClassName(final DetailAST classast) {
 <span class="nc" id="L130">        final String name = classast.findFirstToken(</span>
             TokenTypes.IDENT
 <span class="nc" id="L132">        ).getText();</span>
@@ -160,13 +160,13 @@ import org.cactoos.text.UncheckedText;
 <span class="nc" id="L160">                qualified = name;</span>
             } else {
 <span class="nc" id="L162">                qualified =</span>
-                new UncheckedText(
-                    new Joined(
-                        ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR,
-                        pack,
-                        name
-                    )
-<span class="nc" id="L169">                ).asString();</span>
+                    new UncheckedText(
+                        new Joined(
+                            ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR,
+                            pack,
+                            name
+                        )
+<span class="nc" id="L169">                    ).asString();</span>
             }
         } else {
 <span class="nc" id="L172">            qualified =</span>

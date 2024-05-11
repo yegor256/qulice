@@ -90,21 +90,20 @@ public class TypeParameters {
 <span class="nc" id="L90">        final List&lt;DetailAST&gt; params = this.parameters.parameters();</span>
 <span class="nc bnc" id="L91" title="All 2 branches missed.">        if (tags.size() &lt; params.size()) {</span>
 <span class="nc" id="L92">            throw new IllegalStateException(</span>
-                // @checkstyle LineLength (1 lines)
                 &quot;Number of Javadoc parameters does not match the number of type parameters&quot;
             );
         }
-<span class="nc" id="L97">        final Iterator&lt;JavadocTag&gt; iterator =</span>
-<span class="nc" id="L98">            tags.listIterator(tags.size() - params.size());</span>
-<span class="nc bnc" id="L99" title="All 2 branches missed.">        for (final DetailAST param : params) {</span>
-<span class="nc" id="L100">            final String type =</span>
-<span class="nc" id="L101">                param.findFirstToken(TokenTypes.IDENT).getText();</span>
-<span class="nc" id="L102">            final JavadocTag tag = iterator.next();</span>
-<span class="nc" id="L103">            final String arg = tag.getFirstArg();</span>
-<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (!arg.equals(String.format(&quot;&lt;%s&gt;&quot;, type))) {</span>
-<span class="nc" id="L105">                consumer.accept(tag);</span>
+<span class="nc" id="L96">        final Iterator&lt;JavadocTag&gt; iterator =</span>
+<span class="nc" id="L97">            tags.listIterator(tags.size() - params.size());</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">        for (final DetailAST param : params) {</span>
+<span class="nc" id="L99">            final String type =</span>
+<span class="nc" id="L100">                param.findFirstToken(TokenTypes.IDENT).getText();</span>
+<span class="nc" id="L101">            final JavadocTag tag = iterator.next();</span>
+<span class="nc" id="L102">            final String arg = tag.getFirstArg();</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">            if (!arg.equals(String.format(&quot;&lt;%s&gt;&quot;, type))) {</span>
+<span class="nc" id="L104">                consumer.accept(tag);</span>
             }
-<span class="nc" id="L107">        }</span>
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L106">        }</span>
+<span class="nc" id="L107">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

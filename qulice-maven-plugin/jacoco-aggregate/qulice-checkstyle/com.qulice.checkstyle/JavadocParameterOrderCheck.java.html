@@ -205,8 +205,8 @@ import java.util.regex.Pattern;
 <span class="nc bnc" id="L205" title="All 2 branches missed.">            if (multiline.find()) {</span>
 <span class="nc" id="L206">                remindex = lines.length;</span>
 <span class="nc" id="L207">                final String lfin = multiline.group(1);</span>
-<span class="nc bnc" id="L208" title="All 2 branches missed.">                if (!lfin.equals(JavadocParameterOrderCheck.NEXT_TAG)</span>
-<span class="nc bnc" id="L209" title="All 2 branches missed.">                    &amp;&amp; !lfin.equals(JavadocParameterOrderCheck.END_JAVADOC)) {</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">                if (!JavadocParameterOrderCheck.NEXT_TAG.equals(lfin)</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">                    &amp;&amp; !JavadocParameterOrderCheck.END_JAVADOC.equals(lfin)) {</span>
 <span class="nc" id="L210">                    tags.add(new JavadocTag(line, column, paramone, paramtwo));</span>
                 }
             }
@@ -229,18 +229,16 @@ import java.util.regex.Pattern;
 <span class="nc bnc" id="L229" title="All 2 branches missed.">        if (tags.size() == count) {</span>
 <span class="nc" id="L230">            final Consumer&lt;JavadocTag&gt; logger = tag -&gt; this.log(</span>
 <span class="nc" id="L231">                tag.getLineNo(),</span>
-                // @checkstyle LineLength (1 line)
                 &quot;Javadoc parameter order different than method signature&quot;
             );
-<span class="nc" id="L235">            args.checkOrder(tags, logger);</span>
-<span class="nc" id="L236">            types.checkOrder(tags, logger);</span>
-<span class="nc" id="L237">        } else {</span>
-<span class="nc" id="L238">            this.log(</span>
-<span class="nc" id="L239">                ast.getLineNo(),</span>
-                // @checkstyle LineLength (1 line)
+<span class="nc" id="L234">            args.checkOrder(tags, logger);</span>
+<span class="nc" id="L235">            types.checkOrder(tags, logger);</span>
+<span class="nc" id="L236">        } else {</span>
+<span class="nc" id="L237">            this.log(</span>
+<span class="nc" id="L238">                ast.getLineNo(),</span>
                 &quot;Number of javadoc parameters different than method signature&quot;
             );
         }
-<span class="nc" id="L244">    }</span>
+<span class="nc" id="L242">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

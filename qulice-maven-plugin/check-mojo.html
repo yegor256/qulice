@@ -105,13 +105,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.22.2</strong>
+                                    <strong itemprop="version">0.23.0</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2024-03-13T08:00:26Z">
+                                    <time itemprop="datePublished" datetime="2024-05-11T08:53:56Z">
                                         
-                                        13-Mar-2024
+                                        11-May-2024
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -122,7 +122,7 @@
                             <section>
 <h2><a name="qulice:check"></a>qulice:check</h2><a name="qulice:check"></a>
 <p><strong>Full name</strong>:</p>
-<p>com.qulice:qulice-maven-plugin:0.22.2:check</p>
+<p>com.qulice:qulice-maven-plugin:0.23.0:check</p>
 <p><strong>Description</strong>:</p>
 <p>Check the project and find all possible violations.</p>
 <p><strong>Attributes</strong>:</p>
@@ -145,16 +145,21 @@
 <td><code>-</code></td>
 <td>List of xpath queries to validate pom.xml.<br /><strong>User Property</strong>: <code>qulice.asserts</code></td></tr>
 <tr class="a">
+<td align="left"><a href="#charset"><code>&lt;charset&gt;</code></a></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>The source encoding.<br /><strong>Default</strong>: <code>${project.build.sourceEncoding}</code><br /><strong>User Property</strong>: <code>encoding</code></td></tr>
+<tr class="b">
 <td align="left"><a href="#excludes"><code>&lt;excludes&gt;</code></a></td>
 <td><code>Collection&lt;String&gt;</code></td>
 <td><code>-</code></td>
 <td>List of regular expressions to exclude.<br /><strong>User Property</strong>: <code>qulice.excludes</code></td></tr>
-<tr class="b">
+<tr class="a">
 <td align="left"><a href="#license"><code>&lt;license&gt;</code></a></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>Location of License file. If it is an absolute file name you should prepend it with "file:" prefix. Otherwise it is treated like a resource name and will be found in classpath (if available).<br /><strong>Default</strong>: <code>LICENSE.txt</code><br /><strong>User Property</strong>: <code>qulice.license</code></td></tr>
-<tr class="a">
+<tr class="b">
 <td align="left"><a href="#skip"><code>&lt;skip&gt;</code></a></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
@@ -165,7 +170,14 @@
 <ul>
 <li><strong>Type</strong>: <code>java.util.Collection&lt;java.lang.String&gt;</code></li>
 <li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
-<li><strong>User Property</strong>: <code>qulice.asserts</code></li></ul><hr /></section><a name="excludes"><section>
+<li><strong>User Property</strong>: <code>qulice.asserts</code></li></ul><hr /></section><a name="charset"><section>
+<h4><a name="a.3Ccharset.3E"></a>&lt;charset&gt;</h4><a name="a.3Ccharset.3E"></a></a>
+<div>The source encoding.</div>
+<ul>
+<li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>User Property</strong>: <code>encoding</code></li>
+<li><strong>Default</strong>: <code>${project.build.sourceEncoding}</code></li></ul><hr /></section><a name="excludes"><section>
 <h4><a name="a.3Cexcludes.3E"></a>&lt;excludes&gt;</h4><a name="a.3Cexcludes.3E"></a></a>
 <div>List of regular expressions to exclude.</div>
 <ul>

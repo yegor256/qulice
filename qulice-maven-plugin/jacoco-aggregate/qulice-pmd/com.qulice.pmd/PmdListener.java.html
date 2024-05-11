@@ -55,14 +55,14 @@ final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener 
      * All errors spotted (mostly violations, but also processing
      * and config errors).
      */
-    private final Collection&lt;PmdError&gt; errors;
+    private final Collection&lt;PmdError&gt; violations;
 
     /**
      * Public ctor.
      * @param environ Environment
      */
 <span class="nc" id="L64">    PmdListener(final Environment environ) {</span>
-<span class="nc" id="L65">        this.errors = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L65">        this.violations = new LinkedList&lt;&gt;();</span>
 <span class="nc" id="L66">        this.env = environ;</span>
 <span class="nc" id="L67">    }</span>
 
@@ -77,7 +77,7 @@ final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener 
 <span class="nc" id="L77">            this.env.basedir().toString().length()</span>
         );
 <span class="nc bnc" id="L79" title="All 2 branches missed.">        if (!this.env.exclude(&quot;pmd&quot;, name)) {</span>
-<span class="nc" id="L80">            this.errors.add(new PmdError.OfRuleViolation(violation));</span>
+<span class="nc" id="L80">            this.violations.add(new PmdError.OfRuleViolation(violation));</span>
         }
 <span class="nc" id="L82">    }</span>
 
@@ -89,7 +89,7 @@ final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener 
      */
     public void onProcessingError(final ProcessingError error) {
 <span class="nc bnc" id="L91" title="All 2 branches missed.">        if (error.getFile().endsWith(&quot;.java&quot;)) {</span>
-<span class="nc" id="L92">            this.errors.add(new PmdError.OfProcessingError(error));</span>
+<span class="nc" id="L92">            this.violations.add(new PmdError.OfProcessingError(error));</span>
         }
 <span class="nc" id="L94">    }</span>
 
@@ -98,7 +98,7 @@ final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener 
      * @param error A configuration error that needs to be reported.
      */
     public void onConfigError(final ConfigurationError error) {
-<span class="nc" id="L101">        this.errors.add(new PmdError.OfConfigError(error));</span>
+<span class="nc" id="L101">        this.violations.add(new PmdError.OfConfigError(error));</span>
 <span class="nc" id="L102">    }</span>
 
     /**
@@ -106,7 +106,7 @@ final class PmdListener implements net.sourceforge.pmd.ThreadSafeReportListener 
      * @return List of violations
      */
     public Collection&lt;PmdError&gt; errors() {
-<span class="nc" id="L109">        return Collections.unmodifiableCollection(this.errors);</span>
+<span class="nc" id="L109">        return Collections.unmodifiableCollection(this.violations);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -33,6 +33,7 @@ package com.qulice.pmd;
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -71,15 +72,21 @@ final class SourceValidator {
     private final PMDConfiguration config;
 
     /**
+     * Source files encoding.
+     */
+    private final Charset encoding;
+
+    /**
      * Creates new instance of &lt;code&gt;SourceValidator&lt;/code&gt;.
      * @param env Environment
      */
-<span class="nc" id="L77">    SourceValidator(final Environment env) {</span>
-<span class="nc" id="L78">        this.context = new RuleContext();</span>
-<span class="nc" id="L79">        this.listener = new PmdListener(env);</span>
-<span class="nc" id="L80">        this.renderer = new PmdRenderer();</span>
-<span class="nc" id="L81">        this.config = new PMDConfiguration();</span>
-<span class="nc" id="L82">    }</span>
+<span class="nc" id="L83">    SourceValidator(final Environment env) {</span>
+<span class="nc" id="L84">        this.context = new RuleContext();</span>
+<span class="nc" id="L85">        this.listener = new PmdListener(env);</span>
+<span class="nc" id="L86">        this.renderer = new PmdRenderer();</span>
+<span class="nc" id="L87">        this.config = new PMDConfiguration();</span>
+<span class="nc" id="L88">        this.encoding = env.encoding();</span>
+<span class="nc" id="L89">    }</span>
 
     /**
      * Performs validation of the input source files.
@@ -87,32 +94,33 @@ final class SourceValidator {
      * @param path Base path.
      * @return Collection of violations.
      */
-    @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
+    @SuppressWarnings({&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;, &quot;PMD.CloseResource&quot;})
     public Collection&lt;PmdError&gt; validate(
         final Collection&lt;DataSource&gt; sources, final String path) {
-<span class="nc" id="L93">        this.config.setRuleSets(&quot;com/qulice/pmd/ruleset.xml&quot;);</span>
-<span class="nc" id="L94">        this.config.setThreads(0);</span>
-<span class="nc" id="L95">        this.config.setMinimumPriority(RulePriority.LOW);</span>
-<span class="nc" id="L96">        this.config.setIgnoreIncrementalAnalysis(true);</span>
-<span class="nc" id="L97">        this.config.setShowSuppressedViolations(true);</span>
-<span class="nc" id="L98">        final Report report = new Report();</span>
-<span class="nc" id="L99">        report.addListener(this.listener);</span>
-<span class="nc" id="L100">        this.context.setReport(report);</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">        for (final DataSource source : sources) {</span>
-<span class="nc" id="L102">            final String name = source.getNiceFileName(false, path);</span>
-<span class="nc" id="L103">            Logger.debug(this, &quot;Processing file: %s&quot;, name);</span>
-<span class="nc" id="L104">            this.context.setSourceCodeFile(new File(name));</span>
-<span class="nc" id="L105">            this.validateOne(source);</span>
-<span class="nc" id="L106">        }</span>
-<span class="nc" id="L107">        this.renderer.exportTo(report);</span>
-<span class="nc" id="L108">        report.errors().forEachRemaining(this.listener::onProcessingError);</span>
-<span class="nc" id="L109">        report.configErrors().forEachRemaining(this.listener::onConfigError);</span>
-<span class="nc" id="L110">        Logger.debug(</span>
+<span class="nc" id="L100">        this.config.setRuleSets(&quot;com/qulice/pmd/ruleset.xml&quot;);</span>
+<span class="nc" id="L101">        this.config.setThreads(0);</span>
+<span class="nc" id="L102">        this.config.setMinimumPriority(RulePriority.LOW);</span>
+<span class="nc" id="L103">        this.config.setIgnoreIncrementalAnalysis(true);</span>
+<span class="nc" id="L104">        this.config.setShowSuppressedViolations(true);</span>
+<span class="nc" id="L105">        this.config.setSourceEncoding(this.encoding.name());</span>
+<span class="nc" id="L106">        final Report report = new Report();</span>
+<span class="nc" id="L107">        report.addListener(this.listener);</span>
+<span class="nc" id="L108">        this.context.setReport(report);</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        for (final DataSource source : sources) {</span>
+<span class="nc" id="L110">            final String name = source.getNiceFileName(false, path);</span>
+<span class="nc" id="L111">            Logger.debug(this, &quot;Processing file: %s&quot;, name);</span>
+<span class="nc" id="L112">            this.context.setSourceCodeFile(new File(name));</span>
+<span class="nc" id="L113">            this.validateOne(source);</span>
+<span class="nc" id="L114">        }</span>
+<span class="nc" id="L115">        this.renderer.exportTo(report);</span>
+<span class="nc" id="L116">        report.errors().forEachRemaining(this.listener::onProcessingError);</span>
+<span class="nc" id="L117">        report.configErrors().forEachRemaining(this.listener::onConfigError);</span>
+<span class="nc" id="L118">        Logger.debug(</span>
             this,
             &quot;got %d errors&quot;,
-<span class="nc" id="L113">            this.listener.errors().size()</span>
+<span class="nc" id="L121">            this.listener.errors().size()</span>
         );
-<span class="nc" id="L115">        return this.listener.errors();</span>
+<span class="nc" id="L123">        return this.listener.errors();</span>
     }
 
     /**
@@ -120,20 +128,20 @@ final class SourceValidator {
      * @param source Input source file
      */
     private void validateOne(final DataSource source) {
-<span class="nc" id="L123">        final net.sourceforge.pmd.RuleSetFactory factory =</span>
+<span class="nc" id="L131">        final net.sourceforge.pmd.RuleSetFactory factory =</span>
             new net.sourceforge.pmd.RuleSetFactory(
-            new net.sourceforge.pmd.util.ResourceLoader(),
-            RulePriority.LOW,
-            false,
-            true
-        );
-<span class="nc" id="L130">        net.sourceforge.pmd.PMD.processFiles(</span>
+                new net.sourceforge.pmd.util.ResourceLoader(),
+                RulePriority.LOW,
+                false,
+                true
+            );
+<span class="nc" id="L138">        net.sourceforge.pmd.PMD.processFiles(</span>
             this.config,
             factory,
-<span class="nc" id="L133">            new LinkedList&lt;&gt;(Collections.singleton(source)),</span>
+<span class="nc" id="L141">            new LinkedList&lt;&gt;(Collections.singleton(source)),</span>
             this.context,
-<span class="nc" id="L135">            Collections.singletonList(this.renderer)</span>
+<span class="nc" id="L143">            Collections.singletonList(this.renderer)</span>
         );
-<span class="nc" id="L137">    }</span>
+<span class="nc" id="L145">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

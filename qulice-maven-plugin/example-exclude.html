@@ -106,13 +106,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.22.2</strong>
+                                    <strong itemprop="version">0.23.0</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2024-03-13T08:00:11Z">
+                                    <time itemprop="datePublished" datetime="2024-05-11T08:53:42Z">
                                         
-                                        13-Mar-2024
+                                        11-May-2024
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -129,7 +129,7 @@
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.22.2&lt;/version&gt;
+      &lt;version&gt;0.23.0&lt;/version&gt;
       &lt;configuration&gt;
         &lt;excludes&gt;
           &lt;exclude&gt;checkstyle:/src/examples/.*&lt;/exclude&gt;
@@ -140,7 +140,8 @@
   &lt;/plugins&gt;
 &lt;/build&gt;</pre></div>
 <p>Every <code>exclude</code> item is a regular expression. The following exclusion prefixes are supported now (the list may actually be longer): <code>checkstyle:</code>, <code>pmd:</code>, <code>dependencies:</code>, <code>duplicatefinder:</code>.</p>
-<p>Dependencies exclude uses syntax of groupId:artifactId, so to exclude e.g. guava library you should add <code>dependencies:com.google.guava:guava</code> as an exclude. Multiple exclude tags can be provided to exclude multiple dependencies. To exclude all dependency checks <code>dependencies:.*</code> should be used.</p></section>
+<p>Dependencies exclude uses syntax of groupId:artifactId, so to exclude e.g. guava library you should add <code>dependencies:com.google.guava:guava</code> as an exclude. Multiple exclude tags can be provided to exclude multiple dependencies. To exclude all dependency checks <code>dependencies:.*</code> should be used.</p>
+<p>To disable duplicatefinder check you should write empty value <code>duplicatefinder:</code>.</p></section>
                         </article>
                     </div>
                 </main>

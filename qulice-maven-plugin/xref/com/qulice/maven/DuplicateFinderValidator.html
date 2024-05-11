@@ -43,70 +43,62 @@
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <strong class="jxr_keyword">import</strong> java.util.LinkedList;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <strong class="jxr_keyword">import</strong> java.util.Properties;
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.collections.CollectionUtils;
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> * Validate with maven-duplicate-finder-plugin.</em>
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment"> * @since 0.5</em>
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * @todo #250 Maven-duplicate-finder-plugin should support exclusions.</em>
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> *  Let's add exclusions of following formats (examples):</em>
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> *  - duplicate:about.html</em>
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment"> *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5</em>
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment"> *  - duplicate:org.codehaus.groovy.ast.expr.RegexExpression</em>
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment"> *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5</em>
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment"> *  |xml-apis:xml-apis:1.0.0|about.html</em>
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_javadoccomment"> *  - duplicate:org.eclipse.sisu:org.eclipse.sisu.plexus:0.0.0.M5</em>
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment"> *  |xml-apis:xml-apis:1.0.0|org.w3c.dom.UserDataHandler</em>
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment"> *  See <a href="https://github.com/tpc2/qulice/issues/152" target="alexandria_uri">https://github.com/tpc2/qulice/issues/152</a>#issuecomment-39028953</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment"> *  and <a href="https://github.com/teamed/qulice/issues/250" target="alexandria_uri">https://github.com/teamed/qulice/issues/250</a> for details</em>
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="DuplicateFinderValidator" href="../../../com/qulice/maven/DuplicateFinderValidator.html#DuplicateFinderValidator">DuplicateFinderValidator</a> <strong class="jxr_keyword">implements</strong> <a name="MavenValidator" href="../../../com/qulice/maven/MavenValidator.html#MavenValidator">MavenValidator</a> {
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>      <em class="jxr_comment">// @checkstyle MethodBodyCommentsCheck (50 lines)</em>
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>      <em class="jxr_comment">// @todo #250 Fix a problem with maven configuration of duplicate finder</em>
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>      <em class="jxr_comment">//  plugin in commented out code below, and enable</em>
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <em class="jxr_comment">//  duplicate-finder-ignore-deps IT in pom.xml.</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <em class="jxr_comment">// @todo #1198 Duplicate-finder-plugin was moved to</em>
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>      <em class="jxr_comment">//  https://github.com/basepom/duplicate-finder-maven-plugin</em>
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>      <em class="jxr_comment">//  Let's update it to the new version</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>      @Override
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>      @SuppressWarnings(<span class="jxr_string">"PMD.AvoidDuplicateLiterals"</span>)
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> validate(<strong class="jxr_keyword">final</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> env)
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>          <strong class="jxr_keyword">throws</strong> ValidationException {
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">if</strong> (!env.exclude(<span class="jxr_string">"duplicatefinder"</span>, <span class="jxr_string">""</span>)) {
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>              <strong class="jxr_keyword">final</strong> Properties props = <strong class="jxr_keyword">new</strong> Properties();
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>              props.put(<span class="jxr_string">"failBuildInCaseOfConflict"</span>, <span class="jxr_string">"true"</span>);
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>              props.put(<span class="jxr_string">"checkTestClasspath"</span>, <span class="jxr_string">"false"</span>);
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>              props.put(
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>                  <span class="jxr_string">"ignoredResources"</span>,
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>                  CollectionUtils.union(
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>                      env.excludes(<span class="jxr_string">"duplicatefinder"</span>),
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>                      Arrays.asList(<span class="jxr_string">"META-INF/.*"</span>, <span class="jxr_string">"module-info.class"</span>)
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>                  )
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>              );
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>              <strong class="jxr_keyword">final</strong> Collection&lt;Properties&gt; deps = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>              <em class="jxr_comment">//  for (String sdep : env.excludes("duplicatefinder")) {</em>
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>              <em class="jxr_comment">//      if (StringUtils.countMatches(sdep, ":") == 2) {</em>
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>              <em class="jxr_comment">//          String[] parts = sdep.split(":");</em>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>              <em class="jxr_comment">//          Properties main = new Properties();</em>
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>              <em class="jxr_comment">//          Properties prop = new Properties();</em>
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>              <em class="jxr_comment">//          prop.put("groupId", parts[0]);</em>
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>              <em class="jxr_comment">//          prop.put("artifactId", parts[1]);</em>
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>              <em class="jxr_comment">//          prop.put("version", parts[2]);</em>
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>              <em class="jxr_comment">//          main.put("dependency", prop);</em>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>              <em class="jxr_comment">//          deps.add(prop);</em>
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>              <em class="jxr_comment">//      }</em>
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>              <em class="jxr_comment">//  }</em>
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>              props.put(<span class="jxr_string">"ignoredDependencies"</span>, deps);
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>              env.executor().execute(
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>                  <span class="jxr_string">"com.ning.maven.plugins:maven-duplicate-finder-plugin:1.0.9"</span>,
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>                  <span class="jxr_string">"check"</span>,
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>                  props
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>              );
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>          }
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>      }
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> 
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> }
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <strong class="jxr_keyword">import</strong> java.util.stream.Collectors;
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <strong class="jxr_keyword">import</strong> org.apache.commons.collections.CollectionUtils;
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment"> * Validate with maven-duplicate-finder-plugin.</em>
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * @since 0.5</em>
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> * @todo #1118 ignored dependencies and resources should be placed in different parameters,</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> *  and current implementation use ':' symbol as a flag if it is resource or dependency.</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment"> *  Resource can be presented as a regular expression with that symbol, can cause some problem.</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="DuplicateFinderValidator" href="../../../com/qulice/maven/DuplicateFinderValidator.html#DuplicateFinderValidator">DuplicateFinderValidator</a> <strong class="jxr_keyword">implements</strong> <a name="MavenValidator" href="../../../com/qulice/maven/MavenValidator.html#MavenValidator">MavenValidator</a> {
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>      @Override
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> validate(<strong class="jxr_keyword">final</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> env)
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>          <strong class="jxr_keyword">throws</strong> ValidationException {
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>          <strong class="jxr_keyword">final</strong> String prefix = <span class="jxr_string">"duplicatefinder"</span>;
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>          <strong class="jxr_keyword">if</strong> (!env.exclude(prefix, <span class="jxr_string">""</span>)) {
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>              <strong class="jxr_keyword">final</strong> Properties props = <strong class="jxr_keyword">new</strong> Properties();
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>              props.put(<span class="jxr_string">"failBuildInCaseOfConflict"</span>, <span class="jxr_string">"true"</span>);
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>              props.put(<span class="jxr_string">"checkTestClasspath"</span>, <span class="jxr_string">"false"</span>);
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>              props.put(<span class="jxr_string">"useResultFile"</span>, <span class="jxr_string">"false"</span>);
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>              props.put(
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>                  <span class="jxr_string">"ignoredResourcePatterns"</span>,
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>                  CollectionUtils.union(
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>                      env.excludes(prefix).stream()
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>                          .filter(s -&gt; !s.contains(<span class="jxr_string">":"</span>))
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>                          .collect(Collectors.toList()),
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>                      Arrays.asList(<span class="jxr_string">"META-INF/.*"</span>, <span class="jxr_string">"module-info.class"</span>)
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>                  )
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>              );
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>              <strong class="jxr_keyword">final</strong> Collection&lt;Properties&gt; deps = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>              <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String sdep : env.excludes(prefix)) {
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>                  <strong class="jxr_keyword">final</strong> String[] parts = sdep.split(<span class="jxr_string">":"</span>);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>                  <strong class="jxr_keyword">if</strong> (parts.length &lt; 2) {
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>                      <strong class="jxr_keyword">continue</strong>;
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>                  }
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>                  <strong class="jxr_keyword">final</strong> Properties main = <strong class="jxr_keyword">new</strong> Properties();
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>                  <strong class="jxr_keyword">final</strong> Properties prop = <strong class="jxr_keyword">new</strong> Properties();
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>                  prop.put(<span class="jxr_string">"groupId"</span>, parts[0]);
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>                  prop.put(<span class="jxr_string">"artifactId"</span>, parts[1]);
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>                  <strong class="jxr_keyword">if</strong> (parts.length &gt; 2) {
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>                      prop.put(<span class="jxr_string">"version"</span>, parts[2]);
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>                  }
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>                  main.put(<span class="jxr_string">"dependency"</span>, prop);
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>                  deps.add(main);
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>              }
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>              props.put(<span class="jxr_string">"ignoredDependencies"</span>, deps);
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>              env.executor().execute(
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>                  <span class="jxr_string">"org.basepom.maven:duplicate-finder-maven-plugin:2.0.1"</span>,
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>                  <span class="jxr_string">"check"</span>,
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>                  props
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>              );
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          }
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>      }
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2011&#x2013;2024 <a href="https://www.qulice.com">Qulice.com</a>. All rights reserved.</div>

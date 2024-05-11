@@ -101,17 +101,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 <span class="nc" id="L101">            instance = assign.getFirstChild().getFirstChild();</span>
         }
 <span class="nc bnc" id="L103" title="All 4 branches missed.">        if (instance != null &amp;&amp; instance.getType() == TokenTypes.LITERAL_NEW</span>
-<span class="nc bnc" id="L104" title="All 2 branches missed.">            &amp;&amp; DiamondOperatorCheck.isNotObjectBlock(instance)</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">            &amp;&amp; DiamondOperatorCheck.isNotArray(instance)) {</span>
-<span class="nc" id="L106">            final DetailAST type =</span>
-<span class="nc" id="L107">                DiamondOperatorCheck.findFirstChildNodeOfType(</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">            &amp;&amp; DiamondOperatorCheck.validUsage(instance)) {</span>
+<span class="nc" id="L105">            final DetailAST type =</span>
+<span class="nc" id="L106">                DiamondOperatorCheck.findFirstChildNodeOfType(</span>
                     instance, TokenTypes.TYPE_ARGUMENTS
                 );
-<span class="nc bnc" id="L110" title="All 4 branches missed.">            if (type != null &amp;&amp; !DiamondOperatorCheck.isDiamondOperatorUsed(type)) {</span>
-<span class="nc" id="L111">                log(type, &quot;Use diamond operator&quot;);</span>
+<span class="nc bnc" id="L109" title="All 4 branches missed.">            if (type != null &amp;&amp; !DiamondOperatorCheck.isDiamondOperatorUsed(type)) {</span>
+<span class="nc" id="L110">                log(type, &quot;Use diamond operator&quot;);</span>
             }
         }
-<span class="nc" id="L114">    }</span>
+<span class="nc" id="L113">    }</span>
+
+    /**
+     * Checks if diamond is not required.
+     *
+     * @param node Node
+     * @return True if not array
+     */
+    private static boolean validUsage(final DetailAST node) {
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        return DiamondOperatorCheck.isNotObjectBlock(node)</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">            &amp;&amp; DiamondOperatorCheck.isNotArray(node)</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">            &amp;&amp; !DiamondOperatorCheck.isInitUsingDiamond(node);</span>
+    }
 
     /**
      * Checks if node is not array.
@@ -120,7 +131,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @return True if not array
      */
     private static boolean isNotArray(final DetailAST node) {
-<span class="nc bnc" id="L123" title="All 2 branches missed.">        return node.findFirstToken(TokenTypes.ARRAY_DECLARATOR) == null;</span>
+<span class="nc bnc" id="L134" title="All 2 branches missed.">        return node.findFirstToken(TokenTypes.ARRAY_DECLARATOR) == null;</span>
     }
 
     /**
@@ -130,7 +141,45 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @return True if not object block
      */
     private static boolean isNotObjectBlock(final DetailAST node) {
-<span class="nc bnc" id="L133" title="All 2 branches missed.">        return node.getLastChild().getType() != TokenTypes.OBJBLOCK;</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">        return node.getLastChild().getType() != TokenTypes.OBJBLOCK;</span>
+    }
+
+    /**
+     * Checks if node has initialization with diamond operator.
+     *
+     * @param node Node
+     * @return True if not object block
+     */
+    private static boolean isInitUsingDiamond(final DetailAST node) {
+<span class="nc" id="L154">        final DetailAST init = node.findFirstToken(TokenTypes.ELIST);</span>
+<span class="nc" id="L155">        boolean typed = false;</span>
+<span class="nc bnc" id="L156" title="All 2 branches missed.">        if (init != null) {</span>
+<span class="nc" id="L157">            final DetailAST inst = DiamondOperatorCheck.secondChild(init);</span>
+<span class="nc bnc" id="L158" title="All 4 branches missed.">            if (inst != null &amp;&amp; inst.getType() == TokenTypes.LITERAL_NEW) {</span>
+<span class="nc" id="L159">                typed =</span>
+<span class="nc" id="L160">                    DiamondOperatorCheck.isDiamondOperatorUsed(</span>
+<span class="nc" id="L161">                        inst.findFirstToken(TokenTypes.TYPE_ARGUMENTS)</span>
+                    );
+            }
+        }
+<span class="nc" id="L165">        return typed;</span>
+    }
+
+    /**
+     * Checks if node has initialization with diamond operator.
+     *
+     * @param node Node
+     * @return True if not object block
+     */
+    private static DetailAST secondChild(final DetailAST node) {
+<span class="nc" id="L175">        DetailAST result = null;</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        if (node != null) {</span>
+<span class="nc" id="L177">            final DetailAST first = node.getFirstChild();</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            if (first != null) {</span>
+<span class="nc" id="L179">                result = first.getFirstChild();</span>
+            }
+        }
+<span class="nc" id="L182">        return result;</span>
     }
 
     /**
@@ -140,9 +189,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @return True if node contains angle brackets only
      */
     private static boolean isDiamondOperatorUsed(final DetailAST node) {
-<span class="nc bnc" id="L143" title="All 2 branches missed.">        return node.getChildCount() == 2</span>
-<span class="nc bnc" id="L144" title="All 2 branches missed.">            &amp;&amp; node.getFirstChild().getType() == TokenTypes.GENERIC_START</span>
-<span class="nc bnc" id="L145" title="All 2 branches missed.">            &amp;&amp; node.getLastChild().getType() == TokenTypes.GENERIC_END;</span>
+<span class="nc bnc" id="L192" title="All 4 branches missed.">        return node != null &amp;&amp; node.getChildCount() == 2</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">            &amp;&amp; node.getFirstChild().getType() == TokenTypes.GENERIC_START</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            &amp;&amp; node.getLastChild().getType() == TokenTypes.GENERIC_END;</span>
     }
 
     /**
@@ -155,15 +204,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
     private static DetailAST findFirstChildNodeOfType(
         final DetailAST node, final int type
     ) {
-<span class="nc" id="L158">        DetailAST result = node.findFirstToken(type);</span>
-<span class="nc bnc" id="L159" title="All 2 branches missed.">        if (result == null) {</span>
-<span class="nc" id="L160">            final DetailAST child = node.getFirstChild();</span>
-<span class="nc bnc" id="L161" title="All 2 branches missed.">            if (child != null) {</span>
-<span class="nc" id="L162">                result = DiamondOperatorCheck</span>
-<span class="nc" id="L163">                    .findFirstChildNodeOfType(child, type);</span>
+<span class="nc" id="L207">        DetailAST result = node.findFirstToken(type);</span>
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        if (result == null) {</span>
+<span class="nc" id="L209">            final DetailAST child = node.getFirstChild();</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">            if (child != null) {</span>
+<span class="nc" id="L211">                result = DiamondOperatorCheck</span>
+<span class="nc" id="L212">                    .findFirstChildNodeOfType(child, type);</span>
             }
         }
-<span class="nc" id="L166">        return result;</span>
+<span class="nc" id="L215">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

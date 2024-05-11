@@ -33,6 +33,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import org.cactoos.text.Sub;
 
 /**
  * Check indents in multi line JavaDoc tags.
@@ -59,11 +60,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 0.3
  */
-<span class="nc" id="L62">public final class MultilineJavadocTagsCheck extends AbstractCheck {</span>
+<span class="nc" id="L63">public final class MultilineJavadocTagsCheck extends AbstractCheck {</span>
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L66">        return new int[] {</span>
+<span class="nc" id="L67">        return new int[] {</span>
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
         };
@@ -71,28 +72,28 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L74">        return this.getDefaultTokens();</span>
+<span class="nc" id="L75">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L79">        return this.getDefaultTokens();</span>
+<span class="nc" id="L80">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc" id="L84">        final String[] lines = this.getLines();</span>
-<span class="nc" id="L85">        final int start = ast.getLineNo();</span>
-<span class="nc" id="L86">        final int cstart =</span>
-<span class="nc" id="L87">            MultilineJavadocTagsCheck.findCommentStart(lines, start) + 1;</span>
-<span class="nc" id="L88">        final int cend =</span>
-<span class="nc" id="L89">            MultilineJavadocTagsCheck.findCommentEnd(lines, start) - 1;</span>
-<span class="nc bnc" id="L90" title="All 4 branches missed.">        if (cend &gt;= cstart &amp;&amp; cstart &gt;= 0) {</span>
-<span class="nc" id="L91">            this.checkJavaDoc(lines, cstart, cend);</span>
+<span class="nc" id="L85">        final String[] lines = this.getLines();</span>
+<span class="nc" id="L86">        final int start = ast.getLineNo();</span>
+<span class="nc" id="L87">        final int cstart =</span>
+<span class="nc" id="L88">            MultilineJavadocTagsCheck.findCommentStart(lines, start) + 1;</span>
+<span class="nc" id="L89">        final int cend =</span>
+<span class="nc" id="L90">            MultilineJavadocTagsCheck.findCommentEnd(lines, start) - 1;</span>
+<span class="nc bnc" id="L91" title="All 4 branches missed.">        if (cend &gt;= cstart &amp;&amp; cstart &gt;= 0) {</span>
+<span class="nc" id="L92">            this.checkJavaDoc(lines, cstart, cend);</span>
         } else {
-<span class="nc" id="L93">            this.log(0, &quot;Can't find method comment&quot;);</span>
+<span class="nc" id="L94">            this.log(0, &quot;Can't find method comment&quot;);</span>
         }
-<span class="nc" id="L95">    }</span>
+<span class="nc" id="L96">    }</span>
 
     /**
      * Checks method's Java Doc for satisfy indentation rules.
@@ -100,25 +101,27 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @param start Start line of the Java Doc.
      * @param end End line of the Java Doc.
      */
+    @SuppressWarnings(&quot;PMD.InefficientEmptyStringCheck&quot;)
     private void checkJavaDoc(final String[] lines, final int start,
         final int end) {
-<span class="nc" id="L105">        boolean tagged = false;</span>
-<span class="nc" id="L106">        int index = -1;</span>
-<span class="nc bnc" id="L107" title="All 2 branches missed.">        for (int current = start; current &lt;= end; current += 1) {</span>
-<span class="nc" id="L108">            final String line = lines[current];</span>
-<span class="nc bnc" id="L109" title="All 2 branches missed.">            if (line.contains(&quot;* @&quot;)) {</span>
-<span class="nc" id="L110">                tagged = true;</span>
-<span class="nc" id="L111">                index = line.indexOf('@');</span>
+<span class="nc" id="L107">        boolean tagged = false;</span>
+<span class="nc" id="L108">        int index = -1;</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        for (int current = start; current &lt;= end; current += 1) {</span>
+<span class="nc" id="L110">            final String line = lines[current];</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (line.contains(&quot;* @&quot;)) {</span>
+<span class="nc" id="L112">                tagged = true;</span>
+<span class="nc" id="L113">                index = line.indexOf('@');</span>
             } else {
-<span class="nc bnc" id="L113" title="All 2 branches missed.">                if (tagged) {</span>
-<span class="nc" id="L114">                    final int comment = line.indexOf('*');</span>
-<span class="nc" id="L115">                    int text = comment + 1;</span>
-<span class="nc bnc" id="L116" title="All 2 branches missed.">                    while (text &lt; line.length()</span>
-<span class="nc bnc" id="L117" title="All 2 branches missed.">                        &amp;&amp; line.charAt(text) == ' ') {</span>
-<span class="nc" id="L118">                        text += 1;</span>
-                    }
-<span class="nc bnc" id="L120" title="All 2 branches missed.">                    if (text != index + 1) {</span>
-<span class="nc" id="L121">                        this.log(</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">                if (tagged) {</span>
+<span class="nc" id="L116">                    final int comment = line.indexOf('*');</span>
+<span class="nc" id="L117">                    final String sub = new Sub(</span>
+                        line, comment + 1, index + 1
+<span class="nc" id="L119">                    ).toString();</span>
+<span class="nc" id="L120">                    final String ext = new Sub(</span>
+                        line, comment + 1, index + 2
+<span class="nc" id="L122">                    ).toString();</span>
+<span class="nc bnc" id="L123" title="All 4 branches missed.">                    if (!sub.trim().isEmpty() || ext.trim().isEmpty()) {</span>
+<span class="nc" id="L124">                        this.log(</span>
                             current + 1,
                             &quot;Should contain one indentation space&quot;
                         );
@@ -126,7 +129,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
                 }
             }
         }
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L132">    }</span>
 
     /**
      * Find javadoc starting comment.
@@ -135,7 +138,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @return Line number with found starting comment or -1 otherwise.
      */
     private static int findCommentStart(final String[] lines, final int start) {
-<span class="nc" id="L138">        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;/**&quot;);</span>
+<span class="nc" id="L141">        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;/**&quot;);</span>
     }
 
     /**
@@ -145,7 +148,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      * @return Line number with found ending comment, or -1 if it wasn't found.
      */
     private static int findCommentEnd(final String[] lines, final int start) {
-<span class="nc" id="L148">        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;*/&quot;);</span>
+<span class="nc" id="L151">        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;*/&quot;);</span>
     }
 
     /**
@@ -157,14 +160,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
      */
     private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
-<span class="nc" id="L160">        int found = -1;</span>
-<span class="nc bnc" id="L161" title="All 2 branches missed.">        for (int pos = start - 1; pos &gt;= 0; pos -= 1) {</span>
-<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (lines[pos].trim().equals(text)) {</span>
-<span class="nc" id="L163">                found = pos;</span>
-<span class="nc" id="L164">                break;</span>
+<span class="nc" id="L163">        int found = -1;</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">        for (int pos = start - 1; pos &gt;= 0; pos -= 1) {</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if (lines[pos].trim().equals(text)) {</span>
+<span class="nc" id="L166">                found = pos;</span>
+<span class="nc" id="L167">                break;</span>
             }
         }
-<span class="nc" id="L167">        return found;</span>
+<span class="nc" id="L170">        return found;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

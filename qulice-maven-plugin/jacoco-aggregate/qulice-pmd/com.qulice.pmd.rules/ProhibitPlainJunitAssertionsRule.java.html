@@ -57,8 +57,8 @@ import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
     @Override
     public Object visit(final ASTMethodDeclaration method, final Object data) {
 <span class="nc bnc" id="L59" title="All 2 branches missed.">        if (this.isJUnitMethod(method, data)</span>
-<span class="nc bnc" id="L60" title="All 2 branches missed.">            &amp;&amp; this.containsPlainJunitAssert(method.getBlock())) {</span>
-<span class="nc" id="L61">            this.addViolation(data, method);</span>
+<span class="nc bnc" id="L60" title="All 2 branches missed.">            &amp;&amp; this.containsPlainJunitAssert(method.getBody())) {</span>
+<span class="nc" id="L61">            this.asCtx(data).addViolation(method);</span>
         }
 <span class="nc" id="L63">        return data;</span>
     }
@@ -68,7 +68,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
 <span class="nc bnc" id="L68" title="All 2 branches missed.">        for (final String element : ProhibitPlainJunitAssertionsRule</span>
             .PROHIBITED) {
 <span class="nc bnc" id="L70" title="All 2 branches missed.">            if (imp.getImportedName().contains(element)) {</span>
-<span class="nc" id="L71">                this.addViolation(data, imp);</span>
+<span class="nc" id="L71">                this.asCtx(data).addViolation(imp);</span>
 <span class="nc" id="L72">                break;</span>
             }
         }

@@ -33,7 +33,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import java.io.File;
-import org.apache.commons.lang3.StringUtils;
+import org.cactoos.text.Joined;
 
 /**
  * Make sure each line indentation is either:
@@ -67,19 +67,20 @@ import org.apache.commons.lang3.StringUtils;
 <span class="nc" id="L67">                this.log(</span>
                     pos + 1,
 <span class="nc" id="L69">                    String.format(</span>
-<span class="nc" id="L70">                        StringUtils.join(</span>
+                        new Joined(
+                            &quot;&quot;,
                             &quot;Indentation (%d) must be same or &quot;,
                             &quot;less than previous line (%d), or &quot;,
                             &quot;bigger by exactly 4&quot;
-                        ),
-<span class="nc" id="L75">                        current,</span>
-<span class="nc" id="L76">                        previous</span>
+<span class="nc" id="L75">                        ).toString(),</span>
+<span class="nc" id="L76">                        current,</span>
+<span class="nc" id="L77">                        previous</span>
                     )
                 );
             }
-<span class="nc" id="L80">            previous = current;</span>
+<span class="nc" id="L81">            previous = current;</span>
         }
-<span class="nc" id="L82">    }</span>
+<span class="nc" id="L83">    }</span>
 
     /**
      * Checks if the line belongs to a comment block.
@@ -87,11 +88,11 @@ import org.apache.commons.lang3.StringUtils;
      * @return True if the line belongs to a comment block.
      */
     private static boolean inCommentBlock(final String line) {
-<span class="nc" id="L90">        final String trimmed = line.trim();</span>
-<span class="nc bnc" id="L91" title="All 2 branches missed.">        return !trimmed.isEmpty()</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">            &amp;&amp; (trimmed.charAt(0) == '*'</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">                || trimmed.startsWith(&quot;/*&quot;)</span>
-<span class="nc bnc" id="L94" title="All 2 branches missed.">                || trimmed.startsWith(&quot;*/&quot;)</span>
+<span class="nc" id="L91">        final String trimmed = line.trim();</span>
+<span class="nc bnc" id="L92" title="All 2 branches missed.">        return !trimmed.isEmpty()</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">            &amp;&amp; (trimmed.charAt(0) == '*'</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">                || trimmed.startsWith(&quot;/*&quot;)</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                || trimmed.startsWith(&quot;*/&quot;)</span>
                 );
     }
 
@@ -101,14 +102,14 @@ import org.apache.commons.lang3.StringUtils;
      * @return Indentation of the given line.
      */
     private static int indentation(final String line) {
-<span class="nc" id="L104">        int result = 0;</span>
-<span class="nc bnc" id="L105" title="All 2 branches missed.">        for (int pos = 0; pos &lt; line.length(); pos += 1) {</span>
-<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (!Character.isWhitespace(line.charAt(pos))) {</span>
-<span class="nc" id="L107">                break;</span>
+<span class="nc" id="L105">        int result = 0;</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        for (int pos = 0; pos &lt; line.length(); pos += 1) {</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (!Character.isWhitespace(line.charAt(pos))) {</span>
+<span class="nc" id="L108">                break;</span>
             }
-<span class="nc" id="L109">            result += 1;</span>
+<span class="nc" id="L110">            result += 1;</span>
         }
-<span class="nc" id="L111">        return result;</span>
+<span class="nc" id="L112">        return result;</span>
     }
 
 }
