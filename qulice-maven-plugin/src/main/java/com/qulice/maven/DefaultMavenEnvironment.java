@@ -97,6 +97,11 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     private final Collection<String> asser = new LinkedList<>();
 
+    /**
+     * Source code encoding charset.
+     */
+    private String charset = "UTF-8";
+
     @Override
     public String param(final String name, final String value) {
         String ret = this.iproperties.getProperty(name);
@@ -293,16 +298,19 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         this.asser.addAll(ass);
     }
 
+    public void setEncoding(final String encoding) {
+        this.charset = encoding;
+    }
+
     /**
      * Get source files encoding.
      * @return Charset of the source files
      */
     public Charset encoding() {
-        String charset = this.iproject.getProperties().getProperty("project.build.sourceEncoding");
-        if (charset == null) {
-            charset = "UTF-8";
+        if (this.charset == null || this.charset.isEmpty()) {
+            this.charset = "UTF-8";
         }
-        return Charset.forName(charset);
+        return Charset.forName(this.charset);
     }
 
     /**

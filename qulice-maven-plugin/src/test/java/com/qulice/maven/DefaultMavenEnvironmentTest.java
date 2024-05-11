@@ -31,6 +31,7 @@
 package com.qulice.maven;
 
 import com.google.common.collect.ImmutableList;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import org.apache.maven.project.MavenProject;
 import org.hamcrest.MatcherAssert;
@@ -152,12 +153,12 @@ final class DefaultMavenEnvironmentTest {
      * Default source files encoding should be UFT-8.
      */
     @Test
-    void defaultEncodingIsUTF8() {
+    void defaultEncodingIsUtf() {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         MatcherAssert.assertThat(
             "Default encoding should be UTF-8",
             env.encoding(),
-            Matchers.is("UTF-8")
+            Matchers.is(StandardCharsets.UTF_8)
         );
     }
 }
