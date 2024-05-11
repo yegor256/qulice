@@ -459,23 +459,44 @@ final class CheckstyleValidatorTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    @Disabled
     void passesWindowsEndsOfLineWithoutException() throws Exception {
-        this.validate("WindowsEol.java", false, "LICENSE found:");
+        final String file = "WindowsEol.java";
+        final Collection<Violation> results = this.runValidation(file, false);
+        MatcherAssert.assertThat(
+            "violation should be reported correctly",
+            results,
+            Matchers.contains(
+                new ViolationMatcher(
+                    "Line does not match expected header line of ' */'.",
+                    file,
+                    "3",
+                    "HeaderCheck"
+                )
+            )
+        );
     }
 
     /**
      * Fail validation with Windows-style formatting of the license and
      * Linux-style formatting of the sources.
      * @throws Exception If something wrong happens inside
-     * @todo #61:30min This test and passesWindowsEndsOfLineWithoutException
-     *  should be refactored to gather log4j logs and validate that they work
-     *  correctly. (see changes done in #61)
      */
     @Test
-    @Disabled
     void testWindowsEndsOfLineWithLinuxSources() throws Exception {
-        this.runValidation("WindowsEolLinux.java", false);
+        final String file = "WindowsEolLinux.java";
+        final Collection<Violation> results = this.runValidation(file, false);
+        MatcherAssert.assertThat(
+            "violation should be reported correctly",
+            results,
+            Matchers.contains(
+                new ViolationMatcher(
+                    "Line does not match expected header line of ' * Hello.'.",
+                    file,
+                    "2",
+                    "HeaderCheck"
+                )
+            )
+        );
     }
 
     /**
