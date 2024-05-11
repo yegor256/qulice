@@ -41,6 +41,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.charset.Charset;
 import java.security.PrivilegedAction;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -290,6 +291,18 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public void setAsser(final Collection<String> ass) {
         this.asser.clear();
         this.asser.addAll(ass);
+    }
+
+    /**
+     * Get source files encoding.
+     * @return Charset of the source files
+     */
+    public Charset encoding() {
+        String charset = this.iproperties.getProperty("project.build.sourceEncoding");
+        if (charset == null) {
+            charset = "UTF-8";
+        }
+        return Charset.forName(charset);
     }
 
     /**

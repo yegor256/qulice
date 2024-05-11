@@ -32,6 +32,7 @@ package com.qulice.maven;
 
 import com.qulice.spi.Environment;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Properties;
 import org.apache.maven.project.MavenProject;
@@ -181,6 +182,11 @@ interface MavenEnvironment extends Environment {
         @Override
         public Collection<String> excludes(final String checker) {
             return this.env.excludes(checker);
+        }
+
+        @Override
+        public Charset encoding() {
+            return this.env.encoding();
         }
     }
 }
