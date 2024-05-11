@@ -111,6 +111,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      *
      * @parameter expression="${project.build.sourceEncoding}" required="true"
      */
+    @Parameter(property = "encoding", defaultValue = "${project.build.sourceEncoding}")
     private String charset;
 
     /**
