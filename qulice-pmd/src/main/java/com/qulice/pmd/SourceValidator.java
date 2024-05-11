@@ -33,6 +33,7 @@ package com.qulice.pmd;
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -71,6 +72,11 @@ final class SourceValidator {
     private final PMDConfiguration config;
 
     /**
+     * Source files encoding.
+     */
+    private final Charset encoding;
+
+    /**
      * Creates new instance of <code>SourceValidator</code>.
      * @param env Environment
      */
@@ -79,6 +85,7 @@ final class SourceValidator {
         this.listener = new PmdListener(env);
         this.renderer = new PmdRenderer();
         this.config = new PMDConfiguration();
+        this.encoding = env.encoding();
     }
 
     /**
@@ -95,6 +102,7 @@ final class SourceValidator {
         this.config.setMinimumPriority(RulePriority.LOW);
         this.config.setIgnoreIncrementalAnalysis(true);
         this.config.setShowSuppressedViolations(true);
+        this.config.setSourceEncoding(this.encoding.name());
         final Report report = new Report();
         report.addListener(this.listener);
         this.context.setReport(report);

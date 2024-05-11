@@ -189,7 +189,7 @@ public final class DiamondOperatorCheck extends AbstractCheck {
      * @return True if node contains angle brackets only
      */
     private static boolean isDiamondOperatorUsed(final DetailAST node) {
-        return node.getChildCount() == 2
+        return node != null && node.getChildCount() == 2
             && node.getFirstChild().getType() == TokenTypes.GENERIC_START
             && node.getLastChild().getType() == TokenTypes.GENERIC_END;
     }
