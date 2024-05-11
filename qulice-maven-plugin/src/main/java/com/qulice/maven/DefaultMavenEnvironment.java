@@ -302,10 +302,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         this.charset = encoding;
     }
 
-    /**
-     * Get source files encoding.
-     * @return Charset of the source files
-     */
+    @Override
     public Charset encoding() {
         if (this.charset == null || this.charset.isEmpty()) {
             this.charset = "UTF-8";
