@@ -147,4 +147,17 @@ final class DefaultMavenEnvironmentTest {
             Matchers.empty()
         );
     }
+
+    /**
+     * Default source files encoding should be UFT-8.
+     */
+    @Test
+    void defaultEncodingIsUTF8() {
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        MatcherAssert.assertThat(
+            "Default encoding should be UTF-8",
+            env.encoding(),
+            Matchers.is("UTF-8")
+        );
+    }
 }

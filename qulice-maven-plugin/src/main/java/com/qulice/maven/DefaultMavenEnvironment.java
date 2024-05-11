@@ -298,7 +298,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * @return Charset of the source files
      */
     public Charset encoding() {
-        String charset = this.iproperties.getProperty("project.build.sourceEncoding");
+        String charset = this.iproject.getProperties().getProperty("project.build.sourceEncoding");
         if (charset == null) {
             charset = "UTF-8";
         }
