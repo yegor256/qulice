@@ -32,6 +32,7 @@ package com.qulice.spi;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
@@ -123,11 +124,17 @@ public interface Environment {
     Collection&lt;String&gt; excludes(String checker);
 
     /**
+     * Encoding for the files.
+     * @return Source files charset
+     */
+    Charset encoding();
+
+    /**
      * Mock of {@link Environment}.
      *
      * @since 0.1
      */
-<span class="nc" id="L130">    final class Mock implements Environment {</span>
+<span class="nc" id="L137">    final class Mock implements Environment {</span>
         /**
          * The basedir.
          */
@@ -155,28 +162,28 @@ public interface Environment {
         @SuppressWarnings(
             &quot;PMD.ConstructorOnlyInitializesOrCallOtherConstructors&quot;
             )
-<span class="nc" id="L158">        public Mock() throws IOException {</span>
-<span class="nc" id="L159">            this.params = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L160">            this.classpath = new HashSet&lt;&gt;(1);</span>
-<span class="nc" id="L161">            final File temp = File.createTempFile(</span>
+<span class="nc" id="L165">        public Mock() throws IOException {</span>
+<span class="nc" id="L166">            this.params = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L167">            this.classpath = new HashSet&lt;&gt;(1);</span>
+<span class="nc" id="L168">            final File temp = File.createTempFile(</span>
                 &quot;mock&quot;, &quot;.qulice&quot;,
-<span class="nc" id="L163">                new File(System.getProperty(&quot;java.io.tmpdir&quot;))</span>
+<span class="nc" id="L170">                new File(System.getProperty(&quot;java.io.tmpdir&quot;))</span>
             );
-<span class="nc bnc" id="L165" title="All 2 branches missed.">            if (!temp.delete()) {</span>
-<span class="nc" id="L166">                throw new IllegalStateException(&quot;files collision&quot;);</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (!temp.delete()) {</span>
+<span class="nc" id="L173">                throw new IllegalStateException(&quot;files collision&quot;);</span>
             }
-<span class="nc bnc" id="L168" title="All 2 branches missed.">            if (!temp.mkdirs()) {</span>
-<span class="nc" id="L169">                throw new IllegalStateException(&quot;mkdir failed&quot;);</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">            if (!temp.mkdirs()) {</span>
+<span class="nc" id="L176">                throw new IllegalStateException(&quot;mkdir failed&quot;);</span>
             }
-<span class="nc" id="L171">            FileUtils.forceDeleteOnExit(temp);</span>
-<span class="nc" id="L172">            this.basedir = new File(temp, &quot;basedir&quot;);</span>
-<span class="nc bnc" id="L173" title="All 2 branches missed.">            if (this.basedir.mkdirs()) {</span>
-<span class="nc bnc" id="L174" title="All 2 branches missed.">                assert this.basedir != null;</span>
+<span class="nc" id="L178">            FileUtils.forceDeleteOnExit(temp);</span>
+<span class="nc" id="L179">            this.basedir = new File(temp, &quot;basedir&quot;);</span>
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            if (this.basedir.mkdirs()) {</span>
+<span class="nc bnc" id="L181" title="All 2 branches missed.">                assert this.basedir != null;</span>
             }
-<span class="nc" id="L176">            this.classpath.add(</span>
-<span class="nc" id="L177">                this.outdir().getAbsolutePath().replace(File.separatorChar, '/')</span>
+<span class="nc" id="L183">            this.classpath.add(</span>
+<span class="nc" id="L184">                this.outdir().getAbsolutePath().replace(File.separatorChar, '/')</span>
             );
-<span class="nc" id="L179">        }</span>
+<span class="nc" id="L186">        }</span>
 
         /**
          * With this param and its value.
@@ -186,8 +193,8 @@ public interface Environment {
          */
         public Environment.Mock withParam(final String name,
             final String value) {
-<span class="nc" id="L189">            this.params.put(name, value);</span>
-<span class="nc" id="L190">            return this;</span>
+<span class="nc" id="L196">            this.params.put(name, value);</span>
+<span class="nc" id="L197">            return this;</span>
         }
 
         /**
@@ -199,13 +206,13 @@ public interface Environment {
          */
         public Environment.Mock withFile(final String name,
             final String content) throws IOException {
-<span class="nc" id="L202">            final File file = new File(this.basedir, name);</span>
-<span class="nc" id="L203">            FileUtils.writeStringToFile(</span>
+<span class="nc" id="L209">            final File file = new File(this.basedir, name);</span>
+<span class="nc" id="L210">            FileUtils.writeStringToFile(</span>
                 file,
                 content,
                 StandardCharsets.UTF_8
             );
-<span class="nc" id="L208">            return this;</span>
+<span class="nc" id="L215">            return this;</span>
         }
 
         /**
@@ -217,9 +224,9 @@ public interface Environment {
          */
         public Environment.Mock withFile(final String name,
             final byte[] bytes) throws IOException {
-<span class="nc" id="L220">            final File file = new File(this.basedir, name);</span>
-<span class="nc" id="L221">            FileUtils.writeByteArrayToFile(file, bytes);</span>
-<span class="nc" id="L222">            return this;</span>
+<span class="nc" id="L227">            final File file = new File(this.basedir, name);</span>
+<span class="nc" id="L228">            FileUtils.writeByteArrayToFile(file, bytes);</span>
+<span class="nc" id="L229">            return this;</span>
         }
 
         /**
@@ -228,8 +235,8 @@ public interface Environment {
          * @return This object
          */
         public Environment.Mock withExcludes(final String excludes) {
-<span class="nc" id="L231">            this.excl = excludes;</span>
-<span class="nc" id="L232">            return this;</span>
+<span class="nc" id="L238">            this.excl = excludes;</span>
+<span class="nc" id="L239">            return this;</span>
         }
 
         /**
@@ -238,66 +245,66 @@ public interface Environment {
          */
         @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
         public Environment.Mock withDefaultClasspath() {
-<span class="nc" id="L241">            Collections.addAll(</span>
+<span class="nc" id="L248">            Collections.addAll(</span>
                 this.classpath,
-<span class="nc" id="L243">                System.getProperty(&quot;java.class.path&quot;)</span>
-<span class="nc" id="L244">                    .split(System.getProperty(&quot;path.separator&quot;))</span>
+<span class="nc" id="L250">                System.getProperty(&quot;java.class.path&quot;)</span>
+<span class="nc" id="L251">                    .split(System.getProperty(&quot;path.separator&quot;))</span>
             );
-<span class="nc" id="L246">            return this;</span>
+<span class="nc" id="L253">            return this;</span>
         }
 
         @Override
         public File basedir() {
-<span class="nc" id="L251">            return this.basedir;</span>
+<span class="nc" id="L258">            return this.basedir;</span>
         }
 
         @Override
         public File tempdir() {
-<span class="nc" id="L256">            final File file = new File(this.basedir, &quot;target/tempdir&quot;);</span>
-<span class="nc bnc" id="L257" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
-<span class="nc bnc" id="L258" title="All 2 branches missed.">                assert file != null;</span>
+<span class="nc" id="L263">            final File file = new File(this.basedir, &quot;target/tempdir&quot;);</span>
+<span class="nc bnc" id="L264" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
+<span class="nc bnc" id="L265" title="All 2 branches missed.">                assert file != null;</span>
             }
-<span class="nc" id="L260">            return file;</span>
+<span class="nc" id="L267">            return file;</span>
         }
 
         @Override
         public File outdir() {
-<span class="nc" id="L265">            final File file = new File(this.basedir, &quot;target/classes&quot;);</span>
-<span class="nc bnc" id="L266" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
-<span class="nc bnc" id="L267" title="All 2 branches missed.">                assert file != null;</span>
+<span class="nc" id="L272">            final File file = new File(this.basedir, &quot;target/classes&quot;);</span>
+<span class="nc bnc" id="L273" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
+<span class="nc bnc" id="L274" title="All 2 branches missed.">                assert file != null;</span>
             }
-<span class="nc" id="L269">            return file;</span>
+<span class="nc" id="L276">            return file;</span>
         }
 
         @Override
         public String param(final String name, final String value) {
-<span class="nc" id="L274">            String val = this.params.get(name);</span>
-<span class="nc bnc" id="L275" title="All 2 branches missed.">            if (val == null) {</span>
-<span class="nc" id="L276">                val = value;</span>
+<span class="nc" id="L281">            String val = this.params.get(name);</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">            if (val == null) {</span>
+<span class="nc" id="L283">                val = value;</span>
             }
-<span class="nc" id="L278">            return val;</span>
+<span class="nc" id="L285">            return val;</span>
         }
 
         @Override
         public ClassLoader classloader() {
-<span class="nc" id="L283">            return Thread.currentThread().getContextClassLoader();</span>
+<span class="nc" id="L290">            return Thread.currentThread().getContextClassLoader();</span>
         }
 
         @Override
         public Collection&lt;String&gt; classpath() {
-<span class="nc" id="L288">            return Collections.unmodifiableCollection(this.classpath);</span>
+<span class="nc" id="L295">            return Collections.unmodifiableCollection(this.classpath);</span>
         }
 
         @Override
         @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
         public Collection&lt;File&gt; files(final String pattern) {
-<span class="nc" id="L294">            final Collection&lt;File&gt; files = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L295">            final IOFileFilter filter = new WildcardFileFilter(pattern);</span>
-<span class="nc bnc" id="L296" title="All 2 branches missed.">            for (final String dir : new String[]{&quot;src&quot;}) {</span>
-<span class="nc" id="L297">                final File sources = new File(this.basedir(), dir);</span>
-<span class="nc bnc" id="L298" title="All 2 branches missed.">                if (sources.exists()) {</span>
-<span class="nc" id="L299">                    files.addAll(</span>
-<span class="nc" id="L300">                        FileUtils.listFiles(</span>
+<span class="nc" id="L301">            final Collection&lt;File&gt; files = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L302">            final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();</span>
+<span class="nc bnc" id="L303" title="All 2 branches missed.">            for (final String dir : new String[]{&quot;src&quot;}) {</span>
+<span class="nc" id="L304">                final File sources = new File(this.basedir(), dir);</span>
+<span class="nc bnc" id="L305" title="All 2 branches missed.">                if (sources.exists()) {</span>
+<span class="nc" id="L306">                    files.addAll(</span>
+<span class="nc" id="L307">                        FileUtils.listFiles(</span>
                             sources,
                             filter,
                             DirectoryFileFilter.INSTANCE
@@ -305,23 +312,28 @@ public interface Environment {
                     );
                 }
             }
-<span class="nc" id="L308">            return files;</span>
+<span class="nc" id="L315">            return files;</span>
         }
 
         @Override
         public boolean exclude(final String check, final String name) {
-<span class="nc" id="L313">            return false;</span>
+<span class="nc" id="L320">            return false;</span>
         }
 
         @Override
         public Collection&lt;String&gt; excludes(final String checker) {
             final Collection&lt;String&gt; exc;
-<span class="nc bnc" id="L319" title="All 2 branches missed.">            if (this.excl == null) {</span>
-<span class="nc" id="L320">                exc = Collections.emptyList();</span>
+<span class="nc bnc" id="L326" title="All 2 branches missed.">            if (this.excl == null) {</span>
+<span class="nc" id="L327">                exc = Collections.emptyList();</span>
             } else {
-<span class="nc" id="L322">                exc = Arrays.asList(this.excl.split(&quot;,&quot;));</span>
+<span class="nc" id="L329">                exc = Arrays.asList(this.excl.split(&quot;,&quot;));</span>
             }
-<span class="nc" id="L324">            return exc;</span>
+<span class="nc" id="L331">            return exc;</span>
+        }
+
+        @Override
+        public Charset encoding() {
+<span class="nc" id="L336">            return StandardCharsets.UTF_8;</span>
         }
     }
 }
