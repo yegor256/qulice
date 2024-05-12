@@ -101,6 +101,15 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <property name="message" value="Two consecutive empty lines"/>
   </module>
   <!--
+  Checks that the file is not binary
+  -->
+  <module name="RegexpMultiline">
+      <property name="format" value=".*[\x00-\x08\x0E-\x1F].*"/>
+      <property name="fileExtensions" value="java"/>
+      <property name="id" value="BinaryFiles"/>
+      <property name="message" value="Binary files are not allowed"/>
+  </module>
+  <!--
   JavaDoc regexp checks
   -->
   <module name="RegexpSingleline">
