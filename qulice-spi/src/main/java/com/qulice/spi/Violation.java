@@ -38,7 +38,6 @@ import lombok.ToString;
  *
  * @since 0.17
  */
-@SuppressWarnings("PMD.TooManyMethods")
 public interface Violation extends Comparable<Violation> {
 
     /**
