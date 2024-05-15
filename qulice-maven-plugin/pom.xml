@@ -154,11 +154,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
       <!-- version from parent -->
     </dependency>
     <dependency>
-      <groupId>commons-collections</groupId>
-      <artifactId>commons-collections</artifactId>
-      <!-- version from parent -->
-    </dependency>
-    <dependency>
       <groupId>com.jcabi</groupId>
       <artifactId>jcabi-log</artifactId>
       <!-- version from parent -->
@@ -415,6 +410,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
                 <exclude>pmd:.*/src/it/.*</exclude>
                 <exclude>pmd:.*/src/test/resources/com/qulice/maven/ValidationExclusion/.*</exclude>
                 <exclude>xml:/src/it/.*</exclude>
+                <exclude>duplicatefinder:about.html</exclude>
+                <exclude>dependencies:org.apache.maven.resolver:maven-resolver-api</exclude>
+                <exclude>dependencies:org.apache.maven.resolver:maven-resolver-util</exclude>
               </excludes>
             </configuration>
           </plugin>
