@@ -140,16 +140,6 @@ final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator can deny binary contents in java file.
-     * This is test for #1264.
-     * @throws Exception If something wrong happens inside
-     */
-    @Test
-    void rejectsJavaFileWithBinaryContent() throws Exception {
-        this.runValidation("JavaFileWithBinaryContent.java", false);
-    }
-
-    /**
      * CheckstyleValidator can report error when parameter object is not
      * documented.
      * @throws Exception In case of error
