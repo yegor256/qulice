@@ -1,3 +1,11 @@
+/**
+ * @deprecated text Some text, which description
+ * takes a few lines (incorrect formatting)
+ * takes a few lines (incorrect formatting)
+ */
+package does.not.matter;
+
+
 /*
  * This is not a real Java class. It won't be compiled ever. It is used
  * only as a text resource in integration.ChecksIT.
