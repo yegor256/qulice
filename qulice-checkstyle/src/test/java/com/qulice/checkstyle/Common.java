@@ -39,57 +39,61 @@ import org.cactoos.io.ResourceOf;
 import org.cactoos.text.FormattedText;
 import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.TextOf;
-import org.hamcrest.Description;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.hamcrest.TypeSafeMatcher;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 /**
- * Test case for file metainfo validation.
+ * Common utils and constants for checkstyle tests.
  * @since 0.3
  */
-@SuppressWarnings(
-    {
-        "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals", "PMD.GodClass"
-    }
-)
-final class ChecksMetainfoTest {
+final class Common {
 
     /**
      * Name of property to set to change location of the license.
      */
-    private static final String LICENSE_PROP = "license";
+    public static final String LICENSE_PROP = "license";
 
     /**
      * Directory with classes.
      */
-    private static final String DIRECTORY = "src/main/java/foo";
+    public static final String DIRECTORY = "src/main/java/foo";
 
     /**
      * License text.
      */
-    private static final String LICENSE = "Hello.";
+    public static final String LICENSE = "Hello.";
 
     /**
      * Rule for testing.
      */
     private License rule;
 
-    @BeforeEach
-    public void setRule() {
+    public void updateRule() {
         this.rule = new License();
     }
 
+    public License getRule() {
+        return this.rule;
+    }
+
     /**
-     * CheckstyleValidator can deny binary contents in java file.
-     * This is test for #1264.
-     * @throws Exception If something wrong happens inside
+     * Validates that checkstyle reported given violation.
+     * @param file File to check.
+     * @param result Expected validation result.
+     * @param message Message to match
+     * @throws Exception In case of error
      */
-    @Test
-    void rejectsJavaFileWithBinaryContent() throws Exception {
-        this.runValidation("JavaFileWithBinaryContent.java", false);
+    @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
+    public void validate(final String file, final boolean result,
+        final String message) throws Exception {
+        MatcherAssert.assertThat(
+            this.runValidation(file, result),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    message, file
+                )
+            )
+        );
     }
 
     /**
@@ -100,16 +104,16 @@ final class ChecksMetainfoTest {
      * @throws IOException In case of error
      */
     @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
-    private Collection<Violation> runValidation(final String file,
+    public Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), ChecksMetainfoTest.DIRECTORY)
-        ).withLines(ChecksMetainfoTest.LICENSE)
+        final File license = this.getRule().savePackageInfo(
+            new File(mock.basedir(), Common.DIRECTORY)
+        ).withLines(Common.LICENSE)
             .withEol("\n").file();
         final Environment env = mock.withParam(
-            ChecksMetainfoTest.LICENSE_PROP,
-            this.toUrl(license)
+            Common.LICENSE_PROP,
+            Common.toUrl(license)
         )
             .withFile(
                 String.format("src/main/java/foo/%s", file),
@@ -144,95 +148,8 @@ final class ChecksMetainfoTest {
      * @param file The file
      * @return The URL
      */
-    private String toUrl(final File file) {
+    private static String toUrl(final File file) {
         return String.format("file:%s", file);
     }
 
-    /**
-     * Validation results matcher.
-     *
-     * @since 0.1
-     */
-    private static final class ViolationMatcher extends
-        TypeSafeMatcher<Violation> {
-
-        /**
-         * Message to check.
-         */
-        private final String message;
-
-        /**
-         * File to check.
-         */
-        private final String file;
-
-        /**
-         * Expected line.
-         */
-        private final String line;
-
-        /**
-         * Check name.
-         */
-        private final String check;
-
-        /**
-         * Constructor.
-         * @param message Message to check
-         * @param file File to check
-         * @param line Line to check
-         * @param check Check name
-         * @checkstyle ParameterNumber (3 lines)
-         */
-        ViolationMatcher(final String message, final String file,
-            final String line, final String check) {
-            super();
-            this.message = message;
-            this.file = file;
-            this.line = line;
-            this.check = check;
-        }
-
-        /**
-         * Constructor.
-         * @param message Message to check
-         * @param file File to check
-         */
-        ViolationMatcher(final String message, final String file) {
-            this(message, file, "", "");
-        }
-
-        @Override
-        public boolean matchesSafely(final Violation item) {
-            return item.message().contains(this.message)
-                && item.file().endsWith(this.file)
-                && this.lineMatches(item)
-                && this.checkMatches(item);
-        }
-
-        @Override
-        public void describeTo(final Description description) {
-            description.appendText("doesn't match");
-        }
-
-        /**
-         * Check name matches.
-         * @param item Item to check.
-         * @return True if check name matches.
-         */
-        private boolean checkMatches(final Violation item) {
-            return this.check.isEmpty()
-                || !this.check.isEmpty() && item.name().equals(this.check);
-        }
-
-        /**
-         * Check that given line matches.
-         * @param item Item to check.
-         * @return True if line matches.
-         */
-        private boolean lineMatches(final Violation item) {
-            return this.line.isEmpty()
-                || !this.line.isEmpty() && item.lines().equals(this.line);
-        }
-    }
 }
