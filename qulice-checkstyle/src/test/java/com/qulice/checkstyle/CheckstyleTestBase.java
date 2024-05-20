@@ -41,12 +41,13 @@ import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
- * Common utils and constants for checkstyle tests.
+ * Base class for checkstyle tests.
  * @since 0.3
  */
-final class Common {
+public class CheckstyleTestBase {
 
     /**
      * Name of property to set to change location of the license.
@@ -64,16 +65,16 @@ final class Common {
     public static final String LICENSE = "Hello.";
 
     /**
-     * Rule for testing.
+     * License rule.
      */
     private License rule;
 
-    public void updateRule() {
+    /**
+     * Method to recet license rule before each test in inherited test classes.
+     */
+    @BeforeEach
+    public void setRule() {
         this.rule = new License();
-    }
-
-    public License getRule() {
-        return this.rule;
     }
 
     /**
@@ -107,13 +108,13 @@ final class Common {
     public Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.getRule().savePackageInfo(
-            new File(mock.basedir(), Common.DIRECTORY)
-        ).withLines(Common.LICENSE)
+        final File license = this.rule.savePackageInfo(
+            new File(mock.basedir(), CheckstyleTestBase.DIRECTORY)
+        ).withLines(CheckstyleTestBase.LICENSE)
             .withEol("\n").file();
         final Environment env = mock.withParam(
-            Common.LICENSE_PROP,
-            Common.toUrl(license)
+            CheckstyleTestBase.LICENSE_PROP,
+            CheckstyleTestBase.toUrl(license)
         )
             .withFile(
                 String.format("src/main/java/foo/%s", file),
@@ -144,11 +145,19 @@ final class Common {
     }
 
     /**
+     * Method to access the rule from inherited classes.
+     * @return License rule
+     */
+    protected License getRule() {
+        return this.rule;
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
      */
-    private static String toUrl(final File file) {
+    protected static String toUrl(final File file) {
         return String.format("file:%s", file);
     }
 

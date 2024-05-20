@@ -30,8 +30,10 @@
  */
 package com.qulice.checkstyle;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import com.qulice.spi.Violation;
+import java.util.Collection;
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -39,28 +41,9 @@ import org.junit.jupiter.api.TestInstance;
  * Test case for file metainfo validation.
  * @since 0.3
  */
-@SuppressWarnings(
-    {
-        "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals", "PMD.GodClass"
-    }
-)
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-final class CheckstyleMetainfoTest {
-
-    /**
-     * Local Common (JavaHelper pattern) with useful utils to test checkstyle.
-     */
-    private Common common;
-
-    @BeforeAll
-    public void setcommon() {
-        this.common = new Common();
-    }
-
-    @BeforeEach
-    public void setRule() {
-        this.common.updateRule();
-    }
+final class CheckstyleMetainfoTest extends CheckstyleTestBase {
 
     /**
      * CheckstyleValidator can deny binary contents in java file.
@@ -69,6 +52,19 @@ final class CheckstyleMetainfoTest {
      */
     @Test
     void rejectsJavaFileWithBinaryContent() throws Exception {
-        this.common.runValidation("JavaFileWithBinaryContent.java", false);
+        final String message =
+            "Binary contents are not allowed";
+        final String file = "JavaFileWithBinaryContent.java";
+        final String name = "RegexpMultilineCheck";
+        final Collection<Violation> results = runValidation(file, false);
+        MatcherAssert.assertThat(
+            "Two violations with binary contents shoud be found",
+            results,
+            Matchers.hasItems(
+                new ViolationMatcher(
+                    message, file, "13", name
+                )
+            )
+        );
     }
 }
