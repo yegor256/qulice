@@ -42,7 +42,6 @@ import org.junit.jupiter.api.TestInstance;
  * @since 0.3
  */
 @SuppressWarnings("PMD.AvoidDuplicateLiterals")
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 final class CheckstyleMetainfoTest extends CheckstyleTestBase {
 
     /**
