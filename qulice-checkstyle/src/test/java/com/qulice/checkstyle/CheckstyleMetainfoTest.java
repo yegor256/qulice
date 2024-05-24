@@ -40,7 +40,6 @@ import org.junit.jupiter.api.Test;
  * Test case for file metainfo validation.
  * @since 0.3
  */
-@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 final class CheckstyleMetainfoTest extends CheckstyleTestBase {
 
     /**
