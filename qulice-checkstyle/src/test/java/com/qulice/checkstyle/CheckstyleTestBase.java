@@ -41,23 +41,22 @@ import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeEach;
 
 /**
  * Base class for checkstyle tests.
  * @since 0.3
  */
-public class CheckstyleTestBase {
-
-    /**
-     * Name of property to set to change location of the license.
-     */
-    public static final String LICENSE_PROP = "license";
+public final class CheckstyleTestBase {
 
     /**
      * Directory with classes.
      */
     public static final String DIRECTORY = "src/main/java/foo";
+
+    /**
+     * Name of property to set to change location of the license.
+     */
+    public static final String LICENSE_PROP = "license";
 
     /**
      * License text.
@@ -67,14 +66,12 @@ public class CheckstyleTestBase {
     /**
      * License rule.
      */
-    private License rule;
+    private static License rule;
 
     /**
-     * Method to recet license rule before each test in inherited test classes.
+     * Empty constructor for utility class.
      */
-    @BeforeEach
-    public void setRule() {
-        this.rule = new License();
+    private CheckstyleTestBase() {
     }
 
     /**
@@ -85,10 +82,10 @@ public class CheckstyleTestBase {
      * @throws Exception In case of error
      */
     @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
-    public void validate(final String file, final boolean result,
+    public static void validate(final String file, final boolean result,
         final String message) throws Exception {
         MatcherAssert.assertThat(
-            this.runValidation(file, result),
+            CheckstyleTestBase.runValidation(file, result),
             Matchers.hasItem(
                 new ViolationMatcher(
                     message, file
@@ -105,10 +102,10 @@ public class CheckstyleTestBase {
      * @throws IOException In case of error
      */
     @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
-    public Collection<Violation> runValidation(final String file,
+    public static Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
+        final File license = CheckstyleTestBase.rule.savePackageInfo(
             new File(mock.basedir(), CheckstyleTestBase.DIRECTORY)
         ).withLines(CheckstyleTestBase.LICENSE)
             .withEol("\n").file();
@@ -145,11 +142,18 @@ public class CheckstyleTestBase {
     }
 
     /**
+     * Method to reset license rule before each test in inherited test classes.
+     */
+    static void setRule() {
+        CheckstyleTestBase.rule = new License();
+    }
+
+    /**
      * Method to access the rule from inherited classes.
      * @return License rule
      */
-    protected License getRule() {
-        return this.rule;
+    static License getRule() {
+        return CheckstyleTestBase.rule;
     }
 
     /**
@@ -157,7 +161,7 @@ public class CheckstyleTestBase {
      * @param file The file
      * @return The URL
      */
-    protected static String toUrl(final File file) {
+    static String toUrl(final File file) {
         return String.format("file:%s", file);
     }
 
