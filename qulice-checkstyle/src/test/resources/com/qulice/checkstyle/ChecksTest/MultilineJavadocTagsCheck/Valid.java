@@ -1,6 +1,12 @@
 /*
  * LICENSE.
  */
+/**
+ * Some text.
+ * sadsdada
+ * @param text Some text, which description
+ *  takes a few lines
+ */
 package foo;
 
 import java.util.List;

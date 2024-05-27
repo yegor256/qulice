@@ -107,6 +107,14 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     private final Collection<String> asserts = new LinkedList<>();
 
     /**
+     * The source encoding.
+     *
+     * @parameter expression="${project.build.sourceEncoding}" required="true"
+     */
+    @Parameter(property = "encoding", defaultValue = "${project.build.sourceEncoding}")
+    private String charset;
+
+    /**
      * Set Maven Project (used mostly for unit testing).
      * @param proj The project to set
      */
@@ -148,6 +156,14 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.excludes.addAll(exprs);
     }
 
+    /**
+     * Set source code encoding.
+     * @param encoding Source code encoding
+     */
+    public void setEncoding(final String encoding) {
+        this.charset = encoding;
+    }
+
     @Override
     public final void contextualize(final Context ctx) {
         this.environment.setContext(ctx);
@@ -167,6 +183,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         );
         this.environment.setExcludes(this.excludes);
         this.environment.setAsser(this.asserts);
+        this.environment.setEncoding(this.charset);
         final long start = System.nanoTime();
         this.doExecute();
         Logger.info(

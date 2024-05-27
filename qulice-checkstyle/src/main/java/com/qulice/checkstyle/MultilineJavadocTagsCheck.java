@@ -67,6 +67,7 @@ public final class MultilineJavadocTagsCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
         };
     }
 

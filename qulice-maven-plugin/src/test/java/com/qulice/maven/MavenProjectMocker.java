@@ -52,9 +52,8 @@ public final class MavenProjectMocker {
      * In this basedir.
      * @param dir The directory
      * @return This object
-     * @throws Exception If something wrong happens inside
      */
-    public MavenProjectMocker inBasedir(final File dir) throws Exception {
+    public MavenProjectMocker inBasedir(final File dir) {
         Mockito.doReturn(dir).when(this.project).getBasedir();
         final Build build = Mockito.mock(Build.class);
         Mockito.doReturn(build).when(this.project).getBuild();

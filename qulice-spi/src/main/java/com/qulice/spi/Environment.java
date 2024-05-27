@@ -32,6 +32,7 @@ package com.qulice.spi;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
@@ -121,6 +122,12 @@ public interface Environment {
      * @return Exclude patterns
      */
     Collection<String> excludes(String checker);
+
+    /**
+     * Encoding for the files.
+     * @return Source files charset
+     */
+    Charset encoding();
 
     /**
      * Mock of {@link Environment}.
@@ -322,6 +329,11 @@ public interface Environment {
                 exc = Arrays.asList(this.excl.split(","));
             }
             return exc;
+        }
+
+        @Override
+        public Charset encoding() {
+            return StandardCharsets.UTF_8;
         }
     }
 }
