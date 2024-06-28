@@ -31,10 +31,10 @@
 package com.qulice.maven;
 
 import com.jcabi.log.Logger;
+import com.qulice.maven.transformer.PlexusConfigurationToXpp3Dom;
+import com.qulice.maven.transformer.PropertiesToXpp3Dom;
 import com.qulice.spi.ValidationException;
-import java.util.Collection;
 import java.util.LinkedList;
-import java.util.Map;
 import java.util.Properties;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Plugin;
@@ -50,8 +50,6 @@ import org.apache.maven.plugin.PluginDescriptorParsingException;
 import org.apache.maven.plugin.PluginResolutionException;
 import org.apache.maven.plugin.descriptor.MojoDescriptor;
 import org.apache.maven.reporting.exec.DefaultMavenPluginManagerHelper;
-import org.codehaus.plexus.configuration.PlexusConfiguration;
-import org.codehaus.plexus.configuration.PlexusConfigurationException;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
 /**
@@ -101,6 +99,7 @@ public final class MojoExecutor {
      * @param config The configuration to set
      * @throws ValidationException If something is wrong inside
      */
+    @SuppressWarnings("PMD.UseProperClassLoader")
     public void execute(final String coords, final String goal,
         final Properties config) throws ValidationException {
         final Plugin plugin = new Plugin();
@@ -123,19 +122,22 @@ public final class MojoExecutor {
             throw new IllegalStateException("Can't setup realm", ex);
         }
         final Xpp3Dom xpp = Xpp3Dom.mergeXpp3Dom(
-            this.toXppDom(config, "configuration"),
-            this.toXppDom(descriptor.getMojoConfiguration())
+            new PropertiesToXpp3Dom(config, "configuration").transform(),
+            new PlexusConfigurationToXpp3Dom(descriptor.getMojoConfiguration()).transform()
         );
         final MojoExecution execution = new MojoExecution(descriptor, xpp);
         final Mojo mojo = this.mojo(execution);
+        final ClassLoader cloader = Thread.currentThread().getContextClassLoader();
         try {
             Logger.info(this, "Calling %s:%s...", coords, goal);
+            Thread.currentThread().setContextClassLoader(mojo.getClass().getClassLoader());
             mojo.execute();
         } catch (final MojoExecutionException ex) {
             throw new IllegalArgumentException(ex);
         } catch (final MojoFailureException ex) {
             throw new ValidationException(ex);
         } finally {
+            Thread.currentThread().setContextClassLoader(cloader);
             this.manager.releaseMojo(mojo, execution);
         }
     }
@@ -179,87 +181,4 @@ public final class MojoExecutor {
         }
         return mojo;
     }
-
-    /**
-     * Recuresively convert Properties to Xpp3Dom.
-     * @param config The config to convert
-     * @param name High-level name of it
-     * @return The Xpp3Dom document
-     * @see #execute(String,String,Properties)
-     * @checkstyle ExecutableStatementCountCheck (100 lines)
-     */
-    @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.CognitiveComplexity"})
-    private Xpp3Dom toXppDom(final Properties config, final String name) {
-        final Xpp3Dom xpp = new Xpp3Dom(name);
-        for (final Map.Entry<?, ?> entry : config.entrySet()) {
-            if (entry.getValue() instanceof String) {
-                final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
-                child.setValue(config.getProperty(entry.getKey().toString()));
-                xpp.addChild(child);
-            } else if (entry.getValue() instanceof String[]) {
-                final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
-                for (final String val : String[].class.cast(entry.getValue())) {
-                    final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
-                    row.setValue(val);
-                    child.addChild(row);
-                }
-                xpp.addChild(child);
-            } else if (entry.getValue() instanceof Collection) {
-                final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
-                for (final Object val : Collection.class.cast(entry.getValue())) {
-                    if (val instanceof Properties) {
-                        child.addChild(
-                            this.toXppDom(
-                                Properties.class.cast(val),
-                                entry.getKey().toString()
-                            ).getChild(0)
-                        );
-                    } else if (val != null) {
-                        final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
-                        row.setValue(val.toString());
-                        child.addChild(row);
-                    }
-                }
-                xpp.addChild(child);
-            } else if (entry.getValue() instanceof Properties) {
-                xpp.addChild(
-                    this.toXppDom(
-                        Properties.class.cast(entry.getValue()),
-                        entry.getKey().toString()
-                    )
-                );
-            } else {
-                throw new IllegalArgumentException(
-                    String.format(
-                        "Invalid properties value at '%s'",
-                        entry.getKey().toString()
-                    )
-                );
-            }
-        }
-        return xpp;
-    }
-
-    /**
-     * Recursively convert PLEXUS config to Xpp3Dom.
-     * @param config The config to convert
-     * @return The Xpp3Dom document
-     * @see #execute(String,String,Properties)
-     */
-    private Xpp3Dom toXppDom(final PlexusConfiguration config) {
-        final Xpp3Dom result = new Xpp3Dom(config.getName());
-        result.setValue(config.getValue(null));
-        for (final String name : config.getAttributeNames()) {
-            try {
-                result.setAttribute(name, config.getAttribute(name));
-            } catch (final PlexusConfigurationException ex) {
-                throw new IllegalArgumentException(ex);
-            }
-        }
-        for (final PlexusConfiguration child : config.getChildren()) {
-            result.addChild(this.toXppDom(child));
-        }
-        return result;
-    }
-
 }
