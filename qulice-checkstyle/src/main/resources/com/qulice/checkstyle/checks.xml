@@ -104,25 +104,25 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
   JavaDoc regexp checks
   -->
   <module name="RegexpSingleline">
-    <property name="format" value="\* +@return +[^A-Z]"/>
+    <property name="format" value="\* +@return +[^A-Z ]"/>
     <property name="fileExtensions" value="java"/>
     <property name="id" value="ReturnShouldStartWithCapitalLetter"/>
     <property name="message" value="@return tag description should start with capital letter"/>
   </module>
   <module name="RegexpSingleline">
-    <property name="format" value="\* +@param +\w+ +[^A-Z]"/>
+    <property name="format" value="\* +@param +\w+ +[^A-Z ]"/>
     <property name="fileExtensions" value="java"/>
     <property name="id" value="ParamShouldStartWithCapitalLetter"/>
     <property name="message" value="@param tag description should start with capital letter"/>
   </module>
   <module name="RegexpSingleline">
-    <property name="format" value="/\*\* +[^A-Z\{]"/>
+    <property name="format" value="/\*\* +[^A-Z\{ ]"/>
     <property name="fileExtensions" value="java"/>
     <property name="id" value="FirstLetterInCommentShouldBeCapital"/>
     <property name="message" value="First sentence in a comment should start with a capital letter"/>
   </module>
   <module name="RegexpMultiline">
-    <property name="format" value="/\*\*\W+\* +[^A-Z\{]"/>
+    <property name="format" value="/\*\*\W+\* +[^A-Z\{ ]"/>
     <property name="fileExtensions" value="java"/>
     <property name="id" value="FirstLetterInCommentShouldBeCapital2"/>
     <property name="message" value="First sentence in a comment should start with a capital letter"/>
