@@ -37,12 +37,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * C++ style inline comment is not allowed.
- * Use //-style comment instead.
- * @since 0.18
+ * Multi line comment checker.
+ * @since 0.23.1
  */
-public final class SingleLineCommentCheck extends AbstractCheck {
-
+public final class MultiLineCommentCheck extends AbstractCheck {
     /**
      * Pattern for check.
      */
@@ -58,11 +56,6 @@ public final class SingleLineCommentCheck extends AbstractCheck {
      */
     @SuppressWarnings("PMD.AvoidStringBufferField")
     private StringBuilder line;
-
-    /**
-     * When inside a block comment, holds begin line number.
-     */
-    private int begin;
 
     @Override
     public boolean isCommentNodesRequired() {
@@ -92,13 +85,12 @@ public final class SingleLineCommentCheck extends AbstractCheck {
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
             this.line = new StringBuilder(ast.getText());
-            this.begin = ast.getLineNo();
         } else if (ast.getType() == TokenTypes.COMMENT_CONTENT) {
             this.line.append(ast.getText());
         } else {
             this.line.append(ast.getText());
             final Matcher matcher = this.format.matcher(this.line.toString());
-            if (matcher.matches() && this.singleLineCStyleComment(ast)) {
+            if (matcher.matches()) {
                 this.log(ast, this.message);
             }
         }
@@ -110,15 +102,5 @@ public final class SingleLineCommentCheck extends AbstractCheck {
 
     public void setMessage(final String msg) {
         this.message = msg;
-    }
-
-    /**
-     * Checks for the end of a comment line.
-     * @param ast Checkstyle's AST nodes.
-     * @return True if this is the end of the comment
-     *  and the starting line number is equal to the ending line number.
-     */
-    private boolean singleLineCStyleComment(final DetailAST ast) {
-        return ast.getType() == TokenTypes.BLOCK_COMMENT_END && this.begin == ast.getLineNo();
     }
 }

@@ -81,16 +81,16 @@ final class RequiredJavaDocTag {
     /**
      * Reference to a method for writing a message to the log.
      */
-    private final LogWriter writer;
+    private final Reporter reporter;
 
     /**
      * Ctor.
      * @param name Tag name.
      * @param patt Pattern for checking the contents of a tag in a string.
-     * @param lwriter Reference to a method for writing a message to the log.
+     * @param rep Reference to a method for writing a message to the log.
      */
     RequiredJavaDocTag(final String name, final Pattern patt,
-        final LogWriter lwriter) {
+        final Reporter rep) {
         this(
             name,
             Pattern.compile(
@@ -100,7 +100,7 @@ final class RequiredJavaDocTag {
                 )
             ),
             patt,
-            lwriter
+            rep
         );
     }
 
@@ -109,15 +109,15 @@ final class RequiredJavaDocTag {
      * @param cname Tag name.
      * @param ptag Pattern for searching a tag in a string.
      * @param patt Pattern for checking the contents of a tag in a string.
-     * @param lwriter Reference to a method for writing a message to the log.
+     * @param rep Reference to a method for writing a message to the log.
      * @checkstyle ParameterNumberCheck (3 lines)
      */
     RequiredJavaDocTag(final String cname, final Pattern ptag,
-        final Pattern patt, final LogWriter lwriter) {
+        final Pattern patt, final Reporter rep) {
         this.name = cname;
         this.tag = ptag;
         this.content = patt;
-        this.writer = lwriter;
+        this.reporter = rep;
     }
 
     /**
@@ -132,16 +132,13 @@ final class RequiredJavaDocTag {
         for (int pos = start; pos <= end; pos += 1) {
             final String line = lines[pos];
             final Matcher matcher = this.tag.matcher(line);
-            if (matcher.matches()
-                && !RequiredJavaDocTag.empty(matcher.group("name"))
-                && !RequiredJavaDocTag.empty(matcher.group("cont"))
-            ) {
+            if (RequiredJavaDocTag.tagFound(matcher)) {
                 found.put(pos, matcher.group("cont"));
                 break;
             }
         }
         if (found.isEmpty()) {
-            this.writer.log(
+            this.reporter.log(
                 start + 1,
                 "Missing ''@{0}'' tag in class/interface comment",
                 this.name
@@ -149,7 +146,7 @@ final class RequiredJavaDocTag {
         } else {
             for (final Map.Entry<Integer, String> item : found.entrySet()) {
                 if (!this.content.matcher(item.getValue()).matches()) {
-                    this.writer.log(
+                    this.reporter.log(
                         item.getKey() + 1,
                         "Tag text ''{0}'' does not match the pattern ''{1}''",
                         item.getValue(),
@@ -158,6 +155,17 @@ final class RequiredJavaDocTag {
                 }
             }
         }
+    }
+
+    /**
+     * Finds the tag name and the following sentences.
+     * @param matcher Tag name matcher.
+     * @return True if the tag and its clauses are found.
+     */
+    private static boolean tagFound(final Matcher matcher) {
+        return matcher.matches()
+            && !RequiredJavaDocTag.empty(matcher.group("name"))
+            && !RequiredJavaDocTag.empty(matcher.group("cont"));
     }
 
     /**
@@ -171,10 +179,10 @@ final class RequiredJavaDocTag {
 
     /**
      * Logger.
-     * @see com.puppycrawl.tools.checkstyle.api.AbstractCheck.log
+     * @see com.puppycrawl.tools.checkstyle.api.AbstractCheck#log(int, String, Object...)
      * @since 0.23.1
      */
-    interface LogWriter {
+    interface Reporter {
         /**
          * Log a message that has no column information.
          *

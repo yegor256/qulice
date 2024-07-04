@@ -108,10 +108,10 @@ final class RequiredJavaDocTagTest {
     }
 
     /**
-     * Stub for {@link RequiredJavaDocTag.LogWriter} class.
+     * Stub for {@link RequiredJavaDocTag.Reporter} class.
      * @since 0.23.1
      */
-    private static class WriterStub implements RequiredJavaDocTag.LogWriter {
+    private static class WriterStub implements RequiredJavaDocTag.Reporter {
 
         /**
          * Message.
