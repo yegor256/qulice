@@ -58,7 +58,8 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
  * @since 0.3
  */
 @Mojo(name = "check", defaultPhase = LifecyclePhase.VERIFY,
-    requiresDependencyResolution = ResolutionScope.TEST)
+    requiresDependencyResolution = ResolutionScope.TEST,
+    threadSafe = true)
 public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
