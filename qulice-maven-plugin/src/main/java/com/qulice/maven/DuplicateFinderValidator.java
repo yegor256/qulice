@@ -30,13 +30,12 @@
  */
 package com.qulice.maven;
 
+import com.qulice.maven.transformer.DuplicateFinderExclude;
+import com.qulice.maven.transformer.Exclude;
 import com.qulice.spi.ValidationException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Properties;
-import java.util.stream.Collectors;
-import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Validate with maven-duplicate-finder-plugin.
@@ -46,42 +45,34 @@ import org.apache.commons.collections.CollectionUtils;
  *  Resource can be presented as a regular expression with that symbol, can cause some problem.
  */
 public final class DuplicateFinderValidator implements MavenValidator {
+    /**
+     * Duplicatefinder constant.
+     */
+    private static final String DUPLICATEFINDER = "duplicatefinder";
 
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        final String prefix = "duplicatefinder";
-        if (!env.exclude(prefix, "")) {
+        if (!env.exclude(DuplicateFinderValidator.DUPLICATEFINDER, "")) {
             final Properties props = new Properties();
             props.put("failBuildInCaseOfConflict", "true");
             props.put("checkTestClasspath", "false");
-            props.put("useResultFile", "false");
-            props.put(
-                "ignoredResourcePatterns",
-                CollectionUtils.union(
-                    env.excludes(prefix).stream()
-                        .filter(s -> !s.contains(":"))
-                        .collect(Collectors.toList()),
-                    Arrays.asList("META-INF/.*", "module-info.class")
-                )
-            );
+            final Collection<Properties> ignres = new LinkedList<>();
             final Collection<Properties> deps = new LinkedList<>();
-            for (final String sdep : env.excludes(prefix)) {
-                final String[] parts = sdep.split(":");
-                if (parts.length < 2) {
-                    continue;
+            for (final String sdep : env.excludes(DuplicateFinderValidator.DUPLICATEFINDER)) {
+                final Exclude<Properties, Properties> exclude =
+                    new DuplicateFinderExclude(DuplicateFinderValidator.DUPLICATEFINDER, sdep);
+                final Collection<Properties> excl = exclude.dependencies();
+                if (!excl.isEmpty()) {
+                    deps.addAll(excl);
                 }
-                final Properties main = new Properties();
-                final Properties prop = new Properties();
-                prop.put("groupId", parts[0]);
-                prop.put("artifactId", parts[1]);
-                if (parts.length > 2) {
-                    prop.put("version", parts[2]);
+                final Collection<Properties> res = exclude.resources();
+                if (!res.isEmpty()) {
+                    ignres.addAll(excl);
                 }
-                main.put("dependency", prop);
-                deps.add(main);
             }
             props.put("ignoredDependencies", deps);
+            props.put("ignoredResourcePatterns", ignres);
             env.executor().execute(
                 "org.basepom.maven:duplicate-finder-maven-plugin:2.0.1",
                 "check",
@@ -89,5 +80,4 @@ public final class DuplicateFinderValidator implements MavenValidator {
             );
         }
     }
-
 }
