@@ -32,9 +32,13 @@ package com.qulice.checkstyle;
 
 import java.text.MessageFormat;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
+import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Test case for {@link RequiredJavaDocTag} class.
@@ -58,50 +62,42 @@ final class RequiredJavaDocTagTest {
         this.writer
     );
 
-    @Test
-    void success() {
-        final String[] lines = {" *", " * @since 0.3", " *"};
+    @ParameterizedTest
+    @MethodSource("params")
+    void success(final String[] lines, final String reason, final Matcher<String> expected) {
         this.tag.matchTagFormat(lines, 0, 2);
         MatcherAssert.assertThat(
-            "Empty string expected",
+            reason,
             this.writer.formattedMessage(),
-            Matchers.emptyString()
+            expected
         );
     }
 
-    @Test
-    void successWithSpaces() {
-        final String[] lines = {" *", "    *    @since    0.3", " *"};
-        this.tag.matchTagFormat(lines, 0, 2);
-        MatcherAssert.assertThat(
-            "Empty string expected",
-            this.writer.formattedMessage(),
-            Matchers.emptyString()
-        );
-    }
-
-    @Test
-    void tagNotFound() {
-        final String[] lines = {" *", " * @sinc 0.3", " *"};
-        this.tag.matchTagFormat(lines, 0, 2);
-        MatcherAssert.assertThat(
-            "Expected tag not found",
-            this.writer.formattedMessage(),
-            Matchers.equalTo("Missing '@since' tag in class/interface comment")
-        );
-    }
-
-    @Test
-    void tagNotMatched() {
-        final String[] lines = {" *", " * @since 0.3.4.4.", " *"};
-        this.tag.matchTagFormat(lines, 0, 2);
-        MatcherAssert.assertThat(
-            "Regular expression non-match expected",
-            this.writer.formattedMessage(),
-            Matchers.equalTo(
-                String.format(
-                    "Tag text '0.3.4.4.' does not match the pattern '%s'",
-                    "^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+    private static Stream<Arguments> params() {
+        return Stream.of(
+            Arguments.arguments(
+                new String[] {" *", " * @since 0.3", " *"},
+                "Empty string expected",
+                Matchers.emptyString()
+            ),
+            Arguments.arguments(
+                new String[] {" *", "    *    @since    0.3", " *"},
+                "Empty string expected",
+                Matchers.emptyString()
+            ),
+            Arguments.arguments(
+                new String[] {" *", " * @sinc 0.3", " *"},
+                "Expected tag not found",
+                Matchers.equalTo("Missing '@since' tag in class/interface comment")
+            ),
+            Arguments.arguments(
+                new String[] {" *", " * @since 0.3.4.4.", " *"},
+                "Regular expression non-match expected",
+                Matchers.equalTo(
+                    String.format(
+                        "Tag text '0.3.4.4.' does not match the pattern '%s'",
+                        "^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+                    )
                 )
             )
         );

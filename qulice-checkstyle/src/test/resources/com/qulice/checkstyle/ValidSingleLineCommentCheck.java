@@ -25,6 +25,8 @@ public final class ValidSingleLineCommentCheck {
 
     /**
      * Valid multi line literal.
+     * We need to add the @checkstyle ArrayTrailingCommaCheck to pass the test
+     * {@link com.qulice.checkstyle.CheckstyleValidatorTest#acceptsValidSingleLineComment}
      * @checkstyle ArrayTrailingCommaCheck (6 lines)
      */
     public static final String[] MULTILINE_LITERAL = {

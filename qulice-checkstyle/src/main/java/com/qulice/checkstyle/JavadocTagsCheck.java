@@ -131,8 +131,11 @@ public final class JavadocTagsCheck extends AbstractCheck {
      * @param text Text to find.
      * @return Line number with found text, or -1 if it wasn't found.
      */
-    private static int findTrimmedTextUp(final String[] lines,
-        final int start, final String text) {
+    private static int findTrimmedTextUp(
+        final String[] lines,
+        final int start,
+        final String text
+    ) {
         int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {
             if (lines[pos].trim().equals(text)) {
@@ -172,8 +175,13 @@ public final class JavadocTagsCheck extends AbstractCheck {
      * @param tag Name of the tag.
      * @checkstyle ParameterNumber (3 lines)
      */
-    private void findProhibited(final String[] lines, final int start,
-        final int cstart, final int cend, final String tag) {
+    private void findProhibited(
+        final String[] lines,
+        final int start,
+        final int cstart,
+        final int cend,
+        final String tag
+    ) {
         final List<Integer> found =
             this.findTagLineNum(lines, cstart, cend, tag);
         if (!found.isEmpty()) {
@@ -194,8 +202,12 @@ public final class JavadocTagsCheck extends AbstractCheck {
      * @return Line number with found tag or -1 otherwise.
      * @checkstyle ParameterNumber (3 lines)
      */
-    private List<Integer> findTagLineNum(final String[] lines, final int start,
-        final int end, final String tag) {
+    private List<Integer> findTagLineNum(
+        final String[] lines,
+        final int start,
+        final int end,
+        final String tag
+    ) {
         final String prefix = String.format(" * @%s ", tag);
         final List<Integer> found = new ArrayList<>(1);
         for (int pos = start; pos <= end; pos += 1) {

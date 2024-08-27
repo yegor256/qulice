@@ -196,7 +196,8 @@ final class ChecksTest {
             "JavadocTagsCheck",
             "ProhibitNonFinalClassesCheck",
             "QualifyInnerClassCheck",
-            "CommentCheck"
+            "CommentCheck",
+            "ProhibitUnusedPrivateConstructorCheck"
         ).map(s -> String.format("ChecksTest/%s", s));
     }
 
