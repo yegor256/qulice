@@ -375,18 +375,18 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     </module>
     <module name="com.qulice.checkstyle.SingleLineCommentCheck">
       <property name="format" value=" */\*\* +[^A-Z\{ ][\W\s\S]*"/>
-      <property name="message" value="First sentence in a comment should start with a capital letter."/>
-      <property name="id" value="FirstLetterInCommentShouldBeCapital"/>
+      <property name="message" value="The first sentence in a single-line comment should start with a capital letter."/>
+      <property name="id" value="FirstLetterInSingleLineCommentShouldBeCapital"/>
     </module>
     <module name="com.qulice.checkstyle.MultiLineCommentCheck">
       <property name="format" value=" */\*\*\W+\* +[^A-Z\{ ][\W\s\S]*"/>
-      <property name="message" value="First sentence in a comment should start with a capital letter."/>
-      <property name="id" value="FirstLetterInCommentShouldBeCapital2"/>
+      <property name="message" value="The first sentence in a multiline comment should start with a capital letter."/>
+      <property name="id" value="FirstLetterInMultiLineCommentWithOneAsterisk"/>
     </module>
     <module name="com.qulice.checkstyle.MultiLineCommentCheck">
       <property name="format" value=" */\*\* +[^A-Z\{ ][\W\s\S]*"/>
-      <property name="message" value="First sentence in a comment should start with a capital letter."/>
-      <property name="id" value="FirstLetterInCommentShouldBeCapital3"/>
+      <property name="message" value="The first sentence in a multiline comment should start with a capital letter, even if the comment begins with two asterisks."/>
+      <property name="id" value="FirstLetterInMultiLineCommentWithTwoAsterisk"/>
     </module>
   </module>
   <!--

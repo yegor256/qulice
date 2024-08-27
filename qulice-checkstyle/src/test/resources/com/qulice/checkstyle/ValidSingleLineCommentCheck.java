@@ -25,13 +25,12 @@ public final class ValidSingleLineCommentCheck {
 
     /**
      * Valid multi line literal.
-     * @checkstyle ArrayTrailingCommaCheck (6 lines)
      */
     public static final String[] MULTILINE_LITERAL = {
         " /**", " * @since 0.3.4.4.", " **/",
         " /**",
         " * @since 0.3.4.4.",
-        " **/"
+        " **/",
     };
 
     /**

@@ -89,8 +89,11 @@ final class RequiredJavaDocTag {
      * @param patt Pattern for checking the contents of a tag in a string.
      * @param rep Reference to a method for writing a message to the log.
      */
-    RequiredJavaDocTag(final String name, final Pattern patt,
-        final Reporter rep) {
+    RequiredJavaDocTag(
+        final String name,
+        final Pattern patt,
+        final Reporter rep
+    ) {
         this(
             name,
             Pattern.compile(
@@ -112,8 +115,12 @@ final class RequiredJavaDocTag {
      * @param rep Reference to a method for writing a message to the log.
      * @checkstyle ParameterNumberCheck (3 lines)
      */
-    RequiredJavaDocTag(final String cname, final Pattern ptag,
-        final Pattern patt, final Reporter rep) {
+    RequiredJavaDocTag(
+        final String cname,
+        final Pattern ptag,
+        final Pattern patt,
+        final Reporter rep
+    ) {
         this.name = cname;
         this.tag = ptag;
         this.content = patt;
@@ -126,8 +133,11 @@ final class RequiredJavaDocTag {
      * @param start Line number where comment starts.
      * @param end Line number where comment ends.
      */
-    public void matchTagFormat(final String[] lines, final int start,
-        final int end) {
+    public void matchTagFormat(
+        final String[] lines,
+        final int start,
+        final int end
+    ) {
         final Map<Integer, String> found = new HashMap<>(1);
         for (int pos = start; pos <= end; pos += 1) {
             final String line = lines[pos];

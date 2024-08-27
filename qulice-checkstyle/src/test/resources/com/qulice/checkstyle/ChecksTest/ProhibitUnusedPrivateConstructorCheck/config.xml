@@ -32,25 +32,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 <!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
 <module name="Checker">
   <module name="TreeWalker">
-    <module name="com.qulice.checkstyle.SingleLineCommentCheck">
-      <property name="format" value=" */\*[^*].*\*/ *"/>
-      <property name="message" value="This kind of comment is not allowed."/>
-      <property name="id" value="CStyleCommentNotAllowed"/>
-    </module>
-    <module name="com.qulice.checkstyle.SingleLineCommentCheck">
-      <property name="format" value=" */\*\* +[^A-Z\{ ][\W\s\S]*"/>
-      <property name="message" value="The first sentence in a single-line comment should start with a capital letter."/>
-      <property name="id" value="FirstLetterInSingleLineCommentShouldBeCapital"/>
-    </module>
-    <module name="com.qulice.checkstyle.MultiLineCommentCheck">
-      <property name="format" value=" */\*\*\W+\* +[^A-Z\{ ][\W\s\S]*"/>
-      <property name="message" value="The first sentence in a multiline comment should start with a capital letter."/>
-      <property name="id" value="FirstLetterInMultiLineCommentWithOneAsterisk"/>
-    </module>
-    <module name="com.qulice.checkstyle.MultiLineCommentCheck">
-      <property name="format" value=" */\*\* +[^A-Z\{ ][\W\s\S]*"/>
-      <property name="message" value="The first sentence in a multiline comment should start with a capital letter, even if the comment begins with two asterisks."/>
-      <property name="id" value="FirstLetterInMultiLineCommentWithTwoAsterisk"/>
-    </module>
+    <module name="com.qulice.checkstyle.ProhibitUnusedPrivateConstructorCheck"/>
   </module>
 </module>

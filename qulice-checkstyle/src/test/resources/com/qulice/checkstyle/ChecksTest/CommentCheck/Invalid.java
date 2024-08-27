@@ -6,16 +6,16 @@
 /* C-style comment */
 public final class ProhibitedCStyleComment {
 
-    /** first sentence in a comment should start with a capital letter */
+    /** first sentence in a single-line comment should start with a capital letter */
     public void main() {
     }
 
     /**
-     * first sentence in a comment should start with a capital letter
+     * the first sentence in a multiline comment should start with a capital letter.
      */
     private static String TEXT = "some text";
 
-    /** first sentence in a comment should start with a capital letter
+    /** the first sentence in a multi-line comment must begin with a capital letter, even if the comment begins with two asterisks.
      */
     private static String OTHER_TEXT = "some text";
 }
