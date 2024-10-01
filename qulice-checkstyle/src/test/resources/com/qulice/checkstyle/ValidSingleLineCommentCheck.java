@@ -20,6 +20,22 @@ public final class ValidSingleLineCommentCheck {
      */
     public static final String ANOTHER_LITERAL = "/**/";
 
+    /** Valide sinle line literal. */
+    public static final String SINGLE_LINE_LITERAL = "/**   this is not comment  **/";
+
+    /**
+     * Valid multi line literal.
+     * We need to add the @checkstyle ArrayTrailingCommaCheck to pass the test
+     * {@link com.qulice.checkstyle.CheckstyleValidatorTest#acceptsValidSingleLineComment}
+     * @checkstyle ArrayTrailingCommaCheck (6 lines)
+     */
+    public static final String[] MULTILINE_LITERAL = {
+        " /**", " * @since 0.3.4.4.", " **/",
+        " /**",
+        " * @since 0.3.4.4.",
+        " **/"
+    };
+
     /**
      * Empty constructor.
      */
