@@ -20,6 +20,19 @@ public final class ValidSingleLineCommentCheck {
      */
     public static final String ANOTHER_LITERAL = "/**/";
 
+    /** Valide sinle line literal. */
+    public static final String SINGLE_LINE_LITERAL = "/**   this is not comment  **/";
+
+    /**
+     * Valid multi line literal.
+     */
+    public static final String[] MULTILINE_LITERAL = {
+        " /**", " * @since 0.3.4.4.", " **/",
+        " /**",
+        " * @since 0.3.4.4.",
+        " **/",
+    };
+
     /**
      * Empty constructor.
      */

@@ -48,7 +48,6 @@ import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -776,7 +775,6 @@ final class CheckstyleValidatorTest {
      *
      * @throws Exception In case of error
      */
-    @Disabled
     @Test
     void checkLambdaAndGenericsAtEndOfLine() throws Exception {
         this.runValidation("ValidLambdaAndGenericsAtEndOfLine.java", true);

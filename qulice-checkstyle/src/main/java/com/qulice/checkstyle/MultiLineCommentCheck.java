@@ -37,12 +37,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * C++ style inline comment is not allowed.
- * Use //-style comment instead.
- * @since 0.18
+ * Multi line comment checker.
+ * Used by the checkstyle process multiple times as a singleton.
+ * @since 0.23.1
  */
-public final class SingleLineCommentCheck extends AbstractCheck {
-
+public final class MultiLineCommentCheck extends AbstractCheck {
     /**
      * Pattern for check.
      * It is not final as it is initialized from the configuration.
@@ -61,12 +60,7 @@ public final class SingleLineCommentCheck extends AbstractCheck {
      * during the class under test and the field is reinitialized with a new object.
      */
     @SuppressWarnings("PMD.AvoidStringBufferField")
-    private StringBuilder line;
-
-    /**
-     * When inside a block comment, holds begin line number.
-     */
-    private int begin;
+    private StringBuilder text;
 
     @Override
     public boolean isCommentNodesRequired() {
@@ -95,14 +89,13 @@ public final class SingleLineCommentCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
-            this.line = new StringBuilder(ast.getText());
-            this.begin = ast.getLineNo();
+            this.text = new StringBuilder(ast.getText());
         } else if (ast.getType() == TokenTypes.COMMENT_CONTENT) {
-            this.line.append(ast.getText());
+            this.text.append(ast.getText());
         } else {
-            this.line.append(ast.getText());
-            final Matcher matcher = this.format.matcher(this.line.toString());
-            if (matcher.matches() && this.singleLineCStyleComment(ast)) {
+            this.text.append(ast.getText());
+            final Matcher matcher = this.format.matcher(this.text.toString());
+            if (matcher.matches()) {
                 this.log(ast, this.message);
             }
         }
@@ -111,7 +104,7 @@ public final class SingleLineCommentCheck extends AbstractCheck {
     /**
      * The method is called from checkstyle to configure this class.
      * The parameter is set from the checks.xml file
-     * <module name="com.qulice.checkstyle.SingleLineCommentCheck"/> and
+     * <module name="com.qulice.checkstyle.MultiLineCommentCheck"/> and
      * <property name="format" value=" this regexp "/> property
      *
      * @param fmt Validatig regexp.
@@ -123,23 +116,13 @@ public final class SingleLineCommentCheck extends AbstractCheck {
     /**
      * The method is called from checkstyle to configure this class.
      * The parameter is set from the checks.xml file
-     * <module name="com.qulice.checkstyle.SingleLineCommentCheck"/> and
-     * <property name="message" value="This kind of comment is not allowed."/>
+     * <module name="com.qulice.checkstyle.MultiLineCommentCheck"/> and
+     * <property name="message" value="First sentence in a comment should start with ....."/>
      * property
      *
      * @param msg Error message.
      */
     public void setMessage(final String msg) {
         this.message = msg;
-    }
-
-    /**
-     * Checks for the end of a comment line.
-     * @param ast Checkstyle's AST nodes.
-     * @return True if this is the end of the comment
-     *  and the starting line number is equal to the ending line number.
-     */
-    private boolean singleLineCStyleComment(final DetailAST ast) {
-        return ast.getType() == TokenTypes.BLOCK_COMMENT_END && this.begin == ast.getLineNo();
     }
 }
