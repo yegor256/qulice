@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2024 Qulice.com
+ * Copyright (c) 2011-2025 Yegor Bugayenko
  *
  * All rights reserved.
  *
