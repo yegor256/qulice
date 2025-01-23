@@ -1,6 +1,6 @@
 /**
  *
- * Copyright (c) 2011-2024, Qulice.com
+ * Copyright (c) 2011-2025, Qulice.com
  *
  * All rights reserved.
  *
