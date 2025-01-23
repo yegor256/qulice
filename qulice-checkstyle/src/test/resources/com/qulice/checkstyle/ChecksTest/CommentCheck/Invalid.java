@@ -19,4 +19,3 @@ public final class ProhibitedCStyleComment {
      */
     private static String OTHER_TEXT = "some text";
 }
-

@@ -16,4 +16,3 @@ public interface LineWrapPackage {
     Integer data();
 
 }
-

@@ -37,5 +37,3 @@ assert !log.text.contains('java.lang.Error: Invalid escape character')
 // @see https://github.com/tpc2/qulice/issues/146
 //assert log.text.contains("Avoid creating unnecessary local variables like 'name'")
 //assert log.text.contains("Avoid creating unnecessary local variables like 'message'")
-
-

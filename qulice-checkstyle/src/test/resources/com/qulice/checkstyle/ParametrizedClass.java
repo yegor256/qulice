@@ -17,4 +17,3 @@ public interface ParametrizedClass<T> {
     List<T> data();
 
 }
-

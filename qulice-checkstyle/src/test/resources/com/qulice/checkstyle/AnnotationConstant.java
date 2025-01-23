@@ -80,4 +80,3 @@ public final class AnnotationConstant {
         return String.valueOf(this.dat);
     }
 }
-

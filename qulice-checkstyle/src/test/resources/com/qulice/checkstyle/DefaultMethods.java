@@ -27,4 +27,3 @@ public interface DefaultMethods {
         }
     }
 }
-

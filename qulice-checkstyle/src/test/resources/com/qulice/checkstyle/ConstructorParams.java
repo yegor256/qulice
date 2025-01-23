@@ -30,4 +30,3 @@ public final class ConstructorParams {
         return this.number + number;
     }
 }
-

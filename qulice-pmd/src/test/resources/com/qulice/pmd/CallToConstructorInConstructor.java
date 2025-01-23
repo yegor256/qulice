@@ -7,7 +7,7 @@ public final class CallToConstructorInConstructor extends Super {
     public CallToConstructorInConstructor() {
         this(2);
     }
-    
+
     public CallToConstructorInConstructor(final int a) {
         super(a);
         this.number = 2;

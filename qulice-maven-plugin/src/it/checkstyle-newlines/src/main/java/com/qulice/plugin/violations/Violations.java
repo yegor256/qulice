@@ -4,4 +4,3 @@ public class Violations {
         System.setProperty("test", "test value");
     }
 }
-

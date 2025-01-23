@@ -7,4 +7,3 @@ class EmptyStatementNotInLoop {
         // the extra semicolon here this is not necessary
     }
 }
-

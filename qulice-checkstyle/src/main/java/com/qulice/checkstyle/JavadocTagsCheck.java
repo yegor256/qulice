@@ -228,4 +228,3 @@ public final class JavadocTagsCheck extends AbstractCheck {
         return found;
     }
 }
-

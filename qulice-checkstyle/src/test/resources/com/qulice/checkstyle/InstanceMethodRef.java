@@ -23,4 +23,3 @@ public final class InstanceMethodRef {
         System.out.println(value);
     }
 }
-

@@ -9,4 +9,3 @@ package foo;
  * @since 1.0
  */
 public class WindowsEolLinux { }
-
