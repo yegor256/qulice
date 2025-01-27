@@ -20,7 +20,7 @@ jobs:
           restore-keys: |
             maven-
       - run: mvn install -Pjacoco -Dinvoker.skip
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: qulice-spi/target/site/jacoco/jacoco.xml,qulice-checkstyle/target/site/jacoco/jacoco.xml,qulice-pmd/target/site/jacoco/jacoco.xml,qulice-ant/target/site/jacoco/jacoco.xml,qulice-maven-plugin/target/site/jacoco/jacoco.xml
