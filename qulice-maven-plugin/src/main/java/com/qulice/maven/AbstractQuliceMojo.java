@@ -83,14 +83,6 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     private boolean skip;
 
     /**
-     * Location of License file. If it is an absolute file name you should
-     * prepend it with "file:" prefix. Otherwise it is treated like a resource
-     * name and will be found in classpath (if available).
-     */
-    @Parameter(property = "qulice.license", defaultValue = "LICENSE.txt")
-    private String license = "LICENSE.txt";
-
-    /**
      * List of regular expressions to exclude.
      */
     @Parameter(property = "qulice.excludes")
@@ -140,14 +132,6 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     }
 
     /**
-     * Set license address.
-     * @param lcs The "license" option
-     */
-    public final void setLicense(final String lcs) {
-        this.license = lcs;
-    }
-
-    /**
      * Set excludes.
      * @param exprs Expressions
      */
@@ -176,7 +160,6 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
             this.getLog().info("Execution skipped");
             return;
         }
-        this.environment.setProperty("license", this.license);
         this.environment.setProject(this.project);
         this.environment.setMojoExecutor(
             new MojoExecutor(this.manager, this.sess)

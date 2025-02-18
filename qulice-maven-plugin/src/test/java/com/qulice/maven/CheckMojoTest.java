@@ -81,8 +81,6 @@ final class CheckMojoTest {
         final MavenProject project = Mockito.mock(MavenProject.class);
         mojo.setProject(project);
         mojo.setLog(Mockito.mock(Log.class));
-        final String license = "file:./some-file.txt";
-        mojo.setLicense(license);
         final Context context = Mockito.mock(Context.class);
         mojo.contextualize(context);
         mojo.execute();
