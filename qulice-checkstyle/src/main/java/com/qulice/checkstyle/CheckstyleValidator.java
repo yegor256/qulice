@@ -30,7 +30,6 @@
  */
 package com.qulice.checkstyle;
 
-import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
@@ -41,18 +40,10 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
 import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import org.cactoos.text.IoCheckedText;
-import org.cactoos.text.Replaced;
-import org.cactoos.text.TextOf;
-import org.cactoos.text.Trimmed;
 import org.xml.sax.InputSource;
 
 /**
@@ -169,7 +160,6 @@ public final class CheckstyleValidator implements ResourceValidator {
         }
         final Properties props = new Properties();
         props.setProperty("cache.file", cache.getPath());
-        props.setProperty("header", this.header());
         final InputSource src = new InputSource(
             this.getClass().getResourceAsStream("checks.xml")
         );
@@ -184,102 +174,5 @@ public final class CheckstyleValidator implements ResourceValidator {
             throw new IllegalStateException("Failed to load config", ex);
         }
         return config;
-    }
-
-    /**
-     * Create header content, from file.
-     * @return The content of header
-     * @see #configuration()
-     */
-    @SuppressWarnings("PMD.InefficientEmptyStringCheck")
-    private String header() {
-        final String name = this.env.param("license", "LICENSE.txt");
-        final URL url = this.toUrl(name);
-        final String content;
-        try {
-            content = new IoCheckedText(
-                new Replaced(
-                    new Trimmed(
-                        new TextOf(
-                            url.openStream()
-                        )
-                    ),
-                    "[\\r\\n]+$",
-                    ""
-                )
-            ).asString();
-        } catch (final IOException ex) {
-            throw new IllegalStateException("Failed to read license", ex);
-        }
-        final StringBuilder builder = new StringBuilder(100);
-        final String eol = System.lineSeparator();
-        builder.append("/*").append(eol);
-        for (final String line : CheckstyleValidator.splitPreserve(content, eol)) {
-            builder.append(" *");
-            if (!line.trim().isEmpty()) {
-                builder.append(' ').append(line.trim());
-            }
-            builder.append(eol);
-        }
-        builder.append(" */");
-        final String license = builder.toString();
-        Logger.debug(this, "LICENSE found: %s", url);
-        Logger.debug(
-            this,
-            "LICENSE full text after parsing:\n%s",
-            license
-        );
-        return license;
-    }
-
-    /**
-     * Convert file name to URL.
-     * @param name The name of file
-     * @return The URL
-     * @see #header()
-     */
-    private URL toUrl(final String name) {
-        final URL url;
-        if (name.startsWith("file:")) {
-            try {
-                url = Paths.get(name.substring(5)).toUri().toURL();
-            } catch (final MalformedURLException ex) {
-                throw new IllegalStateException("Invalid URL", ex);
-            }
-        } else {
-            url = this.env.classloader().getResource(name);
-            if (url == null) {
-                throw new IllegalStateException(
-                    String.format(
-                        "'%s' resource is not found in classpath",
-                        name
-                    )
-                );
-            }
-        }
-        return url;
-    }
-
-    /**
-     * Divide string using separators to the parts adding empty lines for
-     * two consistently separators.
-     * @param content String line
-     * @param separators Separators string
-     * @return List of line parts
-     */
-    private static List<String> splitPreserve(final String content, final String separators) {
-        final List<String> tokens = new LinkedList<>();
-        final int len = content.length();
-        int ind = 0;
-        int start = 0;
-        while (ind < len) {
-            if (separators.indexOf(content.charAt(ind)) >= 0) {
-                tokens.add(content.substring(start, ind));
-                start = ind + 1;
-            }
-            ++ind;
-        }
-        tokens.add(content.substring(start, ind));
-        return tokens;
     }
 }

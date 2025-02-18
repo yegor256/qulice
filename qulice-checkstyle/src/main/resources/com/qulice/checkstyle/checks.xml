@@ -151,11 +151,6 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
     <property name="id" value="StartLineSymbolLimits"/>
     <property name="message" value="Line cannot start with this symbol, move it to the previous line"/>
   </module>
-  <!-- Checks for Header -->
-  <module name="Header">
-    <property name="header" value="${header}"/>
-    <property name="fileExtensions" value="java"/>
-  </module>
   <module name="SuppressionFilter">
     <property name="file" value="/com/qulice/checkstyle/suppressions.xml"/>
     <property name="optional" value="false"/>

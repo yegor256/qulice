@@ -92,42 +92,6 @@ final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator can catch checkstyle violations.
-     * @throws Exception If something wrong happens inside
-     */
-    @Test
-    void catchesCheckstyleViolationsInLicense() throws Exception {
-        final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines("License-1.", "", "License-2.")
-            .withEol("\n")
-            .file();
-        final String content =
-            // @checkstyle StringLiteralsConcatenation (4 lines)
-            "/" + "*\n * License-3.\n *\n * License-2.\n */\n"
-                + "package foo;\n"
-                + "public class Foo { }\n";
-        final String name = "Foo.java";
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toUrl(license)
-        ).withFile(String.format("src/main/java/foo/%s", name), content);
-        final Collection<Violation> results =
-            new CheckstyleValidator(env)
-                .validate(env.files(name));
-        MatcherAssert.assertThat(
-            "Header validation is expected",
-            results,
-            Matchers.hasItem(
-                new ViolationMatcher(
-                    "Line does not match expected header line of", name
-                )
-            )
-        );
-    }
-
-    /**
      * CheckstyleValidator can accept instance method references.
      * @throws Exception In case of error
      */
@@ -448,51 +412,6 @@ final class CheckstyleValidatorTest {
                 ),
                 new ViolationMatcher(
                     "Class Class should be declared as final.", file, "59", "FinalClassCheck"
-                )
-            )
-        );
-    }
-
-    /**
-     * CheckstyleValidator will fail if  Windows EOL-s are used.
-     * @throws Exception If something wrong happens inside
-     */
-    @Test
-    void passesWindowsEndsOfLineWithoutException() throws Exception {
-        final String file = "WindowsEol.java";
-        final Collection<Violation> results = this.runValidation(file, false);
-        MatcherAssert.assertThat(
-            "violation should be reported correctly",
-            results,
-            Matchers.contains(
-                new ViolationMatcher(
-                    "Line does not match expected header line of ' */'.",
-                    file,
-                    "3",
-                    "HeaderCheck"
-                )
-            )
-        );
-    }
-
-    /**
-     * Fail validation with Windows-style formatting of the license and
-     * Linux-style formatting of the sources.
-     * @throws Exception If something wrong happens inside
-     */
-    @Test
-    void testWindowsEndsOfLineWithLinuxSources() throws Exception {
-        final String file = "WindowsEolLinux.java";
-        final Collection<Violation> results = this.runValidation(file, false);
-        MatcherAssert.assertThat(
-            "violation should be reported correctly",
-            results,
-            Matchers.contains(
-                new ViolationMatcher(
-                    "Line does not match expected header line of ' * Hello.'.",
-                    file,
-                    "2",
-                    "HeaderCheck"
                 )
             )
         );
