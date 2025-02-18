@@ -55,7 +55,7 @@ final class LocalVariableCouldBeFinalRuleTest {
             new StringStartsWith(
                 String.join(
                     " ",
-                    "PMD: LocalVariableCouldBeFinal.java[6-6]:",
+                    "PMD: LocalVariableCouldBeFinal.java[36-36]:",
                     "Local variable 'nonfinal' could be declared final",
                     "(LocalVariableCouldBeFinal)"
                 )

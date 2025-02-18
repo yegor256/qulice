@@ -66,11 +66,11 @@ final class UseStringIsEmptyRuleTest {
     void detectLengthComparisons(final String file) throws Exception {
         new PmdAssert(
             file, new IsEqual<>(false),
-            new CombinableMatcher<>(containsMatcher(file, 16))
-                .and(containsMatcher(file, 20))
-                .and(containsMatcher(file, 24))
-                .and(containsMatcher(file, 28))
-                .and(containsMatcher(file, 32))
+            new CombinableMatcher<>(containsMatcher(file, 46))
+                .and(containsMatcher(file, 50))
+                .and(containsMatcher(file, 54))
+                .and(containsMatcher(file, 58))
+                .and(containsMatcher(file, 62))
         ).validate();
     }
 
