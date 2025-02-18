@@ -27,6 +27,7 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 # OF THE POSSIBILITY OF SUCH DAMAGE.
 ---
+# yamllint disable rule:line-length
 name: actionlint
 'on':
   push:
@@ -43,7 +44,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Download actionlint
         id: get_actionlint
-        # yamllint disable-line rule:line-length
         run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
         shell: bash
       - name: Check workflow files
