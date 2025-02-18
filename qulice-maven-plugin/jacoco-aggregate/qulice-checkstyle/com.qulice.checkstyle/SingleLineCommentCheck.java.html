@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SingleLineCommentCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">SingleLineCommentCheck.java</span></div><h1>SingleLineCommentCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2024 Qulice.com
+ * Copyright (c) 2011-2025 Yegor Bugayenko
  *
  * All rights reserved.
  *
@@ -33,13 +33,36 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * C++ style inline comment is not allowed.
  * Use //-style comment instead.
  * @since 0.18
  */
-<span class="nc" id="L42">public final class SingleLineCommentCheck extends AbstractCheck {</span>
+<span class="nc" id="L44">public final class SingleLineCommentCheck extends AbstractCheck {</span>
+
+    /**
+     * Pattern for check.
+     * It is not final as it is initialized from the configuration.
+     */
+<span class="nc" id="L50">    private Pattern format = Pattern.compile(&quot;^$&quot;);</span>
+
+    /**
+     * The message to report for a match.
+     * It is not final as it is initialized from the configuration.
+     */
+<span class="nc" id="L56">    private String message = &quot;&quot;;</span>
+
+    /**
+     * Comment line.
+     * It is not final because the visitToken method is called many times
+     * during the class under test and the field is reinitialized with a new object.
+     */
+    @SuppressWarnings(&quot;PMD.AvoidStringBufferField&quot;)
+    private StringBuilder line;
+
     /**
      * When inside a block comment, holds begin line number.
      */
@@ -47,34 +70,77 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
     @Override
     public boolean isCommentNodesRequired() {
-<span class="nc" id="L50">        return true;</span>
+<span class="nc" id="L73">        return true;</span>
     }
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L55">        return new int[]{</span>
+<span class="nc" id="L78">        return new int[]{</span>
             TokenTypes.BLOCK_COMMENT_BEGIN,
+            TokenTypes.COMMENT_CONTENT,
             TokenTypes.BLOCK_COMMENT_END,
         };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L63">        return this.getDefaultTokens();</span>
+<span class="nc" id="L87">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L68">        return this.getDefaultTokens();</span>
+<span class="nc" id="L92">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc bnc" id="L73" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {</span>
-<span class="nc" id="L74">            this.begin = ast.getLineNo();</span>
-<span class="nc bnc" id="L75" title="All 2 branches missed.">        } else if (this.begin == ast.getLineNo()) {</span>
-<span class="nc" id="L76">            this.log(ast, &quot;This kind of comment is not allowed.&quot;);</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {</span>
+<span class="nc" id="L98">            this.line = new StringBuilder(ast.getText());</span>
+<span class="nc" id="L99">            this.begin = ast.getLineNo();</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        } else if (ast.getType() == TokenTypes.COMMENT_CONTENT) {</span>
+<span class="nc" id="L101">            this.line.append(ast.getText());</span>
+        } else {
+<span class="nc" id="L103">            this.line.append(ast.getText());</span>
+<span class="nc" id="L104">            final Matcher matcher = this.format.matcher(this.line.toString());</span>
+<span class="nc bnc" id="L105" title="All 4 branches missed.">            if (matcher.matches() &amp;&amp; this.singleLineCStyleComment(ast)) {</span>
+<span class="nc" id="L106">                this.log(ast, this.message);</span>
+            }
         }
-<span class="nc" id="L78">    }</span>
+<span class="nc" id="L109">    }</span>
+
+    /**
+     * The method is called from checkstyle to configure this class.
+     * The parameter is set from the checks.xml file
+     * &lt;module name=&quot;com.qulice.checkstyle.SingleLineCommentCheck&quot;/&gt; and
+     * &lt;property name=&quot;format&quot; value=&quot; this regexp &quot;/&gt; property
+     *
+     * @param fmt Validatig regexp.
+     */
+    public void setFormat(final String fmt) {
+<span class="nc" id="L120">        this.format = Pattern.compile(fmt);</span>
+<span class="nc" id="L121">    }</span>
+
+    /**
+     * The method is called from checkstyle to configure this class.
+     * The parameter is set from the checks.xml file
+     * &lt;module name=&quot;com.qulice.checkstyle.SingleLineCommentCheck&quot;/&gt; and
+     * &lt;property name=&quot;message&quot; value=&quot;This kind of comment is not allowed.&quot;/&gt;
+     * property
+     *
+     * @param msg Error message.
+     */
+    public void setMessage(final String msg) {
+<span class="nc" id="L133">        this.message = msg;</span>
+<span class="nc" id="L134">    }</span>
+
+    /**
+     * Checks for the end of a comment line.
+     * @param ast Checkstyle's AST nodes.
+     * @return True if this is the end of the comment
+     *  and the starting line number is equal to the ending line number.
+     */
+    private boolean singleLineCStyleComment(final DetailAST ast) {
+<span class="nc bnc" id="L143" title="All 4 branches missed.">        return ast.getType() == TokenTypes.BLOCK_COMMENT_END &amp;&amp; this.begin == ast.getLineNo();</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

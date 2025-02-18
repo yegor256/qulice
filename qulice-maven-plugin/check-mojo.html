@@ -105,13 +105,13 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.23.0</strong>
+                                    <strong itemprop="version">0.24.0</strong>
                                 </li>
                                 <li>
                                     
-                                    <time itemprop="datePublished" datetime="2024-05-11T08:53:56Z">
+                                    <time itemprop="datePublished" datetime="2025-02-18T08:22:40Z">
                                         
-                                        11-May-2024
+                                        18-Feb-2025
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -122,14 +122,14 @@
                             <section>
 <h2><a name="qulice:check"></a>qulice:check</h2><a name="qulice:check"></a>
 <p><strong>Full name</strong>:</p>
-<p>com.qulice:qulice-maven-plugin:0.23.0:check</p>
+<p>com.qulice:qulice-maven-plugin:0.24.0:check</p>
 <p><strong>Description</strong>:</p>
 <p>Check the project and find all possible violations.</p>
 <p><strong>Attributes</strong>:</p>
 <ul>
 <li>Requires a Maven project to be executed.</li>
 <li>Requires dependency resolution of artifacts in scope: <code>test</code>.</li>
-<li>The goal is not marked as thread-safe and thus does not support parallel builds.</li>
+<li>The goal is thread-safe and supports parallel builds.</li>
 <li>Since version: <code>0.3</code>.</li>
 <li>Binds by default to the <a class="externalLink" href="https://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycle phase</a>: <code>verify</code>.</li></ul><section>
 <h3><a name="Optional_Parameters"></a>Optional Parameters</h3><a name="Optional_Parameters"></a>
@@ -155,11 +155,6 @@
 <td><code>-</code></td>
 <td>List of regular expressions to exclude.<br /><strong>User Property</strong>: <code>qulice.excludes</code></td></tr>
 <tr class="a">
-<td align="left"><a href="#license"><code>&lt;license&gt;</code></a></td>
-<td><code>String</code></td>
-<td><code>-</code></td>
-<td>Location of License file. If it is an absolute file name you should prepend it with "file:" prefix. Otherwise it is treated like a resource name and will be found in classpath (if available).<br /><strong>Default</strong>: <code>LICENSE.txt</code><br /><strong>User Property</strong>: <code>qulice.license</code></td></tr>
-<tr class="b">
 <td align="left"><a href="#skip"><code>&lt;skip&gt;</code></a></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
@@ -183,14 +178,7 @@
 <ul>
 <li><strong>Type</strong>: <code>java.util.Collection&lt;java.lang.String&gt;</code></li>
 <li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
-<li><strong>User Property</strong>: <code>qulice.excludes</code></li></ul><hr /></section><a name="license"><section>
-<h4><a name="a.3Clicense.3E"></a>&lt;license&gt;</h4><a name="a.3Clicense.3E"></a></a>
-<div>Location of License file. If it is an absolute file name you should prepend it with "file:" prefix. Otherwise it is treated like a resource name and will be found in classpath (if available).</div>
-<ul>
-<li><strong>Type</strong>: <code>java.lang.String</code></li>
-<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
-<li><strong>User Property</strong>: <code>qulice.license</code></li>
-<li><strong>Default</strong>: <code>LICENSE.txt</code></li></ul><hr /></section><a name="skip"><section>
+<li><strong>User Property</strong>: <code>qulice.excludes</code></li></ul><hr /></section><a name="skip"><section>
 <h4><a name="a.3Cskip.3E"></a>&lt;skip&gt;</h4><a name="a.3Cskip.3E"></a></a>
 <div>Shall we skip execution?</div>
 <ul>
@@ -204,7 +192,7 @@
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2024
+                                                                            2011-2025
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
                     <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>

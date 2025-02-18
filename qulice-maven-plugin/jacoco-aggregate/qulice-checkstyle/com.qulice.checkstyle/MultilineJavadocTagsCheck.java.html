@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>MultilineJavadocTagsCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">MultilineJavadocTagsCheck.java</span></div><h1>MultilineJavadocTagsCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2024 Qulice.com
+ * Copyright (c) 2011-2025 Yegor Bugayenko
  *
  * All rights reserved.
  *
@@ -67,33 +67,34 @@ import org.cactoos.text.Sub;
 <span class="nc" id="L67">        return new int[] {</span>
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
         };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L75">        return this.getDefaultTokens();</span>
+<span class="nc" id="L76">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L80">        return this.getDefaultTokens();</span>
+<span class="nc" id="L81">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc" id="L85">        final String[] lines = this.getLines();</span>
-<span class="nc" id="L86">        final int start = ast.getLineNo();</span>
-<span class="nc" id="L87">        final int cstart =</span>
-<span class="nc" id="L88">            MultilineJavadocTagsCheck.findCommentStart(lines, start) + 1;</span>
-<span class="nc" id="L89">        final int cend =</span>
-<span class="nc" id="L90">            MultilineJavadocTagsCheck.findCommentEnd(lines, start) - 1;</span>
-<span class="nc bnc" id="L91" title="All 4 branches missed.">        if (cend &gt;= cstart &amp;&amp; cstart &gt;= 0) {</span>
-<span class="nc" id="L92">            this.checkJavaDoc(lines, cstart, cend);</span>
+<span class="nc" id="L86">        final String[] lines = this.getLines();</span>
+<span class="nc" id="L87">        final int start = ast.getLineNo();</span>
+<span class="nc" id="L88">        final int cstart =</span>
+<span class="nc" id="L89">            MultilineJavadocTagsCheck.findCommentStart(lines, start) + 1;</span>
+<span class="nc" id="L90">        final int cend =</span>
+<span class="nc" id="L91">            MultilineJavadocTagsCheck.findCommentEnd(lines, start) - 1;</span>
+<span class="nc bnc" id="L92" title="All 4 branches missed.">        if (cend &gt;= cstart &amp;&amp; cstart &gt;= 0) {</span>
+<span class="nc" id="L93">            this.checkJavaDoc(lines, cstart, cend);</span>
         } else {
-<span class="nc" id="L94">            this.log(0, &quot;Can't find method comment&quot;);</span>
+<span class="nc" id="L95">            this.log(0, &quot;Can't find method comment&quot;);</span>
         }
-<span class="nc" id="L96">    }</span>
+<span class="nc" id="L97">    }</span>
 
     /**
      * Checks method's Java Doc for satisfy indentation rules.
@@ -104,24 +105,24 @@ import org.cactoos.text.Sub;
     @SuppressWarnings(&quot;PMD.InefficientEmptyStringCheck&quot;)
     private void checkJavaDoc(final String[] lines, final int start,
         final int end) {
-<span class="nc" id="L107">        boolean tagged = false;</span>
-<span class="nc" id="L108">        int index = -1;</span>
-<span class="nc bnc" id="L109" title="All 2 branches missed.">        for (int current = start; current &lt;= end; current += 1) {</span>
-<span class="nc" id="L110">            final String line = lines[current];</span>
-<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (line.contains(&quot;* @&quot;)) {</span>
-<span class="nc" id="L112">                tagged = true;</span>
-<span class="nc" id="L113">                index = line.indexOf('@');</span>
+<span class="nc" id="L108">        boolean tagged = false;</span>
+<span class="nc" id="L109">        int index = -1;</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">        for (int current = start; current &lt;= end; current += 1) {</span>
+<span class="nc" id="L111">            final String line = lines[current];</span>
+<span class="nc bnc" id="L112" title="All 2 branches missed.">            if (line.contains(&quot;* @&quot;)) {</span>
+<span class="nc" id="L113">                tagged = true;</span>
+<span class="nc" id="L114">                index = line.indexOf('@');</span>
             } else {
-<span class="nc bnc" id="L115" title="All 2 branches missed.">                if (tagged) {</span>
-<span class="nc" id="L116">                    final int comment = line.indexOf('*');</span>
-<span class="nc" id="L117">                    final String sub = new Sub(</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">                if (tagged) {</span>
+<span class="nc" id="L117">                    final int comment = line.indexOf('*');</span>
+<span class="nc" id="L118">                    final String sub = new Sub(</span>
                         line, comment + 1, index + 1
-<span class="nc" id="L119">                    ).toString();</span>
-<span class="nc" id="L120">                    final String ext = new Sub(</span>
+<span class="nc" id="L120">                    ).toString();</span>
+<span class="nc" id="L121">                    final String ext = new Sub(</span>
                         line, comment + 1, index + 2
-<span class="nc" id="L122">                    ).toString();</span>
-<span class="nc bnc" id="L123" title="All 4 branches missed.">                    if (!sub.trim().isEmpty() || ext.trim().isEmpty()) {</span>
-<span class="nc" id="L124">                        this.log(</span>
+<span class="nc" id="L123">                    ).toString();</span>
+<span class="nc bnc" id="L124" title="All 4 branches missed.">                    if (!sub.trim().isEmpty() || ext.trim().isEmpty()) {</span>
+<span class="nc" id="L125">                        this.log(</span>
                             current + 1,
                             &quot;Should contain one indentation space&quot;
                         );
@@ -129,7 +130,7 @@ import org.cactoos.text.Sub;
                 }
             }
         }
-<span class="nc" id="L132">    }</span>
+<span class="nc" id="L133">    }</span>
 
     /**
      * Find javadoc starting comment.
@@ -138,7 +139,7 @@ import org.cactoos.text.Sub;
      * @return Line number with found starting comment or -1 otherwise.
      */
     private static int findCommentStart(final String[] lines, final int start) {
-<span class="nc" id="L141">        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;/**&quot;);</span>
+<span class="nc" id="L142">        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;/**&quot;);</span>
     }
 
     /**
@@ -148,7 +149,7 @@ import org.cactoos.text.Sub;
      * @return Line number with found ending comment, or -1 if it wasn't found.
      */
     private static int findCommentEnd(final String[] lines, final int start) {
-<span class="nc" id="L151">        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;*/&quot;);</span>
+<span class="nc" id="L152">        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, &quot;*/&quot;);</span>
     }
 
     /**
@@ -160,14 +161,14 @@ import org.cactoos.text.Sub;
      */
     private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
-<span class="nc" id="L163">        int found = -1;</span>
-<span class="nc bnc" id="L164" title="All 2 branches missed.">        for (int pos = start - 1; pos &gt;= 0; pos -= 1) {</span>
-<span class="nc bnc" id="L165" title="All 2 branches missed.">            if (lines[pos].trim().equals(text)) {</span>
-<span class="nc" id="L166">                found = pos;</span>
-<span class="nc" id="L167">                break;</span>
+<span class="nc" id="L164">        int found = -1;</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">        for (int pos = start - 1; pos &gt;= 0; pos -= 1) {</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (lines[pos].trim().equals(text)) {</span>
+<span class="nc" id="L167">                found = pos;</span>
+<span class="nc" id="L168">                break;</span>
             }
         }
-<span class="nc" id="L170">        return found;</span>
+<span class="nc" id="L171">        return found;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

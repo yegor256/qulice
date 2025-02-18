@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>RequiredJavaDocTag.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">RequiredJavaDocTag.java</span></div><h1>RequiredJavaDocTag.java</h1><pre class="source lang-java linenums">/*
+ * Copyright (c) 2011-2025 Yegor Bugayenko
+ *
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met: 1) Redistributions of source code must retain the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer. 2) Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution. 3) Neither the name of the Qulice.com nor
+ * the names of its contributors may be used to endorse or promote
+ * products derived from this software without specific prior written
+ * permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+ * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+ * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+ * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+ * OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+package com.qulice.checkstyle;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Check the required JavaDoc tag in the lines.
+ * &lt;p&gt;Correct format is the following (of a class javadoc):
+ *
+ * &lt;pre&gt;
+ * &amp;#47;**
+ *  * This is my new class.
+ *  *
+ *  * &amp;#64;since 0.3
+ *  *&amp;#47;
+ * public final class Foo {
+ *     &amp;#47;**
+ *      * This is my other class.
+ *      *
+ *      *    &amp;#64;since    0.3
+ *      *&amp;#47;
+ *     public final class Boo {
+ *     // ...
+ * &lt;/pre&gt;
+ *
+ * &lt;p&gt;&quot;&amp;#36;Id&amp;#36;&quot; will be replaced by a full text automatically
+ * by Subversion as explained in their documentation (see link below).
+ *
+ * @see &lt;a href=&quot;http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html&quot;&gt;Keywords substitution in Subversion&lt;/a&gt;
+
+ * @since 0.23.1
+ */
+final class RequiredJavaDocTag {
+    /**
+     * Tag name.
+     */
+    private final String name;
+
+    /**
+     * Pattern for searching a tag in a string.
+     */
+    private final Pattern tag;
+
+    /**
+     * Pattern for checking the contents of a tag in a string.
+     */
+    private final Pattern content;
+
+    /**
+     * Reference to a method for writing a message to the log.
+     */
+    private final Reporter reporter;
+
+    /**
+     * Ctor.
+     * @param name Tag name.
+     * @param patt Pattern for checking the contents of a tag in a string.
+     * @param rep Reference to a method for writing a message to the log.
+     */
+    RequiredJavaDocTag(
+        final String name,
+        final Pattern patt,
+        final Reporter rep
+    ) {
+<span class="nc" id="L97">        this(</span>
+            name,
+<span class="nc" id="L99">            Pattern.compile(</span>
+<span class="nc" id="L100">                String.format(</span>
+                    &quot;(?&lt;name&gt;^ +\\* +@%s)( +)(?&lt;cont&gt;.*)&quot;,
+                    name
+                )
+            ),
+            patt,
+            rep
+        );
+<span class="nc" id="L108">    }</span>
+
+    /**
+     * Ctor.
+     * @param cname Tag name.
+     * @param ptag Pattern for searching a tag in a string.
+     * @param patt Pattern for checking the contents of a tag in a string.
+     * @param rep Reference to a method for writing a message to the log.
+     * @checkstyle ParameterNumberCheck (3 lines)
+     */
+    RequiredJavaDocTag(
+        final String cname,
+        final Pattern ptag,
+        final Pattern patt,
+        final Reporter rep
+<span class="nc" id="L123">    ) {</span>
+<span class="nc" id="L124">        this.name = cname;</span>
+<span class="nc" id="L125">        this.tag = ptag;</span>
+<span class="nc" id="L126">        this.content = patt;</span>
+<span class="nc" id="L127">        this.reporter = rep;</span>
+<span class="nc" id="L128">    }</span>
+
+    /**
+     * Check if the tag text matches the format from pattern.
+     * @param lines List of all lines.
+     * @param start Line number where comment starts.
+     * @param end Line number where comment ends.
+     */
+    public void matchTagFormat(
+        final String[] lines,
+        final int start,
+        final int end
+    ) {
+<span class="nc" id="L141">        final Map&lt;Integer, String&gt; found = new HashMap&lt;&gt;(1);</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        for (int pos = start; pos &lt;= end; pos += 1) {</span>
+<span class="nc" id="L143">            final String line = lines[pos];</span>
+<span class="nc" id="L144">            final Matcher matcher = this.tag.matcher(line);</span>
+<span class="nc bnc" id="L145" title="All 2 branches missed.">            if (RequiredJavaDocTag.tagFound(matcher)) {</span>
+<span class="nc" id="L146">                found.put(pos, matcher.group(&quot;cont&quot;));</span>
+<span class="nc" id="L147">                break;</span>
+            }
+        }
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        if (found.isEmpty()) {</span>
+<span class="nc" id="L151">            this.reporter.log(</span>
+                start + 1,
+                &quot;Missing ''@{0}'' tag in class/interface comment&quot;,
+                this.name
+            );
+        } else {
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            for (final Map.Entry&lt;Integer, String&gt; item : found.entrySet()) {</span>
+<span class="nc bnc" id="L158" title="All 2 branches missed.">                if (!this.content.matcher(item.getValue()).matches()) {</span>
+<span class="nc" id="L159">                    this.reporter.log(</span>
+<span class="nc" id="L160">                        item.getKey() + 1,</span>
+                        &quot;Tag text ''{0}'' does not match the pattern ''{1}''&quot;,
+<span class="nc" id="L162">                        item.getValue(),</span>
+<span class="nc" id="L163">                        this.content.toString()</span>
+                    );
+                }
+<span class="nc" id="L166">            }</span>
+        }
+<span class="nc" id="L168">    }</span>
+
+    /**
+     * Finds the tag name and the following sentences.
+     * @param matcher Tag name matcher.
+     * @return True if the tag and its clauses are found.
+     */
+    private static boolean tagFound(final Matcher matcher) {
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        return matcher.matches()</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            &amp;&amp; !RequiredJavaDocTag.empty(matcher.group(&quot;name&quot;))</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">            &amp;&amp; !RequiredJavaDocTag.empty(matcher.group(&quot;cont&quot;));</span>
+    }
+
+    /**
+     * Checks for an empty string.
+     * @param str Line to check.
+     * @return True if str is empty.
+     */
+    private static boolean empty(final String str) {
+<span class="nc bnc" id="L187" title="All 4 branches missed.">        return str == null || str.isBlank();</span>
+    }
+
+    /**
+     * Logger.
+     * @see com.puppycrawl.tools.checkstyle.api.AbstractCheck#log(int, String, Object...)
+     * @since 0.23.1
+     */
+    interface Reporter {
+        /**
+         * Log a message that has no column information.
+         *
+         * @param line The line number where the audit event was found.
+         * @param msg The message that describes the audit event.
+         * @param args The details of the message.
+         * @see java.text.MessageFormat
+         */
+        void log(int line, String msg, Object... args);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
