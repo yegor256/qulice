@@ -42,3 +42,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: yegor256/copyrights-action@0.0.8
+        with:
+          ignore: >-
+            qulice-maven-plugin/src/it/pmd-violations/src/main/util/some.tex
+            qulice-checkstyle/src/test/resources/com/qulice/checkstyle/**/*.java
+            qulice-maven-plugin/src/it/checkstyle-violations/src/main/java/com/qulice/plugin/violations/IndentationChecks.java
