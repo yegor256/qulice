@@ -113,7 +113,9 @@ public final class MultilineJavadocTagsCheck extends AbstractCheck {
      * @return Line number with found starting comment or -1 otherwise.
      */
     private static int findCommentStart(final String[] lines, final int start) {
-        return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, "/**");
+        int doc = MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, "/**");
+        int comment = MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, "/*");
+        return Math.max(doc, comment);
     }
 
     /**
