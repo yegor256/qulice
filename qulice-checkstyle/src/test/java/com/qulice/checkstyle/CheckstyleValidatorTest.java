@@ -724,6 +724,17 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * {@link MultilineJavadocTagsCheck} mustn't throw an internal exception,
+     * if it meets a block comment instead of javadoc.
+     * @throws Exception If an internal exception occurs
+     */
+    @Test
+    void rejectsInvalidMethodDocWithoutInternalException()
+        throws Exception {
+        this.runValidation("InvalidMethodDoc.java", false);
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
