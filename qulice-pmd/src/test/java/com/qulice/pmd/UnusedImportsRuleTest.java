@@ -29,7 +29,7 @@ final class UnusedImportsRuleTest {
             new StringStartsWith(
                 String.join(
                     " ",
-                    "PMD: UnusedImports.java[33-33]: Unused import",
+                    "PMD: UnusedImports.java[7-7]: Unused import",
                     "'unused.bar.foo.UnusedImport'",
                     "(UnnecessaryImport)"
                 ).trim()
