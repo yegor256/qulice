@@ -102,7 +102,10 @@ public final class BracketsStructureCheck extends AbstractCheck {
      */
     private void checkExpressionList(final DetailAST elist, final int end) {
         if (elist.getChildCount() > 0) {
-            final DetailAST last = elist.getLastChild();
+            DetailAST last = elist.getLastChild();
+            while (last.getChildCount() > 0) {
+                last = last.getLastChild();
+            }
             final int lline = last.getLineNo();
             if (lline == end) {
                 this.log(lline, "Closing bracket should be on a new line");

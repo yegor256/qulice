@@ -41,4 +41,31 @@ public final class Invalid {
       Invalid d1 = new Invalid(
         x, y);
     }
+    // Check nested method call
+    public String nest(String... lines) {
+        nest(
+          nest(
+            "Good"
+          )
+        );
+        nest(
+          nest(
+            "Bad"
+          ));
+        nest(
+          nest(
+            "Good"
+          ),
+          nest(
+             "Bad"
+          ));
+        nest(
+          nest(
+            "Good"
+          ),
+          nest(
+            "Good"
+          )
+        );
+    }
 }
