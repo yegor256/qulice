@@ -11,6 +11,7 @@
 [![codecov](https://codecov.io/gh/yegor256/qulice/branch/master/graph/badge.svg)](https://codecov.io/gh/yegor256/qulice)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/qulice)](https://hitsofcode.com/view/github/yegor256/qulice)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/qulice/blob/master/LICENSE.txt)
+[![libs.tech recommends](https://libs.tech/project/9580168/badge.svg)](https://libs.tech/project/9580168/qulice)
 
 Qulice is a static analysis quality control instrument for Java
 projects. It combines all the best static analysis instruments
