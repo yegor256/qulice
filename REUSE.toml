@@ -4,12 +4,14 @@
 version = 1
 [[annotations]]
 path = [
+    "**.fml",
     "**.json",
     "**.md",
     "**.svg",
     "**.txt",
     "**.vm",
     "**/*.csv",
+    "**/*.fml",
     "**/*.jpg",
     "**/*.json",
     "**/*.md",
@@ -22,15 +24,14 @@ path = [
     "**/.gitignore",
     "**/.pdd",
     "**/CNAME",
-    "**/*.fml",
-    "qulice-checkstyle/src/test/resources/**.java",
-    "qulice-maven-plugin/src/it/**.java",
     ".DS_Store",
     ".gitattributes",
     ".gitignore",
     ".pdd",
     "CNAME",
     "README.md",
+    "qulice-checkstyle/src/test/resources/**.java",
+    "qulice-maven-plugin/src/it/**.java",
     "renovate.json",
 ]
 precedence = "override"
