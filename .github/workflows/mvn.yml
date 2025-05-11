@@ -30,4 +30,4 @@ jobs:
           key: ${{ runner.os }}-jdk-${{ matrix.java }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-jdk-${{ matrix.java }}-maven-
-      - run: mvn -B install -Pqulice -e
+      - run: mvn -B install -Pqulice
