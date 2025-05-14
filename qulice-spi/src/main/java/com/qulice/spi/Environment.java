@@ -269,22 +269,19 @@ public interface Environment {
             return Collections.unmodifiableCollection(this.classpath);
         }
 
-        @Override
+       @Override
         @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
         public Collection<File> files(final String pattern) {
             final Collection<File> files = new LinkedList<>();
             final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();
-            for (final String dir : new String[]{"src"}) {
-                final File sources = new File(this.basedir(), dir);
-                if (sources.exists()) {
-                    files.addAll(
-                        FileUtils.listFiles(
-                            sources,
-                            filter,
-                            DirectoryFileFilter.INSTANCE
-                        )
-                    );
-                }
+            if (this.basedir().exists()) {
+                files.addAll(
+                    FileUtils.listFiles(
+                        this.basedir(),
+                        filter,
+                        DirectoryFileFilter.INSTANCE
+                    )
+                );
             }
             return files;
         }
