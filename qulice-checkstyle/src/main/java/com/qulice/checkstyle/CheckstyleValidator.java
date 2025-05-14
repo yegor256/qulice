@@ -134,9 +134,13 @@ public final class CheckstyleValidator implements ResourceValidator {
         }
         final Properties props = new Properties();
         props.setProperty("cache.file", cache.getPath());
-        final InputSource src = new InputSource(
-            this.getClass().getResourceAsStream("checks.xml")
-        );
+        final java.io.InputStream checksStream = this.getClass().getResourceAsStream("checks.xml");
+        if (checksStream == null) {
+            throw new IllegalStateException(
+                "Checkstyle configuration file 'checks.xml' not found in classpath."
+            );
+        }
+        final InputSource src = new InputSource(checksStream);
         final Configuration config;
         try {
             config = ConfigurationLoader.loadConfiguration(
