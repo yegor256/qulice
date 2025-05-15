@@ -1,4 +1,6 @@
-<img alt="logo" src="https://www.qulice.com/logo.svg" width="200px" height="55px"/>
+# Qulice
+
+![logo](https://www.qulice.com/logo.svg)
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![DevOps By Rultor.com](https://www.rultor.com/b/yegor256/qulice)](https://www.rultor.com/p/yegor256/qulice)
@@ -72,7 +74,7 @@ they don't violate our quality standards. To avoid frustration, before
 sending us your pull request please run full Maven build:
 
 ```bash
-$ mvn clean install -Pqulice
+mvn clean install -Pqulice
 ```
 
 Keep in mind that JDK 11+ and Maven 3.8+ are the lowest versions you may use.
