@@ -125,7 +125,7 @@ public interface Violation extends Comparable<Violation> {
         public int compareTo(final Violation other) {
             int cmp = this.vldtr.compareToIgnoreCase(other.validator());
             if (cmp == 0) {
-                cmp = this.fle.compareTo(other.file());
+                cmp = this.file.compareTo(other.file());
             }
             if (cmp == 0) {
                 // Attempt to parse lines as integers for numeric comparison
@@ -139,7 +139,7 @@ public interface Violation extends Comparable<Violation> {
                 }
             }
             if (cmp == 0) {
-                cmp = this.nam.compareToIgnoreCase(other.name());
+                cmp = this.name.compareToIgnoreCase(other.name());
             }
             if (cmp == 0) {
                 cmp = this.msg.compareTo(other.message());
