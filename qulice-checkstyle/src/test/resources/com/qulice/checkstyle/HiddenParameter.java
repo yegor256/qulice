@@ -4,7 +4,7 @@
 package foo;
 
 /**
- * Hidden paramater test.
+ * Hidden parameter test.
  * @since 1.0
  */
 class HiddenParameter {
