@@ -34,7 +34,7 @@ public final class LineRanges {
     }
 
     /**
-     * Returns an iterator for this collection.
+     * Returns an iterator over the elements in this collection.
      * @return Iterator pointing to the internal collections elements.
      */
     public Iterator<LineRange> iterator() {
