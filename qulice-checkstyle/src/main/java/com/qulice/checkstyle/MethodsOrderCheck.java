@@ -198,11 +198,11 @@ public final class MethodsOrderCheck extends AbstractCheck {
 
         /**
          * Constructor.
-         * @param typ TokenType of DetailAST which represents modifier
+         * @param type TokenType of DetailAST which represents modifier
          * @param ord Order of the modifier in class definition
          */
-        Modifiers(final Integer typ, final Integer ord) {
-            this.type = typ;
+        Modifiers(final Integer type, final Integer ord) {
+            this.type = type;
             this.order = ord;
         }
 

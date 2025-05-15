@@ -25,7 +25,7 @@ public class Arguments {
 
     /**
      * Secondary ctor.
-     * @param node Constructor or method defenition node.
+     * @param node Constructor or method definition node.
      */
     public Arguments(final DetailAST node) {
         this(
