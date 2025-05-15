@@ -68,10 +68,10 @@ public final class Violations {
 
         /**
          * Constructor.
-         * @param nam Name.
+         * @param name Name.
          */
-        Foo(final String nam) {
-            this.name = nam;
+        Foo(final String name) {
+            this.name = name;
         }
 
         @Override
