@@ -61,7 +61,7 @@
       </property>
     </properties>
   </rule>
-  <rule name="PrimaryConstructorLast" message="Primary constructor (with most parameters) should be placed at the end of constructors list" class="com.qulice.pmd.checks.PrimaryConstructorLastRule">
+  <rule name="PrimaryConstructorLast" message="Primary constructor (with most parameters) should be placed at the end of constructors list" class="com.qulice.pmd.rules.PrimaryConstructorLastRule">
     <description>
       This rule checks that the constructor with the most parameters (primary constructor)
       is placed after all other constructors in the class. This convention improves
