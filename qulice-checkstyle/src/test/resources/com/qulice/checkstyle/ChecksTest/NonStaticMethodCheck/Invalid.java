@@ -11,7 +11,7 @@ public class InvalidTest {
     }
     @Deprecated
     public String name() {
-        return "method with non-overide annotation";
+        return "method with non-override annotation";
     }
     public synchronized String name() {
         return "method with non-native and non-abstract modifier";
