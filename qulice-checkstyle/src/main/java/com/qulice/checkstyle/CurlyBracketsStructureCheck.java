@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Checks node/closing curly brackets to be the last symbols on the line.
  *
- * <p>This is how a correct curly bracket structure should look like:
+ * <p>This is how a correct curly bracket structure should look as follows:
  *
  * <pre>
  * String[] array = new String[] {
