@@ -22,7 +22,7 @@ public final class CallToConstructorInConstructor extends Super {
         return number;
     }
 
-    public int setAnother() {
+    public int getAnother() {
         return another;
     }
 }
