@@ -127,8 +127,16 @@ public final class CheckstyleValidator implements ResourceValidator {
         if (!parent.exists() && !parent.mkdirs()) {
             throw new IllegalStateException(
                 String.format(
-                    "Unable to create directories needed for %s",
-                    cache.getPath()
+                    "Unable to create directories needed for %s at %s",
+                    cache.getPath(), parent.getAbsolutePath()
+                )
+            );
+        }
+        if (!parent.canWrite()) {
+            throw new IllegalStateException(
+                String.format(
+                    "Unable to write to directory %s, check permissions.",
+                    parent.getAbsolutePath()
                 )
             );
         }
