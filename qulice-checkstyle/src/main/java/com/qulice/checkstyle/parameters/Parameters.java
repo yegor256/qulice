@@ -29,7 +29,7 @@ public class Parameters {
     private final int parent;
 
     /**
-     * Childs TokenType (TYPE_PARAMETER or PARAMETER_DEF).
+     * Children TokenType (TYPE_PARAMETER or PARAMETER_DEF).
      * @see com.puppycrawl.tools.checkstyle.api.TokenTypes
      */
     private final int childs;
@@ -38,7 +38,7 @@ public class Parameters {
      * Primary ctor.
      * @param node Class, interface, constructor or method definition node.
      * @param parent Parent TokenType (TYPE_PARAMETERS or PARAMETERS).
-     * @param childs Childs TokenType (TYPE_PARAMETER or PARAMETER_DEF).
+     * @param childs Children TokenType (TYPE_PARAMETER or PARAMETER_DEF).
      */
     public Parameters(
         final DetailAST node, final int parent, final int childs

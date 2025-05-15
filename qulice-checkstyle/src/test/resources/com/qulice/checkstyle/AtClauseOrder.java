@@ -52,7 +52,7 @@ public final class AtClauseOrder {
     }
 
     /**
-     * Just a class with inavlid Javadoc.
+     * Just a class with invalid Javadoc.
      *
      * @since 1.0
      */

@@ -20,7 +20,7 @@ public final class ValidSingleLineCommentCheck {
      */
     public static final String ANOTHER_LITERAL = "/**/";
 
-    /** Valide sinle line literal. */
+    /** Valid sinle line literal. */
     public static final String SINGLE_LINE_LITERAL = "/**   this is not comment  **/";
 
     /**
