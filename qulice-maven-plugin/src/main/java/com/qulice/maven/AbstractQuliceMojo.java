@@ -98,11 +98,11 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Set asserts option.
-     * @param asserts Asserts to use.
+     * @param newAsserts Asserts to use.
      */
-    public final void setAsserts(final Collection<String> asserts) {
+    public final void setAsserts(final Collection<String> newAsserts) {
         this.asserts.clear();
-        this.asserts.addAll(asserts);
+        this.asserts.addAll(newAsserts);
     }
 
     /**
