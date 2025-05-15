@@ -109,7 +109,14 @@
       <property name="xpath">
         <value><![CDATA[
           //ClassOrInterfaceBody[count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration)>1]
-          [count(ClassOrInterfaceBodyDeclaration/ConstructorDeclaration[BlockStatement])>1]
+          [count(
+            ClassOrInterfaceBodyDeclaration/ConstructorDeclaration[
+              BlockStatement[not(
+                Statement/StatementExpression/PrimaryExpression/PrimaryPrefix[@ThisModifier="true"]
+                or Statement/StatementExpression/PrimaryExpression/PrimaryPrefix[@SuperModifier="true"]
+              )]
+            ]
+          )>1]
         ]]></value>
       </property>
     </properties>
