@@ -1,4 +1,6 @@
 /**
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  * Check that primary constructor is placed at the end of constructors list.
  *
  * This rule checks that the constructor with the most parameters (primary constructor)
