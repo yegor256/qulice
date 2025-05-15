@@ -33,8 +33,8 @@ public interface Violation extends Comparable<Violation> {
     String file();
 
     /**
-     * Lines with the problem.
-     * @return Lines with the problem
+     * Lines with the problem(s).
+     * @return Lines with the problem(s)
      */
     String lines();
 
