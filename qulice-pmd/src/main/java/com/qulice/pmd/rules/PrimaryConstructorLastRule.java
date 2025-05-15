@@ -72,7 +72,7 @@ public final class PrimaryConstructorLastRule extends AbstractJavaRule {
         // Check if primary constructor is the last one
         ASTConstructorDeclaration lastConstructor = directConstructors.get(directConstructors.size() - 1);
         if (primaryConstructor != lastConstructor) {
-            addViolation(data, primaryConstructor, MESSAGE);
+            asCtx(data).addViolation(primaryConstructor, MESSAGE);
         }
     }
 
@@ -103,6 +103,6 @@ public final class PrimaryConstructorLastRule extends AbstractJavaRule {
      */
     private int getParameterCount(ASTConstructorDeclaration constructor) {
         ASTFormalParameters params = constructor.getFirstDescendantOfType(ASTFormalParameters.class);
-        return params != null ? params.getParameterCount() : 0;
+        return params != null ? params.size() : 0;
     }
 }
