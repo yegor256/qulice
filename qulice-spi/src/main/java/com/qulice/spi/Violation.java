@@ -87,8 +87,8 @@ public interface Violation extends Comparable<Violation> {
          * @param msg Validation message
          * @checkstyle ParameterNumber (3 lines)
          */
-        public Default(final String vldtr, final String name, final String file,
-                       final String lns, final String msg) {
+        public Default(final String vldtr, final String name,
+            final String file, final String lns, final String msg) {
             this.vldtr = vldtr;
             this.name = name;
             this.file = file;
