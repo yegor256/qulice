@@ -69,7 +69,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     /**
      * Xpath queries for pom.xml validation.
      */
-    private final Collection<String> asser = new LinkedList<>();
+    private final Collection<String> assertion = new LinkedList<>();
 
     /**
      * Source code encoding charset.
@@ -178,7 +178,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public Collection<String> asserts() {
-        return this.asser;
+        return this.assertion;
     }
 
     @Override
@@ -267,9 +267,9 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * Set list of Xpath queries for pom.xml validation.
      * @param ass Xpath queries
      */
-    public void setAsser(final Collection<String> ass) {
-        this.asser.clear();
-        this.asser.addAll(ass);
+    public void setAssertion(final Collection<String> ass) {
+        this.assertion.clear();
+        this.assertion.addAll(ass);
     }
 
     public void setEncoding(final String encoding) {

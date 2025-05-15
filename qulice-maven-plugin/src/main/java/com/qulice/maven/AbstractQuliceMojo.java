@@ -139,7 +139,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
             new MojoExecutor(this.manager, this.sess)
         );
         this.environment.setExcludes(this.excludes);
-        this.environment.setAsser(this.asserts);
+        this.environment.setAssertion(this.asserts);
         this.environment.setEncoding(this.charset);
         final long start = System.nanoTime();
         this.doExecute();
