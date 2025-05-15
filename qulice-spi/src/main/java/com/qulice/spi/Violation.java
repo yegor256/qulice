@@ -61,7 +61,7 @@ public interface Violation extends Comparable<Violation> {
         /**
          * Name of the failed check.
          */
-        private final String nam;
+        private final String name;
 
         /**
          * Lines with the problem.
@@ -71,7 +71,7 @@ public interface Violation extends Comparable<Violation> {
         /**
          * Validated file.
          */
-        private final String fle;
+        private final String file;
 
         /**
          * Validation message.
@@ -81,17 +81,17 @@ public interface Violation extends Comparable<Violation> {
         /**
          * Constructor.
          * @param vldtr Name of the validator
-         * @param nam Name of the failed check
-         * @param fle Validated file
+         * @param name Name of the failed check
+         * @param file Validated file
          * @param lns Lines with the problem
          * @param msg Validation message
          * @checkstyle ParameterNumber (3 lines)
          */
-        public Default(final String vldtr, final String nam, final String fle,
-            final String lns, final String msg) {
+        public Default(final String vldtr, final String name, final String file,
+                       final String lns, final String msg) {
             this.vldtr = vldtr;
-            this.nam = nam;
-            this.fle = fle;
+            this.name = name;
+            this.file = file;
             this.lns = lns;
             this.msg = msg;
         }
@@ -103,12 +103,12 @@ public interface Violation extends Comparable<Violation> {
 
         @Override
         public String name() {
-            return this.nam;
+            return this.name;
         }
 
         @Override
         public String file() {
-            return this.fle;
+            return this.file;
         }
 
         @Override

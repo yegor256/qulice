@@ -32,20 +32,20 @@ public class Parameters {
      * Children TokenType (TYPE_PARAMETER or PARAMETER_DEF).
      * @see com.puppycrawl.tools.checkstyle.api.TokenTypes
      */
-    private final int childs;
+    private final int children;
 
     /**
      * Primary ctor.
      * @param node Class, interface, constructor or method definition node.
      * @param parent Parent TokenType (TYPE_PARAMETERS or PARAMETERS).
-     * @param childs Children TokenType (TYPE_PARAMETER or PARAMETER_DEF).
+     * @param children Children TokenType (TYPE_PARAMETER or PARAMETER_DEF).
      */
     public Parameters(
-        final DetailAST node, final int parent, final int childs
+        final DetailAST node, final int parent, final int children
     ) {
         this.node = node;
         this.parent = parent;
-        this.childs = childs;
+        this.children = children;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Parameters {
         if (params == null) {
             result = 0;
         } else {
-            result = params.getChildCount(this.childs);
+            result = params.getChildCount(this.children);
         }
         return result;
     }
@@ -77,7 +77,7 @@ public class Parameters {
             result = new ArrayList<>(count);
             DetailAST child = params.getFirstChild();
             while (child != null) {
-                if (child.getType() == this.childs) {
+                if (child.getType() == this.children) {
                     result.add(child);
                 }
                 child = child.getNextSibling();
