@@ -22,9 +22,7 @@ public final class CallToConstructorInConstructor extends Super {
         return number;
     }
 
-    // typos:disable
     public int anothe() {
         return another;
     }
-    // typos:enable
 }

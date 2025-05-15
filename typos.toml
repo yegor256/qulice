@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
+
+[files]
+extend-exclude = [
+    "qulice-pmd/src/test/resources/com/qulice/pmd/CallToConstructorInConstructor.java",
+    "qulice-checkstyle/src/test/resources/com/qulice/checkstyle/ValidSingleLineCommentCheck.java"
+]
+
+[default.extend-identifiers]
+nam = "nam"
+fle = "fle"
+childs = "childs"
+asser = "asser"
+typ = "typ"
+anothe = "anothe"
+sinle = "sinle"
+
+[default.extend-words]
+childs = "childs"
+asser = "asser"
+typ = "typ"
+Asser = "Asser"
