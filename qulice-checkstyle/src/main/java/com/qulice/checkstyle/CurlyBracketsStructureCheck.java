@@ -11,7 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.List;
 
 /**
- * Checks node/closing curly brackets to be the last symbols on the line.
+  * Checks that opening/closing curly brackets are the last symbols on the line.
  *
  * <p>This is how a correct curly bracket structure should look like:
  *
