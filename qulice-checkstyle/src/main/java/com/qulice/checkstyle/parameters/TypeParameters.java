@@ -25,7 +25,7 @@ public class TypeParameters {
 
     /**
      * Secondary ctor.
-     * @param node Class, interface, constructor or method defenition node.
+     * @param node Class, interface, constructor or method definition node.
      */
     public TypeParameters(final DetailAST node) {
         this(
