@@ -11,6 +11,9 @@ import com.qulice.spi.Environment;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * Listener of Checkstyle events.
@@ -69,9 +72,15 @@ final class CheckstyleListener implements AuditListener {
 
     @Override
     public void addError(final AuditEvent event) {
-        final String name = event.getFileName().substring(
-            this.env.basedir().toString().length()
-        );
+        final Path basePath = Paths.get(this.env.basedir().toURI());
+        final Path filePath = Paths.get(event.getFileName());
+        final String name;
+        if (filePath.isAbsolute()) {
+            name = basePath.relativize(filePath).toString();
+        } else {
+            name = filePath.toString();
+        }
+
         if (!this.env.exclude("checkstyle", name)) {
             this.all.add(event);
         }
@@ -81,12 +90,18 @@ final class CheckstyleListener implements AuditListener {
     public void addException(final AuditEvent event,
         final Throwable throwable) {
         final String check = event.getSourceName();
+        final Path basePath = Paths.get(this.env.basedir().toURI());
+        final Path filePath = Paths.get(event.getFileName());
+        final String relativeFileName;
+        if (filePath.isAbsolute()) {
+            relativeFileName = basePath.relativize(filePath).toString();
+        } else {
+            relativeFileName = filePath.toString(); 
+        }
         Logger.error(
             this,
             "%s[%d]: %s (%s), %[exception]s",
-            event.getFileName().substring(
-                this.env.basedir().toString().length()
-            ),
+            relativeFileName,
             event.getLine(),
             event.getMessage(),
             check.substring(check.lastIndexOf('.') + 1),
