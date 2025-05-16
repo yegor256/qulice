@@ -9,9 +9,10 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.List;
+import com.google.common.collect.FluentIterable;
 
 /**
- * Checks node/closing curly brackets to be the last symbols on the line.
+ * Checks that opening/closing curly brackets are the last symbols on the line.
  *
  * <p>This is how a correct curly bracket structure should look like:
  *
@@ -101,17 +102,16 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
         final int start,
         final int end
     ) {
-        for (final DetailAST expr : exprs) {
-            final int pline = expr.getLineNo();
-            if (pline == start) {
-                this.log(pline, "Parameters should start on a new line");
-            }
-            final DetailAST last = expr.getLastChild();
-            final int lline = last.getLineNo();
-            if (lline == end) {
-                this.log(lline, "Closing bracket should be on a new line");
-            }
-        }
+        FluentIterable.from(exprs)
+            .filter(expr -> expr.getLineNo() == start || expr.getLastChild().getLineNo() == end)
+            .forEach(expr -> {
+                if (expr.getLineNo() == start) {
+                    this.log(expr.getLineNo(), "Parameters should start on a new line");
+                }
+                if (expr.getLastChild().getLineNo() == end) {
+                    this.log(expr.getLastChild().getLineNo(), "Closing bracket should be on a new line");
+                }
+            });
     }
 
     /**
