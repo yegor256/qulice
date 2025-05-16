@@ -13,8 +13,9 @@ public interface Validator {
 
     /**
      * Validate and throws exception if there are any problems.
-     * @param env The environment to work with
+     * @param env The environment to work with (must not be null)
      * @throws ValidationException In case of any violations found
+     * @throws IllegalArgumentException If env is null
      */
     void validate(Environment env) throws ValidationException;
 
