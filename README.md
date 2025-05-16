@@ -21,6 +21,17 @@ and pre-configure them, including
 [PMD](https://pmd.github.io/).
 You don't need to use and configure them individually any more.
 
+## Features
+
+- Pre-configured static analysis tools
+- Easy integration with Maven projects
+- Comprehensive code quality checks
+- Customizable validation rules
+- Detailed violation reporting
+
+## Quick Start
+
+
 Read more at [www.qulice.com](https://www.qulice.com).
 
 Also, read this blog post first:
