@@ -23,14 +23,13 @@ You don't need to use and configure them individually any more.
 
 ## Features
 
-- Pre-configured static analysis tools
-- Easy integration with Maven projects
-- Comprehensive code quality checks
-- Customizable validation rules
-- Detailed violation reporting
+* Pre-configured static analysis tools
+* Easy integration with Maven projects
+* Comprehensive code quality checks
+* Customizable validation rules
+* Detailed violation reporting
 
 ## Quick Start
-
 
 Read more at [www.qulice.com](https://www.qulice.com).
 
