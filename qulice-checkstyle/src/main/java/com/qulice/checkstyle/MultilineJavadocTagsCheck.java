@@ -21,7 +21,7 @@ import org.cactoos.text.Sub;
  *  *  method by another class
  *  * &#64;todo #123 I will implement it later, when more information
  *  *  come to light and I have documentation supplied by
- *  *  AAA team in the office accross the street
+ *  *  AAA team in the office across the street
  *  *&#47;
  * public void func() {
  *     // ...
