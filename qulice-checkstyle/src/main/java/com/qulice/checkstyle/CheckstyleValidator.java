@@ -107,7 +107,7 @@ public final class CheckstyleValidator implements ResourceValidator {
             if (this.env.exclude("checkstyle", name)) {
                 continue;
             }
-            if (!name.toLowerCase().endsWith(".java")) {
+            if (!name.toLowerCase(java.util.Locale.ROOT).endsWith(".java")) {
                 continue;
             }
             relevant.add(file);
