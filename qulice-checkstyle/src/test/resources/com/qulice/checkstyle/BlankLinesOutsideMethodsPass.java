@@ -9,7 +9,7 @@ package foo;
  */
 public final class BlankLinesOutsideMethodsPass {
     /**
-     * Method with space inbetween anonymous innter class methods.
+     * Method with space between anonymous innter class methods.
      */
     public void methodwithAnonymousInnerClass() {
         final Runnable runnable = new Runnable() {
