@@ -4,13 +4,12 @@
  */
 package com.qulice.checkstyle;
 
-import java.util.List;
-
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.List;
 
 /**
  * Checks that opening/closing curly brackets are the last symbols on the line.
@@ -131,8 +130,10 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
      * @param type Node type
      * @return Iterable
      */
-    private static Iterable<DetailAST> findAllChildren(final DetailAST base,
-        final int type) {
+    private static Iterable<DetailAST> findAllChildren(
+        final DetailAST base,
+        final int type
+    ) {
         final List<DetailAST> children = Lists.newArrayList();
         DetailAST child = base.getFirstChild();
         while (child != null) {
