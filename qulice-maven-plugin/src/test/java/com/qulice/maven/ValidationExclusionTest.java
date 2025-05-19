@@ -22,6 +22,7 @@ import org.cactoos.text.TextOf;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import com.qulice.maven.DefaultMavenEnvironment;
 
 /**
  * Test case for {@link DefaultMavenEnvironment} class methods that
@@ -117,7 +118,7 @@ final class ValidationExclusionTest {
         );
         env.setExcludes(
             Collections.singletonList(
-                String.format("checkstyle:/%s/.*", subdir.getFileName())
+                String.format("checkstyle:%s/.*", subdir.getFileName())
             )
         );
         final CheckstyleValidator validator = new CheckstyleValidator(env);
