@@ -4,12 +4,6 @@
  */
 package com.qulice.checkstyle;
 
-import java.io.File;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
-import org.xml.sax.InputSource;
 import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -20,6 +14,12 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
+import java.io.File;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Properties;
+import org.xml.sax.InputSource;
 
 /**
  * Validator with Checkstyle.
