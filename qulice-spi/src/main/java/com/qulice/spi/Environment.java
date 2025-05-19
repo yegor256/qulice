@@ -269,7 +269,7 @@ public interface Environment {
             return Collections.unmodifiableCollection(this.classpath);
         }
 
-       @Override
+        @Override
         @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
         public Collection<File> files(final String pattern) {
             final Collection<File> files = new LinkedList<>();
