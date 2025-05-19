@@ -19,6 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import org.xml.sax.InputSource;
+import com.jcabi.log.Logger;
 
 /**
  * Validator with Checkstyle.
