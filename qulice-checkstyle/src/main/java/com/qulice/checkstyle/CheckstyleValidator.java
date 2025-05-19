@@ -4,6 +4,13 @@
  */
 package com.qulice.checkstyle;
 
+import java.io.File;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Properties;
+import org.xml.sax.InputSource;
+import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
@@ -13,13 +20,6 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
-import java.io.File;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
-import org.xml.sax.InputSource;
-import com.jcabi.log.Logger;
 
 /**
  * Validator with Checkstyle.
@@ -83,21 +83,19 @@ public final class CheckstyleValidator implements ResourceValidator {
         final Collection<Violation> results = new LinkedList<>();
         for (final AuditEvent event : events) {
             final String check = event.getSourceName();
-            final String checkName = check.substring(check.lastIndexOf('.') + 1);
-            final String fileName = event.getFileName();
+            final String checkname = check.substring(check.lastIndexOf('.') + 1);
+            final String filename = event.getFileName();
             final String line = String.valueOf(event.getLine());
             final String message = event.getMessage();
-            
-            if (fileName == null) {
-                Logger.warn(this, "Skipping violation with null filename for check %s", checkName);
+            if (filename == null) {
+                Logger.warn(this, "Skipping violation with null filename for check %s", checkname);
                 continue;
             }
-            
             results.add(
                 new Violation.Default(
                     this.name(),
-                    checkName,
-                    fileName,
+                    checkname,
+                    filename,
                     line,
                     message
                 )
