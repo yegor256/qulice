@@ -128,6 +128,9 @@
                 <exclude>xml:/src/main/resources/com/qulice/checkstyle/checks.xml</exclude>
                 <exclude>xml:/src/test/resources/com/qulice/checkstyle/ChecksTest/.*</exclude>
                 <exclude>duplicatefinder:</exclude>
+                <exclude>checkstyle:/src/test/resources/.*\.java</exclude>
+                <exclude>pmd:/src/test/resources/.*\.java</exclude>
+                <exclude>findbugs:~com.qulice.checkstyle.ChecksTest.*</exclude>
               </excludes>
             </configuration>
           </plugin>

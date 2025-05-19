@@ -59,6 +59,9 @@
             <exclude>findbugs:~com.qulice.entity.model.*</exclude>
             <exclude>xml:/src/main/java/com/qulice/entity/hibernate.cfg.xml</exclude>
             <exclude>checkstyle:/src/main/java/com/qulice/entity/hibernate.cfg.xml</exclude>
+            <exclude>checkstyle:/src/test/resources/.*\\.java</exclude>
+            <exclude>pmd:/src/test/resources/.*\\.java</exclude>
+            <exclude>findbugs:~com.qulice.checkstyle.ChecksTest.*</exclude>
           </excludes>
         </configuration>
         <executions>
