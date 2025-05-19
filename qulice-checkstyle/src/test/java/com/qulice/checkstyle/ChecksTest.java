@@ -46,7 +46,7 @@ final class ChecksTest {
         final Collector collector = new ChecksTest.Collector();
         Mockito.doAnswer(collector).when(listener)
             .addError(Mockito.any(AuditEvent.class));
-        this.check(dir, "/Invalid.java", listener);
+        this.check("/com/qulice/checkstyle/" + dir, "/Invalid.java", listener);
         final String[] violations = IOUtils.toString(
             this.getClass().getResourceAsStream(
                 String.format("%s/violations.txt", dir)
@@ -95,7 +95,7 @@ final class ChecksTest {
         final Collector collector = new ChecksTest.Collector();
         Mockito.doAnswer(collector).when(listener)
             .addError(Mockito.any(AuditEvent.class));
-        this.check(dir, "/Valid.java", listener);
+        this.check("/com/qulice/checkstyle/" + dir, "/Valid.java", listener);
         MatcherAssert.assertThat(
             "Log should be empty for valid files",
             collector.summary(),

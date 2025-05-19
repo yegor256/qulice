@@ -122,13 +122,23 @@
             <artifactId>qulice-maven-plugin</artifactId>
             <configuration>
               <excludes combine.children="append">
-                <exclude>checkstyle:/src/test/resources/.*</exclude>
-                <exclude>pmd:/src/test/resources/.*</exclude>
+                <exclude>checkstyle:src/test/resources/.*</exclude>
+                <exclude>pmd:src/test/resources/.*</exclude>
+                <exclude>checkstyle:src/test/resources/com/qulice/checkstyle/ChecksTest/.*</exclude>
+                <exclude>pmd:src/test/resources/com/qulice/checkstyle/ChecksTest/.*</exclude>
+                <exclude>checkstyle:.*src/test/resources/.*</exclude>
+                <exclude>pmd:.*src/test/resources/.*</exclude>
                 <exclude>dependencies:org.antlr</exclude>
                 <exclude>xml:/src/main/resources/com/qulice/checkstyle/checks.xml</exclude>
                 <exclude>xml:/src/test/resources/com/qulice/checkstyle/ChecksTest/.*</exclude>
                 <exclude>duplicatefinder:</exclude>
                 <exclude>findbugs:~com.qulice.checkstyle.ChecksTest.*</exclude>
+                <exclude>checkstyle:src/test/testdata/.*</exclude>
+                <exclude>pmd:src/test/testdata/.*</exclude>
+                <exclude>checkstyle:src/test/resources/com/qulice/checkstyle/ChecksTest/.*</exclude>
+                <exclude>pmd:src/test/resources/com/qulice/checkstyle/ChecksTest/.*</exclude>
+                <exclude>checkstyle:src/test/resources/com/qulice/checkstyle/.*Check/.*</exclude>
+                <exclude>pmd:src/test/resources/com/qulice/checkstyle/.*Check/.*</exclude>
               </excludes>
             </configuration>
           </plugin>
