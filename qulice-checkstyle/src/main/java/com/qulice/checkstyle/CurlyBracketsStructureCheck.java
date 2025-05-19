@@ -4,12 +4,13 @@
  */
 package com.qulice.checkstyle;
 
+import java.util.List;
+
+import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.List;
-import com.google.common.collect.FluentIterable;
 
 /**
  * Checks that opening/closing curly brackets are the last symbols on the line.
@@ -78,8 +79,11 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
      * @param start First line
      * @param end Final line
      */
-    private void checkLines(final DetailAST node, final int start,
-        final int end) {
+    private void checkLines(
+        final DetailAST node,
+        final int start,
+        final int end
+    ) {
         if (start != end) {
             this.checkExpressions(
                 CurlyBracketsStructureCheck.findAllChildren(
@@ -98,18 +102,25 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
      * @param start First line of ARRAY_INIT node
      * @param end Final line ARRAY_INIT node (corresponds to RCURLY)
      */
-    private void checkExpressions(final Iterable<DetailAST> exprs,
+    private void checkExpressions(
+        final Iterable<DetailAST> exprs,
         final int start,
         final int end
     ) {
         FluentIterable.from(exprs)
-            .filter(expr -> expr.getLineNo() == start || expr.getLastChild().getLineNo() == end)
+            .filter(
+                expr -> expr.getLineNo() == start
+                    || expr.getLastChild().getLineNo() == end
+            )
             .forEach(expr -> {
                 if (expr.getLineNo() == start) {
                     this.log(expr.getLineNo(), "Parameters should start on a new line");
                 }
                 if (expr.getLastChild().getLineNo() == end) {
-                    this.log(expr.getLastChild().getLineNo(), "Closing bracket should be on a new line");
+                    this.log(
+                        expr.getLastChild().getLineNo(),
+                        "Closing bracket should be on a new line"
+                    );
                 }
             });
     }
