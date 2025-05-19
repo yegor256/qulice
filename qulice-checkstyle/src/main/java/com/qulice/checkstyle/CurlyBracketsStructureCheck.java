@@ -111,17 +111,19 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
                 expr -> expr.getLineNo() == start
                     || expr.getLastChild().getLineNo() == end
             )
-            .forEach(expr -> {
-                if (expr.getLineNo() == start) {
-                    this.log(expr.getLineNo(), "Parameters should start on a new line");
+            .forEach(
+                expr -> {
+                    if (expr.getLineNo() == start) {
+                        this.log(expr.getLineNo(), "Parameters should start on a new line");
+                    }
+                    if (expr.getLastChild().getLineNo() == end) {
+                        this.log(
+                            expr.getLastChild().getLineNo(),
+                            "Closing bracket should be on a new line"
+                        );
+                    }
                 }
-                if (expr.getLastChild().getLineNo() == end) {
-                    this.log(
-                        expr.getLastChild().getLineNo(),
-                        "Closing bracket should be on a new line"
-                    );
-                }
-            });
+            );
     }
 
     /**
