@@ -46,7 +46,8 @@ final class RequiredJavaDocTagTest {
             expected
         );
     }
-
+    
+    @SuppressWarnings("PMD.UnusedPrivateMethod")
     private static Stream<Arguments> params() {
         return Stream.of(
             Arguments.arguments(
