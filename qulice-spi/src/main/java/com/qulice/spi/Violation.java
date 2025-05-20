@@ -128,13 +128,11 @@ public interface Violation extends Comparable<Violation> {
                 cmp = this.file.compareTo(other.file());
             }
             if (cmp == 0) {
-                // Attempt to parse lines as integers for numeric comparison
                 try {
-                    final int thisLines = Integer.parseInt(this.lns.split("-")[0]); // Get first line number
-                    final int otherLines = Integer.parseInt(other.lines().split("-")[0]);
-                    cmp = Integer.compare(thisLines, otherLines);
+                    final int linesnum = Integer.parseInt(this.lns.split("-")[0]);
+                    final int othernum = Integer.parseInt(other.lines().split("-")[0]);
+                    cmp = Integer.compare(linesnum, othernum);
                 } catch (final NumberFormatException ex) {
-                    // Fallback to string comparison if parsing fails
                     cmp = this.lns.compareTo(other.lines());
                 }
             }
