@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
+-->
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <module name="TreeWalker">
+        <module name="com.qulice.checkstyle.RecordValidationCheck"/>
+    </module>
+</module>
