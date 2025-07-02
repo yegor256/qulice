@@ -151,6 +151,7 @@ final class ChecksTest {
     @SuppressWarnings("PMD.UnusedPrivateMethod")
     private static Stream<String> checks() {
         return Stream.of(
+            "RecordValidationCheck",
             "MethodsOrderCheck",
             "MultilineJavadocTagsCheck",
             "StringLiteralsConcatenationCheck",
