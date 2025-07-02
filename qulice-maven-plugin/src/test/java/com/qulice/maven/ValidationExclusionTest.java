@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * Copyright (c) 2011-2025 Yegor Bugayenko
  * SPDX-License-Identifier: MIT
  */
 package com.qulice.maven;
@@ -117,7 +117,7 @@ final class ValidationExclusionTest {
         );
         env.setExcludes(
             Collections.singletonList(
-                String.format("checkstyle:/%s/.*", subdir.getFileName())
+                String.format("checkstyle:%s/.*", subdir.getFileName())
             )
         );
         final CheckstyleValidator validator = new CheckstyleValidator(env);

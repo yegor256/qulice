@@ -11,6 +11,8 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -48,11 +50,9 @@ final class ChecksTest {
             .addError(Mockito.any(AuditEvent.class));
         this.check(dir, "/Invalid.java", listener);
         final String[] violations = IOUtils.toString(
-            this.getClass().getResourceAsStream(
-                String.format("%s/violations.txt", dir)
-            ),
+            Files.newInputStream(Paths.get("src/test/testdata/com/qulice/checkstyle", dir, "violations.txt")),
             StandardCharsets.UTF_8
-            ).split("\n");
+        ).split("\n");
         for (final String line : violations) {
             final String[] sectors = line.split(":");
             final Integer pos = Integer.valueOf(sectors[0]);
@@ -117,9 +117,7 @@ final class ChecksTest {
     ) throws Exception {
         final Checker checker = new Checker();
         final InputSource src = new InputSource(
-            this.getClass().getResourceAsStream(
-                String.format("%s/config.xml", dir)
-            )
+            Files.newInputStream(Paths.get("src/test/testdata/com/qulice/checkstyle", dir, "config.xml"))
         );
         checker.setModuleClassLoader(
             Thread.currentThread().getContextClassLoader()
@@ -134,9 +132,7 @@ final class ChecksTest {
         final List<File> files = new ArrayList<>(0);
         files.add(
             new File(
-                this.getClass().getResource(
-                    String.format("%s%s", dir, name)
-                ).getFile()
+                Paths.get("src/test/testdata/com/qulice/checkstyle", dir, name).toString()
             )
         );
         checker.addListener(listener);

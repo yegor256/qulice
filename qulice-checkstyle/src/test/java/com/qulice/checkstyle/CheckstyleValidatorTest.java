@@ -9,6 +9,8 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Collection;
 import org.cactoos.io.ResourceOf;
 import org.cactoos.list.ListOf;
@@ -784,13 +786,7 @@ final class CheckstyleValidatorTest {
         )
             .withFile(
                 String.format("src/main/java/foo/%s", file),
-                new IoCheckedText(
-                    new TextOf(
-                        new ResourceOf(
-                            new FormattedText("com/qulice/checkstyle/%s", file)
-                        )
-                    )
-                ).asString()
+                new String(Files.readAllBytes(Paths.get("src/test/testdata/com/qulice/checkstyle/" + file)), java.nio.charset.StandardCharsets.UTF_8)
             );
         final Collection<Violation> results =
             new CheckstyleValidator(env).validate(

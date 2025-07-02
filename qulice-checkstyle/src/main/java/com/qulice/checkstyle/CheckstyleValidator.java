@@ -16,6 +16,8 @@ import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Properties;
 import org.xml.sax.InputSource;
@@ -100,10 +102,9 @@ public final class CheckstyleValidator implements ResourceValidator {
      */
     public List<File> getNonExcludedFiles(final Collection<File> files) {
         final List<File> relevant = new LinkedList<>();
+        final Path basePath = Paths.get(this.env.basedir().toURI());
         for (final File file : files) {
-            final String name = file.getPath().substring(
-                this.env.basedir().toString().length()
-            );
+            final String name = basePath.relativize(Paths.get(file.toURI())).toString();
             if (this.env.exclude("checkstyle", name)) {
                 continue;
             }
