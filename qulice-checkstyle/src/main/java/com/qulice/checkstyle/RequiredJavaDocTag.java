@@ -158,7 +158,7 @@ final class RequiredJavaDocTag {
      * @return True if str is empty.
      */
     private static boolean empty(final String str) {
-        return str == null || str.isBlank();
+        return str == null || str.chars().allMatch(Character::isWhitespace);
     }
 
     /**
