@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.stream.Stream;
 import org.apache.commons.io.IOUtils;
@@ -22,9 +23,6 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 import org.xml.sax.InputSource;
 
 /**
@@ -42,17 +40,17 @@ final class ChecksTest {
     @MethodSource("checks")
     @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
     void testCheckstyleTruePositive(final String dir) throws Exception {
-        final AuditListener listener = Mockito.mock(AuditListener.class);
         final Collector collector = new ChecksTest.Collector();
-        Mockito.doAnswer(collector).when(listener)
-            .addError(Mockito.any(AuditEvent.class));
+        final AuditListener listener = new FakeAuditListener(collector);
         this.check(dir, "/Invalid.java", listener);
         final String[] violations = IOUtils.toString(
-            this.getClass().getResourceAsStream(
-                String.format("%s/violations.txt", dir)
+            Objects.requireNonNull(
+                this.getClass().getResourceAsStream(
+                    String.format("%s/violations.txt", dir)
+                )
             ),
             StandardCharsets.UTF_8
-            ).split("\n");
+        ).split("\n");
         for (final String line : violations) {
             final String[] sectors = line.split(":");
             final Integer pos = Integer.valueOf(sectors[0]);
@@ -91,18 +89,14 @@ final class ChecksTest {
     @ParameterizedTest
     @MethodSource("checks")
     void testCheckstyleTrueNegative(final String dir) throws Exception {
-        final AuditListener listener = Mockito.mock(AuditListener.class);
         final Collector collector = new ChecksTest.Collector();
-        Mockito.doAnswer(collector).when(listener)
-            .addError(Mockito.any(AuditEvent.class));
+        final AuditListener listener = new FakeAuditListener(collector);
         this.check(dir, "/Valid.java", listener);
         MatcherAssert.assertThat(
             "Log should be empty for valid files",
             collector.summary(),
             Matchers.equalTo("")
         );
-        Mockito.verify(listener, Mockito.times(0))
-            .addError(Mockito.any(AuditEvent.class));
     }
 
     /**
@@ -180,17 +174,14 @@ final class ChecksTest {
      *
      * @since 0.1
      */
-    private static final class Collector implements Answer<Object> {
-
+    private static final class Collector {
         /**
          * List of events received.
          */
         private final List<AuditEvent> events = new LinkedList<>();
 
-        @Override
-        public Object answer(final InvocationOnMock invocation) {
-            this.events.add((AuditEvent) invocation.getArguments()[0]);
-            return null;
+        public void add(final AuditEvent event) {
+            this.events.add(event);
         }
 
         /**
@@ -237,4 +228,54 @@ final class ChecksTest {
         }
     }
 
+    /**
+     * Fake Audit Listener.
+     *
+     * Just to set an event on addError() to a mocked Collector.
+     *
+     * @since 0.24.1
+     */
+    private static final class FakeAuditListener implements AuditListener {
+        /**
+         * Mocked collector.
+         */
+        private final ChecksTest.Collector collector;
+
+        FakeAuditListener(final ChecksTest.Collector collect) {
+            this.collector = collect;
+        }
+
+        @Override
+        public void auditStarted(final AuditEvent event) {
+            // Intentionally left blank
+        }
+
+        @Override
+        public void auditFinished(final AuditEvent event) {
+            // Intentionally left blank
+        }
+
+        @Override
+        public void fileStarted(final AuditEvent event) {
+            // Intentionally left blank
+        }
+
+        @Override
+        public void fileFinished(final AuditEvent event) {
+            // Intentionally left blank
+        }
+
+        @Override
+        public void addError(final AuditEvent event) {
+            this.collector.add(event);
+        }
+
+        @Override
+        public void addException(
+            final AuditEvent event,
+            final Throwable throwable
+        ) {
+            // Intentionally left blank
+        }
+    }
 }

@@ -21,7 +21,6 @@ import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 /**
  * Test case for {@link DefaultMavenEnvironment} class methods that
@@ -51,17 +50,14 @@ final class ValidationExclusionTest {
     @Test
     void excludePathFromPmdValidation() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
-        final MavenProject project = Mockito.mock(MavenProject.class);
         final Path dir = Files.createTempDirectory(ValidationExclusionTest.TEMP_DIR);
         final Path subdir = Files.createTempDirectory(dir, ValidationExclusionTest.TEMP_SUB);
         final File file = File.createTempFile(
             "PmdExample", ValidationExclusionTest.JAVA_EXT,
             subdir.toFile()
         );
-        Mockito.when(project.getBasedir())
-            .thenReturn(
-                dir.toFile()
-            );
+        final MavenProject project = new MavenProject();
+        project.setFile(subdir.toFile());
         env.setProject(project);
         Assertions.assertNotNull(project.getBasedir());
         final String source = new TextOf(
@@ -92,18 +88,18 @@ final class ValidationExclusionTest {
     @Test
     void excludePathFromCheckstyleValidation() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
-        final MavenProject project = Mockito.mock(MavenProject.class);
         final Path dir = Files.createTempDirectory(ValidationExclusionTest.TEMP_DIR);
         final Path subdir = Files.createTempDirectory(dir, ValidationExclusionTest.TEMP_SUB);
         final File file = File.createTempFile(
             "CheckstyleExample", ValidationExclusionTest.JAVA_EXT,
             subdir.toFile()
         );
-        env.setProject(project);
-        Mockito.when(project.getBasedir()).thenReturn(dir.toFile());
         final Build build = new Build();
         build.setOutputDirectory(dir.toString());
-        Mockito.when(project.getBuild()).thenReturn(build);
+        final MavenProject project = new MavenProject();
+        project.setFile(subdir.toFile());
+        project.setBuild(build);
+        env.setProject(project);
         Assertions.assertNotNull(project.getBasedir());
         Assertions.assertNotNull(env.tempdir());
         final String source = new TextOf(

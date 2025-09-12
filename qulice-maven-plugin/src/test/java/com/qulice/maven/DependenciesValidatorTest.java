@@ -7,6 +7,8 @@ package com.qulice.maven;
 import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import org.apache.maven.artifact.Artifact;
@@ -14,20 +16,21 @@ import org.apache.maven.plugin.testing.stubs.ArtifactStub;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
+import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzerException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 /**
  * Test case for {@link DependenciesValidator} class.
+ *
  * @since 0.3
  */
 final class DependenciesValidatorTest {
-
     /**
      * Plexus role.
      */
-    private static final String ROLE = ProjectDependencyAnalyzer.class.getName();
+    private static final String ROLE =
+        ProjectDependencyAnalyzer.class.getName();
 
     /**
      * Plexus hint.
@@ -46,13 +49,15 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can pass on when no violations are found.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
     void passesIfNoDependencyProblemsFound() throws Exception {
         final ProjectDependencyAnalysis analysis =
-            Mockito.mock(ProjectDependencyAnalysis.class);
-        final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
+            new ProjectDependencyAnalysis();
+        final ProjectDependencyAnalyzer analyzer =
+            new FakeProjectDependencyAnalyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
             DependenciesValidatorTest.ROLE,
             DependenciesValidatorTest.HINT,
@@ -63,16 +68,25 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can catch dependency problems.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
     void catchesDependencyProblemsAndThrowsException() throws Exception {
-        final ProjectDependencyAnalysis analysis =
-            Mockito.mock(ProjectDependencyAnalysis.class);
+        final ArtifactStub artifact = new ArtifactStub();
+        artifact.setGroupId("group");
+        artifact.setArtifactId("artifact");
+        artifact.setScope(DependenciesValidatorTest.SCOPE);
+        artifact.setVersion("2.3.4");
+        artifact.setType(DependenciesValidatorTest.TYPE);
         final Set<Artifact> unused = new HashSet<>();
-        unused.add(Mockito.mock(Artifact.class));
-        Mockito.doReturn(unused).when(analysis).getUsedUndeclaredArtifacts();
-        final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
+        unused.add(artifact);
+        final ProjectDependencyAnalysis analysis =
+            new ProjectDependencyAnalysis(
+                Collections.emptySet(), unused, Collections.emptySet()
+            );
+        final ProjectDependencyAnalyzer analyzer =
+            new FakeProjectDependencyAnalyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
             DependenciesValidatorTest.ROLE,
             DependenciesValidatorTest.HINT,
@@ -86,18 +100,25 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can ignore runtime scope dependencies.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
     void ignoresRuntimeScope() throws Exception {
-        final ProjectDependencyAnalysis analysis =
-            Mockito.mock(ProjectDependencyAnalysis.class);
-        final Artifact artifact = Mockito.mock(Artifact.class);
+        final ArtifactStub artifact = new ArtifactStub();
+        artifact.setGroupId("group");
+        artifact.setArtifactId("artifact");
+        artifact.setScope("runtime");
+        artifact.setVersion("2.3.4");
+        artifact.setType(DependenciesValidatorTest.TYPE);
         final Set<Artifact> unused = new HashSet<>();
         unused.add(artifact);
-        Mockito.doReturn(unused).when(analysis).getUnusedDeclaredArtifacts();
-        Mockito.doReturn(Artifact.SCOPE_RUNTIME).when(artifact).getScope();
-        final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
+        final ProjectDependencyAnalysis analysis =
+            new ProjectDependencyAnalysis(
+                Collections.emptySet(), Collections.emptySet(), unused
+            );
+        final ProjectDependencyAnalyzer analyzer =
+            new FakeProjectDependencyAnalyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
             DependenciesValidatorTest.ROLE,
             DependenciesValidatorTest.HINT,
@@ -108,12 +129,11 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can exclude used undeclared dependencies.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
     void excludesUsedUndeclaredDependencies() throws Exception {
-        final ProjectDependencyAnalysis analysis =
-            Mockito.mock(ProjectDependencyAnalysis.class);
         final Set<Artifact> used = new HashSet<>();
         final ArtifactStub artifact = new ArtifactStub();
         artifact.setGroupId("group");
@@ -122,8 +142,12 @@ final class DependenciesValidatorTest {
         artifact.setVersion("2.3.4");
         artifact.setType(DependenciesValidatorTest.TYPE);
         used.add(artifact);
-        Mockito.doReturn(used).when(analysis).getUsedUndeclaredArtifacts();
-        final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
+        final ProjectDependencyAnalysis analysis =
+            new ProjectDependencyAnalysis(
+                Collections.emptySet(), used, Collections.emptySet()
+            );
+        final ProjectDependencyAnalyzer analyzer =
+            new FakeProjectDependencyAnalyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
             DependenciesValidatorTest.ROLE,
             DependenciesValidatorTest.HINT,
@@ -142,12 +166,11 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can exclude unused declared dependencies.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
     void excludesUnusedDeclaredDependencies() throws Exception {
-        final ProjectDependencyAnalysis analysis =
-            Mockito.mock(ProjectDependencyAnalysis.class);
         final Set<Artifact> unused = new HashSet<>();
         final ArtifactStub artifact = new ArtifactStub();
         artifact.setGroupId("othergroup");
@@ -156,8 +179,12 @@ final class DependenciesValidatorTest {
         artifact.setVersion("1.2.3");
         artifact.setType(DependenciesValidatorTest.TYPE);
         unused.add(artifact);
-        Mockito.doReturn(unused).when(analysis).getUnusedDeclaredArtifacts();
-        final ProjectDependencyAnalyzer analyzer = this.analyzer(analysis);
+        final ProjectDependencyAnalysis analysis =
+            new ProjectDependencyAnalysis(
+                Collections.emptySet(), Collections.emptySet(), unused
+            );
+        final ProjectDependencyAnalyzer analyzer =
+            new FakeProjectDependencyAnalyzer(analysis);
         final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
             DependenciesValidatorTest.ROLE,
             DependenciesValidatorTest.HINT,
@@ -175,18 +202,31 @@ final class DependenciesValidatorTest {
     }
 
     /**
-     * Create analyzer object.
-     * @param analysis The analysis object
-     * @return The object
-     * @throws Exception If something wrong happens inside
+     * FakeProjectDependencyAnalyzer.
+     *
+     * A mock to ProjectDependencyAnalyzer.
+     *
+     * @since 0.24.1
      */
-    private ProjectDependencyAnalyzer analyzer(
-        final ProjectDependencyAnalysis analysis) throws Exception {
-        final ProjectDependencyAnalyzer analyzer =
-            Mockito.mock(ProjectDependencyAnalyzer.class);
-        Mockito.doReturn(analysis).when(analyzer)
-            .analyze(Mockito.any(MavenProject.class));
-        return analyzer;
-    }
+    private static final class FakeProjectDependencyAnalyzer
+        implements ProjectDependencyAnalyzer {
+        /**
+         * ProjectDependencyAnalysis.
+         */
+        private final ProjectDependencyAnalysis analysis;
 
+        FakeProjectDependencyAnalyzer(
+            final ProjectDependencyAnalysis alysis
+        ) {
+            this.analysis = alysis;
+        }
+
+        @Override
+        public ProjectDependencyAnalysis analyze(
+            final MavenProject project,
+            final Collection<String> collection
+        ) throws ProjectDependencyAnalyzerException {
+            return this.analysis;
+        }
+    }
 }
