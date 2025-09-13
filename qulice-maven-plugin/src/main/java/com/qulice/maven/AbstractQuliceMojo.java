@@ -7,11 +7,11 @@ package com.qulice.maven;
 import com.jcabi.log.Logger;
 import java.util.Collection;
 import java.util.LinkedList;
+import javax.inject.Inject;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MavenPluginManager;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugins.annotations.Component;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
@@ -47,7 +47,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     /**
      * Maven plugin manager, to be injected by Maven itself.
      */
-    @Component
+    @Inject
     private MavenPluginManager manager;
 
     /**
