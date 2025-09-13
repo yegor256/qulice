@@ -180,7 +180,7 @@ final class CheckMojoTest {
         /**
          * Validator name.
          */
-        private final String nam;
+        private final String label;
 
         /**
          * Method calls counter.
@@ -188,7 +188,7 @@ final class CheckMojoTest {
         private final AtomicInteger cnt;
 
         FakeValidator(final String name) {
-            this.nam = name;
+            this.label = name;
             this.cnt = new AtomicInteger(0);
         }
 
@@ -199,7 +199,7 @@ final class CheckMojoTest {
 
         @Override
         public String name() {
-            return this.nam;
+            return this.label;
         }
 
         public int count() {
@@ -218,7 +218,7 @@ final class CheckMojoTest {
         /**
          * Resource validator name.
          */
-        private final String nam;
+        private final String label;
 
         /**
          * Method calls counter.
@@ -226,7 +226,7 @@ final class CheckMojoTest {
         private final AtomicInteger cnt;
 
         FakeResourceValidator(final String name) {
-            this.nam = name;
+            this.label = name;
             this.cnt = new AtomicInteger(0);
         }
 
@@ -238,7 +238,7 @@ final class CheckMojoTest {
 
         @Override
         public String name() {
-            return this.nam;
+            return this.label;
         }
 
         public int count() {

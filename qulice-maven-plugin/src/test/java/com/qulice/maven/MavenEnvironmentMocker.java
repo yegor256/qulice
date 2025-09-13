@@ -203,7 +203,7 @@ public final class MavenEnvironmentMocker {
         /**
          * Context.
          */
-        private final Context contex;
+        private final Context ctx;
 
         /**
          * Asserts.
@@ -216,7 +216,7 @@ public final class MavenEnvironmentMocker {
             final Collection<String> asserts
         ) {
             this.proj = prj;
-            this.contex = ctx;
+            this.ctx = ctx;
             this.assrts = asserts;
         }
 
@@ -232,7 +232,7 @@ public final class MavenEnvironmentMocker {
 
         @Override
         public Context context() {
-            return this.contex;
+            return this.ctx;
         }
 
         @Override
