@@ -2,21 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice &#x2013; Source Code Quality Police (Qulice)</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Source Code Quality Police (Qulice) – qulice</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                    <meta name="author" content="Yegor Bugayenko" />
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+                    <meta name="author" content="Yegor Bugayenko"/>
+                                                    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
     </head>
     <body>
@@ -93,24 +83,22 @@
                         <header>
                             <div class="logo">
                                 <a href="./"
-                                    title=" home page of Qulice.com ">
-                                    <img src="logo.svg"
+                                    title=" logo ">
+                                    <img src="${decoration.bannerLeft.src}"
                                         alt="Qulice"
-                                                                                    width="214"
-                                                                                                                            height="60"
-                                                                                itemprop="image"
+                                                                                                                        itemprop="image"
                                     />
                                 </a>
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.0</strong>
+                                    <strong itemprop="version">0.24.2</strong>
                                 </li>
                                 <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2025-02-18T07:49:34Z">
-                                        
-                                        18-Feb-2025
+                                    $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                                    <time itemprop="datePublished" datetime="${dateFormat.format($currentDate)}">
+                                        $dateFormat.applyPattern('dd-MMM-yyyy')
+                                        ${dateFormat.format($currentDate)}
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -121,8 +109,8 @@
                                 <img src="https://www.jcabi.com/fork-me.svg" class="fork-me"/>
                             </a>
                                                 <article itemprop="articleBody">
-                            <section>
-<h2><a name="Source_Code_Quality_Police_.28Qulice.29"></a>Source Code Quality Police (Qulice)</h2>
+                            <section><a id="Source_Code_Quality_Police_.28Qulice.29"></a>
+<h1>Source Code Quality Police (Qulice)</h1>
 <p>Qulice is a <a class="externalLink" href="http://en.wikipedia.org/wiki/Static_program_analysis">static analysis</a> quality control instrument for Java projects. It combines a few static analysis tools and pre-configures them. You don't need to use and configure them individually any more.</p>
 <p>At the moment we integrate together:</p>
 <ul>
@@ -133,13 +121,12 @@
 <li><a class="externalLink" href="http://pmd.sourceforge.net/">PMD</a></li>
 <li><a class="externalLink" href="https://spotbugs.github.io/">SpotBugs</a></li></ul>
 <p>Just add our <a href="./qulice-maven-plugin/">qulice-maven-plugin</a> to your Maven project and start following out <a href="./quality.html">quality policy</a>:</p>
-<div class="source">
-<pre>&lt;build&gt;
+<pre><code>&lt;build&gt;
   &lt;plugins&gt;
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.24.0&lt;/version&gt;
+      &lt;version&gt;0.24.2&lt;/version&gt;
       &lt;configuration&gt;
         &lt;license&gt;file:${basedir}/LICENSE.txt&lt;/license&gt;
       &lt;/configuration&gt;
@@ -152,18 +139,18 @@
       &lt;/executions&gt;
     &lt;/plugin&gt;
   &lt;/plugins&gt;
-&lt;/build&gt;</pre></div>
-<p>Don't hesitate to submit a ticket to <a class="externalLink" href="http://github.com/tpc2/qulice/issues">Github</a> when something doesn't work or you need more features.</p></section>
+&lt;/build&gt;</code></pre>
+<p>Don't hesitate to submit a ticket to <a class="externalLink" href="https://github.com/tpc2/qulice/issues">Github</a> when something doesn't work or you need more features.</p></section>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2025
+                                                                            2011-${currentYear}
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </div>

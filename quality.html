@@ -2,21 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice &#x2013; What is Quality for Qulice?</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>What is Quality for Qulice? – qulice</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                    <meta name="author" content="Yegor Bugayenko" />
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+                    <meta name="author" content="Yegor Bugayenko"/>
+                                                    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
     </head>
     <body>
@@ -67,24 +57,22 @@
                         <header>
                             <div class="logo">
                                 <a href="./"
-                                    title=" home page of Qulice.com ">
-                                    <img src="logo.svg"
+                                    title=" logo ">
+                                    <img src="${decoration.bannerLeft.src}"
                                         alt="Qulice"
-                                                                                    width="214"
-                                                                                                                            height="60"
-                                                                                itemprop="image"
+                                                                                                                        itemprop="image"
                                     />
                                 </a>
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.0</strong>
+                                    <strong itemprop="version">0.24.2</strong>
                                 </li>
                                 <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2025-02-18T07:49:34Z">
-                                        
-                                        18-Feb-2025
+                                    $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                                    <time itemprop="datePublished" datetime="${dateFormat.format($currentDate)}">
+                                        $dateFormat.applyPattern('dd-MMM-yyyy')
+                                        ${dateFormat.format($currentDate)}
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -95,53 +83,51 @@
                                 <img src="https://www.jcabi.com/fork-me.svg" class="fork-me"/>
                             </a>
                                                 <article itemprop="articleBody">
-                            <section>
-<h2><a name="What_is_Quality_and_how_to_achieve_it.3F"></a>What is Quality and how to achieve it?</h2>
-<p>Quality Java code, as we understand it, compiles and complies to <a class="externalLink" href="http://en.wikipedia.org/wiki/Static_program_analysis">static analysis</a> rules. Qulice uses a number of open-source components (in order to avoid reinventing the wheel). We pre-configured these tools for your convenience and extended them with our specific rules.</p><section>
-<h3><a name="Checkstyle"></a>Checkstyle</h3>
+                            <section><a id="What_is_Quality_and_how_to_achieve_it.3F"></a>
+<h1>What is Quality and how to achieve it?</h1>
+<p>Quality Java code, as we understand it, compiles and complies to <a class="externalLink" href="http://en.wikipedia.org/wiki/Static_program_analysis">static analysis</a> rules. Qulice uses a number of open-source components (in order to avoid reinventing the wheel). We pre-configured these tools for your convenience and extended them with our specific rules.</p><section><a id="Checkstyle"></a>
+<h2>Checkstyle</h2>
 <p><a class="externalLink" href="http://checkstyle.sourceforge.net/checks.html">Inherited rules</a>.</p>
 <p>Our custom rules:</p>
 <ul>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/BracketsStructureCheck.html">BracketsStructure</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/ConstantUsageCheck.html">ConstantUsage</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/EmptyLinesCheck.html">EmptyLines</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/ImportCohesionCheck.html">ImportCohesion</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/JavadocLocationCheck.html">JavadocLocation</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/JavadocTagsCheck.html">JavadocTags</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/MethodBodyCommentsCheck.html">MethodBodyComments</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/MultilineJavadocTagsCheck.html">MultilineJavadocTags</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/NonStaticMethodCheck.html">NonStaticMethod</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/StringLiteralsConcatenationCheck.html">StringLiteralsConcatenation</a></li>
-<li><a href="./qulice-checkstyle/apidocs-0.24.0/com/qulice/checkstyle/JavadocEmptyLineCheck.html">JavadocEmptyLine</a></li></ul>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/BracketsStructureCheck.html">BracketsStructure</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/ConstantUsageCheck.html">ConstantUsage</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/EmptyLinesCheck.html">EmptyLines</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/ImportCohesionCheck.html">ImportCohesion</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/JavadocLocationCheck.html">JavadocLocation</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/JavadocTagsCheck.html">JavadocTags</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/MethodBodyCommentsCheck.html">MethodBodyComments</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/MultilineJavadocTagsCheck.html">MultilineJavadocTags</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/NonStaticMethodCheck.html">NonStaticMethod</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/StringLiteralsConcatenationCheck.html">StringLiteralsConcatenation</a></li>
+<li><a href="./qulice-checkstyle/apidocs-0.24.2/com/qulice/checkstyle/JavadocEmptyLineCheck.html">JavadocEmptyLine</a></li></ul>
 <p>If you want to disable some rule (this may happen, but try to avoid such situations at all cost):</p>
-<div class="source">
-<pre>/**
+<pre><code>/**
  * @checkstyle ParameterNumber (3 lines)
  */
 public void funcWithManyParams(int a, int b, int c, int d) {
   // @checkstyle MagicNumber (1 line)
   int num = 5;
   // ...
-}</pre></div></section><section>
-<h3><a name="PMD"></a>PMD</h3>
+}</code></pre></section><section><a id="PMD"></a>
+<h2>PMD</h2>
 <p><a class="externalLink" href="http://pmd.sourceforge.net/rules/index.html">Inherited rules</a>.</p>
 <p>Rules can be disabled (again, try to avoid this at all cost):</p>
-<div class="source">
-<pre>@SuppressWarnings(&quot;PMD.UseConcurrentHashMap&quot;)
+<pre><code>@SuppressWarnings(&quot;PMD.UseConcurrentHashMap&quot;)
 public void func() {
   Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();
   // ...
-}</pre></div></section></section>
+}</code></pre></section></section>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2025
+                                                                            2011-${currentYear}
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </div>

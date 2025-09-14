@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>Project Summary – qulice</title>
+        <title>Surefire Report – qulice</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
                                                     <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
@@ -41,37 +41,49 @@
                                                                                                     <li >
                             <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
         </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                                        <li >
+                            <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <ul>
                                                                                                     <li >
-                            <span>                        <a href="index.html" title="About">About</a>
+                            <span>                        <a href="xref/index.html" title="Source Xref">Source Xref</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="plugins.html" title="Plugins">Plugins</a>
-        </span>
-                                                                                                                                                                <ul>
-                                                                    </ul>
-                                                    </li>
-                                                                                                                        <li >
-                            <span>                        <a href="scm.html" title="Source Code Management">Source Code Management</a>
+                            <span>                        <a href="xref-test/index.html" title="Test Source Xref">Test Source Xref</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
                                                                                                                         <li  class='active' >
-                            <span>                        <a href="summary.html" title="Summary">Summary</a>
+                            <span>                        <a href="surefire.html" title="Surefire">Surefire</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="dependency-updates-report.html" title="Dependency Updates Report">Dependency Updates Report</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="plugin-updates-report.html" title="Plugin Updates Report">Plugin Updates Report</a>
+        </span>
+                                                                                                                                                                <ul>
+                                                                    </ul>
+                                                    </li>
+                                                                                                                        <li >
+                            <span>                        <a href="jacoco-aggregate/index.html" title="JaCoCo Aggregate">JaCoCo Aggregate</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
                                                     </li>
                                                                                         </ul>
                                                     </li>
-                                                                                                                        <li >
-                            <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
-        </span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
                                                                                         </ul>
                                                     </li>
                                     </ul>
@@ -108,51 +120,44 @@
                                 <img src="https://www.jcabi.com/fork-me.svg" class="fork-me"/>
                             </a>
                                                 <article itemprop="articleBody">
-                            <section><a id="Project_Summary"></a>
-<h1>Project Summary</h1><section><a id="Project_Information"></a>
-<h2>Project Information</h2>
+                            
+<script>
+function toggleDisplay(elementId) {
+ var elm = document.getElementById(elementId + '-error');
+ if (elm == null) {
+  elm = document.getElementById(elementId + '-failure');
+ }
+ if (elm && typeof elm.style != "undefined") {
+  if (elm.style.display == "none") {
+   elm.style.display = "";
+   document.getElementById(elementId + '-off').style.display = "none";
+   document.getElementById(elementId + '-on').style.display = "inline";
+  } else if (elm.style.display == "") {   elm.style.display = "none";
+   document.getElementById(elementId + '-off').style.display = "inline";
+   document.getElementById(elementId + '-on').style.display = "none";
+  }
+ }
+ }
+</script>
+<section><a id="Surefire_Report"></a>
+<h1>Surefire Report</h1><section><a id="Summary"></a>
+<h2>Summary</h2><br />
 <table class="bodyTable">
 <tr class="a">
-<th>Field</th>
-<th>Value</th></tr>
+<th>Tests</th>
+<th>Errors</th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th></tr>
 <tr class="b">
-<td>Name</td>
-<td>qulice</td></tr>
-<tr class="a">
-<td>Description</td>
-<td>Quality control library, integrating together other static analysis and validation tools and instruments.</td></tr>
-<tr class="b">
-<td>Homepage</td>
-<td><a class="externalLink" href="https://www.qulice.com">https://www.qulice.com</a></td></tr></table></section><section><a id="Project_Organization"></a>
-<h2>Project Organization</h2>
-<table class="bodyTable">
-<tr class="a">
-<th>Field</th>
-<th>Value</th></tr>
-<tr class="b">
-<td>Name</td>
-<td>Qulice.com</td></tr>
-<tr class="a">
-<td>URL</td>
-<td><a class="externalLink" href="https://www.qulice.com">https://www.qulice.com</a></td></tr></table></section><section><a id="Build_Information"></a>
-<h2>Build Information</h2>
-<table class="bodyTable">
-<tr class="a">
-<th>Field</th>
-<th>Value</th></tr>
-<tr class="b">
-<td>GroupId</td>
-<td>com.qulice</td></tr>
-<tr class="a">
-<td>ArtifactId</td>
-<td>qulice</td></tr>
-<tr class="b">
-<td>Version</td>
-<td>0.24.2</td></tr>
-<tr class="a">
-<td>Type</td>
-<td>pom</td></tr></table></section><section><a id="Download"></a>
-<h2>Download</h2><a class="externalLink" href="https://oss.sonatype.org/content/groups/public">https://oss.sonatype.org/content/groups/public</a></section></section>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0 s</td></tr></table><br />
+<p>Note: failures are anticipated and checked for with assertions while errors are unanticipated.</p><br /></section></section>
                         </article>
                     </div>
                 </main>
