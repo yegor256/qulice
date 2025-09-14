@@ -2,20 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-pmd &#x2013; Dependency Updates Report</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Dependency Updates Report – qulice-pmd</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+                                                    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
     </head>
     <body>
@@ -68,7 +58,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="surefire-report.html" title="Surefire">Surefire</a>
+                            <span>                        <a href="surefire.html" title="Surefire">Surefire</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -86,7 +76,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.24.0/index.html" title="Javadoc">Javadoc</a>
+                            <span>                        <a href="apidocs/index.html" title="Javadoc">Javadoc</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -109,24 +99,22 @@
                         <header>
                             <div class="logo">
                                 <a href="../"
-                                    title=" home page of Qulice.com ">
-                                    <img src="../logo.svg"
+                                    title=" logo ">
+                                    <img src="${decoration.bannerLeft.src}"
                                         alt="Qulice"
-                                                                                    width="214"
-                                                                                                                            height="60"
-                                                                                itemprop="image"
+                                                                                                                        itemprop="image"
                                     />
                                 </a>
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.0</strong>
+                                    <strong itemprop="version">0.24.2</strong>
                                 </li>
                                 <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2025-02-18T08:15:00Z">
-                                        
-                                        18-Feb-2025
+                                    $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                                    <time itemprop="datePublished" datetime="${dateFormat.format($currentDate)}">
+                                        $dateFormat.applyPattern('dd-MMM-yyyy')
+                                        ${dateFormat.format($currentDate)}
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -134,33 +122,33 @@
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
-                            <section>
-<h2><a name="Overview"></a>Overview</h2>
+                            <section><a id="Overview"></a>
+<h1>Overview</h1>
 <p>This report summarizes newer versions that may be available for your project's various dependencies.</p>
-<table border="0" class="bodyTable">
+<table class="bodyTable">
 <tr class="a">
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td># of dependencies using the latest version available</td>
-<td>32</td></tr>
+<td>51</td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td># of dependencies where the next version available is smaller than an incremental version update</td>
-<td>2</td></tr>
+<td>0</td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td># of dependencies where the next version available is an incremental version update</td>
-<td>28</td></tr>
+<td>14</td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td># of dependencies where the next version available is a minor version update</td>
-<td>12</td></tr>
+<td>7</td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td># of dependencies where the next version available is a major version update</td>
-<td>6</td></tr></tr></table><section>
-<h3><a name="Dependency_Management"></a>Dependency Management</h3>
-<table border="0" class="bodyTable">
+<td>11</td></tr></tr></table><section><a id="Dependency_Management"></a>
+<h2>Dependency Management</h2>
+<table class="bodyTable">
 <tr class="a">
 <th>Status</th>
 <th>Group Id</th>
@@ -174,31 +162,31 @@
 <th>Latest Minor</th>
 <th>Latest Major</th></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.google.code.gson</td>
 <td>gson</td>
-<td>2.11.0</td>
+<td>2.13.2</td>
 <td>runtime</td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>2.12.1</b></td>
+<td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.google.guava</td>
 <td>guava</td>
-<td>33.2.1-jre</td>
+<td>33.4.8-jre</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>33.4.0-jre</b></td>
+<td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-aether</td>
 <td>0.10.1</td>
@@ -210,7 +198,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-aspects</td>
 <td>0.26.0</td>
@@ -222,7 +210,7 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-dynamo</td>
 <td>0.22.4</td>
@@ -234,7 +222,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-email</td>
 <td>1.12</td>
@@ -246,19 +234,19 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-github</td>
-<td>1.8.0</td>
+<td>1.9.1</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>1.9.1</b></td>
+<td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-http</td>
 <td>2.0.0</td>
@@ -270,7 +258,7 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-immutable</td>
 <td>1.5</td>
@@ -282,7 +270,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-jdbc</td>
 <td>0.19.0</td>
@@ -294,19 +282,19 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-log</td>
-<td>0.24.1</td>
+<td>0.24.3</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>0.24.3</b></td>
+<td></td>
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-manifests</td>
 <td>2.1.0</td>
@@ -315,22 +303,22 @@
 <td>jar</td>
 <td></td>
 <td></td>
-<td></td>
+<td><b>2.2.0</b></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-matchers</td>
-<td>1.7.0</td>
+<td>1.8.0</td>
 <td>test</td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>1.8.0</b></td>
+<td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-maven-slf4j</td>
 <td>0.12.2</td>
@@ -342,7 +330,7 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-odesk</td>
 <td>0.12</td>
@@ -354,7 +342,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-s3</td>
 <td>0.19.0</td>
@@ -366,7 +354,7 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-simpledb</td>
 <td>0.4.0</td>
@@ -378,7 +366,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-ssh</td>
 <td>1.9.0</td>
@@ -390,7 +378,7 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-urn</td>
 <td>0.10.0</td>
@@ -402,7 +390,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-velocity</td>
 <td>0.10.0</td>
@@ -414,7 +402,7 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-w3c</td>
 <td>1.4.0</td>
@@ -426,31 +414,31 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.jcabi</td>
 <td>jcabi-xml</td>
-<td>0.29.0</td>
+<td>0.35.0</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>0.29.1</b></td>
-<td><b>0.33.5</b></td>
+<td></td>
+<td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>commons-codec</td>
 <td>commons-codec</td>
-<td>1.16.0</td>
+<td>1.18.0</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.16.1</b></td>
-<td><b>1.18.0</b></td>
+<td></td>
+<td><b>1.19.0</b></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>commons-collections</td>
 <td>commons-collections</td>
 <td>3.2.2</td>
@@ -462,31 +450,79 @@
 <td></td>
 <td><b>20040616</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>commons-io</td>
 <td>commons-io</td>
-<td>2.16.0</td>
+<td>2.20.0</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>2.16.1</b></td>
-<td><b>2.18.0</b></td>
+<td></td>
+<td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>commons-net</td>
 <td>commons-net</td>
-<td>3.10.0</td>
+<td>3.11.1</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>3.11.1</b></td>
+<td><b>3.12.0</b></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
+<td>jakarta.json</td>
+<td>jakarta.json-api</td>
+<td>2.1.3</td>
+<td>provided</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td>jakarta.servlet</td>
+<td>jakarta.servlet-api</td>
+<td>6.1.0</td>
+<td>provided</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td>jakarta.ws.rs</td>
+<td>jakarta.ws.rs-api</td>
+<td>4.0.0</td>
+<td>provided</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="a">
+<td><img src="images/icon_success_sml.gif" /></td>
+<td>jakarta.xml.bind</td>
+<td>jakarta.xml.bind-api</td>
+<td>4.0.2</td>
+<td>provided</td>
+<td></td>
+<td>jar</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td></tr>
+<tr class="b">
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>javax.el</td>
 <td>javax.el-api</td>
 <td>3.0.1-b06</td>
@@ -498,7 +534,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>javax.json</td>
 <td>javax.json-api</td>
 <td>1.1.4</td>
@@ -510,7 +546,7 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>javax.servlet</td>
 <td>javax.servlet-api</td>
 <td>4.0.1</td>
@@ -522,7 +558,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>javax.validation</td>
 <td>validation-api</td>
 <td>2.0.1.Final</td>
@@ -534,7 +570,7 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>javax.ws.rs</td>
 <td>jsr311-api</td>
 <td>1.1.1</td>
@@ -546,7 +582,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>javax.xml.bind</td>
 <td>jaxb-api</td>
 <td>2.4.0-b180830.0359</td>
@@ -558,7 +594,7 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>log4j</td>
 <td>log4j</td>
 <td>1.2.17</td>
@@ -570,7 +606,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.antlr</td>
 <td>antlr-runtime</td>
 <td>3.5.3</td>
@@ -582,43 +618,43 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.antlr</td>
 <td>antlr4-runtime</td>
-<td>4.13.1</td>
+<td>4.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>4.13.2</b></td>
+<td></td>
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.commons</td>
 <td>commons-collections4</td>
-<td>4.4</td>
+<td>4.5.0</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>4.5.0-M3</b></td>
+<td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.apache.commons</td>
 <td>commons-lang3</td>
-<td>3.14.0</td>
+<td>3.17.0</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>3.17.0</b></td>
+<td><b>3.18.0</b></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.apache.commons</td>
 <td>commons-math3</td>
 <td>3.6.1</td>
@@ -630,55 +666,55 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.apache.commons</td>
 <td>commons-text</td>
-<td>1.11.0</td>
+<td>1.13.1</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>1.13.0</b></td>
+<td><b>1.14.0</b></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.aspectj</td>
 <td>aspectjrt</td>
-<td>1.9.21</td>
+<td>1.9.24</td>
 <td></td>
 <td></td>
 <td>jar</td>
-<td><b>1.9.21.2</b></td>
-<td><b>1.9.22.1</b></td>
+<td></td>
+<td></td>
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.cactoos</td>
 <td>cactoos</td>
-<td>0.55.0</td>
+<td>0.57.0</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>0.56.1</b></td>
+<td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.clojure</td>
 <td>clojure</td>
-<td>1.12.0-alpha5</td>
+<td>1.12.1</td>
 <td></td>
 <td></td>
 <td>jar</td>
-<td><b>1.12.0</b></td>
 <td></td>
+<td><b>1.12.2</b></td>
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.clojure</td>
 <td>clojure-contrib</td>
 <td>1.2.0</td>
@@ -690,31 +726,31 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.clojure</td>
 <td>tools.logging</td>
-<td>1.2.4</td>
+<td>1.3.0</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>1.3.0</b></td>
+<td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
-<td>org.codehaus.groovy</td>
-<td>groovy-all</td>
-<td>3.0.20</td>
-<td></td>
+<td><img src="images/icon_success_sml.gif" /></td>
+<td>org.eclipse.parsson</td>
+<td>jakarta.json</td>
+<td>1.1.7</td>
+<td>runtime</td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>3.0.23</b></td>
+<td></td>
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.glassfish</td>
 <td>javax.el</td>
 <td>3.0.1-b12</td>
@@ -726,7 +762,7 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.glassfish</td>
 <td>javax.json</td>
 <td>1.1.4</td>
@@ -738,19 +774,19 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.hamcrest</td>
 <td>hamcrest</td>
-<td>2.2</td>
+<td>3.0</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
 <td></td>
-<td><b>3.0</b></td></tr>
+<td></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.hamcrest</td>
 <td>hamcrest-core</td>
 <td>3.0</td>
@@ -762,7 +798,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.hamcrest</td>
 <td>hamcrest-library</td>
 <td>3.0</td>
@@ -774,274 +810,274 @@
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.hibernate.validator</td>
 <td>hibernate-validator</td>
-<td>8.0.1.Final</td>
+<td>8.0.3.Final</td>
 <td>test</td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>8.0.2.Final</b></td>
 <td></td>
-<td><b>9.0.0.CR1</b></td></tr>
+<td></td>
+<td><b>9.1.0.Alpha1</b></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.jupiter</td>
 <td>junit-jupiter</td>
-<td>5.10.1</td>
-<td></td>
+<td>5.13.4</td>
+<td>test</td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>5.10.5</b></td>
-<td><b>5.12.0-RC2</b></td>
-<td></td></tr>
+<td></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.jupiter</td>
 <td>junit-jupiter-api</td>
-<td>5.10.3</td>
+<td>5.13.4</td>
 <td>test</td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>5.10.5</b></td>
-<td><b>5.12.0-RC2</b></td>
-<td></td></tr>
+<td></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.jupiter</td>
 <td>junit-jupiter-engine</td>
-<td>5.10.3</td>
+<td>5.13.4</td>
 <td>test</td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>5.10.5</b></td>
-<td><b>5.12.0-RC2</b></td>
-<td></td></tr>
+<td></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.jupiter</td>
 <td>junit-jupiter-migrationsupport</td>
-<td>5.10.1</td>
+<td>5.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>5.10.5</b></td>
-<td><b>5.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>5.13.4</b></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.jupiter</td>
 <td>junit-jupiter-params</td>
-<td>5.10.3</td>
+<td>5.13.4</td>
 <td>test</td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>5.10.5</b></td>
-<td><b>5.12.0-RC2</b></td>
-<td></td></tr>
+<td></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-commons</td>
-<td>1.10.1</td>
-<td></td>
+<td>1.13.4</td>
+<td>test</td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
-<td></td></tr>
+<td></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-console</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>1.13.4</b></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-engine</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>1.13.4</b></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-jfr</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
+<td><b>1.13.4</b></td>
+<td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-launcher</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>1.13.4</b></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-reporting</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>1.13.4</b></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-runner</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
+<td><b>1.13.4</b></td>
+<td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-suite</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>1.13.4</b></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-suite-api</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>1.13.4</b></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-suite-commons</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>1.13.4</b></td>
+<td></td>
+<td><b>6.0.0-M1</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-suite-engine</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>1.13.4</b></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.platform</td>
 <td>junit-platform-testkit</td>
-<td>1.10.1</td>
+<td>1.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.10.5</b></td>
-<td><b>1.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>1.13.4</b></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.junit.vintage</td>
 <td>junit-vintage-engine</td>
-<td>5.10.1</td>
+<td>5.13.2</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>5.10.5</b></td>
-<td><b>5.12.0-RC2</b></td>
-<td></td></tr>
+<td><b>5.13.4</b></td>
+<td></td>
+<td><b>6.0.0-RC3</b></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.mockito</td>
 <td>mockito-core</td>
-<td>5.8.0</td>
+<td>5.18.0</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
 <td></td>
-<td><b>5.15.2</b></td>
+<td><b>5.19.0</b></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.ow2.asm</td>
 <td>asm</td>
-<td>9.7</td>
+<td>9.8</td>
 <td></td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>9.7.1</b></td>
+<td></td>
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>org.projectlombok</td>
 <td>lombok</td>
-<td>1.18.34</td>
+<td>1.18.40</td>
 <td>provided</td>
 <td></td>
 <td>jar</td>
 <td></td>
-<td><b>1.18.36</b></td>
+<td></td>
 <td></td>
 <td></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>org.slf4j</td>
-<td>slf4j-log4j12</td>
-<td>2.0.16</td>
+<td>slf4j-reload4j</td>
+<td>2.0.17</td>
 <td>test</td>
 <td></td>
 <td>jar</td>
@@ -1050,19 +1086,7 @@
 <td><b>2.1.0-alpha1</b></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
-<td>org.slf4j</td>
-<td>slf4j-reload4j</td>
-<td>2.0.9</td>
-<td></td>
-<td></td>
-<td>jar</td>
-<td></td>
-<td><b>2.0.16</b></td>
-<td><b>2.1.0-alpha1</b></td>
-<td></td></tr>
-<tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>xml-apis</td>
 <td>xml-apis</td>
 <td>1.4.01</td>
@@ -1073,7 +1097,7 @@
 <td></td>
 <td></td>
 <td><b>2.0.2</b></td></tr>
-<tr class="a">
+<tr class="b">
 <th>Status</th>
 <th>Group Id</th>
 <th>Artifact Id</th>
@@ -1084,9 +1108,9 @@
 <th>Latest Subincremental</th>
 <th>Latest Incremental</th>
 <th>Latest Minor</th>
-<th>Latest Major</th></tr></table></section><section>
-<h3><a name="Dependencies"></a>Dependencies</h3>
-<table border="0" class="bodyTable">
+<th>Latest Major</th></tr></table></section><section><a id="Dependencies"></a>
+<h2>Dependencies</h2>
+<table class="bodyTable">
 <tr class="a">
 <th>Status</th>
 <th>Group Id</th>
@@ -1100,10 +1124,10 @@
 <th>Latest Minor</th>
 <th>Latest Major</th></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>com.qulice</td>
 <td>qulice-spi</td>
-<td>0.24.0</td>
+<td>0.24.2</td>
 <td>compile</td>
 <td></td>
 <td>jar</td>
@@ -1112,7 +1136,7 @@
 <td></td>
 <td></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>net.sourceforge.pmd</td>
 <td>pmd-core</td>
 <td>6.55.0</td>
@@ -1122,9 +1146,9 @@
 <td></td>
 <td></td>
 <td></td>
-<td><b>7.10.0</b></td></tr>
+<td><b>7.17.0</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>net.sourceforge.pmd</td>
 <td>pmd-java</td>
 <td>6.55.0</td>
@@ -1134,9 +1158,9 @@
 <td></td>
 <td></td>
 <td></td>
-<td><b>7.10.0</b></td></tr>
+<td><b>7.17.0</b></td></tr>
 <tr class="a">
-<td><img src="images/icon_warning_sml.gif" alt="" /></td>
+<td><img src="images/icon_warning_sml.gif" /></td>
 <td>net.sourceforge.pmd</td>
 <td>pmd-jsp</td>
 <td>6.55.0</td>
@@ -1146,9 +1170,9 @@
 <td></td>
 <td></td>
 <td></td>
-<td><b>7.10.0</b></td></tr>
+<td><b>7.17.0</b></td></tr>
 <tr class="b">
-<td><img src="images/icon_success_sml.gif" alt="" /></td>
+<td><img src="images/icon_success_sml.gif" /></td>
 <td>net.sourceforge.saxon</td>
 <td>saxon</td>
 <td>9.1.0.8</td>
@@ -1170,2003 +1194,2024 @@
 <th>Latest Subincremental</th>
 <th>Latest Incremental</th>
 <th>Latest Minor</th>
-<th>Latest Major</th></tr></table></section></section><section>
-<h2><a name="Dependency_Updates"></a>Dependency Updates</h2>
-<p></p><section>
-<h3><a name="com.google.code.gson:gson"></a>com.google.code.gson:gson</h3>
-<table border="0" class="bodyTable">
+<th>Latest Major</th></tr></table></section></section><section><a id="Dependency_Updates"></a>
+<h1>Dependency Updates</h1>
+<p>-</p><section><a id="com.google.code.gson.3Agson"></a>
+<h2>com.google.code.gson:gson</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.google.code.gson</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.google.code.gson</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">gson</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">gson</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">2.11.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">2.13.2</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">runtime</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">runtime</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">2.12.0<br /><b>2.12.1</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="com.google.guava:guava"></a>com.google.guava:guava</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.google.guava.3Aguava"></a>
+<h2>com.google.guava:guava</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.google.guava</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.google.guava</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">guava</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">guava</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">33.2.1-jre</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">33.4.8-jre</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">33.3.0-android<br />33.3.0-jre<br />33.3.1-android<br />33.3.1-jre<br />33.4.0-android<br /><b>33.4.0-jre</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-aether"></a>com.jcabi:jcabi-aether</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-aether"></a>
+<h2>com.jcabi:jcabi-aether</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-aether</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-aether</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.10.1</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.10.1</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-aspects"></a>com.jcabi:jcabi-aspects</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-aspects"></a>
+<h2>com.jcabi:jcabi-aspects</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-aspects</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-aspects</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.26.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.26.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">provided</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">provided</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-dynamo"></a>com.jcabi:jcabi-dynamo</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-dynamo"></a>
+<h2>com.jcabi:jcabi-dynamo</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-dynamo</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-dynamo</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.22.4</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.22.4</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-email"></a>com.jcabi:jcabi-email</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-email"></a>
+<h2>com.jcabi:jcabi-email</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-email</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-email</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.12</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.12</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-github"></a>com.jcabi:jcabi-github</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-github"></a>
+<h2>com.jcabi:jcabi-github</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-github</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-github</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.8.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.9.1</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.9.0<br /><b>1.9.1</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-http"></a>com.jcabi:jcabi-http</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-http"></a>
+<h2>com.jcabi:jcabi-http</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-http</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-http</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">2.0.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">2.0.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-immutable"></a>com.jcabi:jcabi-immutable</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-immutable"></a>
+<h2>com.jcabi:jcabi-immutable</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-immutable</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-immutable</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.5</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.5</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-jdbc"></a>com.jcabi:jcabi-jdbc</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-jdbc"></a>
+<h2>com.jcabi:jcabi-jdbc</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-jdbc</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-jdbc</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.19.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.19.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-log"></a>com.jcabi:jcabi-log</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-log"></a>
+<h2>com.jcabi:jcabi-log</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-log</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-log</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.24.1</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.24.3</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">0.24.2<br /><b>0.24.3</b>&#160;<i>Latest Incremental</i></td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-manifests"></a>com.jcabi:jcabi-manifests</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-manifests"></a>
+<h2>com.jcabi:jcabi-manifests</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-manifests</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-manifests</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">2.1.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">2.1.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-matchers"></a>com.jcabi:jcabi-matchers</h3>
-<table border="0" class="bodyTable">
-<tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;"><b>2.2.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section><a id="com.jcabi.3Ajcabi-matchers"></a>
+<h2>com.jcabi:jcabi-matchers</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-matchers</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.7.0</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">test</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-matchers</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.8.0</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left"><b>1.8.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-maven-slf4j"></a>com.jcabi:jcabi-maven-slf4j</h3>
-<table border="0" class="bodyTable">
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
+<tr class="a">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-maven-slf4j"></a>
+<h2>com.jcabi:jcabi-maven-slf4j</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-maven-slf4j</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-maven-slf4j</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.12.2</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.12.2</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-odesk"></a>com.jcabi:jcabi-odesk</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-odesk"></a>
+<h2>com.jcabi:jcabi-odesk</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-odesk</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-odesk</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.12</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.12</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-s3"></a>com.jcabi:jcabi-s3</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-s3"></a>
+<h2>com.jcabi:jcabi-s3</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-s3</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-s3</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.19.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.19.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-simpledb"></a>com.jcabi:jcabi-simpledb</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-simpledb"></a>
+<h2>com.jcabi:jcabi-simpledb</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-simpledb</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-simpledb</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.4.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.4.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-ssh"></a>com.jcabi:jcabi-ssh</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-ssh"></a>
+<h2>com.jcabi:jcabi-ssh</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-ssh</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-ssh</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.9.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.9.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-urn"></a>com.jcabi:jcabi-urn</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-urn"></a>
+<h2>com.jcabi:jcabi-urn</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-urn</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-urn</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.10.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.10.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-velocity"></a>com.jcabi:jcabi-velocity</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-velocity"></a>
+<h2>com.jcabi:jcabi-velocity</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-velocity</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-velocity</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.10.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.10.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-w3c"></a>com.jcabi:jcabi-w3c</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-w3c"></a>
+<h2>com.jcabi:jcabi-w3c</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-w3c</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-w3c</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.4.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.4.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="com.jcabi:jcabi-xml"></a>com.jcabi:jcabi-xml</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.jcabi.3Ajcabi-xml"></a>
+<h2>com.jcabi:jcabi-xml</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.jcabi</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.jcabi</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jcabi-xml</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jcabi-xml</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.29.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.35.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left"><b>0.29.1</b>&#160;<i>Latest Incremental</i><br />0.30.0<br />0.30.1<br />0.31.0<br />0.32.0<br />0.33.0<br />0.33.1<br />0.33.2<br />0.33.3<br /><b>0.33.5</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="com.qulice:qulice-spi"></a>com.qulice:qulice-spi</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="com.qulice.3Aqulice-spi"></a>
+<h2>com.qulice:qulice-spi</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">com.qulice</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">com.qulice</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">qulice-spi</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">qulice-spi</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.24.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">0.24.2</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">compile</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">compile</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="commons-codec:commons-codec"></a>commons-codec:commons-codec</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="commons-codec.3Acommons-codec"></a>
+<h2>commons-codec:commons-codec</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">commons-codec</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">commons-codec</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">commons-codec</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">commons-codec</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.16.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.18.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left"><b>1.16.1</b>&#160;<i>Latest Incremental</i><br />1.17.0<br />1.17.1<br />1.17.2<br /><b>1.18.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="commons-collections:commons-collections"></a>commons-collections:commons-collections</h3>
-<table border="0" class="bodyTable">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>1.19.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section><a id="commons-collections.3Acommons-collections"></a>
+<h2>commons-collections:commons-collections</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">commons-collections</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">commons-collections</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">commons-collections</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">commons-collections</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">3.2.2</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">3.2.2</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">20030418.083655<br />20031027.000000<br />20040102.233541<br /><b>20040616</b>&#160;<i>Latest Major</i></td></tr></table></section><section>
-<h3><a name="commons-io:commons-io"></a>commons-io:commons-io</h3>
-<table border="0" class="bodyTable">
+<th>Newer versions</th>
+<td style="text-align: left;">20030418.083655<br />20031027.000000<br />20040102.233541<br /><b>20040616</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="commons-io.3Acommons-io"></a>
+<h2>commons-io:commons-io</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">commons-io</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">commons-io</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">commons-io</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">commons-io</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">2.16.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">2.20.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left"><b>2.16.1</b>&#160;<i>Latest Incremental</i><br />2.17.0<br /><b>2.18.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="commons-net:commons-net"></a>commons-net:commons-net</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="commons-net.3Acommons-net"></a>
+<h2>commons-net:commons-net</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">commons-net</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">commons-net</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">commons-net</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">commons-net</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">3.10.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">3.11.1</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">3.11.0<br /><b>3.11.1</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="javax.el:javax.el-api"></a>javax.el:javax.el-api</h3>
-<table border="0" class="bodyTable">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>3.12.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section><a id="jakarta.json.3Ajakarta.json-api"></a>
+<h2>jakarta.json:jakarta.json-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">javax.el</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">jakarta.json</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">javax.el-api</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jakarta.json-api</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">3.0.1-b06</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">2.1.3</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;">provided</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="javax.json:javax.json-api"></a>javax.json:javax.json-api</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="jakarta.servlet.3Ajakarta.servlet-api"></a>
+<h2>jakarta.servlet:jakarta.servlet-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">javax.json</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">jakarta.servlet</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">javax.json-api</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jakarta.servlet-api</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.1.4</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">6.1.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">provided</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">provided</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="javax.servlet:javax.servlet-api"></a>javax.servlet:javax.servlet-api</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="jakarta.ws.rs.3Ajakarta.ws.rs-api"></a>
+<h2>jakarta.ws.rs:jakarta.ws.rs-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">javax.servlet</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">jakarta.ws.rs</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">javax.servlet-api</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jakarta.ws.rs-api</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">4.0.1</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">4.0.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">provided</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">provided</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="javax.validation:validation-api"></a>javax.validation:validation-api</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="jakarta.xml.bind.3Ajakarta.xml.bind-api"></a>
+<h2>jakarta.xml.bind:jakarta.xml.bind-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">javax.validation</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">jakarta.xml.bind</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">validation-api</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jakarta.xml.bind-api</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">2.0.1.Final</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">4.0.2</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;">provided</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="javax.ws.rs:jsr311-api"></a>javax.ws.rs:jsr311-api</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="javax.el.3Ajavax.el-api"></a>
+<h2>javax.el:javax.el-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">javax.ws.rs</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">javax.el</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jsr311-api</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">javax.el-api</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.1.1</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">3.0.1-b06</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">provided</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="javax.xml.bind:jaxb-api"></a>javax.xml.bind:jaxb-api</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="javax.json.3Ajavax.json-api"></a>
+<h2>javax.json:javax.json-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">javax.xml.bind</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">javax.json</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">jaxb-api</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">javax.json-api</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">2.4.0-b180830.0359</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.1.4</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;">provided</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="log4j:log4j"></a>log4j:log4j</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="javax.servlet.3Ajavax.servlet-api"></a>
+<h2>javax.servlet:javax.servlet-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">log4j</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">javax.servlet</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">log4j</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">javax.servlet-api</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.2.17</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">4.0.1</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">test</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">provided</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="net.sourceforge.pmd:pmd-core"></a>net.sourceforge.pmd:pmd-core</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="javax.validation.3Avalidation-api"></a>
+<h2>javax.validation:validation-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">net.sourceforge.pmd</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">javax.validation</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">pmd-core</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">validation-api</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">6.55.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">2.0.1.Final</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">compile</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">7.0.0-rc1<br />7.0.0-rc2<br />7.0.0-rc3<br />7.0.0-rc4<br />7.0.0<br />7.1.0<br />7.2.0<br />7.3.0<br />7.4.0<br />7.5.0<br />7.6.0<br />7.7.0<br />7.8.0<br />7.9.0<br /><b>7.10.0</b>&#160;<i>Latest Major</i></td></tr></table></section><section>
-<h3><a name="net.sourceforge.pmd:pmd-java"></a>net.sourceforge.pmd:pmd-java</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="javax.ws.rs.3Ajsr311-api"></a>
+<h2>javax.ws.rs:jsr311-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">net.sourceforge.pmd</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">javax.ws.rs</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">pmd-java</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jsr311-api</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">6.55.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.1.1</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">compile</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">provided</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">7.0.0-rc1<br />7.0.0-rc2<br />7.0.0-rc3<br />7.0.0-rc4<br />7.0.0<br />7.1.0<br />7.2.0<br />7.3.0<br />7.4.0<br />7.5.0<br />7.6.0<br />7.7.0<br />7.8.0<br />7.9.0<br /><b>7.10.0</b>&#160;<i>Latest Major</i></td></tr></table></section><section>
-<h3><a name="net.sourceforge.pmd:pmd-jsp"></a>net.sourceforge.pmd:pmd-jsp</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="javax.xml.bind.3Ajaxb-api"></a>
+<h2>javax.xml.bind:jaxb-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">net.sourceforge.pmd</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">javax.xml.bind</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">pmd-jsp</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jaxb-api</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">6.55.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">2.4.0-b180830.0359</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">runtime</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">7.0.0-rc1<br />7.0.0-rc2<br />7.0.0-rc3<br />7.0.0-rc4<br />7.0.0<br />7.1.0<br />7.2.0<br />7.3.0<br />7.4.0<br />7.5.0<br />7.6.0<br />7.7.0<br />7.8.0<br />7.9.0<br /><b>7.10.0</b>&#160;<i>Latest Major</i></td></tr></table></section><section>
-<h3><a name="net.sourceforge.saxon:saxon"></a>net.sourceforge.saxon:saxon</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="log4j.3Alog4j"></a>
+<h2>log4j:log4j</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">net.sourceforge.saxon</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">log4j</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">saxon</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">log4j</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">9.1.0.8</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.2.17</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">runtime</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="org.antlr:antlr-runtime"></a>org.antlr:antlr-runtime</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="net.sourceforge.pmd.3Apmd-core"></a>
+<h2>net.sourceforge.pmd:pmd-core</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.antlr</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">net.sourceforge.pmd</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">antlr-runtime</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">pmd-core</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">3.5.3</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">6.55.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;">compile</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="org.antlr:antlr4-runtime"></a>org.antlr:antlr4-runtime</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
+<tr class="b">
+<th>Newer versions</th>
+<td style="text-align: left;">7.0.0-rc1<br />7.0.0-rc2<br />7.0.0-rc3<br />7.0.0-rc4<br />7.0.0<br />7.1.0<br />7.2.0<br />7.3.0<br />7.4.0<br />7.5.0<br />7.6.0<br />7.7.0<br />7.8.0<br />7.9.0<br />7.10.0<br />7.11.0<br />7.12.0<br />7.13.0<br />7.14.0<br />7.15.0<br />7.16.0<br /><b>7.17.0</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="net.sourceforge.pmd.3Apmd-java"></a>
+<h2>net.sourceforge.pmd:pmd-java</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.antlr</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">net.sourceforge.pmd</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">antlr4-runtime</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">pmd-java</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">4.13.1</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">6.55.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;">compile</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left"><b>4.13.2</b>&#160;<i>Latest Incremental</i></td></tr></table></section><section>
-<h3><a name="org.apache.commons:commons-collections4"></a>org.apache.commons:commons-collections4</h3>
-<table border="0" class="bodyTable">
+<th>Newer versions</th>
+<td style="text-align: left;">7.0.0-rc1<br />7.0.0-rc2<br />7.0.0-rc3<br />7.0.0-rc4<br />7.0.0<br />7.1.0<br />7.2.0<br />7.3.0<br />7.4.0<br />7.5.0<br />7.6.0<br />7.7.0<br />7.8.0<br />7.9.0<br />7.10.0<br />7.11.0<br />7.12.0<br />7.13.0<br />7.14.0<br />7.15.0<br />7.16.0<br /><b>7.17.0</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="net.sourceforge.pmd.3Apmd-jsp"></a>
+<h2>net.sourceforge.pmd:pmd-jsp</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.apache.commons</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">net.sourceforge.pmd</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">commons-collections4</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">pmd-jsp</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">4.4</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">6.55.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;">runtime</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">4.5.0-M1<br />4.5.0-M2<br /><b>4.5.0-M3</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.apache.commons:commons-lang3"></a>org.apache.commons:commons-lang3</h3>
-<table border="0" class="bodyTable">
+<th>Newer versions</th>
+<td style="text-align: left;">7.0.0-rc1<br />7.0.0-rc2<br />7.0.0-rc3<br />7.0.0-rc4<br />7.0.0<br />7.1.0<br />7.2.0<br />7.3.0<br />7.4.0<br />7.5.0<br />7.6.0<br />7.7.0<br />7.8.0<br />7.9.0<br />7.10.0<br />7.11.0<br />7.12.0<br />7.13.0<br />7.14.0<br />7.15.0<br />7.16.0<br /><b>7.17.0</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="net.sourceforge.saxon.3Asaxon"></a>
+<h2>net.sourceforge.saxon:saxon</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.apache.commons</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">net.sourceforge.saxon</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">commons-lang3</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">saxon</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">3.14.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">9.1.0.8</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;">runtime</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
+<tr class="a">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.antlr.3Aantlr-runtime"></a>
+<h2>org.antlr:antlr-runtime</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">3.15.0<br />3.16.0<br /><b>3.17.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.apache.commons:commons-math3"></a>org.apache.commons:commons-math3</h3>
-<table border="0" class="bodyTable">
+<th>Group Id</th>
+<td style="text-align: left;">org.antlr</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">antlr-runtime</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.apache.commons</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">3.5.3</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">commons-math3</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">3.6.1</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.antlr.3Aantlr4-runtime"></a>
+<h2>org.antlr:antlr4-runtime</h2>
+<table class="bodyTable">
+<tr class="a">
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.antlr</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="org.apache.commons:commons-text"></a>org.apache.commons:commons-text</h3>
-<table border="0" class="bodyTable">
+<th>Artifact Id</th>
+<td style="text-align: left;">antlr4-runtime</td></tr>
+<tr class="b">
+<th>Current Version</th>
+<td style="text-align: left;">4.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.apache.commons</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
+<tr class="a">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.apache.commons.3Acommons-collections4"></a>
+<h2>org.apache.commons:commons-collections4</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">commons-text</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.11.0</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.apache.commons</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">commons-collections4</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">4.5.0</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.12.0<br /><b>1.13.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.aspectj:aspectjrt"></a>org.aspectj:aspectjrt</h3>
-<table border="0" class="bodyTable">
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer version available.</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.apache.commons.3Acommons-lang3"></a>
+<h2>org.apache.commons:commons-lang3</h2>
+<table class="bodyTable">
+<tr class="a">
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.aspectj</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.apache.commons</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">aspectjrt</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">commons-lang3</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.9.21</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">3.17.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.9.21.1<br /><b>1.9.21.2</b>&#160;<i>Latest Subincremental</i><br />1.9.22<br /><b>1.9.22.1</b>&#160;<i>Latest Incremental</i></td></tr></table></section><section>
-<h3><a name="org.cactoos:cactoos"></a>org.cactoos:cactoos</h3>
-<table border="0" class="bodyTable">
+<th>Newer versions</th>
+<td style="text-align: left;"><b>3.18.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section><a id="org.apache.commons.3Acommons-math3"></a>
+<h2>org.apache.commons:commons-math3</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.cactoos</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.apache.commons</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">cactoos</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">commons-math3</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">0.55.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">3.6.1</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
+<tr class="a">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.apache.commons.3Acommons-text"></a>
+<h2>org.apache.commons:commons-text</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">0.56.0<br /><b>0.56.1</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.clojure:clojure"></a>org.clojure:clojure</h3>
-<table border="0" class="bodyTable">
+<th>Group Id</th>
+<td style="text-align: left;">org.apache.commons</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer version available.</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">commons-text</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.clojure</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.13.1</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">clojure</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.12.0-alpha5</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;"><b>1.14.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section><a id="org.aspectj.3Aaspectjrt"></a>
+<h2>org.aspectj:aspectjrt</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.12.0-alpha6<br />1.12.0-alpha7<br />1.12.0-alpha8<br />1.12.0-alpha9<br />1.12.0-alpha10<br />1.12.0-alpha11<br />1.12.0-alpha12<br />1.12.0-beta1<br />1.12.0-beta2<br />1.12.0-rc1<br />1.12.0-rc2<br /><b>1.12.0</b>&#160;<i>Latest Subincremental</i></td></tr></table></section><section>
-<h3><a name="org.clojure:clojure-contrib"></a>org.clojure:clojure-contrib</h3>
-<table border="0" class="bodyTable">
+<th>Group Id</th>
+<td style="text-align: left;">org.aspectj</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">aspectjrt</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.clojure</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.9.24</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">clojure-contrib</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.2.0</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.cactoos.3Acactoos"></a>
+<h2>org.cactoos:cactoos</h2>
+<table class="bodyTable">
+<tr class="a">
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.cactoos</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="org.clojure:tools.logging"></a>org.clojure:tools.logging</h3>
-<table border="0" class="bodyTable">
+<th>Artifact Id</th>
+<td style="text-align: left;">cactoos</td></tr>
+<tr class="b">
+<th>Current Version</th>
+<td style="text-align: left;">0.57.0</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.clojure</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">tools.logging</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.clojure.3Aclojure"></a>
+<h2>org.clojure:clojure</h2>
+<table class="bodyTable">
+<tr class="a">
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.2.4</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.clojure</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">clojure</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.12.1</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left"><b>1.3.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.codehaus.groovy:groovy-all"></a>org.codehaus.groovy:groovy-all</h3>
-<table border="0" class="bodyTable">
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.codehaus.groovy</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;"><b>1.12.2</b>&#160;<i>Latest Incremental</i></td></tr></table></section><section><a id="org.clojure.3Aclojure-contrib"></a>
+<h2>org.clojure:clojure-contrib</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">groovy-all</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">3.0.20</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.clojure</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">clojure-contrib</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.2.0</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">3.0.21<br />3.0.22<br /><b>3.0.23</b>&#160;<i>Latest Incremental</i></td></tr></table></section><section>
-<h3><a name="org.glassfish:javax.el"></a>org.glassfish:javax.el</h3>
-<table border="0" class="bodyTable">
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.clojure.3Atools.logging"></a>
+<h2>org.clojure:tools.logging</h2>
+<table class="bodyTable">
+<tr class="a">
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.glassfish</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.clojure</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">javax.el</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">tools.logging</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">3.0.1-b12</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.3.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="org.glassfish:javax.json"></a>org.glassfish:javax.json</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.eclipse.parsson.3Ajakarta.json"></a>
+<h2>org.eclipse.parsson:jakarta.json</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.glassfish</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.eclipse.parsson</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">javax.json</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">jakarta.json</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.1.4</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.1.7</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">runtime</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">runtime</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="org.hamcrest:hamcrest"></a>org.hamcrest:hamcrest</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.glassfish.3Ajavax.el"></a>
+<h2>org.glassfish:javax.el</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.hamcrest</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.glassfish</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">hamcrest</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">javax.el</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">2.2</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">3.0.1-b12</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
-<tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">3.0-rc1<br /><b>3.0</b>&#160;<i>Latest Major</i></td></tr></table></section><section>
-<h3><a name="org.hamcrest:hamcrest-core"></a>org.hamcrest:hamcrest-core</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.glassfish.3Ajavax.json"></a>
+<h2>org.glassfish:javax.json</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.hamcrest</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.glassfish</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">hamcrest-core</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">javax.json</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">3.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.1.4</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">test</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">runtime</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="org.hamcrest:hamcrest-library"></a>org.hamcrest:hamcrest-library</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.hamcrest.3Ahamcrest"></a>
+<h2>org.hamcrest:hamcrest</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_success_sml.gif" alt="" />&#160;No newer versions available.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.hamcrest</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.hamcrest</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">hamcrest-library</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">hamcrest</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">3.0</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">3.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">test</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr></table></section><section>
-<h3><a name="org.hibernate.validator:hibernate-validator"></a>org.hibernate.validator:hibernate-validator</h3>
-<table border="0" class="bodyTable">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.hamcrest.3Ahamcrest-core"></a>
+<h2>org.hamcrest:hamcrest-core</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.hibernate.validator</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.hamcrest</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">hibernate-validator</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">hamcrest-core</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">8.0.1.Final</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">3.0</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">test</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.hamcrest.3Ahamcrest-library"></a>
+<h2>org.hamcrest:hamcrest-library</h2>
+<table class="bodyTable">
+<tr class="a">
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left"><b>8.0.2.Final</b>&#160;<i>Latest Incremental</i><br />9.0.0.Beta2<br />9.0.0.Beta3<br /><b>9.0.0.CR1</b>&#160;<i>Latest Major</i></td></tr></table></section><section>
-<h3><a name="org.junit.jupiter:junit-jupiter"></a>org.junit.jupiter:junit-jupiter</h3>
-<table border="0" class="bodyTable">
+<th>Group Id</th>
+<td style="text-align: left;">org.hamcrest</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">hamcrest-library</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.jupiter</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">3.0</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-jupiter</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">5.10.1</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
+<tr class="a">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.hibernate.validator.3Ahibernate-validator"></a>
+<h2>org.hibernate.validator:hibernate-validator</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.hibernate.validator</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">hibernate-validator</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">5.10.2<br />5.10.3<br />5.10.4<br /><b>5.10.5</b>&#160;<i>Latest Incremental</i><br />5.11.0-M1<br />5.11.0-M2<br />5.11.0-RC1<br />5.11.0<br />5.11.1<br />5.11.2<br />5.11.3<br />5.11.4<br />5.12.0-M1<br />5.12.0-RC1<br /><b>5.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.jupiter:junit-jupiter-api"></a>org.junit.jupiter:junit-jupiter-api</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">8.0.3.Final</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.jupiter</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-jupiter-api</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">5.10.3</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">9.0.0.Beta2<br />9.0.0.Beta3<br />9.0.0.CR1<br />9.0.0.Final<br />9.0.1.Final<br /><b>9.1.0.Alpha1</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.jupiter.3Ajunit-jupiter"></a>
+<h2>org.junit.jupiter:junit-jupiter</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">test</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.jupiter</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-jupiter</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">5.10.4<br /><b>5.10.5</b>&#160;<i>Latest Incremental</i><br />5.11.0-M1<br />5.11.0-M2<br />5.11.0-RC1<br />5.11.0<br />5.11.1<br />5.11.2<br />5.11.3<br />5.11.4<br />5.12.0-M1<br />5.12.0-RC1<br /><b>5.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.jupiter:junit-jupiter-engine"></a>org.junit.jupiter:junit-jupiter-engine</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">5.13.4</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.jupiter</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-jupiter-engine</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">5.10.3</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.jupiter.3Ajunit-jupiter-api"></a>
+<h2>org.junit.jupiter:junit-jupiter-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">test</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.jupiter</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-jupiter-api</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">5.10.4<br /><b>5.10.5</b>&#160;<i>Latest Incremental</i><br />5.11.0-M1<br />5.11.0-M2<br />5.11.0-RC1<br />5.11.0<br />5.11.1<br />5.11.2<br />5.11.3<br />5.11.4<br />5.12.0-M1<br />5.12.0-RC1<br /><b>5.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.jupiter:junit-jupiter-migrationsupport"></a>org.junit.jupiter:junit-jupiter-migrationsupport</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">5.13.4</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.jupiter</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-jupiter-migrationsupport</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">5.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.jupiter.3Ajunit-jupiter-engine"></a>
+<h2>org.junit.jupiter:junit-jupiter-engine</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.jupiter</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-jupiter-engine</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">5.10.2<br />5.10.3<br />5.10.4<br /><b>5.10.5</b>&#160;<i>Latest Incremental</i><br />5.11.0-M1<br />5.11.0-M2<br />5.11.0-RC1<br />5.11.0<br />5.11.1<br />5.11.2<br />5.11.3<br />5.11.4<br />5.12.0-M1<br />5.12.0-RC1<br /><b>5.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.jupiter:junit-jupiter-params"></a>org.junit.jupiter:junit-jupiter-params</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">5.13.4</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.jupiter</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-jupiter-params</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">5.10.3</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.jupiter.3Ajunit-jupiter-migrationsupport"></a>
+<h2>org.junit.jupiter:junit-jupiter-migrationsupport</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">test</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.jupiter</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-jupiter-migrationsupport</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">5.10.4<br /><b>5.10.5</b>&#160;<i>Latest Incremental</i><br />5.11.0-M1<br />5.11.0-M2<br />5.11.0-RC1<br />5.11.0<br />5.11.1<br />5.11.2<br />5.11.3<br />5.11.4<br />5.12.0-M1<br />5.12.0-RC1<br /><b>5.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-commons"></a>org.junit.platform:junit-platform-commons</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">5.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-commons</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">5.13.3<br /><b>5.13.4</b>&#160;<i>Latest Incremental</i><br />6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.jupiter.3Ajunit-jupiter-params"></a>
+<h2>org.junit.jupiter:junit-jupiter-params</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.jupiter</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-jupiter-params</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-console"></a>org.junit.platform:junit-platform-console</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">5.13.4</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-console</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-commons"></a>
+<h2>org.junit.platform:junit-platform-commons</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-commons</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-engine"></a>org.junit.platform:junit-platform-engine</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.4</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-engine</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-console"></a>
+<h2>org.junit.platform:junit-platform-console</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-console</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-jfr"></a>org.junit.platform:junit-platform-jfr</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-jfr</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i><br />6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-engine"></a>
+<h2>org.junit.platform:junit-platform-engine</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-engine</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-launcher"></a>org.junit.platform:junit-platform-launcher</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-launcher</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i><br />6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-jfr"></a>
+<h2>org.junit.platform:junit-platform-jfr</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-jfr</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-reporting"></a>org.junit.platform:junit-platform-reporting</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-reporting</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-launcher"></a>
+<h2>org.junit.platform:junit-platform-launcher</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-launcher</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-runner"></a>org.junit.platform:junit-platform-runner</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-runner</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i><br />6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-reporting"></a>
+<h2>org.junit.platform:junit-platform-reporting</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-reporting</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-suite"></a>org.junit.platform:junit-platform-suite</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-suite</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i><br />6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-runner"></a>
+<h2>org.junit.platform:junit-platform-runner</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-runner</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-suite-api"></a>org.junit.platform:junit-platform-suite-api</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-suite-api</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-suite"></a>
+<h2>org.junit.platform:junit-platform-suite</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-suite</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-suite-commons"></a>org.junit.platform:junit-platform-suite-commons</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-suite-commons</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i><br />6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-suite-api"></a>
+<h2>org.junit.platform:junit-platform-suite-api</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-suite-api</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-suite-engine"></a>org.junit.platform:junit-platform-suite-engine</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-suite-engine</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i><br />6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-suite-commons"></a>
+<h2>org.junit.platform:junit-platform-suite-commons</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-suite-commons</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.platform:junit-platform-testkit"></a>org.junit.platform:junit-platform-testkit</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.platform</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-platform-testkit</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i><br /><b>6.0.0-M1</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-suite-engine"></a>
+<h2>org.junit.platform:junit-platform-suite-engine</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-suite-engine</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">1.10.2<br />1.10.3<br />1.10.4<br /><b>1.10.5</b>&#160;<i>Latest Incremental</i><br />1.11.0-M1<br />1.11.0-M2<br />1.11.0-RC1<br />1.11.0<br />1.11.1<br />1.11.2<br />1.11.3<br />1.11.4<br />1.12.0-M1<br />1.12.0-RC1<br /><b>1.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.junit.vintage:junit-vintage-engine"></a>org.junit.vintage:junit-vintage-engine</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.junit.vintage</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">junit-vintage-engine</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">5.10.1</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i><br />6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.platform.3Ajunit-platform-testkit"></a>
+<h2>org.junit.platform:junit-platform-testkit</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.platform</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-platform-testkit</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">5.10.2<br />5.10.3<br />5.10.4<br /><b>5.10.5</b>&#160;<i>Latest Incremental</i><br />5.11.0-M1<br />5.11.0-M2<br />5.11.0-RC1<br />5.11.0<br />5.11.1<br />5.11.2<br />5.11.3<br />5.11.4<br />5.12.0-M1<br />5.12.0-RC1<br /><b>5.12.0-RC2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.mockito:mockito-core"></a>org.mockito:mockito-core</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">1.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.mockito</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">mockito-core</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">5.8.0</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">1.13.3<br /><b>1.13.4</b>&#160;<i>Latest Incremental</i><br />6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.junit.vintage.3Ajunit-vintage-engine"></a>
+<h2>org.junit.vintage:junit-vintage-engine</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.junit.vintage</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">junit-vintage-engine</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">5.9.0<br />5.10.0<br />5.11.0<br />5.12.0<br />5.13.0<br />5.14.0<br />5.14.1<br />5.14.2<br /><b>5.15.2</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.ow2.asm:asm"></a>org.ow2.asm:asm</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">5.13.2</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.ow2.asm</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">asm</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">9.7</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;">5.13.3<br /><b>5.13.4</b>&#160;<i>Latest Incremental</i><br />6.0.0-M1<br />6.0.0-M2<br />6.0.0-RC1<br />6.0.0-RC2<br /><b>6.0.0-RC3</b>&#160;<i>Latest Major</i></td></tr></table></section><section><a id="org.mockito.3Amockito-core"></a>
+<h2>org.mockito:mockito-core</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.mockito</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">mockito-core</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left"><b>9.7.1</b>&#160;<i>Latest Incremental</i></td></tr></table></section><section>
-<h3><a name="org.projectlombok:lombok"></a>org.projectlombok:lombok</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">5.18.0</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.projectlombok</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">lombok</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.18.34</td></tr>
+<th>Newer versions</th>
+<td style="text-align: left;"><b>5.19.0</b>&#160;<i>Latest Minor</i></td></tr></table></section><section><a id="org.ow2.asm.3Aasm"></a>
+<h2>org.ow2.asm:asm</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">provided</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.ow2.asm</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">asm</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left"><b>1.18.36</b>&#160;<i>Latest Incremental</i></td></tr></table></section><section>
-<h3><a name="org.slf4j:slf4j-log4j12"></a>org.slf4j:slf4j-log4j12</h3>
-<table border="0" class="bodyTable">
+<th>Current Version</th>
+<td style="text-align: left;">9.8</td></tr>
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.slf4j</td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">slf4j-log4j12</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.projectlombok.3Alombok"></a>
+<h2>org.projectlombok:lombok</h2>
+<table class="bodyTable">
+<tr class="a">
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_success_sml.gif" />&#160;No newer versions available.</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">2.0.16</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.projectlombok</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left">test</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">lombok</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.18.40</td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Scope</th>
+<td style="text-align: left;">provided</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">2.1.0-alpha0<br /><b>2.1.0-alpha1</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="org.slf4j:slf4j-reload4j"></a>org.slf4j:slf4j-reload4j</h3>
-<table border="0" class="bodyTable">
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
+<tr class="a">
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr></table></section><section><a id="org.slf4j.3Aslf4j-reload4j"></a>
+<h2>org.slf4j:slf4j-reload4j</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer incremental version available. Incremental updates are typically passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer minor version available. Minor updates are sometimes passive.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">org.slf4j</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">org.slf4j</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">slf4j-reload4j</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">slf4j-reload4j</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">2.0.9</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">2.0.17</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;">test</td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">2.0.10<br />2.0.11<br />2.0.12<br />2.0.13<br />2.0.14<br />2.0.15<br /><b>2.0.16</b>&#160;<i>Latest Incremental</i><br />2.1.0-alpha0<br /><b>2.1.0-alpha1</b>&#160;<i>Latest Minor</i></td></tr></table></section><section>
-<h3><a name="xml-apis:xml-apis"></a>xml-apis:xml-apis</h3>
-<table border="0" class="bodyTable">
+<th>Newer versions</th>
+<td style="text-align: left;">2.1.0-alpha0<br /><b>2.1.0-alpha1</b>&#160;<i>Latest Minor</i></td></tr></table></section><section><a id="xml-apis.3Axml-apis"></a>
+<h2>xml-apis:xml-apis</h2>
+<table class="bodyTable">
 <tr class="a">
-<th width="30%">Status</th>
-<td align="left"><img src="images/icon_warning_sml.gif" alt="" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
+<th>Status</th>
+<td style="text-align: left;"><img src="images/icon_warning_sml.gif" />&#160;There is at least one newer major version available. Major updates are rarely passive.</td></tr>
 <tr class="b">
-<th width="30%">Group Id</th>
-<td align="left">xml-apis</td></tr>
+<th>Group Id</th>
+<td style="text-align: left;">xml-apis</td></tr>
 <tr class="a">
-<th width="30%">Artifact Id</th>
-<td align="left">xml-apis</td></tr>
+<th>Artifact Id</th>
+<td style="text-align: left;">xml-apis</td></tr>
 <tr class="b">
-<th width="30%">Current Version</th>
-<td align="left">1.4.01</td></tr>
+<th>Current Version</th>
+<td style="text-align: left;">1.4.01</td></tr>
 <tr class="a">
-<th width="30%">Scope</th>
-<td align="left"></td></tr>
+<th>Scope</th>
+<td style="text-align: left;"></td></tr>
 <tr class="b">
-<th width="30%">Classifier</th>
-<td align="left"></td></tr>
+<th>Classifier</th>
+<td style="text-align: left;"></td></tr>
 <tr class="a">
-<th width="30%">Type</th>
-<td align="left">jar</td></tr>
+<th>Type</th>
+<td style="text-align: left;">jar</td></tr>
 <tr class="b">
-<th width="30%">Newer versions</th>
-<td align="left">2.0.0<br /><b>2.0.2</b>&#160;<i>Latest Major</i></td></tr></table></section></section>
+<th>Newer versions</th>
+<td style="text-align: left;">2.0.0<br /><b>2.0.2</b>&#160;<i>Latest Major</i></td></tr></table></section></section>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2025
+                                                                            2011-${currentYear}
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </div>

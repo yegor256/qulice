@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.qulice.pmd"},{"l":"com.qulice.pmd.rules"}];updateSearchResults();
