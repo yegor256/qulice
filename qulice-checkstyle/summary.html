@@ -2,20 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-checkstyle &#x2013; Project Summary</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Project Summary – qulice-checkstyle</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+                                                    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
     </head>
     <body>
@@ -97,24 +87,22 @@
                         <header>
                             <div class="logo">
                                 <a href="../"
-                                    title=" home page of Qulice.com ">
-                                    <img src="../logo.svg"
+                                    title=" logo ">
+                                    <img src="${decoration.bannerLeft.src}"
                                         alt="Qulice"
-                                                                                    width="214"
-                                                                                                                            height="60"
-                                                                                itemprop="image"
+                                                                                                                        itemprop="image"
                                     />
                                 </a>
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.0</strong>
+                                    <strong itemprop="version">0.24.2</strong>
                                 </li>
                                 <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2025-02-18T08:04:07Z">
-                                        
-                                        18-Feb-2025
+                                    $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                                    <time itemprop="datePublished" datetime="${dateFormat.format($currentDate)}">
+                                        $dateFormat.applyPattern('dd-MMM-yyyy')
+                                        ${dateFormat.format($currentDate)}
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -122,64 +110,64 @@
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
-                            <section>
-<h2><a name="Project_Summary"></a>Project Summary</h2><a name="Project_Summary"></a><section>
-<h3><a name="Project_Information"></a>Project Information</h3><a name="Project_Information"></a>
-<table border="0" class="bodyTable">
+                            <section><a id="Project_Summary"></a>
+<h1>Project Summary</h1><section><a id="Project_Information"></a>
+<h2>Project Information</h2>
+<table class="bodyTable">
 <tr class="a">
 <th>Field</th>
 <th>Value</th></tr>
 <tr class="b">
-<td align="left">Name</td>
+<td>Name</td>
 <td>qulice-checkstyle</td></tr>
 <tr class="a">
-<td align="left">Description</td>
+<td>Description</td>
 <td>Quality control library, integrating together other static analysis and validation tools and instruments.</td></tr>
 <tr class="b">
-<td align="left">Homepage</td>
-<td><a class="externalLink" href="https://www.qulice.com/qulice-checkstyle">https://www.qulice.com/qulice-checkstyle</a></td></tr></table></section><section>
-<h3><a name="Project_Organization"></a>Project Organization</h3><a name="Project_Organization"></a>
-<table border="0" class="bodyTable">
+<td>Homepage</td>
+<td><a class="externalLink" href="https://www.qulice.com/qulice-checkstyle">https://www.qulice.com/qulice-checkstyle</a></td></tr></table></section><section><a id="Project_Organization"></a>
+<h2>Project Organization</h2>
+<table class="bodyTable">
 <tr class="a">
 <th>Field</th>
 <th>Value</th></tr>
 <tr class="b">
-<td align="left">Name</td>
+<td>Name</td>
 <td>Qulice.com</td></tr>
 <tr class="a">
-<td align="left">URL</td>
-<td><a class="externalLink" href="https://www.qulice.com">https://www.qulice.com</a></td></tr></table></section><section>
-<h3><a name="Build_Information"></a>Build Information</h3><a name="Build_Information"></a>
-<table border="0" class="bodyTable">
+<td>URL</td>
+<td><a class="externalLink" href="https://www.qulice.com">https://www.qulice.com</a></td></tr></table></section><section><a id="Build_Information"></a>
+<h2>Build Information</h2>
+<table class="bodyTable">
 <tr class="a">
 <th>Field</th>
 <th>Value</th></tr>
 <tr class="b">
-<td align="left">GroupId</td>
+<td>GroupId</td>
 <td>com.qulice</td></tr>
 <tr class="a">
-<td align="left">ArtifactId</td>
+<td>ArtifactId</td>
 <td>qulice-checkstyle</td></tr>
 <tr class="b">
-<td align="left">Version</td>
-<td>0.24.0</td></tr>
+<td>Version</td>
+<td>0.24.2</td></tr>
 <tr class="a">
-<td align="left">Type</td>
+<td>Type</td>
 <td>jar</td></tr>
 <tr class="b">
-<td align="left">Java Version</td>
-<td>1.8</td></tr></table></section><section>
-<h3><a name="Download"></a>Download</h3><a name="Download"></a><a class="externalLink" href="https://oss.sonatype.org/content/groups/public">https://oss.sonatype.org/content/groups/public</a></section></section>
+<td>Java Version</td>
+<td>17</td></tr></table></section><section><a id="Download"></a>
+<h2>Download</h2><a class="externalLink" href="https://oss.sonatype.org/content/groups/public">https://oss.sonatype.org/content/groups/public</a></section></section>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2025
+                                                                            2011-${currentYear}
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </div>

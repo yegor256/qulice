@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Environment.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-checkstyle</a> &gt; <a href="../index.html" class="el_bundle">qulice-spi</a> &gt; <a href="index.source.html" class="el_package">com.qulice.spi</a> &gt; <span class="el_source">Environment.java</span></div><h1>Environment.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Environment.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-checkstyle</a> &gt; <a href="../index.html" class="el_bundle">qulice-spi</a> &gt; <a href="index.source.html" class="el_package">com.qulice.spi</a> &gt; <span class="el_source">Environment.java</span></div><h1>Environment.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.spi;
 
@@ -134,7 +108,7 @@ public interface Environment {
      *
      * @since 0.1
      */
-<span class="nc" id="L137">    final class Mock implements Environment {</span>
+<span class="nc" id="L111">    final class Mock implements Environment {</span>
         /**
          * The basedir.
          */
@@ -162,28 +136,28 @@ public interface Environment {
         @SuppressWarnings(
             &quot;PMD.ConstructorOnlyInitializesOrCallOtherConstructors&quot;
             )
-<span class="nc" id="L165">        public Mock() throws IOException {</span>
-<span class="nc" id="L166">            this.params = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L167">            this.classpath = new HashSet&lt;&gt;(1);</span>
-<span class="nc" id="L168">            final File temp = File.createTempFile(</span>
+<span class="nc" id="L139">        public Mock() throws IOException {</span>
+<span class="nc" id="L140">            this.params = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L141">            this.classpath = new HashSet&lt;&gt;(1);</span>
+<span class="nc" id="L142">            final File temp = File.createTempFile(</span>
                 &quot;mock&quot;, &quot;.qulice&quot;,
-<span class="nc" id="L170">                new File(System.getProperty(&quot;java.io.tmpdir&quot;))</span>
+<span class="nc" id="L144">                new File(System.getProperty(&quot;java.io.tmpdir&quot;))</span>
             );
-<span class="nc bnc" id="L172" title="All 2 branches missed.">            if (!temp.delete()) {</span>
-<span class="nc" id="L173">                throw new IllegalStateException(&quot;files collision&quot;);</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            if (!temp.delete()) {</span>
+<span class="nc" id="L147">                throw new IllegalStateException(&quot;files collision&quot;);</span>
             }
-<span class="nc bnc" id="L175" title="All 2 branches missed.">            if (!temp.mkdirs()) {</span>
-<span class="nc" id="L176">                throw new IllegalStateException(&quot;mkdir failed&quot;);</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">            if (!temp.mkdirs()) {</span>
+<span class="nc" id="L150">                throw new IllegalStateException(&quot;mkdir failed&quot;);</span>
             }
-<span class="nc" id="L178">            FileUtils.forceDeleteOnExit(temp);</span>
-<span class="nc" id="L179">            this.basedir = new File(temp, &quot;basedir&quot;);</span>
-<span class="nc bnc" id="L180" title="All 2 branches missed.">            if (this.basedir.mkdirs()) {</span>
-<span class="nc bnc" id="L181" title="All 2 branches missed.">                assert this.basedir != null;</span>
+<span class="nc" id="L152">            FileUtils.forceDeleteOnExit(temp);</span>
+<span class="nc" id="L153">            this.basedir = new File(temp, &quot;basedir&quot;);</span>
+<span class="nc bnc" id="L154" title="All 2 branches missed.">            if (this.basedir.mkdirs()) {</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">                assert this.basedir != null;</span>
             }
-<span class="nc" id="L183">            this.classpath.add(</span>
-<span class="nc" id="L184">                this.outdir().getAbsolutePath().replace(File.separatorChar, '/')</span>
+<span class="nc" id="L157">            this.classpath.add(</span>
+<span class="nc" id="L158">                this.outdir().getAbsolutePath().replace(File.separatorChar, '/')</span>
             );
-<span class="nc" id="L186">        }</span>
+<span class="nc" id="L160">        }</span>
 
         /**
          * With this param and its value.
@@ -193,8 +167,8 @@ public interface Environment {
          */
         public Environment.Mock withParam(final String name,
             final String value) {
-<span class="nc" id="L196">            this.params.put(name, value);</span>
-<span class="nc" id="L197">            return this;</span>
+<span class="nc" id="L170">            this.params.put(name, value);</span>
+<span class="nc" id="L171">            return this;</span>
         }
 
         /**
@@ -206,13 +180,13 @@ public interface Environment {
          */
         public Environment.Mock withFile(final String name,
             final String content) throws IOException {
-<span class="nc" id="L209">            final File file = new File(this.basedir, name);</span>
-<span class="nc" id="L210">            FileUtils.writeStringToFile(</span>
+<span class="nc" id="L183">            final File file = new File(this.basedir, name);</span>
+<span class="nc" id="L184">            FileUtils.writeStringToFile(</span>
                 file,
                 content,
                 StandardCharsets.UTF_8
             );
-<span class="nc" id="L215">            return this;</span>
+<span class="nc" id="L189">            return this;</span>
         }
 
         /**
@@ -224,9 +198,9 @@ public interface Environment {
          */
         public Environment.Mock withFile(final String name,
             final byte[] bytes) throws IOException {
-<span class="nc" id="L227">            final File file = new File(this.basedir, name);</span>
-<span class="nc" id="L228">            FileUtils.writeByteArrayToFile(file, bytes);</span>
-<span class="nc" id="L229">            return this;</span>
+<span class="nc" id="L201">            final File file = new File(this.basedir, name);</span>
+<span class="nc" id="L202">            FileUtils.writeByteArrayToFile(file, bytes);</span>
+<span class="nc" id="L203">            return this;</span>
         }
 
         /**
@@ -235,8 +209,8 @@ public interface Environment {
          * @return This object
          */
         public Environment.Mock withExcludes(final String excludes) {
-<span class="nc" id="L238">            this.excl = excludes;</span>
-<span class="nc" id="L239">            return this;</span>
+<span class="nc" id="L212">            this.excl = excludes;</span>
+<span class="nc" id="L213">            return this;</span>
         }
 
         /**
@@ -245,96 +219,93 @@ public interface Environment {
          */
         @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
         public Environment.Mock withDefaultClasspath() {
-<span class="nc" id="L248">            Collections.addAll(</span>
+<span class="nc" id="L222">            Collections.addAll(</span>
                 this.classpath,
-<span class="nc" id="L250">                System.getProperty(&quot;java.class.path&quot;)</span>
-<span class="nc" id="L251">                    .split(System.getProperty(&quot;path.separator&quot;))</span>
+<span class="nc" id="L224">                System.getProperty(&quot;java.class.path&quot;)</span>
+<span class="nc" id="L225">                    .split(System.getProperty(&quot;path.separator&quot;))</span>
             );
-<span class="nc" id="L253">            return this;</span>
+<span class="nc" id="L227">            return this;</span>
         }
 
         @Override
         public File basedir() {
-<span class="nc" id="L258">            return this.basedir;</span>
+<span class="nc" id="L232">            return this.basedir;</span>
         }
 
         @Override
         public File tempdir() {
-<span class="nc" id="L263">            final File file = new File(this.basedir, &quot;target/tempdir&quot;);</span>
-<span class="nc bnc" id="L264" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
-<span class="nc bnc" id="L265" title="All 2 branches missed.">                assert file != null;</span>
+<span class="nc" id="L237">            final File file = new File(this.basedir, &quot;target/tempdir&quot;);</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
+<span class="nc bnc" id="L239" title="All 2 branches missed.">                assert file != null;</span>
             }
-<span class="nc" id="L267">            return file;</span>
+<span class="nc" id="L241">            return file;</span>
         }
 
         @Override
         public File outdir() {
-<span class="nc" id="L272">            final File file = new File(this.basedir, &quot;target/classes&quot;);</span>
-<span class="nc bnc" id="L273" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
-<span class="nc bnc" id="L274" title="All 2 branches missed.">                assert file != null;</span>
+<span class="nc" id="L246">            final File file = new File(this.basedir, &quot;target/classes&quot;);</span>
+<span class="nc bnc" id="L247" title="All 2 branches missed.">            if (file.mkdirs()) {</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">                assert file != null;</span>
             }
-<span class="nc" id="L276">            return file;</span>
+<span class="nc" id="L250">            return file;</span>
         }
 
         @Override
         public String param(final String name, final String value) {
-<span class="nc" id="L281">            String val = this.params.get(name);</span>
-<span class="nc bnc" id="L282" title="All 2 branches missed.">            if (val == null) {</span>
-<span class="nc" id="L283">                val = value;</span>
+<span class="nc" id="L255">            String val = this.params.get(name);</span>
+<span class="nc bnc" id="L256" title="All 2 branches missed.">            if (val == null) {</span>
+<span class="nc" id="L257">                val = value;</span>
             }
-<span class="nc" id="L285">            return val;</span>
+<span class="nc" id="L259">            return val;</span>
         }
 
         @Override
         public ClassLoader classloader() {
-<span class="nc" id="L290">            return Thread.currentThread().getContextClassLoader();</span>
+<span class="nc" id="L264">            return Thread.currentThread().getContextClassLoader();</span>
         }
 
         @Override
         public Collection&lt;String&gt; classpath() {
-<span class="nc" id="L295">            return Collections.unmodifiableCollection(this.classpath);</span>
+<span class="nc" id="L269">            return Collections.unmodifiableCollection(this.classpath);</span>
         }
 
         @Override
         @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
         public Collection&lt;File&gt; files(final String pattern) {
-<span class="nc" id="L301">            final Collection&lt;File&gt; files = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L302">            final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();</span>
-<span class="nc bnc" id="L303" title="All 2 branches missed.">            for (final String dir : new String[]{&quot;src&quot;}) {</span>
-<span class="nc" id="L304">                final File sources = new File(this.basedir(), dir);</span>
-<span class="nc bnc" id="L305" title="All 2 branches missed.">                if (sources.exists()) {</span>
-<span class="nc" id="L306">                    files.addAll(</span>
-<span class="nc" id="L307">                        FileUtils.listFiles(</span>
-                            sources,
-                            filter,
-                            DirectoryFileFilter.INSTANCE
-                        )
-                    );
-                }
+<span class="nc" id="L275">            final Collection&lt;File&gt; files = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L276">            final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">            if (this.basedir().exists()) {</span>
+<span class="nc" id="L278">                files.addAll(</span>
+<span class="nc" id="L279">                    FileUtils.listFiles(</span>
+<span class="nc" id="L280">                        this.basedir(),</span>
+                        filter,
+                        DirectoryFileFilter.INSTANCE
+                    )
+                );
             }
-<span class="nc" id="L315">            return files;</span>
+<span class="nc" id="L286">            return files;</span>
         }
 
         @Override
         public boolean exclude(final String check, final String name) {
-<span class="nc" id="L320">            return false;</span>
+<span class="nc" id="L291">            return false;</span>
         }
 
         @Override
         public Collection&lt;String&gt; excludes(final String checker) {
             final Collection&lt;String&gt; exc;
-<span class="nc bnc" id="L326" title="All 2 branches missed.">            if (this.excl == null) {</span>
-<span class="nc" id="L327">                exc = Collections.emptyList();</span>
+<span class="nc bnc" id="L297" title="All 2 branches missed.">            if (this.excl == null) {</span>
+<span class="nc" id="L298">                exc = Collections.emptyList();</span>
             } else {
-<span class="nc" id="L329">                exc = Arrays.asList(this.excl.split(&quot;,&quot;));</span>
+<span class="nc" id="L300">                exc = Arrays.asList(this.excl.split(&quot;,&quot;));</span>
             }
-<span class="nc" id="L331">            return exc;</span>
+<span class="nc" id="L302">            return exc;</span>
         }
 
         @Override
         public Charset encoding() {
-<span class="nc" id="L336">            return StandardCharsets.UTF_8;</span>
+<span class="nc" id="L307">            return StandardCharsets.UTF_8;</span>
         }
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
