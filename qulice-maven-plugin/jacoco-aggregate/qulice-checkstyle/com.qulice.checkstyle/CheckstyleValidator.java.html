@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CheckstyleValidator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">CheckstyleValidator.java</span></div><h1>CheckstyleValidator.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>CheckstyleValidator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">CheckstyleValidator.java</span></div><h1>CheckstyleValidator.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.checkstyle;
 
@@ -74,49 +48,49 @@ public final class CheckstyleValidator implements ResourceValidator {
      * @param env Environment to use.
      */
     @SuppressWarnings(&quot;PMD.ConstructorOnlyInitializesOrCallOtherConstructors&quot;)
-<span class="nc" id="L77">    public CheckstyleValidator(final Environment env) {</span>
-<span class="nc" id="L78">        this.env = env;</span>
-<span class="nc" id="L79">        this.checker = new Checker();</span>
-<span class="nc" id="L80">        this.checker.setModuleClassLoader(</span>
-<span class="nc" id="L81">            Thread.currentThread().getContextClassLoader()</span>
+<span class="nc" id="L51">    public CheckstyleValidator(final Environment env) {</span>
+<span class="nc" id="L52">        this.env = env;</span>
+<span class="nc" id="L53">        this.checker = new Checker();</span>
+<span class="nc" id="L54">        this.checker.setModuleClassLoader(</span>
+<span class="nc" id="L55">            Thread.currentThread().getContextClassLoader()</span>
         );
         try {
-<span class="nc" id="L84">            this.checker.configure(this.configuration());</span>
-<span class="nc" id="L85">        } catch (final CheckstyleException ex) {</span>
-<span class="nc" id="L86">            throw new IllegalStateException(&quot;Failed to configure checker&quot;, ex);</span>
-<span class="nc" id="L87">        }</span>
-<span class="nc" id="L88">        this.listener = new CheckstyleListener(this.env);</span>
-<span class="nc" id="L89">        this.checker.addListener(this.listener);</span>
-<span class="nc" id="L90">    }</span>
+<span class="nc" id="L58">            this.checker.configure(this.configuration());</span>
+<span class="nc" id="L59">        } catch (final CheckstyleException ex) {</span>
+<span class="nc" id="L60">            throw new IllegalStateException(&quot;Failed to configure checker&quot;, ex);</span>
+<span class="nc" id="L61">        }</span>
+<span class="nc" id="L62">        this.listener = new CheckstyleListener(this.env);</span>
+<span class="nc" id="L63">        this.checker.addListener(this.listener);</span>
+<span class="nc" id="L64">    }</span>
 
     @Override
     @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
     public Collection&lt;Violation&gt; validate(final Collection&lt;File&gt; files) {
-<span class="nc" id="L95">        final List&lt;File&gt; sources = this.getNonExcludedFiles(files);</span>
+<span class="nc" id="L69">        final List&lt;File&gt; sources = this.getNonExcludedFiles(files);</span>
         try {
-<span class="nc" id="L97">            this.checker.process(sources);</span>
-<span class="nc" id="L98">        } catch (final CheckstyleException ex) {</span>
-<span class="nc" id="L99">            throw new IllegalStateException(&quot;Failed to process files&quot;, ex);</span>
-<span class="nc" id="L100">        }</span>
-<span class="nc" id="L101">        final List&lt;AuditEvent&gt; events = this.listener.events();</span>
-<span class="nc" id="L102">        final Collection&lt;Violation&gt; results = new LinkedList&lt;&gt;();</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">        for (final AuditEvent event : events) {</span>
-<span class="nc" id="L104">            final String check = event.getSourceName();</span>
-<span class="nc" id="L105">            results.add(</span>
+<span class="nc" id="L71">            this.checker.process(sources);</span>
+<span class="nc" id="L72">        } catch (final CheckstyleException ex) {</span>
+<span class="nc" id="L73">            throw new IllegalStateException(&quot;Failed to process files&quot;, ex);</span>
+<span class="nc" id="L74">        }</span>
+<span class="nc" id="L75">        final List&lt;AuditEvent&gt; events = this.listener.events();</span>
+<span class="nc" id="L76">        final Collection&lt;Violation&gt; results = new LinkedList&lt;&gt;();</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        for (final AuditEvent event : events) {</span>
+<span class="nc" id="L78">            final String check = event.getSourceName();</span>
+<span class="nc" id="L79">            results.add(</span>
                 new Violation.Default(
-<span class="nc" id="L107">                    this.name(),</span>
-<span class="nc" id="L108">                    check.substring(check.lastIndexOf('.') + 1),</span>
-<span class="nc" id="L109">                    event.getFileName(),</span>
-<span class="nc" id="L110">                    String.valueOf(event.getLine()),</span>
-<span class="nc" id="L111">                    event.getMessage()</span>
+<span class="nc" id="L81">                    this.name(),</span>
+<span class="nc" id="L82">                    check.substring(check.lastIndexOf('.') + 1),</span>
+<span class="nc" id="L83">                    event.getFileName(),</span>
+<span class="nc" id="L84">                    String.valueOf(event.getLine()),</span>
+<span class="nc" id="L85">                    event.getMessage()</span>
                 )
             );
-<span class="nc" id="L114">        }</span>
-<span class="nc" id="L115">        return results;</span>
+<span class="nc" id="L88">        }</span>
+<span class="nc" id="L89">        return results;</span>
     }
 
     @Override public String name() {
-<span class="nc" id="L119">        return &quot;Checkstyle&quot;;</span>
+<span class="nc" id="L93">        return &quot;Checkstyle&quot;;</span>
     }
 
     /**
@@ -125,20 +99,20 @@ public final class CheckstyleValidator implements ResourceValidator {
      * @return List of relevant files
      */
     public List&lt;File&gt; getNonExcludedFiles(final Collection&lt;File&gt; files) {
-<span class="nc" id="L128">        final List&lt;File&gt; relevant = new LinkedList&lt;&gt;();</span>
-<span class="nc bnc" id="L129" title="All 2 branches missed.">        for (final File file : files) {</span>
-<span class="nc" id="L130">            final String name = file.getPath().substring(</span>
-<span class="nc" id="L131">                this.env.basedir().toString().length()</span>
+<span class="nc" id="L102">        final List&lt;File&gt; relevant = new LinkedList&lt;&gt;();</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        for (final File file : files) {</span>
+<span class="nc" id="L104">            final String name = file.getPath().substring(</span>
+<span class="nc" id="L105">                this.env.basedir().toString().length()</span>
             );
-<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (this.env.exclude(&quot;checkstyle&quot;, name)) {</span>
-<span class="nc" id="L134">                continue;</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">            if (this.env.exclude(&quot;checkstyle&quot;, name)) {</span>
+<span class="nc" id="L108">                continue;</span>
             }
-<span class="nc bnc" id="L136" title="All 2 branches missed.">            if (!name.matches(&quot;^.*\\.java$&quot;)) {</span>
-<span class="nc" id="L137">                continue;</span>
+<span class="nc bnc" id="L110" title="All 2 branches missed.">            if (!name.toLowerCase(java.util.Locale.ROOT).endsWith(&quot;.java&quot;)) {</span>
+<span class="nc" id="L111">                continue;</span>
             }
-<span class="nc" id="L139">            relevant.add(file);</span>
-<span class="nc" id="L140">        }</span>
-<span class="nc" id="L141">        return relevant;</span>
+<span class="nc" id="L113">            relevant.add(file);</span>
+<span class="nc" id="L114">        }</span>
+<span class="nc" id="L115">        return relevant;</span>
     }
 
     /**
@@ -147,33 +121,36 @@ public final class CheckstyleValidator implements ResourceValidator {
      * @see #validate(Collection)
      */
     private Configuration configuration() {
-<span class="nc" id="L150">        final File cache =</span>
-<span class="nc" id="L151">            new File(this.env.tempdir(), &quot;checkstyle/checkstyle.cache&quot;);</span>
-<span class="nc" id="L152">        final File parent = cache.getParentFile();</span>
-<span class="nc bnc" id="L153" title="All 4 branches missed.">        if (!parent.exists() &amp;&amp; !parent.mkdirs()) {</span>
-<span class="nc" id="L154">            throw new IllegalStateException(</span>
-<span class="nc" id="L155">                String.format(</span>
+<span class="nc" id="L124">        final File cache =</span>
+<span class="nc" id="L125">            new File(this.env.tempdir(), &quot;checkstyle/checkstyle.cache&quot;);</span>
+<span class="nc" id="L126">        final File parent = cache.getParentFile();</span>
+<span class="nc bnc" id="L127" title="All 4 branches missed.">        if (!parent.exists() &amp;&amp; !parent.mkdirs()) {</span>
+<span class="nc" id="L128">            throw new IllegalStateException(</span>
+<span class="nc" id="L129">                String.format(</span>
                     &quot;Unable to create directories needed for %s&quot;,
-<span class="nc" id="L157">                    cache.getPath()</span>
+<span class="nc" id="L131">                    cache.getPath()</span>
                 )
             );
         }
-<span class="nc" id="L161">        final Properties props = new Properties();</span>
-<span class="nc" id="L162">        props.setProperty(&quot;cache.file&quot;, cache.getPath());</span>
-<span class="nc" id="L163">        final InputSource src = new InputSource(</span>
-<span class="nc" id="L164">            this.getClass().getResourceAsStream(&quot;checks.xml&quot;)</span>
-        );
+<span class="nc" id="L135">        final Properties props = new Properties();</span>
+<span class="nc" id="L136">        props.setProperty(&quot;cache.file&quot;, cache.getPath());</span>
         final Configuration config;
-        try {
-<span class="nc" id="L168">            config = ConfigurationLoader.loadConfiguration(</span>
+<span class="nc" id="L138">        try (java.io.InputStream stream = this.getClass().getResourceAsStream(&quot;checks.xml&quot;)) {</span>
+<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (stream == null) {</span>
+<span class="nc" id="L140">                throw new IllegalStateException(</span>
+                    &quot;Checkstyle configuration file 'checks.xml' not found in classpath.&quot;
+                );
+            }
+<span class="nc" id="L144">            final InputSource src = new InputSource(stream);</span>
+<span class="nc" id="L145">            config = ConfigurationLoader.loadConfiguration(</span>
                 src,
                 new PropertiesExpander(props),
                 ConfigurationLoader.IgnoredModulesOptions.OMIT
             );
-<span class="nc" id="L173">        } catch (final CheckstyleException ex) {</span>
-<span class="nc" id="L174">            throw new IllegalStateException(&quot;Failed to load config&quot;, ex);</span>
-<span class="nc" id="L175">        }</span>
-<span class="nc" id="L176">        return config;</span>
+<span class="nc" id="L150">        } catch (final CheckstyleException | java.io.IOException ex) {</span>
+<span class="nc" id="L151">            throw new IllegalStateException(&quot;Failed to load config&quot;, ex);</span>
+<span class="nc" id="L152">        }</span>
+<span class="nc" id="L153">        return config;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

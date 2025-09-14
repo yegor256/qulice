@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SourceValidator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd</a> &gt; <span class="el_source">SourceValidator.java</span></div><h1>SourceValidator.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>SourceValidator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd</a> &gt; <span class="el_source">SourceValidator.java</span></div><h1>SourceValidator.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.pmd;
 
@@ -80,13 +54,13 @@ final class SourceValidator {
      * Creates new instance of &lt;code&gt;SourceValidator&lt;/code&gt;.
      * @param env Environment
      */
-<span class="nc" id="L83">    SourceValidator(final Environment env) {</span>
-<span class="nc" id="L84">        this.context = new RuleContext();</span>
-<span class="nc" id="L85">        this.listener = new PmdListener(env);</span>
-<span class="nc" id="L86">        this.renderer = new PmdRenderer();</span>
-<span class="nc" id="L87">        this.config = new PMDConfiguration();</span>
-<span class="nc" id="L88">        this.encoding = env.encoding();</span>
-<span class="nc" id="L89">    }</span>
+<span class="nc" id="L57">    SourceValidator(final Environment env) {</span>
+<span class="nc" id="L58">        this.context = new RuleContext();</span>
+<span class="nc" id="L59">        this.listener = new PmdListener(env);</span>
+<span class="nc" id="L60">        this.renderer = new PmdRenderer();</span>
+<span class="nc" id="L61">        this.config = new PMDConfiguration();</span>
+<span class="nc" id="L62">        this.encoding = env.encoding();</span>
+<span class="nc" id="L63">    }</span>
 
     /**
      * Performs validation of the input source files.
@@ -97,30 +71,30 @@ final class SourceValidator {
     @SuppressWarnings({&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;, &quot;PMD.CloseResource&quot;})
     public Collection&lt;PmdError&gt; validate(
         final Collection&lt;DataSource&gt; sources, final String path) {
-<span class="nc" id="L100">        this.config.setRuleSets(&quot;com/qulice/pmd/ruleset.xml&quot;);</span>
-<span class="nc" id="L101">        this.config.setThreads(0);</span>
-<span class="nc" id="L102">        this.config.setMinimumPriority(RulePriority.LOW);</span>
-<span class="nc" id="L103">        this.config.setIgnoreIncrementalAnalysis(true);</span>
-<span class="nc" id="L104">        this.config.setShowSuppressedViolations(true);</span>
-<span class="nc" id="L105">        this.config.setSourceEncoding(this.encoding.name());</span>
-<span class="nc" id="L106">        final Report report = new Report();</span>
-<span class="nc" id="L107">        report.addListener(this.listener);</span>
-<span class="nc" id="L108">        this.context.setReport(report);</span>
-<span class="nc bnc" id="L109" title="All 2 branches missed.">        for (final DataSource source : sources) {</span>
-<span class="nc" id="L110">            final String name = source.getNiceFileName(false, path);</span>
-<span class="nc" id="L111">            Logger.debug(this, &quot;Processing file: %s&quot;, name);</span>
-<span class="nc" id="L112">            this.context.setSourceCodeFile(new File(name));</span>
-<span class="nc" id="L113">            this.validateOne(source);</span>
-<span class="nc" id="L114">        }</span>
-<span class="nc" id="L115">        this.renderer.exportTo(report);</span>
-<span class="nc" id="L116">        report.errors().forEachRemaining(this.listener::onProcessingError);</span>
-<span class="nc" id="L117">        report.configErrors().forEachRemaining(this.listener::onConfigError);</span>
-<span class="nc" id="L118">        Logger.debug(</span>
+<span class="nc" id="L74">        this.config.setRuleSets(&quot;com/qulice/pmd/ruleset.xml&quot;);</span>
+<span class="nc" id="L75">        this.config.setThreads(0);</span>
+<span class="nc" id="L76">        this.config.setMinimumPriority(RulePriority.LOW);</span>
+<span class="nc" id="L77">        this.config.setIgnoreIncrementalAnalysis(true);</span>
+<span class="nc" id="L78">        this.config.setShowSuppressedViolations(true);</span>
+<span class="nc" id="L79">        this.config.setSourceEncoding(this.encoding.name());</span>
+<span class="nc" id="L80">        final Report report = new Report();</span>
+<span class="nc" id="L81">        report.addListener(this.listener);</span>
+<span class="nc" id="L82">        this.context.setReport(report);</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        for (final DataSource source : sources) {</span>
+<span class="nc" id="L84">            final String name = source.getNiceFileName(false, path);</span>
+<span class="nc" id="L85">            Logger.debug(this, &quot;Processing file: %s&quot;, name);</span>
+<span class="nc" id="L86">            this.context.setSourceCodeFile(new File(name));</span>
+<span class="nc" id="L87">            this.validateOne(source);</span>
+<span class="nc" id="L88">        }</span>
+<span class="nc" id="L89">        this.renderer.exportTo(report);</span>
+<span class="nc" id="L90">        report.errors().forEachRemaining(this.listener::onProcessingError);</span>
+<span class="nc" id="L91">        report.configErrors().forEachRemaining(this.listener::onConfigError);</span>
+<span class="nc" id="L92">        Logger.debug(</span>
             this,
             &quot;got %d errors&quot;,
-<span class="nc" id="L121">            this.listener.errors().size()</span>
+<span class="nc" id="L95">            this.listener.errors().size()</span>
         );
-<span class="nc" id="L123">        return this.listener.errors();</span>
+<span class="nc" id="L97">        return this.listener.errors();</span>
     }
 
     /**
@@ -128,20 +102,20 @@ final class SourceValidator {
      * @param source Input source file
      */
     private void validateOne(final DataSource source) {
-<span class="nc" id="L131">        final net.sourceforge.pmd.RuleSetFactory factory =</span>
+<span class="nc" id="L105">        final net.sourceforge.pmd.RuleSetFactory factory =</span>
             new net.sourceforge.pmd.RuleSetFactory(
                 new net.sourceforge.pmd.util.ResourceLoader(),
                 RulePriority.LOW,
                 false,
                 true
             );
-<span class="nc" id="L138">        net.sourceforge.pmd.PMD.processFiles(</span>
+<span class="nc" id="L112">        net.sourceforge.pmd.PMD.processFiles(</span>
             this.config,
             factory,
-<span class="nc" id="L141">            new LinkedList&lt;&gt;(Collections.singleton(source)),</span>
+<span class="nc" id="L115">            new LinkedList&lt;&gt;(Collections.singleton(source)),</span>
             this.context,
-<span class="nc" id="L143">            Collections.singletonList(this.renderer)</span>
+<span class="nc" id="L117">            Collections.singletonList(this.renderer)</span>
         );
-<span class="nc" id="L145">    }</span>
+<span class="nc" id="L119">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

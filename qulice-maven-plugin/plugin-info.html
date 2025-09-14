@@ -2,20 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-maven-plugin &#x2013; Plugin Documentation</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Plugin Documentation – qulice-maven-plugin</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+                                                    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
     </head>
     <body>
@@ -97,7 +87,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="surefire-report.html" title="Surefire">Surefire</a>
+                            <span>                        <a href="surefire.html" title="Surefire">Surefire</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -115,7 +105,7 @@
                                                                     </ul>
                                                     </li>
                                                                                                                         <li >
-                            <span>                        <a href="apidocs-0.24.0/index.html" title="Javadoc">Javadoc</a>
+                            <span>                        <a href="apidocs/index.html" title="Javadoc">Javadoc</a>
         </span>
                                                                                                                                                                 <ul>
                                                                     </ul>
@@ -144,24 +134,22 @@
                         <header>
                             <div class="logo">
                                 <a href="../"
-                                    title=" home page of Qulice.com ">
-                                    <img src="../logo.svg"
+                                    title=" logo ">
+                                    <img src="${decoration.bannerLeft.src}"
                                         alt="Qulice"
-                                                                                    width="214"
-                                                                                                                            height="60"
-                                                                                itemprop="image"
+                                                                                                                        itemprop="image"
                                     />
                                 </a>
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.0</strong>
+                                    <strong itemprop="version">0.24.2</strong>
                                 </li>
                                 <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2025-02-18T08:22:40Z">
-                                        
-                                        18-Feb-2025
+                                    $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                                    <time itemprop="datePublished" datetime="${dateFormat.format($currentDate)}">
+                                        $dateFormat.applyPattern('dd-MMM-yyyy')
+                                        ${dateFormat.format($currentDate)}
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -169,34 +157,58 @@
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
-                            <section>
-<h2><a name="Plugin_Documentation"></a>Plugin Documentation</h2><a name="Plugin_Documentation"></a>
+                            <section><a id="Plugin_Documentation"></a>
+<h1>Plugin Documentation</h1>
+<p>This report describes goals, parameters details, requirements and sample usage of this plugin.</p><section><a id="Goals"></a>
+<h2>Goals</h2>
 <p>Goals available for this plugin:</p>
-<table border="0" class="bodyTable">
+<table class="bodyTable">
 <tr class="a">
 <th>Goal</th>
 <th>Description</th></tr>
 <tr class="b">
-<td align="left"><a href="./check-mojo.html">qulice:check</a></td>
+<td><a href="./check-mojo.html">qulice:check</a></td>
 <td>Check the project and find all possible violations.</td></tr>
 <tr class="a">
-<td align="left"><a href="./help-mojo.html">qulice:help</a></td>
+<td><a href="./help-mojo.html">qulice:help</a></td>
 <td>Display help information on qulice-maven-plugin.
 <br />
- Call <code>mvn qulice:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</code> to display parameter details.</td></tr></table><section>
-<h3><a name="System_Requirements"></a>System Requirements</h3><a name="System_Requirements"></a>
+ Call <code>mvn qulice:help -Ddetail=true -Dgoal=&lt;goal-name&gt;</code> to display parameter details.</td></tr></table></section><section><a id="System_Requirements"></a>
+<h2>System Requirements</h2>
 <p>The following specifies the minimum requirements to run this Maven plugin:</p>
-<table border="0" class="bodyTable">
+<table class="bodyTable">
 <tr class="a">
-<td align="left">Maven</td>
-<td>3.9.8</td></tr>
+<td>Maven</td>
+<td>3.9.11</td></tr>
 <tr class="b">
-<td align="left">JDK</td>
-<td>11</td></tr></table></section><section>
-<h3><a name="Usage"></a>Usage</h3><a name="Usage"></a>
+<td>JDK</td>
+<td>17</td></tr></table></section><section><a id="System_Requirements_History"></a>
+<h2>System Requirements History</h2>
+<p>The following specifies the minimum requirements to run this Maven plugin for historical versions:</p>
+<table class="bodyTable">
+<tr class="a">
+<th>Plugin Version</th>
+<th>Maven</th>
+<th>JDK</th></tr>
+<tr class="b">
+<td>from 0.24.1 to 0.24.2</td>
+<td>-</td>
+<td>17</td></tr>
+<tr class="a">
+<td>from 0.18 to 0.24.0</td>
+<td>-</td>
+<td>8</td></tr>
+<tr class="b">
+<td>from 0.16.5 to 0.17.6</td>
+<td>-</td>
+<td>7</td></tr>
+<tr class="a">
+<td>from 0.1 to 0.16.4</td>
+<td>-</td>
+<td>6</td></tr></table></section><section><a id="Usage"></a>
+<h2>Usage</h2>
 <p>You should specify the version in your project's plugin configuration:</p>
-<div class="source">
-<pre>&lt;project&gt;
+<pre><code>&lt;project&gt;
   ...
   &lt;build&gt;
     &lt;!-- To define the plugin version in your parent POM --&gt;
@@ -205,7 +217,7 @@
         &lt;plugin&gt;
           &lt;groupId&gt;com.qulice&lt;/groupId&gt;
           &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-          &lt;version&gt;0.24.0&lt;/version&gt;
+          &lt;version&gt;0.24.2&lt;/version&gt;
         &lt;/plugin&gt;
         ...
       &lt;/plugins&gt;
@@ -220,7 +232,7 @@
     &lt;/plugins&gt;
   &lt;/build&gt;
   ...
-&lt;/project&gt;</pre></div>
+&lt;/project&gt;</code></pre>
 <p>For more information, see <a class="externalLink" href="https://maven.apache.org/guides/mini/guide-configuring-plugins.html">&quot;Guide to Configuring Plug-ins&quot;</a></p></section></section>
                         </article>
                     </div>
@@ -228,10 +240,10 @@
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2025
+                                                                            2011-${currentYear}
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </div>

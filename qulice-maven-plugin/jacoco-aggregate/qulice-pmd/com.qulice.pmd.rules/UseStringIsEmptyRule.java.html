@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>UseStringIsEmptyRule.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd.rules</a> &gt; <span class="el_source">UseStringIsEmptyRule.java</span></div><h1>UseStringIsEmptyRule.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>UseStringIsEmptyRule.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd.rules</a> &gt; <span class="el_source">UseStringIsEmptyRule.java</span></div><h1>UseStringIsEmptyRule.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.pmd.rules;
 
@@ -53,77 +27,77 @@ import net.sourceforge.pmd.lang.symboltable.Scope;
  * @since 0.18
  */
 @SuppressWarnings(&quot;deprecation&quot;)
-<span class="nc" id="L56">public final class UseStringIsEmptyRule</span>
+<span class="nc" id="L30">public final class UseStringIsEmptyRule</span>
     extends net.sourceforge.pmd.lang.java.rule.AbstractInefficientZeroCheck {
 
     @Override
     public boolean appliesToClassName(final String name) {
-<span class="nc" id="L61">        return net.sourceforge.pmd.util.StringUtil.isSame(</span>
+<span class="nc" id="L35">        return net.sourceforge.pmd.util.StringUtil.isSame(</span>
             name, &quot;String&quot;, true, true, true
         );
     }
 
     @Override
     public Map&lt;String, List&lt;String&gt;&gt; getComparisonTargets() {
-<span class="nc" id="L68">        final Map&lt;String, List&lt;String&gt;&gt; rules = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L69">        rules.put(&quot;&lt;&quot;, Arrays.asList(&quot;1&quot;));</span>
-<span class="nc" id="L70">        rules.put(&quot;&gt;&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L71">        rules.put(&quot;==&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L72">        rules.put(&quot;!=&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L73">        rules.put(&quot;&gt;=&quot;, Arrays.asList(&quot;0&quot;, &quot;1&quot;));</span>
-<span class="nc" id="L74">        rules.put(&quot;&lt;=&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L75">        return rules;</span>
+<span class="nc" id="L42">        final Map&lt;String, List&lt;String&gt;&gt; rules = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L43">        rules.put(&quot;&lt;&quot;, Arrays.asList(&quot;1&quot;));</span>
+<span class="nc" id="L44">        rules.put(&quot;&gt;&quot;, Arrays.asList(&quot;0&quot;));</span>
+<span class="nc" id="L45">        rules.put(&quot;==&quot;, Arrays.asList(&quot;0&quot;));</span>
+<span class="nc" id="L46">        rules.put(&quot;!=&quot;, Arrays.asList(&quot;0&quot;));</span>
+<span class="nc" id="L47">        rules.put(&quot;&gt;=&quot;, Arrays.asList(&quot;0&quot;, &quot;1&quot;));</span>
+<span class="nc" id="L48">        rules.put(&quot;&lt;=&quot;, Arrays.asList(&quot;0&quot;));</span>
+<span class="nc" id="L49">        return rules;</span>
     }
 
     @Override
     public boolean isTargetMethod(final JavaNameOccurrence occ) {
-<span class="nc" id="L80">        final NameOccurrence name = occ.getNameForWhichThisIsAQualifier();</span>
-<span class="nc bnc" id="L81" title="All 4 branches missed.">        return name != null &amp;&amp; &quot;length&quot;.equals(name.getImage());</span>
+<span class="nc" id="L54">        final NameOccurrence name = occ.getNameForWhichThisIsAQualifier();</span>
+<span class="nc bnc" id="L55" title="All 4 branches missed.">        return name != null &amp;&amp; &quot;length&quot;.equals(name.getImage());</span>
     }
 
     @Override
     public Object visit(
         final ASTVariableDeclaratorId variable, final Object data
     ) {
-<span class="nc" id="L88">        final Node node = variable.getTypeNameNode();</span>
-<span class="nc bnc" id="L89" title="All 2 branches missed.">        if (node instanceof ASTReferenceType) {</span>
-<span class="nc" id="L90">            final Class&lt;?&gt; clazz = variable.getType();</span>
-<span class="nc" id="L91">            final String type = variable.getNameDeclaration().getTypeImage();</span>
-<span class="nc bnc" id="L92" title="All 4 branches missed.">            if (clazz != null &amp;&amp; !clazz.isArray()</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">                &amp;&amp; this.appliesToClassName(type)</span>
+<span class="nc" id="L62">        final Node node = variable.getTypeNameNode();</span>
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (node instanceof ASTReferenceType) {</span>
+<span class="nc" id="L64">            final Class&lt;?&gt; clazz = variable.getType();</span>
+<span class="nc" id="L65">            final String type = variable.getNameDeclaration().getTypeImage();</span>
+<span class="nc bnc" id="L66" title="All 4 branches missed.">            if (clazz != null &amp;&amp; !clazz.isArray()</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                &amp;&amp; this.appliesToClassName(type)</span>
             ) {
-<span class="nc" id="L95">                final List&lt;NameOccurrence&gt; declarations = variable.getUsages();</span>
-<span class="nc" id="L96">                this.checkDeclarations(declarations, data);</span>
+<span class="nc" id="L69">                final List&lt;NameOccurrence&gt; declarations = variable.getUsages();</span>
+<span class="nc" id="L70">                this.checkDeclarations(declarations, data);</span>
             }
         }
-<span class="nc" id="L99">        variable.childrenAccept(this, data);</span>
-<span class="nc" id="L100">        return data;</span>
+<span class="nc" id="L73">        variable.childrenAccept(this, data);</span>
+<span class="nc" id="L74">        return data;</span>
     }
 
     @Override
     public Object visit(
         final ASTMethodDeclaration declaration, final Object data
     ) {
-<span class="nc" id="L107">        final ASTResultType result = declaration.getResultType();</span>
-<span class="nc bnc" id="L108" title="All 2 branches missed.">        if (!result.isVoid()) {</span>
-<span class="nc" id="L109">            final ASTType node = (ASTType) result.jjtGetChild(0);</span>
-<span class="nc" id="L110">            final Class&lt;?&gt; clazz = node.getType();</span>
-<span class="nc" id="L111">            final String type = node.getTypeImage();</span>
-<span class="nc bnc" id="L112" title="All 4 branches missed.">            if (clazz != null &amp;&amp; !clazz.isArray()</span>
-<span class="nc bnc" id="L113" title="All 2 branches missed.">                &amp;&amp; this.appliesToClassName(type)</span>
+<span class="nc" id="L81">        final ASTResultType result = declaration.getResultType();</span>
+<span class="nc bnc" id="L82" title="All 2 branches missed.">        if (!result.isVoid()) {</span>
+<span class="nc" id="L83">            final ASTType node = (ASTType) result.jjtGetChild(0);</span>
+<span class="nc" id="L84">            final Class&lt;?&gt; clazz = node.getType();</span>
+<span class="nc" id="L85">            final String type = node.getTypeImage();</span>
+<span class="nc bnc" id="L86" title="All 4 branches missed.">            if (clazz != null &amp;&amp; !clazz.isArray()</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">                &amp;&amp; this.appliesToClassName(type)</span>
             ) {
-<span class="nc" id="L115">                final Scope scope = declaration.getScope().getParent();</span>
-<span class="nc" id="L116">                final MethodNameDeclaration method = new MethodNameDeclaration(</span>
-<span class="nc" id="L117">                    declaration.getMethodDeclarator()</span>
+<span class="nc" id="L89">                final Scope scope = declaration.getScope().getParent();</span>
+<span class="nc" id="L90">                final MethodNameDeclaration method = new MethodNameDeclaration(</span>
+<span class="nc" id="L91">                    declaration.getMethodDeclarator()</span>
                 );
-<span class="nc" id="L119">                final List&lt;NameOccurrence&gt; declarations = scope</span>
-<span class="nc" id="L120">                    .getDeclarations(MethodNameDeclaration.class)</span>
-<span class="nc" id="L121">                    .get(method);</span>
-<span class="nc" id="L122">                this.checkDeclarations(declarations, data);</span>
+<span class="nc" id="L93">                final List&lt;NameOccurrence&gt; declarations = scope</span>
+<span class="nc" id="L94">                    .getDeclarations(MethodNameDeclaration.class)</span>
+<span class="nc" id="L95">                    .get(method);</span>
+<span class="nc" id="L96">                this.checkDeclarations(declarations, data);</span>
             }
         }
-<span class="nc" id="L125">        declaration.childrenAccept(this, data);</span>
-<span class="nc" id="L126">        return data;</span>
+<span class="nc" id="L99">        declaration.childrenAccept(this, data);</span>
+<span class="nc" id="L100">        return data;</span>
     }
 
     /**
@@ -134,18 +108,18 @@ import net.sourceforge.pmd.lang.symboltable.Scope;
     private void checkDeclarations(
         final Iterable&lt;NameOccurrence&gt; occurrences, final Object data
     ) {
-<span class="nc bnc" id="L137" title="All 2 branches missed.">        for (final NameOccurrence occurrence : occurrences) {</span>
-<span class="nc" id="L138">            final JavaNameOccurrence jocc = (JavaNameOccurrence) occurrence;</span>
-<span class="nc bnc" id="L139" title="All 2 branches missed.">            if (this.isTargetMethod(jocc)) {</span>
-<span class="nc" id="L140">                final JavaNode location = jocc.getLocation();</span>
-<span class="nc" id="L141">                final Node expr = location.getFirstParentOfType(</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        for (final NameOccurrence occurrence : occurrences) {</span>
+<span class="nc" id="L112">            final JavaNameOccurrence jocc = (JavaNameOccurrence) occurrence;</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">            if (this.isTargetMethod(jocc)) {</span>
+<span class="nc" id="L114">                final JavaNode location = jocc.getLocation();</span>
+<span class="nc" id="L115">                final Node expr = location.getFirstParentOfType(</span>
                     ASTExpression.class
                 );
-<span class="nc" id="L144">                this.checkNodeAndReport(</span>
-<span class="nc" id="L145">                    data, occurrence.getLocation(), expr.jjtGetChild(0)</span>
+<span class="nc" id="L118">                this.checkNodeAndReport(</span>
+<span class="nc" id="L119">                    data, occurrence.getLocation(), expr.jjtGetChild(0)</span>
                 );
             }
-<span class="nc" id="L148">        }</span>
-<span class="nc" id="L149">    }</span>
+<span class="nc" id="L122">        }</span>
+<span class="nc" id="L123">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

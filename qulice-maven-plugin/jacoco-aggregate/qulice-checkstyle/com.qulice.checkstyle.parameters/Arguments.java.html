@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Arguments.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle.parameters</a> &gt; <span class="el_source">Arguments.java</span></div><h1>Arguments.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>Arguments.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle.parameters</a> &gt; <span class="el_source">Arguments.java</span></div><h1>Arguments.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.checkstyle.parameters;
 
@@ -51,30 +25,30 @@ public class Arguments {
 
     /**
      * Secondary ctor.
-     * @param node Constructor or method defenition node.
+     * @param node Constructor or method definition node.
      */
     public Arguments(final DetailAST node) {
-<span class="nc" id="L57">        this(</span>
+<span class="nc" id="L31">        this(</span>
             new Parameters(
                 node, TokenTypes.PARAMETERS, TokenTypes.PARAMETER_DEF
             )
         );
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L36">    }</span>
 
     /**
      * Primary ctor.
      * @param parameters Parameters.
      */
-<span class="nc" id="L68">    public Arguments(final Parameters parameters) {</span>
-<span class="nc" id="L69">        this.parameters = parameters;</span>
-<span class="nc" id="L70">    }</span>
+<span class="nc" id="L42">    public Arguments(final Parameters parameters) {</span>
+<span class="nc" id="L43">        this.parameters = parameters;</span>
+<span class="nc" id="L44">    }</span>
 
     /**
      * Return number of arguments.
      * @return Number of arguments.
      */
     public final int count() {
-<span class="nc" id="L77">        return this.parameters.count();</span>
+<span class="nc" id="L51">        return this.parameters.count();</span>
     }
 
     /**
@@ -87,22 +61,22 @@ public class Arguments {
     public final void checkOrder(
         final List&lt;JavadocTag&gt; tags, final Consumer&lt;JavadocTag&gt; consumer
     ) {
-<span class="nc" id="L90">        final List&lt;DetailAST&gt; params = this.parameters.parameters();</span>
-<span class="nc bnc" id="L91" title="All 2 branches missed.">        if (tags.size() &lt; params.size()) {</span>
-<span class="nc" id="L92">            throw new IllegalStateException(</span>
+<span class="nc" id="L64">        final List&lt;DetailAST&gt; params = this.parameters.parameters();</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (tags.size() &lt; params.size()) {</span>
+<span class="nc" id="L66">            throw new IllegalStateException(</span>
                 &quot;Number of Javadoc parameters does not match the number of arguments&quot;
             );
         }
-<span class="nc" id="L96">        final Iterator&lt;JavadocTag&gt; iterator = tags.listIterator();</span>
-<span class="nc bnc" id="L97" title="All 2 branches missed.">        for (final DetailAST param : params) {</span>
-<span class="nc" id="L98">            final String type =</span>
-<span class="nc" id="L99">                param.findFirstToken(TokenTypes.IDENT).getText();</span>
-<span class="nc" id="L100">            final JavadocTag tag = iterator.next();</span>
-<span class="nc" id="L101">            final String arg = tag.getFirstArg();</span>
-<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (!arg.equals(type)) {</span>
-<span class="nc" id="L103">                consumer.accept(tag);</span>
+<span class="nc" id="L70">        final Iterator&lt;JavadocTag&gt; iterator = tags.listIterator();</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        for (final DetailAST param : params) {</span>
+<span class="nc" id="L72">            final String type =</span>
+<span class="nc" id="L73">                param.findFirstToken(TokenTypes.IDENT).getText();</span>
+<span class="nc" id="L74">            final JavadocTag tag = iterator.next();</span>
+<span class="nc" id="L75">            final String arg = tag.getFirstArg();</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">            if (!arg.equals(type)) {</span>
+<span class="nc" id="L77">                consumer.accept(tag);</span>
             }
-<span class="nc" id="L105">        }</span>
-<span class="nc" id="L106">    }</span>
+<span class="nc" id="L79">        }</span>
+<span class="nc" id="L80">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

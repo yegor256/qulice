@@ -2,20 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-maven-plugin &#x2013; Sitemap</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Sitemap – qulice-maven-plugin</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+                                                    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
     </head>
     <body>
@@ -94,24 +84,22 @@
                         <header>
                             <div class="logo">
                                 <a href="../"
-                                    title=" home page of Qulice.com ">
-                                    <img src="../logo.svg"
+                                    title=" logo ">
+                                    <img src="${decoration.bannerLeft.src}"
                                         alt="Qulice"
-                                                                                    width="214"
-                                                                                                                            height="60"
-                                                                                itemprop="image"
+                                                                                                                        itemprop="image"
                                     />
                                 </a>
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.0</strong>
+                                    <strong itemprop="version">0.24.2</strong>
                                 </li>
                                 <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2025-02-18T08:22:40Z">
-                                        
-                                        18-Feb-2025
+                                    $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                                    <time itemprop="datePublished" datetime="${dateFormat.format($currentDate)}">
+                                        $dateFormat.applyPattern('dd-MMM-yyyy')
+                                        ${dateFormat.format($currentDate)}
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -120,81 +108,49 @@
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
                             <section>
-<h2><a name="Sitemap"></a>Sitemap</h2>
-
-<p>This page lists all entries of the navigation menu in expanded form.</p>
-<section><section>
-<h4><a name="Parent_Project"></a>Parent Project</h4><hr />
-
+<h1>Sitemap</h1>
+<p>This page lists all entries of the navigation menu in expanded form.</p><section>
+<h2>Parent Project</h2><hr />
 <ul>
-
-<li><a href="../index.html">qulice</a></li></ul>
-</section><section>
-<h4><a name="Overview"></a>Overview</h4><hr />
-
+<li><a href="../index.html">qulice</a></li></ul></section><section>
+<h2>Overview</h2><hr />
 <ul>
-
 <li><a href="index.html">Introduction</a></li>
-
 <li><a href="usage.html">Usage</a></li>
-
 <li><a href="plugin-info.html">Goals</a></li>
-
-<li><a href="faq.html">FAQ</a></li></ul>
-</section><section>
-<h4><a name="Examples"></a>Examples</h4><hr />
-
+<li><a href="faq.html">FAQ</a></li></ul></section><section>
+<h2>Examples</h2><hr />
 <ul>
-
-<li><a href="example-exclude.html">Exclude</a></li></ul>
-</section><section>
-<h4><a name="Project_Documentation"></a>Project Documentation</h4><hr />
-
+<li><a href="example-exclude.html">Exclude</a></li></ul></section><section>
+<h2>Project Documentation</h2><hr />
 <ul>
-
 <li><a href="./project-info.html">Project Information</a>
-
 <ul>
-
 <li><a href="dependencies.html">Dependencies</a></li>
-
 <li><a href="index.html">About</a></li>
-
 <li><a href="plugins.html">Plugins</a></li>
-
 <li><a href="scm.html">Source Code Management</a></li>
-
 <li><a href="summary.html">Summary</a></li></ul></li>
-
 <li><a href="./project-reports.html">Project Reports</a>
-
 <ul>
-
 <li><a href="xref/index.html">Source Xref</a></li>
-
 <li><a href="xref-test/index.html">Test Source Xref</a></li>
-
-<li><a href="surefire-report.html">Surefire</a></li>
-
+<li><a href="surefire.html">Surefire</a></li>
 <li><a href="dependency-updates-report.html">Dependency Updates Report</a></li>
-
 <li><a href="plugin-updates-report.html">Plugin Updates Report</a></li>
-
-<li><a href="apidocs-0.24.0/index.html">Javadoc</a></li>
-
+<li><a href="apidocs/index.html">Javadoc</a></li>
 <li><a href="jacoco-aggregate/index.html">JaCoCo Aggregate</a></li>
-
-<li><a href="plugin-info.html">Plugin Documentation</a></li></ul></li></ul></section></section></section>
+<li><a href="plugin-info.html">Plugin Documentation</a></li></ul></li></ul></section></section>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2025
+                                                                            2011-${currentYear}
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </div>

@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PmdValidator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd</a> &gt; <span class="el_source">PmdValidator.java</span></div><h1>PmdValidator.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PmdValidator.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd</a> &gt; <span class="el_source">PmdValidator.java</span></div><h1>PmdValidator.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.pmd;
 
@@ -55,36 +29,36 @@ public final class PmdValidator implements ResourceValidator {
      * Constructor.
      * @param env Environment to use.
      */
-<span class="nc" id="L58">    public PmdValidator(final Environment env) {</span>
-<span class="nc" id="L59">        this.env = env;</span>
-<span class="nc" id="L60">    }</span>
+<span class="nc" id="L32">    public PmdValidator(final Environment env) {</span>
+<span class="nc" id="L33">        this.env = env;</span>
+<span class="nc" id="L34">    }</span>
 
     @Override
     @SuppressWarnings(&quot;PMD.AvoidInstantiatingObjectsInLoops&quot;)
     public Collection&lt;Violation&gt; validate(final Collection&lt;File&gt; files) {
-<span class="nc" id="L65">        final SourceValidator validator = new SourceValidator(this.env);</span>
-<span class="nc" id="L66">        final Collection&lt;DataSource&gt; sources = this.getNonExcludedFiles(files);</span>
-<span class="nc" id="L67">        final Collection&lt;PmdError&gt; errors = validator.validate(</span>
-<span class="nc" id="L68">            sources, this.env.basedir().getPath()</span>
+<span class="nc" id="L39">        final SourceValidator validator = new SourceValidator(this.env);</span>
+<span class="nc" id="L40">        final Collection&lt;DataSource&gt; sources = this.getNonExcludedFiles(files);</span>
+<span class="nc" id="L41">        final Collection&lt;PmdError&gt; errors = validator.validate(</span>
+<span class="nc" id="L42">            sources, this.env.basedir().getPath()</span>
         );
-<span class="nc" id="L70">        final Collection&lt;Violation&gt; violations = new LinkedList&lt;&gt;();</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        for (final PmdError error : errors) {</span>
-<span class="nc" id="L72">            violations.add(</span>
+<span class="nc" id="L44">        final Collection&lt;Violation&gt; violations = new LinkedList&lt;&gt;();</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        for (final PmdError error : errors) {</span>
+<span class="nc" id="L46">            violations.add(</span>
                 new Violation.Default(
-<span class="nc" id="L74">                    this.name(),</span>
-<span class="nc" id="L75">                    error.name(),</span>
-<span class="nc" id="L76">                    error.fileName(),</span>
-<span class="nc" id="L77">                    error.lines(),</span>
-<span class="nc" id="L78">                    error.description()</span>
+<span class="nc" id="L48">                    this.name(),</span>
+<span class="nc" id="L49">                    error.name(),</span>
+<span class="nc" id="L50">                    error.fileName(),</span>
+<span class="nc" id="L51">                    error.lines(),</span>
+<span class="nc" id="L52">                    error.description()</span>
                 )
             );
-<span class="nc" id="L81">        }</span>
-<span class="nc" id="L82">        return violations;</span>
+<span class="nc" id="L55">        }</span>
+<span class="nc" id="L56">        return violations;</span>
     }
 
     @Override
     public String name() {
-<span class="nc" id="L87">        return &quot;PMD&quot;;</span>
+<span class="nc" id="L61">        return &quot;PMD&quot;;</span>
     }
 
     /**
@@ -93,20 +67,20 @@ public final class PmdValidator implements ResourceValidator {
      * @return Relevant source files
      */
     public Collection&lt;DataSource&gt; getNonExcludedFiles(final Collection&lt;File&gt; files) {
-<span class="nc" id="L96">        final Collection&lt;DataSource&gt; sources = new LinkedList&lt;&gt;();</span>
-<span class="nc bnc" id="L97" title="All 2 branches missed.">        for (final File file : files) {</span>
-<span class="nc" id="L98">            final String name = file.getPath().substring(</span>
-<span class="nc" id="L99">                this.env.basedir().toString().length()</span>
+<span class="nc" id="L70">        final Collection&lt;DataSource&gt; sources = new LinkedList&lt;&gt;();</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">        for (final File file : files) {</span>
+<span class="nc" id="L72">            final String name = file.getPath().substring(</span>
+<span class="nc" id="L73">                this.env.basedir().toString().length()</span>
             );
-<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (this.env.exclude(&quot;pmd&quot;, name)) {</span>
-<span class="nc" id="L102">                continue;</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (this.env.exclude(&quot;pmd&quot;, name)) {</span>
+<span class="nc" id="L76">                continue;</span>
             }
-<span class="nc bnc" id="L104" title="All 2 branches missed.">            if (!name.matches(&quot;^.*\\.java$&quot;)) {</span>
-<span class="nc" id="L105">                continue;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (!name.matches(&quot;^.*\\.java$&quot;)) {</span>
+<span class="nc" id="L79">                continue;</span>
             }
-<span class="nc" id="L107">            sources.add(new FileDataSource(file));</span>
-<span class="nc" id="L108">        }</span>
-<span class="nc" id="L109">        return sources;</span>
+<span class="nc" id="L81">            sources.add(new FileDataSource(file));</span>
+<span class="nc" id="L82">        }</span>
+<span class="nc" id="L83">        return sources;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

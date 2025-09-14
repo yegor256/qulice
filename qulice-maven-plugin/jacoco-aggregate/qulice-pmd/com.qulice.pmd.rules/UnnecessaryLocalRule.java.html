@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>UnnecessaryLocalRule.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd.rules</a> &gt; <span class="el_source">UnnecessaryLocalRule.java</span></div><h1>UnnecessaryLocalRule.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>UnnecessaryLocalRule.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd.rules</a> &gt; <span class="el_source">UnnecessaryLocalRule.java</span></div><h1>UnnecessaryLocalRule.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.pmd.rules;
 
@@ -46,34 +20,34 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
  *
  * @since 0.4
  */
-<span class="nc" id="L49">public final class UnnecessaryLocalRule extends AbstractJavaRule {</span>
+<span class="nc" id="L23">public final class UnnecessaryLocalRule extends AbstractJavaRule {</span>
     @Override
     public Object visit(final ASTMethodDeclaration meth, final Object data) {
-<span class="nc" id="L52">        Object ndata = data;</span>
-<span class="nc bnc" id="L53" title="All 4 branches missed.">        if (!meth.isAbstract() &amp;&amp; !meth.isNative()) {</span>
-<span class="nc" id="L54">            ndata = super.visit(meth, data);</span>
+<span class="nc" id="L26">        Object ndata = data;</span>
+<span class="nc bnc" id="L27" title="All 4 branches missed.">        if (!meth.isAbstract() &amp;&amp; !meth.isNative()) {</span>
+<span class="nc" id="L28">            ndata = super.visit(meth, data);</span>
         }
-<span class="nc" id="L56">        return ndata;</span>
+<span class="nc" id="L30">        return ndata;</span>
     }
 
     @Override
     public Object visit(final ASTReturnStatement rtn, final Object data) {
-<span class="nc" id="L61">        final ASTVariableDeclarator name =</span>
-<span class="nc" id="L62">            rtn.getFirstChildOfType(ASTVariableDeclarator.class);</span>
-<span class="nc bnc" id="L63" title="All 2 branches missed.">        if (name != null) {</span>
-<span class="nc" id="L64">            this.usages(rtn, data, name);</span>
+<span class="nc" id="L35">        final ASTVariableDeclarator name =</span>
+<span class="nc" id="L36">            rtn.getFirstChildOfType(ASTVariableDeclarator.class);</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">        if (name != null) {</span>
+<span class="nc" id="L38">            this.usages(rtn, data, name);</span>
         }
-<span class="nc" id="L66">        return data;</span>
+<span class="nc" id="L40">        return data;</span>
     }
 
     @Override
     public Object visit(final ASTArgumentList rtn, final Object data) {
-<span class="nc" id="L71">        final List&lt;ASTVariableDeclarator&gt; names =</span>
-<span class="nc" id="L72">            rtn.findChildrenOfType(ASTVariableDeclarator.class);</span>
-<span class="nc bnc" id="L73" title="All 2 branches missed.">        for (final ASTVariableDeclarator name : names) {</span>
-<span class="nc" id="L74">            this.usages(rtn, data, name);</span>
-<span class="nc" id="L75">        }</span>
-<span class="nc" id="L76">        return data;</span>
+<span class="nc" id="L45">        final List&lt;ASTVariableDeclarator&gt; names =</span>
+<span class="nc" id="L46">            rtn.findChildrenOfType(ASTVariableDeclarator.class);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        for (final ASTVariableDeclarator name : names) {</span>
+<span class="nc" id="L48">            this.usages(rtn, data, name);</span>
+<span class="nc" id="L49">        }</span>
+<span class="nc" id="L50">        return data;</span>
     }
 
     /**
@@ -84,22 +58,22 @@ import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
      */
     private void usages(final JavaNode node, final Object data,
         final ASTVariableDeclarator name) {
-<span class="nc" id="L87">        final Map&lt;NameDeclaration, List&lt;NameOccurrence&gt;&gt; vars = name</span>
-<span class="nc" id="L88">            .getScope().getDeclarations();</span>
+<span class="nc" id="L61">        final Map&lt;NameDeclaration, List&lt;NameOccurrence&gt;&gt; vars = name</span>
+<span class="nc" id="L62">            .getScope().getDeclarations();</span>
         for (final Map.Entry&lt;NameDeclaration, List&lt;NameOccurrence&gt;&gt; entry
-<span class="nc bnc" id="L90" title="All 2 branches missed.">            : vars.entrySet()) {</span>
-<span class="nc" id="L91">            final List&lt;NameOccurrence&gt; usages = entry.getValue();</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">            if (usages.size() &gt; 1) {</span>
-<span class="nc" id="L93">                continue;</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">            : vars.entrySet()) {</span>
+<span class="nc" id="L65">            final List&lt;NameOccurrence&gt; usages = entry.getValue();</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">            if (usages.size() &gt; 1) {</span>
+<span class="nc" id="L67">                continue;</span>
             }
-<span class="nc bnc" id="L95" title="All 2 branches missed.">            for (final NameOccurrence occ: usages) {</span>
-<span class="nc bnc" id="L96" title="All 2 branches missed.">                if (occ.getLocation().equals(name)) {</span>
-<span class="nc" id="L97">                    this.asCtx(data).addViolation(</span>
-<span class="nc" id="L98">                        node, name.getImage()</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            for (final NameOccurrence occ: usages) {</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">                if (occ.getLocation().equals(name)) {</span>
+<span class="nc" id="L71">                    this.asCtx(data).addViolation(</span>
+<span class="nc" id="L72">                        node, name.getImage()</span>
                     );
                 }
-<span class="nc" id="L101">            }</span>
-<span class="nc" id="L102">        }</span>
-<span class="nc" id="L103">    }</span>
+<span class="nc" id="L75">            }</span>
+<span class="nc" id="L76">        }</span>
+<span class="nc" id="L77">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

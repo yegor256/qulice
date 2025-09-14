@@ -2,20 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-maven-plugin &#x2013; qulice:check</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>qulice:check – qulice-maven-plugin</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+                                                    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
     </head>
     <body>
@@ -94,24 +84,22 @@
                         <header>
                             <div class="logo">
                                 <a href="../"
-                                    title=" home page of Qulice.com ">
-                                    <img src="../logo.svg"
+                                    title=" logo ">
+                                    <img src="${decoration.bannerLeft.src}"
                                         alt="Qulice"
-                                                                                    width="214"
-                                                                                                                            height="60"
-                                                                                itemprop="image"
+                                                                                                                        itemprop="image"
                                     />
                                 </a>
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.0</strong>
+                                    <strong itemprop="version">0.24.2</strong>
                                 </li>
                                 <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2025-02-18T08:22:40Z">
-                                        
-                                        18-Feb-2025
+                                    $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                                    <time itemprop="datePublished" datetime="${dateFormat.format($currentDate)}">
+                                        $dateFormat.applyPattern('dd-MMM-yyyy')
+                                        ${dateFormat.format($currentDate)}
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -119,10 +107,10 @@
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
-                            <section>
-<h2><a name="qulice:check"></a>qulice:check</h2><a name="qulice:check"></a>
+                            <section><a id="qulice.3Acheck"></a>
+<h1>qulice:check</h1>
 <p><strong>Full name</strong>:</p>
-<p>com.qulice:qulice-maven-plugin:0.24.0:check</p>
+<p>com.qulice:qulice-maven-plugin:0.24.2:check</p>
 <p><strong>Description</strong>:</p>
 <p>Check the project and find all possible violations.</p>
 <p><strong>Attributes</strong>:</p>
@@ -131,59 +119,59 @@
 <li>Requires dependency resolution of artifacts in scope: <code>test</code>.</li>
 <li>The goal is thread-safe and supports parallel builds.</li>
 <li>Since version: <code>0.3</code>.</li>
-<li>Binds by default to the <a class="externalLink" href="https://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycle phase</a>: <code>verify</code>.</li></ul><section>
-<h3><a name="Optional_Parameters"></a>Optional Parameters</h3><a name="Optional_Parameters"></a>
-<table border="0" class="bodyTable">
+<li>Binds by default to the <a class="externalLink" href="https://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycle phase</a>: <code>verify</code>.</li></ul><section><a id="Optional_Parameters"></a>
+<h2>Optional Parameters</h2>
+<table class="bodyTable">
 <tr class="a">
 <th>Name</th>
 <th>Type</th>
 <th>Since</th>
 <th>Description</th></tr>
 <tr class="b">
-<td align="left"><a href="#asserts"><code>&lt;asserts&gt;</code></a></td>
+<td><a href="#asserts"><code>&lt;asserts&gt;</code></a></td>
 <td><code>Collection&lt;String&gt;</code></td>
 <td><code>-</code></td>
 <td>List of xpath queries to validate pom.xml.<br /><strong>User Property</strong>: <code>qulice.asserts</code></td></tr>
 <tr class="a">
-<td align="left"><a href="#charset"><code>&lt;charset&gt;</code></a></td>
+<td><a href="#charset"><code>&lt;charset&gt;</code></a></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
 <td>The source encoding.<br /><strong>Default</strong>: <code>${project.build.sourceEncoding}</code><br /><strong>User Property</strong>: <code>encoding</code></td></tr>
 <tr class="b">
-<td align="left"><a href="#excludes"><code>&lt;excludes&gt;</code></a></td>
+<td><a href="#excludes"><code>&lt;excludes&gt;</code></a></td>
 <td><code>Collection&lt;String&gt;</code></td>
 <td><code>-</code></td>
 <td>List of regular expressions to exclude.<br /><strong>User Property</strong>: <code>qulice.excludes</code></td></tr>
 <tr class="a">
-<td align="left"><a href="#skip"><code>&lt;skip&gt;</code></a></td>
+<td><a href="#skip"><code>&lt;skip&gt;</code></a></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
-<td>Shall we skip execution?<br /><strong>Default</strong>: <code>false</code><br /><strong>User Property</strong>: <code>qulice.skip</code></td></tr></table></section><section>
-<h3><a name="Parameter_Details"></a>Parameter Details</h3><a name="Parameter_Details"></a><a name="asserts"><section>
-<h4><a name="a.3Casserts.3E"></a>&lt;asserts&gt;</h4><a name="a.3Casserts.3E"></a></a>
+<td>Shall we skip execution?<br /><strong>Default</strong>: <code>false</code><br /><strong>User Property</strong>: <code>qulice.skip</code></td></tr></table></section><section><a id="Parameter_Details"></a>
+<h2>Parameter Details</h2><a id="asserts"></a><section><a id="a.3Casserts.3E"></a>
+<h3>&lt;asserts&gt;</h3>
 <div>List of xpath queries to validate pom.xml.</div>
 <ul>
 <li><strong>Type</strong>: <code>java.util.Collection&lt;java.lang.String&gt;</code></li>
-<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
-<li><strong>User Property</strong>: <code>qulice.asserts</code></li></ul><hr /></section><a name="charset"><section>
-<h4><a name="a.3Ccharset.3E"></a>&lt;charset&gt;</h4><a name="a.3Ccharset.3E"></a></a>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>User Property</strong>: <code>qulice.asserts</code></li></ul><hr /></section><a id="charset"></a><section><a id="a.3Ccharset.3E"></a>
+<h3>&lt;charset&gt;</h3>
 <div>The source encoding.</div>
 <ul>
 <li><strong>Type</strong>: <code>java.lang.String</code></li>
-<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
 <li><strong>User Property</strong>: <code>encoding</code></li>
-<li><strong>Default</strong>: <code>${project.build.sourceEncoding}</code></li></ul><hr /></section><a name="excludes"><section>
-<h4><a name="a.3Cexcludes.3E"></a>&lt;excludes&gt;</h4><a name="a.3Cexcludes.3E"></a></a>
+<li><strong>Default</strong>: <code>${project.build.sourceEncoding}</code></li></ul><hr /></section><a id="excludes"></a><section><a id="a.3Cexcludes.3E"></a>
+<h3>&lt;excludes&gt;</h3>
 <div>List of regular expressions to exclude.</div>
 <ul>
 <li><strong>Type</strong>: <code>java.util.Collection&lt;java.lang.String&gt;</code></li>
-<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
-<li><strong>User Property</strong>: <code>qulice.excludes</code></li></ul><hr /></section><a name="skip"><section>
-<h4><a name="a.3Cskip.3E"></a>&lt;skip&gt;</h4><a name="a.3Cskip.3E"></a></a>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>User Property</strong>: <code>qulice.excludes</code></li></ul><hr /></section><a id="skip"></a><section><a id="a.3Cskip.3E"></a>
+<h3>&lt;skip&gt;</h3>
 <div>Shall we skip execution?</div>
 <ul>
 <li><strong>Type</strong>: <code>boolean</code></li>
-<li><strong>Required</strong>: <code>report.plugin.goal.no</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
 <li><strong>User Property</strong>: <code>qulice.skip</code></li>
 <li><strong>Default</strong>: <code>false</code></li></ul></section></section></section>
                         </article>
@@ -192,10 +180,10 @@
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2025
+                                                                            2011-${currentYear}
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </div>

@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>MethodsOrderCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">MethodsOrderCheck.java</span></div><h1>MethodsOrderCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>MethodsOrderCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">MethodsOrderCheck.java</span></div><h1>MethodsOrderCheck.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.checkstyle;
 
@@ -45,11 +19,11 @@ import java.util.Map;
  * Right order is: public, protected and private
  * @since 0.6
  */
-<span class="nc" id="L48">public final class MethodsOrderCheck extends AbstractCheck {</span>
+<span class="nc" id="L22">public final class MethodsOrderCheck extends AbstractCheck {</span>
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L52">        return new int[]{</span>
+<span class="nc" id="L26">        return new int[]{</span>
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
         };
@@ -57,36 +31,36 @@ import java.util.Map;
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L60">        return this.getDefaultTokens();</span>
+<span class="nc" id="L34">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L65">        return this.getDefaultTokens();</span>
+<span class="nc" id="L39">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">            || ast.getType() == TokenTypes.ENUM_DEF) {</span>
-<span class="nc" id="L72">            this.checkClass(ast);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            || ast.getType() == TokenTypes.ENUM_DEF) {</span>
+<span class="nc" id="L46">            this.checkClass(ast);</span>
         }
-<span class="nc" id="L74">    }</span>
+<span class="nc" id="L48">    }</span>
 
     /**
      * Checks class definition to satisfy the rule.
      * @param node Tree node, containing class definition (CLASS_DEF).
      */
     private void checkClass(final DetailAST node) {
-<span class="nc" id="L81">        final DetailAST obj = node.findFirstToken(TokenTypes.OBJBLOCK);</span>
-<span class="nc bnc" id="L82" title="All 2 branches missed.">        if (obj != null) {</span>
-<span class="nc" id="L83">            this.checkOrder(</span>
-<span class="nc" id="L84">                MethodsOrderCheck.findAllChildren(</span>
+<span class="nc" id="L55">        final DetailAST obj = node.findFirstToken(TokenTypes.OBJBLOCK);</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (obj != null) {</span>
+<span class="nc" id="L57">            this.checkOrder(</span>
+<span class="nc" id="L58">                MethodsOrderCheck.findAllChildren(</span>
                     obj, TokenTypes.METHOD_DEF
                 )
             );
         }
-<span class="nc" id="L89">    }</span>
+<span class="nc" id="L63">    }</span>
 
     /**
      * Checks order of methods.
@@ -94,20 +68,20 @@ import java.util.Map;
      * @param methods Nodes representing class methods
      */
     private void checkOrder(final Iterable&lt;DetailAST&gt; methods) {
-<span class="nc" id="L97">        MethodsOrderCheck.Modifiers prev = MethodsOrderCheck.Modifiers.PUB;</span>
-<span class="nc bnc" id="L98" title="All 2 branches missed.">        for (final DetailAST method : methods) {</span>
-<span class="nc" id="L99">            final MethodsOrderCheck.Modifiers mtype =</span>
-<span class="nc" id="L100">                MethodsOrderCheck.getModifierType(method);</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (mtype.getOrder() &lt; prev.getOrder()) {</span>
-<span class="nc" id="L102">                this.log(</span>
-<span class="nc" id="L103">                    method.getLineNo(),</span>
+<span class="nc" id="L71">        MethodsOrderCheck.Modifiers prev = MethodsOrderCheck.Modifiers.PUB;</span>
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        for (final DetailAST method : methods) {</span>
+<span class="nc" id="L73">            final MethodsOrderCheck.Modifiers mtype =</span>
+<span class="nc" id="L74">                MethodsOrderCheck.getModifierType(method);</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            if (mtype.getOrder() &lt; prev.getOrder()) {</span>
+<span class="nc" id="L76">                this.log(</span>
+<span class="nc" id="L77">                    method.getLineNo(),</span>
                     &quot;Wrong method declaration order&quot;
                 );
             } else {
-<span class="nc" id="L107">                prev = mtype;</span>
+<span class="nc" id="L81">                prev = mtype;</span>
             }
-<span class="nc" id="L109">        }</span>
-<span class="nc" id="L110">    }</span>
+<span class="nc" id="L83">        }</span>
+<span class="nc" id="L84">    }</span>
 
     /**
      * Get method modifier as enum {@code Modifiers}.
@@ -117,31 +91,31 @@ import java.util.Map;
     private static MethodsOrderCheck.Modifiers getModifierType(
         final DetailAST method
     ) {
-<span class="nc" id="L120">        final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);</span>
-<span class="nc" id="L121">        final DetailAST modifier = Optional.fromNullable(</span>
-<span class="nc" id="L122">            modifiers.findFirstToken(</span>
-<span class="nc" id="L123">                MethodsOrderCheck.Modifiers.PUB.getType()</span>
+<span class="nc" id="L94">        final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc" id="L95">        final DetailAST modifier = Optional.fromNullable(</span>
+<span class="nc" id="L96">            modifiers.findFirstToken(</span>
+<span class="nc" id="L97">                MethodsOrderCheck.Modifiers.PUB.getType()</span>
             )
-<span class="nc" id="L125">        ).or(</span>
-<span class="nc" id="L126">            Optional.fromNullable(</span>
-<span class="nc" id="L127">                modifiers.findFirstToken(</span>
-<span class="nc" id="L128">                    MethodsOrderCheck.Modifiers.PROT.getType()</span>
+<span class="nc" id="L99">        ).or(</span>
+<span class="nc" id="L100">            Optional.fromNullable(</span>
+<span class="nc" id="L101">                modifiers.findFirstToken(</span>
+<span class="nc" id="L102">                    MethodsOrderCheck.Modifiers.PROT.getType()</span>
                 )
             )
-<span class="nc" id="L131">        ).or(</span>
-<span class="nc" id="L132">            Optional.fromNullable(</span>
-<span class="nc" id="L133">                modifiers.findFirstToken(</span>
-<span class="nc" id="L134">                    MethodsOrderCheck.Modifiers.PRIV.getType()</span>
+<span class="nc" id="L105">        ).or(</span>
+<span class="nc" id="L106">            Optional.fromNullable(</span>
+<span class="nc" id="L107">                modifiers.findFirstToken(</span>
+<span class="nc" id="L108">                    MethodsOrderCheck.Modifiers.PRIV.getType()</span>
                 )
             )
-<span class="nc" id="L137">        ).orNull();</span>
+<span class="nc" id="L111">        ).orNull();</span>
         final MethodsOrderCheck.Modifiers mod;
-<span class="nc bnc" id="L139" title="All 2 branches missed.">        if (modifier == null) {</span>
-<span class="nc" id="L140">            mod = MethodsOrderCheck.Modifiers.DEF;</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">        if (modifier == null) {</span>
+<span class="nc" id="L114">            mod = MethodsOrderCheck.Modifiers.DEF;</span>
         } else {
-<span class="nc" id="L142">            mod = getByType(modifier.getType());</span>
+<span class="nc" id="L116">            mod = getByType(modifier.getType());</span>
         }
-<span class="nc" id="L144">        return mod;</span>
+<span class="nc" id="L118">        return mod;</span>
     }
 
     /**
@@ -152,15 +126,15 @@ import java.util.Map;
      */
     private static Iterable&lt;DetailAST&gt; findAllChildren(final DetailAST base,
         final int type) {
-<span class="nc" id="L155">        final List&lt;DetailAST&gt; children = Lists.newArrayList();</span>
-<span class="nc" id="L156">        DetailAST child = base.getFirstChild();</span>
-<span class="nc bnc" id="L157" title="All 2 branches missed.">        while (child != null) {</span>
-<span class="nc bnc" id="L158" title="All 2 branches missed.">            if (child.getType() == type) {</span>
-<span class="nc" id="L159">                children.add(child);</span>
+<span class="nc" id="L129">        final List&lt;DetailAST&gt; children = Lists.newArrayList();</span>
+<span class="nc" id="L130">        DetailAST child = base.getFirstChild();</span>
+<span class="nc bnc" id="L131" title="All 2 branches missed.">        while (child != null) {</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            if (child.getType() == type) {</span>
+<span class="nc" id="L133">                children.add(child);</span>
             }
-<span class="nc" id="L161">            child = child.getNextSibling();</span>
+<span class="nc" id="L135">            child = child.getNextSibling();</span>
         }
-<span class="nc" id="L163">        return children;</span>
+<span class="nc" id="L137">        return children;</span>
     }
 
     /**
@@ -169,33 +143,33 @@ import java.util.Map;
      * @return Modifiers constant
      */
     private static MethodsOrderCheck.Modifiers getByType(final int type) {
-<span class="nc" id="L172">        return MethodsOrderCheck.Modifiers.mdos.get(type);</span>
+<span class="nc" id="L146">        return MethodsOrderCheck.Modifiers.mdos.get(type);</span>
     }
 
     /**
      * Enumeration for constants of method modifiers.
      */
-<span class="nc" id="L178">    private enum Modifiers {</span>
+<span class="nc" id="L152">    private enum Modifiers {</span>
         /**
          * PUBLIC method modifier.
          */
-<span class="nc" id="L182">        PUB(TokenTypes.LITERAL_PUBLIC, 1),</span>
+<span class="nc" id="L156">        PUB(TokenTypes.LITERAL_PUBLIC, 1),</span>
 
         /**
          * PROTECTED method modifier.
          */
-<span class="nc" id="L187">        PROT(TokenTypes.LITERAL_PROTECTED, 2),</span>
+<span class="nc" id="L161">        PROT(TokenTypes.LITERAL_PROTECTED, 2),</span>
 
         /**
          * DEFAULT method modifier.
          * No correspondent constant in TokenType.
          */
-<span class="nc" id="L193">        DEF(-1, 3),</span>
+<span class="nc" id="L167">        DEF(-1, 3),</span>
 
         /**
          * PRIVATE method modifier.
          */
-<span class="nc" id="L198">        PRIV(TokenTypes.LITERAL_PRIVATE, 4);</span>
+<span class="nc" id="L172">        PRIV(TokenTypes.LITERAL_PRIVATE, 4);</span>
 
         /**
          * Convenient map of {@code TokenType} on {@code Modifiers}.
@@ -204,13 +178,13 @@ import java.util.Map;
 
         static {
             MethodsOrderCheck.Modifiers.mdos =
-<span class="nc" id="L207">                ImmutableMap.&lt;Integer, MethodsOrderCheck.Modifiers&gt;builder()</span>
-<span class="nc" id="L208">                    .put(PUB.getType(), PUB)</span>
-<span class="nc" id="L209">                    .put(PROT.getType(), PROT)</span>
-<span class="nc" id="L210">                    .put(-1, DEF)</span>
-<span class="nc" id="L211">                    .put(PRIV.getType(), PRIV)</span>
-<span class="nc" id="L212">                    .build();</span>
-<span class="nc" id="L213">        }</span>
+<span class="nc" id="L181">                ImmutableMap.&lt;Integer, MethodsOrderCheck.Modifiers&gt;builder()</span>
+<span class="nc" id="L182">                    .put(PUB.getType(), PUB)</span>
+<span class="nc" id="L183">                    .put(PROT.getType(), PROT)</span>
+<span class="nc" id="L184">                    .put(-1, DEF)</span>
+<span class="nc" id="L185">                    .put(PRIV.getType(), PRIV)</span>
+<span class="nc" id="L186">                    .build();</span>
+<span class="nc" id="L187">        }</span>
 
         /**
          * TokenType.
@@ -224,20 +198,20 @@ import java.util.Map;
 
         /**
          * Constructor.
-         * @param typ TokenType of DetailAST which represents modifier
+         * @param type TokenType of DetailAST which represents modifier
          * @param ord Order of the modifier in class definition
          */
-<span class="nc" id="L230">        Modifiers(final Integer typ, final Integer ord) {</span>
-<span class="nc" id="L231">            this.type = typ;</span>
-<span class="nc" id="L232">            this.order = ord;</span>
-<span class="nc" id="L233">        }</span>
+<span class="nc" id="L204">        Modifiers(final Integer type, final Integer ord) {</span>
+<span class="nc" id="L205">            this.type = type;</span>
+<span class="nc" id="L206">            this.order = ord;</span>
+<span class="nc" id="L207">        }</span>
 
         /**
          * TokenType.
          * @return TokenType
          */
         public int getType() {
-<span class="nc" id="L240">            return this.type;</span>
+<span class="nc" id="L214">            return this.type;</span>
         }
 
         /**
@@ -245,8 +219,8 @@ import java.util.Map;
          * @return Order number
          */
         public int getOrder() {
-<span class="nc" id="L248">            return this.order;</span>
+<span class="nc" id="L222">            return this.order;</span>
         }
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

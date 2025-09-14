@@ -2,21 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-maven-plugin &#x2013; How to use the plugin?</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>How to use the plugin? – qulice-maven-plugin</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                    <meta name="author" content="Yegor Bugayenko" />
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+                    <meta name="author" content="Yegor Bugayenko"/>
+                                                    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
     </head>
     <body>
@@ -95,24 +85,22 @@
                         <header>
                             <div class="logo">
                                 <a href="../"
-                                    title=" home page of Qulice.com ">
-                                    <img src="../logo.svg"
+                                    title=" logo ">
+                                    <img src="${decoration.bannerLeft.src}"
                                         alt="Qulice"
-                                                                                    width="214"
-                                                                                                                            height="60"
-                                                                                itemprop="image"
+                                                                                                                        itemprop="image"
                                     />
                                 </a>
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.0</strong>
+                                    <strong itemprop="version">0.24.2</strong>
                                 </li>
                                 <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2025-02-18T08:22:29Z">
-                                        
-                                        18-Feb-2025
+                                    $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                                    <time itemprop="datePublished" datetime="${dateFormat.format($currentDate)}">
+                                        $dateFormat.applyPattern('dd-MMM-yyyy')
+                                        ${dateFormat.format($currentDate)}
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -120,16 +108,15 @@
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
-                            <section>
-<h2><a name="Usage"></a>Usage</h2>
+                            <section><a id="Usage"></a>
+<h1>Usage</h1>
 <p>It's easy (you need to use Maven version &gt;= 3.1.0):</p>
-<div class="source">
-<pre>&lt;build&gt;
+<pre><code>&lt;build&gt;
   &lt;plugins&gt;
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.24.0&lt;/version&gt;
+      &lt;version&gt;0.24.2&lt;/version&gt;
       &lt;configuration&gt;
         &lt;license&gt;file:${basedir}/LICENSE.txt&lt;/license&gt;
       &lt;/configuration&gt;
@@ -142,35 +129,32 @@
       &lt;/executions&gt;
     &lt;/plugin&gt;
   &lt;/plugins&gt;
-&lt;/build&gt;</pre></div>
+&lt;/build&gt;</code></pre>
 <p>Pay attention to the <code>license</code> configuration parameter. It is mandatory and has to be provided, or else the default value will be used (<code>./LICENSE.txt</code>). You can refer to a file with <code>file:</code> prefix, as in the example above. Or you can refer to a resource from classpath (very useful when you want to keep your license in a dedicated child module.</p>
 <p>License text file should contain just text. Qulice converts this file to proper format and compares it with your source code file headers. For example, this is your <code>LICENSE.txt</code>:</p>
-<div class="source">
-<pre>Copyright (c) 2011-2025 Yegor Bugayenko
+<pre><code>Copyright (c) 2011-2025 Yegor Bugayenko
 
 All rights reserved.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions
-are met: no conditions.</pre></div>
+are met: no conditions.</code></pre>
 <p>This is what your Java sources should start from:</p>
-<div class="source">
-<pre>/**
+<pre><code>/**
  * Copyright (c) 2011-2025 Yegor Bugayenko
  *
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met: no conditions.
- */</pre></div><section>
-<h3><a name="Multi-Module_Setup"></a>Multi-Module Setup</h3>
+ */</code></pre><section><a id="Multi-Module_Setup"></a>
+<h2>Multi-Module Setup</h2>
 <p>In a multi-module setup we recommend you to move all supplementary resource (assemblies, XML configurations, etc) to a separate &quot;tool kit&quot; sub-module. This module is the best place for <code>LICENSE.txt</code> file:</p>
-<div class="source">
-<pre>&lt;build&gt;
+<pre><code>&lt;build&gt;
   &lt;plugins&gt;
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.24.0&lt;/version&gt;
+      &lt;version&gt;0.24.2&lt;/version&gt;
       &lt;configuration&gt;
         &lt;license&gt;LICENSE.txt&lt;/license&gt;
       &lt;/configuration&gt;
@@ -191,11 +175,10 @@ are met: no conditions.</pre></div>
       &lt;/executions&gt;
     &lt;/plugin&gt;
   &lt;/plugins&gt;
-&lt;/build&gt;</pre></div></section><section>
-<h3><a name="Cutting_Edge_Version"></a>Cutting Edge Version</h3>
+&lt;/build&gt;</code></pre></section><section><a id="Cutting_Edge_Version"></a>
+<h2>Cutting Edge Version</h2>
 <p>If you want to use current version of the product, you can do it with this configuration in your <code>pom.xml</code>:</p>
-<div class="source">
-<pre>&lt;pluginRepositories&gt;
+<pre><code>&lt;pluginRepositories&gt;
   &lt;pluginRepository&gt;
     &lt;id&gt;oss.sonatype.org&lt;/id&gt;
     &lt;url&gt;https://oss.sonatype.org/content/repositories/snapshots/&lt;/url&gt;
@@ -210,17 +193,17 @@ are met: no conditions.</pre></div>
       [...]
     &lt;/plugin&gt;
   &lt;/plugins&gt;
-&lt;/build&gt;</pre></div></section></section>
+&lt;/build&gt;</code></pre></section></section>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2025
+                                                                            2011-${currentYear}
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </div>

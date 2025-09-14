@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ProhibitNonFinalClassesCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">ProhibitNonFinalClassesCheck.java</span></div><h1>ProhibitNonFinalClassesCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ProhibitNonFinalClassesCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">ProhibitNonFinalClassesCheck.java</span></div><h1>ProhibitNonFinalClassesCheck.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.checkstyle;
 
@@ -51,7 +25,7 @@ import org.cactoos.text.UncheckedText;
  *
  * @since 0.19
  */
-<span class="nc" id="L54">public final class ProhibitNonFinalClassesCheck extends AbstractCheck {</span>
+<span class="nc" id="L28">public final class ProhibitNonFinalClassesCheck extends AbstractCheck {</span>
 
     /**
      * Character separate package names in qualified name of java class.
@@ -61,7 +35,7 @@ import org.cactoos.text.UncheckedText;
     /**
     * Keeps ClassDesc objects for stack of declared classes.
     */
-<span class="nc" id="L64">    private Deque&lt;ClassDesc&gt; classes = new ArrayDeque&lt;&gt;();</span>
+<span class="nc" id="L38">    private Deque&lt;ClassDesc&gt; classes = new ArrayDeque&lt;&gt;();</span>
 
     /**
     * Full qualified name of the package.
@@ -70,56 +44,56 @@ import org.cactoos.text.UncheckedText;
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L73">        return this.getRequiredTokens();</span>
+<span class="nc" id="L47">        return this.getRequiredTokens();</span>
     }
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L78">        return this.getRequiredTokens();</span>
+<span class="nc" id="L52">        return this.getRequiredTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L83">        return new int[] {TokenTypes.CLASS_DEF};</span>
+<span class="nc" id="L57">        return new int[] {TokenTypes.CLASS_DEF};</span>
     }
 
     @Override
     public void beginTree(final DetailAST root) {
-<span class="nc" id="L88">        this.classes = new ArrayDeque&lt;&gt;();</span>
-<span class="nc" id="L89">        this.pack = &quot;&quot;;</span>
-<span class="nc" id="L90">    }</span>
+<span class="nc" id="L62">        this.classes = new ArrayDeque&lt;&gt;();</span>
+<span class="nc" id="L63">        this.pack = &quot;&quot;;</span>
+<span class="nc" id="L64">    }</span>
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc" id="L94">        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF) {</span>
-<span class="nc" id="L96">            final boolean isfinal =</span>
-<span class="nc bnc" id="L97" title="All 2 branches missed.">                modifiers.findFirstToken(TokenTypes.FINAL) != null;</span>
-<span class="nc" id="L98">            final boolean isabstract =</span>
-<span class="nc bnc" id="L99" title="All 2 branches missed.">                modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;</span>
-<span class="nc" id="L100">            final String qualified = this.qualifiedClassName(ast);</span>
-<span class="nc" id="L101">            this.classes.push(</span>
+<span class="nc" id="L68">        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF) {</span>
+<span class="nc" id="L70">            final boolean isfinal =</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">                modifiers.findFirstToken(TokenTypes.FINAL) != null;</span>
+<span class="nc" id="L72">            final boolean isabstract =</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">                modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;</span>
+<span class="nc" id="L74">            final String qualified = this.qualifiedClassName(ast);</span>
+<span class="nc" id="L75">            this.classes.push(</span>
                 new ClassDesc(qualified, isfinal, isabstract)
             );
         }
-<span class="nc" id="L105">    }</span>
+<span class="nc" id="L79">    }</span>
 
     @Override
     public void leaveToken(final DetailAST ast) {
-<span class="nc bnc" id="L109" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF) {</span>
-<span class="nc" id="L110">            final ClassDesc desc = this.classes.pop();</span>
-<span class="nc bnc" id="L111" title="All 2 branches missed.">            if (!desc.isDeclaredAsAbstract()</span>
-<span class="nc bnc" id="L112" title="All 2 branches missed.">                &amp;&amp; !desc.isAsfinal()</span>
-<span class="nc bnc" id="L113" title="All 2 branches missed.">                &amp;&amp; !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {</span>
-<span class="nc" id="L114">                final String qualified = desc.getQualified();</span>
-<span class="nc" id="L115">                final String name =</span>
-<span class="nc" id="L116">                    ProhibitNonFinalClassesCheck.getClassNameFromQualifiedName(</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF) {</span>
+<span class="nc" id="L84">            final ClassDesc desc = this.classes.pop();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (!desc.isDeclaredAsAbstract()</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">                &amp;&amp; !desc.isAsfinal()</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">                &amp;&amp; !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {</span>
+<span class="nc" id="L88">                final String qualified = desc.getQualified();</span>
+<span class="nc" id="L89">                final String name =</span>
+<span class="nc" id="L90">                    ProhibitNonFinalClassesCheck.getClassNameFromQualifiedName(</span>
                         qualified
                     );
-<span class="nc" id="L119">                log(ast.getLineNo(), &quot;Classes should be final&quot;, name);</span>
+<span class="nc" id="L93">                log(ast.getLineNo(), &quot;Classes should be final&quot;, name);</span>
             }
         }
-<span class="nc" id="L122">    }</span>
+<span class="nc" id="L96">    }</span>
 
     /**
      * Get qualified class name from given class Ast.
@@ -127,14 +101,14 @@ import org.cactoos.text.UncheckedText;
      * @return Qualified class name of a class
     */
     private String qualifiedClassName(final DetailAST classast) {
-<span class="nc" id="L130">        final String name = classast.findFirstToken(</span>
+<span class="nc" id="L104">        final String name = classast.findFirstToken(</span>
             TokenTypes.IDENT
-<span class="nc" id="L132">        ).getText();</span>
-<span class="nc" id="L133">        String outer = null;</span>
-<span class="nc bnc" id="L134" title="All 2 branches missed.">        if (!this.classes.isEmpty()) {</span>
-<span class="nc" id="L135">            outer = this.classes.peek().getQualified();</span>
+<span class="nc" id="L106">        ).getText();</span>
+<span class="nc" id="L107">        String outer = null;</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        if (!this.classes.isEmpty()) {</span>
+<span class="nc" id="L109">            outer = this.classes.peek().getQualified();</span>
         }
-<span class="nc" id="L137">        return ProhibitNonFinalClassesCheck.getQualifiedClassName(</span>
+<span class="nc" id="L111">        return ProhibitNonFinalClassesCheck.getQualifiedClassName(</span>
             this.pack,
             outer,
             name
@@ -155,30 +129,30 @@ import org.cactoos.text.UncheckedText;
         final String outer,
         final String name) {
         final String qualified;
-<span class="nc bnc" id="L158" title="All 2 branches missed.">        if (outer == null) {</span>
-<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (pack.isEmpty()) {</span>
-<span class="nc" id="L160">                qualified = name;</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">        if (outer == null) {</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            if (pack.isEmpty()) {</span>
+<span class="nc" id="L134">                qualified = name;</span>
             } else {
-<span class="nc" id="L162">                qualified =</span>
+<span class="nc" id="L136">                qualified =</span>
                     new UncheckedText(
                         new Joined(
                             ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR,
                             pack,
                             name
                         )
-<span class="nc" id="L169">                    ).asString();</span>
+<span class="nc" id="L143">                    ).asString();</span>
             }
         } else {
-<span class="nc" id="L172">            qualified =</span>
+<span class="nc" id="L146">            qualified =</span>
                 new UncheckedText(
                     new Joined(
                         ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR,
                         outer,
                         name
                     )
-<span class="nc" id="L179">                ).asString();</span>
+<span class="nc" id="L153">                ).asString();</span>
         }
-<span class="nc" id="L181">        return qualified;</span>
+<span class="nc" id="L155">        return qualified;</span>
     }
 
     /**
@@ -189,8 +163,8 @@ import org.cactoos.text.UncheckedText;
     private static String getClassNameFromQualifiedName(
         final String qualified
     ) {
-<span class="nc" id="L192">        return qualified.substring(</span>
-<span class="nc" id="L193">            qualified.lastIndexOf(</span>
+<span class="nc" id="L166">        return qualified.substring(</span>
+<span class="nc" id="L167">            qualified.lastIndexOf(</span>
                 ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR
             ) + 1
         );
@@ -228,18 +202,18 @@ import org.cactoos.text.UncheckedText;
          */
         ClassDesc(final String qualified, final boolean asfinal,
             final boolean asabstract
-<span class="nc" id="L231">        ) {</span>
-<span class="nc" id="L232">            this.qualified = qualified;</span>
-<span class="nc" id="L233">            this.asfinal = asfinal;</span>
-<span class="nc" id="L234">            this.asabstract = asabstract;</span>
-<span class="nc" id="L235">        }</span>
+<span class="nc" id="L205">        ) {</span>
+<span class="nc" id="L206">            this.qualified = qualified;</span>
+<span class="nc" id="L207">            this.asfinal = asfinal;</span>
+<span class="nc" id="L208">            this.asabstract = asabstract;</span>
+<span class="nc" id="L209">        }</span>
 
         /**
          * Get qualified class name.
          * @return Qualified class name
          */
         private String getQualified() {
-<span class="nc" id="L242">            return this.qualified;</span>
+<span class="nc" id="L216">            return this.qualified;</span>
         }
 
         /**
@@ -247,7 +221,7 @@ import org.cactoos.text.UncheckedText;
          * @return True if class is declared as final
          */
         private boolean isAsfinal() {
-<span class="nc" id="L250">            return this.asfinal;</span>
+<span class="nc" id="L224">            return this.asfinal;</span>
         }
 
         /**
@@ -255,8 +229,8 @@ import org.cactoos.text.UncheckedText;
          * @return True if class is declared as final
          */
         private boolean isDeclaredAsAbstract() {
-<span class="nc" id="L258">            return this.asabstract;</span>
+<span class="nc" id="L232">            return this.asabstract;</span>
         }
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

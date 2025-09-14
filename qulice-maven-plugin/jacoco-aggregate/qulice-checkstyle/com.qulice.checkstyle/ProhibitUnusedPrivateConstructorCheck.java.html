@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ProhibitUnusedPrivateConstructorCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">ProhibitUnusedPrivateConstructorCheck.java</span></div><h1>ProhibitUnusedPrivateConstructorCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ProhibitUnusedPrivateConstructorCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">ProhibitUnusedPrivateConstructorCheck.java</span></div><h1>ProhibitUnusedPrivateConstructorCheck.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 
 package com.qulice.checkstyle;
@@ -42,30 +16,30 @@ import java.util.List;
  *
  * @since 0.3
  */
-<span class="nc" id="L45">public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {</span>
+<span class="nc" id="L19">public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {</span>
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L49">        return new int[] {TokenTypes.CLASS_DEF};</span>
+<span class="nc" id="L23">        return new int[] {TokenTypes.CLASS_DEF};</span>
     }
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L54">        return this.getDefaultTokens();</span>
+<span class="nc" id="L28">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L59">        return this.getDefaultTokens();</span>
+<span class="nc" id="L33">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc" id="L64">        final DetailAST objblock = ast.findFirstToken(TokenTypes.OBJBLOCK);</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">        if (objblock != null) {</span>
-<span class="nc" id="L66">            this.checkConstructors(objblock);</span>
+<span class="nc" id="L38">        final DetailAST objblock = ast.findFirstToken(TokenTypes.OBJBLOCK);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        if (objblock != null) {</span>
+<span class="nc" id="L40">            this.checkConstructors(objblock);</span>
         }
-<span class="nc" id="L68">    }</span>
+<span class="nc" id="L42">    }</span>
 
     /**
      * Collects all private constructors in a given object block.
@@ -74,14 +48,14 @@ import java.util.List;
      * @return List of DetailAST nodes representing the private constructors
      */
     private static List&lt;DetailAST&gt; collectPrivateConstructors(final DetailAST objblock) {
-<span class="nc" id="L77">        final List&lt;DetailAST&gt; prvctors = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L78">        final DetailAST firstchld = objblock.getFirstChild();</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">        for (DetailAST child = firstchld; child != null; child = child.getNextSibling()) {</span>
-<span class="nc bnc" id="L80" title="All 4 branches missed.">            if (child.getType() == TokenTypes.CTOR_DEF &amp;&amp; isPrivate(child)) {</span>
-<span class="nc" id="L81">                prvctors.add(child);</span>
+<span class="nc" id="L51">        final List&lt;DetailAST&gt; prvctors = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L52">        final DetailAST firstchld = objblock.getFirstChild();</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">        for (DetailAST child = firstchld; child != null; child = child.getNextSibling()) {</span>
+<span class="nc bnc" id="L54" title="All 4 branches missed.">            if (child.getType() == TokenTypes.CTOR_DEF &amp;&amp; isPrivate(child)) {</span>
+<span class="nc" id="L55">                prvctors.add(child);</span>
             }
         }
-<span class="nc" id="L84">        return prvctors;</span>
+<span class="nc" id="L58">        return prvctors;</span>
     }
 
     /**
@@ -93,10 +67,10 @@ import java.util.List;
      */
     private static boolean isPrivateConstructorUsed(
         final DetailAST privatector, final DetailAST objblock) {
-<span class="nc" id="L96">        return</span>
-<span class="nc bnc" id="L97" title="All 2 branches missed.">            isPrivateCtorUsedInOtherCtors(privatector, objblock)</span>
+<span class="nc" id="L70">        return</span>
+<span class="nc bnc" id="L71" title="All 2 branches missed.">            isPrivateCtorUsedInOtherCtors(privatector, objblock)</span>
             ||
-<span class="nc bnc" id="L99" title="All 2 branches missed.">            isPrivateCtorUsedInMethods(privatector, objblock);</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            isPrivateCtorUsedInMethods(privatector, objblock);</span>
     }
 
     /**
@@ -108,12 +82,12 @@ import java.util.List;
      */
     private static boolean isPrivateCtorUsedInOtherCtors(
         final DetailAST privatector, final DetailAST objblock) {
-<span class="nc" id="L111">        final List&lt;DetailAST&gt; allctors = collectAllConstructors(objblock);</span>
-<span class="nc" id="L112">        return allctors.stream()</span>
-<span class="nc" id="L113">            .anyMatch(</span>
-<span class="nc bnc" id="L114" title="All 2 branches missed.">                otherCtor -&gt; otherCtor != privatector</span>
+<span class="nc" id="L85">        final List&lt;DetailAST&gt; allctors = collectAllConstructors(objblock);</span>
+<span class="nc" id="L86">        return allctors.stream()</span>
+<span class="nc" id="L87">            .anyMatch(</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">                otherCtor -&gt; otherCtor != privatector</span>
                 &amp;&amp;
-<span class="nc bnc" id="L116" title="All 2 branches missed.">                isCallingConstructor(otherCtor, privatector));</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">                isCallingConstructor(otherCtor, privatector));</span>
     }
 
     /**
@@ -125,17 +99,17 @@ import java.util.List;
      */
     private static boolean isPrivateCtorUsedInMethods(
         final DetailAST privatector, final DetailAST objblock) {
-<span class="nc" id="L128">        boolean result = false;</span>
-<span class="nc" id="L129">        final DetailAST firstchld = objblock.getFirstChild();</span>
-<span class="nc bnc" id="L130" title="All 2 branches missed.">        for (DetailAST child = firstchld; child != null; child = child.getNextSibling()) {</span>
-<span class="nc bnc" id="L131" title="All 2 branches missed.">            if (child.getType() == TokenTypes.METHOD_DEF</span>
+<span class="nc" id="L102">        boolean result = false;</span>
+<span class="nc" id="L103">        final DetailAST firstchld = objblock.getFirstChild();</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        for (DetailAST child = firstchld; child != null; child = child.getNextSibling()) {</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">            if (child.getType() == TokenTypes.METHOD_DEF</span>
                 &amp;&amp;
-<span class="nc bnc" id="L133" title="All 2 branches missed.">                isCallingConstructor(child, privatector)) {</span>
-<span class="nc" id="L134">                result = true;</span>
-<span class="nc" id="L135">                break;</span>
+<span class="nc bnc" id="L107" title="All 2 branches missed.">                isCallingConstructor(child, privatector)) {</span>
+<span class="nc" id="L108">                result = true;</span>
+<span class="nc" id="L109">                break;</span>
             }
         }
-<span class="nc" id="L138">        return result;</span>
+<span class="nc" id="L112">        return result;</span>
     }
 
     /**
@@ -145,14 +119,14 @@ import java.util.List;
      * @return List of DetailAST nodes representing all the constructors
      */
     private static List&lt;DetailAST&gt; collectAllConstructors(final DetailAST objblock) {
-<span class="nc" id="L148">        final List&lt;DetailAST&gt; allctors = new LinkedList&lt;&gt;();</span>
-<span class="nc" id="L149">        final DetailAST firstchld = objblock.getFirstChild();</span>
-<span class="nc bnc" id="L150" title="All 2 branches missed.">        for (DetailAST child = firstchld; child != null; child = child.getNextSibling()) {</span>
-<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (child.getType() == TokenTypes.CTOR_DEF) {</span>
-<span class="nc" id="L152">                allctors.add(child);</span>
+<span class="nc" id="L122">        final List&lt;DetailAST&gt; allctors = new LinkedList&lt;&gt;();</span>
+<span class="nc" id="L123">        final DetailAST firstchld = objblock.getFirstChild();</span>
+<span class="nc bnc" id="L124" title="All 2 branches missed.">        for (DetailAST child = firstchld; child != null; child = child.getNextSibling()) {</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">            if (child.getType() == TokenTypes.CTOR_DEF) {</span>
+<span class="nc" id="L126">                allctors.add(child);</span>
             }
         }
-<span class="nc" id="L155">        return allctors;</span>
+<span class="nc" id="L129">        return allctors;</span>
     }
 
     /**
@@ -164,44 +138,44 @@ import java.util.List;
      *  &lt;code&gt;PRIVATE&lt;/code&gt;, else returns &lt;code&gt;false&lt;/code&gt;.
      */
     private static boolean isPrivate(final DetailAST node) {
-<span class="nc" id="L167">        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);</span>
-<span class="nc bnc" id="L168" title="All 2 branches missed.">        return modifiers.getChildCount(TokenTypes.LITERAL_PRIVATE) &gt; 0;</span>
+<span class="nc" id="L141">        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">        return modifiers.getChildCount(TokenTypes.LITERAL_PRIVATE) &gt; 0;</span>
     }
 
     private static boolean isCallingConstructor(
         final DetailAST methodorctor, final DetailAST targetctor) {
-<span class="nc" id="L173">        boolean result = false;</span>
-<span class="nc" id="L174">        final DetailAST body = methodorctor.findFirstToken(TokenTypes.SLIST);</span>
-<span class="nc bnc" id="L175" title="All 2 branches missed.">        if (body != null) {</span>
-<span class="nc" id="L176">            DetailAST stmt = body.getFirstChild();</span>
-<span class="nc bnc" id="L177" title="All 4 branches missed.">            while (stmt != null &amp;&amp; !result) {</span>
-<span class="nc" id="L178">                result = isMatchingConstructorCall(stmt, targetctor);</span>
-<span class="nc" id="L179">                stmt = stmt.getNextSibling();</span>
+<span class="nc" id="L147">        boolean result = false;</span>
+<span class="nc" id="L148">        final DetailAST body = methodorctor.findFirstToken(TokenTypes.SLIST);</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">        if (body != null) {</span>
+<span class="nc" id="L150">            DetailAST stmt = body.getFirstChild();</span>
+<span class="nc bnc" id="L151" title="All 4 branches missed.">            while (stmt != null &amp;&amp; !result) {</span>
+<span class="nc" id="L152">                result = isMatchingConstructorCall(stmt, targetctor);</span>
+<span class="nc" id="L153">                stmt = stmt.getNextSibling();</span>
             }
         }
-<span class="nc" id="L182">        return result;</span>
+<span class="nc" id="L156">        return result;</span>
     }
 
     private static boolean isMatchingConstructorCall(
         final DetailAST stmt, final DetailAST targetctor) {
-<span class="nc" id="L187">        return</span>
-<span class="nc bnc" id="L188" title="All 2 branches missed.">            stmt.getType() == TokenTypes.CTOR_CALL</span>
+<span class="nc" id="L161">        return</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            stmt.getType() == TokenTypes.CTOR_CALL</span>
             &amp;&amp;
-<span class="nc bnc" id="L190" title="All 2 branches missed.">            matchesConstructorSignature(stmt, targetctor);</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">            matchesConstructorSignature(stmt, targetctor);</span>
     }
 
     private static boolean matchesConstructorSignature(
         final DetailAST callexpr, final DetailAST ctor) {
-<span class="nc" id="L195">        final DetailAST callparams = callexpr.findFirstToken(TokenTypes.ELIST);</span>
-<span class="nc" id="L196">        final DetailAST ctorparams = ctor.findFirstToken(TokenTypes.PARAMETERS);</span>
-<span class="nc" id="L197">        return parametersCountMatch(callparams, ctorparams);</span>
+<span class="nc" id="L169">        final DetailAST callparams = callexpr.findFirstToken(TokenTypes.ELIST);</span>
+<span class="nc" id="L170">        final DetailAST ctorparams = ctor.findFirstToken(TokenTypes.PARAMETERS);</span>
+<span class="nc" id="L171">        return parametersCountMatch(callparams, ctorparams);</span>
     }
 
     private static boolean parametersCountMatch(
         final DetailAST callparams, final DetailAST ctorparams) {
-<span class="nc" id="L202">        final int ncallparams = callparams.getChildCount(TokenTypes.EXPR);</span>
-<span class="nc" id="L203">        final int nctorparams = ctorparams.getChildCount(TokenTypes.PARAMETER_DEF);</span>
-<span class="nc bnc" id="L204" title="All 2 branches missed.">        return ncallparams == nctorparams;</span>
+<span class="nc" id="L176">        final int ncallparams = callparams.getChildCount(TokenTypes.EXPR);</span>
+<span class="nc" id="L177">        final int nctorparams = ctorparams.getChildCount(TokenTypes.PARAMETER_DEF);</span>
+<span class="nc bnc" id="L178" title="All 2 branches missed.">        return ncallparams == nctorparams;</span>
     }
 
     /**
@@ -211,13 +185,13 @@ import java.util.List;
      * @param objblock Node which contains constructors
      */
     private void checkConstructors(final DetailAST objblock) {
-<span class="nc" id="L214">        final List&lt;DetailAST&gt; prvctors = collectPrivateConstructors(objblock);</span>
-<span class="nc bnc" id="L215" title="All 2 branches missed.">        for (final DetailAST ctor : prvctors) {</span>
-<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (!isPrivateConstructorUsed(ctor, objblock)) {</span>
-<span class="nc" id="L217">                this.log(ctor.getLineNo(), &quot;Unused private constructor.&quot;);</span>
+<span class="nc" id="L188">        final List&lt;DetailAST&gt; prvctors = collectPrivateConstructors(objblock);</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">        for (final DetailAST ctor : prvctors) {</span>
+<span class="nc bnc" id="L190" title="All 2 branches missed.">            if (!isPrivateConstructorUsed(ctor, objblock)) {</span>
+<span class="nc" id="L191">                this.log(ctor.getLineNo(), &quot;Unused private constructor.&quot;);</span>
             }
-<span class="nc" id="L219">        }</span>
-<span class="nc" id="L220">    }</span>
+<span class="nc" id="L193">        }</span>
+<span class="nc" id="L194">    }</span>
 
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

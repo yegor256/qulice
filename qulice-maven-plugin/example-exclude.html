@@ -2,21 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-maven-plugin &#x2013; Exclude</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Exclude – qulice-maven-plugin</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                    <meta name="author" content="Yegor Bugayenko" />
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+                    <meta name="author" content="Yegor Bugayenko"/>
+                                                    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
     </head>
     <body>
@@ -95,24 +85,22 @@
                         <header>
                             <div class="logo">
                                 <a href="../"
-                                    title=" home page of Qulice.com ">
-                                    <img src="../logo.svg"
+                                    title=" logo ">
+                                    <img src="${decoration.bannerLeft.src}"
                                         alt="Qulice"
-                                                                                    width="214"
-                                                                                                                            height="60"
-                                                                                itemprop="image"
+                                                                                                                        itemprop="image"
                                     />
                                 </a>
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.0</strong>
+                                    <strong itemprop="version">0.24.2</strong>
                                 </li>
                                 <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2025-02-18T08:22:28Z">
-                                        
-                                        18-Feb-2025
+                                    $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                                    <time itemprop="datePublished" datetime="${dateFormat.format($currentDate)}">
+                                        $dateFormat.applyPattern('dd-MMM-yyyy')
+                                        ${dateFormat.format($currentDate)}
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -120,16 +108,15 @@
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
-                            <section>
-<h2><a name="Exclude"></a>Exclude</h2>
+                            <section><a id="Exclude"></a>
+<h1>Exclude</h1>
 <p>You can exclude anything, using plugin configuration:</p>
-<div class="source">
-<pre>&lt;build&gt;
+<pre><code>&lt;build&gt;
   &lt;plugins&gt;
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.24.0&lt;/version&gt;
+      &lt;version&gt;0.24.2&lt;/version&gt;
       &lt;configuration&gt;
         &lt;excludes&gt;
           &lt;exclude&gt;checkstyle:/src/examples/.*&lt;/exclude&gt;
@@ -138,7 +125,7 @@
       &lt;/configuration&gt;
     &lt;/plugin&gt;
   &lt;/plugins&gt;
-&lt;/build&gt;</pre></div>
+&lt;/build&gt;</code></pre>
 <p>Every <code>exclude</code> item is a regular expression. The following exclusion prefixes are supported now (the list may actually be longer): <code>checkstyle:</code>, <code>pmd:</code>, <code>dependencies:</code>, <code>duplicatefinder:</code>.</p>
 <p>Dependencies exclude uses syntax of groupId:artifactId, so to exclude e.g. guava library you should add <code>dependencies:com.google.guava:guava</code> as an exclude. Multiple exclude tags can be provided to exclude multiple dependencies. To exclude all dependency checks <code>dependencies:.*</code> should be used.</p>
 <p>To disable duplicatefinder check you should write empty value <code>duplicatefinder:</code>.</p></section>
@@ -148,10 +135,10 @@
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2025
+                                                                            2011-${currentYear}
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </div>

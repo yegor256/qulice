@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PmdRenderer.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd</a> &gt; <span class="el_source">PmdRenderer.java</span></div><h1>PmdRenderer.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PmdRenderer.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd</a> &gt; <span class="el_source">PmdRenderer.java</span></div><h1>PmdRenderer.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.pmd;
 
@@ -43,95 +17,95 @@ import net.sourceforge.pmd.util.datasource.DataSource;
  * @since 1.0
  */
 @SuppressWarnings(&quot;deprecation&quot;)
-<span class="nc" id="L46">final class PmdRenderer extends AbstractPropertySource implements Renderer {</span>
+<span class="nc" id="L20">final class PmdRenderer extends AbstractPropertySource implements Renderer {</span>
     /**
      * This variable is union of all observed reports.
      */
-<span class="nc" id="L50">    private final Report accumulator = new Report();</span>
+<span class="nc" id="L24">    private final Report accumulator = new Report();</span>
 
     @Override
     public String getName() {
-<span class="nc" id="L54">        return &quot;qulice&quot;;</span>
+<span class="nc" id="L28">        return &quot;qulice&quot;;</span>
     }
 
     @Override
     public void setName(final String name) {
-<span class="nc" id="L59">        throw new UnsupportedOperationException(&quot;Unimplemented method 'setName'&quot;);</span>
+<span class="nc" id="L33">        throw new UnsupportedOperationException(&quot;Unimplemented method 'setName'&quot;);</span>
     }
 
     @Override
     public String getDescription() {
-<span class="nc" id="L64">        return &quot;not implemented yet&quot;;</span>
+<span class="nc" id="L38">        return &quot;not implemented yet&quot;;</span>
     }
 
     @Override
     public String defaultFileExtension() {
-<span class="nc" id="L69">        throw new UnsupportedOperationException(&quot;Unimplemented defaultFileExtension&quot;);</span>
+<span class="nc" id="L43">        throw new UnsupportedOperationException(&quot;Unimplemented defaultFileExtension&quot;);</span>
     }
 
     @Override
     public void setDescription(final String description) {
-<span class="nc" id="L74">        throw new UnsupportedOperationException(&quot;Unimplemented setDescription&quot;);</span>
+<span class="nc" id="L48">        throw new UnsupportedOperationException(&quot;Unimplemented setDescription&quot;);</span>
     }
 
     @Override
     public boolean isShowSuppressedViolations() {
-<span class="nc" id="L79">        throw new UnsupportedOperationException(&quot;Unimplemented isShowSuppressedViolations&quot;);</span>
+<span class="nc" id="L53">        throw new UnsupportedOperationException(&quot;Unimplemented isShowSuppressedViolations&quot;);</span>
     }
 
     @Override
     public void setShowSuppressedViolations(final boolean show) {
-<span class="nc" id="L84">        throw new UnsupportedOperationException(&quot;Unimplemented setShowSuppressedViolations&quot;);</span>
+<span class="nc" id="L58">        throw new UnsupportedOperationException(&quot;Unimplemented setShowSuppressedViolations&quot;);</span>
     }
 
     @Override
     public void setUseShortNames(final List&lt;String&gt; list) {
         // ignore it
-<span class="nc" id="L90">    }</span>
+<span class="nc" id="L64">    }</span>
 
     @Override
     public Writer getWriter() {
-<span class="nc" id="L94">        throw new UnsupportedOperationException(&quot;Unimplemented getWriter&quot;);</span>
+<span class="nc" id="L68">        throw new UnsupportedOperationException(&quot;Unimplemented getWriter&quot;);</span>
     }
 
     @Override
     public void setWriter(final Writer writer) {
-<span class="nc" id="L99">        throw new UnsupportedOperationException(&quot;Unimplemented setWriter&quot;);</span>
+<span class="nc" id="L73">        throw new UnsupportedOperationException(&quot;Unimplemented setWriter&quot;);</span>
     }
 
     @Override
     public void start() {
         // ignore it
-<span class="nc" id="L105">    }</span>
+<span class="nc" id="L79">    }</span>
 
     @Override
     public void startFileAnalysis(final DataSource source) {
         // ignore it
-<span class="nc" id="L110">    }</span>
+<span class="nc" id="L84">    }</span>
 
     @Override
     public void renderFileReport(final Report report) {
-<span class="nc" id="L114">        this.accumulator.merge(report);</span>
-<span class="nc" id="L115">    }</span>
+<span class="nc" id="L88">        this.accumulator.merge(report);</span>
+<span class="nc" id="L89">    }</span>
 
     @Override
     public void end() {
         // ignore it
-<span class="nc" id="L120">    }</span>
+<span class="nc" id="L94">    }</span>
 
     @Override
     public void flush() {
         // ignore it
-<span class="nc" id="L125">    }</span>
+<span class="nc" id="L99">    }</span>
 
     @Override
     public void setReportFile(final String report) {
         // ignore it
-<span class="nc" id="L130">    }</span>
+<span class="nc" id="L104">    }</span>
 
     @Override
     public String getPropertySourceType() {
-<span class="nc" id="L134">        throw new UnsupportedOperationException(&quot;Unimplemented method 'getPropertySourceType'&quot;);</span>
+<span class="nc" id="L108">        throw new UnsupportedOperationException(&quot;Unimplemented method 'getPropertySourceType'&quot;);</span>
     }
 
     /**
@@ -139,7 +113,7 @@ import net.sourceforge.pmd.util.datasource.DataSource;
      * @param target A Report instance which is updated
      */
     void exportTo(final Report target) {
-<span class="nc" id="L142">        target.merge(this.accumulator);</span>
-<span class="nc" id="L143">    }</span>
+<span class="nc" id="L116">        target.merge(this.accumulator);</span>
+<span class="nc" id="L117">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EmptyLinesCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">EmptyLinesCheck.java</span></div><h1>EmptyLinesCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>EmptyLinesCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">EmptyLinesCheck.java</span></div><h1>EmptyLinesCheck.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.checkstyle;
 
@@ -51,26 +25,26 @@ import java.util.stream.StreamSupport;
  *
  * @since 0.3
  */
-<span class="nc" id="L54">public final class EmptyLinesCheck extends AbstractCheck {</span>
+<span class="nc" id="L28">public final class EmptyLinesCheck extends AbstractCheck {</span>
 
     /**
      * Pattern for empty line check.
      */
-<span class="nc" id="L59">    private static final Pattern PATTERN = Pattern.compile(&quot;^\\s*$&quot;);</span>
+<span class="nc" id="L33">    private static final Pattern PATTERN = Pattern.compile(&quot;^\\s*$&quot;);</span>
 
     /**
      * Line ranges of all anonymous inner types.
      */
-<span class="nc" id="L64">    private final LineRanges anons = new LineRanges();</span>
+<span class="nc" id="L38">    private final LineRanges anons = new LineRanges();</span>
 
     /**
      * Line ranges of all method and constructor bodies.
      */
-<span class="nc" id="L69">    private final LineRanges methods = new LineRanges();</span>
+<span class="nc" id="L43">    private final LineRanges methods = new LineRanges();</span>
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L73">        return new int[] {</span>
+<span class="nc" id="L47">        return new int[] {</span>
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.OBJBLOCK,
@@ -79,54 +53,54 @@ import java.util.stream.StreamSupport;
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L82">        return this.getDefaultTokens();</span>
+<span class="nc" id="L56">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L87">        return this.getDefaultTokens();</span>
+<span class="nc" id="L61">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc" id="L92">        this.getLine(ast.getLastChild().getLineNo() - 1);</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.OBJBLOCK</span>
-<span class="nc bnc" id="L94" title="All 2 branches missed.">            &amp;&amp; ast.getParent() != null</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">            &amp;&amp; ast.getParent().getType() == TokenTypes.LITERAL_NEW) {</span>
-<span class="nc" id="L96">            final DetailAST left = ast.getFirstChild();</span>
-<span class="nc" id="L97">            final DetailAST right = ast.getLastChild();</span>
-<span class="nc bnc" id="L98" title="All 4 branches missed.">            if (left != null &amp;&amp; right != null) {</span>
-<span class="nc" id="L99">                this.anons.add(</span>
-<span class="nc" id="L100">                    new LineRange(left.getLineNo(), right.getLineNo())</span>
+<span class="nc" id="L66">        this.getLine(ast.getLastChild().getLineNo() - 1);</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.OBJBLOCK</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            &amp;&amp; ast.getParent() != null</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">            &amp;&amp; ast.getParent().getType() == TokenTypes.LITERAL_NEW) {</span>
+<span class="nc" id="L70">            final DetailAST left = ast.getFirstChild();</span>
+<span class="nc" id="L71">            final DetailAST right = ast.getLastChild();</span>
+<span class="nc bnc" id="L72" title="All 4 branches missed.">            if (left != null &amp;&amp; right != null) {</span>
+<span class="nc" id="L73">                this.anons.add(</span>
+<span class="nc" id="L74">                    new LineRange(left.getLineNo(), right.getLineNo())</span>
                 );
             }
-<span class="nc bnc" id="L103" title="All 2 branches missed.">        } else if (ast.getType() == TokenTypes.METHOD_DEF</span>
-<span class="nc bnc" id="L104" title="All 2 branches missed.">            || ast.getType() == TokenTypes.CTOR_DEF) {</span>
-<span class="nc" id="L105">            final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);</span>
-<span class="nc bnc" id="L106" title="All 2 branches missed.">            if (opening != null) {</span>
-<span class="nc" id="L107">                final DetailAST right =</span>
-<span class="nc" id="L108">                    opening.findFirstToken(TokenTypes.RCURLY);</span>
-<span class="nc" id="L109">                this.methods.add(</span>
-<span class="nc" id="L110">                    new LineRange(opening.getLineNo(), right.getLineNo())</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">        } else if (ast.getType() == TokenTypes.METHOD_DEF</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            || ast.getType() == TokenTypes.CTOR_DEF) {</span>
+<span class="nc" id="L79">            final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            if (opening != null) {</span>
+<span class="nc" id="L81">                final DetailAST right =</span>
+<span class="nc" id="L82">                    opening.findFirstToken(TokenTypes.RCURLY);</span>
+<span class="nc" id="L83">                this.methods.add(</span>
+<span class="nc" id="L84">                    new LineRange(opening.getLineNo(), right.getLineNo())</span>
                 );
             }
         }
-<span class="nc" id="L114">    }</span>
+<span class="nc" id="L88">    }</span>
 
     @Override
     public void finishTree(final DetailAST root) {
-<span class="nc" id="L118">        final String[] lines = this.getLines();</span>
-<span class="nc bnc" id="L119" title="All 2 branches missed.">        for (int line = 0; line &lt; lines.length; ++line) {</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (this.methods.inRange(line + 1)</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">                &amp;&amp; EmptyLinesCheck.PATTERN.matcher(lines[line]).find()</span>
-<span class="nc bnc" id="L122" title="All 2 branches missed.">                &amp;&amp; this.insideMethod(line + 1)) {</span>
-<span class="nc" id="L123">                this.log(line + 1, &quot;Empty line inside method&quot;);</span>
+<span class="nc" id="L92">        final String[] lines = this.getLines();</span>
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        for (int line = 0; line &lt; lines.length; ++line) {</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (this.methods.inRange(line + 1)</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">                &amp;&amp; EmptyLinesCheck.PATTERN.matcher(lines[line]).find()</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                &amp;&amp; this.insideMethod(line + 1)) {</span>
+<span class="nc" id="L97">                this.log(line + 1, &quot;Empty line inside method&quot;);</span>
             }
         }
-<span class="nc" id="L126">        this.methods.clear();</span>
-<span class="nc" id="L127">        this.anons.clear();</span>
-<span class="nc" id="L128">        super.finishTree(root);</span>
-<span class="nc" id="L129">    }</span>
+<span class="nc" id="L100">        this.methods.clear();</span>
+<span class="nc" id="L101">        this.anons.clear();</span>
+<span class="nc" id="L102">        super.finishTree(root);</span>
+<span class="nc" id="L103">    }</span>
 
     /**
      * If this is within a valid anonymous class, make sure that is still
@@ -137,13 +111,13 @@ import java.util.stream.StreamSupport;
      * @return True if the line is directly inside of a method.
      */
     private boolean insideMethod(final int line) {
-<span class="nc" id="L140">        final int method = EmptyLinesCheck.linesBetweenBraces(</span>
-<span class="nc" id="L141">            line, this.methods::iterator, Integer.MIN_VALUE</span>
+<span class="nc" id="L114">        final int method = EmptyLinesCheck.linesBetweenBraces(</span>
+<span class="nc" id="L115">            line, this.methods::iterator, Integer.MIN_VALUE</span>
         );
-<span class="nc" id="L143">        final int clazz = EmptyLinesCheck.linesBetweenBraces(</span>
-<span class="nc" id="L144">            line, this.anons::iterator, Integer.MAX_VALUE</span>
+<span class="nc" id="L117">        final int clazz = EmptyLinesCheck.linesBetweenBraces(</span>
+<span class="nc" id="L118">            line, this.anons::iterator, Integer.MAX_VALUE</span>
         );
-<span class="nc bnc" id="L146" title="All 2 branches missed.">        return method &lt; clazz;</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">        return method &lt; clazz;</span>
     }
 
     /**
@@ -155,11 +129,11 @@ import java.util.stream.StreamSupport;
      */
     private static int linesBetweenBraces(final int line,
         final Iterable&lt;LineRange&gt; iterator, final int def) {
-<span class="nc" id="L158">        return StreamSupport.stream(iterator.spliterator(), false)</span>
-<span class="nc" id="L159">            .filter(r -&gt; r.within(line))</span>
-<span class="nc" id="L160">            .min(Comparator.comparingInt(r -&gt; r.last() - r.first()))</span>
-<span class="nc" id="L161">            .map(r -&gt; r.last() - r.first())</span>
-<span class="nc" id="L162">            .orElse(def);</span>
+<span class="nc" id="L132">        return StreamSupport.stream(iterator.spliterator(), false)</span>
+<span class="nc" id="L133">            .filter(r -&gt; r.within(line))</span>
+<span class="nc" id="L134">            .min(Comparator.comparingInt(r -&gt; r.last() - r.first()))</span>
+<span class="nc" id="L135">            .map(r -&gt; r.last() - r.first())</span>
+<span class="nc" id="L136">            .orElse(def);</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

@@ -1,32 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ProtectedMethodInFinalClassCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">ProtectedMethodInFinalClassCheck.java</span></div><h1>ProtectedMethodInFinalClassCheck.java</h1><pre class="source lang-java linenums">/*
- * Copyright (c) 2011-2025 Yegor Bugayenko
- *
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: 1) Redistributions of source code must retain the above
- * copyright notice, this list of conditions and the following
- * disclaimer. 2) Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution. 3) Neither the name of the Qulice.com nor
- * the names of its contributors may be used to endorse or promote
- * products derived from this software without specific prior written
- * permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
- * NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
- * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
- * THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
- * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
- * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
- * OF THE POSSIBILITY OF SUCH DAMAGE.
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ProtectedMethodInFinalClassCheck.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-checkstyle</a> &gt; <a href="index.source.html" class="el_package">com.qulice.checkstyle</a> &gt; <span class="el_source">ProtectedMethodInFinalClassCheck.java</span></div><h1>ProtectedMethodInFinalClassCheck.java</h1><pre class="source lang-java linenums">/*
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-License-Identifier: MIT
  */
 package com.qulice.checkstyle;
 
@@ -43,65 +17,65 @@ import java.util.List;
  *
  * @since 0.6
  */
-<span class="nc" id="L46">public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {</span>
+<span class="nc" id="L20">public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {</span>
 
     @Override
     public int[] getDefaultTokens() {
-<span class="nc" id="L50">        return new int[] {</span>
+<span class="nc" id="L24">        return new int[] {</span>
             TokenTypes.CLASS_DEF,
         };
     }
 
     @Override
     public int[] getAcceptableTokens() {
-<span class="nc" id="L57">        return this.getDefaultTokens();</span>
+<span class="nc" id="L31">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public int[] getRequiredTokens() {
-<span class="nc" id="L62">        return this.getDefaultTokens();</span>
+<span class="nc" id="L36">        return this.getDefaultTokens();</span>
     }
 
     @Override
     public void visitToken(final DetailAST ast) {
-<span class="nc bnc" id="L67" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF) {</span>
-<span class="nc" id="L68">            final DetailAST modifiers = ast.findFirstToken(</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.CLASS_DEF) {</span>
+<span class="nc" id="L42">            final DetailAST modifiers = ast.findFirstToken(</span>
                 TokenTypes.MODIFIERS
             );
-<span class="nc bnc" id="L71" title="All 2 branches missed.">            if (modifiers.findFirstToken(TokenTypes.FINAL) != null) {</span>
-<span class="nc" id="L72">                this.checkMethods(ast);</span>
+<span class="nc bnc" id="L45" title="All 2 branches missed.">            if (modifiers.findFirstToken(TokenTypes.FINAL) != null) {</span>
+<span class="nc" id="L46">                this.checkMethods(ast);</span>
             }
         }
-<span class="nc" id="L75">    }</span>
+<span class="nc" id="L49">    }</span>
 
     /**
      * Checks methods in current class have no protected modifier.
      * @param ast DetailAST of CLASS_DEF
      */
     private void checkMethods(final DetailAST ast) {
-<span class="nc" id="L82">        final DetailAST objblock = ast.findFirstToken(TokenTypes.OBJBLOCK);</span>
+<span class="nc" id="L56">        final DetailAST objblock = ast.findFirstToken(TokenTypes.OBJBLOCK);</span>
         for (final DetailAST method
-<span class="nc bnc" id="L84" title="All 2 branches missed.">            : ProtectedMethodInFinalClassCheck.findAllChildren(</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">            : ProtectedMethodInFinalClassCheck.findAllChildren(</span>
                 objblock, TokenTypes.METHOD_DEF
             )
         ) {
-<span class="nc" id="L88">            if (method</span>
-<span class="nc" id="L89">                .findFirstToken(TokenTypes.MODIFIERS)</span>
-<span class="nc bnc" id="L90" title="All 2 branches missed.">                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null) {</span>
-<span class="nc bnc" id="L91" title="All 2 branches missed.">                if (AnnotationUtil.containsAnnotation(method, &quot;Override&quot;)) {</span>
-<span class="nc" id="L92">                    this.log(</span>
-<span class="nc" id="L93">                        method.getLineNo(),</span>
+<span class="nc" id="L62">            if (method</span>
+<span class="nc" id="L63">                .findFirstToken(TokenTypes.MODIFIERS)</span>
+<span class="nc bnc" id="L64" title="All 2 branches missed.">                .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null) {</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">                if (AnnotationUtil.containsAnnotation(method, &quot;Override&quot;)) {</span>
+<span class="nc" id="L66">                    this.log(</span>
+<span class="nc" id="L67">                        method.getLineNo(),</span>
                         &quot;Protected method is overriding default scoped method&quot;
                     );
                 } else {
-<span class="nc" id="L97">                    this.log(</span>
-<span class="nc" id="L98">                        method.getLineNo(),</span>
+<span class="nc" id="L71">                    this.log(</span>
+<span class="nc" id="L72">                        method.getLineNo(),</span>
                         &quot;Final class should not contain protected methods&quot;
                     );
                 }
             }
-<span class="nc" id="L103">        }</span>
-<span class="nc" id="L104">    }</span>
+<span class="nc" id="L77">        }</span>
+<span class="nc" id="L78">    }</span>
 
     /**
      * Search for all children of given type.
@@ -111,15 +85,15 @@ import java.util.List;
      */
     private static Iterable&lt;DetailAST&gt; findAllChildren(final DetailAST base,
         final int type) {
-<span class="nc" id="L114">        final List&lt;DetailAST&gt; children = Lists.newArrayList();</span>
-<span class="nc" id="L115">        DetailAST child = base.getFirstChild();</span>
-<span class="nc bnc" id="L116" title="All 2 branches missed.">        while (child != null) {</span>
-<span class="nc bnc" id="L117" title="All 2 branches missed.">            if (child.getType() == type) {</span>
-<span class="nc" id="L118">                children.add(child);</span>
+<span class="nc" id="L88">        final List&lt;DetailAST&gt; children = Lists.newArrayList();</span>
+<span class="nc" id="L89">        DetailAST child = base.getFirstChild();</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        while (child != null) {</span>
+<span class="nc bnc" id="L91" title="All 2 branches missed.">            if (child.getType() == type) {</span>
+<span class="nc" id="L92">                children.add(child);</span>
             }
-<span class="nc" id="L120">            child = child.getNextSibling();</span>
+<span class="nc" id="L94">            child = child.getNextSibling();</span>
         }
-<span class="nc" id="L122">        return children;</span>
+<span class="nc" id="L96">        return children;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
