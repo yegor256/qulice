@@ -2,20 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
         <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-spi &#x2013; Project Plugins</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Project Plugins – qulice-spi</title>
         <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                            <script>
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-1963507-25']);
-                _gaq.push(['_trackPageview']);
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            </script>
-                                            <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+                                                    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
         <script src="./js/jcabi.js"></script>
     </head>
     <body>
@@ -97,24 +87,22 @@
                         <header>
                             <div class="logo">
                                 <a href="../"
-                                    title=" home page of Qulice.com ">
-                                    <img src="../logo.svg"
+                                    title=" logo ">
+                                    <img src="${decoration.bannerLeft.src}"
                                         alt="Qulice"
-                                                                                    width="214"
-                                                                                                                            height="60"
-                                                                                itemprop="image"
+                                                                                                                        itemprop="image"
                                     />
                                 </a>
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.0</strong>
+                                    <strong itemprop="version">0.24.2</strong>
                                 </li>
                                 <li>
-                                    
-                                    <time itemprop="datePublished" datetime="2025-02-18T07:57:55Z">
-                                        
-                                        18-Feb-2025
+                                    $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
+                                    <time itemprop="datePublished" datetime="${dateFormat.format($currentDate)}">
+                                        $dateFormat.applyPattern('dd-MMM-yyyy')
+                                        ${dateFormat.format($currentDate)}
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -122,121 +110,121 @@
                         </header>
                         <div id="here-goes-menu" class="menu-off"></div>
                                                                         <article itemprop="articleBody">
-                            <section>
-<h2><a name="Project_Build_Plugins"></a>Project Build Plugins</h2><a name="Project_Build_Plugins"></a>
-<table border="0" class="bodyTable">
+                            <section><a id="Project_Build_Plugins"></a>
+<h1>Project Build Plugins</h1>
+<table class="bodyTable">
 <tr class="a">
 <th>GroupId</th>
 <th>ArtifactId</th>
 <th>Version</th></tr>
 <tr class="b">
-<td align="left">com.github.github</td>
+<td>com.github.github</td>
 <td><a class="externalLink" href="https://github.com/github/maven-plugins">site-maven-plugin</a></td>
 <td>0.12</td></tr>
 <tr class="a">
-<td align="left">com.jcabi</td>
+<td>com.jcabi</td>
 <td><a class="externalLink" href="https://www.jcabi.com/jcabi-maven-plugin">jcabi-maven-plugin</a></td>
 <td>0.17.0</td></tr>
 <tr class="b">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-antrun-plugin/">maven-antrun-plugin</a></td>
 <td>3.1.0</td></tr>
 <tr class="a">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-clean-plugin/">maven-clean-plugin</a></td>
-<td>3.3.2</td></tr>
+<td>3.5.0</td></tr>
 <tr class="b">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-compiler-plugin/">maven-compiler-plugin</a></td>
-<td>3.12.1</td></tr>
+<td>3.14.0</td></tr>
 <tr class="a">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-deploy-plugin/">maven-deploy-plugin</a></td>
-<td>3.1.1</td></tr>
+<td>3.1.4</td></tr>
 <tr class="b">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-docck-plugin/">maven-docck-plugin</a></td>
 <td>1.2</td></tr>
 <tr class="a">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/enforcer/maven-enforcer-plugin/">maven-enforcer-plugin</a></td>
-<td>3.4.1</td></tr>
+<td>3.5.0</td></tr>
 <tr class="b">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-gpg-plugin/">maven-gpg-plugin</a></td>
-<td>3.1.0</td></tr>
+<td>3.2.7</td></tr>
 <tr class="a">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-install-plugin/">maven-install-plugin</a></td>
-<td>3.1.1</td></tr>
+<td>3.1.4</td></tr>
 <tr class="b">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-jar-plugin/">maven-jar-plugin</a></td>
-<td>3.3.0</td></tr>
+<td>3.4.2</td></tr>
 <tr class="a">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-resources-plugin/">maven-resources-plugin</a></td>
 <td>3.3.1</td></tr>
 <tr class="b">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-site-plugin/">maven-site-plugin</a></td>
-<td>3.12.1</td></tr>
+<td>3.21.0</td></tr>
 <tr class="a">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/surefire/maven-surefire-plugin/">maven-surefire-plugin</a></td>
-<td>3.2.3</td></tr>
+<td>3.5.3</td></tr>
 <tr class="b">
-<td align="left">org.codehaus.mojo</td>
+<td>org.codehaus.mojo</td>
 <td><a class="externalLink" href="https://www.mojohaus.org/buildnumber-maven-plugin/">buildnumber-maven-plugin</a></td>
-<td>3.2.0</td></tr></table></section><section>
-<h2><a name="Project_Report_Plugins"></a>Project Report Plugins</h2><a name="Project_Report_Plugins"></a>
-<table border="0" class="bodyTable">
+<td>3.2.1</td></tr></table></section><section><a id="Project_Report_Plugins"></a>
+<h1>Project Report Plugins</h1>
+<table class="bodyTable">
 <tr class="a">
 <th>GroupId</th>
 <th>ArtifactId</th>
 <th>Version</th></tr>
 <tr class="b">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-javadoc-plugin/">maven-javadoc-plugin</a></td>
-<td>3.6.3</td></tr>
+<td>3.11.2</td></tr>
 <tr class="a">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/jxr/maven-jxr-plugin/">maven-jxr-plugin</a></td>
-<td>3.3.1</td></tr>
+<td>3.6.0</td></tr>
 <tr class="b">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugin-tools/maven-plugin-plugin">maven-plugin-plugin</a></td>
-<td>3.10.2</td></tr>
+<td>3.15.1</td></tr>
 <tr class="a">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugin-tools/maven-plugin-report-plugin">maven-plugin-report-plugin</a></td>
-<td>3.10.2</td></tr>
+<td>3.15.1</td></tr>
 <tr class="b">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/plugins/maven-project-info-reports-plugin/">maven-project-info-reports-plugin</a></td>
-<td>3.5.0</td></tr>
+<td>3.9.0</td></tr>
 <tr class="a">
-<td align="left">org.apache.maven.plugins</td>
+<td>org.apache.maven.plugins</td>
 <td><a class="externalLink" href="https://maven.apache.org/surefire/maven-surefire-report-plugin/">maven-surefire-report-plugin</a></td>
-<td>3.2.3</td></tr>
+<td>3.5.3</td></tr>
 <tr class="b">
-<td align="left">org.codehaus.mojo</td>
+<td>org.codehaus.mojo</td>
 <td><a class="externalLink" href="https://www.mojohaus.org/versions/versions-maven-plugin/">versions-maven-plugin</a></td>
-<td>2.16.2</td></tr>
+<td>2.18.0</td></tr>
 <tr class="a">
-<td align="left">org.jacoco</td>
+<td>org.jacoco</td>
 <td><a class="externalLink" href="https://www.jacoco.org/jacoco/trunk/doc/maven.html">jacoco-maven-plugin</a></td>
-<td>0.8.11</td></tr></table></section>
+<td>0.8.13</td></tr></table></section>
                         </article>
                     </div>
                 </main>
                 <footer class="legal-notes">
                     <div>
                         Copyright &#169;
-                                                                            2011-2025
+                                                                            2011-${currentYear}
                                             </div>
                     <div>Qulice.com, All Rights Reserved.</div>
-                    <div><a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
                 </footer>
             </div>
         </div>
