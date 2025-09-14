@@ -8,7 +8,6 @@ import java.io.File;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Scm;
 import org.apache.maven.project.MavenProject;
-import org.mockito.Mockito;
 
 /**
  * Mocker of {@link MavenProject}.
@@ -19,8 +18,7 @@ public final class MavenProjectMocker {
     /**
      * Mock of project.
      */
-    private final MavenProject project =
-        Mockito.mock(MavenProject.class);
+    private final MavenProject project = new MavenProject();
 
     /**
      * In this basedir.
@@ -28,11 +26,11 @@ public final class MavenProjectMocker {
      * @return This object
      */
     public MavenProjectMocker inBasedir(final File dir) {
-        Mockito.doReturn(dir).when(this.project).getBasedir();
-        final Build build = Mockito.mock(Build.class);
-        Mockito.doReturn(build).when(this.project).getBuild();
-        Mockito.doReturn(new File(dir, "target").getPath())
-            .when(build).getOutputDirectory();
+        final File parent = new File(dir, "target");
+        final Build build = new Build();
+        build.setOutputDirectory(parent.getPath());
+        this.project.setFile(parent);
+        this.project.setBuild(build);
         return this;
     }
 
@@ -42,10 +40,10 @@ public final class MavenProjectMocker {
      * @throws Exception If something wrong happens inside
      */
     public MavenProject mock() throws Exception {
-        Mockito.doReturn("jar").when(this.project).getPackaging();
         final Scm scm = new Scm();
         scm.setConnection("scm:svn:...");
-        Mockito.doReturn(scm).when(this.project).getScm();
+        this.project.setPackaging("jar");
+        this.project.setScm(scm);
         return this.project;
     }
 

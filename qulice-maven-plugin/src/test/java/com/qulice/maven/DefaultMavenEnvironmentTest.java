@@ -7,11 +7,10 @@ package com.qulice.maven;
 import com.google.common.collect.ImmutableList;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
-import org.apache.maven.project.MavenProject;
+import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 /**
  * Test case for {@link DefaultMavenEnvironment} class.
@@ -90,11 +89,11 @@ final class DefaultMavenEnvironmentTest {
     @Test
     void passPathsWithWhitespaces()  throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
-        final MavenProject project = Mockito.mock(MavenProject.class);
-        Mockito.when(project.getRuntimeClasspathElements())
-            .thenReturn(
-                Collections.singletonList("/Users/Carlos Miranda/git")
-            );
+        final MavenProjectStub project = new MavenProjectStub();
+        project.setRuntimeClasspathElements(
+            Collections.singletonList("/Users/Carlos Miranda/git")
+        );
+        project.setDependencyArtifacts(Collections.emptySet());
         env.setProject(project);
         MatcherAssert.assertThat(
             "ClassPath should be returned",
