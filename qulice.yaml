@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 4.76544975
+  seconds: 36.382356268
   version: 0.53.6
   what: judges-summary
-  when: 2025-09-16 06:20:06.445628265 Z
+  when: 2025-09-16 07:19:14.782565645 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -264,6 +264,7 @@
   _time: 2025-09-16 06:20:04.697903729 Z
   _version: 0.16.3/0.53.6/0.15.42
   details: The issue yegor256/qulice#1378 has been opened earlier by @fabriciofx.
+  is_human: 1
   issue: 1378
   repository: 9580168
   what: issue-was-opened
@@ -275,6 +276,7 @@
   _time: 2025-09-16 06:20:04.987778937 Z
   _version: 0.16.3/0.53.6/0.15.42
   details: The issue yegor256/qulice#1377 has been opened earlier by @fabriciofx.
+  is_human: 1
   issue: 1377
   repository: 9580168
   what: issue-was-opened
@@ -286,6 +288,7 @@
   _time: 2025-09-16 06:20:06.379021290 Z
   _version: 0.16.3/0.53.6/0.15.42
   details: The issue yegor256/qulice#1376 has been earlier opened by @fabriciofx.
+  is_human: 1
   issue: 1376
   repository: 9580168
   what: issue-was-opened
@@ -297,9 +300,144 @@
   _time: 2025-09-16 06:20:06.396281225 Z
   _version: 0.16.3/0.53.6/0.15.42
   details: The issue yegor256/qulice#1373 has been earlier opened by @fabriciofx.
+  is_human: 1
   issue: 1373
   repository: 9580168
   what: issue-was-opened
   when: 2025-09-14 10:52:02.000000000 Z
   where: github
   who: 1964562
+- _id: 19
+  _job: 17757882047
+  _time: 2025-09-16 07:18:42.488861515 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  details: The 'bug' label was attached by @yegor256 to the issue yegor256/qulice#1373.
+  issue: 1373
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-09-14 10:58:26.000000000 Z
+  where: github
+  who: 526301
+- _id: 20
+  _job: 17757882047
+  _time: 2025-09-16 07:18:43.613469349 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  details: The 'bug' label was attached by @yegor256 to the issue yegor256/qulice#1378.
+  issue: 1378
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-09-14 15:21:55.000000000 Z
+  where: github
+  who: 526301
+- _id: 21
+  _job: 17757882047
+  _time: 2025-09-16 07:18:43.634510098 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  details: 'We found out that the user #526301 is known in GitHub as @yegor256.'
+  name: yegor256
+  what: who-has-name
+  when: 2025-09-16 07:18:43.852946253 Z
+  where: github
+  who: 526301
+- _id: 22
+  _job: 17757882047
+  _time: 2025-09-16 07:18:44.544102841 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  assigner: 526301
+  details: yegor256/qulice#1376 was assigned to @yegor256 by @yegor256.
+  issue: 1376
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2025-09-14 12:40:13.000000000 Z
+  where: github
+  who: 526301
+- _id: 23
+  _job: 17757882047
+  _time: 2025-09-16 07:18:45.632101820 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  details: Apparently, yegor256/qulice#1373 has been 'issue-was-closed'.
+  issue: 1373
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-09-14 14:21:34.000000000 Z
+  where: github
+  who: 1964562
+- _id: 24
+  _job: 17757882047
+  _time: 2025-09-16 07:18:45.661570895 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  details: Apparently, yegor256/qulice#1376 has been 'issue-was-closed'.
+  issue: 1376
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-09-16 05:30:09.000000000 Z
+  where: github
+  who: 526301
+- _id: 25
+  _job: 17757882047
+  _time: 2025-09-16 07:18:45.987743371 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  branch: renovate/guava-monorepo
+  details: The missing pull yegor256/qulice#1374 has been opened by @renovate[bot].
+  issue: 1374
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-09-14 11:00:34.000000000 Z
+  where: github
+  who: 29139614
+- _id: 26
+  _job: 17757882047
+  _time: 2025-09-16 07:18:47.010489285 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  branch: '1373'
+  details: The missing pull yegor256/qulice#1375 has been opened by @fabriciofx.
+  issue: 1375
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-09-14 11:15:06.000000000 Z
+  where: github
+  who: 1964562
+- _id: 27
+  _job: 17757882047
+  _time: 2025-09-16 07:18:47.553500077 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  branch: renovate/guava-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1374 has been 'pull-was-merged'.
+  failed_builds: 0
+  hoc: 2
+  issue: 1374
+  repository: 9580168
+  succeeded_builds: 14
+  what: pull-was-merged
+  when: 2025-09-14 15:21:40.000000000 Z
+  where: github
+  who: 526301
+- _id: 28
+  _job: 17757882047
+  _time: 2025-09-16 07:19:03.887972531 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  branch: '1373'
+  comments: 1
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1375 has been 'pull-was-merged'.
+  failed_builds: 0
+  hoc: 2
+  issue: 1375
+  repository: 9580168
+  succeeded_builds: 20
+  what: pull-was-merged
+  when: 2025-09-14 12:42:17.000000000 Z
+  where: github
+  who: 526301
