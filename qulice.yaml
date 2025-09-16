@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 10.018384421
+  seconds: 6.715394423
   version: 0.53.6
   what: judges-summary
-  when: 2025-09-16 08:20:05.945237473 Z
+  when: 2025-09-16 09:19:02.444744318 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -35,16 +35,6 @@
   when: 2025-09-14 17:58:28.000000000 Z
   where: github
   who: 1964562
-- _id: 3
-  _job: 17755375077
-  _time: 2025-09-16 05:20:40.095375366 Z
-  _version: 0.16.3/0.53.6/0.15.42
-  events_were_scanned: 54675320549
-  min_issue_was_found: 1373
-  min_pull_was_found: 1374
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 4
   _job: 17755375077
   _time: 2025-09-16 05:20:40.275969574 Z
@@ -428,7 +418,7 @@
   review_comments: 0
   succeeded_builds: 14
   what: pull-was-merged
-  when: 2025-09-14 15:21:40.000000000 Z
+  when: &4 2025-09-14 15:21:40.000000000 Z
   where: github
   who: 526301
 - _id: 28
@@ -451,7 +441,7 @@
   review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
-  when: 2025-09-14 12:42:17.000000000 Z
+  when: &5 2025-09-14 12:42:17.000000000 Z
   where: github
   who: 526301
 - _id: 29
@@ -502,8 +492,103 @@
   _time: 2025-09-16 08:20:03.948967606 Z
   _version: 0.16.3/0.53.6/0.15.42
   details: 'We found out that the user #29139614 is known in GitHub as @renovate[bot].'
+  is_human: 0
   name: renovate[bot]
   what: who-has-name
   when: 2025-09-16 08:20:03.952242669 Z
   where: github
   who: 29139614
+- _id: 33
+  _job: 38038
+  _time: 2025-09-16 08:20:28.339706661 Z
+  _version: 0.16.5/0.53.8/0.15.42
+  comments: 3
+  details: The pull request yegor256/qulice#1374 with 2 HoC created by @renovate[bot]
+    was merged by @yegor256 after 4h21m of being in review and 3 comments.
+  hoc: 2
+  is_human: 0
+  issue: 1374
+  merger: 526301
+  repository: 9580168
+  review_comments: 0
+  seconds: 15666
+  what: code-was-contributed
+  when: *4
+  where: github
+  who: 29139614
+- _id: 34
+  _job: 38038
+  _time: 2025-09-16 08:20:28.551678600 Z
+  _version: 0.16.5/0.53.8/0.15.42
+  comments: 1
+  details: The pull request yegor256/qulice#1375 with 2 HoC created by @fabriciofx
+    was merged by @yegor256 after 1h27m of being in review and 1 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1375
+  merger: 526301
+  repository: 9580168
+  review_comments: 0
+  seconds: 5231
+  what: code-was-contributed
+  when: *5
+  where: github
+  who: 1964562
+- _id: 38
+  _job: 38038
+  _time: 2025-09-16 08:20:44.622704392 Z
+  _version: 0.16.5/0.53.8/0.15.42
+  award: -16
+  details: It's time to punish @fabriciofx for the dud submitted in yegor256/qulice#1376,
+    the fee amount is -16.
+  href: https://github.com/yegor256/qulice/issues/1376/#issuecomment-3296521061
+  is_human: 1
+  issue: 1376
+  repository: 9580168
+  what: dud-was-punished
+  when: 2025-09-16 08:20:28.759036296 Z
+  where: github
+  who: 1964562
+  why: Submitted dud in yegor256/qulice#1376
+- _id: 39
+  _job: 38038
+  _time: 2025-09-16 08:20:46.048190461 Z
+  _version: 0.16.5/0.53.8/0.15.42
+  award: 12
+  details: It's time to reward @fabriciofx for the bug reported in yegor256/qulice#1373,
+    the reward amount is 12.
+  href: https://github.com/yegor256/qulice/issues/1373/#issuecomment-3296521646
+  is_human: 1
+  issue: 1373
+  repository: 9580168
+  what: bug-report-was-rewarded
+  when: 2025-09-16 08:20:37.296859198 Z
+  where: github
+  who: 1964562
+  why: Reported bug in yegor256/qulice#1373
+- _id: 40
+  _job: 38038
+  _time: 2025-09-16 08:20:47.352665947 Z
+  _version: 0.16.5/0.53.8/0.15.42
+  award: 12
+  details: It's time to reward @fabriciofx for the bug reported in yegor256/qulice#1378,
+    the reward amount is 12.
+  href: https://github.com/yegor256/qulice/issues/1378/#issuecomment-3296521771
+  is_human: 1
+  issue: 1378
+  repository: 9580168
+  what: bug-report-was-rewarded
+  when: 2025-09-16 08:20:40.376564002 Z
+  where: github
+  who: 1964562
+  why: Reported bug in yegor256/qulice#1378
+- _id: 41
+  _job: 17760996837
+  _time: 2025-09-16 09:19:01.872230454 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  events_were_scanned: 54675320549
+  min_issue_was_found: 1373
+  min_pull_was_found: 1375
+  repository: 9580168
+  what: iterate
+  where: github

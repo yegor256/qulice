@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.11.0" size="19642">
+<fb version="0.11.0" size="21704">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">10.018384421</seconds>
+    <seconds t="F">6.715394423</seconds>
     <version t="S">0.53.6</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-09-16T08:20:05Z</when>
+    <when t="T">2025-09-16T09:19:02Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -41,18 +41,6 @@
     <when t="T">2025-09-14T17:58:28Z</when>
     <where t="S">github</where>
     <who t="I">1964562</who>
-  </f>
-  <f>
-    <_id t="I">3</_id>
-    <_job t="I">17755375077</_job>
-    <_time t="T">2025-09-16T05:20:40Z</_time>
-    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
-    <events_were_scanned t="I">54675320549</events_were_scanned>
-    <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">1374</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
   </f>
   <f>
     <_id t="I">4</_id>
@@ -498,10 +486,112 @@
     <_time t="T">2025-09-16T08:20:03Z</_time>
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
     <details t="S">We found out that the user #29139614 is known in GitHub as @renovate[bot].</details>
+    <is_human t="I">0</is_human>
     <name t="S">renovate[bot]</name>
     <what t="S">who-has-name</what>
     <when t="T">2025-09-16T08:20:03Z</when>
     <where t="S">github</where>
     <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">33</_id>
+    <_job t="I">38038</_job>
+    <_time t="T">2025-09-16T08:20:28Z</_time>
+    <_version t="S">0.16.5/0.53.8/0.15.42</_version>
+    <comments t="I">3</comments>
+    <details t="S">The pull request yegor256/qulice#1374 with 2 HoC created by @renovate[bot] was merged by @yegor256 after 4h21m of being in review and 3 comments.</details>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1374</issue>
+    <merger t="I">526301</merger>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">15666</seconds>
+    <what t="S">code-was-contributed</what>
+    <when t="T">2025-09-14T15:21:40Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">34</_id>
+    <_job t="I">38038</_job>
+    <_time t="T">2025-09-16T08:20:28Z</_time>
+    <_version t="S">0.16.5/0.53.8/0.15.42</_version>
+    <comments t="I">1</comments>
+    <details t="S">The pull request yegor256/qulice#1375 with 2 HoC created by @fabriciofx was merged by @yegor256 after 1h27m of being in review and 1 comments.</details>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1375</issue>
+    <merger t="I">526301</merger>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">5231</seconds>
+    <what t="S">code-was-contributed</what>
+    <when t="T">2025-09-14T12:42:17Z</when>
+    <where t="S">github</where>
+    <who t="I">1964562</who>
+  </f>
+  <f>
+    <_id t="I">38</_id>
+    <_job t="I">38038</_job>
+    <_time t="T">2025-09-16T08:20:44Z</_time>
+    <_version t="S">0.16.5/0.53.8/0.15.42</_version>
+    <award t="I">-16</award>
+    <details t="S">It's time to punish @fabriciofx for the dud submitted in yegor256/qulice#1376, the fee amount is -16.</details>
+    <href t="S">https://github.com/yegor256/qulice/issues/1376/#issuecomment-3296521061</href>
+    <is_human t="I">1</is_human>
+    <issue t="I">1376</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">dud-was-punished</what>
+    <when t="T">2025-09-16T08:20:28Z</when>
+    <where t="S">github</where>
+    <who t="I">1964562</who>
+    <why t="S">Submitted dud in yegor256/qulice#1376</why>
+  </f>
+  <f>
+    <_id t="I">39</_id>
+    <_job t="I">38038</_job>
+    <_time t="T">2025-09-16T08:20:46Z</_time>
+    <_version t="S">0.16.5/0.53.8/0.15.42</_version>
+    <award t="I">12</award>
+    <details t="S">It's time to reward @fabriciofx for the bug reported in yegor256/qulice#1373, the reward amount is 12.</details>
+    <href t="S">https://github.com/yegor256/qulice/issues/1373/#issuecomment-3296521646</href>
+    <is_human t="I">1</is_human>
+    <issue t="I">1373</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">bug-report-was-rewarded</what>
+    <when t="T">2025-09-16T08:20:37Z</when>
+    <where t="S">github</where>
+    <who t="I">1964562</who>
+    <why t="S">Reported bug in yegor256/qulice#1373</why>
+  </f>
+  <f>
+    <_id t="I">40</_id>
+    <_job t="I">38038</_job>
+    <_time t="T">2025-09-16T08:20:47Z</_time>
+    <_version t="S">0.16.5/0.53.8/0.15.42</_version>
+    <award t="I">12</award>
+    <details t="S">It's time to reward @fabriciofx for the bug reported in yegor256/qulice#1378, the reward amount is 12.</details>
+    <href t="S">https://github.com/yegor256/qulice/issues/1378/#issuecomment-3296521771</href>
+    <is_human t="I">1</is_human>
+    <issue t="I">1378</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">bug-report-was-rewarded</what>
+    <when t="T">2025-09-16T08:20:40Z</when>
+    <where t="S">github</where>
+    <who t="I">1964562</who>
+    <why t="S">Reported bug in yegor256/qulice#1378</why>
+  </f>
+  <f>
+    <_id t="I">41</_id>
+    <_job t="I">17760996837</_job>
+    <_time t="T">2025-09-16T09:19:01Z</_time>
+    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <events_were_scanned t="I">54675320549</events_were_scanned>
+    <min_issue_was_found t="I">1373</min_issue_was_found>
+    <min_pull_was_found t="I">1375</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
   </f>
 </fb>
