@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 36.382356268
+  seconds: 10.018384421
   version: 0.53.6
   what: judges-summary
-  when: 2025-09-16 07:19:14.782565645 Z
+  when: 2025-09-16 08:20:05.945237473 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -41,6 +41,7 @@
   _version: 0.16.3/0.53.6/0.15.42
   events_were_scanned: 54675320549
   min_issue_was_found: 1373
+  min_pull_was_found: 1374
   repository: 9580168
   what: iterate
   where: github
@@ -292,7 +293,7 @@
   issue: 1376
   repository: 9580168
   what: issue-was-opened
-  when: 2025-09-14 11:56:02.000000000 Z
+  when: &1 2025-09-14 11:56:02.000000000 Z
   where: github
   who: 1964562
 - _id: 18
@@ -312,11 +313,12 @@
   _time: 2025-09-16 07:18:42.488861515 Z
   _version: 0.16.3/0.53.6/0.15.42
   details: The 'bug' label was attached by @yegor256 to the issue yegor256/qulice#1373.
+  is_human: 1
   issue: 1373
   label: bug
   repository: 9580168
   what: label-was-attached
-  when: 2025-09-14 10:58:26.000000000 Z
+  when: &2 2025-09-14 10:58:26.000000000 Z
   where: github
   who: 526301
 - _id: 20
@@ -324,11 +326,12 @@
   _time: 2025-09-16 07:18:43.613469349 Z
   _version: 0.16.3/0.53.6/0.15.42
   details: The 'bug' label was attached by @yegor256 to the issue yegor256/qulice#1378.
+  is_human: 1
   issue: 1378
   label: bug
   repository: 9580168
   what: label-was-attached
-  when: 2025-09-14 15:21:55.000000000 Z
+  when: &3 2025-09-14 15:21:55.000000000 Z
   where: github
   who: 526301
 - _id: 21
@@ -336,6 +339,7 @@
   _time: 2025-09-16 07:18:43.634510098 Z
   _version: 0.16.3/0.53.6/0.15.42
   details: 'We found out that the user #526301 is known in GitHub as @yegor256.'
+  is_human: 1
   name: yegor256
   what: who-has-name
   when: 2025-09-16 07:18:43.852946253 Z
@@ -347,6 +351,7 @@
   _version: 0.16.3/0.53.6/0.15.42
   assigner: 526301
   details: yegor256/qulice#1376 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1376
   repository: 9580168
   what: issue-was-assigned
@@ -358,6 +363,7 @@
   _time: 2025-09-16 07:18:45.632101820 Z
   _version: 0.16.3/0.53.6/0.15.42
   details: Apparently, yegor256/qulice#1373 has been 'issue-was-closed'.
+  is_human: 1
   issue: 1373
   repository: 9580168
   what: issue-was-closed
@@ -369,6 +375,7 @@
   _time: 2025-09-16 07:18:45.661570895 Z
   _version: 0.16.3/0.53.6/0.15.42
   details: Apparently, yegor256/qulice#1376 has been 'issue-was-closed'.
+  is_human: 1
   issue: 1376
   repository: 9580168
   what: issue-was-closed
@@ -381,6 +388,7 @@
   _version: 0.16.3/0.53.6/0.15.42
   branch: renovate/guava-monorepo
   details: The missing pull yegor256/qulice#1374 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1374
   repository: 9580168
   what: pull-was-opened
@@ -393,6 +401,7 @@
   _version: 0.16.3/0.53.6/0.15.42
   branch: '1373'
   details: The missing pull yegor256/qulice#1375 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1375
   repository: 9580168
   what: pull-was-opened
@@ -413,8 +422,10 @@
   details: Apparently, yegor256/qulice#1374 has been 'pull-was-merged'.
   failed_builds: 0
   hoc: 2
+  is_human: 1
   issue: 1374
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 14
   what: pull-was-merged
   when: 2025-09-14 15:21:40.000000000 Z
@@ -434,10 +445,65 @@
   details: Apparently, yegor256/qulice#1375 has been 'pull-was-merged'.
   failed_builds: 0
   hoc: 2
+  is_human: 1
   issue: 1375
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
   when: 2025-09-14 12:42:17.000000000 Z
   where: github
   who: 526301
+- _id: 29
+  _job: 38032
+  _time: 2025-09-16 07:19:35.061211663 Z
+  _version: 0.16.5/0.53.8/0.15.42
+  closer: 526301
+  details: 'In the repository #9580168, the user #1964562 submitted the issue #1376
+    which was later closed by the user #526301 not becoming a bug or enhancement;
+    this means that the issue was not valid, maybe a duplicate or simply a mistake.'
+  is_human: 1
+  issue: 1376
+  repository: 9580168
+  what: dud-was-closed
+  when: *1
+  where: github
+  who: 1964562
+- _id: 30
+  _job: 38032
+  _time: 2025-09-16 07:19:35.237524164 Z
+  _version: 0.16.5/0.53.8/0.15.42
+  details: "@yegor256 attached the '#bug' label to yegor256/qulice#1373 reported by
+    @fabriciofx; this means that a bug was accepted as valid, by the project team."
+  is_human: 1
+  issue: 1373
+  reporter: 1964562
+  repository: 9580168
+  what: bug-was-accepted
+  when: *2
+  where: github
+  who: 526301
+- _id: 31
+  _job: 38032
+  _time: 2025-09-16 07:19:35.439261516 Z
+  _version: 0.16.5/0.53.8/0.15.42
+  details: "@yegor256 attached the '#bug' label to yegor256/qulice#1378 reported by
+    @fabriciofx; this means that a bug was accepted as valid, by the project team."
+  is_human: 1
+  issue: 1378
+  reporter: 1964562
+  repository: 9580168
+  what: bug-was-accepted
+  when: *3
+  where: github
+  who: 526301
+- _id: 32
+  _job: 17759439352
+  _time: 2025-09-16 08:20:03.948967606 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  details: 'We found out that the user #29139614 is known in GitHub as @renovate[bot].'
+  name: renovate[bot]
+  what: who-has-name
+  when: 2025-09-16 08:20:03.952242669 Z
+  where: github
+  who: 29139614

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.11.0" size="18157">
+<fb version="0.11.0" size="19642">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">36.382356268</seconds>
+    <seconds t="F">10.018384421</seconds>
     <version t="S">0.53.6</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-09-16T07:19:14Z</when>
+    <when t="T">2025-09-16T08:20:05Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -49,6 +49,7 @@
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
     <events_were_scanned t="I">54675320549</events_were_scanned>
     <min_issue_was_found t="I">1373</min_issue_was_found>
+    <min_pull_was_found t="I">1374</min_pull_was_found>
     <repository t="I">9580168</repository>
     <what t="S">iterate</what>
     <where t="S">github</where>
@@ -286,6 +287,7 @@
     <_time t="T">2025-09-16T07:18:42Z</_time>
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
     <details t="S">The 'bug' label was attached by @yegor256 to the issue yegor256/qulice#1373.</details>
+    <is_human t="I">1</is_human>
     <issue t="I">1373</issue>
     <label t="S">bug</label>
     <repository t="I">9580168</repository>
@@ -300,6 +302,7 @@
     <_time t="T">2025-09-16T07:18:43Z</_time>
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
     <details t="S">The 'bug' label was attached by @yegor256 to the issue yegor256/qulice#1378.</details>
+    <is_human t="I">1</is_human>
     <issue t="I">1378</issue>
     <label t="S">bug</label>
     <repository t="I">9580168</repository>
@@ -314,6 +317,7 @@
     <_time t="T">2025-09-16T07:18:43Z</_time>
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
     <details t="S">We found out that the user #526301 is known in GitHub as @yegor256.</details>
+    <is_human t="I">1</is_human>
     <name t="S">yegor256</name>
     <what t="S">who-has-name</what>
     <when t="T">2025-09-16T07:18:43Z</when>
@@ -327,6 +331,7 @@
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
     <assigner t="I">526301</assigner>
     <details t="S">yegor256/qulice#1376 was assigned to @yegor256 by @yegor256.</details>
+    <is_human t="I">1</is_human>
     <issue t="I">1376</issue>
     <repository t="I">9580168</repository>
     <what t="S">issue-was-assigned</what>
@@ -340,6 +345,7 @@
     <_time t="T">2025-09-16T07:18:45Z</_time>
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
     <details t="S">Apparently, yegor256/qulice#1373 has been 'issue-was-closed'.</details>
+    <is_human t="I">1</is_human>
     <issue t="I">1373</issue>
     <repository t="I">9580168</repository>
     <what t="S">issue-was-closed</what>
@@ -353,6 +359,7 @@
     <_time t="T">2025-09-16T07:18:45Z</_time>
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
     <details t="S">Apparently, yegor256/qulice#1376 has been 'issue-was-closed'.</details>
+    <is_human t="I">1</is_human>
     <issue t="I">1376</issue>
     <repository t="I">9580168</repository>
     <what t="S">issue-was-closed</what>
@@ -367,6 +374,7 @@
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
     <branch t="S">renovate/guava-monorepo</branch>
     <details t="S">The missing pull yegor256/qulice#1374 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
     <issue t="I">1374</issue>
     <repository t="I">9580168</repository>
     <what t="S">pull-was-opened</what>
@@ -381,6 +389,7 @@
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
     <branch t="S">1373</branch>
     <details t="S">The missing pull yegor256/qulice#1375 has been opened by @fabriciofx.</details>
+    <is_human t="I">1</is_human>
     <issue t="I">1375</issue>
     <repository t="I">9580168</repository>
     <what t="S">pull-was-opened</what>
@@ -403,8 +412,10 @@
     <details t="S">Apparently, yegor256/qulice#1374 has been 'pull-was-merged'.</details>
     <failed_builds t="I">0</failed_builds>
     <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
     <issue t="I">1374</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">14</succeeded_builds>
     <what t="S">pull-was-merged</what>
     <when t="T">2025-09-14T15:21:40Z</when>
@@ -426,12 +437,71 @@
     <details t="S">Apparently, yegor256/qulice#1375 has been 'pull-was-merged'.</details>
     <failed_builds t="I">0</failed_builds>
     <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
     <issue t="I">1375</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">20</succeeded_builds>
     <what t="S">pull-was-merged</what>
     <when t="T">2025-09-14T12:42:17Z</when>
     <where t="S">github</where>
     <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">29</_id>
+    <_job t="I">38032</_job>
+    <_time t="T">2025-09-16T07:19:35Z</_time>
+    <_version t="S">0.16.5/0.53.8/0.15.42</_version>
+    <closer t="I">526301</closer>
+    <details t="S">In the repository #9580168, the user #1964562 submitted the issue #1376 which was later closed by the user #526301 not becoming a bug or enhancement; this means that the issue was not valid, maybe a duplicate or simply a mistake.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1376</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">dud-was-closed</what>
+    <when t="T">2025-09-14T11:56:02Z</when>
+    <where t="S">github</where>
+    <who t="I">1964562</who>
+  </f>
+  <f>
+    <_id t="I">30</_id>
+    <_job t="I">38032</_job>
+    <_time t="T">2025-09-16T07:19:35Z</_time>
+    <_version t="S">0.16.5/0.53.8/0.15.42</_version>
+    <details t="S">@yegor256 attached the '#bug' label to yegor256/qulice#1373 reported by @fabriciofx; this means that a bug was accepted as valid, by the project team.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1373</issue>
+    <reporter t="I">1964562</reporter>
+    <repository t="I">9580168</repository>
+    <what t="S">bug-was-accepted</what>
+    <when t="T">2025-09-14T10:58:26Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">31</_id>
+    <_job t="I">38032</_job>
+    <_time t="T">2025-09-16T07:19:35Z</_time>
+    <_version t="S">0.16.5/0.53.8/0.15.42</_version>
+    <details t="S">@yegor256 attached the '#bug' label to yegor256/qulice#1378 reported by @fabriciofx; this means that a bug was accepted as valid, by the project team.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1378</issue>
+    <reporter t="I">1964562</reporter>
+    <repository t="I">9580168</repository>
+    <what t="S">bug-was-accepted</what>
+    <when t="T">2025-09-14T15:21:55Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">32</_id>
+    <_job t="I">17759439352</_job>
+    <_time t="T">2025-09-16T08:20:03Z</_time>
+    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <details t="S">We found out that the user #29139614 is known in GitHub as @renovate[bot].</details>
+    <name t="S">renovate[bot]</name>
+    <what t="S">who-has-name</what>
+    <when t="T">2025-09-16T08:20:03Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
   </f>
 </fb>
