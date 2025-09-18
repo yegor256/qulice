@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.11.0" size="22391">
+<fb version="0.11.0" size="22452">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">256.410111839</seconds>
+    <seconds t="F">7.257332775</seconds>
     <version t="S">0.53.6</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-09-18T07:22:52Z</when>
+    <when t="T">2025-09-18T08:19:39Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -583,6 +583,8 @@
     <_job t="I">17821136811</_job>
     <_time t="T">2025-09-18T07:18:37Z</_time>
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <composite t="F">21.953</composite>
+    <ffact t="I">10</ffact>
     <since t="T">2025-09-11T07:18:37Z</since>
     <total_builds_ran t="I">475</total_builds_ran>
     <total_commits_pushed t="I">30</total_commits_pushed>
@@ -593,18 +595,6 @@
     <total_reviews_submitted t="I">3</total_reviews_submitted>
     <what t="S">quantity-of-deliverables</what>
     <when t="T">2025-09-18T07:18:37Z</when>
-  </f>
-  <f>
-    <_id t="I">57</_id>
-    <_job t="I">17821136811</_job>
-    <_time t="T">2025-09-18T07:21:48Z</_time>
-    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
-    <events_were_scanned t="I">54850993088</events_were_scanned>
-    <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">0</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
   </f>
   <f>
     <_id t="I">58</_id>
@@ -628,8 +618,22 @@
     <average_reviewers_per_pull t="F">0.2727272727272727</average_reviewers_per_pull>
     <average_reviews_per_pull t="F">0.2727272727272727</average_reviews_per_pull>
     <average_triage_time t="F">3607.0</average_triage_time>
+    <composite t="F">0.455</composite>
+    <ffact t="I">9</ffact>
     <since t="T">2025-09-11T07:21:51Z</since>
     <what t="S">quality-of-service</what>
     <when t="T">2025-09-18T07:21:51Z</when>
+  </f>
+  <f>
+    <_id t="I">59</_id>
+    <_job t="I">17822555043</_job>
+    <_time t="T">2025-09-18T08:19:38Z</_time>
+    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <events_were_scanned t="I">54850993088</events_were_scanned>
+    <min_issue_was_found t="I">1373</min_issue_was_found>
+    <min_pull_was_found t="I">1374</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
   </f>
 </fb>
