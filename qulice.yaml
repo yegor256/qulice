@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 22.871987112
+  seconds: 9.622191678
   version: 0.53.6
   what: judges-summary
-  when: 2025-09-21 11:17:53.992502893 Z
+  when: 2025-09-21 12:20:23.359132156 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -896,16 +896,6 @@
   when: *8
   where: github
   who: 41898282
-- _id: 106
-  _job: 17892921126
-  _time: 2025-09-21 11:17:45.825794902 Z
-  _version: 0.16.3/0.53.6/0.15.42
-  events_were_scanned: 54981492585
-  min_issue_was_found: 1373
-  min_pull_was_found: 1380
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 107
   _job: 17892921126
   _time: 2025-09-21 11:17:45.831681779 Z
@@ -922,3 +912,62 @@
   total_stars: 308
   what: dimensions-of-terrain
   when: 2025-09-21 11:17:45.836927445 Z
+- _id: 108
+  _job: 38804
+  _time: 2025-09-21 11:18:21.984503549 Z
+  _version: 0.16.7/0.54.0/0.15.42
+  award: 4
+  comments: 1
+  details: It's time to reward @fabriciofx for the code contributed in yegor256/qulice#1379,
+    the reward amount is 4.
+  hoc: 6
+  href: https://github.com/yegor256/qulice/issues/1379/#issuecomment-3315929053
+  is_human: 1
+  issue: 1379
+  receipt: 0
+  repository: 9580168
+  review_comments: 0
+  seconds: 6540
+  what: code-contribution-was-rewarded
+  when: 2025-09-21 11:18:11.530090130 Z
+  where: github
+  who: 1964562
+  why: Contributed code in yegor256/qulice#1379
+- _id: 109
+  _job: 38804
+  _time: 2025-09-21 11:18:22.149982783 Z
+  _version: 0.16.7/0.54.0/0.15.42
+  award: 4
+  comments: 3
+  details: It's time to reward @yegor256 for the code review in yegor256/qulice#1380,
+    the reward amount is 4.
+  greeting: "Thank you for your review contribution! We appreciate your effort, but
+    we noticed there were no comments posted during the review process. According
+    to our [team policy](https://www.yegor256.com/2014/11/14/hits-of-code.html), this
+    results in a deduction. Your final score is +4 points: +12 as a base, -16 for
+    no comments, and +8 to ensure a minimum reward. In the future, please aim to provide
+    constructive feedback through comments to maximize your points and improve our
+    code quality. Keep up the good work! \U0001F4BB\n\n<!-- Thanks for the review!
+    You've earned +4 points for this: +12 as a basis; -16 for absolutely no comments
+    posted; +8 to give you at least something.   -->"
+  hoc: 22
+  is_human: 1
+  issue: 1380
+  repository: 9580168
+  review_comments: 0
+  seconds: 4670
+  what: code-review-was-rewarded
+  when: 2025-09-21 11:18:22.153479973 Z
+  where: github
+  who: 526301
+  why: Reviewed code in yegor256/qulice#1380
+- _id: 110
+  _job: 17893519327
+  _time: 2025-09-21 12:20:23.107773364 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  events_were_scanned: 54982213899
+  min_issue_was_found: 1373
+  min_pull_was_found: 1381
+  repository: 9580168
+  what: iterate
+  where: github
