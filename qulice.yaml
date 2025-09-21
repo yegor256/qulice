@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 10.817128329
+  seconds: 22.871987112
   version: 0.53.6
   what: judges-summary
-  when: 2025-09-21 10:18:23.519612336 Z
+  when: 2025-09-21 11:17:53.992502893 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -775,7 +775,7 @@
   review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
-  when: 2025-09-14 15:21:27.000000000 Z
+  when: &6 2025-09-14 15:21:27.000000000 Z
   where: github
   who: 526301
 - _id: 99
@@ -798,7 +798,7 @@
   review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
-  when: 2025-09-14 17:26:25.000000000 Z
+  when: &7 2025-09-14 17:26:25.000000000 Z
   where: github
   who: 526301
 - _id: 100
@@ -821,19 +821,9 @@
   review_comments: 0
   succeeded_builds: 0
   what: pull-was-merged
-  when: 2025-09-14 17:26:14.000000000 Z
+  when: &8 2025-09-14 17:26:14.000000000 Z
   where: github
   who: 526301
-- _id: 101
-  _job: 17892334739
-  _time: 2025-09-21 10:18:16.461996251 Z
-  _version: 0.16.3/0.53.6/0.15.42
-  events_were_scanned: 54980790306
-  min_issue_was_found: 1373
-  min_pull_was_found: 1379
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 102
   _job: 17892334739
   _time: 2025-09-21 10:18:21.559381344 Z
@@ -843,6 +833,7 @@
   details: The pull request yegor256/qulice#1380 with 22 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h17m and 0 comments.
   hoc: 22
+  is_human: 1
   issue: 1380
   repository: 9580168
   review_comments: 0
@@ -851,3 +842,83 @@
   when: 2025-09-14 16:40:57.000000000 Z
   where: github
   who: 526301
+- _id: 103
+  _job: 38798
+  _time: 2025-09-21 10:18:40.167928431 Z
+  _version: 0.16.7/0.54.0/0.15.42
+  comments: 1
+  details: The pull request yegor256/qulice#1379 with 6 HoC created by @fabriciofx
+    was merged by @yegor256 after 1h48m of being in review and 1 comments.
+  hoc: 6
+  is_human: 1
+  issue: 1379
+  merger: 526301
+  repository: 9580168
+  review_comments: 0
+  seconds: 6540
+  what: code-was-contributed
+  when: *6
+  where: github
+  who: 1964562
+- _id: 104
+  _job: 38798
+  _time: 2025-09-21 10:18:40.369503849 Z
+  _version: 0.16.7/0.54.0/0.15.42
+  comments: 3
+  details: The pull request yegor256/qulice#1380 with 22 HoC created by @renovate[bot]
+    was merged by @yegor256 after 2h3m of being in review and 3 comments.
+  hoc: 22
+  is_human: 0
+  issue: 1380
+  merger: 526301
+  repository: 9580168
+  review_comments: 0
+  seconds: 7398
+  what: code-was-contributed
+  when: *7
+  where: github
+  who: 29139614
+- _id: 105
+  _job: 38798
+  _time: 2025-09-21 10:18:40.454258192 Z
+  _version: 0.16.7/0.54.0/0.15.42
+  comments: 0
+  details: The pull request yegor256/qulice#1381 with 2 HoC created by @github-actions[bot]
+    was merged by @yegor256 after 4m35s of being in review and 0 comments.
+  hoc: 2
+  is_human: 0
+  issue: 1381
+  merger: 526301
+  repository: 9580168
+  review_comments: 0
+  seconds: 276
+  what: code-was-contributed
+  when: *8
+  where: github
+  who: 41898282
+- _id: 106
+  _job: 17892921126
+  _time: 2025-09-21 11:17:45.825794902 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  events_were_scanned: 54981492585
+  min_issue_was_found: 1373
+  min_pull_was_found: 1380
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 107
+  _job: 17892921126
+  _time: 2025-09-21 11:17:45.831681779 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  total_active_contributors: 4
+  total_commits: 2144
+  total_contributors: 51
+  total_files: 426
+  total_forks: 118
+  total_issues: 829
+  total_pulls: 553
+  total_releases: 73
+  total_repositories: 1
+  total_stars: 308
+  what: dimensions-of-terrain
+  when: 2025-09-21 11:17:45.836927445 Z
