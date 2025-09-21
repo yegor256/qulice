@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.11.0" size="23341">
+<fb version="0.11.0" size="24810">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">6.715182792</seconds>
+    <seconds t="F">9.860177709</seconds>
     <version t="S">0.53.6</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-09-21T07:18:06Z</when>
+    <when t="T">2025-09-21T08:19:38Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -694,14 +694,83 @@
   </f>
   <f>
     <_id t="I">89</_id>
-    <_job t="I">17890577124</_job>
-    <_time t="T">2025-09-21T07:18:06Z</_time>
+    <_job t="I">17891159352</_job>
+    <_time t="T">2025-09-21T08:19:31Z</_time>
     <_version t="S">0.16.3/0.53.6/0.15.42</_version>
-    <events_were_scanned t="I">54977018406</events_were_scanned>
+    <events_were_scanned t="I">54978569437</events_were_scanned>
     <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">0</min_pull_was_found>
+    <min_pull_was_found t="I">1374</min_pull_was_found>
     <repository t="I">9580168</repository>
     <what t="S">iterate</what>
     <where t="S">github</where>
+  </f>
+  <f>
+    <_id t="I">90</_id>
+    <_job t="I">17891159352</_job>
+    <_time t="T">2025-09-21T08:19:31Z</_time>
+    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <details t="S">We found out that the user #51804353 is known in GitHub as @volodya-lombrozo.</details>
+    <is_human t="I">1</is_human>
+    <name t="S">volodya-lombrozo</name>
+    <what t="S">who-has-name</what>
+    <when t="T">2025-09-21T08:19:31Z</when>
+    <where t="S">github</where>
+    <who t="I">51804353</who>
+  </f>
+  <f>
+    <_id t="I">91</_id>
+    <_job t="I">17891159352</_job>
+    <_time t="T">2025-09-21T08:19:34Z</_time>
+    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <branch t="S">1378</branch>
+    <details t="S">The missing pull yegor256/qulice#1379 has been opened by @fabriciofx.</details>
+    <issue t="I">1379</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-09-14T13:32:27Z</when>
+    <where t="S">github</where>
+    <who t="I">1964562</who>
+  </f>
+  <f>
+    <_id t="I">92</_id>
+    <_job t="I">17891159352</_job>
+    <_time t="T">2025-09-21T08:19:35Z</_time>
+    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <branch t="S">renovate/actions-checkout-5.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1380 has been opened by @renovate[bot].</details>
+    <issue t="I">1380</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-09-14T15:23:07Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">93</_id>
+    <_job t="I">17891159352</_job>
+    <_time t="T">2025-09-21T08:19:35Z</_time>
+    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <branch t="S">version-up</branch>
+    <details t="S">The missing pull yegor256/qulice#1381 has been opened by @github-actions[bot].</details>
+    <issue t="I">1381</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-09-14T17:21:38Z</when>
+    <where t="S">github</where>
+    <who t="I">41898282</who>
+  </f>
+  <f>
+    <_id t="I">94</_id>
+    <_job t="I">17891159352</_job>
+    <_time t="T">2025-09-21T08:19:36Z</_time>
+    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <branch t="S">renovate/com.qulice-qulice-maven-plugin-0.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1382 has been opened by @renovate[bot].</details>
+    <issue t="I">1382</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-09-14T17:26:38Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
   </f>
 </fb>

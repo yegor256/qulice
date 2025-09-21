@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 6.715182792
+  seconds: 9.860177709
   version: 0.53.6
   what: judges-summary
-  when: 2025-09-21 07:18:06.390927328 Z
+  when: 2025-09-21 08:19:38.034757305 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -682,12 +682,71 @@
   where: github
   who: 51804353
 - _id: 89
-  _job: 17890577124
-  _time: 2025-09-21 07:18:06.004389158 Z
+  _job: 17891159352
+  _time: 2025-09-21 08:19:31.810066339 Z
   _version: 0.16.3/0.53.6/0.15.42
-  events_were_scanned: 54977018406
+  events_were_scanned: 54978569437
   min_issue_was_found: 1373
-  min_pull_was_found: 0
+  min_pull_was_found: 1374
   repository: 9580168
   what: iterate
   where: github
+- _id: 90
+  _job: 17891159352
+  _time: 2025-09-21 08:19:31.821825366 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  details: 'We found out that the user #51804353 is known in GitHub as @volodya-lombrozo.'
+  is_human: 1
+  name: volodya-lombrozo
+  what: who-has-name
+  when: 2025-09-21 08:19:31.825812892 Z
+  where: github
+  who: 51804353
+- _id: 91
+  _job: 17891159352
+  _time: 2025-09-21 08:19:34.536958144 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  branch: '1378'
+  details: The missing pull yegor256/qulice#1379 has been opened by @fabriciofx.
+  issue: 1379
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-09-14 13:32:27.000000000 Z
+  where: github
+  who: 1964562
+- _id: 92
+  _job: 17891159352
+  _time: 2025-09-21 08:19:35.048945012 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  branch: renovate/actions-checkout-5.x
+  details: The missing pull yegor256/qulice#1380 has been opened by @renovate[bot].
+  issue: 1380
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-09-14 15:23:07.000000000 Z
+  where: github
+  who: 29139614
+- _id: 93
+  _job: 17891159352
+  _time: 2025-09-21 08:19:35.541558133 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  branch: version-up
+  details: The missing pull yegor256/qulice#1381 has been opened by @github-actions[bot].
+  issue: 1381
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-09-14 17:21:38.000000000 Z
+  where: github
+  who: 41898282
+- _id: 94
+  _job: 17891159352
+  _time: 2025-09-21 08:19:36.204577344 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  branch: renovate/com.qulice-qulice-maven-plugin-0.x
+  details: The missing pull yegor256/qulice#1382 has been opened by @renovate[bot].
+  issue: 1382
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-09-14 17:26:38.000000000 Z
+  where: github
+  who: 29139614
