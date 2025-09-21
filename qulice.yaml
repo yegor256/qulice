@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 29.209003335
+  seconds: 10.817128329
   version: 0.53.6
   what: judges-summary
-  when: 2025-09-21 09:19:06.848194656 Z
+  when: 2025-09-21 10:18:23.519612336 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -755,16 +755,6 @@
   when: 2025-09-21 09:18:40.219849341 Z
   where: github
   who: 41898282
-- _id: 97
-  _job: 17891760684
-  _time: 2025-09-21 09:18:41.484945017 Z
-  _version: 0.16.3/0.53.6/0.15.42
-  events_were_scanned: 54980170487
-  min_issue_was_found: 1373
-  min_pull_was_found: 1375
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 98
   _job: 17891760684
   _time: 2025-09-21 09:18:44.275103900 Z
@@ -782,6 +772,7 @@
   is_human: 1
   issue: 1379
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
   when: 2025-09-14 15:21:27.000000000 Z
@@ -804,6 +795,7 @@
   is_human: 1
   issue: 1380
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
   when: 2025-09-14 17:26:25.000000000 Z
@@ -826,8 +818,36 @@
   is_human: 1
   issue: 1381
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   what: pull-was-merged
   when: 2025-09-14 17:26:14.000000000 Z
+  where: github
+  who: 526301
+- _id: 101
+  _job: 17892334739
+  _time: 2025-09-21 10:18:16.461996251 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  events_were_scanned: 54980790306
+  min_issue_was_found: 1373
+  min_pull_was_found: 1379
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 102
+  _job: 17892334739
+  _time: 2025-09-21 10:18:21.559381344 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1380 with 22 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 1h17m and 0 comments.
+  hoc: 22
+  issue: 1380
+  repository: 9580168
+  review_comments: 0
+  seconds: 4670
+  what: code-was-reviewed
+  when: 2025-09-14 16:40:57.000000000 Z
   where: github
   who: 526301

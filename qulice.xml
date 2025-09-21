@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.11.0" size="26185">
+<fb version="0.11.0" size="26581">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">29.209003335</seconds>
+    <seconds t="F">10.817128329</seconds>
     <version t="S">0.53.6</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-09-21T09:19:06Z</when>
+    <when t="T">2025-09-21T10:18:23Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -779,18 +779,6 @@
     <who t="I">41898282</who>
   </f>
   <f>
-    <_id t="I">97</_id>
-    <_job t="I">17891760684</_job>
-    <_time t="T">2025-09-21T09:18:41Z</_time>
-    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
-    <events_were_scanned t="I">54980170487</events_were_scanned>
-    <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">1375</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
-  </f>
-  <f>
     <_id t="I">98</_id>
     <_job t="I">17891760684</_job>
     <_time t="T">2025-09-21T09:18:44Z</_time>
@@ -808,6 +796,7 @@
     <is_human t="I">1</is_human>
     <issue t="I">1379</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">20</succeeded_builds>
     <what t="S">pull-was-merged</what>
     <when t="T">2025-09-14T15:21:27Z</when>
@@ -832,6 +821,7 @@
     <is_human t="I">1</is_human>
     <issue t="I">1380</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">20</succeeded_builds>
     <what t="S">pull-was-merged</what>
     <when t="T">2025-09-14T17:26:25Z</when>
@@ -856,9 +846,40 @@
     <is_human t="I">1</is_human>
     <issue t="I">1381</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">0</succeeded_builds>
     <what t="S">pull-was-merged</what>
     <when t="T">2025-09-14T17:26:14Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">101</_id>
+    <_job t="I">17892334739</_job>
+    <_time t="T">2025-09-21T10:18:16Z</_time>
+    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <events_were_scanned t="I">54980790306</events_were_scanned>
+    <min_issue_was_found t="I">1373</min_issue_was_found>
+    <min_pull_was_found t="I">1379</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
+  </f>
+  <f>
+    <_id t="I">102</_id>
+    <_job t="I">17892334739</_job>
+    <_time t="T">2025-09-21T10:18:21Z</_time>
+    <_version t="S">0.16.3/0.53.6/0.15.42</_version>
+    <author t="I">29139614</author>
+    <comments t="I">3</comments>
+    <details t="S">The pull request yegor256/qulice#1380 with 22 HoC created by @renovate[bot] was reviewed by @yegor256 after 1h17m and 0 comments.</details>
+    <hoc t="I">22</hoc>
+    <issue t="I">1380</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">4670</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2025-09-14T16:40:57Z</when>
     <where t="S">github</where>
     <who t="I">526301</who>
   </f>
