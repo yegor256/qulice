@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 17.898560251
+  seconds: 16.343047447
   version: 0.53.6
   what: judges-summary
-  when: 2025-09-22 16:20:00.846392331 Z
+  when: 2025-09-22 17:21:26.227982148 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -914,7 +914,7 @@
   issue: 1384
   repository: 9580168
   what: issue-was-opened
-  when: 2025-09-21 22:10:34.000000000 Z
+  when: &10 2025-09-21 22:10:34.000000000 Z
   where: github
   who: 1964562
 - _id: 123
@@ -1036,13 +1036,28 @@
   when: 2025-09-22 15:58:14.000000000 Z
   where: github
   who: 526301
-- _id: 136
-  _job: 17921589364
-  _time: 2025-09-22 16:19:54.413188221 Z
+- _id: 137
+  _job: 39040
+  _time: 2025-09-22 16:20:19.114211807 Z
+  _version: 0.16.7/0.54.0/0.15.42!0.15.44
+  closer: 526301
+  details: 'In the repository #9580168, the user #1964562 submitted the issue #1384
+    which was later closed by the user #526301 not becoming a bug or enhancement;
+    this means that the issue was not valid, maybe a duplicate or simply a mistake.'
+  is_human: 1
+  issue: 1384
+  repository: 9580168
+  what: dud-was-closed
+  when: *10
+  where: github
+  who: 1964562
+- _id: 138
+  _job: 17923144575
+  _time: 2025-09-22 17:21:16.484834679 Z
   _version: 0.16.3/0.53.6/0.15.42
-  events_were_scanned: 55017350998
+  events_were_scanned: 55020100441
   min_issue_was_found: 1373
-  min_pull_was_found: 1381
+  min_pull_was_found: 1382
   repository: 9580168
   what: iterate
   where: github
