@@ -77,4 +77,4 @@ sending us your pull request please run full Maven build:
 mvn clean install -Pqulice
 ```
 
-Keep in mind that JDK 11+ and Maven 3.8+ are the lowest versions you may use.
+Keep in mind that JDK 17+ and Maven 3.8+ are the lowest versions you may use.
