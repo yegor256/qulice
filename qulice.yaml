@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 228.107224013
+  seconds: 60.288518452
   version: 0.53.6
   what: judges-summary
-  when: 2025-09-22 10:22:56.894295012 Z
+  when: 2025-09-22 11:19:05.871898049 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -605,32 +605,6 @@
   total_stars: 307
   what: dimensions-of-terrain
   when: 2025-09-19 10:19:01.992321372 Z
-- _id: 78
-  _job: 17878088868
-  _time: 2025-09-20 09:21:03.475019107 Z
-  _version: 0.16.3/0.53.6/0.15.42
-  average_backlog_size: 153.28571428571428
-  average_build_duration: 65.08196721311475
-  average_build_mttr: 0
-  average_build_success_rate: 0.9508196721311475
-  average_issue_lifetime: 87905.0
-  average_pull_files_size: 3.0
-  average_pull_hoc_size: 79.3
-  average_pull_lifetime: 23448.3
-  average_pull_rejection_rate: 0.0
-  average_release_commits_size: 0
-  average_release_hoc_size: 0
-  average_release_interval: 0
-  average_review_size: 0.0
-  average_review_time: 4263.333333333333
-  average_reviewers_per_pull: 0.3
-  average_reviews_per_pull: 0.3
-  average_triage_time: 3607.0
-  composite: 0.561
-  ffact: 9
-  since: 2025-09-13 09:21:03.475184425 Z
-  what: quality-of-service
-  when: 2025-09-20 09:21:03.475150081 Z
 - _id: 80
   _job: 17879187066
   _time: 2025-09-20 11:17:42.645506593 Z
@@ -949,12 +923,54 @@
   _version: 0.16.7/0.54.0/0.15.42!0.15.43
   what: learn-eva
   when: 2025-09-22 07:19:52.795533496 Z
-- _id: 121
+- _id: 123
   _job: 17912168509
-  _time: 2025-09-22 10:19:12.969665265 Z
+  _time: 2025-09-22 10:20:02.598038773 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  composite: 11.827
+  ffact: 10
+  since: 2025-09-15 10:20:02.598198822 Z
+  total_builds_ran: 344
+  total_commits_pushed: 1
+  total_hoc_committed: 29
+  total_issues_created: 14
+  total_pulls_submitted: 11
+  total_releases_published: 0
+  total_reviews_submitted: 0
+  what: quantity-of-deliverables
+  when: 2025-09-22 10:20:02.598162204 Z
+- _id: 124
+  _job: 17913572419
+  _time: 2025-09-22 11:18:10.262706298 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  events_were_scanned: 55010941331
+  min_issue_was_found: 1373
+  min_pull_was_found: 0
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 125
+  _job: 17913572419
+  _time: 2025-09-22 11:18:12.879331972 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  total_active_contributors: 4
+  total_commits: 2144
+  total_contributors: 51
+  total_files: 426
+  total_forks: 118
+  total_issues: 830
+  total_pulls: 554
+  total_releases: 73
+  total_repositories: 1
+  total_stars: 308
+  what: dimensions-of-terrain
+  when: 2025-09-22 11:18:12.889640938 Z
+- _id: 126
+  _job: 17913572419
+  _time: 2025-09-22 11:18:24.701372299 Z
   _version: 0.16.3/0.53.6/0.15.42
   average_backlog_size: 152.71428571428572
-  average_build_duration: 63.57377049180328
+  average_build_duration: 67.14754098360656
   average_build_mttr: 0
   average_build_success_rate: 0.9508196721311475
   average_issue_lifetime: 149647.0
@@ -970,30 +986,6 @@
   average_reviewers_per_pull: 0
   average_reviews_per_pull: 0
   average_triage_time: 0
-  since: 2025-09-15 10:19:12.969838930 Z
+  since: 2025-09-15 11:18:24.701541006 Z
   what: quality-of-service
-  when: 2025-09-22 10:19:12.969803413 Z
-- _id: 122
-  _job: 17912168509
-  _time: 2025-09-22 10:20:02.590692758 Z
-  _version: 0.16.3/0.53.6/0.15.42
-  events_were_scanned: 55010941331
-  min_issue_was_found: 1373
-  min_pull_was_found: 1382
-  repository: 9580168
-  what: iterate
-  where: github
-- _id: 123
-  _job: 17912168509
-  _time: 2025-09-22 10:20:02.598038773 Z
-  _version: 0.16.3/0.53.6/0.15.42
-  since: 2025-09-15 10:20:02.598198822 Z
-  total_builds_ran: 344
-  total_commits_pushed: 1
-  total_hoc_committed: 29
-  total_issues_created: 14
-  total_pulls_submitted: 11
-  total_releases_published: 0
-  total_reviews_submitted: 0
-  what: quantity-of-deliverables
-  when: 2025-09-22 10:20:02.598162204 Z
+  when: 2025-09-22 11:18:24.701504958 Z
