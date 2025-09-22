@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 60.288518452
+  seconds: 17.131539761
   version: 0.53.6
   what: judges-summary
-  when: 2025-09-22 11:19:05.871898049 Z
+  when: 2025-09-22 12:20:57.607279196 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -939,16 +939,6 @@
   total_reviews_submitted: 0
   what: quantity-of-deliverables
   when: 2025-09-22 10:20:02.598162204 Z
-- _id: 124
-  _job: 17913572419
-  _time: 2025-09-22 11:18:10.262706298 Z
-  _version: 0.16.3/0.53.6/0.15.42
-  events_were_scanned: 55010941331
-  min_issue_was_found: 1373
-  min_pull_was_found: 0
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 125
   _job: 17913572419
   _time: 2025-09-22 11:18:12.879331972 Z
@@ -986,6 +976,30 @@
   average_reviewers_per_pull: 0
   average_reviews_per_pull: 0
   average_triage_time: 0
+  composite: 0.45
+  ffact: 9
   since: 2025-09-15 11:18:24.701541006 Z
   what: quality-of-service
   when: 2025-09-22 11:18:24.701504958 Z
+- _id: 128
+  _job: 17915048215
+  _time: 2025-09-22 12:20:46.127853126 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  details: Apparently, yegor256/qulice#1383 has been 'issue-was-closed'.
+  is_human: 1
+  issue: 1383
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-09-22 12:04:36.000000000 Z
+  where: github
+  who: 526301
+- _id: 129
+  _job: 17915048215
+  _time: 2025-09-22 12:20:51.762125803 Z
+  _version: 0.16.3/0.53.6/0.15.42
+  events_were_scanned: 55014236000
+  min_issue_was_found: 1373
+  min_pull_was_found: 1374
+  repository: 9580168
+  what: iterate
+  where: github
