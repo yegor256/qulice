@@ -4,10 +4,10 @@
   deleted: 8
   error: Time can't be coerced into Integer
   inserted: 8
-  seconds: 25.275420851
+  seconds: 19.583183596
   version: 0.54.0
   what: judges-summary
-  when: 2025-09-25 11:18:40.981635336 Z
+  when: 2025-09-25 12:21:10.611756325 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -334,6 +334,7 @@
   is_human: 0
   issue: 1374
   repository: 9580168
+  stale: issue
   what: pull-was-opened
   when: 2025-09-14 11:00:34.000000000 Z
   where: github
@@ -369,6 +370,7 @@
   issue: 1374
   repository: 9580168
   review_comments: 0
+  stale: issue
   succeeded_builds: 14
   what: pull-was-merged
   when: &4 2025-09-14 15:21:40.000000000 Z
@@ -465,6 +467,7 @@
   repository: 9580168
   review_comments: 0
   seconds: 15666
+  stale: issue
   what: code-was-contributed
   when: *4
   where: github
@@ -1100,17 +1103,6 @@
   total_reviews_submitted: 0
   what: quantity-of-deliverables
   when: 2025-09-25 10:20:03.928433826 Z
-- _id: 159
-  _job: 18005760246
-  _time: 2025-09-25 11:18:21.274487949 Z
-  _version: 0.16.7/0.54.0/0.15.43
-  events_were_scanned: 55098084651
-  latest_issue_was_found: 1385
-  min_issue_was_found: 1373
-  min_pull_was_found: 1374
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 160
   _job: 18005760246
   _time: 2025-09-25 11:18:23.553154387 Z
@@ -1118,6 +1110,7 @@
   details: The issue yegor256/qulice#1385 is the first we found, opened by @volodya-lombrozo.
   issue: 1385
   repository: 9580168
+  stale: branch
   what: pull-was-opened
   when: 2025-09-22 07:55:32.000000000 Z
   where: github
@@ -1136,10 +1129,23 @@
   details: Apparently, yegor256/qulice#1385 has been 'pull-was-merged'.
   failed_builds: 0
   hoc: 5
+  is_human: 1
   issue: 1385
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
   when: 2025-09-22 12:04:35.000000000 Z
   where: github
   who: 526301
+- _id: 162
+  _job: 18007225790
+  _time: 2025-09-25 12:21:03.084053211 Z
+  _version: 0.16.7/0.54.0/0.15.43
+  events_were_scanned: 55098084651
+  latest_issue_was_found: 1385
+  min_issue_was_found: 1373
+  min_pull_was_found: 1375
+  repository: 9580168
+  what: iterate
+  where: github

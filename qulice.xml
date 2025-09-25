@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.11.0" size="32806">
+<fb version="0.11.0" size="32884">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <error t="S">Time can't be coerced into Integer</error>
     <inserted t="I">8</inserted>
-    <seconds t="F">25.275420851</seconds>
+    <seconds t="F">19.583183596</seconds>
     <version t="S">0.54.0</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-09-25T11:18:40Z</when>
+    <when t="T">2025-09-25T12:21:10Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -312,6 +312,7 @@
     <is_human t="I">0</is_human>
     <issue t="I">1374</issue>
     <repository t="I">9580168</repository>
+    <stale t="S">issue</stale>
     <what t="S">pull-was-opened</what>
     <when t="T">2025-09-14T11:00:34Z</when>
     <where t="S">github</where>
@@ -351,6 +352,7 @@
     <issue t="I">1374</issue>
     <repository t="I">9580168</repository>
     <review_comments t="I">0</review_comments>
+    <stale t="S">issue</stale>
     <succeeded_builds t="I">14</succeeded_builds>
     <what t="S">pull-was-merged</what>
     <when t="T">2025-09-14T15:21:40Z</when>
@@ -454,6 +456,7 @@
     <repository t="I">9580168</repository>
     <review_comments t="I">0</review_comments>
     <seconds t="I">15666</seconds>
+    <stale t="S">issue</stale>
     <what t="S">code-was-contributed</what>
     <when t="T">2025-09-14T15:21:40Z</when>
     <where t="S">github</where>
@@ -1152,19 +1155,6 @@
     <when t="T">2025-09-25T10:20:03Z</when>
   </f>
   <f>
-    <_id t="I">159</_id>
-    <_job t="I">18005760246</_job>
-    <_time t="T">2025-09-25T11:18:21Z</_time>
-    <_version t="S">0.16.7/0.54.0/0.15.43</_version>
-    <events_were_scanned t="I">55098084651</events_were_scanned>
-    <latest_issue_was_found t="I">1385</latest_issue_was_found>
-    <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">1374</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
-  </f>
-  <f>
     <_id t="I">160</_id>
     <_job t="I">18005760246</_job>
     <_time t="T">2025-09-25T11:18:23Z</_time>
@@ -1172,6 +1162,7 @@
     <details t="S">The issue yegor256/qulice#1385 is the first we found, opened by @volodya-lombrozo.</details>
     <issue t="I">1385</issue>
     <repository t="I">9580168</repository>
+    <stale t="S">branch</stale>
     <what t="S">pull-was-opened</what>
     <when t="T">2025-09-22T07:55:32Z</when>
     <where t="S">github</where>
@@ -1192,12 +1183,27 @@
     <details t="S">Apparently, yegor256/qulice#1385 has been 'pull-was-merged'.</details>
     <failed_builds t="I">0</failed_builds>
     <hoc t="I">5</hoc>
+    <is_human t="I">1</is_human>
     <issue t="I">1385</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">20</succeeded_builds>
     <what t="S">pull-was-merged</what>
     <when t="T">2025-09-22T12:04:35Z</when>
     <where t="S">github</where>
     <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">162</_id>
+    <_job t="I">18007225790</_job>
+    <_time t="T">2025-09-25T12:21:03Z</_time>
+    <_version t="S">0.16.7/0.54.0/0.15.43</_version>
+    <events_were_scanned t="I">55098084651</events_were_scanned>
+    <latest_issue_was_found t="I">1385</latest_issue_was_found>
+    <min_issue_was_found t="I">1373</min_issue_was_found>
+    <min_pull_was_found t="I">1375</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
   </f>
 </fb>
