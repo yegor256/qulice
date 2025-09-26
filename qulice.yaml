@@ -2,12 +2,11 @@
 - added: 8
   cycles: 1
   deleted: 8
-  error: Time can't be coerced into Integer
   inserted: 8
-  seconds: 12.980356869
+  seconds: 69.327368653
   version: 0.54.0
   what: judges-summary
-  when: 2025-09-26 05:18:53.598530558 Z
+  when: 2025-09-26 06:21:11.351492219 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -1079,6 +1078,150 @@
   composite: 0.485
   ffact: 9
   since: 2025-09-18 10:19:00.263140896 Z
+  some_backlog_size:
+  - 152
+  - 152
+  - 154
+  - 154
+  - 152
+  - 152
+  - 152
+  some_build_duration:
+  - 357
+  - 60
+  - 305
+  - 65
+  - 65
+  - 65
+  - 56
+  - 60
+  - 54
+  - 59
+  - 54
+  - 23
+  - 18
+  - 64
+  - 68
+  - 68
+  - 63
+  - 62
+  - 63
+  - 62
+  - 61
+  - 63
+  - 56
+  - 61
+  - 514
+  - 54
+  - 93
+  - 57
+  - 85
+  - 71
+  - 98
+  - 49
+  - 101
+  - 56
+  - 96
+  - 57
+  - 85
+  - 47
+  - 99
+  - 46
+  - 100
+  - 51
+  - 94
+  - 58
+  - 84
+  - 50
+  - 95
+  - 44
+  - 84
+  - 53
+  - 85
+  - 48
+  - 103
+  - 51
+  - 96
+  - 76
+  - 106
+  - 57
+  - 92
+  - 225
+  - 685
+  some_build_mttr: -79213
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  some_issue_lifetime:
+  - 64060.0
+  - 104399.0
+  some_merged_pulls: 1
+  some_pull_files_size: 3
+  some_pull_hoc_size: 5
+  some_pull_lifetime: 14943.0
+  some_review_size: 0
+  some_reviewers_per_pull: 0
+  some_reviews_per_pull: 0
+  some_unmerged_pulls: 0
   what: quality-of-service
   when: 2025-09-25 10:19:00.263100501 Z
 - _id: 158
@@ -1177,14 +1320,33 @@
   _version: 0.16.7/0.54.0/0.15.43!0.15.44
   what: learn-eva
   when: 2025-09-26 02:40:31.325378580 Z
-- _id: 170
-  _job: 18028617063
-  _time: 2025-09-26 05:18:44.898412783 Z
-  _version: 0.16.7/0.54.0/0.15.43
-  events_were_scanned: 55231474972
+- _id: 171
+  _job: 18029660193
+  _time: 2025-09-26 06:20:05.189634792 Z
+  _version: 0.16.7/0.54.0/0.15.45
+  commit: 1f4759cc9ee6d5bd7ba894f0fee599e6709872fd
+  default_branch: master
+  details: 'A new Git push #27076201645 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is ''master''), not associated with any pull request.'
+  event_id: 55233505709
+  event_type: PushEvent
+  is_human: 1
+  push_id: 27076201645
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2025-09-26 05:41:20.000000000 Z
+  where: github
+  who: 526301
+- _id: 172
+  _job: 18029660193
+  _time: 2025-09-26 06:21:10.044170258 Z
+  _version: 0.16.7/0.54.0/0.15.45
+  events_were_scanned: 55233505709
   latest_issue_was_found: 1385
   min_issue_was_found: 1373
-  min_pull_was_found: 1379
+  min_pull_was_found: 1380
   repository: 9580168
   what: iterate
   where: github
