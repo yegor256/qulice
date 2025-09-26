@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 69.327368653
+  seconds: 11.822303564
   version: 0.54.0
   what: judges-summary
-  when: 2025-09-26 06:21:11.351492219 Z
+  when: 2025-09-26 07:19:04.584912551 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -188,7 +188,7 @@
   qod: 0
   qod_per_day: 29.403857220358667
   qod_per_sec: 9.031084656179577e-06
-  start: 2025-09-16 05:20:41.353058832 Z
+  start: &12 2025-09-16 05:20:41.353058832 Z
   what: earned-value
   when: 2025-09-16 05:24:48.906004066 Z
 - _id: 14
@@ -1339,14 +1339,45 @@
   when: 2025-09-26 05:41:20.000000000 Z
   where: github
   who: 526301
-- _id: 172
-  _job: 18029660193
-  _time: 2025-09-26 06:21:10.044170258 Z
+- _id: 173
+  _job: 39621
+  _time: 2025-09-26 06:21:30.705365620 Z
   _version: 0.16.7/0.54.0/0.15.45
-  events_were_scanned: 55233505709
+  award: -16
+  commit: 1f4759cc9ee6d5bd7ba894f0fee599e6709872fd
+  default_branch: master
+  details: It's time to punish @yegor256 for pushing to the default branch 'master'
+    in yegor256/qulice, the penalty amount is -16.
+  href: https://github.com/yegor256/qulice/commit/1f4759cc9ee6d5bd7ba894f0fee599e6709872fd/#commitcomment-166547871
+  is_human: 1
+  repository: 9580168
+  what: push-to-master-was-punished
+  when: 2025-09-26 06:21:29.050072712 Z
+  where: github
+  who: 526301
+  why: Pushed 1f4759cc9 to the default branch 'master' in yegor256/qulice
+- _id: 174
+  _job: 39621
+  _time: 2025-09-26 06:21:52.095037459 Z
+  _version: 0.16.7/0.54.0/0.15.45
+  ac: 40
+  cost_of_qod: 0.6598757613221787
+  ev: 4
+  pv: 249
+  qod: 7
+  qod_per_day: 37.66942857568494
+  qod_per_sec: 8.267195767663586e-06
+  start: *12
+  what: earned-value
+  when: 2025-09-26 06:21:52.095229844 Z
+- _id: 175
+  _job: 18030841522
+  _time: 2025-09-26 07:19:02.444157479 Z
+  _version: 0.16.7/0.54.0/0.15.45
+  events_were_scanned: 55234741647
   latest_issue_was_found: 1385
   min_issue_was_found: 1373
-  min_pull_was_found: 1380
+  min_pull_was_found: 1381
   repository: 9580168
   what: iterate
   where: github

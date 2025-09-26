@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.11.0" size="34960">
+<fb version="0.11.0" size="35773">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">69.327368653</seconds>
+    <seconds t="F">11.822303564</seconds>
     <version t="S">0.54.0</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-09-26T06:21:11Z</when>
+    <when t="T">2025-09-26T07:19:04Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -1402,14 +1402,48 @@
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">172</_id>
-    <_job t="I">18029660193</_job>
-    <_time t="T">2025-09-26T06:21:10Z</_time>
+    <_id t="I">173</_id>
+    <_job t="I">39621</_job>
+    <_time t="T">2025-09-26T06:21:30Z</_time>
     <_version t="S">0.16.7/0.54.0/0.15.45</_version>
-    <events_were_scanned t="I">55233505709</events_were_scanned>
+    <award t="I">-16</award>
+    <commit t="S">1f4759cc9ee6d5bd7ba894f0fee599e6709872fd</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">It's time to punish @yegor256 for pushing to the default branch 'master' in yegor256/qulice, the penalty amount is -16.</details>
+    <href t="S">https://github.com/yegor256/qulice/commit/1f4759cc9ee6d5bd7ba894f0fee599e6709872fd/#commitcomment-166547871</href>
+    <is_human t="I">1</is_human>
+    <repository t="I">9580168</repository>
+    <what t="S">push-to-master-was-punished</what>
+    <when t="T">2025-09-26T06:21:29Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+    <why t="S">Pushed 1f4759cc9 to the default branch 'master' in yegor256/qulice</why>
+  </f>
+  <f>
+    <_id t="I">174</_id>
+    <_job t="I">39621</_job>
+    <_time t="T">2025-09-26T06:21:52Z</_time>
+    <_version t="S">0.16.7/0.54.0/0.15.45</_version>
+    <ac t="I">40</ac>
+    <cost_of_qod t="F">0.6598757613221787</cost_of_qod>
+    <ev t="I">4</ev>
+    <pv t="I">249</pv>
+    <qod t="I">7</qod>
+    <qod_per_day t="F">37.66942857568494</qod_per_day>
+    <qod_per_sec t="F">8.267195767663586e-06</qod_per_sec>
+    <start t="T">2025-09-16T05:20:41Z</start>
+    <what t="S">earned-value</what>
+    <when t="T">2025-09-26T06:21:52Z</when>
+  </f>
+  <f>
+    <_id t="I">175</_id>
+    <_job t="I">18030841522</_job>
+    <_time t="T">2025-09-26T07:19:02Z</_time>
+    <_version t="S">0.16.7/0.54.0/0.15.45</_version>
+    <events_were_scanned t="I">55234741647</events_were_scanned>
     <latest_issue_was_found t="I">1385</latest_issue_was_found>
     <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">1380</min_pull_was_found>
+    <min_pull_was_found t="I">1381</min_pull_was_found>
     <repository t="I">9580168</repository>
     <what t="S">iterate</what>
     <where t="S">github</where>
