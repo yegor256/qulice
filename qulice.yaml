@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 13.914676017
+  seconds: 12.537796226
   version: 0.54.0
   what: judges-summary
-  when: 2025-09-28 02:45:28.604815449 Z
+  when: 2025-09-28 03:29:29.137475927 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -1402,14 +1402,39 @@
   _version: 0.16.7/0.54.0/0.15.45
   what: learn-eva
   when: 2025-09-27 22:18:39.961670398 Z
-- _id: 189
-  _job: 18068249009
-  _time: 2025-09-28 02:45:26.857540184 Z
+- _id: 190
+  _job: 18068709257
+  _time: 2025-09-28 03:29:18.665301427 Z
   _version: 0.16.7/0.54.0/0.15.45
-  events_were_scanned: 55297719670
-  latest_issue_was_found: 1385
+  details: The issue yegor256/qulice#1386 has been opened by @cbot59.
+  event_id: 55298537254
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1386
+  repository: 9580168
+  what: issue-was-opened
+  when: 2025-09-28 02:58:38.000000000 Z
+  where: github
+  who: 6992528
+- _id: 192
+  _job: 18068709257
+  _time: 2025-09-28 03:29:18.823012529 Z
+  _version: 0.16.7/0.54.0/0.15.45
+  details: 'We found out that the user #6992528 is known in GitHub as @cbot59.'
+  is_human: 1
+  name: cbot59
+  what: who-has-name
+  when: 2025-09-28 03:29:18.826459865 Z
+  where: github
+  who: 6992528
+- _id: 193
+  _job: 18068709257
+  _time: 2025-09-28 03:29:29.059279067 Z
+  _version: 0.16.7/0.54.0/0.15.45
+  events_were_scanned: 55298537254
+  latest_issue_was_found: 1386
   min_issue_was_found: 1373
-  min_pull_was_found: 0
+  min_pull_was_found: 1374
   repository: 9580168
   what: iterate
   where: github
