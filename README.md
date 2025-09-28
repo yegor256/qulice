@@ -1,7 +1,5 @@
 # Checkstyle and PMD in One Maven Plugin
 
-![logo](https://www.qulice.com/logo.svg)
-
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![DevOps By Rultor.com](https://www.rultor.com/b/yegor256/qulice)](https://www.rultor.com/p/yegor256/qulice)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
