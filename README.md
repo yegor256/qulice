@@ -1,4 +1,4 @@
-# Qulice
+# Checkstyle and PMD in One Maven Plugin
 
 ![logo](https://www.qulice.com/logo.svg)
 
