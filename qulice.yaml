@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 12.563991868
+  seconds: 13.881825006
   version: 0.54.0
   what: judges-summary
-  when: 2025-09-28 17:17:38.470805915 Z
+  when: 2025-09-28 18:19:32.179146954 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -1462,14 +1462,71 @@
   _version: 0.16.7/0.54.0/0.15.45!0.15.46
   what: learn-eva
   when: 2025-09-28 15:19:14.103096718 Z
-- _id: 200
-  _job: 18077417955
-  _time: 2025-09-28 17:17:29.728073148 Z
+- _id: 201
+  _job: 18078061343
+  _time: 2025-09-28 18:19:20.214353310 Z
   _version: 0.16.7/0.54.0/0.15.45
-  events_were_scanned: 55310755535
+  commit: ee64437306bed7f335cf44e68d1c7d0ed2574603
+  default_branch: master
+  details: 'A new Git push #27119517568 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is ''master''), not associated with any pull request.'
+  event_id: 55312035885
+  event_type: PushEvent
+  is_human: 1
+  push_id: 27119517568
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2025-09-28 17:36:01.000000000 Z
+  where: github
+  who: 526301
+- _id: 202
+  _job: 18078061343
+  _time: 2025-09-28 18:19:20.478248620 Z
+  _version: 0.16.7/0.54.0/0.15.45
+  commit: 994564a54ffdfe5cb6dce77879c0b9055e5ad4ec
+  default_branch: master
+  details: 'A new Git push #27119514534 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is ''master''), not associated with any pull request.'
+  event_id: 55312030994
+  event_type: PushEvent
+  is_human: 1
+  push_id: 27119514534
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2025-09-28 17:35:44.000000000 Z
+  where: github
+  who: 526301
+- _id: 203
+  _job: 18078061343
+  _time: 2025-09-28 18:19:20.651134674 Z
+  _version: 0.16.7/0.54.0/0.15.45
+  commit: bbd4d7054de9456a533895e66b32770b89d6ac58
+  default_branch: master
+  details: 'A new Git push #27119506512 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is ''master''), not associated with any pull request.'
+  event_id: 55312018570
+  event_type: PushEvent
+  is_human: 1
+  push_id: 27119506512
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2025-09-28 17:34:59.000000000 Z
+  where: github
+  who: 526301
+- _id: 204
+  _job: 18078061343
+  _time: 2025-09-28 18:19:28.603126348 Z
+  _version: 0.16.7/0.54.0/0.15.45
+  events_were_scanned: 55312035885
   latest_issue_was_found: 1386
   min_issue_was_found: 1373
-  min_pull_was_found: 1385
+  min_pull_was_found: 0
   repository: 9580168
   what: iterate
   where: github
