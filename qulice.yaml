@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 13.47312744
+  seconds: 11.923821696
   version: 0.54.0
   what: judges-summary
-  when: 2025-09-28 06:19:50.601537557 Z
+  when: 2025-09-28 07:18:14.826888483 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -1396,12 +1396,6 @@
   total_stars: 308
   what: dimensions-of-terrain
   when: 2025-09-27 11:17:23.898042908 Z
-- _id: 188
-  _job: 40013
-  _time: 2025-09-27 22:18:39.964399220 Z
-  _version: 0.16.7/0.54.0/0.15.45
-  what: learn-eva
-  when: 2025-09-27 22:18:39.961670398 Z
 - _id: 190
   _job: 18068709257
   _time: 2025-09-28 03:29:18.665301427 Z
@@ -1427,14 +1421,39 @@
   when: 2025-09-28 03:29:18.826459865 Z
   where: github
   who: 6992528
-- _id: 193
-  _job: 18070410684
-  _time: 2025-09-28 06:19:44.755381345 Z
+- _id: 194
+  _job: 40092
+  _time: 2025-09-28 06:20:29.969318744 Z
+  _version: 0.16.7/0.54.0/0.15.45!0.15.46
+  what: learn-eva
+  when: 2025-09-28 06:20:29.966470146 Z
+- _id: 195
+  _job: 18071016137
+  _time: 2025-09-28 07:18:04.717746529 Z
   _version: 0.16.7/0.54.0/0.15.45
-  events_were_scanned: 55300134669
+  commit: 2b95700fcc0c7e9208ddeaee235833b8f50a8ec5
+  default_branch: master
+  details: 'A new Git push #27112924539 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is ''master''), not associated with any pull request.'
+  event_id: 55301415216
+  event_type: PushEvent
+  is_human: 1
+  push_id: 27112924539
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2025-09-28 06:58:19.000000000 Z
+  where: github
+  who: 526301
+- _id: 196
+  _job: 18071016137
+  _time: 2025-09-28 07:18:09.630190038 Z
+  _version: 0.16.7/0.54.0/0.15.45
+  events_were_scanned: 55301415216
   latest_issue_was_found: 1386
   min_issue_was_found: 1373
-  min_pull_was_found: 1380
+  min_pull_was_found: 1381
   repository: 9580168
   what: iterate
   where: github
