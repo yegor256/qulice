@@ -9,7 +9,6 @@
 [![mvn](https://github.com/yegor256/qulice/actions/workflows/mvn.yml/badge.svg?branch=master)](https://github.com/yegor256/qulice/actions/workflows/mvn.yml)
 [![PDD status](https://www.0pdd.com/svg?name=yegor256/qulice)](https://www.0pdd.com/p?name=yegor256/qulice)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.qulice/qulice)
-[![codebeat badge](https://codebeat.co/badges/9454ea39-1f11-4f6b-b086-ec5a2d658174)](https://codebeat.co/projects/github-com-teamed-qulice)
 [![codecov](https://codecov.io/gh/yegor256/qulice/branch/master/graph/badge.svg)](https://codecov.io/gh/yegor256/qulice)
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/qulice)](https://hitsofcode.com/view/github/yegor256/qulice)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/qulice/blob/master/LICENSE.txt)
