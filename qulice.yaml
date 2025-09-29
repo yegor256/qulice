@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 14.41117586
+  seconds: 15.880898474
   version: 0.54.0
   what: judges-summary
-  when: 2025-09-29 15:18:59.321531488 Z
+  when: 2025-09-29 16:19:00.761950339 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -1536,13 +1536,36 @@
   what: dimensions-of-terrain
   when: 2025-09-29 12:21:03.213033333 Z
 - _id: 210
-  _job: 18101915974
-  _time: 2025-09-29 15:18:55.155079139 Z
-  _version: 0.16.7/0.54.0/0.15.45
-  events_were_scanned: 55339267435
+  _job: 18103586707
+  _time: 2025-09-29 16:18:58.591342808 Z
+  _version: 0.16.7/0.54.0/0.15.48
+  earliest_issue_was_found: 1
+  events_were_scanned: 55342145031
   latest_issue_was_found: 1386
   min_issue_was_found: 1373
-  min_pull_was_found: 1381
+  min_pull_was_found: 1382
   repository: 9580168
   what: iterate
   where: github
+- _id: 211
+  _job: 18103586707
+  _time: 2025-09-29 16:19:00.142205986 Z
+  _version: 0.16.7/0.54.0/0.15.48
+  details: The issue yegor256/qulice#1 is the earliest we found, opened by @yegor256.
+  issue: 1
+  repository: 9580168
+  what: issue-was-opened
+  when: 2013-04-21 14:01:30.000000000 Z
+  where: github
+  who: 526301
+- _id: 212
+  _job: 18103586707
+  _time: 2025-09-29 16:19:00.526563640 Z
+  _version: 0.16.7/0.54.0/0.15.48
+  details: Apparently, yegor256/qulice#1 has been 'issue-was-closed'.
+  issue: 1
+  repository: 9580168
+  what: issue-was-closed
+  when: 2013-04-21 14:02:13.000000000 Z
+  where: github
+  who: 526301
