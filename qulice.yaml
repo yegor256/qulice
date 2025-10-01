@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 13.030883113
+  seconds: 19.940854163
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-01 06:20:10.246627420 Z
+  when: 2025-10-01 07:19:22.578233378 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -1582,7 +1582,7 @@
   issue: 1388
   repository: 9580168
   what: issue-was-opened
-  when: 2025-10-01 01:56:54.000000000 Z
+  when: &13 2025-10-01 01:56:54.000000000 Z
   where: github
   who: 1964562
 - _id: 228
@@ -1634,18 +1634,6 @@
   when: 2025-10-01 04:55:57.000000000 Z
   where: github
   who: 29139614
-- _id: 235
-  _job: 18153318612
-  _time: 2025-10-01 06:20:02.090924529 Z
-  _version: 0.16.7/0.54.0/0.15.49
-  earliest_issue_was_found: 1
-  events_were_scanned: 55433872812
-  latest_issue_was_found: 1386
-  min_issue_was_found: 1373
-  min_pull_was_found: 1380
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 236
   _job: 18153318612
   _time: 2025-10-01 06:20:07.802304145 Z
@@ -1658,3 +1646,30 @@
   when: 2025-10-01 06:01:15.000000000 Z
   where: github
   who: 526301
+- _id: 237
+  _job: 40621
+  _time: 2025-10-01 06:20:28.630580356 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  closer: 526301
+  details: 'In the repository #9580168, the user #1964562 submitted the issue #1388
+    which was later closed by the user #526301 not becoming a bug or enhancement;
+    this means that the issue was not valid, maybe a duplicate or simply a mistake.'
+  is_human: 1
+  issue: 1388
+  repository: 9580168
+  what: dud-was-closed
+  when: *13
+  where: github
+  who: 1964562
+- _id: 238
+  _job: 18154564270
+  _time: 2025-10-01 07:19:06.985582442 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  earliest_issue_was_found: 1
+  events_were_scanned: 55435504256
+  latest_issue_was_found: 1386
+  min_issue_was_found: 1373
+  min_pull_was_found: 1381
+  repository: 9580168
+  what: iterate
+  where: github

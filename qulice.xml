@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.11.0" size="41572">
+<fb version="0.11.0" size="41985">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">13.030883113</seconds>
+    <seconds t="F">19.940854163</seconds>
     <version t="S">0.54.0</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-10-01T06:20:10Z</when>
+    <when t="T">2025-10-01T07:19:22Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -1729,20 +1729,6 @@
     <who t="I">29139614</who>
   </f>
   <f>
-    <_id t="I">235</_id>
-    <_job t="I">18153318612</_job>
-    <_time t="T">2025-10-01T06:20:02Z</_time>
-    <_version t="S">0.16.7/0.54.0/0.15.49</_version>
-    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">55433872812</events_were_scanned>
-    <latest_issue_was_found t="I">1386</latest_issue_was_found>
-    <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">1380</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
-  </f>
-  <f>
     <_id t="I">236</_id>
     <_job t="I">18153318612</_job>
     <_time t="T">2025-10-01T06:20:07Z</_time>
@@ -1755,5 +1741,34 @@
     <when t="T">2025-10-01T06:01:15Z</when>
     <where t="S">github</where>
     <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">237</_id>
+    <_job t="I">40621</_job>
+    <_time t="T">2025-10-01T06:20:28Z</_time>
+    <_version t="S">0.16.7/0.54.0/0.15.49</_version>
+    <closer t="I">526301</closer>
+    <details t="S">In the repository #9580168, the user #1964562 submitted the issue #1388 which was later closed by the user #526301 not becoming a bug or enhancement; this means that the issue was not valid, maybe a duplicate or simply a mistake.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1388</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">dud-was-closed</what>
+    <when t="T">2025-10-01T01:56:54Z</when>
+    <where t="S">github</where>
+    <who t="I">1964562</who>
+  </f>
+  <f>
+    <_id t="I">238</_id>
+    <_job t="I">18154564270</_job>
+    <_time t="T">2025-10-01T07:19:06Z</_time>
+    <_version t="S">0.16.7/0.54.0/0.15.49</_version>
+    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
+    <events_were_scanned t="I">55435504256</events_were_scanned>
+    <latest_issue_was_found t="I">1386</latest_issue_was_found>
+    <min_issue_was_found t="I">1373</min_issue_was_found>
+    <min_pull_was_found t="I">1381</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
   </f>
 </fb>
