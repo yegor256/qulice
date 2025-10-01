@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 27.105513595
+  seconds: 13.030883113
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-01 05:22:03.777261165 Z
+  when: 2025-10-01 06:20:10.246627420 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -1635,14 +1635,26 @@
   where: github
   who: 29139614
 - _id: 235
-  _job: 18152225383
-  _time: 2025-10-01 05:21:55.131466789 Z
+  _job: 18153318612
+  _time: 2025-10-01 06:20:02.090924529 Z
   _version: 0.16.7/0.54.0/0.15.49
   earliest_issue_was_found: 1
   events_were_scanned: 55433872812
   latest_issue_was_found: 1386
   min_issue_was_found: 1373
-  min_pull_was_found: 1379
+  min_pull_was_found: 1380
   repository: 9580168
   what: iterate
   where: github
+- _id: 236
+  _job: 18153318612
+  _time: 2025-10-01 06:20:07.802304145 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1388 has been "issue-was-closed".
+  is_human: 1
+  issue: 1388
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-10-01 06:01:15.000000000 Z
+  where: github
+  who: 526301
