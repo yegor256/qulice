@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 210.192343277
+  seconds: 247.248891281
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-01 12:24:12.843309572 Z
+  when: 2025-10-01 13:26:10.019703310 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -1597,12 +1597,6 @@
   text: The average monthly turnover (5.0 developers) is staying still.
   what: assessment
   when: 2025-10-01 02:47:15.151404872 Z
-- _id: 232
-  _job: 40591
-  _time: 2025-10-01 03:33:00.682988428 Z
-  _version: 0.16.7/0.54.0/0.15.48!0.15.49
-  what: learn-eva
-  when: 2025-10-01 03:33:00.679935348 Z
 - _id: 234
   _job: 18152225383
   _time: 2025-10-01 05:21:39.531575434 Z
@@ -1754,7 +1748,7 @@
   review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
-  when: 2025-10-01 05:17:32.000000000 Z
+  when: &14 2025-10-01 05:17:32.000000000 Z
   where: github
   who: 526301
 - _id: 245
@@ -1816,7 +1810,7 @@
   review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
-  when: 2025-10-01 05:15:17.000000000 Z
+  when: &15 2025-10-01 05:15:17.000000000 Z
   where: github
   who: 526301
 - _id: 248
@@ -1854,18 +1848,6 @@
   when: 2025-10-01 04:55:12.000000000 Z
   where: github
   who: 526301
-- _id: 250
-  _job: 18161916086
-  _time: 2025-10-01 12:21:38.834369740 Z
-  _version: 0.16.7/0.54.0/0.15.49
-  earliest_issue_was_found: 1
-  events_were_scanned: 55445340983
-  latest_issue_was_found: 1386
-  min_issue_was_found: 1373
-  min_pull_was_found: 1375
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 251
   _job: 18161916086
   _time: 2025-10-01 12:21:41.668635285 Z
@@ -1897,6 +1879,7 @@
   is_human: 1
   issue: 1391
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
   when: 2025-10-01 08:00:24.000000000 Z
@@ -1908,6 +1891,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.cactoos-cactoos-0.x
   details: The missing pull yegor256/qulice#1222 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1222
   repository: 9580168
   what: pull-was-opened
@@ -1920,6 +1904,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.codehaus.plexus-plexus-container-default-1.x
   details: The missing pull yegor256/qulice#1223 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1223
   repository: 9580168
   what: pull-was-opened
@@ -1932,6 +1917,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.codehaus.plexus-plexus-utils-3.x
   details: The missing pull yegor256/qulice#1224 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1224
   repository: 9580168
   what: pull-was-opened
@@ -1944,6 +1930,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/hibernate-core
   details: The missing pull yegor256/qulice#1225 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1225
   repository: 9580168
   what: pull-was-opened
@@ -1956,6 +1943,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/junit5-monorepo
   details: The missing pull yegor256/qulice#1226 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1226
   repository: 9580168
   what: pull-was-opened
@@ -1968,6 +1956,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/major-guava-monorepo
   details: The missing pull yegor256/qulice#1227 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1227
   repository: 9580168
   what: pull-was-opened
@@ -1980,6 +1969,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.codehaus.plexus-plexus-container-default-2.x
   details: The missing pull yegor256/qulice#1228 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1228
   repository: 9580168
   what: pull-was-opened
@@ -1992,6 +1982,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: '1197'
   details: The missing pull yegor256/qulice#1229 has been opened by @pnatashap.
+  is_human: 1
   issue: 1229
   repository: 9580168
   what: pull-was-opened
@@ -2004,6 +1995,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.codehaus.plexus-plexus-utils-4.x
   details: The missing pull yegor256/qulice#1230 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1230
   repository: 9580168
   what: pull-was-opened
@@ -2016,6 +2008,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/ubuntu-22.x
   details: The missing pull yegor256/qulice#1231 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1231
   repository: 9580168
   what: pull-was-opened
@@ -2028,6 +2021,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: patch-1
   details: The missing pull yegor256/qulice#1232 has been opened by @h1alexbel.
+  is_human: 1
   issue: 1232
   repository: 9580168
   what: pull-was-opened
@@ -2040,6 +2034,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/guava-monorepo
   details: The missing pull yegor256/qulice#1233 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1233
   repository: 9580168
   what: pull-was-opened
@@ -2052,6 +2047,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: patch-2
   details: The missing pull yegor256/qulice#1234 has been opened by @h1alexbel.
+  is_human: 1
   issue: 1234
   repository: 9580168
   what: pull-was-opened
@@ -2064,6 +2060,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: i-1192
   details: The missing pull yegor256/qulice#1235 has been opened by @k3p7i3.
+  is_human: 1
   issue: 1235
   repository: 9580168
   what: pull-was-opened
@@ -2076,6 +2073,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: i-1127
   details: The missing pull yegor256/qulice#1236 has been opened by @k3p7i3.
+  is_human: 1
   issue: 1236
   repository: 9580168
   what: pull-was-opened
@@ -2088,6 +2086,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: master
   details: The missing pull yegor256/qulice#1237 has been opened by @laithalebrahim.
+  is_human: 1
   issue: 1237
   repository: 9580168
   what: pull-was-opened
@@ -2099,6 +2098,7 @@
   _time: 2025-10-01 12:22:17.564820623 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1238 has been opened by @pnatashap.
+  is_human: 1
   issue: 1238
   repository: 9580168
   what: issue-was-opened
@@ -2111,6 +2111,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: update_qulice_0_22_2
   details: The missing pull yegor256/qulice#1239 has been opened by @pnatashap.
+  is_human: 1
   issue: 1239
   repository: 9580168
   what: pull-was-opened
@@ -2123,6 +2124,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.projectlombok-lombok-1.x
   details: The missing pull yegor256/qulice#1240 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1240
   repository: 9580168
   what: pull-was-opened
@@ -2135,6 +2137,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/net.sourceforge.pmd-pmd-core-7.x
   details: The missing pull yegor256/qulice#1241 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1241
   repository: 9580168
   what: pull-was-opened
@@ -2146,6 +2149,7 @@
   _time: 2025-10-01 12:22:20.320361128 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1242 has been opened by @yegor256.
+  is_human: 1
   issue: 1242
   repository: 9580168
   what: issue-was-opened
@@ -2158,6 +2162,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: '1242'
   details: The missing pull yegor256/qulice#1243 has been opened by @pnatashap.
+  is_human: 1
   issue: 1243
   repository: 9580168
   what: pull-was-opened
@@ -2170,6 +2175,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: '1129'
   details: The missing pull yegor256/qulice#1244 has been opened by @pnatashap.
+  is_human: 1
   issue: 1244
   repository: 9580168
   what: pull-was-opened
@@ -2182,6 +2188,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: '1118'
   details: The missing pull yegor256/qulice#1245 has been opened by @pnatashap.
+  is_human: 1
   issue: 1245
   repository: 9580168
   what: pull-was-opened
@@ -2194,6 +2201,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: '976'
   details: The missing pull yegor256/qulice#1246 has been opened by @pnatashap.
+  is_human: 1
   issue: 1246
   repository: 9580168
   what: pull-was-opened
@@ -2206,6 +2214,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_add_violation
   details: The missing pull yegor256/qulice#1247 has been opened by @pnatashap.
+  is_human: 1
   issue: 1247
   repository: 9580168
   what: pull-was-opened
@@ -2217,6 +2226,7 @@
   _time: 2025-10-01 12:22:24.660469136 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1248 has been opened by @h1alexbel.
+  is_human: 1
   issue: 1248
   repository: 9580168
   what: issue-was-opened
@@ -2229,6 +2239,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: update_dep
   details: The missing pull yegor256/qulice#1249 has been opened by @pnatashap.
+  is_human: 1
   issue: 1249
   repository: 9580168
   what: pull-was-opened
@@ -2241,6 +2252,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.ow2.asm-asm-9.x
   details: The missing pull yegor256/qulice#1250 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1250
   repository: 9580168
   what: pull-was-opened
@@ -2253,6 +2265,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/net.sourceforge.pmd-pmd-java-7.x
   details: The missing pull yegor256/qulice#1251 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1251
   repository: 9580168
   what: pull-was-opened
@@ -2265,6 +2278,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/net.sourceforge.pmd-pmd-jsp-7.x
   details: The missing pull yegor256/qulice#1252 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1252
   repository: 9580168
   what: pull-was-opened
@@ -2277,6 +2291,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: update_commons
   details: The missing pull yegor256/qulice#1253 has been opened by @pnatashap.
+  is_human: 1
   issue: 1253
   repository: 9580168
   what: pull-was-opened
@@ -2289,6 +2304,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/com.puppycrawl.tools-checkstyle-10.x
   details: The missing pull yegor256/qulice#1254 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1254
   repository: 9580168
   what: pull-was-opened
@@ -2301,6 +2317,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven.plugin-tools-maven-plugin-annotations-3.x
   details: The missing pull yegor256/qulice#1255 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1255
   repository: 9580168
   what: pull-was-opened
@@ -2313,6 +2330,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven.plugins-maven-plugin-plugin-3.x
   details: The missing pull yegor256/qulice#1256 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1256
   repository: 9580168
   what: pull-was-opened
@@ -2325,6 +2343,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/slf4j-monorepo
   details: The missing pull yegor256/qulice#1257 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1257
   repository: 9580168
   what: pull-was-opened
@@ -2336,6 +2355,7 @@
   _time: 2025-10-01 12:22:31.985460942 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1258 has been opened by @yegor256.
+  is_human: 1
   issue: 1258
   repository: 9580168
   what: issue-was-opened
@@ -2348,6 +2368,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/actions-checkout-digest
   details: The missing pull yegor256/qulice#1259 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1259
   repository: 9580168
   what: pull-was-opened
@@ -2360,6 +2381,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/actions-checkout-digest
   details: The missing pull yegor256/qulice#1260 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1260
   repository: 9580168
   what: pull-was-opened
@@ -2372,6 +2394,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: temp
   details: The missing pull yegor256/qulice#1261 has been opened by @mikailbag.
+  is_human: 1
   issue: 1261
   repository: 9580168
   what: pull-was-opened
@@ -2384,6 +2407,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/com.puppycrawl.tools-checkstyle-10.x
   details: The missing pull yegor256/qulice#1262 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1262
   repository: 9580168
   what: pull-was-opened
@@ -2396,6 +2420,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: ci-java-version
   details: The missing pull yegor256/qulice#1263 has been opened by @mikailbag.
+  is_human: 1
   issue: 1263
   repository: 9580168
   what: pull-was-opened
@@ -2407,6 +2432,7 @@
   _time: 2025-10-01 12:22:36.577120340 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1264 has been opened by @yegor256.
+  is_human: 1
   issue: 1264
   repository: 9580168
   what: issue-was-opened
@@ -2419,6 +2445,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven.plugin-tools-maven-plugin-annotations-3.x
   details: The missing pull yegor256/qulice#1265 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1265
   repository: 9580168
   what: pull-was-opened
@@ -2431,6 +2458,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven.plugins-maven-plugin-plugin-3.x
   details: The missing pull yegor256/qulice#1266 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1266
   repository: 9580168
   what: pull-was-opened
@@ -2442,6 +2470,7 @@
   _time: 2025-10-01 12:22:38.490757796 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1267 has been opened by @c71n93.
+  is_human: 1
   issue: 1267
   repository: 9580168
   what: issue-was-opened
@@ -2454,6 +2483,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: 1267-pmd-tests-with-unicode
   details: The missing pull yegor256/qulice#1268 has been opened by @c71n93.
+  is_human: 1
   issue: 1268
   repository: 9580168
   what: pull-was-opened
@@ -2466,6 +2496,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/actions-checkout-digest
   details: The missing pull yegor256/qulice#1269 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1269
   repository: 9580168
   what: pull-was-opened
@@ -2478,6 +2509,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/actions-checkout-digest
   details: The missing pull yegor256/qulice#1270 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1270
   repository: 9580168
   what: pull-was-opened
@@ -2490,6 +2522,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: pkg-info-javadoc-check
   details: The missing pull yegor256/qulice#1271 has been opened by @mikailbag.
+  is_human: 1
   issue: 1271
   repository: 9580168
   what: pull-was-opened
@@ -2502,6 +2535,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: eol-check-verify-results
   details: The missing pull yegor256/qulice#1272 has been opened by @mikailbag.
+  is_human: 1
   issue: 1272
   repository: 9580168
   what: pull-was-opened
@@ -2514,6 +2548,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: '1267'
   details: The missing pull yegor256/qulice#1273 has been opened by @pnatashap.
+  is_human: 1
   issue: 1273
   repository: 9580168
   what: pull-was-opened
@@ -2526,6 +2561,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/com.qulice-qulice-maven-plugin-0.x
   details: The missing pull yegor256/qulice#1274 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1274
   repository: 9580168
   what: pull-was-opened
@@ -2538,6 +2574,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: version-up
   details: The missing pull yegor256/qulice#1275 has been opened by @github-actions[bot].
+  is_human: 0
   issue: 1275
   repository: 9580168
   what: pull-was-opened
@@ -2550,6 +2587,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: qulice-0-23
   details: The missing pull yegor256/qulice#1276 has been opened by @pnatashap.
+  is_human: 1
   issue: 1276
   repository: 9580168
   what: pull-was-opened
@@ -2562,6 +2600,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: issue1264
   details: The missing pull yegor256/qulice#1277 has been opened by @ilyapechersky.
+  is_human: 1
   issue: 1277
   repository: 9580168
   what: pull-was-opened
@@ -2574,6 +2613,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: violation-no-pmd
   details: The missing pull yegor256/qulice#1278 has been opened by @mikailbag.
+  is_human: 1
   issue: 1278
   repository: 9580168
   what: pull-was-opened
@@ -2586,6 +2626,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: pmd-update
   details: The missing pull yegor256/qulice#1279 has been opened by @mikailbag.
+  is_human: 1
   issue: 1279
   repository: 9580168
   what: pull-was-opened
@@ -2598,6 +2639,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven.shared-maven-dependency-analyzer-1.x
   details: The missing pull yegor256/qulice#1280 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1280
   repository: 9580168
   what: pull-was-opened
@@ -2610,6 +2652,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/com.google.code.gson-gson-2.x
   details: The missing pull yegor256/qulice#1281 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1281
   repository: 9580168
   what: pull-was-opened
@@ -2622,6 +2665,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/actions-checkout-digest
   details: The missing pull yegor256/qulice#1282 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1282
   repository: 9580168
   what: pull-was-opened
@@ -2634,6 +2678,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven.shared-maven-dependency-analyzer-1.x
   details: The missing pull yegor256/qulice#1283 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1283
   repository: 9580168
   what: pull-was-opened
@@ -2646,6 +2691,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven-maven-artifact-3.x
   details: The missing pull yegor256/qulice#1284 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1284
   repository: 9580168
   what: pull-was-opened
@@ -2658,6 +2704,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven-maven-core-3.x
   details: The missing pull yegor256/qulice#1285 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1285
   repository: 9580168
   what: pull-was-opened
@@ -2670,6 +2717,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven-maven-model-3.x
   details: The missing pull yegor256/qulice#1286 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1286
   repository: 9580168
   what: pull-was-opened
@@ -2682,6 +2730,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven-maven-plugin-api-3.x
   details: The missing pull yegor256/qulice#1287 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1287
   repository: 9580168
   what: pull-was-opened
@@ -2694,6 +2743,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/com.puppycrawl.tools-checkstyle-10.x
   details: The missing pull yegor256/qulice#1288 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1288
   repository: 9580168
   what: pull-was-opened
@@ -2706,6 +2756,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/guava-monorepo
   details: The missing pull yegor256/qulice#1289 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1289
   repository: 9580168
   what: pull-was-opened
@@ -2718,6 +2769,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven.plugin-tools-maven-plugin-annotations-3.x
   details: The missing pull yegor256/qulice#1290 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1290
   repository: 9580168
   what: pull-was-opened
@@ -2730,6 +2782,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven.plugins-maven-plugin-plugin-3.x
   details: The missing pull yegor256/qulice#1291 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1291
   repository: 9580168
   what: pull-was-opened
@@ -2741,6 +2794,7 @@
   _time: 2025-10-01 12:22:59.352541529 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1292 has been opened by @volodya-lombrozo.
+  is_human: 1
   issue: 1292
   repository: 9580168
   what: issue-was-opened
@@ -2753,6 +2807,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/actions-checkout-digest
   details: The missing pull yegor256/qulice#1293 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1293
   repository: 9580168
   what: pull-was-opened
@@ -2765,6 +2820,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven-maven-artifact-3.x
   details: The missing pull yegor256/qulice#1294 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1294
   repository: 9580168
   what: pull-was-opened
@@ -2777,6 +2833,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven-maven-core-3.x
   details: The missing pull yegor256/qulice#1295 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1295
   repository: 9580168
   what: pull-was-opened
@@ -2789,6 +2846,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven-maven-model-3.x
   details: The missing pull yegor256/qulice#1296 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1296
   repository: 9580168
   what: pull-was-opened
@@ -2801,6 +2859,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.maven-maven-plugin-api-3.x
   details: The missing pull yegor256/qulice#1297 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1297
   repository: 9580168
   what: pull-was-opened
@@ -2813,6 +2872,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/junit5-monorepo
   details: The missing pull yegor256/qulice#1298 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1298
   repository: 9580168
   what: pull-was-opened
@@ -2825,6 +2885,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.projectlombok-lombok-1.x
   details: The missing pull yegor256/qulice#1299 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1299
   repository: 9580168
   what: pull-was-opened
@@ -2837,6 +2898,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_classloader
   details: The missing pull yegor256/qulice#1300 has been opened by @pejetuz.
+  is_human: 1
   issue: 1300
   repository: 9580168
   what: pull-was-opened
@@ -2849,6 +2911,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_space_in_tags
   details: The missing pull yegor256/qulice#1301 has been opened by @pejetuz.
+  is_human: 1
   issue: 1301
   repository: 9580168
   what: pull-was-opened
@@ -2861,6 +2924,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: split_CheckstyleValidatorTest
   details: The missing pull yegor256/qulice#1302 has been opened by @pejetuz.
+  is_human: 1
   issue: 1302
   repository: 9580168
   what: pull-was-opened
@@ -2873,6 +2937,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: parallel_build
   details: The missing pull yegor256/qulice#1303 has been opened by @pejetuz.
+  is_human: 1
   issue: 1303
   repository: 9580168
   what: pull-was-opened
@@ -2885,6 +2950,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/com.jcabi-parent-0.x
   details: The missing pull yegor256/qulice#1304 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1304
   repository: 9580168
   what: pull-was-opened
@@ -2897,6 +2963,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.commons-commons-lang3-3.x
   details: The missing pull yegor256/qulice#1305 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1305
   repository: 9580168
   what: pull-was-opened
@@ -2909,6 +2976,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: master
   details: The missing pull yegor256/qulice#1306 has been opened by @vladislav-yevtushenko.
+  is_human: 1
   issue: 1306
   repository: 9580168
   what: pull-was-opened
@@ -2921,6 +2989,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/major-javahamcrest-monorepo
   details: The missing pull yegor256/qulice#1307 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1307
   repository: 9580168
   what: pull-was-opened
@@ -2933,6 +3002,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/slf4j-monorepo
   details: The missing pull yegor256/qulice#1308 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1308
   repository: 9580168
   what: pull-was-opened
@@ -2945,6 +3015,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.apache.commons-commons-lang3-3.x
   details: The missing pull yegor256/qulice#1309 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1309
   repository: 9580168
   what: pull-was-opened
@@ -2957,6 +3028,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/slf4j-monorepo
   details: The missing pull yegor256/qulice#1310 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1310
   repository: 9580168
   what: pull-was-opened
@@ -2969,6 +3041,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/slf4j-monorepo
   details: The missing pull yegor256/qulice#1311 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1311
   repository: 9580168
   what: pull-was-opened
@@ -2981,6 +3054,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/junit5-monorepo
   details: The missing pull yegor256/qulice#1312 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1312
   repository: 9580168
   what: pull-was-opened
@@ -2993,6 +3067,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: dependabot/maven/qulice-maven-plugin/src/it/dependency-violations/commons-io-commons-io-2.14.0
   details: The missing pull yegor256/qulice#1313 has been opened by @dependabot[bot].
+  is_human: 0
   issue: 1313
   repository: 9580168
   what: pull-was-opened
@@ -3005,6 +3080,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/maven-commons-io-commons-io-vulnerability
   details: The missing pull yegor256/qulice#1314 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1314
   repository: 9580168
   what: pull-was-opened
@@ -3016,6 +3092,7 @@
   _time: 2025-10-01 12:23:19.216931183 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1315 has been opened by @artemget.
+  is_human: 1
   issue: 1315
   repository: 9580168
   what: issue-was-opened
@@ -3028,6 +3105,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: dependabot/maven/qulice-pmd/net.sourceforge.pmd-pmd-core-7.10.0
   details: The missing pull yegor256/qulice#1316 has been opened by @dependabot[bot].
+  is_human: 0
   issue: 1316
   repository: 9580168
   what: pull-was-opened
@@ -3040,6 +3118,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/maven-net.sourceforge.pmd-pmd-core-vulnerability
   details: The missing pull yegor256/qulice#1317 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1317
   repository: 9580168
   what: pull-was-opened
@@ -3051,6 +3130,7 @@
   _time: 2025-10-01 12:23:21.621833910 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1318 has been opened by @xzescha.
+  is_human: 1
   issue: 1318
   repository: 9580168
   what: issue-was-opened
@@ -3062,6 +3142,7 @@
   _time: 2025-10-01 12:23:22.237331378 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1319 has been opened by @yegor256.
+  is_human: 1
   issue: 1319
   repository: 9580168
   what: issue-was-opened
@@ -3074,6 +3155,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: version-up
   details: The missing pull yegor256/qulice#1320 has been opened by @github-actions[bot].
+  is_human: 0
   issue: 1320
   repository: 9580168
   what: pull-was-opened
@@ -3085,6 +3167,7 @@
   _time: 2025-10-01 12:23:23.560699495 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1321 has been opened by @yarkivaev.
+  is_human: 1
   issue: 1321
   repository: 9580168
   what: issue-was-opened
@@ -3097,6 +3180,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix
   details: The missing pull yegor256/qulice#1322 has been opened by @vl4ds4m.
+  is_human: 1
   issue: 1322
   repository: 9580168
   what: pull-was-opened
@@ -3109,6 +3193,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: test-repair
   details: The missing pull yegor256/qulice#1323 has been opened by @vl4ds4m.
+  is_human: 1
   issue: 1323
   repository: 9580168
   what: pull-was-opened
@@ -3121,6 +3206,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: bugfix-1318
   details: The missing pull yegor256/qulice#1324 has been opened by @vl4ds4m.
+  is_human: 1
   issue: 1324
   repository: 9580168
   what: pull-was-opened
@@ -3133,6 +3219,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: bugfix-1321
   details: The missing pull yegor256/qulice#1325 has been opened by @vl4ds4m.
+  is_human: 1
   issue: 1325
   repository: 9580168
   what: pull-was-opened
@@ -3144,6 +3231,7 @@
   _time: 2025-10-01 12:23:27.893051110 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1326 has been opened by @yarkivaev.
+  is_human: 1
   issue: 1326
   repository: 9580168
   what: issue-was-opened
@@ -3175,6 +3263,7 @@
   _time: 2025-10-01 12:23:28.486586642 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1328 has been opened by @marat-tim.
+  is_human: 1
   issue: 1328
   repository: 9580168
   what: issue-was-opened
@@ -3186,6 +3275,7 @@
   _time: 2025-10-01 12:23:28.999014320 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1329 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1329
   repository: 9580168
   what: issue-was-opened
@@ -3198,6 +3288,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: master
   details: The missing pull yegor256/qulice#1330 has been opened by @aruzhanshinbayeva.
+  is_human: 1
   issue: 1330
   repository: 9580168
   what: pull-was-opened
@@ -3209,6 +3300,7 @@
   _time: 2025-10-01 12:23:30.579175671 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1331 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1331
   repository: 9580168
   what: issue-was-opened
@@ -3221,6 +3313,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: primary-ctor-last
   details: The missing pull yegor256/qulice#1332 has been opened by @dema-koder.
+  is_human: 1
   issue: 1332
   repository: 9580168
   what: pull-was-opened
@@ -3232,6 +3325,7 @@
   _time: 2025-10-01 12:23:31.879134887 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1333 has been opened by @dehopen.
+  is_human: 1
   issue: 1333
   repository: 9580168
   what: issue-was-opened
@@ -3244,6 +3338,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_file_path
   details: The missing pull yegor256/qulice#1334 has been opened by @dehopen.
+  is_human: 1
   issue: 1334
   repository: 9580168
   what: pull-was-opened
@@ -3255,6 +3350,7 @@
   _time: 2025-10-01 12:23:33.236252574 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1335 has been opened by @dehopen.
+  is_human: 1
   issue: 1335
   repository: 9580168
   what: issue-was-opened
@@ -3267,6 +3363,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_null_resource
   details: The missing pull yegor256/qulice#1336 has been opened by @dehopen.
+  is_human: 1
   issue: 1336
   repository: 9580168
   what: pull-was-opened
@@ -3278,6 +3375,7 @@
   _time: 2025-10-01 12:23:34.374576217 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1337 has been opened by @dehopen.
+  is_human: 1
   issue: 1337
   repository: 9580168
   what: issue-was-opened
@@ -3290,6 +3388,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_file_filtering_logic
   details: The missing pull yegor256/qulice#1338 has been opened by @dehopen.
+  is_human: 1
   issue: 1338
   repository: 9580168
   what: pull-was-opened
@@ -3301,6 +3400,7 @@
   _time: 2025-10-01 12:23:35.399541114 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1339 has been opened by @dehopen.
+  is_human: 1
   issue: 1339
   repository: 9580168
   what: issue-was-opened
@@ -3313,6 +3413,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_violation
   details: The missing pull yegor256/qulice#1340 has been opened by @dehopen.
+  is_human: 1
   issue: 1340
   repository: 9580168
   what: pull-was-opened
@@ -3324,6 +3425,7 @@
   _time: 2025-10-01 12:23:36.804568771 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1341 has been opened by @dehopen.
+  is_human: 1
   issue: 1341
   repository: 9580168
   what: issue-was-opened
@@ -3336,6 +3438,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_error_handling
   details: The missing pull yegor256/qulice#1342 has been opened by @dehopen.
+  is_human: 1
   issue: 1342
   repository: 9580168
   what: pull-was-opened
@@ -3347,6 +3450,7 @@
   _time: 2025-10-01 12:23:37.986264525 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1343 has been opened by @dehopen.
+  is_human: 1
   issue: 1343
   repository: 9580168
   what: issue-was-opened
@@ -3359,6 +3463,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_hardcoded
   details: The missing pull yegor256/qulice#1344 has been opened by @dehopen.
+  is_human: 1
   issue: 1344
   repository: 9580168
   what: pull-was-opened
@@ -3371,6 +3476,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix/typos
   details: The missing pull yegor256/qulice#1345 has been opened by @saleemasekrea000.
+  is_human: 1
   issue: 1345
   repository: 9580168
   what: pull-was-opened
@@ -3383,6 +3489,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix-markdown-lint
   details: The missing pull yegor256/qulice#1346 has been opened by @dema-koder.
+  is_human: 1
   issue: 1346
   repository: 9580168
   what: pull-was-opened
@@ -3395,6 +3502,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: refactoring_text_part_1
   details: The missing pull yegor256/qulice#1347 has been opened by @dehopen.
+  is_human: 1
   issue: 1347
   repository: 9580168
   what: pull-was-opened
@@ -3407,6 +3515,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: refactoring_text_part_2
   details: The missing pull yegor256/qulice#1348 has been opened by @dehopen.
+  is_human: 1
   issue: 1348
   repository: 9580168
   what: pull-was-opened
@@ -3419,6 +3528,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: refactoring_text_part_3
   details: The missing pull yegor256/qulice#1349 has been opened by @dehopen.
+  is_human: 1
   issue: 1349
   repository: 9580168
   what: pull-was-opened
@@ -3431,6 +3541,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: refactoring_text_part_4
   details: The missing pull yegor256/qulice#1350 has been opened by @dehopen.
+  is_human: 1
   issue: 1350
   repository: 9580168
   what: pull-was-opened
@@ -3443,6 +3554,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: optimization
   details: The missing pull yegor256/qulice#1351 has been opened by @dehopen.
+  is_human: 1
   issue: 1351
   repository: 9580168
   what: pull-was-opened
@@ -3455,6 +3567,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_part_1
   details: The missing pull yegor256/qulice#1352 has been opened by @dehopen.
+  is_human: 1
   issue: 1352
   repository: 9580168
   what: pull-was-opened
@@ -3467,6 +3580,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_part_2
   details: The missing pull yegor256/qulice#1353 has been opened by @dehopen.
+  is_human: 1
   issue: 1353
   repository: 9580168
   what: pull-was-opened
@@ -3479,6 +3593,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_part_3
   details: The missing pull yegor256/qulice#1354 has been opened by @dehopen.
+  is_human: 1
   issue: 1354
   repository: 9580168
   what: pull-was-opened
@@ -3491,6 +3606,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_part_4
   details: The missing pull yegor256/qulice#1355 has been opened by @dehopen.
+  is_human: 1
   issue: 1355
   repository: 9580168
   what: pull-was-opened
@@ -3503,6 +3619,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_part_5
   details: The missing pull yegor256/qulice#1356 has been opened by @dehopen.
+  is_human: 1
   issue: 1356
   repository: 9580168
   what: pull-was-opened
@@ -3515,6 +3632,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: update_readme
   details: The missing pull yegor256/qulice#1357 has been opened by @dehopen.
+  is_human: 1
   issue: 1357
   repository: 9580168
   what: pull-was-opened
@@ -3527,6 +3645,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_part_6
   details: The missing pull yegor256/qulice#1358 has been opened by @dehopen.
+  is_human: 1
   issue: 1358
   repository: 9580168
   what: pull-was-opened
@@ -3539,6 +3658,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: fix_part_7
   details: The missing pull yegor256/qulice#1359 has been opened by @dehopen.
+  is_human: 1
   issue: 1359
   repository: 9580168
   what: pull-was-opened
@@ -3550,6 +3670,7 @@
   _time: 2025-10-01 12:23:51.859534279 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1360 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1360
   repository: 9580168
   what: issue-was-opened
@@ -3562,6 +3683,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/org.slf4j-slf4j-log4j12-replacement
   details: The missing pull yegor256/qulice#1361 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1361
   repository: 9580168
   what: pull-was-opened
@@ -3574,6 +3696,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/maven-org.apache.commons-commons-lang3-vulnerability
   details: The missing pull yegor256/qulice#1362 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1362
   repository: 9580168
   what: pull-was-opened
@@ -3585,6 +3708,7 @@
   _time: 2025-10-01 12:23:53.858851451 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1363 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1363
   repository: 9580168
   what: issue-was-opened
@@ -3597,6 +3721,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: '1363'
   details: The missing pull yegor256/qulice#1364 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1364
   repository: 9580168
   what: pull-was-opened
@@ -3608,6 +3733,7 @@
   _time: 2025-10-01 12:23:54.899807653 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1365 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1365
   repository: 9580168
   what: issue-was-opened
@@ -3619,6 +3745,7 @@
   _time: 2025-10-01 12:23:55.206708756 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1366 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1366
   repository: 9580168
   what: issue-was-opened
@@ -3630,6 +3757,7 @@
   _time: 2025-10-01 12:23:55.496493942 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: The missing issue yegor256/qulice#1367 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1367
   repository: 9580168
   what: issue-was-opened
@@ -3642,6 +3770,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: '1366'
   details: The missing pull yegor256/qulice#1368 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1368
   repository: 9580168
   what: pull-was-opened
@@ -3654,6 +3783,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: '1365'
   details: The missing pull yegor256/qulice#1369 has been opened by @fabriciofx.
+  is_human: 1
   issue: 1369
   repository: 9580168
   what: pull-was-opened
@@ -3666,6 +3796,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/com.google.code.gson-gson-2.x
   details: The missing pull yegor256/qulice#1370 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1370
   repository: 9580168
   what: pull-was-opened
@@ -3678,6 +3809,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/yegor256-copyrights-action-0.x
   details: The missing pull yegor256/qulice#1371 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1371
   repository: 9580168
   what: pull-was-opened
@@ -3690,6 +3822,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   branch: renovate/crate-ci-typos-1.x
   details: The missing pull yegor256/qulice#1372 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1372
   repository: 9580168
   what: pull-was-opened
@@ -3701,6 +3834,7 @@
   _time: 2025-10-01 12:23:59.494914506 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #19815413 is known in GitHub as @pnatashap.'
+  is_human: 1
   name: pnatashap
   what: who-has-name
   when: 2025-10-01 12:23:59.691857983 Z
@@ -3711,6 +3845,7 @@
   _time: 2025-10-01 12:23:59.699693714 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #83453843 is known in GitHub as @h1alexbel.'
+  is_human: 1
   name: h1alexbel
   what: who-has-name
   when: 2025-10-01 12:23:59.891717975 Z
@@ -3721,6 +3856,7 @@
   _time: 2025-10-01 12:23:59.899076566 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #90573577 is known in GitHub as @k3p7i3.'
+  is_human: 1
   name: k3p7i3
   what: who-has-name
   when: 2025-10-01 12:24:00.132491147 Z
@@ -3731,6 +3867,7 @@
   _time: 2025-10-01 12:24:00.140680467 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #96999016 is known in GitHub as @laithalebrahim.'
+  is_human: 1
   name: laithalebrahim
   what: who-has-name
   when: 2025-10-01 12:24:00.343051387 Z
@@ -3741,6 +3878,7 @@
   _time: 2025-10-01 12:24:00.351742703 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #11889433 is known in GitHub as @mikailbag.'
+  is_human: 1
   name: mikailbag
   what: who-has-name
   when: 2025-10-01 12:24:00.562418249 Z
@@ -3751,6 +3889,7 @@
   _time: 2025-10-01 12:24:00.571090960 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #70313618 is known in GitHub as @c71n93.'
+  is_human: 1
   name: c71n93
   what: who-has-name
   when: 2025-10-01 12:24:00.811655150 Z
@@ -3761,6 +3900,7 @@
   _time: 2025-10-01 12:24:00.819815577 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #39416226 is known in GitHub as @ilyapechersky.'
+  is_human: 1
   name: ilyapechersky
   what: who-has-name
   when: 2025-10-01 12:24:01.023197510 Z
@@ -3771,6 +3911,7 @@
   _time: 2025-10-01 12:24:01.031472298 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #26545482 is known in GitHub as @pejetuz.'
+  is_human: 1
   name: pejetuz
   what: who-has-name
   when: 2025-10-01 12:24:01.035065815 Z
@@ -3781,6 +3922,7 @@
   _time: 2025-10-01 12:24:01.040501965 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #2672964 is known in GitHub as @vladislav-yevtushenko.'
+  is_human: 1
   name: vladislav-yevtushenko
   what: who-has-name
   when: 2025-10-01 12:24:01.043416856 Z
@@ -3791,6 +3933,7 @@
   _time: 2025-10-01 12:24:01.048823932 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #49699333 is known in GitHub as @dependabot[bot].'
+  is_human: 0
   name: dependabot[bot]
   what: who-has-name
   when: 2025-10-01 12:24:01.051849089 Z
@@ -3801,6 +3944,7 @@
   _time: 2025-10-01 12:24:01.057208896 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #65287006 is known in GitHub as @artemget.'
+  is_human: 1
   name: artemget
   what: who-has-name
   when: 2025-10-01 12:24:01.059974770 Z
@@ -3811,6 +3955,7 @@
   _time: 2025-10-01 12:24:01.065284415 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #50021439 is known in GitHub as @xzescha.'
+  is_human: 1
   name: xzescha
   what: who-has-name
   when: 2025-10-01 12:24:01.068059333 Z
@@ -3821,6 +3966,7 @@
   _time: 2025-10-01 12:24:01.073365440 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #42595614 is known in GitHub as @yarkivaev.'
+  is_human: 1
   name: yarkivaev
   what: who-has-name
   when: 2025-10-01 12:24:01.076382733 Z
@@ -3831,6 +3977,7 @@
   _time: 2025-10-01 12:24:01.084472758 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #98585027 is known in GitHub as @vl4ds4m.'
+  is_human: 1
   name: vl4ds4m
   what: who-has-name
   when: 2025-10-01 12:24:01.087860501 Z
@@ -3841,6 +3988,7 @@
   _time: 2025-10-01 12:24:01.095995379 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #108345628 is known in GitHub as @marat-tim.'
+  is_human: 1
   name: marat-tim
   what: who-has-name
   when: 2025-10-01 12:24:01.099632680 Z
@@ -3851,6 +3999,7 @@
   _time: 2025-10-01 12:24:01.107355891 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #140268204 is known in GitHub as @aruzhanshinbayeva.'
+  is_human: 1
   name: aruzhanshinbayeva
   what: who-has-name
   when: 2025-10-01 12:24:01.110294928 Z
@@ -3861,6 +4010,7 @@
   _time: 2025-10-01 12:24:01.118431169 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #74598261 is known in GitHub as @dema-koder.'
+  is_human: 1
   name: dema-koder
   what: who-has-name
   when: 2025-10-01 12:24:01.121772896 Z
@@ -3871,6 +4021,7 @@
   _time: 2025-10-01 12:24:01.128054862 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #46645241 is known in GitHub as @dehopen.'
+  is_human: 1
   name: dehopen
   what: who-has-name
   when: 2025-10-01 12:24:01.131190154 Z
@@ -3881,6 +4032,7 @@
   _time: 2025-10-01 12:24:01.137615938 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: 'We found out that the user #144629807 is known in GitHub as @saleemasekrea000.'
+  is_human: 1
   name: saleemasekrea000
   what: who-has-name
   when: 2025-10-01 12:24:01.141218551 Z
@@ -3892,6 +4044,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   assigner: 526301
   details: yegor256/qulice#1363 was assigned to @fabriciofx by @yegor256.
+  is_human: 1
   issue: 1363
   repository: 9580168
   what: issue-was-assigned
@@ -3904,6 +4057,7 @@
   _version: 0.16.7/0.54.0/0.15.49
   assigner: 526301
   details: yegor256/qulice#1365 was assigned to @fabriciofx by @yegor256.
+  is_human: 1
   issue: 1365
   repository: 9580168
   what: issue-was-assigned
@@ -3916,9 +4070,1360 @@
   _version: 0.16.7/0.54.0/0.15.49
   assigner: 526301
   details: yegor256/qulice#1366 was assigned to @fabriciofx by @yegor256.
+  is_human: 1
   issue: 1366
   repository: 9580168
   what: issue-was-assigned
   when: 2025-09-13 05:06:38.000000000 Z
   where: github
   who: 1964562
+- _id: 427
+  _job: 40671
+  _time: 2025-10-01 12:24:31.707919448 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  comments: 0
+  details: The pull request yegor256/qulice#1390 with 2 HoC created by @renovate[bot]
+    was merged by @yegor256 after 1m43s of being in review and 0 comments.
+  hoc: 2
+  is_human: 0
+  issue: 1390
+  merger: 526301
+  repository: 9580168
+  review_comments: 0
+  seconds: 104
+  what: code-was-contributed
+  when: *14
+  where: github
+  who: 29139614
+- _id: 428
+  _job: 40671
+  _time: 2025-10-01 12:24:31.951078630 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  comments: 0
+  details: The pull request yegor256/qulice#1389 with 2 HoC created by @renovate[bot]
+    was merged by @yegor256 after 19m34s of being in review and 0 comments.
+  hoc: 2
+  is_human: 0
+  issue: 1389
+  merger: 526301
+  repository: 9580168
+  review_comments: 0
+  seconds: 1175
+  what: code-was-contributed
+  when: *15
+  where: github
+  who: 29139614
+- _id: 429
+  _job: 40671
+  _time: 2025-10-01 12:25:00.207577055 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  what: learn-eva
+  when: 2025-10-01 12:25:00.202020162 Z
+- _id: 430
+  _job: 18163546857
+  _time: 2025-10-01 13:22:05.477915116 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/crate-ci-typos-1.x
+  details: The pull request yegor256/qulice#1392 has been opened by @renovate[bot].
+  event_id: 55447139572
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1392
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-10-01 06:20:51.000000000 Z
+  where: github
+  who: 29139614
+- _id: 432
+  _job: 18163546857
+  _time: 2025-10-01 13:22:14.906616309 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.cactoos-cactoos-0.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1222 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1222
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-12 22:41:42.000000000 Z
+  where: github
+  who: 8086956
+- _id: 433
+  _job: 18163546857
+  _time: 2025-10-01 13:22:28.341625489 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.codehaus.plexus-plexus-container-default-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1223 has been "pull-was-closed".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1223
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-closed
+  when: 2024-03-12 23:55:03.000000000 Z
+  where: github
+  who: 29139614
+- _id: 434
+  _job: 18163546857
+  _time: 2025-10-01 13:22:31.216261303 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.codehaus.plexus-plexus-utils-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1224 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1224
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-12 23:39:41.000000000 Z
+  where: github
+  who: 8086956
+- _id: 435
+  _job: 18163546857
+  _time: 2025-10-01 13:22:34.697100828 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/junit5-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1226 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 6
+  issue: 1226
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-13 00:49:20.000000000 Z
+  where: github
+  who: 8086956
+- _id: 436
+  _job: 18163546857
+  _time: 2025-10-01 13:22:37.904603884 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/major-guava-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1227 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 4
+  issue: 1227
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-13 01:56:39.000000000 Z
+  where: github
+  who: 8086956
+- _id: 437
+  _job: 18163546857
+  _time: 2025-10-01 13:22:40.639887820 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.codehaus.plexus-plexus-container-default-2.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1228 has been "pull-was-closed".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1228
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-closed
+  when: 2024-03-29 16:45:43.000000000 Z
+  where: github
+  who: 29139614
+- _id: 438
+  _job: 18163546857
+  _time: 2025-10-01 13:22:42.488827258 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: '1197'
+  comments: 5
+  comments_appreciated: 2
+  comments_by_author: 1
+  comments_by_reviewers: 4
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1229 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 27
+  issue: 1229
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-13 06:12:41.000000000 Z
+  where: github
+  who: 8086956
+- _id: 439
+  _job: 18163546857
+  _time: 2025-10-01 13:22:46.547254296 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/ubuntu-22.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1231 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1231
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-13 02:45:21.000000000 Z
+  where: github
+  who: 8086956
+- _id: 440
+  _job: 18163546857
+  _time: 2025-10-01 13:22:49.217313978 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: patch-1
+  comments: 4
+  comments_appreciated: 2
+  comments_by_author: 2
+  comments_by_reviewers: 2
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1232 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 15
+  issue: 1232
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-13 13:17:18.000000000 Z
+  where: github
+  who: 526301
+- _id: 441
+  _job: 18163546857
+  _time: 2025-10-01 13:22:52.141374743 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/guava-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1233 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 4
+  issue: 1233
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-02 17:42:38.000000000 Z
+  where: github
+  who: 8086956
+- _id: 442
+  _job: 18163546857
+  _time: 2025-10-01 13:22:55.052472933 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: patch-2
+  comments: 1
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1234 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 3
+  issue: 1234
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-15 02:34:38.000000000 Z
+  where: github
+  who: 526301
+- _id: 443
+  _job: 18163546857
+  _time: 2025-10-01 13:22:58.948338467 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: update_qulice_0_22_2
+  comments: 4
+  comments_appreciated: 1
+  comments_by_author: 1
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1239 has been "pull-was-merged".
+  failed_builds: 0
+  files: 29
+  hoc: 212
+  issue: 1239
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-22 03:17:52.000000000 Z
+  where: github
+  who: 8086956
+- _id: 444
+  _job: 18163546857
+  _time: 2025-10-01 13:23:02.022347172 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.projectlombok-lombok-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1240 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1240
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-22 03:43:16.000000000 Z
+  where: github
+  who: 8086956
+- _id: 445
+  _job: 18163546857
+  _time: 2025-10-01 13:23:05.418339863 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/net.sourceforge.pmd-pmd-core-7.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1241 has been "pull-was-closed".
+  failed_builds: 7
+  files: 2
+  hoc: 4
+  issue: 1241
+  repository: 9580168
+  succeeded_builds: 2
+  what: pull-was-closed
+  when: 2025-01-31 17:35:54.000000000 Z
+  where: github
+  who: 29139614
+- _id: 446
+  _job: 18163546857
+  _time: 2025-10-01 13:23:11.635587561 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: '1242'
+  comments: 7
+  comments_appreciated: 3
+  comments_by_author: 1
+  comments_by_reviewers: 6
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1243 has been "pull-was-merged".
+  failed_builds: 0
+  files: 3
+  hoc: 67
+  issue: 1243
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-27 03:57:14.000000000 Z
+  where: github
+  who: 8086956
+- _id: 447
+  _job: 18163546857
+  _time: 2025-10-01 13:23:15.395376920 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: '1129'
+  comments: 4
+  comments_appreciated: 1
+  comments_by_author: 1
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1244 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 47
+  issue: 1244
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-28 05:21:36.000000000 Z
+  where: github
+  who: 8086956
+- _id: 448
+  _job: 18163546857
+  _time: 2025-10-01 13:23:18.413383362 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: '1118'
+  comments: 4
+  comments_appreciated: 1
+  comments_by_author: 1
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1245 has been "pull-was-merged".
+  failed_builds: 0
+  files: 5
+  hoc: 86
+  issue: 1245
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-28 05:50:05.000000000 Z
+  where: github
+  who: 8086956
+- _id: 449
+  _job: 18163546857
+  _time: 2025-10-01 13:23:21.331597021 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: '976'
+  comments: 4
+  comments_appreciated: 1
+  comments_by_author: 1
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1246 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 14
+  issue: 1246
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-29 17:49:27.000000000 Z
+  where: github
+  who: 8086956
+- _id: 450
+  _job: 18163546857
+  _time: 2025-10-01 13:23:24.354764292 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: fix_add_violation
+  comments: 4
+  comments_appreciated: 1
+  comments_by_author: 1
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1247 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 13
+  issue: 1247
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-29 04:43:09.000000000 Z
+  where: github
+  who: 8086956
+- _id: 451
+  _job: 18163546857
+  _time: 2025-10-01 13:23:27.502218420 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: update_dep
+  comments: 4
+  comments_appreciated: 1
+  comments_by_author: 1
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1249 has been "pull-was-merged".
+  failed_builds: 0
+  files: 3
+  hoc: 14
+  issue: 1249
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-29 16:45:11.000000000 Z
+  where: github
+  who: 8086956
+- _id: 452
+  _job: 18163546857
+  _time: 2025-10-01 13:23:30.519323814 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.ow2.asm-asm-9.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1250 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1250
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-29 17:33:53.000000000 Z
+  where: github
+  who: 8086956
+- _id: 453
+  _job: 18163546857
+  _time: 2025-10-01 13:23:34.315272333 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: update_commons
+  comments: 6
+  comments_appreciated: 1
+  comments_by_author: 2
+  comments_by_reviewers: 4
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1253 has been "pull-was-merged".
+  failed_builds: 0
+  files: 17
+  hoc: 134
+  issue: 1253
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-03-30 07:30:20.000000000 Z
+  where: github
+  who: 8086956
+- _id: 454
+  _job: 18163546857
+  _time: 2025-10-01 13:23:38.089994109 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/com.puppycrawl.tools-checkstyle-10.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1254 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1254
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-04-01 04:43:46.000000000 Z
+  where: github
+  who: 8086956
+- _id: 455
+  _job: 18163546857
+  _time: 2025-10-01 13:23:40.881601065 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven.plugin-tools-maven-plugin-annotations-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1255 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1255
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-04-04 11:37:36.000000000 Z
+  where: github
+  who: 8086956
+- _id: 456
+  _job: 18163546857
+  _time: 2025-10-01 13:23:43.577675440 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven.plugins-maven-plugin-plugin-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1256 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1256
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-04-04 12:44:48.000000000 Z
+  where: github
+  who: 8086956
+- _id: 457
+  _job: 18163546857
+  _time: 2025-10-01 13:23:46.433793255 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/slf4j-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1257 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1257
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-04-12 18:43:30.000000000 Z
+  where: github
+  who: 8086956
+- _id: 458
+  _job: 18163546857
+  _time: 2025-10-01 13:23:49.256855261 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/actions-checkout-digest
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1259 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1259
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-04-22 17:43:14.000000000 Z
+  where: github
+  who: 8086956
+- _id: 459
+  _job: 18163546857
+  _time: 2025-10-01 13:23:52.079545340 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/actions-checkout-digest
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1260 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1260
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-04-25 16:46:05.000000000 Z
+  where: github
+  who: 8086956
+- _id: 460
+  _job: 18163546857
+  _time: 2025-10-01 13:23:55.584452220 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/com.puppycrawl.tools-checkstyle-10.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1262 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1262
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-04-28 19:38:49.000000000 Z
+  where: github
+  who: 8086956
+- _id: 461
+  _job: 18163546857
+  _time: 2025-10-01 13:23:58.303435124 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: ci-java-version
+  comments: 4
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 4
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1263 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1263
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-11 07:23:22.000000000 Z
+  where: github
+  who: 8086956
+- _id: 462
+  _job: 18163546857
+  _time: 2025-10-01 13:24:01.787932748 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven.plugin-tools-maven-plugin-annotations-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1265 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1265
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-05 20:55:27.000000000 Z
+  where: github
+  who: 8086956
+- _id: 463
+  _job: 18163546857
+  _time: 2025-10-01 13:24:05.483535805 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven.plugins-maven-plugin-plugin-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1266 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1266
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-05 20:39:47.000000000 Z
+  where: github
+  who: 8086956
+- _id: 464
+  _job: 18163546857
+  _time: 2025-10-01 13:24:08.354176600 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: 1267-pmd-tests-with-unicode
+  comments: 5
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 4
+  comments_resolved: 1
+  comments_to_code: 1
+  details: Apparently, yegor256/qulice#1268 has been "pull-was-closed".
+  failed_builds: 0
+  files: 2
+  hoc: 25
+  issue: 1268
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-closed
+  when: 2024-05-13 07:48:44.000000000 Z
+  where: github
+  who: 70313618
+- _id: 465
+  _job: 18163546857
+  _time: 2025-10-01 13:24:12.565227169 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/actions-checkout-digest
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1269 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1269
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-08 22:43:01.000000000 Z
+  where: github
+  who: 8086956
+- _id: 466
+  _job: 18163546857
+  _time: 2025-10-01 13:24:15.511731787 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/actions-checkout-digest
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1270 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1270
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-09 16:46:36.000000000 Z
+  where: github
+  who: 8086956
+- _id: 467
+  _job: 18163546857
+  _time: 2025-10-01 13:24:18.409194949 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: pkg-info-javadoc-check
+  comments: 7
+  comments_appreciated: 2
+  comments_by_author: 2
+  comments_by_reviewers: 5
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1271 has been "pull-was-merged".
+  failed_builds: 0
+  files: 4
+  hoc: 41
+  issue: 1271
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-15 01:10:14.000000000 Z
+  where: github
+  who: 8086956
+- _id: 468
+  _job: 18163546857
+  _time: 2025-10-01 13:24:22.866567931 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: eol-check-verify-results
+  comments: 4
+  comments_appreciated: 2
+  comments_by_author: 0
+  comments_by_reviewers: 4
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1272 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 35
+  issue: 1272
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-11 07:08:05.000000000 Z
+  where: github
+  who: 8086956
+- _id: 469
+  _job: 18163546857
+  _time: 2025-10-01 13:24:25.909570799 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: '1267'
+  comments: 7
+  comments_appreciated: 2
+  comments_by_author: 1
+  comments_by_reviewers: 6
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1273 has been "pull-was-merged".
+  failed_builds: 0
+  files: 10
+  hoc: 105
+  issue: 1273
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-11 06:13:14.000000000 Z
+  where: github
+  who: 8086956
+- _id: 470
+  _job: 18163546857
+  _time: 2025-10-01 13:24:29.800430119 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/com.qulice-qulice-maven-plugin-0.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1274 has been "pull-was-closed".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1274
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-closed
+  when: 2024-05-16 13:41:39.000000000 Z
+  where: github
+  who: 29139614
+- _id: 471
+  _job: 18163546857
+  _time: 2025-10-01 13:24:31.877683107 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: version-up
+  comments: 1
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1275 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1275
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-14 08:55:47.000000000 Z
+  where: github
+  who: 526301
+- _id: 472
+  _job: 18163546857
+  _time: 2025-10-01 13:24:34.253757484 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: qulice-0-23
+  comments: 4
+  comments_appreciated: 1
+  comments_by_author: 1
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1276 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 7
+  issue: 1276
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-16 13:41:11.000000000 Z
+  where: github
+  who: 8086956
+- _id: 473
+  _job: 18163546857
+  _time: 2025-10-01 13:24:50.641781523 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  author: 83453843
+  comments: 1
+  details: The pull request yegor256/qulice#1234 with 3 HoC created by @h1alexbel
+    was reviewed by @pnatashap after 5h38m and 0 comments.
+  hoc: 3
+  issue: 1234
+  repository: 9580168
+  review_comments: 0
+  seconds: 20303
+  what: code-was-reviewed
+  when: 2024-03-14 13:25:21.000000000 Z
+  where: github
+  who: 19815413
+- _id: 474
+  _job: 18163546857
+  _time: 2025-10-01 13:25:08.995717222 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  author: 11889433
+  comments: 7
+  details: The pull request yegor256/qulice#1271 with 41 HoC created by @mikailbag
+    was reviewed by @pnatashap after 67h34m and 0 comments.
+  hoc: 41
+  issue: 1271
+  repository: 9580168
+  review_comments: 0
+  seconds: 243282
+  what: code-was-reviewed
+  when: 2024-05-13 15:04:23.000000000 Z
+  where: github
+  who: 19815413
+- _id: 475
+  _job: 18163546857
+  _time: 2025-10-01 13:25:16.303758592 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  author: 70313618
+  comments: 4
+  details: The pull request yegor256/qulice#1268 with 25 HoC created by @c71n93 was
+    reviewed by @pnatashap after 3h33m and 1 comments.
+  hoc: 25
+  issue: 1268
+  repository: 9580168
+  review_comments: 1
+  seconds: 12798
+  what: code-was-reviewed
+  when: 2024-05-08 17:27:34.000000000 Z
+  where: github
+  who: 19815413
+- _id: 476
+  _job: 18163546857
+  _time: 2025-10-01 13:25:17.679815178 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: 'We found out that the user #8086956 is known in GitHub as @rultor.'
+  name: rultor
+  what: who-has-name
+  when: 2025-10-01 13:25:17.879524209 Z
+  where: github
+  who: 8086956
+- _id: 477
+  _job: 18163546857
+  _time: 2025-10-01 13:25:19.467470671 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  total_active_contributors: 5
+  total_commits: 2168
+  total_contributors: 52
+  total_files: 423
+  total_forks: 118
+  total_issues: 833
+  total_pulls: 562
+  total_releases: 73
+  total_repositories: 1
+  total_stars: 309
+  what: dimensions-of-terrain
+  when: 2025-10-01 13:25:19.476749854 Z
+- _id: 478
+  _job: 18163546857
+  _time: 2025-10-01 13:25:40.637975870 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "enhancement" label was attached by @yegor256 to the issue yegor256/qulice#1258.
+  issue: 1258
+  label: enhancement
+  repository: 9580168
+  what: label-was-attached
+  when: 2024-04-16 03:35:48.000000000 Z
+  where: github
+  who: 526301
+- _id: 479
+  _job: 18163546857
+  _time: 2025-10-01 13:25:40.680349839 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "enhancement" label was attached by @yegor256 to the issue yegor256/qulice#1264.
+  issue: 1264
+  label: enhancement
+  repository: 9580168
+  what: label-was-attached
+  when: 2024-04-29 07:00:49.000000000 Z
+  where: github
+  who: 526301
+- _id: 480
+  _job: 18163546857
+  _time: 2025-10-01 13:25:40.723611968 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1267.
+  issue: 1267
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2024-05-08 14:22:36.000000000 Z
+  where: github
+  who: 526301
+- _id: 481
+  _job: 18163546857
+  _time: 2025-10-01 13:25:40.794775735 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1318.
+  issue: 1318
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-02-18 06:28:01.000000000 Z
+  where: github
+  who: 526301
+- _id: 482
+  _job: 18163546857
+  _time: 2025-10-01 13:25:40.851889443 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1321.
+  issue: 1321
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-03-10 12:18:32.000000000 Z
+  where: github
+  who: 526301
+- _id: 483
+  _job: 18163546857
+  _time: 2025-10-01 13:25:40.886392765 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "enhancement" label was attached by @yegor256 to the issue yegor256/qulice#1326.
+  issue: 1326
+  label: enhancement
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-03-18 12:19:17.000000000 Z
+  where: github
+  who: 526301
+- _id: 484
+  _job: 18163546857
+  _time: 2025-10-01 13:25:40.911951293 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1328.
+  issue: 1328
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-04-23 08:10:33.000000000 Z
+  where: github
+  who: 526301
+- _id: 485
+  _job: 18163546857
+  _time: 2025-10-01 13:25:40.966915541 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1331.
+  issue: 1331
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-09-09 02:27:11.000000000 Z
+  where: github
+  who: 526301
+- _id: 486
+  _job: 18163546857
+  _time: 2025-10-01 13:25:41.066411623 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1360.
+  issue: 1360
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-09-09 02:25:54.000000000 Z
+  where: github
+  who: 526301
+- _id: 487
+  _job: 18163546857
+  _time: 2025-10-01 13:25:41.098145239 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1363.
+  issue: 1363
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-09-10 06:06:42.000000000 Z
+  where: github
+  who: 526301
+- _id: 488
+  _job: 18163546857
+  _time: 2025-10-01 13:25:41.134864415 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1365.
+  issue: 1365
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-09-13 05:06:56.000000000 Z
+  where: github
+  who: 526301
+- _id: 489
+  _job: 18163546857
+  _time: 2025-10-01 13:25:41.169884402 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1366.
+  issue: 1366
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-09-13 05:06:35.000000000 Z
+  where: github
+  who: 526301
+- _id: 490
+  _job: 18163546857
+  _time: 2025-10-01 13:25:52.767148653 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  earliest_issue_was_found: 1
+  events_were_scanned: 55447139572
+  latest_issue_was_found: 1386
+  merges_were_scanned: 1277
+  min_issue_was_found: 1373
+  min_pull_was_found: 1379
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 491
+  _job: 18163546857
+  _time: 2025-10-01 13:25:56.020363215 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1238 has been "issue-was-closed".
+  issue: 1238
+  repository: 9580168
+  what: issue-was-closed
+  when: 2024-05-17 14:05:51.000000000 Z
+  where: github
+  who: 19815413
+- _id: 492
+  _job: 18163546857
+  _time: 2025-10-01 13:25:56.308224295 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1242 has been "issue-was-closed".
+  issue: 1242
+  repository: 9580168
+  what: issue-was-closed
+  when: 2024-03-27 03:57:15.000000000 Z
+  where: github
+  who: 8086956
+- _id: 493
+  _job: 18163546857
+  _time: 2025-10-01 13:25:56.626294990 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1248 has been "issue-was-closed".
+  issue: 1248
+  repository: 9580168
+  what: issue-was-closed
+  when: 2024-03-29 14:16:10.000000000 Z
+  where: github
+  who: 83453843
+- _id: 494
+  _job: 18163546857
+  _time: 2025-10-01 13:25:56.928463291 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1258 has been "issue-was-closed".
+  issue: 1258
+  repository: 9580168
+  what: issue-was-closed
+  when: 2024-08-01 11:36:06.000000000 Z
+  where: github
+  who: 526301
+- _id: 495
+  _job: 18163546857
+  _time: 2025-10-01 13:25:57.519881705 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1267 has been "issue-was-closed".
+  issue: 1267
+  repository: 9580168
+  what: issue-was-closed
+  when: 2024-05-11 06:13:15.000000000 Z
+  where: github
+  who: 8086956
+- _id: 496
+  _job: 18163546857
+  _time: 2025-10-01 13:25:58.711494836 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1319 has been "issue-was-closed".
+  issue: 1319
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-02-18 08:41:09.000000000 Z
+  where: github
+  who: 526301
+- _id: 497
+  _job: 18163546857
+  _time: 2025-10-01 13:25:59.804597436 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1329 has been "issue-was-closed".
+  issue: 1329
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-05-11 18:06:58.000000000 Z
+  where: github
+  who: 1964562
+- _id: 498
+  _job: 18163546857
+  _time: 2025-10-01 13:26:02.384418840 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1363 has been "issue-was-closed".
+  issue: 1363
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-09-13 12:24:30.000000000 Z
+  where: github
+  who: 1964562
+- _id: 499
+  _job: 18163546857
+  _time: 2025-10-01 13:26:02.719830087 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1365 has been "issue-was-closed".
+  issue: 1365
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-09-14 11:17:51.000000000 Z
+  where: github
+  who: 1964562
+- _id: 500
+  _job: 18163546857
+  _time: 2025-10-01 13:26:03.003460239 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1366 has been "issue-was-closed".
+  issue: 1366
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-09-14 10:36:16.000000000 Z
+  where: github
+  who: 1964562
+- _id: 501
+  _job: 18163546857
+  _time: 2025-10-01 13:26:03.379155673 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: Apparently, yegor256/qulice#1367 has been "issue-was-closed".
+  issue: 1367
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-09-14 12:42:51.000000000 Z
+  where: github
+  who: 526301
