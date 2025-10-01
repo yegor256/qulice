@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 71.030312521
+  seconds: 58.925031634
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-01 17:19:57.423119547 Z
+  when: 2025-10-01 18:20:40.577975726 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -4257,7 +4257,7 @@
   label: bug
   repository: 9580168
   what: label-was-attached
-  when: 2025-09-13 05:06:35.000000000 Z
+  when: &31 2025-09-13 05:06:35.000000000 Z
   where: github
   who: 526301
 - _id: 491
@@ -5321,7 +5321,7 @@
   review_comments: 0
   succeeded_builds: 11
   what: pull-was-merged
-  when: 2025-03-12 05:44:03.000000000 Z
+  when: &32 2025-03-12 05:44:03.000000000 Z
   where: github
   who: 526301
 - _id: 546
@@ -5345,7 +5345,7 @@
   review_comments: 0
   succeeded_builds: 12
   what: pull-was-merged
-  when: 2025-03-12 10:14:23.000000000 Z
+  when: &33 2025-03-12 10:14:23.000000000 Z
   where: github
   who: 526301
 - _id: 547
@@ -6030,6 +6030,7 @@
   comments: 7
   details: The pull request yegor256/qulice#1278 with 1 HoC created by @mikailbag
     was merged by @rultor after 3d2h of being in review and 7 comments.
+  done: 2025-10-01 17:20:17.794840886 Z
   hoc: 1
   is_human: 1
   issue: 1278
@@ -6048,6 +6049,7 @@
   comments: 3
   details: The pull request yegor256/qulice#1280 with 2 HoC created by @renovate[bot]
     was merged by @rultor after 38m2s of being in review and 3 comments.
+  done: 2025-10-01 17:20:17.810558816 Z
   hoc: 2
   is_human: 0
   issue: 1280
@@ -6059,31 +6061,6 @@
   when: *26
   where: github
   who: 29139614
-- _id: 585
-  _job: 40693
-  _time: 2025-10-01 15:23:36.075681673 Z
-  _version: 0.16.7/0.54.0/0.15.49
-  issues:
-  - '1'
-  - 1222-1224
-  - 1226-1229
-  - 1231-1234
-  - 1238-1240
-  - 1242-1250
-  - 1253-1260
-  - 1262-1263
-  - 1265-1276
-  - '1278'
-  - 1280-1291
-  - 1293-1299
-  - '1301'
-  - '1303'
-  - 1305-1311
-  - 1313-1314
-  - '1327'
-  repository: 9580168
-  what: tombstone
-  where: github
 - _id: 586
   _job: 40693
   _time: 2025-10-01 15:23:37.561224124 Z
@@ -6168,30 +6145,6 @@
   when: 2025-09-14 08:26:44.000000000 Z
   where: github
   who: 526301
-- _id: 592
-  _job: 18168569270
-  _time: 2025-10-01 16:20:09.996608495 Z
-  _version: 0.16.7/0.54.0/0.15.49
-  branch: violation-no-pmd
-  comments: 7
-  comments_appreciated: 2
-  comments_by_author: 0
-  comments_by_reviewers: 7
-  comments_resolved: 0
-  comments_to_code: 0
-  details: Apparently, yegor256/qulice#1278 has been "pull-was-merged".
-  failed_builds: 0
-  files: 1
-  hoc: 1
-  is_human: 0
-  issue: 1278
-  repository: 9580168
-  review_comments: 0
-  succeeded_builds: 0
-  what: pull-was-merged
-  when: 2024-05-16 14:56:46.000000000 Z
-  where: github
-  who: 8086956
 - _id: 593
   _job: 18168569270
   _time: 2025-10-01 16:20:19.262325727 Z
@@ -6240,32 +6193,6 @@
   when: 2025-10-01 12:40:18.000000000 Z
   where: github
   who: 526301
-- _id: 596
-  _job: 18168569270
-  _time: 2025-10-01 16:20:51.801860936 Z
-  _version: 0.16.7/0.54.0/0.15.49
-  branch: violation-no-pmd
-  details: The pull yegor256/qulice#1278 has been opened earlier by @mikailbag.
-  is_human: 1
-  issue: 1278
-  repository: 9580168
-  what: pull-was-opened
-  when: 2024-05-13 12:34:24.000000000 Z
-  where: github
-  who: 11889433
-- _id: 597
-  _job: 18168569270
-  _time: 2025-10-01 16:20:51.921073933 Z
-  _version: 0.16.7/0.54.0/0.15.49
-  branch: renovate/org.apache.maven.shared-maven-dependency-analyzer-1.x
-  details: The pull yegor256/qulice#1280 has been opened earlier by @renovate[bot].
-  is_human: 0
-  issue: 1280
-  repository: 9580168
-  what: pull-was-opened
-  when: 2024-05-16 13:18:17.000000000 Z
-  where: github
-  who: 29139614
 - _id: 598
   _job: 40701
   _time: 2025-10-01 16:21:19.308786943 Z
@@ -6308,16 +6235,91 @@
   when: *30
   where: github
   who: 526301
-- _id: 601
-  _job: 18170090849
-  _time: 2025-10-01 17:19:28.278571191 Z
+- _id: 602
+  _job: 40707
+  _time: 2025-10-01 17:20:16.589382155 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: "@yegor256 attached the '#bug' label to yegor256/qulice#1366 reported by
+    @fabriciofx; this means that a bug was accepted as valid, by the project team."
+  is_human: 1
+  issue: 1366
+  reporter: 1964562
+  repository: 9580168
+  what: bug-was-accepted
+  when: *31
+  where: github
+  who: 526301
+- _id: 603
+  _job: 40707
+  _time: 2025-10-01 17:20:19.465739415 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  comments: 2
+  details: The pull request yegor256/qulice#1323 with 66 HoC created by @vl4ds4m was
+    merged by @yegor256 after 9h24m of being in review and 2 comments.
+  hoc: 66
+  is_human: 1
+  issue: 1323
+  merger: 526301
+  repository: 9580168
+  review_comments: 0
+  seconds: 33873
+  what: code-was-contributed
+  when: *32
+  where: github
+  who: 98585027
+- _id: 604
+  _job: 40707
+  _time: 2025-10-01 17:20:20.188745345 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  comments: 4
+  details: The pull request yegor256/qulice#1324 with 32 HoC created by @vl4ds4m was
+    merged by @yegor256 after 3h26m of being in review and 4 comments.
+  hoc: 32
+  is_human: 1
+  issue: 1324
+  merger: 526301
+  repository: 9580168
+  review_comments: 0
+  seconds: 12415
+  what: code-was-contributed
+  when: *33
+  where: github
+  who: 98585027
+- _id: 605
+  _job: 40707
+  _time: 2025-10-01 17:20:21.090617885 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  issues:
+  - '1'
+  - 1222-1224
+  - 1226-1229
+  - 1231-1234
+  - 1238-1240
+  - 1242-1250
+  - 1253-1260
+  - 1262-1263
+  - 1265-1276
+  - '1278'
+  - 1280-1291
+  - 1293-1299
+  - '1301'
+  - '1303'
+  - 1305-1311
+  - 1313-1314
+  - '1327'
+  repository: 9580168
+  what: tombstone
+  where: github
+- _id: 606
+  _job: 18171592065
+  _time: 2025-10-01 18:19:50.922520786 Z
   _version: 0.16.7/0.54.0/0.15.49
   earliest_issue_was_found: 1
-  events_were_scanned: 55452212808
+  events_were_scanned: 55455196826
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1385
+  min_pull_was_found: 1389
   repository: 9580168
   what: iterate
   where: github
