@@ -87,7 +87,8 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
             .anyMatch(
                 otherCtor -> otherCtor != privatector
                 &&
-                isCallingConstructor(otherCtor, privatector));
+                isCallingConstructor(otherCtor, privatector)
+            );
     }
 
     /**

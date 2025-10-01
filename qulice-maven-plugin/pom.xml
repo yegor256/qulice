@@ -94,19 +94,10 @@
           <artifactId>icu4j</artifactId>
         </exclusion>
         <exclusion>
-          <groupId>xerces</groupId>
-          <artifactId>xmlParserAPIs</artifactId>
-        </exclusion>
-        <exclusion>
           <groupId>net.java.dev.javacc</groupId>
           <artifactId>javacc</artifactId>
         </exclusion>
       </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>xerces</groupId>
-      <artifactId>xmlParserAPIs</artifactId>
-      <version>2.6.2</version>
     </dependency>
     <dependency>
       <groupId>commons-io</groupId>
