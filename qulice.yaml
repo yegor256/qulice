@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 99.128257371
+  seconds: 71.030312521
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-01 16:20:58.038872644 Z
+  when: 2025-10-01 17:19:57.423119547 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -4218,7 +4218,7 @@
   label: bug
   repository: 9580168
   what: label-was-attached
-  when: 2025-09-09 02:25:54.000000000 Z
+  when: &28 2025-09-09 02:25:54.000000000 Z
   where: github
   who: 526301
 - _id: 487
@@ -4231,7 +4231,7 @@
   label: bug
   repository: 9580168
   what: label-was-attached
-  when: 2025-09-10 06:06:42.000000000 Z
+  when: &29 2025-09-10 06:06:42.000000000 Z
   where: github
   who: 526301
 - _id: 488
@@ -4244,7 +4244,7 @@
   label: bug
   repository: 9580168
   what: label-was-attached
-  when: 2025-09-13 05:06:56.000000000 Z
+  when: &30 2025-09-13 05:06:56.000000000 Z
   where: github
   who: 526301
 - _id: 489
@@ -6240,19 +6240,6 @@
   when: 2025-10-01 12:40:18.000000000 Z
   where: github
   who: 526301
-- _id: 595
-  _job: 18168569270
-  _time: 2025-10-01 16:20:51.493702406 Z
-  _version: 0.16.7/0.54.0/0.15.49
-  earliest_issue_was_found: 1
-  events_were_scanned: 55451287722
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1373
-  min_pull_was_found: 1382
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 596
   _job: 18168569270
   _time: 2025-10-01 16:20:51.801860936 Z
@@ -6279,3 +6266,58 @@
   when: 2024-05-16 13:18:17.000000000 Z
   where: github
   who: 29139614
+- _id: 598
+  _job: 40701
+  _time: 2025-10-01 16:21:19.308786943 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: "@yegor256 attached the '#bug' label to yegor256/qulice#1360 reported by
+    @fabriciofx; this means that a bug was accepted as valid, by the project team."
+  is_human: 1
+  issue: 1360
+  reporter: 1964562
+  repository: 9580168
+  what: bug-was-accepted
+  when: *28
+  where: github
+  who: 526301
+- _id: 599
+  _job: 40701
+  _time: 2025-10-01 16:21:19.504068169 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: "@yegor256 attached the '#bug' label to yegor256/qulice#1363 reported by
+    @fabriciofx; this means that a bug was accepted as valid, by the project team."
+  is_human: 1
+  issue: 1363
+  reporter: 1964562
+  repository: 9580168
+  what: bug-was-accepted
+  when: *29
+  where: github
+  who: 526301
+- _id: 600
+  _job: 40701
+  _time: 2025-10-01 16:21:19.550638930 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: "@yegor256 attached the '#bug' label to yegor256/qulice#1365 reported by
+    @fabriciofx; this means that a bug was accepted as valid, by the project team."
+  is_human: 1
+  issue: 1365
+  reporter: 1964562
+  repository: 9580168
+  what: bug-was-accepted
+  when: *30
+  where: github
+  who: 526301
+- _id: 601
+  _job: 18170090849
+  _time: 2025-10-01 17:19:28.278571191 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  earliest_issue_was_found: 1
+  events_were_scanned: 55452212808
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1373
+  min_pull_was_found: 1385
+  repository: 9580168
+  what: iterate
+  where: github
