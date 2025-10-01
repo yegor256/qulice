@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 16.083685417
+  seconds: 27.105513595
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-01 04:19:24.274810932 Z
+  when: 2025-10-01 05:22:03.777261165 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -1611,15 +1611,38 @@
   _version: 0.16.7/0.54.0/0.15.48!0.15.49
   what: learn-eva
   when: 2025-10-01 03:33:00.679935348 Z
-- _id: 233
-  _job: 18151213967
-  _time: 2025-10-01 04:19:12.292413240 Z
-  _version: 0.16.7/0.54.0/0.15.48
+- _id: 234
+  _job: 18152225383
+  _time: 2025-10-01 05:21:39.531575434 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/com.qulice-qulice-maven-plugin-0.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1382 has been "pull-was-closed".
+  failed_builds: 12
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1382
+  repository: 9580168
+  succeeded_builds: 8
+  what: pull-was-closed
+  when: 2025-10-01 04:55:57.000000000 Z
+  where: github
+  who: 29139614
+- _id: 235
+  _job: 18152225383
+  _time: 2025-10-01 05:21:55.131466789 Z
+  _version: 0.16.7/0.54.0/0.15.49
   earliest_issue_was_found: 1
-  events_were_scanned: 55431934296
+  events_were_scanned: 55433872812
   latest_issue_was_found: 1386
   min_issue_was_found: 1373
-  min_pull_was_found: 1375
+  min_pull_was_found: 1379
   repository: 9580168
   what: iterate
   where: github
