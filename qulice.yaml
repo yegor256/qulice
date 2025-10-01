@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 19.159125502
+  seconds: 15.907097369
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-01 01:48:30.104997179 Z
+  when: 2025-10-01 02:46:53.426478911 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -1579,15 +1579,39 @@
   _version: 0.16.7/0.54.0/0.15.48!0.15.49
   what: learn-eva
   when: 2025-09-30 19:19:13.333860703 Z
-- _id: 226
-  _job: 18148632612
-  _time: 2025-10-01 01:48:25.834367939 Z
+- _id: 227
+  _job: 18149643560
+  _time: 2025-10-01 02:46:51.994508476 Z
+  _version: 0.16.7/0.54.0/0.15.48
+  details: The issue yegor256/qulice#1388 has been earlier opened by @fabriciofx.
+  is_human: 1
+  issue: 1388
+  repository: 9580168
+  what: issue-was-opened
+  when: 2025-10-01 01:56:54.000000000 Z
+  where: github
+  who: 1964562
+- _id: 228
+  _job: 18149643560
+  _time: 2025-10-01 02:46:52.024118793 Z
+  _version: 0.16.7/0.54.0/0.15.48
+  details: The issue yegor256/qulice#1387 has been earlier opened by @fabriciofx.
+  is_human: 1
+  issue: 1387
+  repository: 9580168
+  what: issue-was-opened
+  when: 2025-10-01 01:49:40.000000000 Z
+  where: github
+  who: 1964562
+- _id: 229
+  _job: 18149643560
+  _time: 2025-10-01 02:46:52.111494722 Z
   _version: 0.16.7/0.54.0/0.15.48
   earliest_issue_was_found: 1
-  events_were_scanned: 55427112478
+  events_were_scanned: 55429636544
   latest_issue_was_found: 1386
   min_issue_was_found: 1373
-  min_pull_was_found: 1385
+  min_pull_was_found: 0
   repository: 9580168
   what: iterate
   where: github
