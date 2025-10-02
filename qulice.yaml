@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 245.560825396
+  seconds: 164.2372663
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-02 04:23:24.302407808 Z
+  when: 2025-10-02 05:21:01.856122733 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -6766,24 +6766,12 @@
   when: 2024-05-16 14:56:46.000000000 Z
   where: github
   who: 8086956
-- _id: 1261
-  _job: 18183216883
-  _time: 2025-10-02 04:22:57.427552002 Z
-  _version: 0.16.7/0.54.0/0.15.49
-  earliest_issue_was_found: 1
-  events_were_scanned: 55470576500
-  latest_issue_was_found: 1386
-  merges_were_scanned: 1278
-  min_issue_was_found: 1373
-  min_pull_was_found: 1224
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 1262
   _job: 18183216883
   _time: 2025-10-02 04:23:04.145471273 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: Apparently, yegor256/qulice#1238 has been "issue-was-closed".
+  is_human: 1
   issue: 1238
   repository: 9580168
   what: issue-was-closed
@@ -6795,6 +6783,7 @@
   _time: 2025-10-02 04:23:04.439760570 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: Apparently, yegor256/qulice#1242 has been "issue-was-closed".
+  is_human: 0
   issue: 1242
   repository: 9580168
   what: issue-was-closed
@@ -6806,6 +6795,7 @@
   _time: 2025-10-02 04:23:04.886154637 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: Apparently, yegor256/qulice#1248 has been "issue-was-closed".
+  is_human: 1
   issue: 1248
   repository: 9580168
   what: issue-was-closed
@@ -6817,6 +6807,7 @@
   _time: 2025-10-02 04:23:05.197773186 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: Apparently, yegor256/qulice#1258 has been "issue-was-closed".
+  is_human: 1
   issue: 1258
   repository: 9580168
   what: issue-was-closed
@@ -6828,9 +6819,824 @@
   _time: 2025-10-02 04:23:05.770410485 Z
   _version: 0.16.7/0.54.0/0.15.49
   details: Apparently, yegor256/qulice#1267 has been "issue-was-closed".
+  is_human: 0
   issue: 1267
   repository: 9580168
   what: issue-was-closed
   when: 2024-05-11 06:13:15.000000000 Z
   where: github
   who: 8086956
+- _id: 1268
+  _job: 18184110868
+  _time: 2025-10-02 05:18:32.097346435 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven.shared-maven-dependency-analyzer-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1280 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1280
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-16 13:56:20.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1269
+  _job: 18184110868
+  _time: 2025-10-02 05:18:38.613514130 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/com.google.code.gson-gson-2.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1281 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1281
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-20 01:58:57.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1270
+  _job: 18184110868
+  _time: 2025-10-02 05:18:40.176682656 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/actions-checkout-digest
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1282 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1282
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-20 18:44:48.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1271
+  _job: 18184110868
+  _time: 2025-10-02 05:18:41.805600198 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven.shared-maven-dependency-analyzer-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1283 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1283
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-22 23:42:16.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1272
+  _job: 18184110868
+  _time: 2025-10-02 05:18:43.372968596 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven-maven-artifact-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1284 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1284
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-25 13:56:30.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1273
+  _job: 18184110868
+  _time: 2025-10-02 05:18:44.951555044 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven-maven-core-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1285 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1285
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-25 13:41:28.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1274
+  _job: 18184110868
+  _time: 2025-10-02 05:18:46.452408085 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven-maven-model-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1286 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1286
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-25 14:56:53.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1275
+  _job: 18184110868
+  _time: 2025-10-02 05:18:48.122189210 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven-maven-plugin-api-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1287 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1287
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-25 14:41:39.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1276
+  _job: 18184110868
+  _time: 2025-10-02 05:18:50.003190037 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/com.puppycrawl.tools-checkstyle-10.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1288 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1288
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-26 22:40:54.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1277
+  _job: 18184110868
+  _time: 2025-10-02 05:18:51.607161432 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/guava-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1289 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 4
+  is_human: 0
+  issue: 1289
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-31 22:03:07.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1278
+  _job: 18184110868
+  _time: 2025-10-02 05:18:53.224485317 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven.plugin-tools-maven-plugin-annotations-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1290 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1290
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-31 21:46:15.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1279
+  _job: 18184110868
+  _time: 2025-10-02 05:18:54.938270858 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven.plugins-maven-plugin-plugin-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1291 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1291
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-05-31 22:47:27.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1280
+  _job: 18184110868
+  _time: 2025-10-02 05:18:56.387650021 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/actions-checkout-digest
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1293 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1293
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-06-19 20:17:20.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1281
+  _job: 18184110868
+  _time: 2025-10-02 05:18:57.924307902 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven-maven-artifact-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1294 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1294
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-06-19 17:37:53.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1282
+  _job: 18184110868
+  _time: 2025-10-02 05:18:59.724307495 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven-maven-core-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1295 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1295
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-06-19 19:37:18.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1283
+  _job: 18184110868
+  _time: 2025-10-02 05:19:01.364666451 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven-maven-model-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1296 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1296
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-06-19 21:59:07.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1284
+  _job: 18184110868
+  _time: 2025-10-02 05:19:03.122346336 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.maven-maven-plugin-api-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1297 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1297
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-06-19 21:42:54.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1285
+  _job: 18184110868
+  _time: 2025-10-02 05:19:04.940067601 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/junit5-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1298 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 6
+  is_human: 0
+  issue: 1298
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-06-27 16:54:57.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1286
+  _job: 18184110868
+  _time: 2025-10-02 05:19:06.663220175 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.projectlombok-lombok-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1299 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1299
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-06-28 04:44:16.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1287
+  _job: 18184110868
+  _time: 2025-10-02 05:19:08.554120731 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: fix_space_in_tags
+  comments: 31
+  comments_appreciated: 3
+  comments_by_author: 15
+  comments_by_reviewers: 16
+  comments_resolved: 0
+  comments_to_code: 21
+  details: Apparently, yegor256/qulice#1301 has been "pull-was-merged".
+  failed_builds: 0
+  files: 14
+  hoc: 810
+  is_human: 0
+  issue: 1301
+  repository: 9580168
+  succeeded_builds: 8
+  what: pull-was-merged
+  when: 2024-10-17 05:54:26.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1288
+  _job: 18184110868
+  _time: 2025-10-02 05:19:16.308337310 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: parallel_build
+  comments: 2
+  comments_appreciated: 1
+  comments_by_author: 1
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1303 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 3
+  is_human: 1
+  issue: 1303
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-08-15 10:11:35.000000000 Z
+  where: github
+  who: 526301
+- _id: 1289
+  _job: 18184110868
+  _time: 2025-10-02 05:19:18.074287444 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.commons-commons-lang3-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1305 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1305
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-07-17 22:45:21.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1290
+  _job: 18184110868
+  _time: 2025-10-02 05:19:19.850761774 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: master
+  comments: 9
+  comments_appreciated: 3
+  comments_by_author: 1
+  comments_by_reviewers: 8
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1306 has been "pull-was-merged".
+  failed_builds: 0
+  files: 6
+  hoc: 304
+  is_human: 0
+  issue: 1306
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-08-01 09:45:00.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1291
+  _job: 18184110868
+  _time: 2025-10-02 05:19:22.526895216 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/major-javahamcrest-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1307 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 4
+  is_human: 0
+  issue: 1307
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-08-01 13:45:25.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1292
+  _job: 18184110868
+  _time: 2025-10-02 05:19:24.058702365 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/slf4j-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1308 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1308
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-08-07 00:50:21.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1293
+  _job: 18184110868
+  _time: 2025-10-02 05:19:25.647928403 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/org.apache.commons-commons-lang3-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1309 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1309
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-08-07 16:50:42.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1294
+  _job: 18184110868
+  _time: 2025-10-02 05:19:27.154478168 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/slf4j-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1310 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1310
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-08-08 15:45:56.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1295
+  _job: 18184110868
+  _time: 2025-10-02 05:19:28.731805305 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/slf4j-monorepo
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1311 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1311
+  repository: 9580168
+  succeeded_builds: 0
+  what: pull-was-merged
+  when: 2024-08-10 11:42:30.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1296
+  _job: 18184110868
+  _time: 2025-10-02 05:19:30.257720480 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: dependabot/maven/qulice-maven-plugin/src/it/dependency-violations/commons-io-commons-io-2.14.0
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1313 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1313
+  repository: 9580168
+  succeeded_builds: 8
+  what: pull-was-merged
+  when: 2024-10-03 18:31:42.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1297
+  _job: 18184110868
+  _time: 2025-10-02 05:19:34.295150342 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  branch: renovate/maven-commons-io-commons-io-vulnerability
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1314 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1314
+  repository: 9580168
+  succeeded_builds: 8
+  what: pull-was-merged
+  when: 2024-10-03 17:59:15.000000000 Z
+  where: github
+  who: 8086956
+- _id: 1299
+  _job: 18184110868
+  _time: 2025-10-02 05:19:46.039246216 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "enhancement" label was attached by @yegor256 to the issue yegor256/qulice#1258.
+  is_human: 1
+  issue: 1258
+  label: enhancement
+  repository: 9580168
+  what: label-was-attached
+  when: 2024-04-16 03:35:48.000000000 Z
+  where: github
+  who: 526301
+- _id: 1300
+  _job: 18184110868
+  _time: 2025-10-02 05:19:46.639690633 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1267.
+  is_human: 1
+  issue: 1267
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2024-05-08 14:22:36.000000000 Z
+  where: github
+  who: 526301
+- _id: 1301
+  _job: 18184110868
+  _time: 2025-10-02 05:19:58.925612415 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  earliest_issue_was_found: 1
+  events_were_scanned: 55474098870
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1373
+  min_pull_was_found: 1225
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 1302
+  _job: 18184110868
+  _time: 2025-10-02 05:20:24.799633013 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  author: 83453843
+  comments: 1
+  details: The pull request yegor256/qulice#1234 with 3 HoC created by @h1alexbel
+    was reviewed by @pnatashap after 5h38m and 0 comments.
+  hoc: 3
+  issue: 1234
+  repository: 9580168
+  review_comments: 0
+  seconds: 20303
+  what: code-was-reviewed
+  when: 2024-03-14 13:25:21.000000000 Z
+  where: github
+  who: 19815413
+- _id: 1303
+  _job: 18184110868
+  _time: 2025-10-02 05:20:35.830080631 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  author: 70313618
+  comments: 4
+  details: The pull request yegor256/qulice#1268 with 25 HoC created by @c71n93 was
+    reviewed by @pnatashap after 3h33m and 1 comments.
+  hoc: 25
+  issue: 1268
+  repository: 9580168
+  review_comments: 1
+  seconds: 12798
+  what: code-was-reviewed
+  when: 2024-05-08 17:27:34.000000000 Z
+  where: github
+  who: 19815413
+- _id: 1304
+  _job: 18184110868
+  _time: 2025-10-02 05:20:37.975372649 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  author: 11889433
+  comments: 7
+  details: The pull request yegor256/qulice#1271 with 41 HoC created by @mikailbag
+    was reviewed by @pnatashap after 67h34m and 0 comments.
+  hoc: 41
+  issue: 1271
+  repository: 9580168
+  review_comments: 0
+  seconds: 243282
+  what: code-was-reviewed
+  when: 2024-05-13 15:04:23.000000000 Z
+  where: github
+  who: 19815413
+- _id: 1305
+  _job: 18184110868
+  _time: 2025-10-02 05:20:41.480692616 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  author: 11889433
+  comments: 7
+  details: The pull request yegor256/qulice#1278 with 1 HoC created by @mikailbag
+    was reviewed by @pnatashap after 2h25m and 0 comments.
+  hoc: 1
+  issue: 1278
+  repository: 9580168
+  review_comments: 0
+  seconds: 8726
+  what: code-was-reviewed
+  when: 2024-05-13 14:59:50.000000000 Z
+  where: github
+  who: 19815413
+- _id: 1306
+  _job: 18184110868
+  _time: 2025-10-02 05:20:52.421913453 Z
+  _version: 0.16.7/0.54.0/0.15.49
+  author: 26545482
+  comments: 10
+  details: The pull request yegor256/qulice#1301 with 810 HoC created by @pejetuz
+    was reviewed by @volodya-lombrozo after 1839h50m and 7 comments.
+  hoc: 810
+  issue: 1301
+  repository: 9580168
+  review_comments: 7
+  seconds: 6623403
+  what: code-was-reviewed
+  when: 2024-09-19 09:53:57.000000000 Z
+  where: github
+  who: 51804353
