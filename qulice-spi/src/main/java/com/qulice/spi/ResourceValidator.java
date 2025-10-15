@@ -17,7 +17,7 @@ public interface ResourceValidator {
     /**
      * Validate and throws exception if there are any problems.
      * @param files Files to validate
-     * @return Validation results
+     * @return Non-null collection of validation results. Returns an empty collection if no violations are found.
      */
     Collection<Violation> validate(Collection<File> files);
 
