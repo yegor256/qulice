@@ -5,12 +5,10 @@
 package com.qulice.maven;
 
 import com.qulice.spi.ValidationException;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Properties;
 import java.util.stream.Collectors;
-import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Validate with maven-duplicate-finder-plugin.
@@ -32,12 +30,9 @@ public final class DuplicateFinderValidator implements MavenValidator {
             props.put("useResultFile", "false");
             props.put(
                 "ignoredResourcePatterns",
-                CollectionUtils.union(
-                    env.excludes(prefix).stream()
-                        .filter(s -> !s.contains(":"))
-                        .collect(Collectors.toList()),
-                    Arrays.asList("META-INF/.*", "module-info.class")
-                )
+                env.excludes(prefix).stream()
+                    .filter(s -> !s.contains(":"))
+                    .collect(Collectors.toList())
             );
             final Collection<Properties> deps = new LinkedList<>();
             for (final String sdep : env.excludes(prefix)) {
