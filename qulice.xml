@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.16.8" size="185162">
+<fb version="0.16.8" size="185391">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
+    <error t="S">GET https://api.github.com/repos/yegor256/qulice/pulls/1309: 504 - We couldn't respond to your request in time. Sorry about that. Please try resubmitting your request and contact us if the problem persists.</error>
     <inserted t="I">8</inserted>
-    <seconds t="F">104.030745138</seconds>
+    <seconds t="F">107.785714618</seconds>
     <version t="S">0.54.0</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-10-17T02:42:41Z</when>
+    <when t="T">2025-10-17T03:27:23Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -10256,14 +10257,6 @@
     <when t="T">2025-10-16T10:20:03Z</when>
   </f>
   <f>
-    <_id t="I">7187</_id>
-    <_job t="I">43660</_job>
-    <_time t="T">2025-10-16T18:22:34Z</_time>
-    <_version t="S">0.16.8/0.54.0/0.15.51</_version>
-    <what t="S">learn-eva</what>
-    <when t="T">2025-10-16T18:22:34Z</when>
-  </f>
-  <f>
     <_id t="I">7189</_id>
     <_job t="I">18579874907</_job>
     <_time t="T">2025-10-17T01:49:29Z</_time>
@@ -10282,16 +10275,24 @@
     <when t="T">2025-10-17T01:49:29Z</when>
   </f>
   <f>
-    <_id t="I">7190</_id>
-    <_job t="I">18580728489</_job>
-    <_time t="T">2025-10-17T02:41:20Z</_time>
+    <_id t="I">7191</_id>
+    <_job t="I">43742</_job>
+    <_time t="T">2025-10-17T02:43:22Z</_time>
+    <_version t="S">0.16.8/0.54.0/0.15.51</_version>
+    <what t="S">learn-eva</what>
+    <when t="T">2025-10-17T02:43:22Z</when>
+  </f>
+  <f>
+    <_id t="I">7192</_id>
+    <_job t="I">18581460350</_job>
+    <_time t="T">2025-10-17T03:26:59Z</_time>
     <_version t="S">0.16.8/0.54.0/0.15.51</_version>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">5267930212</events_were_scanned>
+    <events_were_scanned t="I">5268605317</events_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
     <merges_were_scanned t="I">0</merges_were_scanned>
     <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">1221</min_pull_was_found>
+    <min_pull_was_found t="I">1222</min_pull_was_found>
     <repository t="I">9580168</repository>
     <what t="S">iterate</what>
     <where t="S">github</where>
