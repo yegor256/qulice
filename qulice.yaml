@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 157.091506506
+  seconds: 142.109713856
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-18 11:20:01.599876419 Z
+  when: 2025-10-18 12:22:22.539539724 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -9333,14 +9333,6 @@
   some_unmerged_pulls: 0
   what: quality-of-service
   when: 2025-10-16 10:19:00.263100501 Z
-- _id: 7183
-  _job: 43604
-  _time: 2025-10-16 10:21:57.338590258 Z
-  _version: 0.16.8/0.54.0/0.15.51
-  analyzers: 18
-  text: The average monthly turnover (6.0 developers) is increasing (R=0.62).
-  what: assessment
-  when: 2025-10-16 10:21:57.345800690 Z
 - _id: 7185
   _job: 18559466548
   _time: 2025-10-16 11:21:06.696272309 Z
@@ -9405,16 +9397,28 @@
   _version: 0.16.8/0.54.0/0.15.51!0.15.52
   what: learn-eva
   when: 2025-10-18 04:21:28.695925923 Z
-- _id: 7201
-  _job: 18614918971
-  _time: 2025-10-18 11:17:35.874447890 Z
+- _id: 7202
+  _job: 44057
+  _time: 2025-10-18 11:20:25.317200102 Z
+  _version: 0.16.8/0.54.0/0.15.51!0.15.52
+  analyzers: 18
+  text: |-
+    The average number of builds per week (427.0) is decreasing (R=-0.15).
+    The average number of commits per week (8.3) is decreasing (R=-0.23).
+    The average number of releases per month (0.0) is staying still.
+    The average monthly turnover (6.0 developers) is increasing (R=0.65).
+  what: assessment
+  when: 2025-10-18 11:20:25.324121106 Z
+- _id: 7203
+  _job: 18615516252
+  _time: 2025-10-18 12:22:22.523994907 Z
   _version: 0.16.8/0.54.0/0.15.51
   earliest_issue_was_found: 1
-  events_were_scanned: 5298061881
+  events_were_scanned: 5298614435
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1257
+  min_pull_was_found: 1259
   repository: 9580168
   what: iterate
   where: github
