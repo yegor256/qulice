@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 210.7958836
+  seconds: 220.640441574
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-23 17:21:45.732525744 Z
+  when: 2025-10-23 18:23:45.835256811 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -9892,20 +9892,6 @@
   _version: 0.16.8/0.54.0/0.15.51!0.16.0
   what: learn-eva
   when: 2025-10-23 16:22:33.393433574 Z
-- _id: 7270
-  _job: 18756431612
-  _time: 2025-10-23 17:20:25.614416982 Z
-  _version: 0.16.8/0.54.0/0.15.51
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 4218471718
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1373
-  min_pull_was_found: 1408
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7271
   _job: 18756431612
   _time: 2025-10-23 17:20:54.458930702 Z
@@ -9921,8 +9907,10 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1405
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
   when: 2025-10-23 17:20:05.000000000 Z
@@ -9943,8 +9931,10 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1409
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
   when: 2025-10-23 17:06:23.000000000 Z
@@ -9965,10 +9955,161 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1410
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   what: pull-was-merged
   when: 2025-10-23 16:51:53.000000000 Z
   where: github
   who: 8086956
+- _id: 7275
+  _job: 18757975943
+  _time: 2025-10-23 18:20:59.546001063 Z
+  _version: 0.16.8/0.54.0/0.16.0
+  branch: renovate/zerocracy-judges-action-0.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1407 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1407
+  repository: 9580168
+  review: 2025-10-23 16:39:39.000000000 Z
+  review_comments: 0
+  succeeded_builds: 20
+  what: pull-was-merged
+  when: 2025-10-23 17:50:22.000000000 Z
+  where: github
+  who: 8086956
+- _id: 7276
+  _job: 18757975943
+  _time: 2025-10-23 18:21:19.171863987 Z
+  _version: 0.16.8/0.54.0/0.16.0
+  branch: renovate/zerocracy-pages-action-0.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1408 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1408
+  repository: 9580168
+  review: 2025-10-23 16:39:35.000000000 Z
+  review_comments: 0
+  succeeded_builds: 20
+  what: pull-was-merged
+  when: 2025-10-23 17:35:32.000000000 Z
+  where: github
+  who: 8086956
+- _id: 7277
+  _job: 18757975943
+  _time: 2025-10-23 18:21:35.047673918 Z
+  _version: 0.16.8/0.54.0/0.16.0
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 4219524486
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1373
+  min_pull_was_found: 1409
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 7278
+  _job: 18757975943
+  _time: 2025-10-23 18:23:11.685481716 Z
+  _version: 0.16.8/0.54.0/0.16.0
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1405 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 11h4m and 0 comments.
+  hoc: 2
+  issue: 1405
+  repository: 9580168
+  review_comments: 0
+  seconds: 39847
+  what: code-was-reviewed
+  when: 2025-10-23 16:39:44.000000000 Z
+  where: github
+  who: 526301
+- _id: 7279
+  _job: 18757975943
+  _time: 2025-10-23 18:23:13.708184208 Z
+  _version: 0.16.8/0.54.0/0.16.0
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1409 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 9h14m and 0 comments.
+  hoc: 2
+  issue: 1409
+  repository: 9580168
+  review_comments: 0
+  seconds: 33285
+  what: code-was-reviewed
+  when: 2025-10-23 16:39:32.000000000 Z
+  where: github
+  who: 526301
+- _id: 7280
+  _job: 18757975943
+  _time: 2025-10-23 18:23:15.242893720 Z
+  _version: 0.16.8/0.54.0/0.16.0
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1410 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 9h14m and 0 comments.
+  hoc: 2
+  issue: 1410
+  repository: 9580168
+  review_comments: 0
+  seconds: 33279
+  what: code-was-reviewed
+  when: 2025-10-23 16:39:29.000000000 Z
+  where: github
+  who: 526301
+- _id: 7281
+  _job: 18757975943
+  _time: 2025-10-23 18:23:16.604465711 Z
+  _version: 0.16.8/0.54.0/0.16.0
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1407 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 10h14m and 0 comments.
+  hoc: 2
+  issue: 1407
+  repository: 9580168
+  review_comments: 0
+  seconds: 36846
+  what: code-was-reviewed
+  when: 2025-10-23 16:39:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 7282
+  _job: 18757975943
+  _time: 2025-10-23 18:23:17.921563990 Z
+  _version: 0.16.8/0.54.0/0.16.0
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1408 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 10h13m and 0 comments.
+  hoc: 2
+  issue: 1408
+  repository: 9580168
+  review_comments: 0
+  seconds: 36838
+  what: code-was-reviewed
+  when: 2025-10-23 16:39:35.000000000 Z
+  where: github
+  who: 526301
