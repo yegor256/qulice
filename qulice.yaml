@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 148.220934802
+  seconds: 210.7958836
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-23 16:21:46.458001282 Z
+  when: 2025-10-23 17:21:45.732525744 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -9609,12 +9609,6 @@
   when: 2025-10-23 05:33:51.000000000 Z
   where: github
   who: 526301
-- _id: 7254
-  _job: 44841
-  _time: 2025-10-23 07:23:19.915853217 Z
-  _version: 0.16.8/0.54.0/0.15.51!0.16.0
-  what: learn-eva
-  when: 2025-10-23 07:23:19.908516292 Z
 - _id: 7255
   _job: 18742097727
   _time: 2025-10-23 08:19:49.727897445 Z
@@ -9892,17 +9886,89 @@
     The average monthly turnover (6.0 developers) is increasing (R=0.65).
   what: assessment
   when: 2025-10-23 14:23:02.094807995 Z
-- _id: 7268
-  _job: 18754943055
-  _time: 2025-10-23 16:21:21.295811987 Z
+- _id: 7269
+  _job: 44905
+  _time: 2025-10-23 16:22:33.400282081 Z
+  _version: 0.16.8/0.54.0/0.15.51!0.16.0
+  what: learn-eva
+  when: 2025-10-23 16:22:33.393433574 Z
+- _id: 7270
+  _job: 18756431612
+  _time: 2025-10-23 17:20:25.614416982 Z
   _version: 0.16.8/0.54.0/0.15.51
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 5417618365
+  events_were_scanned: 4218471718
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1407
+  min_pull_was_found: 1408
   repository: 9580168
   what: iterate
   where: github
+- _id: 7271
+  _job: 18756431612
+  _time: 2025-10-23 17:20:54.458930702 Z
+  _version: 0.16.8/0.54.0/0.15.51
+  branch: renovate/crate-ci-typos-1.x
+  comments: 2
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 2
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1405 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1405
+  repository: 9580168
+  succeeded_builds: 20
+  what: pull-was-merged
+  when: 2025-10-23 17:20:05.000000000 Z
+  where: github
+  who: 8086956
+- _id: 7272
+  _job: 18756431612
+  _time: 2025-10-23 17:21:09.811518962 Z
+  _version: 0.16.8/0.54.0/0.15.51
+  branch: renovate/fsfe-reuse-action-6.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1409 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1409
+  repository: 9580168
+  succeeded_builds: 20
+  what: pull-was-merged
+  when: 2025-10-23 17:06:23.000000000 Z
+  where: github
+  who: 8086956
+- _id: 7273
+  _job: 18756431612
+  _time: 2025-10-23 17:21:19.920487533 Z
+  _version: 0.16.8/0.54.0/0.15.51
+  branch: renovate/peter-evans-create-pull-request-7.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1410 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1410
+  repository: 9580168
+  succeeded_builds: 20
+  what: pull-was-merged
+  when: 2025-10-23 16:51:53.000000000 Z
+  where: github
+  who: 8086956
