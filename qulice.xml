@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.16.8" size="187019">
+<fb version="0.16.8" size="189338">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">122.708558841</seconds>
+    <seconds t="F">267.753579867</seconds>
     <version t="S">0.54.0</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-10-23T05:20:24Z</when>
+    <when t="T">2025-10-23T06:24:17Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -10397,18 +10397,168 @@ The average monthly turnover (6.0 developers) is increasing (R=0.65).</text>
   </f>
   <f>
     <_id t="I">7246</_id>
-    <_job t="I">18738335534</_job>
-    <_time t="T">2025-10-23T05:20:16Z</_time>
+    <_job t="I">18739409280</_job>
+    <_time t="T">2025-10-23T06:21:34Z</_time>
     <_version t="S">0.16.8/0.54.0/0.15.51</_version>
     <assignees_were_scanned t="I">0</assignees_were_scanned>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">5403120835</events_were_scanned>
+    <events_were_scanned t="I">5404097452</events_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
     <merges_were_scanned t="I">0</merges_were_scanned>
     <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">1396</min_pull_was_found>
+    <min_pull_was_found t="I">1397</min_pull_was_found>
     <repository t="I">9580168</repository>
     <what t="S">iterate</what>
     <where t="S">github</where>
+  </f>
+  <f>
+    <_id t="I">7247</_id>
+    <_job t="I">18739409280</_job>
+    <_time t="T">2025-10-23T06:22:10Z</_time>
+    <_version t="S">0.16.8/0.54.0/0.15.51</_version>
+    <branch t="S">renovate/hibernate-core</branch>
+    <comments t="I">1</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">1</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1225 has been "pull-was-closed".</details>
+    <failed_builds t="I">12</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1225</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">8</succeeded_builds>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2025-10-23T05:34:58Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">7248</_id>
+    <_job t="I">18739409280</_job>
+    <_time t="T">2025-10-23T06:22:28Z</_time>
+    <_version t="S">0.16.8/0.54.0/0.15.51</_version>
+    <branch t="S">renovate/org.codehaus.plexus-plexus-utils-4.x</branch>
+    <comments t="I">2</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">1</comments_by_author>
+    <comments_by_reviewers t="I">1</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1230 has been "pull-was-closed".</details>
+    <failed_builds t="I">12</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1230</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">8</succeeded_builds>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2025-10-23T05:33:41Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">7249</_id>
+    <_job t="I">18739409280</_job>
+    <_time t="T">2025-10-23T06:22:43Z</_time>
+    <_version t="S">0.16.8/0.54.0/0.15.51</_version>
+    <branch t="S">renovate/net.sourceforge.pmd-pmd-jsp-7.x</branch>
+    <comments t="I">1</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">1</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1252 has been "pull-was-closed".</details>
+    <failed_builds t="I">12</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1252</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">8</succeeded_builds>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2025-10-23T05:33:30Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">7250</_id>
+    <_job t="I">18739409280</_job>
+    <_time t="T">2025-10-23T06:23:00Z</_time>
+    <_version t="S">0.16.8/0.54.0/0.15.51</_version>
+    <branch t="S">dependabot/maven/qulice-pmd/net.sourceforge.pmd-pmd-core-7.10.0</branch>
+    <comments t="I">1</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">1</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1316 has been "pull-was-closed".</details>
+    <failed_builds t="I">7</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1316</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">2</succeeded_builds>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2025-10-23T05:34:10Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">7251</_id>
+    <_job t="I">18739409280</_job>
+    <_time t="T">2025-10-23T06:23:12Z</_time>
+    <_version t="S">0.16.8/0.54.0/0.15.51</_version>
+    <branch t="S">renovate/junit-framework-monorepo</branch>
+    <comments t="I">0</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1395 has been "pull-was-closed".</details>
+    <failed_builds t="I">24</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">10</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1395</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">16</succeeded_builds>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2025-10-23T05:33:59Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">7252</_id>
+    <_job t="I">18739409280</_job>
+    <_time t="T">2025-10-23T06:23:34Z</_time>
+    <_version t="S">0.16.8/0.54.0/0.15.51</_version>
+    <branch t="S">renovate/major-junit-framework-monorepo</branch>
+    <comments t="I">1</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">1</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1404 has been "pull-was-closed".</details>
+    <failed_builds t="I">12</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">10</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1404</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">8</succeeded_builds>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2025-10-23T05:33:51Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
   </f>
 </fb>
