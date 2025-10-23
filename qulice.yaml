@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 196.846591351
+  seconds: 251.167710807
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-23 09:22:17.177218098 Z
+  when: 2025-10-23 10:23:02.384136706 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -9332,7 +9332,7 @@
   some_merged_pulls: 0
   some_unmerged_pulls: 0
   what: quality-of-service
-  when: 2025-10-16 10:19:00.263100501 Z
+  when: &63 2025-10-16 10:19:00.263100501 Z
 - _id: 7185
   _job: 18559466548
   _time: 2025-10-16 11:21:06.696272309 Z
@@ -9346,7 +9346,7 @@
   total_releases_published: 0
   total_reviews_submitted: 0
   what: quantity-of-deliverables
-  when: 2025-10-16 10:20:03.928433826 Z
+  when: &62 2025-10-16 10:20:03.928433826 Z
 - _id: 7189
   _job: 18579874907
   _time: 2025-10-17 01:49:29.875873695 Z
@@ -9725,16 +9725,184 @@
   where: github
   who: 29139614
 - _id: 7263
-  _job: 18743632327
-  _time: 2025-10-23 09:19:14.130811558 Z
+  _job: 18745165756
+  _time: 2025-10-23 10:18:55.533054604 Z
   _version: 0.16.8/0.54.0/0.15.51
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 4206449355
+  events_were_scanned: 5408627309
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1400
+  min_pull_was_found: 1401
   repository: 9580168
   what: iterate
   where: github
+- _id: 7264
+  _job: 18745165756
+  _time: 2025-10-23 10:21:16.736429530 Z
+  _version: 0.16.8/0.54.0/0.15.51
+  since: *62
+  total_builds_ran: 486
+  total_commits_pushed: 2
+  total_hoc_committed: 8
+  total_issues_created: 11
+  total_pulls_submitted: 10
+  total_releases_published: 0
+  total_reviews_submitted: 0
+  what: quantity-of-deliverables
+  when: 2025-10-23 10:20:03.928433826 Z
+- _id: 7265
+  _job: 18745165756
+  _time: 2025-10-23 10:21:56.016355226 Z
+  _version: 0.16.8/0.54.0/0.15.51
+  since: *63
+  some_backlog_size:
+  - 153
+  - 153
+  - 153
+  - 153
+  - 153
+  - 153
+  - 153
+  some_build_duration:
+  - 26
+  - 354
+  - 69
+  - 13
+  - 13
+  - 12
+  - 15
+  - 15
+  - 15
+  - 13
+  - 13
+  - 14
+  - 16
+  - 18
+  - 22
+  - 27
+  - 34
+  - 33
+  - 33
+  - 37
+  - 37
+  - 271
+  - 280
+  - 293
+  - 66
+  - 14
+  - 14
+  - 15
+  - 16
+  - 15
+  - 18
+  - 16
+  - 16
+  - 18
+  - 21
+  - 19
+  - 21
+  - 33
+  - 33
+  - 36
+  - 36
+  - 39
+  - 53
+  - 292
+  - 366
+  - 284
+  - 63
+  - 13
+  - 14
+  - 15
+  - 15
+  - 16
+  - 23
+  - 33
+  - 35
+  - 38
+  - 45
+  - 280
+  - 62
+  - 0
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 0
+  some_merged_pulls: 9
+  some_pull_files_size: 2
+  some_pull_hoc_size: 4
+  some_pull_lifetime:
+  - 1455736.0
+  - 1874989.0
+  - 22852722.0
+  - 49463944.0
+  - 50902586.0
+  - 50910870.0
+  - 69076333.0
+  - 94472811.0
+  - 94472827.0
+  some_review_size: 0
+  some_reviewers_per_pull: 0
+  some_reviews_per_pull: 0
+  some_unmerged_pulls: 8
+  what: quality-of-service
+  when: 2025-10-23 10:19:00.263100501 Z
