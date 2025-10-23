@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 200.975854181
+  seconds: 196.846591351
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-23 08:23:07.464251556 Z
+  when: 2025-10-23 09:22:17.177218098 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -9657,20 +9657,6 @@
   when: 2025-10-23 07:24:47.000000000 Z
   where: github
   who: 29139614
-- _id: 7257
-  _job: 18742097727
-  _time: 2025-10-23 08:20:11.522996978 Z
-  _version: 0.16.8/0.54.0/0.15.51
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 4205312875
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1373
-  min_pull_was_found: 1399
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7258
   _job: 18742097727
   _time: 2025-10-23 08:22:38.384558365 Z
@@ -9723,3 +9709,32 @@
   when: 2025-10-23 06:25:37.000000000 Z
   where: github
   who: 29139614
+- _id: 7262
+  _job: 18743632327
+  _time: 2025-10-23 09:19:03.546184434 Z
+  _version: 0.16.8/0.54.0/0.15.51
+  branch: renovate/com.puppycrawl.tools-checkstyle-12.x
+  details: The pull request yegor256/qulice#1411 has been opened by @renovate[bot].
+  event_id: 4206449355
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1411
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-10-23 08:24:41.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7263
+  _job: 18743632327
+  _time: 2025-10-23 09:19:14.130811558 Z
+  _version: 0.16.8/0.54.0/0.15.51
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 4206449355
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1373
+  min_pull_was_found: 1400
+  repository: 9580168
+  what: iterate
+  where: github
