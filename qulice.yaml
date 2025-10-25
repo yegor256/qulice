@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 104.571373714
+  seconds: 108.78788793
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-25 16:20:46.385500890 Z
+  when: 2025-10-25 17:19:45.212903670 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -9862,18 +9862,6 @@
   some_unmerged_pulls: 8
   what: quality-of-service
   when: 2025-10-23 10:19:00.263100501 Z
-- _id: 7267
-  _job: 44891
-  _time: 2025-10-23 14:23:02.087328321 Z
-  _version: 0.16.8/0.54.0/0.15.51!0.16.0
-  analyzers: 18
-  text: |-
-    The average number of builds per week (438.8) is staying still.
-    The average number of commits per week (7.0) is decreasing (R=-0.38).
-    The average number of releases per month (0.0) is staying still.
-    The average monthly turnover (6.0 developers) is increasing (R=0.65).
-  what: assessment
-  when: 2025-10-23 14:23:02.094807995 Z
 - _id: 7271
   _job: 18756431612
   _time: 2025-10-23 17:20:54.458930702 Z
@@ -10136,17 +10124,29 @@
   _version: 0.16.8/0.54.0/0.16.0
   what: learn-eva
   when: 2025-10-25 11:20:34.075836382 Z
-- _id: 7299
-  _job: 18805491574
-  _time: 2025-10-25 16:20:07.955780935 Z
+- _id: 7300
+  _job: 45321
+  _time: 2025-10-25 16:21:08.178250556 Z
+  _version: 0.16.8/0.54.0/0.16.0
+  analyzers: 18
+  text: |-
+    The average number of builds per week (438.8) is staying still.
+    The average number of commits per week (7.0) is decreasing (R=-0.38).
+    The average number of releases per month (0.0) is staying still.
+    The average monthly turnover (6.0 developers) is increasing (R=0.65).
+  what: assessment
+  when: 2025-10-25 16:21:08.185474100 Z
+- _id: 7301
+  _job: 18806118890
+  _time: 2025-10-25 17:19:30.438098548 Z
   _version: 0.16.8/0.54.0/0.16.0
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 5462764233
+  events_were_scanned: 5463423317
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1269
+  min_pull_was_found: 1270
   repository: 9580168
   what: iterate
   where: github
