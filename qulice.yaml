@@ -2,11 +2,13 @@
 - added: 8
   cycles: 1
   deleted: 8
+  error: Failed to open TCP connection to api.github.com:443 (Connection refused -
+    connect(2) for "api.github.com" port 443)
   inserted: 8
-  seconds: 161.929413226
+  seconds: 146.889309737
   version: 0.54.0
   what: judges-summary
-  when: 2025-10-28 15:21:53.968788909 Z
+  when: 2025-10-28 16:22:15.661813883 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -10199,16 +10201,16 @@
   what: learn-eva
   when: 2025-10-28 14:23:32.079463563 Z
 - _id: 7329
-  _job: 18879792159
-  _time: 2025-10-28 15:19:36.592269533 Z
+  _job: 18881647644
+  _time: 2025-10-28 16:20:46.154319394 Z
   _version: 0.16.8/0.54.0/0.16.0
-  assignees_were_scanned: 0
+  assignees_were_scanned: 1326
   earliest_issue_was_found: 1
-  events_were_scanned: 5528947497
+  events_were_scanned: 5530659310
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1355
+  min_pull_was_found: 1356
   repository: 9580168
   what: iterate
   where: github
