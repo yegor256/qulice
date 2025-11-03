@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.16.8" size="199958">
+<fb version="0.16.8" size="200261">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
+    <error>
+      <v t="S">Connection reset by peer - SSL_connect</v>
+      <v t="S">Failed to open TCP connection to api.github.com:443 (Connection refused - connect(2) for "api.github.com" port 443)</v>
+      <v t="S">Failed to open TCP connection to api.github.com:443 (Connection refused - connect(2) for "api.github.com" port 443)</v>
+    </error>
     <inserted t="I">8</inserted>
-    <seconds t="F">172.287786836</seconds>
+    <seconds t="F">63.643127644</seconds>
     <version t="S">0.54.0</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-11-03T14:21:42Z</when>
+    <when t="T">2025-11-03T15:20:02Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -11505,14 +11510,14 @@ The average monthly turnover (7.0 developers) is increasing (R=0.62).</text>
   </f>
   <f>
     <_id t="I">7388</_id>
-    <_job t="I">19037699077</_job>
-    <_time t="T">2025-11-03T14:19:40Z</_time>
+    <_job t="I">19039527130</_job>
+    <_time t="T">2025-11-03T15:19:30Z</_time>
     <_version t="S">0.16.8/0.54.0/0.16.0</_version>
     <assignees_were_scanned t="I">0</assignees_were_scanned>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">5665908700</events_were_scanned>
+    <events_were_scanned t="I">5667332042</events_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
-    <merges_were_scanned t="I">0</merges_were_scanned>
+    <merges_were_scanned t="I">1332</merges_were_scanned>
     <min_issue_was_found t="I">1373</min_issue_was_found>
     <min_pull_was_found t="I">1340</min_pull_was_found>
     <repository t="I">9580168</repository>
