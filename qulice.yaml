@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 157.659705269
+  seconds: 196.96209952
   version: 0.54.0
   what: judges-summary
-  when: 2025-11-04 06:22:32.718124115 Z
+  when: 2025-11-04 07:22:13.292075015 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -102,6 +102,7 @@
           [hit-of-code](https://www.yegor256.com/2014/11/14/hits-of-code.html),
           but not more than ${hoc_max} points') (aka (let few_comments_fee 10) (let comments_needed 6) (set penalty_for_few_comments (if (and (lt comments comments_needed) (not (eq comments 0))) (times -1 few_comments_fee) 0)) (give penalty_for_few_comments 'for very few (${comments}) comments') 'deduct ${few_comments_fee} points if there were less than ${comments_needed} comments made during review') (aka (let silence_fee 16) (set penalty_for_silence (if (eq comments 0) (times -1 silence_fee) 0)) (give penalty_for_silence 'for absolutely no comments posted') 'deduct ${silence_fee} points if there were absolutely no comments made during review') (aka (let comments_k 0.25) (let comments_max 8) (let comments_min 5) (set bonus_for_comments (times comments comments_k)) (set bonus_for_comments (between bonus_for_comments comments_min comments_max)) (set bonus_for_comments (if (eq self 1) 0 bonus_for_comments)) (give bonus_for_comments 'for the ${comments} comment(s) that you have made') 'add ${comments_k} points for each comment during the review, but not more than ${comments_max} points') (aka (let hoc_fee 8) (let hoc_needed 16) (set penalty_for_hoc (if (lt hoc hoc_needed) (times -1 hoc_fee) 0)) (give penalty_for_hoc 'for too few (${hoc}) hits-of-code') 'deduct ${hoc_fee} points if there were less than ${hoc_needed} hits-of-code') (aka (let max 24) (set over (if (gt (total) max) (minus max (total)) 0)) (give over 'to not go over the cap') (let min 4) (set least (if (lt (total) min) (minus min (total)) 0)) (give least 'to give you at least something') 'make sure the reward is not larger than ${max} points and not smaller than ${min} points'))
   days_of_running_balance: 56
+  days_of_running_score: 56
   days_to_reward: 14
   dud_was_punished: "(award (explain 'When an issue is submitted but then rejected
     by the team, the reporter receives a penalty') (aka (let fee -16) (give fee 'as
@@ -10511,16 +10512,16 @@
   what: learn-eva
   when: 2025-11-04 00:42:14.825310158 Z
 - _id: 7394
-  _job: 19059714958
-  _time: 2025-11-04 06:20:13.230412470 Z
+  _job: 19060866859
+  _time: 2025-11-04 07:20:02.027480955 Z
   _version: 0.16.8/0.54.0/0.16.0
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 5683946740
+  events_were_scanned: 5684918003
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1357
+  min_pull_was_found: 1358
   repository: 9580168
   what: iterate
   where: github
