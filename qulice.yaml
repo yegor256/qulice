@@ -2,11 +2,13 @@
 - added: 8
   cycles: 1
   deleted: 8
+  error: Failed to open TCP connection to api.github.com:443 (Connection refused -
+    connect(2) for "api.github.com" port 443)
   inserted: 8
-  seconds: 179.145499776
+  seconds: 201.099501815
   version: 0.55.0
   what: judges-summary
-  when: 2025-11-06 09:22:35.255115700 Z
+  when: 2025-11-06 10:22:29.693942471 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -10402,7 +10404,7 @@
   - 1
   some_unmerged_pulls: 0
   what: quality-of-service
-  when: 2025-10-30 10:19:00.263100501 Z
+  when: &66 2025-10-30 10:19:00.263100501 Z
 - _id: 7350
   _job: 18938832101
   _time: 2025-10-30 11:21:05.571067596 Z
@@ -10558,16 +10560,191 @@
   what: learn-eva
   when: 2025-11-06 02:50:37.884207331 Z
 - _id: 7412
-  _job: 19130734038
-  _time: 2025-11-06 09:21:24.737390438 Z
+  _job: 19132320797
+  _time: 2025-11-06 10:20:34.069371999 Z
   _version: 0.16.8/0.55.0/0.16.1
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 5745793126
+  events_were_scanned: 5747178702
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1222
+  min_pull_was_found: 1223
   repository: 9580168
   what: iterate
   where: github
+- _id: 7413
+  _job: 19132320797
+  _time: 2025-11-06 10:20:55.806913947 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  since: *66
+  some_backlog_size:
+  - 153
+  - 153
+  - 153
+  - 153
+  - 153
+  - 153
+  - 153
+  some_build_duration:
+  - 7
+  - 8
+  - 8
+  - 8
+  - 9
+  - 13
+  - 17
+  - 31
+  - 184
+  - 50
+  - 212
+  - 53
+  - 239
+  - 52
+  - 201
+  - 54
+  - 277
+  - 53
+  - 247
+  - 62
+  - 230
+  - 51
+  - 226
+  - 55
+  - 277
+  - 52
+  - 211
+  - 49
+  - 321
+  - 53
+  - 301
+  - 122
+  - 244
+  - 59
+  - 216
+  - 63
+  - 247
+  - 56
+  - 58
+  - 56
+  - 61
+  - 74
+  - 57
+  - 60
+  - 251
+  - 48
+  - 271
+  - 46
+  - 219
+  - 47
+  - 274
+  - 42
+  - 235
+  - 56
+  - 1513
+  - 275
+  - 50
+  - 265
+  - 56
+  - 0
+  some_build_mttr: 30447
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  some_merged_pulls: 4
+  some_pull_files_size:
+  - 1
+  - 1
+  - 1
+  - 1
+  some_pull_hoc_size:
+  - 2
+  - 2
+  - 2
+  - 2
+  some_pull_lifetime:
+  - 39716.0
+  - 44253.0
+  - 18921.0
+  - 5973.0
+  some_review_size:
+  - 0
+  - 0
+  - 0
+  - 0
+  some_review_time:
+  - 1073
+  - 1962
+  - 2151
+  - 1302
+  some_reviewers_per_pull:
+  - 1
+  - 1
+  - 1
+  - 1
+  some_reviews_per_pull:
+  - 1
+  - 1
+  - 1
+  - 1
+  some_unmerged_pulls: 0
+  what: quality-of-service
+  when: 2025-11-06 10:19:00.263100501 Z
