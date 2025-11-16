@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 215.113837698
+  seconds: 213.709846698
   version: 0.55.0
   what: judges-summary
-  when: 2025-11-16 15:22:14.843740018 Z
+  when: 2025-11-16 16:22:37.022146435 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -10812,18 +10812,6 @@
   total_stars: 309
   what: dimensions-of-terrain
   when: 2025-11-11 13:23:41.261619207 Z
-- _id: 7471
-  _job: 48756
-  _time: 2025-11-12 07:21:17.367980363 Z
-  _version: 0.16.8/0.55.0/0.16.1
-  analyzers: 18
-  text: |-
-    The average number of builds per week (424.6) is decreasing (R=-0.15).
-    The average number of commits per week (6.9) is decreasing (R=-0.27).
-    The average number of releases per month (0.0) is staying still.
-    The average monthly turnover (7.0 developers) is increasing (R=0.62).
-  what: assessment
-  when: 2025-11-12 07:21:17.379539524 Z
 - _id: 7473
   _job: 19298925497
   _time: 2025-11-12 13:24:51.265704812 Z
@@ -11056,26 +11044,6 @@
     The average monthly turnover (7.0 developers) is increasing (R=0.62).
   what: assessment
   when: 2025-11-14 14:25:05.018957012 Z
-- _id: 7483
-  _job: 49178
-  _time: 2025-11-14 14:25:27.561071804 Z
-  _version: 0.16.8/0.55.0/0.16.1
-  what: learn-eva
-  when: 2025-11-14 14:25:27.555429544 Z
-- _id: 7484
-  _job: 19407716592
-  _time: 2025-11-16 15:19:22.609845080 Z
-  _version: 0.16.8/0.55.0/0.16.1
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 5665908700
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1373
-  min_pull_was_found: 1223
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7485
   _job: 19407716592
   _time: 2025-11-16 15:22:05.832527585 Z
@@ -11092,3 +11060,49 @@
   total_stars: 309
   what: dimensions-of-terrain
   when: 2025-11-16 15:22:05.838037043 Z
+- _id: 7486
+  _job: 49312
+  _time: 2025-11-16 15:22:43.809970456 Z
+  _version: 0.16.8/0.57.1/0.16.1
+  analyzers: 18
+  text: |-
+    The average number of builds per week (435.5) is staying still.
+    The average number of commits per week (6.6) is decreasing (R=-0.27).
+    The average number of releases per month (0.0) is staying still.
+    The average monthly turnover (7.0 developers) is increasing (R=0.62).
+  what: assessment
+  when: 2025-11-16 15:22:43.818266273 Z
+- _id: 7487
+  _job: 49312
+  _time: 2025-11-16 15:23:04.783606148 Z
+  _version: 0.16.8/0.57.1/0.16.1
+  what: learn-eva
+  when: 2025-11-16 15:23:04.775989818 Z
+- _id: 7488
+  _job: 49312
+  _time: 2025-11-16 15:23:04.846720822 Z
+  _version: 0.16.8/0.57.1/0.16.1
+  ac: 68
+  cost_of_qod: 0.24444025582995785
+  ev: 17
+  pv: 1763
+  qod: 71
+  qod_per_day: 117.43114285714286
+  qod_per_sec: 1.3391873457013881e-05
+  start: *12
+  what: earned-value
+  when: 2025-11-16 15:23:04.846925546 Z
+- _id: 7489
+  _job: 19408471777
+  _time: 2025-11-16 16:22:27.552644837 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 5667332042
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1373
+  min_pull_was_found: 1224
+  repository: 9580168
+  what: iterate
+  where: github
