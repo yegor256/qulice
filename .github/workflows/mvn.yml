@@ -19,7 +19,7 @@ jobs:
         os: [windows-2022, windows-2025, ubuntu-22.04, ubuntu-24.04, macos-14, macos-15]
         java: [17, 21]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-java@v5
         with:
           distribution: 'temurin'
