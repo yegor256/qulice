@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 150.31630807
+  seconds: 245.729639859
   version: 0.55.0
   what: judges-summary
-  when: 2025-11-20 17:20:35.096953472 Z
+  when: 2025-11-20 18:24:05.035938182 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -11078,18 +11078,6 @@
   total_stars: 309
   what: dimensions-of-terrain
   when: 2025-11-17 16:19:58.971209954 Z
-- _id: 7502
-  _job: 49652
-  _time: 2025-11-18 15:24:20.344433313 Z
-  _version: 0.16.8/0.57.1/0.16.1
-  analyzers: 18
-  text: |-
-    The average number of builds per week (435.5) is staying still.
-    The average number of commits per week (6.6) is decreasing (R=-0.27).
-    The average number of releases per month (0.0) is staying still.
-    The average monthly turnover (7.0 developers) is increasing (R=0.62).
-  what: assessment
-  when: 2025-11-18 15:24:20.352347249 Z
 - _id: 7505
   _job: 19473120874
   _time: 2025-11-18 16:22:39.827372432 Z
@@ -11321,17 +11309,45 @@
   _version: 0.16.8/0.57.1/0.16.1
   what: learn-eva
   when: 2025-11-20 11:21:34.294802946 Z
-- _id: 7523
-  _job: 19545330427
-  _time: 2025-11-20 17:18:41.402200009 Z
+- _id: 7524
+  _job: 50065
+  _time: 2025-11-20 17:20:54.510186661 Z
+  _version: 0.16.8/0.57.1/0.16.1
+  analyzers: 18
+  text: |-
+    The average number of builds per week (421.3) is decreasing (R=-0.19).
+    The average number of commits per week (6.2) is decreasing (R=-0.33).
+    The average number of releases per month (0.0) is staying still.
+    The average monthly turnover (7.0 developers) is increasing (R=0.62).
+  what: assessment
+  when: 2025-11-20 17:20:54.516844042 Z
+- _id: 7525
+  _job: 19547095364
+  _time: 2025-11-20 18:21:08.578966837 Z
   _version: 0.16.8/0.55.0/0.16.1
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 6116386806
+  events_were_scanned: 6118277028
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1322
+  min_pull_was_found: 1323
   repository: 9580168
   what: iterate
   where: github
+- _id: 7526
+  _job: 19547095364
+  _time: 2025-11-20 18:21:41.749089131 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  total_active_contributors: 3
+  total_commits: 2205
+  total_contributors: 52
+  total_files: 423
+  total_forks: 118
+  total_issues: 833
+  total_pulls: 593
+  total_releases: 73
+  total_repositories: 1
+  total_stars: 309
+  what: dimensions-of-terrain
+  when: 2025-11-20 18:21:41.758854217 Z
