@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 173.520734109
+  seconds: 244.351303582
   version: 0.55.0
   what: judges-summary
-  when: 2025-11-20 09:21:46.049710787 Z
+  when: 2025-11-20 10:23:27.078045220 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -11001,7 +11001,7 @@
   - 1
   some_unmerged_pulls: 0
   what: quality-of-service
-  when: 2025-11-13 10:19:00.263100501 Z
+  when: &70 2025-11-13 10:19:00.263100501 Z
 - _id: 7480
   _job: 19367320277
   _time: 2025-11-14 14:23:00.122439497 Z
@@ -11015,7 +11015,7 @@
   total_releases_published: 0
   total_reviews_submitted: 5
   what: quantity-of-deliverables
-  when: 2025-11-13 10:20:03.928433826 Z
+  when: &71 2025-11-13 10:20:03.928433826 Z
 - _id: 7481
   _job: 19367320277
   _time: 2025-11-14 14:24:31.677488833 Z
@@ -11141,16 +11141,197 @@
   what: learn-eva
   when: 2025-11-20 02:48:47.360862683 Z
 - _id: 7518
-  _job: 19531738119
-  _time: 2025-11-20 09:21:24.620076848 Z
+  _job: 19533414718
+  _time: 2025-11-20 10:19:40.705705697 Z
   _version: 0.16.8/0.55.0/0.16.1
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 6103444120
+  events_were_scanned: 6104906110
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1310
+  min_pull_was_found: 1311
   repository: 9580168
   what: iterate
   where: github
+- _id: 7519
+  _job: 19533414718
+  _time: 2025-11-20 10:19:52.858249634 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  since: *70
+  some_backlog_size:
+  - 153
+  - 100
+  - 153
+  - 153
+  - 153
+  - 153
+  - 153
+  some_build_duration:
+  - 55
+  - 294
+  - 55
+  - 218
+  - 52
+  - 300
+  - 50
+  - 288
+  - 56
+  - 312
+  - 51
+  - 293
+  - 75
+  - 307
+  - 70
+  - 239
+  - 50
+  - 254
+  - 108
+  - 273
+  - 171
+  - 273
+  - 83
+  - 319
+  - 75
+  - 252
+  - 200
+  - 227
+  - 58
+  - 305
+  - 63
+  - 306
+  - 72
+  - 224
+  - 47
+  - 293
+  - 51
+  - 279
+  - 60
+  - 289
+  - 50
+  - 219
+  - 45
+  - 219
+  - 43
+  - 236
+  - 52
+  - 217
+  - 50
+  - 294
+  - 46
+  - 289
+  - 53
+  - 288
+  - 52
+  - 277
+  - 60
+  - 279
+  - 54
+  - 0
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  some_merged_pulls: 3
+  some_pull_files_size:
+  - 1
+  - 1
+  - 1
+  some_pull_hoc_size:
+  - 2
+  - 2
+  - 2
+  some_pull_lifetime:
+  - 1523.0
+  - 13628.0
+  - 39909.0
+  some_review_size:
+  - 0
+  - 0
+  - 0
+  some_review_time:
+  - 1096
+  - 717
+  - 897
+  some_reviewers_per_pull:
+  - 1
+  - 1
+  - 1
+  some_reviews_per_pull:
+  - 1
+  - 1
+  - 1
+  some_unmerged_pulls: 0
+  what: quality-of-service
+  when: 2025-11-20 10:19:00.263100501 Z
+- _id: 7520
+  _job: 19533414718
+  _time: 2025-11-20 10:22:36.655008725 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  since: *71
+  total_builds_ran: 308
+  total_commits_pushed: 3
+  total_hoc_committed: 6
+  total_issues_created: 2
+  total_pulls_submitted: 1
+  total_releases_published: 0
+  total_reviews_submitted: 3
+  what: quantity-of-deliverables
+  when: 2025-11-20 10:20:03.928433826 Z
