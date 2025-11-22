@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 157.816218725
+  seconds: 233.008452603
   version: 0.55.0
   what: judges-summary
-  when: 2025-11-22 19:20:22.023115642 Z
+  when: 2025-11-22 20:22:47.445945602 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -11353,17 +11353,236 @@
     The average monthly turnover (7.0 developers) is increasing (R=0.62).
   what: assessment
   when: 2025-11-22 18:22:39.503950074 Z
-- _id: 7545
-  _job: 19600071613
-  _time: 2025-11-22 19:17:57.749797791 Z
+- _id: 7546
+  _job: 19600700317
+  _time: 2025-11-22 20:20:05.177349132 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  details: The issue yegor256/qulice#1428 has been earlier opened by @roroche.
+  issue: 1428
+  repository: 9580168
+  what: issue-was-opened
+  when: 2025-11-22 20:09:11.000000000 Z
+  where: github
+  who: 12625928
+- _id: 7547
+  _job: 19600700317
+  _time: 2025-11-22 20:20:06.361554062 Z
   _version: 0.16.8/0.55.0/0.16.1
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 6166112589
+  events_were_scanned: 4852713817
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1397
+  min_pull_was_found: 1398
   repository: 9580168
   what: iterate
   where: github
+- _id: 7548
+  _job: 19600700317
+  _time: 2025-11-22 20:22:24.563283213 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  total_active_contributors: 2
+  total_commits: 2206
+  total_contributors: 52
+  total_files: 423
+  total_forks: 118
+  total_issues: 834
+  total_pulls: 593
+  total_releases: 73
+  total_repositories: 1
+  total_stars: 309
+  what: dimensions-of-terrain
+  when: 2025-11-22 20:22:24.568629779 Z
+- _id: 7549
+  _job: 19600700317
+  _time: 2025-11-22 20:22:32.726228319 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/org.apache.maven.reporting-maven-reporting-exec-2.x
+  details: The missing pull yegor256/qulice#1412 has been opened by @renovate[bot].
+  issue: 1412
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-10-23 16:52:34.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7550
+  _job: 19600700317
+  _time: 2025-11-22 20:22:34.077574231 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/major-hibernate-validator
+  details: The missing pull yegor256/qulice#1413 has been opened by @renovate[bot].
+  issue: 1413
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-10-23 17:07:02.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7551
+  _job: 19600700317
+  _time: 2025-11-22 20:22:35.043610522 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/org.apache.maven.plugin-tools-maven-plugin-annotations-3.x
+  details: The missing pull yegor256/qulice#1414 has been opened by @renovate[bot].
+  issue: 1414
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-10-24 16:22:44.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7552
+  _job: 19600700317
+  _time: 2025-11-22 20:22:35.918576382 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/org.apache.maven.plugins-maven-plugin-plugin-3.x
+  details: The missing pull yegor256/qulice#1415 has been opened by @renovate[bot].
+  issue: 1415
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-10-24 16:50:48.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7553
+  _job: 19600700317
+  _time: 2025-11-22 20:22:36.827859933 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/crate-ci-typos-1.x
+  details: The missing pull yegor256/qulice#1416 has been opened by @renovate[bot].
+  issue: 1416
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-10-31 15:22:14.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7554
+  _job: 19600700317
+  _time: 2025-11-22 20:22:37.741320026 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/org.apache.maven.plugin-testing-maven-plugin-testing-harness-3.x
+  details: The missing pull yegor256/qulice#1417 has been opened by @renovate[bot].
+  issue: 1417
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-10-31 22:21:40.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7555
+  _job: 19600700317
+  _time: 2025-11-22 20:22:38.647071617 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/zerocracy-judges-action-0.x
+  details: The missing pull yegor256/qulice#1418 has been opened by @renovate[bot].
+  issue: 1418
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-11-04 15:22:29.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7556
+  _job: 19600700317
+  _time: 2025-11-22 20:22:39.526979466 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/jamesives-github-pages-deploy-action-4.x
+  details: The missing pull yegor256/qulice#1419 has been opened by @renovate[bot].
+  issue: 1419
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-11-04 16:23:13.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7557
+  _job: 19600700317
+  _time: 2025-11-22 20:22:40.423527826 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/hibernate-validator
+  details: The missing pull yegor256/qulice#1420 has been opened by @renovate[bot].
+  issue: 1420
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-11-07 23:22:37.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7558
+  _job: 19600700317
+  _time: 2025-11-22 20:22:41.372015826 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/commons-io-commons-io-2.x
+  details: The missing pull yegor256/qulice#1421 has been opened by @renovate[bot].
+  issue: 1421
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-11-08 02:58:13.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7559
+  _job: 19600700317
+  _time: 2025-11-22 20:22:42.243760386 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/zerocracy-pages-action-0.x
+  details: The missing pull yegor256/qulice#1422 has been opened by @renovate[bot].
+  issue: 1422
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-11-10 08:25:13.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7560
+  _job: 19600700317
+  _time: 2025-11-22 20:22:43.219684589 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/crate-ci-typos-1.x
+  details: The missing pull yegor256/qulice#1423 has been opened by @renovate[bot].
+  issue: 1423
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-11-12 23:23:51.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7561
+  _job: 19600700317
+  _time: 2025-11-22 20:22:44.127902426 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/crate-ci-typos-1.x
+  details: The missing pull yegor256/qulice#1424 has been opened by @renovate[bot].
+  issue: 1424
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-11-13 22:08:37.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7562
+  _job: 19600700317
+  _time: 2025-11-22 20:22:45.009149993 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/org.apache.commons-commons-lang3-3.x
+  details: The missing pull yegor256/qulice#1425 has been opened by @renovate[bot].
+  issue: 1425
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-11-16 13:05:33.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7563
+  _job: 19600700317
+  _time: 2025-11-22 20:22:45.913942866 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/davidanson-markdownlint-cli2-action-21.x
+  details: The missing pull yegor256/qulice#1426 has been opened by @renovate[bot].
+  issue: 1426
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-11-17 02:51:16.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7564
+  _job: 19600700317
+  _time: 2025-11-22 20:22:46.816551647 Z
+  _version: 0.16.8/0.55.0/0.16.1
+  branch: renovate/actions-checkout-6.x
+  details: The missing pull yegor256/qulice#1427 has been opened by @renovate[bot].
+  issue: 1427
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-11-20 17:33:53.000000000 Z
+  where: github
+  who: 29139614
