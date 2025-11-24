@@ -2,11 +2,14 @@
 - added: 8
   cycles: 1
   deleted: 8
+  error: 'GET https://api.github.com/repos/yegor256/qulice/pulls/1260/reviews?per_page=100:
+    504 - We couldn''t respond to your request in time. Sorry about that. Please try
+    resubmitting your request and contact us if the problem persists.'
   inserted: 8
-  seconds: 183.603084719
+  seconds: 129.854083032
   version: 0.55.0
   what: judges-summary
-  when: 2025-11-24 10:22:06.977381651 Z
+  when: 2025-11-24 11:20:34.596256746 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -12255,23 +12258,23 @@
   total_stars: 309
   what: dimensions-of-terrain
   when: 2025-11-23 21:18:24.506021482 Z
-- _id: 7610
-  _job: 50402
-  _time: 2025-11-24 01:52:33.809573845 Z
+- _id: 7612
+  _job: 50460
+  _time: 2025-11-24 10:22:54.677716870 Z
   _version: 0.16.8/0.57.1/0.16.1
   what: learn-eva
-  when: 2025-11-24 01:52:33.801291267 Z
-- _id: 7611
-  _job: 19630795842
-  _time: 2025-11-24 10:19:20.695243499 Z
+  when: 2025-11-24 10:22:54.670581151 Z
+- _id: 7613
+  _job: 19632420778
+  _time: 2025-11-24 11:20:29.580312663 Z
   _version: 0.16.8/0.55.0/0.16.1
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 6193952725
+  events_were_scanned: 6195516297
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1373
-  min_pull_was_found: 1228
+  min_pull_was_found: 1229
   repository: 9580168
   what: iterate
   where: github
