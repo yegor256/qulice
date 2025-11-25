@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.16.8" size="224638">
+<fb version="0.16.8" size="226297">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">163.494134767</seconds>
-    <version t="S">0.55.0</version>
+    <seconds t="F">277.208728439</seconds>
+    <version t="S">0.57.2</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-11-25T06:22:48Z</when>
+    <when t="T">2025-11-25T07:26:12Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -13436,17 +13436,96 @@ The average monthly turnover (9.0 developers) is increasing (R=0.79).</text>
     <when t="T">2025-11-25T02:52:20Z</when>
   </f>
   <f>
-    <_id t="I">7620</_id>
-    <_job t="I">19660265556</_job>
-    <_time t="T">2025-11-25T06:21:54Z</_time>
-    <_version t="S">0.16.8/0.55.0/0.16.1</_version>
+    <_id t="I">7621</_id>
+    <_job t="I">19661532348</_job>
+    <_time t="T">2025-11-25T07:21:39Z</_time>
+    <_version t="S">0.16.8/0.57.2/0.16.2</_version>
+    <branch t="S">dependabot/maven/qulice-maven-plugin/net.sourceforge.pmd-pmd-core-7.10.0</branch>
+    <details t="S">The pull request yegor256/qulice#1430 has been opened by @dependabot[bot].</details>
+    <event_id t="I">4892104983</event_id>
+    <event_type t="S">PullRequestEvent</event_type>
+    <is_human t="I">0</is_human>
+    <issue t="I">1430</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-11-25T06:43:02Z</when>
+    <where t="S">github</where>
+    <who t="I">49699333</who>
+  </f>
+  <f>
+    <_id t="I">7622</_id>
+    <_job t="I">19661532348</_job>
+    <_time t="T">2025-11-25T07:21:39Z</_time>
+    <_version t="S">0.16.8/0.57.2/0.16.2</_version>
+    <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
+    <comments t="I">0</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">The pull request yegor256/qulice#1429 has been closed by @renovate[bot], with 0 HoC and 0 comments.</details>
+    <event_id t="I">4892054352</event_id>
+    <event_type t="S">PullRequestEvent</event_type>
+    <failed_builds t="I">0</failed_builds>
+    <hoc t="I">0</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1429</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">20</succeeded_builds>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2025-11-25T05:24:22Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7623</_id>
+    <_job t="I">19661532348</_job>
+    <_time t="T">2025-11-25T07:21:58Z</_time>
+    <_version t="S">0.16.8/0.57.2/0.16.2</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">552e959858f606da2fdc78b1482009a99215f062</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #28515751701 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">6221776980</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">28515751701</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2025-11-25T06:39:09Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">7625</_id>
+    <_job t="I">19661532348</_job>
+    <_time t="T">2025-11-25T07:22:34Z</_time>
+    <_version t="S">0.16.8/0.57.2/0.16.2</_version>
+    <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
+    <details t="S">The pull yegor256/qulice#1429 has been opened earlier by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1429</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-11-25T05:24:22Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7626</_id>
+    <_job t="I">19661532348</_job>
+    <_time t="T">2025-11-25T07:23:08Z</_time>
+    <_version t="S">0.16.8/0.57.2/0.16.2</_version>
     <assignees_were_scanned t="I">0</assignees_were_scanned>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">4891074771</events_were_scanned>
+    <events_were_scanned t="I">5875509175</events_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
     <merges_were_scanned t="I">0</merges_were_scanned>
     <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">1251</min_pull_was_found>
+    <min_pull_was_found t="I">1252</min_pull_was_found>
     <repository t="I">9580168</repository>
     <what t="S">iterate</what>
     <where t="S">github</where>
