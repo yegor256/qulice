@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 245.354521062
+  seconds: 380.779748691
   version: 0.57.2
   what: judges-summary
-  when: 2025-11-27 07:26:02.313113132 Z
+  when: 2025-11-28 07:27:52.685495464 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -11276,7 +11276,7 @@
   - 1
   some_unmerged_pulls: 0
   what: quality-of-service
-  when: 2025-11-20 10:19:00.263100501 Z
+  when: &73 2025-11-20 10:19:00.263100501 Z
 - _id: 7520
   _job: 19533414718
   _time: 2025-11-20 10:22:36.655008725 Z
@@ -11290,7 +11290,7 @@
   total_releases_published: 0
   total_reviews_submitted: 3
   what: quantity-of-deliverables
-  when: 2025-11-20 10:20:03.928433826 Z
+  when: &72 2025-11-20 10:20:03.928433826 Z
 - _id: 7526
   _job: 19547095364
   _time: 2025-11-20 18:21:41.749089131 Z
@@ -12231,18 +12231,6 @@
   total_stars: 309
   what: dimensions-of-terrain
   when: 2025-11-23 21:18:24.506021482 Z
-- _id: 7614
-  _job: 50505
-  _time: 2025-11-24 18:24:28.137827399 Z
-  _version: 0.16.8/0.57.1/0.16.1
-  analyzers: 18
-  text: |-
-    The average number of builds per week (421.3) is decreasing (R=-0.19).
-    The average number of commits per week (6.2) is decreasing (R=-0.33).
-    The average number of releases per month (0.0) is staying still.
-    The average monthly turnover (9.0 developers) is increasing (R=0.79).
-  what: assessment
-  when: 2025-11-24 18:24:28.148209382 Z
 - _id: 7617
   _job: 19649543368
   _time: 2025-11-24 21:22:27.550944576 Z
@@ -12360,26 +12348,6 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.78).
   what: assessment
   when: 2025-11-26 07:25:56.088250224 Z
-- _id: 7629
-  _job: 50736
-  _time: 2025-11-26 07:26:18.597938657 Z
-  _version: 0.16.8/0.57.1/0.16.2
-  what: learn-eva
-  when: 2025-11-26 07:26:18.589298730 Z
-- _id: 7630
-  _job: 19728351110
-  _time: 2025-11-27 07:23:06.707249568 Z
-  _version: 0.16.8/0.57.2/0.16.2
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 5890051253
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1373
-  min_pull_was_found: 1254
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7631
   _job: 19728351110
   _time: 2025-11-27 07:23:15.193922325 Z
@@ -12396,3 +12364,238 @@
   total_stars: 309
   what: dimensions-of-terrain
   when: 2025-11-27 07:23:15.199277198 Z
+- _id: 7632
+  _job: 50889
+  _time: 2025-11-27 07:26:25.583881757 Z
+  _version: 0.16.8/0.57.1/0.16.2
+  analyzers: 18
+  text: |-
+    The average number of builds per week (421.3) is decreasing (R=-0.19).
+    The average number of commits per week (6.2) is decreasing (R=-0.33).
+    The average number of releases per month (0.0) is staying still.
+    The average monthly turnover (9.0 developers) is increasing (R=0.78).
+  what: assessment
+  when: 2025-11-27 07:26:25.591256081 Z
+- _id: 7633
+  _job: 50889
+  _time: 2025-11-27 07:26:47.294986119 Z
+  _version: 0.16.8/0.57.1/0.16.2
+  ac: 68
+  cost_of_qod: 6.054851130903724
+  ev: 502
+  pv: 33093
+  qod: 83
+  qod_per_day: 75.8184025974026
+  qod_per_sec: 1.337970754071112e-05
+  start: *12
+  what: earned-value
+  when: 2025-11-27 07:26:47.295180695 Z
+- _id: 7634
+  _job: 50889
+  _time: 2025-11-27 07:26:52.337328839 Z
+  _version: 0.16.8/0.57.1/0.16.2
+  what: learn-eva
+  when: 2025-11-27 07:26:52.330505033 Z
+- _id: 7636
+  _job: 19756925489
+  _time: 2025-11-28 07:22:00.535882537 Z
+  _version: 0.16.8/0.57.2/0.16.2
+  since: *72
+  total_builds_ran: 322
+  total_commits_pushed: 6
+  total_hoc_committed: 36
+  total_issues_created: 4
+  total_pulls_submitted: 2
+  total_releases_published: 0
+  total_reviews_submitted: 4
+  what: quantity-of-deliverables
+  when: 2025-11-27 10:20:03.928433826 Z
+- _id: 7637
+  _job: 19756925489
+  _time: 2025-11-28 07:23:04.106021329 Z
+  _version: 0.16.8/0.57.2/0.16.2
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 4963576921
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1373
+  min_pull_was_found: 1255
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 7638
+  _job: 19756925489
+  _time: 2025-11-28 07:25:29.224955626 Z
+  _version: 0.16.8/0.57.2/0.16.2
+  since: *73
+  some_backlog_size:
+  - 153
+  - 154
+  - 154
+  - 154
+  - 154
+  - 154
+  - 154
+  some_build_duration:
+  - 30
+  - 8
+  - 9
+  - 9
+  - 10
+  - 10
+  - 13
+  - 16
+  - 26
+  - 29
+  - 40
+  - 49
+  - 275
+  - 329
+  - 55
+  - 7
+  - 7
+  - 10
+  - 11
+  - 11
+  - 17
+  - 25
+  - 31
+  - 35
+  - 261
+  - 8
+  - 9
+  - 9
+  - 9
+  - 10
+  - 20
+  - 24
+  - 28
+  - 33
+  - 410
+  - 328
+  - 55
+  - 7
+  - 9
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 29
+  - 32
+  - 36
+  - 53
+  - 256
+  - 7
+  - 7
+  - 7
+  - 10
+  - 10
+  - 13
+  - 17
+  - 29
+  - 31
+  - 57
+  - 266
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  some_merged_pulls: 5
+  some_pull_files_size:
+  - 1
+  - 1
+  - 1
+  - 12
+  some_pull_hoc_size:
+  - 2
+  - 2
+  - 2
+  - 24
+  some_pull_lifetime:
+  - 44311.0
+  - 50747.0
+  - 18065.0
+  - 4513.0
+  - 37564.0
+  some_review_size:
+  - 0
+  - 0
+  - 0
+  - 0
+  some_review_time:
+  - 2478
+  - 1032
+  - 909
+  - 3392
+  some_reviewers_per_pull:
+  - 1
+  - 1
+  - 1
+  - 1
+  some_reviews_per_pull:
+  - 1
+  - 1
+  - 1
+  - 1
+  some_unmerged_pulls: 1
+  what: quality-of-service
+  when: 2025-11-27 10:19:00.263100501 Z
