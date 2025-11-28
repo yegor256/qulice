@@ -35,7 +35,7 @@ public final class SingleLineCommentCheck extends AbstractCheck {
      * during the class under test and the field is reinitialized with a new object.
      */
     @SuppressWarnings("PMD.AvoidStringBufferField")
-    private StringBuilder line;
+    private final StringBuilder line = new StringBuilder();
 
     /**
      * When inside a block comment, holds begin line number.
@@ -69,7 +69,8 @@ public final class SingleLineCommentCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
-            this.line = new StringBuilder(ast.getText());
+            this.line.setLength(0);
+            this.line.append(ast.getText());
             this.begin = ast.getLineNo();
         } else if (ast.getType() == TokenTypes.COMMENT_CONTENT) {
             this.line.append(ast.getText());

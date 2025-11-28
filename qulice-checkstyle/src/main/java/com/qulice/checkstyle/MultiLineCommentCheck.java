@@ -34,7 +34,7 @@ public final class MultiLineCommentCheck extends AbstractCheck {
      * during the class under test and the field is reinitialized with a new object.
      */
     @SuppressWarnings("PMD.AvoidStringBufferField")
-    private StringBuilder text;
+    private final StringBuilder text = new StringBuilder();
 
     @Override
     public boolean isCommentNodesRequired() {
@@ -63,7 +63,8 @@ public final class MultiLineCommentCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
-            this.text = new StringBuilder(ast.getText());
+            this.text.setLength(0);
+            this.text.append(ast.getText());
         } else if (ast.getType() == TokenTypes.COMMENT_CONTENT) {
             this.text.append(ast.getText());
         } else {
