@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.17.0" size="235425">
+<fb version="0.17.0" size="236281">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">238.989676667</seconds>
+    <seconds t="F">206.051743726</seconds>
     <version t="S">0.58.0</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-12-08T07:26:06Z</when>
+    <when t="T">2025-12-09T07:25:15Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -13731,6 +13731,7 @@
       <v t="I">1</v>
       <v t="I">1</v>
     </some_reviews_per_pull>
+    <some_triage_time t="F">1374822.0</some_triage_time>
     <some_unmerged_pulls t="I">1</some_unmerged_pulls>
     <what t="S">quality-of-service</what>
     <when t="T">2025-11-27T10:19:00Z</when>
@@ -14310,19 +14311,6 @@
     <when t="T">2025-12-04T10:19:00Z</when>
   </f>
   <f>
-    <_id t="I">7682</_id>
-    <_job t="I">52036</_job>
-    <_time t="T">2025-12-05T07:27:56Z</_time>
-    <_version t="S">0.17.0/0.57.3/0.16.3</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (383.9) is decreasing (R=-0.55).
-The average number of commits per week (5.9) is decreasing (R=-0.33).
-The average number of releases per month (0.0) is staying still.
-The average monthly turnover (9.0 developers) is increasing (R=0.40).</text>
-    <what t="S">assessment</what>
-    <when t="T">2025-12-05T07:27:56Z</when>
-  </f>
-  <f>
     <_id t="I">7687</_id>
     <_job t="I">20000804053</_job>
     <_time t="T">2025-12-07T07:22:08Z</_time>
@@ -14354,30 +14342,6 @@ The average monthly turnover (9.0 developers) is increasing (R=0.40).</text>
     <when t="T">2025-12-07T07:26:10Z</when>
   </f>
   <f>
-    <_id t="I">7689</_id>
-    <_job t="I">52454</_job>
-    <_time t="T">2025-12-07T07:26:33Z</_time>
-    <_version t="S">0.17.0/0.57.3/0.16.6</_version>
-    <what t="S">learn-eva</what>
-    <when t="T">2025-12-07T07:26:33Z</when>
-  </f>
-  <f>
-    <_id t="I">7690</_id>
-    <_job t="I">20020017813</_job>
-    <_time t="T">2025-12-08T07:22:56Z</_time>
-    <_version t="S">0.17.1/0.58.0/0.17.0</_version>
-    <assignees_were_scanned t="I">0</assignees_were_scanned>
-    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">6033318013</events_were_scanned>
-    <latest_issue_was_found t="I">1386</latest_issue_was_found>
-    <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1373</min_issue_was_found>
-    <min_pull_was_found t="I">1268</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
-  </f>
-  <f>
     <_id t="I">7691</_id>
     <_job t="I">20020017813</_job>
     <_time t="T">2025-12-08T07:22:59Z</_time>
@@ -14394,5 +14358,88 @@ The average monthly turnover (9.0 developers) is increasing (R=0.40).</text>
     <total_stars t="I">309</total_stars>
     <what t="S">dimensions-of-terrain</what>
     <when t="T">2025-12-08T07:22:59Z</when>
+  </f>
+  <f>
+    <_id t="I">7692</_id>
+    <_job t="I">52632</_job>
+    <_time t="T">2025-12-08T07:26:26Z</_time>
+    <_version t="S">0.17.0/0.57.3/0.17.0</_version>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (383.9) is decreasing (R=-0.55).
+The average number of commits per week (5.9) is decreasing (R=-0.33).
+The average number of releases per month (0.0) is staying still.
+The average monthly turnover (9.0 developers) is increasing (R=0.40).</text>
+    <what t="S">assessment</what>
+    <when t="T">2025-12-08T07:26:26Z</when>
+  </f>
+  <f>
+    <_id t="I">7693</_id>
+    <_job t="I">52632</_job>
+    <_time t="T">2025-12-08T07:26:49Z</_time>
+    <_version t="S">0.17.0/0.57.3/0.17.0</_version>
+    <what t="S">learn-eva</what>
+    <when t="T">2025-12-08T07:26:49Z</when>
+  </f>
+  <f>
+    <_id t="I">7694</_id>
+    <_job t="I">52632</_job>
+    <_time t="T">2025-12-08T07:26:49Z</_time>
+    <_version t="S">0.17.0/0.57.3/0.17.0</_version>
+    <ac t="I">68</ac>
+    <cost_of_qod t="F">5.565812517637268</cost_of_qod>
+    <ev t="I">528</ev>
+    <pv t="I">34743</pv>
+    <qod t="I">95</qod>
+    <qod_per_day t="F">75.12948051948052</qod_per_day>
+    <qod_per_sec t="F">1.3326127714924178e-05</qod_per_sec>
+    <start t="T">2025-09-16T05:20:41Z</start>
+    <what t="S">earned-value</what>
+    <when t="T">2025-12-08T07:26:49Z</when>
+  </f>
+  <f>
+    <_id t="I">7696</_id>
+    <_job t="I">20055298796</_job>
+    <_time t="T">2025-12-09T07:22:12Z</_time>
+    <_version t="S">0.17.1/0.58.0/0.17.1</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1428 was assigned to @fabriciofx by @yegor256.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1428</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2025-12-08T18:02:56Z</when>
+    <where t="S">github</where>
+    <who t="I">1964562</who>
+  </f>
+  <f>
+    <_id t="I">7697</_id>
+    <_job t="I">20055298796</_job>
+    <_time t="T">2025-12-09T07:22:25Z</_time>
+    <_version t="S">0.17.1/0.58.0/0.17.1</_version>
+    <assignees_were_scanned t="I">0</assignees_were_scanned>
+    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
+    <events_were_scanned t="I">6050520784</events_were_scanned>
+    <latest_issue_was_found t="I">1386</latest_issue_was_found>
+    <merges_were_scanned t="I">0</merges_were_scanned>
+    <min_issue_was_found t="I">1373</min_issue_was_found>
+    <min_pull_was_found t="I">1269</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
+  </f>
+  <f>
+    <_id t="I">7698</_id>
+    <_job t="I">20055298796</_job>
+    <_time t="T">2025-12-09T07:22:38Z</_time>
+    <_version t="S">0.17.1/0.58.0/0.17.1</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1428.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1428</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2025-12-08T18:02:53Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
   </f>
 </fb>

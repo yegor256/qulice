@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 238.989676667
+  seconds: 206.051743726
   version: 0.58.0
   what: judges-summary
-  when: 2025-12-08 07:26:06.968628807 Z
+  when: 2025-12-09 07:25:15.911813700 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -12552,6 +12552,7 @@
   - 1
   - 1
   - 1
+  some_triage_time: 1374822.0
   some_unmerged_pulls: 1
   what: quality-of-service
   when: &75 2025-11-27 10:19:00.263100501 Z
@@ -13083,18 +13084,6 @@
   some_unmerged_pulls: 0
   what: quality-of-service
   when: 2025-12-04 10:19:00.263100501 Z
-- _id: 7682
-  _job: 52036
-  _time: 2025-12-05 07:27:56.792840734 Z
-  _version: 0.17.0/0.57.3/0.16.3
-  analyzers: 18
-  text: |-
-    The average number of builds per week (383.9) is decreasing (R=-0.55).
-    The average number of commits per week (5.9) is decreasing (R=-0.33).
-    The average number of releases per month (0.0) is staying still.
-    The average monthly turnover (9.0 developers) is increasing (R=0.40).
-  what: assessment
-  when: 2025-12-05 07:27:56.810531344 Z
 - _id: 7687
   _job: 20000804053
   _time: 2025-12-07 07:22:08.955921579 Z
@@ -13123,26 +13112,6 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.40).
   what: assessment
   when: 2025-12-07 07:26:10.633985986 Z
-- _id: 7689
-  _job: 52454
-  _time: 2025-12-07 07:26:33.090956821 Z
-  _version: 0.17.0/0.57.3/0.16.6
-  what: learn-eva
-  when: 2025-12-07 07:26:33.076477560 Z
-- _id: 7690
-  _job: 20020017813
-  _time: 2025-12-08 07:22:56.118253722 Z
-  _version: 0.17.1/0.58.0/0.17.0
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 6033318013
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1373
-  min_pull_was_found: 1268
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7691
   _job: 20020017813
   _time: 2025-12-08 07:22:59.215192857 Z
@@ -13159,3 +13128,75 @@
   total_stars: 309
   what: dimensions-of-terrain
   when: 2025-12-08 07:22:59.229291791 Z
+- _id: 7692
+  _job: 52632
+  _time: 2025-12-08 07:26:26.564831943 Z
+  _version: 0.17.0/0.57.3/0.17.0
+  analyzers: 18
+  text: |-
+    The average number of builds per week (383.9) is decreasing (R=-0.55).
+    The average number of commits per week (5.9) is decreasing (R=-0.33).
+    The average number of releases per month (0.0) is staying still.
+    The average monthly turnover (9.0 developers) is increasing (R=0.40).
+  what: assessment
+  when: 2025-12-08 07:26:26.586079141 Z
+- _id: 7693
+  _job: 52632
+  _time: 2025-12-08 07:26:49.309457890 Z
+  _version: 0.17.0/0.57.3/0.17.0
+  what: learn-eva
+  when: 2025-12-08 07:26:49.300535849 Z
+- _id: 7694
+  _job: 52632
+  _time: 2025-12-08 07:26:49.388084608 Z
+  _version: 0.17.0/0.57.3/0.17.0
+  ac: 68
+  cost_of_qod: 5.565812517637268
+  ev: 528
+  pv: 34743
+  qod: 95
+  qod_per_day: 75.12948051948052
+  qod_per_sec: 1.3326127714924178e-05
+  start: *12
+  what: earned-value
+  when: 2025-12-08 07:26:49.388293052 Z
+- _id: 7696
+  _job: 20055298796
+  _time: 2025-12-09 07:22:12.531045745 Z
+  _version: 0.17.1/0.58.0/0.17.1
+  assigner: 526301
+  details: yegor256/qulice#1428 was assigned to @fabriciofx by @yegor256.
+  is_human: 1
+  issue: 1428
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2025-12-08 18:02:56.000000000 Z
+  where: github
+  who: 1964562
+- _id: 7697
+  _job: 20055298796
+  _time: 2025-12-09 07:22:25.753887801 Z
+  _version: 0.17.1/0.58.0/0.17.1
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 6050520784
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1373
+  min_pull_was_found: 1269
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 7698
+  _job: 20055298796
+  _time: 2025-12-09 07:22:38.859634291 Z
+  _version: 0.17.1/0.58.0/0.17.1
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1428.
+  is_human: 1
+  issue: 1428
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-12-08 18:02:53.000000000 Z
+  where: github
+  who: 526301
