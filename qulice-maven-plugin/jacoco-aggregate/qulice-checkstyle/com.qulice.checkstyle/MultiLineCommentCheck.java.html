@@ -33,8 +33,8 @@ import java.util.regex.Pattern;
      * It is not final because the visitToken method is called many times
      * during the class under test and the field is reinitialized with a new object.
      */
-    @SuppressWarnings(&quot;PMD.AvoidStringBufferField&quot;)
-    private StringBuilder text;
+<span class="nc" id="L36">    @SuppressWarnings(&quot;PMD.AvoidStringBufferField&quot;)</span>
+    private final StringBuilder text = new StringBuilder();
 
     @Override
     public boolean isCommentNodesRequired() {
@@ -63,17 +63,18 @@ import java.util.regex.Pattern;
     @Override
     public void visitToken(final DetailAST ast) {
 <span class="nc bnc" id="L65" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {</span>
-<span class="nc" id="L66">            this.text = new StringBuilder(ast.getText());</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">        } else if (ast.getType() == TokenTypes.COMMENT_CONTENT) {</span>
-<span class="nc" id="L68">            this.text.append(ast.getText());</span>
+<span class="nc" id="L66">            this.text.setLength(0);</span>
+<span class="nc" id="L67">            this.text.append(ast.getText());</span>
+<span class="nc bnc" id="L68" title="All 2 branches missed.">        } else if (ast.getType() == TokenTypes.COMMENT_CONTENT) {</span>
+<span class="nc" id="L69">            this.text.append(ast.getText());</span>
         } else {
-<span class="nc" id="L70">            this.text.append(ast.getText());</span>
-<span class="nc" id="L71">            final Matcher matcher = this.format.matcher(this.text.toString());</span>
-<span class="nc bnc" id="L72" title="All 2 branches missed.">            if (matcher.matches()) {</span>
-<span class="nc" id="L73">                this.log(ast, this.message);</span>
+<span class="nc" id="L71">            this.text.append(ast.getText());</span>
+<span class="nc" id="L72">            final Matcher matcher = this.format.matcher(this.text.toString());</span>
+<span class="nc bnc" id="L73" title="All 2 branches missed.">            if (matcher.matches()) {</span>
+<span class="nc" id="L74">                this.log(ast, this.message);</span>
             }
         }
-<span class="nc" id="L76">    }</span>
+<span class="nc" id="L77">    }</span>
 
     /**
      * The method is called from checkstyle to configure this class.
@@ -84,8 +85,8 @@ import java.util.regex.Pattern;
      * @param fmt Validatig regexp.
      */
     public void setFormat(final String fmt) {
-<span class="nc" id="L87">        this.format = Pattern.compile(fmt);</span>
-<span class="nc" id="L88">    }</span>
+<span class="nc" id="L88">        this.format = Pattern.compile(fmt);</span>
+<span class="nc" id="L89">    }</span>
 
     /**
      * The method is called from checkstyle to configure this class.
@@ -97,7 +98,7 @@ import java.util.regex.Pattern;
      * @param msg Error message.
      */
     public void setMessage(final String msg) {
-<span class="nc" id="L100">        this.message = msg;</span>
-<span class="nc" id="L101">    }</span>
+<span class="nc" id="L101">        this.message = msg;</span>
+<span class="nc" id="L102">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

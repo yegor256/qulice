@@ -34,8 +34,8 @@ import java.util.regex.Pattern;
      * It is not final because the visitToken method is called many times
      * during the class under test and the field is reinitialized with a new object.
      */
-    @SuppressWarnings(&quot;PMD.AvoidStringBufferField&quot;)
-    private StringBuilder line;
+<span class="nc" id="L37">    @SuppressWarnings(&quot;PMD.AvoidStringBufferField&quot;)</span>
+    private final StringBuilder line = new StringBuilder();
 
     /**
      * When inside a block comment, holds begin line number.
@@ -69,18 +69,19 @@ import java.util.regex.Pattern;
     @Override
     public void visitToken(final DetailAST ast) {
 <span class="nc bnc" id="L71" title="All 2 branches missed.">        if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {</span>
-<span class="nc" id="L72">            this.line = new StringBuilder(ast.getText());</span>
-<span class="nc" id="L73">            this.begin = ast.getLineNo();</span>
-<span class="nc bnc" id="L74" title="All 2 branches missed.">        } else if (ast.getType() == TokenTypes.COMMENT_CONTENT) {</span>
-<span class="nc" id="L75">            this.line.append(ast.getText());</span>
+<span class="nc" id="L72">            this.line.setLength(0);</span>
+<span class="nc" id="L73">            this.line.append(ast.getText());</span>
+<span class="nc" id="L74">            this.begin = ast.getLineNo();</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        } else if (ast.getType() == TokenTypes.COMMENT_CONTENT) {</span>
+<span class="nc" id="L76">            this.line.append(ast.getText());</span>
         } else {
-<span class="nc" id="L77">            this.line.append(ast.getText());</span>
-<span class="nc" id="L78">            final Matcher matcher = this.format.matcher(this.line.toString());</span>
-<span class="nc bnc" id="L79" title="All 4 branches missed.">            if (matcher.matches() &amp;&amp; this.singleLineCStyleComment(ast)) {</span>
-<span class="nc" id="L80">                this.log(ast, this.message);</span>
+<span class="nc" id="L78">            this.line.append(ast.getText());</span>
+<span class="nc" id="L79">            final Matcher matcher = this.format.matcher(this.line.toString());</span>
+<span class="nc bnc" id="L80" title="All 4 branches missed.">            if (matcher.matches() &amp;&amp; this.singleLineCStyleComment(ast)) {</span>
+<span class="nc" id="L81">                this.log(ast, this.message);</span>
             }
         }
-<span class="nc" id="L83">    }</span>
+<span class="nc" id="L84">    }</span>
 
     /**
      * The method is called from checkstyle to configure this class.
@@ -91,8 +92,8 @@ import java.util.regex.Pattern;
      * @param fmt Validatig regexp.
      */
     public void setFormat(final String fmt) {
-<span class="nc" id="L94">        this.format = Pattern.compile(fmt);</span>
-<span class="nc" id="L95">    }</span>
+<span class="nc" id="L95">        this.format = Pattern.compile(fmt);</span>
+<span class="nc" id="L96">    }</span>
 
     /**
      * The method is called from checkstyle to configure this class.
@@ -104,8 +105,8 @@ import java.util.regex.Pattern;
      * @param msg Error message.
      */
     public void setMessage(final String msg) {
-<span class="nc" id="L107">        this.message = msg;</span>
-<span class="nc" id="L108">    }</span>
+<span class="nc" id="L108">        this.message = msg;</span>
+<span class="nc" id="L109">    }</span>
 
     /**
      * Checks for the end of a comment line.
@@ -114,7 +115,7 @@ import java.util.regex.Pattern;
      *  and the starting line number is equal to the ending line number.
      */
     private boolean singleLineCStyleComment(final DetailAST ast) {
-<span class="nc bnc" id="L117" title="All 4 branches missed.">        return ast.getType() == TokenTypes.BLOCK_COMMENT_END &amp;&amp; this.begin == ast.getLineNo();</span>
+<span class="nc bnc" id="L118" title="All 4 branches missed.">        return ast.getType() == TokenTypes.BLOCK_COMMENT_END &amp;&amp; this.begin == ast.getLineNo();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
