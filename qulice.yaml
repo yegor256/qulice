@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 251.48971471
+  seconds: 307.29565224
   version: 0.58.1
   what: judges-summary
-  when: 2025-12-11 07:26:52.492464820 Z
+  when: 2025-12-12 07:27:21.460330729 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -12900,7 +12900,7 @@
   total_releases_published: 0
   total_reviews_submitted: 3
   what: quantity-of-deliverables
-  when: 2025-12-04 10:20:03.928433826 Z
+  when: &76 2025-12-04 10:20:03.928433826 Z
 - _id: 7680
   _job: 19955788041
   _time: 2025-12-05 07:22:46.846311858 Z
@@ -13083,7 +13083,7 @@
   - 1
   some_unmerged_pulls: 0
   what: quality-of-service
-  when: 2025-12-04 10:19:00.263100501 Z
+  when: &77 2025-12-04 10:19:00.263100501 Z
 - _id: 7687
   _job: 20000804053
   _time: 2025-12-07 07:22:08.955921579 Z
@@ -13196,23 +13196,247 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.44).
   what: assessment
   when: 2025-12-10 07:27:51.507820760 Z
-- _id: 7703
-  _job: 53005
-  _time: 2025-12-10 07:28:13.625378334 Z
-  _version: 0.17.0/0.57.3/0.17.3
-  what: learn-eva
-  when: 2025-12-10 07:28:13.606538255 Z
-- _id: 7704
-  _job: 20125215483
-  _time: 2025-12-11 07:23:25.071685246 Z
+- _id: 7705
+  _job: 53147
+  _time: 2025-12-11 07:27:15.530387678 Z
   _version: 0.17.1/0.58.1/0.17.3
+  area: communications
+  stealth: 'false'
+  what: pmp
+- _id: 7706
+  _job: 53147
+  _time: 2025-12-11 07:27:38.569214677 Z
+  _version: 0.17.1/0.58.1/0.17.3
+  what: learn-eva
+  when: 2025-12-11 07:27:38.559571740 Z
+- _id: 7708
+  _job: 20159443630
+  _time: 2025-12-12 07:22:28.257437862 Z
+  _version: 0.18.0/0.58.1/0.17.4
+  since: *76
+  total_builds_ran: 291
+  total_commits_pushed: 18
+  total_hoc_committed: 56
+  total_issues_created: 6
+  total_pulls_submitted: 4
+  total_releases_published: 1
+  total_reviews_submitted: 7
+  what: quantity-of-deliverables
+  when: 2025-12-11 10:20:03.928433826 Z
+- _id: 7709
+  _job: 20159443630
+  _time: 2025-12-12 07:23:21.862840901 Z
+  _version: 0.18.0/0.58.1/0.17.4
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 6090465782
+  events_were_scanned: 6129669943
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1377
-  min_pull_was_found: 1271
+  min_issue_was_found: 1378
+  min_pull_was_found: 1272
   repository: 9580168
   what: iterate
   where: github
+- _id: 7710
+  _job: 20159443630
+  _time: 2025-12-12 07:23:28.117594348 Z
+  _version: 0.18.0/0.58.1/0.17.4
+  total_active_contributors: 4
+  total_commits: 2232
+  total_contributors: 52
+  total_files: 423
+  total_forks: 118
+  total_issues: 834
+  total_pulls: 613
+  total_releases: 74
+  total_repositories: 1
+  total_stars: 309
+  what: dimensions-of-terrain
+  when: 2025-12-12 07:23:28.132925130 Z
+- _id: 7711
+  _job: 20159443630
+  _time: 2025-12-12 07:25:15.373458205 Z
+  _version: 0.18.0/0.58.1/0.17.4
+  since: *77
+  some_backlog_size:
+  - 154
+  - 154
+  - 154
+  - 154
+  - 154
+  - 154
+  - 154
+  some_build_duration:
+  - 8
+  - 7
+  - 9
+  - 8
+  - 8
+  - 9
+  - 10
+  - 16
+  - 21
+  - 24
+  - 26
+  - 25
+  - 27
+  - 278
+  - 8
+  - 9
+  - 9
+  - 9
+  - 10
+  - 16
+  - 20
+  - 27
+  - 28
+  - 54
+  - 283
+  - 8
+  - 10
+  - 10
+  - 11
+  - 11
+  - 13
+  - 14
+  - 28
+  - 31
+  - 52
+  - 282
+  - 7
+  - 8
+  - 9
+  - 6
+  - 10
+  - 7
+  - 11
+  - 9
+  - 9
+  - 10
+  - 15
+  - 18
+  - 26
+  - 29
+  - 28
+  - 28
+  - 27
+  - 28
+  - 284
+  - 294
+  - 406
+  - 53
+  - 343
+  - 56
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  some_merged_pulls: 6
+  some_pull_files_size:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  some_pull_hoc_size:
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  some_pull_lifetime:
+  - 5926.0
+  - 14071.0
+  - 12036.0
+  - 14364.0
+  - 11472.0
+  - 36651.0
+  some_review_size:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  some_review_time:
+  - 819
+  - 1557
+  - 731
+  - 780
+  - 1057
+  some_reviewers_per_pull:
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  some_reviews_per_pull:
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  some_unmerged_pulls: 0
+  what: quality-of-service
+  when: 2025-12-11 10:19:00.263100501 Z
