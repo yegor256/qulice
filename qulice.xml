@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.17.0" size="237768">
+<fb version="0.17.0" size="242949">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">307.29565224</seconds>
+    <seconds t="F">222.693461242</seconds>
     <version t="S">0.58.1</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-12-12T07:27:21Z</when>
+    <when t="T">2025-12-13T07:25:45Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -14347,19 +14347,6 @@
     <when t="T">2025-12-08T07:22:59Z</when>
   </f>
   <f>
-    <_id t="I">7692</_id>
-    <_job t="I">52632</_job>
-    <_time t="T">2025-12-08T07:26:26Z</_time>
-    <_version t="S">0.17.0/0.57.3/0.17.0</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (383.9) is decreasing (R=-0.55).
-The average number of commits per week (5.9) is decreasing (R=-0.33).
-The average number of releases per month (0.0) is staying still.
-The average monthly turnover (9.0 developers) is increasing (R=0.40).</text>
-    <what t="S">assessment</what>
-    <when t="T">2025-12-08T07:26:26Z</when>
-  </f>
-  <f>
     <_id t="I">7694</_id>
     <_job t="I">52632</_job>
     <_time t="T">2025-12-08T07:26:49Z</_time>
@@ -14446,14 +14433,6 @@ The average monthly turnover (9.0 developers) is increasing (R=0.44).</text>
     <what t="S">pmp</what>
   </f>
   <f>
-    <_id t="I">7706</_id>
-    <_job t="I">53147</_job>
-    <_time t="T">2025-12-11T07:27:38Z</_time>
-    <_version t="S">0.17.1/0.58.1/0.17.3</_version>
-    <what t="S">learn-eva</what>
-    <when t="T">2025-12-11T07:27:38Z</when>
-  </f>
-  <f>
     <_id t="I">7708</_id>
     <_job t="I">20159443630</_job>
     <_time t="T">2025-12-12T07:22:28Z</_time>
@@ -14468,22 +14447,6 @@ The average monthly turnover (9.0 developers) is increasing (R=0.44).</text>
     <total_reviews_submitted t="I">7</total_reviews_submitted>
     <what t="S">quantity-of-deliverables</what>
     <when t="T">2025-12-11T10:20:03Z</when>
-  </f>
-  <f>
-    <_id t="I">7709</_id>
-    <_job t="I">20159443630</_job>
-    <_time t="T">2025-12-12T07:23:21Z</_time>
-    <_version t="S">0.18.0/0.58.1/0.17.4</_version>
-    <assignees_were_scanned t="I">0</assignees_were_scanned>
-    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">6129669943</events_were_scanned>
-    <latest_issue_was_found t="I">1386</latest_issue_was_found>
-    <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1378</min_issue_was_found>
-    <min_pull_was_found t="I">1272</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
   </f>
   <f>
     <_id t="I">7710</_id>
@@ -14701,5 +14664,295 @@ The average monthly turnover (9.0 developers) is increasing (R=0.44).</text>
     <some_unmerged_pulls t="I">0</some_unmerged_pulls>
     <what t="S">quality-of-service</what>
     <when t="T">2025-12-11T10:19:00Z</when>
+  </f>
+  <f>
+    <_id t="I">7712</_id>
+    <_job t="I">53307</_job>
+    <_time t="T">2025-12-12T07:27:40Z</_time>
+    <_version t="S">0.18.0/0.58.1/0.17.4</_version>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (376.2) is decreasing (R=-0.58).
+The average number of commits per week (6.9) is staying still.
+The average number of releases per month (0.4) is increasing (R=0.48).
+The average monthly turnover (9.0 developers) is increasing (R=0.44).</text>
+    <what t="S">assessment</what>
+    <when t="T">2025-12-12T07:27:40Z</when>
+  </f>
+  <f>
+    <_id t="I">7713</_id>
+    <_job t="I">53307</_job>
+    <_time t="T">2025-12-12T07:28:03Z</_time>
+    <_version t="S">0.17.1/0.58.1/0.17.4</_version>
+    <what t="S">learn-eva</what>
+    <when t="T">2025-12-12T07:28:03Z</when>
+  </f>
+  <f>
+    <_id t="I">7715</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:19Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <details t="S">Apparently, yegor256/qulice#1428 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1428</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2025-12-12T20:35:22Z</when>
+    <where t="S">github</where>
+    <who t="I">12625928</who>
+  </f>
+  <f>
+    <_id t="I">7716</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:39Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <details t="S">The issue yegor256/qulice#1450 has been earlier opened by @roroche.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1450</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2025-12-12T20:40:53Z</when>
+    <where t="S">github</where>
+    <who t="I">12625928</who>
+  </f>
+  <f>
+    <_id t="I">7717</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:40Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <assignees_were_scanned t="I">0</assignees_were_scanned>
+    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
+    <events_were_scanned t="I">6158323985</events_were_scanned>
+    <latest_issue_was_found t="I">1386</latest_issue_was_found>
+    <merges_were_scanned t="I">0</merges_were_scanned>
+    <min_issue_was_found t="I">1383</min_issue_was_found>
+    <min_pull_was_found t="I">1273</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
+  </f>
+  <f>
+    <_id t="I">7718</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:55Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/zerocracy-pages-action-0.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1435 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1435</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-03T14:49:01Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7719</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:55Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1436 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1436</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-05T17:06:25Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7720</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:56Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1437 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1437</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-06T05:47:00Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7721</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:57Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1438 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1438</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-07T13:05:06Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7722</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:57Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1439 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1439</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-08T09:25:44Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7723</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:58Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">1428</branch>
+    <details t="S">The missing pull yegor256/qulice#1440 has been opened by @fabriciofx.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1440</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-08T20:04:17Z</when>
+    <where t="S">github</where>
+    <who t="I">1964562</who>
+  </f>
+  <f>
+    <_id t="I">7724</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:59Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1441 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1441</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-09T05:23:09Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7725</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:22:59Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/davidanson-markdownlint-cli2-action-22.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1442 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1442</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-09T07:26:33Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7726</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:23:00Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/jamesives-github-pages-deploy-action-4.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1443 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1443</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-10T02:02:12Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7727</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:23:01Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/peter-evans-create-pull-request-8.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1444 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1444</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-10T02:02:16Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7728</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:23:01Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1445 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1445</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-11T14:43:43Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7729</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:23:02Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/actions-cache-5.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1446 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1446</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-12T03:14:21Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7730</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:23:03Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/com.qulice-qulice-maven-plugin-0.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1447 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1447</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-12T06:47:51Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">7731</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:23:04Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">version-up</branch>
+    <details t="S">The missing pull yegor256/qulice#1448 has been opened by @github-actions[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1448</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-12T07:07:47Z</when>
+    <where t="S">github</where>
+    <who t="I">41898282</who>
+  </f>
+  <f>
+    <_id t="I">7732</_id>
+    <_job t="I">20188740083</_job>
+    <_time t="T">2025-12-13T07:23:04Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.6</_version>
+    <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1449 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1449</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2025-12-12T17:11:04Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
   </f>
 </fb>

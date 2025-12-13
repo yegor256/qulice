@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 307.29565224
+  seconds: 222.693461242
   version: 0.58.1
   what: judges-summary
-  when: 2025-12-12 07:27:21.460330729 Z
+  when: 2025-12-13 07:25:45.020428876 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -13116,18 +13116,6 @@
   total_stars: 309
   what: dimensions-of-terrain
   when: 2025-12-08 07:22:59.229291791 Z
-- _id: 7692
-  _job: 52632
-  _time: 2025-12-08 07:26:26.564831943 Z
-  _version: 0.17.0/0.57.3/0.17.0
-  analyzers: 18
-  text: |-
-    The average number of builds per week (383.9) is decreasing (R=-0.55).
-    The average number of commits per week (5.9) is decreasing (R=-0.33).
-    The average number of releases per month (0.0) is staying still.
-    The average monthly turnover (9.0 developers) is increasing (R=0.40).
-  what: assessment
-  when: 2025-12-08 07:26:26.586079141 Z
 - _id: 7694
   _job: 52632
   _time: 2025-12-08 07:26:49.388084608 Z
@@ -13203,12 +13191,6 @@
   area: communications
   stealth: 'false'
   what: pmp
-- _id: 7706
-  _job: 53147
-  _time: 2025-12-11 07:27:38.569214677 Z
-  _version: 0.17.1/0.58.1/0.17.3
-  what: learn-eva
-  when: 2025-12-11 07:27:38.559571740 Z
 - _id: 7708
   _job: 20159443630
   _time: 2025-12-12 07:22:28.257437862 Z
@@ -13223,20 +13205,6 @@
   total_reviews_submitted: 7
   what: quantity-of-deliverables
   when: 2025-12-11 10:20:03.928433826 Z
-- _id: 7709
-  _job: 20159443630
-  _time: 2025-12-12 07:23:21.862840901 Z
-  _version: 0.18.0/0.58.1/0.17.4
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 6129669943
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1378
-  min_pull_was_found: 1272
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7710
   _job: 20159443630
   _time: 2025-12-12 07:23:28.117594348 Z
@@ -13440,3 +13408,254 @@
   some_unmerged_pulls: 0
   what: quality-of-service
   when: 2025-12-11 10:19:00.263100501 Z
+- _id: 7712
+  _job: 53307
+  _time: 2025-12-12 07:27:40.648474128 Z
+  _version: 0.18.0/0.58.1/0.17.4
+  analyzers: 18
+  text: |-
+    The average number of builds per week (376.2) is decreasing (R=-0.58).
+    The average number of commits per week (6.9) is staying still.
+    The average number of releases per month (0.4) is increasing (R=0.48).
+    The average monthly turnover (9.0 developers) is increasing (R=0.44).
+  what: assessment
+  when: 2025-12-12 07:27:40.668708617 Z
+- _id: 7713
+  _job: 53307
+  _time: 2025-12-12 07:28:03.754789161 Z
+  _version: 0.17.1/0.58.1/0.17.4
+  what: learn-eva
+  when: 2025-12-12 07:28:03.741822315 Z
+- _id: 7715
+  _job: 20188740083
+  _time: 2025-12-13 07:22:19.477585331 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  details: Apparently, yegor256/qulice#1428 has been "issue-was-closed".
+  is_human: 1
+  issue: 1428
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-12-12 20:35:22.000000000 Z
+  where: github
+  who: 12625928
+- _id: 7716
+  _job: 20188740083
+  _time: 2025-12-13 07:22:39.434124244 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  details: The issue yegor256/qulice#1450 has been earlier opened by @roroche.
+  is_human: 1
+  issue: 1450
+  repository: 9580168
+  what: issue-was-opened
+  when: 2025-12-12 20:40:53.000000000 Z
+  where: github
+  who: 12625928
+- _id: 7717
+  _job: 20188740083
+  _time: 2025-12-13 07:22:40.295169440 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 6158323985
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1383
+  min_pull_was_found: 1273
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 7718
+  _job: 20188740083
+  _time: 2025-12-13 07:22:55.202713262 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/zerocracy-pages-action-0.x
+  details: The missing pull yegor256/qulice#1435 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1435
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-03 14:49:01.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7719
+  _job: 20188740083
+  _time: 2025-12-13 07:22:55.820095045 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/zerocracy-judges-action-0.x
+  details: The missing pull yegor256/qulice#1436 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1436
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-05 17:06:25.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7720
+  _job: 20188740083
+  _time: 2025-12-13 07:22:56.536077001 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/zerocracy-judges-action-0.x
+  details: The missing pull yegor256/qulice#1437 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1437
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-06 05:47:00.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7721
+  _job: 20188740083
+  _time: 2025-12-13 07:22:57.171811858 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/zerocracy-judges-action-0.x
+  details: The missing pull yegor256/qulice#1438 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1438
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-07 13:05:06.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7722
+  _job: 20188740083
+  _time: 2025-12-13 07:22:57.792718066 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/zerocracy-judges-action-0.x
+  details: The missing pull yegor256/qulice#1439 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1439
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-08 09:25:44.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7723
+  _job: 20188740083
+  _time: 2025-12-13 07:22:58.493740615 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: '1428'
+  details: The missing pull yegor256/qulice#1440 has been opened by @fabriciofx.
+  is_human: 1
+  issue: 1440
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-08 20:04:17.000000000 Z
+  where: github
+  who: 1964562
+- _id: 7724
+  _job: 20188740083
+  _time: 2025-12-13 07:22:59.123458866 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/zerocracy-judges-action-0.x
+  details: The missing pull yegor256/qulice#1441 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1441
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-09 05:23:09.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7725
+  _job: 20188740083
+  _time: 2025-12-13 07:22:59.767210338 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/davidanson-markdownlint-cli2-action-22.x
+  details: The missing pull yegor256/qulice#1442 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1442
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-09 07:26:33.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7726
+  _job: 20188740083
+  _time: 2025-12-13 07:23:00.446982873 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/jamesives-github-pages-deploy-action-4.x
+  details: The missing pull yegor256/qulice#1443 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1443
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-10 02:02:12.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7727
+  _job: 20188740083
+  _time: 2025-12-13 07:23:01.116595773 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/peter-evans-create-pull-request-8.x
+  details: The missing pull yegor256/qulice#1444 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1444
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-10 02:02:16.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7728
+  _job: 20188740083
+  _time: 2025-12-13 07:23:01.816309933 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/zerocracy-judges-action-0.x
+  details: The missing pull yegor256/qulice#1445 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1445
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-11 14:43:43.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7729
+  _job: 20188740083
+  _time: 2025-12-13 07:23:02.409300750 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/actions-cache-5.x
+  details: The missing pull yegor256/qulice#1446 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1446
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-12 03:14:21.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7730
+  _job: 20188740083
+  _time: 2025-12-13 07:23:03.495956663 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/com.qulice-qulice-maven-plugin-0.x
+  details: The missing pull yegor256/qulice#1447 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1447
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-12 06:47:51.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7731
+  _job: 20188740083
+  _time: 2025-12-13 07:23:04.151338801 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: version-up
+  details: The missing pull yegor256/qulice#1448 has been opened by @github-actions[bot].
+  is_human: 0
+  issue: 1448
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-12 07:07:47.000000000 Z
+  where: github
+  who: 41898282
+- _id: 7732
+  _job: 20188740083
+  _time: 2025-12-13 07:23:04.776592301 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/zerocracy-judges-action-0.x
+  details: The missing pull yegor256/qulice#1449 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1449
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-12 17:11:04.000000000 Z
+  where: github
+  who: 29139614
