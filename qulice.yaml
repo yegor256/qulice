@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 213.370032707
+  seconds: 252.579552784
   version: 0.58.1
   what: judges-summary
-  when: 2025-12-16 07:25:42.404912458 Z
+  when: 2025-12-17 07:26:38.241225512 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -13396,18 +13396,6 @@
   some_unmerged_pulls: 0
   what: quality-of-service
   when: 2025-12-11 10:19:00.263100501 Z
-- _id: 7712
-  _job: 53307
-  _time: 2025-12-12 07:27:40.648474128 Z
-  _version: 0.18.0/0.58.1/0.17.4
-  analyzers: 18
-  text: |-
-    The average number of builds per week (376.2) is decreasing (R=-0.58).
-    The average number of commits per week (6.9) is staying still.
-    The average number of releases per month (0.4) is increasing (R=0.48).
-    The average monthly turnover (9.0 developers) is increasing (R=0.44).
-  what: assessment
-  when: 2025-12-12 07:27:40.668708617 Z
 - _id: 7715
   _job: 20188740083
   _time: 2025-12-13 07:22:19.477585331 Z
@@ -14208,26 +14196,6 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.37).
   what: assessment
   when: 2025-12-14 07:28:38.763995373 Z
-- _id: 7765
-  _job: 53785
-  _time: 2025-12-15 07:26:56.055877471 Z
-  _version: 0.17.1/0.58.1/0.17.6
-  what: learn-eva
-  when: 2025-12-15 07:26:56.046399211 Z
-- _id: 7766
-  _job: 20259822560
-  _time: 2025-12-16 07:22:44.580822541 Z
-  _version: 0.19.2/0.58.1/0.17.6
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 6163293177
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1387
-  min_pull_was_found: 1276
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7767
   _job: 20259822560
   _time: 2025-12-16 07:22:48.652522137 Z
@@ -14244,3 +14212,89 @@
   total_stars: 309
   what: dimensions-of-terrain
   when: 2025-12-16 07:22:48.662496441 Z
+- _id: 7768
+  _job: 54003
+  _time: 2025-12-16 07:26:01.373420481 Z
+  _version: 0.18.0/0.58.1/0.17.6
+  analyzers: 18
+  text: |-
+    The average number of builds per week (376.2) is decreasing (R=-0.58).
+    The average number of commits per week (6.9) is staying still.
+    The average number of releases per month (0.4) is increasing (R=0.48).
+    The average monthly turnover (9.0 developers) is increasing (R=0.37).
+  what: assessment
+  when: 2025-12-16 07:26:01.394854826 Z
+- _id: 7769
+  _job: 54003
+  _time: 2025-12-16 07:26:22.318719465 Z
+  _version: 0.17.1/0.58.1/0.17.6
+  what: learn-eva
+  when: 2025-12-16 07:26:22.309049122 Z
+- _id: 7771
+  _job: 20294938666
+  _time: 2025-12-17 07:23:10.384259382 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  details: The issue yegor256/qulice#1452 has been earlier opened by @yegor256.
+  is_human: 1
+  issue: 1452
+  repository: 9580168
+  what: issue-was-opened
+  when: 2025-12-16 17:36:17.000000000 Z
+  where: github
+  who: 526301
+- _id: 7772
+  _job: 20294938666
+  _time: 2025-12-17 07:23:11.301252933 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 6187899498
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1388
+  min_pull_was_found: 1277
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 7773
+  _job: 20294938666
+  _time: 2025-12-17 07:23:17.271034199 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  total_active_contributors: 4
+  total_commits: 2238
+  total_contributors: 52
+  total_files: 423
+  total_forks: 118
+  total_issues: 836
+  total_pulls: 619
+  total_releases: 74
+  total_repositories: 1
+  total_stars: 310
+  what: dimensions-of-terrain
+  when: 2025-12-17 07:23:17.282185165 Z
+- _id: 7774
+  _job: 20294938666
+  _time: 2025-12-17 07:23:37.830327904 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1452.
+  is_human: 1
+  issue: 1452
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2025-12-16 17:36:18.000000000 Z
+  where: github
+  who: 526301
+- _id: 7775
+  _job: 20294938666
+  _time: 2025-12-17 07:23:38.484341961 Z
+  _version: 0.19.2/0.58.1/0.17.6
+  branch: renovate/org.ow2.asm-asm-9.x
+  details: The missing pull yegor256/qulice#1451 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1451
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-16 05:46:15.000000000 Z
+  where: github
+  who: 29139614
