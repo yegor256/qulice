@@ -216,25 +216,6 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>net.sourceforge.pmd</groupId>
-      <artifactId>pmd-core</artifactId>
-      <version>6.55.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>net.sourceforge.saxon</groupId>
-          <artifactId>saxon</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.ow2.asm</groupId>
-          <artifactId>asm</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.google.code.gson</groupId>
-          <artifactId>gson</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <!-- version from parent -->
