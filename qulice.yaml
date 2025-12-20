@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 351.264088863
+  seconds: 202.219101236
   version: 0.58.1
   what: judges-summary
-  when: 2025-12-19 07:28:09.792518585 Z
+  when: 2025-12-20 07:24:34.937301814 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -14200,18 +14200,6 @@
   total_stars: 309
   what: dimensions-of-terrain
   when: 2025-12-16 07:22:48.662496441 Z
-- _id: 7768
-  _job: 54003
-  _time: 2025-12-16 07:26:01.373420481 Z
-  _version: 0.18.0/0.58.1/0.17.6
-  analyzers: 18
-  text: |-
-    The average number of builds per week (376.2) is decreasing (R=-0.58).
-    The average number of commits per week (6.9) is staying still.
-    The average number of releases per month (0.4) is increasing (R=0.48).
-    The average monthly turnover (9.0 developers) is increasing (R=0.37).
-  what: assessment
-  when: 2025-12-16 07:26:01.394854826 Z
 - _id: 7771
   _job: 20294938666
   _time: 2025-12-17 07:23:10.384259382 Z
@@ -14411,12 +14399,6 @@
   when: 2025-12-16 08:52:41.000000000 Z
   where: github
   who: 526301
-- _id: 7789
-  _job: 54367
-  _time: 2025-12-18 07:26:59.631670871 Z
-  _version: 0.19.2/0.58.1/0.17.6!0.17.7
-  what: learn-eva
-  when: 2025-12-18 07:26:59.614290764 Z
 - _id: 7790
   _job: 54367
   _time: 2025-12-18 07:26:59.712061607 Z
@@ -14488,6 +14470,7 @@
   issue: 1453
   repository: 9580168
   review: 2025-12-17 03:11:26.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -14513,6 +14496,7 @@
   issue: 1454
   repository: 9580168
   review: 2025-12-17 03:11:23.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -14538,6 +14522,7 @@
   issue: 1455
   repository: 9580168
   review: 2025-12-17 16:54:12.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -14563,26 +14548,13 @@
   issue: 1456
   repository: 9580168
   review: 2025-12-17 16:54:09.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
   when: 2025-12-17 17:14:02.000000000 Z
   where: github
   who: 8086956
-- _id: 7798
-  _job: 20362928575
-  _time: 2025-12-19 07:24:26.415153239 Z
-  _version: 0.19.2/0.58.1/0.17.7
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 6237952366
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1450
-  min_pull_was_found: 1279
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7799
   _job: 20362928575
   _time: 2025-12-19 07:24:30.334299557 Z
@@ -14900,3 +14872,35 @@
   some_unmerged_pulls: 0
   what: quality-of-service
   when: 2025-12-18 10:19:00.263100501 Z
+- _id: 7805
+  _job: 54520
+  _time: 2025-12-19 07:28:31.031522611 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  analyzers: 18
+  text: |-
+    The average number of builds per week (372.2) is decreasing (R=-0.56).
+    The average number of commits per week (7.9) is increasing (R=0.24).
+    The average number of releases per month (0.7) is increasing (R=0.63).
+    The average monthly turnover (9.0 developers) is increasing (R=0.37).
+  what: assessment
+  when: 2025-12-19 07:28:31.048873206 Z
+- _id: 7806
+  _job: 54520
+  _time: 2025-12-19 07:28:55.404779908 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  what: learn-eva
+  when: 2025-12-19 07:28:55.396106108 Z
+- _id: 7807
+  _job: 20391053686
+  _time: 2025-12-20 07:21:50.048134430 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 5421988824
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1452
+  min_pull_was_found: 1280
+  repository: 9580168
+  what: iterate
+  where: github
