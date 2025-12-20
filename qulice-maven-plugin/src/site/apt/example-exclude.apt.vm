@@ -63,7 +63,8 @@ Exclude
   Every <<<exclude>>> item is a regular expression. The following
   exclusion prefixes are supported now (the list may actually be longer):
   <<<checkstyle:>>>, <<<pmd:>>>,
-  <<<dependencies:>>>, <<<duplicatefinder:>>>.
+  <<<dependencies:>>>, <<<duplicatefinder:>>>,
+  <<<*>>>.
 
   Dependencies exclude uses syntax of groupId:artifactId, so to exclude e.g.
   guava library you should add <<<dependencies:com.google.guava:guava>>> as an
@@ -72,3 +73,24 @@ Exclude
   be used.
 
   To disable duplicatefinder check you should write empty value <<<duplicatefinder:>>>.
+
+  You can also exclude files from all checkers using the `*:` prefix.
+
++--
+<build>
+  <plugins>
+    <plugin>
+      <groupId>com.qulice</groupId>
+      <artifactId>qulice-maven-plugin</artifactId>
+      <version>${project.version}</version>
+      <configuration>
+        <excludes>
+          <exclude>*:/src/it/.*.java</exclude>
+        </excludes>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
++--
+
+  This configuration will exclude all Java files in the `src/it` folder from all checks.

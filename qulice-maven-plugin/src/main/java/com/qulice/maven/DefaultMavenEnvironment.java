@@ -349,6 +349,11 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     private static class CheckerExcludes implements Function<String, String> {
 
         /**
+         * All checkers.
+         */
+        private static final String ALL = "*";
+
+        /**
          * Name of checker.
          */
         private final String checker;
@@ -367,11 +372,15 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
             String result = null;
             if (input != null) {
                 final String[] exclude = input.split(":", 2);
-                if (this.checker.equals(exclude[0]) && exclude.length > 1) {
+                final String check = exclude[0];
+                final boolean appropriate = check.equals(CheckerExcludes.ALL)
+                    || this.checker.equals(check);
+                if (appropriate && exclude.length > 1) {
                     result = exclude[1];
                 }
             }
             return result;
         }
+
     }
 }

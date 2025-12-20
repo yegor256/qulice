@@ -19,7 +19,6 @@ import org.apache.maven.project.MavenProject;
 import org.cactoos.io.ResourceOf;
 import org.cactoos.text.TextOf;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -123,7 +122,6 @@ final class ValidationExclusionTest {
      *  <a href="https://github.com/yegor256/qulice/issues/1457">#1457"</a>
      */
     @Test
-    @Disabled
     void excludePathFromEntireValidation(@TempDir final Path dir) throws Exception {
         final var env = new DefaultMavenEnvironment();
         final var subdir = Files.createTempDirectory(dir, ValidationExclusionTest.TEMP_SUB);
