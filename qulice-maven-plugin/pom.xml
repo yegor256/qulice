@@ -13,6 +13,9 @@
   <artifactId>qulice-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <name>qulice-maven-plugin</name>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.cactoos</groupId>
@@ -215,14 +218,18 @@
       <version>9.1.0.Final</version>
       <scope>runtime</scope>
     </dependency>
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <!-- version from parent -->
-    </dependency>
   </dependencies>
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <propertiesEncoding>${project.build.sourceEncoding}
+          </propertiesEncoding>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <executions>
@@ -322,6 +329,7 @@
         <artifactId>site-maven-plugin</artifactId>
         <configuration>
           <path>${project.artifactId}</path>
+          <message/>
         </configuration>
       </plugin>
     </plugins>

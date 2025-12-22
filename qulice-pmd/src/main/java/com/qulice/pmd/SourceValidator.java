@@ -9,37 +9,20 @@ import com.qulice.spi.Environment;
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import net.sourceforge.pmd.PMDConfiguration;
-import net.sourceforge.pmd.Report;
-import net.sourceforge.pmd.RuleContext;
-import net.sourceforge.pmd.RulePriority;
-import net.sourceforge.pmd.util.datasource.DataSource;
+import net.sourceforge.pmd.PmdAnalysis;
+import net.sourceforge.pmd.lang.rule.RulePriority;
+import net.sourceforge.pmd.reporting.Report;
+import org.cactoos.list.ListOf;
 
 /**
  * Validates source files via <code>PmdValidator</code>.
  *
  * @since 0.3
  */
-@SuppressWarnings("deprecation")
 final class SourceValidator {
-    /**
-     * Rule context.
-     */
-    private final RuleContext context;
-
-    /**
-     * Report listener.
-     */
-    private final PmdListener listener;
-
-    /**
-     * Report renderer (responsible for picking up additional
-     * PMD-generated reports with processing errors).
-     */
-    private final PmdRenderer renderer;
-
     /**
      * Rules.
      */
@@ -55,9 +38,6 @@ final class SourceValidator {
      * @param env Environment
      */
     SourceValidator(final Environment env) {
-        this.context = new RuleContext();
-        this.listener = new PmdListener(env);
-        this.renderer = new PmdRenderer();
         this.config = new PMDConfiguration();
         this.encoding = env.encoding();
     }
@@ -70,58 +50,31 @@ final class SourceValidator {
      */
     @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.CloseResource"})
     public Collection<PmdError> validate(
-        final Collection<DataSource> sources, final String path) {
-        this.config.setRuleSets("com/qulice/pmd/ruleset.xml");
+        final Collection<File> sources, final String path) {
+        this.config.setRuleSets(new ListOf<>("com/qulice/pmd/ruleset.xml"));
         this.config.setThreads(0);
         this.config.setMinimumPriority(RulePriority.LOW);
         this.config.setIgnoreIncrementalAnalysis(true);
         this.config.setShowSuppressedViolations(true);
-        this.config.setSourceEncoding(this.encoding.name());
-        final Report report = new Report();
-        report.addListener(this.listener);
-        this.context.setReport(report);
-        for (final DataSource source : sources) {
-            final String name = source.getNiceFileName(false, path);
-            final long start = System.currentTimeMillis();
-            Logger.debug(this, "PMD processing file: %s", name);
-            this.context.setSourceCodeFile(new File(name));
-            this.validateOne(source);
-            Logger.debug(
-                this,
-                "PMD processed file: %[file]s in %[ms]s",
-                name,
-                System.currentTimeMillis() - start
-            );
+        this.config.setSourceEncoding(this.encoding);
+        final List<PmdError> errors = new LinkedList<>();
+        try (PmdAnalysis analysis = PmdAnalysis.create(this.config)) {
+            for (final File source : sources) {
+                Logger.debug(
+                    this,
+                    "Processing file: %s",
+                    source.toPath().toString()
+                );
+                analysis.files().addFile(source.toPath());
+            }
+            final Report report = analysis.performAnalysisAndCollectReport();
+            report.getConfigurationErrors().stream()
+                .map(PmdError.OfConfigError::new).forEach(errors::add);
+            report.getProcessingErrors().stream()
+                .map(PmdError.OfProcessingError::new).forEach(errors::add);
+            report.getViolations().stream().map(PmdError.OfRuleViolation::new)
+                .forEach(errors::add);
         }
-        this.renderer.exportTo(report);
-        report.errors().forEachRemaining(this.listener::onProcessingError);
-        report.configErrors().forEachRemaining(this.listener::onConfigError);
-        Logger.debug(
-            this,
-            "got %d errors",
-            this.listener.errors().size()
-        );
-        return this.listener.errors();
-    }
-
-    /**
-     * Performs validation of one file.
-     * @param source Input source file
-     */
-    private void validateOne(final DataSource source) {
-        final net.sourceforge.pmd.RuleSetFactory factory =
-            new net.sourceforge.pmd.RuleSetFactory(
-                new net.sourceforge.pmd.util.ResourceLoader(),
-                RulePriority.LOW,
-                false,
-                true
-            );
-        net.sourceforge.pmd.PMD.processFiles(
-            this.config,
-            factory,
-            new LinkedList<>(Collections.singleton(source)),
-            this.context,
-            Collections.singletonList(this.renderer)
-        );
+        return errors;
     }
 }

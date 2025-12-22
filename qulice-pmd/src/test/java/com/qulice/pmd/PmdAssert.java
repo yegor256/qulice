@@ -15,6 +15,7 @@ import org.hamcrest.MatcherAssert;
 
 /**
  * PMD Validator assertions.
+ *
  * @since 0.16
  */
 final class PmdAssert {
@@ -35,12 +36,16 @@ final class PmdAssert {
 
     /**
      * Constructor.
+     *
      * @param file File to validate.
      * @param result Expected build status.
      * @param matcher Matcher that needs to match.
      */
-    PmdAssert(final String file, final Matcher<Boolean> result,
-        final Matcher<String> matcher) {
+    PmdAssert(
+        final String file,
+        final Matcher<Boolean> result,
+        final Matcher<String> matcher
+    ) {
         this.file = file;
         this.result = result;
         this.matcher = matcher;
@@ -48,6 +53,7 @@ final class PmdAssert {
 
     /**
      * Validates given file against PMD.
+     *
      * @throws Exception In case of error.
      */
     public void validate() throws Exception {

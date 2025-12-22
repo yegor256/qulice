@@ -4,11 +4,11 @@
  */
 package foo;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public final class UseConcurrentHashMap {
     public void getMyInstance() {
-        final Map<String> map = new HashMap<>();
+        final Map<String, String> map = new HashMap<>();
     }
 }

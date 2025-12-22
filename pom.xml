@@ -21,7 +21,9 @@
     <module>qulice-pmd</module>
     <module>qulice-spi</module>
   </modules>
-  <description>Quality control library, integrating together other static analysis and validation tools and instruments.</description>
+  <description>Quality control library, integrating together other static
+    analysis and validation tools and instruments.
+  </description>
   <url>https://www.qulice.com</url>
   <inceptionYear>2011</inceptionYear>
   <organization>
@@ -55,7 +57,8 @@
   </issueManagement>
   <scm>
     <connection>scm:git:git@github.com:yegor256/qulice.git</connection>
-    <developerConnection>scm:git:git@github.com:yegor256/qulice.git</developerConnection>
+    <developerConnection>scm:git:git@github.com:yegor256/qulice.git
+    </developerConnection>
     <url>https://github.com/yegor256/qulice</url>
   </scm>
   <ciManagement>
@@ -132,31 +135,43 @@
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter</artifactId>
-        <version>5.13.4</version>
+        <version>6.0.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
-        <version>5.13.4</version>
+        <version>6.0.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.13.4</version>
+        <version>6.0.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-params</artifactId>
-        <version>5.13.4</version>
+        <version>6.0.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.junit.platform</groupId>
         <artifactId>junit-platform-commons</artifactId>
-        <version>1.13.4</version>
+        <version>6.0.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-engine</artifactId>
+        <version>6.0.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-launcher</artifactId>
+        <version>6.0.1</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -198,8 +213,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.14.1</version>
         <configuration>
-          <source>17</source>
-          <target>17</target>
+          <source>21</source>
+          <target>21</target>
         </configuration>
       </plugin>
     </plugins>
@@ -227,7 +242,7 @@
           <plugin>
             <groupId>com.qulice</groupId>
             <artifactId>qulice-maven-plugin</artifactId>
-            <version>0.24.3</version>
+            <version>0.24.4</version>
           </plugin>
         </plugins>
       </build>

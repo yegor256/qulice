@@ -4,126 +4,83 @@
  */
 package com.qulice.pmd.rules;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTReferenceType;
-import net.sourceforge.pmd.lang.java.ast.ASTResultType;
-import net.sourceforge.pmd.lang.java.ast.ASTType;
-import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
-import net.sourceforge.pmd.lang.java.ast.JavaNode;
-import net.sourceforge.pmd.lang.java.symboltable.JavaNameOccurrence;
-import net.sourceforge.pmd.lang.java.symboltable.MethodNameDeclaration;
-import net.sourceforge.pmd.lang.java.symboltable.VariableNameDeclaration;
-import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
-import net.sourceforge.pmd.lang.symboltable.Scope;
+import net.sourceforge.pmd.lang.java.ast.ASTInfixExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTMethodCall;
+import net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral;
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.types.JTypeMirror;
 
 /**
  * Rule to prohibit use of String.length() when checking for empty string.
  * String.isEmpty() should be used instead.
+ *
  * @since 0.18
  */
-@SuppressWarnings("deprecation")
-public final class UseStringIsEmptyRule
-    extends net.sourceforge.pmd.lang.java.rule.AbstractInefficientZeroCheck {
-
-    @Override
-    public boolean appliesToClassName(final String name) {
-        return net.sourceforge.pmd.util.StringUtil.isSame(
-            name, "String", true, true, true
-        );
+public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
+    public UseStringIsEmptyRule() {
+        super(ASTInfixExpression.class);
     }
 
     @Override
-    public Map<String, List<String>> getComparisonTargets() {
-        final Map<String, List<String>> rules = new HashMap<>();
-        rules.put("<", Arrays.asList("1"));
-        rules.put(">", Arrays.asList("0"));
-        rules.put("==", Arrays.asList("0"));
-        rules.put("!=", Arrays.asList("0"));
-        rules.put(">=", Arrays.asList("0", "1"));
-        rules.put("<=", Arrays.asList("0"));
-        return rules;
-    }
-
-    @Override
-    public boolean isTargetMethod(final JavaNameOccurrence occ) {
-        final NameOccurrence name = occ.getNameForWhichThisIsAQualifier();
-        return name != null && "length".equals(name.getImage());
-    }
-
-    @Override
-    public Object visit(
-        final ASTVariableDeclaratorId variable, final Object data
-    ) {
-        boolean matches;
-        final Node node = variable.getTypeNameNode();
-        matches = node instanceof ASTReferenceType;
-        final VariableNameDeclaration decl = variable.getNameDeclaration();
-        matches = matches && decl != null;
-        final Class<?> clazz = variable.getType();
-        matches = matches && clazz != null && !clazz.isArray();
-        if (decl != null) {
-            matches = matches && this.appliesToClassName(decl.getTypeImage());
-        } else {
-            matches = false;
+    public Object visit(final ASTInfixExpression expr, final Object data) {
+        if (isComparison(expr)
+            && (
+                matchesLengthCheck(
+                    expr.getLeftOperand(),
+                    expr.getRightOperand()
+                )
+                || matchesLengthCheck(
+                    expr.getRightOperand(),
+                    expr.getLeftOperand()
+                )
+            )
+        ) {
+            asCtx(data).addViolation(expr);
         }
-        if (matches) {
-            this.checkDeclarations(variable.getUsages(), data);
-        }
-        variable.childrenAccept(this, data);
         return data;
     }
 
-    @Override
-    public Object visit(
-        final ASTMethodDeclaration declaration, final Object data
-    ) {
-        final ASTResultType result = declaration.getResultType();
-        if (!result.isVoid()) {
-            final ASTType node = (ASTType) result.jjtGetChild(0);
-            final Class<?> clazz = node.getType();
-            final String type = node.getTypeImage();
-            if (clazz != null && !clazz.isArray()
-                && this.appliesToClassName(type)
-            ) {
-                final Scope scope = declaration.getScope().getParent();
-                final MethodNameDeclaration method = new MethodNameDeclaration(
-                    declaration.getMethodDeclarator()
-                );
-                final List<NameOccurrence> declarations = scope
-                    .getDeclarations(MethodNameDeclaration.class)
-                    .get(method);
-                this.checkDeclarations(declarations, data);
-            }
-        }
-        declaration.childrenAccept(this, data);
-        return data;
+    private static boolean isComparison(final ASTInfixExpression expr) {
+        return switch (expr.getOperator()) {
+            case EQ, NE, GT, LT, GE, LE -> true;
+            default -> false;
+        };
     }
 
     /**
-     * Checks all uses of a variable or method with a String type.
-     * @param occurrences Variable or method occurrences.
-     * @param data Rule context.
+     * Checks if length is length() or literal is 0 or 1.
+     * @param length The method
+     * @param literal The number
+     * @return True if matches, false otherwise
+     * @checkstyle BooleanExpressionComplexityCheck (20 lines)
      */
-    private void checkDeclarations(
-        final Iterable<NameOccurrence> occurrences, final Object data
+    private static boolean matchesLengthCheck(
+        final ASTExpression length,
+        final ASTExpression literal
     ) {
-        for (final NameOccurrence occurrence : occurrences) {
-            final JavaNameOccurrence jocc = (JavaNameOccurrence) occurrence;
-            if (this.isTargetMethod(jocc)) {
-                final JavaNode location = jocc.getLocation();
-                final Node expr = location.getFirstParentOfType(
-                    ASTExpression.class
-                );
-                this.checkNodeAndReport(
-                    data, occurrence.getLocation(), expr.jjtGetChild(0)
-                );
-            }
+        return length != null
+            && literal != null
+            && isZeroOrOneLiteral(literal)
+            && length instanceof ASTMethodCall call
+            && "length".equals(call.getMethodName())
+            && call.getArguments().isEmpty()
+            && call.getQualifier() != null
+            && isStringExpression(call.getQualifier());
+    }
+
+    private static boolean isZeroOrOneLiteral(final ASTExpression expr) {
+        boolean matches = false;
+        if (expr instanceof ASTNumericLiteral lit) {
+            final String image = lit.getImage();
+            matches = "0".equals(image) || "1".equals(image);
         }
+        return matches;
+    }
+
+    private static boolean isStringExpression(final ASTExpression expr) {
+        final JTypeMirror type = expr.getTypeMirror();
+        return type.isClassOrInterface()
+            && "java.lang.String".equals(type.toString());
     }
 }

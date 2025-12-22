@@ -10,8 +10,6 @@ import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collection;
 import java.util.LinkedList;
-import net.sourceforge.pmd.util.datasource.DataSource;
-import net.sourceforge.pmd.util.datasource.FileDataSource;
 
 /**
  * Validates source code with PMD.
@@ -37,7 +35,7 @@ public final class PmdValidator implements ResourceValidator {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<Violation> validate(final Collection<File> files) {
         final SourceValidator validator = new SourceValidator(this.env);
-        final Collection<DataSource> sources = this.getNonExcludedFiles(files);
+        final Collection<File> sources = this.getNonExcludedFiles(files);
         final Collection<PmdError> errors = validator.validate(
             sources, this.env.basedir().getPath()
         );
@@ -66,8 +64,8 @@ public final class PmdValidator implements ResourceValidator {
      * @param files Files to validate
      * @return Relevant source files
      */
-    public Collection<DataSource> getNonExcludedFiles(final Collection<File> files) {
-        final Collection<DataSource> sources = new LinkedList<>();
+    public Collection<File> getNonExcludedFiles(final Collection<File> files) {
+        final Collection<File> sources = new LinkedList<>();
         for (final File file : files) {
             final String name = file.getPath().substring(
                 this.env.basedir().toString().length()
@@ -78,7 +76,7 @@ public final class PmdValidator implements ResourceValidator {
             if (!name.matches("^.*\\.java$")) {
                 continue;
             }
-            sources.add(new FileDataSource(file));
+            sources.add(file);
         }
         return sources;
     }

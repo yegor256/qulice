@@ -5,74 +5,67 @@
 package com.qulice.pmd.rules;
 
 import java.util.List;
-import java.util.Map;
 import net.sourceforge.pmd.lang.java.ast.ASTArgumentList;
-import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTBlock;
+import net.sourceforge.pmd.lang.java.ast.ASTExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTReturnStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
-import net.sourceforge.pmd.lang.java.ast.JavaNode;
-import net.sourceforge.pmd.lang.java.rule.AbstractJavaRule;
-import net.sourceforge.pmd.lang.symboltable.NameDeclaration;
-import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
 
 /**
  * Rule to check unnecessary local variables.
  *
  * @since 0.4
  */
-public final class UnnecessaryLocalRule extends AbstractJavaRule {
-    @Override
-    public Object visit(final ASTMethodDeclaration meth, final Object data) {
-        Object ndata = data;
-        if (!meth.isAbstract() && !meth.isNative()) {
-            ndata = super.visit(meth, data);
-        }
-        return ndata;
+public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
+    public UnnecessaryLocalRule() {
+        super(ASTVariableDeclarator.class);
     }
 
     @Override
-    public Object visit(final ASTReturnStatement rtn, final Object data) {
-        final ASTVariableDeclarator name =
-            rtn.getFirstChildOfType(ASTVariableDeclarator.class);
-        if (name != null) {
-            this.usages(rtn, data, name);
+    public Object visit(
+        final ASTVariableDeclarator variable,
+        final Object data
+    ) {
+        if (variable.getInitializer() != null) {
+            final String name = variableName(variable);
+            if (!name.isEmpty()) {
+                asCtx(data).addViolation(variable, name);
+            }
         }
         return data;
     }
 
-    @Override
-    public Object visit(final ASTArgumentList rtn, final Object data) {
-        final List<ASTVariableDeclarator> names =
-            rtn.findChildrenOfType(ASTVariableDeclarator.class);
-        for (final ASTVariableDeclarator name : names) {
-            this.usages(rtn, data, name);
+    private static boolean hasReturnOrArguments(
+        final List<ASTExpression> exprs
+    ) {
+        boolean result = false;
+        if (exprs.size() == 1) {
+            final ASTExpression use = exprs.getFirst();
+            if (use.ancestors(ASTReturnStatement.class).toStream()
+                .findAny().isPresent()
+                || use.ancestors(ASTArgumentList.class).toStream()
+                .findAny().isPresent()
+            ) {
+                result = true;
+            }
         }
-        return data;
+        return result;
     }
 
-    /**
-     * Report when number of variable usages is equal to zero.
-     * @param node Node to check.
-     * @param data Context.
-     * @param name Variable name.
-     */
-    private void usages(final JavaNode node, final Object data,
-        final ASTVariableDeclarator name) {
-        final Map<NameDeclaration, List<NameOccurrence>> vars = name
-            .getScope().getDeclarations();
-        for (final Map.Entry<NameDeclaration, List<NameOccurrence>> entry
-            : vars.entrySet()) {
-            final List<NameOccurrence> usages = entry.getValue();
-            if (usages.size() > 1) {
-                continue;
-            }
-            for (final NameOccurrence occ: usages) {
-                if (occ.getLocation().equals(name)) {
-                    this.asCtx(data).addViolation(
-                        node, name.getImage()
-                    );
-                }
+    private static String variableName(final ASTVariableDeclarator variable) {
+        String result = "";
+        final ASTBlock block = variable.ancestors(ASTBlock.class).first();
+        if (block != null) {
+            final String name = variable.getName();
+            final List<ASTExpression> uses = block
+                .descendants(ASTExpression.class)
+                .filter(expr -> name.equals(expr.getImage()))
+                .toList();
+            if (hasReturnOrArguments(uses)) {
+                result = name;
             }
         }
+        return result;
     }
 }

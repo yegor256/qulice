@@ -5,7 +5,7 @@
 package com.qulice.pmd;
 
 import org.hamcrest.core.IsEqual;
-import org.hamcrest.core.StringStartsWith;
+import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -14,10 +14,9 @@ import org.junit.jupiter.api.Test;
  * @since 0.18
  */
 final class LocalVariableCouldBeFinalRuleTest {
-
     /**
      * LocalVariableCouldBeFinal can detect when variable is not
-     *  final and shows correct message.
+     * final and shows correct message.
      *
      * @throws Exception If something goes wrong
      */
@@ -26,7 +25,7 @@ final class LocalVariableCouldBeFinalRuleTest {
         new PmdAssert(
             "LocalVariableCouldBeFinal.java",
             new IsEqual<>(false),
-            new StringStartsWith(
+            new StringContains(
                 String.join(
                     " ",
                     "PMD: LocalVariableCouldBeFinal.java[10-10]:",

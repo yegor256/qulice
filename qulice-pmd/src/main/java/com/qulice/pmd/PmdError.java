@@ -4,9 +4,10 @@
  */
 package com.qulice.pmd;
 
-import net.sourceforge.pmd.Report.ConfigurationError;
-import net.sourceforge.pmd.Report.ProcessingError;
-import net.sourceforge.pmd.RuleViolation;
+import net.sourceforge.pmd.reporting.Report;
+import net.sourceforge.pmd.reporting.RuleViolation;
+import org.cactoos.text.FormattedText;
+import org.cactoos.text.UncheckedText;
 
 /**
  * Represents one PMD error (usually it will be violation).
@@ -66,7 +67,7 @@ public interface PmdError {
 
         @Override
         public String fileName() {
-            return this.violation.getFilename();
+            return this.violation.getFileId().getAbsolutePath();
         }
 
         @Override
@@ -91,13 +92,13 @@ public interface PmdError {
         /**
          * Internal ProcessingError.
          */
-        private final ProcessingError error;
+        private final Report.ProcessingError error;
 
         /**
          * Creates a new PmdError, representing given ProcessingError.
          * @param error Internal ProcessingError.
          */
-        public OfProcessingError(final ProcessingError error) {
+        public OfProcessingError(final Report.ProcessingError error) {
             this.error = error;
         }
 
@@ -108,7 +109,7 @@ public interface PmdError {
 
         @Override
         public String fileName() {
-            return this.error.getFile();
+            return this.error.getFileId().getAbsolutePath();
         }
 
         @Override
@@ -118,11 +119,13 @@ public interface PmdError {
 
         @Override
         public String description() {
-            return new StringBuilder()
-                .append(this.error.getMsg())
-                .append(": ")
-                .append(this.error.getDetail())
-                .toString();
+            return new UncheckedText(
+                new FormattedText(
+                    "%s: %s",
+                    this.error.getMsg(),
+                    this.error.getDetail()
+                )
+            ).asString();
         }
     }
 
@@ -134,13 +137,13 @@ public interface PmdError {
         /**
          * Internal ConfigError.
          */
-        private final ConfigurationError error;
+        private final Report.ConfigurationError error;
 
         /**
          * Creates a new PmdError, representing given ProcessingError.
          * @param error Internal ProcessingError.
          */
-        public OfConfigError(final ConfigurationError error) {
+        public OfConfigError(final Report.ConfigurationError error) {
             this.error = error;
         }
 

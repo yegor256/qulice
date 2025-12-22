@@ -376,7 +376,16 @@ final class CheckstyleValidatorTest {
             results,
             Matchers.contains(
                 new ViolationMatcher(
-                    message, file, "14", name
+                    "Javadoc comment at column 3 has parse error.",
+                    file,
+                    "13",
+                    "MissingDeprecatedCheck"
+                ),
+                new ViolationMatcher(
+                    "Javadoc comment at column 3 has parse error.",
+                    file,
+                    "13",
+                    name
                 ),
                 new ViolationMatcher(
                     message, file, "21", name
@@ -385,7 +394,10 @@ final class CheckstyleValidatorTest {
                     message, file, "48", name
                 ),
                 new ViolationMatcher(
-                    "Class Class should be declared as final.", file, "59", "FinalClassCheck"
+                    "Class Class should be declared as final.",
+                    file,
+                    "59",
+                    "FinalClassCheck"
                 )
             )
         );

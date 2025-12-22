@@ -10,7 +10,7 @@ public final class CodeInConstructor {
 
     public CodeInConstructor() {
         this.number = 2;
-        int a = number + 3;
+        final int a = number + 3;
         this.another = a;
     }
 
