@@ -373,7 +373,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
             if (input != null) {
                 final String[] exclude = input.split(":", 2);
                 final String check = exclude[0];
-                final boolean appropriate = check.equals(CheckerExcludes.ALL)
+                final boolean appropriate = CheckerExcludes.ALL.equals(check)
                     || this.checker.equals(check);
                 if (appropriate && exclude.length > 1) {
                     result = exclude[1];
