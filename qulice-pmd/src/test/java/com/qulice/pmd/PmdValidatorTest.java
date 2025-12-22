@@ -15,6 +15,8 @@ import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.hamcrest.core.IsEqual;
 import org.hamcrest.core.IsNot;
+import org.hamcrest.text.IsEmptyString;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.EnabledForJreRange;
 import org.junit.jupiter.api.condition.JRE;
@@ -737,5 +739,20 @@ final class PmdValidatorTest {
             Matchers.is(false),
             Matchers.containsString("MethodNamingConventions")
         ).validate();
+    }
+
+    /**
+     * Check if UseStringIsEmptyRule not throws an NullPointerException when
+     * found a pattern matching.
+     */
+    @Test
+    void notThrowsAnNullPointerExceptionOnPatternMatching() {
+        Assertions.assertDoesNotThrow(
+            () -> new PmdAssert(
+                "UseStringIsEmptyRuleFailsOnPatternMatching.java",
+                new IsEqual<>(true),
+                IsEmptyString.emptyString()
+            ).validate()
+        );
     }
 }
