@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 278.152197647
+  seconds: 214.235077624
   version: 0.58.1
   what: judges-summary
-  when: 2025-12-21 07:26:09.662615034 Z
+  when: 2025-12-22 07:25:56.517308897 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -14254,18 +14254,6 @@
   when: 2025-12-16 05:46:15.000000000 Z
   where: github
   who: 29139614
-- _id: 7776
-  _job: 54195
-  _time: 2025-12-17 07:26:57.016209347 Z
-  _version: 0.19.2/0.58.1/0.17.6
-  analyzers: 18
-  text: |-
-    The average number of builds per week (376.2) is decreasing (R=-0.58).
-    The average number of commits per week (6.9) is staying still.
-    The average number of releases per month (0.4) is increasing (R=0.48).
-    The average monthly turnover (9.0 developers) is increasing (R=0.37).
-  what: assessment
-  when: 2025-12-17 07:26:57.034839039 Z
 - _id: 7779
   _job: 20329242515
   _time: 2025-12-18 07:22:38.417690892 Z
@@ -14884,12 +14872,6 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.37).
   what: assessment
   when: 2025-12-19 07:28:31.048873206 Z
-- _id: 7808
-  _job: 54639
-  _time: 2025-12-20 07:25:19.438646866 Z
-  _version: 0.19.2/0.58.1/0.17.7
-  what: learn-eva
-  when: 2025-12-20 07:25:19.430321108 Z
 - _id: 7809
   _job: 20406442218
   _time: 2025-12-21 07:21:35.596255344 Z
@@ -14932,20 +14914,6 @@
   when: 2025-12-20 07:51:29.000000000 Z
   where: github
   who: 1964562
-- _id: 7813
-  _job: 20406442218
-  _time: 2025-12-21 07:22:18.349722318 Z
-  _version: 0.19.2/0.58.1/0.17.7
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 6286658359
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1457
-  min_pull_was_found: 1281
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7814
   _job: 20406442218
   _time: 2025-12-21 07:22:24.728462730 Z
@@ -15014,3 +14982,123 @@
   when: 2025-12-19 13:59:25.000000000 Z
   where: github
   who: 51804353
+- _id: 7819
+  _job: 54757
+  _time: 2025-12-21 07:26:32.303044662 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  analyzers: 18
+  text: |-
+    The average number of builds per week (372.2) is decreasing (R=-0.56).
+    The average number of commits per week (7.9) is increasing (R=0.24).
+    The average number of releases per month (0.7) is increasing (R=0.63).
+    The average monthly turnover (9.0 developers) is increasing (R=0.37).
+  what: assessment
+  when: 2025-12-21 07:26:32.320310941 Z
+- _id: 7820
+  _job: 54757
+  _time: 2025-12-21 07:26:52.590738595 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  what: learn-eva
+  when: 2025-12-21 07:26:52.580603444 Z
+- _id: 7822
+  _job: 20424860701
+  _time: 2025-12-22 07:22:53.840261942 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  branch: renovate/zerocracy-judges-action-0.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1459 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1459
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2025-12-18 13:59:01.000000000 Z
+  where: github
+  who: 526301
+- _id: 7823
+  _job: 20424860701
+  _time: 2025-12-22 07:23:05.744422460 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  branch: 1457-docs-exclusion-update
+  comments: 2
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1460 has been "pull-was-merged".
+  failed_builds: 0
+  files: 3
+  hoc: 183
+  is_human: 1
+  issue: 1460
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2025-12-18 14:12:14.000000000 Z
+  where: github
+  who: 526301
+- _id: 7824
+  _job: 20424860701
+  _time: 2025-12-22 07:23:12.915144202 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  branch: 1457-docs-exclusion-update
+  comments: 1
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1461 has been "pull-was-merged".
+  failed_builds: 0
+  files: 3
+  hoc: 37
+  is_human: 1
+  issue: 1461
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2025-12-20 15:01:57.000000000 Z
+  where: github
+  who: 526301
+- _id: 7825
+  _job: 20424860701
+  _time: 2025-12-22 07:23:20.491474555 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 6287286963
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1458
+  min_pull_was_found: 1282
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 7826
+  _job: 20424860701
+  _time: 2025-12-22 07:23:23.377329194 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  total_active_contributors: 5
+  total_commits: 2247
+  total_contributors: 52
+  total_files: 423
+  total_forks: 118
+  total_issues: 838
+  total_pulls: 623
+  total_releases: 74
+  total_repositories: 1
+  total_stars: 310
+  what: dimensions-of-terrain
+  when: 2025-12-22 07:23:23.388107492 Z
