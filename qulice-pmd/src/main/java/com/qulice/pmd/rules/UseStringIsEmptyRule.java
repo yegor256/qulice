@@ -18,6 +18,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
 import net.sourceforge.pmd.lang.java.ast.JavaNode;
 import net.sourceforge.pmd.lang.java.symboltable.JavaNameOccurrence;
 import net.sourceforge.pmd.lang.java.symboltable.MethodNameDeclaration;
+import net.sourceforge.pmd.lang.java.symboltable.VariableNameDeclaration;
 import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
 import net.sourceforge.pmd.lang.symboltable.Scope;
 
@@ -59,16 +60,20 @@ public final class UseStringIsEmptyRule
     public Object visit(
         final ASTVariableDeclaratorId variable, final Object data
     ) {
+        boolean matches;
         final Node node = variable.getTypeNameNode();
-        if (node instanceof ASTReferenceType) {
-            final Class<?> clazz = variable.getType();
-            final String type = variable.getNameDeclaration().getTypeImage();
-            if (clazz != null && !clazz.isArray()
-                && this.appliesToClassName(type)
-            ) {
-                final List<NameOccurrence> declarations = variable.getUsages();
-                this.checkDeclarations(declarations, data);
-            }
+        matches = node instanceof ASTReferenceType;
+        final VariableNameDeclaration decl = variable.getNameDeclaration();
+        matches = matches && decl != null;
+        final Class<?> clazz = variable.getType();
+        matches = matches && clazz != null && !clazz.isArray();
+        if (decl != null) {
+            matches = matches && this.appliesToClassName(decl.getTypeImage());
+        } else {
+            matches = false;
+        }
+        if (matches) {
+            this.checkDeclarations(variable.getUsages(), data);
         }
         variable.childrenAccept(this, data);
         return data;
