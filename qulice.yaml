@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 214.235077624
+  seconds: 216.174488541
   version: 0.58.1
   what: judges-summary
-  when: 2025-12-22 07:25:56.517308897 Z
+  when: 2025-12-23 07:25:59.364098238 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -14994,12 +14994,6 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.37).
   what: assessment
   when: 2025-12-21 07:26:32.320310941 Z
-- _id: 7820
-  _job: 54757
-  _time: 2025-12-21 07:26:52.590738595 Z
-  _version: 0.19.2/0.58.1/0.17.7
-  what: learn-eva
-  when: 2025-12-21 07:26:52.580603444 Z
 - _id: 7822
   _job: 20424860701
   _time: 2025-12-22 07:22:53.840261942 Z
@@ -15018,6 +15012,7 @@
   is_human: 1
   issue: 1459
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -15042,6 +15037,7 @@
   is_human: 1
   issue: 1460
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -15066,26 +15062,13 @@
   is_human: 1
   issue: 1461
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
   when: 2025-12-20 15:01:57.000000000 Z
   where: github
   who: 526301
-- _id: 7825
-  _job: 20424860701
-  _time: 2025-12-22 07:23:20.491474555 Z
-  _version: 0.19.2/0.58.1/0.17.7
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 6287286963
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1458
-  min_pull_was_found: 1282
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7826
   _job: 20424860701
   _time: 2025-12-22 07:23:23.377329194 Z
@@ -15102,3 +15085,59 @@
   total_stars: 310
   what: dimensions-of-terrain
   when: 2025-12-22 07:23:23.388107492 Z
+- _id: 7827
+  _job: 54875
+  _time: 2025-12-22 07:26:35.480177133 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  what: learn-eva
+  when: 2025-12-22 07:26:35.470101778 Z
+- _id: 7829
+  _job: 20454287878
+  _time: 2025-12-23 07:22:41.622428890 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  details: Apparently, yegor256/qulice#1458 has been "issue-was-closed".
+  is_human: 0
+  issue: 1458
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-12-22 16:07:07.000000000 Z
+  where: github
+  who: 8086956
+- _id: 7830
+  _job: 20454287878
+  _time: 2025-12-23 07:23:00.197915626 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  branch: '1458'
+  comments: 10
+  comments_appreciated: 1
+  comments_by_author: 4
+  comments_by_reviewers: 6
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1462 has been "pull-was-merged".
+  failed_builds: 0
+  files: 4
+  hoc: 53
+  is_human: 0
+  issue: 1462
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2025-12-22 16:07:06.000000000 Z
+  where: github
+  who: 8086956
+- _id: 7831
+  _job: 20454287878
+  _time: 2025-12-23 07:23:15.182933132 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 5456452146
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1458
+  min_pull_was_found: 1283
+  repository: 9580168
+  what: iterate
+  where: github
