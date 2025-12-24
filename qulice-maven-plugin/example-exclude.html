@@ -94,7 +94,7 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.3</strong>
+                                    <strong itemprop="version">0.24.6</strong>
                                 </li>
                                 <li>
                                     $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
@@ -116,7 +116,7 @@
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.24.3&lt;/version&gt;
+      &lt;version&gt;0.24.6&lt;/version&gt;
       &lt;configuration&gt;
         &lt;excludes&gt;
           &lt;exclude&gt;checkstyle:/src/examples/.*&lt;/exclude&gt;
@@ -126,9 +126,25 @@
     &lt;/plugin&gt;
   &lt;/plugins&gt;
 &lt;/build&gt;</code></pre>
-<p>Every <code>exclude</code> item is a regular expression. The following exclusion prefixes are supported now (the list may actually be longer): <code>checkstyle:</code>, <code>pmd:</code>, <code>dependencies:</code>, <code>duplicatefinder:</code>.</p>
+<p>Every <code>exclude</code> item is a regular expression. The following exclusion prefixes are supported now (the list may actually be longer): <code>checkstyle:</code>, <code>pmd:</code>, <code>dependencies:</code>, <code>duplicatefinder:</code>, <code>*</code>.</p>
 <p>Dependencies exclude uses syntax of groupId:artifactId, so to exclude e.g. guava library you should add <code>dependencies:com.google.guava:guava</code> as an exclude. Multiple exclude tags can be provided to exclude multiple dependencies. To exclude all dependency checks <code>dependencies:.*</code> should be used.</p>
-<p>To disable duplicatefinder check you should write empty value <code>duplicatefinder:</code>.</p></section>
+<p>To disable duplicatefinder check you should write empty value <code>duplicatefinder:</code>.</p>
+<p>You can also exclude files from all checkers using the `*:` prefix.</p>
+<pre><code>&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;com.qulice&lt;/groupId&gt;
+      &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
+      &lt;version&gt;0.24.6&lt;/version&gt;
+      &lt;configuration&gt;
+        &lt;excludes&gt;
+          &lt;exclude&gt;*:/src/it/.*.java&lt;/exclude&gt;
+        &lt;/excludes&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;</code></pre>
+<p>This configuration will exclude all Java files in the `src/it` folder from all checks.</p></section>
                         </article>
                     </div>
                 </main>
