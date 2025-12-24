@@ -357,32 +357,41 @@
 <a class="jxr_linenumber" name="L349" href="#L349">349</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">class</strong> CheckerExcludes <strong class="jxr_keyword">implements</strong> Function&lt;String, String&gt; {
 <a class="jxr_linenumber" name="L350" href="#L350">350</a> 
 <a class="jxr_linenumber" name="L351" href="#L351">351</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L352" href="#L352">352</a> <em class="jxr_javadoccomment">         * Name of checker.</em>
+<a class="jxr_linenumber" name="L352" href="#L352">352</a> <em class="jxr_javadoccomment">         * All checkers.</em>
 <a class="jxr_linenumber" name="L353" href="#L353">353</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L354" href="#L354">354</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String checker;
+<a class="jxr_linenumber" name="L354" href="#L354">354</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String ALL = <span class="jxr_string">"*"</span>;
 <a class="jxr_linenumber" name="L355" href="#L355">355</a> 
 <a class="jxr_linenumber" name="L356" href="#L356">356</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L357" href="#L357">357</a> <em class="jxr_javadoccomment">         * Constructor.</em>
-<a class="jxr_linenumber" name="L358" href="#L358">358</a> <em class="jxr_javadoccomment">         * @param checker Name of checker.</em>
-<a class="jxr_linenumber" name="L359" href="#L359">359</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L360" href="#L360">360</a>         CheckerExcludes(<strong class="jxr_keyword">final</strong> String checker) {
-<a class="jxr_linenumber" name="L361" href="#L361">361</a>             <strong class="jxr_keyword">this</strong>.checker = checker;
-<a class="jxr_linenumber" name="L362" href="#L362">362</a>         }
-<a class="jxr_linenumber" name="L363" href="#L363">363</a> 
-<a class="jxr_linenumber" name="L364" href="#L364">364</a>         @Nullable
-<a class="jxr_linenumber" name="L365" href="#L365">365</a>         @Override
-<a class="jxr_linenumber" name="L366" href="#L366">366</a>         <strong class="jxr_keyword">public</strong> String apply(@Nullable <strong class="jxr_keyword">final</strong> String input) {
-<a class="jxr_linenumber" name="L367" href="#L367">367</a>             String result = <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L368" href="#L368">368</a>             <strong class="jxr_keyword">if</strong> (input != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L369" href="#L369">369</a>                 <strong class="jxr_keyword">final</strong> String[] exclude = input.split(<span class="jxr_string">":"</span>, 2);
-<a class="jxr_linenumber" name="L370" href="#L370">370</a>                 <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.checker.equals(exclude[0]) &amp;&amp; exclude.length &gt; 1) {
-<a class="jxr_linenumber" name="L371" href="#L371">371</a>                     result = exclude[1];
-<a class="jxr_linenumber" name="L372" href="#L372">372</a>                 }
-<a class="jxr_linenumber" name="L373" href="#L373">373</a>             }
-<a class="jxr_linenumber" name="L374" href="#L374">374</a>             <strong class="jxr_keyword">return</strong> result;
-<a class="jxr_linenumber" name="L375" href="#L375">375</a>         }
-<a class="jxr_linenumber" name="L376" href="#L376">376</a>     }
-<a class="jxr_linenumber" name="L377" href="#L377">377</a> }
+<a class="jxr_linenumber" name="L357" href="#L357">357</a> <em class="jxr_javadoccomment">         * Name of checker.</em>
+<a class="jxr_linenumber" name="L358" href="#L358">358</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L359" href="#L359">359</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String checker;
+<a class="jxr_linenumber" name="L360" href="#L360">360</a> 
+<a class="jxr_linenumber" name="L361" href="#L361">361</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L362" href="#L362">362</a> <em class="jxr_javadoccomment">         * Constructor.</em>
+<a class="jxr_linenumber" name="L363" href="#L363">363</a> <em class="jxr_javadoccomment">         * @param checker Name of checker.</em>
+<a class="jxr_linenumber" name="L364" href="#L364">364</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L365" href="#L365">365</a>         CheckerExcludes(<strong class="jxr_keyword">final</strong> String checker) {
+<a class="jxr_linenumber" name="L366" href="#L366">366</a>             <strong class="jxr_keyword">this</strong>.checker = checker;
+<a class="jxr_linenumber" name="L367" href="#L367">367</a>         }
+<a class="jxr_linenumber" name="L368" href="#L368">368</a> 
+<a class="jxr_linenumber" name="L369" href="#L369">369</a>         @Nullable
+<a class="jxr_linenumber" name="L370" href="#L370">370</a>         @Override
+<a class="jxr_linenumber" name="L371" href="#L371">371</a>         <strong class="jxr_keyword">public</strong> String apply(@Nullable <strong class="jxr_keyword">final</strong> String input) {
+<a class="jxr_linenumber" name="L372" href="#L372">372</a>             String result = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L373" href="#L373">373</a>             <strong class="jxr_keyword">if</strong> (input != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L374" href="#L374">374</a>                 <strong class="jxr_keyword">final</strong> String[] exclude = input.split(<span class="jxr_string">":"</span>, 2);
+<a class="jxr_linenumber" name="L375" href="#L375">375</a>                 <strong class="jxr_keyword">final</strong> String check = exclude[0];
+<a class="jxr_linenumber" name="L376" href="#L376">376</a>                 <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> appropriate = check.equals(CheckerExcludes.ALL)
+<a class="jxr_linenumber" name="L377" href="#L377">377</a>                     || <strong class="jxr_keyword">this</strong>.checker.equals(check);
+<a class="jxr_linenumber" name="L378" href="#L378">378</a>                 <strong class="jxr_keyword">if</strong> (appropriate &amp;&amp; exclude.length &gt; 1) {
+<a class="jxr_linenumber" name="L379" href="#L379">379</a>                     result = exclude[1];
+<a class="jxr_linenumber" name="L380" href="#L380">380</a>                 }
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>             }
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>             <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>         }
+<a class="jxr_linenumber" name="L384" href="#L384">384</a> 
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>     }
+<a class="jxr_linenumber" name="L386" href="#L386">386</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2025 <a href="https://www.qulice.com">Qulice.com</a></div>
