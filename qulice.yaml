@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 216.174488541
+  seconds: 232.401454592
   version: 0.58.1
   what: judges-summary
-  when: 2025-12-23 07:25:59.364098238 Z
+  when: 2025-12-24 07:26:11.945091750 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -14860,18 +14860,6 @@
   some_unmerged_pulls: 0
   what: quality-of-service
   when: 2025-12-18 10:19:00.263100501 Z
-- _id: 7805
-  _job: 54520
-  _time: 2025-12-19 07:28:31.031522611 Z
-  _version: 0.19.2/0.58.1/0.17.7
-  analyzers: 18
-  text: |-
-    The average number of builds per week (372.2) is decreasing (R=-0.56).
-    The average number of commits per week (7.9) is increasing (R=0.24).
-    The average number of releases per month (0.7) is increasing (R=0.63).
-    The average monthly turnover (9.0 developers) is increasing (R=0.37).
-  what: assessment
-  when: 2025-12-19 07:28:31.048873206 Z
 - _id: 7809
   _job: 20406442218
   _time: 2025-12-21 07:21:35.596255344 Z
@@ -15085,12 +15073,6 @@
   total_stars: 310
   what: dimensions-of-terrain
   when: 2025-12-22 07:23:23.388107492 Z
-- _id: 7827
-  _job: 54875
-  _time: 2025-12-22 07:26:35.480177133 Z
-  _version: 0.19.2/0.58.1/0.17.7
-  what: learn-eva
-  when: 2025-12-22 07:26:35.470101778 Z
 - _id: 7829
   _job: 20454287878
   _time: 2025-12-23 07:22:41.622428890 Z
@@ -15121,23 +15103,101 @@
   is_human: 0
   issue: 1462
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
   when: 2025-12-22 16:07:06.000000000 Z
   where: github
   who: 8086956
-- _id: 7831
-  _job: 20454287878
-  _time: 2025-12-23 07:23:15.182933132 Z
+- _id: 7832
+  _job: 54991
+  _time: 2025-12-23 07:26:24.094382982 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  analyzers: 18
+  text: |-
+    The average number of builds per week (372.2) is decreasing (R=-0.56).
+    The average number of commits per week (7.9) is increasing (R=0.24).
+    The average issue cycle time (2d21h) is increasing (R=0.26).
+    The average pull cycle time (3d2h) is decreasing (R=-0.17).
+    The average number of releases per month (0.7) is increasing (R=0.63).
+    The average monthly turnover (9.0 developers) is increasing (R=0.37).
+  what: assessment
+  when: 2025-12-23 07:26:24.110729603 Z
+- _id: 7833
+  _job: 54991
+  _time: 2025-12-23 07:26:46.842282889 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  what: learn-eva
+  when: 2025-12-23 07:26:46.832019719 Z
+- _id: 7834
+  _job: 20480868484
+  _time: 2025-12-24 07:22:22.967097476 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  branch: 1452-timeout-exception
+  details: The pull request yegor256/qulice#1465 has been opened by @volodya-lombrozo.
+  event_id: 5469880328
+  event_type: PullRequestEvent
+  is_human: 1
+  issue: 1465
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-23 14:15:44.000000000 Z
+  where: github
+  who: 51804353
+- _id: 7835
+  _job: 20480868484
+  _time: 2025-12-24 07:22:57.792637970 Z
   _version: 0.19.2/0.58.1/0.17.7
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 5456452146
+  events_were_scanned: 5480349919
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1458
-  min_pull_was_found: 1283
+  min_pull_was_found: 1284
   repository: 9580168
   what: iterate
   where: github
+- _id: 7836
+  _job: 20480868484
+  _time: 2025-12-24 07:23:01.824566083 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  total_active_contributors: 5
+  total_commits: 2249
+  total_contributors: 52
+  total_files: 424
+  total_forks: 118
+  total_issues: 838
+  total_pulls: 626
+  total_releases: 74
+  total_repositories: 1
+  total_stars: 310
+  what: dimensions-of-terrain
+  when: 2025-12-24 07:23:01.836914989 Z
+- _id: 7837
+  _job: 20480868484
+  _time: 2025-12-24 07:23:20.693978613 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  branch: renovate/com.qulice-qulice-maven-plugin-0.x
+  details: The missing pull yegor256/qulice#1463 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1463
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-22 20:33:08.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7838
+  _job: 20480868484
+  _time: 2025-12-24 07:23:21.360188213 Z
+  _version: 0.19.2/0.58.1/0.17.7
+  branch: '1450'
+  details: The missing pull yegor256/qulice#1464 has been opened by @fabriciofx.
+  is_human: 1
+  issue: 1464
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-22 21:20:18.000000000 Z
+  where: github
+  who: 1964562
