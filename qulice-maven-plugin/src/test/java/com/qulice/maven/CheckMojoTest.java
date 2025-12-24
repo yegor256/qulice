@@ -6,14 +6,16 @@ package com.qulice.maven;
 
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
-import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.maven.monitor.logging.DefaultLog;
+import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
@@ -42,6 +44,63 @@ final class CheckMojoTest {
         mojo.setSkip(true);
         mojo.execute();
         Assertions.assertEquals("[INFO] Execution skipped", logger.toString());
+    }
+
+    /**
+     * CheckMojo can set timeout to "forever".
+     */
+    @Test
+    void setsTimeoutToForever() {
+        final CheckMojo mojo = new CheckMojo();
+        mojo.setTimeout("forever");
+        final var validator = new BlockedValidator();
+        final ValidatorsProvider provider = new ValidatorsProviderMocker()
+            .withExternalResource(validator)
+            .mock();
+        mojo.setValidatorsProvider(provider);
+        final MavenProject project = new MavenProject();
+        mojo.setProject(project);
+        mojo.setLog(new DefaultLog(new FakeLogger()));
+        new Thread(
+            () -> {
+                try {
+                    mojo.execute();
+                } catch (final MojoFailureException exception) {
+                    throw new IllegalStateException(exception);
+                }
+            }
+        ).start();
+        validator.await();
+        Assertions.assertEquals(
+            1,
+            validator.count(),
+            "Without the 'await' statement above, this test would run forever"
+        );
+    }
+
+    /**
+     * CheckMojo can set timeout to "1s".
+     */
+    @Test
+    void setsTimeoutToOneSecond() {
+        final CheckMojo mojo = new CheckMojo();
+        mojo.setTimeout("1s");
+        final ValidatorsProvider provider = new ValidatorsProviderMocker()
+            .withExternalResource(new BlockedValidator())
+            .mock();
+        mojo.setValidatorsProvider(provider);
+        final MavenProject project = new MavenProject();
+        mojo.setProject(project);
+        mojo.setLog(new DefaultLog(new FakeLogger()));
+        Assertions.assertSame(
+            TimeoutException.class,
+            Assertions.assertThrows(
+                IllegalStateException.class,
+                mojo::execute,
+                "Should throw IllegalStateException because of timeout"
+            ).getCause().getClass(),
+            "The cause is expected to be timeout"
+        );
     }
 
     /**
@@ -193,7 +252,7 @@ final class CheckMojoTest {
         }
 
         @Override
-        public void validate(final Environment env) throws ValidationException {
+        public void validate(final Environment env) {
             this.cnt.incrementAndGet();
         }
 
@@ -204,6 +263,59 @@ final class CheckMojoTest {
 
         public int count() {
             return this.cnt.get();
+        }
+    }
+
+    /**
+     * BlockedValidator
+     * A mock to a Validator that blocks forever.
+     *
+     * @since 0.24.1
+     */
+    private static final class BlockedValidator implements ResourceValidator {
+
+        /**
+         * Method calls counter.
+         */
+        private final AtomicInteger cnt;
+
+        /**
+         * Latch to signal when validation starts.
+         */
+        private final CountDownLatch latch;
+
+        BlockedValidator() {
+            this.cnt = new AtomicInteger(0);
+            this.latch = new CountDownLatch(1);
+        }
+
+        @Override
+        public Collection<Violation> validate(final Collection<File> ignore) {
+            this.cnt.incrementAndGet();
+            this.latch.countDown();
+            try {
+                Thread.sleep(Long.MAX_VALUE);
+            } catch (final InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            return Collections.emptyList();
+        }
+
+        @Override
+        public String name() {
+            return "blocked forever";
+        }
+
+        public int count() {
+            return this.cnt.get();
+        }
+
+        public void await() {
+            try {
+                this.latch.await();
+            } catch (final InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
@@ -264,8 +376,7 @@ final class CheckMojoTest {
         }
 
         @Override
-        public void validate(final MavenEnvironment env)
-            throws ValidationException {
+        public void validate(final MavenEnvironment env) {
             this.cnt.incrementAndGet();
         }
 

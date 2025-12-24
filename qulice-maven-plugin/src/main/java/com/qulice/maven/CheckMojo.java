@@ -24,6 +24,7 @@ import java.util.concurrent.TimeoutException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 
 /**
@@ -48,6 +49,17 @@ public final class CheckMojo extends AbstractQuliceMojo {
     private ValidatorsProvider provider =
         new DefaultValidatorsProvider(this.env());
 
+    /**
+     * Check timeout.
+     * Can be a number of minutes.
+     * Can be a string with time units, like '10m' or '1h'.
+     * Time units are 's' for seconds, 'm' for minutes, 'h' for hours.
+     * Can also be a string 'forever' to disable timeout.
+     * Defaults to 10 minutes.
+     */
+    @Parameter(property = "qulice.check-timeout", defaultValue = "10")
+    private String timeout;
+
     @Override
     public void doExecute() throws MojoFailureException {
         try {
@@ -70,9 +82,18 @@ public final class CheckMojo extends AbstractQuliceMojo {
     }
 
     /**
+     * Set timeout for checks.
+     * @param time Timeout value
+     */
+    public void setTimeout(final String time) {
+        this.timeout = time;
+    }
+
+    /**
      * Run them all.
      * @throws ValidationException If any of them fail
      */
+    @SuppressWarnings("PMD.CognitiveComplexity")
     private void run() throws ValidationException {
         final LinkedList<Violation> results = new LinkedList<>();
         final MavenEnvironment env = this.env();
@@ -84,7 +105,19 @@ public final class CheckMojo extends AbstractQuliceMojo {
                 this.submit(env, files, validators);
             for (final Future<Collection<Violation>> future : futures) {
                 try {
-                    results.addAll(future.get(10L, TimeUnit.MINUTES));
+                    if ("forever".equalsIgnoreCase(this.timeout)) {
+                        results.addAll(future.get());
+                    } else {
+                        final var value = this.timeoutValue();
+                        final var units = this.timeoutUnits();
+                        Logger.debug(
+                            this,
+                            "Waiting up to %d %s for validator result",
+                            value,
+                            units
+                        );
+                        results.addAll(future.get(value, units));
+                    }
                 } catch (final InterruptedException ex) {
                     Thread.currentThread().interrupt();
                     throw new IllegalStateException(ex);
@@ -113,7 +146,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
         if (!results.isEmpty()) {
             throw new ValidationException(
                 String.format("There are %d violations", results.size())
-           );
+            );
         }
         for (final Validator validator : this.provider.external()) {
             Logger.info(this, "Starting %s validator", validator.name());
@@ -135,7 +168,8 @@ public final class CheckMojo extends AbstractQuliceMojo {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private Collection<Future<Collection<Violation>>> submit(
         final MavenEnvironment env, final Collection<File> files,
-        final Collection<ResourceValidator> validators) {
+        final Collection<ResourceValidator> validators
+    ) {
         final Collection<Future<Collection<Violation>>> futures =
             new LinkedList<>();
         for (final ResourceValidator validator : validators) {
@@ -149,14 +183,68 @@ public final class CheckMojo extends AbstractQuliceMojo {
     }
 
     /**
+     * Teimeout value for timeout.
+     * @return Timeout value
+     */
+    private long timeoutValue() {
+        final String clear = this.clearTimeout();
+        final long res;
+        if (clear.isEmpty()) {
+            res = 10L;
+        } else if (clear.endsWith("s") || clear.endsWith("m") || clear.endsWith("h")) {
+            res = Long.parseLong(clear.substring(0, clear.length() - 1));
+        } else {
+            res = Long.parseLong(clear);
+        }
+        return res;
+    }
+
+    /**
+     * Time unit for timeout.
+     * @return Time unit
+     */
+    private TimeUnit timeoutUnits() {
+        final String clear = this.clearTimeout();
+        final TimeUnit unit;
+        if (clear.endsWith("s")) {
+            unit = TimeUnit.SECONDS;
+        } else if (clear.endsWith("m")) {
+            unit = TimeUnit.MINUTES;
+        } else if (clear.endsWith("h")) {
+            unit = TimeUnit.HOURS;
+        } else {
+            unit = TimeUnit.MINUTES;
+        }
+        return unit;
+    }
+
+    /**
+    * Clear timeout string.
+    * @return Cleaned timeout
+    */
+    private String clearTimeout() {
+        final String clear;
+        if (this.timeout == null) {
+            clear = "";
+        } else {
+            clear = this.timeout.trim()
+            .replaceAll(" ", "")
+            .toLowerCase(Locale.ENGLISH);
+        }
+        return clear;
+    }
+
+    /**
      * Filter files based on excludes.
      * @param env Maven environment
      * @param files Files to exclude
      * @param validator Validator to use
      * @return Filtered files
      */
-    private static Collection<File> filter(final MavenEnvironment env,
-        final Collection<File> files, final ResourceValidator validator) {
+    private static Collection<File> filter(
+        final MavenEnvironment env,
+        final Collection<File> files, final ResourceValidator validator
+    ) {
         final Collection<File> filtered = new LinkedList<>();
         for (final File file : files) {
             if (
@@ -199,8 +287,10 @@ public final class CheckMojo extends AbstractQuliceMojo {
          * @param env Maven environment
          * @param files List of files to validate
          */
-        ValidatorCallable(final ResourceValidator validator,
-            final MavenEnvironment env, final Collection<File> files) {
+        ValidatorCallable(
+            final ResourceValidator validator,
+            final MavenEnvironment env, final Collection<File> files
+        ) {
             this.validator = validator;
             this.env = env;
             this.files = files;
