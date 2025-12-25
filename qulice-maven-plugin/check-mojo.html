@@ -93,7 +93,7 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.24.6</strong>
+                                    <strong itemprop="version">0.25.0</strong>
                                 </li>
                                 <li>
                                     $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
@@ -110,7 +110,7 @@
                             <section><a id="qulice.3Acheck"></a>
 <h1>qulice:check</h1>
 <p><strong>Full name</strong>:</p>
-<p>com.qulice:qulice-maven-plugin:0.24.6:check</p>
+<p>com.qulice:qulice-maven-plugin:0.25.0:check</p>
 <p><strong>Description</strong>:</p>
 <p>Check the project and find all possible violations.</p>
 <p><strong>Attributes</strong>:</p>
@@ -146,7 +146,12 @@
 <td><a href="#skip"><code>&lt;skip&gt;</code></a></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
-<td>Shall we skip execution?<br /><strong>Default</strong>: <code>false</code><br /><strong>User Property</strong>: <code>qulice.skip</code></td></tr></table></section><section><a id="Parameter_Details"></a>
+<td>Shall we skip execution?<br /><strong>Default</strong>: <code>false</code><br /><strong>User Property</strong>: <code>qulice.skip</code></td></tr>
+<tr class="b">
+<td><a href="#timeout"><code>&lt;timeout&gt;</code></a></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>Check timeout. Can be a number of minutes. Can be a string with time units, like '10m' or '1h'. Time units are 's' for seconds, 'm' for minutes, 'h' for hours. Can also be a string 'forever' to disable timeout. Defaults to 10 minutes.<br /><strong>Default</strong>: <code>10</code><br /><strong>User Property</strong>: <code>qulice.check-timeout</code></td></tr></table></section><section><a id="Parameter_Details"></a>
 <h2>Parameter Details</h2><a id="asserts"></a><section><a id="a.3Casserts.3E"></a>
 <h3>&lt;asserts&gt;</h3>
 <div>List of xpath queries to validate pom.xml.</div>
@@ -173,7 +178,14 @@
 <li><strong>Type</strong>: <code>boolean</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>User Property</strong>: <code>qulice.skip</code></li>
-<li><strong>Default</strong>: <code>false</code></li></ul></section></section></section>
+<li><strong>Default</strong>: <code>false</code></li></ul><hr /></section><a id="timeout"></a><section><a id="a.3Ctimeout.3E"></a>
+<h3>&lt;timeout&gt;</h3>
+<div>Check timeout. Can be a number of minutes. Can be a string with time units, like '10m' or '1h'. Time units are 's' for seconds, 'm' for minutes, 'h' for hours. Can also be a string 'forever' to disable timeout. Defaults to 10 minutes.</div>
+<ul>
+<li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>User Property</strong>: <code>qulice.check-timeout</code></li>
+<li><strong>Default</strong>: <code>10</code></li></ul></section></section></section>
                         </article>
                     </div>
                 </main>

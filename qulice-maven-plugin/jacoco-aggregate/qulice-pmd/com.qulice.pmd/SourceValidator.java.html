@@ -82,19 +82,26 @@ final class SourceValidator {
 <span class="nc" id="L82">        this.context.setReport(report);</span>
 <span class="nc bnc" id="L83" title="All 2 branches missed.">        for (final DataSource source : sources) {</span>
 <span class="nc" id="L84">            final String name = source.getNiceFileName(false, path);</span>
-<span class="nc" id="L85">            Logger.debug(this, &quot;Processing file: %s&quot;, name);</span>
-<span class="nc" id="L86">            this.context.setSourceCodeFile(new File(name));</span>
-<span class="nc" id="L87">            this.validateOne(source);</span>
-<span class="nc" id="L88">        }</span>
-<span class="nc" id="L89">        this.renderer.exportTo(report);</span>
-<span class="nc" id="L90">        report.errors().forEachRemaining(this.listener::onProcessingError);</span>
-<span class="nc" id="L91">        report.configErrors().forEachRemaining(this.listener::onConfigError);</span>
-<span class="nc" id="L92">        Logger.debug(</span>
+<span class="nc" id="L85">            final long start = System.currentTimeMillis();</span>
+<span class="nc" id="L86">            Logger.debug(this, &quot;PMD processing file: %s&quot;, name);</span>
+<span class="nc" id="L87">            this.context.setSourceCodeFile(new File(name));</span>
+<span class="nc" id="L88">            this.validateOne(source);</span>
+<span class="nc" id="L89">            Logger.debug(</span>
+                this,
+                &quot;PMD processed file: %[file]s in %[ms]s&quot;,
+                name,
+<span class="nc" id="L93">                System.currentTimeMillis() - start</span>
+            );
+<span class="nc" id="L95">        }</span>
+<span class="nc" id="L96">        this.renderer.exportTo(report);</span>
+<span class="nc" id="L97">        report.errors().forEachRemaining(this.listener::onProcessingError);</span>
+<span class="nc" id="L98">        report.configErrors().forEachRemaining(this.listener::onConfigError);</span>
+<span class="nc" id="L99">        Logger.debug(</span>
             this,
             &quot;got %d errors&quot;,
-<span class="nc" id="L95">            this.listener.errors().size()</span>
+<span class="nc" id="L102">            this.listener.errors().size()</span>
         );
-<span class="nc" id="L97">        return this.listener.errors();</span>
+<span class="nc" id="L104">        return this.listener.errors();</span>
     }
 
     /**
@@ -102,20 +109,20 @@ final class SourceValidator {
      * @param source Input source file
      */
     private void validateOne(final DataSource source) {
-<span class="nc" id="L105">        final net.sourceforge.pmd.RuleSetFactory factory =</span>
+<span class="nc" id="L112">        final net.sourceforge.pmd.RuleSetFactory factory =</span>
             new net.sourceforge.pmd.RuleSetFactory(
                 new net.sourceforge.pmd.util.ResourceLoader(),
                 RulePriority.LOW,
                 false,
                 true
             );
-<span class="nc" id="L112">        net.sourceforge.pmd.PMD.processFiles(</span>
+<span class="nc" id="L119">        net.sourceforge.pmd.PMD.processFiles(</span>
             this.config,
             factory,
-<span class="nc" id="L115">            new LinkedList&lt;&gt;(Collections.singleton(source)),</span>
+<span class="nc" id="L122">            new LinkedList&lt;&gt;(Collections.singleton(source)),</span>
             this.context,
-<span class="nc" id="L117">            Collections.singletonList(this.renderer)</span>
+<span class="nc" id="L124">            Collections.singletonList(this.renderer)</span>
         );
-<span class="nc" id="L119">    }</span>
+<span class="nc" id="L126">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
