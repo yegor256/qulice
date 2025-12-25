@@ -746,6 +746,11 @@ final class CheckstyleValidatorTest {
         this.runValidation("InvalidMethodDoc.java", false);
     }
 
+    @Test
+    void rejectsFileLength() throws Exception {
+        this.runValidation("FileLengthCheck.java", true);
+    }
+
     /**
      * Convert file name to URL.
      * @param file The file

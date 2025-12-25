@@ -42,6 +42,14 @@
     <property name="fileExtensions" value="java"/>
   </module>
   <!--
+  FileLengthCheck can be suppressed only by SuppressWithPlainTextCommentFilter
+  -->
+  <module name="SuppressWithPlainTextCommentFilter">
+    <property name="offCommentFormat" value="@checkstyle (\w+) disable"/>
+    <property name="onCommentFormat" value="@checkstyle (\w+) enable"/>
+    <property name="checkFormat" value="$1"/>
+  </module>
+  <!--
   TAB chars are not allowed anywhere.
   -->
   <module name="FileTabCharacter">
