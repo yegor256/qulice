@@ -41,7 +41,7 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
     ) {
         boolean result = false;
         if (exprs.size() == 1) {
-            final ASTExpression use = exprs.getFirst();
+            final ASTExpression use = exprs.get(0);
             if (use.ancestors(ASTReturnStatement.class).toStream()
                 .findAny().isPresent()
                 || use.ancestors(ASTArgumentList.class).toStream()
