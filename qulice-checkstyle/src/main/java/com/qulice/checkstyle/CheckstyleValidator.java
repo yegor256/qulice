@@ -4,6 +4,7 @@
  */
 package com.qulice.checkstyle;
 
+import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
@@ -68,7 +69,15 @@ public final class CheckstyleValidator implements ResourceValidator {
     public Collection<Violation> validate(final Collection<File> files) {
         final List<File> sources = this.getNonExcludedFiles(files);
         try {
+            Logger.debug(this, "Checkstyle processing %d files", sources.size());
+            final long start = System.currentTimeMillis();
             this.checker.process(sources);
+            Logger.debug(
+                this,
+                "Checkstyle processed %d files in %[ms]s",
+                sources.size(),
+                System.currentTimeMillis() - start
+            );
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to process files", ex);
         }

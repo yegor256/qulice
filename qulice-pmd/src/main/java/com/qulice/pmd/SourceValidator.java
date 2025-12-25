@@ -82,9 +82,16 @@ final class SourceValidator {
         this.context.setReport(report);
         for (final DataSource source : sources) {
             final String name = source.getNiceFileName(false, path);
-            Logger.debug(this, "Processing file: %s", name);
+            final long start = System.currentTimeMillis();
+            Logger.debug(this, "PMD processing file: %s", name);
             this.context.setSourceCodeFile(new File(name));
             this.validateOne(source);
+            Logger.debug(
+                this,
+                "PMD processed file: %[file]s in %[ms]s",
+                name,
+                System.currentTimeMillis() - start
+            );
         }
         this.renderer.exportTo(report);
         report.errors().forEachRemaining(this.listener::onProcessingError);
