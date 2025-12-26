@@ -67,6 +67,9 @@ public final class CheckstyleValidator implements ResourceValidator {
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<Violation> validate(final Collection<File> files) {
+        if (files == null) {
+            throw new IllegalArgumentException("Files collection cannot be null");
+        }
         final List<File> sources = this.getNonExcludedFiles(files);
         try {
             Logger.debug(this, "Checkstyle processing %d files", sources.size());
@@ -79,19 +82,30 @@ public final class CheckstyleValidator implements ResourceValidator {
                 System.currentTimeMillis() - start
             );
         } catch (final CheckstyleException ex) {
-            throw new IllegalStateException("Failed to process files", ex);
+            throw new IllegalStateException(
+                String.format("Failed to process files: %s", ex.getMessage()),
+                ex
+            );
         }
         final List<AuditEvent> events = this.listener.events();
         final Collection<Violation> results = new LinkedList<>();
         for (final AuditEvent event : events) {
             final String check = event.getSourceName();
+            final String checkname = check.substring(check.lastIndexOf('.') + 1);
+            final String filename = event.getFileName();
+            final String line = String.valueOf(event.getLine());
+            final String message = event.getMessage();
+            if (filename == null) {
+                Logger.warn(this, "Skipping violation with null filename for check %s", checkname);
+                continue;
+            }
             results.add(
                 new Violation.Default(
                     this.name(),
-                    check.substring(check.lastIndexOf('.') + 1),
-                    event.getFileName(),
-                    String.valueOf(event.getLine()),
-                    event.getMessage()
+                    checkname,
+                    filename,
+                    line,
+                    message
                 )
             );
         }
