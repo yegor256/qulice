@@ -13,6 +13,10 @@
   <artifactId>qulice-checkstyle</artifactId>
   <packaging>jar</packaging>
   <name>qulice-checkstyle</name>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.cactoos</groupId>
@@ -86,6 +90,14 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <encoding>UTF-8</encoding>
+          <propertiesEncoding>UTF-8</propertiesEncoding>
+        </configuration>
+      </plugin>
+      <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <argLine>-Duser.language=en -Duser.country=US</argLine>
@@ -96,6 +108,7 @@
         <artifactId>site-maven-plugin</artifactId>
         <configuration>
           <path>${project.artifactId}</path>
+          <message/>
         </configuration>
       </plugin>
     </plugins>
