@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 198.062781103
+  seconds: 277.794483617
   version: 0.58.1
   what: judges-summary
-  when: 2025-12-27 07:24:32.057938925 Z
+  when: 2025-12-28 07:26:13.556047580 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -16017,12 +16017,6 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.37).
   what: assessment
   when: 2025-12-26 07:30:01.405760827 Z
-- _id: 7878
-  _job: 55365
-  _time: 2025-12-26 07:30:24.828960119 Z
-  _version: 0.19.2/0.58.1/0.17.8
-  what: learn-eva
-  when: 2025-12-26 07:30:24.818332949 Z
 - _id: 7879
   _job: 20536018841
   _time: 2025-12-27 07:21:16.795889917 Z
@@ -16066,17 +16060,80 @@
   when: 2025-12-26 15:12:30.000000000 Z
   where: github
   who: 1964562
-- _id: 7882
-  _job: 20536018841
-  _time: 2025-12-27 07:21:44.739876952 Z
+- _id: 7883
+  _job: 55467
+  _time: 2025-12-27 07:25:10.282094752 Z
+  _version: 0.19.2/0.58.1/0.17.8
+  what: learn-eva
+  when: 2025-12-27 07:25:10.271135627 Z
+- _id: 7884
+  _job: 20550547462
+  _time: 2025-12-28 07:21:39.663796332 Z
+  _version: 0.19.2/0.58.1/0.17.8
+  details: The issue yegor256/qulice#1469 has been closed by @fabriciofx.
+  event_id: 5510713577
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1469
+  repository: 9580168
+  what: issue-was-closed
+  when: 2025-12-27 09:50:07.000000000 Z
+  where: github
+  who: 1964562
+- _id: 7885
+  _job: 20550547462
+  _time: 2025-12-28 07:21:40.076820541 Z
+  _version: 0.19.2/0.58.1/0.17.8
+  branch: '1469'
+  comments: 4
+  comments_appreciated: 0
+  comments_by_author: 2
+  comments_by_reviewers: 2
+  comments_resolved: 0
+  comments_to_code: 0
+  details: The pull request yegor256/qulice#1470 has been closed by @fabriciofx, with
+    34 HoC and 4 comments.
+  event_id: 5510712289
+  event_type: PullRequestEvent
+  failed_builds: 0
+  files: 5
+  hoc: 34
+  is_human: 1
+  issue: 1470
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-closed
+  when: 2025-12-27 03:26:16.000000000 Z
+  where: github
+  who: 1964562
+- _id: 7886
+  _job: 20550547462
+  _time: 2025-12-28 07:22:34.894960413 Z
   _version: 0.19.2/0.58.1/0.17.8
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 5509113798
+  events_were_scanned: 6685442390
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1469
-  min_pull_was_found: 1287
+  min_issue_was_found: 1471
+  min_pull_was_found: 1288
   repository: 9580168
   what: iterate
   where: github
+- _id: 7887
+  _job: 20550547462
+  _time: 2025-12-28 07:22:42.018454114 Z
+  _version: 0.19.2/0.58.1/0.17.8
+  total_active_contributors: 5
+  total_commits: 2265
+  total_contributors: 52
+  total_files: 423
+  total_forks: 118
+  total_issues: 840
+  total_pulls: 630
+  total_releases: 76
+  total_repositories: 1
+  total_stars: 310
+  what: dimensions-of-terrain
+  when: 2025-12-28 07:22:42.040509302 Z
