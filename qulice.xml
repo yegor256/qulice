@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.17.0" size="285840">
+<fb version="0.17.0" size="286637">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">247.325382886</seconds>
+    <seconds t="F">285.755136965</seconds>
     <version t="S">0.58.1</version>
     <what t="S">judges-summary</what>
-    <when t="T">2025-12-31T07:26:34Z</when>
+    <when t="T">2026-01-01T07:27:04Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -17589,21 +17589,6 @@
     <when t="T">2025-12-28T07:22:42Z</when>
   </f>
   <f>
-    <_id t="I">7888</_id>
-    <_job t="I">55557</_job>
-    <_time t="T">2025-12-28T07:26:35Z</_time>
-    <_version t="S">0.19.2/0.58.1/0.17.8</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (375.1) is decreasing (R=-0.46).
-The average number of commits per week (9.0) is increasing (R=0.41).
-The average issue cycle time (3d14h) is increasing (R=0.37).
-The average pull cycle time (4d1h) is staying still.
-The average number of releases per month (1.2) is increasing (R=0.69).
-The average monthly turnover (9.0 developers) is increasing (R=0.37).</text>
-    <what t="S">assessment</what>
-    <when t="T">2025-12-28T07:26:35Z</when>
-  </f>
-  <f>
     <_id t="I">7891</_id>
     <_job t="I">20567330355</_job>
     <_time t="T">2025-12-29T07:23:48Z</_time>
@@ -17651,14 +17636,6 @@ The average monthly turnover (9.0 developers) is increasing (R=0.37).</text>
     <start t="T">2025-09-16T05:20:41Z</start>
     <what t="S">earned-value</what>
     <when t="T">2025-12-29T07:28:13Z</when>
-  </f>
-  <f>
-    <_id t="I">7895</_id>
-    <_job t="I">55776</_job>
-    <_time t="T">2025-12-30T07:26:24Z</_time>
-    <_version t="S">0.19.2/0.58.1/0.17.8</_version>
-    <what t="S">learn-eva</what>
-    <when t="T">2025-12-30T07:26:24Z</when>
   </f>
   <f>
     <_id t="I">7896</_id>
@@ -17777,6 +17754,7 @@ The average monthly turnover (9.0 developers) is increasing (R=0.37).</text>
     <issue t="I">1473</issue>
     <repository t="I">9580168</repository>
     <review t="T">2025-12-30T16:36:04Z</review>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">20</succeeded_builds>
     <suggestions t="I">0</suggestions>
     <what t="S">pull-was-merged</what>
@@ -17804,28 +17782,13 @@ The average monthly turnover (9.0 developers) is increasing (R=0.37).</text>
     <issue t="I">1474</issue>
     <repository t="I">9580168</repository>
     <review t="T">2025-12-31T02:58:32Z</review>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">20</succeeded_builds>
     <suggestions t="I">0</suggestions>
     <what t="S">pull-was-merged</what>
     <when t="T">2025-12-31T03:12:24Z</when>
     <where t="S">github</where>
     <who t="I">8086956</who>
-  </f>
-  <f>
-    <_id t="I">7904</_id>
-    <_job t="I">20614313504</_job>
-    <_time t="T">2025-12-31T07:23:33Z</_time>
-    <_version t="S">0.19.2/0.58.1/0.17.9</_version>
-    <assignees_were_scanned t="I">0</assignees_were_scanned>
-    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">6790319576</events_were_scanned>
-    <latest_issue_was_found t="I">1386</latest_issue_was_found>
-    <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1471</min_issue_was_found>
-    <min_pull_was_found t="I">1291</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
   </f>
   <f>
     <_id t="I">7905</_id>
@@ -17914,6 +17877,91 @@ The average monthly turnover (9.0 developers) is increasing (R=0.37).</text>
     <seconds t="I">55416263</seconds>
     <what t="S">code-was-reviewed</what>
     <when t="T">2025-12-31T02:58:45Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">7910</_id>
+    <_job t="I">55850</_job>
+    <_time t="T">2025-12-31T07:26:53Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.9</_version>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (375.1) is decreasing (R=-0.46).
+The average number of commits per week (9.0) is increasing (R=0.41).
+The average issue cycle time (3d14h) is increasing (R=0.37).
+The average pull cycle time (3d23h) is staying still.
+The average number of releases per month (1.2) is increasing (R=0.69).
+The average monthly turnover (9.0 developers) is increasing (R=0.37).</text>
+    <what t="S">assessment</what>
+    <when t="T">2025-12-31T07:26:53Z</when>
+  </f>
+  <f>
+    <_id t="I">7911</_id>
+    <_job t="I">55850</_job>
+    <_time t="T">2025-12-31T07:27:15Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.9</_version>
+    <what t="S">learn-eva</what>
+    <when t="T">2025-12-31T07:27:15Z</when>
+  </f>
+  <f>
+    <_id t="I">7913</_id>
+    <_job t="I">20634617925</_job>
+    <_time t="T">2026-01-01T07:23:00Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.9</_version>
+    <branch t="S">renovate/crate-ci-typos-1.x</branch>
+    <comments t="I">3</comments>
+    <comments_appreciated t="I">1</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">3</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1472 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1472</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2025-12-29T17:04:14Z</review>
+    <succeeded_builds t="I">20</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2025-12-29T17:24:07Z</when>
+    <where t="S">github</where>
+    <who t="I">8086956</who>
+  </f>
+  <f>
+    <_id t="I">7914</_id>
+    <_job t="I">20634617925</_job>
+    <_time t="T">2026-01-01T07:23:30Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.9</_version>
+    <assignees_were_scanned t="I">0</assignees_were_scanned>
+    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
+    <events_were_scanned t="I">6793545427</events_were_scanned>
+    <latest_issue_was_found t="I">1386</latest_issue_was_found>
+    <merges_were_scanned t="I">0</merges_were_scanned>
+    <min_issue_was_found t="I">1471</min_issue_was_found>
+    <min_pull_was_found t="I">1293</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
+  </f>
+  <f>
+    <_id t="I">7915</_id>
+    <_job t="I">20634617925</_job>
+    <_time t="T">2026-01-01T07:25:20Z</_time>
+    <_version t="S">0.19.2/0.58.1/0.17.9</_version>
+    <author t="I">29139614</author>
+    <comments t="I">3</comments>
+    <details t="S">The pull request yegor256/qulice#1472 with 2 HoC created by @renovate[bot] was reviewed by @yegor256 after 0h16m and 0 comments.</details>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1472</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">989</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2025-12-29T17:04:14Z</when>
     <where t="S">github</where>
     <who t="I">526301</who>
   </f>

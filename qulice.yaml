@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 247.325382886
+  seconds: 285.755136965
   version: 0.58.1
   what: judges-summary
-  when: 2025-12-31 07:26:34.178225965 Z
+  when: 2026-01-01 07:27:04.576170868 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -16089,20 +16089,6 @@
   total_stars: 310
   what: dimensions-of-terrain
   when: 2025-12-28 07:22:42.040509302 Z
-- _id: 7888
-  _job: 55557
-  _time: 2025-12-28 07:26:35.323646192 Z
-  _version: 0.19.2/0.58.1/0.17.8
-  analyzers: 18
-  text: |-
-    The average number of builds per week (375.1) is decreasing (R=-0.46).
-    The average number of commits per week (9.0) is increasing (R=0.41).
-    The average issue cycle time (3d14h) is increasing (R=0.37).
-    The average pull cycle time (4d1h) is staying still.
-    The average number of releases per month (1.2) is increasing (R=0.69).
-    The average monthly turnover (9.0 developers) is increasing (R=0.37).
-  what: assessment
-  when: 2025-12-28 07:26:35.353375041 Z
 - _id: 7891
   _job: 20567330355
   _time: 2025-12-29 07:23:48.676474947 Z
@@ -16147,12 +16133,6 @@
   start: *12
   what: earned-value
   when: 2025-12-29 07:28:13.812533945 Z
-- _id: 7895
-  _job: 55776
-  _time: 2025-12-30 07:26:24.902427823 Z
-  _version: 0.19.2/0.58.1/0.17.8
-  what: learn-eva
-  when: 2025-12-30 07:26:24.891770357 Z
 - _id: 7896
   _job: 20614313504
   _time: 2025-12-31 07:22:30.716807976 Z
@@ -16262,6 +16242,7 @@
   issue: 1473
   repository: 9580168
   review: 2025-12-30 16:36:04.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -16287,26 +16268,13 @@
   issue: 1474
   repository: 9580168
   review: 2025-12-31 02:58:32.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
   when: 2025-12-31 03:12:24.000000000 Z
   where: github
   who: 8086956
-- _id: 7904
-  _job: 20614313504
-  _time: 2025-12-31 07:23:33.753941498 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 6790319576
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1471
-  min_pull_was_found: 1291
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7905
   _job: 20614313504
   _time: 2025-12-31 07:23:37.075779274 Z
@@ -16388,5 +16356,82 @@
   seconds: 55416263
   what: code-was-reviewed
   when: 2025-12-31 02:58:45.000000000 Z
+  where: github
+  who: 526301
+- _id: 7910
+  _job: 55850
+  _time: 2025-12-31 07:26:53.053877644 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  analyzers: 18
+  text: |-
+    The average number of builds per week (375.1) is decreasing (R=-0.46).
+    The average number of commits per week (9.0) is increasing (R=0.41).
+    The average issue cycle time (3d14h) is increasing (R=0.37).
+    The average pull cycle time (3d23h) is staying still.
+    The average number of releases per month (1.2) is increasing (R=0.69).
+    The average monthly turnover (9.0 developers) is increasing (R=0.37).
+  what: assessment
+  when: 2025-12-31 07:26:53.074065544 Z
+- _id: 7911
+  _job: 55850
+  _time: 2025-12-31 07:27:15.526812865 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  what: learn-eva
+  when: 2025-12-31 07:27:15.505182201 Z
+- _id: 7913
+  _job: 20634617925
+  _time: 2026-01-01 07:23:00.831191998 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/crate-ci-typos-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1472 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1472
+  repository: 9580168
+  review: 2025-12-29 17:04:14.000000000 Z
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2025-12-29 17:24:07.000000000 Z
+  where: github
+  who: 8086956
+- _id: 7914
+  _job: 20634617925
+  _time: 2026-01-01 07:23:30.939147240 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 6793545427
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1471
+  min_pull_was_found: 1293
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 7915
+  _job: 20634617925
+  _time: 2026-01-01 07:25:20.339313866 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1472 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 0h16m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1472
+  repository: 9580168
+  review_comments: 0
+  seconds: 989
+  what: code-was-reviewed
+  when: 2025-12-29 17:04:14.000000000 Z
   where: github
   who: 526301
