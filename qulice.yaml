@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 285.755136965
+  seconds: 345.295776057
   version: 0.58.1
   what: judges-summary
-  when: 2026-01-01 07:27:04.576170868 Z
+  when: 2026-01-02 07:28:25.189568720 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -15538,7 +15538,7 @@
   total_releases_published: 2
   total_reviews_submitted: 8
   what: quantity-of-deliverables
-  when: 2025-12-25 10:20:03.928433826 Z
+  when: &82 2025-12-25 10:20:03.928433826 Z
 - _id: 7863
   _job: 20518234974
   _time: 2025-12-26 07:23:26.710933225 Z
@@ -15988,7 +15988,7 @@
   - 0
   some_unmerged_pulls: 1
   what: quality-of-service
-  when: 2025-12-25 10:19:00.263100501 Z
+  when: &83 2025-12-25 10:19:00.263100501 Z
 - _id: 7879
   _job: 20536018841
   _time: 2025-12-27 07:21:16.795889917 Z
@@ -16105,20 +16105,6 @@
   total_stars: 310
   what: dimensions-of-terrain
   when: 2025-12-29 07:23:48.687205543 Z
-- _id: 7892
-  _job: 55690
-  _time: 2025-12-29 07:27:51.203966266 Z
-  _version: 0.19.2/0.58.1/0.17.8
-  analyzers: 18
-  text: |-
-    The average number of builds per week (375.1) is decreasing (R=-0.46).
-    The average number of commits per week (9.0) is increasing (R=0.41).
-    The average issue cycle time (3d14h) is increasing (R=0.37).
-    The average pull cycle time (4d1h) is staying still.
-    The average number of releases per month (1.2) is increasing (R=0.69).
-    The average monthly turnover (9.0 developers) is increasing (R=0.37).
-  what: assessment
-  when: 2025-12-29 07:27:51.223101317 Z
 - _id: 7893
   _job: 55690
   _time: 2025-12-29 07:28:13.812292801 Z
@@ -16372,12 +16358,6 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.37).
   what: assessment
   when: 2025-12-31 07:26:53.074065544 Z
-- _id: 7911
-  _job: 55850
-  _time: 2025-12-31 07:27:15.526812865 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  what: learn-eva
-  when: 2025-12-31 07:27:15.505182201 Z
 - _id: 7913
   _job: 20634617925
   _time: 2026-01-01 07:23:00.831191998 Z
@@ -16397,26 +16377,13 @@
   issue: 1472
   repository: 9580168
   review: 2025-12-29 17:04:14.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
   when: 2025-12-29 17:24:07.000000000 Z
   where: github
   who: 8086956
-- _id: 7914
-  _job: 20634617925
-  _time: 2026-01-01 07:23:30.939147240 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 6793545427
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1471
-  min_pull_was_found: 1293
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7915
   _job: 20634617925
   _time: 2026-01-01 07:25:20.339313866 Z
@@ -16435,3 +16402,320 @@
   when: 2025-12-29 17:04:14.000000000 Z
   where: github
   who: 526301
+- _id: 7916
+  _job: 55994
+  _time: 2026-01-01 07:27:23.644942122 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  analyzers: 18
+  text: |-
+    The average number of builds per week (375.1) is decreasing (R=-0.46).
+    The average number of commits per week (9.0) is increasing (R=0.41).
+    The average issue cycle time (3d14h) is increasing (R=0.37).
+    The average pull cycle time (3d22h) is staying still.
+    The average number of releases per month (1.2) is increasing (R=0.69).
+    The average monthly turnover (9.0 developers) is increasing (R=0.37).
+  what: assessment
+  when: 2026-01-01 07:27:23.665382326 Z
+- _id: 7917
+  _job: 55994
+  _time: 2026-01-01 07:27:49.879582660 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  what: learn-eva
+  when: 2026-01-01 07:27:49.868792838 Z
+- _id: 7918
+  _job: 20653112000
+  _time: 2026-01-02 07:22:43.871563969 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  by_owner: 1
+  commit: 2f4d13e20fa272e895acaebebc64b5d136feb8e4
+  default_branch: master
+  details: 'A new Git push #29412017492 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 7117312700
+  event_type: PushEvent
+  is_human: 1
+  push_id: 29412017492
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-01-01 10:05:58.000000000 Z
+  where: github
+  who: 526301
+- _id: 7920
+  _job: 20653112000
+  _time: 2026-01-02 07:22:55.472968202 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  since: *82
+  total_builds_ran: 209
+  total_commits_pushed: 21
+  total_hoc_committed: 4227
+  total_issues_created: 9
+  total_pulls_submitted: 7
+  total_releases_published: 1
+  total_reviews_submitted: 8
+  what: quantity-of-deliverables
+  when: 2026-01-02 07:22:55.000000000 Z
+- _id: 7921
+  _job: 20653112000
+  _time: 2026-01-02 07:23:37.073413761 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 5571072592
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1471
+  min_pull_was_found: 1294
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 7922
+  _job: 20653112000
+  _time: 2026-01-02 07:23:44.697456669 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  total_active_contributors: 5
+  total_commits: 2274
+  total_contributors: 52
+  total_files: 423
+  total_forks: 118
+  total_issues: 840
+  total_pulls: 635
+  total_releases: 76
+  total_repositories: 1
+  total_stars: 310
+  what: dimensions-of-terrain
+  when: 2026-01-02 07:23:44.710040837 Z
+- _id: 7923
+  _job: 20653112000
+  _time: 2026-01-02 07:26:02.054377812 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  since: *83
+  some_backlog_size:
+  - 155
+  - 154
+  - 154
+  - 154
+  - 154
+  - 154
+  - 154
+  some_build_duration:
+  - 7
+  - 8
+  - 328
+  - 50
+  - 7
+  - 8
+  - 9
+  - 11
+  - 11
+  - 11
+  - 7
+  - 7
+  - 9
+  - 9
+  - 9
+  - 16
+  - 22
+  - 25
+  - 27
+  - 23
+  - 28
+  - 31
+  - 255
+  - 309
+  - 7
+  - 8
+  - 9
+  - 9
+  - 9
+  - 13
+  - 16
+  - 26
+  - 27
+  - 60
+  - 280
+  - 8
+  - 8
+  - 8
+  - 9
+  - 10
+  - 14
+  - 17
+  - 27
+  - 30
+  - 56
+  - 293
+  - 379
+  - 54
+  - 7
+  - 8
+  - 9
+  - 9
+  - 9
+  - 18
+  - 22
+  - 25
+  - 29
+  - 56
+  - 275
+  - 0
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  some_issue_lifetime:
+  - 67057.0
+  - 752601.0
+  - 1112423.0
+  some_merged_pulls: 15
+  some_pull_files_size:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 3
+  - 2
+  - 23
+  - 1
+  - 1
+  - 1
+  - 1
+  some_pull_hoc_size:
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 1024
+  - 223
+  - 1278
+  - 2
+  - 2
+  - 2
+  - 2
+  some_pull_lifetime:
+  - 27474.0
+  - 25283.0
+  - 37336.0
+  - 13273.0
+  - 2182.0
+  - 66919.0
+  - 38911.0
+  - 72488.0
+  - 246057.0
+  - 282876.0
+  - 1205310.0
+  - 5511351.0
+  - 5486818.0
+  - 28339607.0
+  - 55417893.0
+  some_review_size:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  some_review_time:
+  - 3776
+  - 1578
+  - 832
+  - 784
+  - 1193
+  - 751
+  - 1514
+  - 1630
+  some_reviewers_per_pull:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 1
+  - 1
+  some_reviews_per_pull:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 1
+  - 1
+  some_unmerged_pulls: 3
+  what: quality-of-service
+  when: 2026-01-02 07:26:02.000000000 Z
