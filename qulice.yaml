@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 345.295776057
+  seconds: 203.130554844
   version: 0.58.1
   what: judges-summary
-  when: 2026-01-02 07:28:25.189568720 Z
+  when: 2026-01-03 07:24:48.033478077 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -16344,20 +16344,6 @@
   when: 2025-12-31 02:58:45.000000000 Z
   where: github
   who: 526301
-- _id: 7910
-  _job: 55850
-  _time: 2025-12-31 07:26:53.053877644 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  analyzers: 18
-  text: |-
-    The average number of builds per week (375.1) is decreasing (R=-0.46).
-    The average number of commits per week (9.0) is increasing (R=0.41).
-    The average issue cycle time (3d14h) is increasing (R=0.37).
-    The average pull cycle time (3d23h) is staying still.
-    The average number of releases per month (1.2) is increasing (R=0.69).
-    The average monthly turnover (9.0 developers) is increasing (R=0.37).
-  what: assessment
-  when: 2025-12-31 07:26:53.074065544 Z
 - _id: 7913
   _job: 20634617925
   _time: 2026-01-01 07:23:00.831191998 Z
@@ -16416,12 +16402,6 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.37).
   what: assessment
   when: 2026-01-01 07:27:23.665382326 Z
-- _id: 7917
-  _job: 55994
-  _time: 2026-01-01 07:27:49.879582660 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  what: learn-eva
-  when: 2026-01-01 07:27:49.868792838 Z
 - _id: 7918
   _job: 20653112000
   _time: 2026-01-02 07:22:43.871563969 Z
@@ -16456,20 +16436,6 @@
   total_reviews_submitted: 8
   what: quantity-of-deliverables
   when: 2026-01-02 07:22:55.000000000 Z
-- _id: 7921
-  _job: 20653112000
-  _time: 2026-01-02 07:23:37.073413761 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 5571072592
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1471
-  min_pull_was_found: 1294
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7922
   _job: 20653112000
   _time: 2026-01-02 07:23:44.697456669 Z
@@ -16719,3 +16685,88 @@
   some_unmerged_pulls: 3
   what: quality-of-service
   when: 2026-01-02 07:26:02.000000000 Z
+- _id: 7924
+  _job: 56133
+  _time: 2026-01-02 07:28:56.504578034 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  analyzers: 18
+  text: |-
+    The average number of builds per week (362.5) is decreasing (R=-0.55).
+    The average number of commits per week (9.6) is increasing (R=0.48).
+    The average issue cycle time (3d14h) is increasing (R=0.37).
+    The average pull cycle time (3d22h) is staying still.
+    The average number of releases per month (1.4) is increasing (R=0.71).
+    The average monthly turnover (8.0 developers) is increasing (R=0.24).
+  what: assessment
+  when: 2026-01-02 07:28:56.524282840 Z
+- _id: 7925
+  _job: 56133
+  _time: 2026-01-02 07:29:18.762159911 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  what: learn-eva
+  when: 2026-01-02 07:29:18.751536117 Z
+- _id: 7926
+  _job: 20674098782
+  _time: 2026-01-03 07:21:27.880071550 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  details: The issue yegor256/qulice#1477 has been opened by @merkurevsergei.
+  event_id: 5579937956
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1477
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-01-02 16:53:18.000000000 Z
+  where: github
+  who: 29391156
+- _id: 7927
+  _job: 20674098782
+  _time: 2026-01-03 07:21:54.630767128 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 5579937956
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1477
+  min_pull_was_found: 1295
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 7928
+  _job: 20674098782
+  _time: 2026-01-03 07:21:57.784716288 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  details: 'We found out that the user #29391156 is known in GitHub as @merkurevsergei.'
+  is_human: 1
+  name: merkurevsergei
+  what: who-has-name
+  when: 2026-01-03 07:21:57.789898127 Z
+  where: github
+  who: 29391156
+- _id: 7929
+  _job: 20674098782
+  _time: 2026-01-03 07:22:07.622336703 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/com.puppycrawl.tools-checkstyle-12.x
+  details: The missing pull yegor256/qulice#1475 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1475
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-31 20:43:44.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7930
+  _job: 20674098782
+  _time: 2026-01-03 07:22:08.102568931 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/crate-ci-typos-1.x
+  details: The missing pull yegor256/qulice#1476 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1476
+  repository: 9580168
+  what: pull-was-opened
+  when: 2025-12-31 20:43:48.000000000 Z
+  where: github
+  who: 29139614
