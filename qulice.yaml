@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 203.130554844
+  seconds: 266.201400935
   version: 0.58.1
   what: judges-summary
-  when: 2026-01-03 07:24:48.033478077 Z
+  when: 2026-01-04 07:26:19.439164878 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -16699,12 +16699,6 @@
     The average monthly turnover (8.0 developers) is increasing (R=0.24).
   what: assessment
   when: 2026-01-02 07:28:56.524282840 Z
-- _id: 7925
-  _job: 56133
-  _time: 2026-01-02 07:29:18.762159911 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  what: learn-eva
-  when: 2026-01-02 07:29:18.751536117 Z
 - _id: 7926
   _job: 20674098782
   _time: 2026-01-03 07:21:27.880071550 Z
@@ -16719,20 +16713,6 @@
   when: 2026-01-02 16:53:18.000000000 Z
   where: github
   who: 29391156
-- _id: 7927
-  _job: 20674098782
-  _time: 2026-01-03 07:21:54.630767128 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 5579937956
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1477
-  min_pull_was_found: 1295
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7928
   _job: 20674098782
   _time: 2026-01-03 07:21:57.784716288 Z
@@ -16770,3 +16750,125 @@
   when: 2025-12-31 20:43:48.000000000 Z
   where: github
   who: 29139614
+- _id: 7931
+  _job: 56256
+  _time: 2026-01-03 07:25:30.409105056 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  what: learn-eva
+  when: 2026-01-03 07:25:30.399249746 Z
+- _id: 7933
+  _job: 20689433149
+  _time: 2026-01-04 07:22:29.473906735 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/com.puppycrawl.tools-checkstyle-12.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1475 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1475
+  repository: 9580168
+  review: 2026-01-01 03:18:49.000000000 Z
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-01-01 03:45:07.000000000 Z
+  where: github
+  who: 8086956
+- _id: 7934
+  _job: 20689433149
+  _time: 2026-01-04 07:22:54.988437777 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/crate-ci-typos-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1476 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1476
+  repository: 9580168
+  review: 2026-01-01 03:18:46.000000000 Z
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-01-01 04:21:42.000000000 Z
+  where: github
+  who: 8086956
+- _id: 7935
+  _job: 20689433149
+  _time: 2026-01-04 07:23:06.634043743 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 7168533515
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1477
+  min_pull_was_found: 1296
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 7936
+  _job: 20689433149
+  _time: 2026-01-04 07:23:11.361693287 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  total_active_contributors: 5
+  total_commits: 2274
+  total_contributors: 52
+  total_files: 423
+  total_forks: 118
+  total_issues: 841
+  total_pulls: 635
+  total_releases: 76
+  total_repositories: 1
+  total_stars: 310
+  what: dimensions-of-terrain
+  when: 2026-01-04 07:23:11.380048723 Z
+- _id: 7937
+  _job: 20689433149
+  _time: 2026-01-04 07:24:41.289664029 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1475 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 6h35m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1475
+  repository: 9580168
+  review_comments: 0
+  seconds: 23705
+  what: code-was-reviewed
+  when: 2026-01-01 03:18:49.000000000 Z
+  where: github
+  who: 526301
+- _id: 7938
+  _job: 20689433149
+  _time: 2026-01-04 07:24:42.208658354 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1476 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 6h34m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1476
+  repository: 9580168
+  review_comments: 0
+  seconds: 23698
+  what: code-was-reviewed
+  when: 2026-01-01 03:18:46.000000000 Z
+  where: github
+  who: 526301
