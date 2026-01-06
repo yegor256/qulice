@@ -24,16 +24,15 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
 
     @Override
     public Object visit(final ASTInfixExpression expr, final Object data) {
-        if (isComparison(expr)
-            && (
-                matchesLengthCheck(
-                    expr.getLeftOperand(),
-                    expr.getRightOperand()
-                )
+        if (isComparison(expr) && (
+            matchesLengthCheck(
+                expr.getLeftOperand(),
+                expr.getRightOperand()
+            )
                 || matchesLengthCheck(
-                    expr.getRightOperand(),
-                    expr.getLeftOperand()
-                )
+                expr.getRightOperand(),
+                expr.getLeftOperand()
+            )
             )
         ) {
             asCtx(data).addViolation(expr);
@@ -42,14 +41,26 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
     }
 
     private static boolean isComparison(final ASTInfixExpression expr) {
-        return switch (expr.getOperator()) {
-            case EQ, NE, GT, LT, GE, LE -> true;
-            default -> false;
-        };
+        final boolean result;
+        switch (expr.getOperator()) {
+            case EQ:
+            case NE:
+            case GT:
+            case LT:
+            case GE:
+            case LE:
+                result = true;
+                break;
+            default:
+                result = false;
+                break;
+        }
+        return result;
     }
 
     /**
      * Checks if length is length() or literal is 0 or 1.
+     *
      * @param length The method
      * @param literal The number
      * @return True if matches, false otherwise
@@ -59,14 +70,16 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
         final ASTExpression length,
         final ASTExpression literal
     ) {
-        return length != null
-            && literal != null
-            && isZeroOrOneLiteral(literal)
-            && length instanceof ASTMethodCall call
-            && "length".equals(call.getMethodName())
-            && call.getArguments().isEmpty()
-            && call.getQualifier() != null
-            && isStringExpression(call.getQualifier());
+        boolean result = false;
+        if (length != null && literal != null && isZeroOrOneLiteral(literal)
+            && length instanceof ASTMethodCall) {
+            final ASTMethodCall call = (ASTMethodCall) length;
+            result = "length".equals(call.getMethodName())
+                && call.getArguments().isEmpty()
+                && call.getQualifier() != null
+                && isStringExpression(call.getQualifier());
+        }
+        return result;
     }
 
     private static boolean isZeroOrOneLiteral(final ASTExpression expr) {
