@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 199.624747485
+  seconds: 293.179237909
   version: 0.58.1
   what: judges-summary
-  when: 2026-01-06 07:26:04.560203483 Z
+  when: 2026-01-07 07:27:52.214965638 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -16870,23 +16870,118 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.20).
   what: assessment
   when: 2026-01-05 07:26:53.005746244 Z
-- _id: 7944
-  _job: 56486
-  _time: 2026-01-05 07:27:18.089891707 Z
+- _id: 7946
+  _job: 56599
+  _time: 2026-01-06 07:26:44.235636205 Z
   _version: 0.19.2/0.58.1/0.17.9
   what: learn-eva
-  when: 2026-01-05 07:27:18.061571568 Z
-- _id: 7945
-  _job: 20741234176
-  _time: 2026-01-06 07:23:07.100495380 Z
+  when: 2026-01-06 07:26:44.212204856 Z
+- _id: 7947
+  _job: 20773817160
+  _time: 2026-01-07 07:23:02.992140575 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/junit-framework-monorepo
+  details: The pull request yegor256/qulice#1481 has been opened by @renovate[bot].
+  event_id: 5636541570
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1481
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-01-06 17:30:18.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7948
+  _job: 20773817160
+  _time: 2026-01-07 07:23:03.963319119 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: '1471'
+  details: The pull request yegor256/qulice#1480 has been opened by @fabriciofx.
+  event_id: 5626955102
+  event_type: PullRequestEvent
+  is_human: 1
+  issue: 1480
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-01-06 09:34:55.000000000 Z
+  where: github
+  who: 1964562
+- _id: 7950
+  _job: 20773817160
+  _time: 2026-01-07 07:23:41.698917520 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: '1471'
+  comments: 4
+  comments_appreciated: 1
+  comments_by_author: 1
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1480 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 55
+  is_human: 0
+  issue: 1480
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-01-06 12:14:48.000000000 Z
+  where: github
+  who: 8086956
+- _id: 7951
+  _job: 20773817160
+  _time: 2026-01-07 07:24:11.464607404 Z
   _version: 0.19.2/0.58.1/0.17.9
   assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 5623901140
+  events_were_scanned: 6823713146
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1477
-  min_pull_was_found: 1298
+  min_pull_was_found: 1299
   repository: 9580168
   what: iterate
   where: github
+- _id: 7952
+  _job: 20773817160
+  _time: 2026-01-07 07:24:18.394384282 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  total_active_contributors: 5
+  total_commits: 2275
+  total_contributors: 52
+  total_files: 423
+  total_forks: 118
+  total_issues: 842
+  total_pulls: 638
+  total_releases: 76
+  total_repositories: 1
+  total_stars: 310
+  what: dimensions-of-terrain
+  when: 2026-01-07 07:24:18.408834735 Z
+- _id: 7953
+  _job: 20773817160
+  _time: 2026-01-07 07:24:36.569387173 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/com.puppycrawl.tools-checkstyle-13.x
+  details: The missing pull yegor256/qulice#1478 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1478
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-01-05 01:49:49.000000000 Z
+  where: github
+  who: 29139614
+- _id: 7954
+  _job: 20773817160
+  _time: 2026-01-07 07:24:37.345870768 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  details: The missing issue yegor256/qulice#1479 has been opened by @merkurevsergei.
+  is_human: 1
+  issue: 1479
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-01-05 17:48:38.000000000 Z
+  where: github
+  who: 29391156
