@@ -84,7 +84,8 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
 
     private static boolean isZeroOrOneLiteral(final ASTExpression expr) {
         boolean matches = false;
-        if (expr instanceof ASTNumericLiteral lit) {
+        if (expr instanceof ASTNumericLiteral) {
+            final ASTNumericLiteral lit = (ASTNumericLiteral) expr;
             final String image = lit.getImage();
             matches = "0".equals(image) || "1".equals(image);
         }
