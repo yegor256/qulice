@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 271.874759992
+  seconds: 326.196203224
   version: 0.58.1
   what: judges-summary
-  when: 2026-01-19 07:27:56.455055790 Z
+  when: 2026-01-20 07:28:19.095277861 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -17205,20 +17205,6 @@
   total_stars: 310
   what: dimensions-of-terrain
   when: 2026-01-16 07:23:08.247348514 Z
-- _id: 7987
-  _job: 57714
-  _time: 2026-01-16 07:27:12.080034236 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  analyzers: 18
-  text: |-
-    The average number of builds per week (345.7) is decreasing (R=-0.64).
-    The average number of commits per week (9.2) is increasing (R=0.32).
-    The average issue cycle time (3d14h) is increasing (R=0.37).
-    The average pull cycle time (3d20h) is staying still.
-    The average number of releases per month (1.3) is increasing (R=0.58).
-    The average monthly turnover (9.0 developers) is increasing (R=0.14).
-  what: assessment
-  when: 2026-01-16 07:27:12.099436642 Z
 - _id: 7990
   _job: 21090632929
   _time: 2026-01-17 07:21:41.683825416 Z
@@ -17429,26 +17415,6 @@
   total_stars: 310
   what: dimensions-of-terrain
   when: 2026-01-18 07:22:09.333433112 Z
-- _id: 7997
-  _job: 57916
-  _time: 2026-01-18 07:26:22.162287007 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  what: learn-eva
-  when: 2026-01-18 07:26:22.151926718 Z
-- _id: 7998
-  _job: 21128768655
-  _time: 2026-01-19 07:24:00.695848285 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 5887963446
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1479
-  min_pull_was_found: 1311
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 7999
   _job: 21128768655
   _time: 2026-01-19 07:24:07.916477236 Z
@@ -17465,3 +17431,197 @@
   total_stars: 310
   what: dimensions-of-terrain
   when: 2026-01-19 07:24:07.927504093 Z
+- _id: 8000
+  _job: 58017
+  _time: 2026-01-19 07:28:19.107268435 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  analyzers: 18
+  text: |-
+    The average number of builds per week (328.5) is decreasing (R=-0.71).
+    The average number of commits per week (8.8) is increasing (R=0.22).
+    The average issue cycle time (3d13h) is increasing (R=0.43).
+    The average pull cycle time (3d20h) is staying still.
+    The average number of releases per month (1.2) is increasing (R=0.48).
+    The average monthly turnover (9.0 developers) is increasing (R=0.14).
+  what: assessment
+  when: 2026-01-19 07:28:19.124244773 Z
+- _id: 8001
+  _job: 58017
+  _time: 2026-01-19 07:28:43.689672837 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  what: learn-eva
+  when: 2026-01-19 07:28:43.679428868 Z
+- _id: 8002
+  _job: 58017
+  _time: 2026-01-19 07:28:43.788888273 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  ac: 68
+  cost_of_qod: 3.197743703821403
+  ev: 450
+  pv: 8734
+  qod: 141
+  qod_per_day: 21.83635631459688
+  qod_per_sec: 1.307375949683884e-05
+  start: *12
+  what: earned-value
+  when: 2026-01-19 07:28:43.789096695 Z
+- _id: 8003
+  _job: 21162915853
+  _time: 2026-01-20 07:22:57.312503116 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  comments: 3
+  commits: 1
+  details: The pull request yegor256/qulice#1486 has been reviewed by @yegor256 with
+    2 HoC and 3 comments.
+  event_id: 5918344182
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1486
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-01-20 03:12:24.000000000 Z
+  where: github
+  who: 526301
+- _id: 8004
+  _job: 21162915853
+  _time: 2026-01-20 07:22:58.025261638 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/crate-ci-typos-1.x
+  details: The pull request yegor256/qulice#1486 has been opened by @renovate[bot].
+  event_id: 5913112688
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1486
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-01-19 19:46:14.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8006
+  _job: 21162915853
+  _time: 2026-01-20 07:23:42.846213893 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/crate-ci-typos-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1486 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1486
+  repository: 9580168
+  review: 2026-01-20 03:12:23.000000000 Z
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-01-20 03:34:17.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8007
+  _job: 21162915853
+  _time: 2026-01-20 07:24:15.632496397 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 5918613646
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1479
+  min_pull_was_found: 1312
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 8008
+  _job: 21162915853
+  _time: 2026-01-20 07:24:23.802385906 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  total_active_contributors: 5
+  total_commits: 2281
+  total_contributors: 52
+  total_files: 423
+  total_forks: 117
+  total_issues: 842
+  total_pulls: 643
+  total_releases: 76
+  total_repositories: 1
+  total_stars: 310
+  what: dimensions-of-terrain
+  when: 2026-01-20 07:24:23.823042052 Z
+- _id: 8009
+  _job: 21162915853
+  _time: 2026-01-20 07:24:43.959805162 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/crate-ci-typos-1.x
+  details: The missing pull yegor256/qulice#1482 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1482
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-01-08 01:34:08.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8010
+  _job: 21162915853
+  _time: 2026-01-20 07:24:44.784152150 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/jamesives-github-pages-deploy-action-4.x
+  details: The missing pull yegor256/qulice#1483 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1483
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-01-09 21:33:36.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8011
+  _job: 21162915853
+  _time: 2026-01-20 07:24:45.648680021 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: renovate/org.apache.maven.plugin-testing-maven-plugin-testing-harness-3.x
+  details: The missing pull yegor256/qulice#1484 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1484
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-01-11 01:54:18.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8012
+  _job: 21162915853
+  _time: 2026-01-20 07:24:46.782311251 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  branch: '1471'
+  details: The missing pull yegor256/qulice#1485 has been opened by @fabriciofx.
+  is_human: 1
+  issue: 1485
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-01-14 13:11:20.000000000 Z
+  where: github
+  who: 1964562
+- _id: 8013
+  _job: 21162915853
+  _time: 2026-01-20 07:26:25.731936274 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1486 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 7h26m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1486
+  repository: 9580168
+  review_comments: 0
+  seconds: 26769
+  what: code-was-reviewed
+  when: 2026-01-20 03:12:23.000000000 Z
+  where: github
+  who: 526301
