@@ -7,136 +7,107 @@
 <body>
 <div id="overview"><a href="../../../../../apidocs/com/qulice/pmd/rules/UseStringIsEmptyRule.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * SPDX-License-Identifier: MIT</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">package</strong> com.qulice.pmd.rules;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> java.util.Arrays;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> java.util.HashMap;
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> java.util.List;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> java.util.Map;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.ast.Node;
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTExpression;
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTReferenceType;
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTResultType;
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTType;
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.JavaNode;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.symboltable.JavaNameOccurrence;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.symboltable.MethodNameDeclaration;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.symboltable.VariableNameDeclaration;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.symboltable.NameOccurrence;
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.symboltable.Scope;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTExpression;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTInfixExpression;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTMethodCall;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.types.JTypeMirror;
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * Rule to prohibit use of String.length() when checking for empty string.</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * String.isEmpty() should be used instead.</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> * @since 0.18</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="UseStringIsEmptyRule" href="../../../../com/qulice/pmd/rules/UseStringIsEmptyRule.html#UseStringIsEmptyRule">UseStringIsEmptyRule</a> <strong class="jxr_keyword">extends</strong> AbstractJavaRulechainRule {
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>      <strong class="jxr_keyword">public</strong> <a name="UseStringIsEmptyRule" href="../../../../com/qulice/pmd/rules/UseStringIsEmptyRule.html#UseStringIsEmptyRule">UseStringIsEmptyRule</a>() {
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>          <strong class="jxr_keyword">super</strong>(ASTInfixExpression.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>      }
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * Rule to prohibit use of String.length() when checking for empty string.</em>
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * String.isEmpty() should be used instead.</em>
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * @since 0.18</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  @SuppressWarnings(<span class="jxr_string">"deprecation"</span>)
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="UseStringIsEmptyRule" href="../../../../com/qulice/pmd/rules/UseStringIsEmptyRule.html#UseStringIsEmptyRule">UseStringIsEmptyRule</a>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>      <strong class="jxr_keyword">extends</strong> net.sourceforge.pmd.lang.java.rule.AbstractInefficientZeroCheck {
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>      @Override
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> appliesToClassName(<strong class="jxr_keyword">final</strong> String name) {
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>          <strong class="jxr_keyword">return</strong> net.sourceforge.pmd.util.StringUtil.isSame(
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>              name, <span class="jxr_string">"String"</span>, <strong class="jxr_keyword">true</strong>, <strong class="jxr_keyword">true</strong>, <strong class="jxr_keyword">true</strong>
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>          );
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>      }
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>      @Override
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>      <strong class="jxr_keyword">public</strong> Map&lt;String, List&lt;String&gt;&gt; getComparisonTargets() {
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>          <strong class="jxr_keyword">final</strong> Map&lt;String, List&lt;String&gt;&gt; rules = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;();
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>          rules.put(<span class="jxr_string">"&lt;"</span>, Arrays.asList(<span class="jxr_string">"1"</span>));
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>          rules.put(<span class="jxr_string">"&gt;"</span>, Arrays.asList(<span class="jxr_string">"0"</span>));
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>          rules.put(<span class="jxr_string">"=="</span>, Arrays.asList(<span class="jxr_string">"0"</span>));
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>          rules.put(<span class="jxr_string">"!="</span>, Arrays.asList(<span class="jxr_string">"0"</span>));
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>          rules.put(<span class="jxr_string">"&gt;="</span>, Arrays.asList(<span class="jxr_string">"0"</span>, <span class="jxr_string">"1"</span>));
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>          rules.put(<span class="jxr_string">"&lt;="</span>, Arrays.asList(<span class="jxr_string">"0"</span>));
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <strong class="jxr_keyword">return</strong> rules;
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>      }
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>      @Override
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> isTargetMethod(<strong class="jxr_keyword">final</strong> JavaNameOccurrence occ) {
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>          <strong class="jxr_keyword">final</strong> NameOccurrence name = occ.getNameForWhichThisIsAQualifier();
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>          <strong class="jxr_keyword">return</strong> name != <strong class="jxr_keyword">null</strong> &amp;&amp; <span class="jxr_string">"length"</span>.equals(name.getImage());
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>      }
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>      @Override
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">public</strong> Object visit(
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>          <strong class="jxr_keyword">final</strong> ASTVariableDeclaratorId variable, <strong class="jxr_keyword">final</strong> Object data
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>      ) {
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>          <strong class="jxr_keyword">boolean</strong> matches;
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          <strong class="jxr_keyword">final</strong> Node node = variable.getTypeNameNode();
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>          matches = node instanceof ASTReferenceType;
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>          <strong class="jxr_keyword">final</strong> VariableNameDeclaration decl = variable.getNameDeclaration();
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>          matches = matches &amp;&amp; decl != <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">final</strong> Class&lt;?&gt; clazz = variable.getType();
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>          matches = matches &amp;&amp; clazz != <strong class="jxr_keyword">null</strong> &amp;&amp; !clazz.isArray();
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <strong class="jxr_keyword">if</strong> (decl != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>              matches = matches &amp;&amp; <strong class="jxr_keyword">this</strong>.appliesToClassName(decl.getTypeImage());
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>          } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>              matches = false;
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>          }
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>          <strong class="jxr_keyword">if</strong> (matches) {
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>              <strong class="jxr_keyword">this</strong>.checkDeclarations(variable.getUsages(), data);
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>          }
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>          variable.childrenAccept(<strong class="jxr_keyword">this</strong>, data);
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>          <strong class="jxr_keyword">return</strong> data;
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>      }
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>      @Override
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>      <strong class="jxr_keyword">public</strong> Object visit(
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>          <strong class="jxr_keyword">final</strong> ASTMethodDeclaration declaration, <strong class="jxr_keyword">final</strong> Object data
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>      ) {
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>          <strong class="jxr_keyword">final</strong> ASTResultType result = declaration.getResultType();
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>          <strong class="jxr_keyword">if</strong> (!result.isVoid()) {
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>              <strong class="jxr_keyword">final</strong> ASTType node = (ASTType) result.jjtGetChild(0);
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>              <strong class="jxr_keyword">final</strong> Class&lt;?&gt; clazz = node.getType();
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>              <strong class="jxr_keyword">final</strong> String type = node.getTypeImage();
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>              <strong class="jxr_keyword">if</strong> (clazz != <strong class="jxr_keyword">null</strong> &amp;&amp; !clazz.isArray()
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>                  &amp;&amp; <strong class="jxr_keyword">this</strong>.appliesToClassName(type)
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>              ) {
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>                  <strong class="jxr_keyword">final</strong> Scope scope = declaration.getScope().getParent();
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>                  <strong class="jxr_keyword">final</strong> MethodNameDeclaration method = <strong class="jxr_keyword">new</strong> MethodNameDeclaration(
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>                      declaration.getMethodDeclarator()
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>                  );
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>                  <strong class="jxr_keyword">final</strong> List&lt;NameOccurrence&gt; declarations = scope
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>                      .getDeclarations(MethodNameDeclaration.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>                     .get(method);
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>                 <strong class="jxr_keyword">this</strong>.checkDeclarations(declarations, data);
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>             }
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>         }
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>         declaration.childrenAccept(<strong class="jxr_keyword">this</strong>, data);
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>         <strong class="jxr_keyword">return</strong> data;
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>     }
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> 
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">     * Checks all uses of a variable or method with a String type.</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">     * @param occurrences Variable or method occurrences.</em>
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">     * @param data Rule context.</em>
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> checkDeclarations(
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>         <strong class="jxr_keyword">final</strong> Iterable&lt;NameOccurrence&gt; occurrences, <strong class="jxr_keyword">final</strong> Object data
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>     ) {
-<a class="jxr_linenumber" name="L116" href="#L116">116</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> NameOccurrence occurrence : occurrences) {
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>             <strong class="jxr_keyword">final</strong> JavaNameOccurrence jocc = (JavaNameOccurrence) occurrence;
-<a class="jxr_linenumber" name="L118" href="#L118">118</a>             <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.isTargetMethod(jocc)) {
-<a class="jxr_linenumber" name="L119" href="#L119">119</a>                 <strong class="jxr_keyword">final</strong> JavaNode location = jocc.getLocation();
-<a class="jxr_linenumber" name="L120" href="#L120">120</a>                 <strong class="jxr_keyword">final</strong> Node expr = location.getFirstParentOfType(
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>                     ASTExpression.<strong class="jxr_keyword">class</strong>
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>                 );
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>                 <strong class="jxr_keyword">this</strong>.checkNodeAndReport(
-<a class="jxr_linenumber" name="L124" href="#L124">124</a>                     data, occurrence.getLocation(), expr.jjtGetChild(0)
-<a class="jxr_linenumber" name="L125" href="#L125">125</a>                 );
-<a class="jxr_linenumber" name="L126" href="#L126">126</a>             }
-<a class="jxr_linenumber" name="L127" href="#L127">127</a>         }
-<a class="jxr_linenumber" name="L128" href="#L128">128</a>     }
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> }
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>      @Override
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>      <strong class="jxr_keyword">public</strong> Object visit(<strong class="jxr_keyword">final</strong> ASTInfixExpression expr, <strong class="jxr_keyword">final</strong> Object data) {
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>          <strong class="jxr_keyword">if</strong> (isComparison(expr) &amp;&amp; (
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>              matchesLengthCheck(
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>                  expr.getLeftOperand(),
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>                  expr.getRightOperand()
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>              )
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>                  || matchesLengthCheck(
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>                  expr.getRightOperand(),
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>                  expr.getLeftOperand()
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>              )
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>              )
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>          ) {
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>              asCtx(data).addViolation(expr);
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>          }
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>          <strong class="jxr_keyword">return</strong> data;
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>      }
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isComparison(<strong class="jxr_keyword">final</strong> ASTInfixExpression expr) {
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> result;
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <strong class="jxr_keyword">switch</strong> (expr.getOperator()) {
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>              <strong class="jxr_keyword">case</strong> EQ:
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>              <strong class="jxr_keyword">case</strong> NE:
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>              <strong class="jxr_keyword">case</strong> GT:
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>              <strong class="jxr_keyword">case</strong> LT:
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>              <strong class="jxr_keyword">case</strong> GE:
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>              <strong class="jxr_keyword">case</strong> LE:
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>                  result = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>                  <strong class="jxr_keyword">break</strong>;
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>              <strong class="jxr_keyword">default</strong>:
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>                  result = false;
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>                  <strong class="jxr_keyword">break</strong>;
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>          }
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>      }
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  <em class="jxr_javadoccomment">     * Checks if length is length() or literal is 0 or 1.</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">     * @param length The method</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     * @param literal The number</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     * @return True if matches, false otherwise</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">     * @checkstyle BooleanExpressionComplexityCheck (20 lines)</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> matchesLengthCheck(
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <strong class="jxr_keyword">final</strong> ASTExpression length,
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>          <strong class="jxr_keyword">final</strong> ASTExpression literal
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      ) {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>          <strong class="jxr_keyword">boolean</strong> result = false;
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          <strong class="jxr_keyword">if</strong> (length != <strong class="jxr_keyword">null</strong> &amp;&amp; literal != <strong class="jxr_keyword">null</strong> &amp;&amp; isZeroOrOneLiteral(literal)
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>              &amp;&amp; length instanceof ASTMethodCall) {
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>              <strong class="jxr_keyword">final</strong> ASTMethodCall call = (ASTMethodCall) length;
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>              result = <span class="jxr_string">"length"</span>.equals(call.getMethodName())
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>                  &amp;&amp; call.getArguments().isEmpty()
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>                  &amp;&amp; call.getQualifier() != <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>                  &amp;&amp; isStringExpression(call.getQualifier());
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>          }
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>          <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>      }
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isZeroOrOneLiteral(<strong class="jxr_keyword">final</strong> ASTExpression expr) {
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>          <strong class="jxr_keyword">boolean</strong> matches = false;
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>          <strong class="jxr_keyword">if</strong> (expr instanceof ASTNumericLiteral) {
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>              <strong class="jxr_keyword">final</strong> ASTNumericLiteral lit = (ASTNumericLiteral) expr;
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>              <strong class="jxr_keyword">final</strong> String image = lit.getImage();
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>              matches = <span class="jxr_string">"0"</span>.equals(image) || <span class="jxr_string">"1"</span>.equals(image);
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>          }
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          <strong class="jxr_keyword">return</strong> matches;
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>      }
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isStringExpression(<strong class="jxr_keyword">final</strong> ASTExpression expr) {
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">final</strong> JTypeMirror type = expr.getTypeMirror();
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>          <strong class="jxr_keyword">return</strong> type.isClassOrInterface()
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>              &amp;&amp; <span class="jxr_string">"java.lang.String"</span>.equals(type.toString());
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>      }
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> }
 </pre>
 <hr/>
-<div id="footer">© 2011–2025 <a href="https://www.qulice.com">Qulice.com</a></div>
+<div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
 </body>
 </html>
