@@ -96,7 +96,7 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.25.0</strong>
+                                    <strong itemprop="version">0.25.1</strong>
                                 </li>
                                 <li>
                                     $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
@@ -136,13 +136,13 @@
 <tr class="b">
 <td>com.puppycrawl.tools</td>
 <td><a class="externalLink" href="https://checkstyle.org/">checkstyle</a></td>
-<td>11.1.0</td>
+<td>12.3.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt">LGPL-2.1-or-later</a></td></tr>
 <tr class="a">
 <td>com.qulice</td>
 <td><a class="externalLink" href="https://www.qulice.com/qulice-spi">qulice-spi</a></td>
-<td>0.25.0</td>
+<td>0.25.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.qulice.com/LICENSE.txt">BSD</a></td></tr>
 <tr class="b">
@@ -156,22 +156,7 @@
 <td><a class="externalLink" href="https://github.com/yegor256/cactoos">cactoos</a></td>
 <td>0.57.0</td>
 <td>jar</td>
-<td><a class="externalLink" href="https://raw.githubusercontent.com/yegor256/cactoos/master/LICENSE.txt">MIT</a></td></tr></table></section><section><a id="Project_Dependencies_runtime"></a>
-<h2>runtime</h2>
-<p>The following is a list of runtime dependencies for this project. These dependencies are required to run the application:</p>
-<table class="bodyTable">
-<tr class="a">
-<th>GroupId</th>
-<th>ArtifactId</th>
-<th>Version</th>
-<th>Type</th>
-<th>Licenses</th></tr>
-<tr class="b">
-<td>net.sourceforge.saxon</td>
-<td><a class="externalLink" href="http://saxon.sourceforge.net/">saxon</a></td>
-<td>9.1.0.8</td>
-<td>jar</td>
-<td><a class="externalLink" href="http://www.mozilla.org/MPL/MPL-1.0.txt">Mozilla Public License Version 1.0</a></td></tr></table></section><section><a id="Project_Dependencies_test"></a>
+<td><a class="externalLink" href="https://raw.githubusercontent.com/yegor256/cactoos/master/LICENSE.txt">MIT</a></td></tr></table></section><section><a id="Project_Dependencies_test"></a>
 <h2>test</h2>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
 <table class="bodyTable">
@@ -202,19 +187,19 @@
 <tr class="a">
 <td>org.junit.jupiter</td>
 <td><a class="externalLink" href="https://junit.org/">junit-jupiter-api</a></td>
-<td>5.13.4</td>
+<td>6.0.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></td></tr>
 <tr class="b">
 <td>org.junit.jupiter</td>
 <td><a class="externalLink" href="https://junit.org/">junit-jupiter-engine</a></td>
-<td>5.13.4</td>
+<td>6.0.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></td></tr>
 <tr class="a">
 <td>org.junit.jupiter</td>
 <td><a class="externalLink" href="https://junit.org/">junit-jupiter-params</a></td>
-<td>5.13.4</td>
+<td>6.0.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></td></tr>
 <tr class="b">
@@ -253,170 +238,234 @@
 <th>GroupId</th>
 <th>ArtifactId</th>
 <th>Version</th>
+<th>Classifier</th>
 <th>Type</th>
 <th>Licenses</th></tr>
 <tr class="b">
 <td>com.google.code.findbugs</td>
 <td><a class="externalLink" href="http://findbugs.sourceforge.net/">jsr305</a></td>
 <td>3.0.2</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="a">
 <td>com.google.errorprone</td>
 <td><a class="externalLink" href="https://errorprone.info/error_prone_annotations">error_prone_annotations</a></td>
 <td>2.41.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache 2.0</a></td></tr>
 <tr class="b">
 <td>com.google.guava</td>
 <td><a class="externalLink" href="https://github.com/google/guava/failureaccess">failureaccess</a></td>
 <td>1.0.3</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
 <tr class="a">
 <td>com.google.guava</td>
 <td><a class="externalLink" href="https://github.com/google/guava/listenablefuture">listenablefuture</a></td>
 <td>9999.0-empty-to-avoid-conflict-with-guava</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="b">
 <td>com.google.j2objc</td>
 <td><a class="externalLink" href="https://github.com/google/j2objc/">j2objc-annotations</a></td>
 <td>3.1</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
 <tr class="a">
 <td>commons-beanutils</td>
 <td><a class="externalLink" href="https://commons.apache.org/proper/commons-beanutils">commons-beanutils</a></td>
 <td>1.11.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
 <tr class="b">
 <td>commons-collections</td>
 <td><a class="externalLink" href="http://commons.apache.org/collections/">commons-collections</a></td>
 <td>3.2.2</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
 <tr class="a">
 <td>commons-logging</td>
 <td><a class="externalLink" href="http://commons.apache.org/proper/commons-logging/">commons-logging</a></td>
 <td>1.2</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
 <tr class="b">
 <td>info.picocli</td>
 <td><a class="externalLink" href="https://picocli.info">picocli</a></td>
 <td>4.7.7</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, version 2.0</a></td></tr>
 <tr class="a">
+<td>net.sf.saxon</td>
+<td><a class="externalLink" href="http://www.saxonica.com/">Saxon-HE</a></td>
+<td>12.9</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="http://www.mozilla.org/MPL/2.0/">Mozilla Public License Version 2.0</a></td></tr>
+<tr class="b">
 <td>org.antlr</td>
 <td><a class="externalLink" href="https://www.antlr.org/antlr4-runtime/">antlr4-runtime</a></td>
 <td>4.13.2</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.antlr.org/license.html">BSD-3-Clause</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.commons</td>
 <td><a class="externalLink" href="https://commons.apache.org/proper/commons-text">commons-text</a></td>
 <td>1.14.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.httpcomponents</td>
 <td><a class="externalLink" href="http://hc.apache.org/httpcomponents-client">httpclient</a></td>
 <td>4.5.13</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.httpcomponents</td>
 <td><a class="externalLink" href="http://hc.apache.org/httpcomponents-core-ga">httpcore</a></td>
 <td>4.4.14</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.maven.doxia</td>
 <td><a class="externalLink" href="https://maven.apache.org/doxia/doxia/doxia-core/">doxia-core</a></td>
 <td>1.12.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.maven.doxia</td>
 <td><a class="externalLink" href="https://maven.apache.org/doxia/doxia/doxia-logging-api/">doxia-logging-api</a></td>
 <td>1.12.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.maven.doxia</td>
 <td><a class="externalLink" href="https://maven.apache.org/doxia/doxia/doxia-modules/doxia-module-xdoc/">doxia-module-xdoc</a></td>
 <td>1.12.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.apache.maven.doxia</td>
 <td><a class="externalLink" href="https://maven.apache.org/doxia/doxia/doxia-sink-api/">doxia-sink-api</a></td>
 <td>1.12.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.apache.xbean</td>
 <td><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/3.7/xbean-reflect">xbean-reflect</a></td>
 <td>3.7</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.checkerframework</td>
 <td><a class="externalLink" href="https://checkerframework.org/">checker-qual</a></td>
-<td>3.51.0</td>
+<td>3.52.1</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://opensource.org/licenses/MIT">The MIT License</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.codehaus.plexus</td>
 <td><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-classworlds/">plexus-classworlds</a></td>
 <td>2.6.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.codehaus.plexus</td>
 <td><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/">plexus-component-annotations</a></td>
 <td>2.1.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.codehaus.plexus</td>
 <td><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-containers/plexus-container-default/">plexus-container-default</a></td>
 <td>2.1.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.codehaus.plexus</td>
 <td><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-utils/">plexus-utils</a></td>
 <td>3.3.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.javassist</td>
 <td><a class="externalLink" href="http://www.javassist.org/">javassist</a></td>
 <td>3.28.0-GA</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.mozilla.org/MPL/MPL-1.1.html">MPL 1.1</a><a class="externalLink" href="http://www.gnu.org/licenses/lgpl-2.1.html">LGPL 2.1</a><a class="externalLink" href="http://www.apache.org/licenses/">Apache License 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.jspecify</td>
 <td><a class="externalLink" href="http://jspecify.org/">jspecify</a></td>
 <td>1.0.0</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></td></tr>
-<tr class="a">
+<tr class="b">
 <td>org.reflections</td>
 <td><a class="externalLink" href="http://github.com/ronmamo/reflections">reflections</a></td>
 <td>0.10.2</td>
+<td>-</td>
 <td>jar</td>
 <td><a class="externalLink" href="http://www.wtfpl.net/">WTFPL</a><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></td></tr>
-<tr class="b">
+<tr class="a">
 <td>org.slf4j</td>
 <td><a class="externalLink" href="http://www.slf4j.org">slf4j-api</a></td>
 <td>2.0.16</td>
+<td>-</td>
 <td>jar</td>
-<td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></td></tr></table></section><section><a id="Project_Transitive_Dependencies_test"></a>
+<td><a class="externalLink" href="http://www.opensource.org/licenses/mit-license.php">MIT License</a></td></tr>
+<tr class="b">
+<td>org.xmlresolver</td>
+<td><a class="externalLink" href="https://github.com/xmlresolver/xmlresolver">xmlresolver</a></td>
+<td>5.3.3</td>
+<td>data</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License version 2.0</a></td></tr>
+<tr class="a">
+<td>org.xmlresolver</td>
+<td><a class="externalLink" href="https://github.com/xmlresolver/xmlresolver">xmlresolver</a></td>
+<td>5.3.3</td>
+<td>-</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License version 2.0</a></td></tr></table></section><section><a id="Project_Transitive_Dependencies_runtime"></a>
+<h2>runtime</h2>
+<p>The following is a list of runtime dependencies for this project. These dependencies are required to run the application:</p>
+<table class="bodyTable">
+<tr class="a">
+<th>GroupId</th>
+<th>ArtifactId</th>
+<th>Version</th>
+<th>Type</th>
+<th>Licenses</th></tr>
+<tr class="b">
+<td>org.slf4j</td>
+<td><a class="externalLink" href="http://www.slf4j.org">slf4j-simple</a></td>
+<td>2.0.17</td>
+<td>jar</td>
+<td><a class="externalLink" href="https://opensource.org/license/mit">MIT</a></td></tr></table></section><section><a id="Project_Transitive_Dependencies_test"></a>
 <h2>test</h2>
 <p>The following is a list of test dependencies for this project. These dependencies are only required to compile and run unit tests for the application:</p>
 <table class="bodyTable">
@@ -453,13 +502,13 @@
 <tr class="b">
 <td>org.junit.platform</td>
 <td><a class="externalLink" href="https://junit.org/">junit-platform-commons</a></td>
-<td>1.13.4</td>
+<td>6.0.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></td></tr>
 <tr class="a">
 <td>org.junit.platform</td>
 <td><a class="externalLink" href="https://junit.org/">junit-platform-engine</a></td>
-<td>1.13.4</td>
+<td>6.0.1</td>
 <td>jar</td>
 <td><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></td></tr>
 <tr class="b">
@@ -519,13 +568,14 @@
 <section><a id="Dependency_Tree"></a>
 <h2>Dependency Tree</h2>
 <ul>
-<li>com.qulice:qulice-checkstyle:jar:0.25.0 <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep0" style="display:none">
+<li>com.qulice:qulice-checkstyle:jar:0.25.1 <img id="_img1" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep0', '_img1' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep0" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>qulice-checkstyle</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>Quality control library, integrating together other static analysis and validation tools and instruments.</p>
+<p><b>Description: </b>Quality control library, integrating together other static
+    analysis and validation tools and instruments.</p>
 <p><b>URL: </b><a class="externalLink" href="https://www.qulice.com/qulice-checkstyle">https://www.qulice.com/qulice-checkstyle</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.qulice.com/LICENSE.txt">BSD</a></p></td></tr></table></div>
 <ul>
@@ -538,13 +588,14 @@
 <p><b>Description: </b>Object-Oriented Java Primitives</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/yegor256/cactoos">https://github.com/yegor256/cactoos</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://raw.githubusercontent.com/yegor256/cactoos/master/LICENSE.txt">MIT</a></p></td></tr></table></div></li>
-<li>com.qulice:qulice-spi:jar:0.25.0 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep4" style="display:none">
+<li>com.qulice:qulice-spi:jar:0.25.1 (compile) <img id="_img5" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep4', '_img5' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep4" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>qulice-spi</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>Quality control library, integrating together other static analysis and validation tools and instruments.</p>
+<p><b>Description: </b>Quality control library, integrating together other static
+    analysis and validation tools and instruments.</p>
 <p><b>URL: </b><a class="externalLink" href="https://www.qulice.com/qulice-spi">https://www.qulice.com/qulice-spi</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.qulice.com/LICENSE.txt">BSD</a></p></td></tr></table></div></li>
 <li>com.google.guava:guava:jar:33.5.0-jre (compile) <img id="_img7" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep6', '_img7' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep6" style="display:none">
@@ -675,7 +726,7 @@
 <p><b>Description: </b>Bean Validation API</p>
 <p><b>URL: </b><a class="externalLink" href="http://beanvalidation.org">http://beanvalidation.org</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>com.puppycrawl.tools:checkstyle:jar:11.1.0 (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep28" style="display:none">
+<li>com.puppycrawl.tools:checkstyle:jar:12.3.1 (compile) <img id="_img29" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep28', '_img29' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep28" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>checkstyle</th></tr>
@@ -752,7 +803,44 @@
 <p><b>Description: </b>JSR305 Annotations for Findbugs</p>
 <p><b>URL: </b><a class="externalLink" href="http://findbugs.sourceforge.net/">http://findbugs.sourceforge.net/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.checkerframework:checker-qual:jar:3.51.0 (compile) <img id="_img45" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep44', '_img45' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep44" style="display:none">
+<li>org.slf4j:slf4j-simple:jar:2.0.17 (runtime) <img id="_img45" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep44', '_img45' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep44" style="display:none">
+<table class="bodyTable">
+<tr class="a">
+<th>SLF4J Simple Provider</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>SLF4J Simple Provider</p>
+<p><b>URL: </b><a class="externalLink" href="http://www.slf4j.org">http://www.slf4j.org</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://opensource.org/license/mit">MIT</a></p></td></tr></table></div></li>
+<li>net.sf.saxon:Saxon-HE:jar:12.9 (compile) <img id="_img47" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep46', '_img47' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep46" style="display:none">
+<table class="bodyTable">
+<tr class="a">
+<th>Saxon-HE</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>The XSLT and XQuery Processor</p>
+<p><b>URL: </b><a class="externalLink" href="http://www.saxonica.com/">http://www.saxonica.com/</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="http://www.mozilla.org/MPL/2.0/">Mozilla Public License Version 2.0</a></p></td></tr></table></div>
+<ul>
+<li>org.xmlresolver:xmlresolver:jar:5.3.3 (compile) <img id="_img49" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep48', '_img49' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep48" style="display:none">
+<table class="bodyTable">
+<tr class="a">
+<th>XML Resolver</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>An XML entity/uri resolver</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/xmlresolver/xmlresolver">https://github.com/xmlresolver/xmlresolver</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License version 2.0</a></p></td></tr></table></div></li>
+<li>org.xmlresolver:xmlresolver:jar:data:5.3.3 (compile) <img id="_img51" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep50', '_img51' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep50" style="display:none">
+<table class="bodyTable">
+<tr class="a">
+<th>XML Resolver</th></tr>
+<tr class="b">
+<td>
+<p><b>Description: </b>An XML entity/uri resolver</p>
+<p><b>URL: </b><a class="externalLink" href="https://github.com/xmlresolver/xmlresolver">https://github.com/xmlresolver/xmlresolver</a></p>
+<p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0">Apache License version 2.0</a></p></td></tr></table></div></li></ul></li>
+<li>org.checkerframework:checker-qual:jar:3.52.1 (compile) <img id="_img53" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep52', '_img53' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep52" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Checker Qual</th></tr>
@@ -761,7 +849,7 @@
 <p><b>Description: </b>checker-qual contains annotations (type qualifiers) that a programmerwrites to specify Java code for type-checking by the Checker Framework.</p>
 <p><b>URL: </b><a class="externalLink" href="https://checkerframework.org/">https://checkerframework.org/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://opensource.org/licenses/MIT">The MIT License</a></p></td></tr></table></div></li>
-<li>org.apache.maven.doxia:doxia-core:jar:1.12.0 (compile) <img id="_img47" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep46', '_img47' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep46" style="display:none">
+<li>org.apache.maven.doxia:doxia-core:jar:1.12.0 (compile) <img id="_img55" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep54', '_img55' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep54" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Doxia :: Core</th></tr>
@@ -771,7 +859,7 @@
 <p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/doxia/doxia/doxia-core/">https://maven.apache.org/doxia/doxia/doxia-core/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.apache.maven.doxia:doxia-sink-api:jar:1.12.0 (compile) <img id="_img49" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep48', '_img49' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep48" style="display:none">
+<li>org.apache.maven.doxia:doxia-sink-api:jar:1.12.0 (compile) <img id="_img57" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep56', '_img57' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep56" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Doxia :: Sink API</th></tr>
@@ -780,7 +868,7 @@
 <p><b>Description: </b>Doxia Sink API.</p>
 <p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/doxia/doxia/doxia-sink-api/">https://maven.apache.org/doxia/doxia/doxia-sink-api/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.maven.doxia:doxia-logging-api:jar:1.12.0 (compile) <img id="_img51" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep50', '_img51' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep50" style="display:none">
+<li>org.apache.maven.doxia:doxia-logging-api:jar:1.12.0 (compile) <img id="_img59" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep58', '_img59' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep58" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Doxia :: Logging API</th></tr>
@@ -789,7 +877,7 @@
 <p><b>Description: </b>Doxia Logging API.</p>
 <p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/doxia/doxia/doxia-logging-api/">https://maven.apache.org/doxia/doxia/doxia-logging-api/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.codehaus.plexus:plexus-utils:jar:3.3.0 (compile) <img id="_img53" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep52', '_img53' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep52" style="display:none">
+<li>org.codehaus.plexus:plexus-utils:jar:3.3.0 (compile) <img id="_img61" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep60', '_img61' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep60" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Plexus Common Utilities</th></tr>
@@ -799,7 +887,7 @@
     more.</p>
 <p><b>URL: </b><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-utils/">http://codehaus-plexus.github.io/plexus-utils/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.codehaus.plexus:plexus-container-default:jar:2.1.0 (compile) <img id="_img55" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep54', '_img55' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep54" style="display:none">
+<li>org.codehaus.plexus:plexus-container-default:jar:2.1.0 (compile) <img id="_img63" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep62', '_img63' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep62" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Plexus :: Default Container</th></tr>
@@ -809,7 +897,7 @@
 <p><b>URL: </b><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-containers/plexus-container-default/">http://codehaus-plexus.github.io/plexus-containers/plexus-container-default/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.codehaus.plexus:plexus-classworlds:jar:2.6.0 (compile) <img id="_img57" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep56', '_img57' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep56" style="display:none">
+<li>org.codehaus.plexus:plexus-classworlds:jar:2.6.0 (compile) <img id="_img65" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep64', '_img65' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep64" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Plexus Classworlds</th></tr>
@@ -818,7 +906,7 @@
 <p><b>Description: </b>A class loader framework</p>
 <p><b>URL: </b><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-classworlds/">http://codehaus-plexus.github.io/plexus-classworlds/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.xbean:xbean-reflect:jar:3.7 (compile) <img id="_img59" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep58', '_img59' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep58" style="display:none">
+<li>org.apache.xbean:xbean-reflect:jar:3.7 (compile) <img id="_img67" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep66', '_img67' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep66" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Apache XBean :: Reflect</th></tr>
@@ -827,7 +915,7 @@
 <p><b>Description: </b>xbean-reflect provides very flexible ways to creat objects and graphs of objects for DI frameworks</p>
 <p><b>URL: </b><a class="externalLink" href="http://geronimo.apache.org/maven/xbean/3.7/xbean-reflect">http://geronimo.apache.org/maven/xbean/3.7/xbean-reflect</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.codehaus.plexus:plexus-component-annotations:jar:2.1.0 (compile) <img id="_img61" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep60', '_img61' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep60" style="display:none">
+<li>org.codehaus.plexus:plexus-component-annotations:jar:2.1.0 (compile) <img id="_img69" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep68', '_img69' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep68" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Plexus :: Component Annotations</th></tr>
@@ -837,7 +925,7 @@
     standard annotations instead of javadoc annotations.</p>
 <p><b>URL: </b><a class="externalLink" href="http://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/">http://codehaus-plexus.github.io/plexus-containers/plexus-component-annotations/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.apache.commons:commons-text:jar:1.14.0 (compile) <img id="_img63" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep62', '_img63' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep62" style="display:none">
+<li>org.apache.commons:commons-text:jar:1.14.0 (compile) <img id="_img71" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep70', '_img71' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep70" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Apache Commons Text</th></tr>
@@ -847,7 +935,7 @@
     and manipulating text in a Java environment.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-text">https://commons.apache.org/proper/commons-text</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
-<li>org.apache.httpcomponents:httpclient:jar:4.5.13 (compile) <img id="_img65" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep64', '_img65' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep64" style="display:none">
+<li>org.apache.httpcomponents:httpclient:jar:4.5.13 (compile) <img id="_img73" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep72', '_img73' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep72" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Apache HttpClient</th></tr>
@@ -857,7 +945,7 @@
 <p><b>URL: </b><a class="externalLink" href="http://hc.apache.org/httpcomponents-client">http://hc.apache.org/httpcomponents-client</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div>
 <ul>
-<li>commons-logging:commons-logging:jar:1.2 (compile) <img id="_img67" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep66', '_img67' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep66" style="display:none">
+<li>commons-logging:commons-logging:jar:1.2 (compile) <img id="_img75" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep74', '_img75' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep74" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Apache Commons Logging</th></tr>
@@ -867,7 +955,7 @@
     well known logging systems.</p>
 <p><b>URL: </b><a class="externalLink" href="http://commons.apache.org/proper/commons-logging/">http://commons.apache.org/proper/commons-logging/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.apache.httpcomponents:httpcore:jar:4.4.14 (compile) <img id="_img69" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep68', '_img69' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep68" style="display:none">
+<li>org.apache.httpcomponents:httpcore:jar:4.4.14 (compile) <img id="_img77" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep76', '_img77' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep76" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Apache HttpCore</th></tr>
@@ -876,7 +964,7 @@
 <p><b>Description: </b>Apache HttpComponents Core (blocking I/O)</p>
 <p><b>URL: </b><a class="externalLink" href="http://hc.apache.org/httpcomponents-core-ga">http://hc.apache.org/httpcomponents-core-ga</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.apache.maven.doxia:doxia-module-xdoc:jar:1.12.0 (compile) <img id="_img71" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep70', '_img71' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep70" style="display:none">
+<li>org.apache.maven.doxia:doxia-module-xdoc:jar:1.12.0 (compile) <img id="_img79" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep78', '_img79' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep78" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Doxia :: XDoc Module</th></tr>
@@ -886,16 +974,7 @@
     Xdoc format is supported both as source and target formats.</p>
 <p><b>URL: </b><a class="externalLink" href="https://maven.apache.org/doxia/doxia/doxia-modules/doxia-module-xdoc/">https://maven.apache.org/doxia/doxia/doxia-modules/doxia-module-xdoc/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>net.sourceforge.saxon:saxon:jar:9.1.0.8 (runtime) <img id="_img73" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep72', '_img73' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep72" style="display:none">
-<table class="bodyTable">
-<tr class="a">
-<th>SaxonB</th></tr>
-<tr class="b">
-<td>
-<p><b>Description: </b>Saxon a complete and conformant implementation of the XSLT 2.0, XQuery 1.0, and XPath 2.0 Recommendations published on 23 January 2007 by W3C</p>
-<p><b>URL: </b><a class="externalLink" href="http://saxon.sourceforge.net/">http://saxon.sourceforge.net/</a></p>
-<p><b>Project Licenses: </b><a class="externalLink" href="http://www.mozilla.org/MPL/MPL-1.0.txt">Mozilla Public License Version 1.0</a></p></td></tr></table></div></li>
-<li>commons-io:commons-io:jar:2.21.0 (compile) <img id="_img75" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep74', '_img75' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep74" style="display:none">
+<li>commons-io:commons-io:jar:2.21.0 (compile) <img id="_img81" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep80', '_img81' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep80" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Apache Commons IO</th></tr>
@@ -905,7 +984,7 @@
 file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-io/">https://commons.apache.org/proper/commons-io/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
-<li>org.apache.commons:commons-lang3:jar:3.20.0 (test) <img id="_img77" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep76', '_img77' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep76" style="display:none">
+<li>org.apache.commons:commons-lang3:jar:3.20.0 (test) <img id="_img83" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep82', '_img83' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep82" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Apache Commons Lang</th></tr>
@@ -922,17 +1001,17 @@ file comparators, endian transformation classes, and much more.</p>
   Please ensure your build environment is up-to-date and kindly report any build issues.</p>
 <p><b>URL: </b><a class="externalLink" href="https://commons.apache.org/proper/commons-lang/">https://commons.apache.org/proper/commons-lang/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache-2.0</a></p></td></tr></table></div></li>
-<li>org.junit.jupiter:junit-jupiter-api:jar:5.13.4 (test) <img id="_img79" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep78', '_img79' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep78" style="display:none">
+<li>org.junit.jupiter:junit-jupiter-api:jar:6.0.1 (test) <img id="_img85" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep84', '_img85' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep84" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>JUnit Jupiter API</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>Module &quot;junit-jupiter-api&quot; of JUnit 5.</p>
+<p><b>Description: </b>Module &quot;junit-jupiter-api&quot; of JUnit</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/">https://junit.org/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.opentest4j:opentest4j:jar:1.3.0 (test) <img id="_img81" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep80', '_img81' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep80" style="display:none">
+<li>org.opentest4j:opentest4j:jar:1.3.0 (test) <img id="_img87" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep86', '_img87' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep86" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>org.opentest4j:opentest4j</th></tr>
@@ -941,16 +1020,16 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Open Test Alliance for the JVM</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/ota4j-team/opentest4j">https://github.com/ota4j-team/opentest4j</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.junit.platform:junit-platform-commons:jar:1.13.4 (test) <img id="_img83" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep82', '_img83' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep82" style="display:none">
+<li>org.junit.platform:junit-platform-commons:jar:6.0.1 (test) <img id="_img89" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep88', '_img89' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep88" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>JUnit Platform Commons</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>Module &quot;junit-platform-commons&quot; of JUnit 5.</p>
+<p><b>Description: </b>Module &quot;junit-platform-commons&quot; of JUnit</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/">https://junit.org/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div></li>
-<li>org.apiguardian:apiguardian-api:jar:1.1.2 (test) <img id="_img85" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep84', '_img85' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep84" style="display:none">
+<li>org.apiguardian:apiguardian-api:jar:1.1.2 (test) <img id="_img91" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep90', '_img91' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep90" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>org.apiguardian:apiguardian-api</th></tr>
@@ -959,35 +1038,35 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>@API Guardian</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/apiguardian-team/apiguardian">https://github.com/apiguardian-team/apiguardian</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.junit.jupiter:junit-jupiter-engine:jar:5.13.4 (test) <img id="_img87" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep86', '_img87' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep86" style="display:none">
+<li>org.junit.jupiter:junit-jupiter-engine:jar:6.0.1 (test) <img id="_img93" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep92', '_img93' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep92" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>JUnit Jupiter Engine</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>Module &quot;junit-jupiter-engine&quot; of JUnit 5.</p>
+<p><b>Description: </b>Module &quot;junit-jupiter-engine&quot; of JUnit</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/">https://junit.org/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div>
 <ul>
-<li>org.junit.platform:junit-platform-engine:jar:1.13.4 (test) <img id="_img89" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep88', '_img89' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep88" style="display:none">
+<li>org.junit.platform:junit-platform-engine:jar:6.0.1 (test) <img id="_img95" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep94', '_img95' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep94" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>JUnit Platform Engine API</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>Module &quot;junit-platform-engine&quot; of JUnit 5.</p>
+<p><b>Description: </b>Module &quot;junit-platform-engine&quot; of JUnit</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/">https://junit.org/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div></li></ul></li>
-<li>org.junit.jupiter:junit-jupiter-params:jar:5.13.4 (test) <img id="_img91" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep90', '_img91' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep90" style="display:none">
+<li>org.junit.jupiter:junit-jupiter-params:jar:6.0.1 (test) <img id="_img97" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep96', '_img97' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep96" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>JUnit Jupiter Params</th></tr>
 <tr class="b">
 <td>
-<p><b>Description: </b>Module &quot;junit-jupiter-params&quot; of JUnit 5.</p>
+<p><b>Description: </b>Module &quot;junit-jupiter-params&quot; of JUnit</p>
 <p><b>URL: </b><a class="externalLink" href="https://junit.org/">https://junit.org/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.eclipse.org/legal/epl-v20.html">Eclipse Public License v2.0</a></p></td></tr></table></div></li>
-<li>org.slf4j:slf4j-reload4j:jar:2.0.17 (test) <img id="_img93" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep92', '_img93' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep92" style="display:none">
+<li>org.slf4j:slf4j-reload4j:jar:2.0.17 (test) <img id="_img99" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep98', '_img99' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep98" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>SLF4J Reload4j Provider</th></tr>
@@ -997,7 +1076,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="http://reload4j.qos.ch">http://reload4j.qos.ch</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://opensource.org/license/mit">MIT</a></p></td></tr></table></div>
 <ul>
-<li>ch.qos.reload4j:reload4j:jar:1.2.22 (test) <img id="_img95" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep94', '_img95' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep94" style="display:none">
+<li>ch.qos.reload4j:reload4j:jar:1.2.22 (test) <img id="_img101" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep100', '_img101' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep100" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>reload4j</th></tr>
@@ -1006,7 +1085,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Reload4j revives EOLed log4j 1.x</p>
 <p><b>URL: </b><a class="externalLink" href="https://reload4j.qos.ch">https://reload4j.qos.ch</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li></ul></li>
-<li>log4j:log4j:jar:1.2.17 (test) <img id="_img97" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep96', '_img97' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep96" style="display:none">
+<li>log4j:log4j:jar:1.2.17 (test) <img id="_img103" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep102', '_img103' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep102" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Apache Log4j</th></tr>
@@ -1015,7 +1094,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Apache Log4j 1.2</p>
 <p><b>URL: </b><a class="externalLink" href="http://logging.apache.org/log4j/1.2/">http://logging.apache.org/log4j/1.2/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="http://www.apache.org/licenses/LICENSE-2.0.txt">The Apache Software License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.hamcrest:hamcrest:jar:3.0 (test) <img id="_img99" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep98', '_img99' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep98" style="display:none">
+<li>org.hamcrest:hamcrest:jar:3.0 (test) <img id="_img105" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep104', '_img105' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep104" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Hamcrest</th></tr>
@@ -1024,7 +1103,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>Core API and libraries of hamcrest matcher framework.</p>
 <p><b>URL: </b><a class="externalLink" href="http://hamcrest.org/JavaHamcrest/">http://hamcrest.org/JavaHamcrest/</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://raw.githubusercontent.com/hamcrest/JavaHamcrest/master/LICENSE">BSD-3-Clause</a></p></td></tr></table></div></li>
-<li>org.mockito:mockito-core:jar:5.19.0 (test) <img id="_img101" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep100', '_img101' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep100" style="display:none">
+<li>org.mockito:mockito-core:jar:5.19.0 (test) <img id="_img107" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep106', '_img107' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep106" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>mockito-core</th></tr>
@@ -1034,7 +1113,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>URL: </b><a class="externalLink" href="https://github.com/mockito/mockito">https://github.com/mockito/mockito</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://opensource.org/licenses/MIT">MIT</a></p></td></tr></table></div>
 <ul>
-<li>net.bytebuddy:byte-buddy:jar:1.17.6 (test) <img id="_img103" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep102', '_img103' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep102" style="display:none">
+<li>net.bytebuddy:byte-buddy:jar:1.17.6 (test) <img id="_img109" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep108', '_img109' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep108" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Byte Buddy (without dependencies)</th></tr>
@@ -1044,7 +1123,7 @@ file comparators, endian transformation classes, and much more.</p>
         This artifact is a build of Byte Buddy with all ASM dependencies repackaged into its own name space.</p>
 <p><b>URL: </b><a class="externalLink" href="https://bytebuddy.net/byte-buddy">https://bytebuddy.net/byte-buddy</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>net.bytebuddy:byte-buddy-agent:jar:1.17.6 (test) <img id="_img105" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep104', '_img105' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep104" style="display:none">
+<li>net.bytebuddy:byte-buddy-agent:jar:1.17.6 (test) <img id="_img111" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep110', '_img111' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep110" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Byte Buddy agent</th></tr>
@@ -1053,7 +1132,7 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Description: </b>The Byte Buddy agent offers convenience for attaching an agent to the local or a remote VM.</p>
 <p><b>URL: </b><a class="externalLink" href="https://bytebuddy.net/byte-buddy-agent">https://bytebuddy.net/byte-buddy-agent</a></p>
 <p><b>Project Licenses: </b><a class="externalLink" href="https://www.apache.org/licenses/LICENSE-2.0.txt">Apache License, Version 2.0</a></p></td></tr></table></div></li>
-<li>org.objenesis:objenesis:jar:3.3 (test) <img id="_img107" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep106', '_img107' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep106" style="display:none">
+<li>org.objenesis:objenesis:jar:3.3 (test) <img id="_img113" src="./images/icon_info_sml.gif" alt="[Information]" onclick="toggleDependencyDetails( '_dep112', '_img113' );" style="cursor: pointer; vertical-align: text-bottom;" /><div id="_dep112" style="display:none">
 <table class="bodyTable">
 <tr class="a">
 <th>Objenesis</th></tr>
@@ -1069,16 +1148,17 @@ file comparators, endian transformation classes, and much more.</p>
 <p><b>Apache 2.0: </b>error-prone annotations</p>
 <p><b>MIT License: </b>SLF4J API Module</p>
 <p><b>BSD-3-Clause: </b>ANTLR 4 Runtime, Hamcrest</p>
-<p><b>Mozilla Public License Version 1.0: </b>SaxonB</p>
 <p><b>Eclipse Public License v2.0: </b>JUnit Jupiter API, JUnit Jupiter Engine, JUnit Jupiter Params, JUnit Platform Commons, JUnit Platform Engine API</p>
+<p><b>Mozilla Public License Version 2.0: </b>Saxon-HE</p>
 <p><b>BSD: </b>qulice-checkstyle, qulice-spi</p>
 <p><b>WTFPL: </b>Reflections</p>
 <p><b>Apache License 2.0: </b>Bean Validation API, Javassist</p>
+<p><b>Apache License version 2.0: </b>XML Resolver</p>
 <p><b>LGPL-2.1-or-later: </b>checkstyle</p>
 <p><b>The MIT License: </b>Checker Qual</p>
 <p><b>Apache License, Version 2.0: </b>Apache Commons Collections, Apache HttpClient, Apache HttpCore, Byte Buddy (without dependencies), Byte Buddy agent, Doxia :: Core, Doxia :: Logging API, Doxia :: Sink API, Doxia :: XDoc Module, Guava InternalFutureFailureAccess and InternalFutures, Guava: Google Core Libraries for Java, J2ObjC Annotations, Objenesis, Plexus :: Component Annotations, Plexus :: Default Container, Plexus Classworlds, Plexus Common Utilities</p>
 <p><b>Apache-2.0: </b>Apache Commons BeanUtils, Apache Commons IO, Apache Commons Lang, Apache Commons Text</p>
-<p><b>MIT: </b>SLF4J Reload4j Provider, cactoos, mockito-core</p>
+<p><b>MIT: </b>SLF4J Reload4j Provider, SLF4J Simple Provider, cactoos, mockito-core</p>
 <p><b>LGPL 2.1: </b>Javassist</p>
 <p><b>Eclipse Public License - v 2.0: </b>AspectJ Runtime</p>
 <p><b>MPL 1.1: </b>Javassist</p>
