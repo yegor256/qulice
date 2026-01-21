@@ -1,130 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>UseStringIsEmptyRule.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd.rules</a> &gt; <span class="el_source">UseStringIsEmptyRule.java</span></div><h1>UseStringIsEmptyRule.java</h1><pre class="source lang-java linenums">/*
- * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
  * SPDX-License-Identifier: MIT
  */
 package com.qulice.pmd.rules;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTReferenceType;
-import net.sourceforge.pmd.lang.java.ast.ASTResultType;
-import net.sourceforge.pmd.lang.java.ast.ASTType;
-import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclaratorId;
-import net.sourceforge.pmd.lang.java.ast.JavaNode;
-import net.sourceforge.pmd.lang.java.symboltable.JavaNameOccurrence;
-import net.sourceforge.pmd.lang.java.symboltable.MethodNameDeclaration;
-import net.sourceforge.pmd.lang.java.symboltable.VariableNameDeclaration;
-import net.sourceforge.pmd.lang.symboltable.NameOccurrence;
-import net.sourceforge.pmd.lang.symboltable.Scope;
+import net.sourceforge.pmd.lang.java.ast.ASTInfixExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTMethodCall;
+import net.sourceforge.pmd.lang.java.ast.ASTNumericLiteral;
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+import net.sourceforge.pmd.lang.java.types.JTypeMirror;
 
 /**
  * Rule to prohibit use of String.length() when checking for empty string.
  * String.isEmpty() should be used instead.
+ *
  * @since 0.18
  */
-@SuppressWarnings(&quot;deprecation&quot;)
-<span class="nc" id="L31">public final class UseStringIsEmptyRule</span>
-    extends net.sourceforge.pmd.lang.java.rule.AbstractInefficientZeroCheck {
+public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
+    public UseStringIsEmptyRule() {
+<span class="nc" id="L22">        super(ASTInfixExpression.class);</span>
+<span class="nc" id="L23">    }</span>
 
     @Override
-    public boolean appliesToClassName(final String name) {
-<span class="nc" id="L36">        return net.sourceforge.pmd.util.StringUtil.isSame(</span>
-            name, &quot;String&quot;, true, true, true
-        );
-    }
-
-    @Override
-    public Map&lt;String, List&lt;String&gt;&gt; getComparisonTargets() {
-<span class="nc" id="L43">        final Map&lt;String, List&lt;String&gt;&gt; rules = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L44">        rules.put(&quot;&lt;&quot;, Arrays.asList(&quot;1&quot;));</span>
-<span class="nc" id="L45">        rules.put(&quot;&gt;&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L46">        rules.put(&quot;==&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L47">        rules.put(&quot;!=&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L48">        rules.put(&quot;&gt;=&quot;, Arrays.asList(&quot;0&quot;, &quot;1&quot;));</span>
-<span class="nc" id="L49">        rules.put(&quot;&lt;=&quot;, Arrays.asList(&quot;0&quot;));</span>
-<span class="nc" id="L50">        return rules;</span>
-    }
-
-    @Override
-    public boolean isTargetMethod(final JavaNameOccurrence occ) {
-<span class="nc" id="L55">        final NameOccurrence name = occ.getNameForWhichThisIsAQualifier();</span>
-<span class="nc bnc" id="L56" title="All 4 branches missed.">        return name != null &amp;&amp; &quot;length&quot;.equals(name.getImage());</span>
-    }
-
-    @Override
-    public Object visit(
-        final ASTVariableDeclaratorId variable, final Object data
-    ) {
-        boolean matches;
-<span class="nc" id="L64">        final Node node = variable.getTypeNameNode();</span>
-<span class="nc" id="L65">        matches = node instanceof ASTReferenceType;</span>
-<span class="nc" id="L66">        final VariableNameDeclaration decl = variable.getNameDeclaration();</span>
-<span class="nc bnc" id="L67" title="All 4 branches missed.">        matches = matches &amp;&amp; decl != null;</span>
-<span class="nc" id="L68">        final Class&lt;?&gt; clazz = variable.getType();</span>
-<span class="nc bnc" id="L69" title="All 6 branches missed.">        matches = matches &amp;&amp; clazz != null &amp;&amp; !clazz.isArray();</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        if (decl != null) {</span>
-<span class="nc bnc" id="L71" title="All 4 branches missed.">            matches = matches &amp;&amp; this.appliesToClassName(decl.getTypeImage());</span>
-        } else {
-<span class="nc" id="L73">            matches = false;</span>
+    public Object visit(final ASTInfixExpression expr, final Object data) {
+<span class="nc bnc" id="L27" title="All 2 branches missed.">        if (isComparison(expr) &amp;&amp; (</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">            matchesLengthCheck(</span>
+<span class="nc" id="L29">                expr.getLeftOperand(),</span>
+<span class="nc" id="L30">                expr.getRightOperand()</span>
+            )
+<span class="nc bnc" id="L32" title="All 2 branches missed.">                || matchesLengthCheck(</span>
+<span class="nc" id="L33">                expr.getRightOperand(),</span>
+<span class="nc" id="L34">                expr.getLeftOperand()</span>
+            )
+            )
+        ) {
+<span class="nc" id="L38">            asCtx(data).addViolation(expr);</span>
         }
-<span class="nc bnc" id="L75" title="All 2 branches missed.">        if (matches) {</span>
-<span class="nc" id="L76">            this.checkDeclarations(variable.getUsages(), data);</span>
-        }
-<span class="nc" id="L78">        variable.childrenAccept(this, data);</span>
-<span class="nc" id="L79">        return data;</span>
+<span class="nc" id="L40">        return data;</span>
     }
 
-    @Override
-    public Object visit(
-        final ASTMethodDeclaration declaration, final Object data
-    ) {
-<span class="nc" id="L86">        final ASTResultType result = declaration.getResultType();</span>
-<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (!result.isVoid()) {</span>
-<span class="nc" id="L88">            final ASTType node = (ASTType) result.jjtGetChild(0);</span>
-<span class="nc" id="L89">            final Class&lt;?&gt; clazz = node.getType();</span>
-<span class="nc" id="L90">            final String type = node.getTypeImage();</span>
-<span class="nc bnc" id="L91" title="All 4 branches missed.">            if (clazz != null &amp;&amp; !clazz.isArray()</span>
-<span class="nc bnc" id="L92" title="All 2 branches missed.">                &amp;&amp; this.appliesToClassName(type)</span>
-            ) {
-<span class="nc" id="L94">                final Scope scope = declaration.getScope().getParent();</span>
-<span class="nc" id="L95">                final MethodNameDeclaration method = new MethodNameDeclaration(</span>
-<span class="nc" id="L96">                    declaration.getMethodDeclarator()</span>
-                );
-<span class="nc" id="L98">                final List&lt;NameOccurrence&gt; declarations = scope</span>
-<span class="nc" id="L99">                    .getDeclarations(MethodNameDeclaration.class)</span>
-<span class="nc" id="L100">                    .get(method);</span>
-<span class="nc" id="L101">                this.checkDeclarations(declarations, data);</span>
-            }
+    private static boolean isComparison(final ASTInfixExpression expr) {
+        final boolean result;
+<span class="nc bnc" id="L45" title="All 2 branches missed.">        switch (expr.getOperator()) {</span>
+            case EQ:
+            case NE:
+            case GT:
+            case LT:
+            case GE:
+            case LE:
+<span class="nc" id="L52">                result = true;</span>
+<span class="nc" id="L53">                break;</span>
+            default:
+<span class="nc" id="L55">                result = false;</span>
+                break;
         }
-<span class="nc" id="L104">        declaration.childrenAccept(this, data);</span>
-<span class="nc" id="L105">        return data;</span>
+<span class="nc" id="L58">        return result;</span>
     }
 
     /**
-     * Checks all uses of a variable or method with a String type.
-     * @param occurrences Variable or method occurrences.
-     * @param data Rule context.
+     * Checks if length is length() or literal is 0 or 1.
+     *
+     * @param length The method
+     * @param literal The number
+     * @return True if matches, false otherwise
+     * @checkstyle BooleanExpressionComplexityCheck (20 lines)
      */
-    private void checkDeclarations(
-        final Iterable&lt;NameOccurrence&gt; occurrences, final Object data
+    private static boolean matchesLengthCheck(
+        final ASTExpression length,
+        final ASTExpression literal
     ) {
-<span class="nc bnc" id="L116" title="All 2 branches missed.">        for (final NameOccurrence occurrence : occurrences) {</span>
-<span class="nc" id="L117">            final JavaNameOccurrence jocc = (JavaNameOccurrence) occurrence;</span>
-<span class="nc bnc" id="L118" title="All 2 branches missed.">            if (this.isTargetMethod(jocc)) {</span>
-<span class="nc" id="L119">                final JavaNode location = jocc.getLocation();</span>
-<span class="nc" id="L120">                final Node expr = location.getFirstParentOfType(</span>
-                    ASTExpression.class
-                );
-<span class="nc" id="L123">                this.checkNodeAndReport(</span>
-<span class="nc" id="L124">                    data, occurrence.getLocation(), expr.jjtGetChild(0)</span>
-                );
-            }
-<span class="nc" id="L127">        }</span>
-<span class="nc" id="L128">    }</span>
+<span class="nc" id="L73">        boolean result = false;</span>
+<span class="nc bnc" id="L74" title="All 8 branches missed.">        if (length != null &amp;&amp; literal != null &amp;&amp; isZeroOrOneLiteral(literal)</span>
+            &amp;&amp; length instanceof ASTMethodCall) {
+<span class="nc" id="L76">            final ASTMethodCall call = (ASTMethodCall) length;</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            result = &quot;length&quot;.equals(call.getMethodName())</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">                &amp;&amp; call.getArguments().isEmpty()</span>
+<span class="nc bnc" id="L79" title="All 2 branches missed.">                &amp;&amp; call.getQualifier() != null</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">                &amp;&amp; isStringExpression(call.getQualifier());</span>
+        }
+<span class="nc" id="L82">        return result;</span>
+    }
+
+    private static boolean isZeroOrOneLiteral(final ASTExpression expr) {
+<span class="nc" id="L86">        boolean matches = false;</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (expr instanceof ASTNumericLiteral) {</span>
+<span class="nc" id="L88">            final ASTNumericLiteral lit = (ASTNumericLiteral) expr;</span>
+<span class="nc" id="L89">            final String image = lit.getImage();</span>
+<span class="nc bnc" id="L90" title="All 4 branches missed.">            matches = &quot;0&quot;.equals(image) || &quot;1&quot;.equals(image);</span>
+        }
+<span class="nc" id="L92">        return matches;</span>
+    }
+
+    private static boolean isStringExpression(final ASTExpression expr) {
+<span class="nc" id="L96">        final JTypeMirror type = expr.getTypeMirror();</span>
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        return type.isClassOrInterface()</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">            &amp;&amp; &quot;java.lang.String&quot;.equals(type.toString());</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

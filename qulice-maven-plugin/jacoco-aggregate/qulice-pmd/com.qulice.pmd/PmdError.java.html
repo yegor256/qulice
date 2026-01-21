@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PmdError.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd</a> &gt; <span class="el_source">PmdError.java</span></div><h1>PmdError.java</h1><pre class="source lang-java linenums">/*
- * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
  * SPDX-License-Identifier: MIT
  */
 package com.qulice.pmd;
 
-import net.sourceforge.pmd.Report.ConfigurationError;
-import net.sourceforge.pmd.Report.ProcessingError;
-import net.sourceforge.pmd.RuleViolation;
+import net.sourceforge.pmd.reporting.Report;
+import net.sourceforge.pmd.reporting.RuleViolation;
+import org.cactoos.text.FormattedText;
+import org.cactoos.text.UncheckedText;
 
 /**
  * Represents one PMD error (usually it will be violation).
@@ -55,31 +56,31 @@ public interface PmdError {
          * Creates a new PmdError, representing given RuleViolation.
          * @param violation Internal RuleViolation.
          */
-<span class="nc" id="L58">        public OfRuleViolation(final RuleViolation violation) {</span>
-<span class="nc" id="L59">            this.violation = violation;</span>
-<span class="nc" id="L60">        }</span>
+<span class="nc" id="L59">        public OfRuleViolation(final RuleViolation violation) {</span>
+<span class="nc" id="L60">            this.violation = violation;</span>
+<span class="nc" id="L61">        }</span>
 
         @Override
         public String name() {
-<span class="nc" id="L64">            return this.violation.getRule().getName();</span>
+<span class="nc" id="L65">            return this.violation.getRule().getName();</span>
         }
 
         @Override
         public String fileName() {
-<span class="nc" id="L69">            return this.violation.getFilename();</span>
+<span class="nc" id="L70">            return this.violation.getFileId().getAbsolutePath();</span>
         }
 
         @Override
         public String lines() {
-<span class="nc" id="L74">            return String.format(</span>
+<span class="nc" id="L75">            return String.format(</span>
                 &quot;%d-%d&quot;,
-<span class="nc" id="L76">                this.violation.getBeginLine(), this.violation.getEndLine()</span>
+<span class="nc" id="L77">                this.violation.getBeginLine(), this.violation.getEndLine()</span>
             );
         }
 
         @Override
         public String description() {
-<span class="nc" id="L82">            return this.violation.getDescription();</span>
+<span class="nc" id="L83">            return this.violation.getDescription();</span>
         }
     }
 
@@ -91,38 +92,40 @@ public interface PmdError {
         /**
          * Internal ProcessingError.
          */
-        private final ProcessingError error;
+        private final Report.ProcessingError error;
 
         /**
          * Creates a new PmdError, representing given ProcessingError.
          * @param error Internal ProcessingError.
          */
-<span class="nc" id="L100">        public OfProcessingError(final ProcessingError error) {</span>
-<span class="nc" id="L101">            this.error = error;</span>
-<span class="nc" id="L102">        }</span>
+<span class="nc" id="L101">        public OfProcessingError(final Report.ProcessingError error) {</span>
+<span class="nc" id="L102">            this.error = error;</span>
+<span class="nc" id="L103">        }</span>
 
         @Override
         public String name() {
-<span class="nc" id="L106">            return &quot;ProcessingError&quot;;</span>
+<span class="nc" id="L107">            return &quot;ProcessingError&quot;;</span>
         }
 
         @Override
         public String fileName() {
-<span class="nc" id="L111">            return this.error.getFile();</span>
+<span class="nc" id="L112">            return this.error.getFileId().getAbsolutePath();</span>
         }
 
         @Override
         public String lines() {
-<span class="nc" id="L116">            return &quot;unknown&quot;;</span>
+<span class="nc" id="L117">            return &quot;unknown&quot;;</span>
         }
 
         @Override
         public String description() {
-<span class="nc" id="L121">            return new StringBuilder()</span>
-<span class="nc" id="L122">                .append(this.error.getMsg())</span>
-<span class="nc" id="L123">                .append(&quot;: &quot;)</span>
-<span class="nc" id="L124">                .append(this.error.getDetail())</span>
-<span class="nc" id="L125">                .toString();</span>
+<span class="nc" id="L122">            return new UncheckedText(</span>
+                new FormattedText(
+                    &quot;%s: %s&quot;,
+<span class="nc" id="L125">                    this.error.getMsg(),</span>
+<span class="nc" id="L126">                    this.error.getDetail()</span>
+                )
+<span class="nc" id="L128">            ).asString();</span>
         }
     }
 
@@ -134,34 +137,34 @@ public interface PmdError {
         /**
          * Internal ConfigError.
          */
-        private final ConfigurationError error;
+        private final Report.ConfigurationError error;
 
         /**
          * Creates a new PmdError, representing given ProcessingError.
          * @param error Internal ProcessingError.
          */
-<span class="nc" id="L143">        public OfConfigError(final ConfigurationError error) {</span>
-<span class="nc" id="L144">            this.error = error;</span>
-<span class="nc" id="L145">        }</span>
+<span class="nc" id="L146">        public OfConfigError(final Report.ConfigurationError error) {</span>
+<span class="nc" id="L147">            this.error = error;</span>
+<span class="nc" id="L148">        }</span>
 
         @Override
         public String name() {
-<span class="nc" id="L149">            return &quot;ProcessingError&quot;;</span>
+<span class="nc" id="L152">            return &quot;ProcessingError&quot;;</span>
         }
 
         @Override
         public String fileName() {
-<span class="nc" id="L154">            return &quot;unknown&quot;;</span>
+<span class="nc" id="L157">            return &quot;unknown&quot;;</span>
         }
 
         @Override
         public String lines() {
-<span class="nc" id="L159">            return &quot;unknown&quot;;</span>
+<span class="nc" id="L162">            return &quot;unknown&quot;;</span>
         }
 
         @Override
         public String description() {
-<span class="nc" id="L164">            return this.error.issue();</span>
+<span class="nc" id="L167">            return this.error.issue();</span>
         }
     }
 }

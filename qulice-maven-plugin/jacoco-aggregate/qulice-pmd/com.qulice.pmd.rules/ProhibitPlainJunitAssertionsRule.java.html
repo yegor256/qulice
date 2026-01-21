@@ -1,119 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang=""><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ProhibitPlainJunitAssertionsRule.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">qulice-maven-plugin</a> &gt; <a href="../index.html" class="el_bundle">qulice-pmd</a> &gt; <a href="index.source.html" class="el_package">com.qulice.pmd.rules</a> &gt; <span class="el_source">ProhibitPlainJunitAssertionsRule.java</span></div><h1>ProhibitPlainJunitAssertionsRule.java</h1><pre class="source lang-java linenums">/*
- * SPDX-FileCopyrightText: Copyright (c) 2011-2025 Yegor Bugayenko
+ * SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
  * SPDX-License-Identifier: MIT
  */
 package com.qulice.pmd.rules;
 
-import net.sourceforge.pmd.lang.ast.Node;
+import java.util.Arrays;
+import net.sourceforge.pmd.lang.java.ast.ASTAnnotation;
+import net.sourceforge.pmd.lang.java.ast.ASTExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTMethodCall;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
-import net.sourceforge.pmd.lang.java.ast.ASTName;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimaryExpression;
-import net.sourceforge.pmd.lang.java.ast.ASTPrimaryPrefix;
-import net.sourceforge.pmd.lang.java.ast.ASTStatementExpression;
+import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
 
 /**
  * Rule to check plain assertions in JUnit tests.
+ *
  * @since 0.17
  */
-@SuppressWarnings(&quot;deprecation&quot;)
-<span class="nc" id="L20">public final class ProhibitPlainJunitAssertionsRule</span>
-    extends net.sourceforge.pmd.lang.java.rule.AbstractJUnitRule {
-
+public final class ProhibitPlainJunitAssertionsRule
+    extends AbstractJavaRulechainRule {
     /**
      * Mask of prohibited imports.
      */
-<span class="nc" id="L26">    private static final String[] PROHIBITED = {</span>
+<span class="nc" id="L25">    private static final String[] PROHIBITED = {</span>
         &quot;org.junit.Assert.assert&quot;,
         &quot;junit.framework.Assert.assert&quot;,
     };
 
-    @Override
-    public Object visit(final ASTMethodDeclaration method, final Object data) {
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (this.isJUnitMethod(method, data)</span>
-<span class="nc bnc" id="L34" title="All 2 branches missed.">            &amp;&amp; this.containsPlainJunitAssert(method.getBody())) {</span>
-<span class="nc" id="L35">            this.asCtx(data).addViolation(method);</span>
-        }
-<span class="nc" id="L37">        return data;</span>
-    }
+    public ProhibitPlainJunitAssertionsRule() {
+<span class="nc" id="L31">        super(</span>
+            ASTMethodDeclaration.class,
+            ASTImportDeclaration.class
+        );
+<span class="nc" id="L35">    }</span>
 
     @Override
     public Object visit(final ASTImportDeclaration imp, final Object data) {
-<span class="nc bnc" id="L42" title="All 2 branches missed.">        for (final String element : ProhibitPlainJunitAssertionsRule</span>
-            .PROHIBITED) {
-<span class="nc bnc" id="L44" title="All 2 branches missed.">            if (imp.getImportedName().contains(element)) {</span>
-<span class="nc" id="L45">                this.asCtx(data).addViolation(imp);</span>
-<span class="nc" id="L46">                break;</span>
-            }
+<span class="nc" id="L39">        final String name = imp.getImportedName();</span>
+<span class="nc" id="L40">        if (Arrays.stream(ProhibitPlainJunitAssertionsRule.PROHIBITED)</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">            .anyMatch(name::contains)</span>
+        ) {
+<span class="nc" id="L43">            asCtx(data).addViolation(imp);</span>
         }
-<span class="nc" id="L49">        return super.visit(imp, data);</span>
+<span class="nc" id="L45">        return data;</span>
     }
 
-    /**
-     * Recursively verifies if node contains plain JUnit assert statements.
-     * @param node Root statement node to search
-     * @return True if statement contains plain JUnit assertions, false
-     *  otherwise
-     */
-    private boolean containsPlainJunitAssert(final Node node) {
-<span class="nc" id="L59">        boolean found = false;</span>
-<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (node instanceof ASTStatementExpression</span>
-<span class="nc bnc" id="L61" title="All 2 branches missed.">            &amp;&amp; ProhibitPlainJunitAssertionsRule.isPlainJunitAssert(node)) {</span>
-<span class="nc" id="L62">            found = true;</span>
+    @Override
+    public Object visit(final ASTMethodDeclaration method, final Object data) {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        if (ProhibitPlainJunitAssertionsRule.isJUnitTest(method)) {</span>
+<span class="nc" id="L51">            method.descendants(ASTMethodCall.class)</span>
+<span class="nc" id="L52">                .filter(ProhibitPlainJunitAssertionsRule::isPlainJunitAssert)</span>
+<span class="nc" id="L53">                .toStream()</span>
+<span class="nc" id="L54">                .findAny()</span>
+<span class="nc" id="L55">                .ifPresent(call -&gt; asCtx(data).addViolation(method));</span>
         }
-<span class="nc bnc" id="L64" title="All 2 branches missed.">        if (!found) {</span>
-<span class="nc bnc" id="L65" title="All 2 branches missed.">            for (int iter = 0; iter &lt; node.jjtGetNumChildren(); iter += 1) {</span>
-<span class="nc" id="L66">                final Node child = node.jjtGetChild(iter);</span>
-<span class="nc bnc" id="L67" title="All 2 branches missed.">                if (this.containsPlainJunitAssert(child)) {</span>
-<span class="nc" id="L68">                    found = true;</span>
-<span class="nc" id="L69">                    break;</span>
-                }
-            }
-        }
-<span class="nc" id="L73">        return found;</span>
+<span class="nc" id="L57">        return data;</span>
     }
 
-    /**
-     * Tells if the statement is an assert statement or not.
-     * @param statement Root node to search assert statements
-     * @return True is statement is assert, false otherwise
-     */
-    private static boolean isPlainJunitAssert(final Node statement) {
-<span class="nc" id="L82">        final ASTPrimaryExpression expression =</span>
-<span class="nc" id="L83">            ProhibitPlainJunitAssertionsRule.getChildNodeWithType(</span>
-                statement, ASTPrimaryExpression.class
+    private static boolean isJUnitTest(final ASTMethodDeclaration method) {
+<span class="nc" id="L61">        return method.getDeclaredAnnotations()</span>
+<span class="nc" id="L62">            .toStream()</span>
+<span class="nc" id="L63">            .map(ASTAnnotation::getSimpleName)</span>
+<span class="nc" id="L64">            .anyMatch(</span>
+<span class="nc bnc" id="L65" title="All 2 branches missed.">                name -&gt; &quot;Test&quot;.equals(name)</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">                    || &quot;org.junit.Test&quot;.equals(name)</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">                    || &quot;org.junit.jupiter.api.Test&quot;.equals(name)</span>
             );
-<span class="nc" id="L86">        final ASTPrimaryPrefix prefix =</span>
-<span class="nc" id="L87">            ProhibitPlainJunitAssertionsRule.getChildNodeWithType(</span>
-                expression, ASTPrimaryPrefix.class
-            );
-<span class="nc" id="L90">        final ASTName name = ProhibitPlainJunitAssertionsRule</span>
-<span class="nc" id="L91">            .getChildNodeWithType(prefix, ASTName.class);</span>
-<span class="nc" id="L92">        boolean assrt = false;</span>
-<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (name != null) {</span>
-<span class="nc" id="L94">            final String img = name.getImage();</span>
-<span class="nc bnc" id="L95" title="All 4 branches missed.">            assrt = img != null &amp;&amp; (img.startsWith(&quot;assert&quot;)</span>
-<span class="nc bnc" id="L96" title="All 2 branches missed.">                || img.startsWith(&quot;Assert.assert&quot;));</span>
-        }
-<span class="nc" id="L98">        return assrt;</span>
     }
 
-    /**
-     * Gets child node with specified type.
-     * @param node Parent node
-     * @param clazz Specified class
-     * @param &lt;T&gt; Node type
-     * @return Child node if exists, null otherwise
-     */
-    private static &lt;T extends Node&gt; T getChildNodeWithType(final Node node,
-        final Class&lt;T&gt; clazz) {
-<span class="nc" id="L110">        T expression = null;</span>
-<span class="nc bnc" id="L111" title="All 4 branches missed.">        if (node != null &amp;&amp; node.jjtGetNumChildren() &gt; 0</span>
-<span class="nc bnc" id="L112" title="All 2 branches missed.">            &amp;&amp; clazz.isInstance(node.jjtGetChild(0))) {</span>
-<span class="nc" id="L113">            expression = clazz.cast(node.jjtGetChild(0));</span>
-        }
-<span class="nc" id="L115">        return expression;</span>
+    private static boolean isPlainJunitAssert(final ASTMethodCall call) {
+<span class="nc" id="L72">        final String name = call.getMethodName();</span>
+<span class="nc" id="L73">        final ASTExpression qualifier = call.getQualifier();</span>
+<span class="nc bnc" id="L74" title="All 4 branches missed.">        return name.startsWith(&quot;assert&quot;) &amp;&amp; qualifier != null</span>
+<span class="nc bnc" id="L75" title="All 2 branches missed.">            &amp;&amp; &quot;Assert&quot;.contentEquals(qualifier.getText());</span>
     }
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

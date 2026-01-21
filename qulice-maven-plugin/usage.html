@@ -94,7 +94,7 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.25.0</strong>
+                                    <strong itemprop="version">0.25.1</strong>
                                 </li>
                                 <li>
                                     $dateFormat.applyPattern("yyyy-MM-dd'T'hh:mm:ss'Z'")
@@ -116,7 +116,7 @@
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.25.0&lt;/version&gt;
+      &lt;version&gt;0.25.1&lt;/version&gt;
       &lt;configuration&gt;
         &lt;license&gt;file:${basedir}/LICENSE.txt&lt;/license&gt;
       &lt;/configuration&gt;
@@ -132,7 +132,7 @@
 &lt;/build&gt;</code></pre>
 <p>Pay attention to the <code>license</code> configuration parameter. It is mandatory and has to be provided, or else the default value will be used (<code>./LICENSE.txt</code>). You can refer to a file with <code>file:</code> prefix, as in the example above. Or you can refer to a resource from classpath (very useful when you want to keep your license in a dedicated child module.</p>
 <p>License text file should contain just text. Qulice converts this file to proper format and compares it with your source code file headers. For example, this is your <code>LICENSE.txt</code>:</p>
-<pre><code>Copyright (c) 2011-2025 Yegor Bugayenko
+<pre><code>Copyright (c) 2011-2026 Yegor Bugayenko
 
 All rights reserved.
 Redistribution and use in source and binary forms, with or without
@@ -140,7 +140,7 @@ modification, are permitted provided that the following conditions
 are met: no conditions.</code></pre>
 <p>This is what your Java sources should start from:</p>
 <pre><code>/**
- * Copyright (c) 2011-2025 Yegor Bugayenko
+ * Copyright (c) 2011-2026 Yegor Bugayenko
  *
  * All rights reserved.
  * Redistribution and use in source and binary forms, with or without
@@ -154,7 +154,7 @@ are met: no conditions.</code></pre>
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.25.0&lt;/version&gt;
+      &lt;version&gt;0.25.1&lt;/version&gt;
       &lt;configuration&gt;
         &lt;license&gt;LICENSE.txt&lt;/license&gt;
       &lt;/configuration&gt;
