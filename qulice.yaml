@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 307.996765478
+  seconds: 207.575364655
   version: 0.58.1
   what: judges-summary
-  when: 2026-01-21 07:28:13.302192913 Z
+  when: 2026-01-22 07:26:36.530085176 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -17606,12 +17606,6 @@
     The average monthly turnover (9.0 developers) is increasing (R=0.14).
   what: assessment
   when: 2026-01-20 07:28:40.376030950 Z
-- _id: 8015
-  _job: 58179
-  _time: 2026-01-20 07:29:04.856999484 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  what: learn-eva
-  when: 2026-01-20 07:29:04.846937698 Z
 - _id: 8017
   _job: 21200826850
   _time: 2026-01-21 07:23:42.076838021 Z
@@ -17631,6 +17625,7 @@
   issue: 1482
   repository: 9580168
   review: 2026-01-08 02:56:41.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -17656,6 +17651,7 @@
   issue: 1483
   repository: 9580168
   review: 2026-01-10 16:53:12.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -17681,6 +17677,7 @@
   issue: 1484
   repository: 9580168
   review: 2026-01-11 03:19:27.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -17705,26 +17702,13 @@
   is_human: 1
   issue: 1485
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
   when: 2026-01-14 14:05:45.000000000 Z
   where: github
   who: 526301
-- _id: 8021
-  _job: 21200826850
-  _time: 2026-01-21 07:24:57.008503841 Z
-  _version: 0.19.2/0.58.1/0.17.9
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 7645855614
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1479
-  min_pull_was_found: 1313
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8022
   _job: 21200826850
   _time: 2026-01-21 07:25:00.426910712 Z
@@ -17795,3 +17779,23 @@
   when: 2026-01-11 03:19:27.000000000 Z
   where: github
   who: 526301
+- _id: 8026
+  _job: 58307
+  _time: 2026-01-21 07:28:58.177922029 Z
+  _version: 0.19.3/0.59.0/0.17.9
+  what: learn-eva
+  when: 2026-01-21 07:28:58.165365666 Z
+- _id: 8027
+  _job: 21239708141
+  _time: 2026-01-22 07:23:35.924499026 Z
+  _version: 0.19.2/0.58.1/0.17.9
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 5969478242
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1479
+  min_pull_was_found: 1314
+  repository: 9580168
+  what: iterate
+  where: github
