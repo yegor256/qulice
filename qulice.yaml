@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 288.425506724
+  seconds: 302.4180829
   version: 0.59.0
   what: judges-summary
-  when: 2026-01-26 07:27:43.023935591 Z
+  when: 2026-01-27 07:28:07.090615822 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -18175,12 +18175,6 @@
     The average monthly turnover (8.0 developers) is staying still.
   what: assessment
   when: 2026-01-25 07:28:05.238012299 Z
-- _id: 8047
-  _job: 58621
-  _time: 2026-01-25 07:28:28.314616230 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  what: learn-eva
-  when: 2026-01-25 07:28:28.303831268 Z
 - _id: 8049
   _job: 21349475716
   _time: 2026-01-26 07:23:35.681331464 Z
@@ -18200,6 +18194,7 @@
   issue: 1481
   repository: 9580168
   review: 2026-01-07 16:55:56.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -18224,26 +18219,13 @@
   is_human: 1
   issue: 1488
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
   when: 2026-01-25 20:06:08.000000000 Z
   where: github
   who: 526301
-- _id: 8051
-  _job: 21349475716
-  _time: 2026-01-26 07:23:57.190590717 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 7807027708
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1479
-  min_pull_was_found: 1317
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8052
   _job: 21349475716
   _time: 2026-01-26 07:24:03.614547606 Z
@@ -18278,3 +18260,23 @@
   when: 2026-01-07 16:55:56.000000000 Z
   where: github
   who: 526301
+- _id: 8054
+  _job: 58729
+  _time: 2026-01-26 07:28:30.962328988 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  what: learn-eva
+  when: 2026-01-26 07:28:30.949449679 Z
+- _id: 8055
+  _job: 21388266968
+  _time: 2026-01-27 07:23:42.933304302 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 6082705995
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1479
+  min_pull_was_found: 1320
+  repository: 9580168
+  what: iterate
+  where: github
