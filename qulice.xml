@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.3" size="309442">
+<fb version="0.19.3" size="311481">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">302.4180829</seconds>
+    <seconds t="F">326.905780114</seconds>
     <version t="S">0.59.0</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-01-27T07:28:07Z</when>
+    <when t="T">2026-01-28T07:27:51Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -19398,21 +19398,6 @@
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8028</_id>
-    <_job t="I">58429</_job>
-    <_time t="T">2026-01-22T07:26:54Z</_time>
-    <_version t="S">0.19.3/0.59.0/0.17.9</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (328.5) is decreasing (R=-0.71).
-The average number of commits per week (8.8) is increasing (R=0.22).
-The average issue cycle time (3d13h) is increasing (R=0.43).
-The average pull cycle time (3d16h) is staying still.
-The average number of releases per month (1.2) is increasing (R=0.48).
-The average monthly turnover (9.0 developers) is increasing (R=0.14).</text>
-    <what t="S">assessment</what>
-    <when t="T">2026-01-22T07:26:54Z</when>
-  </f>
-  <f>
     <_id t="I">8030</_id>
     <_job t="I">21328862804</_job>
     <_time t="T">2026-01-25T07:21:38Z</_time>
@@ -19950,27 +19935,159 @@ The average monthly turnover (8.0 developers) is staying still.</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8054</_id>
-    <_job t="I">58729</_job>
-    <_time t="T">2026-01-26T07:28:30Z</_time>
+    <_id t="I">8056</_id>
+    <_job t="I">58877</_job>
+    <_time t="T">2026-01-27T07:28:28Z</_time>
     <_version t="S">0.19.3/0.59.0/0.17.10</_version>
-    <what t="S">learn-eva</what>
-    <when t="T">2026-01-26T07:28:30Z</when>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (315.3) is decreasing (R=-0.75).
+The average number of commits per week (8.5) is increasing (R=0.13).
+The average issue cycle time (4d19h) is increasing (R=0.55).
+The average pull cycle time (3d21h) is staying still.
+The average number of releases per month (1.4) is increasing (R=0.52).
+The average monthly turnover (8.0 developers) is increasing (R=0.13).</text>
+    <what t="S">assessment</what>
+    <when t="T">2026-01-27T07:28:28Z</when>
   </f>
   <f>
-    <_id t="I">8055</_id>
-    <_job t="I">21388266968</_job>
-    <_time t="T">2026-01-27T07:23:42Z</_time>
+    <_id t="I">8057</_id>
+    <_job t="I">58877</_job>
+    <_time t="T">2026-01-27T07:28:54Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <what t="S">learn-eva</what>
+    <when t="T">2026-01-27T07:28:54Z</when>
+  </f>
+  <f>
+    <_id t="I">8058</_id>
+    <_job t="I">21429019323</_job>
+    <_time t="T">2026-01-28T07:22:28Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <comments t="I">3</comments>
+    <commits t="I">1</commits>
+    <details t="S">The pull request yegor256/qulice#1492 has been reviewed by @yegor256 with 2 HoC and 3 comments.</details>
+    <event_id t="I">6112907509</event_id>
+    <event_type t="S">PullRequestReviewEvent</event_type>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1492</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <what t="S">pull-was-reviewed</what>
+    <when t="T">2026-01-28T03:11:28Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8059</_id>
+    <_job t="I">21429019323</_job>
+    <_time t="T">2026-01-28T07:22:29Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <branch t="S">renovate/crate-ci-typos-1.x</branch>
+    <details t="S">The pull request yegor256/qulice#1492 has been opened by @renovate[bot].</details>
+    <event_id t="I">6107510219</event_id>
+    <event_type t="S">PullRequestEvent</event_type>
+    <is_human t="I">0</is_human>
+    <issue t="I">1492</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-01-27T21:28:23Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8061</_id>
+    <_job t="I">21429019323</_job>
+    <_time t="T">2026-01-28T07:23:10Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <branch t="S">renovate/crate-ci-typos-1.x</branch>
+    <comments t="I">3</comments>
+    <comments_appreciated t="I">1</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">3</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1492 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1492</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-01-28T03:11:27Z</review>
+    <succeeded_builds t="I">20</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-01-28T03:35:07Z</when>
+    <where t="S">github</where>
+    <who t="I">8086956</who>
+  </f>
+  <f>
+    <_id t="I">8062</_id>
+    <_job t="I">21429019323</_job>
+    <_time t="T">2026-01-28T07:23:44Z</_time>
     <_version t="S">0.19.3/0.59.0/0.17.10</_version>
     <assignees_were_scanned t="I">0</assignees_were_scanned>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">6082705995</events_were_scanned>
+    <events_were_scanned t="I">7049708763</events_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
     <merges_were_scanned t="I">0</merges_were_scanned>
     <min_issue_was_found t="I">1479</min_issue_was_found>
-    <min_pull_was_found t="I">1320</min_pull_was_found>
+    <min_pull_was_found t="I">1322</min_pull_was_found>
     <repository t="I">9580168</repository>
     <what t="S">iterate</what>
     <where t="S">github</where>
+  </f>
+  <f>
+    <_id t="I">8063</_id>
+    <_job t="I">21429019323</_job>
+    <_time t="T">2026-01-28T07:23:51Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <total_active_contributors t="I">4</total_active_contributors>
+    <total_commits t="I">2290</total_commits>
+    <total_contributors t="I">52</total_contributors>
+    <total_files t="I">423</total_files>
+    <total_forks t="I">117</total_forks>
+    <total_issues t="I">842</total_issues>
+    <total_pulls t="I">649</total_pulls>
+    <total_releases t="I">77</total_releases>
+    <total_repositories t="I">1</total_repositories>
+    <total_stars t="I">310</total_stars>
+    <what t="S">dimensions-of-terrain</what>
+    <when t="T">2026-01-28T07:23:51Z</when>
+  </f>
+  <f>
+    <_id t="I">8064</_id>
+    <_job t="I">21429019323</_job>
+    <_time t="T">2026-01-28T07:24:12Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <branch t="S">renovate/crate-ci-typos-1.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1491 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1491</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-01-26T18:38:06Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8065</_id>
+    <_job t="I">21429019323</_job>
+    <_time t="T">2026-01-28T07:25:57Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <author t="I">29139614</author>
+    <comments t="I">3</comments>
+    <details t="S">The pull request yegor256/qulice#1492 with 2 HoC created by @renovate[bot] was reviewed by @yegor256 after 5h43m and 0 comments.</details>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1492</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">20584</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-01-28T03:11:27Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
   </f>
 </fb>
