@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 326.905780114
+  seconds: 324.527453595
   version: 0.59.0
   what: judges-summary
-  when: 2026-01-28 07:27:51.113705977 Z
+  when: 2026-01-29 07:35:12.011134152 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -18260,12 +18260,6 @@
     The average monthly turnover (8.0 developers) is increasing (R=0.13).
   what: assessment
   when: 2026-01-27 07:28:28.825324691 Z
-- _id: 8057
-  _job: 58877
-  _time: 2026-01-27 07:28:54.720461284 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  what: learn-eva
-  when: 2026-01-27 07:28:54.707398904 Z
 - _id: 8058
   _job: 21429019323
   _time: 2026-01-28 07:22:28.526621927 Z
@@ -18320,26 +18314,13 @@
   issue: 1492
   repository: 9580168
   review: 2026-01-28 03:11:27.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
   when: 2026-01-28 03:35:07.000000000 Z
   where: github
   who: 8086956
-- _id: 8062
-  _job: 21429019323
-  _time: 2026-01-28 07:23:44.756765257 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 7049708763
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1479
-  min_pull_was_found: 1322
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8063
   _job: 21429019323
   _time: 2026-01-28 07:23:51.973351533 Z
@@ -18385,5 +18366,84 @@
   seconds: 20584
   what: code-was-reviewed
   when: 2026-01-28 03:11:27.000000000 Z
+  where: github
+  who: 526301
+- _id: 8066
+  _job: 59010
+  _time: 2026-01-28 07:28:39.323671028 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  what: learn-eva
+  when: 2026-01-28 07:28:39.311881754 Z
+- _id: 8068
+  _job: 21469478735
+  _time: 2026-01-29 07:30:37.069913062 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: renovate/crate-ci-typos-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1491 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1491
+  repository: 9580168
+  review: 2026-01-27 03:16:59.000000000 Z
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-01-27 03:37:46.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8069
+  _job: 21469478735
+  _time: 2026-01-29 07:31:12.853851215 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 7073259042
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1479
+  min_pull_was_found: 1323
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 8070
+  _job: 21469478735
+  _time: 2026-01-29 07:31:20.640669002 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  total_active_contributors: 4
+  total_commits: 2290
+  total_contributors: 52
+  total_files: 423
+  total_forks: 117
+  total_issues: 842
+  total_pulls: 649
+  total_releases: 77
+  total_repositories: 1
+  total_stars: 310
+  what: dimensions-of-terrain
+  when: 2026-01-29 07:31:20.649703140 Z
+- _id: 8071
+  _job: 21469478735
+  _time: 2026-01-29 07:33:22.547079607 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1491 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 8h38m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1491
+  repository: 9580168
+  review_comments: 0
+  seconds: 31133
+  what: code-was-reviewed
+  when: 2026-01-27 03:16:59.000000000 Z
   where: github
   who: 526301
