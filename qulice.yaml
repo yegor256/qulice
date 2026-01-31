@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 324.527453595
+  seconds: 214.330414416
   version: 0.59.0
   what: judges-summary
-  when: 2026-01-29 07:35:12.011134152 Z
+  when: 2026-01-31 07:27:08.092514257 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -18147,20 +18147,6 @@
   some_unmerged_pulls: 0
   what: quality-of-service
   when: 2026-01-25 07:25:20.000000000 Z
-- _id: 8046
-  _job: 58621
-  _time: 2026-01-25 07:28:05.219142304 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  analyzers: 18
-  text: |-
-    The average number of builds per week (315.3) is decreasing (R=-0.75).
-    The average number of commits per week (8.5) is increasing (R=0.13).
-    The average issue cycle time (4d19h) is increasing (R=0.55).
-    The average pull cycle time (3d15h) is staying still.
-    The average number of releases per month (1.4) is increasing (R=0.52).
-    The average monthly turnover (8.0 developers) is staying still.
-  what: assessment
-  when: 2026-01-25 07:28:05.238012299 Z
 - _id: 8049
   _job: 21349475716
   _time: 2026-01-26 07:23:35.681331464 Z
@@ -18368,12 +18354,6 @@
   when: 2026-01-28 03:11:27.000000000 Z
   where: github
   who: 526301
-- _id: 8066
-  _job: 59010
-  _time: 2026-01-28 07:28:39.323671028 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  what: learn-eva
-  when: 2026-01-28 07:28:39.311881754 Z
 - _id: 8068
   _job: 21469478735
   _time: 2026-01-29 07:30:37.069913062 Z
@@ -18393,26 +18373,13 @@
   issue: 1491
   repository: 9580168
   review: 2026-01-27 03:16:59.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
   when: 2026-01-27 03:37:46.000000000 Z
   where: github
   who: 8086956
-- _id: 8069
-  _job: 21469478735
-  _time: 2026-01-29 07:31:12.853851215 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 7073259042
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1479
-  min_pull_was_found: 1323
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8070
   _job: 21469478735
   _time: 2026-01-29 07:31:20.640669002 Z
@@ -18447,3 +18414,67 @@
   when: 2026-01-27 03:16:59.000000000 Z
   where: github
   who: 526301
+- _id: 8072
+  _job: 59129
+  _time: 2026-01-29 07:35:36.188389234 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  analyzers: 18
+  text: |-
+    The average number of builds per week (315.3) is decreasing (R=-0.75).
+    The average number of commits per week (8.5) is increasing (R=0.13).
+    The average issue cycle time (4d19h) is increasing (R=0.55).
+    The average pull cycle time (3d20h) is decreasing (R=-0.10).
+    The average number of releases per month (1.4) is increasing (R=0.52).
+    The average monthly turnover (8.0 developers) is increasing (R=0.13).
+  what: assessment
+  when: 2026-01-29 07:35:36.214118792 Z
+- _id: 8073
+  _job: 59129
+  _time: 2026-01-29 07:36:07.897437213 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  what: learn-eva
+  when: 2026-01-29 07:36:07.876093698 Z
+- _id: 8074
+  _job: 59129
+  _time: 2026-01-29 07:36:07.992515279 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  ac: 68
+  cost_of_qod: 7.619423100822367
+  ev: 1158
+  pv: 22477
+  qod: 152
+  qod_per_day: 21.83635631459688
+  qod_per_sec: 1.3046275261552846e-05
+  start: *12
+  what: earned-value
+  when: 2026-01-29 07:36:07.992713704 Z
+- _id: 8075
+  _job: 21540903111
+  _time: 2026-01-31 07:24:04.299337364 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 6193767170
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1479
+  min_pull_was_found: 1324
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 8076
+  _job: 21540903111
+  _time: 2026-01-31 07:24:08.465786040 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  total_active_contributors: 4
+  total_commits: 2291
+  total_contributors: 52
+  total_files: 423
+  total_forks: 117
+  total_issues: 842
+  total_pulls: 651
+  total_releases: 77
+  total_repositories: 1
+  total_stars: 311
+  what: dimensions-of-terrain
+  when: 2026-01-31 07:24:08.479686395 Z
