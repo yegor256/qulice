@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.3" size="314284">
+<fb version="0.19.3" size="318255">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">298.474417464</seconds>
+    <seconds t="F">293.065079162</seconds>
     <version t="S">0.59.0</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-02-02T07:39:58Z</when>
+    <when t="T">2026-02-03T07:35:51Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -20137,21 +20137,6 @@
     <when t="T">2026-01-31T07:24:08Z</when>
   </f>
   <f>
-    <_id t="I">8077</_id>
-    <_job t="I">59302</_job>
-    <_time t="T">2026-01-31T07:27:28Z</_time>
-    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (315.3) is decreasing (R=-0.75).
-The average number of commits per week (8.5) is increasing (R=0.13).
-The average issue cycle time (4d19h) is increasing (R=0.55).
-The average pull cycle time (3d20h) is decreasing (R=-0.10).
-The average number of releases per month (1.4) is increasing (R=0.52).
-The average monthly turnover (8.0 developers) is increasing (R=0.13).</text>
-    <what t="S">assessment</what>
-    <when t="T">2026-01-31T07:27:28Z</when>
-  </f>
-  <f>
     <_id t="I">8080</_id>
     <_job t="I">21558874220</_job>
     <_time t="T">2026-02-01T07:27:52Z</_time>
@@ -20397,30 +20382,6 @@ The average monthly turnover (8.0 developers) is increasing (R=0.16).</text>
     <when t="T">2026-02-01T07:33:44Z</when>
   </f>
   <f>
-    <_id t="I">8085</_id>
-    <_job t="I">59420</_job>
-    <_time t="T">2026-02-01T07:34:09Z</_time>
-    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
-    <what t="S">learn-eva</what>
-    <when t="T">2026-02-01T07:34:09Z</when>
-  </f>
-  <f>
-    <_id t="I">8086</_id>
-    <_job t="I">21581284163</_job>
-    <_time t="T">2026-02-02T07:35:38Z</_time>
-    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
-    <assignees_were_scanned t="I">0</assignees_were_scanned>
-    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">6230155055</events_were_scanned>
-    <latest_issue_was_found t="I">1386</latest_issue_was_found>
-    <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1479</min_issue_was_found>
-    <min_pull_was_found t="I">1330</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
-  </f>
-  <f>
     <_id t="I">8087</_id>
     <_job t="I">21581284163</_job>
     <_time t="T">2026-02-02T07:35:47Z</_time>
@@ -20437,5 +20398,257 @@ The average monthly turnover (8.0 developers) is increasing (R=0.16).</text>
     <total_stars t="I">311</total_stars>
     <what t="S">dimensions-of-terrain</what>
     <when t="T">2026-02-02T07:35:47Z</when>
+  </f>
+  <f>
+    <_id t="I">8088</_id>
+    <_job t="I">59610</_job>
+    <_time t="T">2026-02-02T07:40:21Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (303.8) is decreasing (R=-0.78).
+The average number of commits per week (8.3) is staying still.
+The average issue cycle time (4d19h) is increasing (R=0.55).
+The average pull cycle time (3d20h) is decreasing (R=-0.10).
+The average number of releases per month (1.3) is increasing (R=0.42).
+The average monthly turnover (8.0 developers) is increasing (R=0.16).</text>
+    <what t="S">assessment</what>
+    <when t="T">2026-02-02T07:40:21Z</when>
+  </f>
+  <f>
+    <_id t="I">8089</_id>
+    <_job t="I">59610</_job>
+    <_time t="T">2026-02-02T07:40:47Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <what t="S">learn-eva</what>
+    <when t="T">2026-02-02T07:40:47Z</when>
+  </f>
+  <f>
+    <_id t="I">8090</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:31:01Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <comments t="I">3</comments>
+    <commits t="I">1</commits>
+    <details t="S">The pull request yegor256/qulice#1497 has been reviewed by @yegor256 with 2 HoC and 3 comments.</details>
+    <event_id t="I">6261188443</event_id>
+    <event_type t="S">PullRequestReviewEvent</event_type>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1497</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <what t="S">pull-was-reviewed</what>
+    <when t="T">2026-02-03T03:15:58Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8091</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:31:02Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <branch t="S">renovate/crate-ci-typos-1.x</branch>
+    <details t="S">The pull request yegor256/qulice#1497 has been opened by @renovate[bot].</details>
+    <event_id t="I">6250045545</event_id>
+    <event_type t="S">PullRequestEvent</event_type>
+    <is_human t="I">0</is_human>
+    <issue t="I">1497</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-02-02T17:05:19Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8092</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:31:03Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <comments t="I">3</comments>
+    <commits t="I">1</commits>
+    <details t="S">The pull request yegor256/qulice#1496 has been reviewed by @yegor256 with 2 HoC and 3 comments.</details>
+    <event_id t="I">6249109854</event_id>
+    <event_type t="S">PullRequestReviewEvent</event_type>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1496</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <what t="S">pull-was-reviewed</what>
+    <when t="T">2026-02-02T16:33:27Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8093</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:31:03Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <branch t="S">renovate/org.apache.maven.shared-maven-dependency-analyzer-1.x</branch>
+    <details t="S">The pull request yegor256/qulice#1496 has been opened by @renovate[bot].</details>
+    <event_id t="I">6237403777</event_id>
+    <event_type t="S">PullRequestEvent</event_type>
+    <is_human t="I">0</is_human>
+    <issue t="I">1496</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-02-02T09:48:41Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8095</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:31:35Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <branch t="S">renovate/org.apache.maven.shared-maven-dependency-analyzer-1.x</branch>
+    <comments t="I">3</comments>
+    <comments_appreciated t="I">1</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">3</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1496 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1496</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-02-02T16:33:26Z</review>
+    <succeeded_builds t="I">20</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-02-02T16:46:54Z</when>
+    <where t="S">github</where>
+    <who t="I">8086956</who>
+  </f>
+  <f>
+    <_id t="I">8096</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:32:00Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <branch t="S">renovate/crate-ci-typos-1.x</branch>
+    <comments t="I">3</comments>
+    <comments_appreciated t="I">1</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">3</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1497 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1497</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-02-03T03:15:56Z</review>
+    <succeeded_builds t="I">20</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-02-03T03:28:12Z</when>
+    <where t="S">github</where>
+    <who t="I">8086956</who>
+  </f>
+  <f>
+    <_id t="I">8097</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:32:23Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <assignees_were_scanned t="I">0</assignees_were_scanned>
+    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
+    <events_were_scanned t="I">7168533515</events_were_scanned>
+    <latest_issue_was_found t="I">1386</latest_issue_was_found>
+    <merges_were_scanned t="I">0</merges_were_scanned>
+    <min_issue_was_found t="I">1479</min_issue_was_found>
+    <min_pull_was_found t="I">1332</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
+  </f>
+  <f>
+    <_id t="I">8098</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:32:42Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <branch t="S">renovate/net.sourceforge.pmd-pmd-core-7.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1493 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1493</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-01-30T13:59:02Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8099</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:32:42Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <branch t="S">renovate/net.sourceforge.pmd-pmd-java-7.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1494 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1494</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-01-30T13:59:05Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8100</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:32:43Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <branch t="S">renovate/org.apache.maven.plugins-maven-compiler-plugin-3.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1495 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1495</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-02-01T21:53:56Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8101</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:34:07Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <author t="I">29139614</author>
+    <comments t="I">3</comments>
+    <details t="S">The pull request yegor256/qulice#1496 with 2 HoC created by @renovate[bot] was reviewed by @yegor256 after 6h44m and 0 comments.</details>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1496</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">24285</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-02-02T16:33:26Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8102</_id>
+    <_job t="I">21621174260</_job>
+    <_time t="T">2026-02-03T07:34:07Z</_time>
+    <_version t="S">0.19.3/0.59.0/0.17.10</_version>
+    <author t="I">29139614</author>
+    <comments t="I">3</comments>
+    <details t="S">The pull request yegor256/qulice#1497 with 2 HoC created by @renovate[bot] was reviewed by @yegor256 after 10h10m and 0 comments.</details>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1497</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">36637</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-02-03T03:15:56Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
   </f>
 </fb>
