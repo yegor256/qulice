@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 293.065079162
+  seconds: 298.213686149
   version: 0.59.0
   what: judges-summary
-  when: 2026-02-03 07:35:51.245670441 Z
+  when: 2026-02-04 07:36:27.055061982 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -18687,12 +18687,6 @@
     The average monthly turnover (8.0 developers) is increasing (R=0.16).
   what: assessment
   when: 2026-02-02 07:40:21.570150075 Z
-- _id: 8089
-  _job: 59610
-  _time: 2026-02-02 07:40:47.399519831 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  what: learn-eva
-  when: 2026-02-02 07:40:47.387209346 Z
 - _id: 8090
   _job: 21621174260
   _time: 2026-02-03 07:31:01.608315480 Z
@@ -18782,6 +18776,7 @@
   issue: 1496
   repository: 9580168
   review: 2026-02-02 16:33:26.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -18807,26 +18802,13 @@
   issue: 1497
   repository: 9580168
   review: 2026-02-03 03:15:56.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
   when: 2026-02-03 03:28:12.000000000 Z
   where: github
   who: 8086956
-- _id: 8097
-  _job: 21621174260
-  _time: 2026-02-03 07:32:23.072074155 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 7168533515
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1479
-  min_pull_was_found: 1332
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8098
   _job: 21621174260
   _time: 2026-02-03 07:32:42.190842840 Z
@@ -18900,5 +18882,127 @@
   seconds: 36637
   what: code-was-reviewed
   when: 2026-02-03 03:15:56.000000000 Z
+  where: github
+  who: 526301
+- _id: 8103
+  _job: 59838
+  _time: 2026-02-03 07:36:36.584602643 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  what: learn-eva
+  when: 2026-02-03 07:36:36.570493462 Z
+- _id: 8105
+  _job: 21662599312
+  _time: 2026-02-04 07:32:05.610640750 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: renovate/net.sourceforge.pmd-pmd-core-7.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1493 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1493
+  repository: 9580168
+  review: 2026-01-30 16:32:16.000000000 Z
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-01-30 16:44:53.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8106
+  _job: 21662599312
+  _time: 2026-02-04 07:32:32.337706753 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: renovate/org.apache.maven.plugins-maven-compiler-plugin-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1495 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1495
+  repository: 9580168
+  review: 2026-02-02 03:28:09.000000000 Z
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-02-02 03:39:59.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8107
+  _job: 21662599312
+  _time: 2026-02-04 07:32:53.343273028 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 8098710395
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1479
+  min_pull_was_found: 1334
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 8108
+  _job: 21662599312
+  _time: 2026-02-04 07:32:57.777141505 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  total_active_contributors: 4
+  total_commits: 2294
+  total_contributors: 52
+  total_files: 423
+  total_forks: 117
+  total_issues: 842
+  total_pulls: 655
+  total_releases: 77
+  total_repositories: 1
+  total_stars: 311
+  what: dimensions-of-terrain
+  when: 2026-02-04 07:32:57.793772894 Z
+- _id: 8109
+  _job: 21662599312
+  _time: 2026-02-04 07:34:30.039862885 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1493 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 2h33m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1493
+  repository: 9580168
+  review_comments: 0
+  seconds: 9194
+  what: code-was-reviewed
+  when: 2026-01-30 16:32:16.000000000 Z
+  where: github
+  who: 526301
+- _id: 8110
+  _job: 21662599312
+  _time: 2026-02-04 07:34:30.708088837 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1495 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 5h34m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1495
+  repository: 9580168
+  review_comments: 0
+  seconds: 20053
+  what: code-was-reviewed
+  when: 2026-02-02 03:28:09.000000000 Z
   where: github
   who: 526301
