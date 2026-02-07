@@ -111,7 +111,7 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
         for (
             DetailAST child = content.getFirstChild();
             child != null;
-            child  = child.getNextSibling()
+            child = child.getNextSibling()
         ) {
             if (child.getType() == TokenTypes.CLASS_DEF
                 || child.getType() == TokenTypes.ENUM_DEF
