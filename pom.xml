@@ -209,6 +209,79 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.revapi</groupId>
+        <artifactId>revapi-maven-plugin</artifactId>
+        <version>0.15.1</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.revapi</groupId>
+            <artifactId>revapi-java</artifactId>
+            <version>0.28.4</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <analysisConfiguration>
+            <revapi.filter>
+              <archives>
+                <exclude>
+                  <item>net\.sourceforge\.pmd:.*</item>
+                  <item>org\.apache\.maven:.*</item>
+                  <item>org\.apache\.maven\.resolver:.*</item>
+                  <item>org\.apache\.maven\.doxia:.*</item>
+                  <item>com\.puppycrawl\.tools:.*</item>
+                </exclude>
+              </archives>
+            </revapi.filter>
+            <revapi.differences>
+              <ignore>true</ignore>
+              <differences>
+                <item>
+                  <regex>true</regex>
+                  <code>.*</code>
+                  <old>.*net\.sourceforge\.pmd.*</old>
+                </item>
+                <item>
+                  <regex>true</regex>
+                  <code>.*</code>
+                  <new>.*net\.sourceforge\.pmd.*</new>
+                </item>
+                <item>
+                  <regex>true</regex>
+                  <code>java\.missing\..*</code>
+                </item>
+                <item>
+                  <regex>true</regex>
+                  <code>java\.class\.noLongerImplementsInterface</code>
+                  <new>class com\.qulice\.pmd\.rules\..*</new>
+                </item>
+                <item>
+                  <regex>true</regex>
+                  <code>java\.class\.noLongerInheritsFromClass</code>
+                  <new>class com\.qulice\.pmd\.rules\..*</new>
+                </item>
+                <item>
+                  <regex>true</regex>
+                  <code>java\.class\.nonPublicPartOfAPI</code>
+                  <new>.*com\.qulice\.maven\..*</new>
+                </item>
+                <item>
+                  <regex>true</regex>
+                  <code>java\.method\.removed</code>
+                  <old>.*com\.qulice\.maven\..*::setTimeout.*</old>
+                </item>
+              </differences>
+            </revapi.differences>
+          </analysisConfiguration>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.15.0</version>
