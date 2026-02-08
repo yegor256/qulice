@@ -140,8 +140,8 @@ public interface PmdError {
         private final Report.ConfigurationError error;
 
         /**
-         * Creates a new PmdError, representing given ProcessingError.
-         * @param error Internal ProcessingError.
+         * Creates a new PmdError, representing given ConfigurationError.
+         * @param error Internal ConfigurationError.
          */
         public OfConfigError(final Report.ConfigurationError error) {
             this.error = error;

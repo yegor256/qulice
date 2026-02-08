@@ -183,7 +183,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
     }
 
     /**
-     * Teimeout value for timeout.
+     * Timeout value for timeout.
      * @return Timeout value
      */
     private long timeoutValue() {
