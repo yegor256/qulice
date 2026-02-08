@@ -123,7 +123,26 @@ public interface Violation extends Comparable<Violation> {
 
         @Override
         public int compareTo(final Violation other) {
-            return this.vldtr.compareToIgnoreCase(other.validator());
+            int cmp = this.vldtr.compareToIgnoreCase(other.validator());
+            if (cmp == 0) {
+                cmp = this.file.compareTo(other.file());
+            }
+            if (cmp == 0) {
+                try {
+                    final int linesnum = Integer.parseInt(this.lns.split("-")[0]);
+                    final int othernum = Integer.parseInt(other.lines().split("-")[0]);
+                    cmp = Integer.compare(linesnum, othernum);
+                } catch (final NumberFormatException ex) {
+                    cmp = this.lns.compareTo(other.lines());
+                }
+            }
+            if (cmp == 0) {
+                cmp = this.name.compareToIgnoreCase(other.name());
+            }
+            if (cmp == 0) {
+                cmp = this.msg.compareTo(other.message());
+            }
+            return cmp;
         }
     }
 
