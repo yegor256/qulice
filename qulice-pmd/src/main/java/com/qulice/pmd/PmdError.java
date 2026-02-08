@@ -149,7 +149,7 @@ public interface PmdError {
 
         @Override
         public String name() {
-            return "ProcessingError";
+            return "ConfigurationError";
         }
 
         @Override

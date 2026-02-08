@@ -67,7 +67,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
         } catch (final ValidationException ex) {
             Logger.info(
                 this,
-                "Read our quality policy: http://www.qulice.com/quality.html"
+                "Read our quality policy: https://www.qulice.com/quality.html"
             );
             throw new MojoFailureException("Failure", ex);
         }
