@@ -22,6 +22,9 @@ public final class ValidationException extends Exception {
      * @param args Optional arguments for String.format()
      */
     public ValidationException(final String text, final Object... args) {
+        if (text.trim().isEmpty()) {
+            throw new IllegalArgumentException("Exception message cannot be empty");
+        }
         super(String.format(text, args));
     }
 
