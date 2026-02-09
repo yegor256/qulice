@@ -225,4 +225,35 @@
       </property>
     </properties>
   </rule>
+  <!-- /**
+ * @Todo Add tests cases for ConstantsOnRightSideOfComparison rule to ensure it works properly
+ */ -->
+  <rule name="ConstantsOnRightSideOfComparison" language="java" message="Constants should be on the right side of comparisons." class="net.sourceforge.pmd.lang.rule.XPathRule">
+    <description>
+      Enforces the code style guideline that constants (null or numbers) should appear on the right side of comparison operators ('==' and '!=') to reduce the risk of accidental assignment and improve readability.
+    </description>
+    <priority>3</priority>
+    <properties>
+      <property name="xpath">
+        <value><![CDATA[
+        //EqualityExpression[
+          (
+            (
+              PrimaryExpression/PrimaryPrefix/Literal[@Float='true' or @Double='true' or @Int='true' or @Long='true']
+              or
+              PrimaryExpression/PrimaryPrefix/Name[@Image='null']
+            )
+            and
+            PrimaryExpression/PrimarySuffix
+          )
+          and
+          (
+            ./EqualityExpression[@Image='==' or @Image='!=']
+          )
+        ]
+          [not(./PrimaryExpression[1]/PrimaryPrefix/Literal[@Float='true' or @Double='true' or @Int='true' or @Long='true'] or ./PrimaryExpression[1]/PrimaryPrefix/Name[@Image='null'])]
+        ]]></value>
+      </property>
+    </properties>
+  </rule>
 </ruleset>
