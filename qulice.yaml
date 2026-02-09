@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 368.371085421
+  seconds: 239.351282644
   version: 0.59.0
   what: judges-summary
-  when: 2026-02-08 07:34:51.807197776 Z
+  when: 2026-02-09 07:41:24.443248849 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -18976,20 +18976,6 @@
   total_stars: 312
   what: dimensions-of-terrain
   when: 2026-02-05 07:35:03.096931964 Z
-- _id: 8115
-  _job: 60222
-  _time: 2026-02-05 07:39:48.149904468 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  analyzers: 18
-  text: |-
-    The average number of builds per week (303.8) is decreasing (R=-0.78).
-    The average number of commits per week (8.3) is staying still.
-    The average issue cycle time (4d19h) is increasing (R=0.55).
-    The average pull cycle time (3d17h) is decreasing (R=-0.11).
-    The average number of releases per month (1.3) is increasing (R=0.42).
-    The average monthly turnover (8.0 developers) is decreasing (R=-0.14).
-  what: assessment
-  when: 2026-02-05 07:39:48.169003162 Z
 - _id: 8120
   _job: 21776374595
   _time: 2026-02-07 07:24:22.792547876 Z
@@ -19020,12 +19006,6 @@
     The average monthly turnover (8.0 developers) is decreasing (R=-0.14).
   what: assessment
   when: 2026-02-07 07:28:28.971218121 Z
-- _id: 8122
-  _job: 60476
-  _time: 2026-02-07 07:28:51.134104660 Z
-  _version: 0.19.4/0.59.0/0.17.10
-  what: learn-eva
-  when: 2026-02-07 07:28:51.121423417 Z
 - _id: 8124
   _job: 21794355784
   _time: 2026-02-08 07:28:46.472301592 Z
@@ -19040,20 +19020,6 @@
   total_reviews_submitted: 3
   what: quantity-of-deliverables
   when: 2026-02-08 07:28:46.000000000 Z
-- _id: 8125
-  _job: 21794355784
-  _time: 2026-02-08 07:29:26.227734906 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 6397412352
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1479
-  min_pull_was_found: 1342
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8126
   _job: 21794355784
   _time: 2026-02-08 07:29:33.085764106 Z
@@ -19237,3 +19203,153 @@
   some_unmerged_pulls: 0
   what: quality-of-service
   when: 2026-02-08 07:31:44.000000000 Z
+- _id: 8128
+  _job: 60595
+  _time: 2026-02-08 07:35:15.899465351 Z
+  _version: 0.19.4/0.59.0/0.17.10
+  analyzers: 18
+  text: |-
+    The average number of builds per week (298.2) is decreasing (R=-0.77).
+    The average number of commits per week (8.0) is staying still.
+    The average issue cycle time (4d19h) is increasing (R=0.55).
+    The average pull cycle time (3d17h) is decreasing (R=-0.11).
+    The average number of releases per month (1.2) is increasing (R=0.34).
+    The average monthly turnover (8.0 developers) is decreasing (R=-0.14).
+  what: assessment
+  when: 2026-02-08 07:35:15.918656912 Z
+- _id: 8129
+  _job: 60595
+  _time: 2026-02-08 07:35:46.682958555 Z
+  _version: 0.19.4/0.59.0/0.17.10
+  what: learn-eva
+  when: 2026-02-08 07:35:46.669767049 Z
+- _id: 8130
+  _job: 21816334518
+  _time: 2026-02-09 07:37:27.789257249 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: renovate/org.apache.maven.plugin-testing-maven-plugin-testing-harness-3.x
+  details: The pull request yegor256/qulice#1503 has been opened by @renovate[bot].
+  event_id: 6407314456
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1503
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-08 17:38:23.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8131
+  _job: 21816334518
+  _time: 2026-02-09 07:37:28.051662886 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  by_owner: 1
+  commit: 2f95dae233e5ba53fc278f5476d7b52f590b68b3
+  default_branch: master
+  details: 'A new Git push #30539623879 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 8244658925
+  event_type: PushEvent
+  is_human: 1
+  push_id: 30539623879
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-02-08 12:56:10.000000000 Z
+  where: github
+  who: 526301
+- _id: 8132
+  _job: 21816334518
+  _time: 2026-02-09 07:38:03.237905006 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 7344827752
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1479
+  min_pull_was_found: 1344
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 8133
+  _job: 21816334518
+  _time: 2026-02-09 07:38:07.355597668 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  total_active_contributors: 5
+  total_commits: 2305
+  total_contributors: 53
+  total_files: 423
+  total_forks: 117
+  total_issues: 842
+  total_pulls: 660
+  total_releases: 77
+  total_repositories: 1
+  total_stars: 313
+  what: dimensions-of-terrain
+  when: 2026-02-09 07:38:07.367913006 Z
+- _id: 8134
+  _job: 21816334518
+  _time: 2026-02-09 07:38:27.444419980 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: renovate/crate-ci-typos-1.x
+  details: The missing pull yegor256/qulice#1498 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1498
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-03 18:24:56.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8135
+  _job: 21816334518
+  _time: 2026-02-09 07:38:28.068217268 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: fix/javadoc-typos
+  details: The missing pull yegor256/qulice#1499 has been opened by @dehopen.
+  is_human: 1
+  issue: 1499
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-07 12:33:22.000000000 Z
+  where: github
+  who: 46645241
+- _id: 8136
+  _job: 21816334518
+  _time: 2026-02-09 07:38:28.684403514 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: fix/pom-metadata
+  details: The missing pull yegor256/qulice#1500 has been opened by @dehopen.
+  is_human: 1
+  issue: 1500
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-07 12:34:40.000000000 Z
+  where: github
+  who: 46645241
+- _id: 8137
+  _job: 21816334518
+  _time: 2026-02-09 07:38:29.349891757 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: fix/config-error-bug-and-code-quality
+  details: The missing pull yegor256/qulice#1501 has been opened by @dehopen.
+  is_human: 1
+  issue: 1501
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-07 12:34:58.000000000 Z
+  where: github
+  who: 46645241
+- _id: 8138
+  _job: 21816334518
+  _time: 2026-02-09 07:38:29.967546841 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: renovate/org.eclipse.sisu-org.eclipse.sisu.plexus-1.x
+  details: The missing pull yegor256/qulice#1502 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1502
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-07 21:24:05.000000000 Z
+  where: github
+  who: 29139614
