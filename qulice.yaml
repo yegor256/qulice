@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 239.351282644
+  seconds: 405.049181894
   version: 0.59.0
   what: judges-summary
-  when: 2026-02-09 07:41:24.443248849 Z
+  when: 2026-02-10 07:46:20.560201648 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -18992,20 +18992,6 @@
   total_stars: 312
   what: dimensions-of-terrain
   when: 2026-02-07 07:24:22.803301030 Z
-- _id: 8121
-  _job: 60476
-  _time: 2026-02-07 07:28:28.951677373 Z
-  _version: 0.19.4/0.59.0/0.17.10
-  analyzers: 18
-  text: |-
-    The average number of builds per week (303.8) is decreasing (R=-0.78).
-    The average number of commits per week (8.3) is staying still.
-    The average issue cycle time (4d19h) is increasing (R=0.55).
-    The average pull cycle time (3d17h) is decreasing (R=-0.11).
-    The average number of releases per month (1.3) is increasing (R=0.42).
-    The average monthly turnover (8.0 developers) is decreasing (R=-0.14).
-  what: assessment
-  when: 2026-02-07 07:28:28.971218121 Z
 - _id: 8124
   _job: 21794355784
   _time: 2026-02-08 07:28:46.472301592 Z
@@ -19217,12 +19203,6 @@
     The average monthly turnover (8.0 developers) is decreasing (R=-0.14).
   what: assessment
   when: 2026-02-08 07:35:15.918656912 Z
-- _id: 8129
-  _job: 60595
-  _time: 2026-02-08 07:35:46.682958555 Z
-  _version: 0.19.4/0.59.0/0.17.10
-  what: learn-eva
-  when: 2026-02-08 07:35:46.669767049 Z
 - _id: 8130
   _job: 21816334518
   _time: 2026-02-09 07:37:27.789257249 Z
@@ -19258,20 +19238,6 @@
   when: 2026-02-08 12:56:10.000000000 Z
   where: github
   who: 526301
-- _id: 8132
-  _job: 21816334518
-  _time: 2026-02-09 07:38:03.237905006 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 7344827752
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1479
-  min_pull_was_found: 1344
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8133
   _job: 21816334518
   _time: 2026-02-09 07:38:07.355597668 Z
@@ -19353,3 +19319,187 @@
   when: 2026-02-07 21:24:05.000000000 Z
   where: github
   who: 29139614
+- _id: 8139
+  _job: 60711
+  _time: 2026-02-09 07:41:43.289462555 Z
+  _version: 0.19.4/0.59.0/0.17.10
+  analyzers: 18
+  text: |-
+    The average number of builds per week (298.2) is decreasing (R=-0.77).
+    The average number of commits per week (8.0) is staying still.
+    The average issue cycle time (4d19h) is increasing (R=0.55).
+    The average pull cycle time (3d17h) is decreasing (R=-0.11).
+    The average number of releases per month (1.2) is increasing (R=0.34).
+    The average monthly turnover (8.0 developers) is decreasing (R=-0.12).
+  what: assessment
+  when: 2026-02-09 07:41:43.309621817 Z
+- _id: 8140
+  _job: 60711
+  _time: 2026-02-09 07:42:09.078284408 Z
+  _version: 0.19.4/0.59.0/0.17.10
+  what: learn-eva
+  when: 2026-02-09 07:42:09.068336447 Z
+- _id: 8141
+  _job: 60711
+  _time: 2026-02-09 07:42:09.191305479 Z
+  _version: 0.19.4/0.59.0/0.17.10
+  ac: 68
+  cost_of_qod: 1.298163814274026
+  ev: 212
+  pv: 4141
+  qod: 164
+  qod_per_day: 21.83635631459688
+  qod_per_sec: 1.3022476939514634e-05
+  start: *12
+  what: earned-value
+  when: 2026-02-09 07:42:09.191468335 Z
+- _id: 8143
+  _job: 21855927015
+  _time: 2026-02-10 07:40:28.157468608 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: renovate/crate-ci-typos-1.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1498 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1498
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-02-08 10:58:11.000000000 Z
+  where: github
+  who: 526301
+- _id: 8144
+  _job: 21855927015
+  _time: 2026-02-10 07:40:51.081820207 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: fix/javadoc-typos
+  comments: 1
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1499 has been "pull-was-merged".
+  failed_builds: 0
+  files: 3
+  hoc: 10
+  is_human: 1
+  issue: 1499
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-02-08 10:57:04.000000000 Z
+  where: github
+  who: 526301
+- _id: 8145
+  _job: 21855927015
+  _time: 2026-02-10 07:41:07.005501439 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: fix/pom-metadata
+  comments: 2
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1500 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 6
+  is_human: 1
+  issue: 1500
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-02-08 10:57:22.000000000 Z
+  where: github
+  who: 526301
+- _id: 8146
+  _job: 21855927015
+  _time: 2026-02-10 07:41:23.179039741 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: fix/config-error-bug-and-code-quality
+  comments: 2
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1501 has been "pull-was-merged".
+  failed_builds: 0
+  files: 4
+  hoc: 12
+  is_human: 1
+  issue: 1501
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-02-08 10:57:49.000000000 Z
+  where: github
+  who: 526301
+- _id: 8147
+  _job: 21855927015
+  _time: 2026-02-10 07:41:39.574063008 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  branch: renovate/org.eclipse.sisu-org.eclipse.sisu.plexus-1.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1502 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1502
+  repository: 9580168
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-02-08 10:58:05.000000000 Z
+  where: github
+  who: 526301
+- _id: 8148
+  _job: 21855927015
+  _time: 2026-02-10 07:41:57.197719516 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 6439299328
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1479
+  min_pull_was_found: 1345
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 8149
+  _job: 21855927015
+  _time: 2026-02-10 07:42:05.901545529 Z
+  _version: 0.19.3/0.59.0/0.17.10
+  total_active_contributors: 5
+  total_commits: 2305
+  total_contributors: 53
+  total_files: 423
+  total_forks: 117
+  total_issues: 842
+  total_pulls: 661
+  total_releases: 77
+  total_repositories: 1
+  total_stars: 313
+  what: dimensions-of-terrain
+  when: 2026-02-10 07:42:05.914249126 Z
