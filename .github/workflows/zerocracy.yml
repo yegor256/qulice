@@ -21,7 +21,7 @@ jobs:
           token: ${{ secrets.ZEROCRACY_TOKEN }}
           repositories: yegor256/qulice
           factbase: qulice.fb
-      - uses: zerocracy/pages-action@0.6.4
+      - uses: zerocracy/pages-action@0.7.0
         with:
           factbase: qulice.fb
       - uses: JamesIves/github-pages-deploy-action@v4.8.0
