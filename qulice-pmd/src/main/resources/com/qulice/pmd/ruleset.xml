@@ -29,6 +29,7 @@
     <exclude name="ExcessiveImports"/>
     <exclude name="CyclomaticComplexity"/>
     <exclude name="FinalFieldCouldBeStatic"/>
+    <exclude name="TooManyMethods"/>
   </rule>
   <rule ref="category/java/documentation.xml">
     <exclude name="CommentRequired"/>
@@ -54,6 +55,13 @@
       </property>
       <property name="skipAnnotations">
         <value>true</value>
+      </property>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/TooManyMethods">
+    <properties>
+      <property name="maxmethods">
+        <value>30</value>
       </property>
     </properties>
   </rule>
