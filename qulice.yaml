@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 325.746149903
-  version: 0.59.0
+  seconds: 119.912410891
+  version: 0.60.0
   what: judges-summary
-  when: 2026-02-25 07:40:45.685287758 Z
+  when: 2026-02-26 07:36:42.157897806 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -19775,20 +19775,6 @@
   total_stars: 313
   what: dimensions-of-terrain
   when: 2026-02-22 07:27:28.880395131 Z
-- _id: 8193
-  _job: 62560
-  _time: 2026-02-22 07:31:33.557411017 Z
-  _version: 0.19.7/0.60.0/0.17.10!0.17.12
-  analyzers: 18
-  text: |-
-    The average number of builds per week (287.6) is decreasing (R=-0.80).
-    The average number of commits per week (7.9) is staying still.
-    The average issue cycle time (4d19h) is increasing (R=0.55).
-    The average pull cycle time (3d15h) is decreasing (R=-0.12).
-    The average number of releases per month (1.2) is increasing (R=0.28).
-    The average monthly turnover (8.0 developers) is decreasing (R=-0.12).
-  what: assessment
-  when: 2026-02-22 07:31:33.574065358 Z
 - _id: 8196
   _job: 22296921966
   _time: 2026-02-23 07:37:09.114524982 Z
@@ -19978,26 +19964,6 @@
     The average monthly turnover (8.0 developers) is decreasing (R=-0.12).
   what: assessment
   when: 2026-02-23 07:43:27.632780904 Z
-- _id: 8203
-  _job: 62829
-  _time: 2026-02-24 07:38:46.728799663 Z
-  _version: 0.19.7/0.60.0/0.17.10!0.17.12
-  what: learn-eva
-  when: 2026-02-24 07:38:46.709316731 Z
-- _id: 8204
-  _job: 22386909410
-  _time: 2026-02-25 07:36:01.100670385 Z
-  _version: 0.19.3/0.59.0/0.17.10
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 8740073799
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1479
-  min_pull_was_found: 1361
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8205
   _job: 22386909410
   _time: 2026-02-25 07:36:09.892528287 Z
@@ -20014,3 +19980,57 @@
   total_stars: 313
   what: dimensions-of-terrain
   when: 2026-02-25 07:36:09.907744987 Z
+- _id: 8206
+  _job: 62995
+  _time: 2026-02-25 07:41:08.668947176 Z
+  _version: 0.19.8/0.60.0/0.17.10!0.17.13
+  analyzers: 18
+  text: |-
+    The average number of builds per week (278.0) is decreasing (R=-0.81).
+    The average number of commits per week (7.6) is staying still.
+    The average issue cycle time (4d19h) is increasing (R=0.55).
+    The average pull cycle time (3d15h) is decreasing (R=-0.12).
+    The average number of releases per month (1.1) is increasing (R=0.22).
+    The average monthly turnover (8.0 developers) is decreasing (R=-0.12).
+  what: assessment
+  when: 2026-02-25 07:41:08.736617006 Z
+- _id: 8207
+  _job: 62995
+  _time: 2026-02-25 07:41:34.472229029 Z
+  _version: 0.19.8/0.60.0/0.17.10!0.17.13
+  what: learn-eva
+  when: 2026-02-25 07:41:34.456921262 Z
+- _id: 8208
+  _job: 22432375464
+  _time: 2026-02-26 07:34:46.339372261 Z
+  _version: 0.19.8/0.60.0/0.17.13
+  by_owner: 1
+  commit: '08872c0027d1d2afd58c8f755b57b36ca1d9065a'
+  default_branch: master
+  details: 'A new Git push #31078957870 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 8784263355
+  event_type: PushEvent
+  is_human: 1
+  push_id: 31078957870
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-02-25 10:00:37.000000000 Z
+  where: github
+  who: 526301
+- _id: 8209
+  _job: 22432375464
+  _time: 2026-02-26 07:35:23.758338477 Z
+  _version: 0.19.8/0.60.0/0.17.13
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 8820005475
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1479
+  min_pull_was_found: 1362
+  repository: 9580168
+  what: iterate
+  where: github
