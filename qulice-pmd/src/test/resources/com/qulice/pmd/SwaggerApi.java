@@ -7,7 +7,7 @@ package foo;
 /**
  * Test class for swagger annotation.
  */
-class SwaggerApi {
+public class SwaggerApi {
     /**
      * Get settings by name.
      * @param name Name.

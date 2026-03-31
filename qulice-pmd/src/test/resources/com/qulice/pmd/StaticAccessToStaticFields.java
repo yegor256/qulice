@@ -29,7 +29,7 @@ public final class StaticAccessToStaticFields {
             return 1;
         }
 
-        public int add(final int a) {
+        int add(final int a) {
             return a + this.num;
         }
     }
