@@ -32,7 +32,9 @@
     <exclude name="TooManyMethods"/>
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
-    <exclude-pattern>.*/test/.*\.java</exclude-pattern>
+    <properties>
+      <property name="violationSuppressXPath" value=".[ends-with(@SimpleName,'Test')]"/>
+    </properties>
   </rule>
   <rule ref="category/java/documentation.xml">
     <exclude name="CommentRequired"/>
