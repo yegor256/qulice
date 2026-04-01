@@ -49,7 +49,7 @@ final class SourceValidator {
      * @return Collection of violations.
      */
     @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.CloseResource"})
-    public Collection<PmdError> validate(
+    Collection<PmdError> validate(
         final Collection<File> sources, final String path) {
         this.config.setRuleSets(new ListOf<>("com/qulice/pmd/ruleset.xml"));
         this.config.setThreads(0);
