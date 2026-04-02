@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 389.884416711
+  seconds: 494.969559183
   version: 0.60.1
   what: judges-summary
-  when: 2026-04-01 07:55:21.674371754 Z
+  when: 2026-04-02 07:50:50.900979202 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -19947,6 +19947,10 @@
   some_pull_lifetime:
   - 667.0
   - 2793.0
+  some_triage_time:
+  - 2940.0
+  - 234.0
+  - 2.0
   some_unmerged_pulls: 2
   what: quality-of-service
   when: &99 2026-02-23 07:40:26.000000000 Z
@@ -20203,6 +20207,13 @@
   some_reviews_per_pull:
   - 0
   - 0
+  some_triage_time:
+  - 38375.0
+  - 174491.0
+  - 2736.0
+  - 3479.0
+  - 17462.0
+  - 67398.0
   some_unmerged_pulls: 1
   what: quality-of-service
   when: &101 2026-03-03 07:31:19.000000000 Z
@@ -20754,7 +20765,7 @@
   total_releases_published: 0
   total_reviews_submitted: 0
   what: quantity-of-deliverables
-  when: 2026-03-26 07:39:20.000000000 Z
+  when: &106 2026-03-26 07:39:20.000000000 Z
 - _id: 8312
   _job: 23582939258
   _time: 2026-03-26 07:39:54.461582643 Z
@@ -20821,7 +20832,7 @@
   some_merged_pulls: 0
   some_unmerged_pulls: 0
   what: quality-of-service
-  when: 2026-03-26 07:41:31.000000000 Z
+  when: &107 2026-03-26 07:41:31.000000000 Z
 - _id: 8319
   _job: 23680359907
   _time: 2026-03-28 07:31:40.558301538 Z
@@ -20854,20 +20865,6 @@
   total_stars: 314
   what: dimensions-of-terrain
   when: 2026-03-29 07:35:24.686085971 Z
-- _id: 8324
-  _job: 66120
-  _time: 2026-03-29 07:39:44.897336685 Z
-  _version: 0.19.9/0.60.2/0.17.15
-  analyzers: 18
-  text: |-
-    The average number of builds per week (243.2) is decreasing (R=-0.86).
-    The average number of commits per week (6.5) is decreasing (R=-0.29).
-    The average issue cycle time (4d19h) is increasing (R=0.55).
-    The average pull cycle time (2d10h) is staying still.
-    The average number of releases per month (1.0) is staying still.
-    The average monthly turnover (9.0 developers) is decreasing (R=-0.82).
-  what: assessment
-  when: 2026-03-29 07:39:44.915152717 Z
 - _id: 8327
   _job: 23733814169
   _time: 2026-03-30 07:50:56.567080076 Z
@@ -20898,26 +20895,6 @@
     The average monthly turnover (9.0 developers) is decreasing (R=-0.82).
   what: assessment
   when: 2026-03-30 07:55:52.958404533 Z
-- _id: 8331
-  _job: 66444
-  _time: 2026-03-31 07:51:18.408035293 Z
-  _version: 0.19.9/0.60.2/0.17.15
-  what: learn-eva
-  when: 2026-03-31 07:51:18.401816414 Z
-- _id: 8332
-  _job: 23837892438
-  _time: 2026-04-01 07:49:26.925028799 Z
-  _version: 0.19.9/0.60.1/0.17.15
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 7979219686
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1479
-  min_pull_was_found: 1408
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8333
   _job: 23837892438
   _time: 2026-04-01 07:49:34.114528026 Z
@@ -20934,3 +20911,840 @@
   total_stars: 314
   what: dimensions-of-terrain
   when: 2026-04-01 07:49:34.127490064 Z
+- _id: 8334
+  _job: 66548
+  _time: 2026-04-01 07:55:52.432618254 Z
+  _version: 0.19.9/0.60.2/0.17.15
+  analyzers: 18
+  text: |-
+    The average number of builds per week (243.2) is decreasing (R=-0.86).
+    The average number of commits per week (6.5) is decreasing (R=-0.29).
+    The average issue cycle time (4d19h) is increasing (R=0.55).
+    The average pull cycle time (2d10h) is staying still.
+    The average number of releases per month (1.0) is staying still.
+    The average monthly turnover (9.0 developers) is decreasing (R=-0.82).
+  what: assessment
+  when: 2026-04-01 07:55:52.449676956 Z
+- _id: 8335
+  _job: 66548
+  _time: 2026-04-01 07:56:24.631162801 Z
+  _version: 0.19.9/0.60.2/0.17.15
+  what: learn-eva
+  when: 2026-04-01 07:56:24.624069178 Z
+- _id: 8336
+  _job: 23889748668
+  _time: 2026-04-02 07:42:38.526401803 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1508 has been closed by @yegor256.
+  event_id: 8020022646
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1508
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-02 05:01:35.000000000 Z
+  where: github
+  who: 526301
+- _id: 8337
+  _job: 23889748668
+  _time: 2026-04-02 07:42:38.838861128 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  comments: 1
+  commits: 1
+  details: The pull request yegor256/qulice#1503 has been reviewed by @yegor256 with
+    2 HoC and 1 comments.
+  event_id: 8018699262
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1503
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-04-02 03:53:09.000000000 Z
+  where: github
+  who: 526301
+- _id: 8338
+  _job: 23889748668
+  _time: 2026-04-02 07:42:39.460264192 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  comments: 1
+  commits: 1
+  details: The pull request yegor256/qulice#1505 has been reviewed by @yegor256 with
+    14 HoC and 1 comments.
+  event_id: 8018698308
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 14
+  is_human: 1
+  issue: 1505
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-04-02 03:53:06.000000000 Z
+  where: github
+  who: 526301
+- _id: 8339
+  _job: 23889748668
+  _time: 2026-04-02 07:42:40.063126041 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  comments: 1
+  commits: 1
+  details: The pull request yegor256/qulice#1523 has been reviewed by @yegor256 with
+    2 HoC and 1 comments.
+  event_id: 8018696923
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1523
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-04-02 03:53:02.000000000 Z
+  where: github
+  who: 526301
+- _id: 8340
+  _job: 23889748668
+  _time: 2026-04-02 07:42:40.712202086 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  comments: 1
+  commits: 1
+  details: The pull request yegor256/qulice#1526 has been reviewed by @yegor256 with
+    2 HoC and 1 comments.
+  event_id: 8018695866
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1526
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-04-02 03:52:59.000000000 Z
+  where: github
+  who: 526301
+- _id: 8341
+  _job: 23889748668
+  _time: 2026-04-02 07:42:41.302150846 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  comments: 1
+  commits: 1
+  details: The pull request yegor256/qulice#1528 has been reviewed by @yegor256 with
+    2 HoC and 1 comments.
+  event_id: 8018694852
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1528
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-04-02 03:52:56.000000000 Z
+  where: github
+  who: 526301
+- _id: 8342
+  _job: 23889748668
+  _time: 2026-04-02 07:42:42.560752084 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  comments: 3
+  commits: 1
+  details: The pull request yegor256/qulice#1494 has been reviewed by @yegor256 with
+    2 HoC and 3 comments.
+  event_id: 8002833582
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1494
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-04-01 16:57:30.000000000 Z
+  where: github
+  who: 526301
+- _id: 8344
+  _job: 23889748668
+  _time: 2026-04-02 07:42:44.707782790 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  since: *106
+  total_builds_ran: 263
+  total_commits_pushed: 6
+  total_hoc_committed: 32
+  total_issues_created: 2
+  total_pulls_submitted: 2
+  total_releases_published: 0
+  total_reviews_submitted: 6
+  what: quantity-of-deliverables
+  when: 2026-04-02 07:42:44.000000000 Z
+- _id: 8345
+  _job: 23889748668
+  _time: 2026-04-02 07:42:56.722772388 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1508 has been opened earlier by @yegor256.
+  is_human: 1
+  issue: 1508
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-02-17 07:57:53.000000000 Z
+  where: github
+  who: 526301
+- _id: 8346
+  _job: 23889748668
+  _time: 2026-04-02 07:43:03.907423710 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/junit-framework-monorepo
+  details: The pull yegor256/qulice#1505 has been opened earlier by @renovate[bot].
+  is_human: 0
+  issue: 1505
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-15 14:15:03.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8347
+  _job: 23889748668
+  _time: 2026-04-02 07:43:04.527843895 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/crate-ci-typos-1.x
+  details: The pull yegor256/qulice#1523 has been opened earlier by @renovate[bot].
+  is_human: 0
+  issue: 1523
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-27 17:07:06.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8348
+  _job: 23889748668
+  _time: 2026-04-02 07:43:04.886655706 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/maven-net.sourceforge.pmd-pmd-core-vulnerability
+  details: The pull yegor256/qulice#1526 has been opened earlier by @renovate[bot].
+  is_human: 0
+  issue: 1526
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-03-02 01:03:26.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8349
+  _job: 23889748668
+  _time: 2026-04-02 07:43:05.260240128 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/org.apache.maven-maven-artifact-3.x
+  details: The pull yegor256/qulice#1528 has been opened earlier by @renovate[bot].
+  is_human: 0
+  issue: 1528
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-03-06 14:50:20.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8350
+  _job: 23889748668
+  _time: 2026-04-02 07:43:31.815792105 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/net.sourceforge.pmd-pmd-java-7.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1494 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1494
+  repository: 9580168
+  review: 2026-04-01 16:57:28.000000000 Z
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-04-01 17:15:07.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8351
+  _job: 23889748668
+  _time: 2026-04-02 07:43:59.289210913 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1529 has been earlier opened by @roroche.
+  is_human: 1
+  issue: 1529
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-03-09 20:29:11.000000000 Z
+  where: github
+  who: 12625928
+- _id: 8352
+  _job: 23889748668
+  _time: 2026-04-02 07:43:59.576857099 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1527 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1527
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-03-03 12:23:59.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8353
+  _job: 23889748668
+  _time: 2026-04-02 07:44:00.093797243 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1525 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1525
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-03-01 20:04:36.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8354
+  _job: 23889748668
+  _time: 2026-04-02 07:44:00.138142923 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1524 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1524
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-03-01 19:15:04.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8355
+  _job: 23889748668
+  _time: 2026-04-02 07:44:00.179981227 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1521 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1521
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-02-27 12:13:46.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8356
+  _job: 23889748668
+  _time: 2026-04-02 07:44:00.219719043 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1520 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1520
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-02-27 10:20:07.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8357
+  _job: 23889748668
+  _time: 2026-04-02 07:44:00.257680669 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1519 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1519
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-02-27 10:08:14.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8358
+  _job: 23889748668
+  _time: 2026-04-02 07:44:00.295179413 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1517 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1517
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-02-25 12:46:19.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8359
+  _job: 23889748668
+  _time: 2026-04-02 07:44:00.332467565 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1516 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1516
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-02-25 11:39:35.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8360
+  _job: 23889748668
+  _time: 2026-04-02 07:44:00.373031417 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1515 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1515
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-02-25 10:18:05.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8361
+  _job: 23889748668
+  _time: 2026-04-02 07:44:00.413456919 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1510 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1510
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-02-18 11:38:42.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8362
+  _job: 23889748668
+  _time: 2026-04-02 07:44:00.453180227 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The issue yegor256/qulice#1509 has been earlier opened by @volodya-lombrozo.
+  is_human: 1
+  issue: 1509
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-02-18 08:47:21.000000000 Z
+  where: github
+  who: 51804353
+- _id: 8363
+  _job: 23889748668
+  _time: 2026-04-02 07:44:01.201394090 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 8978143864
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1508
+  min_pull_was_found: 1409
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 8364
+  _job: 23889748668
+  _time: 2026-04-02 07:44:24.791982481 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1508.
+  is_human: 1
+  issue: 1508
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-02-17 07:57:55.000000000 Z
+  where: github
+  who: 526301
+- _id: 8365
+  _job: 23889748668
+  _time: 2026-04-02 07:44:25.317057733 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1509.
+  is_human: 1
+  issue: 1509
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-02-18 08:51:15.000000000 Z
+  where: github
+  who: 526301
+- _id: 8366
+  _job: 23889748668
+  _time: 2026-04-02 07:44:25.901068702 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1510.
+  is_human: 1
+  issue: 1510
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-02-18 12:27:42.000000000 Z
+  where: github
+  who: 526301
+- _id: 8367
+  _job: 23889748668
+  _time: 2026-04-02 07:44:26.584979412 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1516.
+  is_human: 1
+  issue: 1516
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-02-26 06:22:53.000000000 Z
+  where: github
+  who: 526301
+- _id: 8368
+  _job: 23889748668
+  _time: 2026-04-02 07:44:27.108572793 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1517.
+  is_human: 1
+  issue: 1517
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-02-25 17:37:21.000000000 Z
+  where: github
+  who: 526301
+- _id: 8369
+  _job: 23889748668
+  _time: 2026-04-02 07:44:27.515546198 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1519.
+  is_human: 1
+  issue: 1519
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-02-27 11:06:13.000000000 Z
+  where: github
+  who: 526301
+- _id: 8370
+  _job: 23889748668
+  _time: 2026-04-02 07:44:27.918529652 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1520.
+  is_human: 1
+  issue: 1520
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-02-27 11:05:43.000000000 Z
+  where: github
+  who: 526301
+- _id: 8371
+  _job: 23889748668
+  _time: 2026-04-02 07:44:28.293824116 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1521.
+  is_human: 1
+  issue: 1521
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-03-01 12:41:57.000000000 Z
+  where: github
+  who: 526301
+- _id: 8372
+  _job: 23889748668
+  _time: 2026-04-02 07:44:28.707869368 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1524.
+  is_human: 1
+  issue: 1524
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-03-02 05:54:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 8373
+  _job: 23889748668
+  _time: 2026-04-02 07:44:30.028983932 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/crate-ci-typos-1.x
+  details: The missing pull yegor256/qulice#1504 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1504
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-09 21:39:24.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8374
+  _job: 23889748668
+  _time: 2026-04-02 07:44:30.937467400 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/zerocracy-judges-action-0.x
+  details: The missing pull yegor256/qulice#1506 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1506
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-16 07:42:46.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8375
+  _job: 23889748668
+  _time: 2026-04-02 07:44:31.860605353 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/zerocracy-pages-action-0.x
+  details: The missing pull yegor256/qulice#1507 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1507
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-16 14:39:21.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8376
+  _job: 23889748668
+  _time: 2026-04-02 07:44:32.725512363 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: qulice/pr6-align-pmd-versions-1510
+  details: The missing pull yegor256/qulice#1511 has been opened by @rddwnn.
+  is_human: 1
+  issue: 1511
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-20 21:01:31.000000000 Z
+  where: github
+  who: 136492346
+- _id: 8377
+  _job: 23889748668
+  _time: 2026-04-02 07:44:33.909929242 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: qulice/pr4-pmd-toomanymethods-tests-1508
+  details: The missing pull yegor256/qulice#1512 has been opened by @rddwnn.
+  is_human: 1
+  issue: 1512
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-20 21:37:14.000000000 Z
+  where: github
+  who: 136492346
+- _id: 8378
+  _job: 23889748668
+  _time: 2026-04-02 07:44:34.929141855 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: qulice/align-pmd-versions-1510
+  details: The missing pull yegor256/qulice#1513 has been opened by @rddwnn.
+  is_human: 1
+  issue: 1513
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-20 21:54:38.000000000 Z
+  where: github
+  who: 136492346
+- _id: 8379
+  _job: 23889748668
+  _time: 2026-04-02 07:44:35.843940941 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: qulice/pmd-toomanymethods-tests-1508
+  details: The missing pull yegor256/qulice#1514 has been opened by @rddwnn.
+  is_human: 1
+  issue: 1514
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-20 21:56:11.000000000 Z
+  where: github
+  who: 136492346
+- _id: 8380
+  _job: 23889748668
+  _time: 2026-04-02 07:44:36.799261717 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: master
+  details: The missing pull yegor256/qulice#1518 has been opened by @subha0319.
+  is_human: 1
+  issue: 1518
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-26 06:59:28.000000000 Z
+  where: github
+  who: 105427420
+- _id: 8381
+  _job: 23889748668
+  _time: 2026-04-02 07:44:38.030981662 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/net.sourceforge.pmd-pmd-core-7.x
+  details: The missing pull yegor256/qulice#1522 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1522
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-02-27 13:07:47.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8382
+  _job: 23889748668
+  _time: 2026-04-02 07:47:02.737975383 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1494 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 1466h58m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1494
+  repository: 9580168
+  review_comments: 0
+  seconds: 5281103
+  what: code-was-reviewed
+  when: 2026-04-01 16:57:28.000000000 Z
+  where: github
+  who: 526301
+- _id: 8383
+  _job: 23889748668
+  _time: 2026-04-02 07:47:03.255379195 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  since: *107
+  some_backlog_size:
+  - 167
+  - 167
+  - 167
+  - 167
+  - 100
+  - 167
+  - 166
+  some_build_duration:
+  - 101
+  - 133
+  - 205
+  - 186
+  - 222
+  - 208
+  - 242
+  - 251
+  - 258
+  - 229
+  - 259
+  - 275
+  - 275
+  - 247
+  - 267
+  - 256
+  - 256
+  - 292
+  - 282
+  - 258
+  - 288
+  - 262
+  - 300
+  - 265
+  - 304
+  - 296
+  - 277
+  - 298
+  - 308
+  - 308
+  - 275
+  - 279
+  - 304
+  - 317
+  - 318
+  - 285
+  - 323
+  - 324
+  - 290
+  - 319
+  - 334
+  - 307
+  - 305
+  - 307
+  - 331
+  - 318
+  - 329
+  - 670
+  - 9
+  - 9
+  - 11
+  - 11
+  - 12
+  - 15
+  - 18
+  - 29
+  - 31
+  - 71
+  - 295
+  - 0
+  some_build_mttr: 560
+  some_build_success_rate:
+  - 0
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  some_issue_lifetime:
+  - 3605233.0
+  - 3791022.0
+  some_merged_pulls: 3
+  some_pull_files_size:
+  - 1
+  - 5
+  - 1
+  some_pull_hoc_size:
+  - 6
+  - 9
+  - 2
+  some_pull_lifetime:
+  - 3481522.0
+  - 3395476.0
+  - 5282162.0
+  some_review_size:
+  - 0
+  - 2
+  - 0
+  some_review_time:
+  - 3366873
+  - 1059
+  some_reviewers_per_pull:
+  - 0
+  - 2
+  - 1
+  some_reviews_per_pull:
+  - 0
+  - 2
+  - 1
+  some_unmerged_pulls: 0
+  what: quality-of-service
+  when: 2026-04-02 07:47:03.000000000 Z
