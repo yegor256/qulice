@@ -29,6 +29,12 @@
     <exclude name="ExcessiveImports"/>
     <exclude name="CyclomaticComplexity"/>
     <exclude name="FinalFieldCouldBeStatic"/>
+    <exclude name="TooManyMethods"/>
+  </rule>
+  <rule ref="category/java/design.xml/TooManyMethods">
+    <properties>
+      <property name="violationSuppressXPath" value=".[ends-with(@SimpleName,'Test')]"/>
+    </properties>
   </rule>
   <rule ref="category/java/documentation.xml">
     <exclude name="CommentRequired"/>
