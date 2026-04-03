@@ -111,7 +111,7 @@ import java.util.Set;
         for (
 <span class="nc" id="L112">            DetailAST child = content.getFirstChild();</span>
 <span class="nc bnc" id="L113" title="All 2 branches missed.">            child != null;</span>
-<span class="nc" id="L114">            child  = child.getNextSibling()</span>
+<span class="nc" id="L114">            child = child.getNextSibling()</span>
         ) {
 <span class="nc bnc" id="L116" title="All 2 branches missed.">            if (child.getType() == TokenTypes.CLASS_DEF</span>
 <span class="nc bnc" id="L117" title="All 2 branches missed.">                || child.getType() == TokenTypes.ENUM_DEF</span>
