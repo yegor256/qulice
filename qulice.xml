@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.6" size="353963">
+<fb version="0.19.6" size="356757">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">494.969559183</seconds>
+    <seconds t="F">482.964908617</seconds>
     <version t="S">0.60.1</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-04-02T07:50:50Z</when>
+    <when t="T">2026-04-03T07:48:17Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -22070,6 +22070,7 @@
       <v t="I">0</v>
     </some_reviews_per_pull>
     <some_triage_time>
+      <v t="F">2804241.0</v>
       <v t="F">38375.0</v>
       <v t="F">174491.0</v>
       <v t="F">2736.0</v>
@@ -22358,6 +22359,7 @@
     <some_issue_lifetime t="F">742.0</some_issue_lifetime>
     <some_merged_pulls t="I">1</some_merged_pulls>
     <some_pull_lifetime t="F">1295709.0</some_pull_lifetime>
+    <some_triage_time t="F">2659049.0</some_triage_time>
     <some_unmerged_pulls t="I">1</some_unmerged_pulls>
     <what t="S">quality-of-service</what>
     <when t="T">2026-03-11T07:34:18Z</when>
@@ -22867,8 +22869,85 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
   </f>
   <f>
     <_id t="I">8336</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:42:38Z</_time>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:17Z</_time>
+    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
+    <details t="S">The issue yegor256/qulice#1477 has been closed by @yegor256.</details>
+    <event_id t="I">8059833651</event_id>
+    <event_type t="S">IssuesEvent</event_type>
+    <is_human t="I">1</is_human>
+    <issue t="I">1477</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-03T07:03:11Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8337</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:17Z</_time>
+    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
+    <details t="S">The issue yegor256/qulice#1479 has been closed by @yegor256.</details>
+    <event_id t="I">8059822951</event_id>
+    <event_type t="S">IssuesEvent</event_type>
+    <is_human t="I">1</is_human>
+    <issue t="I">1479</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-03T07:02:38Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8338</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:17Z</_time>
+    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
+    <commits t="I">67</commits>
+    <contributors>
+      <v t="I">1964562</v>
+      <v t="I">29139614</v>
+      <v t="I">8086956</v>
+      <v t="I">526301</v>
+      <v t="I">46645241</v>
+      <v t="I">136492346</v>
+    </contributors>
+    <details t="S">A new release "PMD.TooManyMethods should not complain about `*Test.java` files" has been published in yegor256/qulice by @rultor.</details>
+    <event_id t="I">8059731335</event_id>
+    <event_type t="S">ReleaseEvent</event_type>
+    <hoc t="I">3047</hoc>
+    <is_human t="I">0</is_human>
+    <last_commit t="S">b006fb2134bb8b2d280cf1a122231fe70d58a637</last_commit>
+    <release t="I">304964752</release>
+    <repository t="I">9580168</repository>
+    <tag t="S">0.25.2</tag>
+    <what t="S">release-published</what>
+    <when t="T">2026-04-03T06:57:51Z</when>
+    <where t="S">github</where>
+    <who t="I">8086956</who>
+  </f>
+  <f>
+    <_id t="I">8339</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:19Z</_time>
+    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
+    <branch t="S">version-up</branch>
+    <details t="S">The pull request yegor256/qulice#1532 has been opened by @github-actions[bot].</details>
+    <event_id t="I">8059721623</event_id>
+    <event_type t="S">PullRequestEvent</event_type>
+    <is_human t="I">0</is_human>
+    <issue t="I">1532</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-04-03T06:57:21Z</when>
+    <where t="S">github</where>
+    <who t="I">41898282</who>
+  </f>
+  <f>
+    <_id t="I">8340</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:20Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1508 has been closed by @yegor256.</details>
     <event_id t="I">8020022646</event_id>
@@ -22882,9 +22961,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8337</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:42:38Z</_time>
+    <_id t="I">8341</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:20Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <comments t="I">1</comments>
     <commits t="I">1</commits>
@@ -22903,9 +22982,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8338</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:42:39Z</_time>
+    <_id t="I">8342</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:20Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <comments t="I">1</comments>
     <commits t="I">1</commits>
@@ -22924,9 +23003,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8339</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:42:40Z</_time>
+    <_id t="I">8343</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:21Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <comments t="I">1</comments>
     <commits t="I">1</commits>
@@ -22945,9 +23024,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8340</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:42:40Z</_time>
+    <_id t="I">8344</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:21Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <comments t="I">1</comments>
     <commits t="I">1</commits>
@@ -22966,9 +23045,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8341</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:42:41Z</_time>
+    <_id t="I">8345</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:22Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <comments t="I">1</comments>
     <commits t="I">1</commits>
@@ -22987,9 +23066,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8342</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:42:42Z</_time>
+    <_id t="I">8346</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:24Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <comments t="I">3</comments>
     <commits t="I">1</commits>
@@ -23008,25 +23087,25 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8344</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:42:44Z</_time>
+    <_id t="I">8348</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:25Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <since t="T">2026-03-26T07:39:20Z</since>
-    <total_builds_ran t="I">263</total_builds_ran>
+    <total_builds_ran t="I">282</total_builds_ran>
     <total_commits_pushed t="I">6</total_commits_pushed>
     <total_hoc_committed t="I">32</total_hoc_committed>
-    <total_issues_created t="I">2</total_issues_created>
-    <total_pulls_submitted t="I">2</total_pulls_submitted>
-    <total_releases_published t="I">0</total_releases_published>
+    <total_issues_created t="I">3</total_issues_created>
+    <total_pulls_submitted t="I">3</total_pulls_submitted>
+    <total_releases_published t="I">1</total_releases_published>
     <total_reviews_submitted t="I">6</total_reviews_submitted>
     <what t="S">quantity-of-deliverables</what>
-    <when t="T">2026-04-02T07:42:44Z</when>
+    <when t="T">2026-04-03T07:40:25Z</when>
   </f>
   <f>
-    <_id t="I">8345</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:42:56Z</_time>
+    <_id t="I">8349</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:39Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1508 has been opened earlier by @yegor256.</details>
     <is_human t="I">1</is_human>
@@ -23038,9 +23117,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8346</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:43:03Z</_time>
+    <_id t="I">8350</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:45Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">renovate/junit-framework-monorepo</branch>
     <details t="S">The pull yegor256/qulice#1505 has been opened earlier by @renovate[bot].</details>
@@ -23053,9 +23132,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">29139614</who>
   </f>
   <f>
-    <_id t="I">8347</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:43:04Z</_time>
+    <_id t="I">8351</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:46Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">renovate/crate-ci-typos-1.x</branch>
     <details t="S">The pull yegor256/qulice#1523 has been opened earlier by @renovate[bot].</details>
@@ -23068,9 +23147,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">29139614</who>
   </f>
   <f>
-    <_id t="I">8348</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:43:04Z</_time>
+    <_id t="I">8352</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:46Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">renovate/maven-net.sourceforge.pmd-pmd-core-vulnerability</branch>
     <details t="S">The pull yegor256/qulice#1526 has been opened earlier by @renovate[bot].</details>
@@ -23083,9 +23162,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">29139614</who>
   </f>
   <f>
-    <_id t="I">8349</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:43:05Z</_time>
+    <_id t="I">8353</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:40:46Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">renovate/org.apache.maven-maven-artifact-3.x</branch>
     <details t="S">The pull yegor256/qulice#1528 has been opened earlier by @renovate[bot].</details>
@@ -23098,9 +23177,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">29139614</who>
   </f>
   <f>
-    <_id t="I">8350</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:43:31Z</_time>
+    <_id t="I">8354</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:10Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">renovate/net.sourceforge.pmd-pmd-java-7.x</branch>
     <comments t="I">3</comments>
@@ -23125,9 +23204,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">8086956</who>
   </f>
   <f>
-    <_id t="I">8351</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:43:59Z</_time>
+    <_id t="I">8355</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:36Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1529 has been earlier opened by @roroche.</details>
     <is_human t="I">1</is_human>
@@ -23139,9 +23218,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">12625928</who>
   </f>
   <f>
-    <_id t="I">8352</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:43:59Z</_time>
+    <_id t="I">8356</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1527 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23153,9 +23232,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8353</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:00Z</_time>
+    <_id t="I">8357</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1525 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23167,9 +23246,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8354</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:00Z</_time>
+    <_id t="I">8358</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1524 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23181,9 +23260,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8355</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:00Z</_time>
+    <_id t="I">8359</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1521 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23195,9 +23274,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8356</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:00Z</_time>
+    <_id t="I">8360</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1520 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23209,9 +23288,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8357</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:00Z</_time>
+    <_id t="I">8361</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1519 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23223,9 +23302,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8358</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:00Z</_time>
+    <_id t="I">8362</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1517 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23237,9 +23316,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8359</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:00Z</_time>
+    <_id t="I">8363</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1516 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23251,9 +23330,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8360</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:00Z</_time>
+    <_id t="I">8364</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1515 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23265,9 +23344,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8361</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:00Z</_time>
+    <_id t="I">8365</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1510 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23279,9 +23358,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8362</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:00Z</_time>
+    <_id t="I">8366</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:37Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The issue yegor256/qulice#1509 has been earlier opened by @volodya-lombrozo.</details>
     <is_human t="I">1</is_human>
@@ -23293,13 +23372,13 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">51804353</who>
   </f>
   <f>
-    <_id t="I">8363</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:01Z</_time>
+    <_id t="I">8367</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:38Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <assignees_were_scanned t="I">0</assignees_were_scanned>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">8978143864</events_were_scanned>
+    <events_were_scanned t="I">9017276481</events_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
     <merges_were_scanned t="I">0</merges_were_scanned>
     <min_issue_was_found t="I">1508</min_issue_was_found>
@@ -23309,9 +23388,27 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <where t="S">github</where>
   </f>
   <f>
-    <_id t="I">8364</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:24Z</_time>
+    <_id t="I">8368</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:41:44Z</_time>
+    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
+    <total_active_contributors t="I">4</total_active_contributors>
+    <total_commits t="I">2320</total_commits>
+    <total_contributors t="I">54</total_contributors>
+    <total_files t="I">423</total_files>
+    <total_forks t="I">119</total_forks>
+    <total_issues t="I">855</total_issues>
+    <total_pulls t="I">676</total_pulls>
+    <total_releases t="I">78</total_releases>
+    <total_repositories t="I">1</total_repositories>
+    <total_stars t="I">314</total_stars>
+    <what t="S">dimensions-of-terrain</what>
+    <when t="T">2026-04-03T07:41:44Z</when>
+  </f>
+  <f>
+    <_id t="I">8369</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:01Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1508.</details>
     <is_human t="I">1</is_human>
@@ -23324,9 +23421,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8365</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:25Z</_time>
+    <_id t="I">8370</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:01Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1509.</details>
     <is_human t="I">1</is_human>
@@ -23339,9 +23436,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8366</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:25Z</_time>
+    <_id t="I">8371</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:02Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1510.</details>
     <is_human t="I">1</is_human>
@@ -23354,9 +23451,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8367</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:26Z</_time>
+    <_id t="I">8372</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:03Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1516.</details>
     <is_human t="I">1</is_human>
@@ -23369,9 +23466,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8368</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:27Z</_time>
+    <_id t="I">8373</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:03Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1517.</details>
     <is_human t="I">1</is_human>
@@ -23384,9 +23481,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8369</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:27Z</_time>
+    <_id t="I">8374</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:04Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1519.</details>
     <is_human t="I">1</is_human>
@@ -23399,9 +23496,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8370</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:27Z</_time>
+    <_id t="I">8375</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:04Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1520.</details>
     <is_human t="I">1</is_human>
@@ -23414,9 +23511,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8371</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:28Z</_time>
+    <_id t="I">8376</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:04Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1521.</details>
     <is_human t="I">1</is_human>
@@ -23429,9 +23526,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8372</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:28Z</_time>
+    <_id t="I">8377</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:05Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1524.</details>
     <is_human t="I">1</is_human>
@@ -23444,9 +23541,39 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8373</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:30Z</_time>
+    <_id t="I">8378</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:05Z</_time>
+    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1525.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1525</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-04-03T07:01:57Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8379</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:05Z</_time>
+    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1527.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1527</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-04-03T07:01:28Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8380</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:06Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">renovate/crate-ci-typos-1.x</branch>
     <details t="S">The missing pull yegor256/qulice#1504 has been opened by @renovate[bot].</details>
@@ -23459,9 +23586,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">29139614</who>
   </f>
   <f>
-    <_id t="I">8374</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:30Z</_time>
+    <_id t="I">8381</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:07Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
     <details t="S">The missing pull yegor256/qulice#1506 has been opened by @renovate[bot].</details>
@@ -23474,9 +23601,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">29139614</who>
   </f>
   <f>
-    <_id t="I">8375</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:31Z</_time>
+    <_id t="I">8382</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:08Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">renovate/zerocracy-pages-action-0.x</branch>
     <details t="S">The missing pull yegor256/qulice#1507 has been opened by @renovate[bot].</details>
@@ -23489,9 +23616,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">29139614</who>
   </f>
   <f>
-    <_id t="I">8376</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:32Z</_time>
+    <_id t="I">8383</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:08Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">qulice/pr6-align-pmd-versions-1510</branch>
     <details t="S">The missing pull yegor256/qulice#1511 has been opened by @rddwnn.</details>
@@ -23504,9 +23631,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">136492346</who>
   </f>
   <f>
-    <_id t="I">8377</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:33Z</_time>
+    <_id t="I">8384</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:09Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">qulice/pr4-pmd-toomanymethods-tests-1508</branch>
     <details t="S">The missing pull yegor256/qulice#1512 has been opened by @rddwnn.</details>
@@ -23519,9 +23646,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">136492346</who>
   </f>
   <f>
-    <_id t="I">8378</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:34Z</_time>
+    <_id t="I">8385</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:10Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">qulice/align-pmd-versions-1510</branch>
     <details t="S">The missing pull yegor256/qulice#1513 has been opened by @rddwnn.</details>
@@ -23534,9 +23661,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">136492346</who>
   </f>
   <f>
-    <_id t="I">8379</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:35Z</_time>
+    <_id t="I">8386</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:11Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">qulice/pmd-toomanymethods-tests-1508</branch>
     <details t="S">The missing pull yegor256/qulice#1514 has been opened by @rddwnn.</details>
@@ -23549,9 +23676,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">136492346</who>
   </f>
   <f>
-    <_id t="I">8380</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:36Z</_time>
+    <_id t="I">8387</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:12Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">master</branch>
     <details t="S">The missing pull yegor256/qulice#1518 has been opened by @subha0319.</details>
@@ -23564,9 +23691,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">105427420</who>
   </f>
   <f>
-    <_id t="I">8381</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:44:38Z</_time>
+    <_id t="I">8388</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:13Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <branch t="S">renovate/net.sourceforge.pmd-pmd-core-7.x</branch>
     <details t="S">The missing pull yegor256/qulice#1522 has been opened by @renovate[bot].</details>
@@ -23579,9 +23706,39 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">29139614</who>
   </f>
   <f>
-    <_id t="I">8382</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:47:02Z</_time>
+    <_id t="I">8389</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:14Z</_time>
+    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
+    <branch t="S">renovate/org.apache.maven-maven-core-3.x</branch>
+    <details t="S">The missing pull yegor256/qulice#1530 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1530</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-03-27T02:09:04Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8390</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:42:15Z</_time>
+    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
+    <branch t="S">renovate/maven-org.codehaus.plexus-plexus-utils-vulnerability</branch>
+    <details t="S">The missing pull yegor256/qulice#1531 has been opened by @renovate[bot].</details>
+    <is_human t="I">0</is_human>
+    <issue t="I">1531</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-03-28T00:46:27Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8391</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:44:16Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <author t="I">29139614</author>
     <comments t="I">3</comments>
@@ -23598,9 +23755,9 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <who t="I">526301</who>
   </f>
   <f>
-    <_id t="I">8383</_id>
-    <_job t="I">23889748668</_job>
-    <_time t="T">2026-04-02T07:47:03Z</_time>
+    <_id t="I">8392</_id>
+    <_job t="I">23938488342</_job>
+    <_time t="T">2026-04-03T07:44:17Z</_time>
     <_version t="S">0.19.9/0.60.1/0.17.15</_version>
     <since t="T">2026-03-26T07:41:31Z</since>
     <some_backlog_size>
@@ -23609,58 +23766,39 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
       <v t="I">167</v>
       <v t="I">167</v>
       <v t="I">100</v>
-      <v t="I">167</v>
       <v t="I">166</v>
+      <v t="I">165</v>
     </some_backlog_size>
     <some_build_duration>
       <v t="I">101</v>
       <v t="I">133</v>
-      <v t="I">205</v>
       <v t="I">186</v>
-      <v t="I">222</v>
       <v t="I">208</v>
-      <v t="I">242</v>
-      <v t="I">251</v>
-      <v t="I">258</v>
       <v t="I">229</v>
       <v t="I">259</v>
-      <v t="I">275</v>
-      <v t="I">275</v>
       <v t="I">247</v>
       <v t="I">267</v>
       <v t="I">256</v>
       <v t="I">256</v>
-      <v t="I">292</v>
       <v t="I">282</v>
       <v t="I">258</v>
-      <v t="I">288</v>
       <v t="I">262</v>
-      <v t="I">300</v>
       <v t="I">265</v>
-      <v t="I">304</v>
       <v t="I">296</v>
       <v t="I">277</v>
       <v t="I">298</v>
-      <v t="I">308</v>
-      <v t="I">308</v>
       <v t="I">275</v>
       <v t="I">279</v>
       <v t="I">304</v>
-      <v t="I">317</v>
-      <v t="I">318</v>
       <v t="I">285</v>
-      <v t="I">323</v>
-      <v t="I">324</v>
       <v t="I">290</v>
       <v t="I">319</v>
-      <v t="I">334</v>
       <v t="I">307</v>
       <v t="I">305</v>
       <v t="I">307</v>
       <v t="I">331</v>
       <v t="I">318</v>
       <v t="I">329</v>
-      <v t="I">670</v>
       <v t="I">9</v>
       <v t="I">9</v>
       <v t="I">11</v>
@@ -23672,23 +23810,32 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
       <v t="I">31</v>
       <v t="I">71</v>
       <v t="I">295</v>
+      <v t="I">574</v>
+      <v t="I">53</v>
+      <v t="I">8</v>
+      <v t="I">9</v>
+      <v t="I">9</v>
+      <v t="I">9</v>
+      <v t="I">52</v>
+      <v t="I">10</v>
+      <v t="I">13</v>
+      <v t="I">26</v>
+      <v t="I">26</v>
+      <v t="I">28</v>
+      <v t="I">36</v>
+      <v t="I">49</v>
+      <v t="I">49</v>
+      <v t="I">55</v>
+      <v t="I">21</v>
+      <v t="I">26</v>
+      <v t="I">48</v>
       <v t="I">0</v>
     </some_build_duration>
-    <some_build_mttr t="I">560</some_build_mttr>
+    <some_build_mttr t="I">42432</some_build_mttr>
     <some_build_success_rate>
       <v t="I">0</v>
       <v t="I">1</v>
-      <v t="I">1</v>
       <v t="I">0</v>
-      <v t="I">1</v>
-      <v t="I">1</v>
-      <v t="I">1</v>
-      <v t="I">1</v>
-      <v t="I">0</v>
-      <v t="I">1</v>
-      <v t="I">1</v>
-      <v t="I">1</v>
-      <v t="I">1</v>
       <v t="I">1</v>
       <v t="I">1</v>
       <v t="I">1</v>
@@ -23729,6 +23876,16 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
       <v t="I">1</v>
       <v t="I">1</v>
       <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
       <v t="I">1</v>
       <v t="I">1</v>
       <v t="I">1</v>
@@ -23740,6 +23897,8 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     <some_issue_lifetime>
       <v t="F">3605233.0</v>
       <v t="F">3791022.0</v>
+      <v t="F">7564440.0</v>
+      <v t="F">7826994.0</v>
     </some_issue_lifetime>
     <some_merged_pulls t="I">3</some_merged_pulls>
     <some_pull_files_size>
@@ -23778,6 +23937,6 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.82).</text>
     </some_reviews_per_pull>
     <some_unmerged_pulls t="I">0</some_unmerged_pulls>
     <what t="S">quality-of-service</what>
-    <when t="T">2026-04-02T07:47:03Z</when>
+    <when t="T">2026-04-03T07:44:17Z</when>
   </f>
 </fb>
