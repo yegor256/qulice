@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 482.964908617
+  seconds: 357.030071159
   version: 0.60.1
   what: judges-summary
-  when: 2026-04-03 07:48:17.438772068 Z
+  when: 2026-04-04 07:40:15.113583282 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -20883,20 +20883,6 @@
   total_stars: 314
   what: dimensions-of-terrain
   when: 2026-03-30 07:50:56.578682579 Z
-- _id: 8328
-  _job: 66337
-  _time: 2026-03-30 07:55:52.940975688 Z
-  _version: 0.19.9/0.60.2/0.17.15
-  analyzers: 18
-  text: |-
-    The average number of builds per week (243.2) is decreasing (R=-0.86).
-    The average number of commits per week (6.5) is decreasing (R=-0.29).
-    The average issue cycle time (4d19h) is increasing (R=0.55).
-    The average pull cycle time (2d10h) is staying still.
-    The average number of releases per month (1.0) is staying still.
-    The average monthly turnover (9.0 developers) is decreasing (R=-0.82).
-  what: assessment
-  when: 2026-03-30 07:55:52.958404533 Z
 - _id: 8333
   _job: 23837892438
   _time: 2026-04-01 07:49:34.114528026 Z
@@ -20927,12 +20913,6 @@
     The average monthly turnover (9.0 developers) is decreasing (R=-0.82).
   what: assessment
   when: 2026-04-01 07:55:52.449676956 Z
-- _id: 8335
-  _job: 66548
-  _time: 2026-04-01 07:56:24.631162801 Z
-  _version: 0.19.9/0.60.2/0.17.15
-  what: learn-eva
-  when: 2026-04-01 07:56:24.624069178 Z
 - _id: 8336
   _job: 23938488342
   _time: 2026-04-03 07:40:17.237939552 Z
@@ -21233,6 +21213,7 @@
   issue: 1494
   repository: 9580168
   review: 2026-04-01 16:57:28.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -21383,20 +21364,6 @@
   when: 2026-02-18 08:47:21.000000000 Z
   where: github
   who: 51804353
-- _id: 8367
-  _job: 23938488342
-  _time: 2026-04-03 07:41:38.468508278 Z
-  _version: 0.19.9/0.60.1/0.17.15
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 9017276481
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1508
-  min_pull_was_found: 1409
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8368
   _job: 23938488342
   _time: 2026-04-03 07:41:44.024803986 Z
@@ -21889,3 +21856,308 @@
   some_unmerged_pulls: 0
   what: quality-of-service
   when: 2026-04-03 07:44:17.000000000 Z
+- _id: 8393
+  _job: 66801
+  _time: 2026-04-03 07:49:32.953762835 Z
+  _version: 0.19.9/0.60.2/0.17.15
+  analyzers: 18
+  text: |-
+    The average number of builds per week (243.3) is decreasing (R=-0.81).
+    The average number of commits per week (6.5) is decreasing (R=-0.28).
+    The average issue cycle time (2w) is increasing (R=0.67).
+    The average pull cycle time (2d22h) is increasing (R=0.15).
+    The average number of releases per month (1.1) is decreasing (R=0.12).
+    The average monthly turnover (9.0 developers) is decreasing (R=-0.72).
+  what: assessment
+  when: 2026-04-03 07:49:32.971771208 Z
+- _id: 8394
+  _job: 66801
+  _time: 2026-04-03 07:50:05.575119631 Z
+  _version: 0.19.9/0.60.2/0.17.15
+  what: learn-eva
+  when: 2026-04-03 07:50:05.568701961 Z
+- _id: 8395
+  _job: 66801
+  _time: 2026-04-03 07:50:05.670089709 Z
+  _version: 0.19.9/0.60.2/0.17.15
+  ac: 68
+  cost_of_qod: 1.2426353482402483
+  ev: 275
+  pv: 5087
+  qod: 222
+  qod_per_day: 20.563818748222886
+  qod_per_sec: 1.2921512194451833e-05
+  start: *12
+  what: earned-value
+  when: 2026-04-03 07:50:05.670528754 Z
+- _id: 8397
+  _job: 23974303375
+  _time: 2026-04-04 07:34:26.278527708 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: Apparently, yegor256/qulice#1510 has been "issue-was-closed".
+  is_human: 0
+  issue: 1510
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-01 05:05:55.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8398
+  _job: 23974303375
+  _time: 2026-04-04 07:34:28.148633146 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: Apparently, yegor256/qulice#1529 has been "issue-was-closed".
+  is_human: 1
+  issue: 1529
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-03-09 20:41:33.000000000 Z
+  where: github
+  who: 12625928
+- _id: 8399
+  _job: 23974303375
+  _time: 2026-04-04 07:34:45.627654465 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/crate-ci-typos-1.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1504 has been "pull-was-merged".
+  failed_builds: 12
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1504
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-02-26 07:01:11.000000000 Z
+  where: github
+  who: 526301
+- _id: 8400
+  _job: 23974303375
+  _time: 2026-04-04 07:34:57.711487262 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/zerocracy-judges-action-0.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1506 has been "pull-was-closed".
+  failed_builds: 12
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1506
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-03-03 07:37:55.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8401
+  _job: 23974303375
+  _time: 2026-04-04 07:35:04.669108453 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/zerocracy-pages-action-0.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1507 has been "pull-was-merged".
+  failed_builds: 12
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1507
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-02-26 07:00:58.000000000 Z
+  where: github
+  who: 526301
+- _id: 8402
+  _job: 23974303375
+  _time: 2026-04-04 07:35:11.682052391 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: qulice/pr6-align-pmd-versions-1510
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1511 has been "pull-was-closed".
+  failed_builds: 0
+  files: 3
+  hoc: 4
+  is_human: 1
+  issue: 1511
+  repository: 9580168
+  succeeded_builds: 40
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-02-20 21:48:04.000000000 Z
+  where: github
+  who: 136492346
+- _id: 8403
+  _job: 23974303375
+  _time: 2026-04-04 07:35:23.465824097 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: qulice/pr4-pmd-toomanymethods-tests-1508
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1512 has been "pull-was-closed".
+  failed_builds: 24
+  files: 1
+  hoc: 8
+  is_human: 1
+  issue: 1512
+  repository: 9580168
+  succeeded_builds: 16
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-02-20 21:48:21.000000000 Z
+  where: github
+  who: 136492346
+- _id: 8404
+  _job: 23974303375
+  _time: 2026-04-04 07:35:34.906795777 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: qulice/align-pmd-versions-1510
+  comments: 6
+  comments_appreciated: 1
+  comments_by_author: 2
+  comments_by_reviewers: 4
+  comments_resolved: 0
+  comments_to_code: 2
+  details: Apparently, yegor256/qulice#1513 has been "pull-was-merged".
+  failed_builds: 0
+  files: 5
+  hoc: 9
+  is_human: 0
+  issue: 1513
+  repository: 9580168
+  review: 2026-02-21 05:51:21.000000000 Z
+  succeeded_builds: 20
+  suggestions: 1
+  what: pull-was-merged
+  when: 2026-04-01 05:05:54.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8405
+  _job: 23974303375
+  _time: 2026-04-04 07:35:42.283376070 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: qulice/pmd-toomanymethods-tests-1508
+  comments: 3
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 2
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1514 has been "pull-was-merged".
+  failed_builds: 12
+  files: 1
+  hoc: 6
+  is_human: 1
+  issue: 1514
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-04-02 05:01:33.000000000 Z
+  where: github
+  who: 526301
+- _id: 8406
+  _job: 23974303375
+  _time: 2026-04-04 07:35:49.322285968 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/net.sourceforge.pmd-pmd-core-7.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1522 has been "pull-was-closed".
+  failed_builds: 12
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1522
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-03-02 01:03:28.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8407
+  _job: 23974303375
+  _time: 2026-04-04 07:35:59.053341949 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 9058122760
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1509
+  min_pull_was_found: 1410
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 8408
+  _job: 23974303375
+  _time: 2026-04-04 07:36:01.991264351 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: 'We found out that the user #136492346 is known in GitHub as @rddwnn.'
+  is_human: 1
+  name: rddwnn
+  what: who-has-name
+  when: 2026-04-04 07:36:02.086464131 Z
+  where: github
+  who: 136492346
+- _id: 8409
+  _job: 23974303375
+  _time: 2026-04-04 07:36:02.106097124 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  details: 'We found out that the user #105427420 is known in GitHub as @subha0319.'
+  is_human: 1
+  name: subha0319
+  what: who-has-name
+  when: 2026-04-04 07:36:02.195787266 Z
+  where: github
+  who: 105427420
+- _id: 8410
+  _job: 23974303375
+  _time: 2026-04-04 07:37:32.268884996 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  author: 136492346
+  comments: 4
+  details: The pull request yegor256/qulice#1513 with 9 HoC created by @rddwnn was
+    reviewed by @yegor256 after 7h56m and 1 comments.
+  hoc: 9
+  is_human: 1
+  issue: 1513
+  repository: 9580168
+  review_comments: 1
+  seconds: 28603
+  what: code-was-reviewed
+  when: 2026-02-21 05:51:21.000000000 Z
+  where: github
+  who: 526301
