@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 295.283223028
+  seconds: 462.085314921
   version: 0.60.1
   what: judges-summary
-  when: 2026-04-09 07:54:54.169045890 Z
+  when: 2026-04-10 07:58:15.172864705 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -21115,7 +21115,7 @@
   total_releases_published: 1
   total_reviews_submitted: 6
   what: quantity-of-deliverables
-  when: 2026-04-03 07:40:25.000000000 Z
+  when: &108 2026-04-03 07:40:25.000000000 Z
 - _id: 8349
   _job: 23938488342
   _time: 2026-04-03 07:40:39.501838180 Z
@@ -21841,7 +21841,7 @@
   - 1
   some_unmerged_pulls: 0
   what: quality-of-service
-  when: 2026-04-03 07:44:17.000000000 Z
+  when: &109 2026-04-03 07:44:17.000000000 Z
 - _id: 8395
   _job: 66801
   _time: 2026-04-03 07:50:05.670089709 Z
@@ -22149,20 +22149,6 @@
   total_stars: 314
   what: dimensions-of-terrain
   when: 2026-04-06 07:51:14.655128137 Z
-- _id: 8418
-  _job: 67111
-  _time: 2026-04-06 07:55:53.979318942 Z
-  _version: 0.19.9/0.60.2/0.17.15
-  analyzers: 18
-  text: |-
-    The average number of builds per week (243.3) is decreasing (R=-0.81).
-    The average number of commits per week (6.5) is decreasing (R=-0.28).
-    The average issue cycle time (2w) is increasing (R=0.69).
-    The average pull cycle time (3d18h) is increasing (R=0.26).
-    The average number of releases per month (1.1) is decreasing (R=0.12).
-    The average monthly turnover (9.0 developers) is decreasing (R=-0.68).
-  what: assessment
-  when: 2026-04-06 07:55:53.994614420 Z
 - _id: 8421
   _job: 24124145156
   _time: 2026-04-08 07:49:49.260809735 Z
@@ -22193,26 +22179,6 @@
     The average monthly turnover (9.0 developers) is decreasing (R=-0.68).
   what: assessment
   when: 2026-04-08 07:54:56.481536729 Z
-- _id: 8423
-  _job: 67367
-  _time: 2026-04-08 07:55:27.844454173 Z
-  _version: 0.19.9/0.60.2/0.17.15
-  what: learn-eva
-  when: 2026-04-08 07:55:27.838989377 Z
-- _id: 8424
-  _job: 24178901589
-  _time: 2026-04-09 07:50:31.836830075 Z
-  _version: 0.19.9/0.60.1/0.17.15
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 9224073505
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1519
-  min_pull_was_found: 1415
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8425
   _job: 24178901589
   _time: 2026-04-09 07:50:35.245307406 Z
@@ -22229,3 +22195,226 @@
   total_stars: 315
   what: dimensions-of-terrain
   when: 2026-04-09 07:50:35.257232089 Z
+- _id: 8426
+  _job: 67544
+  _time: 2026-04-09 07:55:15.287565746 Z
+  _version: 0.19.9/0.60.2/0.17.15
+  analyzers: 18
+  text: |-
+    The average number of builds per week (243.3) is decreasing (R=-0.81).
+    The average number of commits per week (6.5) is decreasing (R=-0.28).
+    The average issue cycle time (2w) is increasing (R=0.69).
+    The average pull cycle time (3d18h) is increasing (R=0.26).
+    The average number of releases per month (1.1) is decreasing (R=0.12).
+    The average monthly turnover (9.0 developers) is decreasing (R=-0.68).
+  what: assessment
+  when: 2026-04-09 07:55:15.305177829 Z
+- _id: 8427
+  _job: 67544
+  _time: 2026-04-09 07:55:42.460901886 Z
+  _version: 0.19.9/0.60.2/0.17.15
+  what: learn-eva
+  when: 2026-04-09 07:55:42.454549521 Z
+- _id: 8429
+  _job: 24232558820
+  _time: 2026-04-10 07:50:39.017750123 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  since: *108
+  total_builds_ran: 44
+  total_commits_pushed: 1
+  total_hoc_committed: 2
+  total_issues_created: 0
+  total_pulls_submitted: 0
+  total_releases_published: 0
+  total_reviews_submitted: 1
+  what: quantity-of-deliverables
+  when: 2026-04-10 07:50:39.000000000 Z
+- _id: 8430
+  _job: 24232558820
+  _time: 2026-04-10 07:51:31.263061783 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  branch: renovate/maven-org.codehaus.plexus-plexus-utils-vulnerability
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1531 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1531
+  repository: 9580168
+  review: 2026-04-09 17:01:31.000000000 Z
+  succeeded_builds: 20
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-04-09 17:24:44.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8431
+  _job: 24232558820
+  _time: 2026-04-10 07:51:56.754353334 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 9266682820
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1520
+  min_pull_was_found: 1416
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 8432
+  _job: 24232558820
+  _time: 2026-04-10 07:52:03.647069937 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  total_active_contributors: 4
+  total_commits: 2321
+  total_contributors: 54
+  total_files: 423
+  total_forks: 119
+  total_issues: 855
+  total_pulls: 676
+  total_releases: 78
+  total_repositories: 1
+  total_stars: 315
+  what: dimensions-of-terrain
+  when: 2026-04-10 07:52:03.662987776 Z
+- _id: 8433
+  _job: 24232558820
+  _time: 2026-04-10 07:54:33.796246222 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1531 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 304h15m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1531
+  repository: 9580168
+  review_comments: 0
+  seconds: 1095304
+  what: code-was-reviewed
+  when: 2026-04-09 17:01:31.000000000 Z
+  where: github
+  who: 526301
+- _id: 8434
+  _job: 24232558820
+  _time: 2026-04-10 07:54:33.851475725 Z
+  _version: 0.19.9/0.60.1/0.17.15
+  since: *109
+  some_backlog_size:
+  - 163
+  - 163
+  - 163
+  - 163
+  - 163
+  - 163
+  - 163
+  some_build_duration:
+  - 51
+  - 429
+  - 50
+  - 459
+  - 52
+  - 360
+  - 55
+  - 478
+  - 51
+  - 398
+  - 51
+  - 8
+  - 8
+  - 8
+  - 8
+  - 11
+  - 19
+  - 29
+  - 28
+  - 29
+  - 361
+  - 29
+  - 6
+  - 7
+  - 8
+  - 10
+  - 10
+  - 11
+  - 27
+  - 31
+  - 369
+  - 367
+  - 53
+  - 8
+  - 8
+  - 8
+  - 9
+  - 12
+  - 13
+  - 18
+  - 28
+  - 29
+  - 66
+  - 336
+  - 0
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  some_merged_pulls: 1
+  some_pull_files_size: 1
+  some_pull_hoc_size: 2
+  some_pull_lifetime: 1096697.0
+  some_review_size: 0
+  some_review_time: 1392
+  some_reviewers_per_pull: 1
+  some_reviews_per_pull: 1
+  some_unmerged_pulls: 0
+  what: quality-of-service
+  when: 2026-04-10 07:54:33.000000000 Z
