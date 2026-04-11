@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.6" size="364262">
+<fb version="0.19.6" size="364261">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">462.085314921</seconds>
+    <seconds t="F">292.346943443</seconds>
     <version t="S">0.60.1</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-04-10T07:58:15Z</when>
+    <when t="T">2026-04-11T07:39:16Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -24243,21 +24243,6 @@
     <when t="T">2026-04-08T07:49:49Z</when>
   </f>
   <f>
-    <_id t="I">8422</_id>
-    <_job t="I">67367</_job>
-    <_time t="T">2026-04-08T07:54:56Z</_time>
-    <_version t="S">0.19.9/0.60.2/0.17.15</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (243.3) is decreasing (R=-0.81).
-The average number of commits per week (6.5) is decreasing (R=-0.28).
-The average issue cycle time (2w) is increasing (R=0.69).
-The average pull cycle time (3d18h) is increasing (R=0.26).
-The average number of releases per month (1.1) is decreasing (R=0.12).
-The average monthly turnover (9.0 developers) is decreasing (R=-0.68).</text>
-    <what t="S">assessment</what>
-    <when t="T">2026-04-08T07:54:56Z</when>
-  </f>
-  <f>
     <_id t="I">8425</_id>
     <_job t="I">24178901589</_job>
     <_time t="T">2026-04-09T07:50:35Z</_time>
@@ -24289,14 +24274,6 @@ The average number of releases per month (1.1) is decreasing (R=0.12).
 The average monthly turnover (9.0 developers) is decreasing (R=-0.68).</text>
     <what t="S">assessment</what>
     <when t="T">2026-04-09T07:55:15Z</when>
-  </f>
-  <f>
-    <_id t="I">8427</_id>
-    <_job t="I">67544</_job>
-    <_time t="T">2026-04-09T07:55:42Z</_time>
-    <_version t="S">0.19.9/0.60.2/0.17.15</_version>
-    <what t="S">learn-eva</what>
-    <when t="T">2026-04-09T07:55:42Z</when>
   </f>
   <f>
     <_id t="I">8429</_id>
@@ -24334,28 +24311,13 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.68).</text>
     <issue t="I">1531</issue>
     <repository t="I">9580168</repository>
     <review t="T">2026-04-09T17:01:31Z</review>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">20</succeeded_builds>
     <suggestions t="I">0</suggestions>
     <what t="S">pull-was-merged</what>
     <when t="T">2026-04-09T17:24:44Z</when>
     <where t="S">github</where>
     <who t="I">8086956</who>
-  </f>
-  <f>
-    <_id t="I">8431</_id>
-    <_job t="I">24232558820</_job>
-    <_time t="T">2026-04-10T07:51:56Z</_time>
-    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
-    <assignees_were_scanned t="I">0</assignees_were_scanned>
-    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">9266682820</events_were_scanned>
-    <latest_issue_was_found t="I">1386</latest_issue_was_found>
-    <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1520</min_issue_was_found>
-    <min_pull_was_found t="I">1416</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
   </f>
   <f>
     <_id t="I">8432</_id>
@@ -24514,5 +24476,44 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.68).</text>
     <some_unmerged_pulls t="I">0</some_unmerged_pulls>
     <what t="S">quality-of-service</what>
     <when t="T">2026-04-10T07:54:33Z</when>
+  </f>
+  <f>
+    <_id t="I">8435</_id>
+    <_job t="I">67666</_job>
+    <_time t="T">2026-04-10T07:58:40Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.15</_version>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (236.2) is decreasing (R=-0.82).
+The average number of commits per week (6.3) is decreasing (R=-0.31).
+The average issue cycle time (2w) is increasing (R=0.69).
+The average pull cycle time (3d19h) is increasing (R=0.27).
+The average number of releases per month (1.0) is staying still.
+The average monthly turnover (9.0 developers) is decreasing (R=-0.68).</text>
+    <what t="S">assessment</what>
+    <when t="T">2026-04-10T07:58:40Z</when>
+  </f>
+  <f>
+    <_id t="I">8436</_id>
+    <_job t="I">67666</_job>
+    <_time t="T">2026-04-10T07:59:05Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.15</_version>
+    <what t="S">learn-eva</what>
+    <when t="T">2026-04-10T07:59:05Z</when>
+  </f>
+  <f>
+    <_id t="I">8437</_id>
+    <_job t="I">24277743666</_job>
+    <_time t="T">2026-04-11T07:34:54Z</_time>
+    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
+    <assignees_were_scanned t="I">0</assignees_were_scanned>
+    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
+    <events_were_scanned t="I">9324936117</events_were_scanned>
+    <latest_issue_was_found t="I">1386</latest_issue_was_found>
+    <merges_were_scanned t="I">0</merges_were_scanned>
+    <min_issue_was_found t="I">1521</min_issue_was_found>
+    <min_pull_was_found t="I">1417</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
   </f>
 </fb>
