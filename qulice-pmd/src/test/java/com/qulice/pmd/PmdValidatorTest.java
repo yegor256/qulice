@@ -636,6 +636,40 @@ final class PmdValidatorTest {
     }
 
     /**
+     * PmdValidator does not report UnitTestContainsTooManyAsserts when a test
+     * wraps an Assertions.assertThrows call inside an assertThat to verify the
+     * thrown exception's message.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void allowsAssertThrowsInsideAssertThat() throws Exception {
+        new PmdAssert(
+            "AssertThrowsWithMessageCheck.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString("UnitTestContainsTooManyAsserts")
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator still reports UnitTestContainsTooManyAsserts when a test
+     * has multiple asserts in addition to an assertThrows call, because only
+     * assertThrows is excluded from the count.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void reportsTooManyAssertsEvenWithAssertThrows() throws Exception {
+        new PmdAssert(
+            "TooManyAssertsWithAssertThrows.java",
+            Matchers.is(false),
+            Matchers.containsString("UnitTestContainsTooManyAsserts")
+        ).validate();
+    }
+
+    /**
      * PmdValidator can allow non-static, non-transient fields.
      *
      * @throws Exception If something wrong happens inside.
