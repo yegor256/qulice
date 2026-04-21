@@ -20,6 +20,15 @@
     <exclude name="LiteralsFirstInComparisons"/>
     <exclude name="AvoidUsingHardCodedIP"/>
     <exclude name="UnnecessaryVarargsArrayCreation"/>
+    <!--
+      UnitTestShouldIncludeAssert is excluded because it doesn't traverse
+      lambda bodies and therefore misses assertions placed inside lambdas.
+      Re-enable once PMD fixes it upstream; until then, we use our own
+      UnitTestShouldIncludeAssertRule that crosses lambda boundaries.
+      Upstream: https://github.com/pmd/pmd/issues/4272
+      Downstream: https://github.com/yegor256/qulice/issues/1524
+    -->
+    <exclude name="UnitTestShouldIncludeAssert"/>
   </rule>
   <rule ref="category/java/codestyle.xml">
     <exclude name="AtLeastOneConstructor"/>
@@ -84,6 +93,14 @@
         <value>true</value>
       </property>
     </properties>
+  </rule>
+  <rule name="UnitTestShouldIncludeAssert" message="This unit test should include assert() or fail()" language="java" class="com.qulice.pmd.rules.UnitTestShouldIncludeAssertRule">
+    <description>
+      Unit tests should include at least one assertion. This variant of
+      PMD's UnitTestShouldIncludeAssert rule looks for assertions placed
+      inside lambda bodies as well, which the upstream rule misses.
+    </description>
+    <priority>3</priority>
   </rule>
   <rule name="ProhibitPlainJunitAssertionsRule" message="Avoid using Plain JUnit assertions" language="java" class="com.qulice.pmd.rules.ProhibitPlainJunitAssertionsRule">
     <description>

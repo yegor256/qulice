@@ -797,6 +797,23 @@ final class PmdValidatorTest {
     }
 
     /**
+     * PmdValidator can find assert() calls placed inside a lambda
+     * body and not report UnitTestShouldIncludeAssert violation.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void findsAssertionInsideLambdaBody() throws Exception {
+        new PmdAssert(
+            "AssertInsideLambda.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString("UnitTestShouldIncludeAssert")
+            )
+        ).validate();
+    }
+
+    /**
      * PmdValidator can allow record classes.
      *
      * @throws Exception If something wrong happens inside.
