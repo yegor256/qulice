@@ -10,6 +10,7 @@
   <rule ref="category/java/bestpractices.xml">
     <exclude name="GuardLogStatement"/>
     <exclude name="LiteralsFirstInComparisons"/>
+    <exclude name="AvoidUsingHardCodedIP"/>
   </rule>
   <rule ref="category/java/codestyle.xml">
     <exclude name="AtLeastOneConstructor"/>

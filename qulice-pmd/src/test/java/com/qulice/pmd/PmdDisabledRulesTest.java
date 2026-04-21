@@ -43,6 +43,7 @@ final class PmdDisabledRulesTest {
                 {"PositionLiteralsFirstInComparisons"},
                 {"MissingSerialVersionUID"},
                 {"CallSuperInConstructor"},
+                {"AvoidUsingHardCodedIP"},
             }
         );
     }
