@@ -54,6 +54,18 @@
     <exclude name="AvoidLiteralsInIfCondition"/>
     <exclude name="NonSerializableClass"/>
     <exclude name="MissingSerialVersionUID"/>
+    <exclude name="TestClassWithoutTestCases"/>
+  </rule>
+  <!--
+    Recognise io.github.artsok annotations (@RepeatedIfExceptionsTest,
+    @ParameterizedRepeatedIfExceptionsTest) as test cases so that
+    TestClassWithoutTestCases does not flag classes that use them.
+    Upstream: https://github.com/yegor256/qulice/issues/1521
+  -->
+  <rule ref="category/java/errorprone.xml/TestClassWithoutTestCases">
+    <properties>
+      <property name="violationSuppressXPath" value=".[.//Annotation[@SimpleName='RepeatedIfExceptionsTest' or @SimpleName='ParameterizedRepeatedIfExceptionsTest']]"/>
+    </properties>
   </rule>
   <rule ref="category/java/performance.xml">
     <exclude name="AvoidInstantiatingObjectsInLoops"/>

@@ -844,6 +844,24 @@ final class PmdValidatorTest {
     }
 
     /**
+     * PmdValidator can recognise io.github.artsok RepeatedIfExceptionsTest
+     * annotation as a test method, so that the class is not flagged with
+     * TestClassWithoutTestCases.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void recognisesArtsokRepeatedIfExceptionsTest() throws Exception {
+        new PmdAssert(
+            "RepeatedIfExceptionsTest.java",
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString("TestClassWithoutTestCases")
+            )
+        ).validate();
+    }
+
+    /**
      * Check if UseStringIsEmptyRule not throws an NullPointerException when
      * found a pattern matching.
      */
