@@ -7,10 +7,19 @@
   <description>
     This ruleset checks code for potential mess
   </description>
+  <!--
+    UnnecessaryVarargsArrayCreation is excluded due to a false positive
+    when the explicit array is needed to disambiguate overloaded
+    methods/constructors: removing it produces a compile error.
+    Re-enable once PMD fixes it upstream.
+    Upstream: https://github.com/pmd/pmd/issues/6611
+    Downstream: https://github.com/yegor256/qulice/issues/1525
+  -->
   <rule ref="category/java/bestpractices.xml">
     <exclude name="GuardLogStatement"/>
     <exclude name="LiteralsFirstInComparisons"/>
     <exclude name="AvoidUsingHardCodedIP"/>
+    <exclude name="UnnecessaryVarargsArrayCreation"/>
   </rule>
   <rule ref="category/java/codestyle.xml">
     <exclude name="AtLeastOneConstructor"/>

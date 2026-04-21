@@ -44,6 +44,7 @@ final class PmdDisabledRulesTest {
                 {"MissingSerialVersionUID"},
                 {"CallSuperInConstructor"},
                 {"AvoidUsingHardCodedIP"},
+                {"UnnecessaryVarargsArrayCreation"},
             }
         );
     }
