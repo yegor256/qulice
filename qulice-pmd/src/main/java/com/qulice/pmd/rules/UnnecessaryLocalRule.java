@@ -8,6 +8,7 @@ import java.util.List;
 import net.sourceforge.pmd.lang.java.ast.ASTArgumentList;
 import net.sourceforge.pmd.lang.java.ast.ASTBlock;
 import net.sourceforge.pmd.lang.java.ast.ASTExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTResource;
 import net.sourceforge.pmd.lang.java.ast.ASTReturnStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
 import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
@@ -27,6 +28,10 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
         final ASTVariableDeclarator variable,
         final Object data
     ) {
+        // Skip variables that are declared as resources in a try-with-resources block
+        if (variable.ancestors(ASTResource.class).toStream().findAny().isPresent()) {
+            return data;
+        }
         if (variable.getInitializer() != null) {
             final String name = variableName(variable);
             if (!name.isEmpty()) {
