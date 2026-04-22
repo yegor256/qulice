@@ -115,6 +115,23 @@ public final class MojoExecutor {
     }
 
     /**
+     * Recursively convert Properties to Xpp3Dom.
+     * @param config The config to convert
+     * @param name High-level name of it
+     * @return The Xpp3Dom document
+     * @see #execute(String,String,Properties)
+     */
+    Xpp3Dom toXppDom(final Properties config, final String name) {
+        final Xpp3Dom xpp = new Xpp3Dom(name);
+        for (final Map.Entry<?, ?> entry : config.entrySet()) {
+            xpp.addChild(
+                this.toNode(entry.getKey().toString(), entry.getValue())
+            );
+        }
+        return xpp;
+    }
+
+    /**
      * Create descriptor.
      * @param plugin The plugin
      * @param goal Maven plugin goal to execute
@@ -155,63 +172,59 @@ public final class MojoExecutor {
     }
 
     /**
-     * Recursively convert Properties to Xpp3Dom.
-     * @param config The config to convert
-     * @param name High-level name of it
-     * @return The Xpp3Dom document
-     * @see #execute(String,String,Properties)
-     * @checkstyle ExecutableStatementCountCheck (100 lines)
+     * Convert a single value into an Xpp3Dom node.
+     * @param name Name of the node
+     * @param value Value to convert
+     * @return The Xpp3Dom node
      */
-    @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.CognitiveComplexity"})
-    private Xpp3Dom toXppDom(final Properties config, final String name) {
-        final Xpp3Dom xpp = new Xpp3Dom(name);
-        for (final Map.Entry<?, ?> entry : config.entrySet()) {
-            if (entry.getValue() instanceof String) {
-                final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
-                child.setValue(config.getProperty(entry.getKey().toString()));
-                xpp.addChild(child);
-            } else if (entry.getValue() instanceof String[]) {
-                final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
-                for (final String val : String[].class.cast(entry.getValue())) {
-                    final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
-                    row.setValue(val);
-                    child.addChild(row);
-                }
-                xpp.addChild(child);
-            } else if (entry.getValue() instanceof Collection) {
-                final Xpp3Dom child = new Xpp3Dom(entry.getKey().toString());
-                for (final Object val : Collection.class.cast(entry.getValue())) {
-                    if (val instanceof Properties) {
-                        child.addChild(
-                            this.toXppDom(
-                                Properties.class.cast(val),
-                                entry.getKey().toString()
-                            ).getChild(0)
-                        );
-                    } else if (val != null) {
-                        final Xpp3Dom row = new Xpp3Dom(entry.getKey().toString());
-                        row.setValue(val.toString());
-                        child.addChild(row);
-                    }
-                }
-                xpp.addChild(child);
-            } else if (entry.getValue() instanceof Properties) {
-                xpp.addChild(
-                    this.toXppDom(
-                        Properties.class.cast(entry.getValue()),
-                        entry.getKey().toString()
-                    )
-                );
-            } else {
-                throw new IllegalArgumentException(
-                    String.format(
-                        "Invalid properties value at '%s'",
-                        entry.getKey().toString()
-                    )
-                );
+    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
+    private Xpp3Dom toNode(final String name, final Object value) {
+        final Xpp3Dom node;
+        if (value instanceof String) {
+            node = new Xpp3Dom(name);
+            node.setValue(String.class.cast(value));
+        } else if (value instanceof String[]) {
+            node = new Xpp3Dom(name);
+            for (final String val : String[].class.cast(value)) {
+                final Xpp3Dom row = new Xpp3Dom(name);
+                row.setValue(val);
+                node.addChild(row);
             }
+        } else if (value instanceof Collection) {
+            node = new Xpp3Dom(name);
+            for (final Object item : Collection.class.cast(value)) {
+                this.appendItem(node, name, item);
+            }
+        } else if (value instanceof Properties) {
+            node = this.toXppDom(Properties.class.cast(value), name);
+        } else {
+            throw new IllegalArgumentException(
+                String.format("Invalid properties value at '%s'", name)
+            );
         }
-        return xpp;
+        return node;
+    }
+
+    /**
+     * Append a collection item to its parent node.
+     * @param parent Parent node receiving the item
+     * @param name Name used for the item when it is not a Properties map
+     * @param item The item to append
+     */
+    private void appendItem(
+        final Xpp3Dom parent, final String name, final Object item
+    ) {
+        if (item instanceof Properties) {
+            final Xpp3Dom converted = this.toXppDom(
+                Properties.class.cast(item), name
+            );
+            final int count = converted.getChildCount();
+            for (int idx = 0; idx < count; idx += 1) {
+                parent.addChild(converted.getChild(idx));
+            }
+        } else if (item != null) {
+            parent.addChild(this.toNode(name, item));
+        }
     }
 
     /**
