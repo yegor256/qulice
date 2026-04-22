@@ -847,6 +847,78 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator rejects empty lines before closing braces.
+     * See https://github.com/yegor256/qulice/issues/710.
+     * @throws Exception when error.
+     */
+    @Test
+    void rejectsEmptyLineBeforeClosingBrace() throws Exception {
+        final String file = "EmptyLineBeforeBrace.java";
+        MatcherAssert.assertThat(
+            "Empty line before closing brace is not reported",
+            this.runValidationWithContent(
+                file,
+                new IoCheckedText(
+                    new Joined(
+                        "\n",
+                        "package foo;",
+                        "public final class EmptyLineBeforeBrace {",
+                        "    public void foo() {",
+                        "        int x = 1;",
+                        "",
+                        "    }",
+                        "}",
+                        ""
+                    )
+                ).asString()
+            ),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "Empty line before closing brace is not allowed",
+                    file, "", "RegexpMultilineCheck"
+                )
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator does not report a false positive when a closing
+     * brace immediately follows a non-empty line.
+     * See https://github.com/yegor256/qulice/issues/710.
+     * @throws Exception when error.
+     */
+    @Test
+    void acceptsNoEmptyLineBeforeClosingBrace() throws Exception {
+        final String file = "NoEmptyLineBeforeBrace.java";
+        MatcherAssert.assertThat(
+            "Absence of empty line before closing brace was reported",
+            this.runValidationWithContent(
+                file,
+                new IoCheckedText(
+                    new Joined(
+                        "\n",
+                        "package foo;",
+                        "public final class NoEmptyLineBeforeBrace {",
+                        "    public void foo() {",
+                        "        int x = 1;",
+                        "    }",
+                        "}",
+                        ""
+                    )
+                ).asString()
+            ),
+            Matchers.not(
+                Matchers.hasItem(
+                    new ViolationMatcher(
+                        "Empty line before closing brace is not allowed",
+                        file, "", "RegexpMultilineCheck"
+                    )
+                )
+            )
+        );
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
@@ -1030,7 +1102,5 @@ final class CheckstyleValidatorTest {
             return this.line.isEmpty()
                 || !this.line.isEmpty() && item.lines().equals(this.line);
         }
-
     }
-
 }

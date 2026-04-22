@@ -390,6 +390,5 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
             }
             return result;
         }
-
     }
 }

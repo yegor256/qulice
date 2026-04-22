@@ -172,5 +172,4 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     protected final MavenEnvironment env() {
         return this.environment;
     }
-
 }

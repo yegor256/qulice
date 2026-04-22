@@ -35,5 +35,4 @@ public final class EnforcerValidator implements MavenValidator {
             );
         }
     }
-
 }

@@ -58,7 +58,6 @@ public final class ValidDiamondsUsage {
          * @since 1.0
          */
         final class InnerClass<E> implements SimpleInterface {
-
         }
     }
 }

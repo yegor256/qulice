@@ -166,5 +166,4 @@ public final class SvnPropertiesValidator implements MavenValidator {
             throw new IllegalStateException(ex);
         }
     }
-
 }

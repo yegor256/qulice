@@ -85,5 +85,4 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
         }
         return result;
     }
-
 }

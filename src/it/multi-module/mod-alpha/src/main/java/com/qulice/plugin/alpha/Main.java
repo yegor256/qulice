@@ -26,5 +26,4 @@ public final class Main {
     public static int square(final int num) {
         return num * num;
     }
-
 }

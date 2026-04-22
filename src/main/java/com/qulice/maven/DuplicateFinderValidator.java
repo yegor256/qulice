@@ -63,5 +63,4 @@ public final class DuplicateFinderValidator implements MavenValidator {
             );
         }
     }
-
 }

@@ -84,6 +84,15 @@
     <property name="message" value="Two consecutive empty lines"/>
   </module>
   <!--
+  Empty lines before closing braces are not allowed.
+  -->
+  <module name="RegexpMultiline">
+    <property name="format" value="\r?\n[ \t\x0B\f]*\r?\n[ \t\x0B\f]*\}"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="id" value="EmptyLineBeforeClosingBrace"/>
+    <property name="message" value="Empty line before closing brace is not allowed"/>
+  </module>
+  <!--
   JavaDoc regexp checks
   -->
   <module name="RegexpSingleline">

@@ -112,5 +112,4 @@ public final class BracketsStructureCheck extends AbstractCheck {
             }
         }
     }
-
 }

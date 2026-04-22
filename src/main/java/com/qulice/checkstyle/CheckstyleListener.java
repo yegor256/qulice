@@ -95,5 +95,4 @@ final class CheckstyleListener implements AuditListener {
             throwable
         );
     }
-
 }
