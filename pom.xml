@@ -200,6 +200,11 @@
         <version>2.9.0</version>
       </dependency>
       <dependency>
+        <groupId>org.checkerframework</groupId>
+        <artifactId>checker-qual</artifactId>
+        <version>3.54.0</version>
+      </dependency>
+      <dependency>
         <groupId>log4j</groupId>
         <artifactId>log4j</artifactId>
         <version>1.2.17</version>
@@ -253,7 +258,7 @@
     <dependency>
       <groupId>com.puppycrawl.tools</groupId>
       <artifactId>checkstyle</artifactId>
-      <version>13.4.0</version>
+      <version>12.3.1</version>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.pmd</groupId>
