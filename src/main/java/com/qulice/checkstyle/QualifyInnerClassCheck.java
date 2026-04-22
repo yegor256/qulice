@@ -15,12 +15,8 @@ import java.util.Set;
  * with the outer class.
  *
  * @since 0.18
- * @todo #738:30min Static inner classes should be qualified with outer class
- *  Implement QualifyInnerClassCheck so it follows what defined in
- *  QualifyInnerClassCheck test and add this check to checks.xml and CheckTest.
  */
 public final class QualifyInnerClassCheck extends AbstractCheck {
-    // FIXME: do we need to clear these fields in the end?
     /**
      * Set of all nested classes.
      */
@@ -52,6 +48,12 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
     }
 
     @Override
+    public void beginTree(final DetailAST ast) {
+        this.nested.clear();
+        this.root = false;
+    }
+
+    @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF
             || ast.getType() == TokenTypes.ENUM_DEF
@@ -65,27 +67,19 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
 
     /**
      * Checks if class to be instantiated is nested and unqualified.
-     *
-     * FIXME: currently only simple paths are detected
-     * (i.e. `new Foo`, but not `new Foo.Bar`)
      * @param expr EXPR LITERAL_NEW node that needs to be checked
      */
     private void visitNewExpression(final DetailAST expr) {
         final DetailAST child = expr.getFirstChild();
-        if (child.getType() == TokenTypes.IDENT) {
-            if (this.nested.contains(child.getText())) {
-                this.log(child, "Static inner class should be qualified with outer class");
-            }
-        } else if (child.getType() != TokenTypes.DOT) {
-            final String message = String.format("unsupported input %d", child.getType());
-            throw new IllegalStateException(message);
+        if (child != null
+            && child.getType() == TokenTypes.IDENT
+            && this.nested.contains(child.getText())) {
+            this.log(child, "Static inner class should be qualified with outer class");
         }
     }
 
     /**
      * If provided class is top-level, scans it for nested classes.
-     * FIXME: currently it assumes there can be only one top-level class
-     *
      * @param node Class-like AST node
      */
     private void scanForNestedClassesIfNecessary(final DetailAST node) {
@@ -97,9 +91,6 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
 
     /**
      * Scans class for all nested sub-classes.
-     *
-     * FIXME: checkstyle discourages manual traversing of AST,
-     * but exactly this is happening here.
      * @param node Class-like AST node that needs to be checked
      */
     private void scanClass(final DetailAST node) {
@@ -136,6 +127,6 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
                 return child.getText();
             }
         }
-        throw new IllegalStateException("unexpected input: can not find class name");
+        throw new IllegalStateException("Unable to find class name");
     }
 }
