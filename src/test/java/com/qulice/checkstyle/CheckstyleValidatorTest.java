@@ -772,6 +772,40 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator reports type parameter descriptions that do not
+     * start with a capital letter. See
+     * https://github.com/yegor256/qulice/issues/705.
+     * @throws Exception when error.
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    void rejectsLowercaseTypeParamDescription() throws Exception {
+        final String file = "InvalidTypeParamDescription.java";
+        final String message =
+            "@param tag description should start with capital letter";
+        final String name = "RegexpSinglelineCheck";
+        MatcherAssert.assertThat(
+            "Both class and method type parameter descriptions must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItems(
+                new ViolationMatcher(message, file, "9", name),
+                new ViolationMatcher(message, file, "17", name)
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator accepts type parameter descriptions that start
+     * with a capital letter. See
+     * https://github.com/yegor256/qulice/issues/705.
+     * @throws Exception when error.
+     */
+    @Test
+    void allowsUppercaseTypeParamDescription() throws Exception {
+        this.runValidation("ValidTypeParamDescription.java", true);
+    }
+
+    /**
      * CheckstyleValidator reports a tab character in a non-Java text file
      * such as JavaScript. See https://github.com/yegor256/qulice/issues/521.
      * @throws Exception when error.

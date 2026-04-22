@@ -54,7 +54,7 @@ public final class ValidDiamondsUsage {
 
         /**
          * Inner class with generic parameter.
-         * @param <E> generic parameter
+         * @param <E> Generic parameter
          * @since 1.0
          */
         final class InnerClass<E> implements SimpleInterface {
