@@ -51,6 +51,34 @@
       Downstream: https://github.com/yegor256/qulice/issues/1315
     -->
     <exclude name="UnitTestAssertionsShouldIncludeMessage"/>
+    <!--
+      UnitTestShouldUseTestAnnotation (formerly
+      JUnit4TestShouldUseTestAnnotation) flags any public method whose
+      name starts with 'test' in a class whose name ends with 'Test'
+      when the method is not annotated with a known test annotation.
+      That breaks classes that use non-JUnit conventions such as
+      g4s8/oot, whose test entry point is a bare
+      'public static void test()' method with no annotation. We
+      re-enable the rule below with a violationSuppressXPath that
+      ignores such oot-style classes.
+      Downstream: https://github.com/yegor256/qulice/issues/1064
+    -->
+    <exclude name="UnitTestShouldUseTestAnnotation"/>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/UnitTestShouldUseTestAnnotation">
+    <properties>
+      <property name="violationSuppressXPath">
+        <value><![CDATA[
+          .[
+            ancestor::ClassDeclaration[1]
+              /ClassBody
+              /MethodDeclaration[
+                @Name='test' and @Static=true() and @Visibility='public'
+              ]
+          ]
+        ]]></value>
+      </property>
+    </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/UnitTestAssertionsShouldIncludeMessage">
     <properties>
@@ -132,11 +160,28 @@
     Recognise io.github.artsok annotations (@RepeatedIfExceptionsTest,
     @ParameterizedRepeatedIfExceptionsTest) as test cases so that
     TestClassWithoutTestCases does not flag classes that use them.
+    Also recognise non-JUnit test conventions such as g4s8/oot, which
+    uses a bare 'public static void test()' method as the entry point
+    with no test annotation.
     Upstream: https://github.com/yegor256/qulice/issues/1521
+    Downstream: https://github.com/yegor256/qulice/issues/1064
   -->
   <rule ref="category/java/errorprone.xml/TestClassWithoutTestCases">
     <properties>
-      <property name="violationSuppressXPath" value=".[.//Annotation[@SimpleName='RepeatedIfExceptionsTest' or @SimpleName='ParameterizedRepeatedIfExceptionsTest']]"/>
+      <property name="violationSuppressXPath">
+        <value><![CDATA[
+          .[
+            .//Annotation[
+              @SimpleName='RepeatedIfExceptionsTest'
+              or @SimpleName='ParameterizedRepeatedIfExceptionsTest'
+            ]
+            or
+            ClassBody/MethodDeclaration[
+              @Name='test' and @Static=true() and @Visibility='public'
+            ]
+          ]
+        ]]></value>
+      </property>
     </properties>
   </rule>
   <rule ref="category/java/performance.xml">

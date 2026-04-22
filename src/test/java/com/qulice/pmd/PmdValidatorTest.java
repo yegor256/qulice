@@ -913,6 +913,33 @@ final class PmdValidatorTest {
     }
 
     /**
+     * PmdValidator does not flag classes that use non-JUnit test conventions
+     * like g4s8/oot, where a class ends with {@code *Test} but uses a
+     * {@code public static void test()} entry point instead of
+     * {@code @Test}-annotated methods.
+     * Regression test for https://github.com/yegor256/qulice/issues/1064
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void allowsNonJunitTestClassesWithStaticTestMethod() throws Exception {
+        new PmdAssert(
+            "OotStyleTest.java",
+            Matchers.any(Boolean.class),
+            Matchers.allOf(
+                Matchers.not(
+                    Matchers.containsString("TestClassWithoutTestCases")
+                ),
+                Matchers.not(
+                    Matchers.containsString(
+                        "UnitTestShouldUseTestAnnotation"
+                    )
+                )
+            )
+        ).validate();
+    }
+
+    /**
      * PmdValidator does not complain about a private static field of an inner
      * class that is referenced inside a lambda through a fully-qualified
      * outer-class path. Regression test for
