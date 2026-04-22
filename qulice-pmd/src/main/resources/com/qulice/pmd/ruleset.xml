@@ -39,6 +39,34 @@
       Downstream: https://github.com/yegor256/qulice/issues/1519
     -->
     <exclude name="UnitTestContainsTooManyAsserts"/>
+    <exclude name="UnusedPrivateField"/>
+  </rule>
+  <!--
+    UnusedPrivateField treats statement-level increment or decrement
+    and compound assignments (like plus-equals or minus-equals) as
+    write-only, so a field that is read-modified-written but never
+    read in a pure-read position gets flagged as unused. The
+    suppression below keeps the rule active but ignores violations
+    for fields that are referenced by an increment, decrement or
+    compound assignment anywhere in the enclosing class or its
+    nested classes.
+    Downstream: https://github.com/yegor256/qulice/issues/1520
+  -->
+  <rule ref="category/java/bestpractices.xml/UnusedPrivateField">
+    <properties>
+      <property name="violationSuppressXPath">
+        <value><![CDATA[
+          .[
+            @Name = ancestor::ClassDeclaration[1]
+              //(
+                UnaryExpression[@Operator = ('++', '--')]
+                | AssignmentExpression[@Operator = ('+=', '-=', '*=', '/=', '%=', '&=', '|=', '^=', '<<=', '>>=', '>>>=')]
+              )
+              //(FieldAccess | VariableAccess)/@Name
+          ]
+        ]]></value>
+      </property>
+    </properties>
   </rule>
   <rule ref="category/java/codestyle.xml">
     <exclude name="AtLeastOneConstructor"/>

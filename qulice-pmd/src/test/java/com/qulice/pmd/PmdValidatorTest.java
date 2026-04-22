@@ -913,6 +913,43 @@ final class PmdValidatorTest {
     }
 
     /**
+     * PmdValidator does not complain about a private static field of an inner
+     * class that is referenced inside a lambda through a fully-qualified
+     * outer-class path. Regression test for
+     * https://github.com/yegor256/qulice/issues/1520
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void allowsPrivateStaticFieldAccessedViaFullyQualifiedName()
+        throws Exception {
+        new PmdAssert(
+            "UnusedPrivateFieldInLambda.java",
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString("(UnusedPrivateField)")
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator still flags a private field that is never referenced at
+     * all. Guard against the suppression in
+     * {@link #allowsPrivateStaticFieldAccessedViaFullyQualifiedName()}
+     * over-matching.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void reportsTrulyUnusedPrivateField() throws Exception {
+        new PmdAssert(
+            "UnusedPrivateFieldTrulyUnused.java",
+            Matchers.any(Boolean.class),
+            Matchers.containsString("(UnusedPrivateField)")
+        ).validate();
+    }
+
+    /**
      * Check if UseStringIsEmptyRule not throws an NullPointerException when
      * found a pattern matching.
      */
