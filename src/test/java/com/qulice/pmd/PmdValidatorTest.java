@@ -1054,4 +1054,39 @@ final class PmdValidatorTest {
             )
         ).validate();
     }
+
+    /**
+     * PmdValidator does not report ArrayIsStoredDirectly when the varargs
+     * parameter is wrapped in a method call or constructor before being
+     * assigned to a field. Regression test for
+     * https://github.com/yegor256/qulice/issues/1053.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void allowsArrayIsStoredDirectlyWhenWrapped() throws Exception {
+        new PmdAssert(
+            "ArrayIsStoredDirectlyWrapped.java",
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString("(ArrayIsStoredDirectly)")
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator still reports ArrayIsStoredDirectly when a varargs or
+     * array parameter is assigned to a field directly. Guards the fix for
+     * https://github.com/yegor256/qulice/issues/1053 from over-suppressing.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void reportsArrayIsStoredDirectlyWhenPlain() throws Exception {
+        new PmdAssert(
+            "ArrayIsStoredDirectlyPlain.java",
+            Matchers.is(false),
+            Matchers.containsString("(ArrayIsStoredDirectly)")
+        ).validate();
+    }
 }
