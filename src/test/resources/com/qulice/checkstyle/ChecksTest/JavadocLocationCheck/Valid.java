@@ -52,3 +52,33 @@ interface I1 {
 interface I2 {
 
 }
+
+/**
+ * Test.
+ * @since 1.0
+ */
+final class EmptyLineError {
+
+    /**
+     * Some enum.
+     *
+     * @since 1.0
+     */
+    private enum SomeEnum {
+
+        /**
+         * Foo.
+         */
+        FOO,
+
+        /**
+         * Bar.
+         */
+        BAR;
+    }
+
+    @Override
+    public String act() {
+        return SomeEnum.FOO.name();
+    }
+}
