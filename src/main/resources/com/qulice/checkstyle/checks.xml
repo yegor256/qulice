@@ -24,7 +24,7 @@
   Checks whether files end with a new line.
   -->
   <module name="NewlineAtEndOfFile">
-    <property name="fileExtensions" value="java"/>
+    <property name="fileExtensions" value="java,txt,xml,xsl,xsd,properties,groovy,vm,MF,sh,sql,tokens,g,spec,css,csv,js,json,md,yml,yaml,gradle,dtd,scss,html"/>
     <property name="lineSeparator" value="lf"/>
   </module>
   <!--
@@ -54,7 +54,7 @@
   -->
   <module name="FileTabCharacter">
     <property name="eachLine" value="true"/>
-    <property name="fileExtensions" value="java,txt,xml,xsl,xsd,properties,groovy,vm,MF,sh,sql,tokens,g,spec,css,csv"/>
+    <property name="fileExtensions" value="java,txt,xml,xsl,xsd,properties,groovy,vm,MF,sh,sql,tokens,g,spec,css,csv,js,json,md,yml,yaml,gradle,dtd,scss,html"/>
   </module>
   <!--
   Trailing spaces are not allowed anywhere.
@@ -70,6 +70,7 @@
   -->
   <module name="RegexpMultiline">
     <property name="format" value="\r\n$"/>
+    <property name="fileExtensions" value="java"/>
     <property name="id" value="UnixEndOfLine"/>
     <property name="message" value="Lines in file should end with Unix-like end of line"/>
   </module>
@@ -139,6 +140,7 @@
   </module>
   <module name="LineLength">
     <property name="max" value="100"/>
+    <property name="fileExtensions" value="java"/>
     <property name="ignorePattern" value="^import .*$|^\s+\*\s.*https?:\/\/.+|^\s+&quot;"/>
   </module>
   <module name="TreeWalker">

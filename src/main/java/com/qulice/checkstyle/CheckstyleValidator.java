@@ -19,7 +19,9 @@ import java.io.File;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
+import java.util.Set;
 import org.xml.sax.InputSource;
 
 /**
@@ -29,6 +31,17 @@ import org.xml.sax.InputSource;
  * @checkstyle ClassDataAbstractionCoupling (260 lines)
  */
 public final class CheckstyleValidator implements ResourceValidator {
+
+    /**
+     * Extensions of files that are passed to Checkstyle. These match the
+     * file extensions referenced by checks in {@code checks.xml}. Checkstyle
+     * itself filters further based on each module's {@code fileExtensions}.
+     */
+    private static final Set<String> EXTENSIONS = Set.of(
+        "java", "txt", "xml", "xsl", "xsd", "properties", "groovy", "vm",
+        "mf", "sh", "sql", "tokens", "g", "spec", "css", "csv", "js", "json",
+        "md", "yml", "yaml", "gradle", "dtd", "scss", "html"
+    );
 
     /**
      * Checkstyle checker.
@@ -115,7 +128,12 @@ public final class CheckstyleValidator implements ResourceValidator {
             if (this.env.exclude("checkstyle", name)) {
                 continue;
             }
-            if (!name.toLowerCase(java.util.Locale.ROOT).endsWith(".java")) {
+            final int dot = name.lastIndexOf('.');
+            if (dot < 0) {
+                continue;
+            }
+            final String ext = name.substring(dot + 1).toLowerCase(Locale.ROOT);
+            if (!CheckstyleValidator.EXTENSIONS.contains(ext)) {
                 continue;
             }
             relevant.add(file);

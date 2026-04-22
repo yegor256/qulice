@@ -752,12 +752,75 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator reports a tab character in a non-Java text file
+     * such as JavaScript. See https://github.com/yegor256/qulice/issues/521.
+     * @throws Exception when error.
+     */
+    @Test
+    void rejectsTabInNonJavaTextFile() throws Exception {
+        final String file = "script.js";
+        MatcherAssert.assertThat(
+            "Tab character in .js file is not reported",
+            this.runValidationWithContent(
+                file, "\tconsole.log(\"Hello World\");\n"
+            ),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "tab", file, "1", "FileTabCharacterCheck"
+                )
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator reports missing final newline in a non-Java text
+     * file such as Markdown. See https://github.com/yegor256/qulice/issues/521.
+     * @throws Exception when error.
+     */
+    @Test
+    void rejectsMissingNewlineInNonJavaTextFile() throws Exception {
+        final String file = "README.md";
+        MatcherAssert.assertThat(
+            "Missing final newline in .md file is not reported",
+            this.runValidationWithContent(file, "# Title\nNo newline at end"),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "File does not end with a newline.", file, "",
+                    "NewlineAtEndOfFileCheck"
+                )
+            )
+        );
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
      */
     private String toUrl(final File file) {
         return String.format("file:%s", file);
+    }
+
+    /**
+     * Runs Checkstyle validation over a file whose content is supplied
+     * in-place (as opposed to loaded from a resource).
+     * @param file Name of the file to check
+     * @param content Bytes to write as the file content
+     * @return Violations reported by the validator
+     * @throws IOException If some IO problem
+     */
+    private Collection<Violation> runValidationWithContent(final String file,
+        final String content) throws IOException {
+        final Environment.Mock mock = new Environment.Mock();
+        final File license = this.rule.savePackageInfo(
+            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+        ).withLines(CheckstyleValidatorTest.LICENSE)
+            .withEol("\n").file();
+        final Environment env = mock.withParam(
+            CheckstyleValidatorTest.LICENSE_PROP,
+            this.toUrl(license)
+        ).withFile(String.format("src/main/resources/%s", file), content);
+        return new CheckstyleValidator(env).validate(env.files(file));
     }
 
     /**
