@@ -46,25 +46,14 @@ public final class MojoExecutor {
     private final MavenSession session;
 
     /**
-     * Helper for plugin manager.
-     */
-    private final DefaultMavenPluginManagerHelper helper;
-
-    /**
      * Public ctor.
      * @param mngr The manager
      * @param sesn Maven session
      */
-    @SuppressWarnings({"PMD.NonStaticInitializer", "PMD.DoubleBraceInitialization"})
     public MojoExecutor(final MavenPluginManager mngr,
         final MavenSession sesn) {
         this.manager = mngr;
         this.session = sesn;
-        this.helper = new DefaultMavenPluginManagerHelper() {
-            {
-                this.mavenPluginManager = MojoExecutor.this.manager;
-            }
-        };
     }
 
     /**
@@ -84,7 +73,7 @@ public final class MojoExecutor {
         plugin.setVersion(sectors[2]);
         final MojoDescriptor descriptor = this.descriptor(plugin, goal);
         try {
-            this.helper.setupPluginRealm(
+            new DefaultMavenPluginManagerHelper(this.manager).setupPluginRealm(
                 descriptor.getPluginDescriptor(),
                 this.session,
                 Thread.currentThread().getContextClassLoader(),
@@ -139,10 +128,9 @@ public final class MojoExecutor {
      */
     private MojoDescriptor descriptor(final Plugin plugin, final String goal) {
         try {
-            return this.helper.getPluginDescriptor(
-                plugin,
-                this.session
-            ).getMojo(goal);
+            return new DefaultMavenPluginManagerHelper(this.manager)
+                .getPluginDescriptor(plugin, this.session)
+                .getMojo(goal);
         } catch (final PluginResolutionException ex) {
             throw new IllegalStateException("Can't resolve plugin", ex);
         } catch (final PluginDescriptorParsingException ex) {
