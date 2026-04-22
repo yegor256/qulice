@@ -165,7 +165,8 @@ final class ChecksTest {
             "ProhibitNonFinalClassesCheck",
             "QualifyInnerClassCheck",
             "CommentCheck",
-            "ProhibitUnusedPrivateConstructorCheck"
+            "ProhibitUnusedPrivateConstructorCheck",
+            "ConstructorsOrderCheck"
         ).map(s -> String.format("ChecksTest/%s", s));
     }
 
