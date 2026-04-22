@@ -984,4 +984,47 @@ final class PmdValidatorTest {
             ).validate()
         );
     }
+
+    /**
+     * PmdValidator does not report JUnitAssertionsShouldIncludeMessage
+     * (a.k.a. UnitTestAssertionsShouldIncludeMessage) when a test uses the
+     * Hamcrest two-argument form
+     * {@link org.hamcrest.MatcherAssert#assertThat(String, boolean)} where
+     * the first argument already is the message.
+     * Regression test for https://github.com/yegor256/qulice/issues/1315
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void allowsMatcherAssertThatWithBooleanAndMessage() throws Exception {
+        new PmdAssert(
+            "MatcherAssertBooleanWithMessage.java",
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString(
+                    "UnitTestAssertionsShouldIncludeMessage"
+                )
+            )
+        ).validate();
+    }
+
+    /**
+     * PmdValidator still reports UnitTestAssertionsShouldIncludeMessage when
+     * the two-argument form of
+     * {@link org.hamcrest.MatcherAssert#assertThat(Object, org.hamcrest.Matcher)}
+     * is used without a reason. Guards the fix for
+     * https://github.com/yegor256/qulice/issues/1315 from over-suppressing.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void reportsMatcherAssertThatWithoutMessage() throws Exception {
+        new PmdAssert(
+            "MatcherAssertWithoutMessage.java",
+            Matchers.is(false),
+            Matchers.containsString(
+                "UnitTestAssertionsShouldIncludeMessage"
+            )
+        ).validate();
+    }
 }

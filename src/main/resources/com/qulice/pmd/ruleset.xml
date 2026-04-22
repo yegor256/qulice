@@ -40,6 +40,31 @@
     -->
     <exclude name="UnitTestContainsTooManyAsserts"/>
     <exclude name="UnusedPrivateField"/>
+    <!--
+      UnitTestAssertionsShouldIncludeMessage (a.k.a. the deprecated
+      JUnitAssertionsShouldIncludeMessage) treats the two-argument
+      Hamcrest form MatcherAssert.assertThat(String reason, boolean
+      assertion) as missing a message, because it matches any
+      assertThat call with two arguments. We re-enable the rule with a
+      violationSuppressXPath that skips this specific overload, where
+      the first argument IS the message.
+      Downstream: https://github.com/yegor256/qulice/issues/1315
+    -->
+    <exclude name="UnitTestAssertionsShouldIncludeMessage"/>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/UnitTestAssertionsShouldIncludeMessage">
+    <properties>
+      <property name="violationSuppressXPath">
+        <value><![CDATA[
+          .[
+            @MethodName = 'assertThat'
+            and count(ArgumentList/*) = 2
+            and ArgumentList/*[1][pmd-java:typeIs('java.lang.String')]
+            and ArgumentList/*[2][pmd-java:typeIs('boolean') or pmd-java:typeIs('java.lang.Boolean')]
+          ]
+        ]]></value>
+      </property>
+    </properties>
   </rule>
   <!--
     UnusedPrivateField treats statement-level increment or decrement
