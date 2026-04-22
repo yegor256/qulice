@@ -169,7 +169,8 @@ final class ChecksTest {
             "ProhibitUnusedPrivateConstructorCheck",
             "ConstructorsOrderCheck",
             "ConstructorsCodeFreeCheck",
-            "StaticAccessViaInstanceCheck"
+            "StaticAccessViaInstanceCheck",
+            "SingleSpaceSeparatorCheck"
         ).map(s -> String.format("ChecksTest/%s", s));
     }
 
