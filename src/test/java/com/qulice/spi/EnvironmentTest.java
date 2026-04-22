@@ -82,6 +82,35 @@ final class EnvironmentTest {
     }
 
     /**
+     * Environment.files() should skip binary files so validators never see
+     * them (see <a href="https://github.com/yegor256/qulice/issues/1264">
+     * issue #1264</a>).
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void skipsBinaryFilesWhenListing() throws Exception {
+        final String image = "src/main/resources/pixel.png";
+        final String source = "src/main/java/Foo.java";
+        final Environment env = new Environment.Mock()
+            .withFile(source, "class Foo {}\n")
+            .withFile(
+                image,
+                new byte[] {
+                    (byte) 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
+                    0x00, 0x00, 0x00, 0x0d, 0x49, 0x48, 0x44, 0x52,
+                }
+            );
+        MatcherAssert.assertThat(
+            "Binary files cannot leak into the list of files to validate",
+            env.files("*.*"),
+            Matchers.allOf(
+                Matchers.hasItem(new File(env.basedir(), source)),
+                Matchers.not(Matchers.hasItem(new File(env.basedir(), image)))
+            )
+        );
+    }
+
+    /**
      * EnvironmentMocker can mock params.
      * @throws Exception If something wrong happens inside.
      */

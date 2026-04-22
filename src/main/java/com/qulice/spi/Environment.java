@@ -275,13 +275,15 @@ public interface Environment {
             final Collection<File> files = new LinkedList<>();
             final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();
             if (this.basedir().exists()) {
-                files.addAll(
-                    FileUtils.listFiles(
-                        this.basedir(),
-                        filter,
-                        DirectoryFileFilter.INSTANCE
-                    )
-                );
+                for (final File found : FileUtils.listFiles(
+                    this.basedir(),
+                    filter,
+                    DirectoryFileFilter.INSTANCE
+                )) {
+                    if (!new Binary(found).yes()) {
+                        files.add(found);
+                    }
+                }
             }
             return files;
         }

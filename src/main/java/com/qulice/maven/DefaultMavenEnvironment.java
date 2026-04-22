@@ -10,6 +10,7 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
+import com.qulice.spi.Binary;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -192,13 +193,21 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         for (final String dir : dirs) {
             final File sources = new File(this.basedir(), dir);
             if (sources.exists()) {
-                files.addAll(
-                    FileUtils.listFiles(
-                        sources,
-                        filter,
-                        DirectoryFileFilter.INSTANCE
-                    )
-                );
+                for (final File found : FileUtils.listFiles(
+                    sources,
+                    filter,
+                    DirectoryFileFilter.INSTANCE
+                )) {
+                    if (new Binary(found).yes()) {
+                        Logger.debug(
+                            this,
+                            "Skipping binary file %s",
+                            found
+                        );
+                    } else {
+                        files.add(found);
+                    }
+                }
             }
         }
         return files;

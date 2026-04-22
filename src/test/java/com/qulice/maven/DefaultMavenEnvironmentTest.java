@@ -5,12 +5,17 @@
 package com.qulice.maven;
 
 import com.google.common.collect.ImmutableList;
+import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Collection;
 import java.util.Collections;
 import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Test case for {@link DefaultMavenEnvironment} class.
@@ -119,6 +124,49 @@ final class DefaultMavenEnvironmentTest {
             "Exclude dependencies should be empty",
             env.excludes("dependencies"),
             Matchers.empty()
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.files() should silently drop binary files so
+     * that validators never try to read them as text
+     * (see <a href="https://github.com/yegor256/qulice/issues/1264">
+     * issue #1264</a>).
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void skipsBinaryFilesWhenListing(@TempDir final Path basedir)
+        throws Exception {
+        final Path src = basedir.resolve("src/main/java");
+        Files.createDirectories(src);
+        final Path source = src.resolve("Foo.java");
+        Files.writeString(source, "class Foo {}\n", StandardCharsets.UTF_8);
+        final Path image = basedir.resolve("src/main/resources/pixel.png");
+        Files.createDirectories(image.getParent());
+        Files.write(
+            image,
+            new byte[] {
+                (byte) 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
+                0x00, 0x00, 0x00, 0x0d, 0x49, 0x48, 0x44, 0x52,
+            }
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return basedir.toFile();
+            }
+        };
+        env.setProject(project);
+        final Collection<File> files = env.files("*.*");
+        MatcherAssert.assertThat(
+            "Binary files cannot leak into the list of files to validate",
+            files,
+            Matchers.allOf(
+                Matchers.hasItem(source.toFile()),
+                Matchers.not(Matchers.hasItem(image.toFile()))
+            )
         );
     }
 
