@@ -12,6 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.qulice.spi.Environment;
+import com.qulice.spi.Relative;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
 import java.io.File;
@@ -110,9 +111,7 @@ public final class CheckstyleValidator implements ResourceValidator {
     public List<File> getNonExcludedFiles(final Collection<File> files) {
         final List<File> relevant = new LinkedList<>();
         for (final File file : files) {
-            final String name = file.getPath().substring(
-                this.env.basedir().toString().length()
-            );
+            final String name = new Relative(this.env.basedir(), file).path();
             if (this.env.exclude("checkstyle", name)) {
                 continue;
             }

@@ -8,6 +8,8 @@ import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.qulice.spi.Environment;
+import com.qulice.spi.Relative;
+import java.io.File;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -69,9 +71,9 @@ final class CheckstyleListener implements AuditListener {
 
     @Override
     public void addError(final AuditEvent event) {
-        final String name = event.getFileName().substring(
-            this.env.basedir().toString().length()
-        );
+        final String name = new Relative(
+            this.env.basedir(), new File(event.getFileName())
+        ).path();
         if (!this.env.exclude("checkstyle", name)) {
             this.all.add(event);
         }
@@ -84,9 +86,9 @@ final class CheckstyleListener implements AuditListener {
         Logger.error(
             this,
             "%s[%d]: %s (%s), %[exception]s",
-            event.getFileName().substring(
-                this.env.basedir().toString().length()
-            ),
+            new Relative(
+                this.env.basedir(), new File(event.getFileName())
+            ).path(),
             event.getLine(),
             event.getMessage(),
             check.substring(check.lastIndexOf('.') + 1),
