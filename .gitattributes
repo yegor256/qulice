@@ -1,20 +1,15 @@
-# Check out all text files in UNIX format.
-* text eol=lf
+# SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
 
-# Explicitly declare text files we want to always be normalized and converted
-# to native line endings on checkout.
-*.txt text
-*.java text
+* text eol=lf
 *.groovy text
-*.xml text
+*.java text
+*.jpg binary
 *.md text
+*.png binary
 *.pom text
 *.properties text
-
-# These files are meant to check violations against use of Windows line endings
+*.txt text
+*.xml text
 NewLines.java -text
 newlines.txt -text
-
-# Denote all files that are truly binary and should not be modified.
-*.png binary
-*.jpg binary
