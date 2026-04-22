@@ -18,5 +18,4 @@ public interface ValidTypeParamDescription<T> {
      * @return The element
      */
     <E> E element();
-
 }

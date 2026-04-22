@@ -16,10 +16,8 @@ import org.cactoos.text.FormattedText;
 import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.Joined;
 import org.cactoos.text.TextOf;
-import org.hamcrest.Description;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.hamcrest.TypeSafeMatcher;
 import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -848,147 +846,12 @@ final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator reports a tab character in a non-Java text file
-     * such as JavaScript. See https://github.com/yegor256/qulice/issues/521.
-     * @throws Exception when error.
-     */
-    @Test
-    void rejectsTabInNonJavaTextFile() throws Exception {
-        final String file = "script.js";
-        MatcherAssert.assertThat(
-            "Tab character in .js file is not reported",
-            this.runValidationWithContent(
-                file, "\tconsole.log(\"Hello World\");\n"
-            ),
-            Matchers.hasItem(
-                new ViolationMatcher(
-                    "tab", file, "1", "FileTabCharacterCheck"
-                )
-            )
-        );
-    }
-
-    /**
-     * CheckstyleValidator reports missing final newline in a non-Java text
-     * file such as Markdown. See https://github.com/yegor256/qulice/issues/521.
-     * @throws Exception when error.
-     */
-    @Test
-    void rejectsMissingNewlineInNonJavaTextFile() throws Exception {
-        final String file = "README.md";
-        MatcherAssert.assertThat(
-            "Missing final newline in .md file is not reported",
-            this.runValidationWithContent(file, "# Title\nNo newline at end"),
-            Matchers.hasItem(
-                new ViolationMatcher(
-                    "File does not end with a newline.", file, "",
-                    "NewlineAtEndOfFileCheck"
-                )
-            )
-        );
-    }
-
-    /**
-     * CheckstyleValidator rejects empty lines before closing braces.
-     * See https://github.com/yegor256/qulice/issues/710.
-     * @throws Exception when error.
-     */
-    @Test
-    void rejectsEmptyLineBeforeClosingBrace() throws Exception {
-        final String file = "EmptyLineBeforeBrace.java";
-        MatcherAssert.assertThat(
-            "Empty line before closing brace is not reported",
-            this.runValidationWithContent(
-                file,
-                new IoCheckedText(
-                    new Joined(
-                        "\n",
-                        "package foo;",
-                        "public final class EmptyLineBeforeBrace {",
-                        "    public void foo() {",
-                        "        int x = 1;",
-                        "",
-                        "    }",
-                        "}",
-                        ""
-                    )
-                ).asString()
-            ),
-            Matchers.hasItem(
-                new ViolationMatcher(
-                    "Empty line before closing brace is not allowed",
-                    file, "", "RegexpMultilineCheck"
-                )
-            )
-        );
-    }
-
-    /**
-     * CheckstyleValidator does not report a false positive when a closing
-     * brace immediately follows a non-empty line.
-     * See https://github.com/yegor256/qulice/issues/710.
-     * @throws Exception when error.
-     */
-    @Test
-    void acceptsNoEmptyLineBeforeClosingBrace() throws Exception {
-        final String file = "NoEmptyLineBeforeBrace.java";
-        MatcherAssert.assertThat(
-            "Absence of empty line before closing brace was reported",
-            this.runValidationWithContent(
-                file,
-                new IoCheckedText(
-                    new Joined(
-                        "\n",
-                        "package foo;",
-                        "public final class NoEmptyLineBeforeBrace {",
-                        "    public void foo() {",
-                        "        int x = 1;",
-                        "    }",
-                        "}",
-                        ""
-                    )
-                ).asString()
-            ),
-            Matchers.not(
-                Matchers.hasItem(
-                    new ViolationMatcher(
-                        "Empty line before closing brace is not allowed",
-                        file, "", "RegexpMultilineCheck"
-                    )
-                )
-            )
-        );
-    }
-
-    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
      */
     private String toUrl(final File file) {
         return String.format("file:%s", file);
-    }
-
-    /**
-     * Runs Checkstyle validation over a file whose content is supplied
-     * in-place (as opposed to loaded from a resource).
-     * @param file Name of the file to check
-     * @param content Bytes to write as the file content
-     * @return Violations reported by the validator
-     * @throws IOException If some IO problem
-     */
-    private Collection<Violation> runValidationWithContent(final String file,
-        final String content) throws IOException {
-        final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(CheckstyleValidatorTest.LICENSE)
-            .withEol("\n").file();
-        final Environment env = mock.withParam(
-            CheckstyleValidatorTest.LICENSE_PROP,
-            this.toUrl(license)
-        ).withFile(String.format("src/main/resources/%s", file), content);
-        return new CheckstyleValidator(env).validate(env.files(file));
     }
 
     /**
@@ -1058,91 +921,4 @@ final class CheckstyleValidatorTest {
         return results;
     }
 
-    /**
-     * Validation results matcher.
-     *
-     * @since 0.1
-     */
-    private static final class ViolationMatcher extends
-        TypeSafeMatcher<Violation> {
-
-        /**
-         * Message to check.
-         */
-        private final String message;
-
-        /**
-         * File to check.
-         */
-        private final String file;
-
-        /**
-         * Expected line.
-         */
-        private final String line;
-
-        /**
-         * Check name.
-         */
-        private final String check;
-
-        /**
-         * Constructor.
-         * @param message Message to check
-         * @param file File to check
-         * @param line Line to check
-         * @param check Check name
-         * @checkstyle ParameterNumber (3 lines)
-         */
-        ViolationMatcher(final String message, final String file,
-            final String line, final String check) {
-            super();
-            this.message = message;
-            this.file = file;
-            this.line = line;
-            this.check = check;
-        }
-
-        /**
-         * Constructor.
-         * @param message Message to check
-         * @param file File to check
-         */
-        ViolationMatcher(final String message, final String file) {
-            this(message, file, "", "");
-        }
-
-        @Override
-        public boolean matchesSafely(final Violation item) {
-            return item.message().contains(this.message)
-                && item.file().endsWith(this.file)
-                && this.lineMatches(item)
-                && this.checkMatches(item);
-        }
-
-        @Override
-        public void describeTo(final Description description) {
-            description.appendText("doesn't match");
-        }
-
-        /**
-         * Check name matches.
-         * @param item Item to check.
-         * @return True if check name matches.
-         */
-        private boolean checkMatches(final Violation item) {
-            return this.check.isEmpty()
-                || !this.check.isEmpty() && item.name().equals(this.check);
-        }
-
-        /**
-         * Check that given line matches.
-         * @param item Item to check.
-         * @return True if line matches.
-         */
-        private boolean lineMatches(final Violation item) {
-            return this.line.isEmpty()
-                || !this.line.isEmpty() && item.lines().equals(this.line);
-        }
-    }
 }

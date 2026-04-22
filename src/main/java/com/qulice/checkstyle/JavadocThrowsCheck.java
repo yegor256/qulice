@@ -112,17 +112,16 @@ public final class JavadocThrowsCheck extends AbstractCheck {
     private static Set<String> declared(final DetailAST ast) {
         final Set<String> names = new HashSet<>(0);
         final DetailAST clause = ast.findFirstToken(TokenTypes.LITERAL_THROWS);
-        if (clause == null) {
-            return names;
-        }
-        DetailAST child = clause.getFirstChild();
-        while (child != null) {
-            if (child.getType() == TokenTypes.IDENT) {
-                names.add(child.getText());
-            } else if (child.getType() == TokenTypes.DOT) {
-                names.add(JavadocThrowsCheck.rightmost(child));
+        if (clause != null) {
+            DetailAST child = clause.getFirstChild();
+            while (child != null) {
+                if (child.getType() == TokenTypes.IDENT) {
+                    names.add(child.getText());
+                } else if (child.getType() == TokenTypes.DOT) {
+                    names.add(JavadocThrowsCheck.rightmost(child));
+                }
+                child = child.getNextSibling();
             }
-            child = child.getNextSibling();
         }
         return names;
     }

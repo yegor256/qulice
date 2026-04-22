@@ -18,5 +18,4 @@ public interface InvalidTypeParamDescription<T> {
      * @return The element
      */
     <E> E element();
-
 }
