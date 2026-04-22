@@ -162,6 +162,7 @@ final class ChecksTest {
             "ConstantUsageCheck",
             "JavadocEmptyLineCheck",
             "JavadocTagsCheck",
+            "JavadocThrowsCheck",
             "ProhibitNonFinalClassesCheck",
             "QualifyInnerClassCheck",
             "CommentCheck",

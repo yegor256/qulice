@@ -37,7 +37,7 @@ public final class AtClauseOrder {
      * @checkstyle Suppression
      */
     @Deprecated
-    public static int firstMethod(final int input) {
+    public static int firstMethod(final int input) throws Exception {
         return input;
     }
 
