@@ -8,6 +8,7 @@ import java.util.List;
 import net.sourceforge.pmd.lang.java.ast.ASTArgumentList;
 import net.sourceforge.pmd.lang.java.ast.ASTBlock;
 import net.sourceforge.pmd.lang.java.ast.ASTExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTLoopStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTReturnStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
 import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
@@ -42,10 +43,13 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
         boolean result = false;
         if (exprs.size() == 1) {
             final ASTExpression use = exprs.get(0);
-            if (use.ancestors(ASTReturnStatement.class).toStream()
+            final boolean inLoop = use.ancestors(ASTLoopStatement.class)
+                .toStream().findAny().isPresent();
+            if (!inLoop
+                && (use.ancestors(ASTReturnStatement.class).toStream()
                 .findAny().isPresent()
                 || use.ancestors(ASTArgumentList.class).toStream()
-                .findAny().isPresent()
+                .findAny().isPresent())
             ) {
                 result = true;
             }
