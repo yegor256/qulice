@@ -77,5 +77,4 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
         }
         return failure;
     }
-
 }

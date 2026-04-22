@@ -193,5 +193,4 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
             }
         }
     }
-
 }

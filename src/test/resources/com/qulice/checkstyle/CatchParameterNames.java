@@ -44,5 +44,4 @@ public final class CatchParameterNames {
             this.var -= 1;
         }
     }
-
 }

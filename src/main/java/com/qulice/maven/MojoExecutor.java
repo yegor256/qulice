@@ -248,5 +248,4 @@ public final class MojoExecutor {
         }
         return result;
     }
-
 }

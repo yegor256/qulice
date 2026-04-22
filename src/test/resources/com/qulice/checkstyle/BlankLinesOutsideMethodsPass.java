@@ -21,7 +21,6 @@ public final class BlankLinesOutsideMethodsPass {
 
             private void doSomething() {
             }
-
         };
         final Runnable runnables = new Runnable() {
 
@@ -32,8 +31,6 @@ public final class BlankLinesOutsideMethodsPass {
 
             private void doSomething() {
             }
-
         };
     }
-
 }

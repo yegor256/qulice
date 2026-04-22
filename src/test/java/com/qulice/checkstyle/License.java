@@ -126,5 +126,4 @@ public final class License {
             StandardCharsets.UTF_8
         );
     }
-
 }

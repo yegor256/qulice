@@ -36,5 +36,4 @@ final class DefaultValidatorsProviderTest {
             Matchers.greaterThan(0)
         );
     }
-
 }

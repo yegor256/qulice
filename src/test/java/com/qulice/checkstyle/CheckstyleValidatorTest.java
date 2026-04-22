@@ -814,6 +814,40 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator reports type parameter descriptions that do not
+     * start with a capital letter. See
+     * https://github.com/yegor256/qulice/issues/705.
+     * @throws Exception when error.
+     */
+    @Test
+    @SuppressWarnings("unchecked")
+    void rejectsLowercaseTypeParamDescription() throws Exception {
+        final String file = "InvalidTypeParamDescription.java";
+        final String message =
+            "@param tag description should start with capital letter";
+        final String name = "RegexpSinglelineCheck";
+        MatcherAssert.assertThat(
+            "Both class and method type parameter descriptions must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItems(
+                new ViolationMatcher(message, file, "9", name),
+                new ViolationMatcher(message, file, "17", name)
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator accepts type parameter descriptions that start
+     * with a capital letter. See
+     * https://github.com/yegor256/qulice/issues/705.
+     * @throws Exception when error.
+     */
+    @Test
+    void allowsUppercaseTypeParamDescription() throws Exception {
+        this.runValidation("ValidTypeParamDescription.java", true);
+    }
+
+    /**
      * CheckstyleValidator reports a tab character in a non-Java text file
      * such as JavaScript. See https://github.com/yegor256/qulice/issues/521.
      * @throws Exception when error.
@@ -849,6 +883,78 @@ final class CheckstyleValidatorTest {
                 new ViolationMatcher(
                     "File does not end with a newline.", file, "",
                     "NewlineAtEndOfFileCheck"
+                )
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator rejects empty lines before closing braces.
+     * See https://github.com/yegor256/qulice/issues/710.
+     * @throws Exception when error.
+     */
+    @Test
+    void rejectsEmptyLineBeforeClosingBrace() throws Exception {
+        final String file = "EmptyLineBeforeBrace.java";
+        MatcherAssert.assertThat(
+            "Empty line before closing brace is not reported",
+            this.runValidationWithContent(
+                file,
+                new IoCheckedText(
+                    new Joined(
+                        "\n",
+                        "package foo;",
+                        "public final class EmptyLineBeforeBrace {",
+                        "    public void foo() {",
+                        "        int x = 1;",
+                        "",
+                        "    }",
+                        "}",
+                        ""
+                    )
+                ).asString()
+            ),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "Empty line before closing brace is not allowed",
+                    file, "", "RegexpMultilineCheck"
+                )
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator does not report a false positive when a closing
+     * brace immediately follows a non-empty line.
+     * See https://github.com/yegor256/qulice/issues/710.
+     * @throws Exception when error.
+     */
+    @Test
+    void acceptsNoEmptyLineBeforeClosingBrace() throws Exception {
+        final String file = "NoEmptyLineBeforeBrace.java";
+        MatcherAssert.assertThat(
+            "Absence of empty line before closing brace was reported",
+            this.runValidationWithContent(
+                file,
+                new IoCheckedText(
+                    new Joined(
+                        "\n",
+                        "package foo;",
+                        "public final class NoEmptyLineBeforeBrace {",
+                        "    public void foo() {",
+                        "        int x = 1;",
+                        "    }",
+                        "}",
+                        ""
+                    )
+                ).asString()
+            ),
+            Matchers.not(
+                Matchers.hasItem(
+                    new ViolationMatcher(
+                        "Empty line before closing brace is not allowed",
+                        file, "", "RegexpMultilineCheck"
+                    )
                 )
             )
         );
@@ -1038,7 +1144,5 @@ final class CheckstyleValidatorTest {
             return this.line.isEmpty()
                 || !this.line.isEmpty() && item.lines().equals(this.line);
         }
-
     }
-
 }

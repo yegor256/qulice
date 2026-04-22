@@ -46,5 +46,4 @@ public final class MavenProjectMocker {
         this.project.setScm(scm);
         return this.project;
     }
-
 }

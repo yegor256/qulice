@@ -126,5 +126,4 @@ public interface Violation extends Comparable<Violation> {
             return this.vldtr.compareToIgnoreCase(other.validator());
         }
     }
-
 }

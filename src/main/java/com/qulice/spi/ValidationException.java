@@ -32,5 +32,4 @@ public final class ValidationException extends Exception {
     public ValidationException(final Throwable cause) {
         super(cause);
     }
-
 }

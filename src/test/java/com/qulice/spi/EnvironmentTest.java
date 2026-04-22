@@ -125,5 +125,4 @@ final class EnvironmentTest {
             env.param(name, ""), Matchers.equalTo(value)
         );
     }
-
 }

@@ -19,5 +19,4 @@ interface MavenValidator {
      * @throws ValidationException In case of violations
      */
     void validate(MavenEnvironment env) throws ValidationException;
-
 }
