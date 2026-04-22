@@ -55,4 +55,25 @@ final class UnnecessaryLocalRuleTest {
             Matchers.not(Matchers.hasItem("UnnecessaryLocalRule"))
         );
     }
+
+    @Test
+    void doesNotFireWhenVariableIsUsedMoreThanOnce() throws Exception {
+        final String file = "UnnecessaryLocalUsedTwice.java";
+        final Environment.Mock mock = new Environment.Mock();
+        final String name = String.format("src/main/java/foo/%s", file);
+        final Environment env = mock.withFile(
+            name,
+            new TextOf(
+                this.getClass().getResourceAsStream(file)
+            ).asString()
+        );
+        final Collection<Violation> violations = new PmdValidator(env).validate(
+            Collections.singletonList(new File(env.basedir(), name))
+        );
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should not fire when variable is used more than once",
+            violations.stream().map(Violation::name).collect(Collectors.toList()),
+            Matchers.not(Matchers.hasItem("UnnecessaryLocalRule"))
+        );
+    }
 }

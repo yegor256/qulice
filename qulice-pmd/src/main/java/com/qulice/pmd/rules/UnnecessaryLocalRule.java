@@ -7,9 +7,9 @@ package com.qulice.pmd.rules;
 import java.util.List;
 import net.sourceforge.pmd.lang.java.ast.ASTArgumentList;
 import net.sourceforge.pmd.lang.java.ast.ASTBlock;
-import net.sourceforge.pmd.lang.java.ast.ASTExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTLoopStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTReturnStatement;
+import net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
 import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
 
@@ -38,14 +38,14 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
     }
 
     private static boolean hasReturnOrArguments(
-        final List<ASTExpression> exprs
+        final List<ASTVariableAccess> uses
     ) {
         boolean result = false;
-        if (exprs.size() == 1) {
-            final ASTExpression use = exprs.get(0);
-            final boolean inLoop = use.ancestors(ASTLoopStatement.class)
+        if (uses.size() == 1) {
+            final ASTVariableAccess use = uses.get(0);
+            final boolean loop = use.ancestors(ASTLoopStatement.class)
                 .toStream().findAny().isPresent();
-            if (!inLoop
+            if (!loop
                 && (use.ancestors(ASTReturnStatement.class).toStream()
                 .findAny().isPresent()
                 || use.ancestors(ASTArgumentList.class).toStream()
@@ -62,9 +62,10 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
         final ASTBlock block = variable.ancestors(ASTBlock.class).first();
         if (block != null) {
             final String name = variable.getName();
-            final List<ASTExpression> uses = block
-                .descendants(ASTExpression.class)
-                .filter(expr -> name.equals(expr.getImage()))
+            final List<ASTVariableAccess> uses = block
+                .descendants(ASTVariableAccess.class)
+                .crossFindBoundaries()
+                .filter(ref -> name.equals(ref.getName()))
                 .toList();
             if (hasReturnOrArguments(uses)) {
                 result = name;
