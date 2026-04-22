@@ -27,5 +27,5 @@ jobs:
       - uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: qulice-spi/target/site/jacoco/jacoco.xml,qulice-checkstyle/target/site/jacoco/jacoco.xml,qulice-pmd/target/site/jacoco/jacoco.xml,qulice-maven-plugin/target/site/jacoco/jacoco.xml
+          files: target/site/jacoco/jacoco.xml
           fail_ci_if_error: true
