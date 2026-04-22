@@ -455,6 +455,48 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator accepts enum constants following the
+     * upper-case, underscore-separated naming convention.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void acceptsProperlyNamedEnumValues() throws Exception {
+        this.runValidation("ValidEnumValues.java", true);
+    }
+
+    /**
+     * CheckstyleValidator reports enum constants that do not
+     * follow the upper-case, underscore-separated naming convention.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void rejectsImproperlyNamedEnumValues() throws Exception {
+        final String file = "InvalidEnumValues.java";
+        final Collection<Violation> results = this.runValidation(
+            file, false
+        );
+        final String name = "EnumValueNameCheck";
+        MatcherAssert.assertThat(
+            "All three enum value naming violations should be reported",
+            results,
+            Matchers.hasItems(
+                new ViolationMatcher(
+                    "Enum value anyName must match pattern",
+                    file, "17", name
+                ),
+                new ViolationMatcher(
+                    "Enum value MixedCase must match pattern",
+                    file, "22", name
+                ),
+                new ViolationMatcher(
+                    "Enum value lowercase must match pattern",
+                    file, "27", name
+                )
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator cannot demand methods to be static in files with
      * names ending with {@code ITCase}.
      * @throws Exception If something wrong happens inside
