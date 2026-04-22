@@ -950,6 +950,27 @@ final class PmdValidatorTest {
     }
 
     /**
+     * PmdValidator does not flag
+     * {@code @SuppressWarnings("PMD.UnnecessaryWarningSuppression")} as
+     * an unnecessary suppression of itself (Fix #1534). The rule cannot
+     * suppress its own violations, so suppressing it has no effect and
+     * should therefore not be reported as unused.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void doesNotCatchUnnecessaryWarningSuppressionOnItself()
+        throws Exception {
+        new PmdAssert(
+            "UnnecessaryWarningSuppressionOnItself.java",
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString("UnnecessaryWarningSuppression")
+            )
+        ).validate();
+    }
+
+    /**
      * Check if UseStringIsEmptyRule not throws an NullPointerException when
      * found a pattern matching.
      */
