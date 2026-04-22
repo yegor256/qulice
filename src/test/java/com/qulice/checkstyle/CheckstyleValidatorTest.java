@@ -686,6 +686,26 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can reject a comma placed at the beginning of
+     * a line, since it must stay attached to the preceding token.
+     * @throws Exception If error
+     */
+    @Test
+    void rejectsLeadingComma() throws Exception {
+        final String file = "InvalidLeadingComma.java";
+        MatcherAssert.assertThat(
+            "leading comma must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "',' is preceded with whitespace",
+                    file, "22", "NoWhitespaceBeforeCheck"
+                )
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator can reject non diamond operator usage.
      * @throws Exception If error
      */
