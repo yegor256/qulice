@@ -123,29 +123,51 @@ final class RequiredJavaDocTag {
                 looseline = pos;
             }
         }
-        if (!found.isEmpty()) {
-            for (final Map.Entry<Integer, String> item : found.entrySet()) {
-                if (!this.content.matcher(item.getValue()).matches()) {
-                    this.reporter.log(
-                        item.getKey() + 1,
-                        "Tag text ''{0}'' does not match the pattern ''{1}''",
-                        item.getValue(),
-                        this.content.toString()
-                    );
-                }
-            }
-        } else if (looseline != null) {
-            this.reporter.log(
-                looseline + 1,
-                "Malformed ''@{0}'' tag, expected '' * @{0} <value>'' format",
-                this.name
-            );
+        if (found.isEmpty()) {
+            this.logMissing(start, looseline);
         } else {
+            this.logMismatches(found);
+        }
+    }
+
+    /**
+     * Log either "missing" or "malformed" depending on whether a loose
+     * match was found in the comment.
+     * @param start Line number where the comment starts.
+     * @param looseline Line number where a loose match was found, or
+     *  {@code null} if none was found.
+     */
+    private void logMissing(final int start, final Integer looseline) {
+        if (looseline == null) {
             this.reporter.log(
                 start + 1,
                 "Missing ''@{0}'' tag in class/interface comment",
                 this.name
             );
+        } else {
+            this.reporter.log(
+                looseline + 1,
+                "Malformed ''@{0}'' tag, expected '' * @{0} <value>'' format",
+                this.name
+            );
+        }
+    }
+
+    /**
+     * Log a violation for every tag whose text does not match the
+     * configured pattern.
+     * @param found Map of line number to tag text.
+     */
+    private void logMismatches(final Map<Integer, String> found) {
+        for (final Map.Entry<Integer, String> item : found.entrySet()) {
+            if (!this.content.matcher(item.getValue()).matches()) {
+                this.reporter.log(
+                    item.getKey() + 1,
+                    "Tag text ''{0}'' does not match the pattern ''{1}''",
+                    item.getValue(),
+                    this.content.toString()
+                );
+            }
         }
     }
 
