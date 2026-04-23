@@ -28,3 +28,17 @@ public final class InvalidInner {
     public final class InvalidInnerSince {
     }
 }
+
+/**
+ * Since tag has no value.
+ * @since
+ */
+public final class MalformedSinceNoValue {
+}
+
+/**
+ * Since tag missing the space between asterisk and at-sign.
+ *@since 1.0
+ */
+public final class MalformedSinceNoSpace {
+}

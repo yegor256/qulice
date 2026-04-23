@@ -107,6 +107,10 @@ final class RequiredJavaDocTag {
         final int start,
         final int end
     ) {
+        final Pattern loose = Pattern.compile(
+            String.format("@%s\\b", this.name)
+        );
+        Integer looseline = null;
         final Map<Integer, String> found = new HashMap<>(1);
         for (int pos = start; pos <= end; pos += 1) {
             final String line = lines[pos];
@@ -115,14 +119,11 @@ final class RequiredJavaDocTag {
                 found.put(pos, matcher.group("cont"));
                 break;
             }
+            if (looseline == null && loose.matcher(line).find()) {
+                looseline = pos;
+            }
         }
-        if (found.isEmpty()) {
-            this.reporter.log(
-                start + 1,
-                "Missing ''@{0}'' tag in class/interface comment",
-                this.name
-            );
-        } else {
+        if (!found.isEmpty()) {
             for (final Map.Entry<Integer, String> item : found.entrySet()) {
                 if (!this.content.matcher(item.getValue()).matches()) {
                     this.reporter.log(
@@ -133,6 +134,18 @@ final class RequiredJavaDocTag {
                     );
                 }
             }
+        } else if (looseline != null) {
+            this.reporter.log(
+                looseline + 1,
+                "Malformed ''@{0}'' tag, expected '' * @{0} <value>'' format",
+                this.name
+            );
+        } else {
+            this.reporter.log(
+                start + 1,
+                "Missing ''@{0}'' tag in class/interface comment",
+                this.name
+            );
         }
     }
 

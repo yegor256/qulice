@@ -73,6 +73,27 @@ final class RequiredJavaDocTagTest {
                         "^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
                     )
                 )
+            ),
+            Arguments.arguments(
+                new String[] {" *", " * @since", " *"},
+                "Tag present without content should not report as missing",
+                Matchers.equalTo(
+                    "Malformed '@since' tag, expected ' * @since <value>' format"
+                )
+            ),
+            Arguments.arguments(
+                new String[] {" *", " * @since ", " *"},
+                "Tag present with empty content should not report as missing",
+                Matchers.equalTo(
+                    "Malformed '@since' tag, expected ' * @since <value>' format"
+                )
+            ),
+            Arguments.arguments(
+                new String[] {" *", " *@since 0.3", " *"},
+                "Tag without space after asterisk should not report as missing",
+                Matchers.equalTo(
+                    "Malformed '@since' tag, expected ' * @since <value>' format"
+                )
             )
         );
     }
