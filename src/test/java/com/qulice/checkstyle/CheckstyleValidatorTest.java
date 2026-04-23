@@ -921,6 +921,17 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator accepts the equality operator at the start of
+     * a wrapped line, as required by OperatorWrap in 'nl' mode. See
+     * https://github.com/yegor256/qulice/issues/790.
+     * @throws Exception when error.
+     */
+    @Test
+    void acceptsEqualityOperatorAtStartOfWrappedLine() throws Exception {
+        this.runValidation("ValidEqualityOperatorWrap.java", true);
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL

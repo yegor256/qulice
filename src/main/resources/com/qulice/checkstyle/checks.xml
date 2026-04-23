@@ -150,8 +150,14 @@
     <property name="id" value="EndOfLineSymbolLimits"/>
     <property name="message" value="Line cannot end with this symbol, move it to the next line"/>
   </module>
+  <!--
+  A line cannot start with an assignment '='; move it to the previous line.
+  The equality operator '==' is excluded because 'OperatorWrap' requires it
+  to appear at the start of a wrapped line. See
+  https://github.com/yegor256/qulice/issues/790
+  -->
   <module name="RegexpSingleline">
-    <property name="format" value="^ *="/>
+    <property name="format" value="^ *=(?!=)"/>
     <property name="fileExtensions" value="java"/>
     <property name="id" value="StartLineSymbolLimits"/>
     <property name="message" value="Line cannot start with this symbol, move it to the previous line"/>
