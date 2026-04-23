@@ -127,6 +127,16 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator can suppress LineLengthCheck in comments
+     * with {@code @checkstyle LineLengthCheck (N lines)} marker.
+     * @throws Exception when error.
+     */
+    @Test
+    void suppressesLineLengthCheckInComments() throws Exception {
+        this.runValidation("SuppressLineLengthInComments.java", true);
+    }
+
+    /**
      * CheckstyleValidator reports an error when comment or Javadoc has too
      * long line.
      * @throws Exception when error.
