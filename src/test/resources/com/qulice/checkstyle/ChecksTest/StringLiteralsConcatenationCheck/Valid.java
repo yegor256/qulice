@@ -7,4 +7,10 @@ public final class Valid {
 	String a = "";
 	String c = a.concat("b");
     }
+
+    public long sum(java.util.zip.ZipFile zip) {
+	return zip.getEntry("routes.txt").getSize()
+	    + zip.getEntry("stops.txt").getSize()
+	    + zip.getEntry("trips.txt").getSize();
+    }
 }

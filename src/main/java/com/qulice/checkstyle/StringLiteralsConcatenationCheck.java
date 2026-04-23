@@ -58,10 +58,7 @@ public final class StringLiteralsConcatenationCheck extends AbstractCheck {
             TokenTypes.PLUS_ASSIGN
         );
         for (final DetailAST plus : pluses) {
-            if (!this.findChildAstsOfType(
-                plus,
-                TokenTypes.STRING_LITERAL
-            ).isEmpty()) {
+            if (this.hasStringLiteralOperand(plus)) {
                 this.log(plus, "Concatenation of string literals prohibited");
             }
         }
@@ -89,6 +86,34 @@ public final class StringLiteralsConcatenationCheck extends AbstractCheck {
             child = child.getNextSibling();
         }
         return children;
+    }
+
+    /**
+     * Checks whether an operand of the given PLUS/PLUS_ASSIGN node is a
+     * string literal. Traverses only through nested PLUS/PLUS_ASSIGN nodes
+     * so that STRING_LITERALs nested inside method-call arguments or other
+     * sub-expressions of an operand do not count.
+     * @param node PLUS or PLUS_ASSIGN node to inspect.
+     * @return True if any operand of the concatenation chain is a string
+     *  literal, false otherwise.
+     */
+    private boolean hasStringLiteralOperand(final DetailAST node) {
+        boolean found = false;
+        DetailAST child = node.getFirstChild();
+        while (child != null) {
+            final int type = child.getType();
+            if (type == TokenTypes.STRING_LITERAL) {
+                found = true;
+                break;
+            }
+            if ((type == TokenTypes.PLUS || type == TokenTypes.PLUS_ASSIGN)
+                && this.hasStringLiteralOperand(child)) {
+                found = true;
+                break;
+            }
+            child = child.getNextSibling();
+        }
+        return found;
     }
 
     /**
