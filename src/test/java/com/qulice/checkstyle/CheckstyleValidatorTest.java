@@ -163,6 +163,20 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator does not report a ConditionalRegexpMultilineCheck
+     * violation when the offending code is preceded by a
+     * {@code @checkstyle ConditionalRegexpMultilineCheck (N lines)} comment.
+     * See https://github.com/yegor256/qulice/issues/1328.
+     * @throws Exception when error.
+     */
+    @Test
+    void suppressesConditionalRegexpMultilineInComment() throws Exception {
+        this.runValidation(
+            "SuppressConditionalRegexpMultilineInComment.java", true
+        );
+    }
+
+    /**
      * CheckstyleValidator can report Apache Commons {@code CharEncoding} class
      * usages.
      * @throws Exception when error.
