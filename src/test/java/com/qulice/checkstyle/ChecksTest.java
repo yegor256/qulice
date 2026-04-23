@@ -148,6 +148,7 @@ final class ChecksTest {
             "MethodsOrderCheck",
             "MultilineJavadocTagsCheck",
             "StringLiteralsConcatenationCheck",
+            "ProhibitLineSeparatorInStringsCheck",
             "EmptyLinesCheck",
             "ImportCohesionCheck",
             "BracketsStructureCheck",

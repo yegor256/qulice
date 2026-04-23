@@ -32,7 +32,7 @@ final class DependenciesValidator implements MavenValidator {
     /**
      * Separator between lines.
      */
-    private static final String SEP = "\n\t";
+    private static final String SEP = String.format("%n\t");
 
     @Override
     @SuppressWarnings("PMD.OnlyOneReturn")
