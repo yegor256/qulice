@@ -50,6 +50,16 @@
     <property name="checkFormat" value="$1"/>
   </module>
   <!--
+  Enables "@checkstyle XxxCheck (N lines)" suppressions for Checker-level
+  checks like LineLength, which are not children of TreeWalker and hence
+  cannot be suppressed by SuppressWithNearbyCommentFilter (see #1360).
+  -->
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern" value="@checkstyle (\w+) \((\d+) lines?\)"/>
+    <property name="checkPattern" value="$1"/>
+    <property name="lineRange" value="$2"/>
+  </module>
+  <!--
   TAB chars are not allowed anywhere.
   -->
   <module name="FileTabCharacter">
