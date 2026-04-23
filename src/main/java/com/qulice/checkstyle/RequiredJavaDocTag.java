@@ -29,11 +29,6 @@ import java.util.regex.Pattern;
  *     // ...
  * </pre>
  *
- * <p>"&#36;Id&#36;" will be replaced by a full text automatically
- * by Subversion as explained in their documentation (see link below).
- *
- * @see <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">Keywords substitution in Subversion</a>
-
  * @since 0.23.1
  */
 final class RequiredJavaDocTag {

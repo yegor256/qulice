@@ -14,8 +14,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * Check if the class/interface javadoc contains properly formatted author
- * and version tags.
+ * Check that the class/interface javadoc does not contain prohibited
+ * {@code author} or {@code version} tags and has a properly formatted
+ * {@code since} tag.
  *
  * <p>Correct format is the following (of a class javadoc):
  *
@@ -23,17 +24,12 @@ import java.util.regex.Pattern;
  * &#47;**
  *  * This is my new class.
  *  *
- *  * &#64;author John Doe (john&#64;example.com)
- *  * &#64;version &#36;Id&#36;
+ *  * &#64;since 0.3
  *  *&#47;
  * public final class Foo {
  *     // ...
  * </pre>
  *
- * <p>"&#36;Id&#36;" will be replaced by a full text automatically
- * by Subversion as explained in their documentation (see link below).
- *
- * @see <a href="http://svnbook.red-bean.com/en/1.4/svn.advanced.props.special.keywords.html">Keywords substitution in Subversion</a>
  * @since 0.3
  */
 public final class JavadocTagsCheck extends AbstractCheck {

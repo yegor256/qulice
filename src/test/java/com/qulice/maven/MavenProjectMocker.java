@@ -6,7 +6,6 @@ package com.qulice.maven;
 
 import java.io.File;
 import org.apache.maven.model.Build;
-import org.apache.maven.model.Scm;
 import org.apache.maven.project.MavenProject;
 
 /**
@@ -40,10 +39,7 @@ public final class MavenProjectMocker {
      * @throws Exception If something wrong happens inside
      */
     public MavenProject mock() throws Exception {
-        final Scm scm = new Scm();
-        scm.setConnection("scm:svn:...");
         this.project.setPackaging("jar");
-        this.project.setScm(scm);
         return this.project;
     }
 }
