@@ -60,8 +60,7 @@ public final class ProhibitPlainJunitAssertionsRule
     private static boolean isJUnitTest(final ASTMethodDeclaration method) {
         return method.getDeclaredAnnotations()
             .toStream()
-            .map(ASTAnnotation::getSimpleName)
-            .anyMatch(
+            .map(ASTAnnotation::getSimpleName).anyMatch(
                 name -> "Test".equals(name)
                     || "org.junit.Test".equals(name)
                     || "org.junit.jupiter.api.Test".equals(name)

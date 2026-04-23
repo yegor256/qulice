@@ -24,9 +24,8 @@ final class PomXpathValidatorTest {
      */
     @Test
     void canValidatePomWithXpath() throws Exception {
-        final MavenEnvironment env = new MavenEnvironmentMocker()
-            .withAsserts(
-                Collections.singletonList(
+        final MavenEnvironment env = new MavenEnvironmentMocker().withAsserts(
+            Collections.singletonList(
                 "/pom:project/pom:dependencies/pom:dependency[pom:artifactId='commons-io']/pom:version[.='1.2.5']/text()"
             )
         ).mock();

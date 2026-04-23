@@ -154,6 +154,16 @@
     <property name="id" value="StartLineSymbolLimits"/>
     <property name="message" value="Line cannot start with this symbol, move it to the previous line"/>
   </module>
+  <!--
+  A fluent call that opens a multi-line block cannot sit alone on a line.
+  See https://github.com/yegor256/qulice/issues/670
+  -->
+  <module name="RegexpSingleline">
+    <property name="format" value="^\s+\.\w+\(\s*$"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="id" value="FluentCallMustNotStartLine"/>
+    <property name="message" value="A fluent call opening a multi-line block must be attached to the previous line"/>
+  </module>
   <module name="SuppressionFilter">
     <property name="file" value="/com/qulice/checkstyle/suppressions.xml"/>
     <property name="optional" value="false"/>

@@ -873,6 +873,40 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator reports a fluent call that opens a multi-line
+     * block while sitting alone on a line. See
+     * https://github.com/yegor256/qulice/issues/670.
+     * @throws Exception when error.
+     */
+    @Test
+    void rejectsFluentCallAloneOnLineOpeningMultiLineBlock()
+        throws Exception {
+        final String file = "InvalidFluentCallFormatting.java";
+        final String message =
+            "A fluent call opening a multi-line block must be attached to the previous line";
+        MatcherAssert.assertThat(
+            "Fluent call opening a multi-line block alone on a line must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    message, file, "20", "RegexpSinglelineCheck"
+                )
+            )
+        );
+    }
+
+    /**
+     * CheckstyleValidator accepts fluent calls that open a multi-line
+     * block only when attached to the previous line. See
+     * https://github.com/yegor256/qulice/issues/670.
+     * @throws Exception when error.
+     */
+    @Test
+    void acceptsFluentCallAttachedToPreviousLine() throws Exception {
+        this.runValidation("ValidFluentCallFormatting.java", true);
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
@@ -919,17 +953,16 @@ final class CheckstyleValidatorTest {
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
             this.toUrl(license)
-        )
-            .withFile(
-                String.format("src/main/java/foo/%s", file),
-                new IoCheckedText(
-                    new TextOf(
-                        new ResourceOf(
-                            new FormattedText("com/qulice/checkstyle/%s", file)
-                        )
+        ).withFile(
+            String.format("src/main/java/foo/%s", file),
+            new IoCheckedText(
+                new TextOf(
+                    new ResourceOf(
+                        new FormattedText("com/qulice/checkstyle/%s", file)
                     )
-                ).asString()
-            );
+                )
+            ).asString()
+        );
         final Collection<Violation> results =
             new CheckstyleValidator(env).validate(
                 env.files(file)

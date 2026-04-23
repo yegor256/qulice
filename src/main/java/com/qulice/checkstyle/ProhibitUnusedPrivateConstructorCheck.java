@@ -83,12 +83,11 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
     private static boolean isPrivateCtorUsedInOtherCtors(
         final DetailAST privatector, final DetailAST objblock) {
         final List<DetailAST> allctors = collectAllConstructors(objblock);
-        return allctors.stream()
-            .anyMatch(
-                otherCtor -> otherCtor != privatector
-                &&
-                isCallingConstructor(otherCtor, privatector)
-            );
+        return allctors.stream().anyMatch(
+            otherCtor -> otherCtor != privatector
+            &&
+            isCallingConstructor(otherCtor, privatector)
+        );
     }
 
     /**
