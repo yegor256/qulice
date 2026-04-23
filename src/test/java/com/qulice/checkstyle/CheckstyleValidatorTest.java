@@ -811,6 +811,21 @@ final class CheckstyleValidatorTest {
         this.runValidation("FileLengthCheck.java", true);
     }
 
+    @Test
+    void rejectsLongLambdaBody() throws Exception {
+        final String file = "LongLambdaInBody.java";
+        MatcherAssert.assertThat(
+            "Long lambda body must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "Lambda body length is 25 lines (max allowed is 20).",
+                    file, "19", "LambdaBodyLengthCheck"
+                )
+            )
+        );
+    }
+
     /**
      * CheckstyleValidator reports type parameter descriptions that do not
      * start with a capital letter. See

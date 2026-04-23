@@ -310,6 +310,9 @@
       <property name="max" value="40"/>
     </module>
     <module name="AnonInnerLength"/>
+    <module name="LambdaBodyLength">
+      <property name="max" value="20"/>
+    </module>
     <module name="MethodLength"/>
     <module name="ParameterNumber">
       <property name="max" value="3"/>
