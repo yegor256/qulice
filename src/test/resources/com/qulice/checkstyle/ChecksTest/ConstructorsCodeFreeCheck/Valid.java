@@ -6,6 +6,7 @@ package com.qulice.checkstyle.ChecksTest.ConstructorsCodeFreeCheck;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * This is not a real Java class. It won't be compiled ever. It is used
@@ -47,6 +48,38 @@ public final class Valid {
         private final int code;
         Color(final int value) {
             this.code = value;
+        }
+    }
+
+    static final class WithLambda {
+        private final Supplier<?> sup;
+        WithLambda(final Runnable run) {
+            this(() -> {
+                run.run();
+                return null;
+            });
+        }
+        WithLambda(final Supplier<?> value) {
+            this.sup = value;
+        }
+    }
+
+    static final class WithExprLambda {
+        private final Supplier<Integer> sup;
+        WithExprLambda(final int base) {
+            this.sup = () -> Integer.valueOf(base);
+        }
+    }
+
+    static final class WithAnonymous {
+        private final Runnable task;
+        WithAnonymous(final int value) {
+            this.task = new Runnable() {
+                @Override
+                public void run() {
+                    System.out.println(value);
+                }
+            };
         }
     }
 }

@@ -20,6 +20,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * delegating constructor call, or as a nested argument to a {@code new}
  * expression.
  *
+ * <p>Method calls nested inside lambda bodies or anonymous class bodies
+ * are not considered constructor code, because they are not executed
+ * at construction time: only the lambda object or the anonymous class
+ * instance is created. Such subtrees are skipped.
+ *
  * @since 0.24
  */
 public final class ConstructorsCodeFreeCheck extends AbstractCheck {
@@ -48,13 +53,18 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
     }
 
     /**
-     * Reports every method call found anywhere in the given subtree.
+     * Reports every method call found anywhere in the given subtree,
+     * except those nested inside lambda bodies or anonymous class bodies.
      * @param node Root of the subtree to scan.
      */
     private void reportCalls(final DetailAST node) {
         for (DetailAST child = node.getFirstChild();
             child != null; child = child.getNextSibling()) {
-            if (child.getType() == TokenTypes.METHOD_CALL) {
+            final int type = child.getType();
+            if (type == TokenTypes.LAMBDA || type == TokenTypes.OBJBLOCK) {
+                continue;
+            }
+            if (type == TokenTypes.METHOD_CALL) {
                 this.log(
                     child.getLineNo(),
                     "Constructor must not contain method calls"
