@@ -151,6 +151,18 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator does not report a LineLength violation when
+     * the long line is preceded by a {@code @checkstyle LineLengthCheck (N lines)}
+     * comment.
+     * See https://github.com/yegor256/qulice/issues/1360.
+     * @throws Exception when error.
+     */
+    @Test
+    void suppressesLineLengthInCommentsViaNearbyComment() throws Exception {
+        this.runValidation("SuppressLineLengthInComment.java", true);
+    }
+
+    /**
      * CheckstyleValidator can report Apache Commons {@code CharEncoding} class
      * usages.
      * @throws Exception when error.
