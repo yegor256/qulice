@@ -72,7 +72,7 @@
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doExecute() <strong class="jxr_keyword">throws</strong> MojoFailureException {
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>          <strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>              <strong class="jxr_keyword">this</strong>.run();
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>          } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> ValidationException ex) {
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>          } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> <a name="ValidationException" href="../../../com/qulice/spi/ValidationException.html#ValidationException">ValidationException</a> ex) {
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>              Logger.info(
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>                  <strong class="jxr_keyword">this</strong>,
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>                  <span class="jxr_string">"Read our quality policy: https://www.qulice.com/quality.html"</span>
@@ -102,7 +102,7 @@
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     * @throws ValidationException If any of them fail</em>
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>      @SuppressWarnings(<span class="jxr_string">"PMD.CognitiveComplexity"</span>)
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> run() <strong class="jxr_keyword">throws</strong> ValidationException {
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> run() <strong class="jxr_keyword">throws</strong> <a name="ValidationException" href="../../../com/qulice/spi/ValidationException.html#ValidationException">ValidationException</a> {
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>          <strong class="jxr_keyword">final</strong> LinkedList&lt;Violation&gt; results = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>          <strong class="jxr_keyword">final</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> env = <strong class="jxr_keyword">this</strong>.env();
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">final</strong> Collection&lt;File&gt; files = env.files(<span class="jxr_string">"*.*"</span>);
@@ -134,7 +134,7 @@
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>                 }
 <a class="jxr_linenumber" name="L127" href="#L127">127</a>             }
 <a class="jxr_linenumber" name="L128" href="#L128">128</a>             Collections.sort(results);
-<a class="jxr_linenumber" name="L129" href="#L129">129</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Violation result : results) {
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <a name="Violation" href="../../../com/qulice/spi/Violation.html#Violation">Violation</a> result : results) {
 <a class="jxr_linenumber" name="L130" href="#L130">130</a>                 Logger.info(
 <a class="jxr_linenumber" name="L131" href="#L131">131</a>                     <strong class="jxr_keyword">this</strong>,
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>                     <span class="jxr_string">"%s: %s[%s]: %s (%s)"</span>,
@@ -152,11 +152,11 @@
 <a class="jxr_linenumber" name="L144" href="#L144">144</a>             }
 <a class="jxr_linenumber" name="L145" href="#L145">145</a>         }
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>         <strong class="jxr_keyword">if</strong> (!results.isEmpty()) {
-<a class="jxr_linenumber" name="L147" href="#L147">147</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> ValidationException(
+<a class="jxr_linenumber" name="L147" href="#L147">147</a>             <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a name="ValidationException" href="../../../com/qulice/spi/ValidationException.html#ValidationException">ValidationException</a>(
 <a class="jxr_linenumber" name="L148" href="#L148">148</a>                 String.format(<span class="jxr_string">"There are %d violations"</span>, results.size())
 <a class="jxr_linenumber" name="L149" href="#L149">149</a>             );
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>         }
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Validator validator : <strong class="jxr_keyword">this</strong>.provider.external()) {
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <a name="Validator" href="../../../com/qulice/spi/Validator.html#Validator">Validator</a> validator : <strong class="jxr_keyword">this</strong>.provider.external()) {
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>             Logger.info(<strong class="jxr_keyword">this</strong>, <span class="jxr_string">"Starting %s validator"</span>, validator.name());
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>             validator.validate(env);
 <a class="jxr_linenumber" name="L154" href="#L154">154</a>             Logger.info(<strong class="jxr_keyword">this</strong>, <span class="jxr_string">"Finishing %s validator"</span>, validator.name());
@@ -180,7 +180,7 @@
 <a class="jxr_linenumber" name="L172" href="#L172">172</a>     ) {
 <a class="jxr_linenumber" name="L173" href="#L173">173</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Future&lt;Collection&lt;Violation&gt;&gt;&gt; futures =
 <a class="jxr_linenumber" name="L174" href="#L174">174</a>             <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
-<a class="jxr_linenumber" name="L175" href="#L175">175</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> ResourceValidator validator : validators) {
+<a class="jxr_linenumber" name="L175" href="#L175">175</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> <a name="ResourceValidator" href="../../../com/qulice/spi/ResourceValidator.html#ResourceValidator">ResourceValidator</a> validator : validators) {
 <a class="jxr_linenumber" name="L176" href="#L176">176</a>             futures.add(
 <a class="jxr_linenumber" name="L177" href="#L177">177</a>                 <strong class="jxr_keyword">this</strong>.executors.submit(
 <a class="jxr_linenumber" name="L178" href="#L178">178</a>                     <strong class="jxr_keyword">new</strong> ValidatorCallable(validator, env, files)
@@ -251,7 +251,7 @@
 <a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L244" href="#L244">244</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Collection&lt;File&gt; filter(
 <a class="jxr_linenumber" name="L245" href="#L245">245</a>         <strong class="jxr_keyword">final</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> env,
-<a class="jxr_linenumber" name="L246" href="#L246">246</a>         <strong class="jxr_keyword">final</strong> Collection&lt;File&gt; files, <strong class="jxr_keyword">final</strong> ResourceValidator validator
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>         <strong class="jxr_keyword">final</strong> Collection&lt;File&gt; files, <strong class="jxr_keyword">final</strong> <a name="ResourceValidator" href="../../../com/qulice/spi/ResourceValidator.html#ResourceValidator">ResourceValidator</a> validator
 <a class="jxr_linenumber" name="L247" href="#L247">247</a>     ) {
 <a class="jxr_linenumber" name="L248" href="#L248">248</a>         <strong class="jxr_keyword">final</strong> Collection&lt;File&gt; filtered = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
 <a class="jxr_linenumber" name="L249" href="#L249">249</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> File file : files) {
@@ -277,7 +277,7 @@
 <a class="jxr_linenumber" name="L269" href="#L269">269</a>         <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L270" href="#L270">270</a> <em class="jxr_javadoccomment">         * Validator to use.</em>
 <a class="jxr_linenumber" name="L271" href="#L271">271</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L272" href="#L272">272</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> ResourceValidator validator;
+<a class="jxr_linenumber" name="L272" href="#L272">272</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="ResourceValidator" href="../../../com/qulice/spi/ResourceValidator.html#ResourceValidator">ResourceValidator</a> validator;
 <a class="jxr_linenumber" name="L273" href="#L273">273</a> 
 <a class="jxr_linenumber" name="L274" href="#L274">274</a>         <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L275" href="#L275">275</a> <em class="jxr_javadoccomment">         * Maven environment.</em>
@@ -296,7 +296,7 @@
 <a class="jxr_linenumber" name="L288" href="#L288">288</a> <em class="jxr_javadoccomment">         * @param files List of files to validate</em>
 <a class="jxr_linenumber" name="L289" href="#L289">289</a> <em class="jxr_javadoccomment">         */</em>
 <a class="jxr_linenumber" name="L290" href="#L290">290</a>         ValidatorCallable(
-<a class="jxr_linenumber" name="L291" href="#L291">291</a>             <strong class="jxr_keyword">final</strong> ResourceValidator validator,
+<a class="jxr_linenumber" name="L291" href="#L291">291</a>             <strong class="jxr_keyword">final</strong> <a name="ResourceValidator" href="../../../com/qulice/spi/ResourceValidator.html#ResourceValidator">ResourceValidator</a> validator,
 <a class="jxr_linenumber" name="L292" href="#L292">292</a>             <strong class="jxr_keyword">final</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> env, <strong class="jxr_keyword">final</strong> Collection&lt;File&gt; files
 <a class="jxr_linenumber" name="L293" href="#L293">293</a>         ) {
 <a class="jxr_linenumber" name="L294" href="#L294">294</a>             <strong class="jxr_keyword">this</strong>.validator = validator;

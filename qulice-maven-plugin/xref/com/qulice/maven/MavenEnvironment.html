@@ -26,7 +26,7 @@
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> * @since 0.3</em>
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  @SuppressWarnings(<span class="jxr_string">"PMD.TooManyMethods"</span>)
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">interface</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> <strong class="jxr_keyword">extends</strong> Environment {
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">interface</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> <strong class="jxr_keyword">extends</strong> <a name="Environment" href="../../../com/qulice/spi/Environment.html#Environment">Environment</a> {
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment">     * Get project.</em>
@@ -73,7 +73,7 @@
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>          <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">         * Parent environment.</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> Environment env;
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="Environment" href="../../../com/qulice/spi/Environment.html#Environment">Environment</a> env;
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>          <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">         * Parent maven environment.</em>
@@ -85,7 +85,7 @@
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">         * @param penv Parent env</em>
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">         * @param pmenv Parent maven env</em>
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>          Wrap(<strong class="jxr_keyword">final</strong> Environment penv,
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          Wrap(<strong class="jxr_keyword">final</strong> <a name="Environment" href="../../../com/qulice/spi/Environment.html#Environment">Environment</a> penv,
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>              <strong class="jxr_keyword">final</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> pmenv) {
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>              <strong class="jxr_keyword">this</strong>.env = penv;
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>              <strong class="jxr_keyword">this</strong>.menv = pmenv;

@@ -40,12 +40,12 @@
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">     * Separator between lines.</em>
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String SEP = <span class="jxr_string">"\n\t"</span>;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String SEP = String.format(<span class="jxr_string">"%n\t"</span>);
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>      @Override
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>      @SuppressWarnings(<span class="jxr_string">"PMD.OnlyOneReturn"</span>)
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> validate(<strong class="jxr_keyword">final</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> env)
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>          <strong class="jxr_keyword">throws</strong> ValidationException {
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>          <strong class="jxr_keyword">throws</strong> <a name="ValidationException" href="../../../com/qulice/spi/ValidationException.html#ValidationException">ValidationException</a> {
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>          <strong class="jxr_keyword">if</strong> (!env.outdir().exists() || <span class="jxr_string">"pom"</span>.equals(env.project().getPackaging())) {
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>              Logger.info(<strong class="jxr_keyword">this</strong>, <span class="jxr_string">"No dependency analysis in this project"</span>);
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>              <strong class="jxr_keyword">return</strong>;
@@ -87,7 +87,7 @@
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>          }
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> failures = used.size() + unused.size();
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>          <strong class="jxr_keyword">if</strong> (failures &gt; 0) {
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>              <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> ValidationException(
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>              <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a name="ValidationException" href="../../../com/qulice/spi/ValidationException.html#ValidationException">ValidationException</a>(
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>                  <span class="jxr_string">"%d dependency problem(s) found"</span>,
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>                  failures
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>              );
