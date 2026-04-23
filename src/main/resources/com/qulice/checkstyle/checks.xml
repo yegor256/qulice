@@ -50,6 +50,17 @@
     <property name="checkFormat" value="$1"/>
   </module>
   <!--
+  Allows suppression of Checker-level checks (e.g. LineLength) via nearby
+  comments using the same `@checkstyle CheckName (N lines)` syntax that
+  SuppressWithNearbyCommentFilter supports inside TreeWalker.
+  See https://github.com/yegor256/qulice/issues/1360
+  -->
+  <module name="SuppressWithNearbyTextFilter">
+    <property name="nearbyTextPattern" value="@checkstyle (\w+) \((\d+) lines?\)"/>
+    <property name="checkPattern" value="$1"/>
+    <property name="lineRange" value="$2"/>
+  </module>
+  <!--
   TAB chars are not allowed anywhere.
   -->
   <module name="FileTabCharacter">
