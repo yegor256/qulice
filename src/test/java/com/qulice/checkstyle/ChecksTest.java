@@ -153,6 +153,7 @@ final class ChecksTest {
             "EmptyLineBeforeFirstMemberCheck",
             "ImportCohesionCheck",
             "BracketsStructureCheck",
+            "NestedSwitchCheck",
             "CurlyBracketsStructureCheck",
             "JavadocLocationCheck",
             "JavadocParameterOrderCheck",
