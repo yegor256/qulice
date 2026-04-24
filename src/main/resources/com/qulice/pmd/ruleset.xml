@@ -287,6 +287,12 @@
       </property>
     </properties>
   </rule>
+  <!--
+    Direct access to a static final field inside a static initializer is
+    allowed because qualifying it with the class name would not compile
+    (a final field can only be assigned once by its simple name).
+    Downstream: https://github.com/yegor256/qulice/issues/719
+  -->
   <rule name="AvoidDirectAccessToStaticFields" message="Static fields should be accessed in a static way [CLASS_NAME.FIELD_NAME]." language="java" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
     <description>
       Avoid accessing static fields directly.
@@ -295,7 +301,10 @@
     <properties>
       <property name="xpath">
         <value><![CDATA[
-          //VariableAccess[@Name = //FieldDeclaration[@Static=true()]/VariableDeclarator/VariableId/@Name]
+          //VariableAccess[
+            @Name = //FieldDeclaration[@Static=true()]/VariableDeclarator/VariableId/@Name
+            and not(ancestor::Initializer[@Static=true()])
+          ]
         ]]></value>
       </property>
     </properties>

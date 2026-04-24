@@ -123,13 +123,15 @@ public final class ProhibitTestMethodNameCheck extends AbstractCheck {
      */
     private static boolean startsWithWord(final String name, final String prefix) {
         final boolean result;
-        if (!name.startsWith(prefix)) {
-            result = false;
-        } else if (name.length() == prefix.length()) {
-            result = true;
+        if (name.startsWith(prefix)) {
+            if (name.length() == prefix.length()) {
+                result = true;
+            } else {
+                final char next = name.charAt(prefix.length());
+                result = Character.isUpperCase(next) || next == '_';
+            }
         } else {
-            final char next = name.charAt(prefix.length());
-            result = Character.isUpperCase(next) || next == '_';
+            result = false;
         }
         return result;
     }

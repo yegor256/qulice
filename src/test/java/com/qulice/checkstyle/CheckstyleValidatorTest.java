@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
  * @checkstyle ClassDataAbstractionCoupling (800 lines)
  *  Can also be removed after splitting up this class into smaller ones.
  */
-@SuppressWarnings("PMD.TooManyMethods")
+@SuppressWarnings({"PMD.TooManyMethods", "PMD.UnitTestShouldIncludeAssert"})
 final class CheckstyleValidatorTest {
 
     /**
@@ -58,10 +58,6 @@ final class CheckstyleValidatorTest {
         this.rule = new License();
     }
 
-    /**
-     * CheckstyleValidator can accept instance method references.
-     * @throws Exception In case of error
-     */
     @Test
     void acceptsInstanceMethodReferences() throws Exception {
         Assertions.assertDoesNotThrow(
@@ -111,11 +107,6 @@ final class CheckstyleValidatorTest {
         );
     }
 
-    /**
-     * CheckstyleValidator does not report an error when there is no JavaDoc
-     * on method in JUnit tests.
-     * @throws Exception when error.
-     */
     @Test
     void doesNotReportErrorWhenMissingJavadocInTests() throws Exception {
         Assertions.assertDoesNotThrow(
@@ -173,11 +164,6 @@ final class CheckstyleValidatorTest {
         );
     }
 
-    /**
-     * CheckstyleValidator accepts string literal which
-     * contains multiline comment.
-     * @throws Exception If test failed.
-     */
     @Test
     void acceptsValidSingleLineComment() throws Exception {
         Assertions.assertDoesNotThrow(
@@ -185,11 +171,6 @@ final class CheckstyleValidatorTest {
         );
     }
 
-    /**
-     * CheckstyleValidator accepts the valid indentation
-     * refused by forceStrictCondition.
-     * @throws Exception when error.
-     */
     @Test
     void acceptsValidIndentation() throws Exception {
         Assertions.assertDoesNotThrow(
@@ -233,10 +214,6 @@ final class CheckstyleValidatorTest {
         );
     }
 
-    /**
-     * CheckstyleValidator can accept default methods with final modifiers.
-     * @throws Exception In case of error
-     */
     @Test
     void acceptsDefaultMethodsWithFinalModifiers() throws Exception {
         Assertions.assertDoesNotThrow(
@@ -426,10 +403,6 @@ final class CheckstyleValidatorTest {
         );
     }
 
-    /**
-     * Correctly parses Record type.
-     * @throws Exception If something wrong happens inside
-     */
     @Test
     void testSupportsRecordTypes() throws Exception {
         Assertions.assertDoesNotThrow(

@@ -429,6 +429,32 @@ final class PmdValidatorTest {
     }
 
     /**
+     * PmdValidator accepts direct assignment to a static final field inside
+     * a static initializer, because qualifying it with the class name would
+     * not compile for a final field.
+     *
+     * @throws Exception If something wrong happens inside.
+     * @see <a href="https://github.com/yegor256/qulice/issues/719">#719</a>
+     */
+    @Test
+    void acceptsDirectAccessToStaticFieldInStaticInitializer()
+        throws Exception {
+        final String file = "StaticInitializerAssignsFinalField.java";
+        new PmdAssert(
+            file,
+            Matchers.is(true),
+            Matchers.not(
+                RegexMatchers.containsPattern(
+                    String.format(
+                        PmdValidatorTest.STATIC_ACCESS,
+                        file
+                    )
+                )
+            )
+        ).assertOk();
+    }
+
+    /**
      * PmdValidator forbids calls to static fields directly in a non static
      * way.
      *
