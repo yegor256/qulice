@@ -154,6 +154,7 @@ final class ChecksTest {
             "ImportCohesionCheck",
             "BracketsStructureCheck",
             "NestedSwitchCheck",
+            "ProhibitTestExpectedCheck",
             "CurlyBracketsStructureCheck",
             "JavadocLocationCheck",
             "JavadocParameterOrderCheck",
