@@ -52,27 +52,79 @@ What is Quality and how to achieve it?
 
   Our custom rules:
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/BracketsStructureCheck.html}BracketsStructure}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/BracketsStructureCheck.html}BracketsStructure}}
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/ConstantUsageCheck.html}ConstantUsage}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/CascadeIndentationCheck.html}CascadeIndentation}}
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/EmptyLinesCheck.html}EmptyLines}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/ConditionalRegexpMultilineCheck.html}ConditionalRegexpMultiline}}
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/ImportCohesionCheck.html}ImportCohesion}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/ConstantUsageCheck.html}ConstantUsage}}
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/JavadocLocationCheck.html}JavadocLocation}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/ConstructorsCodeFreeCheck.html}ConstructorsCodeFree}}
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/JavadocTagsCheck.html}JavadocTags}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/ConstructorsOrderCheck.html}ConstructorsOrder}}
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/MethodBodyCommentsCheck.html}MethodBodyComments}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/CurlyBracketsStructureCheck.html}CurlyBracketsStructure}}
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/MultilineJavadocTagsCheck.html}MultilineJavadocTags}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/DiamondOperatorCheck.html}DiamondOperator}}
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/NonStaticMethodCheck.html}NonStaticMethod}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/EmptyLineBeforeFirstMemberCheck.html}EmptyLineBeforeFirstMember}}
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/StringLiteralsConcatenationCheck.html}StringLiteralsConcatenation}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/EmptyLinesCheck.html}EmptyLines}}
 
-   * {{{./qulice-checkstyle/apidocs-${project.version}/com/qulice/checkstyle/JavadocEmptyLineCheck.html}JavadocEmptyLine}}
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/EnumValueNameCheck.html}EnumValueName}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/ExtraSemicolonCheck.html}ExtraSemicolon}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/FinalSemicolonInTryWithResourcesCheck.html}FinalSemicolonInTryWithResources}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/ImportCohesionCheck.html}ImportCohesion}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/JavadocEmptyLineCheck.html}JavadocEmptyLine}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/JavadocFirstLineCheck.html}JavadocFirstLine}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/JavadocLocationCheck.html}JavadocLocation}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/JavadocParameterOrderCheck.html}JavadocParameterOrder}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/JavadocTagsCheck.html}JavadocTags}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/JavadocTagsDotCheck.html}JavadocTagsDot}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/JavadocThrowsCheck.html}JavadocThrows}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/MethodBodyCommentsCheck.html}MethodBodyComments}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/MethodsOrderCheck.html}MethodsOrder}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/MultiLineCommentCheck.html}MultiLineComment}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/MultilineJavadocTagsCheck.html}MultilineJavadocTags}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/NestedSwitchCheck.html}NestedSwitch}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/NoJavadocForOverriddenMethodsCheck.html}NoJavadocForOverriddenMethods}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/NonStaticMethodCheck.html}NonStaticMethod}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/ProhibitFieldsInTestClassesCheck.html}ProhibitFieldsInTestClasses}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/ProhibitLineSeparatorInStringsCheck.html}ProhibitLineSeparatorInStrings}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/ProhibitTestExpectedCheck.html}ProhibitTestExpected}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/ProtectedMethodInFinalClassCheck.html}ProtectedMethodInFinalClass}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/QualifyInnerClassCheck.html}QualifyInnerClass}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/SimpleStringSplitCheck.html}SimpleStringSplit}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/SingleLineCommentCheck.html}SingleLineComment}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/StaticAccessViaInstanceCheck.html}StaticAccessViaInstance}}
+
+   * {{{./apidocs-${project.version}/com/qulice/checkstyle/StringLiteralsConcatenationCheck.html}StringLiteralsConcatenation}}
 
   If you want to disable some rule (this may happen, but try to avoid such
   situations at all cost):
@@ -91,6 +143,34 @@ public void funcWithManyParams(int a, int b, int c, int d) {
 * PMD
 
   {{{http://pmd.sourceforge.net/rules/index.html}Inherited rules}}.
+
+  Our custom rules:
+
+   * {{{./apidocs-${project.version}/com/qulice/pmd/rules/ProhibitPlainJunitAssertionsRule.html}ProhibitPlainJunitAssertionsRule}}
+
+   * {{{./apidocs-${project.version}/com/qulice/pmd/rules/UnitTestContainsTooManyAssertsRule.html}UnitTestContainsTooManyAsserts}}
+
+   * {{{./apidocs-${project.version}/com/qulice/pmd/rules/UnitTestShouldIncludeAssertRule.html}UnitTestShouldIncludeAssert}}
+
+   * {{{./apidocs-${project.version}/com/qulice/pmd/rules/UnnecessaryLocalRule.html}UnnecessaryLocalRule}}
+
+   * {{{./apidocs-${project.version}/com/qulice/pmd/rules/UseStringIsEmptyRule.html}UseStringIsEmptyRule}}
+
+   * AvoidAccessToStaticMembersViaThis
+
+   * AvoidDirectAccessToStaticFields
+
+   * ConstructorOnlyInitializesOrCallOtherConstructors
+
+   * ConstructorShouldDoInitialization
+
+   * JUnitTestClassShouldBeFinal
+
+   * OnlyOneConstructorShouldDoInitialization
+
+   * ProhibitFilesCreateFileInTests
+
+   * ProhibitPublicStaticMethods
 
   Rules can be disabled (again, try to avoid this at all cost):
 
