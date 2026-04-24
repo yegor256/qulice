@@ -149,3 +149,12 @@ public @interface MyAnnotation {
      */
     int someValue();
 }
+
+/**
+ * First sentence.
+ *
+ *
+ * @see https://github.com
+ */
+class TwoEmptyJavadocLines {
+}

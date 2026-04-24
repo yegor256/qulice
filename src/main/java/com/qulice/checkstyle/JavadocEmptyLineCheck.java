@@ -9,15 +9,19 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Check for empty line at the beginning and at the end of Javadoc.
+ * Check for empty lines inside Javadoc.
  *
- * <p>You can't have empty line at the beginning or at the end of Javadoc.
+ * <p>You can't have an empty line at the beginning or at the end of Javadoc,
+ * and two consecutive empty lines are not allowed anywhere inside it.
  *
  * <p>The following red lines in class Javadoc will be reported as violations.
  * <pre>
  * &#47;**
  *  <span style="color:red" >*</span>
  *  * This is my class.
+ *  *
+ *  <span style="color:red" >*</span>
+ *  * More text.
  *  <span style="color:red" >*</span>
  *  *&#47;
  * public final class Foo {
@@ -70,6 +74,13 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
             if (end >= start
                 && JavadocEmptyLineCheck.isJavadocLineEmpty(lines[end])) {
                 this.log(end + 1, "Empty Javadoc line at the end");
+            }
+            for (int pos = start + 1; pos <= end; pos += 1) {
+                if (JavadocEmptyLineCheck.isJavadocLineEmpty(lines[pos])
+                    && JavadocEmptyLineCheck.isJavadocLineEmpty(lines[pos - 1])
+                ) {
+                    this.log(pos + 1, "Two consecutive empty Javadoc lines");
+                }
             }
         }
     }
