@@ -140,6 +140,7 @@ final class CheckMojoTest {
      */
     @SuppressWarnings("PMD.AvoidStringBufferField")
     private static final class FakeLogger extends AbstractLogger {
+
         /**
          * Log level tags.
          */
@@ -236,6 +237,7 @@ final class CheckMojoTest {
      * @since 0.24.1
      */
     private static final class FakeValidator implements Validator {
+
         /**
          * Validator name.
          */
@@ -366,6 +368,7 @@ final class CheckMojoTest {
      * @since 0.24.1
      */
     private static final class FakeMavenValidator implements MavenValidator {
+
         /**
          * Method calls counter.
          */

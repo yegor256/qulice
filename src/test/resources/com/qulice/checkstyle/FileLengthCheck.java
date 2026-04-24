@@ -12,6 +12,7 @@ package foo;
  * @checkstyle MethodCountCheck (1500 lines)
  */
 public final class FileLengthCheck {
+
     void method1() {
         // Intentionally empty
     }

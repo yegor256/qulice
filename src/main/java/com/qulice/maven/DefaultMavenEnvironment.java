@@ -328,6 +328,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * @since 0.1
      */
     private static class PathPredicate implements Predicate<String> {
+
         /**
          * Path to match.
          */

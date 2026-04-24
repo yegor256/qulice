@@ -8,6 +8,7 @@ package foo;
  * @since 1.0
  */
 public class ValidIT {
+
     /**
      * Any action.
      * @return Any string

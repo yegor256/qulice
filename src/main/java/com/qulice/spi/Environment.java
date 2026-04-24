@@ -109,6 +109,7 @@ public interface Environment {
      * @since 0.1
      */
     final class Mock implements Environment {
+
         /**
          * The basedir.
          */

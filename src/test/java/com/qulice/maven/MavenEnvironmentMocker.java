@@ -158,6 +158,7 @@ public final class MavenEnvironmentMocker {
      * @since 0.24.1
      */
     private static final class FakeContext implements Context {
+
         /**
          * Container.
          */
@@ -195,6 +196,7 @@ public final class MavenEnvironmentMocker {
      * @since 0.24.1
      */
     private static final class FakeMavenEnvironment implements MavenEnvironment {
+
         /**
          * Project.
          */

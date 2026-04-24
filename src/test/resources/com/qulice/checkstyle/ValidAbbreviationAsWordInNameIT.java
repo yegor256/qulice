@@ -8,6 +8,7 @@ package foo;
  * @since 1.0
  */
 public class ValidAbbreviationAsWordInNameIT {
+
     /**
      * Valid name on inner class, because the IT abbreviation is allowed.
      * @since 1.0

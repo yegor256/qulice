@@ -20,6 +20,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * @since 1.0
  */
 class BranchContains {
+
     /**
      * Node, represented by this object.
      */

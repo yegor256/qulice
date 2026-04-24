@@ -20,6 +20,7 @@ import org.cactoos.text.Joined;
  * @since 0.3
  */
 public final class CascadeIndentationCheck extends AbstractFileSetCheck {
+
     /**
      * Exact indentation increase difference.
      */

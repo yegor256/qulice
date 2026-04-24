@@ -8,6 +8,7 @@ package foo;
  * @since 1.0
  */
 public final class ValidSemicolon {
+
     /**
      * Dummy data.
      */

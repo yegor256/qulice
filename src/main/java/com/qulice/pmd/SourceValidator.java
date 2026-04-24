@@ -27,6 +27,7 @@ import org.cactoos.list.ListOf;
  * @since 0.3
  */
 final class SourceValidator {
+
     /**
      * Rules.
      */

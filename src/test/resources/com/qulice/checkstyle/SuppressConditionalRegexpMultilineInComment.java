@@ -12,6 +12,7 @@ import java.util.Collection;
  * @since 1.0
  */
 public final class SuppressConditionalRegexpMultilineInComment {
+
     /**
      * Size of the container.
      */

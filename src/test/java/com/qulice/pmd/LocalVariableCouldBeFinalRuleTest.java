@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
  * @since 0.18
  */
 final class LocalVariableCouldBeFinalRuleTest {
+
     /**
      * LocalVariableCouldBeFinal can detect when variable is not
      * final and shows correct message.

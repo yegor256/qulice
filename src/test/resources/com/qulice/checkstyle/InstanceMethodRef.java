@@ -7,6 +7,7 @@ package foo;
  * @since 1.0
  */
 public final class InstanceMethodRef {
+
     /**
      * Start. Check fails in this method.
      */

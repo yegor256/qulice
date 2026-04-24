@@ -17,6 +17,7 @@ import java.util.Set;
  * @since 0.18
  */
 public final class QualifyInnerClassCheck extends AbstractCheck {
+
     /**
      * Set of all nested classes.
      */

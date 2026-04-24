@@ -57,6 +57,7 @@ final class EnforcerValidatorTest {
      */
     @SuppressWarnings("PMD.TooManyMethods")
     private static final class Excluded implements Environment {
+
         /**
          * Origin environment.
          */

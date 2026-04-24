@@ -13,6 +13,7 @@ import org.apache.commons.lang3.CharEncoding;
  * @since 1.0
  */
 public final class DoNotUseCharEncoding {
+
     /**
      * Act.
      */

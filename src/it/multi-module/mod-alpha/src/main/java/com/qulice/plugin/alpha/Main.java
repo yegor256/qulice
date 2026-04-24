@@ -11,6 +11,7 @@ package com.qulice.plugin.alpha;
  */
 @SuppressWarnings("PMD.ProhibitPublicStaticMethods")
 public final class Main {
+
     /**
      * Utility constructor.
      */

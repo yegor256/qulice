@@ -150,6 +150,7 @@ final class ChecksTest {
             "StringLiteralsConcatenationCheck",
             "ProhibitLineSeparatorInStringsCheck",
             "EmptyLinesCheck",
+            "EmptyLineBeforeFirstMemberCheck",
             "ImportCohesionCheck",
             "BracketsStructureCheck",
             "CurlyBracketsStructureCheck",
@@ -181,6 +182,7 @@ final class ChecksTest {
      * @since 0.1
      */
     private static final class Collector {
+
         /**
          * List of events received.
          */
@@ -242,6 +244,7 @@ final class ChecksTest {
      * @since 0.24.1
      */
     private static final class FakeAuditListener implements AuditListener {
+
         /**
          * Mocked collector.
          */

@@ -11,6 +11,7 @@ import java.util.function.Consumer;
  * @since 1.0
  */
 public interface DefaultMethods {
+
     /**
      * Some data.
      * @return Some data.

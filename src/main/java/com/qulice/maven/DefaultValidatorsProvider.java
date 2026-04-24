@@ -21,6 +21,7 @@ import java.util.Set;
  * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */
 final class DefaultValidatorsProvider implements ValidatorsProvider {
+
     /**
      * Environment to use for validation.
      */

@@ -9,6 +9,7 @@ package foo;
  * @since 1.0
  */
 public final class ValidSingleLineCommentCheck {
+
     /**
      * A valid literal (Qulice may not report its contents as it is domain-specific string,
      * not Java code).

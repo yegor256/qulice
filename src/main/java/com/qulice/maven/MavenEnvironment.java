@@ -62,6 +62,7 @@ interface MavenEnvironment extends Environment {
      * @since 0.1
      */
     final class Wrap implements MavenEnvironment {
+
         /**
          * Parent environment.
          */

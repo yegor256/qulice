@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
  */
 @SuppressWarnings("PMD.TooManyMethods")
 final class PmdEmptyTest {
+
     /**
      * Makes sure that empty static initializers fail with an error.
      * @throws Exception when something goes wrong

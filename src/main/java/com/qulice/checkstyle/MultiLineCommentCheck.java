@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
  * @since 0.23.1
  */
 public final class MultiLineCommentCheck extends AbstractCheck {
+
     /**
      * Pattern for check.
      * It is not final as it is initialized from the configuration.

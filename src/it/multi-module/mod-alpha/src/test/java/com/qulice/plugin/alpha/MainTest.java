@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
  * @since 1.0
  */
 final class MainTest {
+
     /**
      * Simple testing.
      */

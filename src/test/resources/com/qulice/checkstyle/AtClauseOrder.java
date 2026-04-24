@@ -15,6 +15,7 @@ package foo;
  */
 @Deprecated
 public final class AtClauseOrder {
+
     /**
      * Empty constructor.
      * @checkstyle Suppression

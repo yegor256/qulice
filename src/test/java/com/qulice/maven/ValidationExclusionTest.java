@@ -28,6 +28,7 @@ import org.junit.jupiter.api.io.TempDir;
  * @since 0.19
  */
 final class ValidationExclusionTest {
+
     /**
      * Temporary directory for the project subfolder to be excluded.
      */

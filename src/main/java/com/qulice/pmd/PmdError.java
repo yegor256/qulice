@@ -15,6 +15,7 @@ import org.cactoos.text.UncheckedText;
  * @since 1.0
  */
 public interface PmdError {
+
     /**
      * Returns error name which is short, fixed, human-readable category of
      * the error.
@@ -47,6 +48,7 @@ public interface PmdError {
      * @since 1.0
      */
     final class OfRuleViolation implements PmdError {
+
         /**
          * Internal RuleViolation.
          */
@@ -89,6 +91,7 @@ public interface PmdError {
      * @since 1.0
      */
     final class OfProcessingError implements PmdError {
+
         /**
          * Internal ProcessingError.
          */
@@ -134,6 +137,7 @@ public interface PmdError {
      * @since 1.0
      */
     final class OfConfigError implements PmdError {
+
         /**
          * Internal ConfigError.
          */

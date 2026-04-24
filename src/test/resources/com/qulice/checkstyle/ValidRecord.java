@@ -8,6 +8,7 @@ package foo;
  * @since 1.0
  */
 public final class ValidRecord {
+
     /**
      * Just a record type which should be successfully parsed.
      * @param hello Some field.

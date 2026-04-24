@@ -18,6 +18,7 @@ import java.util.stream.Stream;
  * @since 1.0
  */
 class ChildStream {
+
     /**
      * Node, whose children will be traversed by this ChildStream object.
      */

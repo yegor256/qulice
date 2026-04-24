@@ -35,6 +35,7 @@ import org.junit.jupiter.api.io.TempDir;
  */
 @SuppressWarnings("PMD.TooManyMethods")
 final class DependenciesValidatorTest {
+
     /**
      * Plexus role.
      */

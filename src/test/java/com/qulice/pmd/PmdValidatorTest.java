@@ -27,6 +27,7 @@ import org.junit.jupiter.api.condition.JRE;
  */
 @SuppressWarnings("PMD.TooManyMethods")
 final class PmdValidatorTest {
+
     /**
      * Error message for forbidding access to static fields other than with a
      * static way.

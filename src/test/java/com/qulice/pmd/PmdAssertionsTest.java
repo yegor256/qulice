@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
  */
 @SuppressWarnings("PMD.TooManyMethods")
 final class PmdAssertionsTest {
+
     /**
      * Pattern using plain JUnit assertions.
      */

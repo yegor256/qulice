@@ -196,30 +196,14 @@ final class CheckstyleValidatorTest {
             results,
             new IsIterableContainingInOrder<>(
                 new ListOf<>(
-                    new ViolationMatcher(
-                        message, file, "6", name
-                    ),
-                    new ViolationMatcher(
-                        message, file, "7", name
-                    ),
-                    new ViolationMatcher(
-                        message, file, "8", name
-                    ),
-                    new ViolationMatcher(
-                        message, file, "9", name
-                    ),
-                    new ViolationMatcher(
-                        message, file, "22", name
-                    ),
-                    new ViolationMatcher(
-                        message, file, "23", name
-                    ),
-                    new ViolationMatcher(
-                        message, file, "24", name
-                    ),
-                    new ViolationMatcher(
-                        message, file, "25", name
-                    )
+                    new ViolationMatcher(message, file, "6", name),
+                    new ViolationMatcher(message, file, "7", name),
+                    new ViolationMatcher(message, file, "8", name),
+                    new ViolationMatcher(message, file, "9", name),
+                    new ViolationMatcher(message, file, "23", name),
+                    new ViolationMatcher(message, file, "24", name),
+                    new ViolationMatcher(message, file, "25", name),
+                    new ViolationMatcher(message, file, "26", name)
                 )
             )
         );
@@ -412,15 +396,15 @@ final class CheckstyleValidatorTest {
                     name
                 ),
                 new ViolationMatcher(
-                    message, file, "21", name
+                    message, file, "22", name
                 ),
                 new ViolationMatcher(
-                    message, file, "48", name
+                    message, file, "49", name
                 ),
                 new ViolationMatcher(
                     "Class Class should be declared as final.",
                     file,
-                    "59",
+                    "60",
                     "FinalClassCheck"
                 )
             )
@@ -597,13 +581,13 @@ final class CheckstyleValidatorTest {
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
-                    "Name 'ex_invalid_1' must match pattern", file, "26", name
+                    "Name 'ex_invalid_1' must match pattern", file, "27", name
                 ),
                 new ViolationMatcher(
-                    "Name '$xxx' must match pattern", file, "28", name
+                    "Name '$xxx' must match pattern", file, "29", name
                 ),
                 new ViolationMatcher(
-                    "Name '_exp' must match pattern", file, "30", name
+                    "Name '_exp' must match pattern", file, "31", name
                 )
             )
         );
@@ -713,7 +697,7 @@ final class CheckstyleValidatorTest {
             results,
             Matchers.hasItems(
                 new ViolationMatcher(
-                    message, file, "17", name
+                    message, file, "18", name
                 )
             )
         );

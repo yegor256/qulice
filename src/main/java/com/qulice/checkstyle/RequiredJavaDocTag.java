@@ -32,6 +32,7 @@ import java.util.regex.Pattern;
  * @since 0.23.1
  */
 final class RequiredJavaDocTag {
+
     /**
      * Tag name.
      */
@@ -197,6 +198,7 @@ final class RequiredJavaDocTag {
      * @since 0.23.1
      */
     interface Reporter {
+
         /**
          * Log a message that has no column information.
          *

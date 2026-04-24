@@ -150,6 +150,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
      * Enumeration for constants of method modifiers.
      */
     private enum Modifiers {
+
         /**
          * PUBLIC method modifier.
          */

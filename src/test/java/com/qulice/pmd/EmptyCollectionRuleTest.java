@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
  * @since 0.19
  */
 final class EmptyCollectionRuleTest {
+
     /**
      * Makes sure that empty collections not returned as null.
      * @throws Exception when something goes wrong

@@ -19,6 +19,7 @@ import org.hamcrest.MatcherAssert;
  * @since 0.16
  */
 final class PmdAssert {
+
     /**
      * File to validate.
      */

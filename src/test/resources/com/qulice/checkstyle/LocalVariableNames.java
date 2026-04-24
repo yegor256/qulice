@@ -9,6 +9,7 @@ package foo;
  * @checkstyle HiddenField (100 lines)
  */
 public final class LocalVariableNames {
+
     /**
      * Just a field.
      */
