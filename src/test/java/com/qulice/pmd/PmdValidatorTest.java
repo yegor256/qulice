@@ -837,6 +837,28 @@ final class PmdValidatorTest {
     }
 
     /**
+     * PmdValidator reports LooseCoupling when a class declares fields,
+     * constructor parameters or method return types using concrete
+     * collection implementations such as {@code ConcurrentHashMap} or
+     * {@code HashMap}. Regression test for
+     * https://github.com/yegor256/qulice/issues/734.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void reportsConcreteCollectionTypes() throws Exception {
+        new PmdAssert(
+            "ConcreteCollectionTypes.java",
+            Matchers.is(false),
+            Matchers.allOf(
+                Matchers.containsString("(LooseCoupling)"),
+                Matchers.containsString("ConcurrentHashMap"),
+                Matchers.containsString("HashMap")
+            )
+        ).validate();
+    }
+
+    /**
      * PmdValidator does not run analysis when every file is excluded. This
      * is the short-circuit fix for
      * https://github.com/yegor256/qulice/issues/759 — the source would
