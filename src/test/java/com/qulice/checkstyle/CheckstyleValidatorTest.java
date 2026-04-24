@@ -212,10 +212,8 @@ final class CheckstyleValidatorTest {
     }
 
     /**
-     * CheckstyleValidator does not leak violations between concurrent tests.
      * Regression test for https://github.com/yegor256/qulice/issues/547:
-     * validating a file must only return its own violations and never pick
-     * up messages produced by a parallel validation of a different file.
+     * a validated file must not pick up violations from a parallel run.
      * @throws Exception when error.
      */
     @Test

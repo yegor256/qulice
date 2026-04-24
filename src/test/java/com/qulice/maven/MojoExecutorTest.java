@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link MojoExecutor} conversion of Properties into Xpp3Dom.
  * @since 1.0
  */
+@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 final class MojoExecutorTest {
 
     /**
