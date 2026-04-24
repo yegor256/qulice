@@ -91,11 +91,12 @@ public final class NonStaticMethodCheck extends AbstractCheck {
             checker.check(TokenTypes.LITERAL_THROW)
                 && !checker.check(TokenTypes.LCURLY)
                 && this.countSemiColons(method) == 1;
-        if (!AnnotationUtil.containsAnnotation(method, "Override")
-            && !isInAbstractOrNativeMethod(method)
+        final boolean skip = AnnotationUtil.containsAnnotation(method, "Override")
+            || isInAbstractOrNativeMethod(method)
+            || onlythrow;
+        if (!skip
             && !checker.check(TokenTypes.LITERAL_THIS)
-            && !checker.check(TokenTypes.LITERAL_SUPER)
-            && !onlythrow) {
+            && !checker.check(TokenTypes.LITERAL_SUPER)) {
             final int line = method.getLineNo();
             this.log(
                 line,

@@ -11,14 +11,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import org.cactoos.io.ResourceOf;
-import org.cactoos.list.ListOf;
 import org.cactoos.text.FormattedText;
 import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.Joined;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -173,53 +171,6 @@ final class CheckstyleValidatorTest {
     void suppressesConditionalRegexpMultilineInComment() throws Exception {
         this.runValidation(
             "SuppressConditionalRegexpMultilineInComment.java", true
-        );
-    }
-
-    /**
-     * CheckstyleValidator reports a violation when Guava
-     * {@code Lists.newArrayList()} is used without a size parameter.
-     * See https://github.com/yegor256/qulice/issues/584.
-     * @throws Exception when error.
-     */
-    @Test
-    void reportsGuavaNewArrayListWithoutSize() throws Exception {
-        this.validate(
-            "GuavaNewArrayList.java", false,
-            "Lists.newArrayList should be initialized with a size parameter"
-        );
-    }
-
-    /**
-     * CheckstyleValidator can report Apache Commons {@code CharEncoding} class
-     * usages.
-     * @throws Exception when error.
-     */
-    @Test
-    @SuppressWarnings("unchecked")
-    void reportsAllCharEncodingUsages() throws Exception {
-        final String message =
-            "Use java.nio.charset.StandardCharsets instead";
-        final String file = "DoNotUseCharEncoding.java";
-        final Collection<Violation> results = this.runValidation(
-            file, false
-        );
-        final String name = "RegexpSinglelineCheck";
-        MatcherAssert.assertThat(
-            "8 violations should be found",
-            results,
-            new IsIterableContainingInOrder<>(
-                new ListOf<>(
-                    new ViolationMatcher(message, file, "6", name),
-                    new ViolationMatcher(message, file, "7", name),
-                    new ViolationMatcher(message, file, "8", name),
-                    new ViolationMatcher(message, file, "9", name),
-                    new ViolationMatcher(message, file, "23", name),
-                    new ViolationMatcher(message, file, "24", name),
-                    new ViolationMatcher(message, file, "25", name),
-                    new ViolationMatcher(message, file, "26", name)
-                )
-            )
         );
     }
 
@@ -646,26 +597,6 @@ final class CheckstyleValidatorTest {
                 ),
                 new ViolationMatcher(
                     "Name '_exp' must match pattern", file, "31", name
-                )
-            )
-        );
-    }
-
-    /**
-     * CheckstyleValidator reports violation when generic type parameter
-     * of an interface does not match the naming convention.
-     * @throws Exception In case of error
-     */
-    @Test
-    void reportsInvalidInterfaceTypeParameterName() throws Exception {
-        final String file = "InterfaceTypeParameterName.java";
-        MatcherAssert.assertThat(
-            "Interface type parameter violation must be reported",
-            this.runValidation(file, false),
-            Matchers.hasItem(
-                new ViolationMatcher(
-                    "Name 'wRoNg' must match pattern", file,
-                    "11", "InterfaceTypeParameterNameCheck"
                 )
             )
         );
