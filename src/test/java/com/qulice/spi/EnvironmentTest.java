@@ -6,6 +6,8 @@ package com.qulice.spi;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Collection;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -105,6 +107,26 @@ final class EnvironmentTest {
                 Matchers.hasItem(new File(env.basedir(), source)),
                 Matchers.not(Matchers.hasItem(new File(env.basedir(), image)))
             )
+        );
+    }
+
+    /**
+     * Many mocks should all initialize without failure, even when the system
+     * temp directory already contains many leftover mock directories
+     * (see <a href="https://github.com/yegor256/qulice/issues/691">issue
+     * #691</a>).
+     */
+    @Test
+    void createsManyMocksWithoutFailure() {
+        final int count = 200;
+        final Collection<File> bases = new ArrayList<>(count);
+        for (int idx = 0; idx < count; ++idx) {
+            bases.add(new Environment.Mock().basedir());
+        }
+        MatcherAssert.assertThat(
+            "All mocks must have distinct and existing basedirs",
+            bases.stream().filter(File::isDirectory).distinct().count(),
+            Matchers.equalTo((long) count)
         );
     }
 

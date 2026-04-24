@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -113,20 +114,17 @@ public interface Environment {
          */
         private final File origin = ((java.util.function.Supplier<File>) () -> {
             try {
-                final File temp = File.createTempFile(
-                    "mock",
-                    ".qulice",
-                    new File(System.getProperty("java.io.tmpdir"))
-                );
-                if (!temp.delete() || !temp.mkdirs()) {
-                    throw new IllegalStateException("init failed");
-                }
+                final File temp = Files.createTempDirectory("mock-qulice").toFile();
                 FileUtils.forceDeleteOnExit(temp);
                 final File base = new File(temp, "basedir");
-                base.mkdirs();
+                if (!base.mkdirs()) {
+                    throw new IllegalStateException(
+                        String.format("cannot create basedir at %s", base)
+                    );
+                }
                 return base;
             } catch (final IOException ex) {
-                throw new IllegalStateException("Cannot create basedir", ex);
+                throw new IllegalStateException("cannot create basedir", ex);
             }
         }).get();
 
@@ -137,7 +135,11 @@ public interface Environment {
             Collections.singleton(
                 ((java.util.function.Supplier<String>) () -> {
                     final File out = new File(this.origin, "target/classes");
-                    out.mkdirs();
+                    if (!out.mkdirs() && !out.isDirectory()) {
+                        throw new IllegalStateException(
+                            String.format("cannot create classes dir at %s", out)
+                        );
+                    }
                     return out.getAbsolutePath()
                         .replace(File.separatorChar, '/');
                 }).get()
@@ -227,8 +229,10 @@ public interface Environment {
         @Override
         public File tempdir() {
             final File file = new File(this.origin, "target/tempdir");
-            if (file.mkdirs()) {
-                assert file != null;
+            if (!file.mkdirs() && !file.isDirectory()) {
+                throw new IllegalStateException(
+                    String.format("cannot create tempdir at %s", file)
+                );
             }
             return file;
         }
@@ -236,8 +240,10 @@ public interface Environment {
         @Override
         public File outdir() {
             final File file = new File(this.origin, "target/classes");
-            if (file.mkdirs()) {
-                assert file != null;
+            if (!file.mkdirs() && !file.isDirectory()) {
+                throw new IllegalStateException(
+                    String.format("cannot create outdir at %s", file)
+                );
             }
             return file;
         }
