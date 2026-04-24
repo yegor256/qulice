@@ -4,10 +4,10 @@
  */
 package com.qulice.checkstyle;
 
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -122,7 +122,7 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
      */
     private static Iterable<DetailAST> findAllChildren(final DetailAST base,
         final int type) {
-        final List<DetailAST> children = Lists.newArrayList();
+        final List<DetailAST> children = new ArrayList<>(base.getChildCount());
         DetailAST child = base.getFirstChild();
         while (child != null) {
             if (child.getType() == type) {

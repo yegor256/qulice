@@ -4,6 +4,7 @@
  */
 package com.qulice.plugin.violations;
 
+import com.google.common.collect.Lists;
 import java.util.ArrayList;
 
 public class Violations {
@@ -38,5 +39,15 @@ public class Violations {
         System.out.println(new java.util.ArrayList<Integer>());
         System.out.println(new ArrayList<Integer>(1));
         System.out.println(new java.util.ArrayList<Integer>(2));
+    }
+
+    /**
+     * Guava array list without initializer.
+     */
+    public final void guavaArrayLists() {
+        System.out.println(Lists.newArrayList());
+        System.out.println(com.google.common.collect.Lists.newArrayList());
+        System.out.println(Lists.newArrayList(1, 2));
+        System.out.println(com.google.common.collect.Lists.newArrayList(3, 4));
     }
 }

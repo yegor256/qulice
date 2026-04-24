@@ -177,6 +177,20 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator reports a violation when Guava
+     * {@code Lists.newArrayList()} is used without a size parameter.
+     * See https://github.com/yegor256/qulice/issues/584.
+     * @throws Exception when error.
+     */
+    @Test
+    void reportsGuavaNewArrayListWithoutSize() throws Exception {
+        this.validate(
+            "GuavaNewArrayList.java", false,
+            "Lists.newArrayList should be initialized with a size parameter"
+        );
+    }
+
+    /**
      * CheckstyleValidator can report Apache Commons {@code CharEncoding} class
      * usages.
      * @throws Exception when error.

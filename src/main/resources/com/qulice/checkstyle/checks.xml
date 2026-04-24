@@ -442,4 +442,16 @@
     <property name="id" value="ArrayListShouldBeInitWithSize"/>
     <property name="fileExtensions" value="java"/>
   </module>
+  <module name="com.qulice.checkstyle.ConditionalRegexpMultilineCheck">
+    <property name="condition" value="^import com\.google\.common\.collect\.Lists;$"/>
+    <property name="format" value="Lists\.(?:&lt;.*?&gt;)?newArrayList\(\)"/>
+    <property name="message" value="Lists.newArrayList should be initialized with a size parameter"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="format" value="com\.google\.common\.collect\.Lists\.(?:&lt;.*?&gt;)?newArrayList\(\)"/>
+    <property name="message" value="Lists.newArrayList should be initialized with a size parameter"/>
+    <property name="id" value="GuavaNewArrayListShouldBeInitWithSize"/>
+    <property name="fileExtensions" value="java"/>
+  </module>
 </module>

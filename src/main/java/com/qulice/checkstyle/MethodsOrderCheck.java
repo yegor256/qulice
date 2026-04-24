@@ -6,10 +6,10 @@ package com.qulice.checkstyle;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -126,7 +126,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
      */
     private static Iterable<DetailAST> findAllChildren(final DetailAST base,
         final int type) {
-        final List<DetailAST> children = Lists.newArrayList();
+        final List<DetailAST> children = new ArrayList<>(base.getChildCount());
         DetailAST child = base.getFirstChild();
         while (child != null) {
             if (child.getType() == type) {
