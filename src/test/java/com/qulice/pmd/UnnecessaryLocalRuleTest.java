@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.hamcrest.core.IsEqual;
-import org.hamcrest.core.StringContains;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -25,13 +23,22 @@ final class UnnecessaryLocalRuleTest {
 
     @Test
     void detectsUnnecessaryLocalVariableOnReturn() throws Exception {
-        new PmdAssert(
-            "UnnecessaryLocal.java",
-            new IsEqual<>(false),
-            new StringContains(
-                "Avoid creating unnecessary local variables like 'result'"
-            )
-        ).assertOk();
+        final String file = "UnnecessaryLocal.java";
+        final Environment.Mock mock = new Environment.Mock();
+        final String name = String.format("src/main/java/foo/%s", file);
+        final Environment env = mock.withFile(
+            name,
+            new TextOf(
+                this.getClass().getResourceAsStream(file)
+            ).asString()
+        );
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should fire on a local variable used only in return",
+            new PmdValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), name))
+            ).stream().map(Violation::name).collect(Collectors.toList()),
+            Matchers.hasItem("UnnecessaryLocalRule")
+        );
     }
 
     @Test
