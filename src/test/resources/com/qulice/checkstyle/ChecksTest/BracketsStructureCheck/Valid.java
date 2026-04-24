@@ -69,6 +69,27 @@ public final class Valid {
       Valid object = new
               Valid();
     }
+    // Check annotations.
+    @Override
+    public void plain() {
+    }
+    @SuppressWarnings("foo")
+    public void single() {
+    }
+    @RetryOnFailure(attempts = 3, delay = 100, unit = TimeUnit.MILLISECONDS)
+    public void retry() {
+    }
+    @RetryOnFailure(
+        attempts = 3, delay = 100, unit = TimeUnit.MILLISECONDS
+    )
+    public void retryLong() {
+    }
+    @Named(
+        value = "foo",
+        another = "bar"
+    )
+    public void named() {
+    }
     // Check try-with-resources.
     public void tryGood() throws Exception {
         try (final ByteArrayOutputStream baos = new ByteArrayOutputStream()) {

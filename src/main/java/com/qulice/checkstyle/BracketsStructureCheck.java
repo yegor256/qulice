@@ -41,6 +41,7 @@ public final class BracketsStructureCheck extends AbstractCheck {
             TokenTypes.LITERAL_NEW,
             TokenTypes.METHOD_CALL,
             TokenTypes.RESOURCE_SPECIFICATION,
+            TokenTypes.ANNOTATION,
         };
     }
 
@@ -58,6 +59,8 @@ public final class BracketsStructureCheck extends AbstractCheck {
     public void visitToken(final DetailAST ast) {
         if (ast.getType() == TokenTypes.RESOURCE_SPECIFICATION) {
             this.checkResources(ast);
+        } else if (ast.getType() == TokenTypes.ANNOTATION) {
+            this.checkAnnotation(ast);
         } else if (ast.getType() == TokenTypes.METHOD_CALL
             || ast.getType() == TokenTypes.LITERAL_NEW) {
             this.checkParams(ast);
@@ -113,6 +116,68 @@ public final class BracketsStructureCheck extends AbstractCheck {
             if (lline == end) {
                 this.log(lline, "Closing bracket should be on a new line");
             }
+        }
+    }
+
+    /**
+     * Checks annotation with multi-line parameter list.
+     * @param node Tree node, containing the ANNOTATION
+     */
+    private void checkAnnotation(final DetailAST node) {
+        final DetailAST opening = node.findFirstToken(TokenTypes.LPAREN);
+        final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
+        if (opening != null && closing != null
+            && opening.getLineNo() != closing.getLineNo()) {
+            DetailAST first = opening.getNextSibling();
+            DetailAST last = closing.getPreviousSibling();
+            DetailAST start = opening;
+            DetailAST end = closing;
+            if (first != null && first == last
+                && first.getType() == TokenTypes.ANNOTATION_ARRAY_INIT) {
+                final DetailAST rcurly = first.getLastChild();
+                if (rcurly != null
+                    && rcurly.getType() == TokenTypes.RCURLY) {
+                    start = first;
+                    end = rcurly;
+                    first = first.getFirstChild();
+                    if (first == rcurly) {
+                        first = null;
+                    }
+                    last = rcurly.getPreviousSibling();
+                }
+            }
+            if (start.getLineNo() != end.getLineNo()) {
+                this.checkAnnotationBounds(first, last, start, end);
+            }
+        }
+    }
+
+    /**
+     * Logs violations at the first/last content of a multi-line annotation.
+     * @param first First content token after the opening bracket
+     * @param last Last content token before the closing bracket
+     * @param start Effective opening bracket token
+     * @param end Effective closing bracket token
+     */
+    private void checkAnnotationBounds(final DetailAST first,
+        final DetailAST last, final DetailAST start, final DetailAST end) {
+        if (first != null
+            && first.getLineNo() == start.getLineNo()) {
+            this.log(
+                first.getLineNo(),
+                "Parameters should start on a new line"
+            );
+        }
+        DetailAST leaf = last;
+        while (leaf != null && leaf.getChildCount() > 0) {
+            leaf = leaf.getLastChild();
+        }
+        if (leaf != null
+            && leaf.getLineNo() == end.getLineNo()) {
+            this.log(
+                leaf.getLineNo(),
+                "Closing bracket should be on a new line"
+            );
         }
     }
 

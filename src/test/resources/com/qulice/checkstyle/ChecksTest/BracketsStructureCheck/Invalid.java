@@ -80,4 +80,18 @@ public final class Invalid {
             baos.size();
         }
     }
+    // Check annotations.
+    @RetryOnFailure(attempts = 3, delay = 100,
+        unit = TimeUnit.MILLISECONDS)
+    public void retry() {
+    }
+    @Named(value = "foo",
+        another = "bar"
+    )
+    public void named() {
+    }
+    @Checked(
+        value = "one")
+    public void checked() {
+    }
 }

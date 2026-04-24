@@ -75,8 +75,9 @@ public final class AnnotationConstant {
      * Some other data.
      * @return Some other data
      */
-    @SuppressWarnings(value = { AnnotationConstant.TEXT5,
-        AnnotationConstant.TEXT6 })
+    @SuppressWarnings(
+        value = { AnnotationConstant.TEXT5, AnnotationConstant.TEXT6 }
+    )
     public String other() {
         return String.valueOf(this.dat);
     }
