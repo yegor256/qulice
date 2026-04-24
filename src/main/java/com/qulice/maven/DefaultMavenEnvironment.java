@@ -30,6 +30,8 @@ import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
+import org.apache.maven.model.Build;
+import org.apache.maven.model.Resource;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.Context;
 
@@ -185,11 +187,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public Collection<File> files(final String pattern) {
         final Collection<File> files = new LinkedList<>();
         final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();
-        final String[] dirs = {
-            "src",
-        };
-        for (final String dir : dirs) {
-            final File sources = new File(this.basedir(), dir);
+        for (final File sources : this.sources()) {
             if (sources.exists()) {
                 for (final File found : FileUtils.listFiles(
                     sources,
@@ -209,6 +207,68 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
             }
         }
         return files;
+    }
+
+    /**
+     * Collect source directories declared by the Maven project.
+     *
+     * <p>Uses compile and test source roots together with declared resources
+     * so that a project configuring {@code <sourceDirectory>} or
+     * {@code <testSourceDirectory>} in its POM is honored. Falls back to
+     * {@code src} under the basedir when the project exposes no directories,
+     * which preserves the historical behavior for minimal stubs.</p>
+     *
+     * @return Absolute directories to scan for files
+     */
+    private Collection<File> sources() {
+        final Collection<File> dirs = new LinkedList<>();
+        final List<String> mains = this.iproject.getCompileSourceRoots();
+        if (mains != null) {
+            for (final String root : mains) {
+                dirs.add(this.resolve(root));
+            }
+        }
+        final List<String> tests = this.iproject.getTestCompileSourceRoots();
+        if (tests != null) {
+            for (final String root : tests) {
+                dirs.add(this.resolve(root));
+            }
+        }
+        final Build build = this.iproject.getBuild();
+        if (build != null) {
+            final List<Resource> resources = build.getResources();
+            if (resources != null) {
+                for (final Resource res : resources) {
+                    dirs.add(this.resolve(res.getDirectory()));
+                }
+            }
+            final List<Resource> tres = build.getTestResources();
+            if (tres != null) {
+                for (final Resource res : tres) {
+                    dirs.add(this.resolve(res.getDirectory()));
+                }
+            }
+        }
+        if (dirs.isEmpty()) {
+            dirs.add(new File(this.basedir(), "src"));
+        }
+        return dirs;
+    }
+
+    /**
+     * Resolve a directory path against the project basedir.
+     * @param path Absolute or relative path
+     * @return Absolute file
+     */
+    private File resolve(final String path) {
+        final File file = new File(path);
+        final File resolved;
+        if (file.isAbsolute()) {
+            resolved = file;
+        } else {
+            resolved = new File(this.basedir(), path);
+        }
+        return resolved;
     }
 
     @Override

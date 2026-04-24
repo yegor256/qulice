@@ -10,6 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
+import org.apache.maven.model.Build;
 import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -169,6 +170,120 @@ final class DefaultMavenEnvironmentTest {
                 Matchers.hasItem(source.toFile()),
                 Matchers.not(Matchers.hasItem(image.toFile()))
             )
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.files() should honor a non-default
+     * {@code <sourceDirectory>} declared in the POM
+     * (see <a href="https://github.com/yegor256/qulice/issues/382">
+     * issue #382</a>).
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void respectsCustomSourceDirectory(@TempDir final Path basedir)
+        throws Exception {
+        final Path sources = basedir.resolve("sources");
+        Files.createDirectories(sources);
+        final Path source = sources.resolve("Foo.java");
+        Files.writeString(
+            source,
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return basedir.toFile();
+            }
+        };
+        project.addCompileSourceRoot(sources.toAbsolutePath().toString());
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Files under custom sourceDirectory should be found",
+            env.files("*.*"),
+            Matchers.hasItem(source.toFile())
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.files() should honor a non-default
+     * {@code <testSourceDirectory>} declared in the POM
+     * (see <a href="https://github.com/yegor256/qulice/issues/382">
+     * issue #382</a>).
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void respectsCustomTestSourceDirectory(@TempDir final Path basedir)
+        throws Exception {
+        final Path tests = basedir.resolve("tests");
+        Files.createDirectories(tests);
+        final Path test = tests.resolve("FooTest.java");
+        Files.writeString(
+            test,
+            "class FooTest {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return basedir.toFile();
+            }
+        };
+        project.addTestCompileSourceRoot(tests.toAbsolutePath().toString());
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Files under custom testSourceDirectory should be found",
+            env.files("*.*"),
+            Matchers.hasItem(test.toFile())
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.files() should honor directories declared in
+     * {@code <resources>} blocks of the POM
+     * (see <a href="https://github.com/yegor256/qulice/issues/382">
+     * issue #382</a>).
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void respectsCustomResourcesDirectory(@TempDir final Path basedir)
+        throws Exception {
+        final Path assets = basedir.resolve("assets");
+        Files.createDirectories(assets);
+        final Path asset = assets.resolve("config.xml");
+        Files.writeString(
+            asset,
+            "<config/>".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Build build = new Build();
+        final org.apache.maven.model.Resource resource =
+            new org.apache.maven.model.Resource();
+        resource.setDirectory(assets.toAbsolutePath().toString());
+        build.addResource(resource);
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return basedir.toFile();
+            }
+
+            @Override
+            public Build getBuild() {
+                return build;
+            }
+        };
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Files under declared resources directory should be found",
+            env.files("*.*"),
+            Matchers.hasItem(asset.toFile())
         );
     }
 

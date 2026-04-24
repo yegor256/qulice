@@ -18,7 +18,7 @@ final class MainTest {
      * Simple testing.
      */
     @Test
-    void testSquareOne() {
+    void squaresOne() {
         MatcherAssert.assertThat(
             "Square for 1 should be 1",
             1, Matchers.is(Main.square(1))
@@ -29,7 +29,7 @@ final class MainTest {
      * Simple testing.
      */
     @Test
-    void testSquareTwo() {
+    void squaresTwo() {
         MatcherAssert.assertThat(
             "Square for 2 should be 4",
             4, Matchers.is(Main.square(2))
