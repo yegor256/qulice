@@ -819,4 +819,20 @@ final class PmdValidatorTest {
             Matchers.containsString("(ArrayIsStoredDirectly)")
         ).validate();
     }
+
+    /**
+     * PmdValidator reports a missing &#64;Override annotation on a method
+     * that implements an interface method. Regression test for
+     * https://github.com/yegor256/qulice/issues/770.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void reportsMissingOverrideOnInterfaceImplementation() throws Exception {
+        new PmdAssert(
+            "MissingOverrideOnInterfaceImpl.java",
+            Matchers.is(false),
+            Matchers.containsString("(MissingOverride)")
+        ).validate();
+    }
 }
