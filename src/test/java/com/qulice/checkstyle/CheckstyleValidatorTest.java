@@ -463,6 +463,28 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator rejects stray semicolons placed after the
+     * closing brace of a class, method or constructor declaration.
+     * Regression test for https://github.com/yegor256/qulice/issues/718.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void rejectsUnnecessarySemicolonsAfterDeclarations() throws Exception {
+        final String file = "ExtraSemicolonInDeclaration.java";
+        final String name = "ExtraSemicolonCheck";
+        final String message = "Unnecessary semicolon";
+        MatcherAssert.assertThat(
+            "Stray semicolons after constructor, method and class must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItems(
+                new ViolationMatcher(message, file, "20", name),
+                new ViolationMatcher(message, file, "28", name),
+                new ViolationMatcher(message, file, "29", name)
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator accepts enum constants following the
      * upper-case, underscore-separated naming convention.
      * @throws Exception If something wrong happens inside
