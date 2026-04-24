@@ -261,6 +261,28 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator does not leak violations between concurrent tests.
+     * Regression test for https://github.com/yegor256/qulice/issues/547:
+     * validating a file must only return its own violations and never pick
+     * up messages produced by a parallel validation of a different file.
+     * @throws Exception when error.
+     */
+    @Test
+    void doesNotLeakViolationsBetweenTests() throws Exception {
+        final String unrelated =
+            "Type Javadoc comment is missing @param <T> tag.";
+        MatcherAssert.assertThat(
+            "ReturnCount.java must not yield violations from ParametrizedClass.java",
+            this.runValidation("ReturnCount.java", false),
+            Matchers.not(
+                Matchers.hasItem(
+                    new ViolationMatcher(unrelated, "ReturnCount.java")
+                )
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator can accept default methods with final modifiers.
      * @throws Exception In case of error
      */
