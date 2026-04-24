@@ -518,6 +518,9 @@
         <artifactId>maven-invoker-plugin</artifactId>
         <configuration combine.children="append">
           <mergeUserSettings>true</mergeUserSettings>
+          <environmentVariables>
+            <MAVEN_ARGS>--batch-mode --no-transfer-progress</MAVEN_ARGS>
+          </environmentVariables>
           <pomIncludes>
             <pomInclude>checkstyle-violations/pom.xml</pomInclude>
             <pomInclude>checkstyle-exceptions/pom.xml</pomInclude>
