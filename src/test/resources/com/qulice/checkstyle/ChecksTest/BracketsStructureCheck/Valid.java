@@ -69,4 +69,21 @@ public final class Valid {
       Valid object = new
               Valid();
     }
+    // Check try-with-resources.
+    public void tryGood() throws Exception {
+        try (final ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            baos.size();
+        }
+        try (
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream()
+        ) {
+            baos.size();
+        }
+        try (
+            final ByteArrayOutputStream baos =
+                new ByteArrayOutputStream()
+        ) {
+            baos.size();
+        }
+    }
 }

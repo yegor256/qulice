@@ -40,6 +40,7 @@ public final class BracketsStructureCheck extends AbstractCheck {
         return new int[] {
             TokenTypes.LITERAL_NEW,
             TokenTypes.METHOD_CALL,
+            TokenTypes.RESOURCE_SPECIFICATION,
         };
     }
 
@@ -55,7 +56,9 @@ public final class BracketsStructureCheck extends AbstractCheck {
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (ast.getType() == TokenTypes.METHOD_CALL
+        if (ast.getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+            this.checkResources(ast);
+        } else if (ast.getType() == TokenTypes.METHOD_CALL
             || ast.getType() == TokenTypes.LITERAL_NEW) {
             this.checkParams(ast);
         } else {
@@ -109,6 +112,39 @@ public final class BracketsStructureCheck extends AbstractCheck {
             final int lline = last.getLineNo();
             if (lline == end) {
                 this.log(lline, "Closing bracket should be on a new line");
+            }
+        }
+    }
+
+    /**
+     * Checks resources of try-with-resources statement.
+     * @param node Tree node, containing the RESOURCE_SPECIFICATION.
+     */
+    private void checkResources(final DetailAST node) {
+        final DetailAST opening = node.findFirstToken(TokenTypes.LPAREN);
+        final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
+        if (opening != null && closing != null
+            && opening.getLineNo() != closing.getLineNo()) {
+            final DetailAST resources =
+                node.findFirstToken(TokenTypes.RESOURCES);
+            if (resources != null) {
+                if (resources.getLineNo() == opening.getLineNo()) {
+                    this.log(
+                        resources.getLineNo(),
+                        "Parameters should start on a new line"
+                    );
+                }
+                DetailAST last = resources.getLastChild();
+                while (last != null && last.getChildCount() > 0) {
+                    last = last.getLastChild();
+                }
+                if (last != null
+                    && last.getLineNo() == closing.getLineNo()) {
+                    this.log(
+                        last.getLineNo(),
+                        "Closing bracket should be on a new line"
+                    );
+                }
             }
         }
     }

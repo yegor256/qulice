@@ -68,4 +68,16 @@ public final class Invalid {
           )
         );
     }
+    // Check try-with-resources.
+    public void tryBad() throws Exception {
+        try (final ByteArrayOutputStream baos =
+            new ByteArrayOutputStream()) {
+            baos.size();
+        }
+        try (
+            final ByteArrayOutputStream baos =
+            new ByteArrayOutputStream()) {
+            baos.size();
+        }
+    }
 }
