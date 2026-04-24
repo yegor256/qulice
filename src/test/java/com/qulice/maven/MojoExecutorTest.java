@@ -11,6 +11,7 @@ import java.util.Properties;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -83,6 +84,53 @@ final class MojoExecutorTest {
             "Collection elements cannot be merged into a single string",
             xpp.getChild("patterns").getChildCount(),
             Matchers.equalTo(2)
+        );
+    }
+
+    /**
+     * MojoExecutor can render a plain String value as a leaf node.
+     */
+    @Test
+    void rendersStringValueAsLeaf() {
+        final Properties config = new Properties();
+        config.put("encoding", "UTF-8");
+        final Xpp3Dom xpp = new MojoExecutor(null, null)
+            .toXppDom(config, "configuration");
+        MatcherAssert.assertThat(
+            "String value cannot be rendered as a leaf node",
+            xpp.getChild("encoding").getValue(),
+            Matchers.equalTo("UTF-8")
+        );
+    }
+
+    /**
+     * MojoExecutor can render a String array as repeated child nodes.
+     */
+    @Test
+    void rendersStringArrayAsRepeatedChildren() {
+        final Properties config = new Properties();
+        config.put("excludes", new String[] {"first", "second", "third"});
+        final Xpp3Dom xpp = new MojoExecutor(null, null)
+            .toXppDom(config, "configuration");
+        MatcherAssert.assertThat(
+            "String array entries cannot be rendered as separate children",
+            xpp.getChild("excludes").getChildCount(),
+            Matchers.equalTo(3)
+        );
+    }
+
+    /**
+     * MojoExecutor fails fast when the property value has an unsupported type.
+     */
+    @Test
+    void failsOnUnsupportedValueType() {
+        final Properties config = new Properties();
+        config.put("amount", 42);
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> new MojoExecutor(null, null)
+                .toXppDom(config, "configuration"),
+            "Unsupported value type must not be silently accepted"
         );
     }
 
