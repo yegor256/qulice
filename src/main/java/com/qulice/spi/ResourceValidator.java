@@ -9,7 +9,6 @@ import java.util.Collection;
 
 /**
  * Validator.
- *
  * @since 0.17
  */
 public interface ResourceValidator {

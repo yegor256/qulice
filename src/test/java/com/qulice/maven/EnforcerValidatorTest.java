@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link EnforcerValidator} class.
- *
  * @since 0.70.0
  */
 final class EnforcerValidatorTest {
@@ -53,7 +52,6 @@ final class EnforcerValidatorTest {
 
     /**
      * Environment decorator that reports the given check as excluded.
-     *
      * @since 0.70.0
      */
     private static final class Excluded implements Environment {

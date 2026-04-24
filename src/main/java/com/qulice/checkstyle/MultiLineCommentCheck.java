@@ -82,7 +82,6 @@ public final class MultiLineCommentCheck extends AbstractCheck {
      * The parameter is set from the checks.xml file
      * <module name="com.qulice.checkstyle.MultiLineCommentCheck"/> and
      * <property name="format" value=" this regexp "/> property
-     *
      * @param fmt Validatig regexp
      */
     public void setFormat(final String fmt) {
@@ -95,7 +94,6 @@ public final class MultiLineCommentCheck extends AbstractCheck {
      * <module name="com.qulice.checkstyle.MultiLineCommentCheck"/> and
      * <property name="message" value="First sentence in a comment should start with ....."/>
      * property
-     *
      * @param msg Error message
      */
     public void setMessage(final String msg) {

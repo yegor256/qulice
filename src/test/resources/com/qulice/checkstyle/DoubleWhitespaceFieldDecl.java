@@ -6,7 +6,6 @@ package foo;
 /**
  * Demonstrates a field declaration with multiple whitespace characters
  * between tokens, which must be rejected.
- *
  * @since 1.0
  */
 public final class DoubleWhitespaceFieldDecl {

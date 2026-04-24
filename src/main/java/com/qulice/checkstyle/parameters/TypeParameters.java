@@ -13,7 +13,6 @@ import java.util.function.Consumer;
 
 /**
  * Class, interface, constructor or method generic type parameters.
- *
  * @since 0.18.18
  */
 public class TypeParameters {

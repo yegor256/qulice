@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for ReturnEmptyCollectionRatherThanNull.
- *
  * @since 0.19
  */
 final class EmptyCollectionRuleTest {

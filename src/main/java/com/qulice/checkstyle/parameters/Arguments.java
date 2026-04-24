@@ -13,7 +13,6 @@ import java.util.function.Consumer;
 
 /**
  * Method or constructor arguments.
- *
  * @since 0.18.18
  */
 public class Arguments {

@@ -6,7 +6,6 @@ package com.qulice.spi;
 
 /**
  * Validator.
- *
  * @since 0.3
  */
 public interface Validator {

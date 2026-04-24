@@ -54,7 +54,6 @@ public final class PomXpathValidator implements MavenValidator {
 
     /**
      * Parse pom.xml.
-     *
      * @param env Environment
      * @return XML instance
      */

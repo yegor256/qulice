@@ -6,7 +6,6 @@ package foo;
 /**
  * Declares enum constants with names that violate the required
  * upper-case, underscore-separated convention.
- *
  * @since 1.0
  */
 public enum InvalidEnumValues {

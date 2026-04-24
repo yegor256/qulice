@@ -6,7 +6,6 @@ package foo;
 /**
  * Demonstrates a comma placed at the beginning of a line, which is
  * disallowed by the Google Java Style Guide.
- *
  * @since 1.0
  */
 public final class InvalidLeadingComma {

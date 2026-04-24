@@ -5,7 +5,6 @@ package foo;
 
 /**
  * Correct Javadoc for class {@link AtClauseOrder}.
- *
  * @see AtClauseOrder
  * @serial Serial
  * @serialField
@@ -26,7 +25,6 @@ public final class AtClauseOrder {
 
     /**
      * Just a method with valid Javadoc.
-     *
      * @param input Valid parameter
      * @return Some value
      * @throws  Exception
@@ -44,7 +42,6 @@ public final class AtClauseOrder {
 
     /**
      * Just a method with invalid Javadoc.
-     *
      * @see AtClauseOrder
      * @return Some value
      */
@@ -54,7 +51,6 @@ public final class AtClauseOrder {
 
     /**
      * Just a class with invalid Javadoc.
-     *
      * @since 1.0
      */
     private class Class {

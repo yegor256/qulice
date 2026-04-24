@@ -9,7 +9,6 @@ package foo;
 
 /**
  * Sample class for testing LineLength suppression in comments.
- *
  * @since 1.0
  */
 public interface SuppressLineLengthInComment {

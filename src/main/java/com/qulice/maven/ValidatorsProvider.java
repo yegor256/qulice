@@ -11,7 +11,6 @@ import java.util.Set;
 
 /**
  * Provider of validators.
- *
  * @since 0.3
  */
 interface ValidatorsProvider {

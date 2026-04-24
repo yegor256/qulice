@@ -8,7 +8,6 @@ package com.qulice.checkstyle;
  * Represent a line range. For example, a Java method can be described by an
  * instance of this class. The alpha line could be the method definition and
  * the omega line could be the end closing bracket.
- *
  * @since 0.16
  */
 public final class LineRange {

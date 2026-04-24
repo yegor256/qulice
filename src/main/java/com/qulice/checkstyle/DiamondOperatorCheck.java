@@ -87,7 +87,6 @@ public final class DiamondOperatorCheck extends AbstractCheck {
 
     /**
      * Checks if diamond is not required.
-     *
      * @param node Node
      * @return True if not array
      */
@@ -99,7 +98,6 @@ public final class DiamondOperatorCheck extends AbstractCheck {
 
     /**
      * Checks if node is not array.
-     *
      * @param node Node
      * @return True if not array
      */
@@ -109,7 +107,6 @@ public final class DiamondOperatorCheck extends AbstractCheck {
 
     /**
      * Checks if node is object block.
-     *
      * @param node Node
      * @return True if not object block
      */
@@ -119,7 +116,6 @@ public final class DiamondOperatorCheck extends AbstractCheck {
 
     /**
      * Checks if node has initialization with diamond operator.
-     *
      * @param node Node
      * @return True if not object block
      */
@@ -140,7 +136,6 @@ public final class DiamondOperatorCheck extends AbstractCheck {
 
     /**
      * Checks if node has initialization with diamond operator.
-     *
      * @param node Node
      * @return True if not object block
      */
@@ -169,7 +164,6 @@ public final class DiamondOperatorCheck extends AbstractCheck {
 
     /**
      * Returns the first child node of a specified type.
-     *
      * @param node AST subtree to process
      * @param type Type of token
      * @return Child node of specified type OR NULL!

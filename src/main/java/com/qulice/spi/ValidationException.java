@@ -6,7 +6,6 @@ package com.qulice.spi;
 
 /**
  * Exception thrown by a validator, if it fails.
- *
  * @since 0.3
  */
 public final class ValidationException extends Exception {

@@ -30,7 +30,6 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 
 /**
  * Executor of plugins.
- *
  * @since 0.3
  */
 public final class MojoExecutor {

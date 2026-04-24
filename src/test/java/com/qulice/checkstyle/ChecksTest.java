@@ -151,6 +151,7 @@ final class ChecksTest {
             "NonStaticMethodCheck",
             "ConstantUsageCheck",
             "JavadocEmptyLineCheck",
+            "JavadocEmptyLineBeforeTagCheck",
             "JavadocFirstLineCheck",
             "JavadocTagsCheck",
             "JavadocTagsDotCheck",
@@ -170,7 +171,6 @@ final class ChecksTest {
 
     /**
      * Mocked collector of checkstyle events.
-     *
      * @since 0.1
      */
     private static final class Collector {

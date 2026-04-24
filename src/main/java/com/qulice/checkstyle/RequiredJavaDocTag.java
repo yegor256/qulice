@@ -178,7 +178,6 @@ final class RequiredJavaDocTag {
 
         /**
          * Log a message that has no column information.
-         *
          * @param line The line number where the audit event was found
          * @param msg The message that describes the audit event
          * @param args The details of the message

@@ -7,7 +7,6 @@ package foo;
  * Classname contains no abbreviations.
  * Contains overridden method for which otherwise invalid uppercase use is
  * allowed.
- *
  * @since 1.0
  */
 public class ValidAbbreviationAsWordInName extends SomeClass {

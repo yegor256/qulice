@@ -13,7 +13,6 @@ import java.util.List;
 
 /**
  * Checks that constructor, declared as private class is used more than once.
- *
  * @since 0.3
  */
 public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
@@ -43,7 +42,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
 
     /**
      * Collects all private constructors in a given object block.
-     *
      * @param objblock Node which contains constructors
      * @return List of DetailAST nodes representing the private constructors
      */
@@ -60,7 +58,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
 
     /**
      * Checks if a private constructor is used in the object block.
-     *
      * @param privatector Node representing the private constructor
      * @param objblock Node which contains constructors
      * @return True if the private constructor is used, False otherwise
@@ -75,7 +72,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
 
     /**
      * Checks if a private constructor is used in other constructors.
-     *
      * @param privatector Node representing the private constructor
      * @param objblock Node containing constructors
      * @return True if the private constructor is used, False otherwise
@@ -91,7 +87,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
 
     /**
      * Checks if a private constructor is used in methods of the object block.
-     *
      * @param privatector Node representing the private constructor
      * @param objblock Node containing methods
      * @return True if the private constructor is used, False otherwise
@@ -113,7 +108,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
 
     /**
      * Collects all constructors in a given object block.
-     *
      * @param objblock Node which contains constructors
      * @return List of DetailAST nodes representing all the constructors
      */
@@ -131,7 +125,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
     /**
      * Returns true if specified node has modifiers of type
      * <code>PRIVATE</code>.
-     *
      * @param node Node to check
      * @return True if specified node contains modifiers of type
      *  <code>PRIVATE</code>, else returns <code>false</code>
@@ -180,7 +173,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
     /**
      * Checks if private constructors are used.
      * Logs a message if a private constructor is not used.
-     *
      * @param objblock Node which contains constructors
      */
     private void checkConstructors(final DetailAST objblock) {

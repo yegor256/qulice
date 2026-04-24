@@ -18,7 +18,6 @@ import net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil;
  * common idiom wraps {@code assertThrows(...).getMessage()} inside an
  * {@code assertThat} to verify the thrown exception's message in a
  * single logical check.
- *
  * @since 0.26.0
  */
 public final class UnitTestContainsTooManyAssertsRule

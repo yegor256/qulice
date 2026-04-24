@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * Some comment.
- *
  * @since 1.0
  */
 public final class DiamondUsageNotNeeded {

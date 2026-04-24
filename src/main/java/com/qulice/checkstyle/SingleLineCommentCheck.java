@@ -88,7 +88,6 @@ public final class SingleLineCommentCheck extends AbstractCheck {
      * The parameter is set from the checks.xml file
      * <module name="com.qulice.checkstyle.SingleLineCommentCheck"/> and
      * <property name="format" value=" this regexp "/> property
-     *
      * @param fmt Validatig regexp
      */
     public void setFormat(final String fmt) {
@@ -101,7 +100,6 @@ public final class SingleLineCommentCheck extends AbstractCheck {
      * <module name="com.qulice.checkstyle.SingleLineCommentCheck"/> and
      * <property name="message" value="This kind of comment is not allowed."/>
      * property
-     *
      * @param msg Error message
      */
     public void setMessage(final String msg) {

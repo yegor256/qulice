@@ -17,6 +17,7 @@ import java.util.Map;
  * Checks the order of methods declaration.
  *
  * Right order is: public, protected and private
+ *
  * @since 0.6
  */
 public final class MethodsOrderCheck extends AbstractCheck {
@@ -64,7 +65,6 @@ public final class MethodsOrderCheck extends AbstractCheck {
 
     /**
      * Checks order of methods.
-     *
      * @param methods Nodes representing class methods
      */
     private void checkOrder(final Iterable<DetailAST> methods) {

@@ -22,7 +22,6 @@ import org.junit.jupiter.api.condition.JRE;
 
 /**
  * Test case for {@link PmdValidator} class.
- *
  * @since 0.3
  */
 @SuppressWarnings("PMD.TooManyMethods")
@@ -31,7 +30,6 @@ final class PmdValidatorTest {
     /**
      * Error message for forbidding access to static fields other than with a
      * static way.
-     *
      * @checkstyle LineLengthCheck (40 lines)
      */
     private static final String STATIC_ACCESS =
@@ -82,7 +80,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator can find violations in Java file(s).
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -101,7 +98,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator can understand method references.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -118,7 +114,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator does not think that constant is unused when it is used just
      * from the inner class.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -150,7 +145,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator can allow field initialization when constructor is missing.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -173,7 +167,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator can forbid field initialization when constructor exists.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -195,7 +188,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator can allow static field initialization when constructor
      * exists.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -219,7 +211,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator can forbid field initialization in several constructors.
      * Only one constructor should do real work. Others - delegate to it.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -241,7 +232,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator can allow field initialization in one constructor. Only one
      * constructor should do real work. Others - delegate to it.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -264,7 +254,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator forbids unnecessary final modifier for methods.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -279,7 +268,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator forbid useless parentheses.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -295,7 +283,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator forbids code in constructor other than field
      * initialization.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -316,7 +303,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator allows lambda in constructor.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -339,7 +325,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator forbids usage of Files.createFile in tests.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -355,7 +340,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator allows usage of Files.createFile outside of tests.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -374,7 +358,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator accepts calls to other constructors or call to super class
      * constructor in constructors.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -397,7 +380,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator accepts calls to static fields in a static way.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -432,7 +414,6 @@ final class PmdValidatorTest {
      * PmdValidator accepts direct assignment to a static final field inside
      * a static initializer, because qualifying it with the class name would
      * not compile for a final field.
-     *
      * @throws Exception If something wrong happens inside.
      * @see <a href="https://github.com/yegor256/qulice/issues/719">#719</a>
      */
@@ -457,7 +438,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator forbids calls to static fields directly in a non static
      * way.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -479,7 +459,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator forbids calls to static fields in a non static way via
      * instance reference.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -501,7 +480,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator forbids calls to static methods in a non static way via
      * instance reference.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -523,7 +501,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator forbids non public clone methods (PMD rule
      * rulesets/java/clone.xml/CloneMethodMustBePublic).
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -544,7 +521,6 @@ final class PmdValidatorTest {
      * PmdValidator forbids clone methods with return type not matching class
      * name (PMD rule
      * rulesets/java/clone.xml/CloneMethodReturnTypeMustMatchClassName).
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -565,7 +541,6 @@ final class PmdValidatorTest {
     /**
      * PmdValidator forbids ternary operators that can be simplified (PMD rule
      * rulesets/java/basic.xml/SimplifiedTernary).
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -585,7 +560,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator can allow non-static, non-transient fields.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -603,7 +577,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator can prohibit public static methods.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -617,7 +590,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator can allow public static void main(String...args) method.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -635,7 +607,6 @@ final class PmdValidatorTest {
      * PmdValidator can allow JUnit public static methods marked with:<br>
      * BeforeClass annotation.<br> AfterClass annotation.<br>
      * Parameterized.Parameters annotation.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -654,7 +625,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator can allow duplicate literals in annotations.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -670,7 +640,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator can allow record classes.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -687,7 +656,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator checks swagger annotation.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -703,7 +671,6 @@ final class PmdValidatorTest {
 
     /**
      * PmdValidator can prohibit unicode characters in method names.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -719,7 +686,6 @@ final class PmdValidatorTest {
      * PmdValidator can recognise io.github.artsok RepeatedIfExceptionsTest
      * annotation as a test method, so that the class is not flagged with
      * TestClassWithoutTestCases.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -738,7 +704,6 @@ final class PmdValidatorTest {
      * class that is referenced inside a lambda through a fully-qualified
      * outer-class path. Regression test for
      * https://github.com/yegor256/qulice/issues/1520
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -758,7 +723,6 @@ final class PmdValidatorTest {
      * all. Guard against the suppression in
      * {@link #allowsPrivateStaticFieldAccessedViaFullyQualifiedName()}
      * over-matching.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -776,7 +740,6 @@ final class PmdValidatorTest {
      * an unnecessary suppression of itself (Fix #1534). The rule cannot
      * suppress its own violations, so suppressing it has no effect and
      * should therefore not be reported as unused.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -811,7 +774,6 @@ final class PmdValidatorTest {
      * parameter is wrapped in a method call or constructor before being
      * assigned to a field. Regression test for
      * https://github.com/yegor256/qulice/issues/1053.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -829,7 +791,6 @@ final class PmdValidatorTest {
      * PmdValidator still reports ArrayIsStoredDirectly when a varargs or
      * array parameter is assigned to a field directly. Guards the fix for
      * https://github.com/yegor256/qulice/issues/1053 from over-suppressing.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -845,7 +806,6 @@ final class PmdValidatorTest {
      * PmdValidator reports a missing &#64;Override annotation on a method
      * that implements an interface method. Regression test for
      * https://github.com/yegor256/qulice/issues/770.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -863,7 +823,6 @@ final class PmdValidatorTest {
      * collection implementations such as {@code ConcurrentHashMap} or
      * {@code HashMap}. Regression test for
      * https://github.com/yegor256/qulice/issues/734.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -885,7 +844,6 @@ final class PmdValidatorTest {
      * https://github.com/yegor256/qulice/issues/759 — the source would
      * otherwise produce a violation, but the exclusion must prevent PMD
      * from being invoked on it at all.
-     *
      * @throws Exception If something wrong happens inside.
      */
     @Test

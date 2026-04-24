@@ -12,7 +12,6 @@ import org.hamcrest.TypeSafeMatcher;
  * Matcher for {@link Violation} produced by {@link CheckstyleValidator}
  * in unit tests. Matches by substring of the message, suffix of the file
  * path and, optionally, exact line number and check name.
- *
  * @since 0.1
  */
 final class ViolationMatcher extends TypeSafeMatcher<Violation> {

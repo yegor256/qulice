@@ -16,7 +16,6 @@ import org.cactoos.text.Joined;
  * <li>bigger than previous by exactly 4
  * </ul>
  * All other cases must cause a failure.
- *
  * @since 0.3
  */
 public final class CascadeIndentationCheck extends AbstractFileSetCheck {

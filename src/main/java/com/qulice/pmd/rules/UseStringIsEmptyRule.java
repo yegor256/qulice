@@ -14,7 +14,6 @@ import net.sourceforge.pmd.lang.java.types.JTypeMirror;
 /**
  * Rule to prohibit use of String.length() when checking for empty string.
  * String.isEmpty() should be used instead.
- *
  * @since 0.18
  */
 public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
@@ -61,7 +60,6 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
 
     /**
      * Checks if length is length() or literal is 0 or 1.
-     *
      * @param length The method
      * @param literal The number
      * @return True if matches, false otherwise
@@ -95,7 +93,6 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
 
     /**
      * Checks if the expression is of String type.
-     *
      * @param expr The expression to check
      * @return True if expression has java.lang.String type
      * @checkstyle UnnecessaryJavaLang (5 lines)

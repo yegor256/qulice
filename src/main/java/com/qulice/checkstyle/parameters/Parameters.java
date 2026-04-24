@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Abstract parameters. Is used for Generic type parameters or
  *  method(constructor) arguments.
- *
  * @since 0.18.18
  */
 public class Parameters {

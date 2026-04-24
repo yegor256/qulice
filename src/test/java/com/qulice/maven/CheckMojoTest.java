@@ -133,7 +133,6 @@ final class CheckMojoTest {
     /**
      * FakeLogger.
      * A logger that logs in a buffer.
-     *
      * @since 0.24.1
      */
     @SuppressWarnings("PMD.AvoidStringBufferField")
@@ -231,7 +230,6 @@ final class CheckMojoTest {
     /**
      * FakeValidator
      * A mock to a Validator.
-     *
      * @since 0.24.1
      */
     private static final class FakeValidator implements Validator {
@@ -269,7 +267,6 @@ final class CheckMojoTest {
     /**
      * BlockedValidator
      * A mock to a Validator that blocks forever.
-     *
      * @since 0.24.1
      */
     private static final class BlockedValidator implements ResourceValidator {
@@ -322,7 +319,6 @@ final class CheckMojoTest {
     /**
      * FakeResourceValidator.
      * A mock to a ResourceValidator.
-     *
      * @since 0.24.1
      */
     private static final class FakeResourceValidator

@@ -22,7 +22,6 @@ import org.cactoos.text.UncheckedText;
  * <pre>
  * &lt;module name="ProhibitNonFinalClassesCheck"/&gt;
  * </pre>
- *
  * @since 0.19
  */
 public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
@@ -169,7 +168,6 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
 
     /**
      * Maintains information about class' ctors.
-     *
      * @since 0.1
      */
     private static final class ClassDesc {
@@ -191,7 +189,6 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
 
         /**
          * Create a new ClassDesc instance.
-         *
          * @param qualified Qualified class name(with package)
          * @param asfinal Indicates if the class declared as final
          * @param asabstract Indicates if the class declared as

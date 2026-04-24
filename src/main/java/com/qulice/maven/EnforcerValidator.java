@@ -9,7 +9,6 @@ import java.util.Properties;
 
 /**
  * Validate with maven-enforcer-plugin.
- *
  * @since 0.3
  */
 public final class EnforcerValidator implements MavenValidator {

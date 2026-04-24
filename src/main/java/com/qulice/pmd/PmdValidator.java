@@ -15,7 +15,6 @@ import java.util.LinkedList;
 
 /**
  * Validates source code with PMD.
- *
  * @since 0.3
  */
 public final class PmdValidator implements ResourceValidator {

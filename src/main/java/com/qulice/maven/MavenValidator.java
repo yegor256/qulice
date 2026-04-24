@@ -8,7 +8,6 @@ import com.qulice.spi.ValidationException;
 
 /**
  * Validator inside Maven.
- *
  * @since 0.3
  */
 @FunctionalInterface

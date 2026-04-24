@@ -19,7 +19,6 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator} covering checks that apply to
  * non-Java text files and whitespace before closing braces.
- *
  * @since 0.25.0
  */
 final class CheckstyleTextFileTest {

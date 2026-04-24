@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * Better to use diamond operator where possible.
- *
  * @since 1.0
  */
 public final class InvalidDiamondsUsage {

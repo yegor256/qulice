@@ -20,7 +20,6 @@ import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Abstract mojo.
- *
  * @since 0.3
  */
 public abstract class AbstractQuliceMojo extends AbstractMojo
@@ -74,7 +73,6 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * The source encoding.
-     *
      * @parameter expression="${project.build.sourceEncoding}" required="true"
      */
     @Parameter(property = "encoding", defaultValue = "${project.build.sourceEncoding}")

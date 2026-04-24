@@ -6,7 +6,6 @@ package com.qulice.plugin.alpha;
 
 /**
  * Sample class.
- *
  * @since 1.0
  */
 @SuppressWarnings("PMD.ProhibitPublicStaticMethods")

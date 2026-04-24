@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * Sample class for testing Guava Lists.newArrayList() detection.
- *
  * @since 1.0
  */
 public final class GuavaNewArrayList {

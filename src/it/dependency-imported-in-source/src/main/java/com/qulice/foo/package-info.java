@@ -5,7 +5,6 @@
 
 /**
  * Sample package.
- *
  * @since 1.0
  */
 package com.qulice.foo;

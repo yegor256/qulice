@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
  * API usages such as Guava {@code Lists.newArrayList()} with no
  * size, Apache Commons {@code CharEncoding}, and interface type
  * parameter naming.
- *
  * @since 0.25.1
  */
 final class CheckstyleBannedApiTest {

@@ -13,7 +13,6 @@ import org.apache.maven.model.Plugin;
 /**
  * Check that the project has not SNAPSHOT dependencies if its own
  * status is stable.
- *
  * @since 0.3
  */
 public final class SnapshotsValidator implements MavenValidator {

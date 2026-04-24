@@ -8,7 +8,6 @@ import java.util.Collection;
 
 /**
  * Sample class for testing ConditionalRegexpMultilineCheck suppression.
- *
  * @since 1.0
  */
 public final class SuppressConditionalRegexpMultilineInComment {

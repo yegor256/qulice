@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * {@code SingleSpaceSeparatorCheck}.
- *
  * @since 0.24.2
  */
 final class CheckstyleSingleSpaceSeparatorTest {
@@ -51,7 +50,7 @@ final class CheckstyleSingleSpaceSeparatorTest {
             Matchers.hasItem(
                 new ViolationMatcher(
                     "Use a single space to separate non-whitespace characters.",
-                    file, "18", "SingleSpaceSeparatorCheck"
+                    file, "17", "SingleSpaceSeparatorCheck"
                 )
             )
         );

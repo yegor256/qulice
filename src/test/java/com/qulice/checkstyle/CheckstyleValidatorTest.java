@@ -356,25 +356,25 @@ final class CheckstyleValidatorTest {
                 new ViolationMatcher(
                     "Javadoc comment at column 3 has parse error.",
                     file,
-                    "13",
+                    "12",
                     "MissingDeprecatedCheck"
                 ),
                 new ViolationMatcher(
                     "Javadoc comment at column 3 has parse error.",
                     file,
-                    "13",
+                    "12",
                     name
                 ),
                 new ViolationMatcher(
-                    message, file, "22", name
+                    message, file, "21", name
                 ),
                 new ViolationMatcher(
-                    message, file, "49", name
+                    message, file, "46", name
                 ),
                 new ViolationMatcher(
                     "Class Class should be declared as final.",
                     file,
-                    "60",
+                    "56",
                     "FinalClassCheck"
                 )
             )
@@ -487,15 +487,15 @@ final class CheckstyleValidatorTest {
             Matchers.hasItems(
                 new ViolationMatcher(
                     "Enum value anyName must match pattern",
-                    file, "17", name
+                    file, "16", name
                 ),
                 new ViolationMatcher(
                     "Enum value MixedCase must match pattern",
-                    file, "22", name
+                    file, "21", name
                 ),
                 new ViolationMatcher(
                     "Enum value lowercase must match pattern",
-                    file, "27", name
+                    file, "26", name
                 )
             )
         );
@@ -647,7 +647,6 @@ final class CheckstyleValidatorTest {
     /**
      * CheckstyleValidator can reject uppercase abbreviations in naming
      * outside of final static fields.
-     *
      * @throws Exception In case of error
      */
     @Test
@@ -668,11 +667,11 @@ final class CheckstyleValidatorTest {
                     String.format(
                         message, "InvalidAbbreviationAsWordInNameXML"
                     ),
-                    file, "11", name
+                    file, "10", name
                 ),
                 new ViolationMatcher(
                     String.format(message, "InvalidHTML"), file,
-                    "15", name
+                    "14", name
                 )
             )
         );
@@ -694,7 +693,6 @@ final class CheckstyleValidatorTest {
 
     /**
      * CheckstyleValidator can allow IT as an uppercase abbreviation.
-     *
      * @throws Exception In case of error
      */
     @Test
@@ -707,7 +705,6 @@ final class CheckstyleValidatorTest {
     /**
      * CheckstyleValidator can allow final static fields and overrides
      * to have uppercase abbreviations.
-     *
      * @throws Exception In case of error
      */
     @Test
@@ -720,7 +717,6 @@ final class CheckstyleValidatorTest {
     /**
      * CheckstyleValidator can allow final static fields and overrides
      * to have uppercase abbreviations.
-     *
      * @throws Exception In case of error
      */
     @Test
@@ -744,7 +740,7 @@ final class CheckstyleValidatorTest {
             Matchers.hasItem(
                 new ViolationMatcher(
                     "',' is preceded with whitespace",
-                    file, "22", "NoWhitespaceBeforeCheck"
+                    file, "21", "NoWhitespaceBeforeCheck"
                 )
             )
         );
@@ -763,8 +759,8 @@ final class CheckstyleValidatorTest {
             "Two diamond violations should be found",
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher(message, file, "19", name),
-                new ViolationMatcher(message, file, "29", name)
+                new ViolationMatcher(message, file, "18", name),
+                new ViolationMatcher(message, file, "28", name)
             )
         );
     }
@@ -856,8 +852,8 @@ final class CheckstyleValidatorTest {
             "Both class and method type parameter descriptions must be reported",
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher(message, file, "9", name),
-                new ViolationMatcher(message, file, "17", name)
+                new ViolationMatcher(message, file, "8", name),
+                new ViolationMatcher(message, file, "15", name)
             )
         );
     }

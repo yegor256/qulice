@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for LocalVariableCouldBeFinal.
- *
  * @since 0.18
  */
 final class UnusedImportsRuleTest {
@@ -18,7 +17,6 @@ final class UnusedImportsRuleTest {
     /**
      * UnusedImport can detect when the class has an unused import line and
      * show error message correctly.
-     *
      * @throws Exception If something goes wrong
      */
     @Test

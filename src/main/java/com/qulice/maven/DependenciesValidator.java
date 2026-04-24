@@ -35,7 +35,6 @@ import org.codehaus.plexus.context.ContextException;
 
 /**
  * Validator of dependencies.
- *
  * @since 0.3
  * @checkstyle ReturnCountCheck (100 line)
  */
@@ -299,7 +298,6 @@ final class DependenciesValidator implements MavenValidator {
 
     /**
      * Predicate for excluded dependencies.
-     *
      * @since 0.1
      */
     private static class ExcludePredicate implements Predicate<String> {

@@ -22,7 +22,6 @@ import org.cactoos.list.ListOf;
 
 /**
  * Validates source files via <code>PmdValidator</code>.
- *
  * @since 0.3
  */
 final class SourceValidator {

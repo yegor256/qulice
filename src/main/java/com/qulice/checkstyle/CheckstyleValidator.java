@@ -26,7 +26,6 @@ import org.xml.sax.InputSource;
 
 /**
  * Validator with Checkstyle.
- *
  * @since 0.3
  * @checkstyle ClassDataAbstractionCoupling (260 lines)
  */

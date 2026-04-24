@@ -12,7 +12,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that try-with-resources does not end with a semicolon. Implementation
  * relies on existence of semicolon inside of RESOURCE_SPECIFICATION token
  * as interpreted by Checkstyle.
- *
  * @since 0.15
  */
 public final class FinalSemicolonInTryWithResourcesCheck extends AbstractCheck {

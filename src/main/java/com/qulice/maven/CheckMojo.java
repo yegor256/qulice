@@ -30,7 +30,6 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 
 /**
  * Check the project and find all possible violations.
- *
  * @since 0.3
  */
 @Mojo(name = "check", defaultPhase = LifecyclePhase.VERIFY,
@@ -259,7 +258,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
      * Callable for validators.
-     *
      * @since 0.1
      */
     private static class ValidatorCallable

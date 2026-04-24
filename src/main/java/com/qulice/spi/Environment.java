@@ -23,7 +23,6 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 /**
  * Environment.
- *
  * @since 0.3
  */
 @SuppressWarnings("PMD.TooManyMethods")
@@ -105,7 +104,6 @@ public interface Environment {
 
     /**
      * Mock of {@link Environment}.
-     *
      * @since 0.1
      */
     final class Mock implements Environment {

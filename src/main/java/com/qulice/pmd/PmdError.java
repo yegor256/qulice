@@ -11,7 +11,6 @@ import org.cactoos.text.UncheckedText;
 
 /**
  * Represents one PMD error (usually it will be violation).
- *
  * @since 1.0
  */
 public interface PmdError {

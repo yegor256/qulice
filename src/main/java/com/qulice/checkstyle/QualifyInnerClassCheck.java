@@ -13,7 +13,6 @@ import java.util.Set;
 /**
  * Checks if inner classes are properly accessed using their qualified name
  * with the outer class.
- *
  * @since 0.18
  */
 public final class QualifyInnerClassCheck extends AbstractCheck {

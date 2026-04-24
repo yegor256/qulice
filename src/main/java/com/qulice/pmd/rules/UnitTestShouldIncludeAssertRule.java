@@ -16,7 +16,6 @@ import net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil;
  * {@code UnitTestShouldIncludeAssert} rule (PMD #4272), this
  * implementation descends into lambda bodies, so an assertion placed
  * inside a lambda passed to another method is still recognised.
- *
  * @since 0.26.0
  */
 public final class UnitTestShouldIncludeAssertRule

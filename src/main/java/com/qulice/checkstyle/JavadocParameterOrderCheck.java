@@ -22,7 +22,6 @@ import java.util.regex.Pattern;
 /**
  * Checks method parameters order to comply with what is defined in method
  * javadoc.
- *
  * @since 0.18.10
  */
 @SuppressWarnings("PMD.LongVariable")
@@ -91,7 +90,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
 
     /**
      * Returns the param tags in a javadoc comment.
-     *
      * @param comment The Javadoc comment
      * @return The param tags found
      */
