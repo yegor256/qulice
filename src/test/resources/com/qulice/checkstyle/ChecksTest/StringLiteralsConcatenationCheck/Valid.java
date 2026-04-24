@@ -13,4 +13,16 @@ public final class Valid {
 	    + zip.getEntry("stops.txt").getSize()
 	    + zip.getEntry("trips.txt").getSize();
     }
+
+    public int numeric() {
+	return Integer.valueOf("1") + 1;
+    }
+
+    public int numericFromIterator() {
+	return Integer.valueOf(list("some").iterator().next()) + 1;
+    }
+
+    private java.util.List<String> list(String value) {
+	return java.util.Collections.singletonList(value);
+    }
 }
