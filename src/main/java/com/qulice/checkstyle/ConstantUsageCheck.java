@@ -52,21 +52,23 @@ public final class ConstantUsageCheck extends AbstractCheck {
      */
     private void checkField(final DetailAST ast, final DetailAST namenode) {
         final String name = namenode.getText();
-        DetailAST variable = ast.getNextSibling();
+        DetailAST variable = ast.getParent().getFirstChild();
         int counter = 0;
         while (null != variable) {
-            switch (variable.getType()) {
-                case TokenTypes.VARIABLE_DEF:
-                    counter += this.parseVarDef(variable, name);
-                    break;
-                case TokenTypes.CLASS_DEF:
-                    counter += this.parseDef(
-                        variable, name, TokenTypes.OBJBLOCK
-                    );
-                    break;
-                default:
-                    counter += this.parseDef(variable, name, TokenTypes.SLIST);
-                    break;
+            if (variable != ast) {
+                switch (variable.getType()) {
+                    case TokenTypes.VARIABLE_DEF:
+                        counter += this.parseVarDef(variable, name);
+                        break;
+                    case TokenTypes.CLASS_DEF:
+                        counter += this.parseDef(
+                            variable, name, TokenTypes.OBJBLOCK
+                        );
+                        break;
+                    default:
+                        counter += this.parseDef(variable, name, TokenTypes.SLIST);
+                        break;
+                }
             }
             variable = variable.getNextSibling();
         }

@@ -235,6 +235,22 @@ final class CheckstyleValidatorTest {
         );
     }
 
+    @Test
+    void acceptsConstantUsedBeforeItsDeclaration() throws Exception {
+        final String file = "ConstantUsedBeforeDeclaration.java";
+        MatcherAssert.assertThat(
+            "private constant used by earlier-declared constants must not be flagged as unused",
+            this.runValidation(file, false),
+            Matchers.not(
+                Matchers.hasItem(
+                    new ViolationMatcher(
+                        "Private constant \"OP_ZERO\" is not used", file
+                    )
+                )
+            )
+        );
+    }
+
     /**
      * CheckstyleValidator can allow constructor parameters named just like
      * fields.
