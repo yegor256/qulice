@@ -24,6 +24,13 @@ public final class ValidSingleLineCommentCheck {
     public static final String SINGLE_LINE_LITERAL = "/**   this is not comment  **/";
 
     /**
+     * A literal with a Javadoc-like prefix followed by more code on the same line.
+     * See https://github.com/yegor256/qulice/issues/975.
+     */
+    public static final String CODE_WITH_COMMENT_LIKE_PREFIX =
+        "/** A is a simple class */ class A { }";
+
+    /**
      * Valid multi line literal.
      */
     public static final String[] MULTILINE_LITERAL = {
@@ -37,5 +44,14 @@ public final class ValidSingleLineCommentCheck {
      * Empty constructor.
      */
     private AtClauseOrder() {
+    }
+
+    /**
+     * Javadoc-like literal inside a method body.
+     * See https://github.com/yegor256/qulice/issues/975.
+     */
+    public static void methodWithCommentLikeLiteral() {
+        final var code = "/** A is a simple class */ class A { }";
+        System.out.println(code);
     }
 }
