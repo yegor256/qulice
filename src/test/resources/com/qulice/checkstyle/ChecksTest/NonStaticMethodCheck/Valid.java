@@ -29,6 +29,11 @@ public class Bar {
         // this method is not static, but it has "@Override" annotation
     }
 
+    public final void setNum(final int num) {
+        // this method is not static, because it calls a superclass method
+        super.setCoor(0, num);
+    }
+
     // this method is not static, but it is abstract
     public abstract void someAbstractMethod();
 

@@ -94,6 +94,7 @@ public final class NonStaticMethodCheck extends AbstractCheck {
         if (!AnnotationUtil.containsAnnotation(method, "Override")
             && !isInAbstractOrNativeMethod(method)
             && !checker.check(TokenTypes.LITERAL_THIS)
+            && !checker.check(TokenTypes.LITERAL_SUPER)
             && !onlythrow) {
             final int line = method.getLineNo();
             this.log(
