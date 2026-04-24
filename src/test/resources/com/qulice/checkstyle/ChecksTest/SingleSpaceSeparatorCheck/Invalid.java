@@ -10,6 +10,7 @@ package com.qulice.checkstyle.ChecksTest.SingleSpaceSeparatorCheck;
  */
 public final class Invalid {
     private final int value;
+    private  final  String  name = "x";
 
     public Invalid(final  int prm) {
         this.value = prm;

@@ -756,6 +756,26 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator must reject a field declaration that contains
+     * more than one whitespace character between its tokens (issue #768).
+     * @throws Exception If error
+     */
+    @Test
+    void rejectsDoubleWhitespaceInFieldDeclaration() throws Exception {
+        final String file = "DoubleWhitespaceFieldDecl.java";
+        MatcherAssert.assertThat(
+            "double whitespace in a field declaration must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "Use a single space to separate non-whitespace characters.",
+                    file, "18", "SingleSpaceSeparatorCheck"
+                )
+            )
+        );
+    }
+
+    /**
      * CheckstyleValidator can reject non diamond operator usage.
      * @throws Exception If error
      */
