@@ -13,24 +13,26 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test case for general {@link PmdValidator} behavior that is
- * not tied to a single PMD rule. Per-rule coverage lives in the
- * dedicated {@code Pmd*Test.java} files in this package.
- * @since 0.3
+ * Test case for {@link PmdValidator}'s short-circuit when every
+ * source file is excluded (issue #759). PMD must not be invoked
+ * on the excluded file and must report no violations.
+ * @since 0.25.1
  */
-final class PmdValidatorTest {
+final class PmdExclusionTest {
 
     @Test
-    void findsProblemsInJavaFiles() throws Exception {
+    void skipsAnalysisWhenAllFilesExcluded() throws Exception {
         final String file = "src/main/java/Main.java";
-        final Environment env = new Environment.Mock()
-            .withFile(file, "class Main { int x = 0; }");
+        final Environment env = new ExcludingEnvironment(
+            new Environment.Mock()
+                .withFile(file, "class Main { int x = 0; }")
+        );
         MatcherAssert.assertThat(
-            "Violations should be found",
+            "Excluded files must not yield violations",
             new PmdValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             ),
-            Matchers.not(Matchers.<Violation>empty())
+            Matchers.<Violation>empty()
         );
     }
 }
