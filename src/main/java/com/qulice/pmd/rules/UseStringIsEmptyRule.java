@@ -93,6 +93,13 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
         return matches;
     }
 
+    /**
+     * Checks if the expression is of String type.
+     *
+     * @param expr The expression to check
+     * @return True if expression has java.lang.String type
+     * @checkstyle UnnecessaryJavaLang (5 lines)
+     */
     private static boolean isStringExpression(final ASTExpression expr) {
         final JTypeMirror type = expr.getTypeMirror();
         return type.isClassOrInterface()

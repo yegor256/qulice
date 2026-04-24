@@ -456,4 +456,15 @@
     <property name="id" value="GuavaNewArrayListShouldBeInitWithSize"/>
     <property name="fileExtensions" value="java"/>
   </module>
+  <!--
+  Classes from the 'java.lang' package are imported implicitly,
+  so the 'java.lang.' prefix is redundant in both code and Javadoc.
+  See https://github.com/yegor256/qulice/issues/690
+  -->
+  <module name="RegexpSingleline">
+    <property name="format" value="\bjava\.lang\.[A-Z]"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="id" value="UnnecessaryJavaLang"/>
+    <property name="message" value="Unnecessary 'java.lang.' prefix, use the simple class name"/>
+  </module>
 </module>

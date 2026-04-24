@@ -87,6 +87,28 @@ final class CheckstyleBannedApiTest {
         );
     }
 
+    @Test
+    @SuppressWarnings("unchecked")
+    void reportsUnnecessaryJavaLangPrefix() throws Exception {
+        final String message =
+            "Unnecessary java.lang. prefix, use the simple class name";
+        final String file = "UnnecessaryJavaLang.java";
+        final Collection<Violation> results = this.runValidation(
+            file, false
+        );
+        final String name = "RegexpSinglelineCheck";
+        MatcherAssert.assertThat(
+            "cannot find all java.lang. violations",
+            results,
+            Matchers.hasItems(
+                new ViolationMatcher(message, file, "10", name),
+                new ViolationMatcher(message, file, "18", name),
+                new ViolationMatcher(message, file, "23", name),
+                new ViolationMatcher(message, file, "25", name)
+            )
+        );
+    }
+
     @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
     private Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
