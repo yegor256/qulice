@@ -616,6 +616,26 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator reports violation when generic type parameter
+     * of an interface does not match the naming convention.
+     * @throws Exception In case of error
+     */
+    @Test
+    void reportsInvalidInterfaceTypeParameterName() throws Exception {
+        final String file = "InterfaceTypeParameterName.java";
+        MatcherAssert.assertThat(
+            "Interface type parameter violation must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "Name 'wRoNg' must match pattern", file,
+                    "11", "InterfaceTypeParameterNameCheck"
+                )
+            )
+        );
+    }
+
+    /**
      * Test if URLs are valid despite having a line length over 80.
      * @throws Exception In case of error
      */
