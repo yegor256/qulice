@@ -65,6 +65,13 @@ final class CheckstyleValidatorTest {
         );
     }
 
+    @Test
+    void acceptsIdAsMethodName() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("IdMethodName.java", true)
+        );
+    }
+
     /**
      * CheckstyleValidator can report error when parameter object is not
      * documented.

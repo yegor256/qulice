@@ -44,6 +44,8 @@ final class PmdDisabledRulesTest {
                 {"CallSuperInConstructor"},
                 {"AvoidUsingHardCodedIP"},
                 {"UnnecessaryVarargsArrayCreation"},
+                {"ShortMethodName"},
+                {"AvoidFieldNameMatchingMethodName"},
             }
         );
     }
