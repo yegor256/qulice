@@ -60,6 +60,11 @@ public final class Valid {
 
     }
 
+    /**
+     **/
+    public void method5() {
+    }
+
     private static class InnerValid {
 
         /**

@@ -60,13 +60,15 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
         final int current = ast.getLineNo();
         final int start =
             JavadocEmptyLineCheck.findCommentStart(lines, current) + 1;
-        if (JavadocEmptyLineCheck.isNodeHavingJavadoc(ast, start)) {
+        if (JavadocEmptyLineCheck.isNodeHavingJavadoc(ast, start)
+            && start < lines.length) {
             if (JavadocEmptyLineCheck.isJavadocLineEmpty(lines[start])) {
                 this.log(start + 1, "Empty Javadoc line at the beginning");
             }
             final int end =
                 JavadocEmptyLineCheck.findCommentEnd(lines, current) - 1;
-            if (JavadocEmptyLineCheck.isJavadocLineEmpty(lines[end])) {
+            if (end >= start
+                && JavadocEmptyLineCheck.isJavadocLineEmpty(lines[end])) {
                 this.log(end + 1, "Empty Javadoc line at the end");
             }
         }
@@ -123,7 +125,15 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
      * @return Line number with found ending comment, or -1 if it wasn't found.
      */
     private static int findCommentEnd(final String[] lines, final int start) {
-        return JavadocEmptyLineCheck.findTrimmedTextUp(lines, start, "*/");
+        int found = -1;
+        for (int pos = start - 1; pos >= 0; pos -= 1) {
+            final String trimmed = lines[pos].trim();
+            if ("*/".equals(trimmed) || "**/".equals(trimmed)) {
+                found = pos;
+                break;
+            }
+        }
+        return found;
     }
 
     /**
