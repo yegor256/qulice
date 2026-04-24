@@ -9,10 +9,14 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Checks that there is no empty line between a javadoc and it's subject.
+ * Checks that there is no empty line between a javadoc and it's subject,
+ * and that no annotation is placed above the javadoc.
  *
  * <p>You can't have empty lines between javadoc block and
  * a class/method/variable. They should stay together, always.
+ *
+ * <p>Annotations must be placed after the javadoc, not before it,
+ * so that the javadoc stays next to the subject it describes.
  *
  * @since 0.3
  */
@@ -45,6 +49,16 @@ public final class JavadocLocationCheck extends AbstractCheck {
             return;
         }
         final String[] lines = this.getLines();
+        this.checkEmptyLines(ast, lines);
+        this.checkAnnotationAboveJavadoc(ast, lines);
+    }
+
+    /**
+     * Check that there are no empty lines between the javadoc and the subject.
+     * @param ast The AST node of the subject
+     * @param lines The file lines
+     */
+    private void checkEmptyLines(final DetailAST ast, final String[] lines) {
         int current = ast.getLineNo();
         boolean found = false;
         --current;
@@ -63,23 +77,55 @@ public final class JavadocLocationCheck extends AbstractCheck {
             --current;
         }
         if (found) {
-            this.report(ast.getLineNo(), current);
+            final int diff = ast.getLineNo() - current;
+            if (diff > 1) {
+                for (int pos = 1; pos < diff; pos += 1) {
+                    this.log(
+                        current + pos,
+                        "Empty line between javadoc and subject"
+                    );
+                }
+            }
         }
     }
 
     /**
-     * Report empty lines between current and end line.
-     * @param current Current line
-     * @param end Final line
+     * Check that no annotation is placed above the javadoc of the subject.
+     * @param ast The AST node of the subject
+     * @param lines The file lines
      */
-    private void report(final int current, final int end) {
-        final int diff = current - end;
-        if (diff > 1) {
-            for (int pos = 1; pos < diff; pos += 1) {
+    private void checkAnnotationAboveJavadoc(
+        final DetailAST ast, final String[] lines
+    ) {
+        final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers == null) {
+            return;
+        }
+        final DetailAST after = modifiers.getNextSibling();
+        if (after == null) {
+            return;
+        }
+        final int signature = after.getLineNo();
+        int annotation = Integer.MAX_VALUE;
+        DetailAST child = modifiers.getFirstChild();
+        while (child != null) {
+            if (child.getType() == TokenTypes.ANNOTATION
+                && child.getLineNo() < annotation) {
+                annotation = child.getLineNo();
+            }
+            child = child.getNextSibling();
+        }
+        if (annotation == Integer.MAX_VALUE) {
+            return;
+        }
+        for (int pos = annotation + 1; pos < signature; pos += 1) {
+            final String line = lines[pos - 1].trim();
+            if (line.startsWith("/**") || line.endsWith("*/")) {
                 this.log(
-                    end + pos,
-                    "Empty line between javadoc and subject"
+                    annotation,
+                    "Annotation must be placed after Javadoc"
                 );
+                break;
             }
         }
     }

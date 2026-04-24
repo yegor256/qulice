@@ -48,3 +48,17 @@ interface I1 {
 interface I2 {
 
 }
+
+class C3 {
+    @Override
+    /**
+     * Some Javadoc.
+     */
+    public void close() {
+        int a = 1;
+        int b = 2;
+        int c = 3;
+        int d = 4;
+        int e = 5;
+    }
+}
