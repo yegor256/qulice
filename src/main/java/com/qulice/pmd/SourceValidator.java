@@ -5,7 +5,6 @@
 package com.qulice.pmd;
 
 import com.jcabi.log.Logger;
-import com.qulice.spi.Environment;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -40,11 +39,11 @@ final class SourceValidator {
 
     /**
      * Creates new instance of <code>SourceValidator</code>.
-     * @param env Environment
+     * @param charset Source files encoding
      */
-    SourceValidator(final Environment env) {
+    SourceValidator(final Charset charset) {
         this.config = new PMDConfiguration();
-        this.encoding = env.encoding();
+        this.encoding = charset;
     }
 
     /**
@@ -53,7 +52,6 @@ final class SourceValidator {
      * @param path Base path
      * @return Collection of violations
      */
-    @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.CloseResource"})
     Collection<PmdError> validate(
         final Collection<File> sources, final String path) {
         this.config.setRuleSets(new ListOf<>("com/qulice/pmd/ruleset.xml"));

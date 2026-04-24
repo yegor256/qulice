@@ -17,6 +17,7 @@ import org.cactoos.text.Joined;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,11 +30,7 @@ import org.junit.jupiter.api.Test;
  * @checkstyle ClassDataAbstractionCoupling (800 lines)
  *  Can also be removed after splitting up this class into smaller ones.
  */
-@SuppressWarnings(
-    {
-        "PMD.TooManyMethods", "PMD.AvoidDuplicateLiterals", "PMD.GodClass"
-    }
-)
+@SuppressWarnings("PMD.TooManyMethods")
 final class CheckstyleValidatorTest {
 
     /**
@@ -57,7 +54,7 @@ final class CheckstyleValidatorTest {
     private License rule;
 
     @BeforeEach
-    public void setRule() {
+    void setRule() {
         this.rule = new License();
     }
 
@@ -67,8 +64,8 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsInstanceMethodReferences() throws Exception {
-        this.runValidation(
-            "InstanceMethodRef.java", true
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("InstanceMethodRef.java", true)
         );
     }
 
@@ -78,11 +75,12 @@ final class CheckstyleValidatorTest {
      * @throws Exception In case of error
      */
     @Test
-    void reportsErrorWhenParameterObjectIsNotDocumented()
-        throws Exception {
-        this.validate(
-            "ParametrizedClass.java", false,
-            "Type Javadoc comment is missing @param <T> tag."
+    void reportsErrorWhenParameterObjectIsNotDocumented() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.validate(
+                "ParametrizedClass.java", false,
+                "Type Javadoc comment is missing @param <T> tag."
+            )
         );
     }
 
@@ -92,11 +90,9 @@ final class CheckstyleValidatorTest {
      * @throws Exception when error.
      */
     @Test
-    void reportsErrorWhenLineWrap()
-        throws Exception {
-        this.validate(
-            "LineWrapPackage.java", false,
-            "should not be line-wrapped"
+    void reportsErrorWhenLineWrap() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.validate("LineWrapPackage.java", false, "should not be line-wrapped")
         );
     }
 
@@ -107,10 +103,11 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void reportsErrorWhenIndentationIsIncorrect() throws Exception {
-        this.validate(
-            "InvalidIndentation.java",
-            false,
+        Assertions.assertDoesNotThrow(
+            () -> this.validate(
+            "InvalidIndentation.java", false,
             "Indentation (14) must be same or less than"
+        )
         );
     }
 
@@ -121,7 +118,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void doesNotReportErrorWhenMissingJavadocInTests() throws Exception {
-        this.runValidation("MissingJavadocTest.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("MissingJavadocTest.java", true)
+        );
     }
 
     /**
@@ -132,11 +131,9 @@ final class CheckstyleValidatorTest {
     @Test
     @SuppressWarnings("unchecked")
     void reportsErrorWhenCommentOrJavadocIsTooLong() throws Exception {
-        final Collection<Violation> results =
-            this.runValidation("TooLongLines.java", false);
         MatcherAssert.assertThat(
             "Two long lines should be found",
-            results,
+            this.runValidation("TooLongLines.java", false),
             Matchers.hasItems(
                 new ViolationMatcher(
                     "Line is longer than 100 characters (found 104)", ""
@@ -157,7 +154,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void suppressesLineLengthInCommentsViaNearbyComment() throws Exception {
-        this.runValidation("SuppressLineLengthInComment.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("SuppressLineLengthInComment.java", true)
+        );
     }
 
     /**
@@ -169,8 +168,8 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void suppressesConditionalRegexpMultilineInComment() throws Exception {
-        this.runValidation(
-            "SuppressConditionalRegexpMultilineInComment.java", true
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("SuppressConditionalRegexpMultilineInComment.java", true)
         );
     }
 
@@ -181,8 +180,8 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsValidSingleLineComment() throws Exception {
-        this.runValidation(
-            "ValidSingleLineCommentCheck.java", true
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidSingleLineCommentCheck.java", true)
         );
     }
 
@@ -193,8 +192,8 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsValidIndentation() throws Exception {
-        this.runValidation(
-            "ValidIndentation.java", true
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidIndentation.java", true)
         );
     }
 
@@ -205,9 +204,11 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void reportsErrorOnMoreThanOneReturnStatement() throws Exception {
-        this.validate(
-            "ReturnCount.java", false,
-            "Return count is 2 (max allowed for non-void methods/lambdas is 1)"
+        Assertions.assertDoesNotThrow(
+            () -> this.validate(
+                "ReturnCount.java", false,
+                "Return count is 2 (max allowed for non-void methods/lambdas is 1)"
+            )
         );
     }
 
@@ -218,14 +219,15 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void doesNotLeakViolationsBetweenTests() throws Exception {
-        final String unrelated =
-            "Type Javadoc comment is missing @param <T> tag.";
         MatcherAssert.assertThat(
             "ReturnCount.java must not yield violations from ParametrizedClass.java",
             this.runValidation("ReturnCount.java", false),
             Matchers.not(
                 Matchers.hasItem(
-                    new ViolationMatcher(unrelated, "ReturnCount.java")
+                    new ViolationMatcher(
+                        "Type Javadoc comment is missing @param <T> tag.",
+                        "ReturnCount.java"
+                    )
                 )
             )
         );
@@ -237,8 +239,8 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsDefaultMethodsWithFinalModifiers() throws Exception {
-        this.runValidation(
-            "DefaultMethods.java", true
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("DefaultMethods.java", true)
         );
     }
 
@@ -251,7 +253,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsConstantUsedInMethodAnnotation() throws Exception {
-        this.runValidation("AnnotationConstant.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("AnnotationConstant.java", true)
+        );
     }
 
     /**
@@ -260,14 +264,12 @@ final class CheckstyleValidatorTest {
      * @throws Exception In case of error
      */
     @Test
-    void acceptsConstructorParametersNamedJustLikeFields()
-        throws Exception {
+    void acceptsConstructorParametersNamedJustLikeFields() throws Exception {
         final String file = "ConstructorParams.java";
-        final Collection<Violation> results = this.runValidation(file, false);
         final String name = "HiddenFieldCheck";
         MatcherAssert.assertThat(
             "Two hidden fields in ctor should be found",
-            results,
+            this.runValidation(file, false),
             Matchers.allOf(
                 Matchers.hasItem(
                     new ViolationMatcher(
@@ -295,18 +297,11 @@ final class CheckstyleValidatorTest {
     @SuppressWarnings("unchecked")
     void allowsOnlyProperlyNamedLocalVariables() throws Exception {
         final String file = "LocalVariableNames.java";
-        final Collection<Violation> results = this.runValidation(
-            file, false
-        );
-        MatcherAssert.assertThat(
-            "10 total violations should be found",
-            results,
-            Matchers.hasSize(10)
-        );
         MatcherAssert.assertThat(
             "Only invalid variables name should be found",
-            results,
-            Matchers.allOf(
+            this.runValidation(file, false),
+            Matchers.<Iterable<Violation>>allOf(
+                Matchers.iterableWithSize(10),
                 Matchers.not(
                     Matchers.hasItems(
                         new ViolationMatcher("aaa", file),
@@ -359,14 +354,11 @@ final class CheckstyleValidatorTest {
     @Test
     void allowsOnlyProperlyOrderedAtClauses() throws Exception {
         final String file = "AtClauseOrder.java";
-        final Collection<Violation> results = this.runValidation(
-            file, false
-        );
         final String message = "tags have to appear in the order";
         final String name = "AtclauseOrderCheck";
         MatcherAssert.assertThat(
             "3 tags with wrong order should be found",
-            results,
+            this.runValidation(file, false),
             Matchers.contains(
                 new ViolationMatcher(
                     "Javadoc comment at column 3 has parse error.",
@@ -402,7 +394,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void allowsProperIndentationInAnnotations() throws Exception {
-        this.runValidation("AnnotationIndentation.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("AnnotationIndentation.java", true)
+        );
     }
 
     /**
@@ -412,7 +406,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void rejectsImproperIndentationInAnnotations() throws Exception {
-        this.runValidation("AnnotationIndentationNegative.java", false);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("AnnotationIndentationNegative.java", false)
+        );
     }
 
     /**
@@ -422,9 +418,11 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void testExtraSemicolonInTryWithResources() throws Exception {
-        this.validate(
-            "ExtraSemicolon.java", false,
-            "Extra semicolon in the end of try-with-resources head."
+        Assertions.assertDoesNotThrow(
+            () -> this.validate(
+                "ExtraSemicolon.java", false,
+                "Extra semicolon in the end of try-with-resources head."
+            )
         );
     }
 
@@ -434,7 +432,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void testSupportsRecordTypes() throws Exception {
-        this.runValidation("ValidRecord.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidRecord.java", true)
+        );
     }
 
     /**
@@ -444,7 +444,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsTryWithResourcesWithoutSemicolon() throws Exception {
-        this.runValidation("ValidSemicolon.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidSemicolon.java", true)
+        );
     }
 
     /**
@@ -476,7 +478,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsProperlyNamedEnumValues() throws Exception {
-        this.runValidation("ValidEnumValues.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidEnumValues.java", true)
+        );
     }
 
     /**
@@ -487,13 +491,10 @@ final class CheckstyleValidatorTest {
     @Test
     void rejectsImproperlyNamedEnumValues() throws Exception {
         final String file = "InvalidEnumValues.java";
-        final Collection<Violation> results = this.runValidation(
-            file, false
-        );
         final String name = "EnumValueNameCheck";
         MatcherAssert.assertThat(
             "All three enum value naming violations should be reported",
-            results,
+            this.runValidation(file, false),
             Matchers.hasItems(
                 new ViolationMatcher(
                     "Enum value anyName must match pattern",
@@ -518,7 +519,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsNonStaticMethodsInIt() throws Exception {
-        this.runValidation("ValidIT.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidIT.java", true)
+        );
     }
 
     /**
@@ -528,7 +531,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsNonStaticMethodsInItCases() throws Exception {
-        this.runValidation("ValidITCase.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidITCase.java", true)
+        );
     }
 
     /**
@@ -540,27 +545,28 @@ final class CheckstyleValidatorTest {
     @Test
     void doesNotThrowExceptionIfImportsOnly() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines("License-1.", "", "License-2.")
-            .withEol("\n")
-            .file();
-        final String crlf = "\r\n";
-        final String content = Joiner.on(crlf).join(
-            "package com.google;",
-            crlf,
-            "import java.util.*;"
-        );
+        final String crlf = String.valueOf('\r').concat(String.valueOf('\n'));
         final String name = "Foo.java";
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
-            this.toUrl(license)
-        ).withFile(String.format("src/main/java/foo/%s", name), content);
-        final Collection<Violation> results =
-            new CheckstyleValidator(env).validate(env.files(name));
+            this.toUrl(
+                this.rule.savePackageInfo(
+                    new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+                ).withLines("License-1.", "", "License-2.")
+                    .withEol(String.valueOf('\n'))
+                    .file()
+            )
+        ).withFile(
+            String.format("src/main/java/foo/%s", name),
+            Joiner.on(crlf).join(
+                "package com.google;",
+                crlf,
+                "import java.util.*;"
+            )
+        );
         MatcherAssert.assertThat(
             "Validation error should exist",
-            results,
+            new CheckstyleValidator(env).validate(env.files(name)),
             Matchers.not(Matchers.<Violation>empty())
         );
     }
@@ -571,30 +577,25 @@ final class CheckstyleValidatorTest {
      * @throws Exception In case of error
      */
     @Test
-    @SuppressWarnings({"unchecked", "PMD.AvoidDuplicateLiterals"})
+    @SuppressWarnings("unchecked")
     void distinguishesValidCatchParameterNames() throws Exception {
         final String file = "CatchParameterNames.java";
-        final Collection<Violation> results = this.runValidation(
-            file, false
-        );
-        MatcherAssert.assertThat(
-            "Should be 3 violations",
-            results,
-            Matchers.hasSize(3)
-        );
         final String name = "CatchParameterNameCheck";
         MatcherAssert.assertThat(
             "All naming violations should be found",
-            results,
-            Matchers.hasItems(
-                new ViolationMatcher(
-                    "Name 'ex_invalid_1' must match pattern", file, "27", name
-                ),
-                new ViolationMatcher(
-                    "Name '$xxx' must match pattern", file, "29", name
-                ),
-                new ViolationMatcher(
-                    "Name '_exp' must match pattern", file, "31", name
+            this.runValidation(file, false),
+            Matchers.<Iterable<Violation>>allOf(
+                Matchers.iterableWithSize(3),
+                Matchers.hasItems(
+                    new ViolationMatcher(
+                        "Name 'ex_invalid_1' must match pattern", file, "27", name
+                    ),
+                    new ViolationMatcher(
+                        "Name '$xxx' must match pattern", file, "29", name
+                    ),
+                    new ViolationMatcher(
+                        "Name '_exp' must match pattern", file, "31", name
+                    )
                 )
             )
         );
@@ -606,7 +607,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void doesNotRejectUrlsInLongLines() throws Exception {
-        this.runValidation("UrlInLongLine.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("UrlInLongLine.java", true)
+        );
     }
 
     /**
@@ -615,9 +618,10 @@ final class CheckstyleValidatorTest {
      * @throws Exception In case of error
      */
     @Test
-    void allowsSpacesBetweenMethodsOfAnonymousClasses()
-        throws Exception {
-        this.runValidation("BlankLinesOutsideMethodsPass.java", true);
+    void allowsSpacesBetweenMethodsOfAnonymousClasses() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("BlankLinesOutsideMethodsPass.java", true)
+        );
     }
 
     /**
@@ -626,17 +630,14 @@ final class CheckstyleValidatorTest {
      * @throws Exception In case of error
      */
     @Test
-    @SuppressWarnings({"unchecked", "PMD.AvoidDuplicateLiterals"})
+    @SuppressWarnings("unchecked")
     void rejectsSpacesInsideMethods() throws Exception {
         final String file = "BlankLinesInsideMethodsFail.java";
-        final Collection<Violation> result = this.runValidation(
-            file, false
-        );
         final String name = "EmptyLinesCheck";
         final String message = "Empty line inside method";
         MatcherAssert.assertThat(
             "All empty lines should be found",
-            result,
+            this.runValidation(file, false),
             Matchers.hasItems(
                 new ViolationMatcher(message, file, "15", name),
                 new ViolationMatcher(message, file, "19", name),
@@ -664,9 +665,6 @@ final class CheckstyleValidatorTest {
     @SuppressWarnings("unchecked")
     void rejectsUppercaseAbbreviations() throws Exception {
         final String file = "InvalidAbbreviationAsWordInNameXML.java";
-        final Collection<Violation> results = this.runValidation(
-            file, false
-        );
         final String name = "AbbreviationAsWordInNameCheck";
         final String message = new Joined(
             " ",
@@ -675,7 +673,7 @@ final class CheckstyleValidatorTest {
         ).asString();
         MatcherAssert.assertThat(
             "All long abbreviations should be found",
-            results,
+            this.runValidation(file, false),
             Matchers.hasItems(
                 new ViolationMatcher(
                     String.format(
@@ -694,17 +692,12 @@ final class CheckstyleValidatorTest {
     @Test
     void rejectsHiddenParameters() throws Exception {
         final String file = "HiddenParameter.java";
-        final Collection<Violation> results = this.runValidation(
-            file, false
-        );
-        final String name = "HiddenFieldCheck";
-        final String message = "'test' hides a field.";
         MatcherAssert.assertThat(
             "Hidden parameter in methods should be found",
-            results,
+            this.runValidation(file, false),
             Matchers.hasItems(
                 new ViolationMatcher(
-                    message, file, "18", name
+                    "'test' hides a field.", file, "18", "HiddenFieldCheck"
                 )
             )
         );
@@ -717,7 +710,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void allowsITUppercaseAbbreviation() throws Exception {
-        this.runValidation("ValidAbbreviationAsWordInNameIT.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidAbbreviationAsWordInNameIT.java", true)
+        );
     }
 
     /**
@@ -728,7 +723,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void allowsUppercaseAbbreviationExceptions() throws Exception {
-        this.runValidation("ValidAbbreviationAsWordInName.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidAbbreviationAsWordInName.java", true)
+        );
     }
 
     /**
@@ -739,7 +736,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void checkLambdaAndGenericsAtEndOfLine() throws Exception {
-        this.runValidation("ValidLambdaAndGenericsAtEndOfLine.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidLambdaAndGenericsAtEndOfLine.java", true)
+        );
     }
 
     /**
@@ -787,7 +786,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void allowsDiamondOperatorUsage() throws Exception {
-        this.runValidation("ValidDiamondsUsage.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidDiamondsUsage.java", true)
+        );
     }
 
     /**
@@ -797,7 +798,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void allowsFullGenericOperatorUsage() throws Exception {
-        this.runValidation("DiamondUsageNotNeeded.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("DiamondUsageNotNeeded.java", true)
+        );
     }
 
     /**
@@ -807,9 +810,10 @@ final class CheckstyleValidatorTest {
      * @throws Exception If error
      */
     @Test
-    void allowsStringLiteralsOnBothSideInComparisons()
-        throws Exception {
-        this.runValidation("ValidLiteralComparisonCheck.java", true);
+    void allowsStringLiteralsOnBothSideInComparisons() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidLiteralComparisonCheck.java", true)
+        );
     }
 
     /**
@@ -818,14 +822,17 @@ final class CheckstyleValidatorTest {
      * @throws Exception If an internal exception occurs
      */
     @Test
-    void rejectsInvalidMethodDocWithoutInternalException()
-        throws Exception {
-        this.runValidation("InvalidMethodDoc.java", false);
+    void rejectsInvalidMethodDocWithoutInternalException() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("InvalidMethodDoc.java", false)
+        );
     }
 
     @Test
     void rejectsFileLength() throws Exception {
-        this.runValidation("FileLengthCheck.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("FileLengthCheck.java", true)
+        );
     }
 
     @Test
@@ -874,7 +881,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void allowsUppercaseTypeParamDescription() throws Exception {
-        this.runValidation("ValidTypeParamDescription.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidTypeParamDescription.java", true)
+        );
     }
 
     /**
@@ -884,17 +893,15 @@ final class CheckstyleValidatorTest {
      * @throws Exception when error.
      */
     @Test
-    void rejectsFluentCallAloneOnLineOpeningMultiLineBlock()
-        throws Exception {
+    void rejectsFluentCallAloneOnLineOpeningMultiLineBlock() throws Exception {
         final String file = "InvalidFluentCallFormatting.java";
-        final String message =
-            "A fluent call opening a multi-line block must be attached to the previous line";
         MatcherAssert.assertThat(
             "Fluent call opening a multi-line block alone on a line must be reported",
             this.runValidation(file, false),
             Matchers.hasItem(
                 new ViolationMatcher(
-                    message, file, "20", "RegexpSinglelineCheck"
+                    "A fluent call opening a multi-line block must be attached to the previous line",
+                    file, "20", "RegexpSinglelineCheck"
                 )
             )
         );
@@ -908,7 +915,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsFluentCallAttachedToPreviousLine() throws Exception {
-        this.runValidation("ValidFluentCallFormatting.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidFluentCallFormatting.java", true)
+        );
     }
 
     /**
@@ -919,7 +928,9 @@ final class CheckstyleValidatorTest {
      */
     @Test
     void acceptsEqualityOperatorAtStartOfWrappedLine() throws Exception {
-        this.runValidation("ValidEqualityOperatorWrap.java", true);
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidEqualityOperatorWrap.java", true)
+        );
     }
 
     /**
@@ -963,16 +974,12 @@ final class CheckstyleValidatorTest {
      * @param message Message to match
      * @throws Exception In case of error
      */
-    @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
     private void validate(final String file, final boolean result,
         final String message) throws Exception {
         MatcherAssert.assertThat(
+            "validation should yield expected message",
             this.runValidation(file, result),
-            Matchers.hasItem(
-                new ViolationMatcher(
-                    message, file
-                )
-            )
+            Matchers.hasItem(new ViolationMatcher(message, file))
         );
     }
 
@@ -983,17 +990,17 @@ final class CheckstyleValidatorTest {
      * @return String containing validation results in textual form
      * @throws IOException In case of error
      */
-    @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
     private Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
-        ).withLines(CheckstyleValidatorTest.LICENSE)
-            .withEol("\n").file();
         final Environment env = mock.withParam(
             CheckstyleValidatorTest.LICENSE_PROP,
-            this.toUrl(license)
+            this.toUrl(
+                this.rule.savePackageInfo(
+                    new File(mock.basedir(), CheckstyleValidatorTest.DIRECTORY)
+                ).withLines(CheckstyleValidatorTest.LICENSE)
+                    .withEol(String.valueOf('\n')).file()
+            )
         ).withFile(
             String.format("src/main/java/foo/%s", file),
             new IoCheckedText(
@@ -1005,21 +1012,12 @@ final class CheckstyleValidatorTest {
             ).asString()
         );
         final Collection<Violation> results =
-            new CheckstyleValidator(env).validate(
-                env.files(file)
-            );
-        if (passes) {
-            MatcherAssert.assertThat(
-                results,
-                Matchers.<Violation>empty()
-            );
-        } else {
-            MatcherAssert.assertThat(
-                results,
-                Matchers.not(Matchers.<Violation>empty())
-            );
-        }
+            new CheckstyleValidator(env).validate(env.files(file));
+        MatcherAssert.assertThat(
+            "validation result should match expected state",
+            results.isEmpty(),
+            Matchers.is(passes)
+        );
         return results;
     }
-
 }

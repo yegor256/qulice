@@ -35,14 +35,13 @@ final class PmdAssertionsTest {
     @Test
     void prohibitsStaticImportsPlainAssertionsInTests()
         throws Exception {
-        final String file = "PlainJUnitAssertionStaticImportBlock.java";
         new PmdAssert(
-            file,
+            "PlainJUnitAssertionStaticImportBlock.java",
             Matchers.is(false),
             Matchers.containsString(
                 PmdAssertionsTest.PLAIN_ASSERTIONS
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -56,14 +55,13 @@ final class PmdAssertionsTest {
     @Test
     void prohibitsPlainJunitAssertionsInTestMethods()
         throws Exception {
-        final String file = "PlainJUnitAssertionTestMethod.java";
         new PmdAssert(
-            file,
+            "PlainJUnitAssertionTestMethod.java",
             Matchers.is(false),
             Matchers.containsString(
                 PmdAssertionsTest.PLAIN_ASSERTIONS
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -76,9 +74,8 @@ final class PmdAssertionsTest {
     @Test
     void allowsAssertFail()
         throws Exception {
-        final String file = "AllowAssertFail.java";
         new PmdAssert(
-            file,
+            "AllowAssertFail.java",
             Matchers.is(false),
             Matchers.allOf(
                 Matchers.not(
@@ -88,7 +85,7 @@ final class PmdAssertionsTest {
                 ),
                 Matchers.containsString("UnitTestContainsTooManyAsserts")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -106,7 +103,7 @@ final class PmdAssertionsTest {
             Matchers.not(
                 Matchers.containsString("UnitTestContainsTooManyAsserts")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -122,7 +119,7 @@ final class PmdAssertionsTest {
             "TooManyAssertsWithAssertThrows.java",
             Matchers.is(false),
             Matchers.containsString("UnitTestContainsTooManyAsserts")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -136,7 +133,7 @@ final class PmdAssertionsTest {
             "TestShouldBePackagePrivate.java",
             Matchers.is(false),
             Matchers.containsString("JUnit5TestShouldBePackagePrivate")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -150,7 +147,7 @@ final class PmdAssertionsTest {
             "Junit3TestClassShouldBeFinal.java",
             Matchers.is(false),
             Matchers.containsString("JUnitTestClassShouldBeFinal")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -164,7 +161,7 @@ final class PmdAssertionsTest {
             "Junit4TestClassShouldBeFinal.java",
             Matchers.is(false),
             Matchers.containsString("JUnitTestClassShouldBeFinal")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -178,7 +175,7 @@ final class PmdAssertionsTest {
             "Junit5TestClassShouldBeFinal.java",
             Matchers.is(false),
             Matchers.containsString("JUnitTestClassShouldBeFinal")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -197,7 +194,7 @@ final class PmdAssertionsTest {
                 ),
                 Matchers.containsString("UnitTestShouldIncludeAssert")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -214,7 +211,7 @@ final class PmdAssertionsTest {
             Matchers.not(
                 Matchers.containsString("UnitTestShouldIncludeAssert")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -241,7 +238,7 @@ final class PmdAssertionsTest {
                     )
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -264,7 +261,7 @@ final class PmdAssertionsTest {
                     "UnitTestAssertionsShouldIncludeMessage"
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -284,6 +281,6 @@ final class PmdAssertionsTest {
             Matchers.containsString(
                 "UnitTestAssertionsShouldIncludeMessage"
             )
-        ).validate();
+        ).assertOk();
     }
 }

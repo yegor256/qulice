@@ -46,18 +46,11 @@ final class ValidationExclusionTest {
      */
     @Test
     void excludePathFromPmdValidation(@TempDir final Path dir) throws Exception {
-        final var env = new DefaultMavenEnvironment();
-        final var subdir = Files.createTempDirectory(dir, ValidationExclusionTest.TEMP_SUB);
-        final var project = new MavenProject();
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final Path subdir = Files.createTempDirectory(dir, ValidationExclusionTest.TEMP_SUB);
+        final MavenProject project = new MavenProject();
         project.setFile(subdir.toFile());
         env.setProject(project);
-        Assertions.assertNotNull(
-            project.getBasedir(),
-            "We expect basedir to be set"
-        );
-        final var file = ValidationExclusionTest.java(
-            subdir, "com/qulice/maven/ValidationExclusion/PmdExample.txt"
-        );
         env.setExcludes(
             Collections.singletonList(
                 String.format("pmd:/%s/.*", subdir.getFileName())
@@ -65,7 +58,12 @@ final class ValidationExclusionTest {
         );
         Assertions.assertTrue(
             new PmdValidator(env).getNonExcludedFiles(
-                Collections.singletonList(file)
+                Collections.singletonList(
+                    ValidationExclusionTest.java(
+                        subdir,
+                        "com/qulice/maven/ValidationExclusion/PmdExample.txt"
+                    )
+                )
             ).isEmpty(),
             "We expect no files to be returned for PMD validation"
         );
@@ -78,34 +76,28 @@ final class ValidationExclusionTest {
      */
     @Test
     void excludePathFromCheckstyleValidation(@TempDir final Path dir) throws Exception {
-        final var env = new DefaultMavenEnvironment();
-        final var subdir = Files.createTempDirectory(dir, ValidationExclusionTest.TEMP_SUB);
-        final var build = new Build();
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final Path subdir = Files.createTempDirectory(dir, ValidationExclusionTest.TEMP_SUB);
+        final Build build = new Build();
         build.setOutputDirectory(dir.toString());
-        final var project = new MavenProject();
+        final MavenProject project = new MavenProject();
         project.setFile(subdir.toFile());
         project.setBuild(build);
         env.setProject(project);
-        Assertions.assertNotNull(
-            project.getBasedir(),
-            "We expect basedir to be set"
-        );
-        Assertions.assertNotNull(
-            env.tempdir(),
-            "We expect tempdir to be set"
-        );
-        final var file = ValidationExclusionTest.java(
-            subdir, "com/qulice/maven/ValidationExclusion/CheckstyleExample.txt"
-        );
         env.setExcludes(
             Collections.singletonList(
                 String.format("checkstyle:/%s/.*", subdir.getFileName())
             )
         );
-        final var validator = new CheckstyleValidator(env);
-        final var files = validator.getNonExcludedFiles(Collections.singletonList(file));
         Assertions.assertTrue(
-            files.isEmpty(),
+            new CheckstyleValidator(env).getNonExcludedFiles(
+                Collections.singletonList(
+                    ValidationExclusionTest.java(
+                        subdir,
+                        "com/qulice/maven/ValidationExclusion/CheckstyleExample.txt"
+                    )
+                )
+            ).isEmpty(),
             "We expect no files to be returned for Checkstyle validation"
         );
     }
@@ -124,11 +116,11 @@ final class ValidationExclusionTest {
      */
     @Test
     void excludePathFromEntireValidation(@TempDir final Path dir) throws Exception {
-        final var env = new DefaultMavenEnvironment();
-        final var subdir = Files.createTempDirectory(dir, ValidationExclusionTest.TEMP_SUB);
-        final var build = new Build();
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final Path subdir = Files.createTempDirectory(dir, ValidationExclusionTest.TEMP_SUB);
+        final Build build = new Build();
         build.setOutputDirectory(dir.toString());
-        final var project = new MavenProject();
+        final MavenProject project = new MavenProject();
         project.setFile(subdir.toFile());
         project.setBuild(build);
         env.setProject(project);
@@ -145,9 +137,8 @@ final class ValidationExclusionTest {
                 subdir, "com/qulice/maven/ValidationExclusion/PmdExample.txt"
             )
         );
-        final var pmd = new PmdValidator(env).getNonExcludedFiles(included).size();
-        final var checkstyle = new CheckstyleValidator(env).getNonExcludedFiles(included).size();
-        final var total = pmd + checkstyle;
+        final int total = new PmdValidator(env).getNonExcludedFiles(included).size()
+            + new CheckstyleValidator(env).getNonExcludedFiles(included).size();
         Assertions.assertEquals(
             0,
             total,
@@ -166,7 +157,7 @@ final class ValidationExclusionTest {
      * @throws Exception If something goes wrong
      */
     private static File java(final Path dir, final String resource) throws Exception {
-        final var file = File.createTempFile(
+        final File file = File.createTempFile(
             "Test", ValidationExclusionTest.JAVA_EXT, dir.toFile()
         );
         FileUtils.writeStringToFile(

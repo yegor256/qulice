@@ -36,9 +36,8 @@ public final class ProhibitPlainJunitAssertionsRule
 
     @Override
     public Object visit(final ASTImportDeclaration imp, final Object data) {
-        final String name = imp.getImportedName();
         if (Arrays.stream(ProhibitPlainJunitAssertionsRule.PROHIBITED)
-            .anyMatch(name::contains)
+            .anyMatch(imp.getImportedName()::contains)
         ) {
             asCtx(data).addViolation(imp);
         }
@@ -68,9 +67,8 @@ public final class ProhibitPlainJunitAssertionsRule
     }
 
     private static boolean isPlainJunitAssert(final ASTMethodCall call) {
-        final String name = call.getMethodName();
         final ASTExpression qualifier = call.getQualifier();
-        return name.startsWith("assert") && qualifier != null
+        return call.getMethodName().startsWith("assert") && qualifier != null
             && "Assert".contentEquals(qualifier.getText());
     }
 }

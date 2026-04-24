@@ -20,10 +20,11 @@ final class RelativeTest {
     @Test
     void computesRelativePathForFileInsideBasedir(@TempDir final Path dir)
         throws Exception {
-        final File file = new File(dir.toFile(), "src/main/Foo.java");
         MatcherAssert.assertThat(
             "relative path under basedir must start with a forward slash",
-            new Relative(dir.toFile(), file).path(),
+            new Relative(
+                dir.toFile(), new File(dir.toFile(), "src/main/Foo.java")
+            ).path(),
             Matchers.equalTo("/src/main/Foo.java")
         );
     }
@@ -32,10 +33,9 @@ final class RelativeTest {
     void returnsAbsolutePathWhenFileOutsideBasedir(@TempDir final Path dir)
         throws Exception {
         final File outside = new File(dir.toFile(), "sibling/Far.java");
-        final File base = new File(dir.toFile(), "project");
         MatcherAssert.assertThat(
             "file outside basedir must not produce a truncated string",
-            new Relative(base, outside).path(),
+            new Relative(new File(dir.toFile(), "project"), outside).path(),
             Matchers.equalTo(
                 outside.getAbsoluteFile().toPath().normalize()
                     .toString().replace(File.separatorChar, '/')
@@ -47,11 +47,12 @@ final class RelativeTest {
     void doesNotTruncateWhenBasedirIsStringPrefixButNotParent(
         @TempDir final Path dir
     ) throws Exception {
-        final File base = new File(dir.toFile(), "foo");
-        final File file = new File(dir.toFile(), "foobar/Baz.java");
         MatcherAssert.assertThat(
             "sibling with shared string prefix cannot be treated as child",
-            new Relative(base, file).path(),
+            new Relative(
+                new File(dir.toFile(), "foo"),
+                new File(dir.toFile(), "foobar/Baz.java")
+            ).path(),
             Matchers.not(Matchers.startsWith("bar/"))
         );
     }
@@ -59,11 +60,12 @@ final class RelativeTest {
     @Test
     void doesNotThrowWhenFilePathShorterThanBasedir(@TempDir final Path dir)
         throws Exception {
-        final File deep = new File(dir.toFile(), "a/very/deep/basedir");
-        final File shallow = new File("x.java");
         MatcherAssert.assertThat(
             "shallow file must not cause a substring-index exception",
-            new Relative(deep, shallow).path(),
+            new Relative(
+                new File(dir.toFile(), "a/very/deep/basedir"),
+                new File("x.java")
+            ).path(),
             Matchers.notNullValue()
         );
     }

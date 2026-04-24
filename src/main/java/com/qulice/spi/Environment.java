@@ -113,52 +113,48 @@ public interface Environment {
         /**
          * The basedir.
          */
-        private final File basedir;
+        private final File origin = ((java.util.function.Supplier<File>) () -> {
+            try {
+                final File temp = File.createTempFile(
+                    "mock",
+                    ".qulice",
+                    new File(System.getProperty("java.io.tmpdir"))
+                );
+                if (!temp.delete() || !temp.mkdirs()) {
+                    throw new IllegalStateException("init failed");
+                }
+                FileUtils.forceDeleteOnExit(temp);
+                final File base = new File(temp, "basedir");
+                base.mkdirs();
+                return base;
+            } catch (final IOException ex) {
+                throw new IllegalStateException("Cannot create basedir", ex);
+            }
+        }).get();
 
         /**
          * Files for classpath.
          */
-        private final Set<String> classpath;
+        private final Set<String> paths = new HashSet<>(
+            Collections.singleton(
+                ((java.util.function.Supplier<String>) () -> {
+                    final File out = new File(this.origin, "target/classes");
+                    out.mkdirs();
+                    return out.getAbsolutePath()
+                        .replace(File.separatorChar, '/');
+                }).get()
+            )
+        );
 
         /**
          * Map of params.
          */
-        private final Map<String, String> params;
+        private final Map<String, String> params = new HashMap<>();
 
         /**
          * Exclude patterns.
          */
         private String excl;
-
-        /**
-         * Public ctor.
-         * @throws IOException If some IO problem
-         */
-        @SuppressWarnings(
-            "PMD.ConstructorOnlyInitializesOrCallOtherConstructors"
-            )
-        public Mock() throws IOException {
-            this.params = new HashMap<>();
-            this.classpath = new HashSet<>(1);
-            final File temp = File.createTempFile(
-                "mock", ".qulice",
-                new File(System.getProperty("java.io.tmpdir"))
-            );
-            if (!temp.delete()) {
-                throw new IllegalStateException("files collision");
-            }
-            if (!temp.mkdirs()) {
-                throw new IllegalStateException("mkdir failed");
-            }
-            FileUtils.forceDeleteOnExit(temp);
-            this.basedir = new File(temp, "basedir");
-            if (this.basedir.mkdirs()) {
-                assert this.basedir != null;
-            }
-            this.classpath.add(
-                this.outdir().getAbsolutePath().replace(File.separatorChar, '/')
-            );
-        }
 
         /**
          * With this param and its value.
@@ -181,9 +177,8 @@ public interface Environment {
          */
         public Environment.Mock withFile(final String name,
             final String content) throws IOException {
-            final File file = new File(this.basedir, name);
             FileUtils.writeStringToFile(
-                file,
+                new File(this.origin, name),
                 content,
                 StandardCharsets.UTF_8
             );
@@ -199,8 +194,7 @@ public interface Environment {
          */
         public Environment.Mock withFile(final String name,
             final byte[] bytes) throws IOException {
-            final File file = new File(this.basedir, name);
-            FileUtils.writeByteArrayToFile(file, bytes);
+            FileUtils.writeByteArrayToFile(new File(this.origin, name), bytes);
             return this;
         }
 
@@ -218,10 +212,9 @@ public interface Environment {
          * With default classpath.
          * @return This object
          */
-        @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
         public Environment.Mock withDefaultClasspath() {
             Collections.addAll(
-                this.classpath,
+                this.paths,
                 System.getProperty("java.class.path")
                     .split(System.getProperty("path.separator"))
             );
@@ -230,12 +223,12 @@ public interface Environment {
 
         @Override
         public File basedir() {
-            return this.basedir;
+            return this.origin;
         }
 
         @Override
         public File tempdir() {
-            final File file = new File(this.basedir, "target/tempdir");
+            final File file = new File(this.origin, "target/tempdir");
             if (file.mkdirs()) {
                 assert file != null;
             }
@@ -244,7 +237,7 @@ public interface Environment {
 
         @Override
         public File outdir() {
-            final File file = new File(this.basedir, "target/classes");
+            final File file = new File(this.origin, "target/classes");
             if (file.mkdirs()) {
                 assert file != null;
             }
@@ -267,11 +260,10 @@ public interface Environment {
 
         @Override
         public Collection<String> classpath() {
-            return Collections.unmodifiableCollection(this.classpath);
+            return Collections.unmodifiableCollection(this.paths);
         }
 
         @Override
-        @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
         public Collection<File> files(final String pattern) {
             final Collection<File> files = new LinkedList<>();
             final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();

@@ -20,7 +20,6 @@ import java.util.Collection;
  *
  * @since 0.24.2
  */
-@SuppressWarnings("PMD.TooManyMethods")
 final class ExcludingEnvironment implements Environment {
 
     /**

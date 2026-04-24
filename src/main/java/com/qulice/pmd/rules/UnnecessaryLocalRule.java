@@ -63,12 +63,12 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
         final ASTBlock block = variable.ancestors(ASTBlock.class).first();
         if (block != null) {
             final String name = variable.getName();
-            final List<ASTVariableAccess> uses = block
-                .descendants(ASTVariableAccess.class)
-                .crossFindBoundaries()
-                .filter(ref -> name.equals(ref.getName()))
-                .toList();
-            if (hasReturnOrArguments(uses)) {
+            if (hasReturnOrArguments(
+                block.descendants(ASTVariableAccess.class)
+                    .crossFindBoundaries()
+                    .filter(ref -> name.equals(ref.getName()))
+                    .toList()
+            )) {
                 result = name;
             }
         }

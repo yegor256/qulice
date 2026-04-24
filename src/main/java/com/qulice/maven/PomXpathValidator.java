@@ -44,7 +44,9 @@ public final class PomXpathValidator implements MavenValidator {
         for (final String xpath : xpaths) {
             if (pom.xpath(xpath).isEmpty()) {
                 throw new ValidationException(
-                    "pom.xml don't match the xpath query [%s]", xpath
+                    String.format(
+                        "pom.xml don't match the xpath query [%s]", xpath
+                    )
                 );
             }
         }

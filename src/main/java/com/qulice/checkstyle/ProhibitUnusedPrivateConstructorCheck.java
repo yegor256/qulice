@@ -82,9 +82,8 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
      */
     private static boolean isPrivateCtorUsedInOtherCtors(
         final DetailAST privatector, final DetailAST objblock) {
-        final List<DetailAST> allctors = collectAllConstructors(objblock);
-        return allctors.stream().anyMatch(
-            otherCtor -> otherCtor != privatector
+        return collectAllConstructors(objblock).stream().anyMatch(
+            otherCtor -> !otherCtor.equals(privatector)
             &&
             isCallingConstructor(otherCtor, privatector)
         );
@@ -138,8 +137,8 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
      *  <code>PRIVATE</code>, else returns <code>false</code>
      */
     private static boolean isPrivate(final DetailAST node) {
-        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.getChildCount(TokenTypes.LITERAL_PRIVATE) > 0;
+        return node.findFirstToken(TokenTypes.MODIFIERS)
+            .getChildCount(TokenTypes.LITERAL_PRIVATE) > 0;
     }
 
     private static boolean isCallingConstructor(
@@ -166,16 +165,16 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
 
     private static boolean matchesConstructorSignature(
         final DetailAST callexpr, final DetailAST ctor) {
-        final DetailAST callparams = callexpr.findFirstToken(TokenTypes.ELIST);
-        final DetailAST ctorparams = ctor.findFirstToken(TokenTypes.PARAMETERS);
-        return parametersCountMatch(callparams, ctorparams);
+        return parametersCountMatch(
+            callexpr.findFirstToken(TokenTypes.ELIST),
+            ctor.findFirstToken(TokenTypes.PARAMETERS)
+        );
     }
 
     private static boolean parametersCountMatch(
         final DetailAST callparams, final DetailAST ctorparams) {
-        final int ncallparams = callparams.getChildCount(TokenTypes.EXPR);
-        final int nctorparams = ctorparams.getChildCount(TokenTypes.PARAMETER_DEF);
-        return ncallparams == nctorparams;
+        return callparams.getChildCount(TokenTypes.EXPR) == ctorparams
+            .getChildCount(TokenTypes.PARAMETER_DEF);
     }
 
     /**

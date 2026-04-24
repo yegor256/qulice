@@ -28,11 +28,10 @@ final class PmdDisabledRulesTest {
                     String.format("(%s)", rule)
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
-    @SuppressWarnings("PMD.ProhibitPublicStaticMethods")
-    public static Collection<String[]> parameters() {
+    static Collection<String[]> parameters() {
         return Arrays.asList(
             new String[][] {
                 {"UseConcurrentHashMap"},

@@ -15,7 +15,6 @@ import java.util.Properties;
 public final class EnforcerValidator implements MavenValidator {
 
     @Override
-    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     public void validate(final MavenEnvironment env)
         throws ValidationException {
         if (!env.exclude("enforcer", "")) {

@@ -16,9 +16,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.maven.monitor.logging.DefaultLog;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.project.MavenProject;
-import org.codehaus.plexus.context.Context;
 import org.codehaus.plexus.context.DefaultContext;
 import org.codehaus.plexus.logging.AbstractLogger;
 import org.codehaus.plexus.logging.Logger;
@@ -38,9 +36,8 @@ final class CheckMojoTest {
     @Test
     void skipsExecutionOnSkipFlag() throws Exception {
         final CheckMojo mojo = new CheckMojo();
-        final Logger logger = new FakeLogger();
-        final Log log = new DefaultLog(logger);
-        mojo.setLog(log);
+        final Logger logger = new CheckMojoTest.FakeLogger();
+        mojo.setLog(new DefaultLog(logger));
         mojo.setSkip(true);
         mojo.execute();
         Assertions.assertEquals("[INFO] Execution skipped", logger.toString());
@@ -53,14 +50,14 @@ final class CheckMojoTest {
     void setsTimeoutToForever() {
         final CheckMojo mojo = new CheckMojo();
         mojo.setTimeout("forever");
-        final var validator = new BlockedValidator();
-        final ValidatorsProvider provider = new ValidatorsProviderMocker()
-            .withExternalResource(validator)
-            .mock();
-        mojo.setValidatorsProvider(provider);
-        final MavenProject project = new MavenProject();
-        mojo.setProject(project);
-        mojo.setLog(new DefaultLog(new FakeLogger()));
+        final BlockedValidator validator = new CheckMojoTest.BlockedValidator();
+        mojo.setValidatorsProvider(
+            new ValidatorsProviderMocker()
+                .withExternalResource(validator)
+                .mock()
+        );
+        mojo.setProject(new MavenProject());
+        mojo.setLog(new DefaultLog(new CheckMojoTest.FakeLogger()));
         new Thread(
             () -> {
                 try {
@@ -85,13 +82,13 @@ final class CheckMojoTest {
     void setsTimeoutToOneSecond() {
         final CheckMojo mojo = new CheckMojo();
         mojo.setTimeout("1s");
-        final ValidatorsProvider provider = new ValidatorsProviderMocker()
-            .withExternalResource(new BlockedValidator())
-            .mock();
-        mojo.setValidatorsProvider(provider);
-        final MavenProject project = new MavenProject();
-        mojo.setProject(project);
-        mojo.setLog(new DefaultLog(new FakeLogger()));
+        mojo.setValidatorsProvider(
+            new ValidatorsProviderMocker()
+                .withExternalResource(new CheckMojoTest.BlockedValidator())
+                .mock()
+        );
+        mojo.setProject(new MavenProject());
+        mojo.setLog(new DefaultLog(new CheckMojoTest.FakeLogger()));
         Assertions.assertSame(
             TimeoutException.class,
             Assertions.assertThrows(
@@ -110,26 +107,27 @@ final class CheckMojoTest {
     @Test
     void validatesUsingAllProvidedValidators() throws Exception {
         final CheckMojo mojo = new CheckMojo();
-        final FakeValidator external = new FakeValidator("somename");
-        final FakeResourceValidator rexternal = new FakeResourceValidator(
+        final FakeValidator external = new CheckMojoTest.FakeValidator("somename");
+        final FakeResourceValidator rexternal = new CheckMojoTest.FakeResourceValidator(
             "other"
         );
-        final FakeMavenValidator internal = new FakeMavenValidator();
-        final ValidatorsProvider provider = new ValidatorsProviderMocker()
-            .withInternal(internal)
-            .withExternal(external)
-            .withExternalResource(rexternal)
-            .mock();
-        mojo.setValidatorsProvider(provider);
-        final MavenProject project = new MavenProject();
-        mojo.setProject(project);
-        mojo.setLog(new DefaultLog(new FakeLogger()));
-        final Context context = new DefaultContext();
-        mojo.contextualize(context);
+        final FakeMavenValidator internal = new CheckMojoTest.FakeMavenValidator();
+        mojo.setValidatorsProvider(
+            new ValidatorsProviderMocker()
+                .withInternal(internal)
+                .withExternal(external)
+                .withExternalResource(rexternal)
+                .mock()
+        );
+        mojo.setProject(new MavenProject());
+        mojo.setLog(new DefaultLog(new CheckMojoTest.FakeLogger()));
+        mojo.contextualize(new DefaultContext());
         mojo.execute();
-        Assertions.assertEquals(1, internal.count());
-        Assertions.assertEquals(1, external.count());
-        Assertions.assertEquals(1, rexternal.count());
+        Assertions.assertAll(
+            () -> Assertions.assertEquals(1, internal.count()),
+            () -> Assertions.assertEquals(1, external.count()),
+            () -> Assertions.assertEquals(1, rexternal.count())
+        );
     }
 
     /**
@@ -263,7 +261,7 @@ final class CheckMojoTest {
             return this.label;
         }
 
-        public int count() {
+        int count() {
             return this.cnt.get();
         }
     }
@@ -308,11 +306,11 @@ final class CheckMojoTest {
             return "blocked forever";
         }
 
-        public int count() {
+        int count() {
             return this.cnt.get();
         }
 
-        public void await() {
+        void await() {
             try {
                 this.latch.await();
             } catch (final InterruptedException ex) {
@@ -355,7 +353,7 @@ final class CheckMojoTest {
             return this.label;
         }
 
-        public int count() {
+        int count() {
             return this.cnt.get();
         }
     }
@@ -383,7 +381,7 @@ final class CheckMojoTest {
             this.cnt.incrementAndGet();
         }
 
-        public int count() {
+        int count() {
             return this.cnt.get();
         }
     }

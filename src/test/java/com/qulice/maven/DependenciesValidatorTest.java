@@ -8,7 +8,6 @@ import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
-import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -64,16 +63,11 @@ final class DependenciesValidatorTest {
      */
     @Test
     void passesIfNoDependencyProblemsFound() throws Exception {
-        final ProjectDependencyAnalysis analysis =
-            new ProjectDependencyAnalysis();
-        final ProjectDependencyAnalyzer analyzer =
-            new FakeProjectDependencyAnalyzer(analysis);
-        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
-            DependenciesValidatorTest.ROLE,
-            DependenciesValidatorTest.HINT,
-            analyzer
-        ).mock();
-        new DependenciesValidator().validate(env);
+        Assertions.assertDoesNotThrow(
+            () -> new DependenciesValidator().validate(
+                DependenciesValidatorTest.envWith(new ProjectDependencyAnalysis())
+            )
+        );
     }
 
     /**
@@ -91,20 +85,15 @@ final class DependenciesValidatorTest {
         artifact.setType(DependenciesValidatorTest.TYPE);
         final Set<Artifact> unused = new HashSet<>();
         unused.add(artifact);
-        final ProjectDependencyAnalysis analysis =
-            new ProjectDependencyAnalysis(
-                Collections.emptySet(), unused, Collections.emptySet()
-            );
-        final ProjectDependencyAnalyzer analyzer =
-            new FakeProjectDependencyAnalyzer(analysis);
-        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
-            DependenciesValidatorTest.ROLE,
-            DependenciesValidatorTest.HINT,
-            analyzer
-        ).mock();
         Assertions.assertThrows(
             ValidationException.class,
-            () -> new DependenciesValidator().validate(env)
+            () -> new DependenciesValidator().validate(
+                DependenciesValidatorTest.envWith(
+                    new ProjectDependencyAnalysis(
+                        Collections.emptySet(), unused, Collections.emptySet()
+                    )
+                )
+            )
         );
     }
 
@@ -123,18 +112,15 @@ final class DependenciesValidatorTest {
         artifact.setType(DependenciesValidatorTest.TYPE);
         final Set<Artifact> unused = new HashSet<>();
         unused.add(artifact);
-        final ProjectDependencyAnalysis analysis =
-            new ProjectDependencyAnalysis(
-                Collections.emptySet(), Collections.emptySet(), unused
-            );
-        final ProjectDependencyAnalyzer analyzer =
-            new FakeProjectDependencyAnalyzer(analysis);
-        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
-            DependenciesValidatorTest.ROLE,
-            DependenciesValidatorTest.HINT,
-            analyzer
-        ).mock();
-        new DependenciesValidator().validate(env);
+        Assertions.assertDoesNotThrow(
+            () -> new DependenciesValidator().validate(
+                DependenciesValidatorTest.envWith(
+                    new ProjectDependencyAnalysis(
+                        Collections.emptySet(), Collections.emptySet(), unused
+                    )
+                )
+            )
+        );
     }
 
     /**
@@ -152,24 +138,20 @@ final class DependenciesValidatorTest {
         artifact.setVersion("2.3.4");
         artifact.setType(DependenciesValidatorTest.TYPE);
         used.add(artifact);
-        final ProjectDependencyAnalysis analysis =
-            new ProjectDependencyAnalysis(
-                Collections.emptySet(), used, Collections.emptySet()
-            );
-        final ProjectDependencyAnalyzer analyzer =
-            new FakeProjectDependencyAnalyzer(analysis);
-        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
-            DependenciesValidatorTest.ROLE,
-            DependenciesValidatorTest.HINT,
-            analyzer
-        ).mock();
-        new DependenciesValidator().validate(
-            new MavenEnvironment.Wrap(
-                new Environment.Mock().withExcludes(
-                    Joiner.on(':').join(
-                        artifact.getGroupId(), artifact.getArtifactId()
+        Assertions.assertDoesNotThrow(
+            () -> new DependenciesValidator().validate(
+                new MavenEnvironment.Wrap(
+                    new Environment.Mock().withExcludes(
+                        Joiner.on(':').join(
+                            artifact.getGroupId(), artifact.getArtifactId()
+                        )
+                    ),
+                    DependenciesValidatorTest.envWith(
+                        new ProjectDependencyAnalysis(
+                            Collections.emptySet(), used, Collections.emptySet()
+                        )
                     )
-                ), env
+                )
             )
         );
     }
@@ -189,24 +171,20 @@ final class DependenciesValidatorTest {
         artifact.setVersion("1.2.3");
         artifact.setType(DependenciesValidatorTest.TYPE);
         unused.add(artifact);
-        final ProjectDependencyAnalysis analysis =
-            new ProjectDependencyAnalysis(
-                Collections.emptySet(), Collections.emptySet(), unused
-            );
-        final ProjectDependencyAnalyzer analyzer =
-            new FakeProjectDependencyAnalyzer(analysis);
-        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
-            DependenciesValidatorTest.ROLE,
-            DependenciesValidatorTest.HINT,
-            analyzer
-        ).mock();
-        new DependenciesValidator().validate(
-            new MavenEnvironment.Wrap(
-                new Environment.Mock().withExcludes(
-                    Joiner.on(':').join(
-                        artifact.getGroupId(), artifact.getArtifactId()
+        Assertions.assertDoesNotThrow(
+            () -> new DependenciesValidator().validate(
+                new MavenEnvironment.Wrap(
+                    new Environment.Mock().withExcludes(
+                        Joiner.on(':').join(
+                            artifact.getGroupId(), artifact.getArtifactId()
+                        )
+                    ),
+                    DependenciesValidatorTest.envWith(
+                        new ProjectDependencyAnalysis(
+                            Collections.emptySet(), Collections.emptySet(), unused
+                        )
                     )
-                ), env
+                )
             )
         );
     }
@@ -223,18 +201,29 @@ final class DependenciesValidatorTest {
     @Test
     void treatsImportedDependencyAsUsed(@TempDir final Path dir)
         throws Exception {
-        final File jar = DependenciesValidatorTest.jar(
-            dir, "fake.jar", "com/fake/Marker.class"
-        );
         final Path src = DependenciesValidatorTest.sourceRoot(dir);
         DependenciesValidatorTest.writeJava(
             src, "com/example/Subject.java",
-            "package com.example;\nimport com.fake.Marker;\n@Marker\npublic class Subject {}\n"
+            String.join(
+                String.valueOf('\n'),
+                "package com.example;",
+                "import com.fake.Marker;",
+                "@Marker",
+                "public class Subject {}",
+                ""
+            )
         );
-        final MavenEnvironment env = DependenciesValidatorTest.envWithUnused(
-            src, jar, "com.fake:fake"
+        Assertions.assertDoesNotThrow(
+            () -> new DependenciesValidator().validate(
+                DependenciesValidatorTest.envWithUnused(
+                    src,
+                    DependenciesValidatorTest.jar(
+                        dir, "fake.jar", "com/fake/Marker.class"
+                    ),
+                    "com.fake:fake"
+                )
+            )
         );
-        new DependenciesValidator().validate(env);
     }
 
     /**
@@ -246,18 +235,28 @@ final class DependenciesValidatorTest {
      */
     @Test
     void treatsStaticImportAsUsage(@TempDir final Path dir) throws Exception {
-        final File jar = DependenciesValidatorTest.jar(
-            dir, "consts.jar", "com/consts/Constants.class"
-        );
         final Path src = DependenciesValidatorTest.sourceRoot(dir);
         DependenciesValidatorTest.writeJava(
             src, "com/example/UsesConst.java",
-            "package com.example;\nimport static com.consts.Constants.VALUE;\npublic class UsesConst { int x = VALUE; }\n"
+            String.join(
+                String.valueOf('\n'),
+                "package com.example;",
+                "import static com.consts.Constants.VALUE;",
+                "public class UsesConst { int x = VALUE; }",
+                ""
+            )
         );
-        final MavenEnvironment env = DependenciesValidatorTest.envWithUnused(
-            src, jar, "com.consts:consts"
+        Assertions.assertDoesNotThrow(
+            () -> new DependenciesValidator().validate(
+                DependenciesValidatorTest.envWithUnused(
+                    src,
+                    DependenciesValidatorTest.jar(
+                        dir, "consts.jar", "com/consts/Constants.class"
+                    ),
+                    "com.consts:consts"
+                )
+            )
         );
-        new DependenciesValidator().validate(env);
     }
 
     /**
@@ -268,18 +267,28 @@ final class DependenciesValidatorTest {
      */
     @Test
     void treatsWildcardImportAsUsage(@TempDir final Path dir) throws Exception {
-        final File jar = DependenciesValidatorTest.jar(
-            dir, "wild.jar", "com/wild/Thing.class"
-        );
         final Path src = DependenciesValidatorTest.sourceRoot(dir);
         DependenciesValidatorTest.writeJava(
             src, "com/example/UsesWild.java",
-            "package com.example;\nimport com.wild.*;\npublic class UsesWild {}\n"
+            String.join(
+                String.valueOf('\n'),
+                "package com.example;",
+                "import com.wild.*;",
+                "public class UsesWild {}",
+                ""
+            )
         );
-        final MavenEnvironment env = DependenciesValidatorTest.envWithUnused(
-            src, jar, "com.wild:wild"
+        Assertions.assertDoesNotThrow(
+            () -> new DependenciesValidator().validate(
+                DependenciesValidatorTest.envWithUnused(
+                    src,
+                    DependenciesValidatorTest.jar(
+                        dir, "wild.jar", "com/wild/Thing.class"
+                    ),
+                    "com.wild:wild"
+                )
+            )
         );
-        new DependenciesValidator().validate(env);
     }
 
     /**
@@ -292,22 +301,46 @@ final class DependenciesValidatorTest {
     @Test
     void stillFailsWithoutMatchingImport(@TempDir final Path dir)
         throws Exception {
-        final File jar = DependenciesValidatorTest.jar(
-            dir, "alone.jar", "com/alone/Class.class"
-        );
         final Path src = DependenciesValidatorTest.sourceRoot(dir);
         DependenciesValidatorTest.writeJava(
             src, "com/example/Other.java",
-            "package com.example;\nimport java.util.List;\npublic class Other {}\n"
-        );
-        final MavenEnvironment env = DependenciesValidatorTest.envWithUnused(
-            src, jar, "com.alone:alone"
+            String.join(
+                String.valueOf('\n'),
+                "package com.example;",
+                "import java.util.List;",
+                "public class Other {}",
+                ""
+            )
         );
         Assertions.assertThrows(
             ValidationException.class,
-            () -> new DependenciesValidator().validate(env),
+            () -> new DependenciesValidator().validate(
+                DependenciesValidatorTest.envWithUnused(
+                    src,
+                    DependenciesValidatorTest.jar(
+                        dir, "alone.jar", "com/alone/Class.class"
+                    ),
+                    "com.alone:alone"
+                )
+            ),
             "a declared dependency that is neither referenced in bytecode nor imported in source must not pass validation"
         );
+    }
+
+    /**
+     * Build a MavenEnvironment wired with a given dependency analysis.
+     * @param analysis Dependency analysis to inject
+     * @return Wired environment
+     * @throws Exception If something wrong happens inside
+     */
+    private static MavenEnvironment envWith(
+        final ProjectDependencyAnalysis analysis
+    ) throws Exception {
+        return new MavenEnvironmentMocker().inPlexus(
+            DependenciesValidatorTest.ROLE,
+            DependenciesValidatorTest.HINT,
+            new DependenciesValidatorTest.FakeProjectDependencyAnalyzer(analysis)
+        ).mock();
     }
 
     /**
@@ -331,14 +364,11 @@ final class DependenciesValidatorTest {
         artifact.setFile(jar);
         final Set<Artifact> unused = new HashSet<>();
         unused.add(artifact);
-        final ProjectDependencyAnalysis analysis = new ProjectDependencyAnalysis(
-            Collections.emptySet(), Collections.emptySet(), unused
+        final MavenEnvironment env = DependenciesValidatorTest.envWith(
+            new ProjectDependencyAnalysis(
+                Collections.emptySet(), Collections.emptySet(), unused
+            )
         );
-        final MavenEnvironment env = new MavenEnvironmentMocker().inPlexus(
-            DependenciesValidatorTest.ROLE,
-            DependenciesValidatorTest.HINT,
-            new FakeProjectDependencyAnalyzer(analysis)
-        ).mock();
         env.project().addCompileSourceRoot(src.toString());
         return env;
     }
@@ -354,8 +384,9 @@ final class DependenciesValidatorTest {
     private static File jar(final Path dir, final String name,
         final String... entries) throws Exception {
         final File jar = dir.resolve(name).toFile();
-        try (OutputStream fos = Files.newOutputStream(jar.toPath());
-            JarOutputStream out = new JarOutputStream(fos)) {
+        try (JarOutputStream out = new JarOutputStream(
+            Files.newOutputStream(jar.toPath())
+        )) {
             for (final String entry : entries) {
                 out.putNextEntry(new JarEntry(entry));
                 out.write(new byte[]{0});

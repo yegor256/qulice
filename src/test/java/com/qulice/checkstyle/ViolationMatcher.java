@@ -41,6 +41,15 @@ final class ViolationMatcher extends TypeSafeMatcher<Violation> {
      * Constructor.
      * @param message Message to check
      * @param file File to check
+     */
+    ViolationMatcher(final String message, final String file) {
+        this(message, file, "", "");
+    }
+
+    /**
+     * Constructor.
+     * @param message Message to check
+     * @param file File to check
      * @param line Line to check
      * @param check Check name
      * @checkstyle ParameterNumber (3 lines)
@@ -52,15 +61,6 @@ final class ViolationMatcher extends TypeSafeMatcher<Violation> {
         this.file = file;
         this.line = line;
         this.check = check;
-    }
-
-    /**
-     * Constructor.
-     * @param message Message to check
-     * @param file File to check
-     */
-    ViolationMatcher(final String message, final String file) {
-        this(message, file, "", "");
     }
 
     @Override

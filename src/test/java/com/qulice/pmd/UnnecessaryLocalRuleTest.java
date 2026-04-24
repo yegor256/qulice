@@ -7,7 +7,6 @@ package com.qulice.pmd;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.stream.Collectors;
 import org.cactoos.text.TextOf;
@@ -32,7 +31,7 @@ final class UnnecessaryLocalRuleTest {
             new StringContains(
                 "Avoid creating unnecessary local variables like 'result'"
             )
-        ).validate();
+        ).assertOk();
     }
 
     @Test
@@ -46,12 +45,11 @@ final class UnnecessaryLocalRuleTest {
                 this.getClass().getResourceAsStream(file)
             ).asString()
         );
-        final Collection<Violation> violations = new PmdValidator(env).validate(
-            Collections.singletonList(new File(env.basedir(), name))
-        );
         MatcherAssert.assertThat(
             "UnnecessaryLocalRule should not fire when variable is used in a loop",
-            violations.stream().map(Violation::name).collect(Collectors.toList()),
+            new PmdValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), name))
+            ).stream().map(Violation::name).collect(Collectors.toList()),
             Matchers.not(Matchers.hasItem("UnnecessaryLocalRule"))
         );
     }
@@ -67,12 +65,11 @@ final class UnnecessaryLocalRuleTest {
                 this.getClass().getResourceAsStream(file)
             ).asString()
         );
-        final Collection<Violation> violations = new PmdValidator(env).validate(
-            Collections.singletonList(new File(env.basedir(), name))
-        );
         MatcherAssert.assertThat(
             "UnnecessaryLocalRule should not fire when variable is used more than once",
-            violations.stream().map(Violation::name).collect(Collectors.toList()),
+            new PmdValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), name))
+            ).stream().map(Violation::name).collect(Collectors.toList()),
             Matchers.not(Matchers.hasItem("UnnecessaryLocalRule"))
         );
     }

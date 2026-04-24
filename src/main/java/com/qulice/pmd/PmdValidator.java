@@ -34,7 +34,6 @@ public final class PmdValidator implements ResourceValidator {
     }
 
     @Override
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<Violation> validate(final Collection<File> files) {
         final Collection<File> sources = this.getNonExcludedFiles(files);
         final Collection<Violation> violations = new LinkedList<>();
@@ -45,7 +44,7 @@ public final class PmdValidator implements ResourceValidator {
                 files.size()
             );
         } else {
-            final SourceValidator validator = new SourceValidator(this.env);
+            final SourceValidator validator = new SourceValidator(this.env.encoding());
             final Collection<PmdError> errors = validator.validate(
                 sources, this.env.basedir().getPath()
             );

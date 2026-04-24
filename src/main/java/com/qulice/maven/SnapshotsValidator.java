@@ -21,11 +21,9 @@ public final class SnapshotsValidator implements MavenValidator {
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {
-        if (!env.exclude("snapshots", "")) {
-            final String version = env.project().getVersion();
-            if (!SnapshotsValidator.isSnapshot(version)) {
-                this.check(env);
-            }
+        if (!env.exclude("snapshots", "")
+            && !SnapshotsValidator.isSnapshot(env.project().getVersion())) {
+            this.check(env);
         }
     }
 
@@ -73,8 +71,7 @@ public final class SnapshotsValidator implements MavenValidator {
                 errors
             );
             throw new ValidationException(
-                "%d dependencies are in SNAPSHOT state",
-                errors
+                String.format("%d dependencies are in SNAPSHOT state", errors)
             );
         }
     }

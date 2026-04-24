@@ -11,6 +11,7 @@ import com.qulice.spi.ValidationException;
  *
  * @since 0.3
  */
+@FunctionalInterface
 interface MavenValidator {
 
     /**

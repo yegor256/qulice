@@ -97,9 +97,8 @@ public final class NonStaticMethodCheck extends AbstractCheck {
         if (!skip
             && !checker.check(TokenTypes.LITERAL_THIS)
             && !checker.check(TokenTypes.LITERAL_SUPER)) {
-            final int line = method.getLineNo();
             this.log(
-                line,
+                method.getLineNo(),
                 "This method must be static, because it does not refer to \"this\""
             );
         }
@@ -111,8 +110,9 @@ public final class NonStaticMethodCheck extends AbstractCheck {
      * @return True if method is abstract or native
      */
     private static boolean isInAbstractOrNativeMethod(final DetailAST method) {
-        final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);
-        final BranchContains checker = new BranchContains(modifiers);
+        final BranchContains checker = new BranchContains(
+            method.findFirstToken(TokenTypes.MODIFIERS)
+        );
         return checker.check(TokenTypes.ABSTRACT)
             || checker.check(TokenTypes.LITERAL_NATIVE);
     }

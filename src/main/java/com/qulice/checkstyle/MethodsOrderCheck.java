@@ -211,7 +211,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
          * TokenType.
          * @return TokenType
          */
-        public int getType() {
+        int getType() {
             return this.type;
         }
 
@@ -219,7 +219,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
          * Order of modifier.
          * @return Order number
          */
-        public int getOrder() {
+        int getOrder() {
             return this.order;
         }
     }

@@ -9,7 +9,6 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collection;
 import java.util.Collections;
 import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 import org.hamcrest.MatcherAssert;
@@ -21,7 +20,6 @@ import org.junit.jupiter.api.io.TempDir;
  * Test case for {@link DefaultMavenEnvironment} class.
  * @since 0.8
  */
-@SuppressWarnings("PMD.AvoidDuplicateLiterals")
 final class DefaultMavenEnvironmentTest {
 
     /**
@@ -57,10 +55,10 @@ final class DefaultMavenEnvironmentTest {
      */
     @Test
     void noExclude() {
-        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         MatcherAssert.assertThat(
             "Excludes should be empty list by default",
-            env.excludes("codenarc").iterator().hasNext(),
+            new DefaultMavenEnvironment().excludes("codenarc")
+                .iterator().hasNext(),
             Matchers.is(false)
         );
     }
@@ -92,7 +90,7 @@ final class DefaultMavenEnvironmentTest {
      * @throws Exception If something wrong happens inside
      */
     @Test
-    void passPathsWithWhitespaces()  throws Exception {
+    void passPathsWithWhitespaces() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         final MavenProjectStub project = new MavenProjectStub();
         project.setRuntimeClasspathElements(
@@ -141,7 +139,11 @@ final class DefaultMavenEnvironmentTest {
         final Path src = basedir.resolve("src/main/java");
         Files.createDirectories(src);
         final Path source = src.resolve("Foo.java");
-        Files.writeString(source, "class Foo {}\n", StandardCharsets.UTF_8);
+        Files.writeString(
+            source,
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
         final Path image = basedir.resolve("src/main/resources/pixel.png");
         Files.createDirectories(image.getParent());
         Files.write(
@@ -152,17 +154,17 @@ final class DefaultMavenEnvironmentTest {
             }
         );
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
-        final MavenProjectStub project = new MavenProjectStub() {
-            @Override
-            public File getBasedir() {
-                return basedir.toFile();
+        env.setProject(
+            new MavenProjectStub() {
+                @Override
+                public File getBasedir() {
+                    return basedir.toFile();
+                }
             }
-        };
-        env.setProject(project);
-        final Collection<File> files = env.files("*.*");
+        );
         MatcherAssert.assertThat(
             "Binary files cannot leak into the list of files to validate",
-            files,
+            env.files("*.*"),
             Matchers.allOf(
                 Matchers.hasItem(source.toFile()),
                 Matchers.not(Matchers.hasItem(image.toFile()))
@@ -175,10 +177,9 @@ final class DefaultMavenEnvironmentTest {
      */
     @Test
     void defaultEncodingIsUtf() {
-        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         MatcherAssert.assertThat(
             "Default encoding should be UTF-8",
-            env.encoding(),
+            new DefaultMavenEnvironment().encoding(),
             Matchers.is(StandardCharsets.UTF_8)
         );
     }

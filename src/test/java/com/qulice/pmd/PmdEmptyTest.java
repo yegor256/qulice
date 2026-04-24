@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link PmdValidator} class.
  * @since 0.15
  */
-@SuppressWarnings("PMD.TooManyMethods")
 final class PmdEmptyTest {
 
     /**
@@ -26,7 +25,7 @@ final class PmdEmptyTest {
             Matchers.containsString(
                 "Empty initializer statement (EmptyControlStatement)"
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -41,7 +40,7 @@ final class PmdEmptyTest {
             Matchers.containsString(
                 "Empty block "
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -56,7 +55,7 @@ final class PmdEmptyTest {
             Matchers.containsString(
                 "Empty initializer statement "
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -71,7 +70,7 @@ final class PmdEmptyTest {
             Matchers.containsString(
                 "Unnecessary semicolon "
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -86,7 +85,7 @@ final class PmdEmptyTest {
             Matchers.containsString(
                 "Empty synchronized statement "
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -101,7 +100,7 @@ final class PmdEmptyTest {
             Matchers.containsString(
                 "Empty switch statement "
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -114,7 +113,7 @@ final class PmdEmptyTest {
             "EmptyFinallyBlock.java",
             Matchers.is(false),
             Matchers.containsString("Empty finally clause")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -127,7 +126,7 @@ final class PmdEmptyTest {
             "EmptyWhileStmt.java",
             Matchers.is(false),
             Matchers.containsString("Empty while statement ")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -140,7 +139,7 @@ final class PmdEmptyTest {
             "EmptyIfStmt.java",
             Matchers.is(false),
             Matchers.containsString("Empty if statement ")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -153,6 +152,6 @@ final class PmdEmptyTest {
             "EmptyCatchBlock.java",
             Matchers.is(false),
             Matchers.containsString("Avoid empty catch blocks")
-        ).validate();
+        ).assertOk();
     }
 }

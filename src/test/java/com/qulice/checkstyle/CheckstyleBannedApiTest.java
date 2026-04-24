@@ -50,13 +50,10 @@ final class CheckstyleBannedApiTest {
         final String message =
             "Use java.nio.charset.StandardCharsets instead";
         final String file = "DoNotUseCharEncoding.java";
-        final Collection<Violation> results = this.runValidation(
-            file, false
-        );
         final String name = "RegexpSinglelineCheck";
         MatcherAssert.assertThat(
             "8 violations should be found",
-            results,
+            this.runValidation(file, false),
             new IsIterableContainingInOrder<>(
                 new ListOf<>(
                     new ViolationMatcher(message, file, "6", name),
@@ -93,13 +90,10 @@ final class CheckstyleBannedApiTest {
         final String message =
             "Unnecessary java.lang. prefix, use the simple class name";
         final String file = "UnnecessaryJavaLang.java";
-        final Collection<Violation> results = this.runValidation(
-            file, false
-        );
         final String name = "RegexpSinglelineCheck";
         MatcherAssert.assertThat(
             "cannot find all java.lang. violations",
-            results,
+            this.runValidation(file, false),
             Matchers.hasItems(
                 new ViolationMatcher(message, file, "10", name),
                 new ViolationMatcher(message, file, "18", name),
@@ -109,17 +103,18 @@ final class CheckstyleBannedApiTest {
         );
     }
 
-    @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
     private Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = new License().savePackageInfo(
-            new File(mock.basedir(), "src/main/java/foo")
-        ).withLines("Hello.")
-            .withEol("\n").file();
         final Environment env = mock.withParam(
             "license",
-            String.format("file:%s", license)
+            String.format(
+                "file:%s",
+                new License().savePackageInfo(
+                    new File(mock.basedir(), "src/main/java/foo")
+                ).withLines("Hello.")
+                    .withEol(String.valueOf('\n')).file()
+            )
         ).withFile(
             String.format("src/main/java/foo/%s", file),
             new IoCheckedText(

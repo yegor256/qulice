@@ -45,7 +45,7 @@ final class CheckstyleTextFileTest {
     private License rule;
 
     @BeforeEach
-    public void setRule() {
+    void setRule() {
         this.rule = new License();
     }
 
@@ -60,7 +60,8 @@ final class CheckstyleTextFileTest {
         MatcherAssert.assertThat(
             "Tab character in .js file is not reported",
             this.runValidationWithContent(
-                file, "\tconsole.log(\"Hello World\");\n"
+                file,
+                "\tconsole.log(\"Hello World\");".concat(String.valueOf('\n'))
             ),
             Matchers.hasItem(
                 new ViolationMatcher(
@@ -80,7 +81,10 @@ final class CheckstyleTextFileTest {
         final String file = "README.md";
         MatcherAssert.assertThat(
             "Missing final newline in .md file is not reported",
-            this.runValidationWithContent(file, "# Title\nNo newline at end"),
+            this.runValidationWithContent(
+                file,
+                "# Title".concat(String.valueOf('\n')).concat("No newline at end")
+            ),
             Matchers.hasItem(
                 new ViolationMatcher(
                     "File does not end with a newline.", file, "",
@@ -104,7 +108,7 @@ final class CheckstyleTextFileTest {
                 file,
                 new IoCheckedText(
                     new Joined(
-                        "\n",
+                        String.valueOf('\n'),
                         "package foo;",
                         "public final class EmptyLineBeforeBrace {",
                         "    public void foo() {",
@@ -140,7 +144,7 @@ final class CheckstyleTextFileTest {
                 file,
                 new IoCheckedText(
                     new Joined(
-                        "\n",
+                        String.valueOf('\n'),
                         "package foo;",
                         "public final class NoEmptyLineBeforeBrace {",
                         "    public void foo() {",
@@ -173,13 +177,15 @@ final class CheckstyleTextFileTest {
     private Collection<Violation> runValidationWithContent(final String file,
         final String content) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
-        final File license = this.rule.savePackageInfo(
-            new File(mock.basedir(), CheckstyleTextFileTest.DIRECTORY)
-        ).withLines(CheckstyleTextFileTest.LICENSE)
-            .withEol("\n").file();
         final Environment env = mock.withParam(
             CheckstyleTextFileTest.LICENSE_PROP,
-            String.format("file:%s", license)
+            String.format(
+                "file:%s",
+                this.rule.savePackageInfo(
+                    new File(mock.basedir(), CheckstyleTextFileTest.DIRECTORY)
+                ).withLines(CheckstyleTextFileTest.LICENSE)
+                    .withEol(String.valueOf('\n')).file()
+            )
         ).withFile(String.format("src/main/resources/%s", file), content);
         return new CheckstyleValidator(env).validate(env.files(file));
     }

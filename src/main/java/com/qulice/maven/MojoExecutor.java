@@ -85,11 +85,13 @@ public final class MojoExecutor {
         } catch (final PluginContainerException ex) {
             throw new IllegalStateException("Can't setup realm", ex);
         }
-        final Xpp3Dom xpp = Xpp3Dom.mergeXpp3Dom(
-            this.toXppDom(config, "configuration"),
-            this.toXppDom(descriptor.getMojoConfiguration())
+        final MojoExecution execution = new MojoExecution(
+            descriptor,
+            Xpp3Dom.mergeXpp3Dom(
+                this.toXppDom(config, "configuration"),
+                this.toXppDom(descriptor.getMojoConfiguration())
+            )
         );
-        final MojoExecution execution = new MojoExecution(descriptor, xpp);
         final Mojo mojo = this.mojo(execution);
         try {
             Logger.info(this, "Calling %s:%s...", coords, goal);
@@ -165,7 +167,6 @@ public final class MojoExecutor {
      * @param value Value to convert
      * @return The Xpp3Dom node
      */
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private Xpp3Dom toNode(final String name, final Object value) {
         final Xpp3Dom node;
         if (value instanceof String) {

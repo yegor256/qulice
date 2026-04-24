@@ -18,18 +18,26 @@ public final class ValidationException extends Exception {
 
     /**
      * Public ctor.
-     * @param text The text of the exception
-     * @param args Optional arguments for String.format()
+     * @param cause The cause of exception
      */
-    public ValidationException(final String text, final Object... args) {
-        super(String.format(text, args));
+    public ValidationException(final Throwable cause) {
+        this(null, cause);
     }
 
     /**
      * Public ctor.
+     * @param text The text of the exception
+     */
+    public ValidationException(final String text) {
+        this(text, null);
+    }
+
+    /**
+     * Primary ctor.
+     * @param text The text of the exception
      * @param cause The cause of exception
      */
-    public ValidationException(final Throwable cause) {
-        super(cause);
+    private ValidationException(final String text, final Throwable cause) {
+        super(text, cause);
     }
 }

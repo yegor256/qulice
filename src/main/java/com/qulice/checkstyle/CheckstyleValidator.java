@@ -62,10 +62,14 @@ public final class CheckstyleValidator implements ResourceValidator {
      * Constructor.
      * @param env Environment to use
      */
-    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public CheckstyleValidator(final Environment env) {
         this.env = env;
         this.checker = new Checker();
+        this.listener = new CheckstyleListener(this.env);
+    }
+
+    @Override
+    public Collection<Violation> validate(final Collection<File> files) {
         this.checker.setModuleClassLoader(
             Thread.currentThread().getContextClassLoader()
         );
@@ -74,13 +78,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         } catch (final CheckstyleException ex) {
             throw new IllegalStateException("Failed to configure checker", ex);
         }
-        this.listener = new CheckstyleListener(this.env);
         this.checker.addListener(this.listener);
-    }
-
-    @Override
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
-    public Collection<Violation> validate(final Collection<File> files) {
         final List<File> sources = this.getNonExcludedFiles(files);
         final Collection<Violation> results = new LinkedList<>();
         if (sources.isEmpty()) {
@@ -92,14 +90,8 @@ public final class CheckstyleValidator implements ResourceValidator {
         } else {
             try {
                 Logger.debug(this, "Checkstyle processing %d files", sources.size());
-                final long start = System.currentTimeMillis();
                 this.checker.process(sources);
-                Logger.debug(
-                    this,
-                    "Checkstyle processed %d files in %[ms]s",
-                    sources.size(),
-                    System.currentTimeMillis() - start
-                );
+                Logger.debug(this, "Checkstyle processed %d files", sources.size());
             } catch (final CheckstyleException ex) {
                 throw new IllegalStateException("Failed to process files", ex);
             }
@@ -174,9 +166,8 @@ public final class CheckstyleValidator implements ResourceValidator {
                     "Checkstyle configuration file 'checks.xml' not found in classpath."
                 );
             }
-            final InputSource src = new InputSource(stream);
             config = ConfigurationLoader.loadConfiguration(
-                src,
+                new InputSource(stream),
                 new PropertiesExpander(props),
                 ConfigurationLoader.IgnoredModulesOptions.OMIT
             );

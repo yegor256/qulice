@@ -12,6 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -38,11 +39,9 @@ final class ChecksTest {
      */
     @ParameterizedTest
     @MethodSource("checks")
-    @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")
     void testCheckstyleTruePositive(final String dir) throws Exception {
         final Collector collector = new ChecksTest.Collector();
-        final AuditListener listener = new FakeAuditListener(collector);
-        this.check(dir, "/Invalid.java", listener);
+        this.run(dir, "/Invalid.java", new ChecksTest.FakeAuditListener(collector));
         final String[] violations = IOUtils.toString(
             Objects.requireNonNull(
                 this.getClass().getResourceAsStream(
@@ -50,34 +49,22 @@ final class ChecksTest {
                 )
             ),
             StandardCharsets.UTF_8
-        ).split("\n");
-        for (final String line : violations) {
-            final String[] sectors = line.split(":");
-            final Integer pos = Integer.valueOf(sectors[0]);
-            final String needle = sectors[1].trim();
-            MatcherAssert.assertThat(
-                collector.has(pos, needle),
-                Matchers.describedAs(
-                    String.format(
-                        "Line no.%d ('%s') not reported by %s: '%s'",
-                        pos,
-                        needle,
-                        dir,
-                        collector.summary()
-                    ),
-                    Matchers.is(true)
-                )
-            );
-        }
+        ).split(String.valueOf('\n'));
         MatcherAssert.assertThat(
-            collector.eventCount(),
-            Matchers.describedAs(
-                String.format(
-                    "Got more violations that expected for directory %s (%s)",
-                    dir, collector.summary()
+            String.format(
+                "Expected exactly %d violations from %s (%s)",
+                violations.length, dir, collector.summary()
+            ),
+            collector.eventCount() == violations.length
+                && Arrays.stream(violations).allMatch(
+                    line -> {
+                        final String[] sectors = line.split(":");
+                        return collector.has(
+                            Integer.valueOf(sectors[0]), sectors[1].trim()
+                        );
+                    }
                 ),
-                Matchers.equalTo(violations.length)
-            )
+            Matchers.is(true)
         );
     }
 
@@ -90,8 +77,7 @@ final class ChecksTest {
     @MethodSource("checks")
     void testCheckstyleTrueNegative(final String dir) throws Exception {
         final Collector collector = new ChecksTest.Collector();
-        final AuditListener listener = new FakeAuditListener(collector);
-        this.check(dir, "/Valid.java", listener);
+        this.run(dir, "/Valid.java", new ChecksTest.FakeAuditListener(collector));
         MatcherAssert.assertThat(
             "Log should be empty for valid files",
             collector.summary(),
@@ -106,21 +92,20 @@ final class ChecksTest {
      * @param listener The listener
      * @throws Exception If something goes wrong inside
      */
-    private void check(
+    private void run(
         final String dir, final String name, final AuditListener listener
     ) throws Exception {
         final Checker checker = new Checker();
-        final InputSource src = new InputSource(
-            this.getClass().getResourceAsStream(
-                String.format("%s/config.xml", dir)
-            )
-        );
         checker.setModuleClassLoader(
             Thread.currentThread().getContextClassLoader()
         );
         checker.configure(
             ConfigurationLoader.loadConfiguration(
-                src,
+                new InputSource(
+                    this.getClass().getResourceAsStream(
+                        String.format("%s/config.xml", dir)
+                    )
+                ),
                 new PropertiesExpander(new Properties()),
                 ConfigurationLoader.IgnoredModulesOptions.OMIT
             )
@@ -142,7 +127,6 @@ final class ChecksTest {
      * Returns full list of checks.
      * @return The list
      */
-    @SuppressWarnings("PMD.UnusedPrivateMethod")
     private static Stream<String> checks() {
         return Stream.of(
             "MethodsOrderCheck",
@@ -196,7 +180,7 @@ final class ChecksTest {
          */
         private final List<AuditEvent> events = new LinkedList<>();
 
-        public void add(final AuditEvent event) {
+        void add(final AuditEvent event) {
             this.events.add(event);
         }
 
@@ -204,7 +188,7 @@ final class ChecksTest {
          * How many messages do we have?
          * @return Amount of messages reported
          */
-        public int eventCount() {
+        int eventCount() {
             return this.events.size();
         }
 
@@ -214,7 +198,7 @@ final class ChecksTest {
          * @param msg The message we're looking for
          * @return This message was reported for the give line?
          */
-        public boolean has(final Integer line, final String msg) {
+        boolean has(final Integer line, final String msg) {
             boolean has = false;
             for (final AuditEvent event : this.events) {
                 if (event.getLine() == line && event.getMessage().equals(msg)) {
@@ -229,7 +213,7 @@ final class ChecksTest {
          * Returns full summary.
          * @return The test summary of all events
          */
-        public String summary() {
+        String summary() {
             final List<String> msgs = new LinkedList<>();
             for (final AuditEvent event : this.events) {
                 msgs.add(

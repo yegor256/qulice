@@ -61,7 +61,7 @@ public interface Violation extends Comparable<Violation> {
         /**
          * Name of the failed check.
          */
-        private final String name;
+        private final String chk;
 
         /**
          * Lines with the problem.
@@ -71,7 +71,7 @@ public interface Violation extends Comparable<Violation> {
         /**
          * Validated file.
          */
-        private final String file;
+        private final String path;
 
         /**
          * Validation message.
@@ -90,8 +90,8 @@ public interface Violation extends Comparable<Violation> {
         public Default(final String vldtr, final String name,
             final String file, final String lns, final String msg) {
             this.vldtr = vldtr;
-            this.name = name;
-            this.file = file;
+            this.chk = name;
+            this.path = file;
             this.lns = lns;
             this.msg = msg;
         }
@@ -103,12 +103,12 @@ public interface Violation extends Comparable<Violation> {
 
         @Override
         public String name() {
-            return this.name;
+            return this.chk;
         }
 
         @Override
         public String file() {
-            return this.file;
+            return this.path;
         }
 
         @Override

@@ -34,6 +34,6 @@ final class UnusedImportsRuleTest {
                     "(UnnecessaryImport)"
                 ).trim()
             )
-        ).validate();
+        ).assertOk();
     }
 }

@@ -13,6 +13,7 @@ import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -95,21 +96,19 @@ public final class CheckMojo extends AbstractQuliceMojo {
      */
     @SuppressWarnings("PMD.CognitiveComplexity")
     private void run() throws ValidationException {
-        final LinkedList<Violation> results = new LinkedList<>();
+        final List<Violation> results = new LinkedList<>();
         final MavenEnvironment env = this.env();
         final Collection<File> files = env.files("*.*");
         if (!files.isEmpty()) {
-            final Collection<ResourceValidator> validators =
-                this.provider.externalResource();
             final Collection<Future<Collection<Violation>>> futures =
-                this.submit(env, files, validators);
+                this.submit(env, files, this.provider.externalResource());
             for (final Future<Collection<Violation>> future : futures) {
                 try {
                     if ("forever".equalsIgnoreCase(this.timeout)) {
                         results.addAll(future.get());
                     } else {
-                        final var value = this.timeoutValue();
-                        final var units = this.timeoutUnits();
+                        final long value = this.timeoutValue();
+                        final TimeUnit units = this.timeoutUnits();
                         Logger.debug(
                             this,
                             "Waiting up to %d %s for validator result",
@@ -165,7 +164,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
      * @param validators Validators to use
      * @return List of futures
      */
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     private Collection<Future<Collection<Violation>>> submit(
         final MavenEnvironment env, final Collection<File> files,
         final Collection<ResourceValidator> validators
@@ -175,7 +173,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
         for (final ResourceValidator validator : validators) {
             futures.add(
                 this.executors.submit(
-                    new ValidatorCallable(validator, env, files)
+                    new CheckMojo.ValidatorCallable(validator, env, files)
                 )
             );
         }

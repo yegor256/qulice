@@ -47,7 +47,6 @@ public final class JavadocLocationCheck extends AbstractCheck {
         final String[] lines = this.getLines();
         int current = ast.getLineNo();
         boolean found = false;
-        final int start = current;
         --current;
         while (true) {
             if (current <= 0) {
@@ -64,7 +63,7 @@ public final class JavadocLocationCheck extends AbstractCheck {
             --current;
         }
         if (found) {
-            this.report(start, current);
+            this.report(ast.getLineNo(), current);
         }
     }
 

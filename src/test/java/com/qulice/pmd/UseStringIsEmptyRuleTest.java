@@ -45,7 +45,7 @@ final class UseStringIsEmptyRuleTest {
                 .and(containsMatcher(file, 28))
                 .and(containsMatcher(file, 32))
                 .and(containsMatcher(file, 36))
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -59,7 +59,7 @@ final class UseStringIsEmptyRuleTest {
             "ArrayOfStringsLengthGreaterThanZero.java",
             new IsEqual<>(true),
             IsEmptyString.emptyString()
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -71,12 +71,11 @@ final class UseStringIsEmptyRuleTest {
     private static Matcher<String> containsMatcher(
         final String file, final int line
     ) {
-        final String message =
-            "Use String.isEmpty() when checking for empty string";
         return new StringContains(
             String.format(
                 "PMD: %1$s[%2$d-%2$d]: %3$s (UseStringIsEmptyRule)",
-                file, line, message
+                file, line,
+                "Use String.isEmpty() when checking for empty string"
             )
         );
     }

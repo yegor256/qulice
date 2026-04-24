@@ -57,7 +57,7 @@ final class PmdAssert {
      *
      * @throws Exception In case of error.
      */
-    public void validate() throws Exception {
+    void assertOk() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final String name = String.format("src/main/java/foo/%s", this.file);
         final Environment env = mock.withFile(
@@ -74,7 +74,7 @@ final class PmdAssert {
         for (final Violation violation : violations) {
             builder.append(
                 String.format(
-                    "PMD: %s[%s]: %s (%s)\n",
+                    "PMD: %s[%s]: %s (%s)%n",
                     this.file,
                     violation.lines(),
                     violation.message(),

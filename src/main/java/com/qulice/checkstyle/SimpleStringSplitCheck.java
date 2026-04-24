@@ -161,9 +161,10 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
      */
     private static boolean optimized(final String regex) {
         final boolean result;
-        if (regex.length() == 1) {
+        final int len = regex.length();
+        if (len == 1) {
             result = SimpleStringSplitCheck.META.indexOf(regex.charAt(0)) < 0;
-        } else if (regex.length() == 2 && regex.charAt(0) == '\\') {
+        } else if (len == 2 && regex.charAt(0) == '\\') {
             result = !SimpleStringSplitCheck.isAsciiAlphanumeric(regex.charAt(1));
         } else {
             result = false;

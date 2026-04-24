@@ -34,6 +34,6 @@ final class LocalVariableCouldBeFinalRuleTest {
                     "(LocalVariableCouldBeFinal)"
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 }

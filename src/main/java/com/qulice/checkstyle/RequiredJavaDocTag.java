@@ -55,30 +55,6 @@ final class RequiredJavaDocTag {
 
     /**
      * Ctor.
-     * @param name Tag name
-     * @param patt Pattern for checking the contents of a tag in a string
-     * @param rep Reference to a method for writing a message to the log
-     */
-    RequiredJavaDocTag(
-        final String name,
-        final Pattern patt,
-        final Reporter rep
-    ) {
-        this(
-            name,
-            Pattern.compile(
-                String.format(
-                    "(?<name>^ +\\* +@%s)( +)(?<cont>.*)",
-                    name
-                )
-            ),
-            patt,
-            rep
-        );
-    }
-
-    /**
-     * Ctor.
      * @param cname Tag name
      * @param ptag Pattern for searching a tag in a string
      * @param patt Pattern for checking the contents of a tag in a string
@@ -103,7 +79,7 @@ final class RequiredJavaDocTag {
      * @param start Line number where comment starts
      * @param end Line number where comment ends
      */
-    public void matchTagFormat(
+    void matchTagFormat(
         final String[] lines,
         final int start,
         final int end
@@ -197,6 +173,7 @@ final class RequiredJavaDocTag {
      * @see com.puppycrawl.tools.checkstyle.api.AbstractCheck#log(int, String, Object...)
      * @since 0.23.1
      */
+    @FunctionalInterface
     interface Reporter {
 
         /**

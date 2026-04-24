@@ -64,9 +64,8 @@ public final class JavadocTagsDotCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         final String[] lines = this.getLines();
-        final int start = ast.getLineNo() - 1;
         final int cend = JavadocTagsDotCheck.findTrimmedTextUp(
-            lines, start, "*/"
+            lines, ast.getLineNo() - 1, "*/"
         );
         final int cstart = JavadocTagsDotCheck.findTrimmedTextUp(
             lines, cend, "/**"

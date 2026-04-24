@@ -45,6 +45,6 @@ class BranchContains {
         return this.node.getType() == type
             || new ChildStream(this.node)
             .children()
-            .anyMatch(child -> new BranchContains(child).check(type));
+            .anyMatch(child -> new com.qulice.checkstyle.BranchContains(child).check(type));
     }
 }

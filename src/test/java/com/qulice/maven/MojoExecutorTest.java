@@ -8,7 +8,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
-import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
@@ -38,11 +37,11 @@ final class MojoExecutorTest {
         deps.add(wrapper);
         final Properties config = new Properties();
         config.put("ignoredDependencies", deps);
-        final Xpp3Dom xpp = new MojoExecutor(null, null)
-            .toXppDom(config, "configuration");
         MatcherAssert.assertThat(
             "Dependency details cannot be rendered as toString()",
-            xpp.getChild("ignoredDependencies")
+            new MojoExecutor(null, null)
+                .toXppDom(config, "configuration")
+                .getChild("ignoredDependencies")
                 .getChild("dependency")
                 .getChild("groupId")
                 .getValue(),
@@ -63,11 +62,11 @@ final class MojoExecutorTest {
         items.add(entry);
         final Properties config = new Properties();
         config.put("items", items);
-        final Xpp3Dom xpp = new MojoExecutor(null, null)
-            .toXppDom(config, "configuration");
         MatcherAssert.assertThat(
             "All keys of nested Properties must appear as children",
-            xpp.getChild("items").getChildCount(),
+            new MojoExecutor(null, null)
+                .toXppDom(config, "configuration")
+                .getChild("items").getChildCount(),
             Matchers.equalTo(2)
         );
     }
@@ -79,11 +78,11 @@ final class MojoExecutorTest {
     void rendersCollectionOfStrings() {
         final Properties config = new Properties();
         config.put("patterns", Arrays.asList("alpha", "beta"));
-        final Xpp3Dom xpp = new MojoExecutor(null, null)
-            .toXppDom(config, "configuration");
         MatcherAssert.assertThat(
             "Collection elements cannot be merged into a single string",
-            xpp.getChild("patterns").getChildCount(),
+            new MojoExecutor(null, null)
+                .toXppDom(config, "configuration")
+                .getChild("patterns").getChildCount(),
             Matchers.equalTo(2)
         );
     }
@@ -95,11 +94,11 @@ final class MojoExecutorTest {
     void rendersStringValueAsLeaf() {
         final Properties config = new Properties();
         config.put("encoding", "UTF-8");
-        final Xpp3Dom xpp = new MojoExecutor(null, null)
-            .toXppDom(config, "configuration");
         MatcherAssert.assertThat(
             "String value cannot be rendered as a leaf node",
-            xpp.getChild("encoding").getValue(),
+            new MojoExecutor(null, null)
+                .toXppDom(config, "configuration")
+                .getChild("encoding").getValue(),
             Matchers.equalTo("UTF-8")
         );
     }
@@ -111,11 +110,11 @@ final class MojoExecutorTest {
     void rendersStringArrayAsRepeatedChildren() {
         final Properties config = new Properties();
         config.put("excludes", new String[] {"first", "second", "third"});
-        final Xpp3Dom xpp = new MojoExecutor(null, null)
-            .toXppDom(config, "configuration");
         MatcherAssert.assertThat(
             "String array entries cannot be rendered as separate children",
-            xpp.getChild("excludes").getChildCount(),
+            new MojoExecutor(null, null)
+                .toXppDom(config, "configuration")
+                .getChild("excludes").getChildCount(),
             Matchers.equalTo(3)
         );
     }
@@ -146,11 +145,11 @@ final class MojoExecutorTest {
         rules.put("requireJavaVersion", java);
         final Properties config = new Properties();
         config.put("rules", rules);
-        final Xpp3Dom xpp = new MojoExecutor(null, null)
-            .toXppDom(config, "configuration");
         MatcherAssert.assertThat(
             "Deeply nested Properties cannot be flattened",
-            xpp.getChild("rules")
+            new MojoExecutor(null, null)
+                .toXppDom(config, "configuration")
+                .getChild("rules")
                 .getChild("requireJavaVersion")
                 .getChild("version")
                 .getValue(),

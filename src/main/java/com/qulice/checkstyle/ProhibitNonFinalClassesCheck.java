@@ -67,13 +67,12 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
     public void visitToken(final DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (ast.getType() == TokenTypes.CLASS_DEF) {
-            final boolean isfinal =
-                modifiers.findFirstToken(TokenTypes.FINAL) != null;
-            final boolean isabstract =
-                modifiers.findFirstToken(TokenTypes.ABSTRACT) != null;
-            final String qualified = this.qualifiedClassName(ast);
             this.classes.push(
-                new ClassDesc(qualified, isfinal, isabstract)
+                new ProhibitNonFinalClassesCheck.ClassDesc(
+                    this.qualifiedClassName(ast),
+                    modifiers.findFirstToken(TokenTypes.FINAL) != null,
+                    modifiers.findFirstToken(TokenTypes.ABSTRACT) != null
+                )
             );
         }
     }
@@ -85,12 +84,13 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
             if (!desc.isDeclaredAsAbstract()
                 && !desc.isAsfinal()
                 && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-                final String qualified = desc.getQualified();
-                final String name =
+                log(
+                    ast.getLineNo(),
+                    "Classes should be final",
                     ProhibitNonFinalClassesCheck.getClassNameFromQualifiedName(
-                        qualified
-                    );
-                log(ast.getLineNo(), "Classes should be final", name);
+                        desc.getQualified()
+                    )
+                );
             }
         }
     }
@@ -101,9 +101,6 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
      * @return Qualified class name of a class
     */
     private String qualifiedClassName(final DetailAST classast) {
-        final String name = classast.findFirstToken(
-            TokenTypes.IDENT
-        ).getText();
         String outer = null;
         if (!this.classes.isEmpty()) {
             outer = this.classes.peek().getQualified();
@@ -111,7 +108,7 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
         return ProhibitNonFinalClassesCheck.getQualifiedClassName(
             this.pack,
             outer,
-            name
+            classast.findFirstToken(TokenTypes.IDENT).getText()
         );
     }
 

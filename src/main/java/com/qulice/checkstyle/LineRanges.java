@@ -59,7 +59,7 @@ public final class LineRanges {
      * @return Returns all LineRange elements that are within range
      */
     public LineRanges within(final LineRanges ranges) {
-        final LineRanges result = new LineRanges();
+        final LineRanges result = new com.qulice.checkstyle.LineRanges();
         final Iterator<LineRange> iterator = ranges.iterator();
         while (iterator.hasNext()) {
             final LineRange next = iterator.next();
@@ -124,7 +124,7 @@ public final class LineRanges {
          * Get the collection specific to the current thread only.
          * @return The collection for this thread
          */
-        public Collection<LineRange> collection() {
+        Collection<LineRange> collection() {
             return this.ranges;
         }
     }

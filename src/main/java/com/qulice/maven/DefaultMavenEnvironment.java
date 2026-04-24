@@ -102,7 +102,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
-    @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "deprecation"})
+    @SuppressWarnings("deprecation")
     public Collection<String> classpath() {
         final Collection<String> paths = new LinkedList<>();
         final String blank = "%20";
@@ -183,7 +183,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
-    @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<File> files(final String pattern) {
         final Collection<File> files = new LinkedList<>();
         final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();
@@ -223,11 +222,13 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public Collection<String> excludes(final String checker) {
-        final Collection<String> excludes = Collections2.transform(
-            this.exc,
-            new DefaultMavenEnvironment.CheckerExcludes(checker)
+        return Collections2.filter(
+            Collections2.transform(
+                this.exc,
+                new DefaultMavenEnvironment.CheckerExcludes(checker)
+            ),
+            Predicates.notNull()
         );
-        return Collections2.filter(excludes, Predicates.notNull());
     }
 
     /**
@@ -316,7 +317,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         @Override
         public URLClassLoader run() {
             return new URLClassLoader(
-                this.urls.toArray(new URL[this.urls.size()]),
+                this.urls.toArray(new URL[0]),
                 Thread.currentThread().getContextClassLoader()
             );
         }

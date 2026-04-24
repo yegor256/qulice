@@ -106,14 +106,13 @@ final class PmdValidatorTest {
      */
     @Test
     void understandsMethodReferences() throws Exception {
-        final String file = "UnderstandsMethodReferences.java";
         new PmdAssert(
-            file,
+            "UnderstandsMethodReferences.java",
             Matchers.is(true),
             Matchers.not(
                 Matchers.containsString("(UnusedPrivateMethod)")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -123,7 +122,6 @@ final class PmdValidatorTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     void doesNotComplainAboutConstantsInInnerClasses() throws Exception {
         final String file = "src/main/java/foo/Foo.java";
         final Environment env = new Environment.Mock().withFile(
@@ -170,7 +168,7 @@ final class PmdValidatorTest {
                     )
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -191,7 +189,7 @@ final class PmdValidatorTest {
                     file
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -215,7 +213,7 @@ final class PmdValidatorTest {
                     )
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -237,7 +235,7 @@ final class PmdValidatorTest {
                     file
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -261,7 +259,7 @@ final class PmdValidatorTest {
                     )
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -272,12 +270,11 @@ final class PmdValidatorTest {
     @Test
     void forbidsUnnecessaryFinalModifier()
         throws Exception {
-        final String file = "UnnecessaryFinalModifier.java";
         new PmdAssert(
-            file,
+            "UnnecessaryFinalModifier.java",
             Matchers.is(false),
             Matchers.containsString("Unnecessary modifier 'final'")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -288,12 +285,11 @@ final class PmdValidatorTest {
     @Test
     void forbidsUselessParentheses()
         throws Exception {
-        final String file = "UselessParentheses.java";
         new PmdAssert(
-            file,
+            "UselessParentheses.java",
             Matchers.is(false),
             Matchers.containsString("Useless parentheses")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -315,7 +311,7 @@ final class PmdValidatorTest {
                     file
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -338,7 +334,7 @@ final class PmdValidatorTest {
                     )
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -354,7 +350,7 @@ final class PmdValidatorTest {
             Matchers.containsString(
                 PmdValidatorTest.FILES_CREATE_ERR
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -372,7 +368,7 @@ final class PmdValidatorTest {
                     PmdValidatorTest.FILES_CREATE_ERR
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -396,7 +392,7 @@ final class PmdValidatorTest {
                     )
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -429,7 +425,7 @@ final class PmdValidatorTest {
                     )
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -451,7 +447,7 @@ final class PmdValidatorTest {
                     file
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -473,7 +469,7 @@ final class PmdValidatorTest {
                     file
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -495,7 +491,7 @@ final class PmdValidatorTest {
                     file
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -515,7 +511,7 @@ final class PmdValidatorTest {
                     "CloneMethodMustBePublic"
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -537,7 +533,7 @@ final class PmdValidatorTest {
                     "CloneMethodReturnTypeMustMatchClassName"
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -558,7 +554,7 @@ final class PmdValidatorTest {
                     "SimplifiedTernary"
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -568,16 +564,15 @@ final class PmdValidatorTest {
      */
     @Test
     void allowsNonTransientFields() throws Exception {
-        final String file = "AllowNonTransientFields.java";
         new PmdAssert(
-            file,
+            "AllowNonTransientFields.java",
             Matchers.is(true),
             Matchers.not(
                 Matchers.containsString(
                     "Found non-transient, non-static member."
                 )
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -591,7 +586,7 @@ final class PmdValidatorTest {
             "StaticPublicMethod.java",
             Matchers.is(false),
             Matchers.containsString(PmdValidatorTest.STATIC_METHODS)
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -607,7 +602,7 @@ final class PmdValidatorTest {
             Matchers.not(
                 Matchers.containsString(PmdValidatorTest.STATIC_METHODS)
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -628,7 +623,7 @@ final class PmdValidatorTest {
                 ),
                 Matchers.containsString("UnitTestShouldIncludeAssert")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -644,7 +639,7 @@ final class PmdValidatorTest {
             Matchers.not(
                 Matchers.containsString("AvoidDuplicateLiterals")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -661,7 +656,7 @@ final class PmdValidatorTest {
             Matchers.not(
                 Matchers.containsString(PmdValidatorTest.STATIC_METHODS)
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -677,7 +672,7 @@ final class PmdValidatorTest {
             Matchers.not(
                 Matchers.containsString("RuleSetReferenceId")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -691,7 +686,7 @@ final class PmdValidatorTest {
             "UnicodeCharactersInMethodNames.java",
             Matchers.is(false),
             Matchers.containsString("MethodNamingConventions")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -709,7 +704,7 @@ final class PmdValidatorTest {
             Matchers.not(
                 Matchers.containsString("TestClassWithoutTestCases")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -729,7 +724,7 @@ final class PmdValidatorTest {
             Matchers.not(
                 Matchers.containsString("(UnusedPrivateField)")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -746,7 +741,7 @@ final class PmdValidatorTest {
             "UnusedPrivateFieldTrulyUnused.java",
             Matchers.any(Boolean.class),
             Matchers.containsString("(UnusedPrivateField)")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -767,7 +762,7 @@ final class PmdValidatorTest {
             Matchers.not(
                 Matchers.containsString("UnnecessaryWarningSuppression")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -781,7 +776,7 @@ final class PmdValidatorTest {
                 "UseStringIsEmptyRuleFailsOnPatternMatching.java",
                 new IsEqual<>(false),
                 new StringContains("UnusedLocalVariable")
-            ).validate()
+            ).assertOk()
         );
     }
 
@@ -801,7 +796,7 @@ final class PmdValidatorTest {
             Matchers.not(
                 Matchers.containsString("(ArrayIsStoredDirectly)")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -817,7 +812,7 @@ final class PmdValidatorTest {
             "ArrayIsStoredDirectlyPlain.java",
             Matchers.is(false),
             Matchers.containsString("(ArrayIsStoredDirectly)")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -833,7 +828,7 @@ final class PmdValidatorTest {
             "MissingOverrideOnInterfaceImpl.java",
             Matchers.is(false),
             Matchers.containsString("(MissingOverride)")
-        ).validate();
+        ).assertOk();
     }
 
     /**
@@ -855,7 +850,7 @@ final class PmdValidatorTest {
                 Matchers.containsString("ConcurrentHashMap"),
                 Matchers.containsString("HashMap")
             )
-        ).validate();
+        ).assertOk();
     }
 
     /**

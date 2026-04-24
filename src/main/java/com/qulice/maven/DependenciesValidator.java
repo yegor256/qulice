@@ -92,8 +92,7 @@ final class DependenciesValidator implements MavenValidator {
         final int failures = used.size() + unused.size();
         if (failures > 0) {
             throw new ValidationException(
-                "%d dependency problem(s) found",
-                failures
+                String.format("%d dependency problem(s) found", failures)
             );
         }
         Logger.info(this, "No dependency problems found");

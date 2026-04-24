@@ -25,12 +25,13 @@ final class EnforcerValidatorTest {
      */
     @Test
     void skipsWhenEnforcerIsExcluded() throws Exception {
-        final MavenEnvironment env = new MavenEnvironment.Wrap(
-            new EnforcerValidatorTest.Excluded(new Environment.Mock()),
-            new MavenEnvironmentMocker().mock()
-        );
         Assertions.assertDoesNotThrow(
-            () -> new EnforcerValidator().validate(env),
+            () -> new EnforcerValidator().validate(
+                new MavenEnvironment.Wrap(
+                    new EnforcerValidatorTest.Excluded(new Environment.Mock()),
+                    new MavenEnvironmentMocker().mock()
+                )
+            ),
             "Enforcer validator must not invoke executor when check is excluded"
         );
     }
@@ -42,10 +43,10 @@ final class EnforcerValidatorTest {
      */
     @Test
     void invokesExecutorWhenNotExcluded() throws Exception {
-        final MavenEnvironment env = new MavenEnvironmentMocker().mock();
         Assertions.assertThrows(
             UnsupportedOperationException.class,
-            () -> new EnforcerValidator().validate(env),
+            () -> new EnforcerValidator()
+                .validate(new MavenEnvironmentMocker().mock()),
             "Enforcer validator must call executor when check is not excluded"
         );
     }
@@ -55,7 +56,6 @@ final class EnforcerValidatorTest {
      *
      * @since 0.70.0
      */
-    @SuppressWarnings("PMD.TooManyMethods")
     private static final class Excluded implements Environment {
 
         /**

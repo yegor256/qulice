@@ -102,9 +102,7 @@ public final class License {
      * @param dir The directory
      * @throws IOException If something wrong happens inside
      */
-    @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private void makePackageInfo(final File dir) throws IOException {
-        final File info = new File(dir, "package-info.java");
         final StringBuilder body = new StringBuilder(100);
         body.append("/*").append(this.eol);
         for (final String line : this.lines) {
@@ -121,7 +119,7 @@ public final class License {
             .append("package ").append(this.pkg)
             .append(';').append(this.eol);
         FileUtils.writeStringToFile(
-            info,
+            new File(dir, "package-info.java"),
             body.toString(),
             StandardCharsets.UTF_8
         );

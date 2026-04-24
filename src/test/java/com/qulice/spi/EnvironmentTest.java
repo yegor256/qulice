@@ -5,6 +5,7 @@
 package com.qulice.spi;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -23,13 +24,11 @@ final class EnvironmentTest {
     void canBeInstantiatedWithMocker() throws Exception {
         final Environment env = new Environment.Mock();
         MatcherAssert.assertThat(
-            "Basedir should exist", env.basedir().exists(), Matchers.is(true)
-        );
-        MatcherAssert.assertThat(
-            "Tempdir should exist", env.tempdir().exists(), Matchers.is(true)
-        );
-        MatcherAssert.assertThat(
-            "Outdir should exist", env.outdir().exists(), Matchers.is(true)
+            "Basedir, tempdir and outdir should all exist",
+            env.basedir().exists()
+                && env.tempdir().exists()
+                && env.outdir().exists(),
+            Matchers.is(true)
         );
     }
 
@@ -40,13 +39,13 @@ final class EnvironmentTest {
     @Test
     void writesFileContentToTheDesignatedLocation() throws Exception {
         final String name = "src/main/java/Main.java";
-        final String content = "class Main {}";
-        final Environment env = new Environment.Mock()
-            .withFile(name, content);
-        final File file = new File(env.basedir(), name);
         MatcherAssert.assertThat(
             "File should be created in basedir from string value",
-            file.exists(), Matchers.is(true)
+            new File(
+                new Environment.Mock().withFile(name, "class Main {}").basedir(),
+                name
+            ).exists(),
+            Matchers.is(true)
         );
     }
 
@@ -57,13 +56,14 @@ final class EnvironmentTest {
     @Test
     void writesByteArrayToTheDesignatedLocation() throws Exception {
         final String name = "src/main/java/Foo.java";
-        final byte[] bytes = "class Foo {}".getBytes();
-        final Environment env = new Environment.Mock()
-            .withFile(name, bytes);
-        final File file = new File(env.basedir(), name);
         MatcherAssert.assertThat(
             "File should be created in basedir from bytes",
-            file.exists(), Matchers.is(true)
+            new File(
+                new Environment.Mock()
+                    .withFile(name, "class Foo {}".getBytes(StandardCharsets.UTF_8)).basedir(),
+                name
+            ).exists(),
+            Matchers.is(true)
         );
     }
 
@@ -73,10 +73,9 @@ final class EnvironmentTest {
      */
     @Test
     void setsClasspathOnTheMock() throws Exception {
-        final Environment env = new Environment.Mock();
         MatcherAssert.assertThat(
             "Classpath should be not empty",
-            env.classpath().size(),
+            new Environment.Mock().classpath().size(),
             Matchers.greaterThan(0)
         );
     }
@@ -92,7 +91,7 @@ final class EnvironmentTest {
         final String image = "src/main/resources/pixel.png";
         final String source = "src/main/java/Foo.java";
         final Environment env = new Environment.Mock()
-            .withFile(source, "class Foo {}\n").withFile(
+            .withFile(source, "class Foo {}".concat(String.valueOf('\n'))).withFile(
                 image,
                 new byte[] {
                     (byte) 0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
@@ -117,11 +116,10 @@ final class EnvironmentTest {
     void configuresParametersInMock() throws Exception {
         final String name = "alpha";
         final String value = "some complex value";
-        final Environment env = new Environment.Mock()
-            .withParam(name, value);
         MatcherAssert.assertThat(
             "Environment variable should be set",
-            env.param(name, ""), Matchers.equalTo(value)
+            new Environment.Mock().withParam(name, value).param(name, ""),
+            Matchers.equalTo(value)
         );
     }
 }

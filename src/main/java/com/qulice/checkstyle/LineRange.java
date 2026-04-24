@@ -51,7 +51,7 @@ public final class LineRange {
      */
     public boolean within(final LineRange range) {
         return range.first() >= this.first()
-            && range.last()  <= this.last();
+            && range.last() <= this.last();
     }
 
     /**

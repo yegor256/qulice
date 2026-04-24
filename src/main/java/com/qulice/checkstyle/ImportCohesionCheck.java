@@ -17,7 +17,6 @@ import java.io.File;
  *
  * @since 0.3
  */
-@SuppressWarnings("PMD.CyclomaticComplexity")
 public final class ImportCohesionCheck extends AbstractFileSetCheck {
 
     /**

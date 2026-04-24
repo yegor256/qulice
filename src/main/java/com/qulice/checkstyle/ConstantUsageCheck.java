@@ -52,7 +52,6 @@ public final class ConstantUsageCheck extends AbstractCheck {
      */
     private void checkField(final DetailAST ast, final DetailAST namenode) {
         final String name = namenode.getText();
-        final int line = namenode.getLineNo();
         DetailAST variable = ast.getNextSibling();
         int counter = 0;
         while (null != variable) {
@@ -73,7 +72,7 @@ public final class ConstantUsageCheck extends AbstractCheck {
         }
         if (counter == 0 && ConstantUsageCheck.isPrivate(ast)) {
             this.log(
-                line,
+                namenode.getLineNo(),
                 String.format("Private constant \"%s\" is not used", name)
             );
         }
@@ -143,8 +142,7 @@ public final class ConstantUsageCheck extends AbstractCheck {
      *  returns <code>false</code>
      */
     private static boolean isField(final DetailAST node) {
-        final DetailAST parent = node.getParent();
-        return TokenTypes.OBJBLOCK == parent.getType();
+        return TokenTypes.OBJBLOCK == node.getParent().getType();
     }
 
     /**
@@ -154,8 +152,8 @@ public final class ConstantUsageCheck extends AbstractCheck {
      *  <code>FINAL</code>, else returns <code>false</code>
      */
     private static boolean isFinal(final DetailAST node) {
-        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.getChildCount(TokenTypes.FINAL) > 0;
+        return node.findFirstToken(TokenTypes.MODIFIERS)
+            .getChildCount(TokenTypes.FINAL) > 0;
     }
 
     /**
@@ -166,8 +164,8 @@ public final class ConstantUsageCheck extends AbstractCheck {
      *  <code>PRIVATE</code>, else returns <code>false</code>
      */
     private static boolean isPrivate(final DetailAST node) {
-        final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
-        return modifiers.getChildCount(TokenTypes.LITERAL_PRIVATE) > 0;
+        return node.findFirstToken(TokenTypes.MODIFIERS)
+            .getChildCount(TokenTypes.LITERAL_PRIVATE) > 0;
     }
 
     /**

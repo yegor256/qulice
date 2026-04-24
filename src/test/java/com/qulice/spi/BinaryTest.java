@@ -42,7 +42,7 @@ final class BinaryTest {
         final File file = dir.resolve("Foo.java").toFile();
         Files.writeString(
             file.toPath(),
-            "class Foo { int bar = 42; }\n",
+            "class Foo { int bar = 42; }".concat(String.valueOf('\n')),
             StandardCharsets.UTF_8
         );
         MatcherAssert.assertThat(
@@ -58,7 +58,7 @@ final class BinaryTest {
         final File file = dir.resolve("notes.txt").toFile();
         Files.writeString(
             file.toPath(),
-            "voilà — árvíztűrő tükörfúrógép\n",
+            "voilà — árvíztűrő tükörfúrógép".concat(String.valueOf('\n')),
             StandardCharsets.UTF_8
         );
         MatcherAssert.assertThat(
@@ -96,10 +96,9 @@ final class BinaryTest {
 
     @Test
     void treatsMissingFileAsNotBinary(@TempDir final Path dir) {
-        final File file = dir.resolve("missing").toFile();
         MatcherAssert.assertThat(
             "non-existing file cannot be classified as binary",
-            new Binary(file).yes(),
+            new Binary(dir.resolve("missing").toFile()).yes(),
             Matchers.is(false)
         );
     }

@@ -78,10 +78,11 @@ public final class EmptyLinesCheck extends AbstractCheck {
             || ast.getType() == TokenTypes.CTOR_DEF) {
             final DetailAST opening = ast.findFirstToken(TokenTypes.SLIST);
             if (opening != null) {
-                final DetailAST right =
-                    opening.findFirstToken(TokenTypes.RCURLY);
                 this.methods.add(
-                    new LineRange(opening.getLineNo(), right.getLineNo())
+                    new LineRange(
+                        opening.getLineNo(),
+                        opening.findFirstToken(TokenTypes.RCURLY).getLineNo()
+                    )
                 );
             }
         }
@@ -111,13 +112,11 @@ public final class EmptyLinesCheck extends AbstractCheck {
      * @return True if the line is directly inside of a method
      */
     private boolean insideMethod(final int line) {
-        final int method = EmptyLinesCheck.linesBetweenBraces(
+        return EmptyLinesCheck.linesBetweenBraces(
             line, this.methods::iterator, Integer.MIN_VALUE
-        );
-        final int clazz = EmptyLinesCheck.linesBetweenBraces(
+        ) < EmptyLinesCheck.linesBetweenBraces(
             line, this.anons::iterator, Integer.MAX_VALUE
         );
-        return method < clazz;
     }
 
     /**

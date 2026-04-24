@@ -25,7 +25,7 @@ import java.util.regex.Pattern;
  *
  * @since 0.18.10
  */
-@SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.LongVariable"})
+@SuppressWarnings("PMD.LongVariable")
 public final class JavadocParameterOrderCheck extends AbstractCheck {
 
     /**
@@ -103,9 +103,10 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         for (int line = 0; line < lines.length; line = line + 1) {
             current = current + 1;
             final Matcher docmatcher =
-                MATCH_JAVADOC_ARG.matcher(lines[line]);
+                JavadocParameterOrderCheck.MATCH_JAVADOC_ARG.matcher(lines[line]);
             final Matcher multiline =
-                MATCH_JAVADOC_ARG_MULTILINE_START.matcher(lines[line]);
+                JavadocParameterOrderCheck.MATCH_JAVADOC_ARG_MULTILINE_START
+                    .matcher(lines[line]);
             if (docmatcher.find()) {
                 final int col = calculateTagColumn(
                     docmatcher, line, start
@@ -175,7 +176,8 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         int remindex = index + 1;
         while (remindex < lines.length) {
             final Matcher multiline =
-                MATCH_JAVADOC_MULTILINE_CONT.matcher(lines[remindex]);
+                JavadocParameterOrderCheck.MATCH_JAVADOC_MULTILINE_CONT
+                    .matcher(lines[remindex]);
             if (multiline.find()) {
                 remindex = lines.length;
                 final String lfin = multiline.group(1);

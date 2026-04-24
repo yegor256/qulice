@@ -141,13 +141,8 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.environment.setExcludes(this.excludes);
         this.environment.setAssertion(this.asserts);
         this.environment.setEncoding(this.charset);
-        final long start = System.nanoTime();
         this.doExecute();
-        Logger.info(
-            this,
-            "Qulice quality check completed in %[nano]s",
-            System.nanoTime() - start
-        );
+        Logger.info(this, "Qulice quality check completed");
     }
 
     /**

@@ -26,6 +26,6 @@ final class EmptyCollectionRuleTest {
             Matchers.containsString(
                 "Return an empty collection rather than null. (ReturnEmptyCollectionRatherThanNull)"
             )
-        ).validate();
+        ).assertOk();
     }
 }

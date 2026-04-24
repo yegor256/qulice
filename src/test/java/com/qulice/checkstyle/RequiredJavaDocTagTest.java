@@ -23,13 +23,14 @@ final class RequiredJavaDocTagTest {
     /**
      * Logger.
      */
-    private final WriterStub writer = new WriterStub();
+    private final WriterStub writer = new RequiredJavaDocTagTest.WriterStub();
 
     /**
      * Object under test.
      */
     private final RequiredJavaDocTag tag = new RequiredJavaDocTag(
         "since",
+        Pattern.compile("(?<name>^ +\\* +@since)( +)(?<cont>.*)"),
         Pattern.compile(
             "^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
         ),

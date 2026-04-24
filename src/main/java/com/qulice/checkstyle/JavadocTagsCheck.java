@@ -68,6 +68,7 @@ public final class JavadocTagsCheck extends AbstractCheck {
         this.required.add(
             new RequiredJavaDocTag(
                 "since",
+                Pattern.compile("(?<name>^ +\\* +@since)( +)(?<cont>.*)"),
                 Pattern.compile(
                 "^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
                 ),

@@ -28,10 +28,7 @@ import org.slf4j.impl.StaticLoggerBinder;
  * Mocker of {@link MavenProject}.
  * @since 0.4
  */
-@SuppressWarnings({
-    "PMD.TooManyMethods",
-    "PMD.ConstructorOnlyInitializesOrCallOtherConstructors"
-})
+@SuppressWarnings("PMD.TooManyMethods")
 public final class MavenEnvironmentMocker {
 
     /**
@@ -142,13 +139,14 @@ public final class MavenEnvironmentMocker {
             )
         );
         this.prj.inBasedir(this.ienv.basedir());
-        final MavenProject project = this.prj.mock();
-        final MavenEnvironment env = new FakeMavenEnvironment(
-            project,
-            new FakeContext(this.container),
-            this.ass
+        return new MavenEnvironment.Wrap(
+            this.ienv,
+            new MavenEnvironmentMocker.FakeMavenEnvironment(
+                this.prj.mock(),
+                new MavenEnvironmentMocker.FakeContext(this.container),
+                this.ass
+            )
         );
-        return new MavenEnvironment.Wrap(this.ienv, env);
     }
 
     /**

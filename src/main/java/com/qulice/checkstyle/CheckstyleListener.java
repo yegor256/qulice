@@ -41,14 +41,6 @@ final class CheckstyleListener implements AuditListener {
         this.env = environ;
     }
 
-    /**
-     * Get all events.
-     * @return List of events
-     */
-    public List<AuditEvent> events() {
-        return Collections.unmodifiableList(this.all);
-    }
-
     @Override
     public void auditStarted(final AuditEvent event) {
         // intentionally empty
@@ -71,10 +63,12 @@ final class CheckstyleListener implements AuditListener {
 
     @Override
     public void addError(final AuditEvent event) {
-        final String name = new Relative(
-            this.env.basedir(), new File(event.getFileName())
-        ).path();
-        if (!this.env.exclude("checkstyle", name)) {
+        if (!this.env.exclude(
+            "checkstyle",
+            new Relative(
+                this.env.basedir(), new File(event.getFileName())
+            ).path()
+        )) {
             this.all.add(event);
         }
     }
@@ -94,5 +88,13 @@ final class CheckstyleListener implements AuditListener {
             check.substring(check.lastIndexOf('.') + 1),
             throwable
         );
+    }
+
+    /**
+     * Get all events.
+     * @return List of events
+     */
+    List<AuditEvent> events() {
+        return Collections.unmodifiableList(this.all);
     }
 }

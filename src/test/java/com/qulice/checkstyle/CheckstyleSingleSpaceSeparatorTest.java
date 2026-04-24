@@ -5,9 +5,7 @@
 package com.qulice.checkstyle;
 
 import com.qulice.spi.Environment;
-import com.qulice.spi.Violation;
 import java.io.File;
-import java.util.Collection;
 import org.cactoos.io.ResourceOf;
 import org.cactoos.text.FormattedText;
 import org.cactoos.text.IoCheckedText;
@@ -28,13 +26,15 @@ final class CheckstyleSingleSpaceSeparatorTest {
     void rejectsDoubleWhitespaceInFieldDeclaration() throws Exception {
         final String file = "DoubleWhitespaceFieldDecl.java";
         final Environment.Mock mock = new Environment.Mock();
-        final File license = new License().savePackageInfo(
-            new File(mock.basedir(), "src/main/java/foo")
-        ).withLines("Hello.")
-            .withEol("\n").file();
         final Environment env = mock.withParam(
             "license",
-            String.format("file:%s", license)
+            String.format(
+                "file:%s",
+                new License().savePackageInfo(
+                    new File(mock.basedir(), "src/main/java/foo")
+                ).withLines("Hello.")
+                    .withEol(String.valueOf('\n')).file()
+            )
         ).withFile(
             String.format("src/main/java/foo/%s", file),
             new IoCheckedText(
@@ -45,11 +45,9 @@ final class CheckstyleSingleSpaceSeparatorTest {
                 )
             ).asString()
         );
-        final Collection<Violation> results =
-            new CheckstyleValidator(env).validate(env.files(file));
         MatcherAssert.assertThat(
             "double whitespace in a field declaration must be reported",
-            results,
+            new CheckstyleValidator(env).validate(env.files(file)),
             Matchers.hasItem(
                 new ViolationMatcher(
                     "Use a single space to separate non-whitespace characters.",
