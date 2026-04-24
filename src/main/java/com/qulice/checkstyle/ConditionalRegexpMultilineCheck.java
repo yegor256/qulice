@@ -23,7 +23,7 @@ public final class ConditionalRegexpMultilineCheck extends
     @Override
     public void processFiltered(final File file, final FileText lines) {
         boolean found = false;
-        for (final String line: lines.toLinesArray()) {
+        for (final String line : lines.toLinesArray()) {
             if (this.condition.matcher(line).find()) {
                 found = true;
                 break;

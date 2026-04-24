@@ -361,7 +361,9 @@
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
-    <module name="WhitespaceAround"/>
+    <module name="WhitespaceAround">
+      <property name="ignoreEnhancedForColon" value="false"/>
+    </module>
     <module name="SingleSpaceSeparator"/>
     <module name="EmptyLineSeparator">
       <property name="allowMultipleEmptyLines" value="false"/>

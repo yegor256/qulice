@@ -923,6 +923,31 @@ final class CheckstyleValidatorTest {
     }
 
     /**
+     * CheckstyleValidator reports an error when the colon in an enhanced
+     * for statement is not surrounded by whitespace. See
+     * https://github.com/yegor256/qulice/issues/721.
+     * @throws Exception when error.
+     */
+    @Test
+    void rejectsMissingSpaceAroundColonInEnhancedFor() throws Exception {
+        this.validate(
+            "InvalidEnhancedForColon.java", false,
+            "':' is not preceded with whitespace"
+        );
+    }
+
+    /**
+     * CheckstyleValidator accepts the colon in an enhanced for statement
+     * when it is surrounded by whitespace. See
+     * https://github.com/yegor256/qulice/issues/721.
+     * @throws Exception when error.
+     */
+    @Test
+    void acceptsSpacesAroundColonInEnhancedFor() throws Exception {
+        this.runValidation("ValidEnhancedForColon.java", true);
+    }
+
+    /**
      * Convert file name to URL.
      * @param file The file
      * @return The URL
