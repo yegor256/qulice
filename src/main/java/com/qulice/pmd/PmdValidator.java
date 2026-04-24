@@ -4,6 +4,7 @@
  */
 package com.qulice.pmd;
 
+import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Relative;
 import com.qulice.spi.ResourceValidator;
@@ -35,22 +36,30 @@ public final class PmdValidator implements ResourceValidator {
     @Override
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<Violation> validate(final Collection<File> files) {
-        final SourceValidator validator = new SourceValidator(this.env);
         final Collection<File> sources = this.getNonExcludedFiles(files);
-        final Collection<PmdError> errors = validator.validate(
-            sources, this.env.basedir().getPath()
-        );
         final Collection<Violation> violations = new LinkedList<>();
-        for (final PmdError error : errors) {
-            violations.add(
-                new Violation.Default(
-                    this.name(),
-                    error.name(),
-                    error.fileName(),
-                    error.lines(),
-                    error.description()
-                )
+        if (sources.isEmpty()) {
+            Logger.debug(
+                this,
+                "No files to check with PMD, all %d are excluded",
+                files.size()
             );
+        } else {
+            final SourceValidator validator = new SourceValidator(this.env);
+            final Collection<PmdError> errors = validator.validate(
+                sources, this.env.basedir().getPath()
+            );
+            for (final PmdError error : errors) {
+                violations.add(
+                    new Violation.Default(
+                        this.name(),
+                        error.name(),
+                        error.fileName(),
+                        error.lines(),
+                        error.description()
+                    )
+                );
+            }
         }
         return violations;
     }

@@ -835,4 +835,29 @@ final class PmdValidatorTest {
             Matchers.containsString("(MissingOverride)")
         ).validate();
     }
+
+    /**
+     * PmdValidator does not run analysis when every file is excluded. This
+     * is the short-circuit fix for
+     * https://github.com/yegor256/qulice/issues/759 — the source would
+     * otherwise produce a violation, but the exclusion must prevent PMD
+     * from being invoked on it at all.
+     *
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void skipsAnalysisWhenAllFilesExcluded() throws Exception {
+        final String file = "src/main/java/Main.java";
+        final Environment env = new ExcludingEnvironment(
+            new Environment.Mock()
+                .withFile(file, "class Main { int x = 0; }")
+        );
+        MatcherAssert.assertThat(
+            "Excluded files must not yield violations",
+            new PmdValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            ),
+            Matchers.<Violation>empty()
+        );
+    }
 }

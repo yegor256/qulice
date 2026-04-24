@@ -82,32 +82,39 @@ public final class CheckstyleValidator implements ResourceValidator {
     @SuppressWarnings("PMD.AvoidInstantiatingObjectsInLoops")
     public Collection<Violation> validate(final Collection<File> files) {
         final List<File> sources = this.getNonExcludedFiles(files);
-        try {
-            Logger.debug(this, "Checkstyle processing %d files", sources.size());
-            final long start = System.currentTimeMillis();
-            this.checker.process(sources);
+        final Collection<Violation> results = new LinkedList<>();
+        if (sources.isEmpty()) {
             Logger.debug(
                 this,
-                "Checkstyle processed %d files in %[ms]s",
-                sources.size(),
-                System.currentTimeMillis() - start
+                "No files to check with Checkstyle, all %d are excluded",
+                files.size()
             );
-        } catch (final CheckstyleException ex) {
-            throw new IllegalStateException("Failed to process files", ex);
-        }
-        final List<AuditEvent> events = this.listener.events();
-        final Collection<Violation> results = new LinkedList<>();
-        for (final AuditEvent event : events) {
-            final String check = event.getSourceName();
-            results.add(
-                new Violation.Default(
-                    this.name(),
-                    check.substring(check.lastIndexOf('.') + 1),
-                    event.getFileName(),
-                    String.valueOf(event.getLine()),
-                    event.getMessage()
-                )
-            );
+        } else {
+            try {
+                Logger.debug(this, "Checkstyle processing %d files", sources.size());
+                final long start = System.currentTimeMillis();
+                this.checker.process(sources);
+                Logger.debug(
+                    this,
+                    "Checkstyle processed %d files in %[ms]s",
+                    sources.size(),
+                    System.currentTimeMillis() - start
+                );
+            } catch (final CheckstyleException ex) {
+                throw new IllegalStateException("Failed to process files", ex);
+            }
+            for (final AuditEvent event : this.listener.events()) {
+                final String check = event.getSourceName();
+                results.add(
+                    new Violation.Default(
+                        this.name(),
+                        check.substring(check.lastIndexOf('.') + 1),
+                        event.getFileName(),
+                        String.valueOf(event.getLine()),
+                        event.getMessage()
+                    )
+                );
+            }
         }
         return results;
     }
