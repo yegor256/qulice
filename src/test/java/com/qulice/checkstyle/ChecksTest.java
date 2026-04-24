@@ -155,6 +155,7 @@ final class ChecksTest {
             "BracketsStructureCheck",
             "NestedSwitchCheck",
             "ProhibitTestExpectedCheck",
+            "ProhibitTestMethodNameCheck",
             "MethodDeclarationLengthCheck",
             "CurlyBracketsStructureCheck",
             "JavadocLocationCheck",

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class MissingJavadocTest {
 
     @Test
-    public void testSomething() {
+    public void doesSomething() {
         return "something";
     }
 }
