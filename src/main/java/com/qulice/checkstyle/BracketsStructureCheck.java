@@ -125,26 +125,35 @@ public final class BracketsStructureCheck extends AbstractCheck {
         final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
         if (opening != null && closing != null
             && opening.getLineNo() != closing.getLineNo()) {
-            final DetailAST resources =
-                node.findFirstToken(TokenTypes.RESOURCES);
-            if (resources != null) {
-                if (resources.getLineNo() == opening.getLineNo()) {
-                    this.log(
-                        resources.getLineNo(),
-                        "Parameters should start on a new line"
-                    );
-                }
-                DetailAST last = resources.getLastChild();
-                while (last != null && last.getChildCount() > 0) {
-                    last = last.getLastChild();
-                }
-                if (last != null
-                    && last.getLineNo() == closing.getLineNo()) {
-                    this.log(
-                        last.getLineNo(),
-                        "Closing bracket should be on a new line"
-                    );
-                }
+            this.checkResourceBody(node, opening, closing);
+        }
+    }
+
+    /**
+     * Checks RESOURCES body inside a multiline try-with-resources.
+     * @param node Tree node with the RESOURCE_SPECIFICATION.
+     * @param opening The opening LPAREN token.
+     * @param closing The closing RPAREN token.
+     */
+    private void checkResourceBody(final DetailAST node,
+        final DetailAST opening, final DetailAST closing) {
+        final DetailAST resources = node.findFirstToken(TokenTypes.RESOURCES);
+        if (resources != null) {
+            if (resources.getLineNo() == opening.getLineNo()) {
+                this.log(
+                    resources.getLineNo(),
+                    "Parameters should start on a new line"
+                );
+            }
+            DetailAST last = resources.getLastChild();
+            while (last != null && last.getChildCount() > 0) {
+                last = last.getLastChild();
+            }
+            if (last != null && last.getLineNo() == closing.getLineNo()) {
+                this.log(
+                    last.getLineNo(),
+                    "Closing bracket should be on a new line"
+                );
             }
         }
     }

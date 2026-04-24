@@ -163,6 +163,7 @@ final class ChecksTest {
             "NonStaticMethodCheck",
             "ConstantUsageCheck",
             "JavadocEmptyLineCheck",
+            "JavadocFirstLineCheck",
             "JavadocTagsCheck",
             "JavadocThrowsCheck",
             "ProhibitNonFinalClassesCheck",
