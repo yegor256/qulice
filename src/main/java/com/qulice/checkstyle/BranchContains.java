@@ -28,7 +28,7 @@ class BranchContains {
 
     /**
      * Creates a decorator which is able to search in the node's subtree.
-     * @param node Node which will be represented by the new BranchContains instance.
+     * @param node Node which will be represented by the new BranchContains instance
      */
     BranchContains(final DetailAST node) {
         this.node = node;

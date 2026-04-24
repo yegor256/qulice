@@ -192,8 +192,8 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
     /**
      * Checks method parameters order to comply with what is defined in method
      * javadoc.
-     * @param ast The method node.
-     * @param doc Javadoc text block.
+     * @param ast The method node
+     * @param doc Javadoc text block
      */
     private void checkParameters(final DetailAST ast, final TextBlock doc) {
         final List<JavadocTag> tags = getMethodTags(doc);

@@ -38,7 +38,7 @@ public final class NonStaticMethodCheck extends AbstractCheck {
 
     /**
      * Exclude files matching given pattern.
-     * @param excl Regexp of classes to exclude.
+     * @param excl Regexp of classes to exclude
      */
     public void setExcludeFileNamePattern(final String excl) {
         this.exclude = Pattern.compile(excl);
@@ -107,8 +107,8 @@ public final class NonStaticMethodCheck extends AbstractCheck {
 
     /**
      * Determines whether a method is {@code abstract} or {@code native}.
-     * @param method Method to check.
-     * @return True if method is abstract or native.
+     * @param method Method to check
+     * @return True if method is abstract or native
      */
     private static boolean isInAbstractOrNativeMethod(final DetailAST method) {
         final DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);

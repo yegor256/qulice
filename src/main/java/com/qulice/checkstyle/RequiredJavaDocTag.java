@@ -55,9 +55,9 @@ final class RequiredJavaDocTag {
 
     /**
      * Ctor.
-     * @param name Tag name.
-     * @param patt Pattern for checking the contents of a tag in a string.
-     * @param rep Reference to a method for writing a message to the log.
+     * @param name Tag name
+     * @param patt Pattern for checking the contents of a tag in a string
+     * @param rep Reference to a method for writing a message to the log
      */
     RequiredJavaDocTag(
         final String name,
@@ -79,10 +79,10 @@ final class RequiredJavaDocTag {
 
     /**
      * Ctor.
-     * @param cname Tag name.
-     * @param ptag Pattern for searching a tag in a string.
-     * @param patt Pattern for checking the contents of a tag in a string.
-     * @param rep Reference to a method for writing a message to the log.
+     * @param cname Tag name
+     * @param ptag Pattern for searching a tag in a string
+     * @param patt Pattern for checking the contents of a tag in a string
+     * @param rep Reference to a method for writing a message to the log
      * @checkstyle ParameterNumberCheck (3 lines)
      */
     RequiredJavaDocTag(
@@ -99,9 +99,9 @@ final class RequiredJavaDocTag {
 
     /**
      * Check if the tag text matches the format from pattern.
-     * @param lines List of all lines.
-     * @param start Line number where comment starts.
-     * @param end Line number where comment ends.
+     * @param lines List of all lines
+     * @param start Line number where comment starts
+     * @param end Line number where comment ends
      */
     public void matchTagFormat(
         final String[] lines,
@@ -134,9 +134,9 @@ final class RequiredJavaDocTag {
     /**
      * Log either "missing" or "malformed" depending on whether a loose
      * match was found in the comment.
-     * @param start Line number where the comment starts.
+     * @param start Line number where the comment starts
      * @param looseline Line number where a loose match was found, or
-     *  {@code null} if none was found.
+     *  {@code null} if none was found
      */
     private void logMissing(final int start, final Integer looseline) {
         if (looseline == null) {
@@ -157,7 +157,7 @@ final class RequiredJavaDocTag {
     /**
      * Log a violation for every tag whose text does not match the
      * configured pattern.
-     * @param found Map of line number to tag text.
+     * @param found Map of line number to tag text
      */
     private void logMismatches(final Map<Integer, String> found) {
         for (final Map.Entry<Integer, String> item : found.entrySet()) {
@@ -174,8 +174,8 @@ final class RequiredJavaDocTag {
 
     /**
      * Finds the tag name and the following sentences.
-     * @param matcher Tag name matcher.
-     * @return True if the tag and its clauses are found.
+     * @param matcher Tag name matcher
+     * @return True if the tag and its clauses are found
      */
     private static boolean tagFound(final Matcher matcher) {
         return matcher.matches()
@@ -185,8 +185,8 @@ final class RequiredJavaDocTag {
 
     /**
      * Checks for an empty string.
-     * @param str Line to check.
-     * @return True if str is empty.
+     * @param str Line to check
+     * @return True if str is empty
      */
     private static boolean empty(final String str) {
         return str == null || str.chars().allMatch(Character::isWhitespace);
@@ -202,9 +202,9 @@ final class RequiredJavaDocTag {
         /**
          * Log a message that has no column information.
          *
-         * @param line The line number where the audit event was found.
-         * @param msg The message that describes the audit event.
-         * @param args The details of the message.
+         * @param line The line number where the audit event was found
+         * @param msg The message that describes the audit event
+         * @param args The details of the message
          * @see java.text.MessageFormat
          */
         void log(int line, String msg, Object... args);

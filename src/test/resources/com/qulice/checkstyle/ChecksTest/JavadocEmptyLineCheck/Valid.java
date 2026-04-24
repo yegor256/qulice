@@ -31,8 +31,8 @@ public final class Valid {
 
     /**
      * There is no empty Javadoc line
-     * @param param - param.
-     * @return Param.
+     * @param param - param
+     * @return Param
      */
     public String method(final String param) {
         return param;

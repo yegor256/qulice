@@ -68,9 +68,9 @@ public final class JavadocFirstLineCheck extends AbstractCheck {
 
     /**
      * Find the line that opens the Javadoc right above a node.
-     * @param lines All lines of the file.
-     * @param below Line index of the node (0-based).
-     * @return Line index (0-based) of the opening, or -1 if not found.
+     * @param lines All lines of the file
+     * @param below Line index of the node (0-based)
+     * @return Line index (0-based) of the opening, or -1 if not found
      */
     private static int findOpeningLine(final String[] lines, final int below) {
         int found = -1;
@@ -90,9 +90,9 @@ public final class JavadocFirstLineCheck extends AbstractCheck {
 
     /**
      * Check that the found Javadoc directly precedes the node.
-     * @param node Node being inspected.
-     * @param start Line index (0-based) of the Javadoc opening.
-     * @return True when no other declaration sits between.
+     * @param node Node being inspected
+     * @param start Line index (0-based) of the Javadoc opening
+     * @return True when no other declaration sits between
      */
     private static boolean belongsToNode(final DetailAST node, final int start) {
         final DetailAST previous = node.getPreviousSibling();
@@ -105,8 +105,8 @@ public final class JavadocFirstLineCheck extends AbstractCheck {
 
     /**
      * Check if a line has any text after the opening {@code /**}.
-     * @param line The opening line.
-     * @return True when text sits on the same line.
+     * @param line The opening line
+     * @return True when text sits on the same line
      */
     private static boolean hasTextAfterOpening(final String line) {
         final String trimmed = line.trim();
@@ -116,8 +116,8 @@ public final class JavadocFirstLineCheck extends AbstractCheck {
 
     /**
      * Check if the Javadoc closes on the same line.
-     * @param line The opening line.
-     * @return True when {@code *&#47;} is on the same line.
+     * @param line The opening line
+     * @return True when {@code *&#47;} is on the same line
      */
     private static boolean hasClosingOnSameLine(final String line) {
         return line.trim().endsWith("*/");

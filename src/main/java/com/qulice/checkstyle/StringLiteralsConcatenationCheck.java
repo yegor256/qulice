@@ -67,10 +67,10 @@ public final class StringLiteralsConcatenationCheck extends AbstractCheck {
     /**
      * Recursively traverse the <code>tree</code> and return all ASTs subtrees
      * matching any type from <code>types</code>.
-     * @param tree AST to traverse.
-     * @param types Token types to match against.
+     * @param tree AST to traverse
+     * @param types Token types to match against
      * @return All ASTs subtrees with token types matching any from
-     *  <tt>types</tt>.
+     *  <tt>types</tt>
      * @see TokenTypes
      */
     private List<DetailAST> findChildAstsOfType(final DetailAST tree,
@@ -93,9 +93,9 @@ public final class StringLiteralsConcatenationCheck extends AbstractCheck {
      * string literal. Traverses only through nested PLUS/PLUS_ASSIGN nodes
      * so that STRING_LITERALs nested inside method-call arguments or other
      * sub-expressions of an operand do not count.
-     * @param node PLUS or PLUS_ASSIGN node to inspect.
+     * @param node PLUS or PLUS_ASSIGN node to inspect
      * @return True if any operand of the concatenation chain is a string
-     *  literal, false otherwise.
+     *  literal, false otherwise
      */
     private boolean hasStringLiteralOperand(final DetailAST node) {
         boolean found = false;
@@ -118,9 +118,9 @@ public final class StringLiteralsConcatenationCheck extends AbstractCheck {
 
     /**
      * Checks if this <code>ast</code> is of any type from <code>types</code>.
-     * @param ast AST to check.
-     * @param types Token types to match against.
-     * @return True if of type, false otherwise.
+     * @param ast AST to check
+     * @param types Token types to match against
+     * @return True if of type, false otherwise
      * @see TokenTypes
      */
     private static boolean isOfType(final DetailAST ast, final int... types) {

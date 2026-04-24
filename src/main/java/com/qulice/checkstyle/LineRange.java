@@ -25,8 +25,8 @@ public final class LineRange {
 
     /**
      * Default constructor.
-     * @param first The alpha line number.
-     * @param last The omega line number.
+     * @param first The alpha line number
+     * @param last The omega line number
      */
     public LineRange(final int first, final int last) {
         this.alpha = first;
@@ -35,8 +35,8 @@ public final class LineRange {
 
     /**
      * Is the given line number within range.
-     * @param line The given line number to check.
-     * @return True if the given line number is within this range.
+     * @param line The given line number to check
+     * @return True if the given line number is within this range
      */
     public boolean within(final int line) {
         return line >= this.first() && line <= this.last();
@@ -46,8 +46,8 @@ public final class LineRange {
      * Is the given range entirely within the LineRange. Example, given a
      * LineRange of [10, 50], the given range of [12,48] should be within
      * side that. And the method should return true.
-     * @param range The given LineRange to check.
-     * @return True if the given is entirely within this LineRange.
+     * @param range The given LineRange to check
+     * @return True if the given is entirely within this LineRange
      */
     public boolean within(final LineRange range) {
         return range.first() >= this.first()
@@ -56,7 +56,7 @@ public final class LineRange {
 
     /**
      * Get the alpha line number.
-     * @return The alpha line number.
+     * @return The alpha line number
      */
     public int first() {
         return this.alpha;
@@ -64,7 +64,7 @@ public final class LineRange {
 
     /**
      * Get the omega line number.
-     * @return The omega line number.
+     * @return The omega line number
      */
     public int last() {
         return this.omega;

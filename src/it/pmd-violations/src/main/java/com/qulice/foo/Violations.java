@@ -29,7 +29,7 @@ public final class Violations {
 
     /**
      * Returns Foo.
-     * @return Foo.
+     * @return Foo
      * @checkstyle NonStaticMethod (2 lines)
      */
     public Foo doSmth() {
@@ -39,7 +39,7 @@ public final class Violations {
 
     /**
      * Returns Foo again.
-     * @return Foo.
+     * @return Foo
      * @checkstyle NonStaticMethod (2 lines)
      */
     public Foo doSmthElse() {
@@ -68,7 +68,7 @@ public final class Violations {
 
         /**
          * Constructor.
-         * @param name Name.
+         * @param name Name
          */
         Foo(final String name) {
             this.name = name;

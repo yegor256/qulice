@@ -15,7 +15,7 @@ public final class GuavaNewArrayList {
 
     /**
      * Build a list using Guava helper without size.
-     * @return An empty list.
+     * @return An empty list
      */
     public List<String> build() {
         return Lists.newArrayList();

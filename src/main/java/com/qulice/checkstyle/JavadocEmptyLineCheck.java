@@ -85,8 +85,8 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
 
     /**
      * Check if node has Javadoc.
-     * @param node Node to be checked for Javadoc.
-     * @param start Line number where comment starts.
+     * @param node Node to be checked for Javadoc
+     * @param start Line number where comment starts
      * @return True when node has Javadoc
      */
     private static boolean isNodeHavingJavadoc(final DetailAST node,
@@ -96,7 +96,7 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
 
     /**
      * Returns line number of previous node.
-     * @param node Current node.
+     * @param node Current node
      * @return Line number of previous node
      */
     private static int getLineNoOfPreviousNode(final DetailAST node) {
@@ -110,9 +110,9 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
 
     /**
      * Find Javadoc starting comment.
-     * @param lines List of lines to check.
-     * @param start Start searching from this line number.
-     * @return Line number with found starting comment or -1 otherwise.
+     * @param lines List of lines to check
+     * @param start Start searching from this line number
+     * @return Line number with found starting comment or -1 otherwise
      */
     private static int findCommentStart(final String[] lines, final int start) {
         return JavadocEmptyLineCheck.findTrimmedTextUp(lines, start, "/**");
@@ -120,9 +120,9 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
 
     /**
      * Find Javadoc ending comment.
-     * @param lines Array of lines to check.
-     * @param start Start searching from this line number.
-     * @return Line number with found ending comment, or -1 if it wasn't found.
+     * @param lines Array of lines to check
+     * @param start Start searching from this line number
+     * @return Line number with found ending comment, or -1 if it wasn't found
      */
     private static int findCommentEnd(final String[] lines, final int start) {
         int found = -1;
@@ -138,10 +138,10 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
 
     /**
      * Find a text in lines, by going up.
-     * @param lines Array of lines to check.
-     * @param start Start searching from this line number.
-     * @param text Text to find.
-     * @return Line number with found text, or -1 if it wasn't found.
+     * @param lines Array of lines to check
+     * @param start Start searching from this line number
+     * @param text Text to find
+     * @return Line number with found text, or -1 if it wasn't found
      */
     private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {

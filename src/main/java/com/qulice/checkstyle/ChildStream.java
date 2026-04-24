@@ -27,7 +27,7 @@ class ChildStream {
     /**
      * Creates a new child stream factory.
      *
-     * @param node Node which will used by this object.
+     * @param node Node which will used by this object
      */
     ChildStream(final DetailAST node) {
         this.node = node;

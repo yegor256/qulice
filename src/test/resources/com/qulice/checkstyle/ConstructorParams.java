@@ -15,7 +15,7 @@ public final class ConstructorParams {
 
     /**
      * Constructor.
-     * @param number Some nice number.
+     * @param number Some nice number
      */
     public ConstructorParams(final int number) {
         this.number = number;
@@ -23,8 +23,8 @@ public final class ConstructorParams {
 
     /**
      * Add an external number to internal one.
-     * @param number Number to add.
-     * @return Sum of numbers.
+     * @param number Number to add
+     * @return Sum of numbers
      */
     public int addNumber(final int number) {
         return this.number + number;

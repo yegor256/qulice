@@ -16,7 +16,7 @@ public final class ValidIndentation {
 
     /**
      * Ctor.
-     * @param txt Name.
+     * @param txt Name
      */
     public ValidIndentation(final String txt) {
         this.name = txt;
@@ -24,7 +24,7 @@ public final class ValidIndentation {
 
     /**
      * Do something.
-     * @return The size.
+     * @return The size
      */
     public int doit() {
         return this.name.length() + Arrays.asList(

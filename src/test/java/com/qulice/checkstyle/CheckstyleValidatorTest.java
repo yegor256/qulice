@@ -933,8 +933,8 @@ final class CheckstyleValidatorTest {
 
     /**
      * Validates that checkstyle reported given violation.
-     * @param file File to check.
-     * @param result Expected validation result.
+     * @param file File to check
+     * @param result Expected validation result
      * @param message Message to match
      * @throws Exception In case of error
      */
@@ -953,9 +953,9 @@ final class CheckstyleValidatorTest {
 
     /**
      * Returns string with Checkstyle validation results.
-     * @param file File to check.
-     * @param passes Whether validation is expected to pass.
-     * @return String containing validation results in textual form.
+     * @param file File to check
+     * @param passes Whether validation is expected to pass
+     * @return String containing validation results in textual form
      * @throws IOException In case of error
      */
     @SuppressWarnings("PMD.JUnitAssertionsShouldIncludeMessage")

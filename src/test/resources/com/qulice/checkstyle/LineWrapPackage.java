@@ -11,7 +11,7 @@ package foo
 public interface LineWrapPackage {
     /**
      * Some data.
-     * @return Some data.
+     * @return Some data
      */
     Integer data();
 

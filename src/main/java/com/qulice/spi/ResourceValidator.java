@@ -23,7 +23,7 @@ public interface ResourceValidator {
 
     /**
      * Name of this validator.
-     * @return Name of this validator.
+     * @return Name of this validator
      */
     String name();
 }

@@ -38,9 +38,9 @@ final class PmdAssert {
     /**
      * Constructor.
      *
-     * @param file File to validate.
-     * @param result Expected build status.
-     * @param matcher Matcher that needs to match.
+     * @param file File to validate
+     * @param result Expected build status
+     * @param matcher Matcher that needs to match
      */
     PmdAssert(
         final String file,

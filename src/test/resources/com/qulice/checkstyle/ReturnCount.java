@@ -10,7 +10,7 @@ package foo;
 public final class ReturnCount {
     /**
      * Method with two {@code return} statements.
-     * @param number Some nice number.
+     * @param number Some nice number
      */
     public int methodWithTwoReturns(final int number) {
         if (number == 0) {

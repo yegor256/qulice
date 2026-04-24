@@ -36,7 +36,7 @@ public final class ConditionalRegexpMultilineCheck extends
 
     /**
      * Condition regexp that has to match before checking the core one.
-     * @param cond Regexp that has to match in file.
+     * @param cond Regexp that has to match in file
      */
     public void setCondition(final String cond) {
         this.condition = Pattern.compile(cond);

@@ -83,7 +83,7 @@ public final class MultiLineCommentCheck extends AbstractCheck {
      * <module name="com.qulice.checkstyle.MultiLineCommentCheck"/> and
      * <property name="format" value=" this regexp "/> property
      *
-     * @param fmt Validatig regexp.
+     * @param fmt Validatig regexp
      */
     public void setFormat(final String fmt) {
         this.format = Pattern.compile(fmt);
@@ -96,7 +96,7 @@ public final class MultiLineCommentCheck extends AbstractCheck {
      * <property name="message" value="First sentence in a comment should start with ....."/>
      * property
      *
-     * @param msg Error message.
+     * @param msg Error message
      */
     public void setMessage(final String msg) {
         this.message = msg;

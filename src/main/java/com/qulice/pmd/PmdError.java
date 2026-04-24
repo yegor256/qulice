@@ -19,27 +19,27 @@ public interface PmdError {
     /**
      * Returns error name which is short, fixed, human-readable category of
      * the error.
-     * @return Error name.
+     * @return Error name
      */
     String name();
 
     /**
      * Returns file name which caused this error.
      * May return sentinel value if file information is not available.
-     * @return File name.
+     * @return File name
      */
     String fileName();
 
     /**
      * Returns formatted line range which cause this error.
      * May return sentinel value if line information is not available.
-     * @return Formatted line range.
+     * @return Formatted line range
      */
     String lines();
 
     /**
      * Returns error description.
-     * @return Description.
+     * @return Description
      */
     String description();
 
@@ -56,7 +56,7 @@ public interface PmdError {
 
         /**
          * Creates a new PmdError, representing given RuleViolation.
-         * @param violation Internal RuleViolation.
+         * @param violation Internal RuleViolation
          */
         public OfRuleViolation(final RuleViolation violation) {
             this.violation = violation;
@@ -99,7 +99,7 @@ public interface PmdError {
 
         /**
          * Creates a new PmdError, representing given ProcessingError.
-         * @param error Internal ProcessingError.
+         * @param error Internal ProcessingError
          */
         public OfProcessingError(final Report.ProcessingError error) {
             this.error = error;
@@ -145,7 +145,7 @@ public interface PmdError {
 
         /**
          * Creates a new PmdError, representing given ConfigurationError.
-         * @param error Internal ConfigurationError.
+         * @param error Internal ConfigurationError
          */
         public OfConfigError(final Report.ConfigurationError error) {
             this.error = error;

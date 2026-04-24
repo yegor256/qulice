@@ -78,8 +78,8 @@ final class ViolationMatcher extends TypeSafeMatcher<Violation> {
 
     /**
      * Check name matches.
-     * @param item Item to check.
-     * @return True if check name matches.
+     * @param item Item to check
+     * @return True if check name matches
      */
     private boolean checkMatches(final Violation item) {
         return this.check.isEmpty()
@@ -88,8 +88,8 @@ final class ViolationMatcher extends TypeSafeMatcher<Violation> {
 
     /**
      * Check that given line matches.
-     * @param item Item to check.
-     * @return True if line matches.
+     * @param item Item to check
+     * @return True if line matches
      */
     private boolean lineMatches(final Violation item) {
         return this.line.isEmpty()

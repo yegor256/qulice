@@ -109,8 +109,8 @@ public final class ConstantUsageCheck extends AbstractCheck {
     /**
      * Returns text representation of the specified node, including it's
      * children.
-     * @param node Node, containing text.
-     * @return Text representation of the node.
+     * @param node Node, containing text
+     * @return Text representation of the node
      */
     private String getText(final DetailAST node) {
         final String ret;
@@ -138,9 +138,9 @@ public final class ConstantUsageCheck extends AbstractCheck {
     /**
      * Returns <code>true</code> if specified node has parent node of type
      * <code>OBJBLOCK</code>.
-     * @param node Node to check.
+     * @param node Node to check
      * @return True if parent node is <code>OBJBLOCK</code>, else
-     *  returns <code>false</code>.
+     *  returns <code>false</code>
      */
     private static boolean isField(final DetailAST node) {
         final DetailAST parent = node.getParent();
@@ -149,9 +149,9 @@ public final class ConstantUsageCheck extends AbstractCheck {
 
     /**
      * Returns true if specified node has modifiers of type <code>FINAL</code>.
-     * @param node Node to check.
+     * @param node Node to check
      * @return True if specified node contains modifiers of type
-     *  <code>FINAL</code>, else returns <code>false</code>.
+     *  <code>FINAL</code>, else returns <code>false</code>
      */
     private static boolean isFinal(final DetailAST node) {
         final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
@@ -161,9 +161,9 @@ public final class ConstantUsageCheck extends AbstractCheck {
     /**
      * Returns true if specified node has modifiers of type
      * <code>PRIVATE</code>.
-     * @param node Node to check.
+     * @param node Node to check
      * @return True if specified node contains modifiers of type
-     *  <code>PRIVATE</code>, else returns <code>false</code>.
+     *  <code>PRIVATE</code>, else returns <code>false</code>
      */
     private static boolean isPrivate(final DetailAST node) {
         final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
@@ -173,10 +173,10 @@ public final class ConstantUsageCheck extends AbstractCheck {
     /**
      * Parses the body of the definition (either method or inner class) and
      * increments counter each time when it founds constant name.
-     * @param definition Tree node, containing definition.
-     * @param name Constant name to search.
-     * @param type Type of definition start.
-     * @return Number of found constant usages.
+     * @param definition Tree node, containing definition
+     * @param name Constant name to search
+     * @param type Type of definition start
+     * @return Number of found constant usages
      */
     private int parseDef(final DetailAST definition, final String name,
         final int type) {

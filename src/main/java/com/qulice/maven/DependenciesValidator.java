@@ -312,7 +312,7 @@ final class DependenciesValidator implements MavenValidator {
 
         /**
          * Constructor.
-         * @param excludes List of excludes.
+         * @param excludes List of excludes
          */
         ExcludePredicate(final Collection<String> excludes) {
             this.excludes = excludes;

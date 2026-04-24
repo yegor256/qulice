@@ -33,7 +33,7 @@ final class ChecksTest {
 
     /**
      * Test checkstyle for true negative.
-     * @param dir Directory where test scripts are located.
+     * @param dir Directory where test scripts are located
      * @throws Exception If something goes wrong
      */
     @ParameterizedTest
@@ -83,7 +83,7 @@ final class ChecksTest {
 
     /**
      * Test checkstyle for true negative.
-     * @param dir Directory where test scripts are located.
+     * @param dir Directory where test scripts are located
      * @throws Exception If something goes wrong
      */
     @ParameterizedTest
@@ -101,7 +101,7 @@ final class ChecksTest {
 
     /**
      * Check one file.
-     * @param dir Directory where test scripts are located.
+     * @param dir Directory where test scripts are located
      * @param name The name of the check
      * @param listener The listener
      * @throws Exception If something goes wrong inside
@@ -166,6 +166,7 @@ final class ChecksTest {
             "JavadocEmptyLineCheck",
             "JavadocFirstLineCheck",
             "JavadocTagsCheck",
+            "JavadocTagsDotCheck",
             "JavadocThrowsCheck",
             "ProhibitNonFinalClassesCheck",
             "QualifyInnerClassCheck",

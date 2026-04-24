@@ -20,7 +20,7 @@ public final class SuppressConditionalRegexpMultilineInComment {
 
     /**
      * Primary constructor.
-     * @param sze Size to store.
+     * @param sze Size to store
      */
     public SuppressConditionalRegexpMultilineInComment(final int sze) {
         this.size = sze;
@@ -28,7 +28,7 @@ public final class SuppressConditionalRegexpMultilineInComment {
 
     /**
      * Build a collection without size.
-     * @return An empty collection sized to this object.
+     * @return An empty collection sized to this object
      * @checkstyle ConditionalRegexpMultilineCheck (5 lines)
      */
     public Collection<String> build() {

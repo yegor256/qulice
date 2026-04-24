@@ -307,7 +307,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
         /**
          * Constructor.
-         * @param urls URLs for class loading.
+         * @param urls URLs for class loading
          */
         private PrivilegedClassLoader(final List<URL> urls) {
             this.urls = urls;
@@ -336,7 +336,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
         /**
          * Constructor.
-         * @param name Path to match.
+         * @param name Path to match
          */
         PathPredicate(final String name) {
             this.name = name;
@@ -370,7 +370,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
         /**
          * Constructor.
-         * @param checker Name of checker.
+         * @param checker Name of checker
          */
         CheckerExcludes(final String checker) {
             this.checker = checker;

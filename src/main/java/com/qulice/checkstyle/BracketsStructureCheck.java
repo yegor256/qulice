@@ -71,7 +71,7 @@ public final class BracketsStructureCheck extends AbstractCheck {
 
     /**
      * Checks params statement to satisfy the rule.
-     * @param node Tree node, containing method call statement.
+     * @param node Tree node, containing method call statement
      */
     private void checkParams(final DetailAST node) {
         final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
@@ -82,7 +82,7 @@ public final class BracketsStructureCheck extends AbstractCheck {
 
     /**
      * Checks params statement to satisfy the rule.
-     * @param node Tree node, containing method call statement.
+     * @param node Tree node, containing method call statement
      * @param start First line
      * @param end Final line
      */
@@ -118,7 +118,7 @@ public final class BracketsStructureCheck extends AbstractCheck {
 
     /**
      * Checks resources of try-with-resources statement.
-     * @param node Tree node, containing the RESOURCE_SPECIFICATION.
+     * @param node Tree node, containing the RESOURCE_SPECIFICATION
      */
     private void checkResources(final DetailAST node) {
         final DetailAST opening = node.findFirstToken(TokenTypes.LPAREN);
@@ -131,9 +131,9 @@ public final class BracketsStructureCheck extends AbstractCheck {
 
     /**
      * Checks RESOURCES body inside a multiline try-with-resources.
-     * @param node Tree node with the RESOURCE_SPECIFICATION.
-     * @param opening The opening LPAREN token.
-     * @param closing The closing RPAREN token.
+     * @param node Tree node with the RESOURCE_SPECIFICATION
+     * @param opening The opening LPAREN token
+     * @param closing The closing RPAREN token
      */
     private void checkResourceBody(final DetailAST node,
         final DetailAST opening, final DetailAST closing) {

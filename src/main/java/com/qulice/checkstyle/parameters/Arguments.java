@@ -25,7 +25,7 @@ public class Arguments {
 
     /**
      * Secondary ctor.
-     * @param node Constructor or method definition node.
+     * @param node Constructor or method definition node
      */
     public Arguments(final DetailAST node) {
         this(
@@ -37,7 +37,7 @@ public class Arguments {
 
     /**
      * Primary ctor.
-     * @param parameters Parameters.
+     * @param parameters Parameters
      */
     public Arguments(final Parameters parameters) {
         this.parameters = parameters;
@@ -45,7 +45,7 @@ public class Arguments {
 
     /**
      * Return number of arguments.
-     * @return Number of arguments.
+     * @return Number of arguments
      */
     public final int count() {
         return this.parameters.count();
@@ -54,9 +54,9 @@ public class Arguments {
     /**
      * Checks for consistency the order of arguments and their Javadoc
      *  parameters.
-     * @param tags Javadoc parameter tags.
+     * @param tags Javadoc parameter tags
      * @param consumer Consumer accepts JavadocTag which is located out of
-     *  order.
+     *  order
      */
     public final void checkOrder(
         final List<JavadocTag> tags, final Consumer<JavadocTag> consumer

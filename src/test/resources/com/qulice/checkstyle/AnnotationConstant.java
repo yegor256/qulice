@@ -46,7 +46,7 @@ public final class AnnotationConstant {
 
     /**
      * Some data.
-     * @return Some data.
+     * @return Some data
      */
     @SuppressWarnings(AnnotationConstant.TEXT1)
     public static String data() {
@@ -55,7 +55,7 @@ public final class AnnotationConstant {
 
     /**
      * Some other data.
-     * @return Some other data.
+     * @return Some other data
      */
     @SuppressWarnings(value = AnnotationConstant.TEXT2)
     public static String other() {
@@ -64,7 +64,7 @@ public final class AnnotationConstant {
 
     /**
      * Some other data.
-     * @return Some other data.
+     * @return Some other data
      */
     @SuppressWarnings({ AnnotationConstant.TEXT3, AnnotationConstant.TEXT4})
     public static String other() {
@@ -73,7 +73,7 @@ public final class AnnotationConstant {
 
     /**
      * Some other data.
-     * @return Some other data.
+     * @return Some other data
      */
     @SuppressWarnings(value = { AnnotationConstant.TEXT5,
         AnnotationConstant.TEXT6 })

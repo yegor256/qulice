@@ -37,7 +37,7 @@ public final class ProhibitFieldsInTestClassesCheck extends AbstractCheck {
 
     /**
      * Restrict the check to files matching the given pattern.
-     * @param regex Regex of file names to include.
+     * @param regex Regex of file names to include
      */
     public void setIncludeFileNamePattern(final String regex) {
         this.include = Pattern.compile(regex);
@@ -78,8 +78,8 @@ public final class ProhibitFieldsInTestClassesCheck extends AbstractCheck {
     /**
      * Is this VARIABLE_DEF a class field that is neither static nor
      * annotated?
-     * @param node Variable definition node.
-     * @return True if the field should be flagged.
+     * @param node Variable definition node
+     * @return True if the field should be flagged
      */
     private static boolean isUnannotatedInstanceField(final DetailAST node) {
         final DetailAST parent = node.getParent();

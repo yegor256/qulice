@@ -24,7 +24,7 @@ public final class LocalVariableNames {
      * Just a valid method.
      *
      * @param id
-     *  A valid parameter with name 'id'.
+     *  A valid parameter with name 'id'
      * @return Some value
      */
     static int validone(final int id) {
@@ -33,7 +33,7 @@ public final class LocalVariableNames {
 
     /**
      * Another valid method.
-     * @param parametername Another parameter that's valid.
+     * @param parametername Another parameter that's valid
      */
     static void validtwo(final int parametername) {
         if (parametername == 1) {
@@ -80,7 +80,7 @@ public final class LocalVariableNames {
      * Just an invalid method that test all cases.
      *
      * @param it
-     *  An invalid parameter with name 'it'.
+     *  An invalid parameter with name 'it'
      * @return Some value
      */
     static int invalid(final int it) {

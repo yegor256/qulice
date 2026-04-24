@@ -59,8 +59,8 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
 
     /**
      * Checks if the line belongs to a comment block.
-     * @param line Input.
-     * @return True if the line belongs to a comment block.
+     * @param line Input
+     * @return True if the line belongs to a comment block
      */
     private static boolean inCommentBlock(final String line) {
         final String trimmed = line.trim();
@@ -74,7 +74,7 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
     /**
      * Calculates indentation of a line.
      * @param line Input line
-     * @return Indentation of the given line.
+     * @return Indentation of the given line
      */
     private static int indentation(final String line) {
         int result = 0;

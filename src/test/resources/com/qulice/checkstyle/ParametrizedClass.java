@@ -12,7 +12,7 @@ import java.util.List;
 public interface ParametrizedClass<T> {
     /**
      * Some data.
-     * @return Some data.
+     * @return Some data
      */
     List<T> data();
 

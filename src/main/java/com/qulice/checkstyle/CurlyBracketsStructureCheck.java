@@ -62,7 +62,7 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
 
     /**
      * Checks params statement to satisfy the rule.
-     * @param node Tree node, containing containing array init statement.
+     * @param node Tree node, containing containing array init statement
      */
     private void checkParams(final DetailAST node) {
         final DetailAST closing = node.findFirstToken(TokenTypes.RCURLY);
@@ -73,7 +73,7 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
 
     /**
      * Checks params statement to satisfy the rule.
-     * @param node Tree node, containing array init statement.
+     * @param node Tree node, containing array init statement
      * @param start First line
      * @param end Final line
      */

@@ -89,7 +89,7 @@ public final class SingleLineCommentCheck extends AbstractCheck {
      * <module name="com.qulice.checkstyle.SingleLineCommentCheck"/> and
      * <property name="format" value=" this regexp "/> property
      *
-     * @param fmt Validatig regexp.
+     * @param fmt Validatig regexp
      */
     public void setFormat(final String fmt) {
         this.format = Pattern.compile(fmt);
@@ -102,7 +102,7 @@ public final class SingleLineCommentCheck extends AbstractCheck {
      * <property name="message" value="This kind of comment is not allowed."/>
      * property
      *
-     * @param msg Error message.
+     * @param msg Error message
      */
     public void setMessage(final String msg) {
         this.message = msg;
@@ -110,9 +110,9 @@ public final class SingleLineCommentCheck extends AbstractCheck {
 
     /**
      * Checks for the end of a comment line.
-     * @param ast Checkstyle's AST nodes.
+     * @param ast Checkstyle's AST nodes
      * @return True if this is the end of the comment
-     *  and the starting line number is equal to the ending line number.
+     *  and the starting line number is equal to the ending line number
      */
     private boolean singleLineCStyleComment(final DetailAST ast) {
         return ast.getType() == TokenTypes.BLOCK_COMMENT_END && this.begin == ast.getLineNo();

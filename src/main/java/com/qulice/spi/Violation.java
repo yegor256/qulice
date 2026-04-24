@@ -28,7 +28,7 @@ public interface Violation extends Comparable<Violation> {
 
     /**
      * Validated file.
-     * @return Validated file.
+     * @return Validated file
      */
     String file();
 
@@ -40,7 +40,7 @@ public interface Violation extends Comparable<Violation> {
 
     /**
      * Validation message.
-     * @return Validation message.
+     * @return Validation message
      */
     String message();
 

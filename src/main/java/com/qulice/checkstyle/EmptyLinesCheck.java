@@ -107,8 +107,8 @@ public final class EmptyLinesCheck extends AbstractCheck {
      * directly inside of a method of that anonymous inner class.
      * Note: This implementation only checks one level deep, as nesting
      * anonymous inner classes should never been done.
-     * @param line The line to check if it is within a method or not.
-     * @return True if the line is directly inside of a method.
+     * @param line The line to check if it is within a method or not
+     * @return True if the line is directly inside of a method
      */
     private boolean insideMethod(final int line) {
         final int method = EmptyLinesCheck.linesBetweenBraces(

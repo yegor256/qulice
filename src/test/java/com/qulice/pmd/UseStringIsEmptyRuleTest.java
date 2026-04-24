@@ -22,7 +22,7 @@ final class UseStringIsEmptyRuleTest {
     /**
      * UseStringIsEmpty can detect when used String.length(), when checking for
      * empty string.
-     * @param file File name.
+     * @param file File name
      * @throws Exception If something goes wrong.
      */
     @ParameterizedTest
@@ -64,9 +64,9 @@ final class UseStringIsEmptyRuleTest {
 
     /**
      * Constructs StringContains matcher for error message.
-     * @param file File name.
-     * @param line Line number.
-     * @return StringContains matcher.
+     * @param file File name
+     * @param line Line number
+     * @return StringContains matcher
      */
     private static Matcher<String> containsMatcher(
         final String file, final int line

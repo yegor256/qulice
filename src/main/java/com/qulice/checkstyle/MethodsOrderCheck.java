@@ -49,7 +49,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
 
     /**
      * Checks class definition to satisfy the rule.
-     * @param node Tree node, containing class definition (CLASS_DEF).
+     * @param node Tree node, containing class definition (CLASS_DEF)
      */
     private void checkClass(final DetailAST node) {
         final DetailAST obj = node.findFirstToken(TokenTypes.OBJBLOCK);

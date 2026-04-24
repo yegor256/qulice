@@ -49,9 +49,9 @@ final class SourceValidator {
 
     /**
      * Performs validation of the input source files.
-     * @param sources Input source files.
-     * @param path Base path.
-     * @return Collection of violations.
+     * @param sources Input source files
+     * @param path Base path
+     * @return Collection of violations
      */
     @SuppressWarnings({"PMD.AvoidInstantiatingObjectsInLoops", "PMD.CloseResource"})
     Collection<PmdError> validate(
@@ -90,8 +90,8 @@ final class SourceValidator {
      * tries to suppress {@code PMD.UnnecessaryWarningSuppression} itself.
      * The PMD rule cannot suppress its own violations, so suppressing it is
      * effectively a no-op and must not be reported as unused.
-     * @param violation Violation to inspect.
-     * @return True if the violation is self-referential.
+     * @param violation Violation to inspect
+     * @return True if the violation is self-referential
      */
     private static boolean suppressesItself(final RuleViolation violation) {
         final String name = "UnnecessaryWarningSuppression";

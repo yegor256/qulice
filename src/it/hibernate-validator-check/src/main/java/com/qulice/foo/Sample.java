@@ -12,7 +12,7 @@ public final class Sample {
 
     /**
      * Test method.
-     * @return Stream.
+     * @return Stream
      * @checkstyle NonStaticMethod (2 lines)
      */
     public String test() {

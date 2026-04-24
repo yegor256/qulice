@@ -74,8 +74,8 @@ public interface Environment {
      * '?' and '*' represents single or multiple wildcard characters,
      * respectively. Pattern matching is case sensitive.
      *
-     * @param pattern File name pattern.
-     * @return Collection of files, matching the specified pattern.
+     * @param pattern File name pattern
+     * @return Collection of files, matching the specified pattern
      */
     Collection<File> files(String pattern);
 

@@ -67,7 +67,7 @@ public final class EmptyLineBeforeFirstMemberCheck extends AbstractCheck {
 
     /**
      * Check the body between curly braces of the given object block.
-     * @param block OBJBLOCK node whose body must be inspected.
+     * @param block OBJBLOCK node whose body must be inspected
      */
     private void visitBlock(final DetailAST block) {
         final DetailAST left = block.findFirstToken(TokenTypes.LCURLY);

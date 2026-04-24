@@ -54,7 +54,7 @@ public final class ConstructorsOrderCheck extends AbstractCheck {
     /**
      * Checks that every secondary constructor is declared before
      * the primary one.
-     * @param obj Object block node.
+     * @param obj Object block node
      */
     private void checkOrder(final DetailAST obj) {
         boolean primary = false;
@@ -73,8 +73,8 @@ public final class ConstructorsOrderCheck extends AbstractCheck {
     /**
      * Collects all constructors declared directly in the given
      * object block, in declaration order.
-     * @param obj Object block node.
-     * @return Constructors.
+     * @param obj Object block node
+     * @return Constructors
      */
     private static List<DetailAST> constructors(final DetailAST obj) {
         final List<DetailAST> ctors = new LinkedList<>();
@@ -90,8 +90,8 @@ public final class ConstructorsOrderCheck extends AbstractCheck {
     /**
      * Tells whether the given constructor delegates to another
      * constructor via {@code this(...)}.
-     * @param ctor Constructor node.
-     * @return True if delegating.
+     * @param ctor Constructor node
+     * @return True if delegating
      */
     private static boolean delegates(final DetailAST ctor) {
         boolean delegates = false;

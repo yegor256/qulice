@@ -106,8 +106,8 @@ public final class JavadocThrowsCheck extends AbstractCheck {
     /**
      * Collect simple names of the exceptions declared in the
      * {@code throws} clause of a method or constructor.
-     * @param ast Method/constructor definition node.
-     * @return Simple names of declared checked exceptions.
+     * @param ast Method/constructor definition node
+     * @return Simple names of declared checked exceptions
      */
     private static Set<String> declared(final DetailAST ast) {
         final Set<String> names = new HashSet<>(0);
@@ -129,8 +129,8 @@ public final class JavadocThrowsCheck extends AbstractCheck {
     /**
      * Extract the simple name from a possibly qualified type reference
      * as written in javadoc text.
-     * @param text Full textual type reference.
-     * @return Simple name (last dot-separated segment).
+     * @param text Full textual type reference
+     * @return Simple name (last dot-separated segment)
      */
     private static String simple(final String text) {
         final int dot = text.lastIndexOf('.');
@@ -146,8 +146,8 @@ public final class JavadocThrowsCheck extends AbstractCheck {
     /**
      * Walk down a DOT-chained name and return the rightmost identifier
      * text (i.e. the simple name of a qualified reference in the AST).
-     * @param dot AST node of type {@code DOT}.
-     * @return Rightmost identifier's text.
+     * @param dot AST node of type {@code DOT}
+     * @return Rightmost identifier's text
      */
     private static String rightmost(final DetailAST dot) {
         DetailAST right = dot.getLastChild();

@@ -27,7 +27,7 @@ public final class PmdValidator implements ResourceValidator {
 
     /**
      * Constructor.
-     * @param env Environment to use.
+     * @param env Environment to use
      */
     public PmdValidator(final Environment env) {
         this.env = env;

@@ -26,8 +26,8 @@ public final class Valid {
 
     /**
      * Method Javadoc with no text on the first line.
-     * @param param - param.
-     * @return Param.
+     * @param param - param
+     * @return Param
      */
     public String method(final String param) {
         return param;

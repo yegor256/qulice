@@ -35,7 +35,7 @@ public final class LineRanges {
 
     /**
      * Returns an iterator for this collection.
-     * @return Iterator pointing to the internal collections elements.
+     * @return Iterator pointing to the internal collections elements
      */
     public Iterator<LineRange> iterator() {
         return this.lines.collection().iterator();
@@ -44,7 +44,7 @@ public final class LineRanges {
     /**
      * Detects if the given line number is within any of the line ranges.
      * @param line The given line number to check
-     * @return True if the given line number is within any line range.
+     * @return True if the given line number is within any line range
      */
     public boolean inRange(final int line) {
         return !this.lines.collection().isEmpty()
@@ -55,8 +55,8 @@ public final class LineRanges {
     /**
      * Gets the subset of LineRanges that are within all given ranges. Does
      * not return null; instead, returns empty range if there are no matches.
-     * @param ranges The ranges to filter on.
-     * @return Returns all LineRange elements that are within range.
+     * @param ranges The ranges to filter on
+     * @return Returns all LineRange elements that are within range
      */
     public LineRanges within(final LineRanges ranges) {
         final LineRanges result = new LineRanges();
@@ -94,7 +94,7 @@ public final class LineRanges {
 
         /**
          * Default constructor.
-         * @param line The given line to check against all the line ranges.
+         * @param line The given line to check against all the line ranges
          */
         private LineWithAny(final int line) {
             this.given = line;
@@ -122,7 +122,7 @@ public final class LineRanges {
 
         /**
          * Get the collection specific to the current thread only.
-         * @return The collection for this thread.
+         * @return The collection for this thread
          */
         public Collection<LineRange> collection() {
             return this.ranges;

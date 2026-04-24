@@ -60,7 +60,7 @@ public final class CheckstyleValidator implements ResourceValidator {
 
     /**
      * Constructor.
-     * @param env Environment to use.
+     * @param env Environment to use
      */
     @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public CheckstyleValidator(final Environment env) {

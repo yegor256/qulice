@@ -55,7 +55,7 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
     /**
      * Reports every method call found anywhere in the given subtree,
      * except those nested inside lambda bodies or anonymous class bodies.
-     * @param node Root of the subtree to scan.
+     * @param node Root of the subtree to scan
      */
     private void reportCalls(final DetailAST node) {
         for (DetailAST child = node.getFirstChild();

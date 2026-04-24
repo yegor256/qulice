@@ -63,7 +63,7 @@ public final class ExtraSemicolonCheck extends AbstractCheck {
 
     /**
      * Report every {@code SEMI} token that is a direct child of the node.
-     * @param node The parent node whose children are inspected.
+     * @param node The parent node whose children are inspected
      */
     private void reportSemis(final DetailAST node) {
         for (DetailAST child = node.getFirstChild(); child != null;

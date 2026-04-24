@@ -36,9 +36,9 @@ public class Parameters {
 
     /**
      * Primary ctor.
-     * @param node Class, interface, constructor or method definition node.
-     * @param parent Parent TokenType (TYPE_PARAMETERS or PARAMETERS).
-     * @param children Children TokenType (TYPE_PARAMETER or PARAMETER_DEF).
+     * @param node Class, interface, constructor or method definition node
+     * @param parent Parent TokenType (TYPE_PARAMETERS or PARAMETERS)
+     * @param children Children TokenType (TYPE_PARAMETER or PARAMETER_DEF)
      */
     public Parameters(
         final DetailAST node, final int parent, final int children
@@ -50,7 +50,7 @@ public class Parameters {
 
     /**
      * Return number of arguments.
-     * @return Number of parameters.
+     * @return Number of parameters
      */
     public final int count() {
         final int result;
@@ -65,7 +65,7 @@ public class Parameters {
 
     /**
      * Return parameters for this node.
-     * @return Parameters for this node.
+     * @return Parameters for this node
      */
     public final List<DetailAST> parameters() {
         final List<DetailAST> result;

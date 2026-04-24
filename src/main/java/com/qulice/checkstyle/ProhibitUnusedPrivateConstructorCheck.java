@@ -133,9 +133,9 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
      * Returns true if specified node has modifiers of type
      * <code>PRIVATE</code>.
      *
-     * @param node Node to check.
+     * @param node Node to check
      * @return True if specified node contains modifiers of type
-     *  <code>PRIVATE</code>, else returns <code>false</code>.
+     *  <code>PRIVATE</code>, else returns <code>false</code>
      */
     private static boolean isPrivate(final DetailAST node) {
         final DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);

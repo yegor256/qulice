@@ -14,7 +14,7 @@ public interface DefaultMethods {
 
     /**
      * Some data.
-     * @return Some data.
+     * @return Some data
      */
     List<String> data();
 

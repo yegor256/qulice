@@ -38,8 +38,8 @@ public final class Invalid {
     /**
      *
      * Empty javadoc line
-     * @param param - param.
-     * @return Param.
+     * @param param - param
+     * @return Param
      *
      */
     public String method(final String param) {

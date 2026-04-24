@@ -29,7 +29,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
 
     /**
      * Constructor.
-     * @param env Environment to use for validation.
+     * @param env Environment to use for validation
      */
     DefaultValidatorsProvider(final Environment env) {
         this.env = env;

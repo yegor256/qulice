@@ -25,7 +25,7 @@ public class TypeParameters {
 
     /**
      * Secondary ctor.
-     * @param node Class, interface, constructor or method definition node.
+     * @param node Class, interface, constructor or method definition node
      */
     public TypeParameters(final DetailAST node) {
         this(
@@ -37,7 +37,7 @@ public class TypeParameters {
 
     /**
      * Primary ctor.
-     * @param parameters Parameters.
+     * @param parameters Parameters
      */
     public TypeParameters(final Parameters parameters) {
         this.parameters = parameters;
@@ -45,7 +45,7 @@ public class TypeParameters {
 
     /**
      * Return number of arguments.
-     * @return Number of arguments.
+     * @return Number of arguments
      */
     public final int count() {
         return this.parameters.count();
@@ -54,9 +54,9 @@ public class TypeParameters {
     /**
      * Checks for consistency the order of generic type parameters and
      * their Javadoc parameters.
-     * @param tags Javadoc parameter tags.
+     * @param tags Javadoc parameter tags
      * @param consumer Consumer accepts JavadocTag which is located out of
-     *  order.
+     *  order
      */
     public final void checkOrder(
         final List<JavadocTag> tags, final Consumer<JavadocTag> consumer

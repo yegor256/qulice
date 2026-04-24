@@ -21,7 +21,7 @@ public final class ExtraSemicolonInDeclaration {
 
     /**
      * Method ending with a stray semicolon.
-     * @return Dummy.
+     * @return Dummy
      */
     public int act() {
         return this.dat;

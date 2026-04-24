@@ -77,9 +77,9 @@ public final class MethodBodyCommentsCheck extends AbstractCheck {
 
     /**
      * Checks method body for comments.
-     * @param lines Array of lines, containing code to check.
-     * @param start Start line of the method body.
-     * @param end End line of the method body.
+     * @param lines Array of lines, containing code to check
+     * @param start Start line of the method body
+     * @param end End line of the method body
      */
     private void checkMethod(final String[] lines, final int start,
         final int end) {
