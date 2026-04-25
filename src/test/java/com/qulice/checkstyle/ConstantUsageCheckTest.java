@@ -33,6 +33,13 @@ final class ConstantUsageCheckTest {
     }
 
     @Test
+    void acceptsConstantUsedInFieldAndClassAnnotations() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("AnnotationConstantField.java", true)
+        );
+    }
+
+    @Test
     void acceptsConstantUsedBeforeItsDeclaration() throws Exception {
         final String file = "ConstantUsedBeforeDeclaration.java";
         MatcherAssert.assertThat(

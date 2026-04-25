@@ -51,8 +51,17 @@ public final class ConstantUsageCheck extends AbstractCheck {
      */
     private void checkField(final DetailAST ast, final DetailAST namenode) {
         final String name = namenode.getText();
-        DetailAST variable = ast.getParent().getFirstChild();
+        final DetailAST objblock = ast.getParent();
         int counter = 0;
+        final DetailAST classdef = objblock.getParent();
+        if (classdef != null) {
+            final DetailAST mods =
+                classdef.findFirstToken(TokenTypes.MODIFIERS);
+            if (mods != null) {
+                counter += this.parseAnnotation(mods, name);
+            }
+        }
+        DetailAST variable = objblock.getFirstChild();
         while (null != variable) {
             if (!variable.equals(ast)) {
                 switch (variable.getType()) {
@@ -88,6 +97,11 @@ public final class ConstantUsageCheck extends AbstractCheck {
      */
     private int parseVarDef(final DetailAST variable, final String name) {
         int counter = 0;
+        final DetailAST modifiers =
+            variable.findFirstToken(TokenTypes.MODIFIERS);
+        if (modifiers != null) {
+            counter += this.parseAnnotation(modifiers, name);
+        }
         final DetailAST assign =
             variable.findFirstToken(TokenTypes.ASSIGN);
         if (assign != null) {
