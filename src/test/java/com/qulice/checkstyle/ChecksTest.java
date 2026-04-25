@@ -227,6 +227,7 @@ final class ChecksTest {
             "ProhibitUnusedPrivateConstructorCheck",
             "ConstructorsOrderCheck",
             "ConstructorsCodeFreeCheck",
+            "RedundantSuperConstructorCheck",
             "StaticAccessViaInstanceCheck",
             "SingleSpaceSeparatorCheck",
             "SimpleStringSplitCheck",
