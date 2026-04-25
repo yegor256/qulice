@@ -28,33 +28,34 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> * @since 1.0</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">class</strong> <a name="BranchContains" href="../../../com/qulice/checkstyle/BranchContains.html#BranchContains">BranchContains</a> {
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment">     * Node, represented by this object.</em>
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> DetailAST node;
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment">     * Creates a decorator which is able to search in the node's subtree.</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment">     * @param node Node which will be represented by the new BranchContains instance.</em>
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>      <a name="BranchContains" href="../../../com/qulice/checkstyle/BranchContains.html#BranchContains">BranchContains</a>(<strong class="jxr_keyword">final</strong> DetailAST node) {
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>          <strong class="jxr_keyword">this</strong>.node = node;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>      }
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">     * Checks if there is a node of type `type` in this node subtree.</em>
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">     * The root node itself may also match, i.e.</em>
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">     * `new BranchContains(node).contains(node.getType())` is always true</em>
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">     * @param type Desired type</em>
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">     * @return Whether node of given type exists somewhere in the subtree</em>
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <strong class="jxr_keyword">boolean</strong> check(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> type) {
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.node.getType() == type
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>              || <strong class="jxr_keyword">new</strong> <a name="ChildStream" href="../../../com/qulice/checkstyle/ChildStream.html#ChildStream">ChildStream</a>(<strong class="jxr_keyword">this</strong>.node)
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>              .children()
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>              .anyMatch(child -&gt; <strong class="jxr_keyword">new</strong> <a name="BranchContains" href="../../../com/qulice/checkstyle/BranchContains.html#BranchContains">BranchContains</a>(child).check(type));
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>      }
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  }
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">     * Node, represented by this object.</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> DetailAST node;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment">     * Creates a decorator which is able to search in the node's subtree.</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">     * @param node Node which will be represented by the new BranchContains instance</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <a name="BranchContains" href="../../../com/qulice/checkstyle/BranchContains.html#BranchContains">BranchContains</a>(<strong class="jxr_keyword">final</strong> DetailAST node) {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>          <strong class="jxr_keyword">this</strong>.node = node;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      }
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">     * Checks if there is a node of type `type` in this node subtree.</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">     * The root node itself may also match, i.e.</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">     * `new BranchContains(node).contains(node.getType())` is always true</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">     * @param type Desired type</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment">     * @return Whether node of given type exists somewhere in the subtree</em>
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>      <strong class="jxr_keyword">boolean</strong> check(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> type) {
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.node.getType() == type
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>              || <strong class="jxr_keyword">new</strong> <a name="ChildStream" href="../../../com/qulice/checkstyle/ChildStream.html#ChildStream">ChildStream</a>(<strong class="jxr_keyword">this</strong>.node)
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>              .children()
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>              .anyMatch(child -&gt; <strong class="jxr_keyword">new</strong> com.qulice.checkstyle.BranchContains(child).check(type));
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

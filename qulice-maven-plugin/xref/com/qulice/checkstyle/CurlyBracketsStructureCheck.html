@@ -12,10 +12,10 @@
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">package</strong> com.qulice.checkstyle;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.google.common.collect.Lists;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.DetailAST;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.TokenTypes;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.DetailAST;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.TokenTypes;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> java.util.List;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment">/**</em>
@@ -70,7 +70,7 @@
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">     * Checks params statement to satisfy the rule.</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     * @param node Tree node, containing containing array init statement.</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     * @param node Tree node, containing containing array init statement</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> checkParams(<strong class="jxr_keyword">final</strong> DetailAST node) {
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">final</strong> DetailAST closing = node.findFirstToken(TokenTypes.RCURLY);
@@ -81,7 +81,7 @@
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">     * Checks params statement to satisfy the rule.</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">     * @param node Tree node, containing array init statement.</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">     * @param node Tree node, containing array init statement</em>
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">     * @param start First line</em>
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">     * @param end Final line</em>
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">     */</em>
@@ -130,7 +130,7 @@
 <a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L123" href="#L123">123</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Iterable&lt;DetailAST&gt; findAllChildren(<strong class="jxr_keyword">final</strong> DetailAST base,
 <a class="jxr_linenumber" name="L124" href="#L124">124</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> type) {
-<a class="jxr_linenumber" name="L125" href="#L125">125</a>         <strong class="jxr_keyword">final</strong> List&lt;DetailAST&gt; children = Lists.newArrayList();
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>         <strong class="jxr_keyword">final</strong> List&lt;DetailAST&gt; children = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(base.getChildCount());
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>         DetailAST child = base.getFirstChild();
 <a class="jxr_linenumber" name="L127" href="#L127">127</a>         <strong class="jxr_keyword">while</strong> (child != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L128" href="#L128">128</a>             <strong class="jxr_keyword">if</strong> (child.getType() == type) {

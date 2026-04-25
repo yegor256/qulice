@@ -75,11 +75,11 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.26.0</strong>
+                                    <strong itemprop="version">0.27.0</strong>
                                 </li>
                                 <li>
-                                    <time itemprop="datePublished" datetime="2026-04-23">
-                                        23-Apr-2026
+                                    <time itemprop="datePublished" datetime="2026-04-25">
+                                        25-Apr-2026
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -98,7 +98,7 @@
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.26.0&lt;/version&gt;
+      &lt;version&gt;0.27.0&lt;/version&gt;
       &lt;configuration&gt;
         &lt;license&gt;file:${basedir}/LICENSE.txt&lt;/license&gt;
       &lt;/configuration&gt;
@@ -136,7 +136,7 @@ are met: no conditions.</code></pre>
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.26.0&lt;/version&gt;
+      &lt;version&gt;0.27.0&lt;/version&gt;
       &lt;configuration&gt;
         &lt;license&gt;LICENSE.txt&lt;/license&gt;
       &lt;/configuration&gt;
@@ -157,7 +157,25 @@ are met: no conditions.</code></pre>
       &lt;/executions&gt;
     &lt;/plugin&gt;
   &lt;/plugins&gt;
-&lt;/build&gt;</code></pre></section><section><a id="Cutting_Edge_Version"></a>
+&lt;/build&gt;</code></pre></section><section><a id="POM_XPath_Assertions"></a>
+<h2>POM XPath Assertions</h2>
+<p>Qulice can validate your <code>pom.xml</code> against a list of XPath queries. Each query has to find at least one node in the POM, otherwise the build will fail. Configure the queries via the <code>asserts</code> parameter:</p>
+<pre><code>&lt;build&gt;
+  &lt;plugins&gt;
+    &lt;plugin&gt;
+      &lt;groupId&gt;com.qulice&lt;/groupId&gt;
+      &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
+      &lt;version&gt;0.27.0&lt;/version&gt;
+      &lt;configuration&gt;
+        &lt;asserts&gt;
+          &lt;param&gt;/pom:project/pom:build/pom:plugins/pom:plugin[pom:artifactId='qulice-maven-plugin']/pom:artifactId/text()&lt;/param&gt;
+          &lt;param&gt;/pom:project/pom:dependencies/pom:dependency[pom:artifactId='commons-io']/pom:version[.='1.2.5']/text()&lt;/param&gt;
+        &lt;/asserts&gt;
+      &lt;/configuration&gt;
+    &lt;/plugin&gt;
+  &lt;/plugins&gt;
+&lt;/build&gt;</code></pre>
+<p>The <code>pom</code> namespace prefix is bound to <code>http://maven.apache.org/POM/4.0.0</code> and must be used in every component of every XPath query. Each query must end with <code>/text()</code>.</p></section><section><a id="Cutting_Edge_Version"></a>
 <h2>Cutting Edge Version</h2>
 <p>If you want to use current version of the product, you can do it with this configuration in your <code>pom.xml</code>:</p>
 <pre><code>&lt;pluginRepositories&gt;

@@ -28,22 +28,22 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>      @Test
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>      <strong class="jxr_keyword">void</strong> computesRelativePathForFileInsideBasedir(@TempDir <strong class="jxr_keyword">final</strong> Path dir)
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>          <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>          <strong class="jxr_keyword">final</strong> File file = <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"src/main/Foo.java"</span>);
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>          MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>              <span class="jxr_string">"relative path under basedir must start with a forward slash"</span>,
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>              <strong class="jxr_keyword">new</strong> Relative(dir.toFile(), file).path(),
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>              Matchers.equalTo(<span class="jxr_string">"/src/main/Foo.java"</span>)
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>          );
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>      }
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>      @Test
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>      <strong class="jxr_keyword">void</strong> returnsAbsolutePathWhenFileOutsideBasedir(@TempDir <strong class="jxr_keyword">final</strong> Path dir)
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>          <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>          <strong class="jxr_keyword">final</strong> File outside = <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"sibling/Far.java"</span>);
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>          <strong class="jxr_keyword">final</strong> File base = <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"project"</span>);
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>          MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>              <span class="jxr_string">"relative path under basedir must start with a forward slash"</span>,
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>              <strong class="jxr_keyword">new</strong> Relative(
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>                  dir.toFile(), <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"src/main/Foo.java"</span>)
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>              ).path(),
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>              Matchers.equalTo(<span class="jxr_string">"/src/main/Foo.java"</span>)
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>          );
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>      }
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>      @Test
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">void</strong> returnsAbsolutePathWhenFileOutsideBasedir(@TempDir <strong class="jxr_keyword">final</strong> Path dir)
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>          <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>          <strong class="jxr_keyword">final</strong> File outside = <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"sibling/Far.java"</span>);
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>          MatcherAssert.assertThat(
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>              <span class="jxr_string">"file outside basedir must not produce a truncated string"</span>,
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>              <strong class="jxr_keyword">new</strong> Relative(base, outside).path(),
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>              <strong class="jxr_keyword">new</strong> Relative(<strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"project"</span>), outside).path(),
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>              Matchers.equalTo(
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>                  outside.getAbsoluteFile().toPath().normalize()
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>                      .toString().replace(File.separatorChar, '/')
@@ -55,27 +55,29 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">void</strong> doesNotTruncateWhenBasedirIsStringPrefixButNotParent(
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>          @TempDir <strong class="jxr_keyword">final</strong> Path dir
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      ) <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <strong class="jxr_keyword">final</strong> File base = <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"foo"</span>);
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>          <strong class="jxr_keyword">final</strong> File file = <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"foobar/Baz.java"</span>);
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>          MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>              <span class="jxr_string">"sibling with shared string prefix cannot be treated as child"</span>,
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>              <strong class="jxr_keyword">new</strong> Relative(base, file).path(),
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>              Matchers.not(Matchers.startsWith(<span class="jxr_string">"bar/"</span>))
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>          );
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>      }
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>      @Test
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">void</strong> doesNotThrowWhenFilePathShorterThanBasedir(@TempDir <strong class="jxr_keyword">final</strong> Path dir)
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>          <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>          <strong class="jxr_keyword">final</strong> File deep = <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"a/very/deep/basedir"</span>);
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>          <strong class="jxr_keyword">final</strong> File shallow = <strong class="jxr_keyword">new</strong> File(<span class="jxr_string">"x.java"</span>);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>              <span class="jxr_string">"shallow file must not cause a substring-index exception"</span>,
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>              <strong class="jxr_keyword">new</strong> Relative(deep, shallow).path(),
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>              Matchers.notNullValue()
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>          );
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>      }
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  }
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>          MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>              <span class="jxr_string">"sibling with shared string prefix cannot be treated as child"</span>,
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>              <strong class="jxr_keyword">new</strong> Relative(
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>                  <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"foo"</span>),
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>                  <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"foobar/Baz.java"</span>)
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>              ).path(),
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>              Matchers.not(Matchers.startsWith(<span class="jxr_string">"bar/"</span>))
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>          );
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>      }
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      @Test
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">void</strong> doesNotThrowWhenFilePathShorterThanBasedir(@TempDir <strong class="jxr_keyword">final</strong> Path dir)
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>          <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>          MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>              <span class="jxr_string">"shallow file must not cause a substring-index exception"</span>,
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>              <strong class="jxr_keyword">new</strong> Relative(
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>                  <strong class="jxr_keyword">new</strong> File(dir.toFile(), <span class="jxr_string">"a/very/deep/basedir"</span>),
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>                  <strong class="jxr_keyword">new</strong> File(<span class="jxr_string">"x.java"</span>)
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>              ).path(),
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>              Matchers.notNullValue()
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          );
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      }
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

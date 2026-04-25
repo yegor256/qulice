@@ -28,50 +28,60 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> * delegating constructor call, or as a nested argument to a {@code new}</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> * expression.</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * @since 0.24</em>
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="ConstructorsCodeFreeCheck" href="../../../com/qulice/checkstyle/ConstructorsCodeFreeCheck.html#ConstructorsCodeFreeCheck">ConstructorsCodeFreeCheck</a> <strong class="jxr_keyword">extends</strong> AbstractCheck {
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>      @Override
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong>[] getDefaultTokens() {
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">int</strong>[] {TokenTypes.CTOR_DEF};
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>      }
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Method calls nested inside lambda bodies or anonymous class bodies</em>
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> * are not considered constructor code, because they are not executed</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * at construction time: only the lambda object or the anonymous class</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * instance is created. Such subtrees are skipped.</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * @since 0.24</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="ConstructorsCodeFreeCheck" href="../../../com/qulice/checkstyle/ConstructorsCodeFreeCheck.html#ConstructorsCodeFreeCheck">ConstructorsCodeFreeCheck</a> <strong class="jxr_keyword">extends</strong> AbstractCheck {
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>      @Override
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong>[] getAcceptableTokens() {
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.getDefaultTokens();
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong>[] getDefaultTokens() {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <strong class="jxr_keyword">int</strong>[] {TokenTypes.CTOR_DEF};
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>      }
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>      @Override
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong>[] getRequiredTokens() {
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong>[] getAcceptableTokens() {
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.getDefaultTokens();
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>      }
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>      @Override
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> visitToken(<strong class="jxr_keyword">final</strong> DetailAST ast) {
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>          <strong class="jxr_keyword">final</strong> DetailAST body = ast.findFirstToken(TokenTypes.SLIST);
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>          <strong class="jxr_keyword">if</strong> (body != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>              <strong class="jxr_keyword">this</strong>.reportCalls(body);
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>          }
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>      }
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_javadoccomment">     * Reports every method call found anywhere in the given subtree.</em>
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment">     * @param node Root of the subtree to scan.</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> reportCalls(<strong class="jxr_keyword">final</strong> DetailAST node) {
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>          <strong class="jxr_keyword">for</strong> (DetailAST child = node.getFirstChild();
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>              child != <strong class="jxr_keyword">null</strong>; child = child.getNextSibling()) {
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>              <strong class="jxr_keyword">if</strong> (child.getType() == TokenTypes.METHOD_CALL) {
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>                  <strong class="jxr_keyword">this</strong>.log(
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>                      child.getLineNo(),
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>                      <span class="jxr_string">"Constructor must not contain method calls"</span>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>                  );
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>              }
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>              <strong class="jxr_keyword">this</strong>.reportCalls(child);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          }
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>      }
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  }
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong>[] getRequiredTokens() {
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.getDefaultTokens();
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>      }
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>      @Override
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> visitToken(<strong class="jxr_keyword">final</strong> DetailAST ast) {
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>          <strong class="jxr_keyword">final</strong> DetailAST body = ast.findFirstToken(TokenTypes.SLIST);
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>          <strong class="jxr_keyword">if</strong> (body != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>              <strong class="jxr_keyword">this</strong>.reportCalls(body);
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>          }
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>      }
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">     * Reports every method call found anywhere in the given subtree,</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">     * except those nested inside lambda bodies or anonymous class bodies.</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">     * @param node Root of the subtree to scan</em>
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> reportCalls(<strong class="jxr_keyword">final</strong> DetailAST node) {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>          <strong class="jxr_keyword">for</strong> (DetailAST child = node.getFirstChild();
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>              child != <strong class="jxr_keyword">null</strong>; child = child.getNextSibling()) {
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> type = child.getType();
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>              <strong class="jxr_keyword">if</strong> (type == TokenTypes.LAMBDA || type == TokenTypes.OBJBLOCK) {
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>                  <strong class="jxr_keyword">continue</strong>;
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>              }
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>              <strong class="jxr_keyword">if</strong> (type == TokenTypes.METHOD_CALL) {
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>                  <strong class="jxr_keyword">this</strong>.log(
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>                      child.getLineNo(),
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>                      <span class="jxr_string">"Constructor must not contain method calls"</span>
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>                  );
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>              }
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>              <strong class="jxr_keyword">this</strong>.reportCalls(child);
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          }
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>      }
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

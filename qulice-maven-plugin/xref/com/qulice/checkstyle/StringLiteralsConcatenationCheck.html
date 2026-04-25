@@ -75,10 +75,10 @@
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">     * Recursively traverse the &lt;code&gt;tree&lt;/code&gt; and return all ASTs subtrees</em>
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  <em class="jxr_javadoccomment">     * matching any type from &lt;code&gt;types&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">     * @param tree AST to traverse.</em>
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">     * @param types Token types to match against.</em>
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  <em class="jxr_javadoccomment">     * @param tree AST to traverse</em>
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">     * @param types Token types to match against</em>
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">     * @return All ASTs subtrees with token types matching any from</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">     *  &lt;tt&gt;types&lt;/tt&gt;.</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">     *  &lt;tt&gt;types&lt;/tt&gt;</em>
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">     * @see TokenTypes</em>
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>      <strong class="jxr_keyword">private</strong> List&lt;DetailAST&gt; findChildAstsOfType(<strong class="jxr_keyword">final</strong> DetailAST tree,
@@ -101,9 +101,9 @@
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">     * string literal. Traverses only through nested PLUS/PLUS_ASSIGN nodes</em>
 <a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     * so that STRING_LITERALs nested inside method-call arguments or other</em>
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_javadoccomment">     * sub-expressions of an operand do not count.</em>
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">     * @param node PLUS or PLUS_ASSIGN node to inspect.</em>
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">     * @param node PLUS or PLUS_ASSIGN node to inspect</em>
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">     * @return True if any operand of the concatenation chain is a string</em>
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">     *  literal, false otherwise.</em>
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">     *  literal, false otherwise</em>
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> hasStringLiteralOperand(<strong class="jxr_keyword">final</strong> DetailAST node) {
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>         <strong class="jxr_keyword">boolean</strong> found = false;
@@ -126,9 +126,9 @@
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> 
 <a class="jxr_linenumber" name="L119" href="#L119">119</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">     * Checks if this &lt;code&gt;ast&lt;/code&gt; is of any type from &lt;code&gt;types&lt;/code&gt;.</em>
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">     * @param ast AST to check.</em>
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">     * @param types Token types to match against.</em>
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     * @return True if of type, false otherwise.</em>
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">     * @param ast AST to check</em>
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">     * @param types Token types to match against</em>
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     * @return True if of type, false otherwise</em>
 <a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment">     * @see TokenTypes</em>
 <a class="jxr_linenumber" name="L125" href="#L125">125</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L126" href="#L126">126</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isOfType(<strong class="jxr_keyword">final</strong> DetailAST ast, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong>... types) {

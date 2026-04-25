@@ -62,7 +62,7 @@
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     * Checks that every secondary constructor is declared before</em>
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">     * the primary one.</em>
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">     * @param obj Object block node.</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">     * @param obj Object block node</em>
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> checkOrder(<strong class="jxr_keyword">final</strong> DetailAST obj) {
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>          <strong class="jxr_keyword">boolean</strong> primary = false;
@@ -81,8 +81,8 @@
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">     * Collects all constructors declared directly in the given</em>
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">     * object block, in declaration order.</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">     * @param obj Object block node.</em>
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">     * @return Constructors.</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">     * @param obj Object block node</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">     * @return Constructors</em>
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> List&lt;DetailAST&gt; constructors(<strong class="jxr_keyword">final</strong> DetailAST obj) {
 <a class="jxr_linenumber" name="L80" href="#L80">80</a>          <strong class="jxr_keyword">final</strong> List&lt;DetailAST&gt; ctors = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
@@ -98,8 +98,8 @@
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     * Tells whether the given constructor delegates to another</em>
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     * constructor via {@code this(...)}.</em>
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">     * @param ctor Constructor node.</em>
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     * @return True if delegating.</em>
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">     * @param ctor Constructor node</em>
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     * @return True if delegating</em>
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> delegates(<strong class="jxr_keyword">final</strong> DetailAST ctor) {
 <a class="jxr_linenumber" name="L97" href="#L97">97</a>          <strong class="jxr_keyword">boolean</strong> delegates = false;

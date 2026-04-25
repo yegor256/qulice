@@ -46,7 +46,7 @@
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">     * Exclude files matching given pattern.</em>
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">     * @param excl Regexp of classes to exclude.</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">     * @param excl Regexp of classes to exclude</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setExcludeFileNamePattern(<strong class="jxr_keyword">final</strong> String excl) {
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>          <strong class="jxr_keyword">this</strong>.exclude = Pattern.compile(excl);
@@ -99,57 +99,59 @@
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>              checker.check(TokenTypes.LITERAL_THROW)
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>                  &amp;&amp; !checker.check(TokenTypes.LCURLY)
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>                  &amp;&amp; <strong class="jxr_keyword">this</strong>.countSemiColons(method) == 1;
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>          <strong class="jxr_keyword">if</strong> (!AnnotationUtil.containsAnnotation(method, <span class="jxr_string">"Override"</span>)
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>              &amp;&amp; !isInAbstractOrNativeMethod(method)
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>              &amp;&amp; !checker.check(TokenTypes.LITERAL_THIS)
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>              &amp;&amp; !onlythrow) {
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> line = method.getLineNo();
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>              <strong class="jxr_keyword">this</strong>.log(
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>                 line,
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>                 <span class="jxr_string">"This method must be static, because it does not refer to \&quot;this\&quot;"</span>
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>             );
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>         }
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>     }
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> 
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">     * Determines whether a method is {@code abstract} or {@code native}.</em>
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">     * @param method Method to check.</em>
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">     * @return True if method is abstract or native.</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isInAbstractOrNativeMethod(<strong class="jxr_keyword">final</strong> DetailAST method) {
-<a class="jxr_linenumber" name="L112" href="#L112">112</a>         <strong class="jxr_keyword">final</strong> DetailAST modifiers = method.findFirstToken(TokenTypes.MODIFIERS);
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>         <strong class="jxr_keyword">final</strong> <a name="BranchContains" href="../../../com/qulice/checkstyle/BranchContains.html#BranchContains">BranchContains</a> checker = <strong class="jxr_keyword">new</strong> <a name="BranchContains" href="../../../com/qulice/checkstyle/BranchContains.html#BranchContains">BranchContains</a>(modifiers);
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>         <strong class="jxr_keyword">return</strong> checker.check(TokenTypes.ABSTRACT)
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>             || checker.check(TokenTypes.LITERAL_NATIVE);
-<a class="jxr_linenumber" name="L116" href="#L116">116</a>     }
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> 
-<a class="jxr_linenumber" name="L118" href="#L118">118</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     * Determines the number semicolons in a method excluding those in</em>
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">     * comments.</em>
-<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">     * @param method Method to count</em>
-<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">     * @return The number of semicolons in the method as an int</em>
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L124" href="#L124">124</a>     @SuppressWarnings(<span class="jxr_string">"deprecation"</span>)
-<a class="jxr_linenumber" name="L125" href="#L125">125</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> countSemiColons(<strong class="jxr_keyword">final</strong> DetailAST method) {
-<a class="jxr_linenumber" name="L126" href="#L126">126</a>         <strong class="jxr_keyword">final</strong> DetailAST openingbrace = method.findFirstToken(TokenTypes.SLIST);
-<a class="jxr_linenumber" name="L127" href="#L127">127</a>         <strong class="jxr_keyword">int</strong> count = 0;
-<a class="jxr_linenumber" name="L128" href="#L128">128</a>         <strong class="jxr_keyword">if</strong> (openingbrace != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L129" href="#L129">129</a>             <strong class="jxr_keyword">final</strong> DetailAST closingbrace =
-<a class="jxr_linenumber" name="L130" href="#L130">130</a>                 openingbrace.findFirstToken(TokenTypes.RCURLY);
-<a class="jxr_linenumber" name="L131" href="#L131">131</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> lastline = closingbrace.getLineNo();
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> firstline = openingbrace.getLineNo();
-<a class="jxr_linenumber" name="L133" href="#L133">133</a>             <strong class="jxr_keyword">final</strong> FileContents contents = <strong class="jxr_keyword">this</strong>.getFileContents();
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> line = firstline - 1; line &lt; lastline; line += 1) {
-<a class="jxr_linenumber" name="L135" href="#L135">135</a>                 <strong class="jxr_keyword">if</strong> (!contents.lineIsBlank(line)
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>                     &amp;&amp; !contents.lineIsComment(line)
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>                     &amp;&amp; contents.getLine(line).contains(<span class="jxr_string">";"</span>)) {
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>                     count += 1;
-<a class="jxr_linenumber" name="L139" href="#L139">139</a>                 }
-<a class="jxr_linenumber" name="L140" href="#L140">140</a>             }
-<a class="jxr_linenumber" name="L141" href="#L141">141</a>         }
-<a class="jxr_linenumber" name="L142" href="#L142">142</a>         <strong class="jxr_keyword">return</strong> count;
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>     }
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> }
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> skip = AnnotationUtil.containsAnnotation(method, <span class="jxr_string">"Override"</span>)
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>              || isInAbstractOrNativeMethod(method)
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>              || onlythrow;
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>          <strong class="jxr_keyword">if</strong> (!skip
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>              &amp;&amp; !checker.check(TokenTypes.LITERAL_THIS)
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>              &amp;&amp; !checker.check(TokenTypes.LITERAL_SUPER)) {
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>             <strong class="jxr_keyword">this</strong>.log(
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>                 method.getLineNo(),
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>                 <span class="jxr_string">"This method must be static, because it does not refer to \&quot;this\&quot;"</span>
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>             );
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>         }
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>     }
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">     * Determines whether a method is {@code abstract} or {@code native}.</em>
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">     * @param method Method to check</em>
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">     * @return True if method is abstract or native</em>
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isInAbstractOrNativeMethod(<strong class="jxr_keyword">final</strong> DetailAST method) {
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>         <strong class="jxr_keyword">final</strong> <a name="BranchContains" href="../../../com/qulice/checkstyle/BranchContains.html#BranchContains">BranchContains</a> checker = <strong class="jxr_keyword">new</strong> <a name="BranchContains" href="../../../com/qulice/checkstyle/BranchContains.html#BranchContains">BranchContains</a>(
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>             method.findFirstToken(TokenTypes.MODIFIERS)
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>         );
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>         <strong class="jxr_keyword">return</strong> checker.check(TokenTypes.ABSTRACT)
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>             || checker.check(TokenTypes.LITERAL_NATIVE);
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>     }
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> 
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">     * Determines the number semicolons in a method excluding those in</em>
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">     * comments.</em>
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     * @param method Method to count</em>
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment">     * @return The number of semicolons in the method as an int</em>
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>     @SuppressWarnings(<span class="jxr_string">"deprecation"</span>)
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> countSemiColons(<strong class="jxr_keyword">final</strong> DetailAST method) {
+<a class="jxr_linenumber" name="L128" href="#L128">128</a>         <strong class="jxr_keyword">final</strong> DetailAST openingbrace = method.findFirstToken(TokenTypes.SLIST);
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>         <strong class="jxr_keyword">int</strong> count = 0;
+<a class="jxr_linenumber" name="L130" href="#L130">130</a>         <strong class="jxr_keyword">if</strong> (openingbrace != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>             <strong class="jxr_keyword">final</strong> DetailAST closingbrace =
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>                 openingbrace.findFirstToken(TokenTypes.RCURLY);
+<a class="jxr_linenumber" name="L133" href="#L133">133</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> lastline = closingbrace.getLineNo();
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> firstline = openingbrace.getLineNo();
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>             <strong class="jxr_keyword">final</strong> FileContents contents = <strong class="jxr_keyword">this</strong>.getFileContents();
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> line = firstline - 1; line &lt; lastline; line += 1) {
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>                 <strong class="jxr_keyword">if</strong> (!contents.lineIsBlank(line)
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>                     &amp;&amp; !contents.lineIsComment(line)
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>                     &amp;&amp; contents.getLine(line).contains(<span class="jxr_string">";"</span>)) {
+<a class="jxr_linenumber" name="L140" href="#L140">140</a>                     count += 1;
+<a class="jxr_linenumber" name="L141" href="#L141">141</a>                 }
+<a class="jxr_linenumber" name="L142" href="#L142">142</a>             }
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>         }
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>         <strong class="jxr_keyword">return</strong> count;
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>     }
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

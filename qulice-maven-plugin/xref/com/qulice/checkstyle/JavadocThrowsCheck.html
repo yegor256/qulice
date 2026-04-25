@@ -114,8 +114,8 @@
 <a class="jxr_linenumber" name="L106" href="#L106">106</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">     * Collect simple names of the exceptions declared in the</em>
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">     * {@code throws} clause of a method or constructor.</em>
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">     * @param ast Method/constructor definition node.</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">     * @return Simple names of declared checked exceptions.</em>
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">     * @param ast Method/constructor definition node</em>
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">     * @return Simple names of declared checked exceptions</em>
 <a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Set&lt;String&gt; declared(<strong class="jxr_keyword">final</strong> DetailAST ast) {
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>         <strong class="jxr_keyword">final</strong> Set&lt;String&gt; names = <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(0);
@@ -137,8 +137,8 @@
 <a class="jxr_linenumber" name="L129" href="#L129">129</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">     * Extract the simple name from a possibly qualified type reference</em>
 <a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment">     * as written in javadoc text.</em>
-<a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment">     * @param text Full textual type reference.</em>
-<a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment">     * @return Simple name (last dot-separated segment).</em>
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> <em class="jxr_javadoccomment">     * @param text Full textual type reference</em>
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> <em class="jxr_javadoccomment">     * @return Simple name (last dot-separated segment)</em>
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String simple(<strong class="jxr_keyword">final</strong> String text) {
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> dot = text.lastIndexOf('.');
@@ -154,8 +154,8 @@
 <a class="jxr_linenumber" name="L146" href="#L146">146</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">     * Walk down a DOT-chained name and return the rightmost identifier</em>
 <a class="jxr_linenumber" name="L148" href="#L148">148</a> <em class="jxr_javadoccomment">     * text (i.e. the simple name of a qualified reference in the AST).</em>
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">     * @param dot AST node of type {@code DOT}.</em>
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">     * @return Rightmost identifier's text.</em>
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> <em class="jxr_javadoccomment">     * @param dot AST node of type {@code DOT}</em>
+<a class="jxr_linenumber" name="L150" href="#L150">150</a> <em class="jxr_javadoccomment">     * @return Rightmost identifier's text</em>
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L152" href="#L152">152</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String rightmost(<strong class="jxr_keyword">final</strong> DetailAST dot) {
 <a class="jxr_linenumber" name="L153" href="#L153">153</a>         DetailAST right = dot.getLastChild();

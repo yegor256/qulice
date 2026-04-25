@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.qulice.checkstyle"},{"l":"com.qulice.checkstyle.parameters"},{"l":"com.qulice.maven"},{"l":"com.qulice.pmd"},{"l":"com.qulice.pmd.rules"},{"l":"com.qulice.spi"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.qulice.checkstyle"},{"l":"com.qulice.checkstyle.parameters"},{"l":"com.qulice.errorprone"},{"l":"com.qulice.maven"},{"l":"com.qulice.pmd"},{"l":"com.qulice.pmd.rules"},{"l":"com.qulice.spi"}];updateSearchResults();
