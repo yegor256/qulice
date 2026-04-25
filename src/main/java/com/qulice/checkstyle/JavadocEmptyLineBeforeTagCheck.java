@@ -114,12 +114,12 @@ public final class JavadocEmptyLineBeforeTagCheck extends AbstractCheck {
             if (multi && !empty) {
                 this.log(
                     tag + 1,
-                    "Empty Javadoc line required before at-clauses"
+                    "Empty Javadoc line required before at-clauses, since the description has multiple paragraphs"
                 );
             } else if (!multi && empty) {
                 this.log(
                     tag,
-                    "Empty Javadoc line before at-clauses is not allowed"
+                    "Empty Javadoc line before at-clauses is not allowed, since the description is a single paragraph"
                 );
             }
         }
