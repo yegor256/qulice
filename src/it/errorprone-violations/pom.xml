@@ -11,10 +11,13 @@
     <version>0.54.1</version>
   </parent>
   <groupId>com.qulice.plugin</groupId>
-  <artifactId>hibernate-validator-check</artifactId>
+  <artifactId>errorprone-violations</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>hibernate-validator-check</name>
+  <name>errorprone-violations</name>
+  <properties>
+    <maven.compiler.release>17</maven.compiler.release>
+  </properties>
   <build>
     <plugins>
       <plugin>
@@ -24,7 +27,10 @@
         <configuration>
           <license>file:${basedir}/LICENSE.txt</license>
           <excludes>
-            <exclude>errorprone:.*</exclude>
+            <exclude>checkstyle:.*</exclude>
+            <exclude>pmd:.*</exclude>
+            <exclude>duplicatefinder:.*</exclude>
+            <exclude>dependencies:.*</exclude>
           </excludes>
         </configuration>
         <executions>

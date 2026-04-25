@@ -5,6 +5,7 @@
 package com.qulice.maven;
 
 import com.qulice.checkstyle.CheckstyleValidator;
+import com.qulice.errorprone.ErrorProneValidator;
 import com.qulice.pmd.PmdValidator;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ResourceValidator;
@@ -54,7 +55,8 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
     public Collection<ResourceValidator> externalResource() {
         return Arrays.asList(
             new CheckstyleValidator(this.env),
-            new PmdValidator(this.env)
+            new PmdValidator(this.env),
+            new ErrorProneValidator(this.env)
         );
     }
 }

@@ -42,6 +42,9 @@
         <version>@project.version@</version>
         <configuration>
           <license>file:${basedir}/LICENSE.txt</license>
+          <excludes>
+            <exclude>errorprone:.*</exclude>
+          </excludes>
         </configuration>
         <executions>
           <execution>

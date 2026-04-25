@@ -14,9 +14,16 @@
 Qulice is a static analysis quality control instrument for Java
 projects. It combines all the best static analysis instruments
 and pre-configure them, including
-[Checkstyle](https://checkstyle.sourceforge.io/) and
-[PMD](https://pmd.github.io/).
+[Checkstyle](https://checkstyle.sourceforge.io/),
+[PMD](https://pmd.github.io/), and
+[ErrorProne](https://errorprone.info/).
 You don't need to use and configure them individually any more.
+
+ErrorProne runs in a forked `javac` process spawned by Qulice, so no
+extra JVM flags are required in your project. Suppress individual checks
+with `@SuppressWarnings("CheckName")` (the standard ErrorProne mechanism)
+or skip whole paths via an `errorprone:` exclude, e.g.
+`<exclude>errorprone:.*/generated/.*</exclude>`.
 
 Read more at [www.qulice.com](https://www.qulice.com).
 

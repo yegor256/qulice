@@ -131,6 +131,11 @@
         <version>9.9.1</version>
       </dependency>
       <dependency>
+        <groupId>com.google.errorprone</groupId>
+        <artifactId>error_prone_annotations</artifactId>
+        <version>2.48.0</version>
+      </dependency>
+      <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter</artifactId>
         <version>6.0.2</version>
@@ -282,6 +287,26 @@
       <version>7.23.0</version>
     </dependency>
     <dependency>
+      <groupId>com.google.errorprone</groupId>
+      <artifactId>error_prone_core</artifactId>
+      <version>2.48.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.checkerframework</groupId>
+          <artifactId>checker-qual</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.yegor256</groupId>
+      <artifactId>jaxec</artifactId>
+      <version>0.4.1</version>
+    </dependency>
+    <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-core</artifactId>
     </dependency>
@@ -293,7 +318,6 @@
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
       <version>1</version>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
@@ -527,6 +551,7 @@
             <pomInclude>checkstyle-newlines/pom.xml</pomInclude>
             <pomInclude>checkstyle-locale/pom.xml</pomInclude>
             <pomInclude>pmd-violations/pom.xml</pomInclude>
+            <pomInclude>errorprone-violations/pom.xml</pomInclude>
             <pomInclude>dependency-violations/pom.xml</pomInclude>
             <pomInclude>dependency-violations-exclude/pom.xml</pomInclude>
             <pomInclude>dependency-imported-in-source/pom.xml</pomInclude>

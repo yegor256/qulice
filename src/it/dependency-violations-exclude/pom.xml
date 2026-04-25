@@ -54,6 +54,7 @@
           <excludes>
             <exclude>dependencies:commons-lang:commons-lang</exclude>
             <exclude>dependencies:com.google.guava:guava</exclude>
+            <exclude>errorprone:.*</exclude>
           </excludes>
         </configuration>
         <executions>
