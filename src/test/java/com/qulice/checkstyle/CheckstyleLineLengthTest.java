@@ -56,6 +56,13 @@ final class CheckstyleLineLengthTest {
         );
     }
 
+    @Test
+    void doesNotDoubleCountNonAsciiChars() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("NonAsciiLineLength.java", true)
+        );
+    }
+
     private Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
