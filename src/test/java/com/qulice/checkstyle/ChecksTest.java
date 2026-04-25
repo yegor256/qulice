@@ -48,13 +48,17 @@ final class ChecksTest {
             dir, String.format("/%s", name),
             new ChecksTest.FakeAuditListener(collector)
         );
-        final String suffix = name.substring(
-            "Invalid".length(), name.length() - ".java".length()
-        );
         final String[] violations = IOUtils.toString(
             Objects.requireNonNull(
                 this.getClass().getResourceAsStream(
-                    String.format("%s/violations%s.txt", dir, suffix)
+                    String.format(
+                        "%s/violations%s.txt",
+                        dir,
+                        name.substring(
+                            "Invalid".length(),
+                            name.length() - ".java".length()
+                        )
+                    )
                 )
             ),
             StandardCharsets.UTF_8

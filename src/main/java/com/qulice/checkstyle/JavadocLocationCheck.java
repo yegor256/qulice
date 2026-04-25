@@ -58,35 +58,44 @@ public final class JavadocLocationCheck extends AbstractCheck {
      * @param ast The AST node of the subject
      * @param lines The file lines
      */
-    private void checkEmptyLines(final DetailAST ast, final String[] lines) {
-        int current = ast.getLineNo();
-        boolean found = false;
-        --current;
-        while (true) {
-            if (current <= 0) {
-                break;
+    private void checkEmptyLines(final DetailAST ast, final String... lines) {
+        final int current = JavadocLocationCheck.javadocEnd(
+            ast.getLineNo() - 1, lines
+        );
+        if (current > 0) {
+            final int diff = ast.getLineNo() - current;
+            for (int pos = 1; pos < diff; pos += 1) {
+                this.log(
+                    current + pos,
+                    "Empty line between javadoc and subject"
+                );
             }
+        }
+    }
+
+    /**
+     * Walks upward from the given line and returns the line number of
+     * the closing javadoc marker if only blank lines separate it from
+     * the subject, otherwise zero.
+     * @param from Line just above the subject (one-based)
+     * @param lines The file lines
+     * @return Line number of the javadoc end, or zero if none
+     */
+    private static int javadocEnd(final int from, final String... lines) {
+        int current = from;
+        int result = 0;
+        while (current > 0) {
             final String line = lines[current - 1].trim();
             if (line.endsWith("*/")) {
-                found = true;
+                result = current;
                 break;
             }
             if (!line.isEmpty()) {
                 break;
             }
-            --current;
+            current -= 1;
         }
-        if (found) {
-            final int diff = ast.getLineNo() - current;
-            if (diff > 1) {
-                for (int pos = 1; pos < diff; pos += 1) {
-                    this.log(
-                        current + pos,
-                        "Empty line between javadoc and subject"
-                    );
-                }
-            }
-        }
+        return result;
     }
 
     /**
@@ -95,39 +104,62 @@ public final class JavadocLocationCheck extends AbstractCheck {
      * @param lines The file lines
      */
     private void checkAnnotationAboveJavadoc(
-        final DetailAST ast, final String[] lines
+        final DetailAST ast, final String... lines
     ) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers == null) {
-            return;
+        if (modifiers != null) {
+            final DetailAST after = modifiers.getNextSibling();
+            final int annotation = JavadocLocationCheck.firstAnnotationLine(
+                modifiers
+            );
+            if (after != null && annotation != Integer.MAX_VALUE
+                && JavadocLocationCheck.javadocBetween(
+                    annotation, after.getLineNo(), lines
+                )) {
+                this.log(annotation, "Annotation must be placed after Javadoc");
+            }
         }
-        final DetailAST after = modifiers.getNextSibling();
-        if (after == null) {
-            return;
-        }
-        final int signature = after.getLineNo();
-        int annotation = Integer.MAX_VALUE;
+    }
+
+    /**
+     * Returns the line number of the first annotation under the given
+     * modifiers node, or {@link Integer#MAX_VALUE} when there is none.
+     * @param modifiers The MODIFIERS token
+     * @return Line number of the first annotation
+     */
+    private static int firstAnnotationLine(final DetailAST modifiers) {
+        int line = Integer.MAX_VALUE;
         DetailAST child = modifiers.getFirstChild();
         while (child != null) {
             if (child.getType() == TokenTypes.ANNOTATION
-                && child.getLineNo() < annotation) {
-                annotation = child.getLineNo();
+                && child.getLineNo() < line) {
+                line = child.getLineNo();
             }
             child = child.getNextSibling();
         }
-        if (annotation == Integer.MAX_VALUE) {
-            return;
-        }
-        for (int pos = annotation + 1; pos < signature; pos += 1) {
+        return line;
+    }
+
+    /**
+     * Tells whether any javadoc opening or closing marker appears
+     * between the given lines (exclusive of the start, exclusive of the
+     * end).
+     * @param start Lower bound line, exclusive
+     * @param end Upper bound line, exclusive
+     * @param lines The file lines
+     * @return True when a javadoc marker is found in the range
+     */
+    private static boolean javadocBetween(final int start, final int end,
+        final String... lines) {
+        boolean found = false;
+        for (int pos = start + 1; pos < end; pos += 1) {
             final String line = lines[pos - 1].trim();
             if (line.startsWith("/**") || line.endsWith("*/")) {
-                this.log(
-                    annotation,
-                    "Annotation must be placed after Javadoc"
-                );
+                found = true;
                 break;
             }
         }
+        return found;
     }
 
     /**

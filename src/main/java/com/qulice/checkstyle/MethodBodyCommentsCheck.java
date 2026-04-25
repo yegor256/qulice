@@ -63,7 +63,7 @@ public final class MethodBodyCommentsCheck extends AbstractCheck {
      * @param node Root of the subtree to scan
      * @param lines Lines to be modified in place
      */
-    private void maskAnonymous(final DetailAST node, final String[] lines) {
+    private void maskAnonymous(final DetailAST node, final String... lines) {
         for (DetailAST child = node.getFirstChild(); child != null;
             child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.LITERAL_NEW) {

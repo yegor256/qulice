@@ -54,7 +54,7 @@ public final class ConstantUsageCheck extends AbstractCheck {
         DetailAST variable = ast.getParent().getFirstChild();
         int counter = 0;
         while (null != variable) {
-            if (variable != ast) {
+            if (!variable.equals(ast)) {
                 switch (variable.getType()) {
                     case TokenTypes.VARIABLE_DEF:
                         counter += this.parseVarDef(variable, name);

@@ -21,6 +21,7 @@ import org.junit.jupiter.api.io.TempDir;
  * Test case for {@link DefaultMavenEnvironment} class.
  * @since 0.8
  */
+@SuppressWarnings("PMD.TooManyMethods")
 final class DefaultMavenEnvironmentTest {
 
     /**
@@ -268,18 +269,19 @@ final class DefaultMavenEnvironmentTest {
         resource.setDirectory(assets.toAbsolutePath().toString());
         build.addResource(resource);
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
-        final MavenProjectStub project = new MavenProjectStub() {
-            @Override
-            public File getBasedir() {
-                return basedir.toFile();
-            }
+        env.setProject(
+            new MavenProjectStub() {
+                @Override
+                public File getBasedir() {
+                    return basedir.toFile();
+                }
 
-            @Override
-            public Build getBuild() {
-                return build;
+                @Override
+                public Build getBuild() {
+                    return build;
+                }
             }
-        };
-        env.setProject(project);
+        );
         MatcherAssert.assertThat(
             "Files under declared resources directory should be found",
             env.files("*.*"),

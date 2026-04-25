@@ -85,7 +85,7 @@ public final class IfThenThrowElseCheck extends AbstractCheck {
      * Tells whether control flow exits the given node through an
      * unconditional {@code throw}.
      * @param node The node to inspect
-     * @return {@code true} when the last statement is {@code throw}
+     * @return True when the last statement is {@code throw}
      */
     private static boolean alwaysThrows(final DetailAST node) {
         final boolean result;
@@ -105,7 +105,7 @@ public final class IfThenThrowElseCheck extends AbstractCheck {
      * Checks whether the last meaningful statement inside a
      * {@code SLIST} is a {@code throw}.
      * @param slist The {@code SLIST} node
-     * @return {@code true} when the last statement is {@code throw}
+     * @return True when the last statement is {@code throw}
      */
     private static boolean endsWithThrow(final DetailAST slist) {
         DetailAST last = slist.getLastChild();

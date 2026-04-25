@@ -235,6 +235,16 @@
       String.length() compared to 0
     </description>
   </rule>
+  <rule name="ProhibitFormatInLoggerRule" message="Avoid String.format inside jcabi-log Logger calls; pass the format string and arguments directly" language="java" class="com.qulice.pmd.rules.ProhibitFormatInLoggerRule">
+    <description>
+      jcabi-log Logger methods (trace, debug, info, warn, error) already
+      accept a printf-style format string with positional arguments, so
+      pre-formatting the message with String.format is redundant. Inline
+      the format string and pass the arguments directly to the Logger
+      method instead.
+    </description>
+    <priority>3</priority>
+  </rule>
   <rule name="UnnecessaryLocalRule" message="Avoid creating unnecessary local variables like ''{0}''" language="java" class="com.qulice.pmd.rules.UnnecessaryLocalRule">
   </rule>
   <rule name="ConstructorShouldDoInitialization" message="Avoid doing field initialization outside constructor." language="java" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">

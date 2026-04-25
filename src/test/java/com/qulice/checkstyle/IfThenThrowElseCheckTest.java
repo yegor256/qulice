@@ -23,7 +23,6 @@ import org.junit.jupiter.api.Test;
  * {@link IfThenThrowElseCheck}.
  * @since 0.24
  */
-@SuppressWarnings("PMD.UnitTestShouldIncludeAssert")
 final class IfThenThrowElseCheckTest {
 
     @Test

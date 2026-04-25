@@ -83,25 +83,34 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
      */
     private static boolean isClosingBracketLine(final String line) {
         final String trimmed = line.trim();
-        boolean result = !trimmed.isEmpty();
-        if (result) {
-            final char first = trimmed.charAt(0);
-            if (first != ')' && first != ']' && first != '}') {
-                result = false;
-            }
-        }
-        if (result) {
-            for (int idx = 0; idx < trimmed.length(); idx += 1) {
-                final char chr = trimmed.charAt(idx);
-                if (chr != ')' && chr != ']' && chr != '}'
-                    && chr != ';' && chr != ','
-                    && !Character.isWhitespace(chr)) {
-                    result = false;
-                    break;
-                }
-            }
+        boolean result = !trimmed.isEmpty()
+            && CascadeIndentationCheck.isClosingBracket(trimmed.charAt(0));
+        for (int idx = 0; result && idx < trimmed.length(); idx += 1) {
+            result = CascadeIndentationCheck.isAllowedTail(trimmed.charAt(idx));
         }
         return result;
+    }
+
+    /**
+     * Tells whether the character is a closing bracket.
+     * @param chr Character
+     * @return True if it is one of ')', ']', '}'
+     */
+    private static boolean isClosingBracket(final char chr) {
+        return chr == ')' || chr == ']' || chr == '}';
+    }
+
+    /**
+     * Tells whether a character is allowed inside a standalone
+     * closing-bracket line (closing bracket, comma, semicolon or
+     * whitespace).
+     * @param chr Character
+     * @return True if the character is allowed
+     */
+    private static boolean isAllowedTail(final char chr) {
+        return CascadeIndentationCheck.isClosingBracket(chr)
+            || chr == ';' || chr == ','
+            || Character.isWhitespace(chr);
     }
 
     /**

@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 0.3
  */
+@SuppressWarnings({"PMD.GodClass", "PMD.TooManyMethods"})
 public final class BracketsStructureCheck extends AbstractCheck {
 
     @Override
@@ -128,52 +129,84 @@ public final class BracketsStructureCheck extends AbstractCheck {
         final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
         if (opening != null && closing != null
             && opening.getLineNo() != closing.getLineNo()) {
-            DetailAST first = opening.getNextSibling();
-            DetailAST last = closing.getPreviousSibling();
-            DetailAST start = opening;
-            DetailAST end = closing;
-            if (first != null && first == last
-                && first.getType() == TokenTypes.ANNOTATION_ARRAY_INIT) {
-                final DetailAST rcurly = first.getLastChild();
-                if (rcurly != null
-                    && rcurly.getType() == TokenTypes.RCURLY) {
-                    start = first;
-                    end = rcurly;
-                    first = first.getFirstChild();
-                    if (first == rcurly) {
-                        first = null;
-                    }
-                    last = rcurly.getPreviousSibling();
-                }
-            }
-            if (start.getLineNo() != end.getLineNo()) {
-                this.checkAnnotationBounds(first, last, start, end);
+            final DetailAST first = opening.getNextSibling();
+            final DetailAST last = closing.getPreviousSibling();
+            final DetailAST rcurly =
+                BracketsStructureCheck.arrayInitRcurly(first, last);
+            if (rcurly == null) {
+                this.checkBoundsStart(first, opening);
+                this.checkBoundsEnd(last, closing);
+            } else if (first.getLineNo() != rcurly.getLineNo()) {
+                this.checkArrayBounds(first, rcurly);
             }
         }
     }
 
     /**
-     * Logs violations at the first/last content of a multi-line annotation.
-     * @param first First content token after the opening bracket
-     * @param last Last content token before the closing bracket
-     * @param start Effective opening bracket token
-     * @param end Effective closing bracket token
+     * Returns the closing curly of an annotation array initializer when
+     * the annotation contains exactly one such child, otherwise null.
+     * @param first First child after the LPAREN
+     * @param last Last child before the RPAREN
+     * @return RCURLY token or null
      */
-    private void checkAnnotationBounds(final DetailAST first,
-        final DetailAST last, final DetailAST start, final DetailAST end) {
-        if (first != null
-            && first.getLineNo() == start.getLineNo()) {
+    private static DetailAST arrayInitRcurly(final DetailAST first,
+        final DetailAST last) {
+        DetailAST rcurly = null;
+        if (first != null && first.equals(last)
+            && first.getType() == TokenTypes.ANNOTATION_ARRAY_INIT) {
+            final DetailAST candidate = first.getLastChild();
+            if (candidate != null
+                && candidate.getType() == TokenTypes.RCURLY) {
+                rcurly = candidate;
+            }
+        }
+        return rcurly;
+    }
+
+    /**
+     * Logs at the first/last content of a multi-line annotation array
+     * initializer. The empty initializer {@code {}} has no content
+     * before the closing curly, so only the end is checked.
+     * @param array The ANNOTATION_ARRAY_INIT token
+     * @param rcurly The closing RCURLY of that initializer
+     */
+    private void checkArrayBounds(final DetailAST array,
+        final DetailAST rcurly) {
+        final DetailAST inner = array.getFirstChild();
+        if (!inner.equals(rcurly)) {
+            this.checkBoundsStart(inner, array);
+        }
+        this.checkBoundsEnd(rcurly.getPreviousSibling(), rcurly);
+    }
+
+    /**
+     * Logs a violation when the first content sits on the same line as
+     * the opening bracket.
+     * @param first First content token (may be null)
+     * @param start Opening bracket token
+     */
+    private void checkBoundsStart(final DetailAST first,
+        final DetailAST start) {
+        if (first != null && first.getLineNo() == start.getLineNo()) {
             this.log(
                 first.getLineNo(),
                 "Parameters should start on a new line"
             );
         }
+    }
+
+    /**
+     * Logs a violation when the last content sits on the same line as
+     * the closing bracket.
+     * @param last Last content token (may be null)
+     * @param end Closing bracket token
+     */
+    private void checkBoundsEnd(final DetailAST last, final DetailAST end) {
         DetailAST leaf = last;
         while (leaf != null && leaf.getChildCount() > 0) {
             leaf = leaf.getLastChild();
         }
-        if (leaf != null
-            && leaf.getLineNo() == end.getLineNo()) {
+        if (leaf != null && leaf.getLineNo() == end.getLineNo()) {
             this.log(
                 leaf.getLineNo(),
                 "Closing bracket should be on a new line"

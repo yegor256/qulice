@@ -23,7 +23,6 @@ import org.junit.jupiter.api.Test;
  * {@link EmptyLinesCheck}.
  * @since 0.25.1
  */
-@SuppressWarnings("PMD.UnitTestShouldIncludeAssert")
 final class EmptyLinesCheckTest {
 
     @Test
