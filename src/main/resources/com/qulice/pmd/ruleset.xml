@@ -18,6 +18,14 @@
   <rule ref="category/java/bestpractices.xml">
     <exclude name="GuardLogStatement"/>
     <exclude name="LiteralsFirstInComparisons"/>
+    <!--
+      AvoidUsingHardCodedIP is excluded from the bulk import here and
+      re-enabled below with a violationSuppressXPath that ignores
+      hard-coded IP literals inside unit-test classes (those whose
+      simple name ends with 'Test', 'IT', 'TestCase' or 'ITCase'),
+      where IP literals are commonly used as fixture data.
+      Downstream: https://github.com/yegor256/qulice/issues/713
+    -->
     <exclude name="AvoidUsingHardCodedIP"/>
     <exclude name="UnnecessaryVarargsArrayCreation"/>
     <!--
@@ -64,6 +72,22 @@
       Downstream: https://github.com/yegor256/qulice/issues/1064
     -->
     <exclude name="UnitTestShouldUseTestAnnotation"/>
+  </rule>
+  <rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP">
+    <properties>
+      <property name="violationSuppressXPath">
+        <value><![CDATA[
+          .[
+            ancestor::ClassDeclaration[1][
+              ends-with(@SimpleName,'Test')
+              or ends-with(@SimpleName,'IT')
+              or ends-with(@SimpleName,'TestCase')
+              or ends-with(@SimpleName,'ITCase')
+            ]
+          ]
+        ]]></value>
+      </property>
+    </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/UnitTestShouldUseTestAnnotation">
     <properties>
