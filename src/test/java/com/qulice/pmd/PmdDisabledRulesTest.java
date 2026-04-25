@@ -42,7 +42,6 @@ final class PmdDisabledRulesTest {
                 {"PositionLiteralsFirstInComparisons"},
                 {"MissingSerialVersionUID"},
                 {"CallSuperInConstructor"},
-                {"AvoidUsingHardCodedIP"},
                 {"UnnecessaryVarargsArrayCreation"},
                 {"ShortMethodName"},
                 {"AvoidFieldNameMatchingMethodName"},

@@ -4,6 +4,6 @@
  */
 package foo;
 
-public final class AvoidUsingHardCodedIP {
-    private final String version = "0.0.0.43";
+public final class HasHardCodedIp {
+    private final String address = "192.168.1.42";
 }
