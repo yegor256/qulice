@@ -147,6 +147,7 @@ public final class ErrorProneValidator implements ResourceValidator {
             command.add("-J".concat(flag));
         }
         command.add("-XDcompilePolicy=simple");
+        command.add("-XDaddTypeAnnotationsToSymbol=true");
         command.add("--should-stop=ifError=FLOW");
         command.add("-proc:none");
         command.add("-Xplugin:ErrorProne");
