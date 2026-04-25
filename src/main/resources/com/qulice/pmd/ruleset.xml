@@ -259,6 +259,15 @@
       String.length() compared to 0
     </description>
   </rule>
+  <rule name="UseCollectionsSingletonList" message="Use Collections.singletonList instead of Arrays.asList with a single non-array argument" language="java" class="com.qulice.pmd.rules.UseCollectionsSingletonListRule">
+    <description>
+      Arrays.asList with a single non-array argument allocates a one-element
+      backing array via varargs and wraps it in a list. Collections.singletonList
+      expresses the same intent with a single, immutable, fixed-size list and
+      avoids the implicit array allocation.
+    </description>
+    <priority>3</priority>
+  </rule>
   <rule name="ProhibitFormatInLoggerRule" message="Avoid String.format inside jcabi-log Logger calls; pass the format string and arguments directly" language="java" class="com.qulice.pmd.rules.ProhibitFormatInLoggerRule">
     <description>
       jcabi-log Logger methods (trace, debug, info, warn, error) already
