@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>UnitTestShouldIncludeAssertRule xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../apidocs/com/qulice/pmd/rules/UnitTestShouldIncludeAssertRule.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * SPDX-License-Identifier: MIT</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> */</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">package</strong> com.qulice.pmd.rules;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTBlock;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTMethodCall;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> * Rule to check that JUnit/TestNG test methods contain at least one</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * assertion. Unlike the PMD built-in</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * {@code UnitTestShouldIncludeAssert} rule (PMD #4272), this</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> * implementation descends into lambda bodies, so an assertion placed</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> * inside a lambda passed to another method is still recognised.</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * @since 0.26.0</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="UnitTestShouldIncludeAssertRule" href="../../../../com/qulice/pmd/rules/UnitTestShouldIncludeAssertRule.html#UnitTestShouldIncludeAssertRule">UnitTestShouldIncludeAssertRule</a>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>      <strong class="jxr_keyword">extends</strong> AbstractJavaRulechainRule {
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>      <strong class="jxr_keyword">public</strong> <a name="UnitTestShouldIncludeAssertRule" href="../../../../com/qulice/pmd/rules/UnitTestShouldIncludeAssertRule.html#UnitTestShouldIncludeAssertRule">UnitTestShouldIncludeAssertRule</a>() {
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>          <strong class="jxr_keyword">super</strong>(ASTMethodDeclaration.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>      }
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      @Override
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      <strong class="jxr_keyword">public</strong> Object visit(<strong class="jxr_keyword">final</strong> ASTMethodDeclaration method, <strong class="jxr_keyword">final</strong> Object data) {
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>          <strong class="jxr_keyword">final</strong> ASTBlock body = method.getBody();
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>          <strong class="jxr_keyword">if</strong> (body != <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>              &amp;&amp; TestFrameworksUtil.isTestMethod(method)
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>              &amp;&amp; !TestFrameworksUtil.isExpectAnnotated(method)
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>              &amp;&amp; body.descendants(ASTMethodCall.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>                  .crossFindBoundaries(<strong class="jxr_keyword">true</strong>)
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>                  .none(TestFrameworksUtil::isProbableAssertCall)) {
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>              asCtx(data).addViolation(method);
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>          }
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>          <strong class="jxr_keyword">return</strong> data;
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      }
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  }
+</pre>
+<hr/>
+<div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
+</body>
+</html>

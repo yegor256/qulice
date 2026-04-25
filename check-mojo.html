@@ -1,223 +1,185 @@
 <!DOCTYPE html>
-<!--
- * Copyright (c) 2012-2013, JCabi.com
- * All rights reserved.
- -->
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
     <head>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>qulice-maven-plugin - 
-    qulice:check</title>
-        <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css"/>
-                                                                                                                        
-<link rel="shortcut icon" href="http://img.qulice.com/favicon.gif"/>
-                                                                                                                
-<link rel="author" href="https://plus.google.com/u/0/114792568016408327418?rel=author"/>
-                                            <link rel="stylesheet" href="./css/highlight.css" />
-        <script src="./js/jquery-1.8.3.min.js"></script>
-        <script src="./js/highlight-7.3.min.js"></script>
-        <script>
-            $(document).ready(
-                function() {
-                    $('div.source pre').each(
-                        function (idx, element) {
-                            hljs.highlightBlock(element);
-                        }
-                    );
-                }
-            );
-        </script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>qulice:check – qulice</title>
+        <link media="all" rel="stylesheet" type="text/css" href="./css/jcabi.css">
+                                            <link rel="icon" href="https://www.qulice.com/logo.svg">
+                                        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin=anonymous></script>
+        <script src="./js/jcabi.js"></script>
     </head>
     <body>
-                <ul id="menu">
+                <div class="page" itemscope="" itemtype="http://schema.org/BlogPosting">
+            <nav class="menu-section">
+                <div>
+                    <ul class="menu" id="menu">
+                                                                                                    <li>
+                                <span>Overview</span>
+                                                                    <ul>
+                                                                                                                <li >
+                                <span>                        <a href="index.html" title="Introduction">Introduction</a>
+        </span>
+                                                                                                                                                                                        <ul>
+                                                                            </ul>
+                                                            </li>
+                                                                                                                                        <li >
+                                <span>                        <a href="usage.html" title="Quick Start">Quick Start</a>
+        </span>
+                                                                                                                                                                                        <ul>
+                                                                            </ul>
+                                                            </li>
+                                                                                                                                        <li >
+                                <span>                        <a href="quality.html" title="What is Quality?">What is Quality?</a>
+        </span>
+                                                                                                                                                                                        <ul>
+                                                                            </ul>
+                                                            </li>
+                                                                                                    </ul>
+                                                            </li>
                                                     <li>
-                    Parent Project
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="../index.html" title="qulice">qulice</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                            <li>
-                    Overview
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="index.html" title="Introduction">Introduction</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="usage.html" title="Usage">Usage</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="plugin-info.html" title="Goals">Goals</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                                        <li>
-                                                                    <a href="faq.html" title="FAQ">FAQ</a>
-                                                                                                                        <ul>
-                                                    </ul>
-                                    </li>
-                                                                </ul>
-                                    </li>
-                            <li>
-                    Project Documentation
-                                            <ul>
-                                                                            <li>
-                                                                    <a href="project-info.html" title="Project Information">Project Information</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
-                                                                                        <li>
-                                                                    <a href="project-reports.html" title="Project Reports">Project Reports</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </li>
-                                                                </ul>
-                                    </li>
-                    </ul>
-        <div id="content">
-                            <a href="https://github.com/tpc2/qulice/qulice-maven-plugin">
-                    <img style="position: absolute; top: 0; right: 0; border: 0; width: 100px; height: 100px;"
-                        src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
-                        alt="Fork me on GitHub" />
-                </a>
-                        <a href="../" title="home page of Qulice.com">
-                <img src="http://img.qulice.com/logo.png"
-                    alt="Qulice"
-                                            width="214"
-                                                                height="60"
-                                    />
-            </a>
-                            <ul id="breadcrumbs">
-                                            <li>                        <a href=".." title="qulice.com">qulice.com</a>
-        </li>
-                                            <li>                                    <a href="./" title="qulice-maven-plugin">qulice-maven-plugin</a>
-        </li>
-                                    </ul>
-                        <p>
-                
-                27-Oct-2013
-                0.3.1
-            </p>
-            <article>
-                
-  
-    <div class="section">
-<h2>qulice:check<a name="qulice:check"></a></h2>
-      
-<p><b>Full name</b>:</p>
-      
-<p>com.qulice:qulice-maven-plugin:0.3.1:check</p>
-      
-<p><b>Description</b>:</p>
-      
-<div>Check the project and find all possible violations.</div>
-      
-<p><b>Attributes</b>:</p>
-      
+                                <span>Project Documentation</span>
+                                                                    <ul>
+                                                                                                                <li >
+                                <span>                        <a href="project-info.html" title="Project Information">Project Information</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </li>
+                                                                                                                                        <li >
+                                <span>                        <a href="project-reports.html" title="Project Reports">Project Reports</a>
+        </span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </li>
+                                                                                                    </ul>
+                                                            </li>
+                                            </ul>
+                </div>
+                <div class="signature">
+                    Made by
+                    <a href="https://github.com/jcabi/jcabi-maven-skin">jcabi-maven-skin</a>
+                    2.0.1.
+                </div>
+            </nav>
+            <div class="right-side">
+                <main>
+                    <div class="content">
+                        <header>
+                            <div class="logo">
+                                <a href="./"
+                                    title=" Qulice ">
+                                                                        <img src="logo.svg"
+                                        alt="Qulice"
+                                                                                    width="214"
+                                                                                                                            height="60"
+                                                                                itemprop="image"
+                                    >                                </a>
+                            </div>
+                            <ul class="badges">
+                                <li>
+                                    <strong itemprop="version">0.27.3</strong>
+                                </li>
+                                <li>
+                                    <time itemprop="datePublished" datetime="2026-04-25">
+                                        25-Apr-2026
+                                    </time>
+                                </li>
+                                <li class="menu-button">menu</li>
+                            </ul>
+                        </header>
+                        <div id="here-goes-menu" class="menu-off"></div>
+                                                                            <a href="https://github.com/yegor256/qulice">
+                                <img src="https://www.jcabi.com/fork-me.svg" class="fork-me">
+                            </a>
+                                                <article itemprop="articleBody">
+                            <section><a id="qulice.3Acheck"></a>
+<h1>qulice:check</h1>
+<p><strong>Full name</strong>:</p>
+<p>com.qulice:qulice-maven-plugin:0.27.3:check</p>
+<p><strong>Description</strong>:</p>
+<p>Check the project and find all possible violations.</p>
+<p><strong>Attributes</strong>:</p>
 <ul>
-        
 <li>Requires a Maven project to be executed.</li>
-        
-<li>Binds by default to the <a class="externalLink" href="http://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycle phase</a>: <tt>verify</tt>.</li>
-      </ul>
-      
-<div class="section">
-<h3>Optional Parameters<a name="Optional_Parameters"></a></h3>
-        
-<table class="bodyTable" border="0">
-          
+<li>Requires dependency resolution of artifacts in scope: <code>test</code>.</li>
+<li>The goal is thread-safe and supports parallel builds.</li>
+<li>Since version: <code>0.3</code>.</li>
+<li>Binds by default to the <a class="externalLink" href="https://maven.apache.org/ref/current/maven-core/lifecycles.html">lifecycle phase</a>: <code>verify</code>.</li></ul><section><a id="Optional_Parameters"></a>
+<h2>Optional Parameters</h2>
+<table class="bodyTable">
 <tr class="a">
-            
 <th>Name</th>
-            
 <th>Type</th>
-            
 <th>Since</th>
-            
-<th>Description</th>
-          </tr>
-          
+<th>Description</th></tr>
 <tr class="b">
-            
-<td><b><a href="#license">license</a></b></td>
-            
-<td><tt>String</tt></td>
-            
-<td><tt>0.1</tt></td>
-            
-<td>Location of License file. If it is an absolute file name you should
-prepend it with &quot;file:&quot; prefix. Otherwise it is treated like a
-resource name and will be found in classpath (if available).<br /><b>Default value is</b>: <tt>LICENSE.txt</tt>.<br /><b>User property is</b>: <tt>qulice.license</tt>.</td>
-          </tr>
-          
+<td><a href="#asserts"><code>&lt;asserts&gt;</code></a></td>
+<td><code>Collection&lt;String&gt;</code></td>
+<td><code>-</code></td>
+<td>List of xpath queries to validate pom.xml.<br /><strong>User Property</strong>: <code>qulice.asserts</code></td></tr>
 <tr class="a">
-            
-<td><b><a href="#skip">skip</a></b></td>
-            
-<td><tt>boolean</tt></td>
-            
-<td><tt>-</tt></td>
-            
-<td>Shall we skip execution?<br /><b>Default value is</b>: <tt>false</tt>.<br /><b>User property is</b>: <tt>qulice.skip</tt>.</td>
-          </tr>
-        </table>
-      </div>
-      
-<div class="section">
-<h3>Parameter Details<a name="Parameter_Details"></a></h3>
-        
-<p><b><a name="license">license</a>:</b></p>
-        
-<div>Location of License file. If it is an absolute file name you should
-prepend it with &quot;file:&quot; prefix. Otherwise it is treated like a
-resource name and will be found in classpath (if available).</div>
-        
+<td><a href="#charset"><code>&lt;charset&gt;</code></a></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>The source encoding.<br /><strong>Default</strong>: <code>${project.build.sourceEncoding}</code><br /><strong>User Property</strong>: <code>encoding</code></td></tr>
+<tr class="b">
+<td><a href="#excludes"><code>&lt;excludes&gt;</code></a></td>
+<td><code>Collection&lt;String&gt;</code></td>
+<td><code>-</code></td>
+<td>List of regular expressions to exclude.<br /><strong>User Property</strong>: <code>qulice.excludes</code></td></tr>
+<tr class="a">
+<td><a href="#skip"><code>&lt;skip&gt;</code></a></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>Shall we skip execution?<br /><strong>Default</strong>: <code>false</code><br /><strong>User Property</strong>: <code>qulice.skip</code></td></tr>
+<tr class="b">
+<td><a href="#timeout"><code>&lt;timeout&gt;</code></a></td>
+<td><code>String</code></td>
+<td><code>-</code></td>
+<td>Check timeout. Can be a number of minutes. Can be a string with time units, like '10m' or '1h'. Time units are 's' for seconds, 'm' for minutes, 'h' for hours. Can also be a string 'forever' to disable timeout. Defaults to 10 minutes.<br /><strong>Default</strong>: <code>10</code><br /><strong>User Property</strong>: <code>qulice.check-timeout</code></td></tr></table></section><section><a id="Parameter_Details"></a>
+<h2>Parameter Details</h2><a id="asserts"></a><section><a id="a.3Casserts.3E"></a>
+<h3>&lt;asserts&gt;</h3>
+<div>List of xpath queries to validate pom.xml.</div>
 <ul>
-          
-<li><b>Type</b>: <tt>java.lang.String</tt></li>
-          
-<li><b>Since</b>: <tt>0.1</tt></li>
-          
-<li><b>Required</b>: <tt>No</tt></li>
-          
-<li><b>User Property</b>: <tt>qulice.license</tt></li>
-          
-<li><b>Default</b>: <tt>LICENSE.txt</tt></li>
-        </ul><hr />
-<p><b><a name="skip">skip</a>:</b></p>
-        
+<li><strong>Type</strong>: <code>java.util.Collection&lt;java.lang.String&gt;</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>User Property</strong>: <code>qulice.asserts</code></li></ul><hr /></section><a id="charset"></a><section><a id="a.3Ccharset.3E"></a>
+<h3>&lt;charset&gt;</h3>
+<div>The source encoding.</div>
+<ul>
+<li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>User Property</strong>: <code>encoding</code></li>
+<li><strong>Default</strong>: <code>${project.build.sourceEncoding}</code></li></ul><hr /></section><a id="excludes"></a><section><a id="a.3Cexcludes.3E"></a>
+<h3>&lt;excludes&gt;</h3>
+<div>List of regular expressions to exclude.</div>
+<ul>
+<li><strong>Type</strong>: <code>java.util.Collection&lt;java.lang.String&gt;</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>User Property</strong>: <code>qulice.excludes</code></li></ul><hr /></section><a id="skip"></a><section><a id="a.3Cskip.3E"></a>
+<h3>&lt;skip&gt;</h3>
 <div>Shall we skip execution?</div>
-        
 <ul>
-          
-<li><b>Type</b>: <tt>boolean</tt></li>
-          
-<li><b>Required</b>: <tt>No</tt></li>
-          
-<li><b>User Property</b>: <tt>qulice.skip</tt></li>
-          
-<li><b>Default</b>: <tt>false</tt></li>
-        </ul>
-      </div>
-    </div>
-  
-
-            </article>
-            <p style="margin-bottom: 3em; margin-top: 2em;">
-                Copyright &#169;
-                                                    2011-2013
-                                Qulice.com, All Rights Reserved.
-                <a href="http://maven.apache.org/privacy-policy.html">Privacy Policy</a>.
-            </p>
-            <a href="http://maven.apache.org" title="site is built by Apache Maven"
-                style='position: absolute; bottom: 1em; right: 1em;'>
-                <img src='images/built-by-maven.png' style='width: 50px; height: 17px;'
-                    alt='site is built by Apache Maven'/>
-            </a>
+<li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>User Property</strong>: <code>qulice.skip</code></li>
+<li><strong>Default</strong>: <code>false</code></li></ul><hr /></section><a id="timeout"></a><section><a id="a.3Ctimeout.3E"></a>
+<h3>&lt;timeout&gt;</h3>
+<div>Check timeout. Can be a number of minutes. Can be a string with time units, like '10m' or '1h'. Time units are 's' for seconds, 'm' for minutes, 'h' for hours. Can also be a string 'forever' to disable timeout. Defaults to 10 minutes.</div>
+<ul>
+<li><strong>Type</strong>: <code>java.lang.String</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>User Property</strong>: <code>qulice.check-timeout</code></li>
+<li><strong>Default</strong>: <code>10</code></li></ul></section></section></section>
+                        </article>
+                    </div>
+                </main>
+                <footer class="legal-notes">
+                    <div>
+                        Copyright &#169;
+                                                                            2011-2026
+                                            </div>
+                    <div>Qulice.com, All Rights Reserved.</div>
+                    <div><a href="https://maven.apache.org/privacy-policy.html">Privacy Policy</a>.</div>
+                </footer>
+            </div>
         </div>
     </body>
 </html>

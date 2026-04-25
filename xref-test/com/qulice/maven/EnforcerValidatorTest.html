@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>EnforcerValidatorTest xref</title>
+<link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../testapidocs/com/qulice/maven/EnforcerValidatorTest.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * SPDX-License-Identifier: MIT</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> */</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">package</strong> com.qulice.maven;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.qulice.spi.Environment;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Assertions;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> * Test case for {@link EnforcerValidator} class.</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> * @since 0.70.0</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="EnforcerValidatorTest" href="../../../com/qulice/maven/EnforcerValidatorTest.html#EnforcerValidatorTest">EnforcerValidatorTest</a> {
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">     * EnforcerValidator can skip validation when the enforcer</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment">     * check is excluded.</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>      @Test
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>      <strong class="jxr_keyword">void</strong> skipsWhenEnforcerIsExcluded() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>          Assertions.assertDoesNotThrow(
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>              () -&gt; <strong class="jxr_keyword">new</strong> EnforcerValidator().validate(
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>                  <strong class="jxr_keyword">new</strong> MavenEnvironment.Wrap(
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>                      <strong class="jxr_keyword">new</strong> <a name="EnforcerExcludedEnvironment" href="../../../com/qulice/maven/EnforcerExcludedEnvironment.html#EnforcerExcludedEnvironment">EnforcerExcludedEnvironment</a>(<strong class="jxr_keyword">new</strong> Environment.Mock()),
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>                      <strong class="jxr_keyword">new</strong> <a name="MavenEnvironmentMocker" href="../../../com/qulice/maven/MavenEnvironmentMocker.html#MavenEnvironmentMocker">MavenEnvironmentMocker</a>().mock()
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>                  )
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>              ),
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>              <span class="jxr_string">"Enforcer validator must not invoke executor when check is excluded"</span>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>          );
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>      }
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">     * EnforcerValidator attempts to execute the plugin when the check</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">     * is not excluded.</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment">     * @throws Exception If something wrong happens inside</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>      @Test
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>      <strong class="jxr_keyword">void</strong> invokesExecutorWhenNotExcluded() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>          Assertions.assertThrows(
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>              UnsupportedOperationException.<strong class="jxr_keyword">class</strong>,
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>              () -&gt; <strong class="jxr_keyword">new</strong> EnforcerValidator()
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>                  .validate(<strong class="jxr_keyword">new</strong> <a name="MavenEnvironmentMocker" href="../../../com/qulice/maven/MavenEnvironmentMocker.html#MavenEnvironmentMocker">MavenEnvironmentMocker</a>().mock()),
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>              <span class="jxr_string">"Enforcer validator must call executor when check is not excluded"</span>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>          );
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>      }
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  }
+</pre>
+<hr/>
+<div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
+</body>
+</html>

@@ -1,9 +1,9 @@
 /**
- * SPDX-FileCopyrightText: Copyright (c) 2012-2025 Yegor Bugayenko
+ * SPDX-FileCopyrightText: Copyright (c) 2012-2026 Yegor Bugayenko
  * SPDX-License-Identifier: MIT
  */
-@import url(https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700);
-@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono);
+@import "https://fonts.googleapis.com/css?family=Maven+Pro:400,500,700";
+@import "https://fonts.googleapis.com/css?family=Ubuntu+Mono";
 body {
   margin: 0;
   padding: 20px;
@@ -123,6 +123,11 @@ table td:nth-child(1) {
     display: none;
   }
 }
+.menu-section .signature {
+  color: #808080;
+  font-size: 75%;
+  width: 30%;
+}
 .menu-section .menu {
   background-color: #fff;
   padding: 40px 20px 20px;
@@ -148,19 +153,19 @@ table td:nth-child(1) {
   text-overflow: ellipsis;
   overflow: hidden;
 }
-.menu-section .menu li.active {
-  font-weight: bold;
+.menu-section .menu li a {
+  text-decoration: none;
 }
 .menu-section .menu li ul {
   list-style: none;
   padding-left: 10px;
 }
-.menu-section .menu li ul li {
+.menu-section .menu .active {
+  font-weight: bold;
+}
+.menu-section .menu li li {
   color: #111;
   font-weight: 400;
-}
-.menu-section .menu li a {
-  text-decoration: none;
 }
 
 .badges {
@@ -169,24 +174,25 @@ table td:nth-child(1) {
   list-style: none;
   padding-left: 0;
   font-size: 16px;
+  /* stylelint-disable-next-line no-descending-specificity */
 }
-.badges li {
+.badges.badges li {
   display: inline;
   border: 1px solid #808080;
   border-radius: 3px;
   padding: 4px;
   margin-right: 12px;
 }
-.badges li.menu-button {
+.badges .menu-button {
   display: none;
   cursor: pointer;
 }
-.badges li.menu-button:hover {
+.badges .menu-button:hover {
   background-color: #808080;
   color: white;
 }
 @media all and (max-width: 1200px) {
-  .badges li.menu-button {
+  .badges .menu-button {
     display: inline;
   }
 }
@@ -243,7 +249,10 @@ table td:nth-child(1) {
   }
 }
 
-.logo a {
+.logo {
+  /* stylelint-disable-next-line no-descending-specificity */
+}
+.logo.logo a {
   border: 0;
 }
 
