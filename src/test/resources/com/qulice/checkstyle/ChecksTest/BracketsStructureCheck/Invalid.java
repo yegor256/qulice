@@ -94,4 +94,13 @@ public final class Invalid {
         value = "one")
     public void checked() {
     }
+    // Issue #503: parameters that are expressions on opening bracket line.
+    public void issue503() {
+        Integer.toString(1
+            + 2, 2
+        );
+        throw new IllegalStateException("Failed"
+            + " test" + ex.getMessage(), ex
+        );
+    }
 }

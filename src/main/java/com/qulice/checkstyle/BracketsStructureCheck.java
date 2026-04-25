@@ -94,12 +94,34 @@ public final class BracketsStructureCheck extends AbstractCheck {
         final int end) {
         if (start != end) {
             final DetailAST elist = node.findFirstToken(TokenTypes.ELIST);
-            final int pline = elist.getLineNo();
+            final int pline = BracketsStructureCheck.firstParamLine(elist);
             if (pline == start) {
-                this.log(pline, "Parameters should start on a new line");
+                this.log(start, "Parameters should start on a new line");
             }
             this.checkExpressionList(elist, end);
         }
+    }
+
+    /**
+     * Returns the line number of the first actual token inside the
+     * expression list. ELIST itself reports {@code lparen + 1} regardless
+     * of where the first parameter actually is, so we descend to the
+     * leftmost leaf to find the real position.
+     * @param elist Tree node, containing the expression list
+     * @return Line number of the first parameter token
+     */
+    private static int firstParamLine(final DetailAST elist) {
+        DetailAST leaf = elist;
+        while (leaf.getFirstChild() != null) {
+            leaf = leaf.getFirstChild();
+        }
+        final int line;
+        if (leaf.equals(elist)) {
+            line = elist.getLineNo();
+        } else {
+            line = leaf.getLineNo();
+        }
+        return line;
     }
 
     /**
