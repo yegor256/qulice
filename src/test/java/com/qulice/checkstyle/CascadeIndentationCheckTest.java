@@ -60,6 +60,20 @@ final class CascadeIndentationCheckTest {
         );
     }
 
+    @Test
+    void rejectsCascadeIndentAfterStandaloneClosingBracket() throws Exception {
+        final String file = "CascadeAfterClosingBracket.java";
+        MatcherAssert.assertThat(
+            "Indented chain after a standalone closing bracket must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "must not be greater than the closing bracket", file
+                )
+            )
+        );
+    }
+
     private Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();

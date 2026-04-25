@@ -24,16 +24,9 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
 
     @Override
     public Object visit(final ASTInfixExpression expr, final Object data) {
-        if (isComparison(expr) && (
-            matchesLengthCheck(
-                expr.getLeftOperand(),
-                expr.getRightOperand()
-            )
-                || matchesLengthCheck(
-                expr.getRightOperand(),
-                expr.getLeftOperand()
-            )
-            )
+        if (isComparison(expr)
+            && (matchesLengthCheck(expr.getLeftOperand(), expr.getRightOperand())
+                || matchesLengthCheck(expr.getRightOperand(), expr.getLeftOperand()))
         ) {
             asCtx(data).addViolation(expr);
         }

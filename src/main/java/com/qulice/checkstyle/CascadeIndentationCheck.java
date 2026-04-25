@@ -15,6 +15,10 @@ import org.cactoos.text.Joined;
  * <li>the same as previous one or less
  * <li>bigger than previous by exactly 4
  * </ul>
+ * Also, if the previous non-empty line consists only of closing brackets
+ * (and optional trailing semicolon or comma), the current line indentation
+ * must not be greater than that of the closing bracket line, since the
+ * expression has been already terminated.
  * All other cases must cause a failure.
  * @since 0.3
  */
@@ -28,6 +32,7 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
     @Override
     public void processFiltered(final File file, final FileText lines) {
         int previous = 0;
+        boolean closer = false;
         for (int pos = 0; pos < lines.size(); pos += 1) {
             final String line = lines.get(pos);
             final int current = CascadeIndentationCheck.indentation(line);
@@ -51,9 +56,52 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
                         previous
                     )
                 );
+            } else if (closer && current > previous) {
+                this.log(
+                    pos + 1,
+                    String.format(
+                        new Joined(
+                            "",
+                            "Indentation (%d) must not be greater ",
+                            "than the closing bracket line (%d)"
+                        ).toString(),
+                        current,
+                        previous
+                    )
+                );
             }
             previous = current;
+            closer = CascadeIndentationCheck.isClosingBracketLine(line);
         }
+    }
+
+    /**
+     * Tells whether the line consists only of closing brackets, optionally
+     * followed by a comma or a semicolon and surrounding whitespace.
+     * @param line Input line
+     * @return True if the line is a standalone closing bracket line
+     */
+    private static boolean isClosingBracketLine(final String line) {
+        final String trimmed = line.trim();
+        boolean result = !trimmed.isEmpty();
+        if (result) {
+            final char first = trimmed.charAt(0);
+            if (first != ')' && first != ']' && first != '}') {
+                result = false;
+            }
+        }
+        if (result) {
+            for (int idx = 0; idx < trimmed.length(); idx += 1) {
+                final char chr = trimmed.charAt(idx);
+                if (chr != ')' && chr != ']' && chr != '}'
+                    && chr != ';' && chr != ','
+                    && !Character.isWhitespace(chr)) {
+                    result = false;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
     /**
