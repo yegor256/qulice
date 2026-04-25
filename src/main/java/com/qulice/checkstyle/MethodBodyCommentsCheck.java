@@ -20,8 +20,6 @@ import java.util.Arrays;
  * text.
  *
  * @since 0.3
- * @todo #260 Add handling of multiple anonymous classes inside methods by
- *  looking at the recursive tree.
  */
 public final class MethodBodyCommentsCheck extends AbstractCheck {
 
@@ -46,32 +44,41 @@ public final class MethodBodyCommentsCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         final DetailAST start = ast.findFirstToken(TokenTypes.SLIST);
-        final String[] lines = Arrays.copyOf(
-            this.getLines(), this.getLines().length
-        );
         if (start != null) {
-            DetailAST ostart = start.findFirstToken(TokenTypes.VARIABLE_DEF);
-            final int[] tokens = {
-                TokenTypes.ASSIGN, TokenTypes.EXPR,
-                TokenTypes.LITERAL_NEW, TokenTypes.OBJBLOCK,
-            };
-            for (final int token : tokens) {
-                if (ostart != null) {
-                    ostart = ostart.findFirstToken(token);
-                }
-            }
-            if (ostart != null
-                && ostart.getType() == tokens[tokens.length - 1]) {
-                Arrays.fill(
-                    lines, ostart.getLineNo(),
-                    ostart.findFirstToken(TokenTypes.RCURLY).getLineNo(), ""
-                );
-            }
+            final String[] lines = Arrays.copyOf(
+                this.getLines(), this.getLines().length
+            );
+            this.maskAnonymous(start, lines);
             this.checkMethod(
                 lines,
                 start.getLineNo(),
                 start.findFirstToken(TokenTypes.RCURLY).getLineNo() - 1
             );
+        }
+    }
+
+    /**
+     * Replace with empty strings the lines that belong to the body of any
+     * anonymous class found anywhere in the given subtree.
+     * @param node Root of the subtree to scan
+     * @param lines Lines to be modified in place
+     */
+    private void maskAnonymous(final DetailAST node, final String[] lines) {
+        for (DetailAST child = node.getFirstChild(); child != null;
+            child = child.getNextSibling()) {
+            if (child.getType() == TokenTypes.LITERAL_NEW) {
+                final DetailAST block = child.findFirstToken(
+                    TokenTypes.OBJBLOCK
+                );
+                if (block != null) {
+                    Arrays.fill(
+                        lines, block.getLineNo(),
+                        block.findFirstToken(TokenTypes.RCURLY).getLineNo(),
+                        ""
+                    );
+                }
+            }
+            this.maskAnonymous(child, lines);
         }
     }
 

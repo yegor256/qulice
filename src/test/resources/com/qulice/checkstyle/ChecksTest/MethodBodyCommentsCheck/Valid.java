@@ -40,6 +40,34 @@ public final class Valid {
             }
         };
     }
+    /**
+     * Multiple anonymous classes in a single method body.
+     */
+    public void multipleAnonymous() {
+        final Closeable first = new Closeable() {
+            @Override
+            public void close() {
+                // first
+            }
+        };
+        final Closeable second = new Closeable() {
+            @Override
+            public void close() {
+                // second
+            }
+        };
+    }
+    /**
+     * Anonymous class passed as a method argument.
+     */
+    public void anonymousAsArgument() {
+        register(new Runnable() {
+            @Override
+            public void run() {
+                // running
+            }
+        });
+    }
 }
 
 /**
