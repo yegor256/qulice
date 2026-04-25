@@ -132,6 +132,34 @@ are met: no conditions.
 </build>
 +--
 
+* POM XPath Assertions
+
+  Qulice can validate your <<<pom.xml>>> against a list of XPath queries. Each
+  query has to find at least one node in the POM, otherwise the build will
+  fail. Configure the queries via the <<<asserts>>> parameter:
+
++--
+<build>
+  <plugins>
+    <plugin>
+      <groupId>com.qulice</groupId>
+      <artifactId>qulice-maven-plugin</artifactId>
+      <version>${project.version}</version>
+      <configuration>
+        <asserts>
+          <param>/pom:project/pom:build/pom:plugins/pom:plugin[pom:artifactId='qulice-maven-plugin']/pom:artifactId/text()</param>
+          <param>/pom:project/pom:dependencies/pom:dependency[pom:artifactId='commons-io']/pom:version[.='1.2.5']/text()</param>
+        </asserts>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
++--
+
+  The <<<pom>>> namespace prefix is bound to <<<http://maven.apache.org/POM/4.0.0>>>
+  and must be used in every component of every XPath query. Each query must
+  end with <<</text()>>>.
+
 * Cutting Edge Version
 
   If you want to use current version of the product, you can do it with
