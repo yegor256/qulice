@@ -23,6 +23,7 @@ import org.cactoos.text.Joined;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.xml.sax.InputSource;
 
@@ -33,27 +34,35 @@ import org.xml.sax.InputSource;
 final class ChecksTest {
 
     /**
-     * Test checkstyle for true negative.
+     * Test checkstyle for true positive.
      * @param dir Directory where test scripts are located
+     * @param name The name of the Invalid*.java file
      * @throws Exception If something goes wrong
      */
     @ParameterizedTest
-    @MethodSource("checks")
-    void testCheckstyleTruePositive(final String dir) throws Exception {
+    @MethodSource("invalids")
+    void testCheckstyleTruePositive(final String dir, final String name)
+        throws Exception {
         final Collector collector = new ChecksTest.Collector();
-        this.run(dir, "/Invalid.java", new ChecksTest.FakeAuditListener(collector));
+        this.run(
+            dir, String.format("/%s", name),
+            new ChecksTest.FakeAuditListener(collector)
+        );
+        final String suffix = name.substring(
+            "Invalid".length(), name.length() - ".java".length()
+        );
         final String[] violations = IOUtils.toString(
             Objects.requireNonNull(
                 this.getClass().getResourceAsStream(
-                    String.format("%s/violations.txt", dir)
+                    String.format("%s/violations%s.txt", dir, suffix)
                 )
             ),
             StandardCharsets.UTF_8
         ).split(String.valueOf('\n'));
         MatcherAssert.assertThat(
             String.format(
-                "Expected exactly %d violations from %s (%s)",
-                violations.length, dir, collector.summary()
+                "Expected exactly %d violations from %s/%s (%s)",
+                violations.length, dir, name, collector.summary()
             ),
             collector.eventCount() == violations.length
                 && Arrays.stream(violations).allMatch(
@@ -71,15 +80,20 @@ final class ChecksTest {
     /**
      * Test checkstyle for true negative.
      * @param dir Directory where test scripts are located
+     * @param name The name of the Valid*.java file
      * @throws Exception If something goes wrong
      */
     @ParameterizedTest
-    @MethodSource("checks")
-    void testCheckstyleTrueNegative(final String dir) throws Exception {
+    @MethodSource("valids")
+    void testCheckstyleTrueNegative(final String dir, final String name)
+        throws Exception {
         final Collector collector = new ChecksTest.Collector();
-        this.run(dir, "/Valid.java", new ChecksTest.FakeAuditListener(collector));
+        this.run(
+            dir, String.format("/%s", name),
+            new ChecksTest.FakeAuditListener(collector)
+        );
         MatcherAssert.assertThat(
-            "Log should be empty for valid files",
+            String.format("Log should be empty for valid file %s/%s", dir, name),
             collector.summary(),
             Matchers.equalTo("")
         );
@@ -121,6 +135,57 @@ final class ChecksTest {
         checker.addListener(listener);
         checker.process(files);
         checker.destroy();
+    }
+
+    /**
+     * Arguments stream of (dir, InvalidXxx.java) pairs for all checks.
+     * @return Stream of Arguments
+     */
+    private static Stream<Arguments> invalids() {
+        return ChecksTest.checks().flatMap(dir -> ChecksTest.files(dir, "Invalid"));
+    }
+
+    /**
+     * Arguments stream of (dir, ValidXxx.java) pairs for all checks.
+     * @return Stream of Arguments
+     */
+    private static Stream<Arguments> valids() {
+        return ChecksTest.checks().flatMap(dir -> ChecksTest.files(dir, "Valid"));
+    }
+
+    /**
+     * Find all files in the given resource directory whose name is
+     * either {@code prefix.java} or starts with {@code prefix-} and
+     * ends with {@code .java}.
+     * @param dir Resource directory (e.g. {@code ChecksTest/FooCheck})
+     * @param prefix File prefix (e.g. {@code Invalid} or {@code Valid})
+     * @return Stream of (dir, fileName) Arguments
+     */
+    private static Stream<Arguments> files(
+        final String dir, final String prefix
+    ) {
+        final File directory = new File(
+            Objects.requireNonNull(
+                ChecksTest.class.getResource(dir),
+                String.format("Resource directory not found: %s", dir)
+            ).getFile()
+        );
+        final File[] found = directory.listFiles(
+            (parent, child) -> child.endsWith(".java")
+                && (
+                    child.equals(String.format("%s.java", prefix))
+                        || child.startsWith(String.format("%s-", prefix))
+                )
+        );
+        final Stream<Arguments> result;
+        if (found == null) {
+            result = Stream.empty();
+        } else {
+            result = Arrays.stream(found)
+                .sorted()
+                .map(file -> Arguments.of(dir, file.getName()));
+        }
+        return result;
     }
 
     /**
