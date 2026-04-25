@@ -23,4 +23,20 @@ public class ValidTest {
     public void test() {
         Object mock = Mockito.mock(Object.class);
     }
+
+    private static final class FakeRecorder {
+        private final List<String> events = new ArrayList<>();
+        private int count;
+        void record(String event) {
+            this.events.add(event);
+            this.count = this.count + 1;
+        }
+    }
+
+    private static final class FakeListener {
+        private final FakeRecorder collector;
+        FakeListener(FakeRecorder rec) {
+            this.collector = rec;
+        }
+    }
 }

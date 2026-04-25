@@ -11,4 +11,9 @@ public class InvalidTest {
     public void test() {
         tempFile.createNewFile();
     }
+
+    private static final class FakeHelper {
+        private int counter;
+        private String label;
+    }
 }
