@@ -107,12 +107,35 @@ public final class ProhibitFieldsInTestClassesCheck extends AbstractCheck {
      */
     private static boolean isTopLevelType(final DetailAST type) {
         return type != null
-            && (type.getType() == TokenTypes.CLASS_DEF
-                || type.getType() == TokenTypes.ENUM_DEF
-                || type.getType() == TokenTypes.RECORD_DEF
-                || type.getType() == TokenTypes.INTERFACE_DEF)
-            && type.getParent() != null
-            && type.getParent().getType() != TokenTypes.OBJBLOCK
-            && type.getParent().getType() != TokenTypes.LITERAL_NEW;
+            && ProhibitFieldsInTestClassesCheck.isTypeDef(type)
+            && ProhibitFieldsInTestClassesCheck.hasTopLevelParent(type);
+    }
+
+    /**
+     * Is this AST node a class, enum, record, or interface declaration?
+     * @param type Candidate node
+     * @return True if it is one of the four type-defining tokens
+     */
+    private static boolean isTypeDef(final DetailAST type) {
+        final int kind = type.getType();
+        return kind == TokenTypes.CLASS_DEF
+            || kind == TokenTypes.ENUM_DEF
+            || kind == TokenTypes.RECORD_DEF
+            || kind == TokenTypes.INTERFACE_DEF;
+    }
+
+    /**
+     * Is the parent of this type node such that the type is at the top
+     * level of the compilation unit, i.e. not nested inside an
+     * enclosing type's {@code OBJBLOCK} and not the body of an
+     * anonymous class created via {@code LITERAL_NEW}?
+     * @param type Type declaration node
+     * @return True if the parent indicates a top-level position
+     */
+    private static boolean hasTopLevelParent(final DetailAST type) {
+        final DetailAST parent = type.getParent();
+        return parent != null
+            && parent.getType() != TokenTypes.OBJBLOCK
+            && parent.getType() != TokenTypes.LITERAL_NEW;
     }
 }
