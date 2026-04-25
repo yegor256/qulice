@@ -18,6 +18,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  */
 public final class ProhibitPlainJunitAssertionsRule
     extends AbstractJavaRulechainRule {
+
     /**
      * Mask of prohibited imports.
      */

@@ -31,8 +31,7 @@ final class PmdAssertionsTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    void prohibitsStaticImportsPlainAssertionsInTests()
-        throws Exception {
+    void prohibitsStaticImportsPlainAssertionsInTests() throws Exception {
         new PmdAssert(
             "PlainJUnitAssertionStaticImportBlock.java",
             Matchers.is(false),
@@ -50,8 +49,7 @@ final class PmdAssertionsTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    void prohibitsPlainJunitAssertionsInTestMethods()
-        throws Exception {
+    void prohibitsPlainJunitAssertionsInTestMethods() throws Exception {
         new PmdAssert(
             "PlainJUnitAssertionTestMethod.java",
             Matchers.is(false),
@@ -68,8 +66,7 @@ final class PmdAssertionsTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    void allowsAssertFail()
-        throws Exception {
+    void allowsAssertFail() throws Exception {
         new PmdAssert(
             "AllowAssertFail.java",
             Matchers.is(false),
@@ -122,7 +119,7 @@ final class PmdAssertionsTest {
      * @throws Exception If something wrong happens inside.
      */
     @Test
-    void testShouldBePackagePrivate() throws Exception {
+    void requiresPackagePrivateTestMethods() throws Exception {
         new PmdAssert(
             "TestShouldBePackagePrivate.java",
             Matchers.is(false),

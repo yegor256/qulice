@@ -4,21 +4,11 @@
  */
 package com.qulice.maven;
 
-import com.qulice.spi.Environment;
-import com.qulice.spi.ResourceValidator;
-import com.qulice.spi.Validator;
-import com.qulice.spi.Violation;
-import java.io.File;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeoutException;
-import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.maven.monitor.logging.DefaultLog;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.context.DefaultContext;
-import org.codehaus.plexus.logging.AbstractLogger;
 import org.codehaus.plexus.logging.Logger;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -36,7 +26,7 @@ final class CheckMojoTest {
     @Test
     void skipsExecutionOnSkipFlag() throws Exception {
         final CheckMojo mojo = new CheckMojo();
-        final Logger logger = new CheckMojoTest.FakeLogger();
+        final Logger logger = new FakeLogger();
         mojo.setLog(new DefaultLog(logger));
         mojo.setSkip(true);
         mojo.execute();
@@ -50,14 +40,14 @@ final class CheckMojoTest {
     void setsTimeoutToForever() {
         final CheckMojo mojo = new CheckMojo();
         mojo.setTimeout("forever");
-        final BlockedValidator validator = new CheckMojoTest.BlockedValidator();
+        final BlockedValidator validator = new BlockedValidator();
         mojo.setValidatorsProvider(
             new ValidatorsProviderMocker()
                 .withExternalResource(validator)
                 .mock()
         );
         mojo.setProject(new MavenProject());
-        mojo.setLog(new DefaultLog(new CheckMojoTest.FakeLogger()));
+        mojo.setLog(new DefaultLog(new FakeLogger()));
         new Thread(
             () -> {
                 try {
@@ -84,11 +74,11 @@ final class CheckMojoTest {
         mojo.setTimeout("1s");
         mojo.setValidatorsProvider(
             new ValidatorsProviderMocker()
-                .withExternalResource(new CheckMojoTest.BlockedValidator())
+                .withExternalResource(new BlockedValidator())
                 .mock()
         );
         mojo.setProject(new MavenProject());
-        mojo.setLog(new DefaultLog(new CheckMojoTest.FakeLogger()));
+        mojo.setLog(new DefaultLog(new FakeLogger()));
         Assertions.assertSame(
             TimeoutException.class,
             Assertions.assertThrows(
@@ -107,11 +97,11 @@ final class CheckMojoTest {
     @Test
     void validatesUsingAllProvidedValidators() throws Exception {
         final CheckMojo mojo = new CheckMojo();
-        final FakeValidator external = new CheckMojoTest.FakeValidator("somename");
-        final FakeResourceValidator rexternal = new CheckMojoTest.FakeResourceValidator(
+        final FakeValidator external = new FakeValidator("somename");
+        final FakeResourceValidator rexternal = new FakeResourceValidator(
             "other"
         );
-        final FakeMavenValidator internal = new CheckMojoTest.FakeMavenValidator();
+        final FakeMavenValidator internal = new FakeMavenValidator();
         mojo.setValidatorsProvider(
             new ValidatorsProviderMocker()
                 .withInternal(internal)
@@ -120,7 +110,7 @@ final class CheckMojoTest {
                 .mock()
         );
         mojo.setProject(new MavenProject());
-        mojo.setLog(new DefaultLog(new CheckMojoTest.FakeLogger()));
+        mojo.setLog(new DefaultLog(new FakeLogger()));
         mojo.contextualize(new DefaultContext());
         mojo.execute();
         Assertions.assertAll(
@@ -128,257 +118,5 @@ final class CheckMojoTest {
             () -> Assertions.assertEquals(1, external.count()),
             () -> Assertions.assertEquals(1, rexternal.count())
         );
-    }
-
-    /**
-     * FakeLogger.
-     * A logger that logs in a buffer.
-     * @since 0.24.1
-     */
-    @SuppressWarnings("PMD.AvoidStringBufferField")
-    private static final class FakeLogger extends AbstractLogger {
-
-        /**
-         * Log level tags.
-         */
-        private static final String[] TAGS = {
-            "[DEBUG] ",
-            "[INFO] ",
-            "[WARNING] ",
-            "[ERROR] ",
-            "[FATAL ERROR] ",
-        };
-
-        /**
-         * Logged messages.
-         */
-        private final StringBuilder messages;
-
-        FakeLogger() {
-            this(1, "fakelogger");
-        }
-
-        FakeLogger(final int threshold, final String name) {
-            super(threshold, name);
-            this.messages = new StringBuilder();
-        }
-
-        @Override
-        public void debug(final String message, final Throwable throwable) {
-            if (this.isDebugEnabled()) {
-                this.messages.append(FakeLogger.TAGS[0].concat(message));
-                if (throwable != null) {
-                    throwable.printStackTrace(System.out);
-                }
-            }
-        }
-
-        @Override
-        public void info(final String message, final Throwable throwable) {
-            if (this.isInfoEnabled()) {
-                this.messages.append(FakeLogger.TAGS[1].concat(message));
-                if (throwable != null) {
-                    throwable.printStackTrace(System.out);
-                }
-            }
-        }
-
-        @Override
-        public void warn(final String message, final Throwable throwable) {
-            if (this.isWarnEnabled()) {
-                this.messages.append(FakeLogger.TAGS[2].concat(message));
-                if (throwable != null) {
-                    throwable.printStackTrace(System.out);
-                }
-            }
-        }
-
-        @Override
-        public void error(final String message, final Throwable throwable) {
-            if (this.isErrorEnabled()) {
-                this.messages.append(FakeLogger.TAGS[3].concat(message));
-                if (throwable != null) {
-                    throwable.printStackTrace(System.out);
-                }
-            }
-        }
-
-        @Override
-        public void fatalError(
-            final String message,
-            final Throwable throwable
-        ) {
-            if (this.isFatalErrorEnabled()) {
-                this.messages.append(FakeLogger.TAGS[4].concat(message));
-                if (throwable != null) {
-                    throwable.printStackTrace(System.out);
-                }
-            }
-        }
-
-        @Override
-        public Logger getChildLogger(final String name) {
-            return this;
-        }
-
-        @Override
-        public String toString() {
-            return this.messages.toString();
-        }
-    }
-
-    /**
-     * FakeValidator
-     * A mock to a Validator.
-     * @since 0.24.1
-     */
-    private static final class FakeValidator implements Validator {
-
-        /**
-         * Validator name.
-         */
-        private final String label;
-
-        /**
-         * Method calls counter.
-         */
-        private final AtomicInteger cnt;
-
-        FakeValidator(final String name) {
-            this.label = name;
-            this.cnt = new AtomicInteger(0);
-        }
-
-        @Override
-        public void validate(final Environment env) {
-            this.cnt.incrementAndGet();
-        }
-
-        @Override
-        public String name() {
-            return this.label;
-        }
-
-        int count() {
-            return this.cnt.get();
-        }
-    }
-
-    /**
-     * BlockedValidator
-     * A mock to a Validator that blocks forever.
-     * @since 0.24.1
-     */
-    private static final class BlockedValidator implements ResourceValidator {
-
-        /**
-         * Method calls counter.
-         */
-        private final AtomicInteger cnt;
-
-        /**
-         * Latch to signal when validation starts.
-         */
-        private final CountDownLatch latch;
-
-        BlockedValidator() {
-            this.cnt = new AtomicInteger(0);
-            this.latch = new CountDownLatch(1);
-        }
-
-        @Override
-        public Collection<Violation> validate(final Collection<File> ignore) {
-            this.cnt.incrementAndGet();
-            this.latch.countDown();
-            try {
-                Thread.sleep(Long.MAX_VALUE);
-            } catch (final InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            return Collections.emptyList();
-        }
-
-        @Override
-        public String name() {
-            return "blocked forever";
-        }
-
-        int count() {
-            return this.cnt.get();
-        }
-
-        void await() {
-            try {
-                this.latch.await();
-            } catch (final InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-        }
-    }
-
-    /**
-     * FakeResourceValidator.
-     * A mock to a ResourceValidator.
-     * @since 0.24.1
-     */
-    private static final class FakeResourceValidator
-        implements ResourceValidator {
-        /**
-         * Resource validator name.
-         */
-        private final String label;
-
-        /**
-         * Method calls counter.
-         */
-        private final AtomicInteger cnt;
-
-        FakeResourceValidator(final String name) {
-            this.label = name;
-            this.cnt = new AtomicInteger(0);
-        }
-
-        @Override
-        public Collection<Violation> validate(final Collection<File> files) {
-            this.cnt.incrementAndGet();
-            return Collections.emptyList();
-        }
-
-        @Override
-        public String name() {
-            return this.label;
-        }
-
-        int count() {
-            return this.cnt.get();
-        }
-    }
-
-    /**
-     * FakeMavenValidator.
-     *
-     * A mock to a MavenValidator.
-     *
-     * @since 0.24.1
-     */
-    private static final class FakeMavenValidator implements MavenValidator {
-
-        /**
-         * Method calls counter.
-         */
-        private final AtomicInteger cnt;
-
-        FakeMavenValidator() {
-            this.cnt = new AtomicInteger(0);
-        }
-
-        @Override
-        public void validate(final MavenEnvironment env) {
-            this.cnt.incrementAndGet();
-        }
-
-        int count() {
-            return this.cnt.get();
-        }
     }
 }

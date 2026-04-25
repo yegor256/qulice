@@ -7,19 +7,16 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.stream.Stream;
 import org.apache.commons.io.IOUtils;
-import org.cactoos.text.Joined;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,10 +40,10 @@ final class ChecksTest {
     @MethodSource("invalids")
     void testCheckstyleTruePositive(final String dir, final String name)
         throws Exception {
-        final Collector collector = new ChecksTest.Collector();
+        final AuditCollector collector = new AuditCollector();
         this.run(
             dir, String.format("/%s", name),
-            new ChecksTest.FakeAuditListener(collector)
+            new FakeAuditListener(collector)
         );
         final String[] violations = IOUtils.toString(
             Objects.requireNonNull(
@@ -91,10 +88,10 @@ final class ChecksTest {
     @MethodSource("valids")
     void testCheckstyleTrueNegative(final String dir, final String name)
         throws Exception {
-        final Collector collector = new ChecksTest.Collector();
+        final AuditCollector collector = new AuditCollector();
         this.run(
             dir, String.format("/%s", name),
-            new ChecksTest.FakeAuditListener(collector)
+            new FakeAuditListener(collector)
         );
         MatcherAssert.assertThat(
             String.format("Log should be empty for valid file %s/%s", dir, name),
@@ -237,116 +234,5 @@ final class ChecksTest {
             "SimpleStringSplitCheck",
             "ProhibitFieldsInTestClassesCheck"
         ).map(s -> String.format("ChecksTest/%s", s));
-    }
-
-    /**
-     * Mocked collector of checkstyle events.
-     * @since 0.1
-     */
-    private static final class Collector {
-
-        /**
-         * List of events received.
-         */
-        private final List<AuditEvent> events = new LinkedList<>();
-
-        void add(final AuditEvent event) {
-            this.events.add(event);
-        }
-
-        /**
-         * How many messages do we have?
-         * @return Amount of messages reported
-         */
-        int eventCount() {
-            return this.events.size();
-        }
-
-        /**
-         * Do we have this message for this line?
-         * @param line The number of the line
-         * @param msg The message we're looking for
-         * @return This message was reported for the give line?
-         */
-        boolean has(final Integer line, final String msg) {
-            boolean has = false;
-            for (final AuditEvent event : this.events) {
-                if (event.getLine() == line && event.getMessage().equals(msg)) {
-                    has = true;
-                    break;
-                }
-            }
-            return has;
-        }
-
-        /**
-         * Returns full summary.
-         * @return The test summary of all events
-         */
-        String summary() {
-            final List<String> msgs = new LinkedList<>();
-            for (final AuditEvent event : this.events) {
-                msgs.add(
-                    String.format(
-                        "%s:%s",
-                        event.getLine(),
-                        event.getMessage()
-                    )
-                );
-            }
-            return new Joined("; ", msgs).toString();
-        }
-    }
-
-    /**
-     * Fake Audit Listener.
-     *
-     * Just to set an event on addError() to a mocked Collector.
-     *
-     * @since 0.24.1
-     */
-    private static final class FakeAuditListener implements AuditListener {
-
-        /**
-         * Mocked collector.
-         */
-        private final ChecksTest.Collector collector;
-
-        FakeAuditListener(final ChecksTest.Collector collect) {
-            this.collector = collect;
-        }
-
-        @Override
-        public void auditStarted(final AuditEvent event) {
-            // Intentionally left blank
-        }
-
-        @Override
-        public void auditFinished(final AuditEvent event) {
-            // Intentionally left blank
-        }
-
-        @Override
-        public void fileStarted(final AuditEvent event) {
-            // Intentionally left blank
-        }
-
-        @Override
-        public void fileFinished(final AuditEvent event) {
-            // Intentionally left blank
-        }
-
-        @Override
-        public void addError(final AuditEvent event) {
-            this.collector.add(event);
-        }
-
-        @Override
-        public void addException(
-            final AuditEvent event,
-            final Throwable throwable
-        ) {
-            // Intentionally left blank
-        }
     }
 }

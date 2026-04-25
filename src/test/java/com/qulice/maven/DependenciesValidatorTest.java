@@ -11,7 +11,6 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,10 +18,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.testing.stubs.ArtifactStub;
-import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
-import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzerException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -329,7 +326,7 @@ final class DependenciesValidatorTest {
         return new MavenEnvironmentMocker().inPlexus(
             DependenciesValidatorTest.ROLE,
             DependenciesValidatorTest.HINT,
-            new DependenciesValidatorTest.FakeProjectDependencyAnalyzer(analysis)
+            new FakeProjectDependencyAnalyzer(analysis)
         ).mock();
     }
 
@@ -374,9 +371,11 @@ final class DependenciesValidatorTest {
     private static File jar(final Path dir, final String name,
         final String... entries) throws Exception {
         final File jar = dir.resolve(name).toFile();
-        try (JarOutputStream out = new JarOutputStream(
-            Files.newOutputStream(jar.toPath())
-        )) {
+        try (
+            JarOutputStream out = new JarOutputStream(
+                Files.newOutputStream(jar.toPath())
+            )
+        ) {
             for (final String entry : entries) {
                 out.putNextEntry(new JarEntry(entry));
                 out.write(new byte[]{0});
@@ -410,34 +409,5 @@ final class DependenciesValidatorTest {
         final Path target = src.resolve(path);
         Files.createDirectories(target.getParent());
         Files.writeString(target, content, StandardCharsets.UTF_8);
-    }
-
-    /**
-     * FakeProjectDependencyAnalyzer.
-     *
-     * A mock to ProjectDependencyAnalyzer.
-     *
-     * @since 0.24.1
-     */
-    private static final class FakeProjectDependencyAnalyzer
-        implements ProjectDependencyAnalyzer {
-        /**
-         * ProjectDependencyAnalysis.
-         */
-        private final ProjectDependencyAnalysis analysis;
-
-        FakeProjectDependencyAnalyzer(
-            final ProjectDependencyAnalysis alysis
-        ) {
-            this.analysis = alysis;
-        }
-
-        @Override
-        public ProjectDependencyAnalysis analyze(
-            final MavenProject project,
-            final Collection<String> collection
-        ) throws ProjectDependencyAnalyzerException {
-            return this.analysis;
-        }
     }
 }

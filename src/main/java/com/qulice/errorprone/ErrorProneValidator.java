@@ -78,6 +78,12 @@ public final class ErrorProneValidator implements ResourceValidator {
     );
 
     /**
+     * Splits a multi-line stdout block into individual lines, on any
+     * line terminator (\\n, \\r, \\r\\n, etc.).
+     */
+    private static final Pattern NEWLINE = Pattern.compile("\\R");
+
+    /**
      * Environment to use.
      */
     private final Environment env;
@@ -128,7 +134,7 @@ public final class ErrorProneValidator implements ResourceValidator {
         if (stdout.isEmpty()) {
             lines = List.of();
         } else {
-            lines = List.of(stdout.split("\\R"));
+            lines = List.of(ErrorProneValidator.NEWLINE.split(stdout));
         }
         return lines;
     }

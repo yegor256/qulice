@@ -46,8 +46,7 @@ final class ValidatorsProviderMocker {
      * @param validator The validator
      * @return This object
      */
-    ValidatorsProviderMocker withExternalResource(
-        final ResourceValidator validator) {
+    ValidatorsProviderMocker withExternalResource(final ResourceValidator validator) {
         this.rexternal.add(validator);
         return this;
     }
@@ -57,8 +56,7 @@ final class ValidatorsProviderMocker {
      * @param validator The validator
      * @return This object
      */
-    ValidatorsProviderMocker withInternal(
-        final MavenValidator validator) {
+    ValidatorsProviderMocker withInternal(final MavenValidator validator) {
         this.internal.add(validator);
         return this;
     }

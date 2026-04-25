@@ -13,7 +13,6 @@ import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.Joined;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -37,16 +36,6 @@ final class CheckstyleTextFileTest {
      * License text.
      */
     private static final String LICENSE = "Hello.";
-
-    /**
-     * Rule for testing.
-     */
-    private License rule;
-
-    @BeforeEach
-    void setRule() {
-        this.rule = new License();
-    }
 
     /**
      * CheckstyleValidator reports a tab character in a non-Java text file
@@ -180,7 +169,7 @@ final class CheckstyleTextFileTest {
             CheckstyleTextFileTest.LICENSE_PROP,
             String.format(
                 "file:%s",
-                this.rule.savePackageInfo(
+                new License().savePackageInfo(
                     new File(mock.basedir(), CheckstyleTextFileTest.DIRECTORY)
                 ).withLines(CheckstyleTextFileTest.LICENSE)
                     .withEol(String.valueOf('\n')).file()

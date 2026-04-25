@@ -85,14 +85,13 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
     }
 
     /**
-     * Checks if the expression is of String type.
+     * Checks if the expression is of {@link String} type.
      * @param expr The expression to check
-     * @return True if expression has java.lang.String type
-     * @checkstyle UnnecessaryJavaLang (5 lines)
+     * @return True if expression has {@link String} type
      */
     private static boolean isStringExpression(final ASTExpression expr) {
         final JTypeMirror type = expr.getTypeMirror();
         return type.isClassOrInterface()
-            && "java.lang.String".equals(type.toString());
+            && String.class.getName().equals(type.toString());
     }
 }

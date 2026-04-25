@@ -20,30 +20,21 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 final class RequiredJavaDocTagTest {
 
-    /**
-     * Logger.
-     */
-    private final WriterStub writer = new RequiredJavaDocTagTest.WriterStub();
-
-    /**
-     * Object under test.
-     */
-    private final RequiredJavaDocTag tag = new RequiredJavaDocTag(
-        "since",
-        Pattern.compile("(?<name>^ +\\* +@since)( +)(?<cont>.*)"),
-        Pattern.compile(
-            "^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
-        ),
-        this.writer
-    );
-
     @ParameterizedTest
     @MethodSource("params")
     void success(final String[] lines, final String reason, final Matcher<String> expected) {
-        this.tag.matchTagFormat(lines, 0, 2);
+        final StringBuilder out = new StringBuilder();
+        new RequiredJavaDocTag(
+            "since",
+            Pattern.compile("(?<name>^ +\\* +@since)( +)(?<cont>.*)"),
+            Pattern.compile(
+                "^\\d+(\\.\\d+){1,2}(\\.[0-9A-Za-z-]+(\\.[0-9A-Za-z-]+)*)?$"
+            ),
+            (line, msg, args) -> out.append(MessageFormat.format(msg, args))
+        ).matchTagFormat(lines, 0, 2);
         MatcherAssert.assertThat(
             reason,
-            this.writer.formattedMessage(),
+            out.toString(),
             expected
         );
     }
@@ -97,33 +88,5 @@ final class RequiredJavaDocTagTest {
                 )
             )
         );
-    }
-
-    /**
-     * Stub for {@link RequiredJavaDocTag.Reporter} class.
-     * @since 0.23.1
-     */
-    private static class WriterStub implements RequiredJavaDocTag.Reporter {
-
-        /**
-         * Message.
-         */
-        private String message;
-
-        /**
-         * Ctor.
-         */
-        WriterStub() {
-            this.message = "";
-        }
-
-        @Override
-        public void log(final int line, final String msg, final Object... args) {
-            this.message = MessageFormat.format(msg, args);
-        }
-
-        String formattedMessage() {
-            return this.message;
-        }
     }
 }

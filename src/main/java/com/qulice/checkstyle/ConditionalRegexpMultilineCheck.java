@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
  */
 public final class ConditionalRegexpMultilineCheck extends
     RegexpMultilineCheck {
+
     /**
      * Condition that has to pass.
      */

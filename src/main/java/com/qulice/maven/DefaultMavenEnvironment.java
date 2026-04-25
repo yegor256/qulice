@@ -367,6 +367,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      */
     private static final class PrivilegedClassLoader implements
         PrivilegedAction<URLClassLoader> {
+
         /**
          * URLs for class loading.
          */
