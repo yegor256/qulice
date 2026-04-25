@@ -22,10 +22,11 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for general {@link CheckstyleValidator} behavior that
  * is not tied to a single check: method references, record/default
- * methods, lambda and generics at end of line, literal comparisons,
- * and the imports-only regression guard. Per-check coverage lives
- * in the dedicated {@code *CheckTest.java} and {@code Checkstyle*Test.java}
- * files in this package.
+ * methods, lambda and generics at end of line, chained lambdas
+ * passed as arguments, literal comparisons, and the imports-only
+ * regression guard. Per-check coverage lives in the dedicated
+ * {@code *CheckTest.java} and {@code Checkstyle*Test.java} files
+ * in this package.
  * @since 0.3
  */
 final class CheckstyleValidatorTest {
@@ -62,6 +63,13 @@ final class CheckstyleValidatorTest {
     void acceptsLambdaAndGenericsAtEndOfLine() throws Exception {
         Assertions.assertDoesNotThrow(
             () -> this.runValidation("ValidLambdaAndGenericsAtEndOfLine.java", true)
+        );
+    }
+
+    @Test
+    void acceptsChainedLambdaAsArgument() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("ValidLambdaIndentation.java", true)
         );
     }
 
