@@ -300,4 +300,65 @@ final class DefaultMavenEnvironmentTest {
             Matchers.is(StandardCharsets.UTF_8)
         );
     }
+
+    /**
+     * DefaultMavenEnvironment.files() should ignore source roots that live
+     * under the project's build directory, since those are generated build
+     * outputs (e.g. target/generated-sources/...) and not user-authored code
+     * (see <a href="https://github.com/yegor256/qulice/issues/1560">
+     * issue #1560</a>).
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void skipsSourcesUnderBuildDirectory(@TempDir final Path basedir)
+        throws Exception {
+        final Path src = basedir.resolve("src/main/java");
+        Files.createDirectories(src);
+        final Path source = src.resolve("Foo.java");
+        Files.writeString(
+            source,
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Path generated = basedir.resolve(
+            "target/generated-sources/plugin/com/example"
+        );
+        Files.createDirectories(generated);
+        final Path help = generated.resolve("HelpMojo.java");
+        Files.writeString(
+            help,
+            "class HelpMojo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Build build = new Build();
+        build.setDirectory(
+            basedir.resolve("target").toAbsolutePath().toString()
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return basedir.toFile();
+            }
+
+            @Override
+            public Build getBuild() {
+                return build;
+            }
+        };
+        project.addCompileSourceRoot(src.toAbsolutePath().toString());
+        project.addCompileSourceRoot(
+            generated.toAbsolutePath().toString()
+        );
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Generated sources under target/ must not be returned",
+            env.files("*.java"),
+            Matchers.allOf(
+                Matchers.hasItem(source.toFile()),
+                Matchers.not(Matchers.hasItem(help.toFile()))
+            )
+        );
+    }
 }

@@ -298,18 +298,23 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * so that a project configuring {@code <sourceDirectory>} or
      * {@code <testSourceDirectory>} in its POM is honored. Falls back to
      * {@code src} under the basedir when the project exposes no directories,
-     * which preserves the historical behavior for minimal stubs.</p>
+     * which preserves the historical behavior for minimal stubs. Roots that
+     * live under the project's build directory (e.g.
+     * {@code target/generated-sources/...}) are filtered out, since those
+     * are generated build outputs and not user-authored code (issue #1560).
+     * </p>
      *
      * @return Absolute directories to scan for files
      */
     private Collection<File> sources() {
         final Collection<File> dirs = new LinkedList<>();
-        this.addRoots(dirs, this.iproject.getCompileSourceRoots());
-        this.addRoots(dirs, this.iproject.getTestCompileSourceRoots());
         final Build build = this.iproject.getBuild();
+        final File output = this.buildDirectory(build);
+        this.addRoots(dirs, this.iproject.getCompileSourceRoots(), output);
+        this.addRoots(dirs, this.iproject.getTestCompileSourceRoots(), output);
         if (build != null) {
-            this.addResources(dirs, build.getResources());
-            this.addResources(dirs, build.getTestResources());
+            this.addResources(dirs, build.getResources(), output);
+            this.addResources(dirs, build.getTestResources(), output);
         }
         if (dirs.isEmpty()) {
             dirs.add(new File(this.basedir(), "src"));
@@ -318,15 +323,39 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     /**
+     * Resolve the project's build directory.
+     * @param build Build descriptor, may be null
+     * @return Canonical build directory, or null if not declared
+     */
+    @Nullable
+    private File buildDirectory(@Nullable final Build build) {
+        File dir = null;
+        if (build != null && build.getDirectory() != null) {
+            dir = this.resolve(build.getDirectory());
+        }
+        return dir;
+    }
+
+    /**
      * Add resolved roots to the given collection.
      * @param dirs Collection to fill
      * @param roots Source roots, may be null
+     * @param output Build output directory, may be null
      */
     private void addRoots(final Collection<File> dirs,
-        final List<String> roots) {
+        final List<String> roots, @Nullable final File output) {
         if (roots != null) {
             for (final String root : roots) {
-                dirs.add(this.resolve(root));
+                final File resolved = this.resolve(root);
+                if (DefaultMavenEnvironment.outside(resolved, output)) {
+                    dirs.add(resolved);
+                } else {
+                    Logger.debug(
+                        this,
+                        "Skipping generated source root %s under %s",
+                        resolved, output
+                    );
+                }
             }
         }
     }
@@ -335,14 +364,48 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * Add resolved resource directories to the given collection.
      * @param dirs Collection to fill
      * @param resources Resources, may be null
+     * @param output Build output directory, may be null
      */
     private void addResources(final Collection<File> dirs,
-        final List<Resource> resources) {
+        final List<Resource> resources, @Nullable final File output) {
         if (resources != null) {
             for (final Resource res : resources) {
-                dirs.add(this.resolve(res.getDirectory()));
+                final File resolved = this.resolve(res.getDirectory());
+                if (DefaultMavenEnvironment.outside(resolved, output)) {
+                    dirs.add(resolved);
+                } else {
+                    Logger.debug(
+                        this,
+                        "Skipping generated resource directory %s under %s",
+                        resolved, output
+                    );
+                }
             }
         }
+    }
+
+    /**
+     * Check that the file does not live inside the given parent.
+     * @param file Candidate
+     * @param parent Possibly enclosing directory, may be null
+     * @return True when the file is outside the parent
+     */
+    private static boolean outside(final File file,
+        @Nullable final File parent) {
+        boolean answer = true;
+        if (parent != null) {
+            final String head = FilenameUtils.normalize(
+                parent.getAbsolutePath(), true
+            );
+            final String tail = FilenameUtils.normalize(
+                file.getAbsolutePath(), true
+            );
+            if (head != null && tail != null
+                && (tail.equals(head) || tail.startsWith(head.concat("/")))) {
+                answer = false;
+            }
+        }
+        return answer;
     }
 
     /**
