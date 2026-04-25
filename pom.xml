@@ -582,14 +582,6 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-        <configuration>
-          <path>${project.artifactId}</path>
-          <message/>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.revapi</groupId>
         <artifactId>revapi-maven-plugin</artifactId>
         <version>0.15.1</version>
