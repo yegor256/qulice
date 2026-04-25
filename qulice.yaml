@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 396.189585841
-  version: 0.60.1
+  seconds: 529.862220803
+  version: 0.60.2
   what: judges-summary
-  when: 2026-04-23 07:58:12.968558954 Z
+  when: 2026-04-25 07:54:12.670714994 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -22433,20 +22433,6 @@
   total_stars: 315
   what: dimensions-of-terrain
   when: 2026-04-15 07:52:01.353291750 Z
-- _id: 8452
-  _job: 68255
-  _time: 2026-04-15 07:58:27.367722174 Z
-  _version: 0.19.9/0.60.2/0.17.15
-  analyzers: 18
-  text: |-
-    The average number of builds per week (236.2) is decreasing (R=-0.82).
-    The average number of commits per week (6.3) is decreasing (R=-0.31).
-    The average issue cycle time (2w) is increasing (R=0.69).
-    The average pull cycle time (3d19h) is increasing (R=0.27).
-    The average number of releases per month (1.0) is staying still.
-    The average monthly turnover (9.0 developers) is decreasing (R=-0.68).
-  what: assessment
-  when: 2026-04-15 07:58:27.387727803 Z
 - _id: 8457
   _job: 24554163222
   _time: 2026-04-17 07:51:00.214396323 Z
@@ -22460,7 +22446,7 @@
   total_releases_published: 0
   total_reviews_submitted: 0
   what: quantity-of-deliverables
-  when: 2026-04-17 07:51:00.000000000 Z
+  when: &112 2026-04-17 07:51:00.000000000 Z
 - _id: 8459
   _job: 24554163222
   _time: 2026-04-17 07:51:40.841205837 Z
@@ -22602,13 +22588,7 @@
   some_merged_pulls: 0
   some_unmerged_pulls: 0
   what: quality-of-service
-  when: 2026-04-18 07:41:07.000000000 Z
-- _id: 8464
-  _job: 68643
-  _time: 2026-04-18 07:47:35.290197479 Z
-  _version: 0.19.9/0.60.2/0.17.15!0.17.16
-  what: learn-eva
-  when: 2026-04-18 07:47:35.284706109 Z
+  when: &113 2026-04-18 07:41:07.000000000 Z
 - _id: 8465
   _job: 24823577843
   _time: 2026-04-23 07:51:40.328377534 Z
@@ -23627,6 +23607,7 @@
   issue: 1523
   repository: 9580168
   review: 2026-04-02 03:53:01.000000000 Z
+  review_comments: 0
   succeeded_builds: 20
   suggestions: 0
   what: pull-was-merged
@@ -23651,26 +23632,13 @@
   is_human: 1
   issue: 1532
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 1
   suggestions: 0
   what: pull-was-merged
   when: 2026-04-22 14:03:24.000000000 Z
   where: github
   who: 526301
-- _id: 8526
-  _job: 24823577843
-  _time: 2026-04-23 07:53:00.377648029 Z
-  _version: 0.19.9/0.60.1/0.17.15
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 10085559792
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1529
-  min_pull_was_found: 1425
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8527
   _job: 24823577843
   _time: 2026-04-23 07:53:06.791563585 Z
@@ -23705,3 +23673,1899 @@
   when: 2026-04-02 03:53:01.000000000 Z
   where: github
   who: 526301
+- _id: 8529
+  _job: 69006
+  _time: 2026-04-23 07:58:41.020385619 Z
+  _version: 0.19.9/0.60.2/0.17.15!0.17.17
+  analyzers: 18
+  text: |-
+    The average number of builds per week (228.8) is decreasing (R=-0.83).
+    The average number of commits per week (6.1) is decreasing (R=-0.34).
+    The average issue cycle time (2w2d) is increasing (R=0.72).
+    The average pull cycle time (4d8h) is increasing (R=0.31).
+    The average number of releases per month (1.0) is staying still.
+    The average monthly turnover (9.0 developers) is decreasing (R=-0.65).
+  what: assessment
+  when: 2026-04-23 07:58:41.041389399 Z
+- _id: 8530
+  _job: 69006
+  _time: 2026-04-23 07:59:15.930417630 Z
+  _version: 0.19.9/0.60.2/0.17.15!0.17.17
+  what: learn-eva
+  when: 2026-04-23 07:59:15.921795065 Z
+- _id: 8531
+  _job: 69006
+  _time: 2026-04-23 07:59:16.069612315 Z
+  _version: 0.19.9/0.60.2/0.17.15!0.17.17
+  ac: 68
+  cost_of_qod: 1.585172538037535
+  ev: 386
+  pv: 5897
+  qod: 244
+  qod_per_day: 16.981054589608487
+  qod_per_sec: 1.2896405876138669e-05
+  start: *12
+  what: earned-value
+  when: 2026-04-23 07:59:16.069831386 Z
+- _id: 8532
+  _job: 24925992334
+  _time: 2026-04-25 07:45:26.218562568 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: b69007bc6a4c11e5796917e4560055eaf8543170
+  default_branch: master
+  details: 'A new Git push #33319074928 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11027419119
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33319074928
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 06:49:05.000000000 Z
+  where: github
+  who: 526301
+- _id: 8533
+  _job: 24925992334
+  _time: 2026-04-25 07:45:26.693320562 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 424165fe6c21a30028e9136ecc682087201a9606
+  default_branch: master
+  details: 'A new Git push #33315361525 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11023710489
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33315361525
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 03:09:38.000000000 Z
+  where: github
+  who: 526301
+- _id: 8534
+  _job: 24925992334
+  _time: 2026-04-25 07:45:27.028112682 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 8a9f2149a64346699cc5e1f2087d1061c1529077
+  default_branch: master
+  details: 'A new Git push #33314912396 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11023261721
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33314912396
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 02:47:20.000000000 Z
+  where: github
+  who: 526301
+- _id: 8535
+  _job: 24925992334
+  _time: 2026-04-25 07:45:27.298486333 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: fcb0f35ca3eec342462b02fe9f02324128c76eee
+  default_branch: master
+  details: 'A new Git push #33314689059 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11023038470
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33314689059
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 02:34:10.000000000 Z
+  where: github
+  who: 526301
+- _id: 8536
+  _job: 24925992334
+  _time: 2026-04-25 07:45:27.599133964 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 2261830c40fc31969d5552eb2afad6b4a1c80c5b
+  default_branch: master
+  details: 'A new Git push #33314426411 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11022776071
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33314426411
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 02:18:52.000000000 Z
+  where: github
+  who: 526301
+- _id: 8537
+  _job: 24925992334
+  _time: 2026-04-25 07:45:27.878577056 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 2bad8232c3512aca6429e83521848e6d82543572
+  default_branch: master
+  details: 'A new Git push #33314322380 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11022672228
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33314322380
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 02:12:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 8538
+  _job: 24925992334
+  _time: 2026-04-25 07:45:28.197307361 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 903d5dbd314a04d58bbd18cac47f897ebc0b12e2
+  default_branch: master
+  details: 'A new Git push #33313971953 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11022322022
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33313971953
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 01:54:14.000000000 Z
+  where: github
+  who: 526301
+- _id: 8539
+  _job: 24925992334
+  _time: 2026-04-25 07:45:28.495120216 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 4259067ea71a769e3ddb7f8c083ea8bc26eaa466
+  default_branch: master
+  details: 'A new Git push #33313609209 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11021959253
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33313609209
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 01:32:32.000000000 Z
+  where: github
+  who: 526301
+- _id: 8540
+  _job: 24925992334
+  _time: 2026-04-25 07:45:28.805788815 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 98a83935b1d7df9b37f89527895123d9f5840e71
+  default_branch: master
+  details: 'A new Git push #33313341682 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11021691533
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33313341682
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 01:19:43.000000000 Z
+  where: github
+  who: 526301
+- _id: 8541
+  _job: 24925992334
+  _time: 2026-04-25 07:45:29.136605924 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 01d2c17d8d4ec85f3dccd220fd1d2c69313ac729
+  default_branch: master
+  details: 'A new Git push #33302033363 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11010352795
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33302033363
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 18:20:08.000000000 Z
+  where: github
+  who: 526301
+- _id: 8542
+  _job: 24925992334
+  _time: 2026-04-25 07:45:29.457340723 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 1fca1c2ca5f9411787fbc33a8af0a9f4ad93375c
+  default_branch: master
+  details: 'A new Git push #33301945917 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11010264858
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33301945917
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 18:17:31.000000000 Z
+  where: github
+  who: 526301
+- _id: 8543
+  _job: 24925992334
+  _time: 2026-04-25 07:45:29.869252896 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: '038b18b3954e39109343fa721b9bf7fbf392b217'
+  default_branch: master
+  details: 'A new Git push #33301232120 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11009549927
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33301232120
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 17:57:13.000000000 Z
+  where: github
+  who: 526301
+- _id: 8544
+  _job: 24925992334
+  _time: 2026-04-25 07:45:30.162827019 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 61e5736c202ce14a03f15dff92e0336060936c4f
+  default_branch: master
+  details: 'A new Git push #33300480159 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11008797697
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33300480159
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 17:36:50.000000000 Z
+  where: github
+  who: 526301
+- _id: 8545
+  _job: 24925992334
+  _time: 2026-04-25 07:45:30.467125646 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 7a7e020be96b09e0bc5d110ec57d71dd32f89584
+  default_branch: master
+  details: 'A new Git push #33299568717 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11007885803
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33299568717
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 17:09:51.000000000 Z
+  where: github
+  who: 526301
+- _id: 8546
+  _job: 24925992334
+  _time: 2026-04-25 07:45:30.788462624 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 44c2d2ebdd4f02a3783316671069cac16d028914
+  default_branch: master
+  details: 'A new Git push #33298170107 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11006486709
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33298170107
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 16:31:33.000000000 Z
+  where: github
+  who: 526301
+- _id: 8547
+  _job: 24925992334
+  _time: 2026-04-25 07:45:31.093071796 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 7ea4b620c8121f186dd8483cb99d970341ec0311
+  default_branch: master
+  details: 'A new Git push #33298035353 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11006351820
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33298035353
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 16:27:49.000000000 Z
+  where: github
+  who: 526301
+- _id: 8548
+  _job: 24925992334
+  _time: 2026-04-25 07:45:31.440699313 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 8a040bb9ad74c4e431c812d0a9ae4fd0769bf7e0
+  default_branch: master
+  details: 'A new Git push #33297668237 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11005984899
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33297668237
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 16:17:26.000000000 Z
+  where: github
+  who: 526301
+- _id: 8549
+  _job: 24925992334
+  _time: 2026-04-25 07:45:31.728324179 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 62c0962dd88a6b9617964cdbbe9d7212e62b00a2
+  default_branch: master
+  details: 'A new Git push #33296616393 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11004933066
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33296616393
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 15:50:09.000000000 Z
+  where: github
+  who: 526301
+- _id: 8550
+  _job: 24925992334
+  _time: 2026-04-25 07:45:32.036479310 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: b0b924c98d7b9c5efd36e2720b35fd3d543bea84
+  default_branch: master
+  details: 'A new Git push #33296384471 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11004701444
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33296384471
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 15:44:07.000000000 Z
+  where: github
+  who: 526301
+- _id: 8551
+  _job: 24925992334
+  _time: 2026-04-25 07:45:32.354921591 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 70d90783135023bfe7353e92fb78503bef350b56
+  default_branch: master
+  details: 'A new Git push #33294241911 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11002558113
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33294241911
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 14:51:24.000000000 Z
+  where: github
+  who: 526301
+- _id: 8552
+  _job: 24925992334
+  _time: 2026-04-25 07:45:32.702105015 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 72b99167bd089b6f9e7fb2f02c8dfe772c66bbf9
+  default_branch: master
+  details: 'A new Git push #33293907565 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11002223917
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33293907565
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 14:43:15.000000000 Z
+  where: github
+  who: 526301
+- _id: 8553
+  _job: 24925992334
+  _time: 2026-04-25 07:45:33.102139523 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: dad0dacf017360c188780c9e568d8684ce1e9a8c
+  default_branch: master
+  details: 'A new Git push #33292876030 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11001191645
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33292876030
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 14:18:01.000000000 Z
+  where: github
+  who: 526301
+- _id: 8554
+  _job: 24925992334
+  _time: 2026-04-25 07:45:33.430433060 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 880a2ea3bafec5f79cdac1769633cfe4875b8e00
+  default_branch: master
+  details: 'A new Git push #33288011861 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10996326126
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33288011861
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 12:19:21.000000000 Z
+  where: github
+  who: 526301
+- _id: 8555
+  _job: 24925992334
+  _time: 2026-04-25 07:45:33.953548420 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 26a28fbe6d2b44ebf993640412dc70714599776b
+  default_branch: master
+  details: 'A new Git push #33287385064 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10995699563
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33287385064
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 12:03:08.000000000 Z
+  where: github
+  who: 526301
+- _id: 8556
+  _job: 24925992334
+  _time: 2026-04-25 07:45:34.315179272 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 03c89a819ec8596c93fd9b61a19aaf13958db8bc
+  default_branch: master
+  details: 'A new Git push #33286714294 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10995028515
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33286714294
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 11:45:04.000000000 Z
+  where: github
+  who: 526301
+- _id: 8557
+  _job: 24925992334
+  _time: 2026-04-25 07:45:34.735971554 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: c3e1c76a995e8720ddc44274c2c2ed634c0a88d3
+  default_branch: master
+  details: 'A new Git push #33285486361 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10993801401
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33285486361
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 11:10:07.000000000 Z
+  where: github
+  who: 526301
+- _id: 8558
+  _job: 24925992334
+  _time: 2026-04-25 07:45:35.018955068 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: e05f726e1632dc0d490f643ad04a7285cbbb51bd
+  default_branch: master
+  details: 'A new Git push #33284969019 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10993284565
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33284969019
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 10:56:59.000000000 Z
+  where: github
+  who: 526301
+- _id: 8559
+  _job: 24925992334
+  _time: 2026-04-25 07:45:35.322322275 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: f205eaecd7e7298d0387a3422f6981e82feac001
+  default_branch: master
+  details: 'A new Git push #33284620299 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10992935835
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33284620299
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 10:47:04.000000000 Z
+  where: github
+  who: 526301
+- _id: 8560
+  _job: 24925992334
+  _time: 2026-04-25 07:45:35.664489281 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 5dab9320a8830ec64307a301b0219edce82a038e
+  default_branch: master
+  details: 'A new Git push #33284514897 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10992830485
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33284514897
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 10:44:02.000000000 Z
+  where: github
+  who: 526301
+- _id: 8561
+  _job: 24925992334
+  _time: 2026-04-25 07:45:35.957770165 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 528588d8861c6f83bd9d0c5ca3f61013c4a0879c
+  default_branch: master
+  details: 'A new Git push #33284139199 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10992454801
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33284139199
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 10:33:03.000000000 Z
+  where: github
+  who: 526301
+- _id: 8562
+  _job: 24925992334
+  _time: 2026-04-25 07:45:36.313273684 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 79425102387b61fda7778d487f93a90e377ef21d
+  default_branch: master
+  details: 'A new Git push #33283796174 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10992112140
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33283796174
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 10:23:24.000000000 Z
+  where: github
+  who: 526301
+- _id: 8563
+  _job: 24925992334
+  _time: 2026-04-25 07:45:36.589186312 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 4861acaafb75a68a0becb655f11976dbb41394cc
+  default_branch: master
+  details: 'A new Git push #33283793794 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10992109675
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33283793794
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 10:23:20.000000000 Z
+  where: github
+  who: 526301
+- _id: 8564
+  _job: 24925992334
+  _time: 2026-04-25 07:45:36.962754794 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: aeb1366ddacfcec4033ca4e2d122461d9141bb51
+  default_branch: master
+  details: 'A new Git push #33281666248 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10989982350
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33281666248
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 09:26:37.000000000 Z
+  where: github
+  who: 526301
+- _id: 8565
+  _job: 24925992334
+  _time: 2026-04-25 07:45:37.249351405 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 5c631088d662ec76cc03268e2bd2570045f1f206
+  default_branch: master
+  details: 'A new Git push #33281576392 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10989892534
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33281576392
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 09:24:11.000000000 Z
+  where: github
+  who: 526301
+- _id: 8566
+  _job: 24925992334
+  _time: 2026-04-25 07:45:37.653737579 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: d0d89e4a70bf17ed31532ba015015dcf6e1d4b11
+  default_branch: master
+  details: 'A new Git push #33281135928 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10989452179
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33281135928
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 09:12:10.000000000 Z
+  where: github
+  who: 526301
+- _id: 8567
+  _job: 24925992334
+  _time: 2026-04-25 07:45:37.945174306 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 94c2ae8f7e80e36a69a64e0d3ca6cc5f6f234ac0
+  default_branch: master
+  details: 'A new Git push #33280803040 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10989119171
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33280803040
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 09:03:14.000000000 Z
+  where: github
+  who: 526301
+- _id: 8568
+  _job: 24925992334
+  _time: 2026-04-25 07:45:38.255683694 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: d6af5d8310661b0af6d1028443f985ec4a119a53
+  default_branch: master
+  details: 'A new Git push #33280545206 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10988861912
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33280545206
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 08:56:45.000000000 Z
+  where: github
+  who: 526301
+- _id: 8569
+  _job: 24925992334
+  _time: 2026-04-25 07:45:38.587164331 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 1247585159bc4291f5e747144e69c8d8318f4dda
+  default_branch: master
+  details: 'A new Git push #33280483569 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10988800040
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33280483569
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 08:55:05.000000000 Z
+  where: github
+  who: 526301
+- _id: 8570
+  _job: 24925992334
+  _time: 2026-04-25 07:45:38.914238132 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 5a2cdc2340129de1386ce26013655c17a0981338
+  default_branch: master
+  details: 'A new Git push #33279905056 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10988221318
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33279905056
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 08:40:11.000000000 Z
+  where: github
+  who: 526301
+- _id: 8571
+  _job: 24925992334
+  _time: 2026-04-25 07:45:39.228717525 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: fdebc971389c17bab0800e9a0f3bef71c4e32ab6
+  default_branch: master
+  details: 'A new Git push #33278383307 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10986700513
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33278383307
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 07:57:09.000000000 Z
+  where: github
+  who: 526301
+- _id: 8572
+  _job: 24925992334
+  _time: 2026-04-25 07:45:39.536184820 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 13f158bd0345d2591d88efa3c3fb345f743873bc
+  default_branch: master
+  details: 'A new Git push #33278061335 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10986378249
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33278061335
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 07:47:51.000000000 Z
+  where: github
+  who: 526301
+- _id: 8573
+  _job: 24925992334
+  _time: 2026-04-25 07:45:39.867909842 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 2244f4dd1c1e22e060483d60589e0e29b9b67b08
+  default_branch: master
+  details: 'A new Git push #33277741917 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10986058952
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33277741917
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 07:38:23.000000000 Z
+  where: github
+  who: 526301
+- _id: 8574
+  _job: 24925992334
+  _time: 2026-04-25 07:45:40.166185234 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 9f81161f1d5751a607849ffc09b00c5424c56941
+  default_branch: master
+  details: 'A new Git push #33277452434 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10985770032
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33277452434
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 07:29:49.000000000 Z
+  where: github
+  who: 526301
+- _id: 8575
+  _job: 24925992334
+  _time: 2026-04-25 07:45:40.453362343 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 8f9b5728b5246d6dedce52d687864b28db54838d
+  default_branch: master
+  details: 'A new Git push #33276589397 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10984907452
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33276589397
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 07:05:04.000000000 Z
+  where: github
+  who: 526301
+- _id: 8576
+  _job: 24925992334
+  _time: 2026-04-25 07:45:40.774051629 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 2005ba39005ccf43643bfb67add6efde1c744057
+  default_branch: master
+  details: 'A new Git push #33276246051 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10984564218
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33276246051
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 06:55:02.000000000 Z
+  where: github
+  who: 526301
+- _id: 8577
+  _job: 24925992334
+  _time: 2026-04-25 07:45:41.075075134 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 71465d0f8399d72f4ea0d3ee9d1fb1e76ec4aaaf
+  default_branch: master
+  details: 'A new Git push #33275778959 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10984097546
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33275778959
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 06:39:53.000000000 Z
+  where: github
+  who: 526301
+- _id: 8578
+  _job: 24925992334
+  _time: 2026-04-25 07:45:41.358251403 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: a88b236b3b358bc10495293aeb426d528b42664d
+  default_branch: master
+  details: 'A new Git push #33275255896 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10983574946
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33275255896
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 06:22:16.000000000 Z
+  where: github
+  who: 526301
+- _id: 8579
+  _job: 24925992334
+  _time: 2026-04-25 07:45:41.654465533 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 83775a18f3165d839afd391ec9de36fd16d1430b
+  default_branch: master
+  details: 'A new Git push #33274876351 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10983195960
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33274876351
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-24 06:09:09.000000000 Z
+  where: github
+  who: 526301
+- _id: 8580
+  _job: 24925992334
+  _time: 2026-04-25 07:45:42.185516011 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 3bf7c54201794f11792dcd7065b59e2730496cb9
+  default_branch: master
+  details: 'A new Git push #33252575557 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10960877339
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33252575557
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-23 17:05:22.000000000 Z
+  where: github
+  who: 526301
+- _id: 8581
+  _job: 24925992334
+  _time: 2026-04-25 07:45:42.470040330 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 40f26d5b3d77876944770d96c73b6dd8b12f7ee0
+  default_branch: master
+  details: 'A new Git push #33251304258 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10959606021
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33251304258
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-23 16:29:47.000000000 Z
+  where: github
+  who: 526301
+- _id: 8582
+  _job: 24925992334
+  _time: 2026-04-25 07:45:42.770955824 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: fa67b63dbf5afb7ee551e2911c1ad08dbb6a5e04
+  default_branch: master
+  details: 'A new Git push #33249737392 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10958038990
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33249737392
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-23 15:48:33.000000000 Z
+  where: github
+  who: 526301
+- _id: 8583
+  _job: 24925992334
+  _time: 2026-04-25 07:45:43.482173902 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 3935999e841248b95ba2f71e700b4deb433d4c43
+  default_branch: master
+  details: 'A new Git push #33249048449 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10957349870
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33249048449
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-23 15:31:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 8584
+  _job: 24925992334
+  _time: 2026-04-25 07:45:43.771152556 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 76b69b3f853f6ffa79ff410a6495aeef8b2b7900
+  default_branch: master
+  details: 'A new Git push #33247728264 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10956026973
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33247728264
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-23 15:00:41.000000000 Z
+  where: github
+  who: 526301
+- _id: 8585
+  _job: 24925992334
+  _time: 2026-04-25 07:45:44.580194854 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 14bc38207b3b00a421ec86ea702a98032857c9de
+  default_branch: master
+  details: 'A new Git push #33245139682 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 10953431911
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33245139682
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-23 14:01:09.000000000 Z
+  where: github
+  who: 526301
+- _id: 8587
+  _job: 24925992334
+  _time: 2026-04-25 07:45:47.949944651 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  since: *112
+  total_builds_ran: 1932
+  total_commits_pushed: 132
+  total_hoc_committed: 22343
+  total_issues_created: 25
+  total_pulls_submitted: 22
+  total_releases_published: 1
+  total_reviews_submitted: 7
+  what: quantity-of-deliverables
+  when: 2026-04-25 07:45:47.000000000 Z
+- _id: 8588
+  _job: 24925992334
+  _time: 2026-04-25 07:46:02.242899298 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1315 has been "issue-was-closed".
+  is_human: 1
+  issue: 1315
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:47.000000000 Z
+  where: github
+  who: 526301
+- _id: 8589
+  _job: 24925992334
+  _time: 2026-04-25 07:46:03.082962960 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1326 has been "issue-was-closed".
+  is_human: 1
+  issue: 1326
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:45.000000000 Z
+  where: github
+  who: 526301
+- _id: 8590
+  _job: 24925992334
+  _time: 2026-04-25 07:46:03.897282706 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1328 has been "issue-was-closed".
+  is_human: 1
+  issue: 1328
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 15:31:56.000000000 Z
+  where: github
+  who: 526301
+- _id: 8591
+  _job: 24925992334
+  _time: 2026-04-25 07:46:04.695527596 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1335 has been "issue-was-closed".
+  is_human: 1
+  issue: 1335
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-24 16:33:37.000000000 Z
+  where: github
+  who: 526301
+- _id: 8592
+  _job: 24925992334
+  _time: 2026-04-25 07:46:06.500455892 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1360 has been "issue-was-closed".
+  is_human: 1
+  issue: 1360
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 14:14:43.000000000 Z
+  where: github
+  who: 526301
+- _id: 8593
+  _job: 24925992334
+  _time: 2026-04-25 07:46:07.330979483 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1386 has been "issue-was-closed".
+  is_human: 1
+  issue: 1386
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:43.000000000 Z
+  where: github
+  who: 526301
+- _id: 8594
+  _job: 24925992334
+  _time: 2026-04-25 07:46:08.264635463 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1509 has been "issue-was-closed".
+  is_human: 1
+  issue: 1509
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:42.000000000 Z
+  where: github
+  who: 526301
+- _id: 8595
+  _job: 24925992334
+  _time: 2026-04-25 07:46:09.097048164 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1515 has been "issue-was-closed".
+  is_human: 1
+  issue: 1515
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:40.000000000 Z
+  where: github
+  who: 526301
+- _id: 8596
+  _job: 24925992334
+  _time: 2026-04-25 07:46:09.688712065 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1516 has been "issue-was-closed".
+  is_human: 1
+  issue: 1516
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:38.000000000 Z
+  where: github
+  who: 526301
+- _id: 8597
+  _job: 24925992334
+  _time: 2026-04-25 07:46:10.439656104 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1517 has been "issue-was-closed".
+  is_human: 1
+  issue: 1517
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:36.000000000 Z
+  where: github
+  who: 526301
+- _id: 8598
+  _job: 24925992334
+  _time: 2026-04-25 07:46:11.208083079 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1519 has been "issue-was-closed".
+  is_human: 1
+  issue: 1519
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:34.000000000 Z
+  where: github
+  who: 526301
+- _id: 8599
+  _job: 24925992334
+  _time: 2026-04-25 07:46:11.880846072 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1520 has been "issue-was-closed".
+  is_human: 1
+  issue: 1520
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:32.000000000 Z
+  where: github
+  who: 526301
+- _id: 8600
+  _job: 24925992334
+  _time: 2026-04-25 07:46:12.544742242 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1524 has been "issue-was-closed".
+  is_human: 1
+  issue: 1524
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:30.000000000 Z
+  where: github
+  who: 526301
+- _id: 8601
+  _job: 24925992334
+  _time: 2026-04-25 07:46:13.207837434 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1525 has been "issue-was-closed".
+  is_human: 1
+  issue: 1525
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:29.000000000 Z
+  where: github
+  who: 526301
+- _id: 8602
+  _job: 24925992334
+  _time: 2026-04-25 07:46:14.014892471 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1527 has been "issue-was-closed".
+  is_human: 1
+  issue: 1527
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-23 10:10:27.000000000 Z
+  where: github
+  who: 526301
+- _id: 8603
+  _job: 24925992334
+  _time: 2026-04-25 07:46:34.751666378 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/org.apache.maven.reporting-maven-reporting-exec-2.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1412 has been "pull-was-closed".
+  failed_builds: 13
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1412
+  repository: 9580168
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-04-23 07:59:10.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8604
+  _job: 24925992334
+  _time: 2026-04-25 07:46:47.270452791 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.qulice-qulice-maven-plugin-0.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1487 has been "pull-was-closed".
+  failed_builds: 12
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1487
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-04-24 14:52:22.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8605
+  _job: 24925992334
+  _time: 2026-04-25 07:47:00.257126495 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/maven-net.sourceforge.pmd-pmd-core-vulnerability
+  comments: 2
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 2
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1526 has been "pull-was-closed".
+  failed_builds: 13
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1526
+  repository: 9580168
+  review: 2026-04-02 03:52:57.000000000 Z
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-04-23 07:59:04.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8606
+  _job: 24925992334
+  _time: 2026-04-25 07:47:12.324746447 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/org.apache.maven-maven-artifact-3.x
+  comments: 2
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 2
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1528 has been "pull-was-closed".
+  failed_builds: 13
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1528
+  repository: 9580168
+  review: 2026-04-02 03:52:54.000000000 Z
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-04-23 07:59:06.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8607
+  _job: 24925992334
+  _time: 2026-04-25 07:47:25.301297204 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/org.apache.maven-maven-core-3.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1530 has been "pull-was-closed".
+  failed_builds: 13
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1530
+  repository: 9580168
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-04-23 07:59:08.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8608
+  _job: 24925992334
+  _time: 2026-04-25 07:47:36.948473459 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 8781185554
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1529
+  min_pull_was_found: 1426
+  repository: 9580168
+  what: iterate
+  where: github
+- _id: 8609
+  _job: 24925992334
+  _time: 2026-04-25 07:47:43.588996630 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  total_active_contributors: 5
+  total_commits: 2453
+  total_contributors: 55
+  total_files: 635
+  total_forks: 119
+  total_issues: 858
+  total_pulls: 698
+  total_releases: 79
+  total_repositories: 1
+  total_stars: 315
+  what: dimensions-of-terrain
+  when: 2026-04-25 07:47:43.600149542 Z
+- _id: 8610
+  _job: 24925992334
+  _time: 2026-04-25 07:50:10.862248718 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  author: 29139614
+  comments: 2
+  details: The pull request yegor256/qulice#1526 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 746h49m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1526
+  repository: 9580168
+  review_comments: 0
+  seconds: 2688571
+  what: code-was-reviewed
+  when: 2026-04-02 03:52:57.000000000 Z
+  where: github
+  who: 526301
+- _id: 8611
+  _job: 24925992334
+  _time: 2026-04-25 07:50:12.661037860 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  author: 29139614
+  comments: 2
+  details: The pull request yegor256/qulice#1528 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 637h2m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1528
+  repository: 9580168
+  review_comments: 0
+  seconds: 2293354
+  what: code-was-reviewed
+  when: 2026-04-02 03:52:54.000000000 Z
+  where: github
+  who: 526301
+- _id: 8612
+  _job: 24925992334
+  _time: 2026-04-25 07:50:13.927470018 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  since: *113
+  some_backlog_size:
+  - 163
+  - 163
+  - 164
+  - 164
+  - 116
+  - 90
+  - 39
+  some_build_duration:
+  - 6
+  - 7
+  - 7
+  - 10
+  - 7
+  - 7
+  - 7
+  - 10
+  - 10
+  - 11
+  - 12
+  - 22
+  - 29
+  - 62
+  - 174
+  - 7
+  - 7
+  - 9
+  - 9
+  - 9
+  - 10
+  - 15
+  - 21
+  - 28
+  - 66
+  - 149
+  - 7
+  - 8
+  - 9
+  - 10
+  - 12
+  - 14
+  - 15
+  - 23
+  - 27
+  - 58
+  - 150
+  - 7
+  - 7
+  - 9
+  - 10
+  - 12
+  - 14
+  - 14
+  - 22
+  - 28
+  - 64
+  - 150
+  - 6
+  - 7
+  - 7
+  - 8
+  - 11
+  - 14
+  - 16
+  - 22
+  - 28
+  - 62
+  - 331
+  - 0
+  some_build_mttr: 16370
+  some_build_success_rate:
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  some_issue_lifetime:
+  - 796.0
+  - 97682.0
+  - 158618.0
+  - 4398388.0
+  - 4543553.0
+  - 4546526.0
+  - 4590044.0
+  - 4751425.0
+  - 4752140.0
+  - 4915457.0
+  - 4919463.0
+  - 4924355.0
+  - 5534601.0
+  - 17910727.0
+  - 26186216.0
+  - 29804891.0
+  - 29605106.0
+  - 29730035.0
+  - 31625301.0
+  - 34651158.0
+  - 35239384.0
+  - 38256803.0
+  - 38947614.0
+  - 58752028.0
+  - 62476868.0
+  - 71499184.0
+  - 112376313.0
+  - 117507695.0
+  - 129005127.0
+  - 176404749.0
+  - 182897659.0
+  - 183782160.0
+  - 195234726.0
+  - 201037035.0
+  - 205461264.0
+  - 206812991.0
+  - 217454158.0
+  - 220005491.0
+  - 220005243.0
+  - 227261378.0
+  - 228529400.0
+  - 230782864.0
+  - 232142774.0
+  - 232878074.0
+  - 234152733.0
+  - 234296930.0
+  - 239197740.0
+  - 243523777.0
+  - 250872593.0
+  - 253166510.0
+  - 257756510.0
+  - 260113411.0
+  - 260146466.0
+  - 270529010.0
+  - 274859077.0
+  - 282108094.0
+  - 282360783.0
+  - 282360793.0
+  - 282360819.0
+  - 282360807.0
+  - 282360869.0
+  - 282360990.0
+  - 282576982.0
+  - 282360886.0
+  - 282360898.0
+  - 293567655.0
+  - 293567663.0
+  - 304444538.0
+  - 304473814.0
+  - 306710477.0
+  - 306804755.0
+  - 308426533.0
+  - 310115008.0
+  - 310897564.0
+  - 311368919.0
+  - 312421945.0
+  - 312998604.0
+  - 313191961.0
+  - 313447634.0
+  - 315650396.0
+  - 317125990.0
+  - 318656995.0
+  - 319467891.0
+  - 319710322.0
+  - 320366364.0
+  - 320265589.0
+  - 320747306.0
+  - 320844670.0
+  - 320688023.0
+  - 320760289.0
+  - 320763120.0
+  - 321133705.0
+  - 321344290.0
+  - 321361337.0
+  - 321208284.0
+  - 321211931.0
+  - 321406778.0
+  - 321593034.0
+  - 321651287.0
+  - 321580784.0
+  - 322016599.0
+  - 322318941.0
+  - 322388554.0
+  - 322401497.0
+  - 322475368.0
+  - 322405436.0
+  - 322813390.0
+  - 322902106.0
+  - 322887522.0
+  - 322942834.0
+  - 322933322.0
+  - 322952832.0
+  - 322988899.0
+  - 323247022.0
+  - 323272837.0
+  - 323345847.0
+  - 323541090.0
+  - 323834013.0
+  - 323861600.0
+  - 323862942.0
+  - 324152544.0
+  - 325291640.0
+  - 325425270.0
+  - 325470063.0
+  - 325709539.0
+  - 325766716.0
+  - 326024103.0
+  - 326121321.0
+  - 326291600.0
+  - 326292526.0
+  - 326648519.0
+  - 326899968.0
+  - 327097394.0
+  - 327154629.0
+  - 327297258.0
+  - 330516831.0
+  - 349616078.0
+  - 352722176.0
+  - 352760623.0
+  - 354627820.0
+  - 355791337.0
+  - 355874323.0
+  - 358729876.0
+  - 360538498.0
+  - 366861933.0
+  - 410296190.0
+  - 410297997.0
+  some_merged_pulls: 23
+  some_pull_files_size:
+  - 3
+  - 3
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 2
+  - 1
+  - 1
+  - 5
+  - 6
+  - 1
+  - 1
+  some_pull_hoc_size:
+  - 6
+  - 39
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 56
+  - 2
+  - 2
+  - 163
+  - 61
+  - 2
+  - 2
+  some_pull_lifetime:
+  - 3766.0
+  - 413.0
+  - 502.0
+  - 1396.0
+  - 1413.0
+  - 1708.0
+  - 3541.0
+  - 5108.0
+  - 8141.0
+  - 62891.0
+  - 21.0
+  - 67153.0
+  - 147.0
+  - 2306.0
+  - 2457.0
+  - 8.0
+  - 1667163.0
+  - 2353804.0
+  - 4122526.0
+  - 4517738.0
+  - 4649383.0
+  - 8018317.0
+  - 15692796.0
+  some_review_size:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  some_review_time:
+  - 256
+  - 832
+  - 3856
+  - 62567
+  - 2197
+  - -170
+  - 1759428
+  some_reviewers_per_pull:
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 1
+  - 1
+  - 0
+  - 1
+  some_reviews_per_pull:
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 1
+  - 1
+  - 0
+  - 1
+  some_unmerged_pulls: 8
+  what: quality-of-service
+  when: 2026-04-25 07:50:13.000000000 Z

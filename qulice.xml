@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.6" size="390066">
+<fb version="0.19.6" size="425405">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">396.189585841</seconds>
-    <version t="S">0.60.1</version>
+    <seconds t="F">529.862220803</seconds>
+    <version t="S">0.60.2</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-04-23T07:58:12Z</when>
+    <when t="T">2026-04-25T07:54:12Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -24533,21 +24533,6 @@
     <when t="T">2026-04-15T07:52:01Z</when>
   </f>
   <f>
-    <_id t="I">8452</_id>
-    <_job t="I">68255</_job>
-    <_time t="T">2026-04-15T07:58:27Z</_time>
-    <_version t="S">0.19.9/0.60.2/0.17.15</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (236.2) is decreasing (R=-0.82).
-The average number of commits per week (6.3) is decreasing (R=-0.31).
-The average issue cycle time (2w) is increasing (R=0.69).
-The average pull cycle time (3d19h) is increasing (R=0.27).
-The average number of releases per month (1.0) is staying still.
-The average monthly turnover (9.0 developers) is decreasing (R=-0.68).</text>
-    <what t="S">assessment</what>
-    <when t="T">2026-04-15T07:58:27Z</when>
-  </f>
-  <f>
     <_id t="I">8457</_id>
     <_job t="I">24554163222</_job>
     <_time t="T">2026-04-17T07:51:00Z</_time>
@@ -24712,14 +24697,6 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.68).</text>
     <some_unmerged_pulls t="I">0</some_unmerged_pulls>
     <what t="S">quality-of-service</what>
     <when t="T">2026-04-18T07:41:07Z</when>
-  </f>
-  <f>
-    <_id t="I">8464</_id>
-    <_job t="I">68643</_job>
-    <_time t="T">2026-04-18T07:47:35Z</_time>
-    <_version t="S">0.19.9/0.60.2/0.17.15!0.17.16</_version>
-    <what t="S">learn-eva</what>
-    <when t="T">2026-04-18T07:47:35Z</when>
   </f>
   <f>
     <_id t="I">8465</_id>
@@ -25820,6 +25797,7 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.68).</text>
     <issue t="I">1523</issue>
     <repository t="I">9580168</repository>
     <review t="T">2026-04-02T03:53:01Z</review>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">20</succeeded_builds>
     <suggestions t="I">0</suggestions>
     <what t="S">pull-was-merged</what>
@@ -25846,28 +25824,13 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.68).</text>
     <is_human t="I">1</is_human>
     <issue t="I">1532</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">1</succeeded_builds>
     <suggestions t="I">0</suggestions>
     <what t="S">pull-was-merged</what>
     <when t="T">2026-04-22T14:03:24Z</when>
     <where t="S">github</where>
     <who t="I">526301</who>
-  </f>
-  <f>
-    <_id t="I">8526</_id>
-    <_job t="I">24823577843</_job>
-    <_time t="T">2026-04-23T07:53:00Z</_time>
-    <_version t="S">0.19.9/0.60.1/0.17.15</_version>
-    <assignees_were_scanned t="I">0</assignees_were_scanned>
-    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">10085559792</events_were_scanned>
-    <latest_issue_was_found t="I">1386</latest_issue_was_found>
-    <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1529</min_issue_was_found>
-    <min_pull_was_found t="I">1425</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
   </f>
   <f>
     <_id t="I">8527</_id>
@@ -25905,5 +25868,2021 @@ The average monthly turnover (9.0 developers) is decreasing (R=-0.68).</text>
     <when t="T">2026-04-02T03:53:01Z</when>
     <where t="S">github</where>
     <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8529</_id>
+    <_job t="I">69006</_job>
+    <_time t="T">2026-04-23T07:58:41Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.15!0.17.17</_version>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (228.8) is decreasing (R=-0.83).
+The average number of commits per week (6.1) is decreasing (R=-0.34).
+The average issue cycle time (2w2d) is increasing (R=0.72).
+The average pull cycle time (4d8h) is increasing (R=0.31).
+The average number of releases per month (1.0) is staying still.
+The average monthly turnover (9.0 developers) is decreasing (R=-0.65).</text>
+    <what t="S">assessment</what>
+    <when t="T">2026-04-23T07:58:41Z</when>
+  </f>
+  <f>
+    <_id t="I">8530</_id>
+    <_job t="I">69006</_job>
+    <_time t="T">2026-04-23T07:59:15Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.15!0.17.17</_version>
+    <what t="S">learn-eva</what>
+    <when t="T">2026-04-23T07:59:15Z</when>
+  </f>
+  <f>
+    <_id t="I">8531</_id>
+    <_job t="I">69006</_job>
+    <_time t="T">2026-04-23T07:59:16Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.15!0.17.17</_version>
+    <ac t="I">68</ac>
+    <cost_of_qod t="F">1.585172538037535</cost_of_qod>
+    <ev t="I">386</ev>
+    <pv t="I">5897</pv>
+    <qod t="I">244</qod>
+    <qod_per_day t="F">16.981054589608487</qod_per_day>
+    <qod_per_sec t="F">1.2896405876138669e-05</qod_per_sec>
+    <start t="T">2025-09-16T05:20:41Z</start>
+    <what t="S">earned-value</what>
+    <when t="T">2026-04-23T07:59:16Z</when>
+  </f>
+  <f>
+    <_id t="I">8532</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:26Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">b69007bc6a4c11e5796917e4560055eaf8543170</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33319074928 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11027419119</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33319074928</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-25T06:49:05Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8533</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:26Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">424165fe6c21a30028e9136ecc682087201a9606</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33315361525 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11023710489</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33315361525</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-25T03:09:38Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8534</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:27Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">8a9f2149a64346699cc5e1f2087d1061c1529077</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33314912396 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11023261721</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33314912396</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-25T02:47:20Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8535</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:27Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">fcb0f35ca3eec342462b02fe9f02324128c76eee</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33314689059 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11023038470</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33314689059</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-25T02:34:10Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8536</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:27Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">2261830c40fc31969d5552eb2afad6b4a1c80c5b</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33314426411 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11022776071</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33314426411</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-25T02:18:52Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8537</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:27Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">2bad8232c3512aca6429e83521848e6d82543572</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33314322380 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11022672228</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33314322380</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-25T02:12:39Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8538</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:28Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">903d5dbd314a04d58bbd18cac47f897ebc0b12e2</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33313971953 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11022322022</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33313971953</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-25T01:54:14Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8539</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:28Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">4259067ea71a769e3ddb7f8c083ea8bc26eaa466</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33313609209 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11021959253</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33313609209</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-25T01:32:32Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8540</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:28Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">98a83935b1d7df9b37f89527895123d9f5840e71</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33313341682 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11021691533</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33313341682</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-25T01:19:43Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8541</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:29Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">01d2c17d8d4ec85f3dccd220fd1d2c69313ac729</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33302033363 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11010352795</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33302033363</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T18:20:08Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8542</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:29Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">1fca1c2ca5f9411787fbc33a8af0a9f4ad93375c</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33301945917 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11010264858</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33301945917</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T18:17:31Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8543</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:29Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">038b18b3954e39109343fa721b9bf7fbf392b217</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33301232120 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11009549927</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33301232120</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T17:57:13Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8544</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:30Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">61e5736c202ce14a03f15dff92e0336060936c4f</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33300480159 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11008797697</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33300480159</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T17:36:50Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8545</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:30Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">7a7e020be96b09e0bc5d110ec57d71dd32f89584</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33299568717 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11007885803</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33299568717</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T17:09:51Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8546</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:30Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">44c2d2ebdd4f02a3783316671069cac16d028914</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33298170107 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11006486709</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33298170107</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T16:31:33Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8547</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:31Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">7ea4b620c8121f186dd8483cb99d970341ec0311</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33298035353 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11006351820</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33298035353</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T16:27:49Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8548</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:31Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">8a040bb9ad74c4e431c812d0a9ae4fd0769bf7e0</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33297668237 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11005984899</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33297668237</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T16:17:26Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8549</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:31Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">62c0962dd88a6b9617964cdbbe9d7212e62b00a2</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33296616393 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11004933066</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33296616393</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T15:50:09Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8550</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:32Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">b0b924c98d7b9c5efd36e2720b35fd3d543bea84</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33296384471 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11004701444</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33296384471</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T15:44:07Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8551</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:32Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">70d90783135023bfe7353e92fb78503bef350b56</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33294241911 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11002558113</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33294241911</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T14:51:24Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8552</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:32Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">72b99167bd089b6f9e7fb2f02c8dfe772c66bbf9</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33293907565 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11002223917</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33293907565</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T14:43:15Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8553</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:33Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">dad0dacf017360c188780c9e568d8684ce1e9a8c</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33292876030 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">11001191645</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33292876030</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T14:18:01Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8554</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:33Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">880a2ea3bafec5f79cdac1769633cfe4875b8e00</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33288011861 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10996326126</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33288011861</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T12:19:21Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8555</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:33Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">26a28fbe6d2b44ebf993640412dc70714599776b</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33287385064 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10995699563</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33287385064</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T12:03:08Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8556</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:34Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">03c89a819ec8596c93fd9b61a19aaf13958db8bc</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33286714294 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10995028515</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33286714294</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T11:45:04Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8557</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:34Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">c3e1c76a995e8720ddc44274c2c2ed634c0a88d3</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33285486361 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10993801401</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33285486361</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T11:10:07Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8558</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:35Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">e05f726e1632dc0d490f643ad04a7285cbbb51bd</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33284969019 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10993284565</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33284969019</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T10:56:59Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8559</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:35Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">f205eaecd7e7298d0387a3422f6981e82feac001</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33284620299 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10992935835</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33284620299</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T10:47:04Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8560</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:35Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">5dab9320a8830ec64307a301b0219edce82a038e</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33284514897 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10992830485</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33284514897</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T10:44:02Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8561</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:35Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">528588d8861c6f83bd9d0c5ca3f61013c4a0879c</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33284139199 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10992454801</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33284139199</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T10:33:03Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8562</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:36Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">79425102387b61fda7778d487f93a90e377ef21d</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33283796174 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10992112140</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33283796174</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T10:23:24Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8563</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:36Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">4861acaafb75a68a0becb655f11976dbb41394cc</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33283793794 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10992109675</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33283793794</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T10:23:20Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8564</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:36Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">aeb1366ddacfcec4033ca4e2d122461d9141bb51</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33281666248 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10989982350</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33281666248</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T09:26:37Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8565</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:37Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">5c631088d662ec76cc03268e2bd2570045f1f206</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33281576392 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10989892534</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33281576392</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T09:24:11Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8566</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:37Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">d0d89e4a70bf17ed31532ba015015dcf6e1d4b11</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33281135928 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10989452179</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33281135928</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T09:12:10Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8567</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:37Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">94c2ae8f7e80e36a69a64e0d3ca6cc5f6f234ac0</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33280803040 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10989119171</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33280803040</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T09:03:14Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8568</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:38Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">d6af5d8310661b0af6d1028443f985ec4a119a53</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33280545206 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10988861912</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33280545206</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T08:56:45Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8569</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:38Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">1247585159bc4291f5e747144e69c8d8318f4dda</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33280483569 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10988800040</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33280483569</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T08:55:05Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8570</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:38Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">5a2cdc2340129de1386ce26013655c17a0981338</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33279905056 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10988221318</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33279905056</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T08:40:11Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8571</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:39Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">fdebc971389c17bab0800e9a0f3bef71c4e32ab6</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33278383307 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10986700513</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33278383307</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T07:57:09Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8572</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:39Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">13f158bd0345d2591d88efa3c3fb345f743873bc</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33278061335 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10986378249</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33278061335</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T07:47:51Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8573</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:39Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">2244f4dd1c1e22e060483d60589e0e29b9b67b08</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33277741917 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10986058952</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33277741917</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T07:38:23Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8574</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:40Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">9f81161f1d5751a607849ffc09b00c5424c56941</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33277452434 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10985770032</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33277452434</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T07:29:49Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8575</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:40Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">8f9b5728b5246d6dedce52d687864b28db54838d</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33276589397 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10984907452</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33276589397</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T07:05:04Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8576</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:40Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">2005ba39005ccf43643bfb67add6efde1c744057</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33276246051 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10984564218</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33276246051</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T06:55:02Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8577</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:41Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">71465d0f8399d72f4ea0d3ee9d1fb1e76ec4aaaf</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33275778959 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10984097546</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33275778959</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T06:39:53Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8578</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:41Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">a88b236b3b358bc10495293aeb426d528b42664d</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33275255896 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10983574946</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33275255896</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T06:22:16Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8579</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:41Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">83775a18f3165d839afd391ec9de36fd16d1430b</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33274876351 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10983195960</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33274876351</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-24T06:09:09Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8580</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:42Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">3bf7c54201794f11792dcd7065b59e2730496cb9</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33252575557 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10960877339</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33252575557</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-23T17:05:22Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8581</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:42Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">40f26d5b3d77876944770d96c73b6dd8b12f7ee0</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33251304258 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10959606021</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33251304258</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-23T16:29:47Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8582</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:42Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">fa67b63dbf5afb7ee551e2911c1ad08dbb6a5e04</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33249737392 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10958038990</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33249737392</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-23T15:48:33Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8583</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:43Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">3935999e841248b95ba2f71e700b4deb433d4c43</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33249048449 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10957349870</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33249048449</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-23T15:31:39Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8584</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:43Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">76b69b3f853f6ffa79ff410a6495aeef8b2b7900</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33247728264 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10956026973</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33247728264</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-23T15:00:41Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8585</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:44Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <by_owner t="I">1</by_owner>
+    <commit t="S">14bc38207b3b00a421ec86ea702a98032857c9de</commit>
+    <default_branch t="S">master</default_branch>
+    <details t="S">A new Git push #33245139682 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
+    <event_id t="I">10953431911</event_id>
+    <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
+    <push_id t="I">33245139682</push_id>
+    <ref t="S">refs/heads/master</ref>
+    <repository t="I">9580168</repository>
+    <to_master t="I">1</to_master>
+    <what t="S">git-was-pushed</what>
+    <when t="T">2026-04-23T14:01:09Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8587</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:45:47Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <since t="T">2026-04-17T07:51:00Z</since>
+    <total_builds_ran t="I">1932</total_builds_ran>
+    <total_commits_pushed t="I">132</total_commits_pushed>
+    <total_hoc_committed t="I">22343</total_hoc_committed>
+    <total_issues_created t="I">25</total_issues_created>
+    <total_pulls_submitted t="I">22</total_pulls_submitted>
+    <total_releases_published t="I">1</total_releases_published>
+    <total_reviews_submitted t="I">7</total_reviews_submitted>
+    <what t="S">quantity-of-deliverables</what>
+    <when t="T">2026-04-25T07:45:47Z</when>
+  </f>
+  <f>
+    <_id t="I">8588</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:02Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1315 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1315</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:47Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8589</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:03Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1326 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1326</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:45Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8590</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:03Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1328 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1328</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T15:31:56Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8591</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:04Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1335 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1335</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-24T16:33:37Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8592</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:06Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1360 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1360</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T14:14:43Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8593</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:07Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1386 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1386</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:43Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8594</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:08Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1509 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1509</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:42Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8595</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:09Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1515 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1515</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:40Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8596</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:09Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1516 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1516</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:38Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8597</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:10Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1517 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1517</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:36Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8598</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:11Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1519 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1519</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:34Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8599</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:11Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1520 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1520</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:32Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8600</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:12Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1524 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1524</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:30Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8601</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:13Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1525 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1525</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:29Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8602</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:14Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#1527 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">1527</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-23T10:10:27Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8603</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:34Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">renovate/org.apache.maven.reporting-maven-reporting-exec-2.x</branch>
+    <comments t="I">0</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1412 has been "pull-was-closed".</details>
+    <failed_builds t="I">13</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1412</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">7</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2026-04-23T07:59:10Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8604</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:46:47Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">renovate/com.qulice-qulice-maven-plugin-0.x</branch>
+    <comments t="I">0</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1487 has been "pull-was-closed".</details>
+    <failed_builds t="I">12</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1487</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">8</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2026-04-24T14:52:22Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8605</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:47:00Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">renovate/maven-net.sourceforge.pmd-pmd-core-vulnerability</branch>
+    <comments t="I">2</comments>
+    <comments_appreciated t="I">1</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">2</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1526 has been "pull-was-closed".</details>
+    <failed_builds t="I">13</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1526</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-04-02T03:52:57Z</review>
+    <succeeded_builds t="I">7</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2026-04-23T07:59:04Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8606</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:47:12Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">renovate/org.apache.maven-maven-artifact-3.x</branch>
+    <comments t="I">2</comments>
+    <comments_appreciated t="I">1</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">2</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1528 has been "pull-was-closed".</details>
+    <failed_builds t="I">13</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1528</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-04-02T03:52:54Z</review>
+    <succeeded_builds t="I">7</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2026-04-23T07:59:06Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8607</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:47:25Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">renovate/org.apache.maven-maven-core-3.x</branch>
+    <comments t="I">0</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1530 has been "pull-was-closed".</details>
+    <failed_builds t="I">13</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1530</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">7</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-closed</what>
+    <when t="T">2026-04-23T07:59:08Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">8608</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:47:36Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <assignees_were_scanned t="I">0</assignees_were_scanned>
+    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
+    <events_were_scanned t="I">8781185554</events_were_scanned>
+    <latest_issue_was_found t="I">1386</latest_issue_was_found>
+    <merges_were_scanned t="I">0</merges_were_scanned>
+    <min_issue_was_found t="I">1529</min_issue_was_found>
+    <min_pull_was_found t="I">1426</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
+  </f>
+  <f>
+    <_id t="I">8609</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:47:43Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <total_active_contributors t="I">5</total_active_contributors>
+    <total_commits t="I">2453</total_commits>
+    <total_contributors t="I">55</total_contributors>
+    <total_files t="I">635</total_files>
+    <total_forks t="I">119</total_forks>
+    <total_issues t="I">858</total_issues>
+    <total_pulls t="I">698</total_pulls>
+    <total_releases t="I">79</total_releases>
+    <total_repositories t="I">1</total_repositories>
+    <total_stars t="I">315</total_stars>
+    <what t="S">dimensions-of-terrain</what>
+    <when t="T">2026-04-25T07:47:43Z</when>
+  </f>
+  <f>
+    <_id t="I">8610</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:50:10Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <author t="I">29139614</author>
+    <comments t="I">2</comments>
+    <details t="S">The pull request yegor256/qulice#1526 with 2 HoC created by @renovate[bot] was reviewed by @yegor256 after 746h49m and 0 comments.</details>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1526</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">2688571</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-04-02T03:52:57Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8611</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:50:12Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <author t="I">29139614</author>
+    <comments t="I">2</comments>
+    <details t="S">The pull request yegor256/qulice#1528 with 2 HoC created by @renovate[bot] was reviewed by @yegor256 after 637h2m and 0 comments.</details>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1528</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">2293354</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-04-02T03:52:54Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">8612</_id>
+    <_job t="I">24925992334</_job>
+    <_time t="T">2026-04-25T07:50:13Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <since t="T">2026-04-18T07:41:07Z</since>
+    <some_backlog_size>
+      <v t="I">163</v>
+      <v t="I">163</v>
+      <v t="I">164</v>
+      <v t="I">164</v>
+      <v t="I">116</v>
+      <v t="I">90</v>
+      <v t="I">39</v>
+    </some_backlog_size>
+    <some_build_duration>
+      <v t="I">6</v>
+      <v t="I">7</v>
+      <v t="I">7</v>
+      <v t="I">10</v>
+      <v t="I">7</v>
+      <v t="I">7</v>
+      <v t="I">7</v>
+      <v t="I">10</v>
+      <v t="I">10</v>
+      <v t="I">11</v>
+      <v t="I">12</v>
+      <v t="I">22</v>
+      <v t="I">29</v>
+      <v t="I">62</v>
+      <v t="I">174</v>
+      <v t="I">7</v>
+      <v t="I">7</v>
+      <v t="I">9</v>
+      <v t="I">9</v>
+      <v t="I">9</v>
+      <v t="I">10</v>
+      <v t="I">15</v>
+      <v t="I">21</v>
+      <v t="I">28</v>
+      <v t="I">66</v>
+      <v t="I">149</v>
+      <v t="I">7</v>
+      <v t="I">8</v>
+      <v t="I">9</v>
+      <v t="I">10</v>
+      <v t="I">12</v>
+      <v t="I">14</v>
+      <v t="I">15</v>
+      <v t="I">23</v>
+      <v t="I">27</v>
+      <v t="I">58</v>
+      <v t="I">150</v>
+      <v t="I">7</v>
+      <v t="I">7</v>
+      <v t="I">9</v>
+      <v t="I">10</v>
+      <v t="I">12</v>
+      <v t="I">14</v>
+      <v t="I">14</v>
+      <v t="I">22</v>
+      <v t="I">28</v>
+      <v t="I">64</v>
+      <v t="I">150</v>
+      <v t="I">6</v>
+      <v t="I">7</v>
+      <v t="I">7</v>
+      <v t="I">8</v>
+      <v t="I">11</v>
+      <v t="I">14</v>
+      <v t="I">16</v>
+      <v t="I">22</v>
+      <v t="I">28</v>
+      <v t="I">62</v>
+      <v t="I">331</v>
+      <v t="I">0</v>
+    </some_build_duration>
+    <some_build_mttr t="I">16370</some_build_mttr>
+    <some_build_success_rate>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+    </some_build_success_rate>
+    <some_issue_lifetime>
+      <v t="F">796.0</v>
+      <v t="F">97682.0</v>
+      <v t="F">158618.0</v>
+      <v t="F">4398388.0</v>
+      <v t="F">4543553.0</v>
+      <v t="F">4546526.0</v>
+      <v t="F">4590044.0</v>
+      <v t="F">4751425.0</v>
+      <v t="F">4752140.0</v>
+      <v t="F">4915457.0</v>
+      <v t="F">4919463.0</v>
+      <v t="F">4924355.0</v>
+      <v t="F">5534601.0</v>
+      <v t="F">17910727.0</v>
+      <v t="F">26186216.0</v>
+      <v t="F">29804891.0</v>
+      <v t="F">29605106.0</v>
+      <v t="F">29730035.0</v>
+      <v t="F">31625301.0</v>
+      <v t="F">34651158.0</v>
+      <v t="F">35239384.0</v>
+      <v t="F">38256803.0</v>
+      <v t="F">38947614.0</v>
+      <v t="F">58752028.0</v>
+      <v t="F">62476868.0</v>
+      <v t="F">71499184.0</v>
+      <v t="F">112376313.0</v>
+      <v t="F">117507695.0</v>
+      <v t="F">129005127.0</v>
+      <v t="F">176404749.0</v>
+      <v t="F">182897659.0</v>
+      <v t="F">183782160.0</v>
+      <v t="F">195234726.0</v>
+      <v t="F">201037035.0</v>
+      <v t="F">205461264.0</v>
+      <v t="F">206812991.0</v>
+      <v t="F">217454158.0</v>
+      <v t="F">220005491.0</v>
+      <v t="F">220005243.0</v>
+      <v t="F">227261378.0</v>
+      <v t="F">228529400.0</v>
+      <v t="F">230782864.0</v>
+      <v t="F">232142774.0</v>
+      <v t="F">232878074.0</v>
+      <v t="F">234152733.0</v>
+      <v t="F">234296930.0</v>
+      <v t="F">239197740.0</v>
+      <v t="F">243523777.0</v>
+      <v t="F">250872593.0</v>
+      <v t="F">253166510.0</v>
+      <v t="F">257756510.0</v>
+      <v t="F">260113411.0</v>
+      <v t="F">260146466.0</v>
+      <v t="F">270529010.0</v>
+      <v t="F">274859077.0</v>
+      <v t="F">282108094.0</v>
+      <v t="F">282360783.0</v>
+      <v t="F">282360793.0</v>
+      <v t="F">282360819.0</v>
+      <v t="F">282360807.0</v>
+      <v t="F">282360869.0</v>
+      <v t="F">282360990.0</v>
+      <v t="F">282576982.0</v>
+      <v t="F">282360886.0</v>
+      <v t="F">282360898.0</v>
+      <v t="F">293567655.0</v>
+      <v t="F">293567663.0</v>
+      <v t="F">304444538.0</v>
+      <v t="F">304473814.0</v>
+      <v t="F">306710477.0</v>
+      <v t="F">306804755.0</v>
+      <v t="F">308426533.0</v>
+      <v t="F">310115008.0</v>
+      <v t="F">310897564.0</v>
+      <v t="F">311368919.0</v>
+      <v t="F">312421945.0</v>
+      <v t="F">312998604.0</v>
+      <v t="F">313191961.0</v>
+      <v t="F">313447634.0</v>
+      <v t="F">315650396.0</v>
+      <v t="F">317125990.0</v>
+      <v t="F">318656995.0</v>
+      <v t="F">319467891.0</v>
+      <v t="F">319710322.0</v>
+      <v t="F">320366364.0</v>
+      <v t="F">320265589.0</v>
+      <v t="F">320747306.0</v>
+      <v t="F">320844670.0</v>
+      <v t="F">320688023.0</v>
+      <v t="F">320760289.0</v>
+      <v t="F">320763120.0</v>
+      <v t="F">321133705.0</v>
+      <v t="F">321344290.0</v>
+      <v t="F">321361337.0</v>
+      <v t="F">321208284.0</v>
+      <v t="F">321211931.0</v>
+      <v t="F">321406778.0</v>
+      <v t="F">321593034.0</v>
+      <v t="F">321651287.0</v>
+      <v t="F">321580784.0</v>
+      <v t="F">322016599.0</v>
+      <v t="F">322318941.0</v>
+      <v t="F">322388554.0</v>
+      <v t="F">322401497.0</v>
+      <v t="F">322475368.0</v>
+      <v t="F">322405436.0</v>
+      <v t="F">322813390.0</v>
+      <v t="F">322902106.0</v>
+      <v t="F">322887522.0</v>
+      <v t="F">322942834.0</v>
+      <v t="F">322933322.0</v>
+      <v t="F">322952832.0</v>
+      <v t="F">322988899.0</v>
+      <v t="F">323247022.0</v>
+      <v t="F">323272837.0</v>
+      <v t="F">323345847.0</v>
+      <v t="F">323541090.0</v>
+      <v t="F">323834013.0</v>
+      <v t="F">323861600.0</v>
+      <v t="F">323862942.0</v>
+      <v t="F">324152544.0</v>
+      <v t="F">325291640.0</v>
+      <v t="F">325425270.0</v>
+      <v t="F">325470063.0</v>
+      <v t="F">325709539.0</v>
+      <v t="F">325766716.0</v>
+      <v t="F">326024103.0</v>
+      <v t="F">326121321.0</v>
+      <v t="F">326291600.0</v>
+      <v t="F">326292526.0</v>
+      <v t="F">326648519.0</v>
+      <v t="F">326899968.0</v>
+      <v t="F">327097394.0</v>
+      <v t="F">327154629.0</v>
+      <v t="F">327297258.0</v>
+      <v t="F">330516831.0</v>
+      <v t="F">349616078.0</v>
+      <v t="F">352722176.0</v>
+      <v t="F">352760623.0</v>
+      <v t="F">354627820.0</v>
+      <v t="F">355791337.0</v>
+      <v t="F">355874323.0</v>
+      <v t="F">358729876.0</v>
+      <v t="F">360538498.0</v>
+      <v t="F">366861933.0</v>
+      <v t="F">410296190.0</v>
+      <v t="F">410297997.0</v>
+    </some_issue_lifetime>
+    <some_merged_pulls t="I">23</some_merged_pulls>
+    <some_pull_files_size>
+      <v t="I">3</v>
+      <v t="I">3</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">2</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">5</v>
+      <v t="I">6</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+    </some_pull_files_size>
+    <some_pull_hoc_size>
+      <v t="I">6</v>
+      <v t="I">39</v>
+      <v t="I">2</v>
+      <v t="I">2</v>
+      <v t="I">2</v>
+      <v t="I">2</v>
+      <v t="I">2</v>
+      <v t="I">2</v>
+      <v t="I">56</v>
+      <v t="I">2</v>
+      <v t="I">2</v>
+      <v t="I">163</v>
+      <v t="I">61</v>
+      <v t="I">2</v>
+      <v t="I">2</v>
+    </some_pull_hoc_size>
+    <some_pull_lifetime>
+      <v t="F">3766.0</v>
+      <v t="F">413.0</v>
+      <v t="F">502.0</v>
+      <v t="F">1396.0</v>
+      <v t="F">1413.0</v>
+      <v t="F">1708.0</v>
+      <v t="F">3541.0</v>
+      <v t="F">5108.0</v>
+      <v t="F">8141.0</v>
+      <v t="F">62891.0</v>
+      <v t="F">21.0</v>
+      <v t="F">67153.0</v>
+      <v t="F">147.0</v>
+      <v t="F">2306.0</v>
+      <v t="F">2457.0</v>
+      <v t="F">8.0</v>
+      <v t="F">1667163.0</v>
+      <v t="F">2353804.0</v>
+      <v t="F">4122526.0</v>
+      <v t="F">4517738.0</v>
+      <v t="F">4649383.0</v>
+      <v t="F">8018317.0</v>
+      <v t="F">15692796.0</v>
+    </some_pull_lifetime>
+    <some_review_size>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+    </some_review_size>
+    <some_review_time>
+      <v t="I">256</v>
+      <v t="I">832</v>
+      <v t="I">3856</v>
+      <v t="I">62567</v>
+      <v t="I">2197</v>
+      <v t="I">-170</v>
+      <v t="I">1759428</v>
+    </some_review_time>
+    <some_reviewers_per_pull>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+    </some_reviewers_per_pull>
+    <some_reviews_per_pull>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+      <v t="I">1</v>
+      <v t="I">0</v>
+      <v t="I">1</v>
+    </some_reviews_per_pull>
+    <some_unmerged_pulls t="I">8</some_unmerged_pulls>
+    <what t="S">quality-of-service</what>
+    <when t="T">2026-04-25T07:50:13Z</when>
   </f>
 </fb>
