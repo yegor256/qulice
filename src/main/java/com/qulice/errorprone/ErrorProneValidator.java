@@ -4,7 +4,6 @@
  */
 package com.qulice.errorprone;
 
-import com.google.errorprone.ErrorProneJavacPlugin;
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Relative;
@@ -20,6 +19,7 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -124,10 +124,13 @@ public final class ErrorProneValidator implements ResourceValidator {
             .withCheck(false)
             .exec();
         final String stdout = result.stdout();
+        final List<String> lines;
         if (stdout.isEmpty()) {
-            return List.of();
+            lines = List.of();
+        } else {
+            lines = List.of(stdout.split("\\R"));
         }
-        return List.of(stdout.split("\\R"));
+        return lines;
     }
 
     /**
@@ -136,7 +139,9 @@ public final class ErrorProneValidator implements ResourceValidator {
      * @return Argv
      */
     private List<String> command(final List<File> sources) {
-        final List<String> command = new ArrayList<>();
+        final List<String> command = new ArrayList<>(
+            sources.size() + ErrorProneValidator.JVM_FLAGS.size() + 11
+        );
         command.add(ErrorProneValidator.javac());
         for (final String flag : ErrorProneValidator.JVM_FLAGS) {
             command.add("-J".concat(flag));
@@ -226,20 +231,22 @@ public final class ErrorProneValidator implements ResourceValidator {
     /**
      * Build the {@code -processorpath} value passed to the forked
      * {@code javac}. Combines two sources: every URL on the
-     * {@link URLClassLoader} chain starting from the loader that loaded
-     * ErrorProne (the qulice plugin's own {@code ClassRealm} plus its
-     * URL-based parents), and the jar locations of a few classes
-     * ErrorProne needs at runtime that Maven's classworlds imports from
-     * a non-URL parent realm (notably {@link javax.inject.Inject}, which
-     * the {@code ErrorProneInjector} reads to find injectable
-     * constructors). Both are required: without the realm URLs there's
-     * no {@code error_prone_core}, without the protection-domain lookup
+     * {@link URLClassLoader} chain starting from the thread context
+     * classloader (the qulice plugin's own {@code ClassRealm} plus its
+     * URL-based parents, which carries ErrorProne when this code runs
+     * inside a Maven plugin execution), and the jar locations of a few
+     * classes ErrorProne needs at runtime that Maven's classworlds
+     * imports from a non-URL parent realm (notably
+     * {@link javax.inject.Inject}, which the
+     * {@code ErrorProneInjector} reads to find injectable constructors).
+     * Both are required: without the realm URLs there's no
+     * {@code error_prone_core}, without the protection-domain lookup
      * there's no {@code javax.inject}.
      * @return Path-separator joined list of jar paths
      */
     private static String pluginClasspath() {
-        final LinkedHashSet<String> entries = new LinkedHashSet<>();
-        ClassLoader loader = ErrorProneJavacPlugin.class.getClassLoader();
+        final Set<String> entries = new LinkedHashSet<>();
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
         while (loader != null) {
             if (loader instanceof URLClassLoader) {
                 for (final URL url : ((URLClassLoader) loader).getURLs()) {
@@ -267,7 +274,7 @@ public final class ErrorProneValidator implements ResourceValidator {
      * @param klass Class whose code source jar should be included
      */
     private static void addCodeSource(
-        final LinkedHashSet<String> entries, final Class<?> klass
+        final Set<String> entries, final Class<?> klass
     ) {
         final java.security.CodeSource source =
             klass.getProtectionDomain().getCodeSource();

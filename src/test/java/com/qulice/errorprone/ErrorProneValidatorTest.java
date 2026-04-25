@@ -39,14 +39,14 @@ final class ErrorProneValidatorTest {
         final String file = "src/main/java/com/qulice/Clean.java";
         final Environment env = new Environment.Mock().withFile(
             file,
-            "package com.qulice;\nfinal class Clean { int square(final int num) { return num * num; } }\n"
+            "package com.qulice; final class Clean { int square(final int num) { return num * num; } }"
         );
         final java.util.Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             );
         MatcherAssert.assertThat(
-            "Clean code must not produce ErrorProne violations: " + violations,
+            String.format("Clean code must not produce ErrorProne violations: %s", violations),
             violations,
             Matchers.<Violation>empty()
         );
