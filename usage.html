@@ -31,7 +31,7 @@
                                                                             </ul>
                                                             </li>
                                                                                                                                         <li >
-                                <span>                        <a href="quality.html" title="What is Quality?">What is Quality?</a>
+                                <span>                        <a href="plugin-info.html" title="Goals">Goals</a>
         </span>
                                                                                                                                                                                         <ul>
                                                                             </ul>
@@ -56,7 +56,7 @@
                 <div class="signature">
                     Made by
                     <a href="https://github.com/jcabi/jcabi-maven-skin">jcabi-maven-skin</a>
-                    2.0.1.
+                    2.0.2.
                 </div>
             </nav>
             <div class="right-side">
@@ -75,11 +75,11 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.27.3</strong>
+                                    <strong itemprop="version">0.27.4</strong>
                                 </li>
                                 <li>
-                                    <time itemprop="datePublished" datetime="2026-04-25">
-                                        25-Apr-2026
+                                    <time itemprop="datePublished" datetime="2026-04-26">
+                                        26-Apr-2026
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -98,10 +98,7 @@
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.27.3&lt;/version&gt;
-      &lt;configuration&gt;
-        &lt;license&gt;file:${basedir}/LICENSE.txt&lt;/license&gt;
-      &lt;/configuration&gt;
+      &lt;version&gt;0.27.4&lt;/version&gt;
       &lt;executions&gt;
         &lt;execution&gt;
           &lt;goals&gt;
@@ -111,53 +108,7 @@
       &lt;/executions&gt;
     &lt;/plugin&gt;
   &lt;/plugins&gt;
-&lt;/build&gt;</code></pre>
-<p>Pay attention to the <code>license</code> configuration parameter. It is mandatory and has to be provided, or else the default value will be used (<code>./LICENSE.txt</code>). You can refer to a file with <code>file:</code> prefix, as in the example above. Or you can refer to a resource from classpath (very useful when you want to keep your license in a dedicated child module.</p>
-<p>License text file should contain just text. Qulice converts this file to proper format and compares it with your source code file headers. For example, this is your <code>LICENSE.txt</code>:</p>
-<pre><code>Copyright (c) 2011-2026 Yegor Bugayenko
-
-All rights reserved.
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions
-are met: no conditions.</code></pre>
-<p>This is what your Java sources should start from:</p>
-<pre><code>/**
- * Copyright (c) 2011-2026 Yegor Bugayenko
- *
- * All rights reserved.
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met: no conditions.
- */</code></pre><section><a id="Multi-Module_Setup"></a>
-<h2>Multi-Module Setup</h2>
-<p>In a multi-module setup we recommend you to move all supplementary resource (assemblies, XML configurations, etc) to a separate &quot;tool kit&quot; sub-module. This module is the best place for <code>LICENSE.txt</code> file:</p>
-<pre><code>&lt;build&gt;
-  &lt;plugins&gt;
-    &lt;plugin&gt;
-      &lt;groupId&gt;com.qulice&lt;/groupId&gt;
-      &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.27.3&lt;/version&gt;
-      &lt;configuration&gt;
-        &lt;license&gt;LICENSE.txt&lt;/license&gt;
-      &lt;/configuration&gt;
-      &lt;dependencies&gt;
-        &lt;dependency&gt;
-          &lt;!-- this is your tool kit module --&gt;
-          &lt;groupId&gt;com.example&lt;/groupId&gt;
-          &lt;artifactId&gt;foo&lt;/artifactId&gt;
-          &lt;version&gt;0.1.2&lt;/version&gt;
-        &lt;/dependency&gt;
-      &lt;/dependencies&gt;
-      &lt;executions&gt;
-        &lt;execution&gt;
-          &lt;goals&gt;
-            &lt;goal&gt;check&lt;/goal&gt;
-          &lt;/goals&gt;
-        &lt;/execution&gt;
-      &lt;/executions&gt;
-    &lt;/plugin&gt;
-  &lt;/plugins&gt;
-&lt;/build&gt;</code></pre></section><section><a id="POM_XPath_Assertions"></a>
+&lt;/build&gt;</code></pre><section><a id="POM_XPath_Assertions"></a>
 <h2>POM XPath Assertions</h2>
 <p>Qulice can validate your <code>pom.xml</code> against a list of XPath queries. Each query has to find at least one node in the POM, otherwise the build will fail. Configure the queries via the <code>asserts</code> parameter:</p>
 <pre><code>&lt;build&gt;
@@ -165,7 +116,7 @@ are met: no conditions.</code></pre>
     &lt;plugin&gt;
       &lt;groupId&gt;com.qulice&lt;/groupId&gt;
       &lt;artifactId&gt;qulice-maven-plugin&lt;/artifactId&gt;
-      &lt;version&gt;0.27.3&lt;/version&gt;
+      &lt;version&gt;0.27.4&lt;/version&gt;
       &lt;configuration&gt;
         &lt;asserts&gt;
           &lt;param&gt;/pom:project/pom:build/pom:plugins/pom:plugin[pom:artifactId='qulice-maven-plugin']/pom:artifactId/text()&lt;/param&gt;
