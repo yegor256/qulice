@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 529.862220803
+  seconds: 551.397616938
   version: 0.60.2
   what: judges-summary
-  when: 2026-04-25 07:54:12.670714994 Z
+  when: 2026-04-26 07:59:20.759307671 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -22463,20 +22463,6 @@
   total_stars: 315
   what: dimensions-of-terrain
   when: 2026-04-17 07:51:40.857221622 Z
-- _id: 8460
-  _job: 68570
-  _time: 2026-04-17 07:56:23.439784280 Z
-  _version: 0.19.9/0.60.2/0.17.15
-  analyzers: 18
-  text: |-
-    The average number of builds per week (228.8) is decreasing (R=-0.83).
-    The average number of commits per week (6.1) is decreasing (R=-0.34).
-    The average issue cycle time (2w) is increasing (R=0.69).
-    The average pull cycle time (3d19h) is increasing (R=0.27).
-    The average number of releases per month (1.0) is staying still.
-    The average monthly turnover (9.0 developers) is decreasing (R=-0.68).
-  what: assessment
-  when: 2026-04-17 07:56:23.458408111 Z
 - _id: 8463
   _job: 24599979002
   _time: 2026-04-18 07:41:07.695044927 Z
@@ -23687,12 +23673,6 @@
     The average monthly turnover (9.0 developers) is decreasing (R=-0.65).
   what: assessment
   when: 2026-04-23 07:58:41.041389399 Z
-- _id: 8530
-  _job: 69006
-  _time: 2026-04-23 07:59:15.930417630 Z
-  _version: 0.19.9/0.60.2/0.17.15!0.17.17
-  what: learn-eva
-  when: 2026-04-23 07:59:15.921795065 Z
 - _id: 8531
   _job: 69006
   _time: 2026-04-23 07:59:16.069612315 Z
@@ -25103,20 +25083,6 @@
   when: 2026-04-23 07:59:08.000000000 Z
   where: github
   who: 29139614
-- _id: 8608
-  _job: 24925992334
-  _time: 2026-04-25 07:47:36.948473459 Z
-  _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 0
-  earliest_issue_was_found: 1
-  events_were_scanned: 8781185554
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1529
-  min_pull_was_found: 1426
-  repository: 9580168
-  what: iterate
-  where: github
 - _id: 8609
   _job: 24925992334
   _time: 2026-04-25 07:47:43.588996630 Z
@@ -25569,3 +25535,1805 @@
   some_unmerged_pulls: 8
   what: quality-of-service
   when: 2026-04-25 07:50:13.000000000 Z
+- _id: 8613
+  _job: 69159
+  _time: 2026-04-25 07:54:43.368643111 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  analyzers: 18
+  text: |-
+    The average number of builds per week (277.6) is decreasing (R=-0.16).
+    The average number of commits per week (9.7) is increasing (R=0.19).
+    The average issue cycle time (1mo) is increasing (R=0.75).
+    The average pull cycle time (1w) is increasing (R=0.39).
+    The average number of releases per month (1.1) is decreasing (R=0.12).
+    The average monthly turnover (9.0 developers) is decreasing (R=-0.68).
+  what: assessment
+  when: 2026-04-25 07:54:43.426890297 Z
+- _id: 8614
+  _job: 69159
+  _time: 2026-04-25 07:55:15.308113800 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  what: learn-eva
+  when: 2026-04-25 07:55:15.301416695 Z
+- _id: 8615
+  _job: 24951544530
+  _time: 2026-04-26 07:50:13.007134848 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#1566 has been closed by @yegor256.
+  event_id: 8795265399
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1566
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-26 05:07:05.000000000 Z
+  where: github
+  who: 526301
+- _id: 8616
+  _job: 24951544530
+  _time: 2026-04-26 07:50:13.337963102 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  commits: 182
+  contributors:
+  - 29139614
+  - 526301
+  - 81847
+  - 8086956
+  details: A new release "Win build fails" has been published in yegor256/qulice by
+    @rultor.
+  event_id: 8795203863
+  event_type: ReleaseEvent
+  hoc: 16504
+  is_human: 0
+  last_commit: 5bab9853e6f5f281e1f2b6d836d0ef508f5d1e2e
+  release: 313694631
+  repository: 9580168
+  tag: 0.27.4
+  what: release-published
+  when: 2026-04-26 04:59:53.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8617
+  _job: 24951544530
+  _time: 2026-04-26 07:50:17.659105145 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.qulice-qulice-maven-plugin-0.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: The pull request yegor256/qulice#1565 has been closed by @renovate[bot],
+    with 2 HoC and 0 comments.
+  event_id: 8794611796
+  event_type: PullRequestEvent
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1565
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-04-25 22:32:26.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8618
+  _job: 24951544530
+  _time: 2026-04-26 07:50:31.599746335 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 26a57b822ca8d4eac0228d071ae28987638be066
+  default_branch: master
+  details: 'A new Git push #33342887583 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11051201376
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33342887583
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-26 03:46:12.000000000 Z
+  where: github
+  who: 526301
+- _id: 8619
+  _job: 24951544530
+  _time: 2026-04-26 07:50:31.972944238 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: fbbeeb2588d1d8e6b245bc65a24d065b712cf5e6
+  default_branch: master
+  details: 'A new Git push #33342639912 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11050953774
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33342639912
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-26 03:30:32.000000000 Z
+  where: github
+  who: 526301
+- _id: 8620
+  _job: 24951544530
+  _time: 2026-04-26 07:50:32.364136121 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#1566 has been opened by @yegor256.
+  event_id: 8794392364
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1566
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-04-26 03:19:13.000000000 Z
+  where: github
+  who: 526301
+- _id: 8621
+  _job: 24951544530
+  _time: 2026-04-26 07:50:32.451636849 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 861d09717c2c50132f050ff15bd9e8a85b18dd41
+  default_branch: master
+  details: 'A new Git push #33342017080 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11050331642
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33342017080
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-26 02:52:29.000000000 Z
+  where: github
+  who: 526301
+- _id: 8622
+  _job: 24951544530
+  _time: 2026-04-26 07:50:32.788770683 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  commits: 1
+  contributors: 8086956
+  details: A new release "JavadocEmptyLineBeforeTagCheck emits two opposite messages
+    from the same check" has been published in yegor256/qulice by @rultor.
+  event_id: 8790457179
+  event_type: ReleaseEvent
+  hoc: 2
+  is_human: 0
+  last_commit: aef9f2ffa8dec1e12ca0a7714f7343dc7843f934
+  release: 313638109
+  repository: 9580168
+  tag: 0.27.3
+  what: release-published
+  when: 2026-04-25 20:15:09.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8623
+  _job: 24951544530
+  _time: 2026-04-26 07:50:33.316743663 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.qulice-qulice-maven-plugin-0.x
+  details: The pull request yegor256/qulice#1565 has been opened by @renovate[bot].
+  event_id: 8790444115
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1565
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-04-25 20:13:50.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8624
+  _job: 24951544530
+  _time: 2026-04-26 07:50:33.644442607 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: version-up
+  details: The pull request yegor256/qulice#1564 has been opened by @github-actions[bot].
+  event_id: 8790442888
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1564
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-04-25 20:13:43.000000000 Z
+  where: github
+  who: 41898282
+- _id: 8625
+  _job: 24951544530
+  _time: 2026-04-26 07:50:33.980374793 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#1563 has been closed by @yegor256.
+  event_id: 8789954217
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1563
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 19:27:10.000000000 Z
+  where: github
+  who: 526301
+- _id: 8626
+  _job: 24951544530
+  _time: 2026-04-26 07:50:34.049818327 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 8d6c96ef93af8f51a5c3a8ab05f320542bcff885
+  default_branch: master
+  details: 'A new Git push #33334182946 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11042505012
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33334182946
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 19:26:56.000000000 Z
+  where: github
+  who: 526301
+- _id: 8627
+  _job: 24951544530
+  _time: 2026-04-26 07:50:34.427280539 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#1563 has been opened by @yegor256.
+  event_id: 8789864593
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1563
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-04-25 19:18:40.000000000 Z
+  where: github
+  who: 526301
+- _id: 8628
+  _job: 24951544530
+  _time: 2026-04-26 07:50:34.908095803 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: d2a3cbce035a2c5755da27e1da593d097fc1a5cf
+  default_branch: master
+  details: 'A new Git push #33333685198 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11042007847
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33333685198
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 19:01:56.000000000 Z
+  where: github
+  who: 526301
+- _id: 8629
+  _job: 24951544530
+  _time: 2026-04-26 07:50:35.730041293 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  commits: 1
+  contributors: 8086956
+  details: A new release "ProhibitFieldsInTestClassesCheck flags fields in inner stub/fake
+    helpers, not just test classes" has been published in yegor256/qulice by @rultor.
+  event_id: 8789355839
+  event_type: ReleaseEvent
+  hoc: 2
+  is_human: 0
+  last_commit: 36736bbbb755c07cb96c9a56ab0a349ef5962617
+  release: 313625410
+  repository: 9580168
+  tag: 0.27.2
+  what: release-published
+  when: 2026-04-25 18:31:06.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8630
+  _job: 24951544530
+  _time: 2026-04-26 07:50:36.340632818 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: version-up
+  details: The pull request yegor256/qulice#1562 has been opened by @github-actions[bot].
+  event_id: 8789344884
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1562
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-04-25 18:30:08.000000000 Z
+  where: github
+  who: 41898282
+- _id: 8631
+  _job: 24951544530
+  _time: 2026-04-26 07:50:36.434068377 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: ac662e61e5295fd3ef9bc0502681e9e0000282f9
+  default_branch: master
+  details: 'A new Git push #33332014043 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11040339818
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33332014043
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 17:43:28.000000000 Z
+  where: github
+  who: 526301
+- _id: 8632
+  _job: 24951544530
+  _time: 2026-04-26 07:50:37.988868721 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.qulice-qulice-maven-plugin-0.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: The pull request yegor256/qulice#1487 has been closed by @renovate[bot],
+    with 2 HoC and 0 comments.
+  event_id: 8788574740
+  event_type: PullRequestEvent
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1487
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-04-25 16:55:19.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8633
+  _job: 24951544530
+  _time: 2026-04-26 07:50:47.667159274 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 0bb2f66e0b1ea9035e9356b3effc591172282d87
+  default_branch: master
+  details: 'A new Git push #33331537686 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11039864006
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33331537686
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 17:20:27.000000000 Z
+  where: github
+  who: 526301
+- _id: 8634
+  _job: 24951544530
+  _time: 2026-04-26 07:50:48.174773286 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 3249ff6a90f0800c68aece760ccf565d3cada44a
+  default_branch: master
+  details: 'A new Git push #33330979683 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11039306414
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33330979683
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 16:54:21.000000000 Z
+  where: github
+  who: 526301
+- _id: 8635
+  _job: 24951544530
+  _time: 2026-04-26 07:50:48.529387524 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: i-1127
+  comments: 10
+  comments_appreciated: 0
+  comments_by_author: 3
+  comments_by_reviewers: 7
+  comments_resolved: 0
+  comments_to_code: 3
+  details: The pull request yegor256/qulice#1236 has been closed by @yegor256, with
+    174 HoC and 10 comments.
+  event_id: 8787966669
+  event_type: PullRequestEvent
+  failed_builds: 0
+  files: 5
+  hoc: 174
+  is_human: 1
+  issue: 1236
+  repository: 9580168
+  review: 2024-03-21 00:44:39.000000000 Z
+  succeeded_builds: 0
+  suggestions: 3
+  what: pull-was-closed
+  when: 2024-05-16 13:11:56.000000000 Z
+  where: github
+  who: 526301
+- _id: 8636
+  _job: 24951544530
+  _time: 2026-04-26 07:50:56.314365696 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: '08063e0af22466b0366bd0643899d0a53694cbc8'
+  default_branch: master
+  details: 'A new Git push #33330071505 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11038399349
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33330071505
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 16:11:54.000000000 Z
+  where: github
+  who: 526301
+- _id: 8637
+  _job: 24951544530
+  _time: 2026-04-26 07:50:56.963566184 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 29d9ba0563d3cebc654ebf3fdf87c7e1aab84143
+  default_branch: master
+  details: 'A new Git push #33329128038 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11037457317
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33329128038
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 15:28:07.000000000 Z
+  where: github
+  who: 526301
+- _id: 8638
+  _job: 24951544530
+  _time: 2026-04-26 07:50:57.333358216 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#1561 has been closed by @yegor256.
+  event_id: 8787280474
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1561
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 15:28:08.000000000 Z
+  where: github
+  who: 526301
+- _id: 8639
+  _job: 24951544530
+  _time: 2026-04-26 07:50:57.401497715 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#1560 has been closed by @yegor256.
+  event_id: 8787115550
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1560
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 15:13:50.000000000 Z
+  where: github
+  who: 526301
+- _id: 8640
+  _job: 24951544530
+  _time: 2026-04-26 07:50:57.450296044 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 1f16455b046338e2a2691d07967c7fc7144c5436
+  default_branch: master
+  details: 'A new Git push #33328826538 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11037156118
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33328826538
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 15:13:49.000000000 Z
+  where: github
+  who: 526301
+- _id: 8641
+  _job: 24951544530
+  _time: 2026-04-26 07:50:57.788857408 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 0c686eabc15926f967e987371c1b4d3bee59808e
+  default_branch: master
+  details: 'A new Git push #33328522059 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11036851869
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33328522059
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 15:00:31.000000000 Z
+  where: github
+  who: 526301
+- _id: 8642
+  _job: 24951544530
+  _time: 2026-04-26 07:50:58.103578017 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#1561 has been opened by @yegor256.
+  event_id: 8786928211
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1561
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-04-25 14:58:26.000000000 Z
+  where: github
+  who: 526301
+- _id: 8643
+  _job: 24951544530
+  _time: 2026-04-26 07:50:58.150498083 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#1560 has been opened by @yegor256.
+  event_id: 8786921330
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1560
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-04-25 14:57:47.000000000 Z
+  where: github
+  who: 526301
+- _id: 8644
+  _job: 24951544530
+  _time: 2026-04-26 07:50:58.643593234 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  commits: 1
+  contributors: 8086956
+  details: A new release "ConstructorsCodeFreeCheck in 0.26.0 flags method calls inside
+    lambda bodies" has been published in yegor256/qulice by @rultor.
+  event_id: 8785954640
+  event_type: ReleaseEvent
+  hoc: 2
+  is_human: 0
+  last_commit: f2088601092c1f71e5b684c8229967b8dd056f42
+  release: 313585694
+  repository: 9580168
+  tag: 0.27.0
+  what: release-published
+  when: 2026-04-25 13:39:25.000000000 Z
+  where: github
+  who: 8086956
+- _id: 8645
+  _job: 24951544530
+  _time: 2026-04-26 07:50:59.180478762 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: version-up
+  details: The pull request yegor256/qulice#1559 has been opened by @github-actions[bot].
+  event_id: 8785944296
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1559
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-04-25 13:38:33.000000000 Z
+  where: github
+  who: 41898282
+- _id: 8646
+  _job: 24951544530
+  _time: 2026-04-26 07:50:59.277753248 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 0a62e747a3a2e0ea11a5d456ba151d414d8e1166
+  default_branch: master
+  details: 'A new Git push #33325627723 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11033960766
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33325627723
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 12:43:23.000000000 Z
+  where: github
+  who: 526301
+- _id: 8647
+  _job: 24951544530
+  _time: 2026-04-26 07:50:59.635000431 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: b7c5790c51917fc0a247422d121028d8c9c41653
+  default_branch: master
+  details: 'A new Git push #33325080414 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11033414055
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33325080414
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 12:15:16.000000000 Z
+  where: github
+  who: 526301
+- _id: 8648
+  _job: 24951544530
+  _time: 2026-04-26 07:50:59.983545682 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#684 has been closed by @yegor256.
+  event_id: 8784952815
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 684
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 12:03:22.000000000 Z
+  where: github
+  who: 526301
+- _id: 8649
+  _job: 24951544530
+  _time: 2026-04-26 07:51:00.032514794 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 7f82beeaef7ae2bf2583be70a8166f718a00311f
+  default_branch: master
+  details: 'A new Git push #33324844374 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11033178290
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33324844374
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 12:02:57.000000000 Z
+  where: github
+  who: 526301
+- _id: 8650
+  _job: 24951544530
+  _time: 2026-04-26 07:51:00.357934390 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#726 has been closed by @yegor256.
+  event_id: 8784947824
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 726
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 12:02:53.000000000 Z
+  where: github
+  who: 526301
+- _id: 8651
+  _job: 24951544530
+  _time: 2026-04-26 07:51:00.423366041 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: dae5c1451a22f3fd5fdb06cd3e0dcce890f0368c
+  default_branch: master
+  details: 'A new Git push #33324798801 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11033132630
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33324798801
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 12:00:54.000000000 Z
+  where: github
+  who: 526301
+- _id: 8652
+  _job: 24951544530
+  _time: 2026-04-26 07:51:00.782799685 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.puppycrawl.tools-checkstyle-13.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: The pull request yegor256/qulice#1478 has been closed by @renovate[bot],
+    with 2 HoC and 0 comments.
+  event_id: 8784887544
+  event_type: PullRequestEvent
+  failed_builds: 13
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1478
+  repository: 9580168
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-04-25 11:38:47.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8653
+  _job: 24951544530
+  _time: 2026-04-26 07:51:13.468965576 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.google.code.gson-gson-2.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: The pull request yegor256/qulice#1557 has been closed by @renovate[bot],
+    with 2 HoC and 0 comments.
+  event_id: 8784887468
+  event_type: PullRequestEvent
+  failed_builds: 13
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1557
+  repository: 9580168
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-04-24 14:52:03.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8654
+  _job: 24951544530
+  _time: 2026-04-26 07:51:25.607084652 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/guava-monorepo
+  details: The pull request yegor256/qulice#1558 has been opened by @renovate[bot].
+  event_id: 8784885445
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1558
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-04-25 11:56:19.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8655
+  _job: 24951544530
+  _time: 2026-04-26 07:51:26.229805252 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: aefc92e1774ed8d166c962006d7296117da48d57
+  default_branch: master
+  details: 'A new Git push #33324698843 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11033032880
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33324698843
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 11:55:48.000000000 Z
+  where: github
+  who: 526301
+- _id: 8656
+  _job: 24951544530
+  _time: 2026-04-26 07:51:26.782874307 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: e24c0659c903241704c09e65aa3c4f5686ef7ab2
+  default_branch: master
+  details: 'A new Git push #33324380084 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11032714491
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33324380084
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 11:38:22.000000000 Z
+  where: github
+  who: 526301
+- _id: 8657
+  _job: 24951544530
+  _time: 2026-04-26 07:51:27.128249820 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#713 has been closed by @yegor256.
+  event_id: 8784609649
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 713
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 11:27:42.000000000 Z
+  where: github
+  who: 526301
+- _id: 8658
+  _job: 24951544530
+  _time: 2026-04-26 07:51:27.193120055 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 714913eb5adeae7cacad185e2fe06bdf47d6164d
+  default_branch: master
+  details: 'A new Git push #33324169031 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11032503560
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33324169031
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 11:27:04.000000000 Z
+  where: github
+  who: 526301
+- _id: 8659
+  _job: 24951544530
+  _time: 2026-04-26 07:51:27.526994283 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#843 has been closed by @yegor256.
+  event_id: 8784376765
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 843
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 11:12:31.000000000 Z
+  where: github
+  who: 526301
+- _id: 8660
+  _job: 24951544530
+  _time: 2026-04-26 07:51:27.594113245 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: a657d91a7ef7379e91acf77c9e992685877b32f5
+  default_branch: master
+  details: 'A new Git push #33323888452 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11032223297
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33323888452
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 11:12:22.000000000 Z
+  where: github
+  who: 526301
+- _id: 8661
+  _job: 24951544530
+  _time: 2026-04-26 07:51:27.952988135 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#572 has been closed by @yegor256.
+  event_id: 8784317214
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 572
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 11:09:19.000000000 Z
+  where: github
+  who: 526301
+- _id: 8662
+  _job: 24951544530
+  _time: 2026-04-26 07:51:28.002945017 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#525 has been closed by @yegor256.
+  event_id: 8784275696
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 525
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 11:07:09.000000000 Z
+  where: github
+  who: 526301
+- _id: 8663
+  _job: 24951544530
+  _time: 2026-04-26 07:51:28.074232444 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 0c8da608258545d6a0369c05e43cde6486c51cf4
+  default_branch: master
+  details: 'A new Git push #33323692303 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11032027175
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33323692303
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 11:02:15.000000000 Z
+  where: github
+  who: 526301
+- _id: 8664
+  _job: 24951544530
+  _time: 2026-04-26 07:51:28.407459847 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#407 has been closed by @yegor256.
+  event_id: 8783964191
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 407
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 10:50:26.000000000 Z
+  where: github
+  who: 526301
+- _id: 8665
+  _job: 24951544530
+  _time: 2026-04-26 07:51:28.494218262 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 05ae00839b90808b1b9dfcd320e2562ad940288b
+  default_branch: master
+  details: 'A new Git push #33323412076 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11031747546
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33323412076
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 10:48:20.000000000 Z
+  where: github
+  who: 526301
+- _id: 8666
+  _job: 24951544530
+  _time: 2026-04-26 07:51:28.844653175 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#523 has been closed by @yegor256.
+  event_id: 8783721213
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 523
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 10:36:22.000000000 Z
+  where: github
+  who: 526301
+- _id: 8667
+  _job: 24951544530
+  _time: 2026-04-26 07:51:28.904937505 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#503 has been closed by @yegor256.
+  event_id: 8783690406
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 503
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-25 10:34:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 8668
+  _job: 24951544530
+  _time: 2026-04-26 07:51:28.978765528 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  by_owner: 1
+  commit: 9a2fba1add88ca0ffc8bd81f6e382e50341affae
+  default_branch: master
+  details: 'A new Git push #33323155380 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 11031491183
+  event_type: PushEvent
+  is_human: 1
+  push_id: 33323155380
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-04-25 10:34:25.000000000 Z
+  where: github
+  who: 526301
+- _id: 8670
+  _job: 24951544530
+  _time: 2026-04-26 07:51:29.862423364 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#684 has been opened earlier by @mkordas.
+  is_human: 1
+  issue: 684
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-02-03 21:04:25.000000000 Z
+  where: github
+  who: 5467276
+- _id: 8671
+  _job: 24951544530
+  _time: 2026-04-26 07:51:30.418747905 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#726 has been opened earlier by @krzyk.
+  is_human: 1
+  issue: 726
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-02-21 10:05:07.000000000 Z
+  where: github
+  who: 105730
+- _id: 8672
+  _job: 24951544530
+  _time: 2026-04-26 07:51:30.997727976 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#713 has been opened earlier by @dmzaytsev.
+  is_human: 1
+  issue: 713
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-02-16 16:45:22.000000000 Z
+  where: github
+  who: 9972909
+- _id: 8673
+  _job: 24951544530
+  _time: 2026-04-26 07:51:31.795883745 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#843 has been opened earlier by @0pdd.
+  is_human: 0
+  issue: 843
+  repository: 9580168
+  what: issue-was-opened
+  when: 2017-05-11 12:38:36.000000000 Z
+  where: github
+  who: 24456188
+- _id: 8674
+  _job: 24951544530
+  _time: 2026-04-26 07:51:32.364976855 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#572 has been opened earlier by @mkordas.
+  is_human: 1
+  issue: 572
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-01-01 12:57:37.000000000 Z
+  where: github
+  who: 5467276
+- _id: 8675
+  _job: 24951544530
+  _time: 2026-04-26 07:51:32.677181302 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#525 has been opened earlier by @mkordas.
+  is_human: 1
+  issue: 525
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-12-16 23:31:08.000000000 Z
+  where: github
+  who: 5467276
+- _id: 8676
+  _job: 24951544530
+  _time: 2026-04-26 07:51:33.023947308 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#407 has been opened earlier by @alxn.
+  is_human: 1
+  issue: 407
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-02-23 04:40:36.000000000 Z
+  where: github
+  who: 4368287
+- _id: 8677
+  _job: 24951544530
+  _time: 2026-04-26 07:51:33.590713975 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#523 has been opened earlier by @mkordas.
+  is_human: 1
+  issue: 523
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-12-15 22:24:31.000000000 Z
+  where: github
+  who: 5467276
+- _id: 8678
+  _job: 24951544530
+  _time: 2026-04-26 07:51:33.912329747 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#503 has been opened earlier by @krzyk.
+  is_human: 1
+  issue: 503
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-11-22 18:30:34.000000000 Z
+  where: github
+  who: 105730
+- _id: 8679
+  _job: 24951544530
+  _time: 2026-04-26 07:51:37.109110839 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.google.code.gson-gson-2.x
+  details: The pull yegor256/qulice#1557 has been opened earlier by @renovate[bot].
+  is_human: 0
+  issue: 1557
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-04-24 14:52:03.000000000 Z
+  where: github
+  who: 29139614
+- _id: 8680
+  _job: 24951544530
+  _time: 2026-04-26 07:51:38.889582089 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assigner: 6305016
+  details: yegor256/qulice#503 was assigned to @ikarsokolov by @davvd.
+  is_human: 1
+  issue: 503
+  repository: 9580168
+  unassigned: 2015-12-25 10:28:40.000000000 Z
+  what: issue-was-assigned
+  when: 2015-12-23 08:23:31.000000000 Z
+  where: github
+  who: 11806
+- _id: 8681
+  _job: 24951544530
+  _time: 2026-04-26 07:51:39.382267891 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assigner: 6305016
+  details: yegor256/qulice#503 was assigned to @guiandmag by @davvd.
+  is_human: 1
+  issue: 503
+  repository: 9580168
+  unassigned: 2016-03-23 12:50:03.000000000 Z
+  what: issue-was-assigned
+  when: 2016-03-08 08:14:48.000000000 Z
+  where: github
+  who: 1985301
+- _id: 8682
+  _job: 24951544530
+  _time: 2026-04-26 07:51:41.224874513 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assigner: 6305016
+  details: yegor256/qulice#684 was assigned to @guiandmag by @davvd.
+  is_human: 1
+  issue: 684
+  repository: 9580168
+  unassigned: 2016-03-07 10:55:18.000000000 Z
+  what: issue-was-assigned
+  when: 2016-02-16 13:04:11.000000000 Z
+  where: github
+  who: 1985301
+- _id: 8683
+  _job: 24951544530
+  _time: 2026-04-26 07:51:54.089930367 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assigner: 526301
+  details: yegor256/qulice#1563 was assigned to @yegor256 by @yegor256.
+  is_human: 1
+  issue: 1563
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-04-25 19:19:16.000000000 Z
+  where: github
+  who: 526301
+- _id: 8684
+  _job: 24951544530
+  _time: 2026-04-26 07:51:54.419238810 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assigner: 526301
+  details: yegor256/qulice#1566 was assigned to @yegor256 by @yegor256.
+  is_human: 1
+  issue: 1566
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-04-26 03:19:11.000000000 Z
+  where: github
+  who: 526301
+- _id: 8685
+  _job: 24951544530
+  _time: 2026-04-26 07:51:59.302006453 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.jcabi-parent-0.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1304 has been "pull-was-merged".
+  failed_builds: 13
+  files: 17
+  hoc: 34
+  is_human: 1
+  issue: 1304
+  repository: 9580168
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-04-25 16:25:38.000000000 Z
+  where: github
+  who: 526301
+- _id: 8686
+  _job: 24951544530
+  _time: 2026-04-26 07:52:16.795272277 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/org.apache.maven.plugin-testing-maven-plugin-testing-harness-3.x
+  comments: 2
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 2
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1503 has been "pull-was-merged".
+  failed_builds: 13
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1503
+  repository: 9580168
+  review: 2026-04-02 03:53:08.000000000 Z
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-04-25 17:22:41.000000000 Z
+  where: github
+  who: 526301
+- _id: 8687
+  _job: 24951544530
+  _time: 2026-04-26 07:52:31.443795009 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/guava-monorepo
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1558 has been "pull-was-merged".
+  failed_builds: 13
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1558
+  repository: 9580168
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-04-25 16:24:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 8688
+  _job: 24951544530
+  _time: 2026-04-26 07:52:43.800168012 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: version-up
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1559 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1559
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-04-25 14:00:44.000000000 Z
+  where: github
+  who: 526301
+- _id: 8689
+  _job: 24951544530
+  _time: 2026-04-26 07:52:46.023692214 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: version-up
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1562 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1562
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-04-25 18:43:34.000000000 Z
+  where: github
+  who: 526301
+- _id: 8690
+  _job: 24951544530
+  _time: 2026-04-26 07:52:50.248466315 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assignees_were_scanned: 0
+  earliest_issue_was_found: 1
+  events_were_scanned: 10992109675
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1560
+  min_pull_was_found: 1427
+  repository: 9580168
+  types_were_scanned: 1452
+  what: iterate
+  where: github
+- _id: 8691
+  _job: 24951544530
+  _time: 2026-04-26 07:52:57.091409165 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  total_active_contributors: 5
+  total_commits: 2501
+  total_contributors: 55
+  total_files: 662
+  total_forks: 119
+  total_issues: 862
+  total_pulls: 703
+  total_releases: 83
+  total_repositories: 1
+  total_stars: 316
+  what: dimensions-of-terrain
+  when: 2026-04-26 07:52:57.106335620 Z
+- _id: 8692
+  _job: 24951544530
+  _time: 2026-04-26 07:53:00.885268025 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #5467276 is known in GitHub as @mkordas.'
+  is_human: 1
+  name: mkordas
+  what: who-has-name
+  when: 2026-04-26 07:53:00.888594777 Z
+  where: github
+  who: 5467276
+- _id: 8693
+  _job: 24951544530
+  _time: 2026-04-26 07:53:00.900936103 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #105730 is known in GitHub as @krzyk.'
+  is_human: 1
+  name: krzyk
+  what: who-has-name
+  when: 2026-04-26 07:53:00.903785668 Z
+  where: github
+  who: 105730
+- _id: 8694
+  _job: 24951544530
+  _time: 2026-04-26 07:53:00.916589459 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #9972909 is known in GitHub as @dmzaytsev.'
+  is_human: 1
+  name: dmzaytsev
+  what: who-has-name
+  when: 2026-04-26 07:53:00.919356529 Z
+  where: github
+  who: 9972909
+- _id: 8695
+  _job: 24951544530
+  _time: 2026-04-26 07:53:00.931879679 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #24456188 is known in GitHub as @0pdd.'
+  is_human: 0
+  name: 0pdd
+  what: who-has-name
+  when: 2026-04-26 07:53:00.934715312 Z
+  where: github
+  who: 24456188
+- _id: 8696
+  _job: 24951544530
+  _time: 2026-04-26 07:53:00.975718564 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #4368287 is known in GitHub as @alxn.'
+  is_human: 1
+  name: alxn
+  what: who-has-name
+  when: 2026-04-26 07:53:00.979350194 Z
+  where: github
+  who: 4368287
+- _id: 8697
+  _job: 24951544530
+  _time: 2026-04-26 07:53:00.998637434 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #11806 is known in GitHub as @ikarsokolov.'
+  is_human: 1
+  name: ikarsokolov
+  what: who-has-name
+  when: 2026-04-26 07:53:01.001704495 Z
+  where: github
+  who: 11806
+- _id: 8698
+  _job: 24951544530
+  _time: 2026-04-26 07:53:01.017580106 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #1985301 is known in GitHub as @guiandmag.'
+  is_human: 1
+  name: guiandmag
+  what: who-has-name
+  when: 2026-04-26 07:53:01.020530301 Z
+  where: github
+  who: 1985301
+- _id: 8699
+  _job: 24951544530
+  _time: 2026-04-26 07:53:09.385200981 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The "enhancement" label was attached by @yegor256 to the issue yegor256/qulice#407.
+  is_human: 1
+  issue: 407
+  label: enhancement
+  repository: 9580168
+  what: label-was-attached
+  when: 2015-02-23 04:58:40.000000000 Z
+  where: github
+  who: 526301
+- _id: 8700
+  _job: 24951544530
+  _time: 2026-04-26 07:53:10.630292050 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The "bug" label was attached by @davvd to the issue yegor256/qulice#503.
+  is_human: 1
+  issue: 503
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2015-11-23 10:12:55.000000000 Z
+  where: github
+  who: 6305016
+- _id: 8701
+  _job: 24951544530
+  _time: 2026-04-26 07:53:11.039030035 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The "bug" label was attached by @davvd to the issue yegor256/qulice#523.
+  is_human: 1
+  issue: 523
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2015-12-17 09:06:21.000000000 Z
+  where: github
+  who: 6305016
+- _id: 8702
+  _job: 24951544530
+  _time: 2026-04-26 07:53:11.460994920 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The "bug" label was attached by @davvd to the issue yegor256/qulice#525.
+  is_human: 1
+  issue: 525
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2015-12-21 07:11:46.000000000 Z
+  where: github
+  who: 6305016
+- _id: 8703
+  _job: 24951544530
+  _time: 2026-04-26 07:53:12.416976655 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The "bug" label was attached by @davvd to the issue yegor256/qulice#572.
+  is_human: 1
+  issue: 572
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-01-04 08:17:34.000000000 Z
+  where: github
+  who: 6305016
+- _id: 8704
+  _job: 24951544530
+  _time: 2026-04-26 07:53:13.074166231 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The "bug" label was attached by @davvd to the issue yegor256/qulice#684.
+  is_human: 1
+  issue: 684
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-02-08 09:45:09.000000000 Z
+  where: github
+  who: 6305016
+- _id: 8705
+  _job: 24951544530
+  _time: 2026-04-26 07:53:13.839520362 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The "bug" label was attached by @davvd to the issue yegor256/qulice#713.
+  is_human: 1
+  issue: 713
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-02-24 07:21:28.000000000 Z
+  where: github
+  who: 6305016
+- _id: 8706
+  _job: 24951544530
+  _time: 2026-04-26 07:53:14.257438847 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The "bug" label was attached by @davvd to the issue yegor256/qulice#726.
+  is_human: 1
+  issue: 726
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-02-24 07:21:23.000000000 Z
+  where: github
+  who: 6305016
+- _id: 8707
+  _job: 24951544530
+  _time: 2026-04-26 07:53:27.573353911 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1563.
+  is_human: 1
+  issue: 1563
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-04-25 19:19:19.000000000 Z
+  where: github
+  who: 526301
+- _id: 8708
+  _job: 24951544530
+  _time: 2026-04-26 07:53:27.940904487 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1566.
+  is_human: 1
+  issue: 1566
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-04-26 03:19:13.000000000 Z
+  where: github
+  who: 526301
+- _id: 8709
+  _job: 24951544530
+  _time: 2026-04-26 07:53:28.371114120 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#408 has been opened by @pinaf.
+  is_human: 1
+  issue: 408
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-02-27 19:12:19.000000000 Z
+  where: github
+  who: 1054771
+- _id: 8710
+  _job: 24951544530
+  _time: 2026-04-26 07:53:28.936322480 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#409 has been opened by @drissamri.
+  is_human: 1
+  issue: 409
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-02-28 15:32:36.000000000 Z
+  where: github
+  who: 2703192
+- _id: 8711
+  _job: 24951544530
+  _time: 2026-04-26 07:53:29.523461034 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#410 has been opened by @drissamri.
+  is_human: 1
+  issue: 410
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-03-01 12:50:41.000000000 Z
+  where: github
+  who: 2703192
+- _id: 8712
+  _job: 24951544530
+  _time: 2026-04-26 07:53:29.845820769 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#411 has been opened by @longtimeago.
+  is_human: 1
+  issue: 411
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-03-02 20:22:35.000000000 Z
+  where: github
+  who: 1388994
+- _id: 8713
+  _job: 24951544530
+  _time: 2026-04-26 07:53:30.444429583 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#412 has been opened by @longtimeago.
+  is_human: 1
+  issue: 412
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-03-04 19:49:24.000000000 Z
+  where: github
+  who: 1388994
+- _id: 8714
+  _job: 24951544530
+  _time: 2026-04-26 07:53:30.768077338 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#413 has been opened by @ghost.
+  is_human: 1
+  issue: 413
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-03-16 16:02:05.000000000 Z
+  where: github
+  who: 10137
+- _id: 8715
+  _job: 24951544530
+  _time: 2026-04-26 07:53:31.323409240 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#414 has been opened by @mikelangelon.
+  is_human: 1
+  issue: 414
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-03-25 10:39:47.000000000 Z
+  where: github
+  who: 1530465
+- _id: 8716
+  _job: 24951544530
+  _time: 2026-04-26 07:53:31.891613070 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#415 has been opened by @ghost.
+  is_human: 1
+  issue: 415
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-03-27 08:04:13.000000000 Z
+  where: github
+  who: 10137
+- _id: 8717
+  _job: 24951544530
+  _time: 2026-04-26 07:53:32.255346759 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#416 has been opened by @piotrkot.
+  is_human: 1
+  issue: 416
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-03-27 15:49:38.000000000 Z
+  where: github
+  who: 9504395
+- _id: 8718
+  _job: 24951544530
+  _time: 2026-04-26 07:53:32.819334919 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#417 has been opened by @dmzaytsev.
+  is_human: 1
+  issue: 417
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-03-29 07:15:27.000000000 Z
+  where: github
+  who: 9972909
+- _id: 8719
+  _job: 24951544530
+  _time: 2026-04-26 07:53:33.156454460 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#418 has been opened by @knieszporek.
+  is_human: 1
+  issue: 418
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-03-31 17:47:09.000000000 Z
+  where: github
+  who: 1110331
+- _id: 8720
+  _job: 24951544530
+  _time: 2026-04-26 07:53:33.734517061 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#419 has been opened by @dmzaytsev.
+  is_human: 1
+  issue: 419
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-04-05 04:48:31.000000000 Z
+  where: github
+  who: 9972909
+- _id: 8721
+  _job: 24951544530
+  _time: 2026-04-26 07:53:34.081933012 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#420 has been opened by @yamstranger.
+  is_human: 1
+  issue: 420
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-04-06 22:12:47.000000000 Z
+  where: github
+  who: 1667699
+- _id: 8722
+  _job: 24951544530
+  _time: 2026-04-26 07:53:34.656463351 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#421 has been opened by @davvd.
+  is_human: 1
+  issue: 421
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-04-07 07:20:49.000000000 Z
+  where: github
+  who: 6305016
+- _id: 8723
+  _job: 24951544530
+  _time: 2026-04-26 07:53:34.962846193 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#422 has been opened by @davvd.
+  is_human: 1
+  issue: 422
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-04-07 08:58:41.000000000 Z
+  where: github
+  who: 6305016
+- _id: 8724
+  _job: 24951544530
+  _time: 2026-04-26 07:53:35.319451103 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#423 has been opened by @davvd.
+  is_human: 1
+  issue: 423
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-04-07 13:22:05.000000000 Z
+  where: github
+  who: 6305016
+- _id: 8725
+  _job: 24951544530
+  _time: 2026-04-26 07:53:35.653938865 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#424 has been opened by @wholegroup.
+  is_human: 1
+  issue: 424
+  repository: 9580168
+  what: issue-was-opened
+  when: 2015-04-08 14:37:36.000000000 Z
+  where: github
+  who: 553191
+- _id: 8726
+  _job: 24951544530
+  _time: 2026-04-26 07:55:59.143377171 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  author: 90573577
+  comments: 7
+  details: The pull request yegor256/qulice#1236 with 174 HoC created by @k3p7i3 was
+    reviewed by @pnatashap after 73h56m and 3 comments.
+  hoc: 174
+  is_human: 1
+  issue: 1236
+  repository: 9580168
+  review_comments: 3
+  seconds: 266218
+  what: code-was-reviewed
+  when: 2024-03-21 00:44:39.000000000 Z
+  where: github
+  who: 19815413
+- _id: 8727
+  _job: 24951544530
+  _time: 2026-04-26 07:55:59.527081690 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  author: 29139614
+  comments: 2
+  details: The pull request yegor256/qulice#1503 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 1258h14m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1503
+  repository: 9580168
+  review_comments: 0
+  seconds: 4529685
+  what: code-was-reviewed
+  when: 2026-04-02 03:53:08.000000000 Z
+  where: github
+  who: 526301
