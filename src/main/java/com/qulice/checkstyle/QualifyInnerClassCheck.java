@@ -94,7 +94,6 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
      * @param node Class-like AST node that needs to be checked
      */
     private void scanClass(final DetailAST node) {
-        this.nested.add(getClassName(node));
         final DetailAST content = node.findFirstToken(TokenTypes.OBJBLOCK);
         if (content == null) {
             return;
@@ -107,6 +106,7 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
             if (child.getType() == TokenTypes.CLASS_DEF
                 || child.getType() == TokenTypes.ENUM_DEF
                 || child.getType() == TokenTypes.INTERFACE_DEF) {
+                this.nested.add(getClassName(child));
                 this.scanClass(child);
             }
         }
