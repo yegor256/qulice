@@ -535,15 +535,19 @@
       </plugin>
       <plugin>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.15.2</version>
         <configuration>
           <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
-          <checkExpectedProvidedScope>false</checkExpectedProvidedScope>
         </configuration>
         <executions>
           <execution>
             <goals>
               <goal>helpmojo</goal>
+              <goal>descriptor</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>mojo-descriptor</id>
+            <goals>
               <goal>descriptor</goal>
             </goals>
           </execution>
@@ -673,6 +677,13 @@
       </plugins>
     </pluginManagement>
   </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <artifactId>maven-plugin-report-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </reporting>
   <profiles>
     <profile>
       <id>qulice</id>

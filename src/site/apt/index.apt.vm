@@ -44,6 +44,12 @@ Source Code Quality Police (Qulice)
   quality control instrument for
   Java projects. It combines a few static analysis tools and
   pre-configures them. You don't need to use and configure them individually any more.
+  Read {{{./usage.html}how to use it}}.
+
+  Why be so strict? As Yegor Bugayenko explains in
+  {{{https://www.yegor256.com/2014/08/13/strict-code-quality-control.html}Strict Control of Java Code Quality}},
+  if your changes break any of Qulice's rules, your entire branch gets rejected,
+  and "you are getting free lessons with every new line of code you write".
 
   At the moment we integrate together:
 
@@ -51,17 +57,16 @@ Source Code Quality Police (Qulice)
 
    * {{{http://maven.apache.org/plugins/maven-enforcer-plugin/enforce-mojo.html}maven-enforcer-plugin}}
 
-   * {{{https://github.com/ning/maven-duplicate-finder-plugin}maven-duplicate-finder-plugin}}
+   * {{{https://github.com/basepom/duplicate-finder-maven-plugin}duplicate-finder-maven-plugin}}
 
-   * {{{http://checkstyle.sourceforge.net/}Checkstyle}}
+   * {{{https://checkstyle.sourceforge.io/}Checkstyle}}
 
-   * {{{http://pmd.sourceforge.net/}PMD}}
+   * {{{https://pmd.github.io/}PMD}}
 
-   * {{{https://spotbugs.github.io/}SpotBugs}}
+   * {{{https://errorprone.info/}ErrorProne}}
 
   Just add our {{{./qulice-maven-plugin/}qulice-maven-plugin}} to your
-  Maven project and start following out
-  {{{./quality.html}quality policy}}:
+  Maven project:
 
 +--
 <build>
@@ -70,9 +75,6 @@ Source Code Quality Police (Qulice)
       <groupId>com.qulice</groupId>
       <artifactId>qulice-maven-plugin</artifactId>
       <version>${project.version}</version>
-      <configuration>
-        <license>file:${basedir}/LICENSE.txt</license>
-      </configuration>
       <executions>
         <execution>
           <goals>
@@ -86,5 +88,5 @@ Source Code Quality Police (Qulice)
 +--
 
   Don't hesitate to submit a
-  ticket to {{{https://github.com/tpc2/qulice/issues}Github}} when something
+  ticket to {{{https://github.com/yegor256/qulice/issues}Github}} when something
   doesn't work or you need more features.
