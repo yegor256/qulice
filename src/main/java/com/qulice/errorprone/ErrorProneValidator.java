@@ -140,41 +140,54 @@ public final class ErrorProneValidator implements ResourceValidator {
     }
 
     /**
-     * Build the {@code javac} command line.
+     * Build the {@code javac} command line. To stay below the
+     * Windows {@code CreateProcess} 32 KB command-line limit even on
+     * projects with thousands of sources or long classpaths, every
+     * argument other than the launcher itself and the {@code -J}
+     * flags (which {@code javac} forbids inside argfiles) is written
+     * to a temporary argfile and passed as {@code @argfile}.
      * @param sources Java source files to feed
      * @return Argv
      */
     private List<String> command(final List<File> sources) {
         final List<String> command = new ArrayList<>(
-            sources.size() + ErrorProneValidator.JVM_FLAGS.size() + 11
+            ErrorProneValidator.JVM_FLAGS.size() + 2
         );
         command.add(ErrorProneValidator.javac());
         for (final String flag : ErrorProneValidator.JVM_FLAGS) {
             command.add("-J".concat(flag));
         }
-        command.add("-XDcompilePolicy=simple");
-        command.add("-XDaddTypeAnnotationsToSymbol=true");
-        command.add("--should-stop=ifError=FLOW");
-        command.add("-proc:none");
-        command.add("-Xplugin:ErrorProne");
-        command.add("-processorpath");
-        command.add(ErrorProneValidator.pluginClasspath());
         final File outdir = new File(this.env.tempdir(), "errorprone-classes");
         if (!outdir.exists() && !outdir.mkdirs()) {
             throw new IllegalStateException(
                 String.format("Unable to create %s", outdir)
             );
         }
-        command.add("-d");
-        command.add(outdir.getAbsolutePath());
+        final List<String> args = new ArrayList<>(sources.size() + 11);
+        args.add("-XDcompilePolicy=simple");
+        args.add("-XDaddTypeAnnotationsToSymbol=true");
+        args.add("--should-stop=ifError=FLOW");
+        args.add("-proc:none");
+        args.add("-Xplugin:ErrorProne");
+        args.add("-processorpath");
+        args.add(ErrorProneValidator.pluginClasspath());
+        args.add("-d");
+        args.add(outdir.getAbsolutePath());
         final Collection<String> classpath = this.env.classpath();
         if (!classpath.isEmpty()) {
-            command.add("-classpath");
-            command.add(String.join(File.pathSeparator, classpath));
+            args.add("-classpath");
+            args.add(String.join(File.pathSeparator, classpath));
         }
         for (final File source : sources) {
-            command.add(source.getAbsolutePath());
+            args.add(source.getAbsolutePath());
         }
+        command.add(
+            "@".concat(
+                new Argfile(
+                    new File(this.env.tempdir(), "errorprone-args.txt"), args
+                ).save().getAbsolutePath()
+            )
+        );
         return command;
     }
 
