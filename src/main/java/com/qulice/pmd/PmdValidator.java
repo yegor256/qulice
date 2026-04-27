@@ -12,6 +12,7 @@ import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Locale;
 
 /**
  * Validates source code with PMD.
@@ -79,7 +80,7 @@ public final class PmdValidator implements ResourceValidator {
             if (this.env.exclude("pmd", name)) {
                 continue;
             }
-            if (!name.matches("^.*\\.java$")) {
+            if (!name.toLowerCase(Locale.ROOT).endsWith(".java")) {
                 continue;
             }
             sources.add(file);
