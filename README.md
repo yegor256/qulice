@@ -38,7 +38,7 @@ Just add this plugin to your `pom.xml`:
     <plugin>
       <groupId>com.qulice</groupId>
       <artifactId>qulice-maven-plugin</artifactId>
-      <version>0.27.2</version>
+      <version>0.27.5</version>
       <configuration>
         <license>file:${basedir}/LICENSE.txt</license>
       </configuration>
