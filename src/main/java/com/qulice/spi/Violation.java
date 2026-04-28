@@ -4,6 +4,9 @@
  */
 package com.qulice.spi;
 
+import java.util.Comparator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -50,6 +53,21 @@ public interface Violation extends Comparable<Violation> {
     @EqualsAndHashCode
     @ToString
     final class Default implements Violation {
+
+        /**
+         * Pattern that extracts the first integer from a lines string.
+         */
+        private static final Pattern FIRST_LINE = Pattern.compile("\\d+");
+
+        /**
+         * Total ordering: validator, then file, then numeric line, then message.
+         */
+        private static final Comparator<Violation> ORDER = Comparator
+            .comparing(Violation::validator, String.CASE_INSENSITIVE_ORDER)
+            .thenComparing(Violation::file)
+            .thenComparingInt(v -> Default.lineOf(v.lines()))
+            .thenComparing(Violation::lines)
+            .thenComparing(Violation::message);
 
         /**
          * Name of the validator that generated this violation information.
@@ -121,7 +139,29 @@ public interface Violation extends Comparable<Violation> {
 
         @Override
         public int compareTo(final Violation other) {
-            return this.vldtr.compareToIgnoreCase(other.validator());
+            return Default.ORDER.compare(this, other);
+        }
+
+        /**
+         * Extracts the first integer found in the {@code lines} string,
+         * returning {@link Integer#MAX_VALUE} when none is present so that
+         * non-numeric values (such as {@code "unknown"}) sort last.
+         * @param lines String describing line(s)
+         * @return First integer, or {@link Integer#MAX_VALUE}
+         */
+        private static int lineOf(final String lines) {
+            int first = Integer.MAX_VALUE;
+            if (lines != null) {
+                final Matcher matcher = Default.FIRST_LINE.matcher(lines);
+                if (matcher.find()) {
+                    try {
+                        first = Integer.parseInt(matcher.group());
+                    } catch (final NumberFormatException ex) {
+                        first = Integer.MAX_VALUE;
+                    }
+                }
+            }
+            return first;
         }
     }
 }
