@@ -16,80 +16,117 @@ import org.junit.jupiter.api.Test;
  */
 final class ViolationTest {
 
+    /**
+     * Validator name reused across the tests.
+     */
+    private static final String CHECKSTYLE = "checkstyle";
+
+    /**
+     * Check name reused across the tests.
+     */
+    private static final String RULE = "LineLength";
+
+    /**
+     * File name reused across the tests.
+     */
+    private static final String FILE = "Foo.java";
+
+    /**
+     * Line number reused across the tests.
+     */
+    private static final String LINE = "10";
+
+    /**
+     * Validation message reused across the tests.
+     */
+    private static final String MESSAGE = "too long";
+
     @Test
     void distinguishesViolationsInSameValidatorByFile() {
-        final Violation first = new Violation.Default(
-            "checkstyle", "LineLength", "Alpha.java", "10", "too long"
-        );
-        final Violation second = new Violation.Default(
-            "checkstyle", "LineLength", "Beta.java", "10", "too long"
-        );
         MatcherAssert.assertThat(
-            "violations from the same validator on different files cannot compare equal",
-            first.compareTo(second),
+            "violations from same validator on different files cannot be equal",
+            new Violation.Default(
+                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                "Alpha.java", ViolationTest.LINE, ViolationTest.MESSAGE
+            ).compareTo(
+                new Violation.Default(
+                    ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                    "Beta.java", ViolationTest.LINE, ViolationTest.MESSAGE
+                )
+            ),
             Matchers.not(Matchers.is(0))
         );
     }
 
     @Test
     void distinguishesViolationsInSameFileByLine() {
-        final Violation first = new Violation.Default(
-            "checkstyle", "LineLength", "Foo.java", "10", "too long"
-        );
-        final Violation second = new Violation.Default(
-            "checkstyle", "LineLength", "Foo.java", "20", "too long"
-        );
         MatcherAssert.assertThat(
-            "violations on the same file at different lines cannot compare equal",
-            first.compareTo(second),
+            "violations on same file at different lines cannot be equal",
+            new Violation.Default(
+                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                ViolationTest.FILE, "10", ViolationTest.MESSAGE
+            ).compareTo(
+                new Violation.Default(
+                    ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                    ViolationTest.FILE, "20", ViolationTest.MESSAGE
+                )
+            ),
             Matchers.not(Matchers.is(0))
         );
     }
 
     @Test
     void distinguishesViolationsOnSameLineByMessage() {
-        final Violation first = new Violation.Default(
-            "checkstyle", "LineLength", "Foo.java", "10", "first issue"
-        );
-        final Violation second = new Violation.Default(
-            "checkstyle", "LineLength", "Foo.java", "10", "second issue"
-        );
         MatcherAssert.assertThat(
-            "violations on the same line with different messages cannot compare equal",
-            first.compareTo(second),
+            "violations on same line with different messages cannot be equal",
+            new Violation.Default(
+                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                ViolationTest.FILE, ViolationTest.LINE, "first issue"
+            ).compareTo(
+                new Violation.Default(
+                    ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                    ViolationTest.FILE, ViolationTest.LINE, "second issue"
+                )
+            ),
             Matchers.not(Matchers.is(0))
         );
     }
 
     @Test
     void sortsByValidatorFirst() {
-        final Violation pmd = new Violation.Default(
-            "pmd", "Rule", "Z.java", "1", "x"
+        final List<Violation> sorted = Arrays.asList(
+            new Violation.Default(
+                "pmd", ViolationTest.RULE,
+                "Z.java", "1", ViolationTest.MESSAGE
+            ),
+            new Violation.Default(
+                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                "A.java", "999", ViolationTest.MESSAGE
+            )
         );
-        final Violation checkstyle = new Violation.Default(
-            "checkstyle", "Rule", "A.java", "999", "x"
-        );
-        final List<Violation> sorted = Arrays.asList(pmd, checkstyle);
         sorted.sort(null);
         MatcherAssert.assertThat(
             "validator name must drive primary ordering",
             sorted.get(0).validator(),
-            Matchers.equalTo("checkstyle")
+            Matchers.equalTo(ViolationTest.CHECKSTYLE)
         );
     }
 
     @Test
     void sortsByFileWhenValidatorMatches() {
-        final Violation later = new Violation.Default(
-            "checkstyle", "Rule", "Zeta.java", "1", "x"
+        final List<Violation> sorted = Arrays.asList(
+            new Violation.Default(
+                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                "Zeta.java", "1", ViolationTest.MESSAGE
+            ),
+            new Violation.Default(
+                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                "Alpha.java", "1", ViolationTest.MESSAGE
+            )
         );
-        final Violation earlier = new Violation.Default(
-            "checkstyle", "Rule", "Alpha.java", "1", "x"
-        );
-        final List<Violation> sorted = Arrays.asList(later, earlier);
         sorted.sort(null);
         MatcherAssert.assertThat(
-            "within the same validator, file name must determine ordering",
+            "within same validator, file name determines ordering",
             sorted.get(0).file(),
             Matchers.equalTo("Alpha.java")
         );
@@ -97,16 +134,19 @@ final class ViolationTest {
 
     @Test
     void sortsByLineWhenValidatorAndFileMatch() {
-        final Violation later = new Violation.Default(
-            "checkstyle", "Rule", "Foo.java", "20", "x"
+        final List<Violation> sorted = Arrays.asList(
+            new Violation.Default(
+                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                ViolationTest.FILE, "20", ViolationTest.MESSAGE
+            ),
+            new Violation.Default(
+                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                ViolationTest.FILE, "5", ViolationTest.MESSAGE
+            )
         );
-        final Violation earlier = new Violation.Default(
-            "checkstyle", "Rule", "Foo.java", "5", "x"
-        );
-        final List<Violation> sorted = Arrays.asList(later, earlier);
         sorted.sort(null);
         MatcherAssert.assertThat(
-            "within the same file, numeric line number must determine ordering",
+            "within same file, numeric line number determines ordering",
             sorted.get(0).lines(),
             Matchers.equalTo("5")
         );
@@ -114,15 +154,17 @@ final class ViolationTest {
 
     @Test
     void treatsEqualViolationsAsEqualUnderCompare() {
-        final Violation one = new Violation.Default(
-            "checkstyle", "LineLength", "Foo.java", "10", "too long"
-        );
-        final Violation two = new Violation.Default(
-            "checkstyle", "LineLength", "Foo.java", "10", "too long"
-        );
         MatcherAssert.assertThat(
             "violations with identical fields must be ordered equally",
-            one.compareTo(two),
+            new Violation.Default(
+                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                ViolationTest.FILE, ViolationTest.LINE, ViolationTest.MESSAGE
+            ).compareTo(
+                new Violation.Default(
+                    ViolationTest.CHECKSTYLE, ViolationTest.RULE,
+                    ViolationTest.FILE, ViolationTest.LINE, ViolationTest.MESSAGE
+                )
+            ),
             Matchers.is(0)
         );
     }
