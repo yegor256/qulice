@@ -58,7 +58,7 @@ final class ErrorProneValidatorTest {
         final Environment env = new Environment.Mock().withFile(
             file,
             String.join(
-                "\n",
+                System.lineSeparator(),
                 "package com.qulice;",
                 "/**",
                 " * Sample.",
