@@ -51,4 +51,36 @@ final class ErrorProneValidatorTest {
             Matchers.<Violation>empty()
         );
     }
+
+    @Test
+    void doesNotFlagCheckstyleJavadocTag() throws Exception {
+        final String file = "src/main/java/com/qulice/Tagged.java";
+        final Environment env = new Environment.Mock().withFile(
+            file,
+            String.join(
+                "\n",
+                "package com.qulice;",
+                "/**",
+                " * Sample.",
+                " * @since 1.0",
+                " * @checkstyle MethodNameCheck (1 line)",
+                " */",
+                "final class Tagged {",
+                "    int square(final int num) { return num * num; }",
+                "}"
+            )
+        );
+        final java.util.Collection<Violation> violations =
+            new ErrorProneValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            );
+        MatcherAssert.assertThat(
+            String.format(
+                "@checkstyle Javadoc tag must not trigger ErrorProne violations: %s",
+                violations
+            ),
+            violations,
+            Matchers.<Violation>empty()
+        );
+    }
 }
