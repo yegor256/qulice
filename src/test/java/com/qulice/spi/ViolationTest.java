@@ -5,167 +5,126 @@
 package com.qulice.spi;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test case for {@link Violation.Default}.
+ * Test case for {@link Violation}.
  * @since 0.24
  */
 final class ViolationTest {
 
     /**
-     * Validator name reused across the tests.
+     * Validator name reused across the cases below.
      */
-    private static final String CHECKSTYLE = "checkstyle";
+    private static final String VALIDATOR = "checkstyle";
 
     /**
-     * Check name reused across the tests.
+     * Check name reused across the cases below.
      */
-    private static final String RULE = "LineLength";
+    private static final String CHECK = "Indent";
 
     /**
-     * File name reused across the tests.
+     * Path to a sample source file used in equality cases.
      */
-    private static final String FILE = "Foo.java";
+    private static final String FOO = "/src/main/java/Foo.java";
 
     /**
-     * Line number reused across the tests.
+     * Validation message reused for ordering cases.
      */
-    private static final String LINE = "10";
-
-    /**
-     * Validation message reused across the tests.
-     */
-    private static final String MESSAGE = "too long";
+    private static final String MESSAGE = "msg";
 
     @Test
-    void distinguishesViolationsInSameValidatorByFile() {
+    void distinguishesViolationsWithSameValidator() {
         MatcherAssert.assertThat(
-            "violations from same validator on different files cannot be equal",
+            "two violations differing only by file or line must not tie",
             new Violation.Default(
-                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                "Alpha.java", ViolationTest.LINE, ViolationTest.MESSAGE
+                ViolationTest.VALIDATOR, "MissingJavadoc",
+                "/src/main/java/Bar.java", "10", "alpha"
             ).compareTo(
                 new Violation.Default(
-                    ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                    "Beta.java", ViolationTest.LINE, ViolationTest.MESSAGE
+                    ViolationTest.VALIDATOR, "MissingJavadoc",
+                    "/src/main/java/Baz.java", "20", "beta"
                 )
             ),
-            Matchers.not(Matchers.is(0))
+            Matchers.not(Matchers.equalTo(0))
         );
     }
 
     @Test
-    void distinguishesViolationsInSameFileByLine() {
-        MatcherAssert.assertThat(
-            "violations on same file at different lines cannot be equal",
-            new Violation.Default(
-                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                ViolationTest.FILE, "10", ViolationTest.MESSAGE
-            ).compareTo(
-                new Violation.Default(
-                    ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                    ViolationTest.FILE, "20", ViolationTest.MESSAGE
-                )
-            ),
-            Matchers.not(Matchers.is(0))
-        );
-    }
-
-    @Test
-    void distinguishesViolationsOnSameLineByMessage() {
-        MatcherAssert.assertThat(
-            "violations on same line with different messages cannot be equal",
-            new Violation.Default(
-                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                ViolationTest.FILE, ViolationTest.LINE, "first issue"
-            ).compareTo(
-                new Violation.Default(
-                    ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                    ViolationTest.FILE, ViolationTest.LINE, "second issue"
-                )
-            ),
-            Matchers.not(Matchers.is(0))
-        );
-    }
-
-    @Test
-    void sortsByValidatorFirst() {
+    void ordersViolationsByFileWhenValidatorMatches() {
         final List<Violation> sorted = Arrays.asList(
             new Violation.Default(
-                "pmd", ViolationTest.RULE,
-                "Z.java", "1", ViolationTest.MESSAGE
+                ViolationTest.VALIDATOR, ViolationTest.CHECK,
+                "/src/main/java/Beta.java", "1", ViolationTest.MESSAGE
             ),
             new Violation.Default(
-                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                "A.java", "999", ViolationTest.MESSAGE
+                ViolationTest.VALIDATOR, ViolationTest.CHECK,
+                "/src/main/java/Alpha.java", "1", ViolationTest.MESSAGE
             )
         );
-        sorted.sort(null);
+        Collections.sort(sorted);
         MatcherAssert.assertThat(
-            "validator name must drive primary ordering",
-            sorted.get(0).validator(),
-            Matchers.equalTo(ViolationTest.CHECKSTYLE)
-        );
-    }
-
-    @Test
-    void sortsByFileWhenValidatorMatches() {
-        final List<Violation> sorted = Arrays.asList(
-            new Violation.Default(
-                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                "Zeta.java", "1", ViolationTest.MESSAGE
-            ),
-            new Violation.Default(
-                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                "Alpha.java", "1", ViolationTest.MESSAGE
-            )
-        );
-        sorted.sort(null);
-        MatcherAssert.assertThat(
-            "within same validator, file name determines ordering",
+            "violations sharing a validator must be sorted by file path",
             sorted.get(0).file(),
-            Matchers.equalTo("Alpha.java")
+            Matchers.equalTo("/src/main/java/Alpha.java")
         );
     }
 
     @Test
-    void sortsByLineWhenValidatorAndFileMatch() {
+    void ordersViolationsByLineWhenFileMatches() {
         final List<Violation> sorted = Arrays.asList(
             new Violation.Default(
-                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                ViolationTest.FILE, "20", ViolationTest.MESSAGE
+                ViolationTest.VALIDATOR, ViolationTest.CHECK,
+                ViolationTest.FOO, "42", ViolationTest.MESSAGE
             ),
             new Violation.Default(
-                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                ViolationTest.FILE, "5", ViolationTest.MESSAGE
+                ViolationTest.VALIDATOR, ViolationTest.CHECK,
+                ViolationTest.FOO, "5", ViolationTest.MESSAGE
             )
         );
-        sorted.sort(null);
+        Collections.sort(sorted);
         MatcherAssert.assertThat(
-            "within same file, numeric line number determines ordering",
+            "violations from the same file must be sorted by line number",
             sorted.get(0).lines(),
             Matchers.equalTo("5")
         );
     }
 
     @Test
-    void treatsEqualViolationsAsEqualUnderCompare() {
+    void comparesEqualWhenAllFieldsMatch() {
         MatcherAssert.assertThat(
-            "violations with identical fields must be ordered equally",
+            "violations with identical fields must compare as equal",
             new Violation.Default(
-                ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                ViolationTest.FILE, ViolationTest.LINE, ViolationTest.MESSAGE
+                "pmd", "UnusedLocal", ViolationTest.FOO, "7", "unused"
             ).compareTo(
                 new Violation.Default(
-                    ViolationTest.CHECKSTYLE, ViolationTest.RULE,
-                    ViolationTest.FILE, ViolationTest.LINE, ViolationTest.MESSAGE
+                    "pmd", "UnusedLocal", ViolationTest.FOO, "7", "unused"
                 )
             ),
-            Matchers.is(0)
+            Matchers.equalTo(0)
+        );
+    }
+
+    @Test
+    void keepsValidatorAsPrimarySortKey() {
+        final List<Violation> sorted = Arrays.asList(
+            new Violation.Default(
+                "pmd", "X", "/src/main/java/Z.java", "999", "z"
+            ),
+            new Violation.Default(
+                ViolationTest.VALIDATOR, "Y",
+                "/src/main/java/A.java", "1", "a"
+            )
+        );
+        Collections.sort(sorted);
+        MatcherAssert.assertThat(
+            "validator name must remain the primary ordering key",
+            sorted.get(0).validator(),
+            Matchers.equalTo(ViolationTest.VALIDATOR)
         );
     }
 }

@@ -5,8 +5,6 @@
 package com.qulice.spi;
 
 import java.util.Comparator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -55,19 +53,16 @@ public interface Violation extends Comparable<Violation> {
     final class Default implements Violation {
 
         /**
-         * Pattern that extracts the first integer from a lines string.
+         * Total ordering across all observable fields, so that two
+         * violations only tie when they are fully equal.
          */
-        private static final Pattern FIRST_LINE = Pattern.compile("\\d+");
-
-        /**
-         * Total ordering: validator, then file, then numeric line, then message.
-         */
-        private static final Comparator<Violation> ORDER = Comparator
-            .comparing(Violation::validator, String.CASE_INSENSITIVE_ORDER)
-            .thenComparing(Violation::file)
-            .thenComparingInt(v -> Default.lineOf(v.lines()))
-            .thenComparing(Violation::lines)
-            .thenComparing(Violation::message);
+        private static final Comparator<Violation> ORDER =
+            Comparator.comparing(Violation::validator, String.CASE_INSENSITIVE_ORDER)
+                .thenComparing(Violation::file, String.CASE_INSENSITIVE_ORDER)
+                .thenComparing(Default::lineNumber)
+                .thenComparing(Violation::lines)
+                .thenComparing(Violation::name)
+                .thenComparing(Violation::message);
 
         /**
          * Name of the validator that generated this violation information.
@@ -143,25 +138,20 @@ public interface Violation extends Comparable<Violation> {
         }
 
         /**
-         * Extracts the first integer found in the {@code lines} string,
-         * returning {@link Integer#MAX_VALUE} when none is present so that
-         * non-numeric values (such as {@code "unknown"}) sort last.
-         * @param lines String describing line(s)
-         * @return First integer, or {@link Integer#MAX_VALUE}
+         * Numeric line number, or {@link Integer#MAX_VALUE} when the
+         * field cannot be parsed as a single integer (e.g. a range like
+         * {@code "10-12"}). Numeric ordering keeps line 9 before line 42.
+         * @param violation The violation to inspect
+         * @return Parsed line number, or {@code MAX_VALUE} as a fallback
          */
-        private static int lineOf(final String lines) {
-            int first = Integer.MAX_VALUE;
-            if (lines != null) {
-                final Matcher matcher = Default.FIRST_LINE.matcher(lines);
-                if (matcher.find()) {
-                    try {
-                        first = Integer.parseInt(matcher.group());
-                    } catch (final NumberFormatException ex) {
-                        first = Integer.MAX_VALUE;
-                    }
-                }
+        private static int lineNumber(final Violation violation) {
+            int parsed;
+            try {
+                parsed = Integer.parseInt(violation.lines());
+            } catch (final NumberFormatException ignored) {
+                parsed = Integer.MAX_VALUE;
             }
-            return first;
+            return parsed;
         }
     }
 }

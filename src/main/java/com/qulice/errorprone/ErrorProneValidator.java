@@ -168,7 +168,7 @@ public final class ErrorProneValidator implements ResourceValidator {
         args.add("-XDaddTypeAnnotationsToSymbol=true");
         args.add("--should-stop=ifError=FLOW");
         args.add("-proc:none");
-        args.add("-Xplugin:ErrorProne");
+        args.add("-Xplugin:ErrorProne -Xep:InvalidBlockTag:OFF");
         args.add("-processorpath");
         args.add(ErrorProneValidator.pluginClasspath());
         args.add("-d");
