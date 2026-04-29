@@ -156,6 +156,14 @@ public final class CheckstyleValidator implements ResourceValidator {
                 )
             );
         }
+        if (!parent.canWrite()) {
+            throw new IllegalStateException(
+                String.format(
+                    "Cannot write to %s, check filesystem permissions",
+                    parent.getAbsolutePath()
+                )
+            );
+        }
         final Properties props = new Properties();
         props.setProperty("cache.file", cache.getPath());
         final Configuration config;
