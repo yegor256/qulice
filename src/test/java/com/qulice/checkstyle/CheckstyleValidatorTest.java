@@ -17,6 +17,7 @@ import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -78,6 +79,43 @@ final class CheckstyleValidatorTest {
         Assertions.assertDoesNotThrow(
             () -> this.runValidation("ValidLiteralComparisonCheck.java", true)
         );
+    }
+
+    @Test
+    void failsClearlyWhenCacheParentIsNotWritable() throws Exception {
+        final Environment.Mock mock = new Environment.Mock();
+        final File parent = new File(mock.tempdir(), "checkstyle");
+        Assumptions.assumeTrue(
+            parent.mkdirs() || parent.isDirectory(),
+            "Parent directory must exist for the regression scenario"
+        );
+        try {
+            Assumptions.assumeTrue(
+                parent.setReadOnly(),
+                "Filesystem does not support marking a directory read-only"
+            );
+            Assumptions.assumeFalse(
+                parent.canWrite(),
+                "Skipped: current user can write despite read-only attribute"
+            );
+            final Environment env = mock.withFile(
+                "src/main/java/foo/Foo.java",
+                "package foo; class Foo {}"
+            );
+            MatcherAssert.assertThat(
+                "Validation must fail fast with a clear writability error",
+                Assertions.assertThrows(
+                    IllegalStateException.class,
+                    () -> new CheckstyleValidator(env).validate(env.files("Foo.java"))
+                ).getMessage(),
+                Matchers.allOf(
+                    Matchers.containsString("write"),
+                    Matchers.containsString(parent.getAbsolutePath())
+                )
+            );
+        } finally {
+            parent.setWritable(true, false);
+        }
     }
 
     @Test
