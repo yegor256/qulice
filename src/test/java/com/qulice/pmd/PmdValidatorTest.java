@@ -33,4 +33,18 @@ final class PmdValidatorTest {
             Matchers.not(Matchers.<Violation>empty())
         );
     }
+
+    @Test
+    void acceptsJavaFilesWithUppercaseExtension() throws Exception {
+        final String file = "src/main/java/Main.JAVA";
+        final Environment env = new Environment.Mock()
+            .withFile(file, "class Main { int x = 0; }");
+        MatcherAssert.assertThat(
+            "File with uppercase .JAVA extension should not be filtered out",
+            new PmdValidator(env).getNonExcludedFiles(
+                Collections.singletonList(new File(env.basedir(), file))
+            ),
+            Matchers.not(Matchers.empty())
+        );
+    }
 }
