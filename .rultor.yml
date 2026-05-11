@@ -24,4 +24,4 @@ release:
     git commit -am "${tag}"
     mvn clean install -ntp -Pqulice-profile --errors --settings ../settings.xml --batch-mode --no-transfer-progress -Dstyle.color=never
     mvn deploy -Pqulice-profile -Pqulice -Psonatype -DskipTests -DskipITs --errors --settings ../settings.xml --batch-mode --no-transfer-progress -Dstyle.color=never
-    mvn clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml --batch-mode --no-transfer-progress -Dstyle.color=never
+    mvn -ntp clean site-deploy -Pgh-pages -Pqulice-profile -Psite --errors --settings ../settings.xml --batch-mode --no-transfer-progress -Dstyle.color=never
