@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.6" size="690654">
+<fb version="0.19.6" size="703559">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">493.935866741</seconds>
+    <seconds t="F">424.633443799</seconds>
     <version t="S">0.60.2</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-05-13T08:21:09Z</when>
+    <when t="T">2026-05-14T08:14:09Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -41298,21 +41298,6 @@
     <when t="T">2026-05-10T07:59:12Z</when>
   </f>
   <f>
-    <_id t="I">9457</_id>
-    <_job t="I">71589</_job>
-    <_time t="T">2026-05-10T08:04:06Z</_time>
-    <_version t="S">0.19.10/0.60.3/0.17.17</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (276.7) is decreasing (R=-0.15).
-The average number of commits per week (11.8) is increasing (R=0.28).
-The average issue cycle time (3w4d) is increasing (R=0.28).
-The average pull cycle time (1w) is increasing (R=0.34).
-The average number of releases per month (1.8) is increasing (R=0.29).
-The average monthly turnover (17.0 developers) is increasing (R=0.46).</text>
-    <what t="S">assessment</what>
-    <when t="T">2026-05-10T08:04:06Z</when>
-  </f>
-  <f>
     <_id t="I">9460</_id>
     <_job t="I">25658743933</_job>
     <_time t="T">2026-05-11T08:22:36Z</_time>
@@ -42906,14 +42891,6 @@ The average monthly turnover (18.0 developers) is increasing (R=0.48).</text>
     <who t="I">5467276</who>
   </f>
   <f>
-    <_id t="I">9560</_id>
-    <_job t="I">71825</_job>
-    <_time t="T">2026-05-12T08:20:44Z</_time>
-    <_version t="S">0.19.10/0.60.3/0.17.17</_version>
-    <what t="S">learn-eva</what>
-    <when t="T">2026-05-12T08:20:44Z</when>
-  </f>
-  <f>
     <_id t="I">9562</_id>
     <_job t="I">25786842837</_job>
     <_time t="T">2026-05-13T08:13:15Z</_time>
@@ -43263,6 +43240,7 @@ The average monthly turnover (18.0 developers) is increasing (R=0.48).</text>
     <is_human t="I">0</is_human>
     <issue t="I">685</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">0</succeeded_builds>
     <suggestions t="I">0</suggestions>
     <what t="S">pull-was-merged</what>
@@ -43289,6 +43267,7 @@ The average monthly turnover (18.0 developers) is increasing (R=0.48).</text>
     <is_human t="I">0</is_human>
     <issue t="I">696</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">27</review_comments>
     <succeeded_builds t="I">0</succeeded_builds>
     <suggestions t="I">0</suggestions>
     <what t="S">pull-was-merged</what>
@@ -43315,30 +43294,13 @@ The average monthly turnover (18.0 developers) is increasing (R=0.48).</text>
     <is_human t="I">0</is_human>
     <issue t="I">698</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">6</review_comments>
     <succeeded_builds t="I">0</succeeded_builds>
     <suggestions t="I">0</suggestions>
     <what t="S">pull-was-merged</what>
     <when t="T">2016-02-10T21:39:30Z</when>
     <where t="S">github</where>
     <who t="I">8086956</who>
-  </f>
-  <f>
-    <_id t="I">9588</_id>
-    <_job t="I">25786842837</_job>
-    <_time t="T">2026-05-13T08:14:06Z</_time>
-    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
-    <assignees_were_scanned t="I">1471</assignees_were_scanned>
-    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">11039899475</events_were_scanned>
-    <labels_were_scanned t="I">1567</labels_were_scanned>
-    <latest_issue_was_found t="I">1386</latest_issue_was_found>
-    <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1584</min_issue_was_found>
-    <min_pull_was_found t="I">1445</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <types_were_scanned t="I">1452</types_were_scanned>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
   </f>
   <f>
     <_id t="I">9589</_id>
@@ -43610,5 +43572,773 @@ The average monthly turnover (18.0 developers) is increasing (R=0.48).</text>
     <when t="T">2016-02-17T08:33:30Z</when>
     <where t="S">github</where>
     <who t="I">5467276</who>
+  </f>
+  <f>
+    <_id t="I">9608</_id>
+    <_job t="I">71974</_job>
+    <_time t="T">2026-05-13T08:21:36Z</_time>
+    <_version t="S">0.19.10/0.60.3/0.17.17</_version>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (276.7) is decreasing (R=-0.15).
+The average number of commits per week (11.8) is increasing (R=0.28).
+The average issue cycle time (3w4d) is increasing (R=0.28).
+The average pull cycle time (1w) is increasing (R=0.33).
+The average number of releases per month (1.8) is increasing (R=0.29).
+The average monthly turnover (18.0 developers) is increasing (R=0.48).</text>
+    <what t="S">assessment</what>
+    <when t="T">2026-05-13T08:21:36Z</when>
+  </f>
+  <f>
+    <_id t="I">9609</_id>
+    <_job t="I">71974</_job>
+    <_time t="T">2026-05-13T08:22:05Z</_time>
+    <_version t="S">0.19.10/0.60.3/0.17.17</_version>
+    <what t="S">learn-eva</what>
+    <when t="T">2026-05-13T08:22:05Z</when>
+  </f>
+  <f>
+    <_id t="I">9610</_id>
+    <_job t="I">71974</_job>
+    <_time t="T">2026-05-13T08:22:05Z</_time>
+    <_version t="S">0.19.10/0.60.3/0.17.17</_version>
+    <ac t="I">68</ac>
+    <cost_of_qod t="F">3.6479392426844504</cost_of_qod>
+    <ev t="I">970</ev>
+    <pv t="I">15818</pv>
+    <qod t="I">266</qod>
+    <qod_per_day t="F">18.13402373959668</qod_per_day>
+    <qod_per_sec t="F">1.2881889829438399e-05</qod_per_sec>
+    <start t="T">2025-09-16T05:20:41Z</start>
+    <what t="S">earned-value</what>
+    <when t="T">2026-05-13T08:22:05Z</when>
+  </f>
+  <f>
+    <_id t="I">9612</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:21Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#704 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">704</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2016-02-16T07:49:05Z</when>
+    <where t="S">github</where>
+    <who t="I">1405237</who>
+  </f>
+  <f>
+    <_id t="I">9613</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:22Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#705 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">705</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-22T12:24:55Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">9614</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:22Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#705.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">705</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-12T13:42:45Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9615</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:22Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#706 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">706</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2016-06-27T12:44:41Z</when>
+    <where t="S">github</where>
+    <who t="I">5467276</who>
+  </f>
+  <f>
+    <_id t="I">9616</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:25Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#706.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">706</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-24T07:21:29Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9617</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:25Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#707 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">707</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-24T10:23:36Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">9618</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:25Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#707.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">707</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-15T09:32:21Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9619</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:26Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#708 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">708</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-24T16:28:23Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">9620</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:26Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#708.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">708</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-24T07:21:29Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9621</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:27Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#709 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">709</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2016-06-01T05:27:39Z</when>
+    <where t="S">github</where>
+    <who t="I">105730</who>
+  </f>
+  <f>
+    <_id t="I">9622</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:28Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#709.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">709</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-15T09:32:21Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9623</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:28Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#710 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">710</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-22T12:58:59Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">9624</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:28Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#710.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">710</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-15T09:32:20Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9625</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:28Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#711 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">711</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2018-05-01T20:35:16Z</when>
+    <where t="S">github</where>
+    <who t="I">105730</who>
+  </f>
+  <f>
+    <_id t="I">9626</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:29Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#711.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">711</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-15T09:32:19Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9627</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:29Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#712 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">712</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2016-02-16T10:15:32Z</when>
+    <where t="S">github</where>
+    <who t="I">105730</who>
+  </f>
+  <f>
+    <_id t="I">9628</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:29Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#712.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">712</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-15T11:11:52Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9629</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:30Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#714 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">714</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-22T12:34:11Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">9630</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:30Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#714.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">714</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-24T07:21:27Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9631</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:30Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#715 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">715</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2016-03-12T07:59:12Z</when>
+    <where t="S">github</where>
+    <who t="I">5467276</who>
+  </f>
+  <f>
+    <_id t="I">9632</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:31Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#715.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">715</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-24T07:21:27Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9633</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:31Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#717 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">717</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-22T11:45:18Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">9634</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:32Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#717.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">717</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-24T07:21:26Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9635</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:32Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#718 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">718</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-24T08:41:05Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">9636</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:32Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#718.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">718</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-24T07:21:25Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9637</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:33Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Apparently, yegor256/qulice#719 has been "issue-was-closed".</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">719</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-closed</what>
+    <when t="T">2026-04-24T14:51:40Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">9638</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:33Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#719.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">719</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2016-02-24T07:21:25Z</when>
+    <where t="S">github</where>
+    <who t="I">6305016</who>
+  </f>
+  <f>
+    <_id t="I">9639</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:37Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">#656</branch>
+    <comments t="I">85</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">9</comments_by_author>
+    <comments_by_reviewers t="I">76</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">48</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#702 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">8</files>
+    <hoc t="I">491</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">702</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">0</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2016-02-13T21:09:23Z</when>
+    <where t="S">github</where>
+    <who t="I">8086956</who>
+  </f>
+  <f>
+    <_id t="I">9640</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:07:57Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">660</branch>
+    <comments t="I">25</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">4</comments_by_author>
+    <comments_by_reviewers t="I">21</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">2</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#703 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">5</files>
+    <hoc t="I">132</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">703</issue>
+    <repository t="I">9580168</repository>
+    <succeeded_builds t="I">0</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2016-02-13T09:43:22Z</when>
+    <where t="S">github</where>
+    <who t="I">8086956</who>
+  </f>
+  <f>
+    <_id t="I">9641</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:09Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <assignees_were_scanned t="I">1471</assignees_were_scanned>
+    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
+    <events_were_scanned t="I">11041336576</events_were_scanned>
+    <labels_were_scanned t="I">1567</labels_were_scanned>
+    <latest_issue_was_found t="I">1386</latest_issue_was_found>
+    <merges_were_scanned t="I">0</merges_were_scanned>
+    <min_issue_was_found t="I">1584</min_issue_was_found>
+    <min_pull_was_found t="I">1446</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <types_were_scanned t="I">1452</types_were_scanned>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
+  </f>
+  <f>
+    <_id t="I">9642</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:18Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">We found out that the user #6028811 is known in GitHub as @dskalenko.</details>
+    <is_human t="I">1</is_human>
+    <name t="S">dskalenko</name>
+    <what t="S">who-has-name</what>
+    <when t="T">2026-05-14T08:08:18Z</when>
+    <where t="S">github</where>
+    <who t="I">6028811</who>
+  </f>
+  <f>
+    <_id t="I">9643</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:18Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">We found out that the user #6490959 is known in GitHub as @original-brownbear.</details>
+    <is_human t="I">1</is_human>
+    <name t="S">original-brownbear</name>
+    <what t="S">who-has-name</what>
+    <when t="T">2026-05-14T08:08:18Z</when>
+    <where t="S">github</where>
+    <who t="I">6490959</who>
+  </f>
+  <f>
+    <_id t="I">9644</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:27Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#720 has been opened by @yegor256.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">720</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-19T04:11:06Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">9645</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:28Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#721 has been opened by @mkordas.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">721</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-19T18:34:44Z</when>
+    <where t="S">github</where>
+    <who t="I">5467276</who>
+  </f>
+  <f>
+    <_id t="I">9646</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:28Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">#699</branch>
+    <details t="S">The missing pull yegor256/qulice#722 has been opened by @dskalenko.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">722</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2016-02-19T20:05:19Z</when>
+    <where t="S">github</where>
+    <who t="I">6028811</who>
+  </f>
+  <f>
+    <_id t="I">9647</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:28Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">#659-prohibit-public-static-methods</branch>
+    <details t="S">The missing pull yegor256/qulice#723 has been opened by @vkuchyn.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">723</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2016-02-20T14:23:13Z</when>
+    <where t="S">github</where>
+    <who t="I">3267621</who>
+  </f>
+  <f>
+    <_id t="I">9648</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:29Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#724 has been opened by @vkuchyn.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">724</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-20T14:38:11Z</when>
+    <where t="S">github</where>
+    <who t="I">3267621</who>
+  </f>
+  <f>
+    <_id t="I">9649</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:29Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#725 has been opened by @krzyk.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">725</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-21T09:47:20Z</when>
+    <where t="S">github</where>
+    <who t="I">105730</who>
+  </f>
+  <f>
+    <_id t="I">9650</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:30Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">##701</branch>
+    <details t="S">The missing pull yegor256/qulice#727 has been opened by @dskalenko.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">727</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2016-02-21T19:31:41Z</when>
+    <where t="S">github</where>
+    <who t="I">6028811</who>
+  </f>
+  <f>
+    <_id t="I">9651</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:30Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#728 has been opened by @mkordas.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">728</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-21T22:17:24Z</when>
+    <where t="S">github</where>
+    <who t="I">5467276</who>
+  </f>
+  <f>
+    <_id t="I">9652</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:31Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#729 has been opened by @mkordas.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">729</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-21T22:24:48Z</when>
+    <where t="S">github</where>
+    <who t="I">5467276</who>
+  </f>
+  <f>
+    <_id t="I">9653</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:31Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#730 has been opened by @vkuchyn.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">730</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-22T15:40:24Z</when>
+    <where t="S">github</where>
+    <who t="I">3267621</who>
+  </f>
+  <f>
+    <_id t="I">9654</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:31Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#731 has been opened by @mkordas.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">731</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-22T18:00:55Z</when>
+    <where t="S">github</where>
+    <who t="I">5467276</who>
+  </f>
+  <f>
+    <_id t="I">9655</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:31Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#732 has been opened by @mkordas.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">732</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-22T18:28:08Z</when>
+    <where t="S">github</where>
+    <who t="I">5467276</who>
+  </f>
+  <f>
+    <_id t="I">9656</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:31Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#733 has been opened by @mkordas.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">733</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-22T23:13:17Z</when>
+    <where t="S">github</where>
+    <who t="I">5467276</who>
+  </f>
+  <f>
+    <_id t="I">9657</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:32Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#734 has been opened by @mkordas.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">734</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-23T23:28:57Z</when>
+    <where t="S">github</where>
+    <who t="I">5467276</who>
+  </f>
+  <f>
+    <_id t="I">9658</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:32Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <branch t="S">61</branch>
+    <details t="S">The missing pull yegor256/qulice#735 has been opened by @krzyk.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">735</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2016-02-27T14:23:37Z</when>
+    <where t="S">github</where>
+    <who t="I">105730</who>
+  </f>
+  <f>
+    <_id t="I">9659</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:33Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#736 has been opened by @krzyk.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">736</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-27T16:10:18Z</when>
+    <where t="S">github</where>
+    <who t="I">105730</who>
+  </f>
+  <f>
+    <_id t="I">9660</_id>
+    <_job t="I">25849207773</_job>
+    <_time t="T">2026-05-14T08:08:33Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <details t="S">The missing issue yegor256/qulice#737 has been opened by @krzyk.</details>
+    <is_human t="I">1</is_human>
+    <issue t="I">737</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2016-02-28T09:08:49Z</when>
+    <where t="S">github</where>
+    <who t="I">105730</who>
   </f>
 </fb>
