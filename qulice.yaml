@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 465.805925567
+  seconds: 469.977617394
   version: 0.60.2
   what: judges-summary
-  when: 2026-05-16 08:00:56.895598993 Z
+  when: 2026-05-17 08:08:39.911034065 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -37431,7 +37431,7 @@
   - 0
   some_unmerged_pulls: 0
   what: quality-of-service
-  when: 2026-05-10 07:59:12.000000000 Z
+  when: &119 2026-05-10 07:59:12.000000000 Z
 - _id: 9460
   _job: 25658743933
   _time: 2026-05-11 08:22:36.310538086 Z
@@ -40716,12 +40716,6 @@
     The average monthly turnover (18.0 developers) is increasing (R=0.49).
   what: assessment
   when: 2026-05-15 08:26:33.314546800 Z
-- _id: 9711
-  _job: 72240
-  _time: 2026-05-15 08:27:01.723711598 Z
-  _version: 0.19.10/0.60.3/0.17.17
-  what: learn-eva
-  when: 2026-05-15 08:27:01.715106858 Z
 - _id: 9713
   _job: 25956626504
   _time: 2026-05-16 07:53:29.319562704 Z
@@ -40938,6 +40932,7 @@
   is_human: 0
   issue: 749
   repository: 9580168
+  review_comments: 6
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -40962,6 +40957,7 @@
   is_human: 0
   issue: 750
   repository: 9580168
+  review_comments: 3
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -40986,6 +40982,7 @@
   is_human: 0
   issue: 751
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -41010,6 +41007,7 @@
   is_human: 0
   issue: 753
   repository: 9580168
+  review_comments: 15
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -41040,22 +41038,6 @@
   when: 2016-04-07 12:47:43.000000000 Z
   where: github
   who: 105730
-- _id: 9734
-  _job: 25956626504
-  _time: 2026-05-16 07:54:37.023718152 Z
-  _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1471
-  earliest_issue_was_found: 1
-  events_were_scanned: 11042007847
-  labels_were_scanned: 1567
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1584
-  min_pull_was_found: 1448
-  repository: 9580168
-  types_were_scanned: 1452
-  what: iterate
-  where: github
 - _id: 9735
   _job: 25956626504
   _time: 2026-05-16 07:55:04.409451502 Z
@@ -41261,3 +41243,826 @@
   when: 2016-05-23 14:06:13.000000000 Z
   where: github
   who: 5467276
+- _id: 9752
+  _job: 72389
+  _time: 2026-05-16 08:01:58.858373112 Z
+  _version: 0.19.10/0.60.3/0.17.17
+  what: learn-eva
+  when: 2026-05-16 08:01:58.847927610 Z
+- _id: 9754
+  _job: 25985281775
+  _time: 2026-05-17 08:01:09.426320812 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#755 has been "issue-was-closed".
+  is_human: 1
+  issue: 755
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-22 10:21:30.000000000 Z
+  where: github
+  who: 526301
+- _id: 9755
+  _job: 25985281775
+  _time: 2026-05-17 08:01:09.769270761 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#755.
+  is_human: 1
+  issue: 755
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-03-17 08:14:21.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9756
+  _job: 25985281775
+  _time: 2026-05-17 08:01:09.974254871 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#757 has been "issue-was-closed".
+  is_human: 1
+  issue: 757
+  repository: 9580168
+  what: issue-was-closed
+  when: 2016-08-15 18:14:47.000000000 Z
+  where: github
+  who: 526301
+- _id: 9757
+  _job: 25985281775
+  _time: 2026-05-17 08:01:10.549929831 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#758 has been "issue-was-closed".
+  is_human: 1
+  issue: 758
+  repository: 9580168
+  what: issue-was-closed
+  when: 2016-03-29 20:47:43.000000000 Z
+  where: github
+  who: 5467276
+- _id: 9758
+  _job: 25985281775
+  _time: 2026-05-17 08:01:11.022254653 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#759 has been "issue-was-closed".
+  is_human: 1
+  issue: 759
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-24 07:05:25.000000000 Z
+  where: github
+  who: 526301
+- _id: 9759
+  _job: 25985281775
+  _time: 2026-05-17 08:01:11.404845016 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#759.
+  is_human: 1
+  issue: 759
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-04-06 09:45:40.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9760
+  _job: 25985281775
+  _time: 2026-05-17 08:01:11.608056872 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#760 has been "issue-was-closed".
+  is_human: 1
+  issue: 760
+  repository: 9580168
+  what: issue-was-closed
+  when: 2016-08-04 10:14:21.000000000 Z
+  where: github
+  who: 5467276
+- _id: 9761
+  _job: 25985281775
+  _time: 2026-05-17 08:01:12.133985971 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#760.
+  is_human: 1
+  issue: 760
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-04-11 09:23:02.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9762
+  _job: 25985281775
+  _time: 2026-05-17 08:01:12.368042822 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#761 has been "issue-was-closed".
+  is_human: 1
+  issue: 761
+  repository: 9580168
+  what: issue-was-closed
+  when: 2018-05-07 22:25:01.000000000 Z
+  where: github
+  who: 5467276
+- _id: 9763
+  _job: 25985281775
+  _time: 2026-05-17 08:01:13.262735784 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#761.
+  is_human: 1
+  issue: 761
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-04-18 08:16:28.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9764
+  _job: 25985281775
+  _time: 2026-05-17 08:01:13.471637522 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#762 has been "issue-was-closed".
+  is_human: 1
+  issue: 762
+  repository: 9580168
+  what: issue-was-closed
+  when: 2016-04-27 15:00:52.000000000 Z
+  where: github
+  who: 1618116
+- _id: 9765
+  _job: 25985281775
+  _time: 2026-05-17 08:01:14.083263682 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#763 has been "issue-was-closed".
+  is_human: 1
+  issue: 763
+  repository: 9580168
+  what: issue-was-closed
+  when: 2016-04-23 08:14:51.000000000 Z
+  where: github
+  who: 3275813
+- _id: 9766
+  _job: 25985281775
+  _time: 2026-05-17 08:01:14.550419407 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#764 has been "issue-was-closed".
+  is_human: 1
+  issue: 764
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-24 06:23:52.000000000 Z
+  where: github
+  who: 526301
+- _id: 9767
+  _job: 25985281775
+  _time: 2026-05-17 08:01:15.006461977 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#764.
+  is_human: 1
+  issue: 764
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-04-25 09:07:44.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9768
+  _job: 25985281775
+  _time: 2026-05-17 08:01:15.195975438 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#765 has been "issue-was-closed".
+  is_human: 1
+  issue: 765
+  repository: 9580168
+  what: issue-was-closed
+  when: 2022-06-09 11:58:59.000000000 Z
+  where: github
+  who: 802249
+- _id: 9769
+  _job: 25985281775
+  _time: 2026-05-17 08:01:15.791682430 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#766 has been "issue-was-closed".
+  is_human: 1
+  issue: 766
+  repository: 9580168
+  what: issue-was-closed
+  when: 2016-05-16 14:14:10.000000000 Z
+  where: github
+  who: 6291471
+- _id: 9770
+  _job: 25985281775
+  _time: 2026-05-17 08:01:16.343537268 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#767 has been "issue-was-closed".
+  is_human: 1
+  issue: 767
+  repository: 9580168
+  what: issue-was-closed
+  when: 2016-06-06 06:27:58.000000000 Z
+  where: github
+  who: 2956255
+- _id: 9771
+  _job: 25985281775
+  _time: 2026-05-17 08:01:16.882788085 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#767.
+  is_human: 1
+  issue: 767
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-05-23 07:56:32.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9772
+  _job: 25985281775
+  _time: 2026-05-17 08:01:17.093976246 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#768 has been "issue-was-closed".
+  is_human: 1
+  issue: 768
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-24 06:40:27.000000000 Z
+  where: github
+  who: 526301
+- _id: 9773
+  _job: 25985281775
+  _time: 2026-05-17 08:01:17.542177619 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#768.
+  is_human: 1
+  issue: 768
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-05-23 07:56:32.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9774
+  _job: 25985281775
+  _time: 2026-05-17 08:01:17.803586198 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#769 has been "issue-was-closed".
+  is_human: 1
+  issue: 769
+  repository: 9580168
+  what: issue-was-closed
+  when: 2016-05-21 08:37:33.000000000 Z
+  where: github
+  who: 6041352
+- _id: 9775
+  _job: 25985281775
+  _time: 2026-05-17 08:01:18.426802518 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#770 has been "issue-was-closed".
+  is_human: 1
+  issue: 770
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-24 06:22:34.000000000 Z
+  where: github
+  who: 526301
+- _id: 9776
+  _job: 25985281775
+  _time: 2026-05-17 08:01:18.906339974 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#770.
+  is_human: 1
+  issue: 770
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-05-23 07:56:31.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9777
+  _job: 25985281775
+  _time: 2026-05-17 08:01:19.113140883 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#771 has been "issue-was-closed".
+  is_human: 1
+  issue: 771
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-24 06:09:37.000000000 Z
+  where: github
+  who: 526301
+- _id: 9778
+  _job: 25985281775
+  _time: 2026-05-17 08:01:19.640313415 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Seemingly, the "bug" label was attached by @davvd to the issue yegor256/qulice#771.
+  is_human: 1
+  issue: 771
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2016-05-25 09:42:19.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9779
+  _job: 25985281775
+  _time: 2026-05-17 08:01:23.912780041 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '746'
+  comments: 5
+  comments_appreciated: 0
+  comments_by_author: 2
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#756 has been "pull-was-closed".
+  failed_builds: 0
+  files: 16
+  hoc: 439
+  is_human: 1
+  issue: 756
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-closed
+  when: 2016-04-07 12:36:42.000000000 Z
+  where: github
+  who: 105730
+- _id: 9780
+  _job: 25985281775
+  _time: 2026-05-17 08:01:33.740703031 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assignees_were_scanned: 1471
+  earliest_issue_was_found: 1
+  events_were_scanned: 11964892854
+  labels_were_scanned: 1567
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1584
+  min_pull_was_found: 1449
+  repository: 9580168
+  types_were_scanned: 1452
+  what: iterate
+  where: github
+- _id: 9781
+  _job: 25985281775
+  _time: 2026-05-17 08:01:46.691979912 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  total_active_contributors: 5
+  total_commits: 2554
+  total_contributors: 56
+  total_files: 666
+  total_forks: 121
+  total_issues: 869
+  total_pulls: 725
+  total_releases: 85
+  total_repositories: 1
+  total_stars: 321
+  what: dimensions-of-terrain
+  when: 2026-05-17 08:01:46.711617836 Z
+- _id: 9782
+  _job: 25985281775
+  _time: 2026-05-17 08:01:49.898018526 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #300046 is known in GitHub as @wilsonmar.'
+  is_human: 1
+  name: wilsonmar
+  what: who-has-name
+  when: 2026-05-17 08:01:50.063683988 Z
+  where: github
+  who: 300046
+- _id: 9783
+  _job: 25985281775
+  _time: 2026-05-17 08:01:50.153566496 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #1618116 is known in GitHub as @essobedo.'
+  is_human: 1
+  name: essobedo
+  what: who-has-name
+  when: 2026-05-17 08:01:50.307267689 Z
+  where: github
+  who: 1618116
+- _id: 9784
+  _job: 25985281775
+  _time: 2026-05-17 08:01:50.340921745 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #11942401 is known in GitHub as @thejavaguy.'
+  is_human: 1
+  name: thejavaguy
+  what: who-has-name
+  when: 2026-05-17 08:01:50.504334222 Z
+  where: github
+  who: 11942401
+- _id: 9785
+  _job: 25985281775
+  _time: 2026-05-17 08:01:50.536032825 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #802249 is known in GitHub as @rachlenko.'
+  is_human: 1
+  name: rachlenko
+  what: who-has-name
+  when: 2026-05-17 08:01:50.698293820 Z
+  where: github
+  who: 802249
+- _id: 9786
+  _job: 25985281775
+  _time: 2026-05-17 08:01:50.720654304 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #6291471 is known in GitHub as @mesut.'
+  is_human: 1
+  name: mesut
+  what: who-has-name
+  when: 2026-05-17 08:01:50.875602935 Z
+  where: github
+  who: 6291471
+- _id: 9787
+  _job: 25985281775
+  _time: 2026-05-17 08:01:50.897198461 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #6041352 is known in GitHub as @westonal.'
+  is_human: 1
+  name: westonal
+  what: who-has-name
+  when: 2026-05-17 08:01:51.058062659 Z
+  where: github
+  who: 6041352
+- _id: 9788
+  _job: 25985281775
+  _time: 2026-05-17 08:02:00.203103226 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#772 has been opened by @krzyk.
+  is_human: 1
+  issue: 772
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-05-25 05:21:19.000000000 Z
+  where: github
+  who: 105730
+- _id: 9789
+  _job: 25985281775
+  _time: 2026-05-17 08:02:00.387688205 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#773 has been opened by @essobedo.
+  is_human: 1
+  issue: 773
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-05-25 11:59:48.000000000 Z
+  where: github
+  who: 1618116
+- _id: 9790
+  _job: 25985281775
+  _time: 2026-05-17 08:02:00.626950920 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#774 has been opened by @jiakuan.
+  is_human: 1
+  issue: 774
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-05-26 04:42:28.000000000 Z
+  where: github
+  who: 533236
+- _id: 9791
+  _job: 25985281775
+  _time: 2026-05-17 08:02:01.004203788 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#775 has been opened by @mkordas.
+  is_human: 1
+  issue: 775
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-05-28 11:23:46.000000000 Z
+  where: github
+  who: 5467276
+- _id: 9792
+  _job: 25985281775
+  _time: 2026-05-17 08:02:01.196985076 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#776 has been opened by @davvd.
+  is_human: 1
+  issue: 776
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-06-01 07:08:36.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9793
+  _job: 25985281775
+  _time: 2026-05-17 08:02:01.405537990 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#777 has been opened by @davvd.
+  is_human: 1
+  issue: 777
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-06-01 11:31:24.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9794
+  _job: 25985281775
+  _time: 2026-05-17 08:02:01.640017393 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: "#767"
+  details: The missing pull yegor256/qulice#778 has been opened by @dskalenko.
+  is_human: 1
+  issue: 778
+  repository: 9580168
+  what: pull-was-opened
+  when: 2016-06-03 12:09:33.000000000 Z
+  where: github
+  who: 6028811
+- _id: 9795
+  _job: 25985281775
+  _time: 2026-05-17 08:02:02.263812480 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#779 has been opened by @carlosmiranda.
+  is_human: 1
+  issue: 779
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-06-06 08:16:06.000000000 Z
+  where: github
+  who: 1917892
+- _id: 9796
+  _job: 25985281775
+  _time: 2026-05-17 08:02:02.468253115 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#780 has been opened by @krzyk.
+  is_human: 1
+  issue: 780
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-06-11 12:17:21.000000000 Z
+  where: github
+  who: 105730
+- _id: 9797
+  _job: 25985281775
+  _time: 2026-05-17 08:02:02.700403735 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: "#706"
+  details: The missing pull yegor256/qulice#781 has been opened by @dskalenko.
+  is_human: 1
+  issue: 781
+  repository: 9580168
+  what: pull-was-opened
+  when: 2016-06-15 10:01:10.000000000 Z
+  where: github
+  who: 6028811
+- _id: 9798
+  _job: 25985281775
+  _time: 2026-05-17 08:02:03.407436735 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#782 has been opened by @thejavaguy.
+  is_human: 1
+  issue: 782
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-06-16 08:39:42.000000000 Z
+  where: github
+  who: 11942401
+- _id: 9799
+  _job: 25985281775
+  _time: 2026-05-17 08:02:03.637741911 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: master
+  details: The missing pull yegor256/qulice#783 has been opened by @jiakuan.
+  is_human: 1
+  issue: 783
+  repository: 9580168
+  what: pull-was-opened
+  when: 2016-06-17 01:51:15.000000000 Z
+  where: github
+  who: 533236
+- _id: 9800
+  _job: 25985281775
+  _time: 2026-05-17 08:02:04.195252480 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#784 has been opened by @krzyk.
+  is_human: 1
+  issue: 784
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-06-17 20:18:54.000000000 Z
+  where: github
+  who: 105730
+- _id: 9801
+  _job: 25985281775
+  _time: 2026-05-17 08:02:04.390666036 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#785 has been opened by @xupyprmv.
+  is_human: 1
+  issue: 785
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-06-18 13:13:59.000000000 Z
+  where: github
+  who: 441232
+- _id: 9802
+  _job: 25985281775
+  _time: 2026-05-17 08:02:04.580729835 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#786 has been opened by @westonal.
+  is_human: 1
+  issue: 786
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-06-25 08:45:23.000000000 Z
+  where: github
+  who: 6041352
+- _id: 9803
+  _job: 25985281775
+  _time: 2026-05-17 08:02:04.840644920 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#787 has been opened by @davvd.
+  is_human: 1
+  issue: 787
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-06-27 09:04:06.000000000 Z
+  where: github
+  who: 6305016
+- _id: 9804
+  _job: 25985281775
+  _time: 2026-05-17 08:02:05.040392017 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#788 has been opened by @54uso.
+  is_human: 1
+  issue: 788
+  repository: 9580168
+  what: issue-was-opened
+  when: 2016-06-29 07:00:25.000000000 Z
+  where: github
+  who: 5047416
+- _id: 9805
+  _job: 25985281775
+  _time: 2026-05-17 08:04:40.859573055 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  since: *119
+  some_backlog_size:
+  - 7
+  - 7
+  - 8
+  - 8
+  - 8
+  - 8
+  - 8
+  some_build_duration:
+  - 9
+  - 9
+  - 2
+  - 7
+  - 7
+  - 8
+  - 12
+  - 12
+  - 14
+  - 23
+  - 35
+  - 37
+  - 304
+  - 6
+  - 7
+  - 7
+  - 6
+  - 9
+  - 9
+  - 7
+  - 10
+  - 9
+  - 9
+  - 10
+  - 14
+  - 16
+  - 18
+  - 24
+  - 26
+  - 31
+  - 31
+  - 73
+  - 73
+  - 314
+  - 340
+  - 718
+  - 52
+  - 574
+  - 57
+  - 6
+  - 8
+  - 9
+  - 6
+  - 12
+  - 9
+  - 13
+  - 10
+  - 10
+  - 10
+  - 11
+  - 23
+  - 24
+  - 22
+  - 23
+  - 28
+  - 35
+  - 75
+  - 293
+  - 314
+  - 0
+  some_build_success_rate:
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  some_merged_pulls: 5
+  some_pull_files_size:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  some_pull_hoc_size:
+  - 2
+  - 4
+  - 2
+  - 2
+  - 14
+  some_pull_lifetime:
+  - 29237.0
+  - 79206.0
+  - 33732.0
+  - 195052.0
+  - 7660727.0
+  some_review_size:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  some_review_time:
+  - 74603
+  - 162666
+  - 3723645
+  some_reviewers_per_pull:
+  - 0
+  - 1
+  - 0
+  - 1
+  - 1
+  some_reviews_per_pull:
+  - 0
+  - 1
+  - 0
+  - 1
+  - 1
+  some_unmerged_pulls: 0
+  what: quality-of-service
+  when: 2026-05-17 08:04:40.000000000 Z
