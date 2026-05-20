@@ -38,13 +38,16 @@
     -->
     <exclude name="UnitTestShouldIncludeAssert"/>
     <!--
-      UnitTestContainsTooManyAsserts is excluded because it counts
-      Assertions.assertThrows as an assertion, producing false positives
-      when a test wraps assertThrows(...).getMessage() inside assertThat
-      to verify the thrown exception's message in a single logical check.
-      Until PMD supports excluding method names, we use our own
-      UnitTestContainsTooManyAssertsRule that ignores assertThrows.
+      UnitTestContainsTooManyAsserts is excluded because it counts any
+      method invocation whose simple name starts with 'assert', 'check'
+      or 'verify', producing false positives for unrelated APIs such as
+      pull.checks() (jcabi-github) or Mockito.verify(...). It also
+      counts Assertions.assertThrows, which breaks the common idiom of
+      wrapping assertThrows(...).getMessage() inside assertThat. We use
+      our own UnitTestContainsTooManyAssertsRule that only counts the
+      known JUnit/Hamcrest assertion methods and ignores assertThrows.
       Downstream: https://github.com/yegor256/qulice/issues/1519
+      Downstream: https://github.com/yegor256/qulice/issues/1606
     -->
     <exclude name="UnitTestContainsTooManyAsserts"/>
     <exclude name="UnusedPrivateField"/>
@@ -271,9 +274,14 @@
   </rule>
   <rule name="UnitTestContainsTooManyAsserts" message="Unit tests should not contain more than 1 assert(s)." language="java" class="com.qulice.pmd.rules.UnitTestContainsTooManyAssertsRule">
     <description>
-      Unit tests should not contain more than one assertion. This
-      variant of PMD's UnitTestContainsTooManyAsserts rule does not
-      count calls to assertThrows as assertions, so a test that wraps
+      Unit tests should not contain more than one assertion. Unlike
+      PMD's UnitTestContainsTooManyAsserts rule, this variant only
+      counts calls whose simple name is one of the known JUnit /
+      Hamcrest assertion methods (assertThat, assertEquals, assertTrue,
+      fail, ...) instead of counting any identifier with an 'assert',
+      'check' or 'verify' prefix. Calls such as Mockito.verify(...) or
+      pull.checks() are therefore not flagged. Calls to assertThrows
+      are also not counted, so a test that wraps
       assertThrows(...).getMessage() inside an assertThat to verify the
       thrown exception's message is not flagged.
     </description>

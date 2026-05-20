@@ -113,6 +113,26 @@ final class PmdAssertionsTest {
     }
 
     /**
+     * PmdValidator does not report UnitTestContainsTooManyAsserts when a test
+     * has a single assertion combined with calls such as
+     * {@code Mockito.verify(...)} or {@code pull.checks()} whose simple name
+     * starts with 'verify' or 'check' but which are not JUnit/Hamcrest
+     * assertions.
+     * Regression test for https://github.com/yegor256/qulice/issues/1606
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void allowsMockitoVerifyAndChecksCalls() throws Exception {
+        new PmdAssert(
+            "AssertThatWithMockitoVerifyAndChecks.java",
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString("UnitTestContainsTooManyAsserts")
+            )
+        ).assertOk();
+    }
+
+    /**
      * PmdValidator can allow only package private methods, marked with: Test,
      * RepeatedTest, TestFactory, TestTemplate or ParameterizedTest annotations.
      * @throws Exception If something wrong happens inside.
