@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
  * related test-class conventions.
  * @since 0.25.0
  */
-@SuppressWarnings("PMD.TooManyMethods")
 final class PmdAssertionsTest {
 
     /**

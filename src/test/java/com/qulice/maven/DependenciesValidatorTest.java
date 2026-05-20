@@ -28,7 +28,6 @@ import org.junit.jupiter.api.io.TempDir;
  * Test case for {@link DependenciesValidator} class.
  * @since 0.3
  */
-@SuppressWarnings("PMD.TooManyMethods")
 final class DependenciesValidatorTest {
 
     /**
