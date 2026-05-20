@@ -166,9 +166,32 @@
     <exclude name="FinalFieldCouldBeStatic"/>
     <exclude name="TooManyMethods"/>
   </rule>
+  <!--
+    TooManyMethods is excluded from the bulk import above and re-enabled
+    here with a violationSuppressXPath that skips unit-test classes
+    (those whose simple name ends with 'Test', 'IT', 'TestCase' or
+    'ITCase'). Splitting asserts into one-assert-per-test methods (as
+    required by UnitTestContainsTooManyAsserts) inflates the method
+    count and would otherwise push test classes past the threshold.
+    The rule fires on the ClassBody node, so the XPath must reach the
+    enclosing ClassDeclaration via parent::ClassDeclaration to read
+    @SimpleName.
+    Downstream: https://github.com/yegor256/qulice/issues/1605
+  -->
   <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
-      <property name="violationSuppressXPath" value=".[ends-with(@SimpleName,'Test')]"/>
+      <property name="violationSuppressXPath">
+        <value><![CDATA[
+          .[
+            parent::ClassDeclaration[
+              ends-with(@SimpleName,'Test')
+              or ends-with(@SimpleName,'IT')
+              or ends-with(@SimpleName,'TestCase')
+              or ends-with(@SimpleName,'ITCase')
+            ]
+          ]
+        ]]></value>
+      </property>
     </properties>
   </rule>
   <rule ref="category/java/documentation.xml">

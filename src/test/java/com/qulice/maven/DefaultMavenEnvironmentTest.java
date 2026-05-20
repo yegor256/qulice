@@ -21,7 +21,6 @@ import org.junit.jupiter.api.io.TempDir;
  * Test case for {@link DefaultMavenEnvironment} class.
  * @since 0.8
  */
-@SuppressWarnings("PMD.TooManyMethods")
 final class DefaultMavenEnvironmentTest {
 
     /**
