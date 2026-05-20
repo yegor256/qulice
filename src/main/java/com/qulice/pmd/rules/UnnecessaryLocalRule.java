@@ -29,9 +29,9 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
         final Object data
     ) {
         if (variable.getInitializer() != null) {
-            final String name = variableName(variable);
+            final String name = UnnecessaryLocalRule.variableName(variable);
             if (!name.isEmpty()) {
-                asCtx(data).addViolation(variable, name);
+                this.asCtx(data).addViolation(variable, name);
             }
         }
         return data;
@@ -60,14 +60,17 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
     private static String variableName(final ASTVariableDeclarator variable) {
         String result = "";
         final ASTBlock block = variable.ancestors(ASTBlock.class).first();
-        if (block != null) {
+        if (block != null
+            && !UnnecessaryLocalSkips.freshState(variable.getInitializer())) {
             final String name = variable.getName();
-            if (hasReturnOrArguments(
-                block.descendants(ASTVariableAccess.class)
-                    .crossFindBoundaries()
-                    .filter(ref -> name.equals(ref.getName()))
-                    .toList()
-            )) {
+            final List<ASTVariableAccess> uses = block
+                .descendants(ASTVariableAccess.class)
+                .crossFindBoundaries()
+                .filter(ref -> name.equals(ref.getName()))
+                .toList();
+            if (UnnecessaryLocalRule.hasReturnOrArguments(uses)
+                && !UnnecessaryLocalSkips.acrossBoundary(block, name, uses.size())
+                && !UnnecessaryLocalSkips.interveningCall(variable, uses.get(0))) {
                 result = name;
             }
         }
