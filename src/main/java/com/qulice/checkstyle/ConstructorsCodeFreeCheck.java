@@ -77,8 +77,8 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
         final DetailAST first = body.getFirstChild();
         final boolean delegate;
         if (first == null
-            || (first.getType() != TokenTypes.CTOR_CALL
-                && first.getType() != TokenTypes.SUPER_CTOR_CALL)) {
+            || first.getType() != TokenTypes.CTOR_CALL
+            && first.getType() != TokenTypes.SUPER_CTOR_CALL) {
             delegate = false;
         } else {
             final DetailAST next = first.getNextSibling();
