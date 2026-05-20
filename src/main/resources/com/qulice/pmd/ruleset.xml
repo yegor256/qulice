@@ -165,6 +165,16 @@
     <exclude name="CyclomaticComplexity"/>
     <exclude name="FinalFieldCouldBeStatic"/>
     <exclude name="TooManyMethods"/>
+    <!--
+      ExceptionAsFlowControl is excluded because it flags legitimate
+      validate-and-recover patterns where several guard clauses inside a
+      single try block share one fallback path in the catch. The only
+      "fix" the rule allows is to duplicate the catch body across N
+      methods or wrap each throw in its own try, both of which are
+      strictly worse than the original code.
+      Downstream: https://github.com/yegor256/qulice/issues/1609
+    -->
+    <exclude name="ExceptionAsFlowControl"/>
   </rule>
   <!--
     TooManyMethods is excluded from the bulk import above and re-enabled

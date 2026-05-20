@@ -45,6 +45,7 @@ final class PmdDisabledRulesTest {
                 {"UnnecessaryVarargsArrayCreation"},
                 {"ShortMethodName"},
                 {"AvoidFieldNameMatchingMethodName"},
+                {"ExceptionAsFlowControl"},
             }
         );
     }
