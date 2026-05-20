@@ -8,6 +8,7 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
@@ -20,63 +21,78 @@ import org.junit.jupiter.api.Test;
  */
 final class UnnecessaryLocalRuleTest {
 
+    /**
+     * The name of the rule under test.
+     */
+    private static final String RULE = "UnnecessaryLocalRule";
+
+    /**
+     * Path template for the fixture file in the mock environment.
+     */
+    private static final String PATH = "src/main/java/foo/%s";
+
     @Test
     void detectsUnnecessaryLocalVariableOnReturn() throws Exception {
-        final String file = "UnnecessaryLocal.java";
-        final Environment.Mock mock = new Environment.Mock();
-        final String name = String.format("src/main/java/foo/%s", file);
-        final Environment env = mock.withFile(
-            name,
-            new TextOf(
-                this.getClass().getResourceAsStream(file)
-            ).asString()
-        );
         MatcherAssert.assertThat(
             "UnnecessaryLocalRule should fire on a local variable used only in return",
-            new PmdValidator(env).validate(
-                Collections.singletonList(new File(env.basedir(), name))
-            ).stream().map(Violation::name).collect(Collectors.toList()),
-            Matchers.hasItem("UnnecessaryLocalRule")
+            this.violations("UnnecessaryLocal.java"),
+            Matchers.hasItem(UnnecessaryLocalRuleTest.RULE)
         );
     }
 
     @Test
     void doesNotFireWhenVariableIsUsedInLoop() throws Exception {
-        final String file = "UnnecessaryLocalInLoop.java";
-        final Environment.Mock mock = new Environment.Mock();
-        final String name = String.format("src/main/java/foo/%s", file);
-        final Environment env = mock.withFile(
-            name,
-            new TextOf(
-                this.getClass().getResourceAsStream(file)
-            ).asString()
-        );
         MatcherAssert.assertThat(
             "UnnecessaryLocalRule should not fire when variable is used in a loop",
-            new PmdValidator(env).validate(
-                Collections.singletonList(new File(env.basedir(), name))
-            ).stream().map(Violation::name).collect(Collectors.toList()),
-            Matchers.not(Matchers.hasItem("UnnecessaryLocalRule"))
+            this.violations("UnnecessaryLocalInLoop.java"),
+            Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
         );
     }
 
     @Test
     void doesNotFireWhenVariableIsUsedMoreThanOnce() throws Exception {
-        final String file = "UnnecessaryLocalUsedTwice.java";
-        final Environment.Mock mock = new Environment.Mock();
-        final String name = String.format("src/main/java/foo/%s", file);
-        final Environment env = mock.withFile(
-            name,
-            new TextOf(
-                this.getClass().getResourceAsStream(file)
-            ).asString()
-        );
         MatcherAssert.assertThat(
             "UnnecessaryLocalRule should not fire when variable is used more than once",
-            new PmdValidator(env).validate(
-                Collections.singletonList(new File(env.basedir(), name))
-            ).stream().map(Violation::name).collect(Collectors.toList()),
-            Matchers.not(Matchers.hasItem("UnnecessaryLocalRule"))
+            this.violations("UnnecessaryLocalUsedTwice.java"),
+            Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
         );
+    }
+
+    @Test
+    void doesNotFireWhenUseIsAcrossAnonymousClassOrLambda() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should not fire when the only use is inside an anonymous class or lambda body",
+            this.violations("UnnecessaryLocalAcrossAnonymousClass.java"),
+            Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
+        );
+    }
+
+    @Test
+    void doesNotFireWhenInitialiserCapturesFreshState() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should not fire when the initialiser captures a clock or randomness source",
+            this.violations("UnnecessaryLocalCapturedTimestamp.java"),
+            Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
+        );
+    }
+
+    @Test
+    void doesNotFireWhenInterveningCallMutatesSameTarget() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should not fire when a later statement calls the same target",
+            this.violations("UnnecessaryLocalDestructiveCleanup.java"),
+            Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
+        );
+    }
+
+    private List<String> violations(final String file) throws Exception {
+        final String name = String.format(UnnecessaryLocalRuleTest.PATH, file);
+        final Environment env = new Environment.Mock().withFile(
+            name,
+            new TextOf(this.getClass().getResourceAsStream(file)).asString()
+        );
+        return new PmdValidator(env).validate(
+            Collections.singletonList(new File(env.basedir(), name))
+        ).stream().map(Violation::name).collect(Collectors.toList());
     }
 }
