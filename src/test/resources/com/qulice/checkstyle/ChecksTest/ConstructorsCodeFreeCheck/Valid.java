@@ -43,6 +43,28 @@ public final class Valid {
         }
     }
 
+    static final class DelegateWithCall {
+        private final long when;
+        DelegateWithCall() {
+            this(System.currentTimeMillis());
+        }
+        DelegateWithCall(final long value) {
+            this.when = value;
+        }
+    }
+
+    static class Parent {
+        Parent(final String text) {
+            // empty on purpose
+        }
+    }
+
+    static final class SuperWithCall extends Parent {
+        SuperWithCall(final Object obj) {
+            super(String.valueOf(obj));
+        }
+    }
+
     enum Color {
         RED(1), GREEN(2), BLUE(3);
         private final int code;
