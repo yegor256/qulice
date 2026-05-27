@@ -4,6 +4,7 @@
  */
 package com.qulice.errorprone;
 
+import com.google.common.base.Splitter;
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Relative;
@@ -17,7 +18,6 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -99,7 +99,7 @@ public final class ErrorProneValidator implements ResourceValidator {
     @Override
     public Collection<Violation> validate(final Collection<File> files) {
         final List<File> sources = this.relevant(files);
-        final Collection<Violation> violations = new LinkedList<>();
+        final Collection<Violation> violations = new ArrayList<>(0);
         if (sources.isEmpty()) {
             Logger.debug(
                 this,
@@ -198,7 +198,7 @@ public final class ErrorProneValidator implements ResourceValidator {
      * @return Violations
      */
     private Collection<Violation> parse(final List<String> output) {
-        final Collection<Violation> violations = new LinkedList<>();
+        final Collection<Violation> violations = new ArrayList<>(0);
         for (final String line : output) {
             final Matcher matcher = ErrorProneValidator.DIAGNOSTIC.matcher(line);
             if (matcher.matches()) {
@@ -223,7 +223,7 @@ public final class ErrorProneValidator implements ResourceValidator {
      * @return List of relevant files
      */
     private List<File> relevant(final Collection<File> files) {
-        final List<File> sources = new LinkedList<>();
+        final List<File> sources = new ArrayList<>(files.size());
         for (final File file : files) {
             final String name = new Relative(this.env.basedir(), file).path();
             if (this.env.exclude("errorprone", name)) {
@@ -276,7 +276,10 @@ public final class ErrorProneValidator implements ResourceValidator {
             loader = loader.getParent();
         }
         for (final String entry
-            : System.getProperty("java.class.path", "").split(File.pathSeparator)) {
+            : Splitter.on(File.pathSeparatorChar).split(
+                System.getProperty("java.class.path", "")
+            )
+        ) {
             if (!entry.isEmpty()) {
                 entries.add(new File(entry).getAbsolutePath());
             }

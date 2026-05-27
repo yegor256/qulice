@@ -13,7 +13,6 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.qulice.checkstyle.parameters.Arguments;
 import com.qulice.checkstyle.parameters.TypeParameters;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
@@ -95,7 +94,7 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
      */
     private static List<JavadocTag> getMethodTags(final TextBlock comment) {
         final String[] lines = comment.getText();
-        final List<JavadocTag> tags = new LinkedList<>();
+        final List<JavadocTag> tags = new ArrayList<>(0);
         int current = comment.getStartLineNo() - 1;
         final int start = comment.getStartColNo();
         for (int line = 0; line < lines.length; line = line + 1) {

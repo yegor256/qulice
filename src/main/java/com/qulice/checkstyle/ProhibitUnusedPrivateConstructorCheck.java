@@ -8,7 +8,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,7 +46,7 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
      * @return List of DetailAST nodes representing the private constructors
      */
     private static List<DetailAST> collectPrivateConstructors(final DetailAST objblock) {
-        final List<DetailAST> prvctors = new LinkedList<>();
+        final List<DetailAST> prvctors = new ArrayList<>(0);
         final DetailAST firstchld = objblock.getFirstChild();
         for (DetailAST child = firstchld; child != null; child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.CTOR_DEF && isPrivate(child)) {
@@ -112,7 +112,7 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
      * @return List of DetailAST nodes representing all the constructors
      */
     private static List<DetailAST> collectAllConstructors(final DetailAST objblock) {
-        final List<DetailAST> allctors = new LinkedList<>();
+        final List<DetailAST> allctors = new ArrayList<>(0);
         final DetailAST firstchld = objblock.getFirstChild();
         for (DetailAST child = firstchld; child != null; child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.CTOR_DEF) {

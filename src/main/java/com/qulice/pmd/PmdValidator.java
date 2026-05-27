@@ -10,8 +10,8 @@ import com.qulice.spi.Relative;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Locale;
 
 /**
@@ -36,7 +36,7 @@ public final class PmdValidator implements ResourceValidator {
     @Override
     public Collection<Violation> validate(final Collection<File> files) {
         final Collection<File> sources = this.getNonExcludedFiles(files);
-        final Collection<Violation> violations = new LinkedList<>();
+        final Collection<Violation> violations = new ArrayList<>(0);
         if (sources.isEmpty()) {
             Logger.debug(
                 this,
@@ -74,7 +74,7 @@ public final class PmdValidator implements ResourceValidator {
      * @return Relevant source files
      */
     public Collection<File> getNonExcludedFiles(final Collection<File> files) {
-        final Collection<File> sources = new LinkedList<>();
+        final Collection<File> sources = new ArrayList<>(files.size());
         for (final File file : files) {
             final String name = new Relative(this.env.basedir(), file).path();
             if (this.env.exclude("pmd", name)) {

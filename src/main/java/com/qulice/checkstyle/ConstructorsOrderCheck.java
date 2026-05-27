@@ -7,7 +7,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,7 +77,7 @@ public final class ConstructorsOrderCheck extends AbstractCheck {
      * @return Constructors
      */
     private static List<DetailAST> constructors(final DetailAST obj) {
-        final List<DetailAST> ctors = new LinkedList<>();
+        final List<DetailAST> ctors = new ArrayList<>(0);
         for (DetailAST child = obj.getFirstChild();
             child != null; child = child.getNextSibling()) {
             if (child.getType() == TokenTypes.CTOR_DEF) {

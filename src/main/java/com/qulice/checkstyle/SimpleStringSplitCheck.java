@@ -196,6 +196,7 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
      * @param chr Character to test
      * @return True if ASCII letter
      */
+    @SuppressWarnings("OperatorPrecedence")
     private static boolean isAsciiLetter(final char chr) {
         return chr >= 'a' && chr <= 'z'
             || chr >= 'A' && chr <= 'Z';
@@ -285,39 +286,17 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
      * @return Runtime character code, or -1 for unsupported escapes
      */
     private static int escape(final char chr) {
-        final int result;
-        switch (chr) {
-            case 'n':
-                result = '\n';
-                break;
-            case 't':
-                result = '\t';
-                break;
-            case 'r':
-                result = '\r';
-                break;
-            case 'b':
-                result = '\b';
-                break;
-            case 'f':
-                result = '\f';
-                break;
-            case 's':
-                result = ' ';
-                break;
-            case '\'':
-                result = '\'';
-                break;
-            case '"':
-                result = '"';
-                break;
-            case '\\':
-                result = '\\';
-                break;
-            default:
-                result = -1;
-                break;
-        }
-        return result;
+        return switch (chr) {
+            case 'n' -> '\n';
+            case 't' -> '\t';
+            case 'r' -> '\r';
+            case 'b' -> '\b';
+            case 'f' -> '\f';
+            case 's' -> ' ';
+            case '\'' -> '\'';
+            case '"' -> '"';
+            case '\\' -> '\\';
+            default -> -1;
+        };
     }
 }
