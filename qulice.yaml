@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 713.557394478
+  seconds: 541.675530482
   version: 0.60.2
   what: judges-summary
-  when: 2026-05-30 08:16:13.745972588 Z
+  when: 2026-05-31 08:28:54.575346545 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -46206,7 +46206,7 @@
   - 1
   some_unmerged_pulls: 0
   what: quality-of-service
-  when: 2026-05-24 08:09:20.000000000 Z
+  when: &123 2026-05-24 08:09:20.000000000 Z
 - _id: 10131
   _job: 73539
   _time: 2026-05-24 08:14:36.751115003 Z
@@ -48456,12 +48456,6 @@
     The average monthly turnover (23.0 developers) is increasing (R=0.55).
   what: assessment
   when: 2026-05-29 08:43:17.113958039 Z
-- _id: 10302
-  _job: 74504
-  _time: 2026-05-29 08:43:47.367925968 Z
-  _version: 0.19.10/0.60.3/0.17.17
-  what: learn-eva
-  when: 2026-05-29 08:43:47.346175249 Z
 - _id: 10303
   _job: 26678753716
   _time: 2026-05-30 08:04:25.552972690 Z
@@ -48751,6 +48745,7 @@
   is_human: 0
   issue: 968
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -48775,6 +48770,7 @@
   is_human: 0
   issue: 969
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -48799,6 +48795,7 @@
   is_human: 0
   issue: 970
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -48823,6 +48820,7 @@
   is_human: 0
   issue: 971
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -48847,6 +48845,7 @@
   is_human: 0
   issue: 973
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -48871,6 +48870,7 @@
   is_human: 0
   issue: 974
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -48896,6 +48896,7 @@
   issue: 1620
   repository: 9580168
   review: 2026-05-29 08:51:39.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -48921,29 +48922,13 @@
   issue: 1621
   repository: 9580168
   review: 2026-05-29 08:54:55.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
   when: 2026-05-30 06:19:03.000000000 Z
   where: github
   who: 526301
-- _id: 10332
-  _job: 26678753716
-  _time: 2026-05-30 08:06:28.337969453 Z
-  _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1529
-  earliest_issue_was_found: 1
-  events_were_scanned: 10077751711
-  issues_were_scanned: 867
-  labels_were_scanned: 1567
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1584
-  min_pull_was_found: 1465
-  repository: 9580168
-  types_were_scanned: 1510
-  what: iterate
-  where: github
 - _id: 10333
   _job: 26678753716
   _time: 2026-05-30 08:07:02.574544767 Z
@@ -49234,3 +49219,893 @@
   when: 2026-05-29 08:54:55.000000000 Z
   where: github
   who: 260399619
+- _id: 10355
+  _job: 74599
+  _time: 2026-05-30 08:17:21.051578620 Z
+  _version: 0.19.10/0.60.3/0.17.17
+  what: learn-eva
+  when: 2026-05-30 08:17:21.030912972 Z
+- _id: 10356
+  _job: 26707519295
+  _time: 2026-05-31 08:19:56.413408588 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  comments: 3
+  commits: 1
+  details: The pull request yegor256/qulice#1623 has been reviewed by @yegor256 with
+    2 HoC and 3 comments.
+  event_id: 10093357540
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1623
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-05-31 03:45:13.000000000 Z
+  where: github
+  who: 526301
+- _id: 10357
+  _job: 26707519295
+  _time: 2026-05-31 08:19:56.984026737 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.puppycrawl.tools-checkstyle-13.x
+  details: The pull request yegor256/qulice#1623 has been opened by @renovate[bot].
+  event_id: 10088894484
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1623
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-05-30 20:41:59.000000000 Z
+  where: github
+  who: 29139614
+- _id: 10359
+  _job: 26707519295
+  _time: 2026-05-31 08:20:16.678307089 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#977 has been "issue-was-closed".
+  is_human: 1
+  issue: 977
+  repository: 9580168
+  what: issue-was-closed
+  when: 2019-01-23 12:30:31.000000000 Z
+  where: github
+  who: 1964562
+- _id: 10360
+  _job: 26707519295
+  _time: 2026-05-31 08:20:17.412586733 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#980 has been "issue-was-closed".
+  is_human: 1
+  issue: 980
+  repository: 9580168
+  what: issue-was-closed
+  when: 2019-01-06 15:50:10.000000000 Z
+  where: github
+  who: 3511026
+- _id: 10361
+  _job: 26707519295
+  _time: 2026-05-31 08:20:17.885303530 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#981 has been "issue-was-closed".
+  is_human: 1
+  issue: 981
+  repository: 9580168
+  what: issue-was-closed
+  when: 2024-05-16 12:38:02.000000000 Z
+  where: github
+  who: 526301
+- _id: 10362
+  _job: 26707519295
+  _time: 2026-05-31 08:20:18.328664938 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#982 has been "issue-was-closed".
+  is_human: 1
+  issue: 982
+  repository: 9580168
+  what: issue-was-closed
+  when: 2019-03-05 12:23:06.000000000 Z
+  where: github
+  who: 45224442
+- _id: 10363
+  _job: 26707519295
+  _time: 2026-05-31 08:20:19.084830841 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#984 has been "issue-was-closed".
+  is_human: 1
+  issue: 984
+  repository: 9580168
+  what: issue-was-closed
+  when: 2024-01-16 00:59:34.000000000 Z
+  where: github
+  who: 526301
+- _id: 10364
+  _job: 26707519295
+  _time: 2026-05-31 08:20:19.807064865 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#985 has been "issue-was-closed".
+  is_human: 1
+  issue: 985
+  repository: 9580168
+  what: issue-was-closed
+  when: 2024-05-16 12:36:07.000000000 Z
+  where: github
+  who: 526301
+- _id: 10365
+  _job: 26707519295
+  _time: 2026-05-31 08:20:20.466279077 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#989 has been "issue-was-closed".
+  is_human: 1
+  issue: 989
+  repository: 9580168
+  what: issue-was-closed
+  when: 2019-05-03 08:40:00.000000000 Z
+  where: github
+  who: 3511026
+- _id: 10366
+  _job: 26707519295
+  _time: 2026-05-31 08:20:24.058455398 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '950'
+  comments: 17
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 17
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#978 has been "pull-was-merged".
+  failed_builds: 0
+  files: 8
+  hoc: 191
+  is_human: 0
+  issue: 978
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-01-23 13:06:13.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10367
+  _job: 26707519295
+  _time: 2026-05-31 08:20:32.631875209 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '950'
+  comments: 10
+  comments_appreciated: 0
+  comments_by_author: 3
+  comments_by_reviewers: 7
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#979 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 6
+  is_human: 1
+  issue: 979
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-01-23 03:14:17.000000000 Z
+  where: github
+  who: 526301
+- _id: 10368
+  _job: 26707519295
+  _time: 2026-05-31 08:20:35.704484168 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '887'
+  comments: 20
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 19
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#983 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 50
+  is_human: 0
+  issue: 983
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-01-23 12:42:16.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10369
+  _job: 26707519295
+  _time: 2026-05-31 08:20:40.189464649 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '847'
+  comments: 17
+  comments_appreciated: 0
+  comments_by_author: 2
+  comments_by_reviewers: 15
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#986 has been "pull-was-merged".
+  failed_builds: 0
+  files: 5
+  hoc: 121
+  is_human: 0
+  issue: 986
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-01-23 15:20:21.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10370
+  _job: 26707519295
+  _time: 2026-05-31 08:20:44.084195628 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '738'
+  comments: 14
+  comments_appreciated: 0
+  comments_by_author: 3
+  comments_by_reviewers: 11
+  comments_resolved: 0
+  comments_to_code: 1
+  details: Apparently, yegor256/qulice#987 has been "pull-was-merged".
+  failed_builds: 0
+  files: 5
+  hoc: 115
+  is_human: 0
+  issue: 987
+  repository: 9580168
+  review: 2019-01-24 08:04:10.000000000 Z
+  succeeded_builds: 0
+  suggestions: 1
+  what: pull-was-merged
+  when: 2019-01-24 13:51:23.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10371
+  _job: 26707519295
+  _time: 2026-05-31 08:20:47.804630202 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '743'
+  comments: 13
+  comments_appreciated: 0
+  comments_by_author: 2
+  comments_by_reviewers: 11
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#988 has been "pull-was-merged".
+  failed_builds: 0
+  files: 6
+  hoc: 31
+  is_human: 0
+  issue: 988
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-01-24 08:30:45.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10372
+  _job: 26707519295
+  _time: 2026-05-31 08:20:51.118294892 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: ignore-findbugs-validatortest
+  comments: 8
+  comments_appreciated: 0
+  comments_by_author: 3
+  comments_by_reviewers: 5
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#990 has been "pull-was-closed".
+  failed_builds: 0
+  files: 1
+  hoc: 3
+  is_human: 1
+  issue: 990
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-closed
+  when: 2019-05-03 08:40:41.000000000 Z
+  where: github
+  who: 3511026
+- _id: 10373
+  _job: 26707519295
+  _time: 2026-05-31 08:20:53.755154416 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: update-jcabi-parent
+  comments: 34
+  comments_appreciated: 0
+  comments_by_author: 5
+  comments_by_reviewers: 29
+  comments_resolved: 5
+  comments_to_code: 7
+  details: Apparently, yegor256/qulice#991 has been "pull-was-merged".
+  failed_builds: 0
+  files: 14
+  hoc: 122
+  is_human: 0
+  issue: 991
+  repository: 9580168
+  review: 2019-01-21 10:25:21.000000000 Z
+  succeeded_builds: 0
+  suggestions: 6
+  what: pull-was-merged
+  when: 2019-01-24 14:19:24.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10374
+  _job: 26707519295
+  _time: 2026-05-31 08:21:00.607348603 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '897'
+  comments: 11
+  comments_appreciated: 0
+  comments_by_author: 2
+  comments_by_reviewers: 9
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#992 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 46
+  is_human: 0
+  issue: 992
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-01-24 09:46:18.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10375
+  _job: 26707519295
+  _time: 2026-05-31 08:21:03.613340546 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '917'
+  comments: 7
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 7
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#993 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 23
+  is_human: 0
+  issue: 993
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-01-24 10:08:55.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10376
+  _job: 26707519295
+  _time: 2026-05-31 08:21:09.890965200 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.puppycrawl.tools-checkstyle-13.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1623 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1623
+  repository: 9580168
+  review: 2026-05-31 03:45:11.000000000 Z
+  succeeded_builds: 11
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-05-31 04:00:25.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10377
+  _job: 26707519295
+  _time: 2026-05-31 08:21:21.465910118 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assignees_were_scanned: 1529
+  earliest_issue_was_found: 1
+  events_were_scanned: 11281271546
+  issues_were_scanned: 867
+  labels_were_scanned: 1567
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1584
+  min_pull_was_found: 1466
+  repository: 9580168
+  types_were_scanned: 1510
+  what: iterate
+  where: github
+- _id: 10378
+  _job: 26707519295
+  _time: 2026-05-31 08:21:39.695474359 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  total_active_contributors: 4
+  total_commits: 2574
+  total_contributors: 56
+  total_files: 676
+  total_forks: 122
+  total_issues: 876
+  total_pulls: 746
+  total_releases: 85
+  total_repositories: 1
+  total_stars: 320
+  what: dimensions-of-terrain
+  when: 2026-05-31 08:21:39.710660585 Z
+- _id: 10379
+  _job: 26707519295
+  _time: 2026-05-31 08:21:41.714389012 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #41533396 is known in GitHub as @binaryigor.'
+  is_human: 1
+  name: binaryigor
+  what: who-has-name
+  when: 2026-05-31 08:21:41.883749445 Z
+  where: github
+  who: 41533396
+- _id: 10380
+  _job: 26707519295
+  _time: 2026-05-31 08:21:51.534563860 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '920'
+  details: The missing pull yegor256/qulice#994 has been opened by @paulodamaso.
+  is_human: 1
+  issue: 994
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-01-21 23:38:37.000000000 Z
+  where: github
+  who: 33915433
+- _id: 10381
+  _job: 26707519295
+  _time: 2026-05-31 08:21:52.092768326 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '921'
+  details: The missing pull yegor256/qulice#995 has been opened by @paulodamaso.
+  is_human: 1
+  issue: 995
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-01-21 23:53:24.000000000 Z
+  where: github
+  who: 33915433
+- _id: 10382
+  _job: 26707519295
+  _time: 2026-05-31 08:21:52.592154795 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '950'
+  details: The missing pull yegor256/qulice#996 has been opened by @krzyk.
+  is_human: 1
+  issue: 996
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-01-23 08:01:57.000000000 Z
+  where: github
+  who: 105730
+- _id: 10383
+  _job: 26707519295
+  _time: 2026-05-31 08:21:53.159359142 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '977'
+  details: The missing pull yegor256/qulice#997 has been opened by @krzyk.
+  is_human: 1
+  issue: 997
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-01-23 08:14:12.000000000 Z
+  where: github
+  who: 105730
+- _id: 10384
+  _job: 26707519295
+  _time: 2026-05-31 08:21:53.726655582 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: gh-pages
+  details: The missing pull yegor256/qulice#998 has been opened by @paulodamaso.
+  is_human: 1
+  issue: 998
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-01-23 10:51:07.000000000 Z
+  where: github
+  who: 33915433
+- _id: 10385
+  _job: 26707519295
+  _time: 2026-05-31 08:21:54.327799766 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#999 has been opened by @0pdd.
+  is_human: 0
+  issue: 999
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-01-23 13:06:37.000000000 Z
+  where: github
+  who: 24456188
+- _id: 10386
+  _job: 26707519295
+  _time: 2026-05-31 08:21:54.534989342 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1000 has been opened by @0pdd.
+  is_human: 0
+  issue: 1000
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-01-23 13:06:48.000000000 Z
+  where: github
+  who: 24456188
+- _id: 10387
+  _job: 26707519295
+  _time: 2026-05-31 08:21:54.742063623 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1001 has been opened by @0pdd.
+  is_human: 0
+  issue: 1001
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-01-23 15:20:58.000000000 Z
+  where: github
+  who: 24456188
+- _id: 10388
+  _job: 26707519295
+  _time: 2026-05-31 08:21:54.998399917 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: 966-2
+  details: The missing pull yegor256/qulice#1002 has been opened by @krzyk.
+  is_human: 1
+  issue: 1002
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-01-24 08:02:08.000000000 Z
+  where: github
+  who: 105730
+- _id: 10389
+  _job: 26707519295
+  _time: 2026-05-31 08:21:55.599409962 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '949'
+  details: The missing pull yegor256/qulice#1003 has been opened by @krzyk.
+  is_human: 1
+  issue: 1003
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-01-24 08:10:39.000000000 Z
+  where: github
+  who: 105730
+- _id: 10390
+  _job: 26707519295
+  _time: 2026-05-31 08:21:56.139389280 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1004 has been opened by @0pdd.
+  is_human: 0
+  issue: 1004
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-01-24 08:30:58.000000000 Z
+  where: github
+  who: 24456188
+- _id: 10391
+  _job: 26707519295
+  _time: 2026-05-31 08:21:56.330222054 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1005 has been opened by @0pdd.
+  is_human: 0
+  issue: 1005
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-01-24 09:46:29.000000000 Z
+  where: github
+  who: 24456188
+- _id: 10392
+  _job: 26707519295
+  _time: 2026-05-31 08:21:56.634596901 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1006 has been opened by @0pdd.
+  is_human: 0
+  issue: 1006
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-01-24 10:09:06.000000000 Z
+  where: github
+  who: 24456188
+- _id: 10393
+  _job: 26707519295
+  _time: 2026-05-31 08:21:56.852856181 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1007 has been opened by @0pdd.
+  is_human: 0
+  issue: 1007
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-01-24 13:26:24.000000000 Z
+  where: github
+  who: 24456188
+- _id: 10394
+  _job: 26707519295
+  _time: 2026-05-31 08:21:57.192620817 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1008 has been opened by @0pdd.
+  is_human: 0
+  issue: 1008
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-01-24 13:51:35.000000000 Z
+  where: github
+  who: 24456188
+- _id: 10395
+  _job: 26707519295
+  _time: 2026-05-31 08:21:57.409575961 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1009 has been opened by @0pdd.
+  is_human: 0
+  issue: 1009
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-01-24 14:19:39.000000000 Z
+  where: github
+  who: 24456188
+- _id: 10396
+  _job: 26707519295
+  _time: 2026-05-31 08:21:57.639683773 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: 913-2
+  details: The missing pull yegor256/qulice#1010 has been opened by @krzyk.
+  is_human: 1
+  issue: 1010
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-01-24 18:43:17.000000000 Z
+  where: github
+  who: 105730
+- _id: 10397
+  _job: 26707519295
+  _time: 2026-05-31 08:24:52.786558336 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  author: 33915433
+  comments: 13
+  details: The pull request yegor256/qulice#987 with 115 HoC created by @paulodamaso
+    was reviewed by @krzyk after 149h15m and 1 comments.
+  hoc: 115
+  is_human: 1
+  issue: 987
+  repository: 9580168
+  review_comments: 1
+  seconds: 537350
+  what: code-was-reviewed
+  when: 2019-01-24 08:04:10.000000000 Z
+  where: github
+  who: 105730
+- _id: 10398
+  _job: 26707519295
+  _time: 2026-05-31 08:24:52.908058482 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  author: 3511026
+  comments: 27
+  details: The pull request yegor256/qulice#991 with 122 HoC created by @korthout
+    was reviewed by @paulodamaso after 46h32m and 6 comments.
+  hoc: 122
+  is_human: 1
+  issue: 991
+  repository: 9580168
+  review_comments: 6
+  seconds: 167560
+  what: code-was-reviewed
+  when: 2019-01-21 10:25:21.000000000 Z
+  where: github
+  who: 33915433
+- _id: 10399
+  _job: 26707519295
+  _time: 2026-05-31 08:24:53.159286933 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1623 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 7h3m and 0 comments.
+  hoc: 2
+  is_human: 1
+  issue: 1623
+  repository: 9580168
+  review_comments: 0
+  seconds: 25392
+  what: code-was-reviewed
+  when: 2026-05-31 03:45:11.000000000 Z
+  where: github
+  who: 526301
+- _id: 10400
+  _job: 26707519295
+  _time: 2026-05-31 08:24:53.225718220 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  since: *123
+  some_backlog_size:
+  - 9
+  - 9
+  - 9
+  - 9
+  - 9
+  - 9
+  - 9
+  some_build_duration:
+  - 6
+  - 7
+  - 8
+  - 10
+  - 11
+  - 13
+  - 1
+  - 2
+  - 1
+  - 7
+  - 9
+  - 9
+  - 9
+  - 11
+  - 12
+  - 16
+  - 25
+  - 30
+  - 80
+  - 2
+  - 308
+  - 7
+  - 7
+  - 7
+  - 7
+  - 9
+  - 12
+  - 15
+  - 29
+  - 31
+  - 62
+  - 289
+  - 848
+  - 47
+  - 6
+  - 9
+  - 9
+  - 11
+  - 11
+  - 12
+  - 22
+  - 25
+  - 35
+  - 298
+  - 1
+  - 2
+  - 0
+  - 7
+  - 7
+  - 8
+  - 8
+  - 9
+  - 13
+  - 17
+  - 0
+  - 26
+  - 29
+  - 82
+  - 277
+  - 0
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  some_merged_pulls: 6
+  some_pull_files_size:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  some_pull_hoc_size:
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  some_pull_lifetime:
+  - 26306.0
+  - 77696.0
+  - 34274.0
+  - 8359.0
+  - 34131.0
+  - 32210.0
+  some_review_size:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  some_review_time:
+  - 914
+  - 77048
+  - 33817
+  - 1394
+  - 3388
+  - 1460
+  some_reviewers_per_pull:
+  - 1
+  - 1
+  - 2
+  - 1
+  - 1
+  - 1
+  some_reviews_per_pull:
+  - 1
+  - 1
+  - 2
+  - 1
+  - 1
+  - 1
+  some_unmerged_pulls: 0
+  what: quality-of-service
+  when: 2026-05-31 08:24:53.000000000 Z
