@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 801.400885059
+  seconds: 569.363408306
   version: 0.60.2
   what: judges-summary
-  when: 2026-06-03 09:06:04.899007039 Z
+  when: 2026-06-04 08:47:21.534877054 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -50068,20 +50068,6 @@
   some_unmerged_pulls: 0
   what: quality-of-service
   when: 2026-05-31 08:24:53.000000000 Z
-- _id: 10401
-  _job: 74735
-  _time: 2026-05-31 08:29:22.219344917 Z
-  _version: 0.19.10/0.60.3/0.17.17
-  analyzers: 18
-  text: |-
-    The average number of builds per week (272.4) is decreasing (R=-0.15).
-    The average number of commits per week (11.6) is increasing (R=0.23).
-    The average issue cycle time (1mo) is increasing (R=0.12).
-    The average pull cycle time (1w1d) is increasing (R=0.30).
-    The average number of releases per month (1.7) is increasing (R=0.20).
-    The average monthly turnover (23.0 developers) is increasing (R=0.54).
-  what: assessment
-  when: 2026-05-31 08:29:22.241511629 Z
 - _id: 10404
   _job: 26745406518
   _time: 2026-06-01 09:03:41.251195465 Z
@@ -50790,12 +50776,6 @@
     The average monthly turnover (23.0 developers) is increasing (R=0.54).
   what: assessment
   when: 2026-06-01 09:16:19.443113867 Z
-- _id: 10452
-  _job: 74896
-  _time: 2026-06-01 09:16:47.526253347 Z
-  _version: 0.19.10/0.60.3/0.17.17
-  what: learn-eva
-  when: 2026-06-01 09:16:47.513399318 Z
 - _id: 10454
   _job: 26874149955
   _time: 2026-06-03 08:52:56.249547445 Z
@@ -50925,6 +50905,7 @@
   is_human: 0
   issue: 1011
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -50950,6 +50931,7 @@
   issue: 1012
   repository: 9580168
   review: 2019-01-30 11:54:22.000000000 Z
+  review_comments: 8
   succeeded_builds: 0
   suggestions: 5
   what: pull-was-merged
@@ -50974,6 +50956,7 @@
   is_human: 0
   issue: 1013
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -51024,6 +51007,7 @@
   issue: 1015
   repository: 9580168
   review: 2019-01-28 13:45:45.000000000 Z
+  review_comments: 5
   succeeded_builds: 0
   suggestions: 4
   what: pull-was-merged
@@ -51049,6 +51033,7 @@
   issue: 1018
   repository: 9580168
   review: 2019-01-30 11:48:59.000000000 Z
+  review_comments: 9
   succeeded_builds: 0
   suggestions: 1
   what: pull-was-merged
@@ -51073,6 +51058,7 @@
   is_human: 0
   issue: 1022
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -51122,6 +51108,7 @@
   is_human: 0
   issue: 1025
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -51146,6 +51133,7 @@
   is_human: 0
   issue: 1026
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -51170,29 +51158,13 @@
   is_human: 0
   issue: 1027
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
   when: 2019-02-08 06:01:32.000000000 Z
   where: github
   who: 8086956
-- _id: 10474
-  _job: 26874149955
-  _time: 2026-06-03 08:55:13.701072912 Z
-  _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1529
-  earliest_issue_was_found: 1
-  events_were_scanned: 12750396674
-  issues_were_scanned: 867
-  labels_were_scanned: 1567
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1584
-  min_pull_was_found: 1468
-  repository: 9580168
-  types_were_scanned: 1510
-  what: iterate
-  where: github
 - _id: 10475
   _job: 26874149955
   _time: 2026-06-03 08:55:53.266596688 Z
@@ -51551,3 +51523,598 @@
   when: 2019-02-05 10:38:53.000000000 Z
   where: github
   who: 105730
+- _id: 10501
+  _job: 75367
+  _time: 2026-06-03 09:06:44.419666627 Z
+  _version: 0.19.11/0.60.3/0.17.17
+  analyzers: 18
+  text: |-
+    The average number of builds per week (272.4) is decreasing (R=-0.15).
+    The average number of commits per week (11.6) is increasing (R=0.23).
+    The average issue cycle time (1mo) is increasing (R=0.12).
+    The average pull cycle time (1w1d) is increasing (R=0.30).
+    The average number of releases per month (1.7) is increasing (R=0.20).
+    The average monthly turnover (28.0 developers) is increasing (R=0.65).
+  what: assessment
+  when: 2026-06-03 09:06:44.441294472 Z
+- _id: 10502
+  _job: 75367
+  _time: 2026-06-03 09:07:24.028430813 Z
+  _version: 0.19.11/0.60.3/0.17.17
+  what: learn-eva
+  when: 2026-06-03 09:07:24.015548378 Z
+- _id: 10503
+  _job: 75367
+  _time: 2026-06-03 09:07:24.226067746 Z
+  _version: 0.19.11/0.60.3/0.17.17
+  ac: 68
+  cost_of_qod: 3.9209243129707487
+  ev: 1133
+  pv: 18497
+  qod: 289
+  qod_per_day: 18.13402373959668
+  qod_per_sec: 1.2864155435873947e-05
+  start: *12
+  what: earned-value
+  when: 2026-06-03 09:07:24.226294485 Z
+- _id: 10505
+  _job: 26940684750
+  _time: 2026-06-04 08:38:02.973565353 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1030 has been "issue-was-closed".
+  is_human: 1
+  issue: 1030
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-04-22 14:11:23.000000000 Z
+  where: github
+  who: 526301
+- _id: 10506
+  _job: 26940684750
+  _time: 2026-06-04 08:38:03.527248418 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Seemingly, the "bug" label was attached by @0pdd to the issue yegor256/qulice#1030.
+  is_human: 0
+  issue: 1030
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2019-02-08 06:01:46.000000000 Z
+  where: github
+  who: 24456188
+- _id: 10507
+  _job: 26940684750
+  _time: 2026-06-04 08:38:03.738608736 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1031 has been "issue-was-closed".
+  is_human: 1
+  issue: 1031
+  repository: 9580168
+  what: issue-was-closed
+  when: 2019-05-08 14:57:18.000000000 Z
+  where: github
+  who: 502372
+- _id: 10508
+  _job: 26940684750
+  _time: 2026-06-04 08:38:04.484352916 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1032 has been "issue-was-closed".
+  is_human: 1
+  issue: 1032
+  repository: 9580168
+  what: issue-was-closed
+  when: 2022-07-24 12:29:35.000000000 Z
+  where: github
+  who: 526301
+- _id: 10509
+  _job: 26940684750
+  _time: 2026-06-04 08:38:05.031780940 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1033 has been "issue-was-closed".
+  is_human: 1
+  issue: 1033
+  repository: 9580168
+  what: issue-was-closed
+  when: 2019-05-06 09:52:41.000000000 Z
+  where: github
+  who: 160975
+- _id: 10510
+  _job: 26940684750
+  _time: 2026-06-04 08:38:05.749641877 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1034 has been "issue-was-closed".
+  is_human: 1
+  issue: 1034
+  repository: 9580168
+  what: issue-was-closed
+  when: 2019-05-13 08:59:29.000000000 Z
+  where: github
+  who: 45224442
+- _id: 10511
+  _job: 26940684750
+  _time: 2026-06-04 08:38:06.480954262 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1035 has been "issue-was-closed".
+  is_human: 1
+  issue: 1035
+  repository: 9580168
+  what: issue-was-closed
+  when: 2024-05-16 12:27:20.000000000 Z
+  where: github
+  who: 526301
+- _id: 10512
+  _job: 26940684750
+  _time: 2026-06-04 08:38:07.094246667 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1036 has been "issue-was-closed".
+  is_human: 1
+  issue: 1036
+  repository: 9580168
+  what: issue-was-closed
+  when: 2022-07-24 12:26:45.000000000 Z
+  where: github
+  who: 526301
+- _id: 10513
+  _job: 26940684750
+  _time: 2026-06-04 08:38:07.893725801 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1037 has been "issue-was-closed".
+  is_human: 1
+  issue: 1037
+  repository: 9580168
+  what: issue-was-closed
+  when: 2019-05-02 13:06:58.000000000 Z
+  where: github
+  who: 34595022
+- _id: 10514
+  _job: 26940684750
+  _time: 2026-06-04 08:38:08.525754340 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1039 has been "issue-was-closed".
+  is_human: 1
+  issue: 1039
+  repository: 9580168
+  what: issue-was-closed
+  when: 2024-05-16 12:21:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 10515
+  _job: 26940684750
+  _time: 2026-06-04 08:38:12.424451688 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '982'
+  comments: 9
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 8
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1028 has been "pull-was-merged".
+  failed_builds: 0
+  files: 3
+  hoc: 22
+  is_human: 0
+  issue: 1028
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-02-09 15:58:33.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10516
+  _job: 26940684750
+  _time: 2026-06-04 08:38:20.763907635 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '1017'
+  comments: 7
+  comments_appreciated: 0
+  comments_by_author: 2
+  comments_by_reviewers: 5
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1029 has been "pull-was-closed".
+  failed_builds: 0
+  files: 68
+  hoc: 5876
+  is_human: 1
+  issue: 1029
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-closed
+  when: 2019-02-19 13:51:59.000000000 Z
+  where: github
+  who: 33915433
+- _id: 10517
+  _job: 26940684750
+  _time: 2026-06-04 08:38:24.110042930 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: fix-parameter-order-check
+  comments: 9
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 9
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1038 has been "pull-was-merged".
+  failed_builds: 0
+  files: 3
+  hoc: 71
+  is_human: 0
+  issue: 1038
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-04-25 20:17:10.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10518
+  _job: 26940684750
+  _time: 2026-06-04 08:38:27.359858199 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: rule-string-is-empty
+  comments: 10
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 10
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1040 has been "pull-was-merged".
+  failed_builds: 0
+  files: 18
+  hoc: 663
+  is_human: 0
+  issue: 1040
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-05-01 15:57:31.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10519
+  _job: 26940684750
+  _time: 2026-06-04 08:38:30.864279483 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: fix-checkstyle-test-upgrade-to-junit5
+  comments: 11
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 10
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1041 has been "pull-was-merged".
+  failed_builds: 0
+  files: 3
+  hoc: 131
+  is_human: 0
+  issue: 1041
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-05-02 07:43:03.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10520
+  _job: 26940684750
+  _time: 2026-06-04 08:38:34.654311369 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: add-cactoos-qulice-pmd
+  comments: 11
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 11
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1042 has been "pull-was-merged".
+  failed_builds: 0
+  files: 10
+  hoc: 53
+  is_human: 0
+  issue: 1042
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-04-30 13:21:50.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10521
+  _job: 26940684750
+  _time: 2026-06-04 08:38:38.280478574 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: fix-checking-array-length
+  comments: 7
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 6
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1043 has been "pull-was-closed".
+  failed_builds: 0
+  files: 19
+  hoc: 703
+  is_human: 1
+  issue: 1043
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-closed
+  when: 2019-05-02 12:05:19.000000000 Z
+  where: github
+  who: 34595022
+- _id: 10522
+  _job: 26940684750
+  _time: 2026-06-04 08:38:41.410421513 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: fix-checking-array-length
+  comments: 9
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 9
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1044 has been "pull-was-merged".
+  failed_builds: 0
+  files: 3
+  hoc: 86
+  is_human: 0
+  issue: 1044
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2019-05-02 15:17:36.000000000 Z
+  where: github
+  who: 8086956
+- _id: 10523
+  _job: 26940684750
+  _time: 2026-06-04 08:38:49.883938900 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assignees_were_scanned: 1529
+  earliest_issue_was_found: 1
+  events_were_scanned: 10262100365
+  issues_were_scanned: 867
+  labels_were_scanned: 1567
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1584
+  min_pull_was_found: 1470
+  repository: 9580168
+  types_were_scanned: 1510
+  what: iterate
+  where: github
+- _id: 10524
+  _job: 26940684750
+  _time: 2026-06-04 08:39:12.089483793 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #1131185 is known in GitHub as @stormdb.'
+  is_human: 1
+  name: stormdb
+  what: who-has-name
+  when: 2026-06-04 08:39:12.280591109 Z
+  where: github
+  who: 1131185
+- _id: 10525
+  _job: 26940684750
+  _time: 2026-06-04 08:39:12.306743013 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: 'We found out that the user #34595022 is known in GitHub as @zcrusaderz.'
+  is_human: 1
+  name: zcrusaderz
+  what: who-has-name
+  when: 2026-06-04 08:39:12.478850509 Z
+  where: github
+  who: 34595022
+- _id: 10526
+  _job: 26940684750
+  _time: 2026-06-04 08:39:23.537019679 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1045 has been opened by @fabriciofx.
+  is_human: 1
+  issue: 1045
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-05-03 02:41:22.000000000 Z
+  where: github
+  who: 1964562
+- _id: 10527
+  _job: 26940684750
+  _time: 2026-06-04 08:39:23.765806465 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1046 has been opened by @zcrusaderz.
+  is_human: 1
+  issue: 1046
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-05-03 03:57:17.000000000 Z
+  where: github
+  who: 34595022
+- _id: 10528
+  _job: 26940684750
+  _time: 2026-06-04 08:39:24.031320264 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: maven-plugin-upgrade-to-junit5
+  details: The missing pull yegor256/qulice#1047 has been opened by @zcrusaderz.
+  is_human: 1
+  issue: 1047
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-05-03 07:25:39.000000000 Z
+  where: github
+  who: 34595022
+- _id: 10529
+  _job: 26940684750
+  _time: 2026-06-04 08:39:24.764306229 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1048 has been opened by @fabriciofx.
+  is_human: 1
+  issue: 1048
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-05-03 20:43:49.000000000 Z
+  where: github
+  who: 1964562
+- _id: 10530
+  _job: 26940684750
+  _time: 2026-06-04 08:39:25.043872478 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: fix-javadoc-parameter-order-check
+  details: The missing pull yegor256/qulice#1049 has been opened by @zcrusaderz.
+  is_human: 1
+  issue: 1049
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-05-04 09:42:17.000000000 Z
+  where: github
+  who: 34595022
+- _id: 10531
+  _job: 26940684750
+  _time: 2026-06-04 08:39:25.693488725 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1050 has been opened by @mronus.
+  is_human: 1
+  issue: 1050
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-05-06 21:29:44.000000000 Z
+  where: github
+  who: 2014677
+- _id: 10532
+  _job: 26940684750
+  _time: 2026-06-04 08:39:26.109955800 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1051 has been opened by @fabriciofx.
+  is_human: 1
+  issue: 1051
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-05-18 00:14:59.000000000 Z
+  where: github
+  who: 1964562
+- _id: 10533
+  _job: 26940684750
+  _time: 2026-06-04 08:39:26.371432920 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: update-jcabi
+  details: The missing pull yegor256/qulice#1052 has been opened by @zcrusaderz.
+  is_human: 1
+  issue: 1052
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-05-22 03:31:38.000000000 Z
+  where: github
+  who: 34595022
+- _id: 10534
+  _job: 26940684750
+  _time: 2026-06-04 08:39:27.002402799 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1053 has been opened by @dgroup.
+  is_human: 1
+  issue: 1053
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-06-01 15:12:29.000000000 Z
+  where: github
+  who: 1651114
+- _id: 10535
+  _job: 26940684750
+  _time: 2026-06-04 08:39:27.229567400 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1054 has been opened by @golszewski86.
+  is_human: 1
+  issue: 1054
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-06-05 08:57:58.000000000 Z
+  where: github
+  who: 45224442
+- _id: 10536
+  _job: 26940684750
+  _time: 2026-06-04 08:39:27.465928144 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1055 has been opened by @dgroup.
+  is_human: 1
+  issue: 1055
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-06-23 05:18:05.000000000 Z
+  where: github
+  who: 1651114
+- _id: 10537
+  _job: 26940684750
+  _time: 2026-06-04 08:39:27.739187440 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '1055'
+  details: The missing pull yegor256/qulice#1056 has been opened by @dgroup.
+  is_human: 1
+  issue: 1056
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-06-23 06:20:46.000000000 Z
+  where: github
+  who: 1651114
+- _id: 10538
+  _job: 26940684750
+  _time: 2026-06-04 08:39:28.317665842 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1057 has been opened by @aistomin.
+  is_human: 1
+  issue: 1057
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-09-24 04:37:43.000000000 Z
+  where: github
+  who: 1029530
+- _id: 10539
+  _job: 26940684750
+  _time: 2026-06-04 08:39:28.546131473 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1058 has been opened by @piotrkot.
+  is_human: 1
+  issue: 1058
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-10-03 12:24:00.000000000 Z
+  where: github
+  who: 9504395
+- _id: 10540
+  _job: 26940684750
+  _time: 2026-06-04 08:39:28.795316071 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1059 has been opened by @golszewski86.
+  is_human: 1
+  issue: 1059
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-10-18 09:19:36.000000000 Z
+  where: github
+  who: 45224442
+- _id: 10541
+  _job: 26940684750
+  _time: 2026-06-04 08:39:29.200269435 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: dependabot/maven/qulice-checkstyle/com.puppycrawl.tools-checkstyle-8.18
+  details: The missing pull yegor256/qulice#1060 has been opened by @dependabot[bot].
+  is_human: 0
+  issue: 1060
+  repository: 9580168
+  what: pull-was-opened
+  when: 2019-10-29 13:40:14.000000000 Z
+  where: github
+  who: 49699333
+- _id: 10542
+  _job: 26940684750
+  _time: 2026-06-04 08:39:29.961518670 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The missing issue yegor256/qulice#1061 has been opened by @monomonedula.
+  is_human: 1
+  issue: 1061
+  repository: 9580168
+  what: issue-was-opened
+  when: 2019-11-14 15:59:27.000000000 Z
+  where: github
+  who: 54329485
