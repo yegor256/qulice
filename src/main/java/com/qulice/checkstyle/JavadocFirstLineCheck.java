@@ -117,7 +117,7 @@ public final class JavadocFirstLineCheck extends AbstractCheck {
     /**
      * Check if the Javadoc closes on the same line.
      * @param line The opening line
-     * @return True when {@code *&#47;} is on the same line
+     * @return True when the closing delimiter is on the same line
      */
     private static boolean hasClosingOnSameLine(final String line) {
         return line.trim().endsWith("*/");

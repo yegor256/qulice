@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 import org.apache.commons.io.FileUtils;
@@ -269,7 +269,7 @@ public interface Environment {
 
         @Override
         public Collection<File> files(final String pattern) {
-            final Collection<File> files = new LinkedList<>();
+            final Collection<File> files = new ArrayList<>(0);
             final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();
             if (this.basedir().exists()) {
                 for (final File found : FileUtils.listFiles(

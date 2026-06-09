@@ -5,9 +5,9 @@
 package com.qulice.maven;
 
 import com.qulice.spi.ValidationException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.Properties;
 import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
@@ -39,9 +39,9 @@ public final class DuplicateFinderValidator implements MavenValidator {
                     Arrays.asList("META-INF/.*", "module-info.class")
                 )
             );
-            final Collection<Properties> deps = new LinkedList<>();
+            final Collection<Properties> deps = new ArrayList<>(0);
             for (final String sdep : env.excludes(prefix)) {
-                final String[] parts = sdep.split(":");
+                final String[] parts = sdep.split(":", -1);
                 if (parts.length < 2) {
                     continue;
                 }

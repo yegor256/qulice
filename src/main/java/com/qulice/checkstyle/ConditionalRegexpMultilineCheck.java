@@ -19,7 +19,7 @@ public final class ConditionalRegexpMultilineCheck extends
     /**
      * Condition that has to pass.
      */
-    private Pattern condition = Pattern.compile(".");
+    private Pattern condition = Pattern.compile("\\S|\\s");
 
     @Override
     public void processFiltered(final File file, final FileText lines) {

@@ -34,21 +34,10 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
     }
 
     private static boolean isComparison(final ASTInfixExpression expr) {
-        final boolean result;
-        switch (expr.getOperator()) {
-            case EQ:
-            case NE:
-            case GT:
-            case LT:
-            case GE:
-            case LE:
-                result = true;
-                break;
-            default:
-                result = false;
-                break;
-        }
-        return result;
+        return switch (expr.getOperator()) {
+            case EQ, NE, GT, LT, GE, LE -> true;
+            default -> false;
+        };
     }
 
     /**
@@ -64,8 +53,7 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
     ) {
         boolean result = false;
         if (length != null && literal != null && isZeroOrOneLiteral(literal)
-            && length instanceof ASTMethodCall) {
-            final ASTMethodCall call = (ASTMethodCall) length;
+            && length instanceof ASTMethodCall call) {
             result = "length".equals(call.getMethodName())
                 && call.getArguments().isEmpty()
                 && call.getQualifier() != null
@@ -76,8 +64,7 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
 
     private static boolean isZeroOrOneLiteral(final ASTExpression expr) {
         boolean matches = false;
-        if (expr instanceof ASTNumericLiteral) {
-            final ASTNumericLiteral lit = (ASTNumericLiteral) expr;
+        if (expr instanceof ASTNumericLiteral lit) {
             final String image = lit.getImage();
             matches = "0".equals(image) || "1".equals(image);
         }

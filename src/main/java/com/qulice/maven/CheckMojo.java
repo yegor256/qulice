@@ -10,9 +10,9 @@ import com.qulice.spi.ValidationException;
 import com.qulice.spi.Validator;
 import com.qulice.spi.Violation;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Callable;
@@ -98,7 +98,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
      */
     @SuppressWarnings("PMD.CognitiveComplexity")
     private void run() throws ValidationException {
-        final List<Violation> results = new LinkedList<>();
+        final List<Violation> results = new ArrayList<>(0);
         final MavenEnvironment env = this.env();
         final Collection<File> files = env.files("*.*");
         if (!files.isEmpty()) {
@@ -171,7 +171,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
         final Collection<ResourceValidator> validators
     ) {
         final Collection<Future<Collection<Violation>>> futures =
-            new LinkedList<>();
+            new ArrayList<>(validators.size());
         for (final ResourceValidator validator : validators) {
             futures.add(
                 this.executors.submit(
@@ -245,7 +245,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
         final MavenEnvironment env,
         final Collection<File> files, final ResourceValidator validator
     ) {
-        final Collection<File> filtered = new LinkedList<>();
+        final Collection<File> filtered = new ArrayList<>(files.size());
         for (final File file : files) {
             if (
                 !env.exclude(

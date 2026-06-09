@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import net.sourceforge.pmd.PMDConfiguration;
 import net.sourceforge.pmd.PmdAnalysis;
@@ -59,7 +59,7 @@ final class SourceValidator {
         this.config.setIgnoreIncrementalAnalysis(true);
         this.config.setShowSuppressedViolations(true);
         this.config.setSourceEncoding(this.encoding);
-        final List<PmdError> errors = new LinkedList<>();
+        final List<PmdError> errors = new ArrayList<>(0);
         try (PmdAnalysis analysis = PmdAnalysis.create(this.config)) {
             for (final File source : sources) {
                 Logger.debug(

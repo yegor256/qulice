@@ -64,19 +64,13 @@ public final class ConstantUsageCheck extends AbstractCheck {
         DetailAST variable = objblock.getFirstChild();
         while (null != variable) {
             if (!variable.equals(ast)) {
-                switch (variable.getType()) {
-                    case TokenTypes.VARIABLE_DEF:
-                        counter += this.parseVarDef(variable, name);
-                        break;
-                    case TokenTypes.CLASS_DEF:
-                        counter += this.parseDef(
-                            variable, name, TokenTypes.OBJBLOCK
-                        );
-                        break;
-                    default:
-                        counter += this.parseDef(variable, name, TokenTypes.SLIST);
-                        break;
-                }
+                counter += switch (variable.getType()) {
+                    case TokenTypes.VARIABLE_DEF -> this.parseVarDef(variable, name);
+                    case TokenTypes.CLASS_DEF -> this.parseDef(
+                        variable, name, TokenTypes.OBJBLOCK
+                    );
+                    default -> this.parseDef(variable, name, TokenTypes.SLIST);
+                };
             }
             variable = variable.getNextSibling();
         }
