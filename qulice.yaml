@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 839.69968217
+  seconds: 579.761932246
   version: 0.60.2
   what: judges-summary
-  when: 2026-06-19 09:09:25.314692659 Z
+  when: 2026-06-20 08:31:28.477938566 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -56529,7 +56529,7 @@
   total_releases_published: 0
   total_reviews_submitted: 2
   what: quantity-of-deliverables
-  when: 2026-06-13 08:21:44.000000000 Z
+  when: &128 2026-06-13 08:21:44.000000000 Z
 - _id: 10861
   _job: 27461478817
   _time: 2026-06-13 08:21:57.563825351 Z
@@ -58665,25 +58665,12 @@
   when: 2024-03-11 05:13:55.000000000 Z
   where: github
   who: 526301
-- _id: 10985
-  _job: 77367
-  _time: 2026-06-15 11:46:27.990375214 Z
-  _version: 0.19.13/0.60.4/0.17.17
-  analyzers: 18
-  text: |-
-    The average number of builds per week (252.2) is decreasing (R=-0.14).
-    The average number of commits per week (11.1) is increasing (R=0.19).
-    The average issue cycle time (4w1d) is decreasing (R=-0.16).
-    The average pull cycle time (1w2d) is increasing (R=0.30).
-    The average number of releases per month (1.7) is increasing (R=0.13).
-    The average monthly turnover (29.0 developers) is increasing (R=0.85).
-  what: assessment
-  when: 2026-06-15 11:46:28.007837701 Z
 - _id: 10988
   _job: 27606770410
   _time: 2026-06-16 09:08:18.996210713 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Apparently, yegor256/qulice#1533 has been "issue-was-closed".
+  is_human: 1
   issue: 1533
   repository: 9580168
   what: issue-was-closed
@@ -58695,6 +58682,7 @@
   _time: 2026-06-16 09:08:19.602027261 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Seemingly, the "bug" label was attached by @yegor256 to the issue yegor256/qulice#1533.
+  is_human: 1
   issue: 1533
   label: bug
   repository: 9580168
@@ -58707,6 +58695,7 @@
   _time: 2026-06-16 09:08:19.903483987 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Apparently, yegor256/qulice#1534 has been "issue-was-closed".
+  is_human: 1
   issue: 1534
   repository: 9580168
   what: issue-was-closed
@@ -58718,6 +58707,7 @@
   _time: 2026-06-16 09:08:20.288973474 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Seemingly, the "bug" label was attached by @yegor256 to the issue yegor256/qulice#1534.
+  is_human: 1
   issue: 1534
   label: bug
   repository: 9580168
@@ -58731,6 +58721,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   assigner: 526301
   details: yegor256/qulice#1533 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1533
   repository: 9580168
   what: issue-was-assigned
@@ -58743,6 +58734,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   assigner: 526301
   details: yegor256/qulice#1534 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1534
   repository: 9580168
   what: issue-was-assigned
@@ -58764,6 +58756,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1215
   repository: 9580168
   review_comments: 0
@@ -58788,6 +58781,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1216
   repository: 9580168
   review_comments: 0
@@ -58812,6 +58806,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1217
   repository: 9580168
   review_comments: 0
@@ -58836,6 +58831,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1218
   repository: 9580168
   review_comments: 0
@@ -58860,6 +58856,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1219
   repository: 9580168
   review_comments: 0
@@ -58884,6 +58881,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1220
   repository: 9580168
   review_comments: 0
@@ -58908,6 +58906,7 @@
   failed_builds: 13
   files: 6
   hoc: 61
+  is_human: 1
   issue: 1535
   repository: 9580168
   review: 2026-04-22 12:36:59.000000000 Z
@@ -58933,6 +58932,7 @@
   failed_builds: 13
   files: 5
   hoc: 163
+  is_human: 1
   issue: 1536
   repository: 9580168
   review: 2026-04-22 12:38:47.000000000 Z
@@ -58958,6 +58958,7 @@
   failed_builds: 13
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1537
   repository: 9580168
   review_comments: 0
@@ -58982,6 +58983,7 @@
   failed_builds: 13
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1538
   repository: 9580168
   review_comments: 0
@@ -59006,6 +59008,7 @@
   failed_builds: 13
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1539
   repository: 9580168
   review_comments: 0
@@ -59030,6 +59033,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1540
   repository: 9580168
   succeeded_builds: 0
@@ -59053,6 +59057,7 @@
   failed_builds: 0
   files: 2
   hoc: 56
+  is_human: 1
   issue: 1541
   repository: 9580168
   review: 2026-04-22 14:34:47.000000000 Z
@@ -59078,6 +59083,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1542
   repository: 9580168
   review: 2026-04-23 09:09:50.000000000 Z
@@ -59103,6 +59109,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1543
   repository: 9580168
   review: 2026-04-23 09:09:47.000000000 Z
@@ -59119,6 +59126,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/guava-monorepo
   details: The missing pull yegor256/qulice#1544 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1544
   repository: 9580168
   what: pull-was-opened
@@ -59131,6 +59139,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/commons-lang-commons-lang-2.x
   details: The missing pull yegor256/qulice#1545 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1545
   repository: 9580168
   what: pull-was-opened
@@ -59143,6 +59152,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: version-up
   details: The missing pull yegor256/qulice#1546 has been opened by @github-actions[bot].
+  is_human: 0
   issue: 1546
   repository: 9580168
   what: pull-was-opened
@@ -59155,6 +59165,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.checkerframework-checker-qual-3.x
   details: The missing pull yegor256/qulice#1547 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1547
   repository: 9580168
   what: pull-was-opened
@@ -59167,6 +59178,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.codehaus.plexus-plexus-classworlds-2.x
   details: The missing pull yegor256/qulice#1548 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1548
   repository: 9580168
   what: pull-was-opened
@@ -59178,6 +59190,7 @@
   _time: 2026-06-16 09:11:45.537119675 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The missing issue yegor256/qulice#1549 has been opened by @yegor256.
+  is_human: 1
   issue: 1549
   repository: 9580168
   what: issue-was-opened
@@ -59190,6 +59203,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: claude/github-oauth-setup-81Yec
   details: The missing pull yegor256/qulice#1550 has been opened by @yegor256.
+  is_human: 1
   issue: 1550
   repository: 9580168
   what: pull-was-opened
@@ -59202,6 +59216,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: claude/github-oauth-setup-y3sqy
   details: The missing pull yegor256/qulice#1551 has been opened by @yegor256.
+  is_human: 1
   issue: 1551
   repository: 9580168
   what: pull-was-opened
@@ -59214,6 +59229,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/commons-io-commons-io-2.x
   details: The missing pull yegor256/qulice#1552 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1552
   repository: 9580168
   what: pull-was-opened
@@ -59226,6 +59242,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/hibernate-core
   details: The missing pull yegor256/qulice#1553 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1553
   repository: 9580168
   what: pull-was-opened
@@ -59238,6 +59255,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/codecov-codecov-action-6.x
   details: The missing pull yegor256/qulice#1554 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1554
   repository: 9580168
   what: pull-was-opened
@@ -59250,6 +59268,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/davidanson-markdownlint-cli2-action-23.x
   details: The missing pull yegor256/qulice#1555 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1555
   repository: 9580168
   what: pull-was-opened
@@ -59262,6 +59281,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.apache.commons-commons-lang3-3.x
   details: The missing pull yegor256/qulice#1556 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1556
   repository: 9580168
   what: pull-was-opened
@@ -59274,6 +59294,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.cactoos-cactoos-0.x
   details: The missing pull yegor256/qulice#1568 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1568
   repository: 9580168
   what: pull-was-opened
@@ -59286,6 +59307,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: fix-1341-directory-writability
   details: The missing pull yegor256/qulice#1579 has been opened by @bibonix.
+  is_human: 1
   issue: 1579
   repository: 9580168
   what: pull-was-opened
@@ -59298,6 +59320,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: fix-1337-case-insensitive-java-extension
   details: The missing pull yegor256/qulice#1580 has been opened by @bibonix.
+  is_human: 1
   issue: 1580
   repository: 9580168
   what: pull-was-opened
@@ -59310,6 +59333,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: add-claude-github-actions-1777555294474
   details: The missing pull yegor256/qulice#1581 has been opened by @yegor256.
+  is_human: 1
   issue: 1581
   repository: 9580168
   what: pull-was-opened
@@ -59325,6 +59349,7 @@
   details: The pull request yegor256/qulice#1535 with 61 HoC created by @yegor256
     was reviewed by @copilot after 0h2m and 0 comments.
   hoc: 61
+  is_human: 0
   issue: 1535
   repository: 9580168
   review_comments: 0
@@ -59342,6 +59367,7 @@
   details: The pull request yegor256/qulice#1536 with 163 HoC created by @yegor256
     was reviewed by @copilot after 0h4m and 0 comments.
   hoc: 163
+  is_human: 0
   issue: 1536
   repository: 9580168
   review_comments: 0
@@ -59359,6 +59385,7 @@
   details: The pull request yegor256/qulice#1541 with 56 HoC created by @yegor256
     was reviewed by @copilot after 0h5m and 1 comments.
   hoc: 56
+  is_human: 0
   issue: 1541
   repository: 9580168
   review_comments: 1
@@ -59376,6 +59403,7 @@
   details: The pull request yegor256/qulice#1542 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h11m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1542
   repository: 9580168
   review_comments: 0
@@ -59393,6 +59421,7 @@
   details: The pull request yegor256/qulice#1543 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h11m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1543
   repository: 9580168
   review_comments: 0
@@ -59406,6 +59435,7 @@
   _time: 2026-06-17 08:54:13.636143186 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Apparently, yegor256/qulice#1549 has been "issue-was-closed".
+  is_human: 1
   issue: 1549
   repository: 9580168
   what: issue-was-closed
@@ -59427,6 +59457,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1544
   repository: 9580168
   review_comments: 0
@@ -59451,6 +59482,7 @@
   failed_builds: 12
   files: 2
   hoc: 4
+  is_human: 1
   issue: 1545
   repository: 9580168
   review_comments: 0
@@ -59475,6 +59507,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1546
   repository: 9580168
   review_comments: 0
@@ -59499,6 +59532,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1547
   repository: 9580168
   review_comments: 0
@@ -59523,6 +59557,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1548
   repository: 9580168
   review_comments: 0
@@ -59547,6 +59582,7 @@
   failed_builds: 0
   files: 3
   hoc: 39
+  is_human: 1
   issue: 1550
   repository: 9580168
   review: 2026-04-23 14:10:25.000000000 Z
@@ -59572,6 +59608,7 @@
   failed_builds: 0
   files: 3
   hoc: 35
+  is_human: 1
   issue: 1551
   repository: 9580168
   review: 2026-04-23 14:12:38.000000000 Z
@@ -59596,6 +59633,7 @@
   failed_builds: 0
   files: 3
   hoc: 6
+  is_human: 1
   issue: 1552
   repository: 9580168
   review_comments: 0
@@ -59620,6 +59658,7 @@
   failed_builds: 12
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1553
   repository: 9580168
   review_comments: 0
@@ -59644,6 +59683,7 @@
   failed_builds: 12
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1554
   repository: 9580168
   review_comments: 0
@@ -59668,6 +59708,7 @@
   failed_builds: 12
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1555
   repository: 9580168
   review_comments: 0
@@ -59692,6 +59733,7 @@
   failed_builds: 12
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1556
   repository: 9580168
   review_comments: 0
@@ -59716,6 +59758,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1568
   repository: 9580168
   review: 2026-04-27 03:33:55.000000000 Z
@@ -59741,6 +59784,7 @@
   failed_builds: 0
   files: 2
   hoc: 46
+  is_human: 1
   issue: 1579
   repository: 9580168
   review_comments: 0
@@ -59765,6 +59809,7 @@
   failed_builds: 0
   files: 2
   hoc: 17
+  is_human: 1
   issue: 1580
   repository: 9580168
   review_comments: 0
@@ -59789,6 +59834,7 @@
   failed_builds: 3
   files: 2
   hoc: 94
+  is_human: 1
   issue: 1581
   repository: 9580168
   review: 2026-04-30 13:29:56.000000000 Z
@@ -59820,6 +59866,7 @@
   _time: 2026-06-17 08:58:14.928829664 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: 'We found out that the user #175728472 is known in GitHub as @copilot.'
+  is_human: 0
   name: copilot
   what: who-has-name
   when: 2026-06-17 08:58:15.161439290 Z
@@ -59831,6 +59878,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/actions-checkout-6.x
   details: The missing pull yegor256/qulice#1582 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1582
   repository: 9580168
   what: pull-was-opened
@@ -59843,6 +59891,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/crate-ci-typos-1.x
   details: The missing pull yegor256/qulice#1583 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1583
   repository: 9580168
   what: pull-was-opened
@@ -59855,6 +59904,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: fix-1584-arrays-copyof-defensive
   details: The missing pull yegor256/qulice#1585 has been opened by @bibonix.
+  is_human: 1
   issue: 1585
   repository: 9580168
   what: pull-was-opened
@@ -59867,6 +59917,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.checkerframework-checker-qual-4.x
   details: The missing pull yegor256/qulice#1586 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1586
   repository: 9580168
   what: pull-was-opened
@@ -59879,6 +59930,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/com.jcabi-jcabi-matchers-1.x
   details: The missing pull yegor256/qulice#1587 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1587
   repository: 9580168
   what: pull-was-opened
@@ -59891,6 +59943,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: add-architecture-section
   details: The missing pull yegor256/qulice#1588 has been opened by @bibonix.
+  is_human: 1
   issue: 1588
   repository: 9580168
   what: pull-was-opened
@@ -59903,6 +59956,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/crate-ci-typos-1.x
   details: The missing pull yegor256/qulice#1589 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1589
   repository: 9580168
   what: pull-was-opened
@@ -59915,6 +59969,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/slf4j-monorepo
   details: The missing pull yegor256/qulice#1591 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1591
   repository: 9580168
   what: pull-was-opened
@@ -59926,6 +59981,7 @@
   _time: 2026-06-17 08:58:35.140421073 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The missing issue yegor256/qulice#1592 has been opened by @morphqdd.
+  is_human: 1
   issue: 1592
   repository: 9580168
   what: issue-was-opened
@@ -59938,6 +59994,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.ow2.asm-asm-9.x
   details: The missing pull yegor256/qulice#1593 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1593
   repository: 9580168
   what: pull-was-opened
@@ -59950,6 +60007,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/crate-ci-typos-1.x
   details: The missing pull yegor256/qulice#1594 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1594
   repository: 9580168
   what: pull-was-opened
@@ -59962,6 +60020,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.apache.maven.shared-maven-dependency-analyzer-1.x
   details: The missing pull yegor256/qulice#1595 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1595
   repository: 9580168
   what: pull-was-opened
@@ -59974,6 +60033,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.apache.maven.reporting-maven-reporting-exec-2.x
   details: The missing pull yegor256/qulice#1596 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1596
   repository: 9580168
   what: pull-was-opened
@@ -59986,6 +60046,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.apache.maven-maven-artifact-3.x
   details: The missing pull yegor256/qulice#1597 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1597
   repository: 9580168
   what: pull-was-opened
@@ -59998,6 +60059,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.apache.maven-maven-core-3.x
   details: The missing pull yegor256/qulice#1598 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1598
   repository: 9580168
   what: pull-was-opened
@@ -60009,6 +60071,7 @@
   _time: 2026-06-17 08:58:40.829610174 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The missing issue yegor256/qulice#1603 has been opened by @yegor256.
+  is_human: 1
   issue: 1603
   repository: 9580168
   what: issue-was-opened
@@ -60020,6 +60083,7 @@
   _time: 2026-06-17 08:58:41.358114422 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The missing issue yegor256/qulice#1604 has been opened by @yegor256.
+  is_human: 1
   issue: 1604
   repository: 9580168
   what: issue-was-opened
@@ -60035,6 +60099,7 @@
   details: The pull request yegor256/qulice#1550 with 39 HoC created by @yegor256
     was reviewed by @copilot after 0h4m and 0 comments.
   hoc: 39
+  is_human: 0
   issue: 1550
   repository: 9580168
   review_comments: 0
@@ -60052,6 +60117,7 @@
   details: The pull request yegor256/qulice#1551 with 35 HoC created by @yegor256
     was reviewed by @copilot after 0h3m and 0 comments.
   hoc: 35
+  is_human: 0
   issue: 1551
   repository: 9580168
   review_comments: 0
@@ -60069,6 +60135,7 @@
   details: The pull request yegor256/qulice#1568 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 14h21m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1568
   repository: 9580168
   review_comments: 0
@@ -60086,6 +60153,7 @@
   details: The pull request yegor256/qulice#1581 with 94 HoC created by @yegor256
     was reviewed by @copilot after 0h6m and 12 comments.
   hoc: 94
+  is_human: 0
   issue: 1581
   repository: 9580168
   review_comments: 12
@@ -60113,6 +60181,7 @@
   _time: 2026-06-18 08:53:45.315695072 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Apparently, yegor256/qulice#1604 has been "issue-was-closed".
+  is_human: 1
   issue: 1604
   repository: 9580168
   what: issue-was-closed
@@ -60134,6 +60203,7 @@
   failed_builds: 1
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1582
   repository: 9580168
   review_comments: 0
@@ -60158,6 +60228,7 @@
   failed_builds: 1
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1583
   repository: 9580168
   review_comments: 0
@@ -60182,6 +60253,7 @@
   failed_builds: 0
   files: 2
   hoc: 150
+  is_human: 1
   issue: 1585
   repository: 9580168
   review_comments: 0
@@ -60206,6 +60278,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1586
   repository: 9580168
   review_comments: 0
@@ -60230,6 +60303,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1587
   repository: 9580168
   review_comments: 0
@@ -60254,6 +60328,7 @@
   failed_builds: 0
   files: 1
   hoc: 77
+  is_human: 1
   issue: 1588
   repository: 9580168
   review_comments: 0
@@ -60278,6 +60353,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1589
   repository: 9580168
   review: 2026-05-10 09:08:52.000000000 Z
@@ -60303,6 +60379,7 @@
   failed_builds: 0
   files: 1
   hoc: 4
+  is_human: 1
   issue: 1591
   repository: 9580168
   review: 2026-05-13 09:39:11.000000000 Z
@@ -60328,6 +60405,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1593
   repository: 9580168
   review_comments: 0
@@ -60352,6 +60430,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1594
   repository: 9580168
   review: 2026-05-17 09:19:09.000000000 Z
@@ -60377,6 +60456,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1595
   repository: 9580168
   review: 2026-05-17 09:19:06.000000000 Z
@@ -60402,6 +60482,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1596
   repository: 9580168
   review: 2026-05-18 03:49:43.000000000 Z
@@ -60427,6 +60508,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1597
   repository: 9580168
   review_comments: 0
@@ -60451,6 +60533,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1598
   repository: 9580168
   review_comments: 0
@@ -60465,6 +60548,7 @@
   _time: 2026-06-18 08:56:54.806084811 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The issue yegor256/qulice#1631 has been earlier opened by @edmoffo.
+  is_human: 1
   issue: 1631
   repository: 9580168
   what: issue-was-opened
@@ -60476,6 +60560,7 @@
   _time: 2026-06-18 08:56:55.158125372 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The issue yegor256/qulice#1630 has been earlier opened by @kreinba.
+  is_human: 1
   issue: 1630
   repository: 9580168
   what: issue-was-opened
@@ -60487,6 +60572,7 @@
   _time: 2026-06-18 08:56:55.502770584 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The issue yegor256/qulice#1609 has been earlier opened by @yegor256.
+  is_human: 1
   issue: 1609
   repository: 9580168
   what: issue-was-opened
@@ -60498,6 +60584,7 @@
   _time: 2026-06-18 08:56:56.145853313 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The issue yegor256/qulice#1608 has been earlier opened by @yegor256.
+  is_human: 1
   issue: 1608
   repository: 9580168
   what: issue-was-opened
@@ -60509,6 +60596,7 @@
   _time: 2026-06-18 08:56:56.221524125 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The issue yegor256/qulice#1607 has been earlier opened by @yegor256.
+  is_human: 1
   issue: 1607
   repository: 9580168
   what: issue-was-opened
@@ -60520,6 +60608,7 @@
   _time: 2026-06-18 08:56:56.298754052 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The issue yegor256/qulice#1606 has been earlier opened by @yegor256.
+  is_human: 1
   issue: 1606
   repository: 9580168
   what: issue-was-opened
@@ -60531,6 +60620,7 @@
   _time: 2026-06-18 08:56:56.376880771 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: The issue yegor256/qulice#1605 has been earlier opened by @yegor256.
+  is_human: 1
   issue: 1605
   repository: 9580168
   what: issue-was-opened
@@ -60542,6 +60632,7 @@
   _time: 2026-06-18 08:57:46.312731861 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: 'We found out that the user #125282851 is known in GitHub as @morphqdd.'
+  is_human: 1
   name: morphqdd
   what: who-has-name
   when: 2026-06-18 08:57:46.612506144 Z
@@ -60552,6 +60643,7 @@
   _time: 2026-06-18 08:57:46.645761121 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: 'We found out that the user #9535571 is known in GitHub as @edmoffo.'
+  is_human: 1
   name: edmoffo
   what: who-has-name
   when: 2026-06-18 08:57:46.649263058 Z
@@ -60562,6 +60654,7 @@
   _time: 2026-06-18 08:57:46.677470567 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: 'We found out that the user #9535667 is known in GitHub as @kreinba.'
+  is_human: 1
   name: kreinba
   what: who-has-name
   when: 2026-06-18 08:57:46.680789884 Z
@@ -60573,6 +60666,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: claude/fix-qulice-1606-4luZt
   details: The missing pull yegor256/qulice#1610 has been opened by @yegor256.
+  is_human: 1
   issue: 1610
   repository: 9580168
   what: pull-was-opened
@@ -60585,6 +60679,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: claude/fix-qulice-1609-rZoNY
   details: The missing pull yegor256/qulice#1611 has been opened by @yegor256.
+  is_human: 1
   issue: 1611
   repository: 9580168
   what: pull-was-opened
@@ -60597,6 +60692,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: claude/fix-qulice-1603-UYROi
   details: The missing pull yegor256/qulice#1612 has been opened by @yegor256.
+  is_human: 1
   issue: 1612
   repository: 9580168
   what: pull-was-opened
@@ -60609,6 +60705,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: claude/skip-linter-test-classes-SYFn6
   details: The missing pull yegor256/qulice#1613 has been opened by @yegor256.
+  is_human: 1
   issue: 1613
   repository: 9580168
   what: pull-was-opened
@@ -60621,6 +60718,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: claude/fix-qulice-1607-zkM4i
   details: The missing pull yegor256/qulice#1614 has been opened by @yegor256.
+  is_human: 1
   issue: 1614
   repository: 9580168
   what: pull-was-opened
@@ -60633,6 +60731,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/crate-ci-typos-1.x
   details: The missing pull yegor256/qulice#1615 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1615
   repository: 9580168
   what: pull-was-opened
@@ -60645,6 +60744,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.ow2.asm-asm-9.x
   details: The missing pull yegor256/qulice#1616 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1616
   repository: 9580168
   what: pull-was-opened
@@ -60657,6 +60757,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: '1570'
   details: The missing pull yegor256/qulice#1618 has been opened by @ghx5t-sol.
+  is_human: 1
   issue: 1618
   repository: 9580168
   what: pull-was-opened
@@ -60669,6 +60770,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/crate-ci-typos-1.x
   details: The missing pull yegor256/qulice#1619 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1619
   repository: 9580168
   what: pull-was-opened
@@ -60681,6 +60783,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/org.checkerframework-checker-qual-4.x
   details: The missing pull yegor256/qulice#1624 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1624
   repository: 9580168
   what: pull-was-opened
@@ -60693,6 +60796,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/crate-ci-typos-1.x
   details: The missing pull yegor256/qulice#1625 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1625
   repository: 9580168
   what: pull-was-opened
@@ -60705,6 +60809,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/crate-ci-typos-1.x
   details: The missing pull yegor256/qulice#1626 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1626
   repository: 9580168
   what: pull-was-opened
@@ -60717,6 +60822,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/codecov-codecov-action-7.x
   details: The missing pull yegor256/qulice#1627 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1627
   repository: 9580168
   what: pull-was-opened
@@ -60729,6 +60835,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/error-prone-monorepo
   details: The missing pull yegor256/qulice#1628 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1628
   repository: 9580168
   what: pull-was-opened
@@ -60741,6 +60848,7 @@
   _version: 0.19.9/0.60.2/0.17.17
   branch: renovate/com.jcabi-jcabi-xml-0.x
   details: The missing pull yegor256/qulice#1629 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1629
   repository: 9580168
   what: pull-was-opened
@@ -60756,6 +60864,7 @@
   details: The pull request yegor256/qulice#1589 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 8h59m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1589
   repository: 9580168
   review_comments: 0
@@ -60773,6 +60882,7 @@
   details: The pull request yegor256/qulice#1591 with 4 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h16m and 0 comments.
   hoc: 4
+  is_human: 1
   issue: 1591
   repository: 9580168
   review_comments: 0
@@ -60790,6 +60900,7 @@
   details: The pull request yegor256/qulice#1594 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h47m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1594
   repository: 9580168
   review_comments: 0
@@ -60807,6 +60918,7 @@
   details: The pull request yegor256/qulice#1595 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h47m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1595
   repository: 9580168
   review_comments: 0
@@ -60824,6 +60936,7 @@
   details: The pull request yegor256/qulice#1596 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 18h19m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1596
   repository: 9580168
   review_comments: 0
@@ -60832,17 +60945,12 @@
   when: 2026-05-18 03:49:43.000000000 Z
   where: github
   who: 526301
-- _id: 11124
-  _job: 77681
-  _time: 2026-06-18 09:07:59.744000702 Z
-  _version: 0.19.13/0.60.4/0.17.17
-  what: learn-eva
-  when: 2026-06-18 09:07:59.720255745 Z
 - _id: 11126
   _job: 27815860633
   _time: 2026-06-19 08:55:40.915600248 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Apparently, yegor256/qulice#1605 has been "issue-was-closed".
+  is_human: 1
   issue: 1605
   repository: 9580168
   what: issue-was-closed
@@ -60854,6 +60962,7 @@
   _time: 2026-06-19 08:55:41.725133533 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Apparently, yegor256/qulice#1606 has been "issue-was-closed".
+  is_human: 1
   issue: 1606
   repository: 9580168
   what: issue-was-closed
@@ -60865,6 +60974,7 @@
   _time: 2026-06-19 08:55:42.475437431 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Apparently, yegor256/qulice#1607 has been "issue-was-closed".
+  is_human: 1
   issue: 1607
   repository: 9580168
   what: issue-was-closed
@@ -60876,6 +60986,7 @@
   _time: 2026-06-19 08:55:43.120127110 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Apparently, yegor256/qulice#1608 has been "issue-was-closed".
+  is_human: 1
   issue: 1608
   repository: 9580168
   what: issue-was-closed
@@ -60887,6 +60998,7 @@
   _time: 2026-06-19 08:55:43.711454946 Z
   _version: 0.19.9/0.60.2/0.17.17
   details: Apparently, yegor256/qulice#1609 has been "issue-was-closed".
+  is_human: 1
   issue: 1609
   repository: 9580168
   what: issue-was-closed
@@ -60908,9 +61020,11 @@
   failed_builds: 0
   files: 4
   hoc: 123
+  is_human: 1
   issue: 1610
   repository: 9580168
   review: 2026-05-20 17:27:04.000000000 Z
+  review_comments: 1
   succeeded_builds: 11
   suggestions: 1
   what: pull-was-merged
@@ -60932,9 +61046,11 @@
   failed_builds: 0
   files: 3
   hoc: 38
+  is_human: 1
   issue: 1611
   repository: 9580168
   review: 2026-05-20 17:25:54.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -60956,9 +61072,11 @@
   failed_builds: 0
   files: 8
   hoc: 254
+  is_human: 1
   issue: 1613
   repository: 9580168
   review: 2026-05-20 17:28:41.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -60980,9 +61098,11 @@
   failed_builds: 0
   files: 6
   hoc: 405
+  is_human: 1
   issue: 1614
   repository: 9580168
   review: 2026-05-20 17:30:13.000000000 Z
+  review_comments: 1
   succeeded_builds: 11
   suggestions: 1
   what: pull-was-merged
@@ -61004,9 +61124,11 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1615
   repository: 9580168
   review: 2026-05-24 16:47:47.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -61028,9 +61150,11 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1616
   repository: 9580168
   review: 2026-05-24 16:47:44.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -61052,9 +61176,11 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1619
   repository: 9580168
   review: 2026-05-29 03:30:55.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -61076,8 +61202,10 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1624
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -61099,9 +61227,11 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1625
   repository: 9580168
   review: 2026-06-03 10:03:17.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -61123,9 +61253,11 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1626
   repository: 9580168
   review: 2026-06-04 03:42:52.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -61147,8 +61279,10 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1627
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -61170,6 +61304,7 @@
   failed_builds: 2
   files: 1
   hoc: 4
+  is_human: 1
   issue: 1628
   repository: 9580168
   succeeded_builds: 9
@@ -61193,6 +61328,7 @@
   failed_builds: 1
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1629
   repository: 9580168
   succeeded_builds: 10
@@ -61201,23 +61337,6 @@
   when: 2026-06-12 06:27:53.000000000 Z
   where: github
   who: 526301
-- _id: 11144
-  _job: 27815860633
-  _time: 2026-06-19 08:58:54.420715117 Z
-  _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1529
-  earliest_issue_was_found: 1
-  events_were_scanned: 10857615861
-  issues_were_scanned: 867
-  labels_were_scanned: 1567
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1603
-  min_pull_was_found: 1487
-  repository: 9580168
-  types_were_scanned: 1510
-  what: iterate
-  where: github
 - _id: 11145
   _job: 27815860633
   _time: 2026-06-19 08:59:26.807619241 Z
@@ -61243,6 +61362,7 @@
   details: The pull request yegor256/qulice#1610 with 123 HoC created by @yegor256
     was reviewed by @copilot after 1h14m and 1 comments.
   hoc: 123
+  is_human: 0
   issue: 1610
   repository: 9580168
   review_comments: 1
@@ -61260,6 +61380,7 @@
   details: The pull request yegor256/qulice#1611 with 38 HoC created by @yegor256
     was reviewed by @copilot after 1h10m and 0 comments.
   hoc: 38
+  is_human: 0
   issue: 1611
   repository: 9580168
   review_comments: 0
@@ -61277,6 +61398,7 @@
   details: The pull request yegor256/qulice#1613 with 254 HoC created by @yegor256
     was reviewed by @copilot after 1h2m and 0 comments.
   hoc: 254
+  is_human: 0
   issue: 1613
   repository: 9580168
   review_comments: 0
@@ -61294,6 +61416,7 @@
   details: The pull request yegor256/qulice#1614 with 405 HoC created by @yegor256
     was reviewed by @copilot after 1h1m and 1 comments.
   hoc: 405
+  is_human: 0
   issue: 1614
   repository: 9580168
   review_comments: 1
@@ -61311,6 +61434,7 @@
   details: The pull request yegor256/qulice#1615 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 8h32m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1615
   repository: 9580168
   review_comments: 0
@@ -61328,6 +61452,7 @@
   details: The pull request yegor256/qulice#1616 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 8h32m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1616
   repository: 9580168
   review_comments: 0
@@ -61345,6 +61470,7 @@
   details: The pull request yegor256/qulice#1619 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h56m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1619
   repository: 9580168
   review_comments: 0
@@ -61362,6 +61488,7 @@
   details: The pull request yegor256/qulice#1625 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 3h11m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1625
   repository: 9580168
   review_comments: 0
@@ -61379,6 +61506,7 @@
   details: The pull request yegor256/qulice#1626 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h37m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1626
   repository: 9580168
   review_comments: 0
@@ -61387,3 +61515,54 @@
   when: 2026-06-04 03:42:52.000000000 Z
   where: github
   who: 526301
+- _id: 11155
+  _job: 77831
+  _time: 2026-06-19 09:09:59.701589591 Z
+  _version: 0.19.13/0.60.4/0.17.17
+  analyzers: 18
+  text: |-
+    The average number of builds per week (252.2) is decreasing (R=-0.14).
+    The average number of commits per week (11.1) is increasing (R=0.19).
+    The average issue cycle time (3w1d) is decreasing (R=-0.37).
+    The average pull cycle time (6d22h) is staying still.
+    The average number of releases per month (1.7) is increasing (R=0.13).
+    The average monthly turnover (29.0 developers) is increasing (R=0.86).
+  what: assessment
+  when: 2026-06-19 09:09:59.723378813 Z
+- _id: 11156
+  _job: 77831
+  _time: 2026-06-19 09:10:30.914611064 Z
+  _version: 0.19.13/0.60.4/0.17.17
+  what: learn-eva
+  when: 2026-06-19 09:10:30.890119595 Z
+- _id: 11158
+  _job: 27865465664
+  _time: 2026-06-20 08:22:01.179450847 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  since: *128
+  total_builds_ran: 74
+  total_commits_pushed: 3
+  total_hoc_committed: 30
+  total_issues_created: 2
+  total_pulls_submitted: 2
+  total_releases_published: 0
+  total_reviews_submitted: 2
+  what: quantity-of-deliverables
+  when: 2026-06-20 08:22:01.000000000 Z
+- _id: 11159
+  _job: 27865465664
+  _time: 2026-06-20 08:22:26.319987004 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assignees_were_scanned: 1529
+  earliest_issue_was_found: 1
+  events_were_scanned: 12166336435
+  issues_were_scanned: 867
+  labels_were_scanned: 1567
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1604
+  min_pull_was_found: 1488
+  repository: 9580168
+  types_were_scanned: 1510
+  what: iterate
+  where: github
