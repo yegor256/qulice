@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 579.761932246
+  seconds: 772.056384282
   version: 0.60.2
   what: judges-summary
-  when: 2026-06-20 08:31:28.477938566 Z
+  when: 2026-06-21 08:54:59.882993189 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -57993,7 +57993,7 @@
   - 1099574.0
   some_unmerged_pulls: 3
   what: quality-of-service
-  when: 2026-06-14 08:38:50.000000000 Z
+  when: &129 2026-06-14 08:38:50.000000000 Z
 - _id: 10946
   _job: 27536479309
   _time: 2026-06-15 09:21:46.756240124 Z
@@ -61529,12 +61529,6 @@
     The average monthly turnover (29.0 developers) is increasing (R=0.86).
   what: assessment
   when: 2026-06-19 09:09:59.723378813 Z
-- _id: 11156
-  _job: 77831
-  _time: 2026-06-19 09:10:30.914611064 Z
-  _version: 0.19.13/0.60.4/0.17.17
-  what: learn-eva
-  when: 2026-06-19 09:10:30.890119595 Z
 - _id: 11158
   _job: 27865465664
   _time: 2026-06-20 08:22:01.179450847 Z
@@ -61549,20 +61543,253 @@
   total_reviews_submitted: 2
   what: quantity-of-deliverables
   when: 2026-06-20 08:22:01.000000000 Z
-- _id: 11159
-  _job: 27865465664
-  _time: 2026-06-20 08:22:26.319987004 Z
+- _id: 11160
+  _job: 77912
+  _time: 2026-06-20 08:32:25.299446627 Z
+  _version: 0.19.13/0.60.4/0.17.17
+  what: learn-eva
+  when: 2026-06-20 08:32:25.276063492 Z
+- _id: 11162
+  _job: 27898958592
+  _time: 2026-06-21 08:42:38.443232016 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: The issue yegor256/qulice#1635 has been earlier opened by @edmoffo.
+  is_human: 1
+  issue: 1635
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-06-21 08:16:31.000000000 Z
+  where: github
+  who: 9535571
+- _id: 11163
+  _job: 27898958592
+  _time: 2026-06-21 08:42:39.773882269 Z
   _version: 0.19.9/0.60.2/0.17.17
   assignees_were_scanned: 1529
   earliest_issue_was_found: 1
-  events_were_scanned: 12166336435
+  events_were_scanned: 12219624696
   issues_were_scanned: 867
   labels_were_scanned: 1567
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1604
-  min_pull_was_found: 1488
+  min_issue_was_found: 1605
+  min_pull_was_found: 1489
   repository: 9580168
   types_were_scanned: 1510
   what: iterate
   where: github
+- _id: 11164
+  _job: 27898958592
+  _time: 2026-06-21 08:43:22.442290938 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  total_active_contributors: 3
+  total_commits: 2582
+  total_contributors: 56
+  total_files: 676
+  total_forks: 123
+  total_issues: 879
+  total_pulls: 755
+  total_releases: 85
+  total_repositories: 1
+  total_stars: 320
+  what: dimensions-of-terrain
+  when: 2026-06-21 08:43:22.451232865 Z
+- _id: 11165
+  _job: 27898958592
+  _time: 2026-06-21 08:43:50.531647005 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: fix-1630-license-mismatch
+  details: The missing pull yegor256/qulice#1632 has been opened by @edmoffo.
+  is_human: 1
+  issue: 1632
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-06-12 12:24:21.000000000 Z
+  where: github
+  who: 9535571
+- _id: 11166
+  _job: 27898958592
+  _time: 2026-06-21 08:43:51.554894339 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/com.puppycrawl.tools-checkstyle-13.x
+  details: The missing pull yegor256/qulice#1633 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1633
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-06-15 06:00:01.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11167
+  _job: 27898958592
+  _time: 2026-06-21 08:43:52.374748744 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: renovate/actions-checkout-7.x
+  details: The missing pull yegor256/qulice#1634 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1634
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-06-18 20:53:40.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11168
+  _job: 27898958592
+  _time: 2026-06-21 08:50:40.679654859 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  since: *129
+  some_backlog_size:
+  - 11
+  - 11
+  - 11
+  - 11
+  - 11
+  - 11
+  - 12
+  some_build_duration:
+  - 33
+  - 762
+  - 63
+  - 1
+  - 8
+  - 1
+  - 10
+  - 11
+  - 12
+  - 14
+  - 14
+  - 20
+  - 22
+  - 33
+  - 41
+  - 2
+  - 69
+  - 288
+  - 972
+  - 77
+  - 938
+  - 63
+  - 940
+  - 54
+  - 6
+  - 7
+  - 8
+  - 12
+  - 12
+  - 18
+  - 23
+  - 29
+  - 36
+  - 352
+  - 0
+  - 1
+  - 1
+  - 7
+  - 7
+  - 7
+  - 7
+  - 9
+  - 14
+  - 15
+  - 28
+  - 32
+  - 67
+  - 310
+  - 1
+  - 956
+  - 62
+  - 695
+  - 51
+  - 0
+  - 0
+  - 1
+  - 2
+  - 1
+  - 10
+  - 0
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  some_merged_pulls: 2
+  some_pull_files_size:
+  - 13
+  - 1
+  some_pull_hoc_size:
+  - 26
+  - 2
+  some_pull_lifetime:
+  - 28827.0
+  - 17162.0
+  some_review_size:
+  - 0
+  - 0
+  some_review_time:
+  - 5114
+  - 1079
+  some_reviewers_per_pull:
+  - 1
+  - 1
+  some_reviews_per_pull:
+  - 1
+  - 1
+  some_unmerged_pulls: 0
+  what: quality-of-service
+  when: 2026-06-21 08:50:40.000000000 Z
