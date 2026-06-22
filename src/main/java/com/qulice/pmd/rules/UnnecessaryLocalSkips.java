@@ -77,11 +77,10 @@ final class UnnecessaryLocalSkips {
      */
     static boolean freshState(final ASTExpression init) {
         final boolean result;
-        if (init instanceof ASTMethodCall) {
-            result = UnnecessaryLocalSkips.freshStateCall((ASTMethodCall) init);
-        } else if (init instanceof ASTConstructorCall) {
-            final ASTClassType type =
-                ((ASTConstructorCall) init).getTypeNode();
+        if (init instanceof ASTMethodCall call) {
+            result = UnnecessaryLocalSkips.freshStateCall(call);
+        } else if (init instanceof ASTConstructorCall call) {
+            final ASTClassType type = call.getTypeNode();
             result = type != null && "Date".equals(type.getSimpleName());
         } else {
             result = false;
@@ -103,9 +102,9 @@ final class UnnecessaryLocalSkips {
     ) {
         boolean found = false;
         final ASTExpression init = variable.getInitializer();
-        if (init instanceof ASTMethodCall) {
+        if (init instanceof ASTMethodCall call) {
             final String target = UnnecessaryLocalSkips.qualifierImage(
-                ((ASTMethodCall) init).getQualifier()
+                call.getQualifier()
             );
             if (target != null && !target.isEmpty()) {
                 final Node decl = UnnecessaryLocalSkips.blockLevel(variable);
@@ -128,13 +127,15 @@ final class UnnecessaryLocalSkips {
         final String qualifier = UnnecessaryLocalSkips.qualifierImage(
             call.getQualifier()
         );
-        return qualifier != null
-            && (
-                UnnecessaryLocalSkips.FRESH_STATE_CALLS
-                    .getOrDefault(qualifier, Set.of()).contains(name)
-                || "now".equals(name)
-                && UnnecessaryLocalSkips.TIME_TYPES.contains(qualifier)
-            );
+        boolean fresh = false;
+        if (qualifier != null) {
+            final boolean known = UnnecessaryLocalSkips.FRESH_STATE_CALLS
+                .getOrDefault(qualifier, Set.of()).contains(name);
+            final boolean clock = "now".equals(name)
+                && UnnecessaryLocalSkips.TIME_TYPES.contains(qualifier);
+            fresh = known || clock;
+        }
+        return fresh;
     }
 
     private static boolean scanBetween(
@@ -174,14 +175,13 @@ final class UnnecessaryLocalSkips {
 
     private static String qualifierImage(final ASTExpression expr) {
         final String result;
-        if (expr instanceof ASTAmbiguousName) {
-            result = ((ASTAmbiguousName) expr).getName();
-        } else if (expr instanceof ASTVariableAccess) {
-            result = ((ASTVariableAccess) expr).getName();
-        } else if (expr instanceof ASTTypeExpression
-            && ((ASTTypeExpression) expr).getTypeNode() instanceof ASTClassType) {
-            result = ((ASTClassType) ((ASTTypeExpression) expr).getTypeNode())
-                .getSimpleName();
+        if (expr instanceof ASTAmbiguousName name) {
+            result = name.getName();
+        } else if (expr instanceof ASTVariableAccess access) {
+            result = access.getName();
+        } else if (expr instanceof ASTTypeExpression type
+            && type.getTypeNode() instanceof ASTClassType klass) {
+            result = klass.getSimpleName();
         } else {
             result = null;
         }

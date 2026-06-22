@@ -5,8 +5,8 @@
 package com.qulice.maven;
 
 import com.jcabi.log.Logger;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import javax.inject.Inject;
 import org.apache.maven.execution.MavenSession;
 import org.apache.maven.plugin.AbstractMojo;
@@ -59,7 +59,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      * List of regular expressions to exclude.
      */
     @Parameter(property = "qulice.excludes")
-    private final Collection<String> excludes = new LinkedList<>();
+    private final Collection<String> excludes = new ArrayList<>(0);
 
     /**
      * List of xpath queries to validate pom.xml.
@@ -69,7 +69,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         property = "qulice.asserts",
         required = false
     )
-    private final Collection<String> asserts = new LinkedList<>();
+    private final Collection<String> asserts = new ArrayList<>(0);
 
     /**
      * The source encoding.

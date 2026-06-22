@@ -10,8 +10,8 @@ import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Relative;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -36,7 +36,7 @@ final class CheckstyleListener implements AuditListener {
      * @param environ The environment
      */
     CheckstyleListener(final Environment environ) {
-        this.all = new LinkedList<>();
+        this.all = new ArrayList<>(0);
         this.env = environ;
     }
 

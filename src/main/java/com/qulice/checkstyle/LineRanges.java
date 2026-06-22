@@ -108,8 +108,7 @@ public final class LineRanges {
      * Thread-safe collection of line ranges.
      * @since 0.1
      */
-    private static final class LocalCollection
-        extends ThreadLocal<Collection<LineRange>> {
+    private static final class LocalCollection {
 
         /**
          * Internal Collection.

@@ -15,10 +15,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -124,7 +124,7 @@ final class DependenciesValidator implements MavenValidator {
     private static Collection<String> used(final MavenEnvironment env) {
         final ProjectDependencyAnalysis analysis =
             DependenciesValidator.analyze(env);
-        final Collection<String> used = new LinkedList<>();
+        final Collection<String> used = new ArrayList<>(0);
         for (final Object artifact : analysis.getUsedUndeclaredArtifacts()) {
             used.add(artifact.toString());
         }
@@ -148,7 +148,7 @@ final class DependenciesValidator implements MavenValidator {
         final ProjectDependencyAnalysis analysis =
             DependenciesValidator.analyze(env);
         final Set<String> imports = DependenciesValidator.imports(env);
-        final Collection<String> unused = new LinkedList<>();
+        final Collection<String> unused = new ArrayList<>(0);
         for (final Object obj : analysis.getUnusedDeclaredArtifacts()) {
             final Artifact artifact = (Artifact) obj;
             if (!Artifact.SCOPE_COMPILE.equals(artifact.getScope())) {
@@ -289,9 +289,10 @@ final class DependenciesValidator implements MavenValidator {
                 .substring(0, entry.length() - ".class".length())
                 .replace('/', '.');
             final int dot = fqn.lastIndexOf('.');
-            match = imports.contains(fqn)
-                || dot > 0
+            final boolean direct = imports.contains(fqn);
+            final boolean wildcard = dot > 0
                 && imports.contains(fqn.substring(0, dot).concat(".*"));
+            match = direct || wildcard;
         }
         return match;
     }

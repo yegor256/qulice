@@ -16,8 +16,8 @@ import com.qulice.spi.Relative;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -79,7 +79,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         }
         this.checker.addListener(this.listener);
         final List<File> sources = this.getNonExcludedFiles(files);
-        final Collection<Violation> results = new LinkedList<>();
+        final Collection<Violation> results = new ArrayList<>(0);
         if (sources.isEmpty()) {
             Logger.debug(
                 this,
@@ -120,7 +120,7 @@ public final class CheckstyleValidator implements ResourceValidator {
      * @return List of relevant files
      */
     public List<File> getNonExcludedFiles(final Collection<File> files) {
-        final List<File> relevant = new LinkedList<>();
+        final List<File> relevant = new ArrayList<>(files.size());
         for (final File file : files) {
             final String name = new Relative(this.env.basedir(), file).path();
             if (this.env.exclude("checkstyle", name)) {

@@ -64,8 +64,7 @@ public final class ProhibitFormatInLoggerRule
 
     private static boolean isStringFormatCall(final ASTExpression expr) {
         boolean result = false;
-        if (expr instanceof ASTMethodCall) {
-            final ASTMethodCall method = (ASTMethodCall) expr;
+        if (expr instanceof ASTMethodCall method) {
             final ASTExpression qualifier = method.getQualifier();
             result = "format".equals(method.getMethodName())
                 && qualifier != null

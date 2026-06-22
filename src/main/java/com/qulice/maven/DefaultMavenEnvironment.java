@@ -18,8 +18,8 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.charset.Charset;
 import java.security.PrivilegedAction;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import javax.annotation.Nullable;
@@ -66,12 +66,12 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     /**
      * Excludes, regular expressions.
      */
-    private final Collection<String> exc = new LinkedList<>();
+    private final Collection<String> exc = new ArrayList<>(0);
 
     /**
      * Xpath queries for pom.xml validation.
      */
-    private final Collection<String> assertion = new LinkedList<>();
+    private final Collection<String> assertion = new ArrayList<>(0);
 
     /**
      * Source code encoding charset.
@@ -105,7 +105,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     @SuppressWarnings("deprecation")
     public Collection<String> classpath() {
-        final Collection<String> paths = new LinkedList<>();
+        final Collection<String> paths = new ArrayList<>(0);
         final String blank = "%20";
         final String whitespace = " ";
         try {
@@ -135,7 +135,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public ClassLoader classloader() {
-        final List<URL> urls = new LinkedList<>();
+        final List<URL> urls = new ArrayList<>(0);
         for (final String path : this.classpath()) {
             try {
                 urls.add(
@@ -185,7 +185,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public Collection<File> files(final String pattern) {
-        final Collection<File> files = new LinkedList<>();
+        final Collection<File> files = new ArrayList<>(0);
         final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();
         for (final File sources : this.sources()) {
             if (sources.exists()) {
@@ -307,7 +307,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * @return Absolute directories to scan for files
      */
     private Collection<File> sources() {
-        final Collection<File> dirs = new LinkedList<>();
+        final Collection<File> dirs = new ArrayList<>(0);
         final Build build = this.iproject.getBuild();
         final File output = this.buildDirectory(build);
         this.addRoots(dirs, this.iproject.getCompileSourceRoots(), output);

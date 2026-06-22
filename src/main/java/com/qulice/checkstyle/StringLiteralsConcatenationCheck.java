@@ -7,7 +7,7 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -75,7 +75,7 @@ public final class StringLiteralsConcatenationCheck extends AbstractCheck {
      */
     private List<DetailAST> findChildAstsOfType(final DetailAST tree,
         final int... types) {
-        final List<DetailAST> children = new LinkedList<>();
+        final List<DetailAST> children = new ArrayList<>(0);
         DetailAST child = tree.getFirstChild();
         while (child != null) {
             if (StringLiteralsConcatenationCheck.isOfType(child, types)) {
