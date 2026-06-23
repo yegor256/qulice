@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 810.161241693
+  seconds: 811.745978932
   version: 0.60.2
   what: judges-summary
-  when: 2026-06-22 09:32:13.433379342 Z
+  when: 2026-06-23 08:37:12.993485999 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -61501,20 +61501,6 @@
   when: 2026-06-04 03:42:52.000000000 Z
   where: github
   who: 526301
-- _id: 11155
-  _job: 77831
-  _time: 2026-06-19 09:09:59.701589591 Z
-  _version: 0.19.13/0.60.4/0.17.17
-  analyzers: 18
-  text: |-
-    The average number of builds per week (252.2) is decreasing (R=-0.14).
-    The average number of commits per week (11.1) is increasing (R=0.19).
-    The average issue cycle time (3w1d) is decreasing (R=-0.37).
-    The average pull cycle time (6d22h) is staying still.
-    The average number of releases per month (1.7) is increasing (R=0.13).
-    The average monthly turnover (29.0 developers) is increasing (R=0.86).
-  what: assessment
-  when: 2026-06-19 09:09:59.723378813 Z
 - _id: 11158
   _job: 27865465664
   _time: 2026-06-20 08:22:01.179450847 Z
@@ -61770,12 +61756,6 @@
     The average monthly turnover (29.0 developers) is increasing (R=0.86).
   what: assessment
   when: 2026-06-21 08:55:31.891643538 Z
-- _id: 11170
-  _job: 78025
-  _time: 2026-06-21 08:56:00.939338906 Z
-  _version: 0.19.13/0.60.4/0.17.17
-  what: learn-eva
-  when: 2026-06-21 08:56:00.915559811 Z
 - _id: 11172
   _job: 27942365350
   _time: 2026-06-22 09:19:16.668950281 Z
@@ -61794,6 +61774,7 @@
   issue: 1633
   repository: 9580168
   review: 2026-06-15 10:28:04.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -61818,29 +61799,13 @@
   issue: 1634
   repository: 9580168
   review: 2026-06-19 03:28:53.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
   when: 2026-06-19 04:54:07.000000000 Z
   where: github
   who: 8086956
-- _id: 11174
-  _job: 27942365350
-  _time: 2026-06-22 09:20:10.684785801 Z
-  _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1529
-  earliest_issue_was_found: 1
-  events_were_scanned: 12262940203
-  issues_were_scanned: 867
-  labels_were_scanned: 1567
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1606
-  min_pull_was_found: 1490
-  repository: 9580168
-  types_were_scanned: 1510
-  what: iterate
-  where: github
 - _id: 11175
   _job: 27942365350
   _time: 2026-06-22 09:20:52.700016396 Z
@@ -61891,3 +61856,224 @@
   when: 2026-06-19 03:28:53.000000000 Z
   where: github
   who: 526301
+- _id: 11178
+  _job: 78133
+  _time: 2026-06-22 09:32:54.820635737 Z
+  _version: 0.19.13/0.60.4/0.17.17
+  analyzers: 18
+  text: |-
+    The average number of builds per week (247.3) is decreasing (R=-0.16).
+    The average number of commits per week (10.8) is increasing (R=0.17).
+    The average issue cycle time (3w1d) is decreasing (R=-0.37).
+    The average pull cycle time (6d19h) is staying still.
+    The average number of releases per month (1.6) is increasing (R=0.10).
+    The average monthly turnover (29.0 developers) is increasing (R=0.86).
+  what: assessment
+  when: 2026-06-22 09:32:54.843701105 Z
+- _id: 11179
+  _job: 78133
+  _time: 2026-06-22 09:33:21.571568032 Z
+  _version: 0.19.13/0.60.4/0.17.17
+  what: learn-eva
+  when: 2026-06-22 09:33:21.546389065 Z
+- _id: 11181
+  _job: 28012624264
+  _time: 2026-06-23 08:24:00.230290048 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1570 has been "issue-was-closed".
+  issue: 1570
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-06-22 13:00:14.000000000 Z
+  where: github
+  who: 526301
+- _id: 11182
+  _job: 28012624264
+  _time: 2026-06-23 08:24:01.546574777 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1603 has been "issue-was-closed".
+  issue: 1603
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-06-23 05:32:41.000000000 Z
+  where: github
+  who: 526301
+- _id: 11183
+  _job: 28012624264
+  _time: 2026-06-23 08:24:02.535864321 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  details: Apparently, yegor256/qulice#1630 has been "issue-was-closed".
+  issue: 1630
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-06-22 13:10:52.000000000 Z
+  where: github
+  who: 526301
+- _id: 11184
+  _job: 28012624264
+  _time: 2026-06-23 08:24:16.178091498 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: pmd-update
+  comments: 2
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 2
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1279 has been "pull-was-closed".
+  failed_builds: 0
+  files: 2
+  hoc: 8
+  issue: 1279
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-06-23 05:31:43.000000000 Z
+  where: github
+  who: 526301
+- _id: 11185
+  _job: 28012624264
+  _time: 2026-06-23 08:24:27.658304362 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: master
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1518 has been "pull-was-closed".
+  failed_builds: 14
+  files: 2
+  hoc: 26
+  issue: 1518
+  repository: 9580168
+  succeeded_builds: 6
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-06-23 05:31:24.000000000 Z
+  where: github
+  who: 526301
+- _id: 11186
+  _job: 28012624264
+  _time: 2026-06-23 08:24:39.481493371 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: claude/fix-qulice-1603-UYROi
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1612 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 60
+  issue: 1612
+  repository: 9580168
+  review: 2026-06-12 12:16:25.000000000 Z
+  succeeded_builds: 11
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-06-23 05:32:40.000000000 Z
+  where: github
+  who: 526301
+- _id: 11187
+  _job: 28012624264
+  _time: 2026-06-23 08:24:53.122251268 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: '1570'
+  comments: 2
+  comments_appreciated: 0
+  comments_by_author: 2
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1618 has been "pull-was-merged".
+  failed_builds: 0
+  files: 25
+  hoc: 261
+  issue: 1618
+  repository: 9580168
+  review: 2026-05-28 00:16:18.000000000 Z
+  succeeded_builds: 11
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-06-22 13:00:13.000000000 Z
+  where: github
+  who: 526301
+- _id: 11188
+  _job: 28012624264
+  _time: 2026-06-23 08:25:05.512415541 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  branch: fix-1630-license-mismatch
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1632 has been "pull-was-merged".
+  failed_builds: 1
+  files: 1
+  hoc: 4
+  issue: 1632
+  repository: 9580168
+  succeeded_builds: 10
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-06-22 13:10:50.000000000 Z
+  where: github
+  who: 526301
+- _id: 11189
+  _job: 28012624264
+  _time: 2026-06-23 08:25:17.622845244 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assignees_were_scanned: 1529
+  earliest_issue_was_found: 1
+  events_were_scanned: 12291855719
+  issues_were_scanned: 867
+  labels_were_scanned: 1567
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1607
+  min_pull_was_found: 1491
+  repository: 9580168
+  types_were_scanned: 1510
+  what: iterate
+  where: github
+- _id: 11190
+  _job: 28012624264
+  _time: 2026-06-23 08:34:30.288605861 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1612 with 60 HoC created by @yegor256
+    was reviewed by @edmoffo after 547h54m and 0 comments.
+  hoc: 60
+  issue: 1612
+  repository: 9580168
+  review_comments: 0
+  seconds: 1972452
+  what: code-was-reviewed
+  when: 2026-06-12 12:16:25.000000000 Z
+  where: github
+  who: 9535571
+- _id: 11191
+  _job: 28012624264
+  _time: 2026-06-23 08:34:31.498791546 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  author: 200635707
+  comments: 2
+  details: The pull request yegor256/qulice#1618 with 261 HoC created by @ghx5t-sol
+    was reviewed by @akmhatey-ai after 11h17m and 0 comments.
+  hoc: 261
+  issue: 1618
+  repository: 9580168
+  review_comments: 0
+  seconds: 40677
+  what: code-was-reviewed
+  when: 2026-05-28 00:16:18.000000000 Z
+  where: github
+  who: 260399619
