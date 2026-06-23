@@ -16,9 +16,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * via {@code this(...)} or {@code super(...)}. Calling any method
  * (static or instance) from inside a constructor is forbidden,
  * including as the right-hand side of a field assignment
- * (e.g. {@code this.bar = Foo.createBar()}), as an argument to a
- * delegating constructor call, or as a nested argument to a {@code new}
- * expression.
+ * (e.g. {@code this.bar = Foo.createBar()}) or as a nested argument
+ * to a {@code new} expression.
+ *
+ * <p>A constructor whose only statement is a delegating
+ * {@code this(...)} or {@code super(...)} call is exempt: such a
+ * constructor performs no work of its own, and the method-call
+ * arguments to the delegate (e.g. {@code this(System.currentTimeMillis())})
+ * are accepted as a sanctioned factory-style entry point.
  *
  * <p>Method calls nested inside lambda bodies or anonymous class bodies
  * are not considered constructor code, because they are not executed
@@ -52,9 +57,34 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         final DetailAST body = ast.findFirstToken(TokenTypes.SLIST);
-        if (body != null) {
+        if (body != null && !ConstructorsCodeFreeCheck.isOnlyDelegate(body)) {
             this.reportCalls(body);
         }
+    }
+
+    /**
+     * Is the constructor body a single delegating
+     * {@code this(...)} or {@code super(...)} call?
+     *
+     * <p>The body's {@code SLIST} consists of the delegate call node
+     * (a {@code CTOR_CALL} or {@code SUPER_CTOR_CALL}) followed by
+     * the closing {@code RCURLY}, with nothing else in between.
+     *
+     * @param body The {@code SLIST} of the constructor body
+     * @return True if the body delegates and does nothing else
+     */
+    private static boolean isOnlyDelegate(final DetailAST body) {
+        final DetailAST first = body.getFirstChild();
+        final boolean delegate;
+        if (first == null
+            || first.getType() != TokenTypes.CTOR_CALL
+            && first.getType() != TokenTypes.SUPER_CTOR_CALL) {
+            delegate = false;
+        } else {
+            final DetailAST next = first.getNextSibling();
+            delegate = next == null || next.getType() == TokenTypes.RCURLY;
+        }
+        return delegate;
     }
 
     /**
