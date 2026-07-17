@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 824.942228823
+  seconds: 857.328695365
   version: 0.60.2
   what: judges-summary
-  when: 2026-07-16 08:07:12.898907953 Z
+  when: 2026-07-17 08:07:24.393480358 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -62647,20 +62647,6 @@
   total_stars: 320
   what: dimensions-of-terrain
   when: 2026-07-13 08:21:28.203792530 Z
-- _id: 11259
-  _job: 82076
-  _time: 2026-07-13 10:32:29.768982972 Z
-  _version: 0.19.16/0.61.0/0.17.17!0.17.19
-  analyzers: 18
-  text: |-
-    The average number of builds per week (217.4) is decreasing (R=-0.11).
-    The average number of commits per week (11.0) is staying still.
-    The average issue cycle time (3w2d) is decreasing (R=-0.28).
-    The average pull cycle time (6d11h) is increasing (R=0.16).
-    The average number of releases per month (1.7) is staying still.
-    The average monthly turnover (29.0 developers) is increasing (R=0.86).
-  what: assessment
-  when: 2026-07-13 10:32:29.785556829 Z
 - _id: 11261
   _job: 29315971631
   _time: 2026-07-14 07:52:40.068449733 Z
@@ -62696,6 +62682,90 @@
   _time: 2026-07-15 08:02:37.361972219 Z
   _version: 0.19.9/0.60.2/0.17.17
   since: *135
+  some_backlog_size:
+  - 9
+  - 9
+  - 9
+  - 9
+  - 9
+  - 9
+  - 9
+  some_build_duration:
+  - 61
+  - 942
+  - 56
+  - 937
+  - 952
+  - 834
+  - 59
+  - 737
+  - 54
+  - 7
+  - 7
+  - 8
+  - 10
+  - 12
+  - 14
+  - 28
+  - 30
+  - 33
+  - 144
+  - 942
+  - 52
+  - 7
+  - 9
+  - 10
+  - 12
+  - 14
+  - 14
+  - 23
+  - 24
+  - 33
+  - 125
+  - 834
+  - 47
+  - 942
+  - 45
+  - 968
+  some_build_success_rate:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  some_merged_pulls: 0
+  some_unmerged_pulls: 0
   what: quality-of-service
   when: 2026-07-15 08:02:37.000000000 Z
 - _id: 11265
@@ -62712,23 +62782,6 @@
     The average monthly turnover (33.0 developers) is increasing (R=0.88).
   what: assessment
   when: 2026-07-15 08:07:33.545637048 Z
-- _id: 11266
-  _job: 29481406094
-  _time: 2026-07-16 07:53:49.796959639 Z
-  _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1529
-  earliest_issue_was_found: 1
-  events_were_scanned: 15016574439
-  issues_were_scanned: 867
-  labels_were_scanned: 1567
-  latest_issue_was_found: 1386
-  merges_were_scanned: 0
-  min_issue_was_found: 1635
-  min_pull_was_found: 1522
-  repository: 9580168
-  types_were_scanned: 1510
-  what: iterate
-  where: github
 - _id: 11267
   _job: 29481406094
   _time: 2026-07-16 07:54:31.222116110 Z
@@ -62745,3 +62798,48 @@
   total_stars: 320
   what: dimensions-of-terrain
   when: 2026-07-16 07:54:31.231775683 Z
+- _id: 11268
+  _job: 82732
+  _time: 2026-07-16 08:07:47.093908907 Z
+  _version: 0.19.16/0.61.0/0.17.17!0.17.20
+  analyzers: 18
+  text: |-
+    The average number of builds per week (212.1) is decreasing (R=-0.13).
+    The average number of commits per week (10.7) is staying still.
+    The average issue cycle time (3w2d) is decreasing (R=-0.28).
+    The average pull cycle time (6d13h) is increasing (R=0.16).
+    The average number of releases per month (1.7) is staying still.
+    The average monthly turnover (33.0 developers) is increasing (R=0.88).
+  what: assessment
+  when: 2026-07-16 08:07:47.115387889 Z
+- _id: 11269
+  _job: 82732
+  _time: 2026-07-16 08:08:12.927550201 Z
+  _version: 0.19.16/0.61.0/0.17.17!0.17.20
+  ac: 68
+  cost_of_qod: 4.095641133040288
+  ev: 1376
+  pv: 43712
+  qod: 336
+  qod_per_day: 35.2104220177899
+  qod_per_sec: 1.2836767033898284e-05
+  start: *12
+  what: earned-value
+  when: 2026-07-16 08:08:12.927778766 Z
+- _id: 11270
+  _job: 29564453497
+  _time: 2026-07-17 07:53:28.443488656 Z
+  _version: 0.19.9/0.60.2/0.17.17
+  assignees_were_scanned: 1529
+  earliest_issue_was_found: 1
+  events_were_scanned: 15087567602
+  issues_were_scanned: 867
+  labels_were_scanned: 1567
+  latest_issue_was_found: 1386
+  merges_were_scanned: 0
+  min_issue_was_found: 1635
+  min_pull_was_found: 1523
+  repository: 9580168
+  types_were_scanned: 1510
+  what: iterate
+  where: github
