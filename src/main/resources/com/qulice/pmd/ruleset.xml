@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
- * SPDX-License-Identifier: MIT
+* SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
+* SPDX-License-Identifier: MIT
 -->
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://pmd.sourceforge.net/ruleset/2.0.0" name="Qulice Ruleset" xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.github.io/schema/ruleset_2_0_0.xsd">
   <description>
     This ruleset checks code for potential mess
   </description>
   <!--
-    UnnecessaryVarargsArrayCreation is excluded due to a false positive
-    when the explicit array is needed to disambiguate overloaded
-    methods/constructors: removing it produces a compile error.
-    Re-enable once PMD fixes it upstream.
-    Upstream: https://github.com/pmd/pmd/issues/6611
-    Downstream: https://github.com/yegor256/qulice/issues/1525
+  UnnecessaryVarargsArrayCreation is excluded due to a false positive
+  when the explicit array is needed to disambiguate overloaded
+  methods/constructors: removing it produces a compile error.
+  Re-enable once PMD fixes it upstream.
+  Upstream: https://github.com/pmd/pmd/issues/6611
+  Downstream: https://github.com/yegor256/qulice/issues/1525
   -->
   <rule ref="category/java/bestpractices.xml">
     <exclude name="GuardLogStatement"/>
     <exclude name="LiteralsFirstInComparisons"/>
     <!--
-      AvoidUsingHardCodedIP is excluded from the bulk import here and
-      re-enabled below with a violationSuppressXPath that ignores
-      hard-coded IP literals inside unit-test classes (those whose
-      simple name ends with 'Test', 'IT', 'TestCase' or 'ITCase'),
-      where IP literals are commonly used as fixture data.
-      Downstream: https://github.com/yegor256/qulice/issues/713
+    AvoidUsingHardCodedIP is excluded from the bulk import here and
+    re-enabled below with a violationSuppressXPath that ignores
+    hard-coded IP literals inside unit-test classes (those whose
+    simple name ends with 'Test', 'IT', 'TestCase' or 'ITCase'),
+    where IP literals are commonly used as fixture data.
+    Downstream: https://github.com/yegor256/qulice/issues/713
     -->
     <exclude name="AvoidUsingHardCodedIP"/>
     <exclude name="UnnecessaryVarargsArrayCreation"/>
     <!--
-      UnitTestShouldIncludeAssert is excluded because it doesn't traverse
-      lambda bodies and therefore misses assertions placed inside lambdas.
-      Re-enable once PMD fixes it upstream; until then, we use our own
-      UnitTestShouldIncludeAssertRule that crosses lambda boundaries.
-      Upstream: https://github.com/pmd/pmd/issues/4272
-      Downstream: https://github.com/yegor256/qulice/issues/1524
+    UnitTestShouldIncludeAssert is excluded because it doesn't traverse
+    lambda bodies and therefore misses assertions placed inside lambdas.
+    Re-enable once PMD fixes it upstream; until then, we use our own
+    UnitTestShouldIncludeAssertRule that crosses lambda boundaries.
+    Upstream: https://github.com/pmd/pmd/issues/4272
+    Downstream: https://github.com/yegor256/qulice/issues/1524
     -->
     <exclude name="UnitTestShouldIncludeAssert"/>
     <!--
-      UnitTestContainsTooManyAsserts is excluded because it counts any
-      method invocation whose simple name starts with 'assert', 'check'
-      or 'verify', producing false positives for unrelated APIs such as
-      pull.checks() (jcabi-github) or Mockito.verify(...). It also
-      counts Assertions.assertThrows, which breaks the common idiom of
-      wrapping assertThrows(...).getMessage() inside assertThat. We use
-      our own UnitTestContainsTooManyAssertsRule that only counts the
-      known JUnit/Hamcrest assertion methods and ignores assertThrows.
-      Downstream: https://github.com/yegor256/qulice/issues/1519
-      Downstream: https://github.com/yegor256/qulice/issues/1606
+    UnitTestContainsTooManyAsserts is excluded because it counts any
+    method invocation whose simple name starts with 'assert', 'check'
+    or 'verify', producing false positives for unrelated APIs such as
+    pull.checks() (jcabi-github) or Mockito.verify(...). It also
+    counts Assertions.assertThrows, which breaks the common idiom of
+    wrapping assertThrows(...).getMessage() inside assertThat. We use
+    our own UnitTestContainsTooManyAssertsRule that only counts the
+    known JUnit/Hamcrest assertion methods and ignores assertThrows.
+    Downstream: https://github.com/yegor256/qulice/issues/1519
+    Downstream: https://github.com/yegor256/qulice/issues/1606
     -->
     <exclude name="UnitTestContainsTooManyAsserts"/>
     <exclude name="UnusedPrivateField"/>
     <!--
-      UnitTestAssertionsShouldIncludeMessage (a.k.a. the deprecated
-      JUnitAssertionsShouldIncludeMessage) treats the two-argument
-      Hamcrest form MatcherAssert.assertThat(String reason, boolean
-      assertion) as missing a message, because it matches any
-      assertThat call with two arguments. We re-enable the rule with a
-      violationSuppressXPath that skips this specific overload, where
-      the first argument IS the message.
-      Downstream: https://github.com/yegor256/qulice/issues/1315
+    UnitTestAssertionsShouldIncludeMessage (a.k.a. the deprecated
+    JUnitAssertionsShouldIncludeMessage) treats the two-argument
+    Hamcrest form MatcherAssert.assertThat(String reason, boolean
+    assertion) as missing a message, because it matches any
+    assertThat call with two arguments. We re-enable the rule with a
+    violationSuppressXPath that skips this specific overload, where
+    the first argument IS the message.
+    Downstream: https://github.com/yegor256/qulice/issues/1315
     -->
     <exclude name="UnitTestAssertionsShouldIncludeMessage"/>
     <!--
-      UnitTestShouldUseTestAnnotation (formerly
-      JUnit4TestShouldUseTestAnnotation) flags any public method whose
-      name starts with 'test' in a class whose name ends with 'Test'
-      when the method is not annotated with a known test annotation.
-      That breaks classes that use non-JUnit conventions such as
-      g4s8/oot, whose test entry point is a bare
-      'public static void test()' method with no annotation. We
-      re-enable the rule below with a violationSuppressXPath that
-      ignores such oot-style classes.
-      Downstream: https://github.com/yegor256/qulice/issues/1064
+    UnitTestShouldUseTestAnnotation (formerly
+    JUnit4TestShouldUseTestAnnotation) flags any public method whose
+    name starts with 'test' in a class whose name ends with 'Test'
+    when the method is not annotated with a known test annotation.
+    That breaks classes that use non-JUnit conventions such as
+    g4s8/oot, whose test entry point is a bare
+    'public static void test()' method with no annotation. We
+    re-enable the rule below with a violationSuppressXPath that
+    ignores such oot-style classes.
+    Downstream: https://github.com/yegor256/qulice/issues/1064
     -->
     <exclude name="UnitTestShouldUseTestAnnotation"/>
   </rule>
@@ -122,15 +122,15 @@
     </properties>
   </rule>
   <!--
-    UnusedPrivateField treats statement-level increment or decrement
-    and compound assignments (like plus-equals or minus-equals) as
-    write-only, so a field that is read-modified-written but never
-    read in a pure-read position gets flagged as unused. The
-    suppression below keeps the rule active but ignores violations
-    for fields that are referenced by an increment, decrement or
-    compound assignment anywhere in the enclosing class or its
-    nested classes.
-    Downstream: https://github.com/yegor256/qulice/issues/1520
+  UnusedPrivateField treats statement-level increment or decrement
+  and compound assignments (like plus-equals or minus-equals) as
+  write-only, so a field that is read-modified-written but never
+  read in a pure-read position gets flagged as unused. The
+  suppression below keeps the rule active but ignores violations
+  for fields that are referenced by an increment, decrement or
+  compound assignment anywhere in the enclosing class or its
+  nested classes.
+  Downstream: https://github.com/yegor256/qulice/issues/1520
   -->
   <rule ref="category/java/bestpractices.xml/UnusedPrivateField">
     <properties>
@@ -169,27 +169,27 @@
     <exclude name="FinalFieldCouldBeStatic"/>
     <exclude name="TooManyMethods"/>
     <!--
-      ExceptionAsFlowControl is excluded because it flags legitimate
-      validate-and-recover patterns where several guard clauses inside a
-      single try block share one fallback path in the catch. The only
-      "fix" the rule allows is to duplicate the catch body across N
-      methods or wrap each throw in its own try, both of which are
-      strictly worse than the original code.
-      Downstream: https://github.com/yegor256/qulice/issues/1609
+    ExceptionAsFlowControl is excluded because it flags legitimate
+    validate-and-recover patterns where several guard clauses inside a
+    single try block share one fallback path in the catch. The only
+    "fix" the rule allows is to duplicate the catch body across N
+    methods or wrap each throw in its own try, both of which are
+    strictly worse than the original code.
+    Downstream: https://github.com/yegor256/qulice/issues/1609
     -->
     <exclude name="ExceptionAsFlowControl"/>
   </rule>
   <!--
-    TooManyMethods is excluded from the bulk import above and re-enabled
-    here with a violationSuppressXPath that skips unit-test classes
-    (those whose simple name ends with 'Test', 'IT', 'TestCase' or
-    'ITCase'). Splitting asserts into one-assert-per-test methods (as
-    required by UnitTestContainsTooManyAsserts) inflates the method
-    count and would otherwise push test classes past the threshold.
-    The rule fires on the ClassBody node, so the XPath must reach the
-    enclosing ClassDeclaration via parent::ClassDeclaration to read
-    @SimpleName.
-    Downstream: https://github.com/yegor256/qulice/issues/1605
+  TooManyMethods is excluded from the bulk import above and re-enabled
+  here with a violationSuppressXPath that skips unit-test classes
+  (those whose simple name ends with 'Test', 'IT', 'TestCase' or
+  'ITCase'). Splitting asserts into one-assert-per-test methods (as
+  required by UnitTestContainsTooManyAsserts) inflates the method
+  count and would otherwise push test classes past the threshold.
+  The rule fires on the ClassBody node, so the XPath must reach the
+  enclosing ClassDeclaration via parent::ClassDeclaration to read
+  @SimpleName.
+  Downstream: https://github.com/yegor256/qulice/issues/1605
   -->
   <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
@@ -219,14 +219,14 @@
     <exclude name="TestClassWithoutTestCases"/>
   </rule>
   <!--
-    Recognise io.github.artsok annotations (@RepeatedIfExceptionsTest,
-    @ParameterizedRepeatedIfExceptionsTest) as test cases so that
-    TestClassWithoutTestCases does not flag classes that use them.
-    Also recognise non-JUnit test conventions such as g4s8/oot, which
-    uses a bare 'public static void test()' method as the entry point
-    with no test annotation.
-    Upstream: https://github.com/yegor256/qulice/issues/1521
-    Downstream: https://github.com/yegor256/qulice/issues/1064
+  Recognise io.github.artsok annotations (@RepeatedIfExceptionsTest,
+  @ParameterizedRepeatedIfExceptionsTest) as test cases so that
+  TestClassWithoutTestCases does not flag classes that use them.
+  Also recognise non-JUnit test conventions such as g4s8/oot, which
+  uses a bare 'public static void test()' method as the entry point
+  with no test annotation.
+  Upstream: https://github.com/yegor256/qulice/issues/1521
+  Downstream: https://github.com/yegor256/qulice/issues/1064
   -->
   <rule ref="category/java/errorprone.xml/TestClassWithoutTestCases">
     <properties>
@@ -374,10 +374,10 @@
     </properties>
   </rule>
   <!--
-    Direct access to a static final field inside a static initializer is
-    allowed because qualifying it with the class name would not compile
-    (a final field can only be assigned once by its simple name).
-    Downstream: https://github.com/yegor256/qulice/issues/719
+  Direct access to a static final field inside a static initializer is
+  allowed because qualifying it with the class name would not compile
+  (a final field can only be assigned once by its simple name).
+  Downstream: https://github.com/yegor256/qulice/issues/719
   -->
   <rule name="AvoidDirectAccessToStaticFields" message="Static fields should be accessed in a static way [CLASS_NAME.FIELD_NAME]." language="java" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
     <description>
@@ -463,7 +463,7 @@
     ]]></description>
     <priority>3</priority>
     <properties>
-      <!--Solve priority conflict-->
+      <!-- Solve priority conflict -->
       <property name="xpath">
         <value><![CDATA[
           //ClassDeclaration[

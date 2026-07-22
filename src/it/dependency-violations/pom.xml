@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
- * SPDX-License-Identifier: MIT
+* SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
+* SPDX-License-Identifier: MIT
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -18,17 +18,17 @@
   <dependencies>
     <dependency>
       <!--
-            This dependency is never used in the project and Qulice has
-            to spot this problem and report it.
-            -->
+      This dependency is never used in the project and Qulice has
+      to spot this problem and report it.
+      -->
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
       <version>2.6</version>
     </dependency>
     <dependency>
       <!--
-            This dependency is used and qulice should not report about it.
-            -->
+      This dependency is used and qulice should not report about it.
+      -->
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>2.22.0</version>
