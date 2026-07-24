@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.6" size="1123153">
+<fb version="0.19.6" size="1123160">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">838.552709496</seconds>
+    <seconds t="F">649.471179194</seconds>
     <version t="S">0.60.2</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-07-23T08:14:25Z</when>
+    <when t="T">2026-07-24T08:09:18Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -69957,21 +69957,6 @@
     <when t="T">2026-07-20T08:17:47Z</when>
   </f>
   <f>
-    <_id t="I">11279</_id>
-    <_job t="I">83270</_job>
-    <_time t="T">2026-07-20T08:29:29Z</_time>
-    <_version t="S">0.19.16/0.61.0/0.17.17!0.17.20</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (212.1) is decreasing (R=-0.13).
-The average number of commits per week (10.7) is staying still.
-The average issue cycle time (3w2d) is decreasing (R=-0.28).
-The average pull cycle time (6d14h) is increasing (R=0.16).
-The average number of releases per month (1.7) is staying still.
-The average monthly turnover (33.0 developers) is increasing (R=0.88).</text>
-    <what t="S">assessment</what>
-    <when t="T">2026-07-20T08:29:29Z</when>
-  </f>
-  <f>
     <_id t="I">11281</_id>
     <_job t="I">29812398011</_job>
     <_time t="T">2026-07-21T07:58:37Z</_time>
@@ -69998,6 +69983,7 @@ The average monthly turnover (33.0 developers) is increasing (R=0.88).</text>
     <details t="S">A new Git push #37808193206 has arrived to yegor256/qulice, made by @yegor256 (default branch is "master"), not associated with any pull request.</details>
     <event_id t="I">15517263601</event_id>
     <event_type t="S">PushEvent</event_type>
+    <is_human t="I">1</is_human>
     <push_id t="I">37808193206</push_id>
     <ref t="S">refs/heads/master</ref>
     <repository t="I">9580168</repository>
@@ -70115,25 +70101,6 @@ The average monthly turnover (34.0 developers) is increasing (R=0.73).</text>
     <when t="T">2026-07-22T08:13:10Z</when>
   </f>
   <f>
-    <_id t="I">11288</_id>
-    <_job t="I">29989843732</_job>
-    <_time t="T">2026-07-23T08:00:47Z</_time>
-    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
-    <assignees_were_scanned t="I">1529</assignees_were_scanned>
-    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">15524733933</events_were_scanned>
-    <issues_were_scanned t="I">867</issues_were_scanned>
-    <labels_were_scanned t="I">1567</labels_were_scanned>
-    <latest_issue_was_found t="I">1386</latest_issue_was_found>
-    <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1635</min_issue_was_found>
-    <min_pull_was_found t="I">1535</min_pull_was_found>
-    <repository t="I">9580168</repository>
-    <types_were_scanned t="I">1510</types_were_scanned>
-    <what t="S">iterate</what>
-    <where t="S">github</where>
-  </f>
-  <f>
     <_id t="I">11289</_id>
     <_job t="I">29989843732</_job>
     <_time t="T">2026-07-23T08:01:24Z</_time>
@@ -70150,5 +70117,39 @@ The average monthly turnover (34.0 developers) is increasing (R=0.73).</text>
     <total_stars t="I">320</total_stars>
     <what t="S">dimensions-of-terrain</what>
     <when t="T">2026-07-23T08:01:24Z</when>
+  </f>
+  <f>
+    <_id t="I">11290</_id>
+    <_job t="I">83660</_job>
+    <_time t="T">2026-07-23T08:14:56Z</_time>
+    <_version t="S">0.19.16/0.61.0/0.17.17!0.17.20</_version>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (200.9) is decreasing (R=-0.13).
+The average number of commits per week (10.6) is staying still.
+The average issue cycle time (3w2d) is decreasing (R=-0.28).
+The average pull cycle time (6d16h) is increasing (R=0.15).
+The average number of releases per month (1.7) is staying still.
+The average monthly turnover (34.0 developers) is increasing (R=0.73).</text>
+    <what t="S">assessment</what>
+    <when t="T">2026-07-23T08:14:56Z</when>
+  </f>
+  <f>
+    <_id t="I">11291</_id>
+    <_job t="I">30077206924</_job>
+    <_time t="T">2026-07-24T07:58:46Z</_time>
+    <_version t="S">0.19.9/0.60.2/0.17.17</_version>
+    <assignees_were_scanned t="I">1529</assignees_were_scanned>
+    <earliest_issue_was_found t="I">1</earliest_issue_was_found>
+    <events_were_scanned t="I">15609947370</events_were_scanned>
+    <issues_were_scanned t="I">867</issues_were_scanned>
+    <labels_were_scanned t="I">1567</labels_were_scanned>
+    <latest_issue_was_found t="I">1386</latest_issue_was_found>
+    <merges_were_scanned t="I">0</merges_were_scanned>
+    <min_issue_was_found t="I">1635</min_issue_was_found>
+    <min_pull_was_found t="I">1536</min_pull_was_found>
+    <repository t="I">9580168</repository>
+    <types_were_scanned t="I">1510</types_were_scanned>
+    <what t="S">iterate</what>
+    <where t="S">github</where>
   </f>
 </fb>
