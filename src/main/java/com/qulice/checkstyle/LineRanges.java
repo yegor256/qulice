@@ -19,17 +19,16 @@ import java.util.Iterator;
 public final class LineRanges {
 
     /**
-     * ArrayList of line ranges.
+     * Line ranges collected so far.
      */
-    private final LineRanges.LocalCollection lines =
-        new LineRanges.LocalCollection();
+    private final Collection<LineRange> lines = new ArrayList<>(20);
 
     /**
      * Adds a line range to the collection.
      * @param line The line range to add to the collection
      */
     public void add(final LineRange line) {
-        this.lines.collection().add(line);
+        this.lines.add(line);
     }
 
     /**
@@ -37,7 +36,7 @@ public final class LineRanges {
      * @return Iterator pointing to the internal collections elements
      */
     public Iterator<LineRange> iterator() {
-        return this.lines.collection().iterator();
+        return this.lines.iterator();
     }
 
     /**
@@ -46,8 +45,8 @@ public final class LineRanges {
      * @return True if the given line number is within any line range
      */
     public boolean inRange(final int line) {
-        return !this.lines.collection().isEmpty()
-            && FluentIterable.from(this.lines.collection())
+        return !this.lines.isEmpty()
+            && FluentIterable.from(this.lines)
             .anyMatch(new LineRanges.LineWithAny(line));
     }
 
@@ -62,7 +61,7 @@ public final class LineRanges {
         final Iterator<LineRange> iterator = ranges.iterator();
         while (iterator.hasNext()) {
             final LineRange next = iterator.next();
-            for (final LineRange line : this.lines.collection()) {
+            for (final LineRange line : this.lines) {
                 if (next.within(line)) {
                     result.add(line);
                 }
@@ -75,7 +74,7 @@ public final class LineRanges {
      * Clears the collection.
      */
     public void clear() {
-        this.lines.collection().clear();
+        this.lines.clear();
     }
 
     /**
@@ -101,27 +100,6 @@ public final class LineRanges {
         @Override
         public boolean apply(final LineRange range) {
             return range != null && range.within(this.given);
-        }
-    }
-
-    /**
-     * Thread-safe collection of line ranges.
-     * @since 0.1
-     */
-    private static final class LocalCollection {
-
-        /**
-         * Internal Collection.
-         */
-        private final transient Collection<LineRange> ranges =
-            new ArrayList<>(20);
-
-        /**
-         * Get the collection specific to the current thread only.
-         * @return The collection for this thread
-         */
-        Collection<LineRange> collection() {
-            return this.ranges;
         }
     }
 }
