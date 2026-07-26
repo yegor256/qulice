@@ -270,7 +270,7 @@ public final class ErrorProneValidator implements ResourceValidator {
         while (loader != null) {
             if (loader instanceof URLClassLoader) {
                 for (final URL url : ((URLClassLoader) loader).getURLs()) {
-                    entries.add(new File(url.getPath()).getAbsolutePath());
+                    new Unencoded(url).path().ifPresent(entries::add);
                 }
             }
             loader = loader.getParent();
@@ -302,16 +302,7 @@ public final class ErrorProneValidator implements ResourceValidator {
         final java.security.CodeSource source =
             klass.getProtectionDomain().getCodeSource();
         if (source != null && source.getLocation() != null) {
-            try {
-                entries.add(
-                    new File(source.getLocation().toURI()).getAbsolutePath()
-                );
-            } catch (final java.net.URISyntaxException | IllegalArgumentException ex) {
-                Logger.debug(
-                    ErrorProneValidator.class,
-                    "Cannot resolve code source for %s: %s", klass, ex.getMessage()
-                );
-            }
+            new Unencoded(source.getLocation()).path().ifPresent(entries::add);
         }
     }
 }
