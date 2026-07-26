@@ -142,7 +142,7 @@ final class PmdAssertionsTest {
         new PmdAssert(
             "TestShouldBePackagePrivate.java",
             Matchers.is(false),
-            Matchers.containsString("JUnit5TestShouldBePackagePrivate")
+            Matchers.containsString("JUnitJupiterTestShouldBePackagePrivate")
         ).assertOk();
     }
 

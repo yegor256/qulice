@@ -86,21 +86,19 @@ public final class MultilineJavadocTagsCheck extends AbstractCheck {
             if (line.contains("* @")) {
                 tagged = true;
                 index = line.indexOf('@');
-            } else {
-                if (tagged) {
-                    final int comment = line.indexOf('*');
-                    final String sub = new Sub(
-                        line, comment + 1, index + 1
-                    ).toString();
-                    final String ext = new Sub(
-                        line, comment + 1, index + 2
-                    ).toString();
-                    if (!sub.trim().isEmpty() || ext.trim().isEmpty()) {
-                        this.log(
-                            current + 1,
-                            "Should contain one indentation space"
-                        );
-                    }
+            } else if (tagged) {
+                final int comment = line.indexOf('*');
+                final String sub = new Sub(
+                    line, comment + 1, index + 1
+                ).toString();
+                final String ext = new Sub(
+                    line, comment + 1, index + 2
+                ).toString();
+                if (!sub.trim().isEmpty() || ext.trim().isEmpty()) {
+                    this.log(
+                        current + 1,
+                        "Should contain one indentation space"
+                    );
                 }
             }
         }

@@ -32,7 +32,7 @@ final class PmdInnerClassConstantsTest {
                 "  final class Bar implements Foo {",
                 "    private static final Pattern TEST =",
                 "      Pattern.compile(\"hey\");",
-                "    public String doSomething() {",
+                "    String doSomething() {",
                 "      return Foo.Bar.TEST.toString();",
                 "    }",
                 "  }",
