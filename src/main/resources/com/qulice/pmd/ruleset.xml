@@ -181,26 +181,37 @@
   </rule>
   <!--
   TooManyMethods is excluded from the bulk import above and re-enabled
-  here with a violationSuppressXPath that skips unit-test classes
-  (those whose simple name ends with 'Test', 'IT', 'TestCase' or
-  'ITCase'). Splitting asserts into one-assert-per-test methods (as
-  required by UnitTestContainsTooManyAsserts) inflates the method
-  count and would otherwise push test classes past the threshold.
-  The rule fires on the ClassBody node, so the XPath must reach the
-  enclosing ClassDeclaration via parent::ClassDeclaration to read
-  @SimpleName.
+  here with a violationSuppressXPath that skips test classes.
+  Splitting asserts into one-assert-per-test methods (as required by
+  UnitTestContainsTooManyAsserts) inflates the method count and would
+  otherwise push test classes past the threshold. A type counts as a
+  test when its simple name ends with 'Test', 'Tests', 'IT',
+  'TestCase' or 'ITCase', or when it carries a test annotation
+  anywhere inside, which covers classes named by other conventions
+  and TestNG classes annotated at class level. The rule fires on the
+  ClassBody node, so the XPath walks ancestor-or-self to reach every
+  enclosing type, which also exempts @Nested inner classes.
   Downstream: https://github.com/yegor256/qulice/issues/1605
+  Downstream: https://github.com/yegor256/qulice/issues/1647
   -->
   <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
       <property name="violationSuppressXPath">
         <value><![CDATA[
           .[
-            parent::ClassDeclaration[
+            ancestor-or-self::*[
               ends-with(@SimpleName,'Test')
+              or ends-with(@SimpleName,'Tests')
               or ends-with(@SimpleName,'IT')
               or ends-with(@SimpleName,'TestCase')
               or ends-with(@SimpleName,'ITCase')
+              or .//Annotation[
+                ends-with(@SimpleName,'Test')
+                or @SimpleName='TestFactory'
+                or @SimpleName='TestTemplate'
+                or @SimpleName='Theory'
+                or @SimpleName='Nested'
+              ]
             ]
           ]
         ]]></value>
