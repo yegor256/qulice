@@ -76,13 +76,27 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
     private static boolean isOnlyDelegate(final DetailAST body) {
         final DetailAST first = body.getFirstChild();
         final boolean delegate;
-        if (first == null
-            || first.getType() != TokenTypes.CTOR_CALL
-            && first.getType() != TokenTypes.SUPER_CTOR_CALL) {
-            delegate = false;
-        } else {
+        if (ConstructorsCodeFreeCheck.isDelegate(first)) {
             final DetailAST next = first.getNextSibling();
             delegate = next == null || next.getType() == TokenTypes.RCURLY;
+        } else {
+            delegate = false;
+        }
+        return delegate;
+    }
+
+    /**
+     * Is this node a {@code this(...)} or {@code super(...)} call?
+     * @param node The node to inspect, may be {@code null}
+     * @return True if the node is a constructor delegate call
+     */
+    private static boolean isDelegate(final DetailAST node) {
+        final boolean delegate;
+        if (node == null) {
+            delegate = false;
+        } else {
+            delegate = node.getType() == TokenTypes.CTOR_CALL
+                || node.getType() == TokenTypes.SUPER_CTOR_CALL;
         }
         return delegate;
     }
