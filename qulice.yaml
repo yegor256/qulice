@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 739.807773153
-  version: 0.60.2
+  seconds: 744.928194262
+  version: 0.61.1
   what: judges-summary
-  when: 2026-07-26 08:10:34.287969227 Z
+  when: 2026-07-27 08:35:28.725650389 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -62981,20 +62981,6 @@
   total_stars: 320
   what: dimensions-of-terrain
   when: 2026-07-23 08:01:24.021741882 Z
-- _id: 11290
-  _job: 83660
-  _time: 2026-07-23 08:14:56.491506320 Z
-  _version: 0.19.16/0.61.0/0.17.17!0.17.20
-  analyzers: 18
-  text: |-
-    The average number of builds per week (200.9) is decreasing (R=-0.13).
-    The average number of commits per week (10.6) is staying still.
-    The average issue cycle time (3w2d) is decreasing (R=-0.28).
-    The average pull cycle time (6d16h) is increasing (R=0.15).
-    The average number of releases per month (1.7) is staying still.
-    The average monthly turnover (34.0 developers) is increasing (R=0.73).
-  what: assessment
-  when: 2026-07-23 08:14:56.508864742 Z
 - _id: 11292
   _job: 30150067522
   _time: 2026-07-25 07:53:55.043041507 Z
@@ -63029,17 +63015,17 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1529
+  assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 12301259328
+  events_were_scanned: 12318969156
   issues_were_scanned: 867
-  labels_were_scanned: 1567
+  labels_were_scanned: 0
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
   min_pull_was_found: 1538
   repository: 9580168
-  types_were_scanned: 1510
+  types_were_scanned: 0
   what: iterate
   where: github
 - _id: 11295
@@ -63058,3 +63044,779 @@
   total_stars: 321
   what: dimensions-of-terrain
   when: 2026-07-26 07:59:09.019446478 Z
+- _id: 11296
+  _job: 84068
+  _time: 2026-07-26 08:11:10.338618004 Z
+  _version: 0.19.16/0.61.1/0.17.17!0.17.21
+  analyzers: 18
+  text: |-
+    The average number of builds per week (200.9) is decreasing (R=-0.13).
+    The average number of commits per week (10.6) is staying still.
+    The average issue cycle time (3w2d) is decreasing (R=-0.28).
+    The average pull cycle time (6d17h) is increasing (R=0.15).
+    The average number of releases per month (1.7) is staying still.
+    The average monthly turnover (34.0 developers) is increasing (R=0.73).
+  what: assessment
+  when: 2026-07-26 08:11:10.356098663 Z
+- _id: 11297
+  _job: 84068
+  _time: 2026-07-26 08:11:36.180589879 Z
+  _version: 0.19.16/0.61.1/0.17.17!0.17.21
+  ac: 68
+  cost_of_qod: 5.705883315705067
+  ev: 1979
+  pv: 79345
+  qod: 347
+  qod_per_day: 44.41080904994545
+  qod_per_sec: 1.282969080049372e-05
+  start: *12
+  what: earned-value
+  when: 2026-07-26 08:11:36.180817606 Z
+- _id: 11298
+  _job: 30249612292
+  _time: 2026-07-27 08:23:06.646783897 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  by_owner: 1
+  commit: 6de06fd618005bb9efe91b02a83871433169efea
+  default_branch: master
+  details: 'A new Git push #38168505486 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 15869970221
+  event_type: PushEvent
+  is_human: 1
+  push_id: 38168505486
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-07-26 18:50:44.000000000 Z
+  where: github
+  who: 526301
+- _id: 11299
+  _job: 30249612292
+  _time: 2026-07-27 08:23:07.599266130 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The issue yegor256/qulice#1635 has been closed by @yegor256.
+  event_id: 12318101132
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1635
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-07-26 18:20:04.000000000 Z
+  where: github
+  who: 526301
+- _id: 11300
+  _job: 30249612292
+  _time: 2026-07-27 08:23:07.743474496 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  by_owner: 1
+  commit: 41e32671343aec8f13346fbbe2af1f785c8f6737
+  default_branch: master
+  details: 'A new Git push #38167043207 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 15868521992
+  event_type: PushEvent
+  is_human: 1
+  push_id: 38167043207
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-07-26 18:17:14.000000000 Z
+  where: github
+  who: 526301
+- _id: 11301
+  _job: 30249612292
+  _time: 2026-07-27 08:23:08.282585608 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The issue yegor256/qulice#1631 has been closed by @yegor256.
+  event_id: 12317869876
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1631
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-07-26 18:08:08.000000000 Z
+  where: github
+  who: 526301
+- _id: 11302
+  _job: 30249612292
+  _time: 2026-07-27 08:23:08.405663138 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  by_owner: 1
+  commit: a7e031792362dd9cc3ee1871e031356775d600d6
+  default_branch: master
+  details: 'A new Git push #38166051167 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 15867538519
+  event_type: PushEvent
+  is_human: 1
+  push_id: 38166051167
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-07-26 17:56:20.000000000 Z
+  where: github
+  who: 526301
+- _id: 11303
+  _job: 30249612292
+  _time: 2026-07-27 08:23:10.319836675 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/reviewdog-action-actionlint-1.x
+  details: The pull request yegor256/qulice#1650 has been opened by @renovate[bot].
+  event_id: 12317441349
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1650
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-07-26 17:46:17.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11304
+  _job: 30249612292
+  _time: 2026-07-27 08:23:10.782865995 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/zerocracy-judges-action-0.x
+  details: The pull request yegor256/qulice#1649 has been opened by @renovate[bot].
+  event_id: 12317440107
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1649
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-07-26 17:46:13.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11305
+  _job: 30249612292
+  _time: 2026-07-27 08:23:16.254437872 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  by_owner: 1
+  commit: 812c0448804314d6d26d3ebd396aa674848ddf7c
+  default_branch: master
+  details: 'A new Git push #38165452608 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 15866945444
+  event_type: PushEvent
+  is_human: 1
+  push_id: 38165452608
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-07-26 17:42:38.000000000 Z
+  where: github
+  who: 526301
+- _id: 11306
+  _job: 30249612292
+  _time: 2026-07-27 08:23:17.102593056 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The issue yegor256/qulice#1647 has been closed by @yegor256.
+  event_id: 12317324229
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1647
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-07-26 17:40:05.000000000 Z
+  where: github
+  who: 526301
+- _id: 11307
+  _job: 30249612292
+  _time: 2026-07-27 08:23:17.912301963 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: '1647'
+  details: The pull request yegor256/qulice#1648 has been opened by @yegor256.
+  event_id: 12317150262
+  event_type: PullRequestEvent
+  is_human: 1
+  issue: 1648
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-07-26 17:30:59.000000000 Z
+  where: github
+  who: 526301
+- _id: 11308
+  _job: 30249612292
+  _time: 2026-07-27 08:23:18.323068232 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  by_owner: 1
+  commit: 6f770f60dbf8dd3a760e70d8cbf6d3a1dc6fe95a
+  default_branch: master
+  details: 'A new Git push #38164521283 has arrived to yegor256/qulice, made by @yegor256
+    (default branch is "master"), not associated with any pull request.'
+  event_id: 15866021382
+  event_type: PushEvent
+  is_human: 1
+  push_id: 38164521283
+  ref: refs/heads/master
+  repository: 9580168
+  to_master: 1
+  what: git-was-pushed
+  when: 2026-07-26 17:21:31.000000000 Z
+  where: github
+  who: 526301
+- _id: 11309
+  _job: 30249612292
+  _time: 2026-07-27 08:23:18.818077201 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The issue yegor256/qulice#1647 has been opened by @yegor256.
+  event_id: 12316776723
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1647
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-07-26 17:11:34.000000000 Z
+  where: github
+  who: 526301
+- _id: 11310
+  _job: 30249612292
+  _time: 2026-07-27 08:23:31.832399881 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/hibernate-validator
+  details: The missing pull yegor256/qulice#1636 has been opened by @renovate[bot].
+  issue: 1636
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-06-22 13:04:59.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11311
+  _job: 30249612292
+  _time: 2026-07-27 08:23:32.762071536 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/actions-cache-6.x
+  details: The missing pull yegor256/qulice#1637 has been opened by @renovate[bot].
+  issue: 1637
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-06-23 15:52:43.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11312
+  _job: 30249612292
+  _time: 2026-07-27 08:23:33.734462729 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/org.eclipse.sisu-org.eclipse.sisu.plexus-1.x
+  details: The missing pull yegor256/qulice#1638 has been opened by @renovate[bot].
+  issue: 1638
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-06-24 12:54:39.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11313
+  _job: 30249612292
+  _time: 2026-07-27 08:23:34.681461118 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/junit-framework-monorepo
+  details: The missing pull yegor256/qulice#1639 has been opened by @renovate[bot].
+  issue: 1639
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-06-28 14:50:19.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11314
+  _job: 30249612292
+  _time: 2026-07-27 08:23:35.647658279 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/com.puppycrawl.tools-checkstyle-13.x
+  details: The missing pull yegor256/qulice#1640 has been opened by @renovate[bot].
+  issue: 1640
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-06-28 16:43:45.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11315
+  _job: 30249612292
+  _time: 2026-07-27 08:23:36.516195281 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/net.sourceforge.pmd-pmd-core-7.x
+  details: The missing pull yegor256/qulice#1641 has been opened by @renovate[bot].
+  issue: 1641
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-06-29 17:57:43.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11316
+  _job: 30249612292
+  _time: 2026-07-27 08:23:37.478814582 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/net.sourceforge.pmd-pmd-java-7.x
+  details: The missing pull yegor256/qulice#1642 has been opened by @renovate[bot].
+  issue: 1642
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-06-29 17:57:47.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11317
+  _job: 30249612292
+  _time: 2026-07-27 08:23:38.475010285 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/crate-ci-typos-1.x
+  details: The missing pull yegor256/qulice#1643 has been opened by @renovate[bot].
+  issue: 1643
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-07-01 08:51:44.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11318
+  _job: 30249612292
+  _time: 2026-07-27 08:23:39.517158460 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/org.checkerframework-checker-qual-4.x
+  details: The missing pull yegor256/qulice#1644 has been opened by @renovate[bot].
+  issue: 1644
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-07-02 08:34:36.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11319
+  _job: 30249612292
+  _time: 2026-07-27 08:23:40.464608787 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/davidanson-markdownlint-cli2-action-24.x
+  details: The missing pull yegor256/qulice#1645 has been opened by @renovate[bot].
+  issue: 1645
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-07-04 00:36:33.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11320
+  _job: 30249612292
+  _time: 2026-07-27 08:23:41.656468678 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/hibernate-validator
+  details: The missing pull yegor256/qulice#1646 has been opened by @renovate[bot].
+  issue: 1646
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-07-06 08:16:07.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11321
+  _job: 30249612292
+  _time: 2026-07-27 08:23:51.225316786 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/hibernate-validator
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1636 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 4
+  issue: 1636
+  repository: 9580168
+  succeeded_builds: 11
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-06-22 13:11:06.000000000 Z
+  where: github
+  who: 526301
+- _id: 11322
+  _job: 30249612292
+  _time: 2026-07-27 08:24:05.198235106 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/actions-cache-6.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1637 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 4
+  issue: 1637
+  repository: 9580168
+  succeeded_builds: 11
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:45:26.000000000 Z
+  where: github
+  who: 526301
+- _id: 11323
+  _job: 30249612292
+  _time: 2026-07-27 08:24:14.093519890 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/org.eclipse.sisu-org.eclipse.sisu.plexus-1.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1638 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  issue: 1638
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:45:29.000000000 Z
+  where: github
+  who: 526301
+- _id: 11324
+  _job: 30249612292
+  _time: 2026-07-27 08:24:23.654759056 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/junit-framework-monorepo
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1639 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 14
+  issue: 1639
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:45:33.000000000 Z
+  where: github
+  who: 526301
+- _id: 11325
+  _job: 30249612292
+  _time: 2026-07-27 08:24:32.917702364 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/com.puppycrawl.tools-checkstyle-13.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1640 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  issue: 1640
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:45:36.000000000 Z
+  where: github
+  who: 526301
+- _id: 11326
+  _job: 30249612292
+  _time: 2026-07-27 08:24:41.858974470 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/net.sourceforge.pmd-pmd-core-7.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1641 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  issue: 1641
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:45:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 11327
+  _job: 30249612292
+  _time: 2026-07-27 08:24:51.660982102 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/net.sourceforge.pmd-pmd-java-7.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1642 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  issue: 1642
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:45:43.000000000 Z
+  where: github
+  who: 526301
+- _id: 11328
+  _job: 30249612292
+  _time: 2026-07-27 08:25:01.083360209 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/crate-ci-typos-1.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1643 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  issue: 1643
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:45:46.000000000 Z
+  where: github
+  who: 526301
+- _id: 11329
+  _job: 30249612292
+  _time: 2026-07-27 08:25:10.320339526 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/org.checkerframework-checker-qual-4.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1644 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  issue: 1644
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:45:50.000000000 Z
+  where: github
+  who: 526301
+- _id: 11330
+  _job: 30249612292
+  _time: 2026-07-27 08:25:19.939608002 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/davidanson-markdownlint-cli2-action-24.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1645 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  issue: 1645
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:45:54.000000000 Z
+  where: github
+  who: 526301
+- _id: 11331
+  _job: 30249612292
+  _time: 2026-07-27 08:25:29.387387055 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/hibernate-validator
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1646 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 4
+  issue: 1646
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:45:57.000000000 Z
+  where: github
+  who: 526301
+- _id: 11332
+  _job: 30249612292
+  _time: 2026-07-27 08:25:39.036464692 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: '1647'
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1648 has been "pull-was-merged".
+  failed_builds: 0
+  files: 4
+  hoc: 208
+  issue: 1648
+  repository: 9580168
+  review: 2026-07-26 17:31:05.000000000 Z
+  succeeded_builds: 11
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:40:04.000000000 Z
+  where: github
+  who: 526301
+- _id: 11333
+  _job: 30249612292
+  _time: 2026-07-27 08:25:49.125523272 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/zerocracy-judges-action-0.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1649 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  issue: 1649
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:47:18.000000000 Z
+  where: github
+  who: 526301
+- _id: 11334
+  _job: 30249612292
+  _time: 2026-07-27 08:25:59.025846442 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/reviewdog-action-actionlint-1.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1650 has been "pull-was-merged".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  issue: 1650
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-07-26 17:47:25.000000000 Z
+  where: github
+  who: 526301
+- _id: 11335
+  _job: 30249612292
+  _time: 2026-07-27 08:26:14.747049851 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1635 was assigned to @yegor256 by @yegor256.
+  issue: 1635
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-07-26 18:08:19.000000000 Z
+  where: github
+  who: 526301
+- _id: 11336
+  _job: 30249612292
+  _time: 2026-07-27 08:27:03.290340848 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1592.
+  issue: 1592
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-07-26 18:20:24.000000000 Z
+  where: github
+  who: 526301
+- _id: 11337
+  _job: 30249612292
+  _time: 2026-07-27 08:27:07.650237496 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1635.
+  issue: 1635
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-07-26 18:08:21.000000000 Z
+  where: github
+  who: 526301
+- _id: 11338
+  _job: 30249612292
+  _time: 2026-07-27 08:27:08.247230887 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1647.
+  issue: 1647
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-07-26 17:11:34.000000000 Z
+  where: github
+  who: 526301
+- _id: 11339
+  _job: 30249612292
+  _time: 2026-07-27 08:27:08.769141908 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: 'The milestone #1 "next" was set.'
+  milestone: 1
+  repository: 9580168
+  what: milestone-was-set
+  when: 2022-11-24 00:59:51.000000000 Z
+  where: github
+  who: 526301
+- _id: 11340
+  _job: 30249612292
+  _time: 2026-07-27 08:35:05.701329082 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1648 with 208 HoC created by @yegor256
+    was reviewed by @copilot after 0h0m and 0 comments.
+  hoc: 208
+  issue: 1648
+  repository: 9580168
+  review_comments: 0
+  seconds: 6
+  what: code-was-reviewed
+  when: 2026-07-26 17:31:05.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11341
+  _job: 30249612292
+  _time: 2026-07-27 08:35:15.391005834 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  total_active_contributors: 2
+  total_commits: 2606
+  total_contributors: 58
+  total_files: 680
+  total_forks: 123
+  total_issues: 880
+  total_pulls: 769
+  total_releases: 85
+  total_repositories: 1
+  total_stars: 322
+  what: dimensions-of-terrain
+  when: 2026-07-27 08:35:15.412388232 Z
