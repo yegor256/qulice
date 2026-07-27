@@ -15,7 +15,7 @@
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.DetailAST;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> com.puppycrawl.tools.checkstyle.api.TokenTypes;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> java.util.LinkedList;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> java.util.ArrayList;
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> java.util.List;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment">/**</em>
@@ -85,7 +85,7 @@
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">     * @return Constructors</em>
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">     */</em>
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> List&lt;DetailAST&gt; constructors(<strong class="jxr_keyword">final</strong> DetailAST obj) {
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>          <strong class="jxr_keyword">final</strong> List&lt;DetailAST&gt; ctors = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          <strong class="jxr_keyword">final</strong> List&lt;DetailAST&gt; ctors = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(0);
 <a class="jxr_linenumber" name="L81" href="#L81">81</a>          <strong class="jxr_keyword">for</strong> (DetailAST child = obj.getFirstChild();
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>              child != <strong class="jxr_keyword">null</strong>; child = child.getNextSibling()) {
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>              <strong class="jxr_keyword">if</strong> (child.getType() == TokenTypes.CTOR_DEF) {
