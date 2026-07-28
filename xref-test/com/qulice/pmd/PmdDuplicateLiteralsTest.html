@@ -16,17 +16,17 @@
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.junit.jupiter.api.Test;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> * Test case for {@link PmdValidator}'s tolerance of duplicate</em>
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> * string literals when they appear inside annotations (the</em>
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> * {@code AvoidDuplicateLiterals} rule is relaxed there).</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> * Test case for {@link PmdValidator}'s tolerance of repeated string</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> * literals, since the {@code AvoidDuplicateLiterals} rule is not part</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> * of the ruleset.</em>
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> * @since 0.25.1</em>
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="PmdDuplicateLiteralsTest" href="../../../com/qulice/pmd/PmdDuplicateLiteralsTest.html#PmdDuplicateLiteralsTest">PmdDuplicateLiteralsTest</a> {
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>      @Test
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>      <strong class="jxr_keyword">void</strong> allowsDuplicateLiteralsInAnnotations() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>      <strong class="jxr_keyword">void</strong> toleratesDuplicateLiterals() <strong class="jxr_keyword">throws</strong> Exception {
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>          <strong class="jxr_keyword">new</strong> <a name="PmdAssert" href="../../../com/qulice/pmd/PmdAssert.html#PmdAssert">PmdAssert</a>(
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>              <span class="jxr_string">"AllowsDuplicateLiteralsInAnnotations.java"</span>,
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>              <span class="jxr_string">"ToleratesDuplicateLiterals.java"</span>,
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>              Matchers.is(<strong class="jxr_keyword">true</strong>),
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>              Matchers.not(
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>                  Matchers.containsString(<span class="jxr_string">"AvoidDuplicateLiterals"</span>)
