@@ -223,6 +223,7 @@
     <exclude name="CommentSize"/>
   </rule>
   <rule ref="category/java/errorprone.xml">
+    <exclude name="AvoidDuplicateLiterals"/>
     <exclude name="AvoidFieldNameMatchingMethodName"/>
     <exclude name="AvoidLiteralsInIfCondition"/>
     <exclude name="NonSerializableClass"/>
@@ -264,16 +265,6 @@
     <exclude name="AvoidUsingVolatile"/>
     <exclude name="UseConcurrentHashMap"/>
     <exclude name="DoNotUseThreads"/>
-  </rule>
-  <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
-    <properties>
-      <property name="maxDuplicateLiterals">
-        <value>5</value>
-      </property>
-      <property name="skipAnnotations">
-        <value>true</value>
-      </property>
-    </properties>
   </rule>
   <rule name="UnitTestShouldIncludeAssert" message="This unit test should include assert() or fail()" language="java" class="com.qulice.pmd.rules.UnitTestShouldIncludeAssertRule">
     <description>

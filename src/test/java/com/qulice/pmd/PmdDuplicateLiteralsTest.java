@@ -8,17 +8,17 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test case for {@link PmdValidator}'s tolerance of duplicate
- * string literals when they appear inside annotations (the
- * {@code AvoidDuplicateLiterals} rule is relaxed there).
+ * Test case for {@link PmdValidator}'s tolerance of repeated string
+ * literals, since the {@code AvoidDuplicateLiterals} rule is not part
+ * of the ruleset.
  * @since 0.25.1
  */
 final class PmdDuplicateLiteralsTest {
 
     @Test
-    void allowsDuplicateLiteralsInAnnotations() throws Exception {
+    void toleratesDuplicateLiterals() throws Exception {
         new PmdAssert(
-            "AllowsDuplicateLiteralsInAnnotations.java",
+            "ToleratesDuplicateLiterals.java",
             Matchers.is(true),
             Matchers.not(
                 Matchers.containsString("AvoidDuplicateLiterals")
