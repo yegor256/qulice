@@ -107,11 +107,13 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
      * @return True if it is a {@code String.length()} call
      */
     private static boolean isStringLength(final ASTExpression expr) {
-        return expr instanceof ASTMethodCall call
-            && "length".equals(call.getMethodName())
-            && call.getArguments().isEmpty()
-            && call.getQualifier() != null
-            && isStringExpression(call.getQualifier());
+        boolean result = false;
+        if (expr instanceof ASTMethodCall call && call.getQualifier() != null) {
+            result = "length".equals(call.getMethodName())
+                && call.getArguments().isEmpty()
+                && isStringExpression(call.getQualifier());
+        }
+        return result;
     }
 
     /**
