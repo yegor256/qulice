@@ -29,7 +29,6 @@ final class UseStringIsEmptyRuleTest {
     @ValueSource(
         strings = {
             "StringLengthGreaterThanZero.java",
-            "StringLengthGreaterOrEqualZero.java",
             "StringLengthGreaterOrEqualOne.java",
             "StringLengthLessThanOne.java",
             "StringLengthLessOrEqualZero.java",
@@ -45,6 +44,31 @@ final class UseStringIsEmptyRuleTest {
                 .and(containsMatcher(file, 28))
                 .and(containsMatcher(file, 32))
                 .and(containsMatcher(file, 36))
+        ).assertOk();
+    }
+
+    /**
+     * UseStringIsEmpty does not flag comparisons that have no
+     * {@code isEmpty()} equivalent, such as {@code length()} checks against
+     * {@code 1} (single-character strings) or the always-true
+     * {@code length() >= 0}.
+     * @param file File name
+     * @throws Exception If something goes wrong.
+     */
+    @ParameterizedTest
+    @ValueSource(
+        strings = {
+            "StringLengthEqualsOne.java",
+            "StringLengthNotEqualsOne.java",
+            "StringLengthGreaterThanOne.java",
+            "StringLengthLessOrEqualOne.java",
+            "StringLengthGreaterOrEqualZero.java"
+        }
+    )
+    void ignoresNonEmptyChecks(final String file) throws Exception {
+        new PmdAssert(
+            file, new IsEqual<>(true),
+            IsEmptyString.emptyString()
         ).assertOk();
     }
 
