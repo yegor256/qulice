@@ -17,7 +17,6 @@ import java.util.List;
 /**
  * Listener of Checkstyle events.
  * @since 0.3
- * @checkstyle ClassDataAbstractionCoupling (260 lines)
  */
 final class CheckstyleListener implements AuditListener {
 
