@@ -86,6 +86,15 @@ final class UnnecessaryLocalRuleTest {
     }
 
     @Test
+    void doesNotFireWhenLocalCapturedBeforeUnrelatedCall() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should not fire when the local pins evaluation order before an unrelated side-effecting call",
+            this.violations("UnnecessaryLocalCapturedBeforeCall.java"),
+            Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
+        );
+    }
+
+    @Test
     void doesNotFireOnTryWithResourcesResource() throws Exception {
         MatcherAssert.assertThat(
             "UnnecessaryLocalRule should not fire on a try-with-resources resource variable",

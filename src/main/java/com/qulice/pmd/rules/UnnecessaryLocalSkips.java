@@ -89,29 +89,24 @@ final class UnnecessaryLocalSkips {
     }
 
     /**
-     * The initialiser is a method call on some target, and a later statement
-     * (before the local is read) calls a method on that same target. Inlining
-     * would read the post-mutation value.
+     * The initialiser is a method call and at least one statement sits between
+     * the declaration and its single use in the same block. A call whose result
+     * is read only after other statements cannot be inlined without reordering
+     * side effects, so the local is pinning evaluation order and must stay.
      * @param variable The variable declarator
      * @param use The single use of the variable
-     * @return True if an intervening statement calls the initialiser's target
+     * @return True if a statement intervenes between the call and its use
      */
     static boolean interveningCall(
         final ASTVariableDeclarator variable,
         final ASTVariableAccess use
     ) {
         boolean found = false;
-        final ASTExpression init = variable.getInitializer();
-        if (init instanceof ASTMethodCall call) {
-            final String target = UnnecessaryLocalSkips.qualifierImage(
-                call.getQualifier()
-            );
-            if (target != null && !target.isEmpty()) {
-                final Node decl = UnnecessaryLocalSkips.blockLevel(variable);
-                final Node consumer = UnnecessaryLocalSkips.blockLevel(use);
-                found = UnnecessaryLocalSkips.sameBlock(decl, consumer)
-                    && UnnecessaryLocalSkips.scanBetween(decl, consumer, target);
-            }
+        if (variable.getInitializer() instanceof ASTMethodCall) {
+            final Node decl = UnnecessaryLocalSkips.blockLevel(variable);
+            final Node consumer = UnnecessaryLocalSkips.blockLevel(use);
+            found = UnnecessaryLocalSkips.sameBlock(decl, consumer)
+                && consumer.getIndexInParent() > decl.getIndexInParent() + 1;
         }
         return found;
     }
@@ -136,33 +131,6 @@ final class UnnecessaryLocalSkips {
             fresh = known || clock;
         }
         return fresh;
-    }
-
-    private static boolean scanBetween(
-        final Node decl,
-        final Node consumer,
-        final String target
-    ) {
-        final Node block = decl.getParent();
-        final int last = consumer.getIndexInParent();
-        boolean found = false;
-        for (int idx = decl.getIndexInParent() + 1; idx < last && !found;
-            idx += 1) {
-            found = block.getChild(idx).descendants(ASTMethodCall.class)
-                .crossFindBoundaries()
-                .toStream()
-                .anyMatch(call -> UnnecessaryLocalSkips.callsTarget(call, target));
-        }
-        return found;
-    }
-
-    private static boolean callsTarget(
-        final ASTMethodCall call,
-        final String target
-    ) {
-        return target.equals(
-            UnnecessaryLocalSkips.qualifierImage(call.getQualifier())
-        );
     }
 
     private static Node blockLevel(final Node node) {
