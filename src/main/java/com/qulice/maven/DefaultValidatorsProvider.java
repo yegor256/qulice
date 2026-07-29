@@ -18,7 +18,6 @@ import java.util.Set;
 /**
  * Provider of validators.
  * @since 0.3
- * @checkstyle ClassDataAbstractionCoupling (500 lines)
  */
 final class DefaultValidatorsProvider implements ValidatorsProvider {
 

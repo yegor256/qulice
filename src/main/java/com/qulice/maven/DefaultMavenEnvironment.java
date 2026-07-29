@@ -38,7 +38,6 @@ import org.codehaus.plexus.context.Context;
 /**
  * Environment, passed from MOJO to validators.
  * @since 0.3
- * @checkstyle ClassDataAbstractionCouplingCheck (300 lines)
  */
 @SuppressWarnings({"PMD.TooManyMethods", "PMD.GodClass"})
 public final class DefaultMavenEnvironment implements MavenEnvironment {
