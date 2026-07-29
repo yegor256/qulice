@@ -8,6 +8,7 @@ import java.util.List;
 import net.sourceforge.pmd.lang.java.ast.ASTArgumentList;
 import net.sourceforge.pmd.lang.java.ast.ASTBlock;
 import net.sourceforge.pmd.lang.java.ast.ASTLoopStatement;
+import net.sourceforge.pmd.lang.java.ast.ASTResource;
 import net.sourceforge.pmd.lang.java.ast.ASTReturnStatement;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
@@ -28,7 +29,8 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
         final ASTVariableDeclarator variable,
         final Object data
     ) {
-        if (variable.getInitializer() != null) {
+        if (variable.getInitializer() != null
+            && variable.ancestors(ASTResource.class).first() == null) {
             final String name = UnnecessaryLocalRule.variableName(variable);
             if (!name.isEmpty()) {
                 this.asCtx(data).addViolation(variable, name);

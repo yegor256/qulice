@@ -85,6 +85,15 @@ final class UnnecessaryLocalRuleTest {
         );
     }
 
+    @Test
+    void doesNotFireOnTryWithResourcesResource() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should not fire on a try-with-resources resource variable",
+            this.violations("UnnecessaryLocalTryWithResources.java"),
+            Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
+        );
+    }
+
     private List<String> violations(final String file) throws Exception {
         final String name = String.format(UnnecessaryLocalRuleTest.PATH, file);
         final Environment env = new Environment.Mock().withFile(
