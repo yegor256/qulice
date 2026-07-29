@@ -30,10 +30,10 @@ final class UnknownSuppressionCheckTest {
         final String file = "UnknownSuppression.java";
         final String name = "UnknownSuppressionCheck";
         MatcherAssert.assertThat(
-            "Misspelled and absent check names must be reported",
+            "Invented and absent check names must be reported",
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher("LineLenght", file, "4", name),
+                new ViolationMatcher("FooBar", file, "4", name),
                 new ViolationMatcher(
                     "ClassDataAbstractionCoupling", file, "11", name
                 )

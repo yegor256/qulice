@@ -1,8 +1,8 @@
 /*
  * Hello.
  */
-// @checkstyle LineLenght (2 lines)
-// This comment suppresses a check whose name is misspelled.
+// @checkstyle FooBar (2 lines)
+// This comment suppresses a check that never existed.
 package foo;
 
 /**
