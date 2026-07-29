@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * @since 0.3
  */
-@SuppressWarnings({"PMD.GodClass", "PMD.TooManyMethods"})
+@SuppressWarnings("PMD.GodClass")
 public final class BracketsStructureCheck extends AbstractCheck {
 
     @Override
