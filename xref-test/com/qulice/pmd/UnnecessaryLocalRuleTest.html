@@ -93,17 +93,35 @@
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>          );
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>      }
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>      <strong class="jxr_keyword">private</strong> List&lt;String&gt; violations(<strong class="jxr_keyword">final</strong> String file) <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>          <strong class="jxr_keyword">final</strong> String name = String.format(UnnecessaryLocalRuleTest.PATH, file);
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock().withFile(
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>              name,
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>              <strong class="jxr_keyword">new</strong> TextOf(<strong class="jxr_keyword">this</strong>.getClass().getResourceAsStream(file)).asString()
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>          );
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> PmdValidator(env).validate(
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>              Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), name))
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          ).stream().map(Violation::name).collect(Collectors.toList());
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>      }
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  }
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>      @Test
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>      <strong class="jxr_keyword">void</strong> doesNotFireWhenLocalCapturedBeforeUnrelatedCall() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>              <span class="jxr_string">"UnnecessaryLocalRule should not fire when the local pins evaluation order before an unrelated side-effecting call"</span>,
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>              <strong class="jxr_keyword">this</strong>.violations(<span class="jxr_string">"UnnecessaryLocalCapturedBeforeCall.java"</span>),
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>              Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>          );
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>      }
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>      @Test
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>      <strong class="jxr_keyword">void</strong> doesNotFireOnTryWithResourcesResource() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>          MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>             <span class="jxr_string">"UnnecessaryLocalRule should not fire on a try-with-resources resource variable"</span>,
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>             <strong class="jxr_keyword">this</strong>.violations(<span class="jxr_string">"UnnecessaryLocalTryWithResources.java"</span>),
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>             Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>         );
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>     }
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> 
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>     <strong class="jxr_keyword">private</strong> List&lt;String&gt; violations(<strong class="jxr_keyword">final</strong> String file) <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>         <strong class="jxr_keyword">final</strong> String name = String.format(UnnecessaryLocalRuleTest.PATH, file);
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock().withFile(
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>             name,
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>             <strong class="jxr_keyword">new</strong> TextOf(<strong class="jxr_keyword">this</strong>.getClass().getResourceAsStream(file)).asString()
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>         );
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> PmdValidator(env).validate(
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>             Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), name))
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>         ).stream().map(Violation::name).collect(Collectors.toList());
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>     }
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
