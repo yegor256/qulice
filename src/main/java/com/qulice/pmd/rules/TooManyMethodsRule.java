@@ -17,7 +17,9 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  * PMD built-in {@code TooManyMethods} rule, this implementation counts
  * only public and protected methods, because private and package-private
  * ones are implementation detail and say nothing about how large the
- * contract of the class is. Test classes are skipped altogether, since
+ * contract of the class is. Methods annotated with {@code @Override} are
+ * skipped too, since a supertype dictates them and the class has no say
+ * in how many of them there are. Test classes are skipped altogether, since
  * one assertion per test method inflates their method count beyond any
  * useful threshold. Skipping them here instead of through a
  * {@code violationSuppressXPath} keeps a redundant
@@ -78,7 +80,8 @@ public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
 
     private static boolean visible(final ASTMethodDeclaration method) {
         return method.getVisibility()
-            .isAtLeast(ModifierOwner.Visibility.V_PROTECTED);
+            .isAtLeast(ModifierOwner.Visibility.V_PROTECTED)
+            && !method.isAnnotationPresent(Override.class);
     }
 
     private static boolean tested(final ASTClassDeclaration type) {

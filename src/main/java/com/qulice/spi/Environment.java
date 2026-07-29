@@ -26,7 +26,6 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  * Environment.
  * @since 0.3
  */
-@SuppressWarnings("PMD.TooManyMethods")
 public interface Environment {
 
     /**

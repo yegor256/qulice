@@ -16,7 +16,6 @@ import org.codehaus.plexus.context.Context;
  * Environment, passed from MOJO to validators.
  * @since 0.3
  */
-@SuppressWarnings("PMD.TooManyMethods")
 interface MavenEnvironment extends Environment {
 
     /**
