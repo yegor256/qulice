@@ -15,10 +15,12 @@ import org.junit.jupiter.params.provider.ValueSource;
  * classes so that splitting asserts into separate {@code @Test}
  * methods (required by {@code UnitTestContainsTooManyAsserts})
  * does not push the class past the threshold, and which counts
- * only public and protected methods.
+ * only public and protected methods that the class itself
+ * introduces.
  * Regression test for https://github.com/yegor256/qulice/issues/1605,
- * https://github.com/yegor256/qulice/issues/1647
- * and https://github.com/yegor256/qulice/issues/1656
+ * https://github.com/yegor256/qulice/issues/1647,
+ * https://github.com/yegor256/qulice/issues/1656
+ * and https://github.com/yegor256/qulice/issues/1667
  * @since 1.0
  */
 final class PmdTooManyMethodsTest {
@@ -65,6 +67,17 @@ final class PmdTooManyMethodsTest {
     void ignoresPrivateMethods() throws Exception {
         new PmdAssert(
             "ManyPrivateMethods.java",
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString("TooManyMethods")
+            )
+        ).assertOk();
+    }
+
+    @Test
+    void ignoresOverriddenMethods() throws Exception {
+        new PmdAssert(
+            "ManyOverriddenMethods.java",
             Matchers.any(Boolean.class),
             Matchers.not(
                 Matchers.containsString("TooManyMethods")
