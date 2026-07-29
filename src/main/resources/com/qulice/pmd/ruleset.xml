@@ -167,6 +167,23 @@
     <exclude name="ExcessiveImports"/>
     <exclude name="CyclomaticComplexity"/>
     <exclude name="FinalFieldCouldBeStatic"/>
+    <!--
+    TooManyMethods is excluded because it counts every method in the
+    class body and cannot be told to skip test classes, where one
+    assertion per test method (as required by
+    UnitTestContainsTooManyAsserts) inflates the count past any useful
+    threshold. Disabling it for test classes through a
+    violationSuppressXPath is not an option either: PMD consults the
+    @SuppressWarnings suppressor before the XPath one, so a redundant
+    @SuppressWarnings("PMD.TooManyMethods") in a test class is credited
+    with the suppression and never reported by
+    UnnecessaryWarningSuppression. We use our own TooManyMethodsRule
+    instead, which skips test classes outright and counts only public
+    and protected methods.
+    Downstream: https://github.com/yegor256/qulice/issues/1605
+    Downstream: https://github.com/yegor256/qulice/issues/1647
+    Downstream: https://github.com/yegor256/qulice/issues/1656
+    -->
     <exclude name="TooManyMethods"/>
     <!--
     ExceptionAsFlowControl is excluded because it flags legitimate
@@ -178,45 +195,6 @@
     Downstream: https://github.com/yegor256/qulice/issues/1609
     -->
     <exclude name="ExceptionAsFlowControl"/>
-  </rule>
-  <!--
-  TooManyMethods is excluded from the bulk import above and re-enabled
-  here with a violationSuppressXPath that skips test classes.
-  Splitting asserts into one-assert-per-test methods (as required by
-  UnitTestContainsTooManyAsserts) inflates the method count and would
-  otherwise push test classes past the threshold. A type counts as a
-  test when its simple name ends with 'Test', 'Tests', 'IT',
-  'TestCase' or 'ITCase', or when it carries a test annotation
-  anywhere inside, which covers classes named by other conventions
-  and TestNG classes annotated at class level. The rule fires on the
-  ClassBody node, so the XPath walks ancestor-or-self to reach every
-  enclosing type, which also exempts @Nested inner classes.
-  Downstream: https://github.com/yegor256/qulice/issues/1605
-  Downstream: https://github.com/yegor256/qulice/issues/1647
-  -->
-  <rule ref="category/java/design.xml/TooManyMethods">
-    <properties>
-      <property name="violationSuppressXPath">
-        <value><![CDATA[
-          .[
-            ancestor-or-self::*[
-              ends-with(@SimpleName,'Test')
-              or ends-with(@SimpleName,'Tests')
-              or ends-with(@SimpleName,'IT')
-              or ends-with(@SimpleName,'TestCase')
-              or ends-with(@SimpleName,'ITCase')
-              or .//Annotation[
-                ends-with(@SimpleName,'Test')
-                or @SimpleName='TestFactory'
-                or @SimpleName='TestTemplate'
-                or @SimpleName='Theory'
-                or @SimpleName='Nested'
-              ]
-            ]
-          ]
-        ]]></value>
-      </property>
-    </properties>
   </rule>
   <rule ref="category/java/documentation.xml">
     <exclude name="CommentRequired"/>
@@ -286,6 +264,19 @@
       are also not counted, so a test that wraps
       assertThrows(...).getMessage() inside an assertThat to verify the
       thrown exception's message is not flagged.
+    </description>
+    <priority>3</priority>
+  </rule>
+  <rule name="TooManyMethods" message="This class has too many public and protected methods, consider refactoring it." language="java" class="com.qulice.pmd.rules.TooManyMethodsRule">
+    <description>
+      A class with too many methods is probably a good suspect for
+      refactoring, in order to reduce its complexity and find a way to
+      have more fine grained objects. Unlike PMD's TooManyMethods rule,
+      this variant counts only public and protected methods, since
+      private and package-private ones are implementation detail rather
+      than part of the contract of the class. Test classes are not
+      checked at all, because one assertion per test method inflates
+      their method count beyond any useful threshold.
     </description>
     <priority>3</priority>
   </rule>
