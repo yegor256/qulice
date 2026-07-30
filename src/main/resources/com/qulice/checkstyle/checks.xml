@@ -619,6 +619,16 @@
       <property name="severity" value="ignore"/>
     </module>
     <!--
+    Two rules in one. The first wants a blank line after the opening brace
+    of a type body, which our 'EmptyLineBeforeFirstMemberCheck' already
+    demands, so enabling it would report every such mistake twice. The
+    second wants a blank line before the closing brace, which this
+    codebase does not do in 196 places.
+    -->
+    <module name="TypeBodyPadding">
+      <property name="severity" value="ignore"/>
+    </module>
+    <!--
     Reject shapes that ordinary Java needs: a 'main' method, an
     abstract class named after its role, a class without a constructor.
     -->
@@ -672,9 +682,6 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="OverloadMethodsDeclarationOrder">  <!-- 1 violation -->
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="TypeBodyPadding">  <!-- 196 violations -->
       <property name="severity" value="ignore"/>
     </module>
   </module>
