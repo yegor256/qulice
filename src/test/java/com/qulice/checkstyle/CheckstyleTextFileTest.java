@@ -75,7 +75,7 @@ final class CheckstyleTextFileTest {
             ),
             Matchers.hasItem(
                 new ViolationMatcher(
-                    "File does not end with a newline.", file, "",
+                    "File does not end with a newline 'lf'.", file, "",
                     "NewlineAtEndOfFileCheck"
                 )
             )

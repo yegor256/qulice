@@ -46,6 +46,12 @@ final class CheckstyleAtClauseOrderTest {
                     name
                 ),
                 new ViolationMatcher(
+                    "Javadoc comment at column 3 has parse error.",
+                    file,
+                    "12",
+                    "JavadocTypeCheck"
+                ),
+                new ViolationMatcher(
                     message, file, "21", name
                 ),
                 new ViolationMatcher(

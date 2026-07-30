@@ -273,7 +273,11 @@
     </module>
     <module name="JavadocMethod"/>
     <module name="JavadocVariable"/>
-    <module name="JavadocStyle"/>
+    <!--
+    Checkstyle 13.9.0 removed 'JavadocStyle'. Its successor 'SummaryJavadoc'
+    takes a literal 'period', so it cannot accept the '?' and '!' endings
+    that 'JavadocStyle' allowed and that query methods rely on.
+    -->
     <module name="AtclauseOrder">
       <property name="tagOrder" value="@param, @return, @throws, @exception, @see, @since, @serial, @serialField,                 @serialData, @deprecated, @todo, @checkstyle"/>
     </module>

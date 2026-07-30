@@ -34,7 +34,7 @@ final class CheckstyleJavadocTypeTest {
             this.runValidation(file, false),
             Matchers.hasItem(
                 new ViolationMatcher(
-                    "Type Javadoc comment is missing @param <T> tag.", file
+                    "Type Javadoc comment is missing @param '<T>' tag.", file
                 )
             )
         );
