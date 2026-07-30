@@ -32,13 +32,13 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
     private static final String PACKAGE_SEPARATOR = ".";
 
     /**
-    * Keeps ClassDesc objects for stack of declared classes.
-    */
+     * Keeps ClassDesc objects for stack of declared classes.
+     */
     private Deque<ClassDesc> classes = new ArrayDeque<>();
 
     /**
-    * Full qualified name of the package.
-    */
+     * Full qualified name of the package.
+     */
     private String pack;
 
     @Override
@@ -98,7 +98,7 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
      * Get qualified class name from given class Ast.
      * @param classast Class to get qualified class name
      * @return Qualified class name of a class
-    */
+     */
     private String qualifiedClassName(final DetailAST classast) {
         String outer = null;
         if (!this.classes.isEmpty()) {
@@ -119,7 +119,7 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
      *  class, null if doesn't exist
      * @param name Class name
      * @return Qualified class name(package + class name)
-    */
+     */
     private static String getQualifiedClassName(
         final String pack,
         final String outer,
@@ -174,17 +174,17 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
 
         /**
          * Qualified class name(with package).
-        */
+         */
         private final String qualified;
 
         /**
          * Is class declared as final.
-        */
+         */
         private final boolean asfinal;
 
         /**
          * Is class declared as abstract.
-        */
+         */
         private final boolean asabstract;
 
         /**

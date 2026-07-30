@@ -48,7 +48,7 @@ public final class CheckstyleValidator implements ResourceValidator {
 
     /**
      * Listener of checkstyle messages.
-      */
+     */
     private final CheckstyleListener listener;
 
     /**

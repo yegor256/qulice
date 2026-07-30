@@ -19,35 +19,23 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
- * stock {@code CatchParameterName} check.
+ * stock {@code HexLiteralCase} check.
  * @since 0.25.1
  */
-final class CheckstyleCatchParameterNameTest {
+final class CheckstyleHexLiteralCaseTest {
 
     @Test
-    @SuppressWarnings("unchecked")
-    void distinguishesValidCatchParameterNames() throws Exception {
-        final String file = "CatchParameterNames.java";
-        final String name = "CatchParameterNameCheck";
+    void rejectsLowerCaseHexadecimalLetters() throws Exception {
+        final String file = "HexLiteralCase.java";
         MatcherAssert.assertThat(
-            "All naming violations should be found",
+            "Hexadecimal literal in lower case cannot pass",
             this.runValidation(file, false),
-            Matchers.<Iterable<Violation>>allOf(
-                Matchers.iterableWithSize(4),
-                Matchers.hasItems(
-                    new ViolationMatcher(
-                        "Name 'ex_invalid_1' must match pattern", file, "27", name
-                    ),
-                    new ViolationMatcher(
-                        "Name '$xxx' must match pattern", file, "29", name
-                    ),
-                    new ViolationMatcher(
-                        "Name '_exp' must match pattern", file, "31", name
-                    ),
-                    new ViolationMatcher(
-                        "Name '$xxx' must match pattern", file, "29",
-                        "IllegalIdentifierNameCheck"
-                    )
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "Should use uppercase hexadecimal letters",
+                    file,
+                    "18",
+                    "HexLiteralCaseCheck"
                 )
             )
         );

@@ -23,5 +23,5 @@ public enum ValidEnumValues {
     /**
      * Upper-case name with an underscore separator.
      */
-    DARK_GREEN;
+    DARK_GREEN
 }

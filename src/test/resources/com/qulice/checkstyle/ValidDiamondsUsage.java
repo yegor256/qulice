@@ -33,6 +33,7 @@ public final class ValidDiamondsUsage {
     public static void innerClassUsage() {
         final SimpleInterface.InnerClass<String> inner =
             new SimpleInterface.InnerClass<>();
+        inner.hashCode();
     }
 
     /**
@@ -43,6 +44,7 @@ public final class ValidDiamondsUsage {
             new MapEntry<>("a", "foo"),
             new MapEntry<>("b", "foo")
         );
+        params.clear();
     }
 
     /**

@@ -33,5 +33,7 @@ public final class BlankLinesOutsideMethodsPass {
             private void doSomething() {
             }
         };
+        runnable.run();
+        runnables.run();
     }
 }

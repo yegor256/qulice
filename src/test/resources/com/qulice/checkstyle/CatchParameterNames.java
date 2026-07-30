@@ -16,20 +16,20 @@ public final class CatchParameterNames {
     /**
      * Dummy variable.
      */
-    private int var;
+    private int counter;
 
     /**
      * Invalid exception parameter name.
      */
     void invalidOne() {
         try {
-            this.var += 1;
+            this.counter += 1;
         } catch (final IOException ex_invalid_1) {
-            this.var -= 1;
+            this.counter -= 1;
         } catch (final IllegalArgumentException $xxx) {
-            this.var -= 1;
+            this.counter -= 1;
         } catch (final TimeoutException _exp) {
-            this.var -= 1;
+            this.counter -= 1;
         }
     }
 
@@ -38,11 +38,11 @@ public final class CatchParameterNames {
      */
     void validOne() {
         try {
-            this.var += 1;
+            this.counter += 1;
         } catch (final IOException ex) {
-            this.var -= 1;
+            this.counter -= 1;
         } catch (final IllegalArgumentException exp) {
-            this.var -= 1;
+            this.counter -= 1;
         }
     }
 }

@@ -20,11 +20,12 @@ public final class ValidLambdaAndGenericsAtEndOfLine {
     public void main() {
         final Proc proc = () ->
             this.zero;
-        final Func func = var ->
-            var * 2;
+        final Func func = num ->
+            num * 2;
         final BiFunc bifunc = (param, par) ->
             param * par;
         final List<Integer>
             list = new ArrayList<>();
+        list.add(proc.hashCode() + func.hashCode() + bifunc.hashCode());
     }
 }

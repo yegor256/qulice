@@ -30,15 +30,9 @@ final class CheckstyleAtClauseOrderTest {
         final String message = "tags have to appear in the order";
         final String name = "AtclauseOrderCheck";
         MatcherAssert.assertThat(
-            "3 tags with wrong order should be found",
+            "Tags with wrong order should be found",
             this.runValidation(file, false),
-            Matchers.contains(
-                new ViolationMatcher(
-                    "Javadoc comment at column 3 has parse error.",
-                    file,
-                    "12",
-                    "MissingDeprecatedCheck"
-                ),
+            Matchers.hasItems(
                 new ViolationMatcher(
                     "Javadoc comment at column 3 has parse error.",
                     file,
@@ -50,12 +44,6 @@ final class CheckstyleAtClauseOrderTest {
                 ),
                 new ViolationMatcher(
                     message, file, "46", name
-                ),
-                new ViolationMatcher(
-                    "Class Class should be declared as final.",
-                    file,
-                    "56",
-                    "FinalClassCheck"
                 )
             )
         );

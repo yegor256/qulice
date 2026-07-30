@@ -19,35 +19,23 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
- * stock {@code CatchParameterName} check.
+ * stock {@code JavadocLeadingAsteriskAlign} check.
  * @since 0.25.1
  */
-final class CheckstyleCatchParameterNameTest {
+final class CheckstyleJavadocLeadingAsteriskAlignTest {
 
     @Test
-    @SuppressWarnings("unchecked")
-    void distinguishesValidCatchParameterNames() throws Exception {
-        final String file = "CatchParameterNames.java";
-        final String name = "CatchParameterNameCheck";
+    void rejectsMisalignedLeadingAsterisk() throws Exception {
+        final String file = "JavadocLeadingAsteriskAlign.java";
         MatcherAssert.assertThat(
-            "All naming violations should be found",
+            "Leading asterisk out of alignment cannot pass",
             this.runValidation(file, false),
-            Matchers.<Iterable<Violation>>allOf(
-                Matchers.iterableWithSize(4),
-                Matchers.hasItems(
-                    new ViolationMatcher(
-                        "Name 'ex_invalid_1' must match pattern", file, "27", name
-                    ),
-                    new ViolationMatcher(
-                        "Name '$xxx' must match pattern", file, "29", name
-                    ),
-                    new ViolationMatcher(
-                        "Name '_exp' must match pattern", file, "31", name
-                    ),
-                    new ViolationMatcher(
-                        "Name '$xxx' must match pattern", file, "29",
-                        "IllegalIdentifierNameCheck"
-                    )
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "Leading asterisk has incorrect indentation level 5, expected is 6",
+                    file,
+                    "13",
+                    "JavadocLeadingAsteriskAlignCheck"
                 )
             )
         );
