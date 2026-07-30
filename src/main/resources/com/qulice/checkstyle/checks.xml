@@ -364,6 +364,21 @@
     <module name="NoWhitespaceAfter"/>
     <module name="NoWhitespaceBefore"/>
     <module name="OperatorWrap"/>
+    <!--
+    A wrapped line opens with the separator that chains it to the previous
+    one, so that a fluent call reads down the left margin. The default of
+    'eol' says the opposite, which is why this is spelled out per token.
+    'LPAREN' and 'RPAREN' stay out of both lists, because where to break a
+    long argument list is a decision Qulice leaves to the author.
+    -->
+    <module name="SeparatorWrap">
+      <property name="tokens" value="DOT, AT, METHOD_REF"/>
+      <property name="option" value="nl"/>
+    </module>
+    <module name="SeparatorWrap">
+      <property name="tokens" value="COMMA, SEMI, ELLIPSIS, ARRAY_DECLARATOR, RBRACK"/>
+      <property name="option" value="eol"/>
+    </module>
     <module name="ParenPad"/>
     <module name="TypecastParenPad"/>
     <module name="WhitespaceAfter"/>
@@ -638,9 +653,6 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="RequireEmptyLineBeforeBlockTagGroup">  <!-- 622 violations -->
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="SeparatorWrap">  <!-- 167 violations -->
       <property name="severity" value="ignore"/>
     </module>
     <module name="TypeBodyPadding">  <!-- 196 violations -->
