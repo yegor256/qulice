@@ -7,17 +7,14 @@
   <description>
     This ruleset checks code for potential mess
   </description>
-  <!--
-  UnnecessaryVarargsArrayCreation is excluded due to a false positive
-  when the explicit array is needed to disambiguate overloaded
-  methods/constructors: removing it produces a compile error.
-  Re-enable once PMD fixes it upstream.
-  Upstream: https://github.com/pmd/pmd/issues/6611
-  Downstream: https://github.com/yegor256/qulice/issues/1525
-  -->
   <rule ref="category/java/bestpractices.xml">
+    <!--
+    GuardLogStatement wants every log call wrapped in an 'isDebugEnabled'
+    test. Qulice logs through jcabi-log, whose Logger already checks the
+    level before it formats anything, so the guard would add a branch that
+    buys nothing. It fires 18 times here.
+    -->
     <exclude name="GuardLogStatement"/>
-    <exclude name="LiteralsFirstInComparisons"/>
     <!--
     AvoidUsingHardCodedIP is excluded from the bulk import here and
     re-enabled below with a violationSuppressXPath that ignores
@@ -27,6 +24,14 @@
     Downstream: https://github.com/yegor256/qulice/issues/713
     -->
     <exclude name="AvoidUsingHardCodedIP"/>
+    <!--
+    UnnecessaryVarargsArrayCreation is excluded due to a false positive
+    when the explicit array is needed to disambiguate overloaded
+    methods/constructors: removing it produces a compile error.
+    Re-enable once PMD fixes it upstream.
+    Upstream: https://github.com/pmd/pmd/issues/6611
+    Downstream: https://github.com/yegor256/qulice/issues/1525
+    -->
     <exclude name="UnnecessaryVarargsArrayCreation"/>
     <!--
     UnitTestShouldIncludeAssert is excluded because it doesn't traverse
@@ -149,23 +154,110 @@
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml">
+    <!--
+    AtLeastOneConstructor wants every class to declare a constructor, even
+    the ones whose every field is assigned inline. Adding an empty
+    constructor to satisfy it would collide with
+    'ConstructorShouldDoInitialization' below, which forbids inline field
+    initializers as soon as a constructor exists: together the two rules
+    demand that every class move all its initialization into a
+    constructor, which is a design decision and not a style one. It fires
+    149 times here.
+    -->
     <exclude name="AtLeastOneConstructor"/>
+    <!--
+    ShortClassName rejects a type name shorter than five characters.
+    Qulice asks for names that are single nouns, and short nouns such as
+    'Xml' or 'Pmd' are the best names available for those concepts.
+    -->
     <exclude name="ShortClassName"/>
+    <!--
+    ShortMethodName rejects a method name shorter than three characters.
+    Qulice asks that a method be named as a single noun or verb, and the
+    Checkstyle 'MethodName' module it already runs bounds the length with
+    the format '^(id|[a-z]{2,}[a-zA-Z]+)$'.
+    -->
     <exclude name="ShortMethodName"/>
+    <!--
+    ShortVariable rejects any name shorter than three characters, which
+    contradicts the Checkstyle rules Qulice already runs: 'LocalVariableName',
+    'ParameterName' and 'MemberName' all use the format '^(id|[a-z]{3,12})$',
+    which allows 'id' by name. PMD reports that very identifier, so the two
+    checkers would disagree on the same line. Length is already bounded by
+    those formats.
+    -->
     <exclude name="ShortVariable"/>
+    <!--
+    ClassNamingConventions, at its defaults, only asks that a type name be
+    Pascal case, which is exactly what the Checkstyle 'TypeName' module
+    Qulice already runs enforces. Enabling it would report every badly
+    named type twice. Its interesting mode, naming utility classes
+    '*Utils', stays off because Qulice rejects utility classes outright.
+    -->
     <exclude name="ClassNamingConventions"/>
+    <!--
+    CommentDefaultAccessModifier wants a '/* default */' marker on every
+    package-private member. Qulice already forbids stating what the code
+    states, and the marker is exactly that: a comment that repeats the
+    absence of a modifier. It fires 59 times here.
+    -->
     <exclude name="CommentDefaultAccessModifier"/>
-    <exclude name="LinguisticNaming"/>
+    <!--
+    CallSuperInConstructor wants an explicit 'super()' in every
+    constructor of every class, including the ones that extend nothing.
+    Qulice allows only assignments in a primary constructor, and a
+    'super()' call the compiler inserts anyway is not one of them.
+    -->
     <exclude name="CallSuperInConstructor"/>
-    <exclude name="UseDiamondOperator"/>
+    <!--
+    UnnecessaryFullyQualifiedName contradicts our own
+    'AvoidDirectAccessToStaticFields' rule below. That rule demands that
+    a static field be read as 'ClassName.FIELD', while this one reports
+    the very same qualifier as unnecessary because the field is already in
+    scope. The two cannot both be satisfied, and the qualified form is the
+    one Qulice asks for, so this rule loses. It fires 299 times here.
+    -->
     <exclude name="UnnecessaryFullyQualifiedName"/>
   </rule>
   <rule ref="category/java/design.xml">
+    <!--
+    LoosePackageCoupling reports nothing until its 'packages' property
+    names the packages to watch. Qulice ships one ruleset to every
+    project and cannot know those names, so PMD drops the rule as
+    misconfigured and prints a warning on every run.
+    -->
     <exclude name="LoosePackageCoupling"/>
+    <!--
+    LawOfDemeter reports every chained call, including the fluent builders
+    and Cactoos pipelines that Qulice's own style is built on. It fires 18
+    times here and has no property to tell a fluent chain from a train
+    wreck.
+    -->
     <exclude name="LawOfDemeter"/>
+    <!--
+    SignatureDeclareThrowsException forbids 'throws Exception', which is
+    the honest signature for a test method that exercises code throwing
+    several checked types. It fires 13 times here, all in tests.
+    -->
     <exclude name="SignatureDeclareThrowsException"/>
+    <!--
+    ExcessiveImports counts imports per file, which for a test class grows
+    with the number of matchers and fixtures it names rather than with the
+    coupling of the code under test.
+    -->
     <exclude name="ExcessiveImports"/>
+    <!--
+    CyclomaticComplexity counts branches per method and per class. Qulice
+    already bounds method length and nesting depth through Checkstyle,
+    which constrains the same thing without a second threshold to tune.
+    -->
     <exclude name="CyclomaticComplexity"/>
+    <!--
+    FinalFieldCouldBeStatic asks that a final field with a constant
+    initializer become 'static final'. Qulice discourages static state,
+    and the rule also pushes towards the inline initializers that
+    'ConstructorShouldDoInitialization' below forbids.
+    -->
     <exclude name="FinalFieldCouldBeStatic"/>
     <!--
     TooManyMethods is excluded because it counts every method in the
@@ -197,14 +289,48 @@
     <exclude name="ExceptionAsFlowControl"/>
   </rule>
   <rule ref="category/java/documentation.xml">
+    <!--
+    CommentRequired duplicates the Javadoc rules Qulice already runs
+    through Checkstyle, which report a missing docblock with a better
+    message and know about inherited documentation.
+    -->
     <exclude name="CommentRequired"/>
+    <!--
+    CommentSize caps a comment at six lines and eighty columns. Qulice's
+    own docblocks explain why a rule is off, which takes more than six
+    lines, and Checkstyle already bounds the line length. It fires 100
+    times here.
+    -->
     <exclude name="CommentSize"/>
   </rule>
   <rule ref="category/java/errorprone.xml">
+    <!--
+    AvoidDuplicateLiterals counts a literal repeated four times anywhere
+    in a file, which in tests means the same fixture name written once per
+    test method. Extracting it into a constant is what Qulice's own test
+    guidance forbids, since tests must not share state.
+    -->
     <exclude name="AvoidDuplicateLiterals"/>
+    <!--
+    AvoidFieldNameMatchingMethodName forbids a field and a method sharing
+    a name, which is the shape Qulice asks for: an immutable attribute
+    named as a noun, exposed by a query method of the same noun, as in
+    'name' and 'name()'.
+    -->
     <exclude name="AvoidFieldNameMatchingMethodName"/>
+    <!--
+    AvoidLiteralsInIfCondition flags a literal in a condition even when
+    the literal is the boundary being tested, such as comparing a count
+    against zero or one. Naming those would add a constant that says less
+    than the digit it replaces.
+    -->
     <exclude name="AvoidLiteralsInIfCondition"/>
-    <exclude name="NonSerializableClass"/>
+    <!--
+    MissingSerialVersionUID asks every Serializable class for a
+    'serialVersionUID' constant. That constant is a public static literal,
+    which Qulice forbids, and 'NonSerializableClass' above already guards
+    the part of serialization that breaks at runtime.
+    -->
     <exclude name="MissingSerialVersionUID"/>
     <exclude name="TestClassWithoutTestCases"/>
   </rule>
@@ -237,13 +363,37 @@
     </properties>
   </rule>
   <rule ref="category/java/performance.xml">
+    <!--
+    AvoidInstantiatingObjectsInLoops reports any 'new' inside a loop,
+    which is how an immutable object is built per iteration. Hoisting the
+    allocation out means mutating one instance, which Qulice forbids
+    outright. It fires 15 times here.
+    -->
     <exclude name="AvoidInstantiatingObjectsInLoops"/>
   </rule>
   <rule ref="category/java/multithreading.xml">
+    <!--
+    AvoidUsingVolatile reports the keyword itself, with no way to say that
+    this particular field is read and written from two threads on purpose.
+    A linter cannot tell a misuse of 'volatile' from the one case it is
+    made for.
+    -->
     <exclude name="AvoidUsingVolatile"/>
+    <!--
+    UseConcurrentHashMap asks that every Map become a ConcurrentHashMap,
+    including the ones never shared between threads, which trades a
+    cheaper map for a lock nobody contends. The choice belongs to the code
+    that knows whether the map escapes.
+    -->
     <exclude name="UseConcurrentHashMap"/>
+    <!--
+    DoNotUseThreads forbids 'new Thread', which is aimed at Java EE
+    containers that manage their own pools. Qulice runs as a build plugin
+    and starts threads on purpose, seven times here.
+    -->
     <exclude name="DoNotUseThreads"/>
   </rule>
+  <rule ref="category/java/security.xml"/>
   <rule name="UnitTestShouldIncludeAssert" message="This unit test should include assert() or fail()" language="java" class="com.qulice.pmd.rules.UnitTestShouldIncludeAssertRule">
     <description>
       Unit tests should include at least one assertion. This variant of

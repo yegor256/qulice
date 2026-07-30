@@ -4,9 +4,8 @@
  */
 package foo;
 
-public final class DefaultPackage {
+public final class ClassNamingConventions {
 
-    int method() {
-        return null;
+    interface lowercase {
     }
 }
