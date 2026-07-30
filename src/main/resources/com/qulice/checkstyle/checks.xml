@@ -31,9 +31,6 @@
   Checks that property files contain the same keys.
   -->
   <module name="Translation"/>
-  <!-- Checks for duplicate code -->
-  <!-- https://sourceforge.net/p/checkstyle/bugs/693/ -->
-  <!-- <module name="StrictDuplicateCode"/> -->
   <!--
   Maximum number of lines in any .java file is limited.
   -->
@@ -443,6 +440,210 @@
       <property name="message" value="The first sentence in a multiline comment should start with a capital letter, even if the comment begins with two asterisks."/>
       <property name="id" value="FirstLetterInMultiLineCommentWithTwoAsterisk"/>
     </module>
+    <!--
+    Checks below complete the coverage of Checkstyle 13.9.0. Every module
+    that Checkstyle ships is named in this file, so that adding a module
+    upstream shows up here as a gap instead of passing unnoticed.
+    -->
+    <module name="AnnotationLocation"/>
+    <module name="AvoidDoubleBraceInitialization"/>
+    <module name="AvoidEscapedUnicodeCharacters"/>
+    <module name="ConstructorsDeclarationGrouping"/>
+    <module name="EmptyCatchBlock"/>
+    <module name="IllegalIdentifierName"/>
+    <module name="IllegalSymbol"/>
+    <module name="InvalidJavadocPosition"/>
+    <module name="JavadocBlockTagLocation"/>
+    <module name="JavadocContentLocation"/>
+    <module name="JavadocMissingLeadingAsterisk"/>
+    <module name="LambdaParameterName"/>
+    <module name="MissingJavadocPackage"/>
+    <module name="MissingJavadocType"/>
+    <module name="MissingNullCaseInSwitch"/>
+    <module name="MissingOverrideOnRecordAccessor"/>
+    <module name="MultilineCommentLeadingAsteriskPresence"/>
+    <module name="NoCodeInFile"/>
+    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
+    <module name="NonEmptyAtclauseDescription"/>
+    <module name="NumericalPrefixesInfixesSuffixesCharacterCase"/>
+    <module name="OneTopLevelClass"/>
+    <module name="PatternVariableAssignment"/>
+    <module name="PatternVariableName"/>
+    <module name="RecordComponentName"/>
+    <module name="RecordComponentNumber"/>
+    <module name="RecordTypeParameterName"/>
+    <module name="SealedShouldHavePermitsList"/>
+    <module name="SingleLineJavadoc"/>
+    <module name="UnnecessaryNullCheckWithInstanceOf"/>
+    <module name="UnnecessarySemicolonAfterOuterTypeDeclaration"/>
+    <module name="UnnecessarySemicolonAfterTypeMemberDeclaration"/>
+    <module name="UnnecessarySemicolonInEnumeration"/>
+    <module name="UnnecessarySemicolonInTryWithResources"/>
+    <module name="UnnecessaryTypeArgumentsWithRecordPattern"/>
+    <module name="UnusedImports"/>
+    <module name="UnusedLocalVariable"/>
+    <module name="UseEnhancedSwitch"/>
+    <module name="VariableDeclarationUsageDistance"/>
+    <module name="WhenShouldBeUsed"/>
+    <module name="WhitespaceBeforeEmptyBody"/>
+    <!--
+    Do nothing until a project supplies its own pattern, file or
+    annotation list, so Qulice leaves them to the project.
+    -->
+    <module name="AnnotatedDeclarationVisibility">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="DescendantToken">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="ImportControl">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="MatchXpath">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="Regexp">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="RegexpSinglelineJava">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="WriteTag">
+      <property name="severity" value="ignore"/>
+    </module>
+    <!--
+    Suppression machinery. Qulice already offers SuppressionFilter and
+    the SuppressWith* filters above; these would let code switch off
+    checks that Qulice means to enforce.
+    -->
+    <module name="SuppressWarningsHolder">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="SuppressionCommentFilter">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="SuppressionXpathFilter">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="SuppressionXpathSingleFilter">
+      <property name="severity" value="ignore"/>
+    </module>
+    <!--
+    Google conventions that contradict rules enabled above.
+    -->
+    <module name="CustomImportOrder">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="GoogleNonConstantFieldName">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="TextBlockGoogleStyleFormatting">
+      <property name="severity" value="ignore"/>
+    </module>
+    <!--
+    'NoArrayTrailingComma' contradicts 'ArrayTrailingComma' enabled above,
+    and forbidding the same comma in an enumeration would disagree with it.
+    -->
+    <module name="NoArrayTrailingComma">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="NoEnumTrailingComma">
+      <property name="severity" value="ignore"/>
+    </module>
+    <!--
+    Demands the string literal on the left of 'equals', while Qulice
+    accepts it on either side.
+    -->
+    <module name="EqualsAvoidNull">
+      <property name="severity" value="ignore"/>
+    </module>
+    <!--
+    Demand unnamed variables ('_'), a Java 22 feature, while Qulice
+    still targets Java 21.
+    -->
+    <module name="UnusedCatchParameterShouldBeUnnamed">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="UnusedLambdaParameterShouldBeUnnamed">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="UnusedTryResourceShouldBeUnnamed">
+      <property name="severity" value="ignore"/>
+    </module>
+    <!--
+    Reject shapes that ordinary Java needs: a 'main' method, an
+    abstract class named after its role, a class without a constructor.
+    -->
+    <module name="AbstractClassName">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="MissingCtor">
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="UncommentedMain">
+      <property name="severity" value="ignore"/>
+    </module>
+    <!--
+    Enforce a style Qulice does not follow. The count is how many
+    violations each one reports against Qulice itself today.
+    -->
+    <module name="AnnotationOnSameLine">  <!-- 652 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="AvoidNoArgumentSuperConstructorCall">  <!-- 1 violation -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="ClassDataAbstractionCoupling">  <!-- 38 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="ClassMemberImpliedModifier">  <!-- 2 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="HexLiteralCase">  <!-- 18 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="InterfaceMemberImpliedModifier">  <!-- 80 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="JavadocLeadingAsteriskAlign">  <!-- 13 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="JavadocMissingWhitespaceAfterAsterisk">  <!-- 1 violation -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="JavadocParagraph">  <!-- 16 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="JavadocTagContinuationIndentation">  <!-- 31 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="MagicNumber">  <!-- 40 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="MissingJavadocMethod">  <!-- 9 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="MultipleStringLiterals">  <!-- 111 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="OpenjdkAnnotationLocation">  <!-- 1 violation -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="OverloadMethodsDeclarationOrder">  <!-- 1 violation -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="RequireEmptyLineBeforeBlockTagGroup">  <!-- 622 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="SeparatorWrap">  <!-- 167 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="SummaryJavadoc">  <!-- 26 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
+    <module name="TypeBodyPadding">  <!-- 196 violations -->
+      <property name="severity" value="ignore"/>
+    </module>
   </module>
   <!--
   Our custom checkers.
@@ -487,5 +688,46 @@
     <property name="fileExtensions" value="java"/>
     <property name="id" value="UnnecessaryJavaLang"/>
     <property name="message" value="Unnecessary 'java.lang.' prefix, use the simple class name"/>
+  </module>
+  <!--
+  Checks below complete the coverage of Checkstyle 13.9.0. Every module
+  that Checkstyle ships is named in this file, so that adding a module
+  upstream shows up here as a gap instead of passing unnoticed.
+  -->
+  <module name="LineEnding"/>
+  <module name="OrderedProperties"/>
+  <module name="UniqueProperties"/>
+  <!--
+  Do nothing until a project supplies its own pattern, file or
+  annotation list, so Qulice leaves them to the project.
+  -->
+  <module name="Header">
+    <property name="severity" value="ignore"/>
+  </module>
+  <module name="MultiFileRegexpHeader">
+    <property name="severity" value="ignore"/>
+  </module>
+  <module name="RegexpHeader">
+    <property name="severity" value="ignore"/>
+  </module>
+  <module name="RegexpOnFilename">
+    <property name="severity" value="ignore"/>
+  </module>
+  <!--
+  Suppression machinery. Qulice already offers SuppressionFilter and
+  the SuppressWith* filters above; these would let code switch off
+  checks that Qulice means to enforce.
+  -->
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="severity" value="ignore"/>
+  </module>
+  <module name="SeverityMatchFilter">
+    <property name="severity" value="ignore"/>
+  </module>
+  <module name="SuppressWarningsFilter">
+    <property name="severity" value="ignore"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="severity" value="ignore"/>
   </module>
 </module>

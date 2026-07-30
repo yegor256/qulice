@@ -27,8 +27,8 @@ public final class AtClauseOrder {
      * Just a method with valid Javadoc.
      * @param input Valid parameter
      * @return Some value
-     * @throws  Exception
-     * @exception Exception
+     * @throws  Exception If fails
+     * @exception Exception If fails
      * @see AtClauseOrder
      * @since 1.0
      * @deprecated Reason

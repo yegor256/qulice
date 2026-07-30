@@ -33,7 +33,7 @@ final class CheckstyleCatchParameterNameTest {
             "All naming violations should be found",
             this.runValidation(file, false),
             Matchers.<Iterable<Violation>>allOf(
-                Matchers.iterableWithSize(3),
+                Matchers.iterableWithSize(4),
                 Matchers.hasItems(
                     new ViolationMatcher(
                         "Name 'ex_invalid_1' must match pattern", file, "27", name
@@ -43,6 +43,10 @@ final class CheckstyleCatchParameterNameTest {
                     ),
                     new ViolationMatcher(
                         "Name '_exp' must match pattern", file, "31", name
+                    ),
+                    new ViolationMatcher(
+                        "Name '$xxx' must match pattern", file, "29",
+                        "IllegalIdentifierNameCheck"
                     )
                 )
             )
