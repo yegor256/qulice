@@ -41,7 +41,7 @@
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>              <span class="jxr_string">"All naming violations should be found"</span>,
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>              <strong class="jxr_keyword">this</strong>.runValidation(file, false),
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>              Matchers.&lt;Iterable&lt;Violation&gt;&gt;allOf(
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>                  Matchers.iterableWithSize(3),
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>                  Matchers.iterableWithSize(4),
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>                  Matchers.hasItems(
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>                      <strong class="jxr_keyword">new</strong> <a name="ViolationMatcher" href="../../../com/qulice/checkstyle/ViolationMatcher.html#ViolationMatcher">ViolationMatcher</a>(
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>                          <span class="jxr_string">"Name 'ex_invalid_1' must match pattern"</span>, file, <span class="jxr_string">"27"</span>, name
@@ -51,44 +51,48 @@
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>                      ),
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>                      <strong class="jxr_keyword">new</strong> <a name="ViolationMatcher" href="../../../com/qulice/checkstyle/ViolationMatcher.html#ViolationMatcher">ViolationMatcher</a>(
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>                          <span class="jxr_string">"Name '_exp' must match pattern"</span>, file, <span class="jxr_string">"31"</span>, name
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>                      )
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>                  )
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>              )
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>          );
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>      }
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>      <strong class="jxr_keyword">private</strong> Collection&lt;Violation&gt; runValidation(<strong class="jxr_keyword">final</strong> String file,
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> passes) <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>          <strong class="jxr_keyword">final</strong> Environment.Mock mock = <strong class="jxr_keyword">new</strong> Environment.Mock();
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>          <strong class="jxr_keyword">final</strong> Environment env = mock.withParam(
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>              <span class="jxr_string">"license"</span>,
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>              String.format(
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>                  <span class="jxr_string">"file:%s"</span>,
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>                  <strong class="jxr_keyword">new</strong> <a name="License" href="../../../com/qulice/checkstyle/License.html#License">License</a>().savePackageInfo(
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>                      <strong class="jxr_keyword">new</strong> File(mock.basedir(), <span class="jxr_string">"src/main/java/foo"</span>)
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>                  ).withLines(<span class="jxr_string">"Hello."</span>)
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>                      .withEol(String.valueOf('\n')).file()
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>              )
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          ).withFile(
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>              String.format(<span class="jxr_string">"src/main/java/foo/%s"</span>, file),
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>              <strong class="jxr_keyword">new</strong> IoCheckedText(
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>                  <strong class="jxr_keyword">new</strong> TextOf(
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>                      <strong class="jxr_keyword">new</strong> ResourceOf(
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>                          <strong class="jxr_keyword">new</strong> FormattedText(<span class="jxr_string">"com/qulice/checkstyle/%s"</span>, file)
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>                      )
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>                  )
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>              ).asString()
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>          );
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>          <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results =
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>              <strong class="jxr_keyword">new</strong> CheckstyleValidator(env).validate(env.files(file));
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>          MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>              <span class="jxr_string">"validation result should match expected state"</span>,
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>              results.isEmpty(),
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>              Matchers.is(passes)
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>          );
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>          <strong class="jxr_keyword">return</strong> results;
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>      }
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  }
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>                      ),
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>                      <strong class="jxr_keyword">new</strong> <a name="ViolationMatcher" href="../../../com/qulice/checkstyle/ViolationMatcher.html#ViolationMatcher">ViolationMatcher</a>(
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>                          <span class="jxr_string">"Name '$xxx' must match pattern"</span>, file, <span class="jxr_string">"29"</span>,
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>                          <span class="jxr_string">"IllegalIdentifierNameCheck"</span>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>                      )
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>                  )
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>              )
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>          );
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>      }
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">private</strong> Collection&lt;Violation&gt; runValidation(<strong class="jxr_keyword">final</strong> String file,
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> passes) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>          <strong class="jxr_keyword">final</strong> Environment.Mock mock = <strong class="jxr_keyword">new</strong> Environment.Mock();
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>          <strong class="jxr_keyword">final</strong> Environment env = mock.withParam(
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>              <span class="jxr_string">"license"</span>,
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>              String.format(
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>                  <span class="jxr_string">"file:%s"</span>,
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>                  <strong class="jxr_keyword">new</strong> <a name="License" href="../../../com/qulice/checkstyle/License.html#License">License</a>().savePackageInfo(
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>                      <strong class="jxr_keyword">new</strong> File(mock.basedir(), <span class="jxr_string">"src/main/java/foo"</span>)
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>                  ).withLines(<span class="jxr_string">"Hello."</span>)
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>                      .withEol(String.valueOf('\n')).file()
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>              )
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>          ).withFile(
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>              String.format(<span class="jxr_string">"src/main/java/foo/%s"</span>, file),
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>              <strong class="jxr_keyword">new</strong> IoCheckedText(
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>                  <strong class="jxr_keyword">new</strong> TextOf(
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>                      <strong class="jxr_keyword">new</strong> ResourceOf(
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>                          <strong class="jxr_keyword">new</strong> FormattedText(<span class="jxr_string">"com/qulice/checkstyle/%s"</span>, file)
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>                      )
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>                  )
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>              ).asString()
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>          );
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; results =
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>              <strong class="jxr_keyword">new</strong> CheckstyleValidator(env).validate(env.files(file));
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>              <span class="jxr_string">"validation result should match expected state"</span>,
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>              results.isEmpty(),
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>              Matchers.is(passes)
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>          );
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>          <strong class="jxr_keyword">return</strong> results;
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>      }
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
