@@ -480,6 +480,7 @@
     <module name="AvoidEscapedUnicodeCharacters"/>
     <module name="ConstructorsDeclarationGrouping"/>
     <module name="EmptyCatchBlock"/>
+    <module name="HexLiteralCase"/>
     <module name="IllegalIdentifierName"/>
     <module name="IllegalSymbol"/>
     <module name="InvalidJavadocPosition"/>
@@ -652,9 +653,6 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="ClassMemberImpliedModifier">  <!-- 2 violations -->
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="HexLiteralCase">  <!-- 18 violations -->
       <property name="severity" value="ignore"/>
     </module>
     <module name="InterfaceMemberImpliedModifier">  <!-- 80 violations -->
