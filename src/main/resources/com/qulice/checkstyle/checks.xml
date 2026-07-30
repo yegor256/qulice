@@ -591,6 +591,24 @@
       <property name="severity" value="ignore"/>
     </module>
     <!--
+    Demands that an annotation share a line with its target, which is the
+    opposite of what 'AnnotationLocation' above demands. No arrangement
+    satisfies both, and Checkstyle itself calls the check "not good
+    practice".
+    -->
+    <module name="AnnotationOnSameLine">
+      <property name="severity" value="ignore"/>
+    </module>
+    <!--
+    Demands an empty Javadoc line before the at-clauses in every case, while
+    our 'JavadocEmptyLineBeforeTagCheck' asks for one only when the body
+    spans more than a single paragraph, and forbids it otherwise. Inserting
+    the line to satisfy this module makes that one report 621 violations.
+    -->
+    <module name="RequireEmptyLineBeforeBlockTagGroup">
+      <property name="severity" value="ignore"/>
+    </module>
+    <!--
     Reject shapes that ordinary Java needs: a 'main' method, an
     abstract class named after its role, a class without a constructor.
     -->
@@ -607,9 +625,6 @@
     Enforce a style Qulice does not follow. The count is how many
     violations each one reports against Qulice itself today.
     -->
-    <module name="AnnotationOnSameLine">  <!-- 652 violations -->
-      <property name="severity" value="ignore"/>
-    </module>
     <module name="AvoidNoArgumentSuperConstructorCall">  <!-- 1 violation -->
       <property name="severity" value="ignore"/>
     </module>
@@ -650,9 +665,6 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="OverloadMethodsDeclarationOrder">  <!-- 1 violation -->
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="RequireEmptyLineBeforeBlockTagGroup">  <!-- 622 violations -->
       <property name="severity" value="ignore"/>
     </module>
     <module name="TypeBodyPadding">  <!-- 196 violations -->
