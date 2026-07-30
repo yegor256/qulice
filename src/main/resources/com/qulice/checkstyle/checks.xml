@@ -271,10 +271,15 @@
     <module name="JavadocMethod"/>
     <module name="JavadocVariable"/>
     <!--
-    Checkstyle 13.9.0 removed 'JavadocStyle'. Its successor 'SummaryJavadoc'
-    takes a literal 'period', so it cannot accept the '?' and '!' endings
-    that 'JavadocStyle' allowed and that query methods rely on.
+    Successor of 'JavadocStyle', which Checkstyle 13.9.0 removed. It demands
+    that a Javadoc open with a summary sentence rather than jump straight to
+    a block tag. An empty 'period' switches off its other rule, which wants
+    the summary to end in a literal '.', because a query method documents
+    itself as a question and 'JavadocStyle' accepted the '?' ending.
     -->
+    <module name="SummaryJavadoc">
+      <property name="period" value=""/>
+    </module>
     <module name="AtclauseOrder">
       <property name="tagOrder" value="@param, @return, @throws, @exception, @see, @since, @serial, @serialField,                 @serialData, @deprecated, @todo, @checkstyle"/>
     </module>
@@ -636,9 +641,6 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="SeparatorWrap">  <!-- 167 violations -->
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="SummaryJavadoc">  <!-- 26 violations -->
       <property name="severity" value="ignore"/>
     </module>
     <module name="TypeBodyPadding">  <!-- 196 violations -->
