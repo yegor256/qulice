@@ -647,37 +647,48 @@
     Enforce a style Qulice does not follow. The count is how many
     violations each one reports against Qulice itself today.
     -->
-    <module name="AvoidNoArgumentSuperConstructorCall">  <!-- 1 violation -->
+    <module name="AvoidNoArgumentSuperConstructorCall">
+      <!-- 1 violation -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="ClassDataAbstractionCoupling">  <!-- 38 violations -->
+    <module name="ClassDataAbstractionCoupling">
+      <!-- 38 violations -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="ClassMemberImpliedModifier">  <!-- 2 violations -->
+    <module name="ClassMemberImpliedModifier">
+      <!-- 2 violations -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="InterfaceMemberImpliedModifier">  <!-- 80 violations -->
+    <module name="InterfaceMemberImpliedModifier">
+      <!-- 80 violations -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="JavadocMissingWhitespaceAfterAsterisk">  <!-- 1 violation -->
+    <module name="JavadocMissingWhitespaceAfterAsterisk">
+      <!-- 1 violation -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="JavadocParagraph">  <!-- 16 violations -->
+    <module name="JavadocParagraph">
+      <!-- 16 violations -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="MagicNumber">  <!-- 40 violations -->
+    <module name="MagicNumber">
+      <!-- 40 violations -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="MissingJavadocMethod">  <!-- 9 violations -->
+    <module name="MissingJavadocMethod">
+      <!-- 9 violations -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="MultipleStringLiterals">  <!-- 111 violations -->
+    <module name="MultipleStringLiterals">
+      <!-- 111 violations -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="OpenjdkAnnotationLocation">  <!-- 1 violation -->
+    <module name="OpenjdkAnnotationLocation">
+      <!-- 1 violation -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="OverloadMethodsDeclarationOrder">  <!-- 1 violation -->
+    <module name="OverloadMethodsDeclarationOrder">
+      <!-- 1 violation -->
       <property name="severity" value="ignore"/>
     </module>
   </module>
