@@ -219,9 +219,9 @@ public final class CheckMojo extends AbstractQuliceMojo {
     }
 
     /**
-    * Clear timeout string.
-    * @return Cleaned timeout
-    */
+     * Clear timeout string.
+     * @return Cleaned timeout
+     */
     private String clearTimeout() {
         final String clear;
         if (this.timeout == null) {

@@ -486,6 +486,7 @@
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocBlockTagLocation"/>
     <module name="JavadocContentLocation"/>
+    <module name="JavadocLeadingAsteriskAlign"/>
     <module name="JavadocMissingLeadingAsterisk"/>
     <module name="LambdaParameterName"/>
     <module name="MissingJavadocPackage"/>
@@ -656,9 +657,6 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="InterfaceMemberImpliedModifier">  <!-- 80 violations -->
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="JavadocLeadingAsteriskAlign">  <!-- 13 violations -->
       <property name="severity" value="ignore"/>
     </module>
     <module name="JavadocMissingWhitespaceAfterAsterisk">  <!-- 1 violation -->
