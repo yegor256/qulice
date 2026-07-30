@@ -283,6 +283,16 @@
     <module name="AtclauseOrder">
       <property name="tagOrder" value="@param, @return, @throws, @exception, @see, @since, @serial, @serialField,                 @serialData, @deprecated, @todo, @checkstyle"/>
     </module>
+    <!--
+    A block tag whose description wraps must indent the continuation, so
+    that the wrapped text does not read as a line that lost its tag. The
+    offset is a minimum, and one space is what this codebase and the
+    '@todo' puzzle format both use, while the default of four would ask
+    every wrapped at-clause to be re-indented for nothing.
+    -->
+    <module name="JavadocTagContinuationIndentation">
+      <property name="offset" value="1"/>
+    </module>
     <!-- Metrics. -->
     <module name="BooleanExpressionComplexity"/>
     <module name="ClassFanOutComplexity">
@@ -647,9 +657,6 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="JavadocParagraph">  <!-- 16 violations -->
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="JavadocTagContinuationIndentation">  <!-- 31 violations -->
       <property name="severity" value="ignore"/>
     </module>
     <module name="MagicNumber">  <!-- 40 violations -->
