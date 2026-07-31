@@ -360,7 +360,12 @@
       <property name="max" value="20"/>
     </module>
     <module name="MethodLength"/>
-    <module name="ParameterNumber">
+    <!--
+    Same as the stock ParameterNumber, but silent about a constructor that
+    takes no more parameters than the number of attributes of its class.
+    See https://github.com/yegor256/qulice/issues/1677
+    -->
+    <module name="com.qulice.checkstyle.ParameterNumberCheck">
       <property name="max" value="3"/>
       <property name="ignoreOverriddenMethods" value="true"/>
     </module>
