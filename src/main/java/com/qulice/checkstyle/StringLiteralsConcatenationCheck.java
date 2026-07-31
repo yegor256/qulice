@@ -35,6 +35,13 @@ import java.util.List;
  */
 public final class StringLiteralsConcatenationCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public StringLiteralsConcatenationCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {TokenTypes.OBJBLOCK};

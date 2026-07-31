@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class JavadocFirstLineCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public JavadocFirstLineCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

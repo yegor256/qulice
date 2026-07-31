@@ -17,6 +17,13 @@ import java.util.List;
  */
 public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public ProhibitUnusedPrivateConstructorCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {TokenTypes.CLASS_DEF};

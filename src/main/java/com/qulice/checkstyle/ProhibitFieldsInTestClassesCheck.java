@@ -33,9 +33,22 @@ import java.util.regex.Pattern;
 public final class ProhibitFieldsInTestClassesCheck extends AbstractCheck {
 
     /**
+     * File names of test classes.
+     */
+    private static final Pattern TESTS =
+        Pattern.compile(".*(Test|IT|ITCase)\\.java$");
+
+    /**
      * File names that this check applies to.
      */
-    private Pattern include = Pattern.compile(".*(Test|IT|ITCase)\\.java$");
+    private Pattern include;
+
+    /**
+     * Default constructor.
+     */
+    public ProhibitFieldsInTestClassesCheck() {
+        this.include = ProhibitFieldsInTestClassesCheck.TESTS;
+    }
 
     /**
      * Restrict the check to files matching the given pattern.

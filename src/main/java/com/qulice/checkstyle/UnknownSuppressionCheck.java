@@ -36,7 +36,14 @@ public final class UnknownSuppressionCheck extends AbstractCheck {
     /**
      * Checks that {@code checks.xml} enables.
      */
-    private final ConfiguredChecks checks = new ConfiguredChecks();
+    private final ConfiguredChecks checks;
+
+    /**
+     * Default constructor.
+     */
+    public UnknownSuppressionCheck() {
+        this.checks = new ConfiguredChecks();
+    }
 
     @Override
     public boolean isCommentNodesRequired() {

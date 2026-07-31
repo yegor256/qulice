@@ -41,7 +41,7 @@ public interface Environment {
     File tempdir();
 
     /**
-     * Get directory where <tt>.class</tt> files are stored.
+     * Get directory where {@code .class} files are stored.
      * @return The directory
      */
     File outdir();
@@ -111,49 +111,48 @@ public interface Environment {
         /**
          * The basedir.
          */
-        private final File origin = ((java.util.function.Supplier<File>) () -> {
-            try {
-                final File temp = Files.createTempDirectory("mock-qulice").toFile();
-                FileUtils.forceDeleteOnExit(temp);
-                final File base = new File(temp, "basedir");
-                if (!base.mkdirs()) {
-                    throw new IllegalStateException(
-                        String.format("cannot create basedir at %s", base)
-                    );
-                }
-                return base;
-            } catch (final IOException ex) {
-                throw new IllegalStateException("cannot create basedir", ex);
-            }
-        }).get();
+        private final File origin;
 
         /**
          * Files for classpath.
          */
-        private final Set<String> paths = new HashSet<>(
-            Collections.singleton(
-                ((java.util.function.Supplier<String>) () -> {
-                    final File out = new File(this.origin, "target/classes");
-                    if (!out.mkdirs() && !out.isDirectory()) {
-                        throw new IllegalStateException(
-                            String.format("cannot create classes dir at %s", out)
-                        );
-                    }
-                    return out.getAbsolutePath()
-                        .replace(File.separatorChar, '/');
-                }).get()
-            )
-        );
+        private final Set<String> paths;
 
         /**
          * Map of params.
          */
-        private final Map<String, String> params = new HashMap<>();
+        private final Map<String, String> params;
 
         /**
          * Exclude patterns.
          */
         private String excl;
+
+        /**
+         * Default constructor.
+         */
+        public Mock() {
+            this(Environment.Mock.temporary());
+        }
+
+        /**
+         * Constructor with a ready basedir.
+         * @param base The basedir
+         */
+        private Mock(final File base) {
+            this(base, Environment.Mock.outputs(base));
+        }
+
+        /**
+         * Primary constructor.
+         * @param base The basedir
+         * @param dirs Directories to put on the classpath
+         */
+        private Mock(final File base, final Set<String> dirs) {
+            this.origin = base;
+            this.paths = dirs;
+            this.params = new HashMap<>();
+        }
 
         /**
          * With this param and its value.
@@ -303,6 +302,45 @@ public interface Environment {
         @Override
         public Charset encoding() {
             return StandardCharsets.UTF_8;
+        }
+
+        /**
+         * Creates a fresh basedir in a temporary directory.
+         * @return The directory
+         */
+        private static File temporary() {
+            try {
+                final File temp = Files.createTempDirectory("mock-qulice").toFile();
+                FileUtils.forceDeleteOnExit(temp);
+                final File base = new File(temp, "basedir");
+                if (!base.mkdirs()) {
+                    throw new IllegalStateException(
+                        String.format("cannot create basedir at %s", base)
+                    );
+                }
+                return base;
+            } catch (final IOException ex) {
+                throw new IllegalStateException("cannot create basedir", ex);
+            }
+        }
+
+        /**
+         * Creates the directory of compiled classes for the given basedir.
+         * @param base The basedir
+         * @return Paths to put on the classpath
+         */
+        private static Set<String> outputs(final File base) {
+            final File out = new File(base, "target/classes");
+            if (!out.mkdirs() && !out.isDirectory()) {
+                throw new IllegalStateException(
+                    String.format("cannot create classes dir at %s", out)
+                );
+            }
+            return new HashSet<>(
+                Collections.singleton(
+                    out.getAbsolutePath().replace(File.separatorChar, '/')
+                )
+            );
         }
     }
 }

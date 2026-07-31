@@ -22,6 +22,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class JavadocLocationCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public JavadocLocationCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

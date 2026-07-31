@@ -27,6 +27,13 @@ import org.apache.commons.io.FileUtils;
  */
 public final class PomXpathValidator implements MavenValidator {
 
+    /**
+     * Default constructor.
+     */
+    public PomXpathValidator() {
+        // nothing to initialize
+    }
+
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {

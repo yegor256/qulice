@@ -39,6 +39,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class ConstructorsCodeFreeCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public ConstructorsCodeFreeCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {TokenTypes.CTOR_DEF};

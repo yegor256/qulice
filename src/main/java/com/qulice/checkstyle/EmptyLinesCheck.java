@@ -36,12 +36,20 @@ public final class EmptyLinesCheck extends AbstractCheck {
     /**
      * Line ranges of all anonymous inner types.
      */
-    private final LineRanges anons = new LineRanges();
+    private final LineRanges anons;
 
     /**
      * Line ranges of all method and constructor bodies.
      */
-    private final LineRanges methods = new LineRanges();
+    private final LineRanges methods;
+
+    /**
+     * Default constructor.
+     */
+    public EmptyLinesCheck() {
+        this.anons = new LineRanges();
+        this.methods = new LineRanges();
+    }
 
     @Override
     public int[] getDefaultTokens() {

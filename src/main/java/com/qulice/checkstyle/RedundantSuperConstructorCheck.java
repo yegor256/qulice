@@ -35,6 +35,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class RedundantSuperConstructorCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public RedundantSuperConstructorCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {TokenTypes.CTOR_DEF};

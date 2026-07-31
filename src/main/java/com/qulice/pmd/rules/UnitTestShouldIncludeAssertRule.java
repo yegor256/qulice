@@ -21,6 +21,9 @@ import net.sourceforge.pmd.lang.java.rule.internal.TestFrameworksUtil;
 public final class UnitTestShouldIncludeAssertRule
     extends AbstractJavaRulechainRule {
 
+    /**
+     * Default constructor.
+     */
     public UnitTestShouldIncludeAssertRule() {
         super(ASTMethodDeclaration.class);
     }

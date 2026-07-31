@@ -18,16 +18,21 @@ import java.util.regex.Pattern;
 public final class MultiLineCommentCheck extends AbstractCheck {
 
     /**
+     * Pattern that matches an empty string only.
+     */
+    private static final Pattern EMPTY = Pattern.compile("^$");
+
+    /**
      * Pattern for check.
      * It is not final as it is initialized from the configuration.
      */
-    private Pattern format = Pattern.compile("^$");
+    private Pattern format;
 
     /**
      * The message to report for a match.
      * It is not final as it is initialized from the configuration.
      */
-    private String message = "";
+    private String message;
 
     /**
      * Comment line.
@@ -35,7 +40,16 @@ public final class MultiLineCommentCheck extends AbstractCheck {
      * during the class under test and the field is reinitialized with a new object.
      */
     @SuppressWarnings("PMD.AvoidStringBufferField")
-    private final StringBuilder text = new StringBuilder();
+    private final StringBuilder text;
+
+    /**
+     * Default constructor.
+     */
+    public MultiLineCommentCheck() {
+        this.format = MultiLineCommentCheck.EMPTY;
+        this.message = "";
+        this.text = new StringBuilder();
+    }
 
     @Override
     public boolean isCommentNodesRequired() {
@@ -80,8 +94,8 @@ public final class MultiLineCommentCheck extends AbstractCheck {
     /**
      * The method is called from checkstyle to configure this class.
      * The parameter is set from the checks.xml file
-     * <module name="com.qulice.checkstyle.MultiLineCommentCheck"/> and
-     * <property name="format" value=" this regexp "/> property
+     * {@code <module name="com.qulice.checkstyle.MultiLineCommentCheck"/>} and
+     * {@code <property name="format" value=" this regexp "/>} property
      * @param fmt Validatig regexp
      */
     public void setFormat(final String fmt) {
@@ -91,8 +105,8 @@ public final class MultiLineCommentCheck extends AbstractCheck {
     /**
      * The method is called from checkstyle to configure this class.
      * The parameter is set from the checks.xml file
-     * <module name="com.qulice.checkstyle.MultiLineCommentCheck"/> and
-     * <property name="message" value="First sentence in a comment should start with ....."/>
+     * {@code <module name="com.qulice.checkstyle.MultiLineCommentCheck"/>} and
+     * {@code <property name="message" value="First sentence in a comment ..."/>}
      * property
      * @param msg Error message
      */

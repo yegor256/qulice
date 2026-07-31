@@ -22,6 +22,13 @@ import java.util.Map;
  */
 public final class MethodsOrderCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public MethodsOrderCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[]{

@@ -43,6 +43,13 @@ public final class JavadocTagsDotCheck extends AbstractCheck {
     private static final String MESSAGE =
         "No dot allowed at the end of a '@param' or '@return' Javadoc tag";
 
+    /**
+     * Default constructor.
+     */
+    public JavadocTagsDotCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

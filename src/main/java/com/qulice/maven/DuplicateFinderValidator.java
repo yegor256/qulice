@@ -21,6 +21,13 @@ import org.apache.commons.collections.CollectionUtils;
  */
 public final class DuplicateFinderValidator implements MavenValidator {
 
+    /**
+     * Default constructor.
+     */
+    public DuplicateFinderValidator() {
+        // nothing to initialize
+    }
+
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {

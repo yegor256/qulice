@@ -57,6 +57,13 @@ public final class JavadocThrowsCheck extends AbstractCheck {
         "^\\s*(?:\\*|/\\*\\*)?\\s*@(throws|exception)\\s+(\\S+)"
     );
 
+    /**
+     * Default constructor.
+     */
+    public JavadocThrowsCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

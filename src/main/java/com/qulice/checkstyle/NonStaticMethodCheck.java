@@ -31,10 +31,22 @@ import java.util.regex.Pattern;
 public final class NonStaticMethodCheck extends AbstractCheck {
 
     /**
+     * Pattern that matches an empty string only.
+     */
+    private static final Pattern EMPTY = Pattern.compile("^$");
+
+    /**
      * Files to exclude from this check.
      * This is mostly to exclude JUnit tests.
      */
-    private Pattern exclude = Pattern.compile("^$");
+    private Pattern exclude;
+
+    /**
+     * Default constructor.
+     */
+    public NonStaticMethodCheck() {
+        this.exclude = NonStaticMethodCheck.EMPTY;
+    }
 
     /**
      * Exclude files matching given pattern.

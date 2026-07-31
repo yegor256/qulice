@@ -28,6 +28,9 @@ import net.sourceforge.pmd.lang.java.types.JTypeMirror;
  */
 public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
 
+    /**
+     * Default constructor.
+     */
     public UseStringIsEmptyRule() {
         super(ASTInfixExpression.class);
     }

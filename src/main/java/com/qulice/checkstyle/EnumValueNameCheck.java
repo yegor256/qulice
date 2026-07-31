@@ -30,6 +30,13 @@ public final class EnumValueNameCheck extends AbstractCheck {
         "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"
     );
 
+    /**
+     * Default constructor.
+     */
+    public EnumValueNameCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {TokenTypes.ENUM_CONSTANT_DEF};

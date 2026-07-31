@@ -17,6 +17,13 @@ import org.apache.maven.model.Plugin;
  */
 public final class SnapshotsValidator implements MavenValidator {
 
+    /**
+     * Default constructor.
+     */
+    public SnapshotsValidator() {
+        // nothing to initialize
+    }
+
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {

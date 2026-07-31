@@ -28,8 +28,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     /**
      * Environment to pass to validators.
      */
-    private final DefaultMavenEnvironment environment =
-        new DefaultMavenEnvironment();
+    private final DefaultMavenEnvironment environment;
 
     /**
      * Maven project, to be injected by Maven itself.
@@ -59,7 +58,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      * List of regular expressions to exclude.
      */
     @Parameter(property = "qulice.excludes")
-    private final Collection<String> excludes = new ArrayList<>(0);
+    private final Collection<String> excludes;
 
     /**
      * List of xpath queries to validate pom.xml.
@@ -68,7 +67,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         property = "qulice.asserts",
         required = false
     )
-    private final Collection<String> asserts = new ArrayList<>(0);
+    private final Collection<String> asserts;
 
     /**
      * The source encoding.
@@ -76,6 +75,15 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
      */
     @Parameter(property = "encoding", defaultValue = "${project.build.sourceEncoding}")
     private String charset;
+
+    /**
+     * Default constructor.
+     */
+    protected AbstractQuliceMojo() {
+        this.environment = new DefaultMavenEnvironment();
+        this.excludes = new ArrayList<>(0);
+        this.asserts = new ArrayList<>(0);
+    }
 
     /**
      * Set Maven Project (used mostly for unit testing).

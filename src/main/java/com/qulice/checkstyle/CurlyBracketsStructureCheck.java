@@ -36,6 +36,13 @@ import java.util.List;
  */
 public final class CurlyBracketsStructureCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public CurlyBracketsStructureCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

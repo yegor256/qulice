@@ -20,6 +20,9 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  */
 public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
 
+    /**
+     * Default constructor.
+     */
     public UnnecessaryLocalRule() {
         super(ASTVariableDeclarator.class);
     }

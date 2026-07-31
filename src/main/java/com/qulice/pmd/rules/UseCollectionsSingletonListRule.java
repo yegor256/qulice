@@ -31,6 +31,9 @@ public final class UseCollectionsSingletonListRule
     private static final InvocationMatcher AS_LIST =
         InvocationMatcher.parse("java.util.Arrays#asList(_*)");
 
+    /**
+     * Default constructor.
+     */
     public UseCollectionsSingletonListRule() {
         super(ASTMethodCall.class);
     }

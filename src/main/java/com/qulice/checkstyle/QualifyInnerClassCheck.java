@@ -20,12 +20,19 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
     /**
      * Set of all nested classes.
      */
-    private final Set<String> nested = new HashSet<>();
+    private final Set<String> nested;
 
     /**
      * Whether we already visited root class of the .java file.
      */
     private boolean root;
+
+    /**
+     * Default constructor.
+     */
+    public QualifyInnerClassCheck() {
+        this.nested = new HashSet<>();
+    }
 
     @Override
     public int[] getDefaultTokens() {

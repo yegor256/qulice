@@ -15,6 +15,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class ConstantUsageCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public ConstantUsageCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[]{

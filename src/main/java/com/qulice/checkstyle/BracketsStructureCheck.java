@@ -36,6 +36,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 @SuppressWarnings("PMD.GodClass")
 public final class BracketsStructureCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public BracketsStructureCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

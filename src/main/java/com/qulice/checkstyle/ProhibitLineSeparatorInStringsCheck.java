@@ -40,6 +40,13 @@ public final class ProhibitLineSeparatorInStringsCheck extends AbstractCheck {
      */
     private static final Pattern ESCAPE = Pattern.compile("\\\\+[rn]");
 
+    /**
+     * Default constructor.
+     */
+    public ProhibitLineSeparatorInStringsCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {TokenTypes.STRING_LITERAL};

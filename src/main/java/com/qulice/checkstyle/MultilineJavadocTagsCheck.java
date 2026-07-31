@@ -36,6 +36,13 @@ import org.cactoos.text.Sub;
  */
 public final class MultilineJavadocTagsCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public MultilineJavadocTagsCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

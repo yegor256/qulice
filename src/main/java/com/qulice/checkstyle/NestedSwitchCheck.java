@@ -21,6 +21,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class NestedSwitchCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public NestedSwitchCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return this.getRequiredTokens();

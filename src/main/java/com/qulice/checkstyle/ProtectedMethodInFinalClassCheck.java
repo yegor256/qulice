@@ -18,6 +18,13 @@ import java.util.List;
  */
 public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public ProtectedMethodInFinalClassCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

@@ -59,6 +59,9 @@ public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
         "Nested"
     );
 
+    /**
+     * Default constructor.
+     */
     public TooManyMethodsRule() {
         super(ASTClassDeclaration.class);
     }

@@ -23,6 +23,13 @@ import java.util.Arrays;
  */
 public final class MethodBodyCommentsCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public MethodBodyCommentsCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

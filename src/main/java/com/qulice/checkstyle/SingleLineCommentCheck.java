@@ -18,16 +18,21 @@ import java.util.regex.Pattern;
 public final class SingleLineCommentCheck extends AbstractCheck {
 
     /**
+     * Pattern that matches an empty string only.
+     */
+    private static final Pattern EMPTY = Pattern.compile("^$");
+
+    /**
      * Pattern for check.
      * It is not final as it is initialized from the configuration.
      */
-    private Pattern format = Pattern.compile("^$");
+    private Pattern format;
 
     /**
      * The message to report for a match.
      * It is not final as it is initialized from the configuration.
      */
-    private String message = "";
+    private String message;
 
     /**
      * Comment line.
@@ -35,12 +40,21 @@ public final class SingleLineCommentCheck extends AbstractCheck {
      * during the class under test and the field is reinitialized with a new object.
      */
     @SuppressWarnings("PMD.AvoidStringBufferField")
-    private final StringBuilder line = new StringBuilder();
+    private final StringBuilder line;
 
     /**
      * When inside a block comment, holds begin line number.
      */
     private int begin;
+
+    /**
+     * Default constructor.
+     */
+    public SingleLineCommentCheck() {
+        this.format = SingleLineCommentCheck.EMPTY;
+        this.message = "";
+        this.line = new StringBuilder();
+    }
 
     @Override
     public boolean isCommentNodesRequired() {
@@ -86,8 +100,8 @@ public final class SingleLineCommentCheck extends AbstractCheck {
     /**
      * The method is called from checkstyle to configure this class.
      * The parameter is set from the checks.xml file
-     * <module name="com.qulice.checkstyle.SingleLineCommentCheck"/> and
-     * <property name="format" value=" this regexp "/> property
+     * {@code <module name="com.qulice.checkstyle.SingleLineCommentCheck"/>} and
+     * {@code <property name="format" value=" this regexp "/>} property
      * @param fmt Validatig regexp
      */
     public void setFormat(final String fmt) {
@@ -97,8 +111,8 @@ public final class SingleLineCommentCheck extends AbstractCheck {
     /**
      * The method is called from checkstyle to configure this class.
      * The parameter is set from the checks.xml file
-     * <module name="com.qulice.checkstyle.SingleLineCommentCheck"/> and
-     * <property name="message" value="This kind of comment is not allowed."/>
+     * {@code <module name="com.qulice.checkstyle.SingleLineCommentCheck"/>} and
+     * {@code <property name="message" value="This comment is not allowed."/>}
      * property
      * @param msg Error message
      */

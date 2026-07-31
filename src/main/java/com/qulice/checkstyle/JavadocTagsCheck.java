@@ -35,15 +35,22 @@ import java.util.regex.Pattern;
 public final class JavadocTagsCheck extends AbstractCheck {
 
     /**
-     * Map of tag and its pattern.
+     * Javadoc tags that are not allowed.
      */
-    private final List<RequiredJavaDocTag> required = new ArrayList<>(1);
+    private static final Collection<String> PROHIBITED =
+        Arrays.asList("author", "version");
 
     /**
-     * List of prohibited javadoc tags.
+     * Map of tag and its pattern.
      */
-    private final Collection<String> prohibited =
-        Arrays.asList("author", "version");
+    private final List<RequiredJavaDocTag> required;
+
+    /**
+     * Default constructor.
+     */
+    public JavadocTagsCheck() {
+        this.required = new ArrayList<>(1);
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -84,7 +91,7 @@ public final class JavadocTagsCheck extends AbstractCheck {
         final int cstart = JavadocTagsCheck.findCommentStart(lines, start);
         final int cend = JavadocTagsCheck.findCommentEnd(lines, start);
         if (cend > cstart && cstart >= 0) {
-            for (final String tag : this.prohibited) {
+            for (final String tag : JavadocTagsCheck.PROHIBITED) {
                 this.findProhibited(lines, start, cstart, cend, tag);
             }
             for (final RequiredJavaDocTag tag : this.required) {

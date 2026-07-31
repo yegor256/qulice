@@ -34,6 +34,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class ExtraSemicolonCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public ExtraSemicolonCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

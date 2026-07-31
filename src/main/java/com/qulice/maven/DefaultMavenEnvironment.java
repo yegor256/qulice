@@ -55,7 +55,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     /**
      * Plugin configuration.
      */
-    private final Properties iproperties = new Properties();
+    private final Properties iproperties;
 
     /**
      * MOJO executor.
@@ -65,17 +65,27 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     /**
      * Excludes, regular expressions.
      */
-    private final Collection<String> exc = new ArrayList<>(0);
+    private final Collection<String> exc;
 
     /**
      * Xpath queries for pom.xml validation.
      */
-    private final Collection<String> assertion = new ArrayList<>(0);
+    private final Collection<String> assertion;
 
     /**
      * Source code encoding charset.
      */
-    private String charset = "UTF-8";
+    private String charset;
+
+    /**
+     * Default constructor.
+     */
+    public DefaultMavenEnvironment() {
+        this.iproperties = new Properties();
+        this.exc = new ArrayList<>(0);
+        this.assertion = new ArrayList<>(0);
+        this.charset = "UTF-8";
+    }
 
     @Override
     public String param(final String name, final String value) {
@@ -278,6 +288,10 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         this.assertion.addAll(ass);
     }
 
+    /**
+     * Set the encoding of source files.
+     * @param encoding The encoding to use
+     */
     public void setEncoding(final String encoding) {
         this.charset = encoding;
     }

@@ -16,6 +16,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class FinalSemicolonInTryWithResourcesCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public FinalSemicolonInTryWithResourcesCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[]{

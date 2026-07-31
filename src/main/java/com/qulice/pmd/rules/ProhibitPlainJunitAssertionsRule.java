@@ -27,6 +27,9 @@ public final class ProhibitPlainJunitAssertionsRule
         "junit.framework.Assert.assert",
     };
 
+    /**
+     * Default constructor.
+     */
     public ProhibitPlainJunitAssertionsRule() {
         super(
             ASTMethodDeclaration.class,

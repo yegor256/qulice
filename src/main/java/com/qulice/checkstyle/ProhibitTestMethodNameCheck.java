@@ -29,6 +29,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class ProhibitTestMethodNameCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public ProhibitTestMethodNameCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return this.getRequiredTokens();

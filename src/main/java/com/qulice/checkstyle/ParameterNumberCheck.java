@@ -23,6 +23,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class ParameterNumberCheck
     extends com.puppycrawl.tools.checkstyle.checks.sizes.ParameterNumberCheck {
 
+    /**
+     * Default constructor.
+     */
+    public ParameterNumberCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public void visitToken(final DetailAST ast) {
         if (ast.getType() != TokenTypes.CTOR_DEF

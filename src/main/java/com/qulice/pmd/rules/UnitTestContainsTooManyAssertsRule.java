@@ -54,6 +54,9 @@ public final class UnitTestContainsTooManyAssertsRule
         "fail"
     );
 
+    /**
+     * Default constructor.
+     */
     public UnitTestContainsTooManyAssertsRule() {
         super(ASTMethodDeclaration.class);
     }

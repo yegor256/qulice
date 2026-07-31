@@ -13,6 +13,13 @@ import java.util.Properties;
  */
 public final class EnforcerValidator implements MavenValidator {
 
+    /**
+     * Default constructor.
+     */
+    public EnforcerValidator() {
+        // nothing to initialize
+    }
+
     @Override
     public void validate(final MavenEnvironment env)
         throws ValidationException {

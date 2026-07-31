@@ -24,6 +24,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class ProhibitTestExpectedCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public ProhibitTestExpectedCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return this.getRequiredTokens();

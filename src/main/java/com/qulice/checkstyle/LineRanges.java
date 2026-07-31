@@ -21,7 +21,14 @@ public final class LineRanges {
     /**
      * Line ranges collected so far.
      */
-    private final Collection<LineRange> lines = new ArrayList<>(20);
+    private final Collection<LineRange> lines;
+
+    /**
+     * Default constructor.
+     */
+    public LineRanges() {
+        this.lines = new ArrayList<>(20);
+    }
 
     /**
      * Adds a line range to the collection.

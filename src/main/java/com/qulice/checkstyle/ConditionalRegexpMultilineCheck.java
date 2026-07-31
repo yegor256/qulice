@@ -17,9 +17,21 @@ public final class ConditionalRegexpMultilineCheck extends
     RegexpMultilineCheck {
 
     /**
+     * Condition that passes on any character.
+     */
+    private static final Pattern ANY = Pattern.compile("\\S|\\s");
+
+    /**
      * Condition that has to pass.
      */
-    private Pattern condition = Pattern.compile("\\S|\\s");
+    private Pattern condition;
+
+    /**
+     * Default constructor.
+     */
+    public ConditionalRegexpMultilineCheck() {
+        this.condition = ConditionalRegexpMultilineCheck.ANY;
+    }
 
     @Override
     public void processFiltered(final File file, final FileText lines) {

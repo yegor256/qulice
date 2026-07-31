@@ -24,6 +24,13 @@ import java.util.List;
  */
 public final class ConstructorsOrderCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public ConstructorsOrderCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

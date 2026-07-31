@@ -20,6 +20,13 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  */
 public final class NoJavadocForOverriddenMethodsCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public NoJavadocForOverriddenMethodsCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

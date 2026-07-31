@@ -52,6 +52,13 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
      */
     private static final String META = ".$|()[{^?*+\\";
 
+    /**
+     * Default constructor.
+     */
+    public SimpleStringSplitCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {TokenTypes.METHOD_CALL};

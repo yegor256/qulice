@@ -42,7 +42,14 @@ public final class MethodDeclarationLengthCheck extends AbstractCheck {
     /**
      * Maximum allowed length of the joined declaration, in characters.
      */
-    private int max = 80;
+    private int max;
+
+    /**
+     * Default constructor.
+     */
+    public MethodDeclarationLengthCheck() {
+        this.max = 80;
+    }
 
     /**
      * Configure the maximum allowed length.

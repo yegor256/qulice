@@ -34,12 +34,19 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
     /**
      * Keeps ClassDesc objects for stack of declared classes.
      */
-    private Deque<ClassDesc> classes = new ArrayDeque<>();
+    private Deque<ClassDesc> classes;
 
     /**
      * Full qualified name of the package.
      */
     private String pack;
+
+    /**
+     * Default constructor.
+     */
+    public ProhibitNonFinalClassesCheck() {
+        this.classes = new ArrayDeque<>();
+    }
 
     @Override
     public int[] getDefaultTokens() {

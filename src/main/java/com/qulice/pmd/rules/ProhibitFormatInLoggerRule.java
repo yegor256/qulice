@@ -30,6 +30,9 @@ public final class ProhibitFormatInLoggerRule
         Arrays.asList("trace", "debug", "info", "warn", "error")
     );
 
+    /**
+     * Default constructor.
+     */
     public ProhibitFormatInLoggerRule() {
         super(ASTMethodCall.class);
     }

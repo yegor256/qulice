@@ -43,14 +43,12 @@ public final class CheckMojo extends AbstractQuliceMojo {
     /**
      * Executors for validators.
      */
-    private final ExecutorService executors =
-        Executors.newFixedThreadPool(5);
+    private final ExecutorService executors;
 
     /**
-     * Provider of validators.
+     * Provider of validators, if it was set from the outside.
      */
-    private ValidatorsProvider provider =
-        new DefaultValidatorsProvider(this.env());
+    private ValidatorsProvider provider;
 
     /**
      * Check timeout.
@@ -62,6 +60,21 @@ public final class CheckMojo extends AbstractQuliceMojo {
      */
     @Parameter(property = "qulice.check-timeout", defaultValue = "10")
     private String timeout;
+
+    /**
+     * Default constructor.
+     */
+    public CheckMojo() {
+        this(Executors.newFixedThreadPool(5));
+    }
+
+    /**
+     * Primary constructor.
+     * @param svc Executors to run resource validators in
+     */
+    private CheckMojo(final ExecutorService svc) {
+        this.executors = svc;
+    }
 
     @Override
     public void doExecute() throws MojoFailureException {
@@ -100,10 +113,11 @@ public final class CheckMojo extends AbstractQuliceMojo {
     private void run() throws ValidationException {
         final List<Violation> results = new ArrayList<>(0);
         final MavenEnvironment env = this.env();
+        final ValidatorsProvider prov = this.validators(env);
         final Collection<File> files = env.files("*.*");
         if (!files.isEmpty()) {
             final Collection<Future<Collection<Violation>>> futures =
-                this.submit(env, files, this.provider.externalResource());
+                this.submit(env, files, prov.externalResource());
             for (final Future<Collection<Violation>> future : futures) {
                 try {
                     if ("forever".equalsIgnoreCase(this.timeout)) {
@@ -149,14 +163,29 @@ public final class CheckMojo extends AbstractQuliceMojo {
                 String.format("There are %d violations", results.size())
             );
         }
-        for (final Validator validator : this.provider.external()) {
+        for (final Validator validator : prov.external()) {
             Logger.info(this, "Starting %s validator", validator.name());
             validator.validate(env);
             Logger.info(this, "Finishing %s validator", validator.name());
         }
-        for (final MavenValidator validator : this.provider.internal()) {
+        for (final MavenValidator validator : prov.internal()) {
             validator.validate(env);
         }
+    }
+
+    /**
+     * Provider of validators, the one that was set or the default one.
+     * @param env Maven environment for the default provider
+     * @return The provider
+     */
+    private ValidatorsProvider validators(final MavenEnvironment env) {
+        final ValidatorsProvider prov;
+        if (this.provider == null) {
+            prov = new DefaultValidatorsProvider(env);
+        } else {
+            prov = this.provider;
+        }
+        return prov;
     }
 
     /**

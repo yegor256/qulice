@@ -32,6 +32,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class JavadocEmptyLineCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public JavadocEmptyLineCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

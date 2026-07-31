@@ -39,6 +39,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public final class IfThenThrowElseCheck extends AbstractCheck {
 
+    /**
+     * Default constructor.
+     */
+    public IfThenThrowElseCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return this.getRequiredTokens();

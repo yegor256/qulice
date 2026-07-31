@@ -37,6 +37,13 @@ public final class EmptyLineBeforeFirstMemberCheck extends AbstractCheck {
      */
     private static final Pattern BLANK = Pattern.compile("^\\s*$");
 
+    /**
+     * Default constructor.
+     */
+    public EmptyLineBeforeFirstMemberCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

@@ -29,6 +29,13 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
      */
     private static final int LINE_INDENT_DIFF = 4;
 
+    /**
+     * Default constructor.
+     */
+    public CascadeIndentationCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public void processFiltered(final File file, final FileText lines) {
         int previous = 0;

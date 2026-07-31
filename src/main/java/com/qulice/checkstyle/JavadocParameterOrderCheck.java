@@ -57,6 +57,13 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
      */
     private static final String NEXT_TAG = "@";
 
+    /**
+     * Default constructor.
+     */
+    public JavadocParameterOrderCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return new int[] {

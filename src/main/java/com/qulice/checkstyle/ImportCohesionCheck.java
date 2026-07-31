@@ -24,6 +24,13 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
      */
     private static final String IMPORT = "import ";
 
+    /**
+     * Default constructor.
+     */
+    public ImportCohesionCheck() {
+        // nothing to initialize
+    }
+
     @Override
     public void processFiltered(final File file, final FileText lines) {
         int first = -1;

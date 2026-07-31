@@ -32,7 +32,14 @@ public final class StaticAccessViaInstanceCheck extends AbstractCheck {
     /**
      * Stack of static member name sets, one per enclosing class-like scope.
      */
-    private final Deque<Set<String>> scopes = new ArrayDeque<>();
+    private final Deque<Set<String>> scopes;
+
+    /**
+     * Default constructor.
+     */
+    public StaticAccessViaInstanceCheck() {
+        this.scopes = new ArrayDeque<>();
+    }
 
     @Override
     public int[] getDefaultTokens() {
