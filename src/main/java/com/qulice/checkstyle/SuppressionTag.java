@@ -29,12 +29,8 @@ final class SuppressionTag {
     private final String check;
 
     /**
-     * Line of the comment, where the violation is reported.
-     */
-    private final int mark;
-
-    /**
-     * First line of the range the suppression influences.
+     * First line of the range the suppression influences, which is also
+     * the line of the comment where a violation about it is reported.
      */
     private final int first;
 
@@ -46,15 +42,11 @@ final class SuppressionTag {
     /**
      * Constructor.
      * @param check Name of the suppressed check
-     * @param mark Line of the comment
-     * @param first First line of the influence range
+     * @param first First line of the influence range, and of the comment
      * @param last Last line of the influence range
-     * @checkstyle ParameterNumber (3 lines)
      */
-    SuppressionTag(final String check, final int mark, final int first,
-        final int last) {
+    SuppressionTag(final String check, final int first, final int last) {
         this.check = check;
-        this.mark = mark;
         this.first = first;
         this.last = last;
     }
@@ -72,7 +64,7 @@ final class SuppressionTag {
      * @return Line number
      */
     int line() {
-        return this.mark;
+        return this.first;
     }
 
     /**

@@ -88,15 +88,13 @@ final class Suppressions implements Iterable<SuppressionTag> {
             while (enable.find()) {
                 final Integer start = open.remove(enable.group(1));
                 if (start != null) {
-                    tags.add(new SuppressionTag(enable.group(1), start, start, number));
+                    tags.add(new SuppressionTag(enable.group(1), start, number));
                 }
             }
         }
         for (final Map.Entry<String, Integer> entry : open.entrySet()) {
             tags.add(
-                new SuppressionTag(
-                    entry.getKey(), entry.getValue(), entry.getValue(), lines.size()
-                )
+                new SuppressionTag(entry.getKey(), entry.getValue(), lines.size())
             );
         }
         return tags.iterator();
@@ -115,7 +113,6 @@ final class Suppressions implements Iterable<SuppressionTag> {
             tags.add(
                 new SuppressionTag(
                     matcher.group(1),
-                    number,
                     number,
                     number + Integer.parseInt(matcher.group(2))
                 )
