@@ -59,7 +59,6 @@ final class RequiredJavaDocTag {
      * @param ptag Pattern for searching a tag in a string
      * @param patt Pattern for checking the contents of a tag in a string
      * @param rep Reference to a method for writing a message to the log
-     * @checkstyle ParameterNumberCheck (3 lines)
      */
     RequiredJavaDocTag(
         final String cname,

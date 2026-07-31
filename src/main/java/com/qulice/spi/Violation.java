@@ -96,7 +96,6 @@ public interface Violation extends Comparable<Violation> {
          * @param file Validated file
          * @param lns Lines with the problem
          * @param msg Validation message
-         * @checkstyle ParameterNumber (3 lines)
          */
         public Default(final String vldtr, final String name,
             final String file, final String lns, final String msg) {

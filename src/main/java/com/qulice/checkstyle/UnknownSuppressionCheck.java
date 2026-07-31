@@ -13,20 +13,16 @@ import java.util.regex.Pattern;
 /**
  * Checks that every {@code @checkstyle} suppression names an enabled check.
  *
- * <p>A comment like {@code @checkstyle LineLength (2 lines)} tells the
+ * <p>A comment like {@code @checkstyle LineLength (N lines)} tells the
  * suppression filters to ignore violations of {@code LineLength} nearby.
  * When the name belongs to no enabled check, because it is misspelled or
  * because the check has left {@code checks.xml} since, the comment
  * suppresses nothing and stays in the source as a lie about the code.
  * PMD reports the same mistake in {@code @SuppressWarnings} annotations.
+ * The other half, a suppression that names an enabled check but covers no
+ * violation of it, is reported by {@link UnusedSuppressions}.
  *
  * @since 1.0
- * @todo #1658:60min Report the suppressions that name an enabled check
- *  but cover no violation of it, the way PMD does with
- *  UnnecessaryWarningSuppression. Checkstyle reports no unused
- *  suppressions of its own, so CheckstyleValidator has to collect the
- *  events with the suppression filters removed and match the influence
- *  ranges itself, leaving alone the files that come from the cache.
  */
 public final class UnknownSuppressionCheck extends AbstractCheck {
 

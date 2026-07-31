@@ -13,7 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 /**
  * Tests for disabled rules.
  * @since 0.16
- * @checkstyle MethodsOrderCheck (77 lines)
  */
 final class PmdDisabledRulesTest {
 

@@ -105,6 +105,9 @@ public final class CheckstyleValidator implements ResourceValidator {
                     )
                 );
             }
+            results.addAll(
+                new UnusedSuppressions(this.env).validate(this.listener.processed())
+            );
         }
         return results;
     }

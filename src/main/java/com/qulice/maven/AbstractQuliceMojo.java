@@ -63,7 +63,6 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * List of xpath queries to validate pom.xml.
-     * @checkstyle IndentationCheck (5 lines)
      */
     @Parameter(
         property = "qulice.asserts",
@@ -154,7 +153,6 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     /**
      * Do the real execution.
      * @throws MojoFailureException If some failure inside
-     * @checkstyle NonStaticMethod (2 lines)
      */
     protected abstract void doExecute() throws MojoFailureException;
 

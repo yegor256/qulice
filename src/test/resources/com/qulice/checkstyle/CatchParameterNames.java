@@ -9,7 +9,6 @@ import java.util.concurrent.TimeoutException;
 /**
  * Simple.
  * @since 1.0
- * @checkstyle HiddenField (100 lines)
  */
 public final class CatchParameterNames {
 

@@ -51,7 +51,6 @@ final class ViolationMatcher extends TypeSafeMatcher<Violation> {
      * @param file File to check
      * @param line Line to check
      * @param check Check name
-     * @checkstyle ParameterNumber (3 lines)
      */
     ViolationMatcher(final String message, final String file,
         final String line, final String check) {
