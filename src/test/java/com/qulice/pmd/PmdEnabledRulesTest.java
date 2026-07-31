@@ -13,7 +13,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 /**
  * Tests for rules that PMD ships and Qulice enables.
  * @since 0.25.1
- * @checkstyle MethodsOrderCheck (40 lines)
  */
 final class PmdEnabledRulesTest {
 

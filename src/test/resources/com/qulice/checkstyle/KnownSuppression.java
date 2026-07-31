@@ -2,14 +2,15 @@
  * Hello.
  */
 // @checkstyle LineLengthCheck (2 lines)
-// This comment suppresses a check that checks.xml configures.
+// This algorithm is described in an intentionally very very very very very very very long sentence now.
+// @checkstyle LineLength (2 lines)
+// Another intentionally very very very very very very very very very very very very long line over here.
 package foo;
 
 /**
  * Sample class mentioning @checkstyle in prose and suppressing
- * a configured check by its short name.
+ * a configured check by its short name and by its full name.
  * @since 1.0
- * @checkstyle ParameterNumber (2 lines)
  */
 public interface KnownSuppression {
 }

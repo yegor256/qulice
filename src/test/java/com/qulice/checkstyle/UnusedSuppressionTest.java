@@ -15,41 +15,50 @@ import org.cactoos.text.IoCheckedText;
 import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test case for {@link CheckstyleValidator}'s handling of the
- * stock {@code CatchParameterName} check.
- * @since 0.25.1
+ * Test case for {@link CheckstyleValidator}'s handling of
+ * {@link UnusedSuppressions}.
+ * @since 1.0
  */
-final class CheckstyleCatchParameterNameTest {
+final class UnusedSuppressionTest {
 
     @Test
-    @SuppressWarnings("unchecked")
-    void distinguishesValidCatchParameterNames() throws Exception {
-        final String file = "CatchParameterNames.java";
-        final String name = "CatchParameterNameCheck";
+    void rejectsNearbySuppressionThatCoversNoViolation() throws Exception {
+        final String file = "UnusedSuppression.java";
         MatcherAssert.assertThat(
-            "All naming violations should be found",
+            "A nearby suppression of a check that never fires must be reported",
             this.runValidation(file, false),
-            Matchers.<Iterable<Violation>>allOf(
-                Matchers.iterableWithSize(4),
-                Matchers.hasItems(
-                    new ViolationMatcher(
-                        "Name 'ex_invalid_1' must match pattern", file, "26", name
-                    ),
-                    new ViolationMatcher(
-                        "Name '$xxx' must match pattern", file, "28", name
-                    ),
-                    new ViolationMatcher(
-                        "Name '_exp' must match pattern", file, "30", name
-                    ),
-                    new ViolationMatcher(
-                        "Name '$xxx' must match pattern", file, "28",
-                        "IllegalIdentifierNameCheck"
-                    )
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "This suppression covers no violation of \"LineLengthCheck\"",
+                    file, "4", "UnusedSuppressionCheck"
                 )
             )
+        );
+    }
+
+    @Test
+    void rejectsDisableSuppressionThatCoversNoViolation() throws Exception {
+        final String file = "UnusedDisableSuppression.java";
+        MatcherAssert.assertThat(
+            "A disable suppression of a check that never fires must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "This suppression covers no violation of \"LineLengthCheck\"",
+                    file, "4", "UnusedSuppressionCheck"
+                )
+            )
+        );
+    }
+
+    @Test
+    void acceptsSuppressionThatCoversAViolation() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("KnownSuppression.java", true)
         );
     }
 

@@ -31,11 +31,17 @@ final class CheckstyleListener implements AuditListener {
     private final List<AuditEvent> all;
 
     /**
+     * Files that Checkstyle actually processed, cache aside.
+     */
+    private final List<File> started;
+
+    /**
      * Public ctor.
      * @param environ The environment
      */
     CheckstyleListener(final Environment environ) {
         this.all = new ArrayList<>(0);
+        this.started = new ArrayList<>(0);
         this.env = environ;
     }
 
@@ -51,7 +57,7 @@ final class CheckstyleListener implements AuditListener {
 
     @Override
     public void fileStarted(final AuditEvent event) {
-        // intentionally empty
+        this.started.add(new File(event.getFileName()));
     }
 
     @Override
@@ -93,6 +99,15 @@ final class CheckstyleListener implements AuditListener {
      */
     List<AuditEvent> events() {
         return Collections.unmodifiableList(this.all);
+    }
+
+    /**
+     * Files that Checkstyle processed, leaving out those it took from
+     * its cache and never collected events for.
+     * @return List of files
+     */
+    List<File> processed() {
+        return Collections.unmodifiableList(this.started);
     }
 
     /**
