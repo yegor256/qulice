@@ -232,7 +232,8 @@ final class ChecksTest {
             "StaticAccessViaInstanceCheck",
             "SingleSpaceSeparatorCheck",
             "SimpleStringSplitCheck",
-            "ProhibitFieldsInTestClassesCheck"
+            "ProhibitFieldsInTestClassesCheck",
+            "ParameterNumberCheck"
         ).map(s -> String.format("ChecksTest/%s", s));
     }
 }
