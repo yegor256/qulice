@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 656.410502534
+  seconds: 566.044884475
   version: 0.61.1
   what: judges-summary
-  when: 2026-08-03 08:33:47.977437734 Z
+  when: 2026-08-04 08:13:19.259545633 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63001,17 +63001,17 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1065
+  assignees_were_scanned: 1321
   earliest_issue_was_found: 1
-  events_were_scanned: 16457056497
+  events_were_scanned: 16596360174
   issues_were_scanned: 867
-  labels_were_scanned: 673
+  labels_were_scanned: 843
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
   min_pull_was_found: 1538
   repository: 9580168
-  types_were_scanned: 1037
+  types_were_scanned: 1165
   what: iterate
   where: github
 - _id: 11295
@@ -66235,20 +66235,6 @@
   total_stars: 322
   what: dimensions-of-terrain
   when: 2026-07-31 08:24:40.913722693 Z
-- _id: 11497
-  _job: 84600
-  _time: 2026-07-31 08:25:24.369144014 Z
-  _version: 0.19.16/0.61.1/0.17.21
-  analyzers: 18
-  text: |-
-    The average number of builds per week (197.3) is staying still.
-    The average number of commits per week (11.1) is staying still.
-    The average issue cycle time (2w6d) is decreasing (R=-0.35).
-    The average pull cycle time (1w) is increasing (R=0.14).
-    The average number of releases per month (1.8) is staying still.
-    The average monthly turnover (34.0 developers) is increasing (R=0.73).
-  what: assessment
-  when: 2026-07-31 08:25:24.388820236 Z
 - _id: 11498
   _job: 30690621349
   _time: 2026-08-01 07:54:05.844188208 Z
@@ -67029,6 +67015,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 24387511
   details: yegor256/qulice#951 was assigned to @krzyk by @0crat.
+  is_human: 1
   issue: 951
   repository: 9580168
   what: issue-was-assigned
@@ -67041,6 +67028,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 24387511
   details: yegor256/qulice#953 was assigned to @krzyk by @0crat.
+  is_human: 1
   issue: 953
   repository: 9580168
   what: issue-was-assigned
@@ -67053,6 +67041,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 24387511
   details: yegor256/qulice#961 was assigned to @krzyk by @0crat.
+  is_human: 1
   issue: 961
   repository: 9580168
   what: issue-was-assigned
@@ -67065,6 +67054,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 24387511
   details: yegor256/qulice#963 was assigned to @krzyk by @0crat.
+  is_human: 1
   issue: 963
   repository: 9580168
   what: issue-was-assigned
@@ -67077,6 +67067,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 24387511
   details: yegor256/qulice#972 was assigned to @krzyk by @0crat.
+  is_human: 1
   issue: 972
   repository: 9580168
   what: issue-was-assigned
@@ -67089,6 +67080,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 24387511
   details: yegor256/qulice#977 was assigned to @krzyk by @0crat.
+  is_human: 1
   issue: 977
   repository: 9580168
   what: issue-was-assigned
@@ -67111,3 +67103,17 @@
   total_stars: 322
   what: dimensions-of-terrain
   when: 2026-08-03 08:33:31.460036501 Z
+- _id: 11556
+  _job: 84973
+  _time: 2026-08-03 08:34:17.436464582 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  analyzers: 18
+  text: |-
+    The average number of builds per week (197.3) is staying still.
+    The average number of commits per week (11.1) is staying still.
+    The average issue cycle time (2w5d) is decreasing (R=-0.38).
+    The average pull cycle time (1w) is increasing (R=0.12).
+    The average number of releases per month (1.8) is staying still.
+    The average monthly turnover (34.0 developers) is increasing (R=0.73).
+  what: assessment
+  when: 2026-08-03 08:34:17.457072046 Z
