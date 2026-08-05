@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 566.044884475
+  seconds: 757.665946742
   version: 0.61.1
   what: judges-summary
-  when: 2026-08-04 08:13:19.259545633 Z
+  when: 2026-08-05 08:17:05.209449147 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63001,17 +63001,17 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1321
+  assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 16596360174
+  events_were_scanned: 16663149180
   issues_were_scanned: 867
-  labels_were_scanned: 843
+  labels_were_scanned: 936
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
   min_pull_was_found: 1538
   repository: 9580168
-  types_were_scanned: 1165
+  types_were_scanned: 1527
   what: iterate
   where: github
 - _id: 11295
@@ -64160,7 +64160,7 @@
   total_releases_published: 1
   total_reviews_submitted: 1
   what: quantity-of-deliverables
-  when: 2026-07-28 08:04:27.879998325 Z
+  when: &140 2026-07-28 08:04:27.879998325 Z
 - _id: 11357
   _job: 30340693588
   _time: 2026-07-28 08:04:59.008524343 Z
@@ -64856,7 +64856,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   since: *139
   what: quality-of-service
-  when: 2026-07-29 08:14:16.628364439 Z
+  when: &141 2026-07-29 08:14:16.628364439 Z
 - _id: 11409
   _job: 30524693195
   _time: 2026-07-30 07:58:13.767814787 Z
@@ -67117,3 +67117,136 @@
     The average monthly turnover (34.0 developers) is increasing (R=0.73).
   what: assessment
   when: 2026-08-03 08:34:17.457072046 Z
+- _id: 11557
+  _job: 30987437366
+  _time: 2026-08-05 08:04:32.060444531 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  since: *140
+  total_builds_ran: 774
+  total_commits_pushed: 15
+  total_hoc_committed: 4199
+  total_issues_created: 27
+  total_pulls_submitted: 16
+  total_releases_published: 7
+  total_reviews_submitted: 11
+  what: quantity-of-deliverables
+  when: 2026-08-05 08:04:32.052398447 Z
+- _id: 11558
+  _job: 30987437366
+  _time: 2026-08-05 08:05:54.086952285 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1656 was assigned to @yegor256 by @yegor256.
+  issue: 1656
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-07-29 08:04:18.000000000 Z
+  where: github
+  who: 526301
+- _id: 11559
+  _job: 30987437366
+  _time: 2026-08-05 08:05:54.714837081 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1658 was assigned to @yegor256 by @yegor256.
+  issue: 1658
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-07-29 12:51:34.000000000 Z
+  where: github
+  who: 526301
+- _id: 11560
+  _job: 30987437366
+  _time: 2026-08-05 08:05:55.064768663 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1660 was assigned to @yegor256 by @yegor256.
+  issue: 1660
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-07-29 13:18:25.000000000 Z
+  where: github
+  who: 526301
+- _id: 11561
+  _job: 30987437366
+  _time: 2026-08-05 08:05:55.404454064 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1663 was assigned to @yegor256 by @yegor256.
+  issue: 1663
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-07-29 13:39:23.000000000 Z
+  where: github
+  who: 526301
+- _id: 11562
+  _job: 30987437366
+  _time: 2026-08-05 08:05:55.870550156 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1664 was assigned to @yegor256 by @yegor256.
+  issue: 1664
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-07-29 13:50:37.000000000 Z
+  where: github
+  who: 526301
+- _id: 11563
+  _job: 30987437366
+  _time: 2026-08-05 08:05:56.543589388 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1671 was assigned to @yegor256 by @yegor256.
+  issue: 1671
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-07-30 05:13:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 11564
+  _job: 30987437366
+  _time: 2026-08-05 08:05:57.194291027 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1676 was assigned to @yegor256 by @yegor256.
+  issue: 1676
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-07-31 11:31:30.000000000 Z
+  where: github
+  who: 526301
+- _id: 11565
+  _job: 30987437366
+  _time: 2026-08-05 08:05:57.641937915 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1677 was assigned to @yegor256 by @yegor256.
+  issue: 1677
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-07-31 11:33:28.000000000 Z
+  where: github
+  who: 526301
+- _id: 11566
+  _job: 30987437366
+  _time: 2026-08-05 08:16:40.258354421 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  total_active_contributors: 2
+  total_commits: 2623
+  total_contributors: 58
+  total_files: 729
+  total_forks: 123
+  total_issues: 891
+  total_pulls: 788
+  total_releases: 93
+  total_repositories: 1
+  total_stars: 322
+  what: dimensions-of-terrain
+  when: 2026-08-05 08:16:40.269268097 Z
+- _id: 11567
+  _job: 30987437366
+  _time: 2026-08-05 08:16:44.069449305 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  since: *141
+  what: quality-of-service
+  when: 2026-08-05 08:16:44.051937155 Z
