@@ -220,6 +220,7 @@ final class ChecksTest {
             "JavadocEmptyLineBeforeTagCheck",
             "JavadocCompactParagraphCheck",
             "JavadocFirstLineCheck",
+            "JavadocNoIndentCheck",
             "JavadocTagsCheck",
             "JavadocTagsDotCheck",
             "JavadocThrowsCheck",

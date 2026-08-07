@@ -74,7 +74,7 @@ final class UseStringIsEmptyRuleTest {
 
     /**
      * UseStringIsEmpty not detect when used String[].length, when checking for
-     *  empty string.
+     * empty string.
      * @throws Exception If something goes wrong.
      */
     @Test

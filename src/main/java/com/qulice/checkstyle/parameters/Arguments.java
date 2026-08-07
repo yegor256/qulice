@@ -52,7 +52,7 @@ public class Arguments {
 
     /**
      * Checks for consistency the order of arguments and their Javadoc
-     *  parameters.
+     * parameters.
      * @param tags Javadoc parameter tags
      * @param consumer Consumer accepts JavadocTag which is located out of
      *  order

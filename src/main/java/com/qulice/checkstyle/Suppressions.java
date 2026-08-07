@@ -21,12 +21,12 @@ import java.util.regex.Pattern;
  * influences:</p>
  *
  * <ul>
- *  <li>the {@code (N lines)} form covers the {@code N} lines that follow
- *  the comment, the way {@code SuppressWithNearbyCommentFilter} and
- *  {@code SuppressWithNearbyTextFilter} read it;</li>
- *  <li>a {@code disable} comment opens a range that the matching
- *  {@code enable} comment closes, or the end of the file does, the way
- *  {@code SuppressWithPlainTextCommentFilter} reads it.</li>
+ * <li>the {@code (N lines)} form covers the {@code N} lines that follow
+ * the comment, the way {@code SuppressWithNearbyCommentFilter} and
+ * {@code SuppressWithNearbyTextFilter} read it;</li>
+ * <li>a {@code disable} comment opens a range that the matching
+ * {@code enable} comment closes, or the end of the file does, the way
+ * {@code SuppressWithPlainTextCommentFilter} reads it.</li>
  * </ul>
  *
  * <p>A tag inside a string or character literal is left alone, since it is
