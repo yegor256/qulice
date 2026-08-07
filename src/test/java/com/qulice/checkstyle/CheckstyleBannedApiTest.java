@@ -89,7 +89,7 @@ final class CheckstyleBannedApiTest {
         final String message =
             "Unnecessary java.lang. prefix, use the simple class name";
         final String file = "UnnecessaryJavaLang.java";
-        final String name = "RegexpSinglelineCheck";
+        final String name = "UnnecessaryJavaLangCheck";
         MatcherAssert.assertThat(
             "cannot find all java.lang. violations",
             this.runValidation(file, false),
@@ -98,6 +98,25 @@ final class CheckstyleBannedApiTest {
                 new ViolationMatcher(message, file, "18", name),
                 new ViolationMatcher(message, file, "23", name),
                 new ViolationMatcher(message, file, "25", name)
+            )
+        );
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    void ignoresJavaLangInsideStringLiterals() throws Exception {
+        final String message =
+            "Unnecessary java.lang. prefix, use the simple class name";
+        final String file = "UnnecessaryJavaLang.java";
+        final String name = "UnnecessaryJavaLangCheck";
+        MatcherAssert.assertThat(
+            "java.lang. inside a string literal or text block must be ignored",
+            this.runValidation(file, false),
+            Matchers.not(
+                Matchers.anyOf(
+                    Matchers.hasItem(new ViolationMatcher(message, file, "43", name)),
+                    Matchers.hasItem(new ViolationMatcher(message, file, "52", name))
+                )
             )
         );
     }

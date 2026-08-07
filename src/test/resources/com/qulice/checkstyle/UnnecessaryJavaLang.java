@@ -34,4 +34,22 @@ public final class UnnecessaryJavaLang {
         final Method method = null;
         return this.name.length() + System.identityHashCode(method);
     }
+
+    /**
+     * Xpath query used as test data.
+     * @return Query string
+     */
+    public String xpath() {
+        return "op/name[text() = 'java.lang.String.length']";
+    }
+
+    /**
+     * Xpath query kept in a text block.
+     * @return Query string
+     */
+    public String snippet() {
+        return """
+            op/name[text() = 'java.lang.String.length']
+            """;
+    }
 }
