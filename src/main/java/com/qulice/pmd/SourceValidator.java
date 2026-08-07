@@ -73,6 +73,7 @@ final class SourceValidator {
             report.getConfigurationErrors().stream()
                 .map(PmdError.OfConfigError::new).forEach(errors::add);
             report.getProcessingErrors().stream()
+                .filter(this::reportable)
                 .map(PmdError.OfProcessingError::new).forEach(errors::add);
             report.getViolations().stream()
                 .filter(violation -> !SourceValidator.suppressesItself(violation))
@@ -80,6 +81,55 @@ final class SourceValidator {
                 .forEach(errors::add);
         }
         return errors;
+    }
+
+    /**
+     * Tells whether a processing error should be reported as a violation.
+     * Some PMD rules crash internally with an {@link IllegalStateException}
+     * while analyzing perfectly valid Java. For example {@code
+     * UseDiamondOperator} throws {@code "overload resolution is not
+     * complete"} when it probes an overloaded method reference such as
+     * {@code BigDecimal::multiply} (see #1686). PMD itself only logs such a
+     * crash as a warning and keeps going, so it is a bug in the tool, not a
+     * problem in the code under analysis. We do the same here: log it as a
+     * warning and do not turn it into a build-breaking violation, since the
+     * user cannot fix it in their code. The full stack trace is logged too,
+     * so the crash can still be diagnosed and reported upstream.
+     * @param error The processing error to inspect
+     * @return True if it must be reported, false if it is an internal crash
+     */
+    private boolean reportable(final Report.ProcessingError error) {
+        final boolean crash = SourceValidator.crashed(error.getError());
+        if (crash) {
+            Logger.warn(
+                this,
+                "PMD rule crashed on %s and was ignored: %s%n%s",
+                error.getFileId().getAbsolutePath(),
+                error.getMsg(),
+                error.getDetail()
+            );
+        }
+        return !crash;
+    }
+
+    /**
+     * Tells whether a throwable is (or was caused by) an internal PMD rule
+     * crash, recognized by an {@link IllegalStateException} anywhere in its
+     * cause chain.
+     * @param error The throwable to inspect
+     * @return True if the cause chain contains an IllegalStateException
+     */
+    private static boolean crashed(final Throwable error) {
+        boolean crash = false;
+        Throwable cause = error;
+        while (cause != null) {
+            if (cause instanceof IllegalStateException) {
+                crash = true;
+                break;
+            }
+            cause = cause.getCause();
+        }
+        return crash;
     }
 
     /**

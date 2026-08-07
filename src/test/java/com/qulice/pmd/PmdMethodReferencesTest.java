@@ -25,4 +25,15 @@ final class PmdMethodReferencesTest {
             )
         ).assertOk();
     }
+
+    @Test
+    void ignoresRuleCrashOnMethodReference() throws Exception {
+        new PmdAssert(
+            "UseDiamondOperatorMethodRef.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString("(ProcessingError)")
+            )
+        ).assertOk();
+    }
 }
