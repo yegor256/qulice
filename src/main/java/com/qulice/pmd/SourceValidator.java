@@ -93,7 +93,8 @@ final class SourceValidator {
      * crash as a warning and keeps going, so it is a bug in the tool, not a
      * problem in the code under analysis. We do the same here: log it as a
      * warning and do not turn it into a build-breaking violation, since the
-     * user cannot fix it in their code.
+     * user cannot fix it in their code. The full stack trace is logged too,
+     * so the crash can still be diagnosed and reported upstream.
      * @param error The processing error to inspect
      * @return True if it must be reported, false if it is an internal crash
      */
@@ -102,9 +103,10 @@ final class SourceValidator {
         if (crash) {
             Logger.warn(
                 this,
-                "PMD rule crashed on %s and was ignored: %s",
+                "PMD rule crashed on %s and was ignored: %s%n%s",
                 error.getFileId().getAbsolutePath(),
-                error.getMsg()
+                error.getMsg(),
+                error.getDetail()
             );
         }
         return !crash;
