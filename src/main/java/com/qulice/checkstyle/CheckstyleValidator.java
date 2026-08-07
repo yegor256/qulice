@@ -7,6 +7,7 @@ package com.qulice.checkstyle;
 import com.jcabi.log.Logger;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -40,6 +41,22 @@ public final class CheckstyleValidator implements ResourceValidator {
         "mf", "sh", "sql", "tokens", "g", "spec", "css", "csv", "js", "json",
         "md", "yml", "yaml", "gradle", "dtd", "scss", "html"
     );
+
+    /**
+     * Checks that suggest fixes relying on Java language features not
+     * available under {@code -source 8}/{@code -target 8} (and other
+     * pre-14 levels). Such a check must be stripped from the configuration
+     * when the project targets an older Java, otherwise it recommends code
+     * that fails to compile. {@code UseEnhancedSwitch} suggests arrow-switch
+     * syntax, which is a Java 14+ feature (see #1694).
+     */
+    private static final Set<String> MODERN = Set.of("UseEnhancedSwitch");
+
+    /**
+     * The minimum Java source level at which the {@link #MODERN} checks are
+     * applicable. Below this, they are removed from the configuration.
+     */
+    private static final int MINIMUM = 14;
 
     /**
      * Checkstyle checker.
@@ -183,6 +200,79 @@ public final class CheckstyleValidator implements ResourceValidator {
         } catch (final CheckstyleException | java.io.IOException ex) {
             throw new IllegalStateException("Failed to load config", ex);
         }
+        if (this.level() < CheckstyleValidator.MINIMUM) {
+            CheckstyleValidator.strip(config, CheckstyleValidator.MODERN);
+        }
         return config;
+    }
+
+    /**
+     * The effective Java source level of the project under validation.
+     *
+     * <p>Reads {@code maven.compiler.release} first and then falls back to
+     * {@code maven.compiler.source}, accepting both the modern ({@code "8"},
+     * {@code "17"}) and the legacy ({@code "1.8"}) forms. When neither is
+     * known, a value below {@link #MINIMUM} is returned, so that checks
+     * requiring newer language features are disabled by default rather than
+     * risking a suggestion that breaks the build.
+     *
+     * @return The source level, e.g. {@code 8}, {@code 17}, {@code 21}
+     */
+    private int level() {
+        int level = CheckstyleValidator.parse(
+            this.env.param("maven.compiler.release", "")
+        );
+        if (level < 0) {
+            level = CheckstyleValidator.parse(
+                this.env.param("maven.compiler.source", "")
+            );
+        }
+        final int result;
+        if (level < 0) {
+            result = CheckstyleValidator.MINIMUM - 1;
+        } else {
+            result = level;
+        }
+        return result;
+    }
+
+    /**
+     * Parse a Java version string into its major number.
+     * @param value Version, e.g. {@code "8"}, {@code "1.8"} or {@code "17"}
+     * @return The major version, or {@code -1} if it cannot be parsed
+     */
+    private static int parse(final String value) {
+        int result = -1;
+        if (value != null) {
+            String txt = value.trim();
+            if (txt.startsWith("1.")) {
+                txt = txt.substring(2);
+            }
+            try {
+                result = Integer.parseInt(txt);
+            } catch (final NumberFormatException ex) {
+                result = -1;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Remove, recursively and in place, the modules with the given names
+     * from a configuration tree.
+     * @param config Configuration to strip
+     * @param names Simple names of the modules to remove
+     */
+    private static void strip(final Configuration config,
+        final Set<String> names) {
+        for (final Configuration child : config.getChildren()) {
+            final String name = child.getName();
+            final String simple = name.substring(name.lastIndexOf('.') + 1);
+            if (names.contains(simple)) {
+                ((DefaultConfiguration) config).removeChild(child);
+            } else {
+                CheckstyleValidator.strip(child, names);
+            }
+        }
     }
 }

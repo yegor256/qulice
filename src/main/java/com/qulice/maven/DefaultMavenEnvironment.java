@@ -89,6 +89,9 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     public String param(final String name, final String value) {
         String ret = this.iproperties.getProperty(name);
+        if (ret == null && this.iproject != null) {
+            ret = this.iproject.getProperties().getProperty(name);
+        }
         if (ret == null) {
             ret = value;
         }
