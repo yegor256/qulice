@@ -231,18 +231,23 @@
   <!--
   UseDiamondOperator suggests replacing explicit constructor type
   arguments with a diamond '<>', but PMD only reports where it believes
-  the diamond is a compilable replacement, and its inference diverges
-  from javac's in three shapes seen in cactoos: a constructor whose
-  arguments include an implicitly-typed lambda (javac loses the wildcard
-  capture that flows through the lambda), a constructor whose arguments
-  include a method reference (the diamond makes an overloaded constructor
-  ambiguous), and a constructor that is the body of a lambda (its target
-  type is an as-yet-uninferred type variable, so the diamond cannot be
-  pinned). In all three the explicit type arguments are the only thing
-  that makes inference succeed, so the advice is impossible to follow.
-  The violationSuppressXPath below skips those three shapes and keeps the
-  rule for the plain case, such as 'new ArrayList<String>()'. This is the
-  PMD 7 successor of #1242.
+  the diamond is a compilable replacement, and it reports four shapes
+  where the replacement does not compile. Three are javac inference
+  divergences seen in cactoos: a constructor whose arguments include an
+  implicitly-typed lambda (javac loses the wildcard capture that flows
+  through the lambda), a constructor whose arguments include a method
+  reference (the diamond makes an overloaded constructor ambiguous), and
+  a constructor that is the body of a lambda (its target type is an
+  as-yet-uninferred type variable, so the diamond cannot be pinned); in
+  all three the explicit type arguments are the only thing that makes
+  inference succeed. The fourth is an anonymous class instantiation, such
+  as 'new Supplier<String>() { ... }': '<>' on an anonymous class body is
+  only legal at source level 9+, so the advice breaks the '-source 8'
+  builds that qulice/jcabi-parent projects commonly target. The
+  violationSuppressXPath below skips those four shapes and keeps the rule
+  for the plain case, such as 'new ArrayList<String>()'. This is the PMD 7
+  successor of #1242.
+  Downstream: https://github.com/yegor256/qulice/issues/1690
   Downstream: https://github.com/yegor256/qulice/issues/1685
   Downstream: https://github.com/yegor256/qulice/issues/1242
   -->
@@ -254,6 +259,7 @@
             ../../ArgumentList/LambdaExpression[@ExplicitlyTyped = false()]
             or ../../ArgumentList/MethodReference
             or ../../parent::LambdaExpression
+            or ../../AnonymousClassDeclaration
           ]
         ]]></value>
       </property>

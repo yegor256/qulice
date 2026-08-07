@@ -33,4 +33,15 @@ final class PmdUseDiamondOperatorTest {
             )
         ).assertOk();
     }
+
+    @Test
+    void allowsExplicitTypeArgumentsOnAnonymousClass() throws Exception {
+        new PmdAssert(
+            "UseDiamondOperatorAnonymous.java",
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString("(UseDiamondOperator)")
+            )
+        ).assertOk();
+    }
 }
