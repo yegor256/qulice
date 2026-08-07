@@ -102,10 +102,30 @@ public final class MethodBodyCommentsCheck extends AbstractCheck {
             final String line = lines[pos].trim();
             if (line.startsWith("//") || line.startsWith("/*")) {
                 final String comment = line.substring(2).trim();
-                if (!comment.startsWith("@checkstyle") && !oneliner) {
+                if (!comment.startsWith("@checkstyle") && !oneliner
+                    && !MethodBodyCommentsCheck.alone(lines, pos)) {
                     this.log(pos + 1, "Comments in method body are prohibited");
                 }
             }
         }
+    }
+
+    /**
+     * Is the comment on the given line the only line inside its
+     * immediately enclosing braces?
+     *
+     * <p>A comment sitting alone between an opening and a closing brace
+     * documents an otherwise empty block. Some Checkstyle modules, such
+     * as {@code EmptyCatchBlock}, require exactly such a comment, so it
+     * must not be reported as a prohibited in-body comment.
+     *
+     * @param lines All lines of the file being checked
+     * @param pos Zero-based index of the comment line
+     * @return TRUE if the comment is alone between its enclosing braces
+     */
+    private static boolean alone(final String[] lines, final int pos) {
+        return pos > 0 && pos + 1 < lines.length
+            && lines[pos - 1].trim().endsWith("{")
+            && lines[pos + 1].trim().startsWith("}");
     }
 }
