@@ -6,12 +6,14 @@ package com.qulice.pmd.rules;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.IntStream;
 import net.sourceforge.pmd.lang.ast.Node;
 import net.sourceforge.pmd.lang.java.ast.ASTAmbiguousName;
 import net.sourceforge.pmd.lang.java.ast.ASTBlock;
 import net.sourceforge.pmd.lang.java.ast.ASTClassType;
 import net.sourceforge.pmd.lang.java.ast.ASTConstructorCall;
 import net.sourceforge.pmd.lang.java.ast.ASTExpression;
+import net.sourceforge.pmd.lang.java.ast.ASTFieldAccess;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodCall;
 import net.sourceforge.pmd.lang.java.ast.ASTTypeExpression;
 import net.sourceforge.pmd.lang.java.ast.ASTVariableAccess;
@@ -89,24 +91,34 @@ final class UnnecessaryLocalSkips {
     }
 
     /**
-     * The initialiser is a method call and at least one statement sits between
-     * the declaration and its single use in the same block. A call whose result
-     * is read only after other statements cannot be inlined without reordering
-     * side effects, so the local is pinning evaluation order and must stay.
+     * A statement intervenes between the local's declaration and its single
+     * use, so the local is pinning evaluation order and must stay. When the
+     * initialiser is a method call, any intervening statement is enough - the
+     * call's result cannot be read out of order without reordering side
+     * effects. When the initialiser is a field access (e.g. {@code
+     * System.out}), only an intervening call on the <em>same</em> qualifier
+     * (e.g. {@code System.setOut(...)}) counts, since such a call may reassign
+     * the field before it is read; an unrelated statement leaves the read
+     * inlinable. See issues #1607 and #1710.
      * @param variable The variable declarator
      * @param use The single use of the variable
-     * @return True if a statement intervenes between the call and its use
+     * @return True if a statement intervenes between init and its use
      */
     static boolean interveningCall(
         final ASTVariableDeclarator variable,
         final ASTVariableAccess use
     ) {
-        boolean found = false;
-        if (variable.getInitializer() instanceof ASTMethodCall) {
+        final ASTExpression init = variable.getInitializer();
+        final boolean found;
+        if (init instanceof ASTMethodCall) {
             final Node decl = UnnecessaryLocalSkips.blockLevel(variable);
             final Node consumer = UnnecessaryLocalSkips.blockLevel(use);
             found = UnnecessaryLocalSkips.sameBlock(decl, consumer)
                 && consumer.getIndexInParent() > decl.getIndexInParent() + 1;
+        } else if (init instanceof ASTFieldAccess access) {
+            found = UnnecessaryLocalSkips.callsQualifier(variable, use, access);
+        } else {
+            found = false;
         }
         return found;
     }
@@ -115,6 +127,48 @@ final class UnnecessaryLocalSkips {
         return first != null && second != null
             && first.getParent() instanceof ASTBlock
             && first.getParent().equals(second.getParent());
+    }
+
+    private static boolean callsQualifier(
+        final ASTVariableDeclarator variable,
+        final ASTVariableAccess use,
+        final ASTFieldAccess access
+    ) {
+        boolean found = false;
+        final ASTBlock block = variable.ancestors(ASTBlock.class).first();
+        final String qualifier = UnnecessaryLocalSkips.qualifierImage(
+            access.getQualifier()
+        );
+        if (block != null && qualifier != null) {
+            final Node decl = UnnecessaryLocalSkips.childOf(block, variable);
+            final Node consumer = UnnecessaryLocalSkips.childOf(block, use);
+            if (decl != null && consumer != null) {
+                found = IntStream.range(
+                    decl.getIndexInParent() + 1, consumer.getIndexInParent()
+                ).anyMatch(
+                    idx -> UnnecessaryLocalSkips.calls(
+                        block.getChild(idx), qualifier
+                    )
+                );
+            }
+        }
+        return found;
+    }
+
+    private static boolean calls(final Node stmt, final String qualifier) {
+        return stmt.descendants(ASTMethodCall.class).toStream().anyMatch(
+            call -> qualifier.equals(
+                UnnecessaryLocalSkips.qualifierImage(call.getQualifier())
+            )
+        );
+    }
+
+    private static Node childOf(final ASTBlock block, final Node inner) {
+        Node current = inner;
+        while (current != null && !block.equals(current.getParent())) {
+            current = current.getParent();
+        }
+        return current;
     }
 
     private static boolean freshStateCall(final ASTMethodCall call) {
