@@ -86,6 +86,15 @@ final class UnnecessaryLocalRuleTest {
     }
 
     @Test
+    void doesNotFireWhenFieldAccessQualifierIsMutated() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should not fire when a later call mutates the field-access initialiser's qualifier",
+            this.violations("UnnecessaryLocalCapturedFieldAccess.java"),
+            Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
+        );
+    }
+
+    @Test
     void doesNotFireWhenLocalCapturedBeforeUnrelatedCall() throws Exception {
         MatcherAssert.assertThat(
             "UnnecessaryLocalRule should not fire when the local pins evaluation order before an unrelated side-effecting call",
