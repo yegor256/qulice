@@ -218,6 +218,7 @@ final class ChecksTest {
             "ConstantUsageCheck",
             "JavadocEmptyLineCheck",
             "JavadocEmptyLineBeforeTagCheck",
+            "JavadocCompactParagraphCheck",
             "JavadocFirstLineCheck",
             "JavadocTagsCheck",
             "JavadocTagsDotCheck",
