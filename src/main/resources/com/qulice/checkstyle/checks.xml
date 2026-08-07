@@ -255,6 +255,17 @@
       <property name="checkMethods" value="true"/>
       <property name="validateOnlyOverlapping" value="false"/>
     </module>
+    <!--
+    This check and ErrorProne's 'OperatorPrecedence' pull in opposite
+    directions on a boolean expression that mixes '&&' and '||':
+    'OperatorPrecedence' wants grouping parentheses around the '&&'
+    operands, e.g. '(a && b) || (c && d)', while this check flags those
+    same parentheses as unnecessary, since '&&' already binds tighter
+    than '||'. No form of the code satisfies both. Qulice keeps this
+    check as the single arbiter and disables 'OperatorPrecedence' in
+    ErrorProneValidator, so the paren-free form passes. See
+    https://github.com/yegor256/qulice/issues/1705.
+    -->
     <module name="UnnecessaryParentheses"/>
     <module name="OneStatementPerLine"/>
     <!-- Checks for imports. -->

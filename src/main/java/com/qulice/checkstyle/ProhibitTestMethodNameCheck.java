@@ -116,7 +116,6 @@ public final class ProhibitTestMethodNameCheck extends AbstractCheck {
      * @return True if it starts with {@code should} or with {@code test}
      *  but not with {@code tests}
      */
-    @SuppressWarnings("OperatorPrecedence")
     private static boolean startsWithForbidden(final String name) {
         return startsWithWord(name, "should")
             || startsWithWord(name, "test") && !startsWithWord(name, "tests");

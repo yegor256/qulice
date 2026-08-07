@@ -203,7 +203,6 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
      * @param chr Character to test
      * @return True if ASCII letter
      */
-    @SuppressWarnings("OperatorPrecedence")
     private static boolean isAsciiLetter(final char chr) {
         return chr >= 'a' && chr <= 'z'
             || chr >= 'A' && chr <= 'Z';
