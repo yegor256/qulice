@@ -243,7 +243,7 @@ public final class CheckstyleValidator implements ResourceValidator {
      */
     private static int parse(final String value) {
         int result = -1;
-        if (value != null && !value.trim().isEmpty()) {
+        if (value != null) {
             String txt = value.trim();
             if (txt.startsWith("1.")) {
                 txt = txt.substring(2);
