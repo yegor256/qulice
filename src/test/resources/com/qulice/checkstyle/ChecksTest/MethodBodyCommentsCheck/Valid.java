@@ -68,6 +68,17 @@ public final class Valid {
             }
         });
     }
+    /**
+     * Empty catch block documented by a single comment, as required by
+     * checkstyle's EmptyCatchBlock module.
+     */
+    public void emptyCatch() {
+        try {
+            this.accept(this.server.accept());
+        } catch (final SocketTimeoutException ignored) {
+            // timeout is expected, the loop continues
+        }
+    }
 }
 
 /**

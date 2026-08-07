@@ -38,4 +38,13 @@ public final class Invalid {
             }
         };
     }
+
+    void nonEmptyCatch() {
+        try {
+            this.run();
+        } catch (final RuntimeException ex) {
+            // recover from the failure
+            this.recover();
+        }
+    }
 }
