@@ -17,9 +17,7 @@ import org.cactoos.text.UncheckedText;
  * Checks that classes are declared as final. Doesn't check for classes nested
  *  in interfaces or annotations, as they are always {@code final} there.
  *
- * <p>
- * An example of how to configure the check is:
- * </p>
+ * <p>An example of how to configure the check is:</p>
  * <pre>
  * &lt;module name="ProhibitNonFinalClassesCheck"/&gt;
  * </pre>

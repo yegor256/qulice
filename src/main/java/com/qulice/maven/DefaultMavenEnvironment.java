@@ -306,7 +306,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
      * live under the project's build directory (e.g.
      * {@code target/generated-sources/...}) are filtered out, since those
      * are generated build outputs and not user-authored code (issue #1560).
-     * </p>
      *
      * @return Absolute directories to scan for files
      */

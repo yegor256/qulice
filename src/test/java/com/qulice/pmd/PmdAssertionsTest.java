@@ -26,8 +26,7 @@ final class PmdAssertionsTest {
      * import static org.junit.Assert.assert* import static
      * junit.framework.Assert.assert*.
      *
-     * <p>
-     * Custom Rule {@link ProhibitPlainJunitAssertionsRule}
+     * <p>Custom Rule {@link ProhibitPlainJunitAssertionsRule}
      *
      * @throws Exception If something wrong happens inside.
      */
@@ -46,8 +45,7 @@ final class PmdAssertionsTest {
      * PmdValidator can prohibit plain JUnit assertion in test methods like
      * Assert.assertEquals.
      *
-     * <p>
-     * Custom Rule {@link ProhibitPlainJunitAssertionsRule}
+     * <p>Custom Rule {@link ProhibitPlainJunitAssertionsRule}
      *
      * @throws Exception If something wrong happens inside.
      */
@@ -65,8 +63,7 @@ final class PmdAssertionsTest {
     /**
      * PmdValidator can allow Assert.fail().
      *
-     * <p>
-     * Custom Rule {@link ProhibitPlainJunitAssertionsRule}
+     * <p>Custom Rule {@link ProhibitPlainJunitAssertionsRule}
      *
      * @throws Exception If something wrong happens inside.
      */
