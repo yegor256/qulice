@@ -431,6 +431,18 @@
     <module name="com.qulice.checkstyle.EmptyLineBeforeFirstMemberCheck"/>
     <module name="com.qulice.checkstyle.StringLiteralsConcatenationCheck"/>
     <module name="com.qulice.checkstyle.ProhibitLineSeparatorInStringsCheck"/>
+    <!--
+    Classes from the 'java.lang' package are imported implicitly,
+    so the 'java.lang.' prefix is redundant in both code and Javadoc.
+    Unlike a plain line regexp, this check skips the substring when it
+    appears inside a string literal or text block, where it is data
+    rather than a type reference.
+    See https://github.com/yegor256/qulice/issues/690
+    and https://github.com/yegor256/qulice/issues/1703
+    -->
+    <module name="com.qulice.checkstyle.UnnecessaryJavaLangCheck">
+      <property name="id" value="UnnecessaryJavaLang"/>
+    </module>
     <module name="com.qulice.checkstyle.MultilineJavadocTagsCheck"/>
     <module name="com.qulice.checkstyle.NoJavadocForOverriddenMethodsCheck"/>
     <module name="com.qulice.checkstyle.MethodBodyCommentsCheck"/>
@@ -733,17 +745,6 @@
     <property name="message" value="Lists.newArrayList should be initialized with a size parameter"/>
     <property name="id" value="GuavaNewArrayListShouldBeInitWithSize"/>
     <property name="fileExtensions" value="java"/>
-  </module>
-  <!--
-  Classes from the 'java.lang' package are imported implicitly,
-  so the 'java.lang.' prefix is redundant in both code and Javadoc.
-  See https://github.com/yegor256/qulice/issues/690
-  -->
-  <module name="RegexpSingleline">
-    <property name="format" value="\bjava\.lang\.[A-Z]"/>
-    <property name="fileExtensions" value="java"/>
-    <property name="id" value="UnnecessaryJavaLang"/>
-    <property name="message" value="Unnecessary 'java.lang.' prefix, use the simple class name"/>
   </module>
   <!--
   Checks below complete the coverage of Checkstyle 13.9.0. Every module
