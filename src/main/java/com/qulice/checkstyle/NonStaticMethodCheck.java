@@ -18,11 +18,11 @@ import java.util.regex.Pattern;
  * <p>If your method doesn't need {@code this} than why it is not
  * {@code static}?
  *
- * The exception here is when method has {@code @Override} annotation. There's
+ * <p>The exception here is when method has {@code @Override} annotation. There's
  * no concept of inheritance and polymorphism for static methods even if they
  * don't need {@code this} to perform the actual work.
  *
- * Another exception is when method is {@code abstract} or {@code native}.
+ * <p>Another exception is when method is {@code abstract} or {@code native}.
  * Such methods don't have body so detection based on {@code this} doesn't
  * make sense for them.
  *

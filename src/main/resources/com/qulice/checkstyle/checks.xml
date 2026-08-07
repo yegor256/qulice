@@ -493,6 +493,7 @@
     <module name="JavadocContentLocation"/>
     <module name="JavadocLeadingAsteriskAlign"/>
     <module name="JavadocMissingLeadingAsterisk"/>
+    <module name="JavadocParagraph"/>
     <module name="LambdaParameterName"/>
     <module name="MissingJavadocPackage"/>
     <module name="MissingJavadocType"/>
@@ -670,10 +671,6 @@
     </module>
     <module name="JavadocMissingWhitespaceAfterAsterisk">
       <!-- 1 violation -->
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="JavadocParagraph">
-      <!-- 16 violations -->
       <property name="severity" value="ignore"/>
     </module>
     <module name="MagicNumber">

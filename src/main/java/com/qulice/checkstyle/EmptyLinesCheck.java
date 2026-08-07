@@ -19,7 +19,7 @@ import java.util.stream.StreamSupport;
  * your code and make it more cohesive and readable. The bottom line is
  * that every method should look solid and do just <b>one thing</b>.
  *
- * This class is not thread safe. It builds a list of line ranges by visiting
+ * <p>This class is not thread safe. It builds a list of line ranges by visiting
  * each method definition and each anonymous inner type, keeps them in
  * instance fields until finishTree() reports and clears them, so a single
  * instance must not be shared between threads.

@@ -22,7 +22,7 @@ import java.util.List;
  * };
  * </pre>
  *
- * or
+ * <p>or
  *
  * <pre>
  * String[] array = new String[] {"first", "second"};

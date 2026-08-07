@@ -18,17 +18,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  *     private List&lt;Number&gt; numbers = new ArrayList&lt;Integer&gt;(); // error
  * </pre>
+ *
  * <p>will return compilation error (because <code>ArrayList&lt;Integer&gt;</code> is not
  * a subclass of <code>List&lt;Number&gt;</code>).</p>
+ *
  * <p>Hence, the only possible way to create a generic instance is copying type arguments from
  * the variable declaration.</p>
  * <pre>
  *     private List&lt;Number&gt; numbers = new ArrayList&lt;Number&gt;();
  * </pre>
+ *
  * <p>In that case, Diamond Operator should always be used.</p>
  * <pre>
  *     private List&lt;Number&gt; numbers = new ArrayList&lt;&gt;();
  * </pre>
+ *
  * <p>Exceptions to the rule above are wildcards, with them it's possible
  * to have different type parameters for left and right parts of variable declaration.</p>
  * <pre>
@@ -36,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     private List&lt;? extends Number&gt; numbers = new ArrayList&lt;Integer&gt;();
  *     private List&lt;? super Integer&gt; list = new ArrayList&lt;Number&gt;();
  *</pre>
+ *
  * <p>Although, this is not considered as good codestyle,
  * so it's better to use diamond operator here either.</p>
  *

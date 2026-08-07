@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Checks the order of methods declaration.
  *
- * Right order is: public, protected and private
+ * <p>Right order is: public, protected and private
  *
  * @since 0.6
  */
