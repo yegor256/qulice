@@ -83,4 +83,38 @@ final class ErrorProneValidatorTest {
             Matchers.<Violation>empty()
         );
     }
+
+    @Test
+    void doesNotFlagMixedBooleanOperators() throws Exception {
+        final String file = "src/main/java/com/qulice/Mixed.java";
+        final Environment env = new Environment.Mock().withFile(
+            file,
+            String.join(
+                System.lineSeparator(),
+                "package com.qulice;",
+                "/**",
+                " * Sample.",
+                " * @since 1.0",
+                " */",
+                "final class Mixed {",
+                "    boolean hex(final char glyph) {",
+                "        return glyph >= '0' && glyph <= '9'",
+                "            || glyph >= 'A' && glyph <= 'F';",
+                "    }",
+                "}"
+            )
+        );
+        final java.util.Collection<Violation> violations =
+            new ErrorProneValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            );
+        MatcherAssert.assertThat(
+            String.format(
+                "Mixed && and || without parens must not trigger OperatorPrecedence: %s",
+                violations
+            ),
+            violations,
+            Matchers.<Violation>empty()
+        );
+    }
 }

@@ -69,6 +69,32 @@ public final class ErrorProneValidator implements ResourceValidator {
     );
 
     /**
+     * The {@code -Xplugin} value that wires ErrorProne into the forked
+     * {@code javac}, together with the bug patterns Qulice switches off.
+     *
+     * <p>{@code InvalidBlockTag} is disabled because it rejects the
+     * {@code @checkstyle} block tags this codebase writes in Javadoc.</p>
+     *
+     * <p>{@code OperatorPrecedence} is disabled because it contradicts
+     * Checkstyle's {@code UnnecessaryParentheses}: a boolean expression
+     * that mixes {@code &&} and {@code ||} can satisfy only one of them at
+     * a time. {@code OperatorPrecedence} demands grouping parentheses
+     * around the {@code &&} operands (for example
+     * {@code (a && b) || (c && d)}), while {@code UnnecessaryParentheses}
+     * flags those very parentheses as redundant, since {@code &&} already
+     * binds tighter than {@code ||}. Keeping {@code UnnecessaryParentheses}
+     * as the single arbiter lets the terse, paren-free form pass both
+     * checks. See
+     * <a href="https://github.com/yegor256/qulice/issues/1705">#1705</a>.</p>
+     */
+    private static final String PLUGIN = String.join(
+        " ",
+        "-Xplugin:ErrorProne",
+        "-Xep:InvalidBlockTag:OFF",
+        "-Xep:OperatorPrecedence:OFF"
+    );
+
+    /**
      * Standard {@code javac} diagnostic format with an ErrorProne
      * {@code [CheckName]} prefix on the message:
      * {@code path:line: warning|error: [Name] body}.
@@ -168,7 +194,7 @@ public final class ErrorProneValidator implements ResourceValidator {
         args.add("-XDaddTypeAnnotationsToSymbol=true");
         args.add("--should-stop=ifError=FLOW");
         args.add("-proc:none");
-        args.add("-Xplugin:ErrorProne -Xep:InvalidBlockTag:OFF");
+        args.add(ErrorProneValidator.PLUGIN);
         args.add("-processorpath");
         args.add(ErrorProneValidator.pluginClasspath());
         args.add("-d");
