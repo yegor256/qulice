@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     // will compile
  *     private List&lt;? extends Number&gt; numbers = new ArrayList&lt;Integer&gt;();
  *     private List&lt;? super Integer&gt; list = new ArrayList&lt;Number&gt;();
- *</pre>
+ * </pre>
  *
  * <p>Although, this is not considered as good codestyle,
  * so it's better to use diamond operator here either.</p>
