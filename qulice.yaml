@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 525.609932537
+  seconds: 518.825224561
   version: 0.61.1
   what: judges-summary
-  when: 2026-08-06 08:12:03.000587849 Z
+  when: 2026-08-07 07:51:28.885498378 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63001,17 +63001,17 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 533
+  assignees_were_scanned: 690
   earliest_issue_was_found: 1
-  events_were_scanned: 16782150325
+  events_were_scanned: 17009484439
   issues_were_scanned: 867
-  labels_were_scanned: 1092
+  labels_were_scanned: 0
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
   min_pull_was_found: 1538
   repository: 9580168
-  types_were_scanned: 0
+  types_were_scanned: 487
   what: iterate
   where: github
 - _id: 11295
@@ -67272,3 +67272,42 @@
   start: *12
   what: earned-value
   when: 2026-08-05 08:18:01.877290292 Z
+- _id: 11570
+  _job: 31158670942
+  _time: 2026-08-07 07:43:34.215087917 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: version-up
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1651 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1651
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-08-07 06:53:52.000000000 Z
+  where: github
+  who: 526301
+- _id: 11571
+  _job: 31158670942
+  _time: 2026-08-07 07:51:18.339159204 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  total_active_contributors: 3
+  total_commits: 2626
+  total_contributors: 59
+  total_files: 729
+  total_forks: 123
+  total_issues: 892
+  total_pulls: 791
+  total_releases: 93
+  total_repositories: 1
+  total_stars: 322
+  what: dimensions-of-terrain
+  when: 2026-08-07 07:51:18.348921656 Z
