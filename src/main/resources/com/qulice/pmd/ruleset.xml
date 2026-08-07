@@ -392,6 +392,41 @@
     -->
     <exclude name="MissingSerialVersionUID"/>
     <exclude name="TestClassWithoutTestCases"/>
+    <!--
+    CompareObjectsWithEquals is excluded from the bulk import here and
+    re-enabled below with an extended 'typesThatCompareByReference' so
+    that a 'java.util.concurrent.Future' is allowed to be compared with
+    '=='. ErrorProne's UndefinedEquals / CollectionUndefinedEquality
+    forbid calling equals() on a Future (it has no well-defined equality
+    semantics), so reference identity is the only sound way to recognise
+    the same future; without this override the two checkers contradict
+    each other on the same line. This mirrors 0.30.4 disabling
+    OperatorPrecedence for the analogous Checkstyle/ErrorProne
+    contradiction (#1705).
+    Downstream: https://github.com/yegor256/qulice/issues/1717
+    -->
+    <exclude name="CompareObjectsWithEquals"/>
+  </rule>
+  <!--
+  CompareObjectsWithEquals wants equals() for every object comparison,
+  but a 'java.util.concurrent.Future' has no meaningful equals() contract,
+  so ErrorProne's UndefinedEquals fires on 'future.equals(other)' and its
+  CollectionUndefinedEquality fires on a Future used as a Map key. Adding
+  'java.util.concurrent.Future' to 'typesThatCompareByReference' (whose
+  defaults are 'java.lang.Enum,java.lang.Class') lets PMD accept the '=='
+  that is the only sound comparison, and since the rule matches by subtype
+  it also covers 'java.util.concurrent.CompletableFuture' and the rest of
+  the Future family. The broader interfaces in ErrorProne's
+  TypesWithUndefinedEquality list (CharSequence, Collection, Iterable, ...)
+  are deliberately left out: the rule matches subtypes, so listing them
+  would also stop flagging '==' on a 'String', a 'List' or a 'Set', where
+  reference comparison usually is a bug.
+  Downstream: https://github.com/yegor256/qulice/issues/1717
+  -->
+  <rule ref="category/java/errorprone.xml/CompareObjectsWithEquals">
+    <properties>
+      <property name="typesThatCompareByReference" value="java.lang.Enum,java.lang.Class,java.util.concurrent.Future"/>
+    </properties>
   </rule>
   <!--
   Recognise io.github.artsok annotations (@RepeatedIfExceptionsTest,
