@@ -218,6 +218,46 @@
     one Qulice asks for, so this rule loses. It fires 299 times here.
     -->
     <exclude name="UnnecessaryFullyQualifiedName"/>
+    <!--
+    UseDiamondOperator is excluded from the bulk import here and re-enabled
+    below with a violationSuppressXPath, because PMD's type inference does
+    not always agree with javac and the rule reports diamonds that do not
+    compile. Re-enable the bulk form (drop the block below) once PMD's
+    inference matches javac.
+    Downstream: https://github.com/yegor256/qulice/issues/1685
+    -->
+    <exclude name="UseDiamondOperator"/>
+  </rule>
+  <!--
+  UseDiamondOperator suggests replacing explicit constructor type
+  arguments with a diamond '<>', but PMD only reports where it believes
+  the diamond is a compilable replacement, and its inference diverges
+  from javac's in three shapes seen in cactoos: a constructor whose
+  arguments include an implicitly-typed lambda (javac loses the wildcard
+  capture that flows through the lambda), a constructor whose arguments
+  include a method reference (the diamond makes an overloaded constructor
+  ambiguous), and a constructor that is the body of a lambda (its target
+  type is an as-yet-uninferred type variable, so the diamond cannot be
+  pinned). In all three the explicit type arguments are the only thing
+  that makes inference succeed, so the advice is impossible to follow.
+  The violationSuppressXPath below skips those three shapes and keeps the
+  rule for the plain case, such as 'new ArrayList<String>()'. This is the
+  PMD 7 successor of #1242.
+  Downstream: https://github.com/yegor256/qulice/issues/1685
+  Downstream: https://github.com/yegor256/qulice/issues/1242
+  -->
+  <rule ref="category/java/codestyle.xml/UseDiamondOperator">
+    <properties>
+      <property name="violationSuppressXPath">
+        <value><![CDATA[
+          .[
+            ../../ArgumentList/LambdaExpression[@ExplicitlyTyped = false()]
+            or ../../ArgumentList/MethodReference
+            or ../../parent::LambdaExpression
+          ]
+        ]]></value>
+      </property>
+    </properties>
   </rule>
   <rule ref="category/java/design.xml">
     <!--
