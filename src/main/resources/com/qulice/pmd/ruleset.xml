@@ -80,6 +80,19 @@
     Downstream: https://github.com/yegor256/qulice/issues/1064
     -->
     <exclude name="UnitTestShouldUseTestAnnotation"/>
+    <!--
+    ImplicitFunctionalInterface counts only the abstract methods it can
+    see, so an interface that declares one method of its own but extends
+    other interfaces adding more abstract methods is wrongly reported as
+    functional whenever those super-interfaces cannot be resolved (Qulice
+    runs PMD without an auxiliary classpath, so types declared elsewhere
+    are invisible). Adding the suggested @FunctionalInterface then fails to
+    compile. We use our own ImplicitFunctionalInterface rule instead, which
+    stays silent unless the whole super-interface hierarchy resolves and the
+    interface truly has a single abstract method overall.
+    Downstream: https://github.com/yegor256/qulice/issues/1704
+    -->
+    <exclude name="ImplicitFunctionalInterface"/>
   </rule>
   <rule ref="category/java/bestpractices.xml/AvoidUsingHardCodedIP">
     <properties>
@@ -509,6 +522,17 @@
     <priority>3</priority>
   </rule>
   <rule name="UnnecessaryLocalRule" message="Avoid creating unnecessary local variables like ''{0}''" language="java" class="com.qulice.pmd.rules.UnnecessaryLocalRule">
+  </rule>
+  <rule name="ImplicitFunctionalInterface" message="Annotate this interface with @FunctionalInterface or with @SuppressWarnings(&quot;PMD.ImplicitFunctionalInterface&quot;) to clarify your intent." language="java" class="com.qulice.pmd.rules.ImplicitFunctionalInterfaceRule">
+    <description>
+      An interface with a single abstract method should be annotated with
+      @FunctionalInterface to clarify intent. Unlike PMD's built-in
+      ImplicitFunctionalInterface rule, this variant does not fire when the
+      interface extends a super-interface that PMD cannot resolve, since the
+      total number of inherited abstract methods is then unknown and the
+      suggested annotation might not compile.
+    </description>
+    <priority>3</priority>
   </rule>
   <rule name="ConstructorShouldDoInitialization" message="Avoid doing field initialization outside constructor." language="java" class="net.sourceforge.pmd.lang.rule.xpath.XPathRule">
     <description>
