@@ -194,6 +194,7 @@ public final class ErrorProneValidator implements ResourceValidator {
         args.add("-XDaddTypeAnnotationsToSymbol=true");
         args.add("--should-stop=ifError=FLOW");
         args.add("-proc:none");
+        args.addAll(this.release());
         args.add(ErrorProneValidator.PLUGIN);
         args.add("-processorpath");
         args.add(ErrorProneValidator.pluginClasspath());
@@ -241,6 +242,79 @@ public final class ErrorProneValidator implements ResourceValidator {
             }
         }
         return violations;
+    }
+
+    /**
+     * The {@code javac} flags that pin the forked compiler to the project's
+     * own Java source level.
+     *
+     * <p>Without them the forked {@code javac} runs at the host JDK's default
+     * language level (e.g. 21 on a JDK 21 host), so ErrorProne fires
+     * syntax-modernising checks such as {@code PatternMatchingInstanceof}
+     * even on projects that compile at {@code -source 8}, producing
+     * suggestions whose rewrite does not compile under the project's real
+     * source level. The level is derived exactly as
+     * {@code CheckstyleValidator} derives it: {@code maven.compiler.release}
+     * first, then {@code maven.compiler.source}, accepting both the modern
+     * ({@code "8"}, {@code "17"}) and legacy ({@code "1.8"}) forms. When the
+     * project pins a {@code release}, {@code --release} is forwarded;
+     * otherwise {@code -source}/{@code -target} are, which gates the language
+     * features while leaving the API surface untouched so that projects using
+     * newer library APIs under a plain {@code -source} build do not gain
+     * spurious "cannot find symbol" errors. When neither property is set the
+     * level is unknown and nothing is added, leaving the host default in
+     * place. See
+     * <a href="https://github.com/yegor256/qulice/issues/1716">#1716</a>.</p>
+     *
+     * @return Source-level flags, possibly empty
+     */
+    private List<String> release() {
+        final List<String> flags = new ArrayList<>(4);
+        final int rel = ErrorProneValidator.parse(
+            this.env.param("maven.compiler.release", "")
+        );
+        if (rel >= 0) {
+            flags.add("--release");
+            flags.add(String.valueOf(rel));
+        } else {
+            final int source = ErrorProneValidator.parse(
+                this.env.param("maven.compiler.source", "")
+            );
+            if (source >= 0) {
+                int target = ErrorProneValidator.parse(
+                    this.env.param("maven.compiler.target", "")
+                );
+                if (target < 0) {
+                    target = source;
+                }
+                flags.add("-source");
+                flags.add(String.valueOf(source));
+                flags.add("-target");
+                flags.add(String.valueOf(target));
+            }
+        }
+        return flags;
+    }
+
+    /**
+     * Parse a Java version string into its major number.
+     * @param value Version, e.g. {@code "8"}, {@code "1.8"} or {@code "17"}
+     * @return The major version, or {@code -1} if it cannot be parsed
+     */
+    private static int parse(final String value) {
+        int result = -1;
+        if (value != null) {
+            String txt = value.trim();
+            if (txt.startsWith("1.")) {
+                txt = txt.substring(2);
+            }
+            try {
+                result = Integer.parseInt(txt);
+            } catch (final NumberFormatException ex) {
+                result = -1;
+            }
+        }
+        return result;
     }
 
     /**
