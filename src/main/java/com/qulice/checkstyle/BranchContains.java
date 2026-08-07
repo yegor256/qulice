@@ -10,7 +10,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * Utility class that checks the existence
  * of tokens of specific type in the AST node subtree.
  *
- * Some checks used branchContains() method in DetailAST
+ * <p>Some checks used branchContains() method in DetailAST
  * which recursively searched node subtree for the child of a given type.
  * However, this method was deprecated in upstream due to unintended too
  * deep scanning. It is recommended to write traversal implementation

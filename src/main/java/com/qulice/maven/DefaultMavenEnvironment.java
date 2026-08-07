@@ -495,7 +495,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     /**
      * Converts a checker exclude into exclude param.
      *
-     * E.g. "checkstyle:.*" will become ".*".
+     * <p>E.g. "checkstyle:.*" will become ".*".
      *
      * @since 0.1
      */

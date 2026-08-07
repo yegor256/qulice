@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 /**
  * Utility class which simplifies traversing DetailAST objects.
  *
- * DetailAST APIs for working with child nodes require writing
+ * <p>DetailAST APIs for working with child nodes require writing
  * imperative code, which generally looks less readable then
  * declarative Stream manipulations. This class integrates DetailAST
  * with Java Streams.
@@ -37,7 +37,7 @@ class ChildStream {
      * children. Any two streams returned by this method are
      * independent.
      *
-     * Implementation may be simplified using Stream.iterate when Java 8 support
+     * <p>Implementation may be simplified using Stream.iterate when Java 8 support
      * is dropped.
      *
      * @return Stream of children

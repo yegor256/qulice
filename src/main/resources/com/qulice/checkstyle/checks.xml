@@ -493,7 +493,10 @@
     <module name="JavadocContentLocation"/>
     <module name="JavadocLeadingAsteriskAlign"/>
     <module name="JavadocMissingLeadingAsterisk"/>
+    <module name="JavadocMissingWhitespaceAfterAsterisk"/>
+    <module name="JavadocParagraph"/>
     <module name="LambdaParameterName"/>
+    <module name="MissingJavadocMethod"/>
     <module name="MissingJavadocPackage"/>
     <module name="MissingJavadocType"/>
     <module name="MissingNullCaseInSwitch"/>
@@ -668,20 +671,8 @@
       <!-- 80 violations -->
       <property name="severity" value="ignore"/>
     </module>
-    <module name="JavadocMissingWhitespaceAfterAsterisk">
-      <!-- 1 violation -->
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="JavadocParagraph">
-      <!-- 16 violations -->
-      <property name="severity" value="ignore"/>
-    </module>
     <module name="MagicNumber">
       <!-- 40 violations -->
-      <property name="severity" value="ignore"/>
-    </module>
-    <module name="MissingJavadocMethod">
-      <!-- 9 violations -->
       <property name="severity" value="ignore"/>
     </module>
     <module name="MultipleStringLiterals">

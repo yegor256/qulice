@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 /**
  * Check the required JavaDoc tag in the lines.
+ *
  * <p>Correct format is the following (of a class javadoc):
  *
  * <pre>
