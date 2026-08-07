@@ -124,34 +124,33 @@
 <a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">     * @return True if it starts with {@code should} or with {@code test}</em>
 <a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">     *  but not with {@code tests}</em>
 <a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L119" href="#L119">119</a>     @SuppressWarnings(<span class="jxr_string">"OperatorPrecedence"</span>)
-<a class="jxr_linenumber" name="L120" href="#L120">120</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> startsWithForbidden(<strong class="jxr_keyword">final</strong> String name) {
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>         <strong class="jxr_keyword">return</strong> startsWithWord(name, <span class="jxr_string">"should"</span>)
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>             || startsWithWord(name, <span class="jxr_string">"test"</span>) &amp;&amp; !startsWithWord(name, <span class="jxr_string">"tests"</span>);
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>     }
-<a class="jxr_linenumber" name="L124" href="#L124">124</a> 
-<a class="jxr_linenumber" name="L125" href="#L125">125</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_javadoccomment">     * Does {@code name} start with {@code prefix} as a whole lowercase</em>
-<a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_javadoccomment">     * word (either equal, or followed by an uppercase/underscore boundary)?</em>
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment">     * @param name The method name</em>
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment">     * @param prefix The prefix to check</em>
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">     * @return True if the prefix is a word at the start of the name</em>
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> startsWithWord(<strong class="jxr_keyword">final</strong> String name, <strong class="jxr_keyword">final</strong> String prefix) {
-<a class="jxr_linenumber" name="L133" href="#L133">133</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> result;
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>         <strong class="jxr_keyword">if</strong> (name.startsWith(prefix)) {
-<a class="jxr_linenumber" name="L135" href="#L135">135</a>             <strong class="jxr_keyword">if</strong> (name.length() == prefix.length()) {
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>                 result = <strong class="jxr_keyword">true</strong>;
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>             } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>                 <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> next = name.charAt(prefix.length());
-<a class="jxr_linenumber" name="L139" href="#L139">139</a>                 result = Character.isUpperCase(next) || next == '_';
-<a class="jxr_linenumber" name="L140" href="#L140">140</a>             }
-<a class="jxr_linenumber" name="L141" href="#L141">141</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L142" href="#L142">142</a>             result = false;
-<a class="jxr_linenumber" name="L143" href="#L143">143</a>         }
-<a class="jxr_linenumber" name="L144" href="#L144">144</a>         <strong class="jxr_keyword">return</strong> result;
-<a class="jxr_linenumber" name="L145" href="#L145">145</a>     }
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> }
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> startsWithForbidden(<strong class="jxr_keyword">final</strong> String name) {
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>         <strong class="jxr_keyword">return</strong> startsWithWord(name, <span class="jxr_string">"should"</span>)
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>             || startsWithWord(name, <span class="jxr_string">"test"</span>) &amp;&amp; !startsWithWord(name, <span class="jxr_string">"tests"</span>);
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>     }
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> 
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> <em class="jxr_javadoccomment">     * Does {@code name} start with {@code prefix} as a whole lowercase</em>
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_javadoccomment">     * word (either equal, or followed by an uppercase/underscore boundary)?</em>
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_javadoccomment">     * @param name The method name</em>
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment">     * @param prefix The prefix to check</em>
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment">     * @return True if the prefix is a word at the start of the name</em>
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> startsWithWord(<strong class="jxr_keyword">final</strong> String name, <strong class="jxr_keyword">final</strong> String prefix) {
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">boolean</strong> result;
+<a class="jxr_linenumber" name="L133" href="#L133">133</a>         <strong class="jxr_keyword">if</strong> (name.startsWith(prefix)) {
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>             <strong class="jxr_keyword">if</strong> (name.length() == prefix.length()) {
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>                 result = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>             } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>                 <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> next = name.charAt(prefix.length());
+<a class="jxr_linenumber" name="L138" href="#L138">138</a>                 result = Character.isUpperCase(next) || next == '_';
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>             }
+<a class="jxr_linenumber" name="L140" href="#L140">140</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L141" href="#L141">141</a>             result = false;
+<a class="jxr_linenumber" name="L142" href="#L142">142</a>         }
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>         <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>     }
+<a class="jxr_linenumber" name="L145" href="#L145">145</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

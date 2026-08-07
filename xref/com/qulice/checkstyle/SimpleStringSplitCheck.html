@@ -211,110 +211,109 @@
 <a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">     * @param chr Character to test</em>
 <a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">     * @return True if ASCII letter</em>
 <a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>     @SuppressWarnings(<span class="jxr_string">"OperatorPrecedence"</span>)
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isAsciiLetter(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr) {
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>         <strong class="jxr_keyword">return</strong> chr &gt;= 'a' &amp;&amp; chr &lt;= 'z'
-<a class="jxr_linenumber" name="L209" href="#L209">209</a>             || chr &gt;= 'A' &amp;&amp; chr &lt;= 'Z';
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>     }
-<a class="jxr_linenumber" name="L211" href="#L211">211</a> 
-<a class="jxr_linenumber" name="L212" href="#L212">212</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L213" href="#L213">213</a> <em class="jxr_javadoccomment">     * Decodes a Java string literal (with surrounding double quotes) to the</em>
-<a class="jxr_linenumber" name="L214" href="#L214">214</a> <em class="jxr_javadoccomment">     * runtime string it denotes. Returns empty when the literal contains</em>
-<a class="jxr_linenumber" name="L215" href="#L215">215</a> <em class="jxr_javadoccomment">     * escape sequences the check does not understand, so the check can stay</em>
-<a class="jxr_linenumber" name="L216" href="#L216">216</a> <em class="jxr_javadoccomment">     * silent rather than guess.</em>
-<a class="jxr_linenumber" name="L217" href="#L217">217</a> <em class="jxr_javadoccomment">     * @param text Raw token text including the surrounding double quotes</em>
-<a class="jxr_linenumber" name="L218" href="#L218">218</a> <em class="jxr_javadoccomment">     * @return Decoded runtime string, or empty on unsupported escapes</em>
-<a class="jxr_linenumber" name="L219" href="#L219">219</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Optional&lt;String&gt; decode(<strong class="jxr_keyword">final</strong> String text) {
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>         <strong class="jxr_keyword">final</strong> String body = text.substring(1, text.length() - 1);
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>         <strong class="jxr_keyword">final</strong> StringBuilder out = <strong class="jxr_keyword">new</strong> StringBuilder(body.length());
-<a class="jxr_linenumber" name="L223" href="#L223">223</a>         <strong class="jxr_keyword">int</strong> idx = 0;
-<a class="jxr_linenumber" name="L224" href="#L224">224</a>         <strong class="jxr_keyword">boolean</strong> failed = false;
-<a class="jxr_linenumber" name="L225" href="#L225">225</a>         <strong class="jxr_keyword">while</strong> (idx &lt; body.length() &amp;&amp; !failed) {
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> advance = SimpleStringSplitCheck.step(body, idx, out);
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>             <strong class="jxr_keyword">if</strong> (advance &lt; 0) {
-<a class="jxr_linenumber" name="L228" href="#L228">228</a>                 failed = <strong class="jxr_keyword">true</strong>;
-<a class="jxr_linenumber" name="L229" href="#L229">229</a>             } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L230" href="#L230">230</a>                 idx += advance;
-<a class="jxr_linenumber" name="L231" href="#L231">231</a>             }
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>         }
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>         <strong class="jxr_keyword">final</strong> Optional&lt;String&gt; result;
-<a class="jxr_linenumber" name="L234" href="#L234">234</a>         <strong class="jxr_keyword">if</strong> (failed) {
-<a class="jxr_linenumber" name="L235" href="#L235">235</a>             result = Optional.empty();
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>             result = Optional.of(out.toString());
-<a class="jxr_linenumber" name="L238" href="#L238">238</a>         }
-<a class="jxr_linenumber" name="L239" href="#L239">239</a>         <strong class="jxr_keyword">return</strong> result;
-<a class="jxr_linenumber" name="L240" href="#L240">240</a>     }
-<a class="jxr_linenumber" name="L241" href="#L241">241</a> 
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">     * Advances one step through the string literal body.</em>
-<a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">     * @param body Literal body without surrounding quotes</em>
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">     * @param idx Current index</em>
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">     * @param out Receiver for the decoded char</em>
-<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">     * @return Number of source chars consumed, or -1 on unsupported escape</em>
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L249" href="#L249">249</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> step(
-<a class="jxr_linenumber" name="L250" href="#L250">250</a>         <strong class="jxr_keyword">final</strong> String body, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> idx, <strong class="jxr_keyword">final</strong> StringBuilder out
-<a class="jxr_linenumber" name="L251" href="#L251">251</a>     ) {
-<a class="jxr_linenumber" name="L252" href="#L252">252</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr = body.charAt(idx);
-<a class="jxr_linenumber" name="L253" href="#L253">253</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> advance;
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>         <strong class="jxr_keyword">if</strong> (chr == '&#92;&#92;') {
-<a class="jxr_linenumber" name="L255" href="#L255">255</a>             advance = SimpleStringSplitCheck.handleEscape(body, idx, out);
-<a class="jxr_linenumber" name="L256" href="#L256">256</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L257" href="#L257">257</a>             out.append(chr);
-<a class="jxr_linenumber" name="L258" href="#L258">258</a>             advance = 1;
-<a class="jxr_linenumber" name="L259" href="#L259">259</a>         }
-<a class="jxr_linenumber" name="L260" href="#L260">260</a>         <strong class="jxr_keyword">return</strong> advance;
-<a class="jxr_linenumber" name="L261" href="#L261">261</a>     }
-<a class="jxr_linenumber" name="L262" href="#L262">262</a> 
-<a class="jxr_linenumber" name="L263" href="#L263">263</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">     * Handles a backslash escape starting at {@code idx} in {@code body}.</em>
-<a class="jxr_linenumber" name="L265" href="#L265">265</a> <em class="jxr_javadoccomment">     * @param body Literal body without surrounding quotes</em>
-<a class="jxr_linenumber" name="L266" href="#L266">266</a> <em class="jxr_javadoccomment">     * @param idx Index of the backslash</em>
-<a class="jxr_linenumber" name="L267" href="#L267">267</a> <em class="jxr_javadoccomment">     * @param out Receiver for the decoded char</em>
-<a class="jxr_linenumber" name="L268" href="#L268">268</a> <em class="jxr_javadoccomment">     * @return Number of source chars consumed, or -1 on unsupported escape</em>
-<a class="jxr_linenumber" name="L269" href="#L269">269</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L270" href="#L270">270</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> handleEscape(
-<a class="jxr_linenumber" name="L271" href="#L271">271</a>         <strong class="jxr_keyword">final</strong> String body, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> idx, <strong class="jxr_keyword">final</strong> StringBuilder out
-<a class="jxr_linenumber" name="L272" href="#L272">272</a>     ) {
-<a class="jxr_linenumber" name="L273" href="#L273">273</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> advance;
-<a class="jxr_linenumber" name="L274" href="#L274">274</a>         <strong class="jxr_keyword">if</strong> (idx + 1 &gt;= body.length()) {
-<a class="jxr_linenumber" name="L275" href="#L275">275</a>             advance = -1;
-<a class="jxr_linenumber" name="L276" href="#L276">276</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L277" href="#L277">277</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> decoded = SimpleStringSplitCheck.escape(
-<a class="jxr_linenumber" name="L278" href="#L278">278</a>                 body.charAt(idx + 1)
-<a class="jxr_linenumber" name="L279" href="#L279">279</a>             );
-<a class="jxr_linenumber" name="L280" href="#L280">280</a>             <strong class="jxr_keyword">if</strong> (decoded &lt; 0) {
-<a class="jxr_linenumber" name="L281" href="#L281">281</a>                 advance = -1;
-<a class="jxr_linenumber" name="L282" href="#L282">282</a>             } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L283" href="#L283">283</a>                 out.append((<strong class="jxr_keyword">char</strong>) decoded);
-<a class="jxr_linenumber" name="L284" href="#L284">284</a>                 advance = 2;
-<a class="jxr_linenumber" name="L285" href="#L285">285</a>             }
-<a class="jxr_linenumber" name="L286" href="#L286">286</a>         }
-<a class="jxr_linenumber" name="L287" href="#L287">287</a>         <strong class="jxr_keyword">return</strong> advance;
-<a class="jxr_linenumber" name="L288" href="#L288">288</a>     }
-<a class="jxr_linenumber" name="L289" href="#L289">289</a> 
-<a class="jxr_linenumber" name="L290" href="#L290">290</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L291" href="#L291">291</a> <em class="jxr_javadoccomment">     * Translates a single Java escape letter to its runtime character.</em>
-<a class="jxr_linenumber" name="L292" href="#L292">292</a> <em class="jxr_javadoccomment">     * @param chr Character after the backslash</em>
-<a class="jxr_linenumber" name="L293" href="#L293">293</a> <em class="jxr_javadoccomment">     * @return Runtime character code, or -1 for unsupported escapes</em>
-<a class="jxr_linenumber" name="L294" href="#L294">294</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L295" href="#L295">295</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> escape(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr) {
-<a class="jxr_linenumber" name="L296" href="#L296">296</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">switch</strong> (chr) {
-<a class="jxr_linenumber" name="L297" href="#L297">297</a>             <strong class="jxr_keyword">case</strong> 'n' -&gt; '\n';
-<a class="jxr_linenumber" name="L298" href="#L298">298</a>             <strong class="jxr_keyword">case</strong> 't' -&gt; '\t';
-<a class="jxr_linenumber" name="L299" href="#L299">299</a>             <strong class="jxr_keyword">case</strong> 'r' -&gt; '\r';
-<a class="jxr_linenumber" name="L300" href="#L300">300</a>             <strong class="jxr_keyword">case</strong> 'b' -&gt; '\b';
-<a class="jxr_linenumber" name="L301" href="#L301">301</a>             <strong class="jxr_keyword">case</strong> 'f' -&gt; '\f';
-<a class="jxr_linenumber" name="L302" href="#L302">302</a>             <strong class="jxr_keyword">case</strong> 's' -&gt; ' ';
-<a class="jxr_linenumber" name="L303" href="#L303">303</a>             <strong class="jxr_keyword">case</strong> '\'' -&gt; '\'';
-<a class="jxr_linenumber" name="L304" href="#L304">304</a>             <strong class="jxr_keyword">case</strong> '&quot;' -&gt; '&quot;';
-<a class="jxr_linenumber" name="L305" href="#L305">305</a>             <strong class="jxr_keyword">case</strong> '&#92;&#92;' -&gt; '&#92;&#92;';
-<a class="jxr_linenumber" name="L306" href="#L306">306</a>             <strong class="jxr_keyword">default</strong> -&gt; -1;
-<a class="jxr_linenumber" name="L307" href="#L307">307</a>         };
-<a class="jxr_linenumber" name="L308" href="#L308">308</a>     }
-<a class="jxr_linenumber" name="L309" href="#L309">309</a> }
+<a class="jxr_linenumber" name="L206" href="#L206">206</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isAsciiLetter(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr) {
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>         <strong class="jxr_keyword">return</strong> chr &gt;= 'a' &amp;&amp; chr &lt;= 'z'
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>             || chr &gt;= 'A' &amp;&amp; chr &lt;= 'Z';
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>     }
+<a class="jxr_linenumber" name="L210" href="#L210">210</a> 
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> <em class="jxr_javadoccomment">     * Decodes a Java string literal (with surrounding double quotes) to the</em>
+<a class="jxr_linenumber" name="L213" href="#L213">213</a> <em class="jxr_javadoccomment">     * runtime string it denotes. Returns empty when the literal contains</em>
+<a class="jxr_linenumber" name="L214" href="#L214">214</a> <em class="jxr_javadoccomment">     * escape sequences the check does not understand, so the check can stay</em>
+<a class="jxr_linenumber" name="L215" href="#L215">215</a> <em class="jxr_javadoccomment">     * silent rather than guess.</em>
+<a class="jxr_linenumber" name="L216" href="#L216">216</a> <em class="jxr_javadoccomment">     * @param text Raw token text including the surrounding double quotes</em>
+<a class="jxr_linenumber" name="L217" href="#L217">217</a> <em class="jxr_javadoccomment">     * @return Decoded runtime string, or empty on unsupported escapes</em>
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Optional&lt;String&gt; decode(<strong class="jxr_keyword">final</strong> String text) {
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>         <strong class="jxr_keyword">final</strong> String body = text.substring(1, text.length() - 1);
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>         <strong class="jxr_keyword">final</strong> StringBuilder out = <strong class="jxr_keyword">new</strong> StringBuilder(body.length());
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>         <strong class="jxr_keyword">int</strong> idx = 0;
+<a class="jxr_linenumber" name="L223" href="#L223">223</a>         <strong class="jxr_keyword">boolean</strong> failed = false;
+<a class="jxr_linenumber" name="L224" href="#L224">224</a>         <strong class="jxr_keyword">while</strong> (idx &lt; body.length() &amp;&amp; !failed) {
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> advance = SimpleStringSplitCheck.step(body, idx, out);
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>             <strong class="jxr_keyword">if</strong> (advance &lt; 0) {
+<a class="jxr_linenumber" name="L227" href="#L227">227</a>                 failed = <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>             } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L229" href="#L229">229</a>                 idx += advance;
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>             }
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>         }
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>         <strong class="jxr_keyword">final</strong> Optional&lt;String&gt; result;
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>         <strong class="jxr_keyword">if</strong> (failed) {
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>             result = Optional.empty();
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>             result = Optional.of(out.toString());
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>         }
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>         <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L239" href="#L239">239</a>     }
+<a class="jxr_linenumber" name="L240" href="#L240">240</a> 
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L242" href="#L242">242</a> <em class="jxr_javadoccomment">     * Advances one step through the string literal body.</em>
+<a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">     * @param body Literal body without surrounding quotes</em>
+<a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">     * @param idx Current index</em>
+<a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">     * @param out Receiver for the decoded char</em>
+<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">     * @return Number of source chars consumed, or -1 on unsupported escape</em>
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> step(
+<a class="jxr_linenumber" name="L249" href="#L249">249</a>         <strong class="jxr_keyword">final</strong> String body, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> idx, <strong class="jxr_keyword">final</strong> StringBuilder out
+<a class="jxr_linenumber" name="L250" href="#L250">250</a>     ) {
+<a class="jxr_linenumber" name="L251" href="#L251">251</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr = body.charAt(idx);
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> advance;
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>         <strong class="jxr_keyword">if</strong> (chr == '&#92;&#92;') {
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>             advance = SimpleStringSplitCheck.handleEscape(body, idx, out);
+<a class="jxr_linenumber" name="L255" href="#L255">255</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L256" href="#L256">256</a>             out.append(chr);
+<a class="jxr_linenumber" name="L257" href="#L257">257</a>             advance = 1;
+<a class="jxr_linenumber" name="L258" href="#L258">258</a>         }
+<a class="jxr_linenumber" name="L259" href="#L259">259</a>         <strong class="jxr_keyword">return</strong> advance;
+<a class="jxr_linenumber" name="L260" href="#L260">260</a>     }
+<a class="jxr_linenumber" name="L261" href="#L261">261</a> 
+<a class="jxr_linenumber" name="L262" href="#L262">262</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L263" href="#L263">263</a> <em class="jxr_javadoccomment">     * Handles a backslash escape starting at {@code idx} in {@code body}.</em>
+<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">     * @param body Literal body without surrounding quotes</em>
+<a class="jxr_linenumber" name="L265" href="#L265">265</a> <em class="jxr_javadoccomment">     * @param idx Index of the backslash</em>
+<a class="jxr_linenumber" name="L266" href="#L266">266</a> <em class="jxr_javadoccomment">     * @param out Receiver for the decoded char</em>
+<a class="jxr_linenumber" name="L267" href="#L267">267</a> <em class="jxr_javadoccomment">     * @return Number of source chars consumed, or -1 on unsupported escape</em>
+<a class="jxr_linenumber" name="L268" href="#L268">268</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L269" href="#L269">269</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> handleEscape(
+<a class="jxr_linenumber" name="L270" href="#L270">270</a>         <strong class="jxr_keyword">final</strong> String body, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> idx, <strong class="jxr_keyword">final</strong> StringBuilder out
+<a class="jxr_linenumber" name="L271" href="#L271">271</a>     ) {
+<a class="jxr_linenumber" name="L272" href="#L272">272</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> advance;
+<a class="jxr_linenumber" name="L273" href="#L273">273</a>         <strong class="jxr_keyword">if</strong> (idx + 1 &gt;= body.length()) {
+<a class="jxr_linenumber" name="L274" href="#L274">274</a>             advance = -1;
+<a class="jxr_linenumber" name="L275" href="#L275">275</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L276" href="#L276">276</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> decoded = SimpleStringSplitCheck.escape(
+<a class="jxr_linenumber" name="L277" href="#L277">277</a>                 body.charAt(idx + 1)
+<a class="jxr_linenumber" name="L278" href="#L278">278</a>             );
+<a class="jxr_linenumber" name="L279" href="#L279">279</a>             <strong class="jxr_keyword">if</strong> (decoded &lt; 0) {
+<a class="jxr_linenumber" name="L280" href="#L280">280</a>                 advance = -1;
+<a class="jxr_linenumber" name="L281" href="#L281">281</a>             } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L282" href="#L282">282</a>                 out.append((<strong class="jxr_keyword">char</strong>) decoded);
+<a class="jxr_linenumber" name="L283" href="#L283">283</a>                 advance = 2;
+<a class="jxr_linenumber" name="L284" href="#L284">284</a>             }
+<a class="jxr_linenumber" name="L285" href="#L285">285</a>         }
+<a class="jxr_linenumber" name="L286" href="#L286">286</a>         <strong class="jxr_keyword">return</strong> advance;
+<a class="jxr_linenumber" name="L287" href="#L287">287</a>     }
+<a class="jxr_linenumber" name="L288" href="#L288">288</a> 
+<a class="jxr_linenumber" name="L289" href="#L289">289</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L290" href="#L290">290</a> <em class="jxr_javadoccomment">     * Translates a single Java escape letter to its runtime character.</em>
+<a class="jxr_linenumber" name="L291" href="#L291">291</a> <em class="jxr_javadoccomment">     * @param chr Character after the backslash</em>
+<a class="jxr_linenumber" name="L292" href="#L292">292</a> <em class="jxr_javadoccomment">     * @return Runtime character code, or -1 for unsupported escapes</em>
+<a class="jxr_linenumber" name="L293" href="#L293">293</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L294" href="#L294">294</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> escape(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">char</strong> chr) {
+<a class="jxr_linenumber" name="L295" href="#L295">295</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">switch</strong> (chr) {
+<a class="jxr_linenumber" name="L296" href="#L296">296</a>             <strong class="jxr_keyword">case</strong> 'n' -&gt; '\n';
+<a class="jxr_linenumber" name="L297" href="#L297">297</a>             <strong class="jxr_keyword">case</strong> 't' -&gt; '\t';
+<a class="jxr_linenumber" name="L298" href="#L298">298</a>             <strong class="jxr_keyword">case</strong> 'r' -&gt; '\r';
+<a class="jxr_linenumber" name="L299" href="#L299">299</a>             <strong class="jxr_keyword">case</strong> 'b' -&gt; '\b';
+<a class="jxr_linenumber" name="L300" href="#L300">300</a>             <strong class="jxr_keyword">case</strong> 'f' -&gt; '\f';
+<a class="jxr_linenumber" name="L301" href="#L301">301</a>             <strong class="jxr_keyword">case</strong> 's' -&gt; ' ';
+<a class="jxr_linenumber" name="L302" href="#L302">302</a>             <strong class="jxr_keyword">case</strong> '\'' -&gt; '\'';
+<a class="jxr_linenumber" name="L303" href="#L303">303</a>             <strong class="jxr_keyword">case</strong> '&quot;' -&gt; '&quot;';
+<a class="jxr_linenumber" name="L304" href="#L304">304</a>             <strong class="jxr_keyword">case</strong> '&#92;&#92;' -&gt; '&#92;&#92;';
+<a class="jxr_linenumber" name="L305" href="#L305">305</a>             <strong class="jxr_keyword">default</strong> -&gt; -1;
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>         };
+<a class="jxr_linenumber" name="L307" href="#L307">307</a>     }
+<a class="jxr_linenumber" name="L308" href="#L308">308</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
