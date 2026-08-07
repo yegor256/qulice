@@ -28,7 +28,6 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.WildcardFileFilter;
-import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.DependencyResolutionRequiredException;
 import org.apache.maven.model.Build;
 import org.apache.maven.model.Resource;
@@ -112,29 +111,18 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public Collection<String> classpath() {
         final Collection<String> paths = new ArrayList<>(0);
         final String blank = "%20";
         final String whitespace = " ";
         try {
             for (final String name
-                : this.iproject.getRuntimeClasspathElements()) {
+                : this.iproject.getTestClasspathElements()) {
                 paths.add(
                     name.replace(
                         File.separatorChar, '/'
                     ).replaceAll(whitespace, blank)
                 );
-            }
-            for (final Artifact artifact
-                : this.iproject.getDependencyArtifacts()) {
-                if (artifact.getFile() != null) {
-                    paths.add(
-                        artifact.getFile().getAbsolutePath()
-                            .replace(File.separatorChar, '/')
-                            .replaceAll(whitespace, blank)
-                    );
-                }
             }
         } catch (final DependencyResolutionRequiredException ex) {
             throw new IllegalStateException("Failed to read classpath", ex);

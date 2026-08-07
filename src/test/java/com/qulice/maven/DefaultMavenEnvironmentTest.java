@@ -94,15 +94,46 @@ final class DefaultMavenEnvironmentTest {
     void passPathsWithWhitespaces() throws Exception {
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
         final MavenProjectStub project = new MavenProjectStub();
-        project.setRuntimeClasspathElements(
+        project.setTestClasspathElements(
             Collections.singletonList("/Users/Carlos Miranda/git")
         );
-        project.setDependencyArtifacts(Collections.emptySet());
         env.setProject(project);
         MatcherAssert.assertThat(
             "ClassPath should be returned",
             env.classloader(),
             Matchers.notNullValue()
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.classpath() should return the fully-resolved
+     * test classpath (compile + runtime + test scope, transitives included)
+     * so that ErrorProne, which compiles test sources too, can access
+     * transitive test-scope dependencies such as {@code opentest4j}
+     * (see <a href="https://github.com/yegor256/qulice/issues/1691">
+     * issue #1691</a>).
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void classpathIncludesTransitiveTestDependencies() throws Exception {
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub();
+        project.setTestClasspathElements(
+            ImmutableList.of(
+                "/repo/junit-jupiter-api.jar",
+                "/repo/opentest4j.jar",
+                "/repo/apiguardian-api.jar"
+            )
+        );
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Transitive test dependencies must be on the classpath",
+            env.classpath(),
+            Matchers.containsInAnyOrder(
+                "/repo/junit-jupiter-api.jar",
+                "/repo/opentest4j.jar",
+                "/repo/apiguardian-api.jar"
+            )
         );
     }
 
