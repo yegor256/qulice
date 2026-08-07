@@ -270,30 +270,43 @@ public final class ErrorProneValidator implements ResourceValidator {
      */
     private List<String> release() {
         final List<String> flags = new ArrayList<>(4);
-        final int rel = ErrorProneValidator.parse(
+        final int rel = ErrorProneValidator.major(
             this.env.param("maven.compiler.release", "")
+        );
+        final int source = ErrorProneValidator.major(
+            this.env.param("maven.compiler.source", "")
         );
         if (rel >= 0) {
             flags.add("--release");
             flags.add(String.valueOf(rel));
-        } else {
-            final int source = ErrorProneValidator.parse(
-                this.env.param("maven.compiler.source", "")
-            );
-            if (source >= 0) {
-                int target = ErrorProneValidator.parse(
-                    this.env.param("maven.compiler.target", "")
-                );
-                if (target < 0) {
-                    target = source;
-                }
-                flags.add("-source");
-                flags.add(String.valueOf(source));
-                flags.add("-target");
-                flags.add(String.valueOf(target));
-            }
+        } else if (source >= 0) {
+            flags.add("-source");
+            flags.add(String.valueOf(source));
+            flags.add("-target");
+            flags.add(String.valueOf(this.target(source)));
         }
         return flags;
+    }
+
+    /**
+     * The {@code -target} level to forward alongside {@code -source}.
+     *
+     * <p>Reads {@code maven.compiler.target}, falling back to the given
+     * source level when the project does not pin a target of its own, so
+     * that {@code javac}'s requirement of {@code target >= source} is
+     * always met.</p>
+     *
+     * @param fallback The source level to use when no target is pinned
+     * @return The target level
+     */
+    private int target(final int fallback) {
+        int level = ErrorProneValidator.major(
+            this.env.param("maven.compiler.target", "")
+        );
+        if (level < 0) {
+            level = fallback;
+        }
+        return level;
     }
 
     /**
@@ -301,7 +314,7 @@ public final class ErrorProneValidator implements ResourceValidator {
      * @param value Version, e.g. {@code "8"}, {@code "1.8"} or {@code "17"}
      * @return The major version, or {@code -1} if it cannot be parsed
      */
-    private static int parse(final String value) {
+    private static int major(final String value) {
         int result = -1;
         if (value != null) {
             String txt = value.trim();
