@@ -202,144 +202,231 @@
 <a class="jxr_linenumber" name="L194" href="#L194">194</a>         args.add(<span class="jxr_string">"-XDaddTypeAnnotationsToSymbol=true"</span>);
 <a class="jxr_linenumber" name="L195" href="#L195">195</a>         args.add(<span class="jxr_string">"--should-stop=ifError=FLOW"</span>);
 <a class="jxr_linenumber" name="L196" href="#L196">196</a>         args.add(<span class="jxr_string">"-proc:none"</span>);
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>         args.add(ErrorProneValidator.PLUGIN);
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>         args.add(<span class="jxr_string">"-processorpath"</span>);
-<a class="jxr_linenumber" name="L199" href="#L199">199</a>         args.add(ErrorProneValidator.pluginClasspath());
-<a class="jxr_linenumber" name="L200" href="#L200">200</a>         args.add(<span class="jxr_string">"-d"</span>);
-<a class="jxr_linenumber" name="L201" href="#L201">201</a>         args.add(outdir.getAbsolutePath());
-<a class="jxr_linenumber" name="L202" href="#L202">202</a>         <strong class="jxr_keyword">final</strong> Collection&lt;String&gt; classpath = <strong class="jxr_keyword">this</strong>.env.classpath();
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>         <strong class="jxr_keyword">if</strong> (!classpath.isEmpty()) {
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>             args.add(<span class="jxr_string">"-classpath"</span>);
-<a class="jxr_linenumber" name="L205" href="#L205">205</a>             args.add(String.join(File.pathSeparator, classpath));
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>         }
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> File source : sources) {
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>             args.add(source.getAbsolutePath());
-<a class="jxr_linenumber" name="L209" href="#L209">209</a>         }
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>         command.add(
-<a class="jxr_linenumber" name="L211" href="#L211">211</a>             <span class="jxr_string">"@"</span>.concat(
-<a class="jxr_linenumber" name="L212" href="#L212">212</a>                 <strong class="jxr_keyword">new</strong> <a name="Argfile" href="../../../com/qulice/errorprone/Argfile.html#Argfile">Argfile</a>(
-<a class="jxr_linenumber" name="L213" href="#L213">213</a>                     <strong class="jxr_keyword">new</strong> File(<strong class="jxr_keyword">this</strong>.env.tempdir(), <span class="jxr_string">"errorprone-args.txt"</span>), args
-<a class="jxr_linenumber" name="L214" href="#L214">214</a>                 ).save().getAbsolutePath()
-<a class="jxr_linenumber" name="L215" href="#L215">215</a>             )
-<a class="jxr_linenumber" name="L216" href="#L216">216</a>         );
-<a class="jxr_linenumber" name="L217" href="#L217">217</a>         <strong class="jxr_keyword">return</strong> command;
-<a class="jxr_linenumber" name="L218" href="#L218">218</a>     }
-<a class="jxr_linenumber" name="L219" href="#L219">219</a> 
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L221" href="#L221">221</a> <em class="jxr_javadoccomment">     * Translate diagnostic lines into Qulice violations, keeping only</em>
-<a class="jxr_linenumber" name="L222" href="#L222">222</a> <em class="jxr_javadoccomment">     * those messages prefixed by an ErrorProne bug-pattern name.</em>
-<a class="jxr_linenumber" name="L223" href="#L223">223</a> <em class="jxr_javadoccomment">     * @param output Combined stdout/stderr of the forked process</em>
-<a class="jxr_linenumber" name="L224" href="#L224">224</a> <em class="jxr_javadoccomment">     * @return Violations</em>
-<a class="jxr_linenumber" name="L225" href="#L225">225</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>     <strong class="jxr_keyword">private</strong> Collection&lt;Violation&gt; parse(<strong class="jxr_keyword">final</strong> List&lt;String&gt; output) {
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; violations = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(0);
-<a class="jxr_linenumber" name="L228" href="#L228">228</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String line : output) {
-<a class="jxr_linenumber" name="L229" href="#L229">229</a>             <strong class="jxr_keyword">final</strong> Matcher matcher = ErrorProneValidator.DIAGNOSTIC.matcher(line);
-<a class="jxr_linenumber" name="L230" href="#L230">230</a>             <strong class="jxr_keyword">if</strong> (matcher.matches()) {
-<a class="jxr_linenumber" name="L231" href="#L231">231</a>                 <strong class="jxr_keyword">final</strong> String check = matcher.group(3);
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>                 violations.add(
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>                     <strong class="jxr_keyword">new</strong> Violation.Default(
-<a class="jxr_linenumber" name="L234" href="#L234">234</a>                         <strong class="jxr_keyword">this</strong>.name(),
-<a class="jxr_linenumber" name="L235" href="#L235">235</a>                         check,
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>                         matcher.group(1),
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>                         matcher.group(2),
-<a class="jxr_linenumber" name="L238" href="#L238">238</a>                         String.format(<span class="jxr_string">"[%s] %s"</span>, check, matcher.group(4))
-<a class="jxr_linenumber" name="L239" href="#L239">239</a>                     )
-<a class="jxr_linenumber" name="L240" href="#L240">240</a>                 );
-<a class="jxr_linenumber" name="L241" href="#L241">241</a>             }
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>         }
-<a class="jxr_linenumber" name="L243" href="#L243">243</a>         <strong class="jxr_keyword">return</strong> violations;
-<a class="jxr_linenumber" name="L244" href="#L244">244</a>     }
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> 
-<a class="jxr_linenumber" name="L246" href="#L246">246</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">     * Filters out non-Java and excluded files from further validation.</em>
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">     * @param files Files to validate</em>
-<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">     * @return List of relevant files</em>
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L251" href="#L251">251</a>     <strong class="jxr_keyword">private</strong> List&lt;File&gt; relevant(<strong class="jxr_keyword">final</strong> Collection&lt;File&gt; files) {
-<a class="jxr_linenumber" name="L252" href="#L252">252</a>         <strong class="jxr_keyword">final</strong> List&lt;File&gt; sources = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(files.size());
-<a class="jxr_linenumber" name="L253" href="#L253">253</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> File file : files) {
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>             <strong class="jxr_keyword">final</strong> String name = <strong class="jxr_keyword">new</strong> <a name="Relative" href="../../../com/qulice/spi/Relative.html#Relative">Relative</a>(<strong class="jxr_keyword">this</strong>.env.basedir(), file).path();
-<a class="jxr_linenumber" name="L255" href="#L255">255</a>             <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.env.exclude(<span class="jxr_string">"errorprone"</span>, name)) {
-<a class="jxr_linenumber" name="L256" href="#L256">256</a>                 <strong class="jxr_keyword">continue</strong>;
-<a class="jxr_linenumber" name="L257" href="#L257">257</a>             }
-<a class="jxr_linenumber" name="L258" href="#L258">258</a>             <strong class="jxr_keyword">if</strong> (!name.endsWith(<span class="jxr_string">".java"</span>)) {
-<a class="jxr_linenumber" name="L259" href="#L259">259</a>                 <strong class="jxr_keyword">continue</strong>;
-<a class="jxr_linenumber" name="L260" href="#L260">260</a>             }
-<a class="jxr_linenumber" name="L261" href="#L261">261</a>             sources.add(file);
-<a class="jxr_linenumber" name="L262" href="#L262">262</a>         }
-<a class="jxr_linenumber" name="L263" href="#L263">263</a>         <strong class="jxr_keyword">return</strong> sources;
-<a class="jxr_linenumber" name="L264" href="#L264">264</a>     }
-<a class="jxr_linenumber" name="L265" href="#L265">265</a> 
-<a class="jxr_linenumber" name="L266" href="#L266">266</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L267" href="#L267">267</a> <em class="jxr_javadoccomment">     * Resolve the {@code javac} executable from the running JDK.</em>
-<a class="jxr_linenumber" name="L268" href="#L268">268</a> <em class="jxr_javadoccomment">     * @return Absolute path to {@code ${java.home}/bin/javac}</em>
-<a class="jxr_linenumber" name="L269" href="#L269">269</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L270" href="#L270">270</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String javac() {
-<a class="jxr_linenumber" name="L271" href="#L271">271</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> File(
-<a class="jxr_linenumber" name="L272" href="#L272">272</a>             <strong class="jxr_keyword">new</strong> File(System.getProperty(<span class="jxr_string">"java.home"</span>), <span class="jxr_string">"bin"</span>),
-<a class="jxr_linenumber" name="L273" href="#L273">273</a>             <span class="jxr_string">"javac"</span>
-<a class="jxr_linenumber" name="L274" href="#L274">274</a>         ).getAbsolutePath();
-<a class="jxr_linenumber" name="L275" href="#L275">275</a>     }
-<a class="jxr_linenumber" name="L276" href="#L276">276</a> 
-<a class="jxr_linenumber" name="L277" href="#L277">277</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L278" href="#L278">278</a> <em class="jxr_javadoccomment">     * Build the {@code -processorpath} value passed to the forked</em>
-<a class="jxr_linenumber" name="L279" href="#L279">279</a> <em class="jxr_javadoccomment">     * {@code javac}. Combines two sources: every URL on the</em>
-<a class="jxr_linenumber" name="L280" href="#L280">280</a> <em class="jxr_javadoccomment">     * {@link URLClassLoader} chain starting from the thread context</em>
-<a class="jxr_linenumber" name="L281" href="#L281">281</a> <em class="jxr_javadoccomment">     * classloader (the qulice plugin's own {@code ClassRealm} plus its</em>
-<a class="jxr_linenumber" name="L282" href="#L282">282</a> <em class="jxr_javadoccomment">     * URL-based parents, which carries ErrorProne when this code runs</em>
-<a class="jxr_linenumber" name="L283" href="#L283">283</a> <em class="jxr_javadoccomment">     * inside a Maven plugin execution), and the jar locations of a few</em>
-<a class="jxr_linenumber" name="L284" href="#L284">284</a> <em class="jxr_javadoccomment">     * classes ErrorProne needs at runtime that Maven's classworlds</em>
-<a class="jxr_linenumber" name="L285" href="#L285">285</a> <em class="jxr_javadoccomment">     * imports from a non-URL parent realm (notably</em>
-<a class="jxr_linenumber" name="L286" href="#L286">286</a> <em class="jxr_javadoccomment">     * {@link javax.inject.Inject}, which the</em>
-<a class="jxr_linenumber" name="L287" href="#L287">287</a> <em class="jxr_javadoccomment">     * {@code ErrorProneInjector} reads to find injectable constructors).</em>
-<a class="jxr_linenumber" name="L288" href="#L288">288</a> <em class="jxr_javadoccomment">     * Both are required: without the realm URLs there's no</em>
-<a class="jxr_linenumber" name="L289" href="#L289">289</a> <em class="jxr_javadoccomment">     * {@code error_prone_core}, without the protection-domain lookup</em>
-<a class="jxr_linenumber" name="L290" href="#L290">290</a> <em class="jxr_javadoccomment">     * there's no {@code javax.inject}.</em>
-<a class="jxr_linenumber" name="L291" href="#L291">291</a> <em class="jxr_javadoccomment">     * @return Path-separator joined list of jar paths</em>
-<a class="jxr_linenumber" name="L292" href="#L292">292</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L293" href="#L293">293</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String pluginClasspath() {
-<a class="jxr_linenumber" name="L294" href="#L294">294</a>         <strong class="jxr_keyword">final</strong> Set&lt;String&gt; entries = <strong class="jxr_keyword">new</strong> LinkedHashSet&lt;&gt;();
-<a class="jxr_linenumber" name="L295" href="#L295">295</a>         ClassLoader loader = Thread.currentThread().getContextClassLoader();
-<a class="jxr_linenumber" name="L296" href="#L296">296</a>         <strong class="jxr_keyword">while</strong> (loader != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L297" href="#L297">297</a>             <strong class="jxr_keyword">if</strong> (loader instanceof URLClassLoader) {
-<a class="jxr_linenumber" name="L298" href="#L298">298</a>                 <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> URL url : ((URLClassLoader) loader).getURLs()) {
-<a class="jxr_linenumber" name="L299" href="#L299">299</a>                     <strong class="jxr_keyword">new</strong> <a name="Unencoded" href="../../../com/qulice/errorprone/Unencoded.html#Unencoded">Unencoded</a>(url).path().ifPresent(entries::add);
-<a class="jxr_linenumber" name="L300" href="#L300">300</a>                 }
-<a class="jxr_linenumber" name="L301" href="#L301">301</a>             }
-<a class="jxr_linenumber" name="L302" href="#L302">302</a>             loader = loader.getParent();
-<a class="jxr_linenumber" name="L303" href="#L303">303</a>         }
-<a class="jxr_linenumber" name="L304" href="#L304">304</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String entry
-<a class="jxr_linenumber" name="L305" href="#L305">305</a>             : Splitter.on(File.pathSeparatorChar).split(
-<a class="jxr_linenumber" name="L306" href="#L306">306</a>                 System.getProperty(<span class="jxr_string">"java.class.path"</span>, <span class="jxr_string">""</span>)
-<a class="jxr_linenumber" name="L307" href="#L307">307</a>             )
-<a class="jxr_linenumber" name="L308" href="#L308">308</a>         ) {
-<a class="jxr_linenumber" name="L309" href="#L309">309</a>             <strong class="jxr_keyword">if</strong> (!entry.isEmpty()) {
-<a class="jxr_linenumber" name="L310" href="#L310">310</a>                 entries.add(<strong class="jxr_keyword">new</strong> File(entry).getAbsolutePath());
-<a class="jxr_linenumber" name="L311" href="#L311">311</a>             }
-<a class="jxr_linenumber" name="L312" href="#L312">312</a>         }
-<a class="jxr_linenumber" name="L313" href="#L313">313</a>         ErrorProneValidator.addCodeSource(entries, javax.inject.Inject.<strong class="jxr_keyword">class</strong>);
-<a class="jxr_linenumber" name="L314" href="#L314">314</a>         <strong class="jxr_keyword">return</strong> String.join(File.pathSeparator, entries);
-<a class="jxr_linenumber" name="L315" href="#L315">315</a>     }
-<a class="jxr_linenumber" name="L316" href="#L316">316</a> 
-<a class="jxr_linenumber" name="L317" href="#L317">317</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L318" href="#L318">318</a> <em class="jxr_javadoccomment">     * Append the jar that contains the given class to {@code entries},</em>
-<a class="jxr_linenumber" name="L319" href="#L319">319</a> <em class="jxr_javadoccomment">     * resolved via {@link Class#getProtectionDomain()}. Silently ignored</em>
-<a class="jxr_linenumber" name="L320" href="#L320">320</a> <em class="jxr_javadoccomment">     * if the class is loaded from a non-file location (e.g. a JRT module</em>
-<a class="jxr_linenumber" name="L321" href="#L321">321</a> <em class="jxr_javadoccomment">     * or an exploded directory).</em>
-<a class="jxr_linenumber" name="L322" href="#L322">322</a> <em class="jxr_javadoccomment">     * @param entries Set to append to</em>
-<a class="jxr_linenumber" name="L323" href="#L323">323</a> <em class="jxr_javadoccomment">     * @param klass Class whose code source jar should be included</em>
-<a class="jxr_linenumber" name="L324" href="#L324">324</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L325" href="#L325">325</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> addCodeSource(
-<a class="jxr_linenumber" name="L326" href="#L326">326</a>         <strong class="jxr_keyword">final</strong> Set&lt;String&gt; entries, <strong class="jxr_keyword">final</strong> Class&lt;?&gt; klass
-<a class="jxr_linenumber" name="L327" href="#L327">327</a>     ) {
-<a class="jxr_linenumber" name="L328" href="#L328">328</a>         <strong class="jxr_keyword">final</strong> java.security.CodeSource source =
-<a class="jxr_linenumber" name="L329" href="#L329">329</a>             klass.getProtectionDomain().getCodeSource();
-<a class="jxr_linenumber" name="L330" href="#L330">330</a>         <strong class="jxr_keyword">if</strong> (source != <strong class="jxr_keyword">null</strong> &amp;&amp; source.getLocation() != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L331" href="#L331">331</a>             <strong class="jxr_keyword">new</strong> <a name="Unencoded" href="../../../com/qulice/errorprone/Unencoded.html#Unencoded">Unencoded</a>(source.getLocation()).path().ifPresent(entries::add);
-<a class="jxr_linenumber" name="L332" href="#L332">332</a>         }
-<a class="jxr_linenumber" name="L333" href="#L333">333</a>     }
-<a class="jxr_linenumber" name="L334" href="#L334">334</a> }
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>         args.addAll(<strong class="jxr_keyword">this</strong>.release());
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>         args.add(ErrorProneValidator.PLUGIN);
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>         args.add(<span class="jxr_string">"-processorpath"</span>);
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>         args.add(ErrorProneValidator.pluginClasspath());
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>         args.add(<span class="jxr_string">"-d"</span>);
+<a class="jxr_linenumber" name="L202" href="#L202">202</a>         args.add(outdir.getAbsolutePath());
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>         <strong class="jxr_keyword">final</strong> Collection&lt;String&gt; classpath = <strong class="jxr_keyword">this</strong>.env.classpath();
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>         <strong class="jxr_keyword">if</strong> (!classpath.isEmpty()) {
+<a class="jxr_linenumber" name="L205" href="#L205">205</a>             args.add(<span class="jxr_string">"-classpath"</span>);
+<a class="jxr_linenumber" name="L206" href="#L206">206</a>             args.add(String.join(File.pathSeparator, classpath));
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>         }
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> File source : sources) {
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>             args.add(source.getAbsolutePath());
+<a class="jxr_linenumber" name="L210" href="#L210">210</a>         }
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>         command.add(
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>             <span class="jxr_string">"@"</span>.concat(
+<a class="jxr_linenumber" name="L213" href="#L213">213</a>                 <strong class="jxr_keyword">new</strong> <a name="Argfile" href="../../../com/qulice/errorprone/Argfile.html#Argfile">Argfile</a>(
+<a class="jxr_linenumber" name="L214" href="#L214">214</a>                     <strong class="jxr_keyword">new</strong> File(<strong class="jxr_keyword">this</strong>.env.tempdir(), <span class="jxr_string">"errorprone-args.txt"</span>), args
+<a class="jxr_linenumber" name="L215" href="#L215">215</a>                 ).save().getAbsolutePath()
+<a class="jxr_linenumber" name="L216" href="#L216">216</a>             )
+<a class="jxr_linenumber" name="L217" href="#L217">217</a>         );
+<a class="jxr_linenumber" name="L218" href="#L218">218</a>         <strong class="jxr_keyword">return</strong> command;
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>     }
+<a class="jxr_linenumber" name="L220" href="#L220">220</a> 
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L222" href="#L222">222</a> <em class="jxr_javadoccomment">     * Translate diagnostic lines into Qulice violations, keeping only</em>
+<a class="jxr_linenumber" name="L223" href="#L223">223</a> <em class="jxr_javadoccomment">     * those messages prefixed by an ErrorProne bug-pattern name.</em>
+<a class="jxr_linenumber" name="L224" href="#L224">224</a> <em class="jxr_javadoccomment">     * @param output Combined stdout/stderr of the forked process</em>
+<a class="jxr_linenumber" name="L225" href="#L225">225</a> <em class="jxr_javadoccomment">     * @return Violations</em>
+<a class="jxr_linenumber" name="L226" href="#L226">226</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L227" href="#L227">227</a>     <strong class="jxr_keyword">private</strong> Collection&lt;Violation&gt; parse(<strong class="jxr_keyword">final</strong> List&lt;String&gt; output) {
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; violations = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(0);
+<a class="jxr_linenumber" name="L229" href="#L229">229</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String line : output) {
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>             <strong class="jxr_keyword">final</strong> Matcher matcher = ErrorProneValidator.DIAGNOSTIC.matcher(line);
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>             <strong class="jxr_keyword">if</strong> (matcher.matches()) {
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>                 <strong class="jxr_keyword">final</strong> String check = matcher.group(3);
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>                 violations.add(
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>                     <strong class="jxr_keyword">new</strong> Violation.Default(
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>                         <strong class="jxr_keyword">this</strong>.name(),
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>                         check,
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>                         matcher.group(1),
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>                         matcher.group(2),
+<a class="jxr_linenumber" name="L239" href="#L239">239</a>                         String.format(<span class="jxr_string">"[%s] %s"</span>, check, matcher.group(4))
+<a class="jxr_linenumber" name="L240" href="#L240">240</a>                     )
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>                 );
+<a class="jxr_linenumber" name="L242" href="#L242">242</a>             }
+<a class="jxr_linenumber" name="L243" href="#L243">243</a>         }
+<a class="jxr_linenumber" name="L244" href="#L244">244</a>         <strong class="jxr_keyword">return</strong> violations;
+<a class="jxr_linenumber" name="L245" href="#L245">245</a>     }
+<a class="jxr_linenumber" name="L246" href="#L246">246</a> 
+<a class="jxr_linenumber" name="L247" href="#L247">247</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">     * The {@code javac} flags that pin the forked compiler to the project's</em>
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">     * own Java source level.</em>
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> <em class="jxr_javadoccomment">     * &lt;p&gt;Without them the forked {@code javac} runs at the host JDK's default</em>
+<a class="jxr_linenumber" name="L252" href="#L252">252</a> <em class="jxr_javadoccomment">     * language level (e.g. 21 on a JDK 21 host), so ErrorProne fires</em>
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> <em class="jxr_javadoccomment">     * syntax-modernising checks such as {@code PatternMatchingInstanceof}</em>
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> <em class="jxr_javadoccomment">     * even on projects that compile at {@code -source 8}, producing</em>
+<a class="jxr_linenumber" name="L255" href="#L255">255</a> <em class="jxr_javadoccomment">     * suggestions whose rewrite does not compile under the project's real</em>
+<a class="jxr_linenumber" name="L256" href="#L256">256</a> <em class="jxr_javadoccomment">     * source level. The level is derived exactly as</em>
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> <em class="jxr_javadoccomment">     * {@code CheckstyleValidator} derives it: {@code maven.compiler.release}</em>
+<a class="jxr_linenumber" name="L258" href="#L258">258</a> <em class="jxr_javadoccomment">     * first, then {@code maven.compiler.source}, accepting both the modern</em>
+<a class="jxr_linenumber" name="L259" href="#L259">259</a> <em class="jxr_javadoccomment">     * ({@code "8"}, {@code "17"}) and legacy ({@code "1.8"}) forms. When the</em>
+<a class="jxr_linenumber" name="L260" href="#L260">260</a> <em class="jxr_javadoccomment">     * project pins a {@code release}, {@code --release} is forwarded;</em>
+<a class="jxr_linenumber" name="L261" href="#L261">261</a> <em class="jxr_javadoccomment">     * otherwise {@code -source}/{@code -target} are, which gates the language</em>
+<a class="jxr_linenumber" name="L262" href="#L262">262</a> <em class="jxr_javadoccomment">     * features while leaving the API surface untouched so that projects using</em>
+<a class="jxr_linenumber" name="L263" href="#L263">263</a> <em class="jxr_javadoccomment">     * newer library APIs under a plain {@code -source} build do not gain</em>
+<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">     * spurious "cannot find symbol" errors. When neither property is set the</em>
+<a class="jxr_linenumber" name="L265" href="#L265">265</a> <em class="jxr_javadoccomment">     * level is unknown and nothing is added, leaving the host default in</em>
+<a class="jxr_linenumber" name="L266" href="#L266">266</a> <em class="jxr_javadoccomment">     * place. See</em>
+<a class="jxr_linenumber" name="L267" href="#L267">267</a> <em class="jxr_javadoccomment">     * &lt;a href="<a href="https://github.com/yegor256/qulice/issues/1716" target="alexandria_uri">https://github.com/yegor256/qulice/issues/1716</a>"&gt;#1716&lt;/a&gt;.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L268" href="#L268">268</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L269" href="#L269">269</a> <em class="jxr_javadoccomment">     * @return Source-level flags, possibly empty</em>
+<a class="jxr_linenumber" name="L270" href="#L270">270</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L271" href="#L271">271</a>     <strong class="jxr_keyword">private</strong> List&lt;String&gt; release() {
+<a class="jxr_linenumber" name="L272" href="#L272">272</a>         <strong class="jxr_keyword">final</strong> List&lt;String&gt; flags = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(4);
+<a class="jxr_linenumber" name="L273" href="#L273">273</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> rel = ErrorProneValidator.major(
+<a class="jxr_linenumber" name="L274" href="#L274">274</a>             <strong class="jxr_keyword">this</strong>.env.param(<span class="jxr_string">"maven.compiler.release"</span>, <span class="jxr_string">""</span>)
+<a class="jxr_linenumber" name="L275" href="#L275">275</a>         );
+<a class="jxr_linenumber" name="L276" href="#L276">276</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> source = ErrorProneValidator.major(
+<a class="jxr_linenumber" name="L277" href="#L277">277</a>             <strong class="jxr_keyword">this</strong>.env.param(<span class="jxr_string">"maven.compiler.source"</span>, <span class="jxr_string">""</span>)
+<a class="jxr_linenumber" name="L278" href="#L278">278</a>         );
+<a class="jxr_linenumber" name="L279" href="#L279">279</a>         <strong class="jxr_keyword">if</strong> (rel &gt;= 0) {
+<a class="jxr_linenumber" name="L280" href="#L280">280</a>             flags.add(<span class="jxr_string">"--release"</span>);
+<a class="jxr_linenumber" name="L281" href="#L281">281</a>             flags.add(String.valueOf(rel));
+<a class="jxr_linenumber" name="L282" href="#L282">282</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (source &gt;= 0) {
+<a class="jxr_linenumber" name="L283" href="#L283">283</a>             flags.add(<span class="jxr_string">"-source"</span>);
+<a class="jxr_linenumber" name="L284" href="#L284">284</a>             flags.add(String.valueOf(source));
+<a class="jxr_linenumber" name="L285" href="#L285">285</a>             flags.add(<span class="jxr_string">"-target"</span>);
+<a class="jxr_linenumber" name="L286" href="#L286">286</a>             flags.add(String.valueOf(<strong class="jxr_keyword">this</strong>.target(source)));
+<a class="jxr_linenumber" name="L287" href="#L287">287</a>         }
+<a class="jxr_linenumber" name="L288" href="#L288">288</a>         <strong class="jxr_keyword">return</strong> flags;
+<a class="jxr_linenumber" name="L289" href="#L289">289</a>     }
+<a class="jxr_linenumber" name="L290" href="#L290">290</a> 
+<a class="jxr_linenumber" name="L291" href="#L291">291</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L292" href="#L292">292</a> <em class="jxr_javadoccomment">     * The {@code -target} level to forward alongside {@code -source}.</em>
+<a class="jxr_linenumber" name="L293" href="#L293">293</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L294" href="#L294">294</a> <em class="jxr_javadoccomment">     * &lt;p&gt;Reads {@code maven.compiler.target}, falling back to the given</em>
+<a class="jxr_linenumber" name="L295" href="#L295">295</a> <em class="jxr_javadoccomment">     * source level when the project does not pin a target of its own, so</em>
+<a class="jxr_linenumber" name="L296" href="#L296">296</a> <em class="jxr_javadoccomment">     * that {@code javac}'s requirement of {@code target &gt;= source} is</em>
+<a class="jxr_linenumber" name="L297" href="#L297">297</a> <em class="jxr_javadoccomment">     * always met.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L298" href="#L298">298</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L299" href="#L299">299</a> <em class="jxr_javadoccomment">     * @param fallback The source level to use when no target is pinned</em>
+<a class="jxr_linenumber" name="L300" href="#L300">300</a> <em class="jxr_javadoccomment">     * @return The target level</em>
+<a class="jxr_linenumber" name="L301" href="#L301">301</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L302" href="#L302">302</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> target(<strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> fallback) {
+<a class="jxr_linenumber" name="L303" href="#L303">303</a>         <strong class="jxr_keyword">int</strong> level = ErrorProneValidator.major(
+<a class="jxr_linenumber" name="L304" href="#L304">304</a>             <strong class="jxr_keyword">this</strong>.env.param(<span class="jxr_string">"maven.compiler.target"</span>, <span class="jxr_string">""</span>)
+<a class="jxr_linenumber" name="L305" href="#L305">305</a>         );
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>         <strong class="jxr_keyword">if</strong> (level &lt; 0) {
+<a class="jxr_linenumber" name="L307" href="#L307">307</a>             level = fallback;
+<a class="jxr_linenumber" name="L308" href="#L308">308</a>         }
+<a class="jxr_linenumber" name="L309" href="#L309">309</a>         <strong class="jxr_keyword">return</strong> level;
+<a class="jxr_linenumber" name="L310" href="#L310">310</a>     }
+<a class="jxr_linenumber" name="L311" href="#L311">311</a> 
+<a class="jxr_linenumber" name="L312" href="#L312">312</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L313" href="#L313">313</a> <em class="jxr_javadoccomment">     * Parse a Java version string into its major number.</em>
+<a class="jxr_linenumber" name="L314" href="#L314">314</a> <em class="jxr_javadoccomment">     * @param value Version, e.g. {@code "8"}, {@code "1.8"} or {@code "17"}</em>
+<a class="jxr_linenumber" name="L315" href="#L315">315</a> <em class="jxr_javadoccomment">     * @return The major version, or {@code -1} if it cannot be parsed</em>
+<a class="jxr_linenumber" name="L316" href="#L316">316</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L317" href="#L317">317</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> major(<strong class="jxr_keyword">final</strong> String value) {
+<a class="jxr_linenumber" name="L318" href="#L318">318</a>         <strong class="jxr_keyword">int</strong> result = -1;
+<a class="jxr_linenumber" name="L319" href="#L319">319</a>         <strong class="jxr_keyword">if</strong> (value != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L320" href="#L320">320</a>             String txt = value.trim();
+<a class="jxr_linenumber" name="L321" href="#L321">321</a>             <strong class="jxr_keyword">if</strong> (txt.startsWith(<span class="jxr_string">"1."</span>)) {
+<a class="jxr_linenumber" name="L322" href="#L322">322</a>                 txt = txt.substring(2);
+<a class="jxr_linenumber" name="L323" href="#L323">323</a>             }
+<a class="jxr_linenumber" name="L324" href="#L324">324</a>             <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L325" href="#L325">325</a>                 result = Integer.parseInt(txt);
+<a class="jxr_linenumber" name="L326" href="#L326">326</a>             } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> NumberFormatException ex) {
+<a class="jxr_linenumber" name="L327" href="#L327">327</a>                 result = -1;
+<a class="jxr_linenumber" name="L328" href="#L328">328</a>             }
+<a class="jxr_linenumber" name="L329" href="#L329">329</a>         }
+<a class="jxr_linenumber" name="L330" href="#L330">330</a>         <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L331" href="#L331">331</a>     }
+<a class="jxr_linenumber" name="L332" href="#L332">332</a> 
+<a class="jxr_linenumber" name="L333" href="#L333">333</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L334" href="#L334">334</a> <em class="jxr_javadoccomment">     * Filters out non-Java and excluded files from further validation.</em>
+<a class="jxr_linenumber" name="L335" href="#L335">335</a> <em class="jxr_javadoccomment">     * @param files Files to validate</em>
+<a class="jxr_linenumber" name="L336" href="#L336">336</a> <em class="jxr_javadoccomment">     * @return List of relevant files</em>
+<a class="jxr_linenumber" name="L337" href="#L337">337</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L338" href="#L338">338</a>     <strong class="jxr_keyword">private</strong> List&lt;File&gt; relevant(<strong class="jxr_keyword">final</strong> Collection&lt;File&gt; files) {
+<a class="jxr_linenumber" name="L339" href="#L339">339</a>         <strong class="jxr_keyword">final</strong> List&lt;File&gt; sources = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(files.size());
+<a class="jxr_linenumber" name="L340" href="#L340">340</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> File file : files) {
+<a class="jxr_linenumber" name="L341" href="#L341">341</a>             <strong class="jxr_keyword">final</strong> String name = <strong class="jxr_keyword">new</strong> <a name="Relative" href="../../../com/qulice/spi/Relative.html#Relative">Relative</a>(<strong class="jxr_keyword">this</strong>.env.basedir(), file).path();
+<a class="jxr_linenumber" name="L342" href="#L342">342</a>             <strong class="jxr_keyword">if</strong> (<strong class="jxr_keyword">this</strong>.env.exclude(<span class="jxr_string">"errorprone"</span>, name)) {
+<a class="jxr_linenumber" name="L343" href="#L343">343</a>                 <strong class="jxr_keyword">continue</strong>;
+<a class="jxr_linenumber" name="L344" href="#L344">344</a>             }
+<a class="jxr_linenumber" name="L345" href="#L345">345</a>             <strong class="jxr_keyword">if</strong> (!name.endsWith(<span class="jxr_string">".java"</span>)) {
+<a class="jxr_linenumber" name="L346" href="#L346">346</a>                 <strong class="jxr_keyword">continue</strong>;
+<a class="jxr_linenumber" name="L347" href="#L347">347</a>             }
+<a class="jxr_linenumber" name="L348" href="#L348">348</a>             sources.add(file);
+<a class="jxr_linenumber" name="L349" href="#L349">349</a>         }
+<a class="jxr_linenumber" name="L350" href="#L350">350</a>         <strong class="jxr_keyword">return</strong> sources;
+<a class="jxr_linenumber" name="L351" href="#L351">351</a>     }
+<a class="jxr_linenumber" name="L352" href="#L352">352</a> 
+<a class="jxr_linenumber" name="L353" href="#L353">353</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L354" href="#L354">354</a> <em class="jxr_javadoccomment">     * Resolve the {@code javac} executable from the running JDK.</em>
+<a class="jxr_linenumber" name="L355" href="#L355">355</a> <em class="jxr_javadoccomment">     * @return Absolute path to {@code ${java.home}/bin/javac}</em>
+<a class="jxr_linenumber" name="L356" href="#L356">356</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L357" href="#L357">357</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String javac() {
+<a class="jxr_linenumber" name="L358" href="#L358">358</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> File(
+<a class="jxr_linenumber" name="L359" href="#L359">359</a>             <strong class="jxr_keyword">new</strong> File(System.getProperty(<span class="jxr_string">"java.home"</span>), <span class="jxr_string">"bin"</span>),
+<a class="jxr_linenumber" name="L360" href="#L360">360</a>             <span class="jxr_string">"javac"</span>
+<a class="jxr_linenumber" name="L361" href="#L361">361</a>         ).getAbsolutePath();
+<a class="jxr_linenumber" name="L362" href="#L362">362</a>     }
+<a class="jxr_linenumber" name="L363" href="#L363">363</a> 
+<a class="jxr_linenumber" name="L364" href="#L364">364</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L365" href="#L365">365</a> <em class="jxr_javadoccomment">     * Build the {@code -processorpath} value passed to the forked</em>
+<a class="jxr_linenumber" name="L366" href="#L366">366</a> <em class="jxr_javadoccomment">     * {@code javac}. Combines two sources: every URL on the</em>
+<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">     * {@link URLClassLoader} chain starting from the thread context</em>
+<a class="jxr_linenumber" name="L368" href="#L368">368</a> <em class="jxr_javadoccomment">     * classloader (the qulice plugin's own {@code ClassRealm} plus its</em>
+<a class="jxr_linenumber" name="L369" href="#L369">369</a> <em class="jxr_javadoccomment">     * URL-based parents, which carries ErrorProne when this code runs</em>
+<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">     * inside a Maven plugin execution), and the jar locations of a few</em>
+<a class="jxr_linenumber" name="L371" href="#L371">371</a> <em class="jxr_javadoccomment">     * classes ErrorProne needs at runtime that Maven's classworlds</em>
+<a class="jxr_linenumber" name="L372" href="#L372">372</a> <em class="jxr_javadoccomment">     * imports from a non-URL parent realm (notably</em>
+<a class="jxr_linenumber" name="L373" href="#L373">373</a> <em class="jxr_javadoccomment">     * {@link javax.inject.Inject}, which the</em>
+<a class="jxr_linenumber" name="L374" href="#L374">374</a> <em class="jxr_javadoccomment">     * {@code ErrorProneInjector} reads to find injectable constructors).</em>
+<a class="jxr_linenumber" name="L375" href="#L375">375</a> <em class="jxr_javadoccomment">     * Both are required: without the realm URLs there's no</em>
+<a class="jxr_linenumber" name="L376" href="#L376">376</a> <em class="jxr_javadoccomment">     * {@code error_prone_core}, without the protection-domain lookup</em>
+<a class="jxr_linenumber" name="L377" href="#L377">377</a> <em class="jxr_javadoccomment">     * there's no {@code javax.inject}.</em>
+<a class="jxr_linenumber" name="L378" href="#L378">378</a> <em class="jxr_javadoccomment">     * @return Path-separator joined list of jar paths</em>
+<a class="jxr_linenumber" name="L379" href="#L379">379</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L380" href="#L380">380</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String pluginClasspath() {
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>         <strong class="jxr_keyword">final</strong> Set&lt;String&gt; entries = <strong class="jxr_keyword">new</strong> LinkedHashSet&lt;&gt;();
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>         ClassLoader loader = Thread.currentThread().getContextClassLoader();
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>         <strong class="jxr_keyword">while</strong> (loader != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L384" href="#L384">384</a>             <strong class="jxr_keyword">if</strong> (loader instanceof URLClassLoader) {
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>                 <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> URL url : ((URLClassLoader) loader).getURLs()) {
+<a class="jxr_linenumber" name="L386" href="#L386">386</a>                     <strong class="jxr_keyword">new</strong> <a name="Unencoded" href="../../../com/qulice/errorprone/Unencoded.html#Unencoded">Unencoded</a>(url).path().ifPresent(entries::add);
+<a class="jxr_linenumber" name="L387" href="#L387">387</a>                 }
+<a class="jxr_linenumber" name="L388" href="#L388">388</a>             }
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>             loader = loader.getParent();
+<a class="jxr_linenumber" name="L390" href="#L390">390</a>         }
+<a class="jxr_linenumber" name="L391" href="#L391">391</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> String entry
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>             : Splitter.on(File.pathSeparatorChar).split(
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>                 System.getProperty(<span class="jxr_string">"java.class.path"</span>, <span class="jxr_string">""</span>)
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>             )
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>         ) {
+<a class="jxr_linenumber" name="L396" href="#L396">396</a>             <strong class="jxr_keyword">if</strong> (!entry.isEmpty()) {
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>                 entries.add(<strong class="jxr_keyword">new</strong> File(entry).getAbsolutePath());
+<a class="jxr_linenumber" name="L398" href="#L398">398</a>             }
+<a class="jxr_linenumber" name="L399" href="#L399">399</a>         }
+<a class="jxr_linenumber" name="L400" href="#L400">400</a>         ErrorProneValidator.addCodeSource(entries, javax.inject.Inject.<strong class="jxr_keyword">class</strong>);
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>         <strong class="jxr_keyword">return</strong> String.join(File.pathSeparator, entries);
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>     }
+<a class="jxr_linenumber" name="L403" href="#L403">403</a> 
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L405" href="#L405">405</a> <em class="jxr_javadoccomment">     * Append the jar that contains the given class to {@code entries},</em>
+<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">     * resolved via {@link Class#getProtectionDomain()}. Silently ignored</em>
+<a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_javadoccomment">     * if the class is loaded from a non-file location (e.g. a JRT module</em>
+<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">     * or an exploded directory).</em>
+<a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_javadoccomment">     * @param entries Set to append to</em>
+<a class="jxr_linenumber" name="L410" href="#L410">410</a> <em class="jxr_javadoccomment">     * @param klass Class whose code source jar should be included</em>
+<a class="jxr_linenumber" name="L411" href="#L411">411</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> addCodeSource(
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>         <strong class="jxr_keyword">final</strong> Set&lt;String&gt; entries, <strong class="jxr_keyword">final</strong> Class&lt;?&gt; klass
+<a class="jxr_linenumber" name="L414" href="#L414">414</a>     ) {
+<a class="jxr_linenumber" name="L415" href="#L415">415</a>         <strong class="jxr_keyword">final</strong> java.security.CodeSource source =
+<a class="jxr_linenumber" name="L416" href="#L416">416</a>             klass.getProtectionDomain().getCodeSource();
+<a class="jxr_linenumber" name="L417" href="#L417">417</a>         <strong class="jxr_keyword">if</strong> (source != <strong class="jxr_keyword">null</strong> &amp;&amp; source.getLocation() != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L418" href="#L418">418</a>             <strong class="jxr_keyword">new</strong> <a name="Unencoded" href="../../../com/qulice/errorprone/Unencoded.html#Unencoded">Unencoded</a>(source.getLocation()).path().ifPresent(entries::add);
+<a class="jxr_linenumber" name="L419" href="#L419">419</a>         }
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>     }
+<a class="jxr_linenumber" name="L421" href="#L421">421</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
