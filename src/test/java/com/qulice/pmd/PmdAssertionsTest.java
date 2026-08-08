@@ -223,6 +223,24 @@ final class PmdAssertionsTest {
     }
 
     /**
+     * PmdValidator recognises the cactoos-matchers convention of a
+     * no-argument {@code affirm()} call on an {@code Assertion} object as a
+     * valid assertion and does not report UnitTestShouldIncludeAssert.
+     * Regression test for https://github.com/yegor256/qulice/issues/1698
+     * @throws Exception If something wrong happens inside.
+     */
+    @Test
+    void findsAssertionInAffirmCall() throws Exception {
+        new PmdAssert(
+            "AssertionAffirm.java",
+            Matchers.is(true),
+            Matchers.not(
+                Matchers.containsString("UnitTestShouldIncludeAssert")
+            )
+        ).assertOk();
+    }
+
+    /**
      * PmdValidator does not flag classes that use non-JUnit test conventions
      * like g4s8/oot, where a class ends with {@code *Test} but uses a
      * {@code public static void test()} entry point instead of
