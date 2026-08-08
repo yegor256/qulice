@@ -93,13 +93,13 @@ final class UnnecessaryLocalSkips {
     /**
      * A statement intervenes between the local's declaration and its single
      * use, so the local is pinning evaluation order and must stay. When the
-     * initialiser is a method call, any intervening statement is enough - the
-     * call's result cannot be read out of order without reordering side
-     * effects. When the initialiser is a field access (e.g. {@code
-     * System.out}), only an intervening call on the <em>same</em> qualifier
-     * (e.g. {@code System.setOut(...)}) counts, since such a call may reassign
-     * the field before it is read; an unrelated statement leaves the read
-     * inlinable. See issues #1607 and #1710.
+     * initialiser is a method call or a constructor call, any intervening
+     * statement is enough - the call's result cannot be read out of order
+     * without reordering side effects. When the initialiser is a field access
+     * (e.g. {@code System.out}), only an intervening call on the <em>same</em>
+     * qualifier (e.g. {@code System.setOut(...)}) counts, since such a call may
+     * reassign the field before it is read; an unrelated statement leaves the
+     * read inlinable. See issues #1607, #1699 and #1710.
      * @param variable The variable declarator
      * @param use The single use of the variable
      * @return True if a statement intervenes between init and its use
@@ -110,7 +110,8 @@ final class UnnecessaryLocalSkips {
     ) {
         final ASTExpression init = variable.getInitializer();
         final boolean found;
-        if (init instanceof ASTMethodCall) {
+        if (init instanceof ASTMethodCall
+            || init instanceof ASTConstructorCall) {
             final Node decl = UnnecessaryLocalSkips.blockLevel(variable);
             final Node consumer = UnnecessaryLocalSkips.blockLevel(use);
             found = UnnecessaryLocalSkips.sameBlock(decl, consumer)
