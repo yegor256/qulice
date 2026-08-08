@@ -111,10 +111,7 @@ final class UnnecessaryLocalSkips {
         final ASTExpression init = variable.getInitializer();
         final boolean found;
         if (init instanceof ASTMethodCall) {
-            final Node decl = UnnecessaryLocalSkips.blockLevel(variable);
-            final Node consumer = UnnecessaryLocalSkips.blockLevel(use);
-            found = UnnecessaryLocalSkips.sameBlock(decl, consumer)
-                && consumer.getIndexInParent() > decl.getIndexInParent() + 1;
+            found = UnnecessaryLocalSkips.intervenes(variable, use);
         } else if (init instanceof ASTFieldAccess access) {
             found = UnnecessaryLocalSkips.callsQualifier(variable, use, access);
         } else {
@@ -123,10 +120,30 @@ final class UnnecessaryLocalSkips {
         return found;
     }
 
-    private static boolean sameBlock(final Node first, final Node second) {
-        return first != null && second != null
-            && first.getParent() instanceof ASTBlock
-            && first.getParent().equals(second.getParent());
+    /**
+     * A statement sits between the declaration and its use inside the block
+     * that encloses the declaration. The use is measured through its nearest
+     * ancestor statement in that common block, so a use buried in an {@code
+     * if} or loop body (whose immediate block differs from the declaration's)
+     * is still compared against the intervening statements rather than being
+     * treated as adjacent. See issue #1700.
+     * @param variable The variable declarator
+     * @param use The single use of the variable
+     * @return True if a statement intervenes between init and its use
+     */
+    private static boolean intervenes(
+        final ASTVariableDeclarator variable,
+        final ASTVariableAccess use
+    ) {
+        boolean found = false;
+        final ASTBlock block = variable.ancestors(ASTBlock.class).first();
+        if (block != null) {
+            final Node decl = UnnecessaryLocalSkips.childOf(block, variable);
+            final Node consumer = UnnecessaryLocalSkips.childOf(block, use);
+            found = decl != null && consumer != null
+                && consumer.getIndexInParent() > decl.getIndexInParent() + 1;
+        }
+        return found;
     }
 
     private static boolean callsQualifier(
@@ -185,14 +202,6 @@ final class UnnecessaryLocalSkips {
             fresh = known || clock;
         }
         return fresh;
-    }
-
-    private static Node blockLevel(final Node node) {
-        Node current = node;
-        while (current != null && !(current.getParent() instanceof ASTBlock)) {
-            current = current.getParent();
-        }
-        return current;
     }
 
     private static String qualifierImage(final ASTExpression expr) {

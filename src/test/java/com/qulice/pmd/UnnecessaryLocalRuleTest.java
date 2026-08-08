@@ -104,6 +104,15 @@ final class UnnecessaryLocalRuleTest {
     }
 
     @Test
+    void doesNotFireWhenInterveningCallSitsBeforeNestedUse() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should not fire when a side-effecting statement intervenes before a use nested in an if block",
+            this.violations("UnnecessaryLocalInterveningNestedBlock.java"),
+            Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE))
+        );
+    }
+
+    @Test
     void doesNotFireOnTryWithResourcesResource() throws Exception {
         MatcherAssert.assertThat(
             "UnnecessaryLocalRule should not fire on a try-with-resources resource variable",
