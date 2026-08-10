@@ -169,7 +169,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
      * @param index Line number that contains the javadoc tag
      * @param line Javadoc tag line number in file
      * @return Javadoc tags with arguments
-     * @checkstyle ParameterNumberCheck (30 lines)
      */
     private static List<JavadocTag> getMultilineArgTags(
         final Matcher matcher, final int column, final String[] lines,
