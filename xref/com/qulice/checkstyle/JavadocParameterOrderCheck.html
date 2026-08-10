@@ -177,58 +177,57 @@
 <a class="jxr_linenumber" name="L169" href="#L169">169</a> <em class="jxr_javadoccomment">     * @param index Line number that contains the javadoc tag</em>
 <a class="jxr_linenumber" name="L170" href="#L170">170</a> <em class="jxr_javadoccomment">     * @param line Javadoc tag line number in file</em>
 <a class="jxr_linenumber" name="L171" href="#L171">171</a> <em class="jxr_javadoccomment">     * @return Javadoc tags with arguments</em>
-<a class="jxr_linenumber" name="L172" href="#L172">172</a> <em class="jxr_javadoccomment">     * @checkstyle ParameterNumberCheck (30 lines)</em>
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L174" href="#L174">174</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> List&lt;JavadocTag&gt; getMultilineArgTags(
-<a class="jxr_linenumber" name="L175" href="#L175">175</a>         <strong class="jxr_keyword">final</strong> Matcher matcher, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> column, <strong class="jxr_keyword">final</strong> String[] lines,
-<a class="jxr_linenumber" name="L176" href="#L176">176</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> index, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> line) {
-<a class="jxr_linenumber" name="L177" href="#L177">177</a>         <strong class="jxr_keyword">final</strong> List&lt;JavadocTag&gt; tags = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(0);
-<a class="jxr_linenumber" name="L178" href="#L178">178</a>         <strong class="jxr_keyword">final</strong> String paramone = matcher.group(1);
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>         <strong class="jxr_keyword">final</strong> String paramtwo = matcher.group(2);
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>         <strong class="jxr_keyword">int</strong> remindex = index + 1;
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>         <strong class="jxr_keyword">while</strong> (remindex &lt; lines.length) {
-<a class="jxr_linenumber" name="L182" href="#L182">182</a>             <strong class="jxr_keyword">final</strong> Matcher multiline =
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>                 JavadocParameterOrderCheck.MATCH_JAVADOC_MULTILINE_CONT
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>                     .matcher(lines[remindex]);
-<a class="jxr_linenumber" name="L185" href="#L185">185</a>             <strong class="jxr_keyword">if</strong> (multiline.find()) {
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>                 remindex = lines.length;
-<a class="jxr_linenumber" name="L187" href="#L187">187</a>                 <strong class="jxr_keyword">final</strong> String lfin = multiline.group(1);
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>                 <strong class="jxr_keyword">if</strong> (!JavadocParameterOrderCheck.NEXT_TAG.equals(lfin)
-<a class="jxr_linenumber" name="L189" href="#L189">189</a>                     &amp;&amp; !JavadocParameterOrderCheck.END_JAVADOC.equals(lfin)) {
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>                     tags.add(<strong class="jxr_keyword">new</strong> JavadocTag(line, column, paramone, paramtwo));
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>                 }
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>             }
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>             remindex = remindex + 1;
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>         }
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>         <strong class="jxr_keyword">return</strong> tags;
-<a class="jxr_linenumber" name="L196" href="#L196">196</a>     }
-<a class="jxr_linenumber" name="L197" href="#L197">197</a> 
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L199" href="#L199">199</a> <em class="jxr_javadoccomment">     * Checks method parameters order to comply with what is defined in method</em>
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> <em class="jxr_javadoccomment">     * javadoc.</em>
-<a class="jxr_linenumber" name="L201" href="#L201">201</a> <em class="jxr_javadoccomment">     * @param ast The method node</em>
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">     * @param doc Javadoc text block</em>
-<a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> checkParameters(<strong class="jxr_keyword">final</strong> DetailAST ast, <strong class="jxr_keyword">final</strong> TextBlock doc) {
-<a class="jxr_linenumber" name="L205" href="#L205">205</a>         <strong class="jxr_keyword">final</strong> List&lt;JavadocTag&gt; tags = getMethodTags(doc);
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>         <strong class="jxr_keyword">final</strong> <a name="Arguments" href="../../../com/qulice/checkstyle/parameters/Arguments.html#Arguments">Arguments</a> args = <strong class="jxr_keyword">new</strong> <a name="Arguments" href="../../../com/qulice/checkstyle/parameters/Arguments.html#Arguments">Arguments</a>(ast);
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>         <strong class="jxr_keyword">final</strong> <a name="TypeParameters" href="../../../com/qulice/checkstyle/parameters/TypeParameters.html#TypeParameters">TypeParameters</a> types = <strong class="jxr_keyword">new</strong> <a name="TypeParameters" href="../../../com/qulice/checkstyle/parameters/TypeParameters.html#TypeParameters">TypeParameters</a>(ast);
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> count = args.count() + types.count();
-<a class="jxr_linenumber" name="L209" href="#L209">209</a>         <strong class="jxr_keyword">if</strong> (tags.size() == count) {
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>             <strong class="jxr_keyword">final</strong> Consumer&lt;JavadocTag&gt; logger = tag -&gt; <strong class="jxr_keyword">this</strong>.log(
-<a class="jxr_linenumber" name="L211" href="#L211">211</a>                 tag.getLineNo(),
-<a class="jxr_linenumber" name="L212" href="#L212">212</a>                 <span class="jxr_string">"Javadoc parameter order different than method signature"</span>
-<a class="jxr_linenumber" name="L213" href="#L213">213</a>             );
-<a class="jxr_linenumber" name="L214" href="#L214">214</a>             args.checkOrder(tags, logger);
-<a class="jxr_linenumber" name="L215" href="#L215">215</a>             types.checkOrder(tags, logger);
-<a class="jxr_linenumber" name="L216" href="#L216">216</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L217" href="#L217">217</a>             <strong class="jxr_keyword">this</strong>.log(
-<a class="jxr_linenumber" name="L218" href="#L218">218</a>                 ast.getLineNo(),
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>                 <span class="jxr_string">"Number of javadoc parameters different than method signature"</span>
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>             );
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>         }
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>     }
-<a class="jxr_linenumber" name="L223" href="#L223">223</a> }
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L173" href="#L173">173</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> List&lt;JavadocTag&gt; getMultilineArgTags(
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>         <strong class="jxr_keyword">final</strong> Matcher matcher, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> column, <strong class="jxr_keyword">final</strong> String[] lines,
+<a class="jxr_linenumber" name="L175" href="#L175">175</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> index, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> line) {
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>         <strong class="jxr_keyword">final</strong> List&lt;JavadocTag&gt; tags = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(0);
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>         <strong class="jxr_keyword">final</strong> String paramone = matcher.group(1);
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>         <strong class="jxr_keyword">final</strong> String paramtwo = matcher.group(2);
+<a class="jxr_linenumber" name="L179" href="#L179">179</a>         <strong class="jxr_keyword">int</strong> remindex = index + 1;
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>         <strong class="jxr_keyword">while</strong> (remindex &lt; lines.length) {
+<a class="jxr_linenumber" name="L181" href="#L181">181</a>             <strong class="jxr_keyword">final</strong> Matcher multiline =
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>                 JavadocParameterOrderCheck.MATCH_JAVADOC_MULTILINE_CONT
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>                     .matcher(lines[remindex]);
+<a class="jxr_linenumber" name="L184" href="#L184">184</a>             <strong class="jxr_keyword">if</strong> (multiline.find()) {
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>                 remindex = lines.length;
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>                 <strong class="jxr_keyword">final</strong> String lfin = multiline.group(1);
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>                 <strong class="jxr_keyword">if</strong> (!JavadocParameterOrderCheck.NEXT_TAG.equals(lfin)
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>                     &amp;&amp; !JavadocParameterOrderCheck.END_JAVADOC.equals(lfin)) {
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>                     tags.add(<strong class="jxr_keyword">new</strong> JavadocTag(line, column, paramone, paramtwo));
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>                 }
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>             }
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>             remindex = remindex + 1;
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>         }
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>         <strong class="jxr_keyword">return</strong> tags;
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>     }
+<a class="jxr_linenumber" name="L196" href="#L196">196</a> 
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L198" href="#L198">198</a> <em class="jxr_javadoccomment">     * Checks method parameters order to comply with what is defined in method</em>
+<a class="jxr_linenumber" name="L199" href="#L199">199</a> <em class="jxr_javadoccomment">     * javadoc.</em>
+<a class="jxr_linenumber" name="L200" href="#L200">200</a> <em class="jxr_javadoccomment">     * @param ast The method node</em>
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> <em class="jxr_javadoccomment">     * @param doc Javadoc text block</em>
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> checkParameters(<strong class="jxr_keyword">final</strong> DetailAST ast, <strong class="jxr_keyword">final</strong> TextBlock doc) {
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>         <strong class="jxr_keyword">final</strong> List&lt;JavadocTag&gt; tags = getMethodTags(doc);
+<a class="jxr_linenumber" name="L205" href="#L205">205</a>         <strong class="jxr_keyword">final</strong> <a name="Arguments" href="../../../com/qulice/checkstyle/parameters/Arguments.html#Arguments">Arguments</a> args = <strong class="jxr_keyword">new</strong> <a name="Arguments" href="../../../com/qulice/checkstyle/parameters/Arguments.html#Arguments">Arguments</a>(ast);
+<a class="jxr_linenumber" name="L206" href="#L206">206</a>         <strong class="jxr_keyword">final</strong> <a name="TypeParameters" href="../../../com/qulice/checkstyle/parameters/TypeParameters.html#TypeParameters">TypeParameters</a> types = <strong class="jxr_keyword">new</strong> <a name="TypeParameters" href="../../../com/qulice/checkstyle/parameters/TypeParameters.html#TypeParameters">TypeParameters</a>(ast);
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> count = args.count() + types.count();
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>         <strong class="jxr_keyword">if</strong> (tags.size() == count) {
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>             <strong class="jxr_keyword">final</strong> Consumer&lt;JavadocTag&gt; logger = tag -&gt; <strong class="jxr_keyword">this</strong>.log(
+<a class="jxr_linenumber" name="L210" href="#L210">210</a>                 tag.getLineNo(),
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>                 <span class="jxr_string">"Javadoc parameter order different than method signature"</span>
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>             );
+<a class="jxr_linenumber" name="L213" href="#L213">213</a>             args.checkOrder(tags, logger);
+<a class="jxr_linenumber" name="L214" href="#L214">214</a>             types.checkOrder(tags, logger);
+<a class="jxr_linenumber" name="L215" href="#L215">215</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L216" href="#L216">216</a>             <strong class="jxr_keyword">this</strong>.log(
+<a class="jxr_linenumber" name="L217" href="#L217">217</a>                 ast.getLineNo(),
+<a class="jxr_linenumber" name="L218" href="#L218">218</a>                 <span class="jxr_string">"Number of javadoc parameters different than method signature"</span>
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>             );
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>         }
+<a class="jxr_linenumber" name="L221" href="#L221">221</a>     }
+<a class="jxr_linenumber" name="L222" href="#L222">222</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
