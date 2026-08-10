@@ -151,7 +151,6 @@ public final class JavadocTagsCheck extends AbstractCheck {
      * @param cstart Line number where comment starts
      * @param cend Line number where comment ends
      * @param tag Name of the tag
-     * @checkstyle ParameterNumber (3 lines)
      */
     private void findProhibited(
         final String[] lines,
@@ -178,7 +177,6 @@ public final class JavadocTagsCheck extends AbstractCheck {
      * @param end Ending line number
      * @param tag Name of the tag to look for
      * @return Line number with found tag or -1 otherwise
-     * @checkstyle ParameterNumber (3 lines)
      */
     private List<Integer> findTagLineNum(
         final String[] lines,

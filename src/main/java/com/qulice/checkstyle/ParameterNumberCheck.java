@@ -8,7 +8,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Number of parameters, tolerant to constructors that only take attributes.
+ * Number of parameters, tolerant to constructors that only take attributes
+ * and to private methods.
  *
  * <p>The stock {@code ParameterNumber} check treats a constructor as it
  * treats a method, while a constructor has no choice: it must accept a
@@ -17,6 +18,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * has to be blamed, not its constructor. That's why a constructor with no
  * more parameters than the number of attributes of its class passes here,
  * no matter how big the limit is.
+ *
+ * <p>A private method passes too. It is invisible outside its class, its
+ * parameters belong to no contract anybody else can see, and wrapping them
+ * into a new type only to satisfy the limit buys nothing.
  *
  * @since 1.0
  */
@@ -32,10 +37,31 @@ public final class ParameterNumberCheck
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (ast.getType() != TokenTypes.CTOR_DEF
-            || ParameterNumberCheck.parameters(ast) > ParameterNumberCheck.attributes(ast)) {
+        if (!ParameterNumberCheck.tolerated(ast)) {
             super.visitToken(ast);
         }
+    }
+
+    /**
+     * May this node keep its long list of parameters?
+     *
+     * <p>A constructor may, when it takes no more parameters than the
+     * number of attributes of its class. A method may, when it is
+     * private.</p>
+     *
+     * @param ast The CTOR_DEF or METHOD_DEF node
+     * @return TRUE if the check has to stay silent about it
+     */
+    private static boolean tolerated(final DetailAST ast) {
+        final boolean answer;
+        if (ast.getType() == TokenTypes.CTOR_DEF) {
+            answer = ParameterNumberCheck.parameters(ast)
+                <= ParameterNumberCheck.attributes(ast);
+        } else {
+            answer = ast.findFirstToken(TokenTypes.MODIFIERS)
+                .findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+        }
+        return answer;
     }
 
     /**

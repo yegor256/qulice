@@ -34,6 +34,15 @@ final class CheckstyleParameterNumberTest {
     }
 
     @Test
+    void acceptsPrivateMethodWithManyParameters() throws Exception {
+        MatcherAssert.assertThat(
+            "Private method with four parameters cannot fail",
+            this.runValidation("PrivateFourParameters.java", true),
+            Matchers.empty()
+        );
+    }
+
+    @Test
     void rejectsMethodWithTooManyParameters() throws Exception {
         final String file = "FourParameters.java";
         MatcherAssert.assertThat(

@@ -373,8 +373,10 @@
     <module name="MethodLength"/>
     <!--
     Same as the stock ParameterNumber, but silent about a constructor that
-    takes no more parameters than the number of attributes of its class.
+    takes no more parameters than the number of attributes of its class,
+    and about a private method.
     See https://github.com/yegor256/qulice/issues/1677
+    See https://github.com/yegor256/qulice/issues/1727
     -->
     <module name="com.qulice.checkstyle.ParameterNumberCheck">
       <property name="max" value="3"/>
