@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.6" size="1236310">
+<fb version="0.19.6" size="1244489">
   <f>
     <added t="I">8</added>
-    <cycles t="I">2</cycles>
+    <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
-    <error>
-      <v t="S">deadlock; recursive locking</v>
-      <v t="S">Net::OpenTimeout</v>
-    </error>
     <inserted t="I">8</inserted>
-    <seconds t="F">810.900979596</seconds>
+    <seconds t="F">810.608111485</seconds>
     <version t="S">0.61.1</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-08-11T07:54:58Z</when>
+    <when t="T">2026-08-12T08:00:59Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -70130,11 +70126,11 @@
     <_job t="I">30193714385</_job>
     <_time t="T">2026-07-26T07:58:33Z</_time>
     <_version t="S">0.19.9/0.60.2/0.17.17</_version>
-    <assignees_were_scanned t="I">1508</assignees_were_scanned>
+    <assignees_were_scanned t="I">0</assignees_were_scanned>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">17314960418</events_were_scanned>
+    <events_were_scanned t="I">17370564856</events_were_scanned>
     <issues_were_scanned t="I">867</issues_were_scanned>
-    <labels_were_scanned t="I">1686</labels_were_scanned>
+    <labels_were_scanned t="I">0</labels_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
     <merges_were_scanned t="I">0</merges_were_scanned>
     <min_issue_was_found t="I">1635</min_issue_was_found>
@@ -76738,6 +76734,7 @@ The average monthly turnover (31.0 developers) is increasing (R=0.43).</text>
     <_time t="T">2026-08-11T07:51:35Z</_time>
     <_version t="S">0.19.16/0.61.1/0.17.21</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1683.</details>
+    <is_human t="I">1</is_human>
     <issue t="I">1683</issue>
     <label t="S">bug</label>
     <repository t="I">9580168</repository>
@@ -76752,6 +76749,7 @@ The average monthly turnover (31.0 developers) is increasing (R=0.43).</text>
     <_time t="T">2026-08-11T07:51:36Z</_time>
     <_version t="S">0.19.16/0.61.1/0.17.21</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1685.</details>
+    <is_human t="I">1</is_human>
     <issue t="I">1685</issue>
     <label t="S">bug</label>
     <repository t="I">9580168</repository>
@@ -76766,6 +76764,7 @@ The average monthly turnover (31.0 developers) is increasing (R=0.43).</text>
     <_time t="T">2026-08-11T07:51:37Z</_time>
     <_version t="S">0.19.16/0.61.1/0.17.21</_version>
     <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1686.</details>
+    <is_human t="I">1</is_human>
     <issue t="I">1686</issue>
     <label t="S">bug</label>
     <repository t="I">9580168</repository>
@@ -76773,5 +76772,461 @@ The average monthly turnover (31.0 developers) is increasing (R=0.43).</text>
     <when t="T">2026-08-07T08:31:02Z</when>
     <where t="S">github</where>
     <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11670</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:07Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1683 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1683</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T05:51:12Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11671</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:08Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1685 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1685</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T08:31:29Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11672</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:09Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1686 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1686</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T08:30:59Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11673</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:10Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1690 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1690</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T11:55:43Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11674</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:11Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1691 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1691</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T11:42:35Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11675</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:12Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1694 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1694</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T11:56:02Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11676</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:13Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1698 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1698</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-08T04:48:22Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11677</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:13Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1699 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1699</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-08T04:59:33Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11678</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:14Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1700 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1700</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-08T05:07:19Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11679</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:15Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1703 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1703</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T16:44:41Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11680</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:15Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1704 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1704</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T16:43:43Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11681</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:17Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1705 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1705</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T14:45:18Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11682</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:18Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1708 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1708</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T15:08:30Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11683</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:18Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1709 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1709</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T15:11:52Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11684</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:20Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1710 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1710</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T16:42:18Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11685</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:21Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1716 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1716</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T20:00:53Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11686</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:21Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1717 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1717</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-07T20:01:19Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11687</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:49:22Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <assigner t="I">526301</assigner>
+    <details t="S">yegor256/qulice#1727 was assigned to @yegor256 by @yegor256.</details>
+    <issue t="I">1727</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-assigned</what>
+    <when t="T">2026-08-10T15:26:49Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11688</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:43Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1690.</details>
+    <issue t="I">1690</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T11:55:45Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11689</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:44Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1691.</details>
+    <issue t="I">1691</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T11:42:37Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11690</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:45Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1694.</details>
+    <issue t="I">1694</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T11:56:36Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11691</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:46Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1698.</details>
+    <issue t="I">1698</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-08T04:48:25Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11692</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:47Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1700.</details>
+    <issue t="I">1700</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-08T05:07:20Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11693</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:48Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1703.</details>
+    <issue t="I">1703</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T16:44:41Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11694</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:49Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1704.</details>
+    <issue t="I">1704</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T16:43:42Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11695</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:50Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1705.</details>
+    <issue t="I">1705</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T14:45:20Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11696</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:51Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1708.</details>
+    <issue t="I">1708</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T15:08:32Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11697</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:52Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1709.</details>
+    <issue t="I">1709</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T15:11:54Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11698</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:52Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1710.</details>
+    <issue t="I">1710</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T16:42:16Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11699</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:53Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1716.</details>
+    <issue t="I">1716</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T20:00:55Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11700</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:54Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1717.</details>
+    <issue t="I">1717</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-07T20:01:21Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11701</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T07:52:55Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1727.</details>
+    <issue t="I">1727</issue>
+    <label t="S">bug</label>
+    <repository t="I">9580168</repository>
+    <what t="S">label-was-attached</what>
+    <when t="T">2026-08-10T15:26:51Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11702</_id>
+    <_job t="I">31575365876</_job>
+    <_time t="T">2026-08-12T08:00:59Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <what t="S">dimensions-of-terrain</what>
+    <when t="T">2026-08-12T08:00:59Z</when>
   </f>
 </fb>

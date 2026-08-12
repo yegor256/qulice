@@ -1,15 +1,12 @@
 ---
 - added: 8
-  cycles: 2
+  cycles: 1
   deleted: 8
-  error:
-  - deadlock; recursive locking
-  - Net::OpenTimeout
   inserted: 8
-  seconds: 810.900979596
+  seconds: 810.608111485
   version: 0.61.1
   what: judges-summary
-  when: 2026-08-11 07:54:58.382648600 Z
+  when: 2026-08-12 08:00:59.136714021 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63004,11 +63001,11 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1508
+  assignees_were_scanned: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 17314960418
+  events_were_scanned: 17370564856
   issues_were_scanned: 867
-  labels_were_scanned: 1686
+  labels_were_scanned: 0
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
@@ -68929,6 +68926,7 @@
   _time: 2026-08-11 07:51:35.843447106 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1683.
+  is_human: 1
   issue: 1683
   label: bug
   repository: 9580168
@@ -68941,6 +68939,7 @@
   _time: 2026-08-11 07:51:36.737731950 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1685.
+  is_human: 1
   issue: 1685
   label: bug
   repository: 9580168
@@ -68953,6 +68952,7 @@
   _time: 2026-08-11 07:51:37.335121073 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1686.
+  is_human: 1
   issue: 1686
   label: bug
   repository: 9580168
@@ -68960,3 +68960,393 @@
   when: 2026-08-07 08:31:02.000000000 Z
   where: github
   who: 526301
+- _id: 11670
+  _job: 31575365876
+  _time: 2026-08-12 07:49:07.470180970 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1683 was assigned to @yegor256 by @yegor256.
+  issue: 1683
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 05:51:12.000000000 Z
+  where: github
+  who: 526301
+- _id: 11671
+  _job: 31575365876
+  _time: 2026-08-12 07:49:08.518674611 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1685 was assigned to @yegor256 by @yegor256.
+  issue: 1685
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 08:31:29.000000000 Z
+  where: github
+  who: 526301
+- _id: 11672
+  _job: 31575365876
+  _time: 2026-08-12 07:49:09.424956116 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1686 was assigned to @yegor256 by @yegor256.
+  issue: 1686
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 08:30:59.000000000 Z
+  where: github
+  who: 526301
+- _id: 11673
+  _job: 31575365876
+  _time: 2026-08-12 07:49:10.522919003 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1690 was assigned to @yegor256 by @yegor256.
+  issue: 1690
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 11:55:43.000000000 Z
+  where: github
+  who: 526301
+- _id: 11674
+  _job: 31575365876
+  _time: 2026-08-12 07:49:11.278042690 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1691 was assigned to @yegor256 by @yegor256.
+  issue: 1691
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 11:42:35.000000000 Z
+  where: github
+  who: 526301
+- _id: 11675
+  _job: 31575365876
+  _time: 2026-08-12 07:49:12.501238130 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1694 was assigned to @yegor256 by @yegor256.
+  issue: 1694
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 11:56:02.000000000 Z
+  where: github
+  who: 526301
+- _id: 11676
+  _job: 31575365876
+  _time: 2026-08-12 07:49:13.068778031 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1698 was assigned to @yegor256 by @yegor256.
+  issue: 1698
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-08 04:48:22.000000000 Z
+  where: github
+  who: 526301
+- _id: 11677
+  _job: 31575365876
+  _time: 2026-08-12 07:49:13.857340169 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1699 was assigned to @yegor256 by @yegor256.
+  issue: 1699
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-08 04:59:33.000000000 Z
+  where: github
+  who: 526301
+- _id: 11678
+  _job: 31575365876
+  _time: 2026-08-12 07:49:14.496707825 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1700 was assigned to @yegor256 by @yegor256.
+  issue: 1700
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-08 05:07:19.000000000 Z
+  where: github
+  who: 526301
+- _id: 11679
+  _job: 31575365876
+  _time: 2026-08-12 07:49:15.139435735 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1703 was assigned to @yegor256 by @yegor256.
+  issue: 1703
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 16:44:41.000000000 Z
+  where: github
+  who: 526301
+- _id: 11680
+  _job: 31575365876
+  _time: 2026-08-12 07:49:15.902702677 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1704 was assigned to @yegor256 by @yegor256.
+  issue: 1704
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 16:43:43.000000000 Z
+  where: github
+  who: 526301
+- _id: 11681
+  _job: 31575365876
+  _time: 2026-08-12 07:49:17.081909736 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1705 was assigned to @yegor256 by @yegor256.
+  issue: 1705
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 14:45:18.000000000 Z
+  where: github
+  who: 526301
+- _id: 11682
+  _job: 31575365876
+  _time: 2026-08-12 07:49:18.150934266 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1708 was assigned to @yegor256 by @yegor256.
+  issue: 1708
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 15:08:30.000000000 Z
+  where: github
+  who: 526301
+- _id: 11683
+  _job: 31575365876
+  _time: 2026-08-12 07:49:18.803656166 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1709 was assigned to @yegor256 by @yegor256.
+  issue: 1709
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 15:11:52.000000000 Z
+  where: github
+  who: 526301
+- _id: 11684
+  _job: 31575365876
+  _time: 2026-08-12 07:49:20.221365133 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1710 was assigned to @yegor256 by @yegor256.
+  issue: 1710
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 16:42:18.000000000 Z
+  where: github
+  who: 526301
+- _id: 11685
+  _job: 31575365876
+  _time: 2026-08-12 07:49:21.035482804 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1716 was assigned to @yegor256 by @yegor256.
+  issue: 1716
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 20:00:53.000000000 Z
+  where: github
+  who: 526301
+- _id: 11686
+  _job: 31575365876
+  _time: 2026-08-12 07:49:21.566943775 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1717 was assigned to @yegor256 by @yegor256.
+  issue: 1717
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-07 20:01:19.000000000 Z
+  where: github
+  who: 526301
+- _id: 11687
+  _job: 31575365876
+  _time: 2026-08-12 07:49:22.232254575 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  assigner: 526301
+  details: yegor256/qulice#1727 was assigned to @yegor256 by @yegor256.
+  issue: 1727
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-08-10 15:26:49.000000000 Z
+  where: github
+  who: 526301
+- _id: 11688
+  _job: 31575365876
+  _time: 2026-08-12 07:52:43.513402532 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1690.
+  issue: 1690
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 11:55:45.000000000 Z
+  where: github
+  who: 526301
+- _id: 11689
+  _job: 31575365876
+  _time: 2026-08-12 07:52:44.257178914 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1691.
+  issue: 1691
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 11:42:37.000000000 Z
+  where: github
+  who: 526301
+- _id: 11690
+  _job: 31575365876
+  _time: 2026-08-12 07:52:45.833979873 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1694.
+  issue: 1694
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 11:56:36.000000000 Z
+  where: github
+  who: 526301
+- _id: 11691
+  _job: 31575365876
+  _time: 2026-08-12 07:52:46.503201548 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1698.
+  issue: 1698
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-08 04:48:25.000000000 Z
+  where: github
+  who: 526301
+- _id: 11692
+  _job: 31575365876
+  _time: 2026-08-12 07:52:47.808095340 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1700.
+  issue: 1700
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-08 05:07:20.000000000 Z
+  where: github
+  who: 526301
+- _id: 11693
+  _job: 31575365876
+  _time: 2026-08-12 07:52:48.691982147 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1703.
+  issue: 1703
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 16:44:41.000000000 Z
+  where: github
+  who: 526301
+- _id: 11694
+  _job: 31575365876
+  _time: 2026-08-12 07:52:49.410293723 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1704.
+  issue: 1704
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 16:43:42.000000000 Z
+  where: github
+  who: 526301
+- _id: 11695
+  _job: 31575365876
+  _time: 2026-08-12 07:52:50.342290571 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1705.
+  issue: 1705
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 14:45:20.000000000 Z
+  where: github
+  who: 526301
+- _id: 11696
+  _job: 31575365876
+  _time: 2026-08-12 07:52:51.388636424 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1708.
+  issue: 1708
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 15:08:32.000000000 Z
+  where: github
+  who: 526301
+- _id: 11697
+  _job: 31575365876
+  _time: 2026-08-12 07:52:52.096152250 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1709.
+  issue: 1709
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 15:11:54.000000000 Z
+  where: github
+  who: 526301
+- _id: 11698
+  _job: 31575365876
+  _time: 2026-08-12 07:52:52.720775187 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1710.
+  issue: 1710
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 16:42:16.000000000 Z
+  where: github
+  who: 526301
+- _id: 11699
+  _job: 31575365876
+  _time: 2026-08-12 07:52:53.337827869 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1716.
+  issue: 1716
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 20:00:55.000000000 Z
+  where: github
+  who: 526301
+- _id: 11700
+  _job: 31575365876
+  _time: 2026-08-12 07:52:54.199889633 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1717.
+  issue: 1717
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-07 20:01:21.000000000 Z
+  where: github
+  who: 526301
+- _id: 11701
+  _job: 31575365876
+  _time: 2026-08-12 07:52:55.072854838 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1727.
+  issue: 1727
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-10 15:26:51.000000000 Z
+  where: github
+  who: 526301
+- _id: 11702
+  _job: 31575365876
+  _time: 2026-08-12 08:00:59.067819283 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  what: dimensions-of-terrain
+  when: 2026-08-12 08:00:59.084437329 Z
