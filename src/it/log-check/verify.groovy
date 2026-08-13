@@ -6,4 +6,4 @@
 
 def log = new File(basedir, 'build.log')
 assert log.text.contains('Checking compile classpath')
-assert log.text.contains('Qulice quality check completed')
+assert log.text =~ /Qulice quality check completed in \d+(ms|s|min|hr)/
