@@ -44,6 +44,10 @@ import java.util.regex.Pattern;
  * regular annotation processors (Lombok, Hibernate-Validator, etc.) out
  * of the ErrorProne pass.</p>
  *
+ * <p>Which bug patterns fire is up to {@link Xplugin}, which also takes
+ * in the {@code -Xep} flags of the project, read from the
+ * {@code qulice.errorprone} parameter.</p>
+ *
  * @since 1.0
  */
 public final class ErrorProneValidator implements ResourceValidator {
@@ -69,30 +73,10 @@ public final class ErrorProneValidator implements ResourceValidator {
     );
 
     /**
-     * The {@code -Xplugin} value that wires ErrorProne into the forked
-     * {@code javac}, together with the bug patterns Qulice switches off.
-     *
-     * <p>{@code InvalidBlockTag} is disabled because it rejects the
-     * {@code @checkstyle} block tags this codebase writes in Javadoc.</p>
-     *
-     * <p>{@code OperatorPrecedence} is disabled because it contradicts
-     * Checkstyle's {@code UnnecessaryParentheses}: a boolean expression
-     * that mixes {@code &&} and {@code ||} can satisfy only one of them at
-     * a time. {@code OperatorPrecedence} demands grouping parentheses
-     * around the {@code &&} operands (for example
-     * {@code (a && b) || (c && d)}), while {@code UnnecessaryParentheses}
-     * flags those very parentheses as redundant, since {@code &&} already
-     * binds tighter than {@code ||}. Keeping {@code UnnecessaryParentheses}
-     * as the single arbiter lets the terse, paren-free form pass both
-     * checks. See
-     * <a href="https://github.com/yegor256/qulice/issues/1705">#1705</a>.</p>
+     * Name of the parameter through which a project supplies ErrorProne
+     * flags of its own, e.g. {@code -Xep:UnusedVariable:OFF}.
      */
-    private static final String PLUGIN = String.join(
-        " ",
-        "-Xplugin:ErrorProne",
-        "-Xep:InvalidBlockTag:OFF",
-        "-Xep:OperatorPrecedence:OFF"
-    );
+    private static final String PARAM = "qulice.errorprone";
 
     /**
      * Path fragment that tells Maven's test source root from its main one.
@@ -226,6 +210,12 @@ public final class ErrorProneValidator implements ResourceValidator {
      * <a href="https://github.com/yegor256/qulice/issues/1716">#1716</a>),
      * and no change to the project could ever silence it.</p>
      *
+     * <p>{@code -encoding} is the project's own
+     * {@code project.build.sourceEncoding}, so that a source file holding
+     * characters outside ASCII reads the same on every host, instead of
+     * through whatever charset the machine running Maven happens to
+     * default to.</p>
+     *
      * @param batch Name of the batch being compiled
      * @param sources Java source files to feed
      * @return Argv
@@ -252,8 +242,14 @@ public final class ErrorProneValidator implements ResourceValidator {
         args.add("--should-stop=ifError=FLOW");
         args.add("-proc:none");
         args.add("-Xlint:-options");
+        args.add("-encoding");
+        args.add(this.env.encoding().name());
         args.addAll(this.release());
-        args.add(ErrorProneValidator.PLUGIN);
+        args.add(
+            new Xplugin(
+                this.env.param(ErrorProneValidator.PARAM, "")
+            ).argument()
+        );
         args.add("-processorpath");
         args.add(ErrorProneValidator.pluginClasspath());
         args.add("-d");

@@ -205,6 +205,100 @@ final class ErrorProneValidatorTest {
     }
 
     @Test
+    void doesNotFlagNonAsciiIdentifiers() throws Exception {
+        final String file = "src/main/java/com/qulice/Greek.java";
+        final Environment env = new Environment.Mock().withFile(
+            file,
+            String.join(
+                System.lineSeparator(),
+                "package com.qulice;",
+                "/**",
+                " * Sample.",
+                " * @since 1.0",
+                " */",
+                "final class Greek {",
+                "    int φ() { return 1; }",
+                "}"
+            )
+        );
+        final java.util.Collection<Violation> violations =
+            new ErrorProneValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            );
+        MatcherAssert.assertThat(
+            String.format(
+                "a domain whose own notation is not ASCII must pass: %s",
+                violations
+            ),
+            violations,
+            Matchers.<Violation>empty()
+        );
+    }
+
+    @Test
+    void letsProjectSwitchBugPatternOff() throws Exception {
+        final String file = "src/main/java/com/qulice/Assigned.java";
+        final Environment env = new Environment.Mock()
+            .withParam("qulice.errorprone", "-Xep:SelfAssignment:OFF").withFile(
+                file,
+                String.join(
+                    System.lineSeparator(),
+                    "package com.qulice;",
+                    "/**",
+                    " * Sample.",
+                    " * @since 1.0",
+                    " */",
+                    "final class Assigned {",
+                    "    private int value;",
+                    "    void set(final int num) { this.value = this.value; }",
+                    "}"
+                )
+            );
+        final java.util.Collection<Violation> violations =
+            new ErrorProneValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            );
+        MatcherAssert.assertThat(
+            String.format(
+                "a project must be able to switch a bug pattern off: %s",
+                violations
+            ),
+            violations,
+            Matchers.<Violation>empty()
+        );
+    }
+
+    @Test
+    void letsProjectSwitchBugPatternBackOn() throws Exception {
+        final String file = "src/main/java/com/qulice/Ordered.java";
+        final Environment env = new Environment.Mock()
+            .withParam("qulice.errorprone", "-Xep:OperatorPrecedence:ERROR").withFile(
+                file,
+                String.join(
+                    System.lineSeparator(),
+                    "package com.qulice;",
+                    "/**",
+                    " * Sample.",
+                    " * @since 1.0",
+                    " */",
+                    "final class Ordered {",
+                    "    boolean hex(final char glyph) {",
+                    "        return glyph >= '0' && glyph <= '9'",
+                    "            || glyph >= 'A' && glyph <= 'F';",
+                    "    }",
+                    "}"
+                )
+            );
+        MatcherAssert.assertThat(
+            "a project must have the final say on the patterns Qulice disables",
+            new ErrorProneValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            ).stream().map(Violation::message).toList(),
+            Matchers.hasItem(Matchers.containsString("OperatorPrecedence"))
+        );
+    }
+
+    @Test
     void doesNotBlameProjectForOwnCompilerOptions() throws Exception {
         final String file = "src/main/java/com/qulice/Pinned.java";
         final Environment env = new Environment.Mock()
