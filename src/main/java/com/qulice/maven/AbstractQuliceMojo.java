@@ -134,6 +134,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     @Override
     public final void execute() throws MojoFailureException {
+        final long start = System.currentTimeMillis();
         StaticLoggerBinder.getSingleton().setMavenLog(this.getLog());
         if (this.skip) {
             this.getLog().info("Execution skipped");
@@ -147,7 +148,11 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.environment.setAssertion(this.asserts);
         this.environment.setEncoding(this.charset);
         this.doExecute();
-        Logger.info(this, "Qulice quality check completed");
+        Logger.info(
+            this,
+            "Qulice quality check completed in %[ms]s",
+            System.currentTimeMillis() - start
+        );
     }
 
     /**
