@@ -74,11 +74,11 @@
                             </div>
                             <ul class="badges">
                                 <li>
-                                    <strong itemprop="version">0.30.7</strong>
+                                    <strong itemprop="version">0.30.10</strong>
                                 </li>
                                 <li>
-                                    <time itemprop="datePublished" datetime="2026-08-10">
-                                        10-Aug-2026
+                                    <time itemprop="datePublished" datetime="2026-08-13">
+                                        13-Aug-2026
                                     </time>
                                 </li>
                                 <li class="menu-button">menu</li>
@@ -92,7 +92,7 @@
                             <section><a id="qulice.3Acheck"></a>
 <h1>qulice:check</h1>
 <p><strong>Full name</strong>:</p>
-<p>com.qulice:qulice-maven-plugin:0.30.7:check</p>
+<p>com.qulice:qulice-maven-plugin:0.30.10:check</p>
 <p><strong>Description</strong>:</p>
 <p>Check the project and find all possible violations.</p>
 <p><strong>Attributes</strong>:</p>
@@ -120,16 +120,21 @@
 <td><code>-</code></td>
 <td>The source encoding.<br /><strong>Default</strong>: <code>${project.build.sourceEncoding}</code><br /><strong>User Property</strong>: <code>encoding</code></td></tr>
 <tr class="b">
+<td><a href="#errorprone"><code>&lt;errorprone&gt;</code></a></td>
+<td><code>Collection&lt;String&gt;</code></td>
+<td><code>-</code></td>
+<td>List of ErrorProne flags to add to the ones Qulice already passes, e.g. <code>-Xep:UnicodeInCode:OFF</code> to switch a bug pattern off, or <code>-Xep:OperatorPrecedence:ERROR</code> to switch one back on.<br /><strong>User Property</strong>: <code>qulice.errorprone</code></td></tr>
+<tr class="a">
 <td><a href="#excludes"><code>&lt;excludes&gt;</code></a></td>
 <td><code>Collection&lt;String&gt;</code></td>
 <td><code>-</code></td>
 <td>List of regular expressions to exclude.<br /><strong>User Property</strong>: <code>qulice.excludes</code></td></tr>
-<tr class="a">
+<tr class="b">
 <td><a href="#skip"><code>&lt;skip&gt;</code></a></td>
 <td><code>boolean</code></td>
 <td><code>-</code></td>
 <td>Shall we skip execution?<br /><strong>Default</strong>: <code>false</code><br /><strong>User Property</strong>: <code>qulice.skip</code></td></tr>
-<tr class="b">
+<tr class="a">
 <td><a href="#timeout"><code>&lt;timeout&gt;</code></a></td>
 <td><code>String</code></td>
 <td><code>-</code></td>
@@ -147,7 +152,13 @@
 <li><strong>Type</strong>: <code>java.lang.String</code></li>
 <li><strong>Required</strong>: <code>No</code></li>
 <li><strong>User Property</strong>: <code>encoding</code></li>
-<li><strong>Default</strong>: <code>${project.build.sourceEncoding}</code></li></ul><hr /></section><a id="excludes"></a><section><a id="a.3Cexcludes.3E"></a>
+<li><strong>Default</strong>: <code>${project.build.sourceEncoding}</code></li></ul><hr /></section><a id="errorprone"></a><section><a id="a.3Cerrorprone.3E"></a>
+<h3>&lt;errorprone&gt;</h3>
+<div>List of ErrorProne flags to add to the ones Qulice already passes, e.g. <code>-Xep:UnicodeInCode:OFF</code> to switch a bug pattern off, or <code>-Xep:OperatorPrecedence:ERROR</code> to switch one back on.</div>
+<ul>
+<li><strong>Type</strong>: <code>java.util.Collection&lt;java.lang.String&gt;</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>User Property</strong>: <code>qulice.errorprone</code></li></ul><hr /></section><a id="excludes"></a><section><a id="a.3Cexcludes.3E"></a>
 <h3>&lt;excludes&gt;</h3>
 <div>List of regular expressions to exclude.</div>
 <ul>
