@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko
+* SPDX-License-Identifier: MIT
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.jcabi</groupId>
+    <artifactId>parent</artifactId>
+    <version>0.73.4</version>
+  </parent>
+  <groupId>com.qulice.plugin</groupId>
+  <artifactId>javac-warnings</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>javac-warnings</name>
+  <properties>
+    <!--
+    source/target rather than release, on purpose: this is the
+    configuration that made Qulice complain about its own command
+    line, see #1732
+    -->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <failIfNoTests>false</failIfNoTests>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <!--
+          the parent turns warnings into compile errors; here the
+          warning must survive the compiler and reach Qulice
+          -->
+          <failOnWarning>false</failOnWarning>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.qulice</groupId>
+        <artifactId>qulice-maven-plugin</artifactId>
+        <version>@project.version@</version>
+        <configuration>
+          <license>file:${basedir}/LICENSE.txt</license>
+          <excludes>
+            <exclude>checkstyle:.*</exclude>
+            <exclude>pmd:.*</exclude>
+            <exclude>duplicatefinder:.*</exclude>
+            <exclude>dependencies:.*</exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
