@@ -37,10 +37,12 @@ import java.util.regex.Pattern;
  * touch their own {@code .mvn/jvm.config} to use this validator.</p>
  *
  * <p>The combined stdout/stderr stream is handed to {@link Diagnostics},
- * which turns every line of it into a {@link Violation} — ErrorProne
- * findings, {@code javac} lint warnings and plain compile errors alike.
- * {@code -proc:none} is passed to keep regular annotation processors
- * (Lombok, Hibernate-Validator, etc.) out of the ErrorProne pass.</p>
+ * which turns every diagnostic it finds there into a {@link Violation} —
+ * ErrorProne findings, {@code javac} lint warnings and plain compile
+ * errors alike — and passes over the carets, symbol hints and counters
+ * the compiler prints around them. {@code -proc:none} is passed to keep
+ * regular annotation processors (Lombok, Hibernate-Validator, etc.) out
+ * of the ErrorProne pass.</p>
  *
  * @since 1.0
  */

@@ -51,6 +51,17 @@ final class DiagnosticsTest {
     }
 
     @Test
+    void readsWindowsDriveLetterPath() {
+        MatcherAssert.assertThat(
+            "a drive letter cannot be mistaken for the line separator",
+            new Diagnostics("ErrorProne", "C:\\prj").violations(
+                List.of("C:\\prj\\Foo.java:7: error: cannot find symbol")
+            ).iterator().next().file(),
+            Matchers.equalTo("C:\\prj\\Foo.java")
+        );
+    }
+
+    @Test
     void blamesProjectForPositionlessDiagnostic() {
         MatcherAssert.assertThat(
             "a diagnostic with no source position must still land somewhere",
