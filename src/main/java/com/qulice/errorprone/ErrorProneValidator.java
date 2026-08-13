@@ -17,10 +17,11 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -35,14 +36,11 @@ import java.util.regex.Pattern;
  * JVM hosting Maven and Qulice is unaffected, so consumers do not have to
  * touch their own {@code .mvn/jvm.config} to use this validator.</p>
  *
- * <p>Diagnostics from the forked {@code javac} are parsed from the
- * combined stdout/stderr stream. Only lines that match the standard
- * compiler diagnostic format and whose message starts with the
- * {@code [CheckName]} prefix ErrorProne always emits are converted into
- * {@link Violation}s — plain compile errors caused by the project not
- * being built yet are ignored. {@code -proc:none} is passed to keep
- * regular annotation processors (Lombok, Hibernate-Validator, etc.) out
- * of the ErrorProne pass.</p>
+ * <p>The combined stdout/stderr stream is handed to {@link Diagnostics},
+ * which turns every line of it into a {@link Violation} — ErrorProne
+ * findings, {@code javac} lint warnings and plain compile errors alike.
+ * {@code -proc:none} is passed to keep regular annotation processors
+ * (Lombok, Hibernate-Validator, etc.) out of the ErrorProne pass.</p>
  *
  * @since 1.0
  */
@@ -95,13 +93,9 @@ public final class ErrorProneValidator implements ResourceValidator {
     );
 
     /**
-     * Standard {@code javac} diagnostic format with an ErrorProne
-     * {@code [CheckName]} prefix on the message:
-     * {@code path:line: warning|error: [Name] body}.
+     * Path fragment that tells Maven's test source root from its main one.
      */
-    private static final Pattern DIAGNOSTIC = Pattern.compile(
-        "^(.+?):(\\d+): (?:warning|error): \\[([A-Za-z][A-Za-z0-9_]*)] (.+)$"
-    );
+    private static final String TESTS = "/src/test/";
 
     /**
      * Splits a multi-line stdout block into individual lines, on any
@@ -134,7 +128,17 @@ public final class ErrorProneValidator implements ResourceValidator {
             );
         } else {
             Logger.debug(this, "ErrorProne processing %d files", sources.size());
-            violations.addAll(this.parse(this.run(sources)));
+            final Diagnostics diagnostics = new Diagnostics(
+                this.name(), this.env.basedir().getAbsolutePath()
+            );
+            for (final Map.Entry<String, List<File>> batch
+                : ErrorProneValidator.batches(sources).entrySet()) {
+                violations.addAll(
+                    diagnostics.violations(
+                        this.run(batch.getKey(), batch.getValue())
+                    )
+                );
+            }
             Logger.debug(this, "ErrorProne processed %d files", sources.size());
         }
         return violations;
@@ -146,12 +150,51 @@ public final class ErrorProneValidator implements ResourceValidator {
     }
 
     /**
+     * Split the sources the way Maven compiles them: main sources in one
+     * batch, test sources in another.
+     *
+     * <p>A single {@code javac} pass over both would manufacture
+     * diagnostics no project could ever silence, because Maven's two
+     * source roots are allowed to hold twins of the same file. The
+     * clearest case is {@code package-info.java}, which Qulice's own
+     * {@code JavadocPackage} check demands in every package: with one
+     * pass, a package that has both main and test code earns
+     * {@code a package-info.java file has already been seen} and, once
+     * the file carries an annotation, {@code has already been
+     * annotated}.</p>
+     *
+     * @param sources Java source files to split
+     * @return Batches by name, in compilation order, none of them empty
+     */
+    private static Map<String, List<File>> batches(final List<File> sources) {
+        final List<File> main = new ArrayList<>(sources.size());
+        final List<File> tests = new ArrayList<>(sources.size());
+        for (final File source : sources) {
+            if (source.getPath().replace(File.separatorChar, '/')
+                .contains(ErrorProneValidator.TESTS)) {
+                tests.add(source);
+            } else {
+                main.add(source);
+            }
+        }
+        final Map<String, List<File>> batches = new LinkedHashMap<>(2);
+        if (!main.isEmpty()) {
+            batches.put("main", main);
+        }
+        if (!tests.isEmpty()) {
+            batches.put("test", tests);
+        }
+        return batches;
+    }
+
+    /**
      * Run the forked {@code javac} process with ErrorProne enabled.
+     * @param batch Name of the batch being compiled
      * @param sources Java source files to feed
      * @return Combined stdout/stderr of the process, line by line
      */
-    private List<String> run(final List<File> sources) {
-        final Result result = new Jaxec(this.command(sources))
+    private List<String> run(final String batch, final List<File> sources) {
+        final Result result = new Jaxec(this.command(batch, sources))
             .withRedirect(true)
             .withCheck(false)
             .exec();
@@ -172,10 +215,20 @@ public final class ErrorProneValidator implements ResourceValidator {
      * argument other than the launcher itself and the {@code -J}
      * flags (which {@code javac} forbids inside argfiles) is written
      * to a temporary argfile and passed as {@code @argfile}.
+     *
+     * <p>{@code -Xlint:-options} turns off the one lint category that
+     * would report Qulice to the project instead of the project to the
+     * user: {@code options} complains about the {@code -source}/
+     * {@code -target} pair this class deliberately builds in place of
+     * {@code --release} (see
+     * <a href="https://github.com/yegor256/qulice/issues/1716">#1716</a>),
+     * and no change to the project could ever silence it.</p>
+     *
+     * @param batch Name of the batch being compiled
      * @param sources Java source files to feed
      * @return Argv
      */
-    private List<String> command(final List<File> sources) {
+    private List<String> command(final String batch, final List<File> sources) {
         final List<String> command = new ArrayList<>(
             ErrorProneValidator.JVM_FLAGS.size() + 2
         );
@@ -183,17 +236,20 @@ public final class ErrorProneValidator implements ResourceValidator {
         for (final String flag : ErrorProneValidator.JVM_FLAGS) {
             command.add("-J".concat(flag));
         }
-        final File outdir = new File(this.env.tempdir(), "errorprone-classes");
+        final File outdir = new File(
+            this.env.tempdir(), String.format("errorprone-classes-%s", batch)
+        );
         if (!outdir.exists() && !outdir.mkdirs()) {
             throw new IllegalStateException(
                 String.format("Unable to create %s", outdir)
             );
         }
-        final List<String> args = new ArrayList<>(sources.size() + 11);
+        final List<String> args = new ArrayList<>(sources.size() + 12);
         args.add("-XDcompilePolicy=simple");
         args.add("-XDaddTypeAnnotationsToSymbol=true");
         args.add("--should-stop=ifError=FLOW");
         args.add("-proc:none");
+        args.add("-Xlint:-options");
         args.addAll(this.release());
         args.add(ErrorProneValidator.PLUGIN);
         args.add("-processorpath");
@@ -211,37 +267,15 @@ public final class ErrorProneValidator implements ResourceValidator {
         command.add(
             "@".concat(
                 new Argfile(
-                    new File(this.env.tempdir(), "errorprone-args.txt"), args
+                    new File(
+                        this.env.tempdir(),
+                        String.format("errorprone-args-%s.txt", batch)
+                    ),
+                    args
                 ).save().getAbsolutePath()
             )
         );
         return command;
-    }
-
-    /**
-     * Translate diagnostic lines into Qulice violations, keeping only
-     * those messages prefixed by an ErrorProne bug-pattern name.
-     * @param output Combined stdout/stderr of the forked process
-     * @return Violations
-     */
-    private Collection<Violation> parse(final List<String> output) {
-        final Collection<Violation> violations = new ArrayList<>(0);
-        for (final String line : output) {
-            final Matcher matcher = ErrorProneValidator.DIAGNOSTIC.matcher(line);
-            if (matcher.matches()) {
-                final String check = matcher.group(3);
-                violations.add(
-                    new Violation.Default(
-                        this.name(),
-                        check,
-                        matcher.group(1),
-                        matcher.group(2),
-                        String.format("[%s] %s", check, matcher.group(4))
-                    )
-                );
-            }
-        }
-        return violations;
     }
 
     /**

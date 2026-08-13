@@ -117,4 +117,122 @@ final class ErrorProneValidatorTest {
             Matchers.<Violation>empty()
         );
     }
+
+    @Test
+    void doesNotBlameProjectForTwinPackageInfo() throws Exception {
+        final String main = "src/main/java/com/qulice/package-info.java";
+        final String test = "src/test/java/com/qulice/package-info.java";
+        final String body = String.join(
+            System.lineSeparator(),
+            "/**",
+            " * Sample.",
+            " * @since 1.0",
+            " */",
+            "package com.qulice;"
+        );
+        final Environment env = new Environment.Mock()
+            .withFile(main, body).withFile(test, body);
+        final java.util.Collection<Violation> violations =
+            new ErrorProneValidator(env).validate(
+                java.util.Arrays.asList(
+                    new File(env.basedir(), main), new File(env.basedir(), test)
+                )
+            );
+        MatcherAssert.assertThat(
+            String.format(
+                "twin package-info files are legal in Maven and must pass: %s",
+                violations
+            ),
+            violations,
+            Matchers.<Violation>empty()
+        );
+    }
+
+    @Test
+    void reportsPlainCompilerError() throws Exception {
+        final String file = "src/main/java/com/qulice/Broken.java";
+        final Environment env = new Environment.Mock().withFile(
+            file,
+            String.join(
+                System.lineSeparator(),
+                "package com.qulice;",
+                "/**",
+                " * Sample.",
+                " * @since 1.0",
+                " */",
+                "final class Broken {",
+                "    int count() { return Missing.value(); }",
+                "}"
+            )
+        );
+        MatcherAssert.assertThat(
+            "cannot find symbol must not slip through as a green build",
+            new ErrorProneValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            ).stream().map(Violation::message).toList(),
+            Matchers.hasItem(Matchers.containsString("cannot find symbol"))
+        );
+    }
+
+    @Test
+    void reportsPlainCompilerWarning() throws Exception {
+        final String file = "src/main/java/com/qulice/Removal.java";
+        final Environment env = new Environment.Mock().withFile(
+            file,
+            String.join(
+                System.lineSeparator(),
+                "package com.qulice;",
+                "/**",
+                " * Sample.",
+                " * @since 1.0",
+                " */",
+                "final class Removal {",
+                "    @Deprecated(forRemoval = true)",
+                "    static int old() { return 1; }",
+                "}",
+                "final class Caller {",
+                "    int call() { return Removal.old(); }",
+                "}"
+            )
+        );
+        MatcherAssert.assertThat(
+            "deprecated-for-removal warning must not slip through as a green build",
+            new ErrorProneValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            ).stream().map(Violation::message).toList(),
+            Matchers.hasItem(Matchers.containsString("marked for removal"))
+        );
+    }
+
+    @Test
+    void doesNotBlameProjectForOwnCompilerOptions() throws Exception {
+        final String file = "src/main/java/com/qulice/Pinned.java";
+        final Environment env = new Environment.Mock()
+            .withParam("maven.compiler.source", "21").withFile(
+                file,
+                String.join(
+                    System.lineSeparator(),
+                    "package com.qulice;",
+                    "/**",
+                    " * Sample.",
+                    " * @since 1.0",
+                    " */",
+                    "final class Pinned {",
+                    "    int square(final int num) { return num * num; }",
+                    "}"
+                )
+            );
+        final java.util.Collection<Violation> violations =
+            new ErrorProneValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            );
+        MatcherAssert.assertThat(
+            String.format(
+                "Qulice must not blame the project for its own -source flag: %s",
+                violations
+            ),
+            violations,
+            Matchers.<Violation>empty()
+        );
+    }
 }
