@@ -25,6 +25,26 @@ with `@SuppressWarnings("CheckName")` (the standard ErrorProne mechanism)
 or skip whole paths via an `errorprone:` exclude, e.g.
 `<exclude>errorprone:.*/generated/.*</exclude>`.
 
+An entire bug pattern can be switched off for the whole project with an
+`-Xep` flag of your own:
+
+```xml
+<configuration>
+  <errorprone>
+    <flag>-Xep:UnusedVariable:OFF</flag>
+  </errorprone>
+</configuration>
+```
+
+The same flags may arrive through a `qulice.errorprone` property in your
+`pom.xml`, separated by spaces or commas. They are appended after the
+flags Qulice passes and the last flag naming a pattern wins, so they can
+also switch a pattern back _on_, e.g. `-Xep:OperatorPrecedence:ERROR`.
+Qulice itself keeps `InvalidBlockTag`, `OperatorPrecedence` and
+`UnicodeInCode` off: the last one rejects every non-ASCII character
+outside comments and literals, which is a defect only in a project whose
+own notation is ASCII.
+
 Read more at [www.qulice.com](https://www.qulice.com).
 
 Also, read this blog post first:
@@ -91,6 +111,9 @@ The [Checkstyle](https://checkstyle.sourceforge.io/) configuration
   and cannot be overridden by the adopting project.
 Projects may suppress specific checks only via the `<excludes>`
   parameter; they cannot add or redefine rules.
+The one exception is [ErrorProne](https://errorprone.info/), whose bug
+  patterns a project may switch off, or back on, with the
+  `<errorprone>` parameter described above.
 This trades flexibility for consistency: code review style expectations
   are identical across every repository that uses Qulice.
 

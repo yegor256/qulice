@@ -26,6 +26,12 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     implements Contextualizable {
 
     /**
+     * Name of the parameter that carries the extra ErrorProne flags of the
+     * project down to {@code ErrorProneValidator}.
+     */
+    private static final String ERRORPRONE = "qulice.errorprone";
+
+    /**
      * Environment to pass to validators.
      */
     private final DefaultMavenEnvironment environment;
@@ -70,6 +76,17 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     private final Collection<String> asserts;
 
     /**
+     * List of ErrorProne flags to add to the ones Qulice already passes,
+     * e.g. {@code -Xep:UnicodeInCode:OFF} to switch a bug pattern off, or
+     * {@code -Xep:OperatorPrecedence:ERROR} to switch one back on.
+     */
+    @Parameter(
+        property = AbstractQuliceMojo.ERRORPRONE,
+        required = false
+    )
+    private final Collection<String> errorprone;
+
+    /**
      * The source encoding.
      * @parameter expression="${project.build.sourceEncoding}" required="true"
      */
@@ -83,6 +100,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.environment = new DefaultMavenEnvironment();
         this.excludes = new ArrayList<>(0);
         this.asserts = new ArrayList<>(0);
+        this.errorprone = new ArrayList<>(0);
     }
 
     /**
@@ -120,6 +138,15 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     }
 
     /**
+     * Set extra ErrorProne flags.
+     * @param flags Flags, e.g. {@code -Xep:UnicodeInCode:OFF}
+     */
+    public final void setErrorprone(final Collection<String> flags) {
+        this.errorprone.clear();
+        this.errorprone.addAll(flags);
+    }
+
+    /**
      * Set source code encoding.
      * @param encoding Source code encoding
      */
@@ -147,6 +174,12 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.environment.setExcludes(this.excludes);
         this.environment.setAssertion(this.asserts);
         this.environment.setEncoding(this.charset);
+        if (!this.errorprone.isEmpty()) {
+            this.environment.setProperty(
+                AbstractQuliceMojo.ERRORPRONE,
+                String.join(" ", this.errorprone)
+            );
+        }
         this.doExecute();
         Logger.info(
             this,

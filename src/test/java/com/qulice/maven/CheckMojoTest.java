@@ -4,6 +4,7 @@
  */
 package com.qulice.maven;
 
+import java.util.Arrays;
 import java.util.concurrent.TimeoutException;
 import org.apache.maven.monitor.logging.DefaultLog;
 import org.apache.maven.plugin.MojoFailureException;
@@ -117,6 +118,32 @@ final class CheckMojoTest {
             () -> Assertions.assertEquals(1, internal.count()),
             () -> Assertions.assertEquals(1, external.count()),
             () -> Assertions.assertEquals(1, rexternal.count())
+        );
+    }
+
+    /**
+     * CheckMojo can hand the ErrorProne flags of the project to validators.
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void passesErrorProneFlagsToValidators() throws Exception {
+        final CheckMojo mojo = new CheckMojo();
+        final RecordingValidator external =
+            new RecordingValidator("qulice.errorprone");
+        mojo.setValidatorsProvider(
+            new ValidatorsProviderMocker().withExternal(external).mock()
+        );
+        mojo.setProject(new MavenProject());
+        mojo.setLog(new DefaultLog(new FakeLogger()));
+        mojo.contextualize(new DefaultContext());
+        mojo.setErrorprone(
+            Arrays.asList("-Xep:UnicodeInCode:OFF", "-Xep:UnusedVariable:OFF")
+        );
+        mojo.execute();
+        Assertions.assertEquals(
+            "-Xep:UnicodeInCode:OFF -Xep:UnusedVariable:OFF",
+            external.seen(),
+            "The flags configured by the project must reach the validators"
         );
     }
 }
