@@ -16,9 +16,11 @@
   <packaging>jar</packaging>
   <name>javac-warnings</name>
   <properties>
-    <!-- source/target rather than release, on purpose: this is the
-         configuration that made Qulice complain about its own command
-         line, see #1732 -->
+    <!--
+    source/target rather than release, on purpose: this is the
+    configuration that made Qulice complain about its own command
+    line, see #1732
+    -->
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
@@ -33,8 +35,10 @@
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <!-- the parent turns warnings into compile errors; here the
-               warning must survive the compiler and reach Qulice -->
+          <!--
+          the parent turns warnings into compile errors; here the
+          warning must survive the compiler and reach Qulice
+          -->
           <failOnWarning>false</failOnWarning>
         </configuration>
       </plugin>
