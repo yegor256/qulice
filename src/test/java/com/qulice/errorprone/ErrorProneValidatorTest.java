@@ -19,6 +19,15 @@ import org.junit.jupiter.api.Test;
 final class ErrorProneValidatorTest {
 
     @Test
+    void countsRulesItApplies() throws Exception {
+        MatcherAssert.assertThat(
+            "ErrorProne must tell how many bug patterns it applies",
+            new ErrorProneValidator(new Environment.Mock()).rules(),
+            Matchers.greaterThan(100)
+        );
+    }
+
+    @Test
     void findsViolationInBadJavaFile() throws Exception {
         final String file = "src/main/java/Bad.java";
         final Environment env = new Environment.Mock().withFile(
