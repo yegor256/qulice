@@ -58,8 +58,20 @@ final class SummaryTest {
         MatcherAssert.assertThat(
             "Summary without rules cannot carry an empty pair of brackets",
             new Summary(
-                Collections.emptyList(),
+                Collections.singleton(new File("pom.xml")),
                 Collections.singleton(new FakeResourceValidator("Zeta", 0))
+            ).toString(),
+            Matchers.equalTo("checked 0 .java files against 0 rules")
+        );
+    }
+
+    @Test
+    void countsNoRulesWhenNothingReachedValidators() {
+        MatcherAssert.assertThat(
+            "Rules cannot be counted when no file went to the validators",
+            new Summary(
+                Collections.emptyList(),
+                Collections.singleton(new FakeResourceValidator("Eta", 12))
             ).toString(),
             Matchers.equalTo("checked 0 .java files against 0 rules")
         );

@@ -18,7 +18,8 @@ import java.util.stream.Collectors;
  * <p>Tells the reader what the run has just covered: how many Java files
  * went through the validators and how many rules judged them, validator
  * by validator. A validator that cannot count its rules stays out of the
- * breakdown, instead of claiming zero.</p>
+ * breakdown, instead of claiming zero, and a module that had no file to
+ * give them counts no rules at all.</p>
  *
  * @since 1.0
  */
@@ -59,15 +60,23 @@ final class Summary {
     /**
      * How many rules each validator applies, by validator name, leaving
      * out the ones that count none.
+     *
+     * <p>A module without a single file to read runs no validator at all,
+     * so nobody is asked to count: the counting itself is expensive, since
+     * it makes Checkstyle load its configuration and PMD resolve its
+     * ruleset.</p>
+     *
      * @return Rule counts, in the order the validators ran
      */
     private Map<String, Integer> counts() {
         final Map<String, Integer> counts =
             new LinkedHashMap<>(this.validators.size());
-        for (final ResourceValidator validator : this.validators) {
-            final int rules = validator.rules();
-            if (rules > 0) {
-                counts.put(validator.name(), rules);
+        if (!this.files.isEmpty()) {
+            for (final ResourceValidator validator : this.validators) {
+                final int rules = validator.rules();
+                if (rules > 0) {
+                    counts.put(validator.name(), rules);
+                }
             }
         }
         return counts;
