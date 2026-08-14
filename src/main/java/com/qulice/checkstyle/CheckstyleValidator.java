@@ -133,6 +133,11 @@ public final class CheckstyleValidator implements ResourceValidator {
         return "Checkstyle";
     }
 
+    @Override
+    public int rules() {
+        return CheckstyleValidator.count(this.configuration());
+    }
+
     /**
      * Filters out excluded files from further validation.
      * @param files Files to validate
@@ -255,6 +260,30 @@ public final class CheckstyleValidator implements ResourceValidator {
             }
         }
         return result;
+    }
+
+    /**
+     * Count the checks in a configuration tree.
+     *
+     * <p>A module without children is one check, while a module that holds
+     * others — {@code Checker} and {@code TreeWalker} — only carries them
+     * and is not a check itself. Suppression filters and holders are left
+     * out too, since they silence violations instead of finding them.</p>
+     *
+     * @param config Configuration to count in
+     * @return The number of checks configured
+     */
+    private static int count(final Configuration config) {
+        int total = 0;
+        for (final Configuration child : config.getChildren()) {
+            final String name = child.getName();
+            if (child.getChildren().length > 0) {
+                total += CheckstyleValidator.count(child);
+            } else if (!name.endsWith("Filter") && !name.endsWith("Holder")) {
+                total += 1;
+            }
+        }
+        return total;
     }
 
     /**

@@ -68,6 +68,11 @@ public final class PmdValidator implements ResourceValidator {
         return "PMD";
     }
 
+    @Override
+    public int rules() {
+        return new SourceValidator(this.env.encoding()).rules();
+    }
+
     /**
      * Filters out excluded files from further validation.
      * @param files Files to validate

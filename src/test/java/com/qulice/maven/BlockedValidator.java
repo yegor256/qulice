@@ -58,6 +58,11 @@ final class BlockedValidator implements ResourceValidator {
         return "blocked forever";
     }
 
+    @Override
+    public int rules() {
+        return 0;
+    }
+
     int count() {
         return this.cnt.get();
     }

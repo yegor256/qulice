@@ -25,4 +25,10 @@ public interface ResourceValidator {
      * @return Name of this validator
      */
     String name();
+
+    /**
+     * How many rules this validator applies to every file it reads.
+     * @return Number of rules, or zero when the validator cannot tell
+     */
+    int rules();
 }
