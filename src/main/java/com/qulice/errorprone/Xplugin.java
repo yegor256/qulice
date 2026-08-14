@@ -4,6 +4,8 @@
  */
 package com.qulice.errorprone;
 
+import com.google.errorprone.ErrorProneOptions;
+import com.google.errorprone.scanner.BuiltInCheckerSuppliers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -86,13 +88,41 @@ public final class Xplugin {
      * @return The whole {@code -Xplugin:ErrorProne ...} argument
      */
     public String argument() {
+        return String.format(
+            "-Xplugin:ErrorProne %s", String.join(" ", this.flags())
+        );
+    }
+
+    /**
+     * How many bug patterns fire with these flags.
+     *
+     * <p>ErrorProne answers this itself: the count starts at the patterns
+     * it enables by default and then the very flags the forked
+     * {@code javac} receives are applied to it, so a pattern Qulice
+     * switches off leaves the count and one the project switches back on
+     * rejoins it.</p>
+     *
+     * @return The number of bug patterns that judge every file
+     */
+    public int patterns() {
+        return BuiltInCheckerSuppliers.defaultChecks()
+            .applyOverrides(ErrorProneOptions.processArgs(this.flags()))
+            .getEnabledChecks()
+            .size();
+    }
+
+    /**
+     * The {@code -Xep} flags, Qulice's own first and the project's after
+     * them.
+     * @return Flags, in the order ErrorProne reads them
+     */
+    private List<String> flags() {
         final List<String> flags = new ArrayList<>(
             Xplugin.DISABLED.size() + 4
         );
-        flags.add("-Xplugin:ErrorProne");
         flags.addAll(Xplugin.DISABLED);
         flags.addAll(this.extras());
-        return String.join(" ", flags);
+        return flags;
     }
 
     /**

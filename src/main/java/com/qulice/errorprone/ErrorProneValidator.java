@@ -49,14 +49,6 @@ import java.util.regex.Pattern;
  * {@code qulice.errorprone} parameter.</p>
  *
  * @since 1.0
- * @todo #1736:60min Count the bug patterns this validator applies, so that
- *  {@code rules()} stops returning zero and ErrorProne joins the summary
- *  Qulice prints when a check completes. The number starts at
- *  {@code BuiltInCheckerSuppliers.defaultChecks()}, minus the patterns
- *  {@link Xplugin} switches off and plus the ones the project switches back
- *  on. That class lives in {@code error_prone_core}, a runtime dependency of
- *  this plugin, so counting them means either promoting the jar to compile
- *  scope or asking the forked {@code javac} for the number.
  */
 public final class ErrorProneValidator implements ResourceValidator {
 
@@ -145,7 +137,9 @@ public final class ErrorProneValidator implements ResourceValidator {
 
     @Override
     public int rules() {
-        return 0;
+        return new Xplugin(
+            this.env.param(ErrorProneValidator.PARAM, "")
+        ).patterns();
     }
 
     /**
