@@ -77,9 +77,9 @@ public final class CheckMojo extends AbstractQuliceMojo {
     }
 
     @Override
-    public void doExecute() throws MojoFailureException {
+    public String doExecute() throws MojoFailureException {
         try {
-            this.run();
+            return this.run();
         } catch (final ValidationException ex) {
             Logger.info(
                 this,
@@ -107,17 +107,19 @@ public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
      * Run them all.
+     * @return What was checked, for the final log line
      * @throws ValidationException If any of them fail
      */
     @SuppressWarnings("PMD.CognitiveComplexity")
-    private void run() throws ValidationException {
+    private String run() throws ValidationException {
         final List<Violation> results = new ArrayList<>(0);
         final MavenEnvironment env = this.env();
         final ValidatorsProvider prov = this.validators(env);
+        final Collection<ResourceValidator> resources = prov.externalResource();
         final Collection<File> files = env.files("*.*");
         if (!files.isEmpty()) {
             final Collection<Future<Collection<Violation>>> futures =
-                this.submit(env, files, prov.externalResource());
+                this.submit(env, files, resources);
             for (final Future<Collection<Violation>> future : futures) {
                 try {
                     if ("forever".equalsIgnoreCase(this.timeout)) {
@@ -171,6 +173,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
         for (final MavenValidator validator : prov.internal()) {
             validator.validate(env);
         }
+        return new Summary(files, resources).toString();
     }
 
     /**

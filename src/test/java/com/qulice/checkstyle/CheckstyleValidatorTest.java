@@ -82,6 +82,15 @@ final class CheckstyleValidatorTest {
     }
 
     @Test
+    void countsRulesItApplies() throws Exception {
+        MatcherAssert.assertThat(
+            "Checkstyle cannot stay silent about how many rules it applies",
+            new CheckstyleValidator(new Environment.Mock()).rules(),
+            Matchers.greaterThan(100)
+        );
+    }
+
+    @Test
     void failsClearlyWhenCacheParentIsNotWritable() throws Exception {
         final Environment.Mock mock = new Environment.Mock();
         final File parent = new File(mock.tempdir(), "checkstyle");

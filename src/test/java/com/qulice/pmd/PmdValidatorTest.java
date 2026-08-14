@@ -35,6 +35,15 @@ final class PmdValidatorTest {
     }
 
     @Test
+    void countsRulesItApplies() throws Exception {
+        MatcherAssert.assertThat(
+            "PMD cannot stay silent about how many rules it applies",
+            new PmdValidator(new Environment.Mock()).rules(),
+            Matchers.greaterThan(100)
+        );
+    }
+
+    @Test
     void acceptsJavaFilesWithUppercaseExtension() throws Exception {
         final String file = "src/main/java/Main.JAVA";
         final Environment env = new Environment.Mock()

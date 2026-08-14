@@ -16,6 +16,7 @@ import java.util.List;
 import net.sourceforge.pmd.PMDConfiguration;
 import net.sourceforge.pmd.PmdAnalysis;
 import net.sourceforge.pmd.lang.rule.RulePriority;
+import net.sourceforge.pmd.lang.rule.RuleSet;
 import net.sourceforge.pmd.reporting.Report;
 import net.sourceforge.pmd.reporting.RuleViolation;
 import org.cactoos.list.ListOf;
@@ -53,14 +54,8 @@ final class SourceValidator {
      */
     Collection<PmdError> validate(
         final Collection<File> sources, final String path) {
-        this.config.setRuleSets(new ListOf<>("com/qulice/pmd/ruleset.xml"));
-        this.config.setThreads(0);
-        this.config.setMinimumPriority(RulePriority.LOW);
-        this.config.setIgnoreIncrementalAnalysis(true);
-        this.config.setShowSuppressedViolations(true);
-        this.config.setSourceEncoding(this.encoding);
         final List<PmdError> errors = new ArrayList<>(0);
-        try (PmdAnalysis analysis = PmdAnalysis.create(this.config)) {
+        try (PmdAnalysis analysis = PmdAnalysis.create(this.configured())) {
             for (final File source : sources) {
                 Logger.debug(
                     this,
@@ -81,6 +76,35 @@ final class SourceValidator {
                 .forEach(errors::add);
         }
         return errors;
+    }
+
+    /**
+     * How many rules the ruleset holds, once PMD has resolved the
+     * categories it refers to and taken the exclusions out.
+     * @return The number of rules
+     */
+    int rules() {
+        int total = 0;
+        try (PmdAnalysis analysis = PmdAnalysis.create(this.configured())) {
+            for (final RuleSet set : analysis.getRulesets()) {
+                total += set.size();
+            }
+        }
+        return total;
+    }
+
+    /**
+     * The PMD configuration, with the Qulice ruleset in it.
+     * @return Configuration to run PMD with
+     */
+    private PMDConfiguration configured() {
+        this.config.setRuleSets(new ListOf<>("com/qulice/pmd/ruleset.xml"));
+        this.config.setThreads(0);
+        this.config.setMinimumPriority(RulePriority.LOW);
+        this.config.setIgnoreIncrementalAnalysis(true);
+        this.config.setShowSuppressedViolations(true);
+        this.config.setSourceEncoding(this.encoding);
+        return this.config;
     }
 
     /**

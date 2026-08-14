@@ -180,10 +180,10 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
                 String.join(" ", this.errorprone)
             );
         }
-        this.doExecute();
         Logger.info(
             this,
-            "Qulice quality check completed in %[ms]s",
+            "Qulice %s in %[ms]s",
+            this.doExecute(),
             System.currentTimeMillis() - start
         );
     }
@@ -198,9 +198,11 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Do the real execution.
+     * @return What was done, as the middle of the final log line, e.g.
+     *  {@code "checked 42 .java files against 385 rules"}
      * @throws MojoFailureException If some failure inside
      */
-    protected abstract void doExecute() throws MojoFailureException;
+    protected abstract String doExecute() throws MojoFailureException;
 
     /**
      * Get the environment.
