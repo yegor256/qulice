@@ -114,6 +114,18 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
+    public Collection<File> testdirs() {
+        final Collection<File> dirs = new ArrayList<>(0);
+        final List<String> roots = this.iproject.getTestCompileSourceRoots();
+        if (roots != null) {
+            for (final String root : roots) {
+                dirs.add(this.resolve(root));
+            }
+        }
+        return dirs;
+    }
+
+    @Override
     public Collection<String> classpath() {
         final Collection<String> paths = new ArrayList<>(0);
         final String blank = "%20";

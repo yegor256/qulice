@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  * Validates source code with Google ErrorProne.
@@ -79,11 +80,6 @@ public final class ErrorProneValidator implements ResourceValidator {
     private static final String PARAM = "qulice.errorprone";
 
     /**
-     * Path fragment that tells Maven's test source root from its main one.
-     */
-    private static final String TESTS = "/src/test/";
-
-    /**
      * Splits a multi-line stdout block into individual lines, on any
      * line terminator (\\n, \\r, \\r\\n, etc.).
      */
@@ -118,7 +114,7 @@ public final class ErrorProneValidator implements ResourceValidator {
                 this.name(), this.env.basedir().getAbsolutePath()
             );
             for (final Map.Entry<String, List<File>> batch
-                : ErrorProneValidator.batches(sources).entrySet()) {
+                : this.batches(sources).entrySet()) {
                 violations.addAll(
                     diagnostics.violations(
                         this.run(batch.getKey(), batch.getValue())
@@ -156,15 +152,28 @@ public final class ErrorProneValidator implements ResourceValidator {
      * the file carries an annotation, {@code has already been
      * annotated}.</p>
      *
+     * <p>A file counts as a test when it lives under one of the test source
+     * roots the project declares, which is what {@link Environment#testdirs()}
+     * reports. Matching the {@code /src/test/} path fragment instead would
+     * miss every further root a project registers through
+     * {@code build-helper-maven-plugin:add-test-source} — {@code src/mock/java}
+     * in the jcabi parent POM — and the files there would join the main batch,
+     * earning exactly the diagnostic this split exists to prevent (see
+     * <a href="https://github.com/yegor256/qulice/issues/1742">#1742</a>).</p>
+     *
      * @param sources Java source files to split
      * @return Batches by name, in compilation order, none of them empty
      */
-    private static Map<String, List<File>> batches(final List<File> sources) {
+    private Map<String, List<File>> batches(final List<File> sources) {
+        final Collection<String> roots = new ArrayList<>(0);
+        for (final File dir : this.env.testdirs()) {
+            roots.add(ErrorProneValidator.slashed(dir).concat("/"));
+        }
         final List<File> main = new ArrayList<>(sources.size());
         final List<File> tests = new ArrayList<>(sources.size());
         for (final File source : sources) {
-            if (source.getPath().replace(File.separatorChar, '/')
-                .contains(ErrorProneValidator.TESTS)) {
+            final String path = ErrorProneValidator.slashed(source);
+            if (roots.stream().anyMatch(path::startsWith)) {
                 tests.add(source);
             } else {
                 main.add(source);
@@ -178,6 +187,23 @@ public final class ErrorProneValidator implements ResourceValidator {
             batches.put("test", tests);
         }
         return batches;
+    }
+
+    /**
+     * The absolute path of a file, in one shape: forward slashes, no
+     * {@code .} or {@code ..} steps. Source roots arrive from the POM
+     * while sources arrive from walking the disk, so only a normalized
+     * form makes the two comparable as text.
+     * @param file File to render
+     * @return Its absolute path
+     */
+    private static String slashed(final File file) {
+        final String absolute = file.getAbsolutePath();
+        String path = FilenameUtils.normalize(absolute, true);
+        if (path == null) {
+            path = absolute.replace(File.separatorChar, '/');
+        }
+        return path;
     }
 
     /**
