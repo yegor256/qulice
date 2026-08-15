@@ -425,4 +425,45 @@ final class DefaultMavenEnvironmentTest {
             )
         );
     }
+
+    /**
+     * DefaultMavenEnvironment.tempdir() must not point at the directory
+     * with compiled classes, otherwise validators drop their scratch files
+     * into {@code target/classes} and they end up in the JAR and confuse
+     * {@code jacoco:report}
+     * (see <a href="https://github.com/yegor256/qulice/issues/1741">
+     * issue #1741</a>).
+     * @param basedir Temporary base directory
+     */
+    @Test
+    void keepsTempdirOutsideOutdir(@TempDir final Path basedir) {
+        final Path target = basedir.resolve("target");
+        final Build build = new Build();
+        build.setDirectory(target.toAbsolutePath().toString());
+        build.setOutputDirectory(
+            target.resolve("classes").toAbsolutePath().toString()
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setProject(
+            new MavenProjectStub() {
+                @Override
+                public File getBasedir() {
+                    return basedir.toFile();
+                }
+
+                @Override
+                public Build getBuild() {
+                    return build;
+                }
+            }
+        );
+        final Path temp = env.tempdir().toPath().toAbsolutePath();
+        MatcherAssert.assertThat(
+            "Scratch dir must be usable, under target/ and away from classes",
+            env.tempdir().isDirectory()
+                && temp.startsWith(target.toAbsolutePath())
+                && !temp.startsWith(env.outdir().toPath().toAbsolutePath()),
+            Matchers.is(true)
+        );
+    }
 }

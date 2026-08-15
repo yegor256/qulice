@@ -105,7 +105,15 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public File tempdir() {
-        return new File(this.iproject.getBuild().getOutputDirectory());
+        final File dir = new File(
+            this.iproject.getBuild().getDirectory(), "tempdir"
+        );
+        if (!dir.mkdirs() && !dir.isDirectory()) {
+            throw new IllegalStateException(
+                String.format("Cannot create tempdir at %s", dir)
+            );
+        }
+        return dir;
     }
 
     @Override
