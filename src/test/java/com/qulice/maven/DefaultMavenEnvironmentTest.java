@@ -423,22 +423,12 @@ final class DefaultMavenEnvironmentTest {
                 }
             }
         );
-        final File temp = env.tempdir();
+        final Path temp = env.tempdir().toPath().toAbsolutePath();
         MatcherAssert.assertThat(
-            "Temporary directory must be ready to use",
-            temp.isDirectory(),
-            Matchers.is(true)
-        );
-        MatcherAssert.assertThat(
-            "Temporary directory must not be inside the output directory",
-            temp.toPath().toAbsolutePath()
-                .startsWith(env.outdir().toPath().toAbsolutePath()),
-            Matchers.is(false)
-        );
-        MatcherAssert.assertThat(
-            "Temporary directory must be inside the build directory",
-            temp.toPath().toAbsolutePath()
-                .startsWith(target.toAbsolutePath()),
+            "Scratch dir must be usable, under target/ and away from classes",
+            env.tempdir().isDirectory()
+                && temp.startsWith(target.toAbsolutePath())
+                && !temp.startsWith(env.outdir().toPath().toAbsolutePath()),
             Matchers.is(true)
         );
     }
