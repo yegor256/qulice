@@ -48,6 +48,11 @@ final class EnforcerExcludedEnvironment implements Environment {
     }
 
     @Override
+    public Collection<File> testdirs() {
+        return this.origin.testdirs();
+    }
+
+    @Override
     public String param(final String name, final String value) {
         return this.origin.param(name, value);
     }

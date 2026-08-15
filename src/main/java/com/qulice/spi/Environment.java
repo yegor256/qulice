@@ -26,6 +26,7 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
  * Environment.
  * @since 0.3
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public interface Environment {
 
     /**
@@ -45,6 +46,20 @@ public interface Environment {
      * @return The directory
      */
     File outdir();
+
+    /**
+     * Get the directories the project keeps its test sources in.
+     *
+     * <p>Maven allows a project to register any number of test source
+     * roots, either through {@code <testSourceDirectory>} or through a
+     * plugin such as {@code build-helper-maven-plugin:add-test-source},
+     * which the jcabi parent POM uses for {@code src/mock/java}. A file
+     * therefore cannot be told from a main one by its path alone, and
+     * whoever needs to know has to ask for these roots.</p>
+     *
+     * @return Test source roots, absolute, possibly empty
+     */
+    Collection<File> testdirs();
 
     /**
      * Get parameter by name, and return default if it's not set.
@@ -124,6 +139,11 @@ public interface Environment {
         private final Map<String, String> params;
 
         /**
+         * Test source roots, on top of the default {@code src/test}.
+         */
+        private final Collection<File> tests;
+
+        /**
          * Exclude patterns.
          */
         private String excl;
@@ -152,6 +172,18 @@ public interface Environment {
             this.origin = base;
             this.paths = dirs;
             this.params = new HashMap<>();
+            this.tests = new ArrayList<>(0);
+        }
+
+        /**
+         * With this extra test source root, the way
+         * {@code build-helper-maven-plugin} would add one.
+         * @param path Directory name, related to basedir
+         * @return This object
+         */
+        public Environment.Mock withTestdir(final String path) {
+            this.tests.add(new File(this.origin, path));
+            return this;
         }
 
         /**
@@ -244,6 +276,13 @@ public interface Environment {
                 );
             }
             return file;
+        }
+
+        @Override
+        public Collection<File> testdirs() {
+            final Collection<File> dirs = new ArrayList<>(this.tests);
+            dirs.add(new File(this.origin, "src/test"));
+            return dirs;
         }
 
         @Override

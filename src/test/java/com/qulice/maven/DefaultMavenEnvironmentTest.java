@@ -320,6 +320,40 @@ final class DefaultMavenEnvironmentTest {
     }
 
     /**
+     * DefaultMavenEnvironment.testdirs() should report every test source
+     * root the project declares, not just {@code src/test/java}, since
+     * {@code build-helper-maven-plugin:add-test-source} may add more of
+     * them, e.g. {@code src/mock/java}
+     * (see <a href="https://github.com/yegor256/qulice/issues/1742">
+     * issue #1742</a>).
+     * @param basedir Temporary base directory
+     */
+    @Test
+    void reportsEveryTestSourceRoot(@TempDir final Path basedir) {
+        final Path tests = basedir.resolve("src/test/java");
+        final Path mocks = basedir.resolve("src/mock/java");
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return basedir.toFile();
+            }
+        };
+        project.addTestCompileSourceRoot(
+            tests.toAbsolutePath().toString()
+        );
+        project.addTestCompileSourceRoot(
+            mocks.toAbsolutePath().toString()
+        );
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Every declared test source root must be reported",
+            env.testdirs(),
+            Matchers.hasItems(tests.toFile(), mocks.toFile())
+        );
+    }
+
+    /**
      * Default source files encoding should be UFT-8.
      */
     @Test

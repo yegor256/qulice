@@ -263,6 +263,13 @@ public final class MavenEnvironmentMocker {
         }
 
         @Override
+        public Collection<File> testdirs() {
+            return this.proj.getTestCompileSourceRoots().stream()
+                .map(File::new)
+                .toList();
+        }
+
+        @Override
         public String param(final String name, final String value) {
             return "";
         }
