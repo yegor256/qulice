@@ -188,10 +188,10 @@
 <a class="jxr_linenumber" name="L180" href="#L180">180</a>                 String.join(<span class="jxr_string">" "</span>, <strong class="jxr_keyword">this</strong>.errorprone)
 <a class="jxr_linenumber" name="L181" href="#L181">181</a>             );
 <a class="jxr_linenumber" name="L182" href="#L182">182</a>         }
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>         <strong class="jxr_keyword">this</strong>.doExecute();
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>         Logger.info(
-<a class="jxr_linenumber" name="L185" href="#L185">185</a>             <strong class="jxr_keyword">this</strong>,
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>             <span class="jxr_string">"Qulice quality check completed in %[ms]s"</span>,
+<a class="jxr_linenumber" name="L183" href="#L183">183</a>         Logger.info(
+<a class="jxr_linenumber" name="L184" href="#L184">184</a>             <strong class="jxr_keyword">this</strong>,
+<a class="jxr_linenumber" name="L185" href="#L185">185</a>             <span class="jxr_string">"Qulice %s in %[ms]s"</span>,
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>             <strong class="jxr_keyword">this</strong>.doExecute(),
 <a class="jxr_linenumber" name="L187" href="#L187">187</a>             System.currentTimeMillis() - start
 <a class="jxr_linenumber" name="L188" href="#L188">188</a>         );
 <a class="jxr_linenumber" name="L189" href="#L189">189</a>     }
@@ -206,18 +206,20 @@
 <a class="jxr_linenumber" name="L198" href="#L198">198</a> 
 <a class="jxr_linenumber" name="L199" href="#L199">199</a>     <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L200" href="#L200">200</a> <em class="jxr_javadoccomment">     * Do the real execution.</em>
-<a class="jxr_linenumber" name="L201" href="#L201">201</a> <em class="jxr_javadoccomment">     * @throws MojoFailureException If some failure inside</em>
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">void</strong> doExecute() <strong class="jxr_keyword">throws</strong> MojoFailureException;
-<a class="jxr_linenumber" name="L204" href="#L204">204</a> 
-<a class="jxr_linenumber" name="L205" href="#L205">205</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">     * Get the environment.</em>
-<a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">     * @return The environment</em>
-<a class="jxr_linenumber" name="L208" href="#L208">208</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L209" href="#L209">209</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> env() {
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.environment;
-<a class="jxr_linenumber" name="L211" href="#L211">211</a>     }
-<a class="jxr_linenumber" name="L212" href="#L212">212</a> }
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> <em class="jxr_javadoccomment">     * @return What was done, as the middle of the final log line, e.g.</em>
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">     *  {@code "checked 42 .java files against 385 rules"}</em>
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">     * @throws MojoFailureException If some failure inside</em>
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L205" href="#L205">205</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">abstract</strong> String doExecute() <strong class="jxr_keyword">throws</strong> MojoFailureException;
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> 
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L208" href="#L208">208</a> <em class="jxr_javadoccomment">     * Get the environment.</em>
+<a class="jxr_linenumber" name="L209" href="#L209">209</a> <em class="jxr_javadoccomment">     * @return The environment</em>
+<a class="jxr_linenumber" name="L210" href="#L210">210</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>     <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">final</strong> <a name="MavenEnvironment" href="../../../com/qulice/maven/MavenEnvironment.html#MavenEnvironment">MavenEnvironment</a> env() {
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>         <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.environment;
+<a class="jxr_linenumber" name="L213" href="#L213">213</a>     }
+<a class="jxr_linenumber" name="L214" href="#L214">214</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
