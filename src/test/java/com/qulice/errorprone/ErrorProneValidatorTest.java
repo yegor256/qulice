@@ -400,4 +400,89 @@ final class ErrorProneValidatorTest {
             Matchers.<Violation>empty()
         );
     }
+
+    @Test
+    void compilesTestsAtTheirOwnSourceLevel() throws Exception {
+        final String main = "src/main/java/com/qulice/Old.java";
+        final String test = "src/test/java/com/qulice/OldTest.java";
+        final Environment env = new Environment.Mock()
+            .withParam("maven.compiler.release", "8")
+            .withParam("maven.compiler.testRelease", "17")
+            .withFile(main, ErrorProneValidatorTest.ancient("Old"))
+            .withFile(test, ErrorProneValidatorTest.modern("OldTest"));
+        final java.util.Collection<Violation> violations =
+            new ErrorProneValidator(env).validate(
+                java.util.Arrays.asList(
+                    new File(env.basedir(), main), new File(env.basedir(), test)
+                )
+            );
+        MatcherAssert.assertThat(
+            String.format(
+                "tests pinned to a higher level must compile at it: %s",
+                violations
+            ),
+            violations,
+            Matchers.<Violation>empty()
+        );
+    }
+
+    @Test
+    void keepsMainSourcesAtTheirOwnLevel() throws Exception {
+        final String file = "src/main/java/com/qulice/Modern.java";
+        final Environment env = new Environment.Mock()
+            .withParam("maven.compiler.release", "8")
+            .withParam("maven.compiler.testRelease", "17")
+            .withFile(file, ErrorProneValidatorTest.modern("Modern"));
+        MatcherAssert.assertThat(
+            "the level of the tests must not leak into the main batch",
+            new ErrorProneValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            ).stream().map(Violation::message).toList(),
+            Matchers.hasItem(Matchers.containsString("text block"))
+        );
+    }
+
+    /**
+     * A class that every Java compiler accepts, no matter how old the
+     * source level it is pinned to.
+     * @param name Name of the class
+     * @return Its source code
+     */
+    private static String ancient(final String name) {
+        return String.join(
+            System.lineSeparator(),
+            "package com.qulice;",
+            "/**",
+            " * Sample.",
+            " * @since 1.0",
+            " */",
+            String.format("final class %s {", name),
+            "    int square(final int num) { return num * num; }",
+            "}"
+        );
+    }
+
+    /**
+     * A class that only a Java 15 or newer compiler accepts, since it
+     * holds a text block.
+     * @param name Name of the class
+     * @return Its source code
+     */
+    private static String modern(final String name) {
+        return String.join(
+            System.lineSeparator(),
+            "package com.qulice;",
+            "/**",
+            " * Sample.",
+            " * @since 1.0",
+            " */",
+            String.format("final class %s {", name),
+            "    String text() {",
+            "        return \"\"\"",
+            "            hello",
+            "            \"\"\";",
+            "    }",
+            "}"
+        );
+    }
 }
