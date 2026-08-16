@@ -17,13 +17,11 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
-import org.apache.commons.io.FilenameUtils;
 
 /**
  * Validates source code with Google ErrorProne.
@@ -48,6 +46,11 @@ import org.apache.commons.io.FilenameUtils;
  * <p>Which bug patterns fire is up to {@link Xplugin}, which also takes
  * in the {@code -Xep} flags of the project, read from the
  * {@code qulice.errorprone} parameter.</p>
+ *
+ * <p>The sources are not fed to one {@code javac} pass but to as many as
+ * the project has source roots, which is what {@link Batches} works out;
+ * the name of each batch tells the passes apart on disk, both in the
+ * argfile they read and in the directory they write classes to.</p>
  *
  * @since 1.0
  */
@@ -114,7 +117,7 @@ public final class ErrorProneValidator implements ResourceValidator {
                 this.name(), this.env.basedir().getAbsolutePath()
             );
             for (final Map.Entry<String, List<File>> batch
-                : this.batches(sources).entrySet()) {
+                : new Batches(this.env, sources).split().entrySet()) {
                 violations.addAll(
                     diagnostics.violations(
                         this.run(batch.getKey(), batch.getValue())
@@ -136,74 +139,6 @@ public final class ErrorProneValidator implements ResourceValidator {
         return new Xplugin(
             this.env.param(ErrorProneValidator.PARAM, "")
         ).patterns();
-    }
-
-    /**
-     * Split the sources the way Maven compiles them: main sources in one
-     * batch, test sources in another.
-     *
-     * <p>A single {@code javac} pass over both would manufacture
-     * diagnostics no project could ever silence, because Maven's two
-     * source roots are allowed to hold twins of the same file. The
-     * clearest case is {@code package-info.java}, which Qulice's own
-     * {@code JavadocPackage} check demands in every package: with one
-     * pass, a package that has both main and test code earns
-     * {@code a package-info.java file has already been seen} and, once
-     * the file carries an annotation, {@code has already been
-     * annotated}.</p>
-     *
-     * <p>A file counts as a test when it lives under one of the test source
-     * roots the project declares, which is what {@link Environment#testdirs()}
-     * reports. Matching the {@code /src/test/} path fragment instead would
-     * miss every further root a project registers through
-     * {@code build-helper-maven-plugin:add-test-source} — {@code src/mock/java}
-     * in the jcabi parent POM — and the files there would join the main batch,
-     * earning exactly the diagnostic this split exists to prevent (see
-     * <a href="https://github.com/yegor256/qulice/issues/1742">#1742</a>).</p>
-     *
-     * @param sources Java source files to split
-     * @return Batches by name, in compilation order, none of them empty
-     */
-    private Map<String, List<File>> batches(final List<File> sources) {
-        final Collection<String> roots = new ArrayList<>(0);
-        for (final File dir : this.env.testdirs()) {
-            roots.add(ErrorProneValidator.slashed(dir).concat("/"));
-        }
-        final List<File> main = new ArrayList<>(sources.size());
-        final List<File> tests = new ArrayList<>(sources.size());
-        for (final File source : sources) {
-            final String path = ErrorProneValidator.slashed(source);
-            if (roots.stream().anyMatch(path::startsWith)) {
-                tests.add(source);
-            } else {
-                main.add(source);
-            }
-        }
-        final Map<String, List<File>> batches = new LinkedHashMap<>(2);
-        if (!main.isEmpty()) {
-            batches.put("main", main);
-        }
-        if (!tests.isEmpty()) {
-            batches.put("test", tests);
-        }
-        return batches;
-    }
-
-    /**
-     * The absolute path of a file, in one shape: forward slashes, no
-     * {@code .} or {@code ..} steps. Source roots arrive from the POM
-     * while sources arrive from walking the disk, so only a normalized
-     * form makes the two comparable as text.
-     * @param file File to render
-     * @return Its absolute path
-     */
-    private static String slashed(final File file) {
-        final String absolute = file.getAbsolutePath();
-        String path = FilenameUtils.normalize(absolute, true);
-        if (path == null) {
-            path = absolute.replace(File.separatorChar, '/');
-        }
-        return path;
     }
 
     /**

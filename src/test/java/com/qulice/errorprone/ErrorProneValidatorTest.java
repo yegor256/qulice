@@ -189,6 +189,37 @@ final class ErrorProneValidatorTest {
     }
 
     @Test
+    void doesNotBlameProjectForTwinPackageInfoInTestRoots() throws Exception {
+        final String test = "src/test/java/com/qulice/package-info.java";
+        final String mock = "src/mock/java/com/qulice/package-info.java";
+        final String body = String.join(
+            System.lineSeparator(),
+            "/**",
+            " * Sample.",
+            " * @since 1.0",
+            " */",
+            "package com.qulice;"
+        );
+        final Environment env = new Environment.Mock()
+            .withTestdir("src/mock/java")
+            .withFile(test, body).withFile(mock, body);
+        final java.util.Collection<Violation> violations =
+            new ErrorProneValidator(env).validate(
+                java.util.Arrays.asList(
+                    new File(env.basedir(), test), new File(env.basedir(), mock)
+                )
+            );
+        MatcherAssert.assertThat(
+            String.format(
+                "two test source roots must compile apart from each other: %s",
+                violations
+            ),
+            violations,
+            Matchers.<Violation>empty()
+        );
+    }
+
+    @Test
     void reportsPlainCompilerError() throws Exception {
         final String file = "src/main/java/com/qulice/Broken.java";
         final Environment env = new Environment.Mock().withFile(
