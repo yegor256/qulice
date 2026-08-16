@@ -197,187 +197,303 @@
 <a class="jxr_linenumber" name="L189" href="#L189">189</a>     }
 <a class="jxr_linenumber" name="L190" href="#L190">190</a> 
 <a class="jxr_linenumber" name="L191" href="#L191">191</a>     @Test
-<a class="jxr_linenumber" name="L192" href="#L192">192</a>     <strong class="jxr_keyword">void</strong> reportsPlainCompilerError() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Broken.java"</span>;
-<a class="jxr_linenumber" name="L194" href="#L194">194</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock().withFile(
-<a class="jxr_linenumber" name="L195" href="#L195">195</a>             file,
-<a class="jxr_linenumber" name="L196" href="#L196">196</a>             String.join(
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>                 System.lineSeparator(),
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>                 <span class="jxr_string">"package com.qulice;"</span>,
-<a class="jxr_linenumber" name="L199" href="#L199">199</a>                 <span class="jxr_string">"/**"</span>,
-<a class="jxr_linenumber" name="L200" href="#L200">200</a>                 <span class="jxr_string">" * Sample."</span>,
-<a class="jxr_linenumber" name="L201" href="#L201">201</a>                 <span class="jxr_string">" * @since 1.0"</span>,
-<a class="jxr_linenumber" name="L202" href="#L202">202</a>                 <span class="jxr_string">" */"</span>,
-<a class="jxr_linenumber" name="L203" href="#L203">203</a>                 <span class="jxr_string">"final class Broken {"</span>,
-<a class="jxr_linenumber" name="L204" href="#L204">204</a>                 <span class="jxr_string">"    int count() { return Missing.value(); }"</span>,
-<a class="jxr_linenumber" name="L205" href="#L205">205</a>                 <span class="jxr_string">"}"</span>
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>             )
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>         );
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L209" href="#L209">209</a>             <span class="jxr_string">"cannot find symbol must not slip through as a green build"</span>,
-<a class="jxr_linenumber" name="L210" href="#L210">210</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
-<a class="jxr_linenumber" name="L211" href="#L211">211</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
-<a class="jxr_linenumber" name="L212" href="#L212">212</a>             ).stream().map(Violation::message).toList(),
-<a class="jxr_linenumber" name="L213" href="#L213">213</a>             Matchers.hasItem(Matchers.containsString(<span class="jxr_string">"cannot find symbol"</span>))
-<a class="jxr_linenumber" name="L214" href="#L214">214</a>         );
-<a class="jxr_linenumber" name="L215" href="#L215">215</a>     }
-<a class="jxr_linenumber" name="L216" href="#L216">216</a> 
-<a class="jxr_linenumber" name="L217" href="#L217">217</a>     @Test
-<a class="jxr_linenumber" name="L218" href="#L218">218</a>     <strong class="jxr_keyword">void</strong> reportsPlainCompilerWarning() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L219" href="#L219">219</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Removal.java"</span>;
-<a class="jxr_linenumber" name="L220" href="#L220">220</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock().withFile(
-<a class="jxr_linenumber" name="L221" href="#L221">221</a>             file,
-<a class="jxr_linenumber" name="L222" href="#L222">222</a>             String.join(
-<a class="jxr_linenumber" name="L223" href="#L223">223</a>                 System.lineSeparator(),
-<a class="jxr_linenumber" name="L224" href="#L224">224</a>                 <span class="jxr_string">"package com.qulice;"</span>,
-<a class="jxr_linenumber" name="L225" href="#L225">225</a>                 <span class="jxr_string">"/**"</span>,
-<a class="jxr_linenumber" name="L226" href="#L226">226</a>                 <span class="jxr_string">" * Sample."</span>,
-<a class="jxr_linenumber" name="L227" href="#L227">227</a>                 <span class="jxr_string">" * @since 1.0"</span>,
-<a class="jxr_linenumber" name="L228" href="#L228">228</a>                 <span class="jxr_string">" */"</span>,
-<a class="jxr_linenumber" name="L229" href="#L229">229</a>                 <span class="jxr_string">"final class Removal {"</span>,
-<a class="jxr_linenumber" name="L230" href="#L230">230</a>                 <span class="jxr_string">"    @Deprecated(forRemoval = true)"</span>,
-<a class="jxr_linenumber" name="L231" href="#L231">231</a>                 <span class="jxr_string">"    static int old() { return 1; }"</span>,
-<a class="jxr_linenumber" name="L232" href="#L232">232</a>                 <span class="jxr_string">"}"</span>,
-<a class="jxr_linenumber" name="L233" href="#L233">233</a>                 <span class="jxr_string">"final class Caller {"</span>,
-<a class="jxr_linenumber" name="L234" href="#L234">234</a>                 <span class="jxr_string">"    int call() { return Removal.old(); }"</span>,
-<a class="jxr_linenumber" name="L235" href="#L235">235</a>                 <span class="jxr_string">"}"</span>
-<a class="jxr_linenumber" name="L236" href="#L236">236</a>             )
-<a class="jxr_linenumber" name="L237" href="#L237">237</a>         );
-<a class="jxr_linenumber" name="L238" href="#L238">238</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L239" href="#L239">239</a>             <span class="jxr_string">"deprecated-for-removal warning must not slip through as a green build"</span>,
-<a class="jxr_linenumber" name="L240" href="#L240">240</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
-<a class="jxr_linenumber" name="L241" href="#L241">241</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
-<a class="jxr_linenumber" name="L242" href="#L242">242</a>             ).stream().map(Violation::message).toList(),
-<a class="jxr_linenumber" name="L243" href="#L243">243</a>             Matchers.hasItem(Matchers.containsString(<span class="jxr_string">"marked for removal"</span>))
-<a class="jxr_linenumber" name="L244" href="#L244">244</a>         );
-<a class="jxr_linenumber" name="L245" href="#L245">245</a>     }
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> 
-<a class="jxr_linenumber" name="L247" href="#L247">247</a>     @Test
-<a class="jxr_linenumber" name="L248" href="#L248">248</a>     <strong class="jxr_keyword">void</strong> doesNotFlagNonAsciiIdentifiers() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L249" href="#L249">249</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Greek.java"</span>;
-<a class="jxr_linenumber" name="L250" href="#L250">250</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock().withFile(
-<a class="jxr_linenumber" name="L251" href="#L251">251</a>             file,
-<a class="jxr_linenumber" name="L252" href="#L252">252</a>             String.join(
-<a class="jxr_linenumber" name="L253" href="#L253">253</a>                 System.lineSeparator(),
-<a class="jxr_linenumber" name="L254" href="#L254">254</a>                 <span class="jxr_string">"package com.qulice;"</span>,
-<a class="jxr_linenumber" name="L255" href="#L255">255</a>                 <span class="jxr_string">"/**"</span>,
-<a class="jxr_linenumber" name="L256" href="#L256">256</a>                 <span class="jxr_string">" * Sample."</span>,
-<a class="jxr_linenumber" name="L257" href="#L257">257</a>                 <span class="jxr_string">" * @since 1.0"</span>,
-<a class="jxr_linenumber" name="L258" href="#L258">258</a>                 <span class="jxr_string">" */"</span>,
-<a class="jxr_linenumber" name="L259" href="#L259">259</a>                 <span class="jxr_string">"final class Greek {"</span>,
-<a class="jxr_linenumber" name="L260" href="#L260">260</a>                 <span class="jxr_string">"    int φ() { return 1; }"</span>,
-<a class="jxr_linenumber" name="L261" href="#L261">261</a>                 <span class="jxr_string">"}"</span>
-<a class="jxr_linenumber" name="L262" href="#L262">262</a>             )
-<a class="jxr_linenumber" name="L263" href="#L263">263</a>         );
-<a class="jxr_linenumber" name="L264" href="#L264">264</a>         <strong class="jxr_keyword">final</strong> java.util.Collection&lt;Violation&gt; violations =
-<a class="jxr_linenumber" name="L265" href="#L265">265</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
-<a class="jxr_linenumber" name="L266" href="#L266">266</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
-<a class="jxr_linenumber" name="L267" href="#L267">267</a>             );
-<a class="jxr_linenumber" name="L268" href="#L268">268</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L269" href="#L269">269</a>             String.format(
-<a class="jxr_linenumber" name="L270" href="#L270">270</a>                 <span class="jxr_string">"a domain whose own notation is not ASCII must pass: %s"</span>,
-<a class="jxr_linenumber" name="L271" href="#L271">271</a>                 violations
-<a class="jxr_linenumber" name="L272" href="#L272">272</a>             ),
-<a class="jxr_linenumber" name="L273" href="#L273">273</a>             violations,
-<a class="jxr_linenumber" name="L274" href="#L274">274</a>             Matchers.&lt;Violation&gt;empty()
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>     <strong class="jxr_keyword">void</strong> doesNotBlameProjectForTwinPackageInfoInTestRoots() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L193" href="#L193">193</a>         <strong class="jxr_keyword">final</strong> String test = <span class="jxr_string">"src/test/java/com/qulice/package-info.java"</span>;
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>         <strong class="jxr_keyword">final</strong> String mock = <span class="jxr_string">"src/mock/java/com/qulice/package-info.java"</span>;
+<a class="jxr_linenumber" name="L195" href="#L195">195</a>         <strong class="jxr_keyword">final</strong> String body = String.join(
+<a class="jxr_linenumber" name="L196" href="#L196">196</a>             System.lineSeparator(),
+<a class="jxr_linenumber" name="L197" href="#L197">197</a>             <span class="jxr_string">"/**"</span>,
+<a class="jxr_linenumber" name="L198" href="#L198">198</a>             <span class="jxr_string">" * Sample."</span>,
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>             <span class="jxr_string">" * @since 1.0"</span>,
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>             <span class="jxr_string">" */"</span>,
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>             <span class="jxr_string">"package com.qulice;"</span>
+<a class="jxr_linenumber" name="L202" href="#L202">202</a>         );
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock()
+<a class="jxr_linenumber" name="L204" href="#L204">204</a>             .withTestdir(<span class="jxr_string">"src/mock/java"</span>)
+<a class="jxr_linenumber" name="L205" href="#L205">205</a>             .withFile(test, body).withFile(mock, body);
+<a class="jxr_linenumber" name="L206" href="#L206">206</a>         <strong class="jxr_keyword">final</strong> java.util.Collection&lt;Violation&gt; violations =
+<a class="jxr_linenumber" name="L207" href="#L207">207</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>                 java.util.Arrays.asList(
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>                     <strong class="jxr_keyword">new</strong> File(env.basedir(), test), <strong class="jxr_keyword">new</strong> File(env.basedir(), mock)
+<a class="jxr_linenumber" name="L210" href="#L210">210</a>                 )
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>             );
+<a class="jxr_linenumber" name="L212" href="#L212">212</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L213" href="#L213">213</a>             String.format(
+<a class="jxr_linenumber" name="L214" href="#L214">214</a>                 <span class="jxr_string">"two test source roots must compile apart from each other: %s"</span>,
+<a class="jxr_linenumber" name="L215" href="#L215">215</a>                 violations
+<a class="jxr_linenumber" name="L216" href="#L216">216</a>             ),
+<a class="jxr_linenumber" name="L217" href="#L217">217</a>             violations,
+<a class="jxr_linenumber" name="L218" href="#L218">218</a>             Matchers.&lt;Violation&gt;empty()
+<a class="jxr_linenumber" name="L219" href="#L219">219</a>         );
+<a class="jxr_linenumber" name="L220" href="#L220">220</a>     }
+<a class="jxr_linenumber" name="L221" href="#L221">221</a> 
+<a class="jxr_linenumber" name="L222" href="#L222">222</a>     @Test
+<a class="jxr_linenumber" name="L223" href="#L223">223</a>     <strong class="jxr_keyword">void</strong> reportsPlainCompilerError() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L224" href="#L224">224</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Broken.java"</span>;
+<a class="jxr_linenumber" name="L225" href="#L225">225</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock().withFile(
+<a class="jxr_linenumber" name="L226" href="#L226">226</a>             file,
+<a class="jxr_linenumber" name="L227" href="#L227">227</a>             String.join(
+<a class="jxr_linenumber" name="L228" href="#L228">228</a>                 System.lineSeparator(),
+<a class="jxr_linenumber" name="L229" href="#L229">229</a>                 <span class="jxr_string">"package com.qulice;"</span>,
+<a class="jxr_linenumber" name="L230" href="#L230">230</a>                 <span class="jxr_string">"/**"</span>,
+<a class="jxr_linenumber" name="L231" href="#L231">231</a>                 <span class="jxr_string">" * Sample."</span>,
+<a class="jxr_linenumber" name="L232" href="#L232">232</a>                 <span class="jxr_string">" * @since 1.0"</span>,
+<a class="jxr_linenumber" name="L233" href="#L233">233</a>                 <span class="jxr_string">" */"</span>,
+<a class="jxr_linenumber" name="L234" href="#L234">234</a>                 <span class="jxr_string">"final class Broken {"</span>,
+<a class="jxr_linenumber" name="L235" href="#L235">235</a>                 <span class="jxr_string">"    int count() { return Missing.value(); }"</span>,
+<a class="jxr_linenumber" name="L236" href="#L236">236</a>                 <span class="jxr_string">"}"</span>
+<a class="jxr_linenumber" name="L237" href="#L237">237</a>             )
+<a class="jxr_linenumber" name="L238" href="#L238">238</a>         );
+<a class="jxr_linenumber" name="L239" href="#L239">239</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L240" href="#L240">240</a>             <span class="jxr_string">"cannot find symbol must not slip through as a green build"</span>,
+<a class="jxr_linenumber" name="L241" href="#L241">241</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
+<a class="jxr_linenumber" name="L242" href="#L242">242</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
+<a class="jxr_linenumber" name="L243" href="#L243">243</a>             ).stream().map(Violation::message).toList(),
+<a class="jxr_linenumber" name="L244" href="#L244">244</a>             Matchers.hasItem(Matchers.containsString(<span class="jxr_string">"cannot find symbol"</span>))
+<a class="jxr_linenumber" name="L245" href="#L245">245</a>         );
+<a class="jxr_linenumber" name="L246" href="#L246">246</a>     }
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> 
+<a class="jxr_linenumber" name="L248" href="#L248">248</a>     @Test
+<a class="jxr_linenumber" name="L249" href="#L249">249</a>     <strong class="jxr_keyword">void</strong> reportsPlainCompilerWarning() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L250" href="#L250">250</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Removal.java"</span>;
+<a class="jxr_linenumber" name="L251" href="#L251">251</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock().withFile(
+<a class="jxr_linenumber" name="L252" href="#L252">252</a>             file,
+<a class="jxr_linenumber" name="L253" href="#L253">253</a>             String.join(
+<a class="jxr_linenumber" name="L254" href="#L254">254</a>                 System.lineSeparator(),
+<a class="jxr_linenumber" name="L255" href="#L255">255</a>                 <span class="jxr_string">"package com.qulice;"</span>,
+<a class="jxr_linenumber" name="L256" href="#L256">256</a>                 <span class="jxr_string">"/**"</span>,
+<a class="jxr_linenumber" name="L257" href="#L257">257</a>                 <span class="jxr_string">" * Sample."</span>,
+<a class="jxr_linenumber" name="L258" href="#L258">258</a>                 <span class="jxr_string">" * @since 1.0"</span>,
+<a class="jxr_linenumber" name="L259" href="#L259">259</a>                 <span class="jxr_string">" */"</span>,
+<a class="jxr_linenumber" name="L260" href="#L260">260</a>                 <span class="jxr_string">"final class Removal {"</span>,
+<a class="jxr_linenumber" name="L261" href="#L261">261</a>                 <span class="jxr_string">"    @Deprecated(forRemoval = true)"</span>,
+<a class="jxr_linenumber" name="L262" href="#L262">262</a>                 <span class="jxr_string">"    static int old() { return 1; }"</span>,
+<a class="jxr_linenumber" name="L263" href="#L263">263</a>                 <span class="jxr_string">"}"</span>,
+<a class="jxr_linenumber" name="L264" href="#L264">264</a>                 <span class="jxr_string">"final class Caller {"</span>,
+<a class="jxr_linenumber" name="L265" href="#L265">265</a>                 <span class="jxr_string">"    int call() { return Removal.old(); }"</span>,
+<a class="jxr_linenumber" name="L266" href="#L266">266</a>                 <span class="jxr_string">"}"</span>
+<a class="jxr_linenumber" name="L267" href="#L267">267</a>             )
+<a class="jxr_linenumber" name="L268" href="#L268">268</a>         );
+<a class="jxr_linenumber" name="L269" href="#L269">269</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L270" href="#L270">270</a>             <span class="jxr_string">"deprecated-for-removal warning must not slip through as a green build"</span>,
+<a class="jxr_linenumber" name="L271" href="#L271">271</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
+<a class="jxr_linenumber" name="L272" href="#L272">272</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
+<a class="jxr_linenumber" name="L273" href="#L273">273</a>             ).stream().map(Violation::message).toList(),
+<a class="jxr_linenumber" name="L274" href="#L274">274</a>             Matchers.hasItem(Matchers.containsString(<span class="jxr_string">"marked for removal"</span>))
 <a class="jxr_linenumber" name="L275" href="#L275">275</a>         );
 <a class="jxr_linenumber" name="L276" href="#L276">276</a>     }
 <a class="jxr_linenumber" name="L277" href="#L277">277</a> 
 <a class="jxr_linenumber" name="L278" href="#L278">278</a>     @Test
-<a class="jxr_linenumber" name="L279" href="#L279">279</a>     <strong class="jxr_keyword">void</strong> letsProjectSwitchBugPatternOff() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L280" href="#L280">280</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Assigned.java"</span>;
-<a class="jxr_linenumber" name="L281" href="#L281">281</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock()
-<a class="jxr_linenumber" name="L282" href="#L282">282</a>             .withParam(<span class="jxr_string">"qulice.errorprone"</span>, <span class="jxr_string">"-Xep:SelfAssignment:OFF"</span>).withFile(
-<a class="jxr_linenumber" name="L283" href="#L283">283</a>                 file,
-<a class="jxr_linenumber" name="L284" href="#L284">284</a>                 String.join(
-<a class="jxr_linenumber" name="L285" href="#L285">285</a>                     System.lineSeparator(),
-<a class="jxr_linenumber" name="L286" href="#L286">286</a>                     <span class="jxr_string">"package com.qulice;"</span>,
-<a class="jxr_linenumber" name="L287" href="#L287">287</a>                     <span class="jxr_string">"/**"</span>,
-<a class="jxr_linenumber" name="L288" href="#L288">288</a>                     <span class="jxr_string">" * Sample."</span>,
-<a class="jxr_linenumber" name="L289" href="#L289">289</a>                     <span class="jxr_string">" * @since 1.0"</span>,
-<a class="jxr_linenumber" name="L290" href="#L290">290</a>                     <span class="jxr_string">" */"</span>,
-<a class="jxr_linenumber" name="L291" href="#L291">291</a>                     <span class="jxr_string">"final class Assigned {"</span>,
-<a class="jxr_linenumber" name="L292" href="#L292">292</a>                     <span class="jxr_string">"    private int value;"</span>,
-<a class="jxr_linenumber" name="L293" href="#L293">293</a>                     <span class="jxr_string">"    void set(final int num) { this.value = this.value; }"</span>,
-<a class="jxr_linenumber" name="L294" href="#L294">294</a>                     <span class="jxr_string">"}"</span>
-<a class="jxr_linenumber" name="L295" href="#L295">295</a>                 )
-<a class="jxr_linenumber" name="L296" href="#L296">296</a>             );
-<a class="jxr_linenumber" name="L297" href="#L297">297</a>         <strong class="jxr_keyword">final</strong> java.util.Collection&lt;Violation&gt; violations =
-<a class="jxr_linenumber" name="L298" href="#L298">298</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
-<a class="jxr_linenumber" name="L299" href="#L299">299</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
-<a class="jxr_linenumber" name="L300" href="#L300">300</a>             );
-<a class="jxr_linenumber" name="L301" href="#L301">301</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L302" href="#L302">302</a>             String.format(
-<a class="jxr_linenumber" name="L303" href="#L303">303</a>                 <span class="jxr_string">"a project must be able to switch a bug pattern off: %s"</span>,
-<a class="jxr_linenumber" name="L304" href="#L304">304</a>                 violations
-<a class="jxr_linenumber" name="L305" href="#L305">305</a>             ),
-<a class="jxr_linenumber" name="L306" href="#L306">306</a>             violations,
-<a class="jxr_linenumber" name="L307" href="#L307">307</a>             Matchers.&lt;Violation&gt;empty()
-<a class="jxr_linenumber" name="L308" href="#L308">308</a>         );
-<a class="jxr_linenumber" name="L309" href="#L309">309</a>     }
-<a class="jxr_linenumber" name="L310" href="#L310">310</a> 
-<a class="jxr_linenumber" name="L311" href="#L311">311</a>     @Test
-<a class="jxr_linenumber" name="L312" href="#L312">312</a>     <strong class="jxr_keyword">void</strong> letsProjectSwitchBugPatternBackOn() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L313" href="#L313">313</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Ordered.java"</span>;
-<a class="jxr_linenumber" name="L314" href="#L314">314</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock()
-<a class="jxr_linenumber" name="L315" href="#L315">315</a>             .withParam(<span class="jxr_string">"qulice.errorprone"</span>, <span class="jxr_string">"-Xep:OperatorPrecedence:ERROR"</span>).withFile(
-<a class="jxr_linenumber" name="L316" href="#L316">316</a>                 file,
-<a class="jxr_linenumber" name="L317" href="#L317">317</a>                 String.join(
-<a class="jxr_linenumber" name="L318" href="#L318">318</a>                     System.lineSeparator(),
-<a class="jxr_linenumber" name="L319" href="#L319">319</a>                     <span class="jxr_string">"package com.qulice;"</span>,
-<a class="jxr_linenumber" name="L320" href="#L320">320</a>                     <span class="jxr_string">"/**"</span>,
-<a class="jxr_linenumber" name="L321" href="#L321">321</a>                     <span class="jxr_string">" * Sample."</span>,
-<a class="jxr_linenumber" name="L322" href="#L322">322</a>                     <span class="jxr_string">" * @since 1.0"</span>,
-<a class="jxr_linenumber" name="L323" href="#L323">323</a>                     <span class="jxr_string">" */"</span>,
-<a class="jxr_linenumber" name="L324" href="#L324">324</a>                     <span class="jxr_string">"final class Ordered {"</span>,
-<a class="jxr_linenumber" name="L325" href="#L325">325</a>                     <span class="jxr_string">"    boolean hex(final char glyph) {"</span>,
-<a class="jxr_linenumber" name="L326" href="#L326">326</a>                     <span class="jxr_string">"        return glyph &gt;= '0' &amp;&amp; glyph &lt;= '9'"</span>,
-<a class="jxr_linenumber" name="L327" href="#L327">327</a>                     <span class="jxr_string">"            || glyph &gt;= 'A' &amp;&amp; glyph &lt;= 'F';"</span>,
-<a class="jxr_linenumber" name="L328" href="#L328">328</a>                     <span class="jxr_string">"    }"</span>,
-<a class="jxr_linenumber" name="L329" href="#L329">329</a>                     <span class="jxr_string">"}"</span>
-<a class="jxr_linenumber" name="L330" href="#L330">330</a>                 )
+<a class="jxr_linenumber" name="L279" href="#L279">279</a>     <strong class="jxr_keyword">void</strong> doesNotFlagNonAsciiIdentifiers() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L280" href="#L280">280</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Greek.java"</span>;
+<a class="jxr_linenumber" name="L281" href="#L281">281</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock().withFile(
+<a class="jxr_linenumber" name="L282" href="#L282">282</a>             file,
+<a class="jxr_linenumber" name="L283" href="#L283">283</a>             String.join(
+<a class="jxr_linenumber" name="L284" href="#L284">284</a>                 System.lineSeparator(),
+<a class="jxr_linenumber" name="L285" href="#L285">285</a>                 <span class="jxr_string">"package com.qulice;"</span>,
+<a class="jxr_linenumber" name="L286" href="#L286">286</a>                 <span class="jxr_string">"/**"</span>,
+<a class="jxr_linenumber" name="L287" href="#L287">287</a>                 <span class="jxr_string">" * Sample."</span>,
+<a class="jxr_linenumber" name="L288" href="#L288">288</a>                 <span class="jxr_string">" * @since 1.0"</span>,
+<a class="jxr_linenumber" name="L289" href="#L289">289</a>                 <span class="jxr_string">" */"</span>,
+<a class="jxr_linenumber" name="L290" href="#L290">290</a>                 <span class="jxr_string">"final class Greek {"</span>,
+<a class="jxr_linenumber" name="L291" href="#L291">291</a>                 <span class="jxr_string">"    int φ() { return 1; }"</span>,
+<a class="jxr_linenumber" name="L292" href="#L292">292</a>                 <span class="jxr_string">"}"</span>
+<a class="jxr_linenumber" name="L293" href="#L293">293</a>             )
+<a class="jxr_linenumber" name="L294" href="#L294">294</a>         );
+<a class="jxr_linenumber" name="L295" href="#L295">295</a>         <strong class="jxr_keyword">final</strong> java.util.Collection&lt;Violation&gt; violations =
+<a class="jxr_linenumber" name="L296" href="#L296">296</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
+<a class="jxr_linenumber" name="L297" href="#L297">297</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
+<a class="jxr_linenumber" name="L298" href="#L298">298</a>             );
+<a class="jxr_linenumber" name="L299" href="#L299">299</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L300" href="#L300">300</a>             String.format(
+<a class="jxr_linenumber" name="L301" href="#L301">301</a>                 <span class="jxr_string">"a domain whose own notation is not ASCII must pass: %s"</span>,
+<a class="jxr_linenumber" name="L302" href="#L302">302</a>                 violations
+<a class="jxr_linenumber" name="L303" href="#L303">303</a>             ),
+<a class="jxr_linenumber" name="L304" href="#L304">304</a>             violations,
+<a class="jxr_linenumber" name="L305" href="#L305">305</a>             Matchers.&lt;Violation&gt;empty()
+<a class="jxr_linenumber" name="L306" href="#L306">306</a>         );
+<a class="jxr_linenumber" name="L307" href="#L307">307</a>     }
+<a class="jxr_linenumber" name="L308" href="#L308">308</a> 
+<a class="jxr_linenumber" name="L309" href="#L309">309</a>     @Test
+<a class="jxr_linenumber" name="L310" href="#L310">310</a>     <strong class="jxr_keyword">void</strong> letsProjectSwitchBugPatternOff() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L311" href="#L311">311</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Assigned.java"</span>;
+<a class="jxr_linenumber" name="L312" href="#L312">312</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock()
+<a class="jxr_linenumber" name="L313" href="#L313">313</a>             .withParam(<span class="jxr_string">"qulice.errorprone"</span>, <span class="jxr_string">"-Xep:SelfAssignment:OFF"</span>).withFile(
+<a class="jxr_linenumber" name="L314" href="#L314">314</a>                 file,
+<a class="jxr_linenumber" name="L315" href="#L315">315</a>                 String.join(
+<a class="jxr_linenumber" name="L316" href="#L316">316</a>                     System.lineSeparator(),
+<a class="jxr_linenumber" name="L317" href="#L317">317</a>                     <span class="jxr_string">"package com.qulice;"</span>,
+<a class="jxr_linenumber" name="L318" href="#L318">318</a>                     <span class="jxr_string">"/**"</span>,
+<a class="jxr_linenumber" name="L319" href="#L319">319</a>                     <span class="jxr_string">" * Sample."</span>,
+<a class="jxr_linenumber" name="L320" href="#L320">320</a>                     <span class="jxr_string">" * @since 1.0"</span>,
+<a class="jxr_linenumber" name="L321" href="#L321">321</a>                     <span class="jxr_string">" */"</span>,
+<a class="jxr_linenumber" name="L322" href="#L322">322</a>                     <span class="jxr_string">"final class Assigned {"</span>,
+<a class="jxr_linenumber" name="L323" href="#L323">323</a>                     <span class="jxr_string">"    private int value;"</span>,
+<a class="jxr_linenumber" name="L324" href="#L324">324</a>                     <span class="jxr_string">"    void set(final int num) { this.value = this.value; }"</span>,
+<a class="jxr_linenumber" name="L325" href="#L325">325</a>                     <span class="jxr_string">"}"</span>
+<a class="jxr_linenumber" name="L326" href="#L326">326</a>                 )
+<a class="jxr_linenumber" name="L327" href="#L327">327</a>             );
+<a class="jxr_linenumber" name="L328" href="#L328">328</a>         <strong class="jxr_keyword">final</strong> java.util.Collection&lt;Violation&gt; violations =
+<a class="jxr_linenumber" name="L329" href="#L329">329</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
+<a class="jxr_linenumber" name="L330" href="#L330">330</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
 <a class="jxr_linenumber" name="L331" href="#L331">331</a>             );
 <a class="jxr_linenumber" name="L332" href="#L332">332</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L333" href="#L333">333</a>             <span class="jxr_string">"a project must have the final say on the patterns Qulice disables"</span>,
-<a class="jxr_linenumber" name="L334" href="#L334">334</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
-<a class="jxr_linenumber" name="L335" href="#L335">335</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
-<a class="jxr_linenumber" name="L336" href="#L336">336</a>             ).stream().map(Violation::message).toList(),
-<a class="jxr_linenumber" name="L337" href="#L337">337</a>             Matchers.hasItem(Matchers.containsString(<span class="jxr_string">"OperatorPrecedence"</span>))
-<a class="jxr_linenumber" name="L338" href="#L338">338</a>         );
-<a class="jxr_linenumber" name="L339" href="#L339">339</a>     }
-<a class="jxr_linenumber" name="L340" href="#L340">340</a> 
-<a class="jxr_linenumber" name="L341" href="#L341">341</a>     @Test
-<a class="jxr_linenumber" name="L342" href="#L342">342</a>     <strong class="jxr_keyword">void</strong> doesNotBlameProjectForOwnCompilerOptions() <strong class="jxr_keyword">throws</strong> Exception {
-<a class="jxr_linenumber" name="L343" href="#L343">343</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Pinned.java"</span>;
-<a class="jxr_linenumber" name="L344" href="#L344">344</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock()
-<a class="jxr_linenumber" name="L345" href="#L345">345</a>             .withParam(<span class="jxr_string">"maven.compiler.source"</span>, <span class="jxr_string">"21"</span>).withFile(
-<a class="jxr_linenumber" name="L346" href="#L346">346</a>                 file,
-<a class="jxr_linenumber" name="L347" href="#L347">347</a>                 String.join(
-<a class="jxr_linenumber" name="L348" href="#L348">348</a>                     System.lineSeparator(),
-<a class="jxr_linenumber" name="L349" href="#L349">349</a>                     <span class="jxr_string">"package com.qulice;"</span>,
-<a class="jxr_linenumber" name="L350" href="#L350">350</a>                     <span class="jxr_string">"/**"</span>,
-<a class="jxr_linenumber" name="L351" href="#L351">351</a>                     <span class="jxr_string">" * Sample."</span>,
-<a class="jxr_linenumber" name="L352" href="#L352">352</a>                     <span class="jxr_string">" * @since 1.0"</span>,
-<a class="jxr_linenumber" name="L353" href="#L353">353</a>                     <span class="jxr_string">" */"</span>,
-<a class="jxr_linenumber" name="L354" href="#L354">354</a>                     <span class="jxr_string">"final class Pinned {"</span>,
-<a class="jxr_linenumber" name="L355" href="#L355">355</a>                     <span class="jxr_string">"    int square(final int num) { return num * num; }"</span>,
-<a class="jxr_linenumber" name="L356" href="#L356">356</a>                     <span class="jxr_string">"}"</span>
-<a class="jxr_linenumber" name="L357" href="#L357">357</a>                 )
-<a class="jxr_linenumber" name="L358" href="#L358">358</a>             );
-<a class="jxr_linenumber" name="L359" href="#L359">359</a>         <strong class="jxr_keyword">final</strong> java.util.Collection&lt;Violation&gt; violations =
-<a class="jxr_linenumber" name="L360" href="#L360">360</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
-<a class="jxr_linenumber" name="L361" href="#L361">361</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
+<a class="jxr_linenumber" name="L333" href="#L333">333</a>             String.format(
+<a class="jxr_linenumber" name="L334" href="#L334">334</a>                 <span class="jxr_string">"a project must be able to switch a bug pattern off: %s"</span>,
+<a class="jxr_linenumber" name="L335" href="#L335">335</a>                 violations
+<a class="jxr_linenumber" name="L336" href="#L336">336</a>             ),
+<a class="jxr_linenumber" name="L337" href="#L337">337</a>             violations,
+<a class="jxr_linenumber" name="L338" href="#L338">338</a>             Matchers.&lt;Violation&gt;empty()
+<a class="jxr_linenumber" name="L339" href="#L339">339</a>         );
+<a class="jxr_linenumber" name="L340" href="#L340">340</a>     }
+<a class="jxr_linenumber" name="L341" href="#L341">341</a> 
+<a class="jxr_linenumber" name="L342" href="#L342">342</a>     @Test
+<a class="jxr_linenumber" name="L343" href="#L343">343</a>     <strong class="jxr_keyword">void</strong> letsProjectSwitchBugPatternBackOn() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L344" href="#L344">344</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Ordered.java"</span>;
+<a class="jxr_linenumber" name="L345" href="#L345">345</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock()
+<a class="jxr_linenumber" name="L346" href="#L346">346</a>             .withParam(<span class="jxr_string">"qulice.errorprone"</span>, <span class="jxr_string">"-Xep:OperatorPrecedence:ERROR"</span>).withFile(
+<a class="jxr_linenumber" name="L347" href="#L347">347</a>                 file,
+<a class="jxr_linenumber" name="L348" href="#L348">348</a>                 String.join(
+<a class="jxr_linenumber" name="L349" href="#L349">349</a>                     System.lineSeparator(),
+<a class="jxr_linenumber" name="L350" href="#L350">350</a>                     <span class="jxr_string">"package com.qulice;"</span>,
+<a class="jxr_linenumber" name="L351" href="#L351">351</a>                     <span class="jxr_string">"/**"</span>,
+<a class="jxr_linenumber" name="L352" href="#L352">352</a>                     <span class="jxr_string">" * Sample."</span>,
+<a class="jxr_linenumber" name="L353" href="#L353">353</a>                     <span class="jxr_string">" * @since 1.0"</span>,
+<a class="jxr_linenumber" name="L354" href="#L354">354</a>                     <span class="jxr_string">" */"</span>,
+<a class="jxr_linenumber" name="L355" href="#L355">355</a>                     <span class="jxr_string">"final class Ordered {"</span>,
+<a class="jxr_linenumber" name="L356" href="#L356">356</a>                     <span class="jxr_string">"    boolean hex(final char glyph) {"</span>,
+<a class="jxr_linenumber" name="L357" href="#L357">357</a>                     <span class="jxr_string">"        return glyph &gt;= '0' &amp;&amp; glyph &lt;= '9'"</span>,
+<a class="jxr_linenumber" name="L358" href="#L358">358</a>                     <span class="jxr_string">"            || glyph &gt;= 'A' &amp;&amp; glyph &lt;= 'F';"</span>,
+<a class="jxr_linenumber" name="L359" href="#L359">359</a>                     <span class="jxr_string">"    }"</span>,
+<a class="jxr_linenumber" name="L360" href="#L360">360</a>                     <span class="jxr_string">"}"</span>
+<a class="jxr_linenumber" name="L361" href="#L361">361</a>                 )
 <a class="jxr_linenumber" name="L362" href="#L362">362</a>             );
 <a class="jxr_linenumber" name="L363" href="#L363">363</a>         MatcherAssert.assertThat(
-<a class="jxr_linenumber" name="L364" href="#L364">364</a>             String.format(
-<a class="jxr_linenumber" name="L365" href="#L365">365</a>                 <span class="jxr_string">"Qulice must not blame the project for its own -source flag: %s"</span>,
-<a class="jxr_linenumber" name="L366" href="#L366">366</a>                 violations
-<a class="jxr_linenumber" name="L367" href="#L367">367</a>             ),
-<a class="jxr_linenumber" name="L368" href="#L368">368</a>             violations,
-<a class="jxr_linenumber" name="L369" href="#L369">369</a>             Matchers.&lt;Violation&gt;empty()
-<a class="jxr_linenumber" name="L370" href="#L370">370</a>         );
-<a class="jxr_linenumber" name="L371" href="#L371">371</a>     }
-<a class="jxr_linenumber" name="L372" href="#L372">372</a> }
+<a class="jxr_linenumber" name="L364" href="#L364">364</a>             <span class="jxr_string">"a project must have the final say on the patterns Qulice disables"</span>,
+<a class="jxr_linenumber" name="L365" href="#L365">365</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
+<a class="jxr_linenumber" name="L366" href="#L366">366</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
+<a class="jxr_linenumber" name="L367" href="#L367">367</a>             ).stream().map(Violation::message).toList(),
+<a class="jxr_linenumber" name="L368" href="#L368">368</a>             Matchers.hasItem(Matchers.containsString(<span class="jxr_string">"OperatorPrecedence"</span>))
+<a class="jxr_linenumber" name="L369" href="#L369">369</a>         );
+<a class="jxr_linenumber" name="L370" href="#L370">370</a>     }
+<a class="jxr_linenumber" name="L371" href="#L371">371</a> 
+<a class="jxr_linenumber" name="L372" href="#L372">372</a>     @Test
+<a class="jxr_linenumber" name="L373" href="#L373">373</a>     <strong class="jxr_keyword">void</strong> doesNotBlameProjectForOwnCompilerOptions() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L374" href="#L374">374</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Pinned.java"</span>;
+<a class="jxr_linenumber" name="L375" href="#L375">375</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock()
+<a class="jxr_linenumber" name="L376" href="#L376">376</a>             .withParam(<span class="jxr_string">"maven.compiler.source"</span>, <span class="jxr_string">"21"</span>).withFile(
+<a class="jxr_linenumber" name="L377" href="#L377">377</a>                 file,
+<a class="jxr_linenumber" name="L378" href="#L378">378</a>                 String.join(
+<a class="jxr_linenumber" name="L379" href="#L379">379</a>                     System.lineSeparator(),
+<a class="jxr_linenumber" name="L380" href="#L380">380</a>                     <span class="jxr_string">"package com.qulice;"</span>,
+<a class="jxr_linenumber" name="L381" href="#L381">381</a>                     <span class="jxr_string">"/**"</span>,
+<a class="jxr_linenumber" name="L382" href="#L382">382</a>                     <span class="jxr_string">" * Sample."</span>,
+<a class="jxr_linenumber" name="L383" href="#L383">383</a>                     <span class="jxr_string">" * @since 1.0"</span>,
+<a class="jxr_linenumber" name="L384" href="#L384">384</a>                     <span class="jxr_string">" */"</span>,
+<a class="jxr_linenumber" name="L385" href="#L385">385</a>                     <span class="jxr_string">"final class Pinned {"</span>,
+<a class="jxr_linenumber" name="L386" href="#L386">386</a>                     <span class="jxr_string">"    int square(final int num) { return num * num; }"</span>,
+<a class="jxr_linenumber" name="L387" href="#L387">387</a>                     <span class="jxr_string">"}"</span>
+<a class="jxr_linenumber" name="L388" href="#L388">388</a>                 )
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>             );
+<a class="jxr_linenumber" name="L390" href="#L390">390</a>         <strong class="jxr_keyword">final</strong> java.util.Collection&lt;Violation&gt; violations =
+<a class="jxr_linenumber" name="L391" href="#L391">391</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>             );
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L395" href="#L395">395</a>             String.format(
+<a class="jxr_linenumber" name="L396" href="#L396">396</a>                 <span class="jxr_string">"Qulice must not blame the project for its own -source flag: %s"</span>,
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>                 violations
+<a class="jxr_linenumber" name="L398" href="#L398">398</a>             ),
+<a class="jxr_linenumber" name="L399" href="#L399">399</a>             violations,
+<a class="jxr_linenumber" name="L400" href="#L400">400</a>             Matchers.&lt;Violation&gt;empty()
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>         );
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>     }
+<a class="jxr_linenumber" name="L403" href="#L403">403</a> 
+<a class="jxr_linenumber" name="L404" href="#L404">404</a>     @Test
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>     <strong class="jxr_keyword">void</strong> compilesTestsAtTheirOwnSourceLevel() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L406" href="#L406">406</a>         <strong class="jxr_keyword">final</strong> String main = <span class="jxr_string">"src/main/java/com/qulice/Old.java"</span>;
+<a class="jxr_linenumber" name="L407" href="#L407">407</a>         <strong class="jxr_keyword">final</strong> String test = <span class="jxr_string">"src/test/java/com/qulice/OldTest.java"</span>;
+<a class="jxr_linenumber" name="L408" href="#L408">408</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock()
+<a class="jxr_linenumber" name="L409" href="#L409">409</a>             .withParam(<span class="jxr_string">"maven.compiler.release"</span>, <span class="jxr_string">"8"</span>)
+<a class="jxr_linenumber" name="L410" href="#L410">410</a>             .withParam(<span class="jxr_string">"maven.compiler.testRelease"</span>, <span class="jxr_string">"17"</span>)
+<a class="jxr_linenumber" name="L411" href="#L411">411</a>             .withFile(main, ErrorProneValidatorTest.ancient(<span class="jxr_string">"Old"</span>))
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>             .withFile(test, ErrorProneValidatorTest.modern(<span class="jxr_string">"OldTest"</span>));
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>         <strong class="jxr_keyword">final</strong> java.util.Collection&lt;Violation&gt; violations =
+<a class="jxr_linenumber" name="L414" href="#L414">414</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
+<a class="jxr_linenumber" name="L415" href="#L415">415</a>                 java.util.Arrays.asList(
+<a class="jxr_linenumber" name="L416" href="#L416">416</a>                     <strong class="jxr_keyword">new</strong> File(env.basedir(), main), <strong class="jxr_keyword">new</strong> File(env.basedir(), test)
+<a class="jxr_linenumber" name="L417" href="#L417">417</a>                 )
+<a class="jxr_linenumber" name="L418" href="#L418">418</a>             );
+<a class="jxr_linenumber" name="L419" href="#L419">419</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L420" href="#L420">420</a>             String.format(
+<a class="jxr_linenumber" name="L421" href="#L421">421</a>                 <span class="jxr_string">"tests pinned to a higher level must compile at it: %s"</span>,
+<a class="jxr_linenumber" name="L422" href="#L422">422</a>                 violations
+<a class="jxr_linenumber" name="L423" href="#L423">423</a>             ),
+<a class="jxr_linenumber" name="L424" href="#L424">424</a>             violations,
+<a class="jxr_linenumber" name="L425" href="#L425">425</a>             Matchers.&lt;Violation&gt;empty()
+<a class="jxr_linenumber" name="L426" href="#L426">426</a>         );
+<a class="jxr_linenumber" name="L427" href="#L427">427</a>     }
+<a class="jxr_linenumber" name="L428" href="#L428">428</a> 
+<a class="jxr_linenumber" name="L429" href="#L429">429</a>     @Test
+<a class="jxr_linenumber" name="L430" href="#L430">430</a>     <strong class="jxr_keyword">void</strong> keepsMainSourcesAtTheirOwnLevel() <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L431" href="#L431">431</a>         <strong class="jxr_keyword">final</strong> String file = <span class="jxr_string">"src/main/java/com/qulice/Modern.java"</span>;
+<a class="jxr_linenumber" name="L432" href="#L432">432</a>         <strong class="jxr_keyword">final</strong> Environment env = <strong class="jxr_keyword">new</strong> Environment.Mock()
+<a class="jxr_linenumber" name="L433" href="#L433">433</a>             .withParam(<span class="jxr_string">"maven.compiler.release"</span>, <span class="jxr_string">"8"</span>)
+<a class="jxr_linenumber" name="L434" href="#L434">434</a>             .withParam(<span class="jxr_string">"maven.compiler.testRelease"</span>, <span class="jxr_string">"17"</span>)
+<a class="jxr_linenumber" name="L435" href="#L435">435</a>             .withFile(file, ErrorProneValidatorTest.modern(<span class="jxr_string">"Modern"</span>));
+<a class="jxr_linenumber" name="L436" href="#L436">436</a>         MatcherAssert.assertThat(
+<a class="jxr_linenumber" name="L437" href="#L437">437</a>             <span class="jxr_string">"the level of the tests must not leak into the main batch"</span>,
+<a class="jxr_linenumber" name="L438" href="#L438">438</a>             <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
+<a class="jxr_linenumber" name="L439" href="#L439">439</a>                 Collections.singletonList(<strong class="jxr_keyword">new</strong> File(env.basedir(), file))
+<a class="jxr_linenumber" name="L440" href="#L440">440</a>             ).stream().map(Violation::message).toList(),
+<a class="jxr_linenumber" name="L441" href="#L441">441</a>             Matchers.hasItem(Matchers.containsString(<span class="jxr_string">"text block"</span>))
+<a class="jxr_linenumber" name="L442" href="#L442">442</a>         );
+<a class="jxr_linenumber" name="L443" href="#L443">443</a>     }
+<a class="jxr_linenumber" name="L444" href="#L444">444</a> 
+<a class="jxr_linenumber" name="L445" href="#L445">445</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L446" href="#L446">446</a> <em class="jxr_javadoccomment">     * A class that every Java compiler accepts, no matter how old the</em>
+<a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">     * source level it is pinned to.</em>
+<a class="jxr_linenumber" name="L448" href="#L448">448</a> <em class="jxr_javadoccomment">     * @param name Name of the class</em>
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">     * @return Its source code</em>
+<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L451" href="#L451">451</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String ancient(<strong class="jxr_keyword">final</strong> String name) {
+<a class="jxr_linenumber" name="L452" href="#L452">452</a>         <strong class="jxr_keyword">return</strong> String.join(
+<a class="jxr_linenumber" name="L453" href="#L453">453</a>             System.lineSeparator(),
+<a class="jxr_linenumber" name="L454" href="#L454">454</a>             <span class="jxr_string">"package com.qulice;"</span>,
+<a class="jxr_linenumber" name="L455" href="#L455">455</a>             <span class="jxr_string">"/**"</span>,
+<a class="jxr_linenumber" name="L456" href="#L456">456</a>             <span class="jxr_string">" * Sample."</span>,
+<a class="jxr_linenumber" name="L457" href="#L457">457</a>             <span class="jxr_string">" * @since 1.0"</span>,
+<a class="jxr_linenumber" name="L458" href="#L458">458</a>             <span class="jxr_string">" */"</span>,
+<a class="jxr_linenumber" name="L459" href="#L459">459</a>             String.format(<span class="jxr_string">"final class %s {"</span>, name),
+<a class="jxr_linenumber" name="L460" href="#L460">460</a>             <span class="jxr_string">"    int square(final int num) { return num * num; }"</span>,
+<a class="jxr_linenumber" name="L461" href="#L461">461</a>             <span class="jxr_string">"}"</span>
+<a class="jxr_linenumber" name="L462" href="#L462">462</a>         );
+<a class="jxr_linenumber" name="L463" href="#L463">463</a>     }
+<a class="jxr_linenumber" name="L464" href="#L464">464</a> 
+<a class="jxr_linenumber" name="L465" href="#L465">465</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     * A class that only a Java 15 or newer compiler accepts, since it</em>
+<a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     * holds a text block.</em>
+<a class="jxr_linenumber" name="L468" href="#L468">468</a> <em class="jxr_javadoccomment">     * @param name Name of the class</em>
+<a class="jxr_linenumber" name="L469" href="#L469">469</a> <em class="jxr_javadoccomment">     * @return Its source code</em>
+<a class="jxr_linenumber" name="L470" href="#L470">470</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L471" href="#L471">471</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String modern(<strong class="jxr_keyword">final</strong> String name) {
+<a class="jxr_linenumber" name="L472" href="#L472">472</a>         <strong class="jxr_keyword">return</strong> String.join(
+<a class="jxr_linenumber" name="L473" href="#L473">473</a>             System.lineSeparator(),
+<a class="jxr_linenumber" name="L474" href="#L474">474</a>             <span class="jxr_string">"package com.qulice;"</span>,
+<a class="jxr_linenumber" name="L475" href="#L475">475</a>             <span class="jxr_string">"/**"</span>,
+<a class="jxr_linenumber" name="L476" href="#L476">476</a>             <span class="jxr_string">" * Sample."</span>,
+<a class="jxr_linenumber" name="L477" href="#L477">477</a>             <span class="jxr_string">" * @since 1.0"</span>,
+<a class="jxr_linenumber" name="L478" href="#L478">478</a>             <span class="jxr_string">" */"</span>,
+<a class="jxr_linenumber" name="L479" href="#L479">479</a>             String.format(<span class="jxr_string">"final class %s {"</span>, name),
+<a class="jxr_linenumber" name="L480" href="#L480">480</a>             <span class="jxr_string">"    String text() {"</span>,
+<a class="jxr_linenumber" name="L481" href="#L481">481</a>             <span class="jxr_string">"        return \&quot;\&quot;\&quot;"</span>,
+<a class="jxr_linenumber" name="L482" href="#L482">482</a>             <span class="jxr_string">"            hello"</span>,
+<a class="jxr_linenumber" name="L483" href="#L483">483</a>             <span class="jxr_string">"            \&quot;\&quot;\&quot;;"</span>,
+<a class="jxr_linenumber" name="L484" href="#L484">484</a>             <span class="jxr_string">"    }"</span>,
+<a class="jxr_linenumber" name="L485" href="#L485">485</a>             <span class="jxr_string">"}"</span>
+<a class="jxr_linenumber" name="L486" href="#L486">486</a>         );
+<a class="jxr_linenumber" name="L487" href="#L487">487</a>     }
+<a class="jxr_linenumber" name="L488" href="#L488">488</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

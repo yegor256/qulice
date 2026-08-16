@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Release xref</title>
+<link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../apidocs/com/qulice/errorprone/Release.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * SPDX-FileCopyrightText: Copyright (c) 2011-2026 Yegor Bugayenko</em>
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> * SPDX-License-Identifier: MIT</em>
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> */</em>
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">package</strong> com.qulice.errorprone;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> com.qulice.spi.Environment;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> java.util.ArrayList;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> java.util.List;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> * The {@code javac} flags that pin the forked compiler to the Java source</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> * level of one batch of the project's sources.</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Without them the forked {@code javac} runs at the host JDK's default</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * language level (e.g. 21 on a JDK 21 host), so ErrorProne fires</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> * syntax-modernising checks such as {@code PatternMatchingInstanceof} even on</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> * projects that compile at {@code -source 8}, producing suggestions whose</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * rewrite does not compile under the project's real source level. The level is</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> * derived exactly as {@code CheckstyleValidator} derives it:</em>
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> * {@code maven.compiler.release} first, then {@code maven.compiler.source},</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> * accepting both the modern ({@code "8"}, {@code "17"}) and legacy</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * ({@code "1.8"}) forms. When the project pins a {@code release},</em>
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> * {@code --release} is forwarded; otherwise {@code -source}/{@code -target}</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * are, which gates the language features while leaving the API surface</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * untouched so that projects using newer library APIs under a plain</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * {@code -source} build do not gain spurious "cannot find symbol" errors. When</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * neither property is set the level is unknown and nothing is added, leaving</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * the host default in place. See</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * &lt;a href="<a href="https://github.com/yegor256/qulice/issues/1716" target="alexandria_uri">https://github.com/yegor256/qulice/issues/1716</a>"&gt;#1716&lt;/a&gt;.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Maven does not oblige the main sources and the test sources to share a</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> * level: the {@code testCompile} goal reads {@code maven.compiler.testRelease},</em>
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> * {@code maven.compiler.testSource} and {@code maven.compiler.testTarget}, so a</em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> * project may compile its tests higher than its main code — as</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> * {@code hone-maven-plugin} does, staying usable from Java 8 while its own</em>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment"> * tests are written in Java 17. A test batch therefore derives its level from</em>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment"> * those properties first, and only when the project pins none of them does it</em>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> * fall back to the main ones, which keeps the fallback whole: a project that</em>
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment"> * sets nothing test-specific is compiled exactly as before. See</em>
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment"> * &lt;a href="<a href="https://github.com/yegor256/qulice/issues/1746" target="alexandria_uri">https://github.com/yegor256/qulice/issues/1746</a>"&gt;#1746&lt;/a&gt;.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Which batches those are is not a matter of guessing at their names:</em>
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  <em class="jxr_javadoccomment"> * {@link Batches} gives every declared test source root a batch of its own,</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment"> * named after the root, so the only batch that does not hold test sources is</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment"> * {@link Batches#MAIN}.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment"> *</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment"> * @since 1.0</em>
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a name="Release" href="../../../com/qulice/errorprone/Release.html#Release">Release</a> {
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">     * Environment to read the Maven properties from.</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> <a name="Environment" href="../../../com/qulice/spi/Environment.html#Environment">Environment</a> env;
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">     * Name of the batch being compiled.</em>
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> String batch;
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">     * Constructor.</em>
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">     * @param env Environment to read the Maven properties from</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     * @param batch Name of the batch being compiled</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>      <a name="Release" href="../../../com/qulice/errorprone/Release.html#Release">Release</a>(<strong class="jxr_keyword">final</strong> <a name="Environment" href="../../../com/qulice/spi/Environment.html#Environment">Environment</a> env, <strong class="jxr_keyword">final</strong> String batch) {
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">this</strong>.env = env;
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>          <strong class="jxr_keyword">this</strong>.batch = batch;
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>      }
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">     * The source-level flags to append to the {@code javac} command line.</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">     * @return Source-level flags, possibly empty</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>      List&lt;String&gt; flags() {
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>          List&lt;String&gt; flags = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(0);
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">if</strong> (!Batches.MAIN.equals(<strong class="jxr_keyword">this</strong>.batch)) {
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>              flags = <strong class="jxr_keyword">this</strong>.pinned(
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>                  <span class="jxr_string">"maven.compiler.testRelease"</span>,
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>                  <span class="jxr_string">"maven.compiler.testSource"</span>,
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>                  <span class="jxr_string">"maven.compiler.testTarget"</span>
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>              );
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>          }
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>          <strong class="jxr_keyword">if</strong> (flags.isEmpty()) {
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>              flags = <strong class="jxr_keyword">this</strong>.pinned(
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>                  <span class="jxr_string">"maven.compiler.release"</span>,
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>                  <span class="jxr_string">"maven.compiler.source"</span>,
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>                  <span class="jxr_string">"maven.compiler.target"</span>
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>              );
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>          }
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          <strong class="jxr_keyword">return</strong> flags;
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>      }
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">     * The flags a given trio of Maven properties asks for.</em>
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">     * @param release Name of the property holding the release level</em>
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">     * @param source Name of the property holding the source level</em>
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     * @param target Name of the property holding the target level</em>
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">     * @return Source-level flags, empty when neither release nor source is set</em>
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>     <strong class="jxr_keyword">private</strong> List&lt;String&gt; pinned(
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>         <strong class="jxr_keyword">final</strong> String release, <strong class="jxr_keyword">final</strong> String source, <strong class="jxr_keyword">final</strong> String target
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>     ) {
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>         <strong class="jxr_keyword">final</strong> List&lt;String&gt; flags = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(4);
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> rel = Release.major(<strong class="jxr_keyword">this</strong>.env.param(release, <span class="jxr_string">""</span>));
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> level = Release.major(<strong class="jxr_keyword">this</strong>.env.param(source, <span class="jxr_string">""</span>));
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>         <strong class="jxr_keyword">if</strong> (rel &gt;= 0) {
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>             flags.add(<span class="jxr_string">"--release"</span>);
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>             flags.add(String.valueOf(rel));
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (level &gt;= 0) {
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>             flags.add(<span class="jxr_string">"-source"</span>);
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>             flags.add(String.valueOf(level));
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>             flags.add(<span class="jxr_string">"-target"</span>);
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>             flags.add(String.valueOf(<strong class="jxr_keyword">this</strong>.target(target, level)));
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>         }
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>         <strong class="jxr_keyword">return</strong> flags;
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>     }
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> 
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> <em class="jxr_javadoccomment">     * The {@code -target} level to forward alongside {@code -source}.</em>
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> <em class="jxr_javadoccomment">     * &lt;p&gt;Reads the given property, falling back to the given source level when</em>
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> <em class="jxr_javadoccomment">     * the project does not pin a target of its own, so that {@code javac}'s</em>
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> <em class="jxr_javadoccomment">     * requirement of {@code target &gt;= source} is always met.&lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> <em class="jxr_javadoccomment">     * @param property Name of the property holding the target level</em>
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment">     * @param fallback The source level to use when no target is pinned</em>
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment">     * @return The target level</em>
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> target(<strong class="jxr_keyword">final</strong> String property, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> fallback) {
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>         <strong class="jxr_keyword">int</strong> level = Release.major(<strong class="jxr_keyword">this</strong>.env.param(property, <span class="jxr_string">""</span>));
+<a class="jxr_linenumber" name="L133" href="#L133">133</a>         <strong class="jxr_keyword">if</strong> (level &lt; 0) {
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>             level = fallback;
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>         }
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">return</strong> level;
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>     }
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> 
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment">     * Parse a Java version string into its major number.</em>
+<a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">     * @param value Version, e.g. {@code "8"}, {@code "1.8"} or {@code "17"}</em>
+<a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">     * @return The major version, or {@code -1} if it cannot be parsed</em>
+<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> major(<strong class="jxr_keyword">final</strong> String value) {
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>         <strong class="jxr_keyword">int</strong> result = -1;
+<a class="jxr_linenumber" name="L146" href="#L146">146</a>         <strong class="jxr_keyword">if</strong> (value != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L147" href="#L147">147</a>             String txt = value.trim();
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>             <strong class="jxr_keyword">if</strong> (txt.startsWith(<span class="jxr_string">"1."</span>)) {
+<a class="jxr_linenumber" name="L149" href="#L149">149</a>                 txt = txt.substring(2);
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>             }
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>             <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>                 result = Integer.parseInt(txt);
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>             } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> NumberFormatException ex) {
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>                 result = -1;
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>             }
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>         }
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>         <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>     }
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> }
+</pre>
+<hr/>
+<div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
+</body>
+</html>
