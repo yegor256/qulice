@@ -2,11 +2,12 @@
 - added: 8
   cycles: 1
   deleted: 8
+  error: deadlock; recursive locking
   inserted: 8
-  seconds: 810.718048364
+  seconds: 768.543776035
   version: 0.61.1
   what: judges-summary
-  when: 2026-08-15 07:36:55.359427550 Z
+  when: 2026-08-16 07:36:19.384434956 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63001,17 +63002,17 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 782
+  assignees_were_scanned: 864
   earliest_issue_was_found: 1
-  events_were_scanned: 17670969359
+  events_were_scanned: 13348103373
   issues_were_scanned: 867
-  labels_were_scanned: 936
+  labels_were_scanned: 1092
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
   min_pull_was_found: 1538
   repository: 9580168
-  types_were_scanned: 982
+  types_were_scanned: 1113
   what: iterate
   where: github
 - _id: 11295
@@ -69364,20 +69365,6 @@
   total_stars: 323
   what: dimensions-of-terrain
   when: 2026-08-12 08:00:59.084437329 Z
-- _id: 11703
-  _job: 86519
-  _time: 2026-08-12 08:01:28.171182910 Z
-  _version: 0.19.16/0.61.1/0.17.21
-  analyzers: 18
-  text: |-
-    The average number of builds per week (204.5) is staying still.
-    The average number of commits per week (11.5) is staying still.
-    The average issue cycle time (2w5d) is decreasing (R=-0.40).
-    The average pull cycle time (6d10h) is staying still.
-    The average number of releases per month (2.6) is increasing (R=0.13).
-    The average monthly turnover (31.0 developers) is increasing (R=0.43).
-  what: assessment
-  when: 2026-08-12 08:01:28.191770970 Z
 - _id: 11704
   _job: 31679202331
   _time: 2026-08-13 07:48:13.487960834 Z
@@ -70158,9 +70145,11 @@
   failed_builds: 0
   files: 15
   hoc: 356
+  is_human: 1
   issue: 1737
   repository: 9580168
   review: 2026-08-14 13:59:05.000000000 Z
+  review_comments: 10
   succeeded_builds: 12
   suggestions: 5
   what: pull-was-merged
@@ -70182,9 +70171,11 @@
   failed_builds: 0
   files: 6
   hoc: 96
+  is_human: 1
   issue: 1739
   repository: 9580168
   review: 2026-08-14 14:18:37.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -70206,12 +70197,44 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1740
   repository: 9580168
   review: 2026-08-14 16:40:41.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
   when: 2026-08-14 16:55:00.000000000 Z
   where: github
   who: 8086956
+- _id: 11752
+  _job: 87043
+  _time: 2026-08-15 07:37:28.244578335 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  analyzers: 18
+  text: |-
+    The average number of builds per week (221.2) is increasing (R=0.16).
+    The average number of commits per week (12.0) is staying still.
+    The average issue cycle time (2w3d) is decreasing (R=-0.45).
+    The average pull cycle time (6d6h) is staying still.
+    The average number of releases per month (3.1) is increasing (R=0.23).
+    The average monthly turnover (34.0 developers) is increasing (R=0.36).
+  what: assessment
+  when: 2026-08-15 07:37:28.264418002 Z
+- _id: 11753
+  _job: 31933694677
+  _time: 2026-08-16 07:35:58.527144644 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  total_active_contributors: 4
+  total_commits: 2666
+  total_contributors: 59
+  total_files: 779
+  total_forks: 124
+  total_issues: 920
+  total_pulls: 827
+  total_releases: 101
+  total_repositories: 1
+  total_stars: 323
+  what: dimensions-of-terrain
+  when: 2026-08-16 07:35:58.535111262 Z
