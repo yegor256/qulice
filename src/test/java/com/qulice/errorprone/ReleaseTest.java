@@ -67,7 +67,21 @@ final class ReleaseTest {
                 new Environment.Mock()
                     .withParam(ReleaseTest.RELEASE, "8")
                     .withParam(ReleaseTest.TEST_RELEASE, "17"),
-                "test"
+                "test-1-src-test-java"
+            ).flags(),
+            Matchers.contains("--release", "17")
+        );
+    }
+
+    @Test
+    void forwardsTheTestReleaseToEveryTestRoot() {
+        MatcherAssert.assertThat(
+            "a test root beyond src/test/java must compile at the test level",
+            new Release(
+                new Environment.Mock()
+                    .withParam(ReleaseTest.RELEASE, "8")
+                    .withParam(ReleaseTest.TEST_RELEASE, "17"),
+                "test-2-src-mock-java"
             ).flags(),
             Matchers.contains("--release", "17")
         );
@@ -81,7 +95,7 @@ final class ReleaseTest {
                 new Environment.Mock()
                     .withParam(ReleaseTest.RELEASE, "8")
                     .withParam("maven.compiler.testSource", "17"),
-                "test"
+                "test-1-src-test-java"
             ).flags(),
             Matchers.contains("-source", "17", "-target", "17")
         );
@@ -93,7 +107,7 @@ final class ReleaseTest {
             "tests of a project pinning one level must compile at it",
             new Release(
                 new Environment.Mock().withParam(ReleaseTest.RELEASE, "11"),
-                "test"
+                "test-1-src-test-java"
             ).flags(),
             Matchers.contains("--release", "11")
         );
@@ -121,7 +135,7 @@ final class ReleaseTest {
                 new Environment.Mock()
                     .withParam("maven.compiler.testSource", "11")
                     .withParam("maven.compiler.testTarget", "17"),
-                "test"
+                "test-1-src-test-java"
             ).flags(),
             Matchers.contains("-source", "11", "-target", "17")
         );

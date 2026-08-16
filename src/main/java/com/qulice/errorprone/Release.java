@@ -34,21 +34,20 @@ import java.util.List;
  * {@code maven.compiler.testSource} and {@code maven.compiler.testTarget}, so a
  * project may compile its tests higher than its main code — as
  * {@code hone-maven-plugin} does, staying usable from Java 8 while its own
- * tests are written in Java 17. The test batch therefore derives its level from
+ * tests are written in Java 17. A test batch therefore derives its level from
  * those properties first, and only when the project pins none of them does it
  * fall back to the main ones, which keeps the fallback whole: a project that
  * sets nothing test-specific is compiled exactly as before. See
  * <a href="https://github.com/yegor256/qulice/issues/1746">#1746</a>.</p>
  *
+ * <p>Which batches those are is not a matter of guessing at their names:
+ * {@link Batches} gives every declared test source root a batch of its own,
+ * named after the root, so the only batch that does not hold test sources is
+ * {@link Batches#MAIN}.</p>
+ *
  * @since 1.0
  */
 final class Release {
-
-    /**
-     * Name of the batch that holds the test sources, as
-     * {@code ErrorProneValidator} names it.
-     */
-    private static final String TESTS = "test";
 
     /**
      * Environment to read the Maven properties from.
@@ -76,7 +75,7 @@ final class Release {
      */
     List<String> flags() {
         List<String> flags = new ArrayList<>(0);
-        if (Release.TESTS.equals(this.batch)) {
+        if (!Batches.MAIN.equals(this.batch)) {
             flags = this.pinned(
                 "maven.compiler.testRelease",
                 "maven.compiler.testSource",

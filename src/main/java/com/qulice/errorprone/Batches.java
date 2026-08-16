@@ -48,6 +48,13 @@ import org.apache.commons.io.FilenameUtils;
 public final class Batches {
 
     /**
+     * Name of the batch of the sources that sit under no declared test
+     * source root. Every other batch this class makes holds test sources,
+     * which is how {@link Release} tells the two apart.
+     */
+    static final String MAIN = "main";
+
+    /**
      * Runs of characters that have no place in a file name, in the path of
      * a source root that {@link #label(File, int)} turns into a batch name.
      */
@@ -57,12 +64,6 @@ public final class Batches {
      * The dashes {@link #SEPARATOR} leaves at either end of a batch name.
      */
     private static final Pattern EDGES = Pattern.compile("^-+|-+$");
-
-    /**
-     * Name of the batch of the sources that sit under no declared test
-     * source root.
-     */
-    private static final String MAIN = "main";
 
     /**
      * Environment that knows the source roots.
