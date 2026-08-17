@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.6" size="1260717">
+<fb version="0.19.6" size="1268946">
   <f>
     <added t="I">8</added>
     <cycles t="I">1</cycles>
     <deleted t="I">8</deleted>
-    <error t="S">deadlock; recursive locking</error>
     <inserted t="I">8</inserted>
-    <seconds t="F">768.543776035</seconds>
+    <seconds t="F">803.473639441</seconds>
     <version t="S">0.61.1</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-08-16T07:36:19Z</when>
+    <when t="T">2026-08-17T07:48:22Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -70127,17 +70126,17 @@
     <_job t="I">30193714385</_job>
     <_time t="T">2026-07-26T07:58:33Z</_time>
     <_version t="S">0.19.9/0.60.2/0.17.17</_version>
-    <assignees_were_scanned t="I">864</assignees_were_scanned>
+    <assignees_were_scanned t="I">985</assignees_were_scanned>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">13348103373</events_were_scanned>
+    <events_were_scanned t="I">13372720691</events_were_scanned>
     <issues_were_scanned t="I">867</issues_were_scanned>
-    <labels_were_scanned t="I">1092</labels_were_scanned>
+    <labels_were_scanned t="I">1706</labels_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
     <merges_were_scanned t="I">0</merges_were_scanned>
     <min_issue_was_found t="I">1635</min_issue_was_found>
     <min_pull_was_found t="I">1538</min_pull_was_found>
     <repository t="I">9580168</repository>
-    <types_were_scanned t="I">1113</types_were_scanned>
+    <types_were_scanned t="I">1378</types_were_scanned>
     <what t="S">iterate</what>
     <where t="S">github</where>
   </f>
@@ -78193,5 +78192,459 @@ The average monthly turnover (34.0 developers) is increasing (R=0.36).</text>
     <total_stars t="I">323</total_stars>
     <what t="S">dimensions-of-terrain</what>
     <when t="T">2026-08-16T07:35:58Z</when>
+  </f>
+  <f>
+    <_id t="I">11754</_id>
+    <_job t="I">87222</_job>
+    <_time t="T">2026-08-16T07:37:16Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <ac t="I">68</ac>
+    <cost_of_qod t="F">3.3785268694644977</cost_of_qod>
+    <ev t="I">1250</ev>
+    <pv t="I">19133</pv>
+    <qod t="I">370</qod>
+    <qod_per_day t="F">16.950859553096095</qod_per_day>
+    <qod_per_sec t="F">1.2823341393087754e-05</qod_per_sec>
+    <start t="T">2025-09-16T05:20:41Z</start>
+    <what t="S">earned-value</what>
+    <when t="T">2026-08-16T07:37:16Z</when>
+  </f>
+  <f>
+    <_id t="I">11755</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:35:04Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <comments t="I">3</comments>
+    <commits t="I">1</commits>
+    <details t="S">The pull request yegor256/qulice#1749 has been reviewed by @yegor256 with 2 HoC and 3 comments.</details>
+    <event_id t="I">13372315015</event_id>
+    <event_type t="S">PullRequestReviewEvent</event_type>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1749</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <what t="S">pull-was-reviewed</what>
+    <when t="T">2026-08-17T02:40:44Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11756</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:35:05Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <branch t="S">renovate/com.puppycrawl.tools-checkstyle-13.x</branch>
+    <details t="S">The pull request yegor256/qulice#1749 has been opened by @renovate[bot].</details>
+    <event_id t="I">13366765952</event_id>
+    <event_type t="S">PullRequestEvent</event_type>
+    <is_human t="I">0</is_human>
+    <issue t="I">1749</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-08-16T22:31:20Z</when>
+    <where t="S">github</where>
+    <who t="I">29139614</who>
+  </f>
+  <f>
+    <_id t="I">11757</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:04Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The missing issue yegor256/qulice#1741 has been opened by @yegor256.</details>
+    <issue t="I">1741</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2026-08-15T10:52:56Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11758</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:04Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The missing issue yegor256/qulice#1742 has been opened by @yegor256.</details>
+    <issue t="I">1742</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2026-08-15T10:54:00Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11759</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:05Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <branch t="S">claude/qulice-issue-1741-yishmw</branch>
+    <details t="S">The missing pull yegor256/qulice#1743 has been opened by @yegor256.</details>
+    <issue t="I">1743</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-08-15T11:45:12Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11760</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:05Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <branch t="S">claude/qulice-issue-1742-3oip1t</branch>
+    <details t="S">The missing pull yegor256/qulice#1744 has been opened by @yegor256.</details>
+    <issue t="I">1744</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-08-15T11:53:41Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11761</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:06Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The missing issue yegor256/qulice#1745 has been opened by @yegor256.</details>
+    <issue t="I">1745</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2026-08-15T21:08:16Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11762</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:07Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <details t="S">The missing issue yegor256/qulice#1746 has been opened by @yegor256.</details>
+    <issue t="I">1746</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2026-08-15T21:14:22Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11763</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:07Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <branch t="S">claude/qulice-issue-1745-abljo1</branch>
+    <details t="S">The missing pull yegor256/qulice#1747 has been opened by @yegor256.</details>
+    <issue t="I">1747</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-08-16T05:05:10Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11764</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:08Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <branch t="S">claude/qulice-issue-1746-se6vd8</branch>
+    <details t="S">The missing pull yegor256/qulice#1748 has been opened by @yegor256.</details>
+    <issue t="I">1748</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">pull-was-opened</what>
+    <when t="T">2026-08-16T05:05:41Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11765</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:15Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <branch t="S">claude/qulice-issue-1741-yishmw</branch>
+    <comments t="I">0</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1743 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">2</files>
+    <hoc t="I">51</hoc>
+    <issue t="I">1743</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-08-15T14:41:00Z</review>
+    <succeeded_builds t="I">12</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-08-15T14:40:59Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11766</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:31Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <branch t="S">claude/qulice-issue-1742-3oip1t</branch>
+    <comments t="I">0</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1744 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">10</files>
+    <hoc t="I">187</hoc>
+    <issue t="I">1744</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-08-15T14:40:50Z</review>
+    <succeeded_builds t="I">12</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-08-15T14:40:51Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11767</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:41Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <branch t="S">claude/qulice-issue-1745-abljo1</branch>
+    <comments t="I">0</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1747 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">4</files>
+    <hoc t="I">392</hoc>
+    <issue t="I">1747</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-08-16T05:15:54Z</review>
+    <succeeded_builds t="I">12</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-08-16T05:16:14Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11768</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:49Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <branch t="S">claude/qulice-issue-1746-se6vd8</branch>
+    <comments t="I">0</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1748 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">4</files>
+    <hoc t="I">464</hoc>
+    <issue t="I">1748</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-08-16T05:16:23Z</review>
+    <succeeded_builds t="I">12</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-08-16T05:16:26Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11769</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:36:57Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <branch t="S">renovate/com.puppycrawl.tools-checkstyle-13.x</branch>
+    <comments t="I">3</comments>
+    <comments_appreciated t="I">1</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">3</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1749 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <issue t="I">1749</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-08-17T02:40:44Z</review>
+    <succeeded_builds t="I">12</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-08-17T02:56:05Z</when>
+    <where t="S">github</where>
+    <who t="I">8086956</who>
+  </f>
+  <f>
+    <_id t="I">11770</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:47:33Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <author t="I">526301</author>
+    <comments t="I">0</comments>
+    <details t="S">The pull request yegor256/qulice#1737 with 356 HoC created by @yegor256 was reviewed by @copilot after 0h4m and 5 comments.</details>
+    <hoc t="I">356</hoc>
+    <issue t="I">1737</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">5</review_comments>
+    <seconds t="I">288</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-08-14T13:59:05Z</when>
+    <where t="S">github</where>
+    <who t="I">175728472</who>
+  </f>
+  <f>
+    <_id t="I">11771</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:47:35Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <author t="I">526301</author>
+    <comments t="I">0</comments>
+    <details t="S">The pull request yegor256/qulice#1739 with 96 HoC created by @yegor256 was reviewed by @copilot after 0h2m and 0 comments.</details>
+    <hoc t="I">96</hoc>
+    <issue t="I">1739</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">165</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-08-14T14:18:37Z</when>
+    <where t="S">github</where>
+    <who t="I">175728472</who>
+  </f>
+  <f>
+    <_id t="I">11772</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:47:37Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <author t="I">29139614</author>
+    <comments t="I">3</comments>
+    <details t="S">The pull request yegor256/qulice#1740 with 2 HoC created by @renovate[bot] was reviewed by @yegor256 after 2h18m and 0 comments.</details>
+    <hoc t="I">2</hoc>
+    <issue t="I">1740</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">8293</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-08-14T16:40:41Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11773</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:47:37Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <author t="I">526301</author>
+    <comments t="I">0</comments>
+    <details t="S">The pull request yegor256/qulice#1743 with 51 HoC created by @yegor256 was reviewed by @copilot after 2h55m and 0 comments.</details>
+    <hoc t="I">51</hoc>
+    <issue t="I">1743</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">10548</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-08-15T14:41:00Z</when>
+    <where t="S">github</where>
+    <who t="I">175728472</who>
+  </f>
+  <f>
+    <_id t="I">11774</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:47:37Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <author t="I">526301</author>
+    <comments t="I">0</comments>
+    <details t="S">The pull request yegor256/qulice#1744 with 187 HoC created by @yegor256 was reviewed by @copilot after 2h47m and 0 comments.</details>
+    <hoc t="I">187</hoc>
+    <issue t="I">1744</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">10029</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-08-15T14:40:50Z</when>
+    <where t="S">github</where>
+    <who t="I">175728472</who>
+  </f>
+  <f>
+    <_id t="I">11775</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:47:38Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <author t="I">526301</author>
+    <comments t="I">0</comments>
+    <details t="S">The pull request yegor256/qulice#1747 with 392 HoC created by @yegor256 was reviewed by @copilot after 0h10m and 0 comments.</details>
+    <hoc t="I">392</hoc>
+    <issue t="I">1747</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">644</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-08-16T05:15:54Z</when>
+    <where t="S">github</where>
+    <who t="I">175728472</who>
+  </f>
+  <f>
+    <_id t="I">11776</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:47:38Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <author t="I">526301</author>
+    <comments t="I">0</comments>
+    <details t="S">The pull request yegor256/qulice#1748 with 464 HoC created by @yegor256 was reviewed by @copilot after 0h10m and 0 comments.</details>
+    <hoc t="I">464</hoc>
+    <issue t="I">1748</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">642</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-08-16T05:16:23Z</when>
+    <where t="S">github</where>
+    <who t="I">175728472</who>
+  </f>
+  <f>
+    <_id t="I">11777</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:47:38Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <author t="I">29139614</author>
+    <comments t="I">3</comments>
+    <details t="S">The pull request yegor256/qulice#1749 with 2 HoC created by @renovate[bot] was reviewed by @yegor256 after 4h9m and 0 comments.</details>
+    <hoc t="I">2</hoc>
+    <issue t="I">1749</issue>
+    <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
+    <seconds t="I">14964</seconds>
+    <what t="S">code-was-reviewed</what>
+    <when t="T">2026-08-17T02:40:44Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11778</_id>
+    <_job t="I">32006360906</_job>
+    <_time t="T">2026-08-17T07:47:58Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
+    <total_active_contributors t="I">4</total_active_contributors>
+    <total_commits t="I">2667</total_commits>
+    <total_contributors t="I">59</total_contributors>
+    <total_files t="I">779</total_files>
+    <total_forks t="I">124</total_forks>
+    <total_issues t="I">920</total_issues>
+    <total_pulls t="I">828</total_pulls>
+    <total_releases t="I">101</total_releases>
+    <total_repositories t="I">1</total_repositories>
+    <total_stars t="I">323</total_stars>
+    <what t="S">dimensions-of-terrain</what>
+    <when t="T">2026-08-17T07:47:58Z</when>
   </f>
 </fb>
