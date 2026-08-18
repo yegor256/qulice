@@ -16,6 +16,8 @@ import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
@@ -54,6 +56,20 @@ final class CheckstyleParameterNumberTest {
                     file,
                     "20",
                     "ParameterNumberCheck"
+                )
+            )
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"JnaMappedLibrary.java", "JnaDirectBinding.java"})
+    void acceptsManyParametersInJnaBinding(final String file) throws Exception {
+        MatcherAssert.assertThat(
+            "long parameter list in a JNA binding should not be reported",
+            this.runValidation(file, true),
+            Matchers.not(
+                Matchers.hasItem(
+                    new ViolationMatcher("", file, "", "ParameterNumberCheck")
                 )
             )
         );

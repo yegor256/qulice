@@ -23,6 +23,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * parameters belong to no contract anybody else can see, and wrapping them
  * into a new type only to satisfy the limit buys nothing.
  *
+ * <p>So does a method of a JNA binding, whose parameter list repeats the
+ * signature of a native function and cannot be shortened without breaking
+ * the mapping.
+ *
  * @since 1.0
  */
 public final class ParameterNumberCheck
@@ -47,7 +51,7 @@ public final class ParameterNumberCheck
      *
      * <p>A constructor may, when it takes no more parameters than the
      * number of attributes of its class. A method may, when it is
-     * private.</p>
+     * private or when it belongs to a JNA binding.</p>
      *
      * @param ast The CTOR_DEF or METHOD_DEF node
      * @return TRUE if the check has to stay silent about it
@@ -59,7 +63,8 @@ public final class ParameterNumberCheck
                 <= ParameterNumberCheck.attributes(ast);
         } else {
             answer = ast.findFirstToken(TokenTypes.MODIFIERS)
-                .findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+                .findFirstToken(TokenTypes.LITERAL_PRIVATE) != null
+                || new JnaBinding(ast).is();
         }
         return answer;
     }
