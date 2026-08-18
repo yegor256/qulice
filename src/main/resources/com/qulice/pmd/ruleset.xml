@@ -248,13 +248,14 @@
   </rule>
   <!--
   MethodNamingConventions asks every method name to start with a lower
-  case letter, while a type that extends com.sun.jna.Library names its
-  methods after the native functions they map, spelled the way the
-  library that exports them spells them. Renaming one breaks the
-  binding, so the suppression below skips them. Qulice runs PMD without
-  an auxiliary classpath, so 'Library' never resolves to a type and the
-  name in the extends or implements clause is trusted only when it is
-  fully qualified or when the file imports it from com.sun.jna.
+  case letter, while a type that extends com.sun.jna.Library, or its
+  Windows flavour com.sun.jna.win32.StdCallLibrary, names its methods
+  after the native functions they map, spelled the way the library that
+  exports them spells them. Renaming one breaks the binding, so the
+  suppression below skips them. Qulice runs PMD without an auxiliary
+  classpath, so neither interface ever resolves to a type and the name
+  in the extends or implements clause is trusted only when it is fully
+  qualified or when the file imports it from its own package.
   -->
   <rule ref="category/java/codestyle.xml/MethodNamingConventions">
     <properties>
@@ -271,6 +272,15 @@
                     /ImportDeclaration[
                       @ImportedName = 'com.sun.jna.Library'
                       or @ImportedName = 'com.sun.jna'
+                    ]
+                )
+                or @SimpleName = 'StdCallLibrary'
+                and (
+                  @PackageQualifier = 'com.sun.jna.win32'
+                  or ancestor::CompilationUnit
+                    /ImportDeclaration[
+                      @ImportedName = 'com.sun.jna.win32.StdCallLibrary'
+                      or @ImportedName = 'com.sun.jna.win32'
                     ]
                 )
               ]

@@ -18,7 +18,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 final class PmdMethodNamingConventionsTest {
 
     @ParameterizedTest
-    @ValueSource(strings = {"JnaLibraryNames.java", "JnaDirectNames.java"})
+    @ValueSource(
+        strings = {
+            "JnaLibraryNames.java",
+            "JnaDirectNames.java",
+            "StdCallNames.java"
+        }
+    )
     void allowsNativeNamesInJnaBinding(final String file) throws Exception {
         new PmdAssert(
             file,

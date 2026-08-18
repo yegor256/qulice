@@ -90,7 +90,8 @@ final class PmdTooManyMethodsTest {
         strings = {
             "JnaLibrary.java",
             "JnaQualifiedLibrary.java",
-            "JnaDirectLibrary.java"
+            "JnaDirectLibrary.java",
+            "StdCallLibraryMethods.java"
         }
     )
     void allowsManyMethodsInJnaBinding(final String file) throws Exception {
