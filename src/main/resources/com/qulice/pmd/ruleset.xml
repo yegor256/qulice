@@ -240,6 +240,44 @@
     Downstream: https://github.com/yegor256/qulice/issues/1685
     -->
     <exclude name="UseDiamondOperator"/>
+    <!--
+    MethodNamingConventions is re-enabled below with a
+    violationSuppressXPath that ignores the methods of a JNA binding.
+    -->
+    <exclude name="MethodNamingConventions"/>
+  </rule>
+  <!--
+  MethodNamingConventions asks every method name to start with a lower
+  case letter, while a type that extends com.sun.jna.Library names its
+  methods after the native functions they map, spelled the way the
+  library that exports them spells them. Renaming one breaks the
+  binding, so the suppression below skips them. Qulice runs PMD without
+  an auxiliary classpath, so 'Library' never resolves to a type and the
+  name in the extends or implements clause is trusted only when it is
+  fully qualified or when the file imports it from com.sun.jna.
+  -->
+  <rule ref="category/java/codestyle.xml/MethodNamingConventions">
+    <properties>
+      <property name="violationSuppressXPath">
+        <value><![CDATA[
+          .[
+            ancestor::ClassDeclaration[1]
+              /(ExtendsList | ImplementsList)
+              /ClassType[
+                @SimpleName = 'Library'
+                and (
+                  @PackageQualifier = 'com.sun.jna'
+                  or ancestor::CompilationUnit
+                    /ImportDeclaration[
+                      @ImportedName = 'com.sun.jna.Library'
+                      or @ImportedName = 'com.sun.jna'
+                    ]
+                )
+              ]
+          ]
+        ]]></value>
+      </property>
+    </properties>
   </rule>
   <!--
   UseDiamondOperator suggests replacing explicit constructor type

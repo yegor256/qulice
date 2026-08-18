@@ -16,6 +16,8 @@ import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
@@ -44,6 +46,46 @@ final class CheckstyleMethodNameTest {
                     "Name 'zz' must match pattern", file, "29", "MethodNameCheck"
                 )
             )
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"JnaMappedLibrary.java", "JnaDirectBinding.java"})
+    void acceptsNativeNamesInJnaBinding(final String file) throws Exception {
+        MatcherAssert.assertThat(
+            "native names in a JNA binding should not be reported",
+            CheckstyleMethodNameTest.violations(file),
+            Matchers.not(
+                Matchers.hasItem(
+                    new ViolationMatcher("", file, "", "MethodNameCheck")
+                )
+            )
+        );
+    }
+
+    @Test
+    void rejectsNativeNamesOutsideJna() throws Exception {
+        final String file = "FakeLibrary.java";
+        MatcherAssert.assertThat(
+            "a Library that is not JNA's should not be trusted",
+            CheckstyleMethodNameTest.violations(file),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "Name 'GetLastError' must match pattern",
+                    file,
+                    "16",
+                    "MethodNameCheck"
+                )
+            )
+        );
+    }
+
+    @Test
+    void obeysSuppressionByShortName() throws Exception {
+        MatcherAssert.assertThat(
+            "suppressed name should not be reported",
+            CheckstyleMethodNameTest.violations("SuppressedMethodName.java"),
+            Matchers.empty()
         );
     }
 
