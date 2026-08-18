@@ -11,22 +11,20 @@
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/qulice)](https://hitsofcode.com/view/github/yegor256/qulice)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/qulice/blob/master/LICENSE.txt)
 
-Qulice is a static analysis quality control instrument for Java
-projects. It combines all the best static analysis instruments
-and pre-configure them, including
-[Checkstyle](https://checkstyle.sourceforge.io/),
-[PMD](https://pmd.github.io/), and
-[ErrorProne](https://errorprone.info/).
+Qulice is a static analysis quality control instrument for Java projects.
+It combines all the best static analysis instruments and
+  pre-configure them, including [Checkstyle], [PMD], and [ErrorProne].
 You don't need to use and configure them individually any more.
 
 ErrorProne runs in a forked `javac` process spawned by Qulice, so no
-extra JVM flags are required in your project. Suppress individual checks
-with `@SuppressWarnings("CheckName")` (the standard ErrorProne mechanism)
-or skip whole paths via an `errorprone:` exclude, e.g.
-`<exclude>errorprone:.*/generated/.*</exclude>`.
+  extra JVM flags are required in your project.
+Suppress individual checks with `@SuppressWarnings("CheckName")` (the
+  standard ErrorProne mechanism) or skip whole paths via an
+  `errorprone:` exclude, e.g.
+  `<exclude>errorprone:.*/generated/.*</exclude>`.
 
-An entire bug pattern can be switched off for the whole project with an
-`-Xep` flag of your own:
+An entire bug pattern can be switched off for the whole project with
+  an `-Xep` flag of your own:
 
 ```xml
 <configuration>
@@ -36,19 +34,20 @@ An entire bug pattern can be switched off for the whole project with an
 </configuration>
 ```
 
-The same flags may arrive through a `qulice.errorprone` property in your
-`pom.xml`, separated by spaces or commas. They are appended after the
-flags Qulice passes and the last flag naming a pattern wins, so they can
-also switch a pattern back _on_, e.g. `-Xep:OperatorPrecedence:ERROR`.
+The same flags may arrive through a `qulice.errorprone` property in
+  your `pom.xml`, separated by spaces or commas.
+They are appended after the flags Qulice passes and the last flag
+  naming a pattern wins, so they can also switch a pattern back
+  _on_, e.g. `-Xep:OperatorPrecedence:ERROR`.
 Qulice itself keeps `InvalidBlockTag`, `OperatorPrecedence` and
-`UnicodeInCode` off: the last one rejects every non-ASCII character
-outside comments and literals, which is a defect only in a project whose
-own notation is ASCII.
+  `UnicodeInCode` off: the last one rejects every non-ASCII
+  character outside comments and literals, which is a defect only
+  in a project whose own notation is ASCII.
 
-Read more at [www.qulice.com](https://www.qulice.com).
+Read more at [www.qulice.com].
 
 Also, read this blog post first:
-[_Strict Control of Java Code Quality_](https://www.yegor256.com/2014/08/13/strict-code-quality-control.html).
+[_Strict Control of Java Code Quality_].
 
 Just add this plugin to your `pom.xml`:
 
@@ -58,14 +57,10 @@ Just add this plugin to your `pom.xml`:
     <plugin>
       <groupId>com.qulice</groupId>
       <artifactId>qulice-maven-plugin</artifactId>
-<<<<<<< Updated upstream
       <version>0.30.14</version>
       <configuration>
         <license>file:${basedir}/LICENSE.txt</license>
       </configuration>
-=======
-      <version>0.30.5</version>
->>>>>>> Stashed changes
       <executions>
         <execution>
           <goals>
@@ -81,45 +76,43 @@ Just add this plugin to your `pom.xml`:
 Also remember that we support Maven 3.1+.
 
 The path to license has to be declared in the following format:
-`file:${basedir}/LICENSE.txt`, it's the default value, one can use any full path
-instead of `${basedir}`.
+  `file:${basedir}/LICENSE.txt`, it's the default value, one can use
+  any full path instead of `${basedir}`.
 
-Read this short summary of [typical mistakes](https://github.com/yegor256/qulice/wiki/mistakes)
-you may encounter in your project.
+Read this short summary of [typical mistakes] you may encounter in
+  your project.
 
-In order to download schemas required for XML validation you might need proxy
-setup. Maven proxy is not supported, but standard
-[JVM proxy](https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html)
-works fine. To use it just add `-Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`
-to your `MAVEN_OPTS` environment variable or to Maven command, e.g.
-`mvn clean verify -Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`.
+In order to download schemas required for XML validation you might
+  need proxy setup.
+Maven proxy is not supported, but standard [JVM proxy] works fine.
+To use it just add `-Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT` to
+  your `MAVEN_OPTS` environment variable or to Maven command, e.g.
+  `mvn clean verify -Dhttp.proxyHost=HOST -Dhttp.proxyPort=PORT`.
 
 ## Architecture
 
-Qulice aggregates [Checkstyle](https://checkstyle.sourceforge.io/),
-  [PMD](https://pmd.github.io/), and
-  [ErrorProne](https://errorprone.info/) behind a single
-  [Maven](https://maven.apache.org/) `verify`-phase goal, `check`.
+Qulice aggregates [Checkstyle], [PMD], and [ErrorProne] behind a
+  single [Maven] `verify`-phase goal, `check`.
 Unlike running each tool as a separate Maven plugin with its own
-  configuration file, Qulice requires no per-tool setup in `pom.xml`.
-The bundled rule sets are locked: all adopting projects share the same
-  [Checkstyle](https://checkstyle.sourceforge.io/) and
-  [PMD](https://pmd.github.io/) configuration.
-This differs from [Spotless](https://github.com/diffplug/spotless)
-  or the [Checkstyle Maven Plugin][csmp] used standalone, both of
-  which allow per-project rule customization.
+  configuration file, Qulice requires no per-tool setup in
+  `pom.xml`.
+The bundled rule sets are locked: all adopting projects share the
+  same [Checkstyle] and [PMD] configuration.
+This differs from [Spotless] or the [Checkstyle Maven Plugin][csmp]
+  used standalone, both of which allow per-project rule
+  customization.
 
-The [Checkstyle](https://checkstyle.sourceforge.io/) configuration
-  (`checks.xml`) and [PMD](https://pmd.github.io/) ruleset
+The [Checkstyle] configuration (`checks.xml`) and [PMD] ruleset
   (`ruleset.xml`) ship as classpath resources inside the Qulice JAR
   and cannot be overridden by the adopting project.
 Projects may suppress specific checks only via the `<excludes>`
   parameter; they cannot add or redefine rules.
-The one exception is [ErrorProne](https://errorprone.info/), whose bug
-  patterns a project may switch off, or back on, with the
-  `<errorprone>` parameter described above.
-This trades flexibility for consistency: code review style expectations
-  are identical across every repository that uses Qulice.
+The one exception is [ErrorProne], whose bug patterns a project may
+  switch off, or back on, with the `<errorprone>` parameter
+  described above.
+This trades flexibility for consistency: code review style
+  expectations are identical across every repository that uses
+  Qulice.
 
 The `com.qulice.spi` package defines the extension boundary between
   Maven and the linting logic.
@@ -127,12 +120,10 @@ The `com.qulice.spi` package defines the extension boundary between
   source files, exclude patterns) without leaking Maven internals,
   enabling validators to be unit-tested without a Maven runtime.
 `ResourceValidator` accepts a `Collection<File>` and returns
-  `Collection<Violation>`; `Validator` consumes the full `Environment`
-  for checks that require broader project context.
+  `Collection<Violation>`; `Validator` consumes the full
+  `Environment` for checks that require broader project context.
 
-[Checkstyle](https://checkstyle.sourceforge.io/),
-  [PMD](https://pmd.github.io/), and
-  [ErrorProne](https://errorprone.info/) run concurrently inside a
+[Checkstyle], [PMD], and [ErrorProne] run concurrently inside a
   five-thread `ExecutorService` in `CheckMojo`.
 Each validator is submitted as a `Callable<Collection<Violation>>`
   and results are collected via `Future`.
@@ -140,49 +131,61 @@ A configurable timeout (default ten minutes, overridable via
   `qulice.check-timeout`) prevents a hung validator from blocking
   the build indefinitely.
 
-[ErrorProne](https://errorprone.info/) requires `--add-exports` and
-  `--add-opens` JVM flags to access internal `jdk.compiler` APIs.
-Rather than injecting those flags into Maven's own JVM (which
-  would require a `.mvn/jvm.config` in every adopting project),
-  Qulice forks a separate `javac` process via
-  [Jaxec](https://github.com/yegor256/jaxec).
-The flags apply only to the forked process; Maven's JVM is unchanged.
+[ErrorProne] requires `--add-exports` and `--add-opens` JVM flags to
+  access internal `jdk.compiler` APIs.
+Rather than injecting those flags into Maven's own JVM (which would
+  require a `.mvn/jvm.config` in every adopting project), Qulice
+  forks a separate `javac` process via [Jaxec].
+The flags apply only to the forked process; Maven's JVM is
+  unchanged.
 
 After parallel linting, five Maven-specific validators run
   sequentially: `PomXpathValidator` checks `pom.xml` against
-  user-supplied [XPath](https://www.w3.org/TR/xpath/) expressions;
-  `EnforcerValidator` delegates to [maven-enforcer-plugin][mep] to
-  verify JDK and Maven versions; `DependenciesValidator` uses
-  [maven-dependency-analyzer][mda] to find unused or undeclared
-  compile-scope dependencies; `DuplicateFinderValidator` detects
-  duplicate classes across classpath JARs; and `SnapshotsValidator`
-  rejects SNAPSHOT dependencies in production builds.
+  user-supplied [XPath] expressions; `EnforcerValidator` delegates
+  to [maven-enforcer-plugin][mep] to verify JDK and Maven versions;
+  `DependenciesValidator` uses [maven-dependency-analyzer][mda] to
+  find unused or undeclared compile-scope dependencies;
+  `DuplicateFinderValidator` detects duplicate classes across
+  classpath JARs; and `SnapshotsValidator` rejects SNAPSHOT
+  dependencies in production builds.
 
-Both [Checkstyle](https://checkstyle.sourceforge.io/) and
-  [PMD](https://pmd.github.io/) are extended with custom rules.
+Both [Checkstyle] and [PMD] are extended with custom rules.
 The `com.qulice.checkstyle` package contains roughly forty custom
   `AbstractCheck` implementations (e.g., `ConstructorsOrderCheck`,
   `IfThenThrowElseCheck`) covering constraints absent from the
-  standard [Checkstyle](https://checkstyle.sourceforge.io/) catalog.
+  standard [Checkstyle] catalog.
 The `com.qulice.pmd.rules` package adds custom `AbstractJavaRule`
   implementations (e.g., `UnitTestContainsTooManyAssertsRule`,
-  `ProhibitPlainJunitAssertionsRule`) that replace upstream
-  [PMD](https://pmd.github.io/) rules with known false-positive
-  defects filed in the upstream tracker.
-
-[csmp]: https://maven.apache.org/plugins/maven-checkstyle-plugin/
-[mep]: https://maven.apache.org/plugins/maven-enforcer-plugin/
-[mda]: https://maven.apache.org/shared/maven-dependency-analyzer/
+  `ProhibitPlainJunitAssertionsRule`) that replace upstream [PMD]
+  rules with known false-positive defects filed in the upstream
+  tracker.
 
 ## How to contribute
 
-Fork repository, make changes, send us a pull request. We will review
-your changes and apply them to the `master` branch shortly, provided
-they don't violate our quality standards. To avoid frustration, before
-sending us your pull request please run full Maven build:
+Fork repository, make changes, send us a pull request.
+We will review your changes and apply them to the `master` branch
+  shortly, provided they don't violate our quality standards.
+To avoid frustration, before sending us your pull request please run
+  full Maven build:
 
 ```bash
 mvn clean install -Pqulice
 ```
 
-Keep in mind that JDK 17+ and Maven 3.8+ are the lowest versions you may use.
+Keep in mind that JDK 17+ and Maven 3.8+ are the lowest versions you
+  may use.
+
+[Checkstyle]: https://checkstyle.sourceforge.io/
+[PMD]: https://pmd.github.io/
+[ErrorProne]: https://errorprone.info/
+[www.qulice.com]: https://www.qulice.com
+[_Strict Control of Java Code Quality_]: https://www.yegor256.com/2014/08/13/strict-code-quality-control.html
+[typical mistakes]: https://github.com/yegor256/qulice/wiki/mistakes
+[JVM proxy]: https://docs.oracle.com/javase/8/docs/technotes/guides/net/proxies.html
+[Maven]: https://maven.apache.org/
+[Spotless]: https://github.com/diffplug/spotless
+[csmp]: https://maven.apache.org/plugins/maven-checkstyle-plugin/
+[Jaxec]: https://github.com/yegor256/jaxec
+[XPath]: https://www.w3.org/TR/xpath/
+[mep]: https://maven.apache.org/plugins/maven-enforcer-plugin/
+[mda]: https://maven.apache.org/shared/maven-dependency-analyzer/
