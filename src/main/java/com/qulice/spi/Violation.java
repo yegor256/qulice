@@ -59,7 +59,7 @@ public interface Violation extends Comparable<Violation> {
         private static final Comparator<Violation> ORDER =
             Comparator.comparing(Violation::validator, String.CASE_INSENSITIVE_ORDER)
                 .thenComparing(Violation::file, String.CASE_INSENSITIVE_ORDER)
-                .thenComparing(Default::lineNumber)
+                .thenComparingInt(Default::lineNumber)
                 .thenComparing(Violation::lines)
                 .thenComparing(Violation::name)
                 .thenComparing(Violation::message);
