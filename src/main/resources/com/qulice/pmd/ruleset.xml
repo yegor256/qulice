@@ -520,7 +520,9 @@
       private and package-private ones are implementation detail rather
       than part of the contract of the class. Test classes are not
       checked at all, because one assertion per test method inflates
-      their method count beyond any useful threshold.
+      their method count beyond any useful threshold. Types that extend
+      com.sun.jna.Library are skipped too, since they mirror a native
+      library method by method.
     </description>
     <priority>3</priority>
   </rule>

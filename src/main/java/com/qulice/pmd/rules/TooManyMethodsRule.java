@@ -7,6 +7,9 @@ package com.qulice.pmd.rules;
 import java.util.Set;
 import net.sourceforge.pmd.lang.java.ast.ASTAnnotation;
 import net.sourceforge.pmd.lang.java.ast.ASTClassDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTClassType;
+import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
+import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTTypeDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ModifierOwner;
@@ -21,7 +24,10 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  * skipped too, since a supertype dictates them and the class has no say
  * in how many of them there are. Test classes are skipped altogether, since
  * one assertion per test method inflates their method count beyond any
- * useful threshold. Skipping them here instead of through a
+ * useful threshold. JNA bindings are skipped too: a type that extends
+ * {@code com.sun.jna.Library} mirrors a native library method by method,
+ * and its size is dictated by that library rather than by its author.
+ * Skipping them here instead of through a
  * {@code violationSuppressXPath} keeps a redundant
  * {@code @SuppressWarnings("PMD.TooManyMethods")} visible to
  * {@code UnnecessaryWarningSuppression}, which PMD credits to the
@@ -34,6 +40,22 @@ public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
      * The largest number of public and protected methods a class may have.
      */
     private static final int MAX = 10;
+
+    /**
+     * Package of the JNA interface that marks a type as a native binding.
+     */
+    private static final String PACKAGE = "com.sun.jna";
+
+    /**
+     * Simple name of that interface.
+     */
+    private static final String LIBRARY = "Library";
+
+    /**
+     * Canonical name of that interface.
+     */
+    private static final String QUALIFIED =
+        TooManyMethodsRule.PACKAGE + '.' + TooManyMethodsRule.LIBRARY;
 
     /**
      * Simple-name suffixes that mark a type as a test.
@@ -69,6 +91,7 @@ public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
     @Override
     public Object visit(final ASTClassDeclaration type, final Object data) {
         if (!TooManyMethodsRule.tested(type)
+            && !TooManyMethodsRule.binding(type)
             && TooManyMethodsRule.exposed(type) > TooManyMethodsRule.MAX) {
             this.asCtx(data).addViolation(type);
         }
@@ -85,6 +108,28 @@ public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
         return method.getVisibility()
             .isAtLeast(ModifierOwner.Visibility.V_PROTECTED)
             && !method.isAnnotationPresent(Override.class);
+    }
+
+    private static boolean binding(final ASTClassDeclaration type) {
+        return type.getSuperInterfaceTypeNodes().any(TooManyMethodsRule::jna);
+    }
+
+    private static boolean jna(final ASTClassType parent) {
+        return TooManyMethodsRule.LIBRARY.equals(parent.getSimpleName())
+            && (TooManyMethodsRule.PACKAGE.equals(parent.getPackageQualifier())
+                || TooManyMethodsRule.imported(parent.getRoot()));
+    }
+
+    private static boolean imported(final ASTCompilationUnit unit) {
+        return unit.children(ASTImportDeclaration.class).any(
+            TooManyMethodsRule::jna
+        );
+    }
+
+    private static boolean jna(final ASTImportDeclaration imported) {
+        return TooManyMethodsRule.QUALIFIED.equals(imported.getImportedName())
+            || imported.isImportOnDemand()
+            && TooManyMethodsRule.PACKAGE.equals(imported.getImportedName());
     }
 
     private static boolean tested(final ASTClassDeclaration type) {

@@ -85,6 +85,33 @@ final class PmdTooManyMethodsTest {
         ).assertOk();
     }
 
+    @ParameterizedTest
+    @ValueSource(
+        strings = {
+            "JnaLibrary.java",
+            "JnaQualifiedLibrary.java",
+            "JnaDirectLibrary.java"
+        }
+    )
+    void allowsManyMethodsInJnaBinding(final String file) throws Exception {
+        new PmdAssert(
+            file,
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString("TooManyMethods")
+            )
+        ).assertOk();
+    }
+
+    @Test
+    void reportsTooManyMethodsInPlainInterface() throws Exception {
+        new PmdAssert(
+            "ManyMethodsInterface.java",
+            Matchers.is(false),
+            Matchers.containsString("TooManyMethods")
+        ).assertOk();
+    }
+
     @Test
     void reportsRedundantSuppressionInTestClass() throws Exception {
         new PmdAssert(
