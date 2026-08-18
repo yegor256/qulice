@@ -85,6 +85,14 @@ public final class ShortMethodNames {
     }
 
     /**
+     * The text itself.
+     * @return The text
+     */
+    public String it() {
+        return this.text;
+    }
+
+    /**
      * The text of the given length.
      * @param length The length
      * @return The text
