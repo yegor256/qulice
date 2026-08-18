@@ -64,7 +64,7 @@ Just add this plugin to your `pom.xml`:
         <license>file:${basedir}/LICENSE.txt</license>
       </configuration>
 =======
-      <version>0.30.5</version>
+      <version>0.30.14</version>
 >>>>>>> Stashed changes
       <executions>
         <execution>
