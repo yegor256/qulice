@@ -201,7 +201,14 @@
     <module name="RightCurly"/>
     <module name="AvoidNestedBlocks"/>
     <!-- Checks for class design. -->
-    <module name="VisibilityModifier"/>
+    <!--
+    Fields annotated with Maven's @Parameter are injected by Maven itself
+    and may have to stay protected, when a mojo inherits them from its
+    abstract parent.
+    -->
+    <module name="VisibilityModifier">
+      <property name="ignoreAnnotationCanonicalNames" value="com.google.common.annotations.VisibleForTesting, org.junit.ClassRule, org.junit.Rule, org.apache.maven.plugins.annotations.Parameter"/>
+    </module>
     <module name="FinalClass"/>
     <module name="InterfaceIsType"/>
     <module name="HideUtilityClassConstructor"/>
