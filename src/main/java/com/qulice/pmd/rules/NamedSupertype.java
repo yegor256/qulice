@@ -45,36 +45,18 @@ final class NamedSupertype {
                 || this.imported(clause.getRoot()));
     }
 
-    /**
-     * Simple name of the type.
-     * @return Name without the package
-     */
     private String simple() {
         return this.canonical.substring(this.canonical.lastIndexOf('.') + 1);
     }
 
-    /**
-     * Package of the type.
-     * @return Name without the simple name
-     */
     private String pack() {
         return this.canonical.substring(0, this.canonical.lastIndexOf('.'));
     }
 
-    /**
-     * Does the given file import this type?
-     * @param unit File being analyzed
-     * @return TRUE if the type is imported, directly or on demand
-     */
     private boolean imported(final ASTCompilationUnit unit) {
         return unit.children(ASTImportDeclaration.class).any(this::brings);
     }
 
-    /**
-     * Does the given import bring this type in?
-     * @param imported Import declaration
-     * @return TRUE if the import names this type or its package
-     */
     private boolean brings(final ASTImportDeclaration imported) {
         return this.canonical.equals(imported.getImportedName())
             || imported.isImportOnDemand()

@@ -57,22 +57,12 @@ public final class TooManyFieldsRule extends AbstractJavaRulechainRule {
         return data;
     }
 
-    /**
-     * How many fields does this class use to keep its state?
-     * @param type Class to inspect
-     * @return Number of non-static non-final fields in the class body
-     */
     private static long state(final ASTClassDeclaration type) {
         return type.getDeclarations(ASTFieldDeclaration.class)
             .filter(TooManyFieldsRule::mutable)
             .count();
     }
 
-    /**
-     * Is this field a part of the state of its class?
-     * @param field Field to inspect
-     * @return TRUE if the field is neither static nor final
-     */
     private static boolean mutable(final ASTFieldDeclaration field) {
         return !field.hasModifiers(JModifier.FINAL)
             && !field.hasModifiers(JModifier.STATIC);
