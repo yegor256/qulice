@@ -92,31 +92,15 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Check if Javadoc line is empty.
-     * @param line Javadoc line
-     * @return True when Javadoc line is empty
-     */
     private static boolean isJavadocLineEmpty(final String line) {
         return "*".equals(line.trim());
     }
 
-    /**
-     * Check if node has Javadoc.
-     * @param node Node to be checked for Javadoc
-     * @param start Line number where comment starts
-     * @return True when node has Javadoc
-     */
     private static boolean isNodeHavingJavadoc(final DetailAST node,
         final int start) {
         return start > getLineNoOfPreviousNode(node);
     }
 
-    /**
-     * Returns line number of previous node.
-     * @param node Current node
-     * @return Line number of previous node
-     */
     private static int getLineNoOfPreviousNode(final DetailAST node) {
         int start = 0;
         final DetailAST previous = node.getPreviousSibling();
@@ -126,22 +110,10 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
         return start;
     }
 
-    /**
-     * Find Javadoc starting comment.
-     * @param lines List of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found starting comment or -1 otherwise
-     */
     private static int findCommentStart(final String[] lines, final int start) {
         return JavadocEmptyLineCheck.findTrimmedTextUp(lines, start, "/**");
     }
 
-    /**
-     * Find Javadoc ending comment.
-     * @param lines Array of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found ending comment, or -1 if it wasn't found
-     */
     private static int findCommentEnd(final String[] lines, final int start) {
         int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {
@@ -154,13 +126,6 @@ public final class JavadocEmptyLineCheck extends AbstractCheck {
         return found;
     }
 
-    /**
-     * Find a text in lines, by going up.
-     * @param lines Array of lines to check
-     * @param start Start searching from this line number
-     * @param text Text to find
-     * @return Line number with found text, or -1 if it wasn't found
-     */
     private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
         int found = -1;

@@ -85,11 +85,6 @@ final class UnusedSuppressions {
         return results;
     }
 
-    /**
-     * Run Checkstyle over the files with the nearby filters removed.
-     * @param files Files to process
-     * @param sink Listener that gathers the events
-     */
     private void collect(final Collection<File> files,
         final CheckstyleListener sink) {
         final Checker checker = new Checker();
@@ -111,12 +106,6 @@ final class UnusedSuppressions {
         }
     }
 
-    /**
-     * The dead suppressions of one file.
-     * @param file File to inspect
-     * @param events Events collected with the nearby filters removed
-     * @return Violations, one per dead suppression
-     */
     private Collection<Violation> unused(final File file,
         final Collection<AuditEvent> events) {
         final Collection<Violation> results = new ArrayList<>(0);
@@ -149,11 +138,6 @@ final class UnusedSuppressions {
         return results;
     }
 
-    /**
-     * Read the text of a file, in the encoding of the environment.
-     * @param file File to read
-     * @return Its text
-     */
     private String read(final File file) {
         try {
             return Files.readString(file.toPath(), this.env.encoding());
@@ -164,10 +148,6 @@ final class UnusedSuppressions {
         }
     }
 
-    /**
-     * A fresh cache file, so the second run reprocesses every file.
-     * @return Path to an empty cache file
-     */
     private File cache() {
         final File dir = new File(this.env.tempdir(), "checkstyle");
         if (!dir.exists() && !dir.mkdirs()) {
@@ -184,11 +164,6 @@ final class UnusedSuppressions {
         }
     }
 
-    /**
-     * The configuration of {@code checks.xml} without the nearby filters.
-     * @param cache Cache file for the run
-     * @return The configuration
-     */
     private Configuration configuration(final File cache) {
         final Properties props = new Properties();
         props.setProperty("cache.file", cache.getPath());
@@ -211,10 +186,6 @@ final class UnusedSuppressions {
         return config;
     }
 
-    /**
-     * Remove the nearby suppression filters from a configuration tree.
-     * @param config Configuration to strip, modified in place
-     */
     private static void strip(final Configuration config) {
         for (final Configuration child : config.getChildren()) {
             final String name = child.getName();

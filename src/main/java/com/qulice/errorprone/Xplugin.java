@@ -111,11 +111,6 @@ public final class Xplugin {
             .size();
     }
 
-    /**
-     * The {@code -Xep} flags, Qulice's own first and the project's after
-     * them.
-     * @return Flags, in the order ErrorProne reads them
-     */
     private List<String> flags() {
         final List<String> flags = new ArrayList<>(
             Xplugin.DISABLED.size() + 4
@@ -125,15 +120,6 @@ public final class Xplugin {
         return flags;
     }
 
-    /**
-     * The flags of the project, one by one.
-     *
-     * <p>Whitespace and commas both separate them, so that a list of
-     * configuration elements and a single POM property arrive here in the
-     * same shape.</p>
-     *
-     * @return Flags, in the order the project wrote them, possibly empty
-     */
     private List<String> extras() {
         return Xplugin.SEPARATOR.splitAsStream(this.extra.trim())
             .filter(flag -> !flag.isEmpty())
@@ -141,18 +127,6 @@ public final class Xplugin {
             .toList();
     }
 
-    /**
-     * Refuse a flag ErrorProne would not understand.
-     *
-     * <p>Only ErrorProne's own flags make sense here, since they travel
-     * inside the {@code -Xplugin:ErrorProne} argument and never reach
-     * {@code javac} itself. Anything else is refused right here, rather
-     * than handed to the forked compiler, which would report the
-     * misconfiguration as a violation of the project.</p>
-     *
-     * @param flag The flag the project supplied
-     * @return The same flag
-     */
     private static String checked(final String flag) {
         if (!flag.startsWith("-Xep")) {
             throw new IllegalArgumentException(

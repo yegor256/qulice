@@ -109,11 +109,6 @@ public final class UnnecessaryJavaLangCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Blank out every line spanned by a text-block content node. Those
-     * lines hold only string data, so the pattern must never match there.
-     * @param ast The {@code TEXT_BLOCK_CONTENT} node
-     */
     private void blankBlock(final DetailAST ast) {
         final String text = ast.getText();
         int span = 0;
@@ -131,13 +126,6 @@ public final class UnnecessaryJavaLangCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Replace with spaces a run of characters on a single line, so that
-     * the {@code java.lang.} pattern cannot match inside it.
-     * @param line One-based line number
-     * @param column Zero-based column where the run starts
-     * @param length Number of characters to blank
-     */
     private void blank(final int line, final int column, final int length) {
         final int index = line - 1;
         if (index >= 0 && index < this.lines.length) {

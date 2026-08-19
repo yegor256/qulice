@@ -73,12 +73,6 @@ public final class JavadocFirstLineCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Find the line that opens the Javadoc right above a node.
-     * @param lines All lines of the file
-     * @param below Line index of the node (0-based)
-     * @return Line index (0-based) of the opening, or -1 if not found
-     */
     private static int findOpeningLine(final String[] lines, final int below) {
         int found = -1;
         for (int pos = below - 1; pos >= 0; pos -= 1) {
@@ -95,12 +89,6 @@ public final class JavadocFirstLineCheck extends AbstractCheck {
         return found;
     }
 
-    /**
-     * Check that the found Javadoc directly precedes the node.
-     * @param node Node being inspected
-     * @param start Line index (0-based) of the Javadoc opening
-     * @return True when no other declaration sits between
-     */
     private static boolean belongsToNode(final DetailAST node, final int start) {
         final DetailAST previous = node.getPreviousSibling();
         boolean owns = true;
@@ -110,22 +98,12 @@ public final class JavadocFirstLineCheck extends AbstractCheck {
         return owns;
     }
 
-    /**
-     * Check if a line has any text after the opening {@code /**}.
-     * @param line The opening line
-     * @return True when text sits on the same line
-     */
     private static boolean hasTextAfterOpening(final String line) {
         final String trimmed = line.trim();
         final String rest = trimmed.substring("/**".length()).trim();
         return !rest.isEmpty() && !"/".equals(rest);
     }
 
-    /**
-     * Check if the Javadoc closes on the same line.
-     * @param line The opening line
-     * @return True when the closing delimiter is on the same line
-     */
     private static boolean hasClosingOnSameLine(final String line) {
         return line.trim().endsWith("*/");
     }

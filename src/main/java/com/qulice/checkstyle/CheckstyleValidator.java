@@ -163,11 +163,6 @@ public final class CheckstyleValidator implements ResourceValidator {
         return relevant;
     }
 
-    /**
-     * Load checkstyle configuration.
-     * @return The configuration just loaded
-     * @see #validate(Collection)
-     */
     private Configuration configuration() {
         final File cache =
             new File(this.env.tempdir(), "checkstyle/checkstyle.cache");
@@ -211,18 +206,6 @@ public final class CheckstyleValidator implements ResourceValidator {
         return config;
     }
 
-    /**
-     * The effective Java source level of the project under validation.
-     *
-     * <p>Reads {@code maven.compiler.release} first and then falls back to
-     * {@code maven.compiler.source}, accepting both the modern ({@code "8"},
-     * {@code "17"}) and the legacy ({@code "1.8"}) forms. When neither is
-     * known, a value below {@link #MINIMUM} is returned, so that checks
-     * requiring newer language features are disabled by default rather than
-     * risking a suggestion that breaks the build.
-     *
-     * @return The source level, e.g. {@code 8}, {@code 17}, {@code 21}
-     */
     private int level() {
         int level = CheckstyleValidator.parse(
             this.env.param("maven.compiler.release", "")
@@ -241,11 +224,6 @@ public final class CheckstyleValidator implements ResourceValidator {
         return result;
     }
 
-    /**
-     * Parse a Java version string into its major number.
-     * @param value Version, e.g. {@code "8"}, {@code "1.8"} or {@code "17"}
-     * @return The major version, or {@code -1} if it cannot be parsed
-     */
     private static int parse(final String value) {
         int result = -1;
         if (value != null) {
@@ -262,17 +240,6 @@ public final class CheckstyleValidator implements ResourceValidator {
         return result;
     }
 
-    /**
-     * Count the checks in a configuration tree.
-     *
-     * <p>A module without children is one check, while a module that holds
-     * others — {@code Checker} and {@code TreeWalker} — only carries them
-     * and is not a check itself. Suppression filters and holders are left
-     * out too, since they silence violations instead of finding them.</p>
-     *
-     * @param config Configuration to count in
-     * @return The number of checks configured
-     */
     private static int count(final Configuration config) {
         int total = 0;
         for (final Configuration child : config.getChildren()) {
@@ -286,12 +253,6 @@ public final class CheckstyleValidator implements ResourceValidator {
         return total;
     }
 
-    /**
-     * Remove, recursively and in place, the modules with the given names
-     * from a configuration tree.
-     * @param config Configuration to strip
-     * @param names Simple names of the modules to remove
-     */
     private static void strip(final Configuration config,
         final Set<String> names) {
         for (final Configuration child : config.getChildren()) {

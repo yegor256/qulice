@@ -57,17 +57,6 @@ final class Summary {
         );
     }
 
-    /**
-     * How many rules each validator applies, by validator name, leaving
-     * out the ones that count none.
-     *
-     * <p>A module without a single file to read runs no validator at all,
-     * so nobody is asked to count: the counting itself is expensive, since
-     * it makes Checkstyle load its configuration and PMD resolve its
-     * ruleset.</p>
-     *
-     * @return Rule counts, in the order the validators ran
-     */
     private Map<String, Integer> counts() {
         final Map<String, Integer> counts =
             new LinkedHashMap<>(this.validators.size());
@@ -82,10 +71,6 @@ final class Summary {
         return counts;
     }
 
-    /**
-     * The Java files among them, counted and named.
-     * @return Text, e.g. {@code "42 .java files"}
-     */
     private String javas() {
         final long count = this.files.stream().filter(
             file -> file.getName().toLowerCase(Locale.ROOT).endsWith(".java")
@@ -99,12 +84,6 @@ final class Summary {
         return text;
     }
 
-    /**
-     * Spell the rule counts out, validator by validator.
-     * @param counts Rule counts by validator name
-     * @return Text in brackets, e.g. {@code " (253 Checkstyle, 132 PMD)"},
-     *  or empty when nobody counted anything
-     */
     private static String breakdown(final Map<String, Integer> counts) {
         final String text;
         if (counts.isEmpty()) {

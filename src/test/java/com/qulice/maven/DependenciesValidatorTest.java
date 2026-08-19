@@ -313,12 +313,6 @@ final class DependenciesValidatorTest {
         );
     }
 
-    /**
-     * Build a MavenEnvironment wired with a given dependency analysis.
-     * @param analysis Dependency analysis to inject
-     * @return Wired environment
-     * @throws Exception If something wrong happens inside
-     */
     private static MavenEnvironment envWith(
         final ProjectDependencyAnalysis analysis
     ) throws Exception {
@@ -329,15 +323,6 @@ final class DependenciesValidatorTest {
         ).mock();
     }
 
-    /**
-     * Build a MavenEnvironment where exactly one artifact is reported as
-     * "unused declared" and the given source root is part of the project.
-     * @param src Directory containing Java sources
-     * @param jar JAR file to attach to the artifact
-     * @param coord Artifact coordinate in the form {@code groupId:artifactId}
-     * @return Wired environment
-     * @throws Exception If something wrong happens inside
-     */
     private static MavenEnvironment envWithUnused(final Path src,
         final File jar, final String coord) throws Exception {
         final String[] parts = coord.split(":");
@@ -359,14 +344,6 @@ final class DependenciesValidatorTest {
         return env;
     }
 
-    /**
-     * Create a JAR file at the given path containing the given class entries.
-     * @param dir Parent directory
-     * @param name JAR file name
-     * @param entries Names of class entries to include
-     * @return The created JAR file
-     * @throws Exception If something wrong happens inside
-     */
     private static File jar(final Path dir, final String name,
         final String... entries) throws Exception {
         final File jar = dir.resolve(name).toFile();
@@ -384,25 +361,12 @@ final class DependenciesValidatorTest {
         return jar;
     }
 
-    /**
-     * Create a compile source root directory under the given temp dir.
-     * @param dir Temporary directory
-     * @return Created source root
-     * @throws Exception If something wrong happens inside
-     */
     private static Path sourceRoot(final Path dir) throws Exception {
         final Path src = dir.resolve("src").resolve("main").resolve("java");
         Files.createDirectories(src);
         return src;
     }
 
-    /**
-     * Write the given Java source file under the source root.
-     * @param src Source root
-     * @param path Relative path for the source file
-     * @param content File content
-     * @throws Exception If something wrong happens inside
-     */
     private static void writeJava(final Path src, final String path,
         final String content) throws Exception {
         final Path target = src.resolve(path);

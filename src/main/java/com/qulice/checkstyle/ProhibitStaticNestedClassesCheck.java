@@ -82,11 +82,6 @@ public final class ProhibitStaticNestedClassesCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Is this CLASS_DEF a static class nested inside another type?
-     * @param ast Class definition node
-     * @return True if the class is nested and declared as static
-     */
     private static boolean isStaticNestedClass(final DetailAST ast) {
         final DetailAST parent = ast.getParent();
         return parent != null && parent.getType() == TokenTypes.OBJBLOCK

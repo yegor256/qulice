@@ -95,13 +95,6 @@ public final class JavadocEmptyLineBeforeTagCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Inspect the part of the Javadoc that lies between the opening
-     * and the first at-clause.
-     * @param lines All lines of the source file
-     * @param start First Javadoc content line (0-based)
-     * @param tag Line of the first at-clause (0-based)
-     */
     private void inspect(final String[] lines, final int start, final int tag) {
         int body = tag - 1;
         while (body >= start
@@ -132,21 +125,10 @@ public final class JavadocEmptyLineBeforeTagCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Check if Javadoc line is empty.
-     * @param line Javadoc line
-     * @return True when Javadoc line is empty
-     */
     private static boolean isJavadocLineEmpty(final String line) {
         return "*".equals(line.trim());
     }
 
-    /**
-     * Check if node has Javadoc.
-     * @param node Node to be checked for Javadoc
-     * @param start Line number where comment starts
-     * @return True when node has Javadoc
-     */
     private static boolean isNodeHavingJavadoc(final DetailAST node,
         final int start) {
         int previous = 0;
@@ -157,22 +139,10 @@ public final class JavadocEmptyLineBeforeTagCheck extends AbstractCheck {
         return start > previous;
     }
 
-    /**
-     * Find Javadoc starting comment.
-     * @param lines List of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found starting comment or -1 otherwise
-     */
     private static int findCommentStart(final String[] lines, final int start) {
         return JavadocEmptyLineBeforeTagCheck.findTrimmedTextUp(lines, start, "/**");
     }
 
-    /**
-     * Find Javadoc ending comment.
-     * @param lines Array of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found ending comment, or -1 if it wasn't found
-     */
     private static int findCommentEnd(final String[] lines, final int start) {
         int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {
@@ -185,13 +155,6 @@ public final class JavadocEmptyLineBeforeTagCheck extends AbstractCheck {
         return found;
     }
 
-    /**
-     * Find the first at-clause line inside the Javadoc comment.
-     * @param lines All lines of the file
-     * @param start First Javadoc content line (0-based)
-     * @param end Last Javadoc content line (0-based)
-     * @return Line number of the first at-clause, or -1 if not found
-     */
     private static int findFirstTag(final String[] lines, final int start,
         final int end) {
         int found = -1;
@@ -205,13 +168,6 @@ public final class JavadocEmptyLineBeforeTagCheck extends AbstractCheck {
         return found;
     }
 
-    /**
-     * Find a text in lines, by going up.
-     * @param lines Array of lines to check
-     * @param start Start searching from this line number
-     * @param text Text to find
-     * @return Line number with found text, or -1 if it wasn't found
-     */
     private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
         int found = -1;

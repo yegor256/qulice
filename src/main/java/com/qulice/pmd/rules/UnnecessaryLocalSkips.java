@@ -121,17 +121,6 @@ final class UnnecessaryLocalSkips {
         return found;
     }
 
-    /**
-     * A statement sits between the declaration and its use inside the block
-     * that encloses the declaration. The use is measured through its nearest
-     * ancestor statement in that common block, so a use buried in an {@code
-     * if} or loop body (whose immediate block differs from the declaration's)
-     * is still compared against the intervening statements rather than being
-     * treated as adjacent. See issue #1700.
-     * @param variable The variable declarator
-     * @param use The single use of the variable
-     * @return True if a statement intervenes between init and its use
-     */
     private static boolean intervenes(
         final ASTVariableDeclarator variable,
         final ASTVariableAccess use

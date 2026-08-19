@@ -120,12 +120,6 @@ public final class SingleLineCommentCheck extends AbstractCheck {
         this.message = msg;
     }
 
-    /**
-     * Checks for the end of a comment line.
-     * @param ast Checkstyle's AST nodes
-     * @return True if this is the end of the comment
-     *  and the starting line number is equal to the ending line number
-     */
     private boolean singleLineCStyleComment(final DetailAST ast) {
         return ast.getType() == TokenTypes.BLOCK_COMMENT_END && this.begin == ast.getLineNo();
     }

@@ -100,12 +100,6 @@ final class Suppressions implements Iterable<SuppressionTag> {
         return tags.iterator();
     }
 
-    /**
-     * Collect the {@code (N lines)} suppressions on one line.
-     * @param line Text of the line
-     * @param number Number of the line
-     * @param tags Where to add the suppressions found
-     */
     private static void nearby(final String line, final int number,
         final Collection<SuppressionTag> tags) {
         final Matcher matcher = Suppressions.NEARBY.matcher(line);
@@ -120,13 +114,6 @@ final class Suppressions implements Iterable<SuppressionTag> {
         }
     }
 
-    /**
-     * Blank out the string and character literals of a line, so that a
-     * {@code @checkstyle} tag inside them is not mistaken for a real
-     * suppression comment.
-     * @param line Text of the line
-     * @return The line with the literals turned into spaces
-     */
     private static String code(final String line) {
         final StringBuilder out = new StringBuilder(line.length());
         char quote = 0;

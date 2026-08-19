@@ -102,14 +102,6 @@ final class Diagnostics {
         return violations;
     }
 
-    /**
-     * Turn one parsed diagnostic into a violation.
-     * @param file Source file the compiler pointed at
-     * @param lines Line number inside that file
-     * @param check Name of the check or lint category
-     * @param message Diagnostic body, without the bracketed name
-     * @return The violation
-     */
     private Violation violation(final String file, final String lines,
         final String check, final String message) {
         return new Violation.Default(
@@ -121,12 +113,6 @@ final class Diagnostics {
         );
     }
 
-    /**
-     * Name of the check a diagnostic belongs to, falling back to
-     * {@code javac} for the diagnostics the compiler leaves unlabelled.
-     * @param name Bracketed name the diagnostic carried, or {@code null}
-     * @return Name to report the violation under
-     */
     private static String check(final String name) {
         return Optional.ofNullable(name).orElse(Diagnostics.JAVAC);
     }

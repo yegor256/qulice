@@ -85,13 +85,6 @@ public final class NonStaticMethodCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Check that non static class method refer {@code this}. Methods that
-     * are {@code native}, {@code abstract} or annotated with {@code @Override}
-     * are excluded.  Additionally, if the method only throws an exception, it
-     * too is excluded.
-     * @param method DetailAST of method
-     */
     private void checkClassMethod(final DetailAST method) {
         final DetailAST modifiers = method
             .findFirstToken(TokenTypes.MODIFIERS);
@@ -116,11 +109,6 @@ public final class NonStaticMethodCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Determines whether a method is {@code abstract} or {@code native}.
-     * @param method Method to check
-     * @return True if method is abstract or native
-     */
     private static boolean isInAbstractOrNativeMethod(final DetailAST method) {
         final BranchContains checker = new BranchContains(
             method.findFirstToken(TokenTypes.MODIFIERS)
@@ -129,12 +117,6 @@ public final class NonStaticMethodCheck extends AbstractCheck {
             || checker.check(TokenTypes.LITERAL_NATIVE);
     }
 
-    /**
-     * Determines the number semicolons in a method excluding those in
-     * comments.
-     * @param method Method to count
-     * @return The number of semicolons in the method as an int
-     */
     @SuppressWarnings("deprecation")
     private int countSemiColons(final DetailAST method) {
         final DetailAST openingbrace = method.findFirstToken(TokenTypes.SLIST);

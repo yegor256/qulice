@@ -84,11 +84,6 @@ public final class MethodDeclarationLengthCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks whether the joined declaration fits on one line.
-     * @param start First non-annotation token of the declaration
-     * @param end Token that terminates the declaration (SLIST or SEMI)
-     */
     private void verify(final DetailAST start, final DetailAST end) {
         final String[] lines = this.getLines();
         final int first = start.getLineNo();
@@ -111,12 +106,6 @@ public final class MethodDeclarationLengthCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Returns the first child of the method/constructor that is not an
-     * annotation (i.e., the first keyword or type of the signature).
-     * @param def METHOD_DEF or CTOR_DEF node
-     * @return First non-annotation child token, or null if absent
-     */
     private static DetailAST head(final DetailAST def) {
         final DetailAST modifiers = def.findFirstToken(TokenTypes.MODIFIERS);
         DetailAST child = modifiers.getFirstChild();
@@ -136,12 +125,6 @@ public final class MethodDeclarationLengthCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Returns the token that closes the declaration: the opening brace
-     * of the body, or the terminating semicolon for abstract methods.
-     * @param def METHOD_DEF or CTOR_DEF node
-     * @return SLIST or SEMI child, or null if neither is present
-     */
     private static DetailAST tail(final DetailAST def) {
         DetailAST end = def.findFirstToken(TokenTypes.SLIST);
         if (end == null) {

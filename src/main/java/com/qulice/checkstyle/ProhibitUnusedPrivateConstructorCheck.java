@@ -47,11 +47,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Collects all private constructors in a given object block.
-     * @param objblock Node which contains constructors
-     * @return List of DetailAST nodes representing the private constructors
-     */
     private static List<DetailAST> collectPrivateConstructors(final DetailAST objblock) {
         final List<DetailAST> prvctors = new ArrayList<>(0);
         final DetailAST firstchld = objblock.getFirstChild();
@@ -63,12 +58,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
         return prvctors;
     }
 
-    /**
-     * Checks if a private constructor is used in the object block.
-     * @param privatector Node representing the private constructor
-     * @param objblock Node which contains constructors
-     * @return True if the private constructor is used, False otherwise
-     */
     private static boolean isPrivateConstructorUsed(
         final DetailAST privatector, final DetailAST objblock) {
         return
@@ -77,12 +66,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
             isPrivateCtorUsedInMethods(privatector, objblock);
     }
 
-    /**
-     * Checks if a private constructor is used in other constructors.
-     * @param privatector Node representing the private constructor
-     * @param objblock Node containing constructors
-     * @return True if the private constructor is used, False otherwise
-     */
     private static boolean isPrivateCtorUsedInOtherCtors(
         final DetailAST privatector, final DetailAST objblock) {
         return collectAllConstructors(objblock).stream().anyMatch(
@@ -92,12 +75,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
         );
     }
 
-    /**
-     * Checks if a private constructor is used in methods of the object block.
-     * @param privatector Node representing the private constructor
-     * @param objblock Node containing methods
-     * @return True if the private constructor is used, False otherwise
-     */
     private static boolean isPrivateCtorUsedInMethods(
         final DetailAST privatector, final DetailAST objblock) {
         boolean result = false;
@@ -113,11 +90,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Collects all constructors in a given object block.
-     * @param objblock Node which contains constructors
-     * @return List of DetailAST nodes representing all the constructors
-     */
     private static List<DetailAST> collectAllConstructors(final DetailAST objblock) {
         final List<DetailAST> allctors = new ArrayList<>(0);
         final DetailAST firstchld = objblock.getFirstChild();
@@ -129,13 +101,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
         return allctors;
     }
 
-    /**
-     * Returns true if specified node has modifiers of type
-     * <code>PRIVATE</code>.
-     * @param node Node to check
-     * @return True if specified node contains modifiers of type
-     *  <code>PRIVATE</code>, else returns <code>false</code>
-     */
     private static boolean isPrivate(final DetailAST node) {
         return node.findFirstToken(TokenTypes.MODIFIERS)
             .getChildCount(TokenTypes.LITERAL_PRIVATE) > 0;
@@ -177,11 +142,6 @@ public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {
             .getChildCount(TokenTypes.PARAMETER_DEF);
     }
 
-    /**
-     * Checks if private constructors are used.
-     * Logs a message if a private constructor is not used.
-     * @param objblock Node which contains constructors
-     */
     private void checkConstructors(final DetailAST objblock) {
         final List<DetailAST> prvctors = collectPrivateConstructors(objblock);
         for (final DetailAST ctor : prvctors) {

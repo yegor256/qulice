@@ -97,11 +97,6 @@ public final class License {
         return license;
     }
 
-    /**
-     * Save package-info.java to the directory.
-     * @param dir The directory
-     * @throws IOException If something wrong happens inside
-     */
     private void makePackageInfo(final File dir) throws IOException {
         final StringBuilder body = new StringBuilder(100);
         body.append("/*").append(this.eol);
