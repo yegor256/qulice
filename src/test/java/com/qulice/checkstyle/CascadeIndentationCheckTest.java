@@ -74,6 +74,27 @@ final class CascadeIndentationCheckTest {
         );
     }
 
+    @Test
+    void rejectsTwoClosingBracketsAtTheSameIndentation() throws Exception {
+        final String file = "TwinClosingBrackets.java";
+        MatcherAssert.assertThat(
+            "Two closing brackets at one indentation must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "closing bracket line must be less than", file
+                )
+            )
+        );
+    }
+
+    @Test
+    void acceptsProperlyNestedClosingBrackets() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("NestedClosingBrackets.java", true)
+        );
+    }
+
     private Collection<Violation> runValidation(final String file,
         final boolean passes) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
