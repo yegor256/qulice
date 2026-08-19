@@ -50,12 +50,6 @@ public final class ConstantUsageCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Check that constant, declared as private field of class
-     * is used more than ones.
-     * @param ast Node which contains VARIABLE_DEF
-     * @param namenode Node which contains variable name
-     */
     private void checkField(final DetailAST ast, final DetailAST namenode) {
         final String name = namenode.getText();
         final DetailAST objblock = ast.getParent();
@@ -89,13 +83,6 @@ public final class ConstantUsageCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Parses the variable definition and increments the counter
-     * if name is found.
-     * @param variable DetailAST of variable definition
-     * @param name Name of constant we search for
-     * @return Zero if not found, 1 otherwise
-     */
     private int parseVarDef(final DetailAST variable, final String name) {
         int counter = 0;
         final DetailAST modifiers =
@@ -121,12 +108,6 @@ public final class ConstantUsageCheck extends AbstractCheck {
         return counter;
     }
 
-    /**
-     * Returns text representation of the specified node, including it's
-     * children.
-     * @param node Node, containing text
-     * @return Text representation of the node
-     */
     private String getText(final DetailAST node) {
         final String ret;
         if (node == null) {
@@ -150,48 +131,20 @@ public final class ConstantUsageCheck extends AbstractCheck {
         return ret;
     }
 
-    /**
-     * Returns <code>true</code> if specified node has parent node of type
-     * <code>OBJBLOCK</code>.
-     * @param node Node to check
-     * @return True if parent node is <code>OBJBLOCK</code>, else
-     *  returns <code>false</code>
-     */
     private static boolean isField(final DetailAST node) {
         return TokenTypes.OBJBLOCK == node.getParent().getType();
     }
 
-    /**
-     * Returns true if specified node has modifiers of type <code>FINAL</code>.
-     * @param node Node to check
-     * @return True if specified node contains modifiers of type
-     *  <code>FINAL</code>, else returns <code>false</code>
-     */
     private static boolean isFinal(final DetailAST node) {
         return node.findFirstToken(TokenTypes.MODIFIERS)
             .getChildCount(TokenTypes.FINAL) > 0;
     }
 
-    /**
-     * Returns true if specified node has modifiers of type
-     * <code>PRIVATE</code>.
-     * @param node Node to check
-     * @return True if specified node contains modifiers of type
-     *  <code>PRIVATE</code>, else returns <code>false</code>
-     */
     private static boolean isPrivate(final DetailAST node) {
         return node.findFirstToken(TokenTypes.MODIFIERS)
             .getChildCount(TokenTypes.LITERAL_PRIVATE) > 0;
     }
 
-    /**
-     * Parses the body of the definition (either method or inner class) and
-     * increments counter each time when it founds constant name.
-     * @param definition Tree node, containing definition
-     * @param name Constant name to search
-     * @param type Type of definition start
-     * @return Number of found constant usages
-     */
     private int parseDef(final DetailAST definition, final String name,
         final int type) {
         int counter = 0;
@@ -215,13 +168,6 @@ public final class ConstantUsageCheck extends AbstractCheck {
         return counter;
     }
 
-    /**
-     * Parses the annotation value pair and increments the counter
-     * if name is found.
-     * @param modifiers DetailAST of variable definition
-     * @param name Name of constant we search for
-     * @return Zero if not found, 1 otherwise
-     */
     private int parseAnnotation(final DetailAST modifiers, final String name) {
         int counter = 0;
         final DetailAST variable =

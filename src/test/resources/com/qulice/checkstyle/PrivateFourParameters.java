@@ -30,14 +30,6 @@ public final class PrivateFourParameters {
         return this.sum(1, 2, 3, 4);
     }
 
-    /**
-     * Sum of all numbers and the base.
-     * @param one First number
-     * @param two Second number
-     * @param three Third number
-     * @param four Fourth number
-     * @return The sum
-     */
     private int sum(final int one, final int two, final int three, final int four) {
         return this.base + one + two + three + four;
     }

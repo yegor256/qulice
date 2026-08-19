@@ -83,11 +83,6 @@ public final class StaticAccessViaInstanceCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Reports the dot expression if it accesses a static member via
-     * {@code this}.
-     * @param dot DOT node
-     */
     private void checkDot(final DetailAST dot) {
         final DetailAST left = dot.getFirstChild();
         if (!this.scopes.isEmpty()
@@ -101,13 +96,6 @@ public final class StaticAccessViaInstanceCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Tells whether the node is an IDENT whose text is in the set of known
-     * static member names.
-     * @param node Node to check
-     * @param names Known static names
-     * @return True if the node matches
-     */
     private static boolean isStaticIdent(
         final DetailAST node, final Set<String> names) {
         return node != null
@@ -115,12 +103,6 @@ public final class StaticAccessViaInstanceCheck extends AbstractCheck {
             && names.contains(node.getText());
     }
 
-    /**
-     * Collects the names of all static methods and fields directly declared
-     * in the given class-like node.
-     * @param clazz CLASS_DEF, ENUM_DEF or INTERFACE_DEF node
-     * @return Set of static member names
-     */
     private static Set<String> collectStatic(final DetailAST clazz) {
         final Set<String> names = new HashSet<>(0);
         final DetailAST body = clazz.findFirstToken(TokenTypes.OBJBLOCK);
@@ -133,12 +115,6 @@ public final class StaticAccessViaInstanceCheck extends AbstractCheck {
         return names;
     }
 
-    /**
-     * Tells whether the node is a static method or a static field
-     * declaration.
-     * @param node Node to check
-     * @return True if it is a static method or field
-     */
     private static boolean isStaticMember(final DetailAST node) {
         final int type = node.getType();
         final boolean member = type == TokenTypes.METHOD_DEF

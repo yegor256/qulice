@@ -141,12 +141,6 @@ public final class ErrorProneValidator implements ResourceValidator {
         ).patterns();
     }
 
-    /**
-     * Run the forked {@code javac} process with ErrorProne enabled.
-     * @param batch Name of the batch being compiled
-     * @param sources Java source files to feed
-     * @return Combined stdout/stderr of the process, line by line
-     */
     private List<String> run(final String batch, final List<File> sources) {
         final Result result = new Jaxec(this.command(batch, sources))
             .withRedirect(true)
@@ -162,32 +156,6 @@ public final class ErrorProneValidator implements ResourceValidator {
         return lines;
     }
 
-    /**
-     * Build the {@code javac} command line. To stay below the
-     * Windows {@code CreateProcess} 32 KB command-line limit even on
-     * projects with thousands of sources or long classpaths, every
-     * argument other than the launcher itself and the {@code -J}
-     * flags (which {@code javac} forbids inside argfiles) is written
-     * to a temporary argfile and passed as {@code @argfile}.
-     *
-     * <p>{@code -Xlint:-options} turns off the one lint category that
-     * would report Qulice to the project instead of the project to the
-     * user: {@code options} complains about the {@code -source}/
-     * {@code -target} pair {@link Release} deliberately builds in place of
-     * {@code --release} (see
-     * <a href="https://github.com/yegor256/qulice/issues/1716">#1716</a>),
-     * and no change to the project could ever silence it.</p>
-     *
-     * <p>{@code -encoding} is the project's own
-     * {@code project.build.sourceEncoding}, so that a source file holding
-     * characters outside ASCII reads the same on every host, instead of
-     * through whatever charset the machine running Maven happens to
-     * default to.</p>
-     *
-     * @param batch Name of the batch being compiled
-     * @param sources Java source files to feed
-     * @return Argv
-     */
     private List<String> command(final String batch, final List<File> sources) {
         final List<String> command = new ArrayList<>(
             ErrorProneValidator.JVM_FLAGS.size() + 2
@@ -244,11 +212,6 @@ public final class ErrorProneValidator implements ResourceValidator {
         return command;
     }
 
-    /**
-     * Filters out non-Java and excluded files from further validation.
-     * @param files Files to validate
-     * @return List of relevant files
-     */
     private List<File> relevant(final Collection<File> files) {
         final List<File> sources = new ArrayList<>(files.size());
         for (final File file : files) {
@@ -264,10 +227,6 @@ public final class ErrorProneValidator implements ResourceValidator {
         return sources;
     }
 
-    /**
-     * Resolve the {@code javac} executable from the running JDK.
-     * @return Absolute path to {@code ${java.home}/bin/javac}
-     */
     private static String javac() {
         return new File(
             new File(System.getProperty("java.home"), "bin"),
@@ -275,22 +234,6 @@ public final class ErrorProneValidator implements ResourceValidator {
         ).getAbsolutePath();
     }
 
-    /**
-     * Build the {@code -processorpath} value passed to the forked
-     * {@code javac}. Combines two sources: every URL on the
-     * {@link URLClassLoader} chain starting from the thread context
-     * classloader (the qulice plugin's own {@code ClassRealm} plus its
-     * URL-based parents, which carries ErrorProne when this code runs
-     * inside a Maven plugin execution), and the jar locations of a few
-     * classes ErrorProne needs at runtime that Maven's classworlds
-     * imports from a non-URL parent realm (notably
-     * {@link javax.inject.Inject}, which the
-     * {@code ErrorProneInjector} reads to find injectable constructors).
-     * Both are required: without the realm URLs there's no
-     * {@code error_prone_core}, without the protection-domain lookup
-     * there's no {@code javax.inject}.
-     * @return Path-separator joined list of jar paths
-     */
     private static String pluginClasspath() {
         final Set<String> entries = new LinkedHashSet<>();
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -315,14 +258,6 @@ public final class ErrorProneValidator implements ResourceValidator {
         return String.join(File.pathSeparator, entries);
     }
 
-    /**
-     * Append the jar that contains the given class to {@code entries},
-     * resolved via {@link Class#getProtectionDomain()}. Silently ignored
-     * if the class is loaded from a non-file location (e.g. a JRT module
-     * or an exploded directory).
-     * @param entries Set to append to
-     * @param klass Class whose code source jar should be included
-     */
     private static void addCodeSource(
         final Set<String> entries, final Class<?> klass
     ) {

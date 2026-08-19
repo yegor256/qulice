@@ -100,13 +100,6 @@ final class ChecksTest {
         );
     }
 
-    /**
-     * Check one file.
-     * @param dir Directory where test scripts are located
-     * @param name The name of the check
-     * @param listener The listener
-     * @throws Exception If something goes wrong inside
-     */
     private void run(
         final String dir, final String name, final AuditListener listener
     ) throws Exception {
@@ -138,30 +131,14 @@ final class ChecksTest {
         checker.destroy();
     }
 
-    /**
-     * Arguments stream of (dir, InvalidXxx.java) pairs for all checks.
-     * @return Stream of Arguments
-     */
     private static Stream<Arguments> invalids() {
         return ChecksTest.checks().flatMap(dir -> ChecksTest.files(dir, "Invalid"));
     }
 
-    /**
-     * Arguments stream of (dir, ValidXxx.java) pairs for all checks.
-     * @return Stream of Arguments
-     */
     private static Stream<Arguments> valids() {
         return ChecksTest.checks().flatMap(dir -> ChecksTest.files(dir, "Valid"));
     }
 
-    /**
-     * Find all files in the given resource directory whose name is
-     * either {@code prefix.java} or starts with {@code prefix-} and
-     * ends with {@code .java}.
-     * @param dir Resource directory (e.g. {@code ChecksTest/FooCheck})
-     * @param prefix File prefix (e.g. {@code Invalid} or {@code Valid})
-     * @return Stream of (dir, fileName) Arguments
-     */
     private static Stream<Arguments> files(
         final String dir, final String prefix
     ) {
@@ -189,10 +166,6 @@ final class ChecksTest {
         return result;
     }
 
-    /**
-     * Returns full list of checks.
-     * @return The list
-     */
     private static Stream<String> checks() {
         return Stream.of(
             "MethodsOrderCheck",
@@ -236,6 +209,7 @@ final class ChecksTest {
             "SimpleStringSplitCheck",
             "ProhibitFieldsInTestClassesCheck",
             "ProhibitStaticNestedClassesCheck",
+            "NoJavadocForPrivateMethodsCheck",
             "ParameterNumberCheck"
         ).map(s -> String.format("ChecksTest/%s", s));
     }

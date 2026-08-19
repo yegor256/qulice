@@ -82,12 +82,6 @@ public final class JavadocTagsDotCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Inspect Javadoc comment and report tags that end with a dot.
-     * @param lines All lines of the file
-     * @param cstart Line index (0-based) where the comment opens
-     * @param cend Line index (0-based) where the comment closes
-     */
     private void inspect(final String[] lines, final int cstart, final int cend) {
         int tag = -1;
         for (int pos = cstart + 1; pos <= cend; pos += 1) {
@@ -104,12 +98,6 @@ public final class JavadocTagsDotCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Verify that the last non-empty line of a tag does not end with a dot.
-     * @param lines All lines of the file
-     * @param from Line index (0-based) of the tag opening
-     * @param until Line index (0-based) of the last line that belongs to the tag
-     */
     private void verify(final String[] lines, final int from, final int until) {
         for (int pos = until; pos >= from; pos -= 1) {
             final String content = JavadocTagsDotCheck.stripMarker(lines[pos]);
@@ -122,12 +110,6 @@ public final class JavadocTagsDotCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Check whether the trimmed line starts a {@code @param} or
-     * {@code @return} tag.
-     * @param trimmed Trimmed line content
-     * @return True when the line opens one of the watched tags
-     */
     private static boolean isParamOrReturn(final String trimmed) {
         final String tag;
         if (trimmed.startsWith("* @")) {
@@ -140,11 +122,6 @@ public final class JavadocTagsDotCheck extends AbstractCheck {
             || "return".equals(tag);
     }
 
-    /**
-     * Strip the leading {@code *} and surrounding whitespace from a line.
-     * @param line A raw line of the file
-     * @return Content without the Javadoc asterisk marker
-     */
     private static String stripMarker(final String line) {
         String result = line.trim();
         if (result.startsWith("*")) {
@@ -153,13 +130,6 @@ public final class JavadocTagsDotCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Find a line with given text by going up from a position.
-     * @param lines All lines of the file
-     * @param start Position (0-based) to start searching from
-     * @param text Text to find (compared against the trimmed line)
-     * @return Line index (0-based) where the text was found, or -1 otherwise
-     */
     private static int findTrimmedTextUp(
         final String[] lines,
         final int start,

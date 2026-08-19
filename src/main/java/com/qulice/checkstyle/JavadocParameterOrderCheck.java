@@ -94,11 +94,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Returns the param tags in a javadoc comment.
-     * @param comment The Javadoc comment
-     * @return The param tags found
-     */
     private static List<JavadocTag> getMethodTags(final TextBlock comment) {
         final String[] lines = comment.getText();
         final List<JavadocTag> tags = new ArrayList<>(0);
@@ -144,13 +139,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         return tags;
     }
 
-    /**
-     * Calculates column number using Javadoc tag matcher.
-     * @param matcher Found javadoc tag matcher
-     * @param line Line number of Javadoc tag in comment
-     * @param start Column number of Javadoc comment beginning
-     * @return Column number
-     */
     private static int calculateTagColumn(
         final Matcher matcher, final int line, final int start
     ) {
@@ -161,15 +149,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         return col;
     }
 
-    /**
-     * Gets multiline Javadoc tags with arguments.
-     * @param matcher Javadoc tag Matcher
-     * @param column Column number of Javadoc tag
-     * @param lines Comment text lines
-     * @param index Line number that contains the javadoc tag
-     * @param line Javadoc tag line number in file
-     * @return Javadoc tags with arguments
-     */
     private static List<JavadocTag> getMultilineArgTags(
         final Matcher matcher, final int column, final String[] lines,
         final int index, final int line) {
@@ -194,12 +173,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         return tags;
     }
 
-    /**
-     * Checks method parameters order to comply with what is defined in method
-     * javadoc.
-     * @param ast The method node
-     * @param doc Javadoc text block
-     */
     private void checkParameters(final DetailAST ast, final TextBlock doc) {
         final List<JavadocTag> tags = getMethodTags(doc);
         final Arguments args = new Arguments(ast);

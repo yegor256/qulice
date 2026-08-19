@@ -49,15 +49,6 @@ final class ConfiguredChecks {
         return this.names.value().stream().anyMatch(known -> known.contains(name));
     }
 
-    /**
-     * Read the names of the enabled checks from {@code checks.xml}.
-     *
-     * <p>The cache file plays no part here, but {@code checks.xml}
-     * demands the property, hence the empty value for it.
-     *
-     * @return Names of the checks, with and without the {@code Check} suffix
-     * @throws Exception If the configuration cannot be read
-     */
     private static Collection<String> load() throws Exception {
         final Properties props = new Properties();
         props.setProperty("cache.file", "");
@@ -70,11 +61,6 @@ final class ConfiguredChecks {
         );
     }
 
-    /**
-     * Names of this module and of all modules nested in it.
-     * @param config Configuration of a module
-     * @return Names of the modules, with and without the suffix
-     */
     private static Collection<String> modules(final Configuration config) {
         final Collection<String> found = new HashSet<>(0);
         final String name = config.getName();

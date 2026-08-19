@@ -60,11 +60,6 @@ public final class JavadocLocationCheck extends AbstractCheck {
         this.checkAnnotationAboveJavadoc(ast, lines);
     }
 
-    /**
-     * Check that there are no empty lines between the javadoc and the subject.
-     * @param ast The AST node of the subject
-     * @param lines The file lines
-     */
     private void checkEmptyLines(final DetailAST ast, final String... lines) {
         final int current = JavadocLocationCheck.javadocEnd(
             ast.getLineNo() - 1, lines
@@ -80,14 +75,6 @@ public final class JavadocLocationCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Walks upward from the given line and returns the line number of
-     * the closing javadoc marker if only blank lines separate it from
-     * the subject, otherwise zero.
-     * @param from Line just above the subject (one-based)
-     * @param lines The file lines
-     * @return Line number of the javadoc end, or zero if none
-     */
     private static int javadocEnd(final int from, final String... lines) {
         int current = from;
         int result = 0;
@@ -105,11 +92,6 @@ public final class JavadocLocationCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Check that no annotation is placed above the javadoc of the subject.
-     * @param ast The AST node of the subject
-     * @param lines The file lines
-     */
     private void checkAnnotationAboveJavadoc(
         final DetailAST ast, final String... lines
     ) {
@@ -128,12 +110,6 @@ public final class JavadocLocationCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Returns the line number of the first annotation under the given
-     * modifiers node, or {@link Integer#MAX_VALUE} when there is none.
-     * @param modifiers The MODIFIERS token
-     * @return Line number of the first annotation
-     */
     private static int firstAnnotationLine(final DetailAST modifiers) {
         int line = Integer.MAX_VALUE;
         DetailAST child = modifiers.getFirstChild();
@@ -147,15 +123,6 @@ public final class JavadocLocationCheck extends AbstractCheck {
         return line;
     }
 
-    /**
-     * Tells whether any javadoc opening or closing marker appears
-     * between the given lines (exclusive of the start, exclusive of the
-     * end).
-     * @param start Lower bound line, exclusive
-     * @param end Upper bound line, exclusive
-     * @param lines The file lines
-     * @return True when a javadoc marker is found in the range
-     */
     private static boolean javadocBetween(final int start, final int end,
         final String... lines) {
         boolean found = false;
@@ -169,13 +136,6 @@ public final class JavadocLocationCheck extends AbstractCheck {
         return found;
     }
 
-    /**
-     * Returns {@code TRUE} if a specified node is something that should have
-     * a Javadoc, which includes classes, interface, class methods, and
-     * class variables.
-     * @param node Node to check
-     * @return Is it a Javadoc-required entity?
-     */
     private static boolean isField(final DetailAST node) {
         boolean yes = true;
         if (TokenTypes.VARIABLE_DEF == node.getType()) {

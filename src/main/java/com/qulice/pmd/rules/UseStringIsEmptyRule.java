@@ -47,14 +47,6 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
         return data;
     }
 
-    /**
-     * Is this an {@code isEmpty()}-equivalent comparison, assuming the
-     * {@code length()} call is the left operand and the literal is the right?
-     * @param operator The comparison operator
-     * @param length The candidate {@code String.length()} call
-     * @param literal The candidate numeric literal
-     * @return True if the comparison can be rewritten with {@code isEmpty()}
-     */
     private static boolean isEmptyEquivalent(
         final BinaryOp operator,
         final ASTExpression length,
@@ -63,14 +55,6 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
         return isStringLength(length) && isWhitelisted(operator, literal);
     }
 
-    /**
-     * Is the pair of operator and literal one of the six allowed
-     * {@code isEmpty()} equivalents ({@code == 0}, {@code != 0}, {@code > 0},
-     * {@code <= 0}, {@code < 1}, {@code >= 1})?
-     * @param operator The comparison operator
-     * @param literal The candidate numeric literal
-     * @return True if the pairing matches the whitelist
-     */
     private static boolean isWhitelisted(
         final BinaryOp operator,
         final ASTExpression literal
@@ -87,12 +71,6 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
         return result;
     }
 
-    /**
-     * Mirror an operator so a {@code literal OP length()} comparison can be
-     * evaluated as if {@code length()} were on the left.
-     * @param operator The operator as written
-     * @return The operator with its operands swapped
-     */
     private static BinaryOp mirror(final BinaryOp operator) {
         return switch (operator) {
             case GT -> BinaryOp.LT;
@@ -103,12 +81,6 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
         };
     }
 
-    /**
-     * Is the expression a no-argument {@code length()} call on a
-     * {@link String}?
-     * @param expr The expression to check
-     * @return True if it is a {@code String.length()} call
-     */
     private static boolean isStringLength(final ASTExpression expr) {
         boolean result = false;
         if (expr instanceof ASTMethodCall call && call.getQualifier() != null) {
@@ -119,11 +91,6 @@ public final class UseStringIsEmptyRule extends AbstractJavaRulechainRule {
         return result;
     }
 
-    /**
-     * Checks if the expression is of {@link String} type.
-     * @param expr The expression to check
-     * @return True if expression has {@link String} type
-     */
     private static boolean isStringExpression(final ASTExpression expr) {
         final JTypeMirror type = expr.getTypeMirror();
         return type.isClassOrInterface()

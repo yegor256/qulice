@@ -84,12 +84,6 @@ public final class UnknownSuppressionCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * How many lines of the comment precede this position?
-     * @param text Text of the comment
-     * @param position Position of the suppression inside the text
-     * @return Number of line breaks before the position
-     */
     private static int breaks(final String text, final int position) {
         int count = 0;
         for (int idx = 0; idx < position; ++idx) {

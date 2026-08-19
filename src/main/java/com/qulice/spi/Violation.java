@@ -136,13 +136,6 @@ public interface Violation extends Comparable<Violation> {
             return Default.ORDER.compare(this, other);
         }
 
-        /**
-         * Numeric line number, or {@link Integer#MAX_VALUE} when the
-         * field cannot be parsed as a single integer (e.g. a range like
-         * {@code "10-12"}). Numeric ordering keeps line 9 before line 42.
-         * @param violation The violation to inspect
-         * @return Parsed line number, or {@code MAX_VALUE} as a fallback
-         */
         private static int lineNumber(final Violation violation) {
             int parsed;
             try {

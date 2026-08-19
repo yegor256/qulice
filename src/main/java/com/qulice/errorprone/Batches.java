@@ -112,20 +112,6 @@ public final class Batches {
         return batches;
     }
 
-    /**
-     * The name of the batch of the given source root.
-     *
-     * <p>Batch names end up inside file names, so the path of the root is
-     * reduced to letters and digits. The position of the root among the
-     * ones the project declares is prepended, because that reduction is not
-     * injective — {@code src/mock-java} and {@code src/mock/java} share a
-     * shape — and two roots sharing a name would land in one batch, which
-     * is the very thing this split prevents.</p>
-     *
-     * @param root The source root
-     * @param index Its position among the roots, one-based
-     * @return Name of the batch, safe to use in a file name
-     */
     private String label(final File root, final int index) {
         return String.format(
             "test-%d-%s",
@@ -138,19 +124,6 @@ public final class Batches {
         );
     }
 
-    /**
-     * The batch a source file belongs to: the root it sits under, or the
-     * main batch when it sits under none of them.
-     *
-     * <p>The longest matching root wins, so that a root nested inside
-     * another one — {@code src/test} and {@code src/test/java} both
-     * declared, say — claims its own files instead of leaving them to the
-     * root above.</p>
-     *
-     * @param path Normalized absolute path of the file
-     * @param roots Batch name by root path, each ending with a slash
-     * @return Name of the batch
-     */
     private static String owner(final String path,
         final Map<String, String> roots) {
         String name = Batches.MAIN;
@@ -165,14 +138,6 @@ public final class Batches {
         return name;
     }
 
-    /**
-     * The absolute path of a file, in one shape: forward slashes, no
-     * {@code .} or {@code ..} steps. Source roots arrive from the POM
-     * while sources arrive from walking the disk, so only a normalized
-     * form makes the two comparable as text.
-     * @param file File to render
-     * @return Its absolute path
-     */
     private static String slashed(final File file) {
         final String absolute = file.getAbsolutePath();
         String path = FilenameUtils.normalize(absolute, true);

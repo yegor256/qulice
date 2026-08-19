@@ -154,14 +154,6 @@ final class CheckstyleTextFileTest {
         );
     }
 
-    /**
-     * Runs Checkstyle validation over a file whose content is supplied
-     * in-place (as opposed to loaded from a resource).
-     * @param file Name of the file to check
-     * @param content Bytes to write as the file content
-     * @return Violations reported by the validator
-     * @throws IOException If some IO problem
-     */
     private Collection<Violation> runValidationWithContent(final String file,
         final String content) throws IOException {
         final Environment.Mock mock = new Environment.Mock();

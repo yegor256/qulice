@@ -52,22 +52,11 @@ public final class UnitTestShouldIncludeAssertRule
         return data;
     }
 
-    /**
-     * Does this call look like a test assertion?
-     * @param call The method call to inspect
-     * @return True if it is a recognised assertion
-     */
     private static boolean isAssertion(final ASTMethodCall call) {
         return TestFrameworksUtil.isProbableAssertCall(call)
             || UnitTestShouldIncludeAssertRule.isAffirmCall(call);
     }
 
-    /**
-     * Is this a no-argument {@code affirm()} call on an {@code Assertion}
-     * object, as used by cactoos-matchers?
-     * @param call The method call to inspect
-     * @return True if it is a cactoos-matchers assertion
-     */
     private static boolean isAffirmCall(final ASTMethodCall call) {
         final ASTExpression qualifier = call.getQualifier();
         return "affirm".equals(call.getMethodName())
@@ -76,14 +65,6 @@ public final class UnitTestShouldIncludeAssertRule
             && UnitTestShouldIncludeAssertRule.isAssertion(qualifier);
     }
 
-    /**
-     * Is the given expression of a type named {@code Assertion}? The
-     * comparison is by simple name so that it still holds when
-     * cactoos-matchers is absent from the classpath and the type therefore
-     * cannot be fully resolved.
-     * @param expr The expression to inspect
-     * @return True if its type's simple name is {@code Assertion}
-     */
     private static boolean isAssertion(final ASTExpression expr) {
         final JTypeDeclSymbol symbol = expr.getTypeMirror().getSymbol();
         return symbol != null

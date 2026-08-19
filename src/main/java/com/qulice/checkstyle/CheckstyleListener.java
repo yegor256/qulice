@@ -110,15 +110,6 @@ final class CheckstyleListener implements AuditListener {
         return Collections.unmodifiableList(this.started);
     }
 
-    /**
-     * Suppress {@code JavadocPackage} on {@code src/test/java} files when the
-     * parallel {@code src/main/java} package already declares
-     * {@code package-info.java}. See <a
-     * href="https://github.com/yegor256/qulice/issues/865">#865</a>.
-     * @param event The audit event being reported
-     * @param path Project-relative path of the file under audit
-     * @return TRUE if the event should be discarded
-     */
     private boolean skipJavadocPackage(final AuditEvent event, final String path) {
         final String marker = "src/test/java/";
         final String unix = path.replace(File.separatorChar, '/');

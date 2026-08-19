@@ -73,12 +73,6 @@ public final class IfThenThrowElseCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Locates the statement or block that forms the {@code then} branch
-     * of the given {@code if}.
-     * @param ast The {@code LITERAL_IF} node
-     * @return The first statement inside the {@code then} branch
-     */
     private static DetailAST thenBranch(final DetailAST ast) {
         final DetailAST rparen = ast.findFirstToken(TokenTypes.RPAREN);
         DetailAST result = null;
@@ -88,12 +82,6 @@ public final class IfThenThrowElseCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Tells whether control flow exits the given node through an
-     * unconditional {@code throw}.
-     * @param node The node to inspect
-     * @return True when the last statement is {@code throw}
-     */
     private static boolean alwaysThrows(final DetailAST node) {
         final boolean result;
         if (node == null) {
@@ -108,12 +96,6 @@ public final class IfThenThrowElseCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Checks whether the last meaningful statement inside a
-     * {@code SLIST} is a {@code throw}.
-     * @param slist The {@code SLIST} node
-     * @return True when the last statement is {@code throw}
-     */
     private static boolean endsWithThrow(final DetailAST slist) {
         DetailAST last = slist.getLastChild();
         while (last != null && last.getType() == TokenTypes.RCURLY) {

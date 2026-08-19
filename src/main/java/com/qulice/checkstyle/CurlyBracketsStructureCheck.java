@@ -67,10 +67,6 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks params statement to satisfy the rule.
-     * @param node Tree node, containing containing array init statement
-     */
     private void checkParams(final DetailAST node) {
         final DetailAST closing = node.findFirstToken(TokenTypes.RCURLY);
         if (closing != null) {
@@ -78,12 +74,6 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks params statement to satisfy the rule.
-     * @param node Tree node, containing array init statement
-     * @param start First line
-     * @param end Final line
-     */
     private void checkLines(final DetailAST node, final int start,
         final int end) {
         if (start != end) {
@@ -98,12 +88,6 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks that all EXPR nodes satisfy the rule.
-     * @param exprs Iterable of EXPR nodes
-     * @param start First line of ARRAY_INIT node
-     * @param end Final line ARRAY_INIT node (corresponds to RCURLY)
-     */
     private void checkExpressions(final Iterable<DetailAST> exprs,
         final int start,
         final int end
@@ -121,12 +105,6 @@ public final class CurlyBracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Search for all children of given type.
-     * @param base Parent node to start from
-     * @param type Node type
-     * @return Iterable
-     */
     private static Iterable<DetailAST> findAllChildren(final DetailAST base,
         final int type) {
         final List<DetailAST> children = new ArrayList<>(base.getChildCount());

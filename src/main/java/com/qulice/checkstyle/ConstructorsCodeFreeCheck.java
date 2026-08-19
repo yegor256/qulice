@@ -69,17 +69,6 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Is the constructor body a single delegating
-     * {@code this(...)} or {@code super(...)} call?
-     *
-     * <p>The body's {@code SLIST} consists of the delegate call node
-     * (a {@code CTOR_CALL} or {@code SUPER_CTOR_CALL}) followed by
-     * the closing {@code RCURLY}, with nothing else in between.
-     *
-     * @param body The {@code SLIST} of the constructor body
-     * @return True if the body delegates and does nothing else
-     */
     private static boolean isOnlyDelegate(final DetailAST body) {
         final DetailAST first = body.getFirstChild();
         final boolean delegate;
@@ -92,11 +81,6 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
         return delegate;
     }
 
-    /**
-     * Is this node a {@code this(...)} or {@code super(...)} call?
-     * @param node The node to inspect, may be {@code null}
-     * @return True if the node is a constructor delegate call
-     */
     private static boolean isDelegate(final DetailAST node) {
         final boolean delegate;
         if (node == null) {
@@ -108,12 +92,6 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
         return delegate;
     }
 
-    /**
-     * Reports every method call found anywhere in the given subtree,
-     * except those nested inside lambda bodies or anonymous class bodies,
-     * and except sanctioned defensive-copy idioms.
-     * @param node Root of the subtree to scan
-     */
     private void reportCalls(final DetailAST node) {
         for (DetailAST child = node.getFirstChild();
             child != null; child = child.getNextSibling()) {
@@ -132,16 +110,6 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Is this method call a defensive array-copy idiom?
-     *
-     * <p>Recognizes {@code Arrays.copyOf(...)} (static, any qualifier
-     * ending in {@code Arrays.copyOf}) and any zero-argument
-     * {@code <expr>.clone()} call.
-     *
-     * @param call A {@code METHOD_CALL} AST node
-     * @return True if the call is a sanctioned defensive copy
-     */
     private static boolean isDefensiveCopy(final DetailAST call) {
         final DetailAST dot = call.getFirstChild();
         final boolean defensive;
@@ -159,12 +127,6 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
         return defensive;
     }
 
-    /**
-     * Is this an {@code Arrays.copyOf(...)} call?
-     * @param dot The {@code DOT} node that is first child of {@code METHOD_CALL}
-     * @param method The {@code IDENT} that is the called method's name
-     * @return True if it matches the {@code Arrays.copyOf} idiom
-     */
     private static boolean isArraysCopyOf(
         final DetailAST dot, final DetailAST method
     ) {
@@ -174,12 +136,6 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
             && ConstructorsCodeFreeCheck.endsWith(qualifier, "Arrays");
     }
 
-    /**
-     * Is this a no-argument {@code <expr>.clone()} call?
-     * @param call The {@code METHOD_CALL} AST node
-     * @param method The {@code IDENT} that is the called method's name
-     * @return True if it matches the array-clone idiom
-     */
     private static boolean isArrayClone(
         final DetailAST call, final DetailAST method
     ) {
@@ -189,17 +145,6 @@ public final class ConstructorsCodeFreeCheck extends AbstractCheck {
             && elist.getFirstChild() == null;
     }
 
-    /**
-     * Does the qualifier expression end in the given identifier?
-     *
-     * <p>Handles a bare {@code IDENT} (e.g. {@code Arrays}) and a
-     * dotted chain (e.g. {@code java.util.Arrays}), where the final
-     * segment of the chain is the identifier we look for.
-     *
-     * @param node The qualifier AST node
-     * @param name The expected last identifier
-     * @return True if the qualifier's last segment matches
-     */
     private static boolean endsWith(final DetailAST node, final String name) {
         final boolean match;
         if (node.getType() == TokenTypes.IDENT) {

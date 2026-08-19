@@ -80,10 +80,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks params statement to satisfy the rule.
-     * @param node Tree node, containing method call statement
-     */
     private void checkParams(final DetailAST node) {
         final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
         if (closing != null) {
@@ -91,12 +87,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks params statement to satisfy the rule.
-     * @param node Tree node, containing method call statement
-     * @param start First line
-     * @param end Final line
-     */
     private void checkLines(final DetailAST node, final int start,
         final int end) {
         if (start != end) {
@@ -109,14 +99,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Returns the line number of the first actual token inside the
-     * expression list. ELIST itself reports {@code lparen + 1} regardless
-     * of where the first parameter actually is, so we descend to the
-     * leftmost leaf to find the real position.
-     * @param elist Tree node, containing the expression list
-     * @return Line number of the first parameter token
-     */
     private static int firstParamLine(final DetailAST elist) {
         DetailAST leaf = elist;
         while (leaf.getFirstChild() != null) {
@@ -131,11 +113,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         return line;
     }
 
-    /**
-     * Checks expression list if closing bracket is on new line.
-     * @param elist Tree node, containing expression list
-     * @param end Final line
-     */
     private void checkExpressionList(final DetailAST elist, final int end) {
         if (elist.getChildCount() > 0) {
             DetailAST last = elist.getLastChild();
@@ -149,10 +126,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks annotation with multi-line parameter list.
-     * @param node Tree node, containing the ANNOTATION
-     */
     private void checkAnnotation(final DetailAST node) {
         final DetailAST opening = node.findFirstToken(TokenTypes.LPAREN);
         final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
@@ -171,13 +144,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Returns the closing curly of an annotation array initializer when
-     * the annotation contains exactly one such child, otherwise null.
-     * @param first First child after the LPAREN
-     * @param last Last child before the RPAREN
-     * @return RCURLY token or null
-     */
     private static DetailAST arrayInitRcurly(final DetailAST first,
         final DetailAST last) {
         DetailAST rcurly = null;
@@ -192,13 +158,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         return rcurly;
     }
 
-    /**
-     * Logs at the first/last content of a multi-line annotation array
-     * initializer. The empty initializer {@code {}} has no content
-     * before the closing curly, so only the end is checked.
-     * @param array The ANNOTATION_ARRAY_INIT token
-     * @param rcurly The closing RCURLY of that initializer
-     */
     private void checkArrayBounds(final DetailAST array,
         final DetailAST rcurly) {
         final DetailAST inner = array.getFirstChild();
@@ -208,12 +167,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         this.checkBoundsEnd(rcurly.getPreviousSibling(), rcurly);
     }
 
-    /**
-     * Logs a violation when the first content sits on the same line as
-     * the opening bracket.
-     * @param first First content token (may be null)
-     * @param start Opening bracket token
-     */
     private void checkBoundsStart(final DetailAST first,
         final DetailAST start) {
         if (first != null && first.getLineNo() == start.getLineNo()) {
@@ -224,12 +177,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Logs a violation when the last content sits on the same line as
-     * the closing bracket.
-     * @param last Last content token (may be null)
-     * @param end Closing bracket token
-     */
     private void checkBoundsEnd(final DetailAST last, final DetailAST end) {
         DetailAST leaf = last;
         while (leaf != null && leaf.getChildCount() > 0) {
@@ -243,10 +190,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks resources of try-with-resources statement.
-     * @param node Tree node, containing the RESOURCE_SPECIFICATION
-     */
     private void checkResources(final DetailAST node) {
         final DetailAST opening = node.findFirstToken(TokenTypes.LPAREN);
         final DetailAST closing = node.findFirstToken(TokenTypes.RPAREN);
@@ -256,12 +199,6 @@ public final class BracketsStructureCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks RESOURCES body inside a multiline try-with-resources.
-     * @param node Tree node with the RESOURCE_SPECIFICATION
-     * @param opening The opening LPAREN token
-     * @param closing The closing RPAREN token
-     */
     private void checkResourceBody(final DetailAST node,
         final DetailAST opening, final DetailAST closing) {
         final DetailAST resources = node.findFirstToken(TokenTypes.RESOURCES);

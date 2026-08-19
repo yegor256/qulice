@@ -86,12 +86,6 @@ public final class JavadocNoIndentCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Check the body of the Javadoc for extra indentation.
-     * @param lines Code of the whole class
-     * @param start First line of the Javadoc body
-     * @param end Last line of the Javadoc body
-     */
     private void check(final String[] lines, final int start, final int end) {
         boolean pre = false;
         boolean tagged = false;
@@ -112,23 +106,11 @@ public final class JavadocNoIndentCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Is this line inside a region where indentation is preserved.
-     * @param pre Are we inside a {@code <pre>} block
-     * @param depth Current brace depth of an open {@code @snippet} block
-     * @param line The line being examined
-     * @return True when the line's indentation must be left alone
-     */
     private static boolean region(final boolean pre, final int depth,
         final String line) {
         return pre || depth > 0 || line.contains("{@snippet");
     }
 
-    /**
-     * The text that follows the leading asterisk of a Javadoc line.
-     * @param line The Javadoc line
-     * @return Everything after the first asterisk, or empty if there is none
-     */
     private static String afterAsterisk(final String line) {
         final int star = line.indexOf('*');
         final String result;
@@ -140,11 +122,6 @@ public final class JavadocNoIndentCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Does the body start with more than one space before its first word.
-     * @param body The text after the leading asterisk
-     * @return True when the body is over-indented
-     */
     private static boolean overIndented(final String body) {
         int spaces = 0;
         while (spaces < body.length() && body.charAt(spaces) == ' ') {
@@ -153,12 +130,6 @@ public final class JavadocNoIndentCheck extends AbstractCheck {
         return spaces > 1 && spaces < body.length();
     }
 
-    /**
-     * Compute the {@code <pre>} flag for the next line.
-     * @param pre Whether the current line is inside a {@code <pre>} block
-     * @param line The current line
-     * @return Whether the next line is inside a {@code <pre>} block
-     */
     private static boolean nextPre(final boolean pre, final String line) {
         final String lower = line.toLowerCase(Locale.ENGLISH);
         final boolean result;
@@ -170,12 +141,6 @@ public final class JavadocNoIndentCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Compute the {@code @snippet} brace depth after this line.
-     * @param depth The brace depth before this line
-     * @param line The current line
-     * @return The brace depth after this line
-     */
     private static int nextDepth(final int depth, final String line) {
         final int result;
         if (depth > 0) {
@@ -193,11 +158,6 @@ public final class JavadocNoIndentCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Net number of opening minus closing braces in the text.
-     * @param text The text to scan
-     * @return The brace balance
-     */
     private static int braces(final String text) {
         int delta = 0;
         for (int pos = 0; pos < text.length(); pos += 1) {
@@ -211,22 +171,11 @@ public final class JavadocNoIndentCheck extends AbstractCheck {
         return delta;
     }
 
-    /**
-     * Check if node has Javadoc.
-     * @param node Node to be checked for Javadoc
-     * @param start Line number where comment starts
-     * @return True when node has Javadoc
-     */
     private static boolean isNodeHavingJavadoc(final DetailAST node,
         final int start) {
         return start > JavadocNoIndentCheck.getLineNoOfPreviousNode(node);
     }
 
-    /**
-     * Returns line number of previous node.
-     * @param node Current node
-     * @return Line number of previous node
-     */
     private static int getLineNoOfPreviousNode(final DetailAST node) {
         int start = 0;
         final DetailAST previous = node.getPreviousSibling();
@@ -236,22 +185,10 @@ public final class JavadocNoIndentCheck extends AbstractCheck {
         return start;
     }
 
-    /**
-     * Find Javadoc starting comment.
-     * @param lines List of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found starting comment or -1 otherwise
-     */
     private static int findCommentStart(final String[] lines, final int start) {
         return JavadocNoIndentCheck.findTrimmedTextUp(lines, start, "/**");
     }
 
-    /**
-     * Find Javadoc ending comment.
-     * @param lines Array of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found ending comment, or -1 if it wasn't found
-     */
     private static int findCommentEnd(final String[] lines, final int start) {
         int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {
@@ -264,13 +201,6 @@ public final class JavadocNoIndentCheck extends AbstractCheck {
         return found;
     }
 
-    /**
-     * Find a text in lines, by going up.
-     * @param lines Array of lines to check
-     * @param start Start searching from this line number
-     * @param text Text to find
-     * @return Line number with found text, or -1 if it wasn't found
-     */
     private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
         int found = -1;

@@ -82,11 +82,6 @@ final class SuppressionTag {
         return events.stream().noneMatch(this::covers);
     }
 
-    /**
-     * Does this suppression cover this event?
-     * @param event Event to check
-     * @return True if the event is of the check and in the range
-     */
     private boolean covers(final AuditEvent event) {
         return event.getSourceName().contains(this.check)
             && event.getLine() >= this.first

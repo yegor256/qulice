@@ -96,11 +96,6 @@ final class DependenciesValidator implements MavenValidator {
         Logger.info(this, "No dependency problems found");
     }
 
-    /**
-     * Analyze the project.
-     * @param env The environment
-     * @return The result of analysis
-     */
     private static ProjectDependencyAnalysis analyze(
         final MavenEnvironment env) {
         try {
@@ -115,11 +110,6 @@ final class DependenciesValidator implements MavenValidator {
         }
     }
 
-    /**
-     * Find unused artifacts.
-     * @param env Environment
-     * @return Collection of unused artifacts
-     */
     private static Collection<String> used(final MavenEnvironment env) {
         final ProjectDependencyAnalysis analysis =
             DependenciesValidator.analyze(env);
@@ -130,19 +120,6 @@ final class DependenciesValidator implements MavenValidator {
         return used;
     }
 
-    /**
-     * Find unused artifacts.
-     *
-     * <p>Bytecode analysis cannot detect dependencies used only through
-     * annotations with source retention or through inlined compile-time
-     * constants. To avoid such false positives, artifacts flagged as
-     * unused by {@link ProjectDependencyAnalyzer} are cross-checked
-     * against {@code import} statements in the project's source files;
-     * any artifact referenced by an import is treated as used.</p>
-     *
-     * @param env Environment
-     * @return Collection of unused artifacts
-     */
     private static Collection<String> unused(final MavenEnvironment env) {
         final ProjectDependencyAnalysis analysis =
             DependenciesValidator.analyze(env);
@@ -166,12 +143,6 @@ final class DependenciesValidator implements MavenValidator {
         return unused;
     }
 
-    /**
-     * Collect fully-qualified imports from all Java source files
-     * in the project's compile source roots.
-     * @param env Environment
-     * @return Set of imported class names and wildcard package imports
-     */
     private static Set<String> imports(final MavenEnvironment env) {
         final Set<String> imports = new HashSet<>();
         final Collection<String> roots =
@@ -187,11 +158,6 @@ final class DependenciesValidator implements MavenValidator {
         return imports;
     }
 
-    /**
-     * Walk the given directory and collect imports from every Java file.
-     * @param dir Source root directory
-     * @param acc Accumulator to populate with imports
-     */
     private static void scanJavaFiles(final Path dir, final Set<String> acc) {
         try (Stream<Path> walk = Files.walk(dir)) {
             walk
@@ -204,12 +170,6 @@ final class DependenciesValidator implements MavenValidator {
         }
     }
 
-    /**
-     * Read import statements from a single Java source file into the
-     * given accumulator.
-     * @param file Java source file
-     * @param acc Accumulator to populate
-     */
     private static void readImports(final Path file, final Set<String> acc) {
         try {
             for (final String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
@@ -241,12 +201,6 @@ final class DependenciesValidator implements MavenValidator {
         }
     }
 
-    /**
-     * Is the given artifact referenced by any of the collected imports?
-     * @param imports Imports collected from project sources
-     * @param artifact Artifact whose JAR is inspected
-     * @return TRUE if at least one class from the JAR is imported
-     */
     private static boolean imported(final Set<String> imports,
         final Artifact artifact) {
         final File file = artifact.getFile();
@@ -270,14 +224,6 @@ final class DependenciesValidator implements MavenValidator {
         return found;
     }
 
-    /**
-     * Does the given JAR entry name represent a class imported by the
-     * project sources?
-     * @param imports Imports collected from project sources
-     * @param entry JAR entry name (e.g. "com/example/Foo.class")
-     * @return TRUE if the entry's fully-qualified class name or its
-     *  package is imported
-     */
     private static boolean matches(final Set<String> imports,
         final String entry) {
         boolean match = false;
