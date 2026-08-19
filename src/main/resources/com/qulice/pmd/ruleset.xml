@@ -394,6 +394,22 @@
     Downstream: https://github.com/yegor256/qulice/issues/1609
     -->
     <exclude name="ExceptionAsFlowControl"/>
+    <!--
+    ExcessiveParameterList is excluded from the bulk import here and
+    re-enabled below with a violationSuppressXPath that ignores
+    constructors. The rule only special-cases private constructors, so a
+    public value object with many immutable attributes gets blamed for a
+    parameter count that tracks its field count, not its complexity; the
+    rule stays active for methods, where a long parameter list is a
+    design smell worth reporting.
+    Downstream: https://github.com/yegor256/qulice/issues/1763
+    -->
+    <exclude name="ExcessiveParameterList"/>
+  </rule>
+  <rule ref="category/java/design.xml/ExcessiveParameterList">
+    <properties>
+      <property name="violationSuppressXPath" value=".[parent::ConstructorDeclaration]"/>
+    </properties>
   </rule>
   <rule ref="category/java/documentation.xml">
     <!--
