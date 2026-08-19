@@ -74,7 +74,7 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         if (ast.getType() == TokenTypes.CLASS_DEF) {
             this.classes.push(
-                new ProhibitNonFinalClassesCheck.ClassDesc(
+                new ClassDesc(
                     this.qualifiedClassName(ast),
                     modifiers.findFirstToken(TokenTypes.FINAL) != null,
                     modifiers.findFirstToken(TokenTypes.ABSTRACT) != null
@@ -171,66 +171,5 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
                 ProhibitNonFinalClassesCheck.PACKAGE_SEPARATOR
             ) + 1
         );
-    }
-
-    /**
-     * Maintains information about class' ctors.
-     * @since 0.1
-     */
-    private static final class ClassDesc {
-
-        /**
-         * Qualified class name(with package).
-         */
-        private final String qualified;
-
-        /**
-         * Is class declared as final.
-         */
-        private final boolean asfinal;
-
-        /**
-         * Is class declared as abstract.
-         */
-        private final boolean asabstract;
-
-        /**
-         * Create a new ClassDesc instance.
-         * @param qualified Qualified class name(with package)
-         * @param asfinal Indicates if the class declared as final
-         * @param asabstract Indicates if the class declared as
-         *  abstract
-         */
-        ClassDesc(final String qualified, final boolean asfinal,
-            final boolean asabstract
-        ) {
-            this.qualified = qualified;
-            this.asfinal = asfinal;
-            this.asabstract = asabstract;
-        }
-
-        /**
-         * Get qualified class name.
-         * @return Qualified class name
-         */
-        private String getQualified() {
-            return this.qualified;
-        }
-
-        /**
-         * Is class declared as final.
-         * @return True if class is declared as final
-         */
-        private boolean isAsfinal() {
-            return this.asfinal;
-        }
-
-        /**
-         * Is class declared as abstract.
-         * @return True if class is declared as final
-         */
-        private boolean isDeclaredAsAbstract() {
-            return this.asabstract;
-        }
     }
 }

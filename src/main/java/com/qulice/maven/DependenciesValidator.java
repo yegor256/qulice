@@ -4,7 +4,6 @@
  */
 package com.qulice.maven;
 
-import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.jcabi.log.Logger;
@@ -60,7 +59,7 @@ final class DependenciesValidator implements MavenValidator {
         }
         final Collection<String> unused = Collections2.filter(
             DependenciesValidator.unused(env),
-            Predicates.not(new DependenciesValidator.ExcludePredicate(excludes))
+            Predicates.not(new ExcludePredicate(excludes))
         );
         if (!unused.isEmpty()) {
             Logger.warn(
@@ -72,7 +71,7 @@ final class DependenciesValidator implements MavenValidator {
         }
         final Collection<String> used = Collections2.filter(
             DependenciesValidator.used(env),
-            Predicates.not(new DependenciesValidator.ExcludePredicate(excludes))
+            Predicates.not(new ExcludePredicate(excludes))
         );
         if (!used.isEmpty()) {
             Logger.warn(
@@ -295,37 +294,5 @@ final class DependenciesValidator implements MavenValidator {
             match = direct || wildcard;
         }
         return match;
-    }
-
-    /**
-     * Predicate for excluded dependencies.
-     * @since 0.1
-     */
-    private static class ExcludePredicate implements Predicate<String> {
-
-        /**
-         * List of excludes.
-         */
-        private final Collection<String> excludes;
-
-        /**
-         * Constructor.
-         * @param excludes List of excludes
-         */
-        ExcludePredicate(final Collection<String> excludes) {
-            this.excludes = excludes;
-        }
-
-        @Override
-        public boolean apply(final String name) {
-            boolean ignore = false;
-            for (final String exclude : this.excludes) {
-                if (name.startsWith(exclude)) {
-                    ignore = true;
-                    break;
-                }
-            }
-            return ignore;
-        }
     }
 }

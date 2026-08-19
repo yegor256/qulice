@@ -49,7 +49,7 @@ public final class ValidLambdaIndentation {
      * @param <T> Type
      * @since 1.0
      */
-    private static final class Boxed<T> {
+    private final class Boxed<T> {
 
         /**
          * Inner.
