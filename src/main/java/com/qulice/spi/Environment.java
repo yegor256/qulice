@@ -343,10 +343,6 @@ public interface Environment {
             return StandardCharsets.UTF_8;
         }
 
-        /**
-         * Creates a fresh basedir in a temporary directory.
-         * @return The directory
-         */
         private static File temporary() {
             try {
                 final File temp = Files.createTempDirectory("mock-qulice").toFile();
@@ -363,11 +359,6 @@ public interface Environment {
             }
         }
 
-        /**
-         * Creates the directory of compiled classes for the given basedir.
-         * @param base The basedir
-         * @return Paths to put on the classpath
-         */
         private static Set<String> outputs(final File base) {
             final File out = new File(base, "target/classes");
             if (!out.mkdirs() && !out.isDirectory()) {

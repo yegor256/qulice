@@ -149,13 +149,6 @@ final class ValidationExclusionTest {
         );
     }
 
-    /**
-     * Create a temporary Java file from resource.
-     * @param dir Directory to create the file in
-     * @param resource Resource to read the content from
-     * @return Created file with content from resource
-     * @throws Exception If something goes wrong
-     */
     private static File java(final Path dir, final String resource) throws Exception {
         final File file = File.createTempFile(
             "Test", ValidationExclusionTest.JAVA_EXT, dir.toFile()

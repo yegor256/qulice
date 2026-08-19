@@ -442,12 +442,6 @@ final class ErrorProneValidatorTest {
         );
     }
 
-    /**
-     * A class that every Java compiler accepts, no matter how old the
-     * source level it is pinned to.
-     * @param name Name of the class
-     * @return Its source code
-     */
     private static String ancient(final String name) {
         return String.join(
             System.lineSeparator(),
@@ -462,12 +456,6 @@ final class ErrorProneValidatorTest {
         );
     }
 
-    /**
-     * A class that only a Java 15 or newer compiler accepts, since it
-     * holds a text block.
-     * @param name Name of the class
-     * @return Its source code
-     */
     private static String modern(final String name) {
         return String.join(
             System.lineSeparator(),

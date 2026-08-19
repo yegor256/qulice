@@ -90,14 +90,6 @@ public final class ProhibitFieldsInTestClassesCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Is this VARIABLE_DEF an instance field of the top-level type
-     * that is neither static nor annotated? Fields of nested or
-     * anonymous types are not considered, because they belong to a
-     * helper rather than to the test class itself.
-     * @param node Variable definition node
-     * @return True if the field should be flagged
-     */
     private static boolean isUnannotatedInstanceField(final DetailAST node) {
         boolean flag = false;
         final DetailAST parent = node.getParent();
@@ -110,25 +102,12 @@ public final class ProhibitFieldsInTestClassesCheck extends AbstractCheck {
         return flag;
     }
 
-    /**
-     * Is this AST node a type declaration that sits at the top level
-     * of the compilation unit (i.e. its parent is not an
-     * {@code OBJBLOCK} of an enclosing type, and it is not the body
-     * of an anonymous inner class spawned by {@code LITERAL_NEW})?
-     * @param type Candidate type declaration node
-     * @return True if it is the file's top-level type
-     */
     private static boolean isTopLevelType(final DetailAST type) {
         return type != null
             && ProhibitFieldsInTestClassesCheck.isTypeDef(type)
             && ProhibitFieldsInTestClassesCheck.hasTopLevelParent(type);
     }
 
-    /**
-     * Is this AST node a class, enum, record, or interface declaration?
-     * @param type Candidate node
-     * @return True if it is one of the four type-defining tokens
-     */
     private static boolean isTypeDef(final DetailAST type) {
         final int kind = type.getType();
         return kind == TokenTypes.CLASS_DEF
@@ -137,14 +116,6 @@ public final class ProhibitFieldsInTestClassesCheck extends AbstractCheck {
             || kind == TokenTypes.INTERFACE_DEF;
     }
 
-    /**
-     * Is the parent of this type node such that the type is at the top
-     * level of the compilation unit, i.e. not nested inside an
-     * enclosing type's {@code OBJBLOCK} and not the body of an
-     * anonymous class created via {@code LITERAL_NEW}?
-     * @param type Type declaration node
-     * @return True if the parent indicates a top-level position
-     */
     private static boolean hasTopLevelParent(final DetailAST type) {
         final DetailAST parent = type.getParent();
         return parent != null

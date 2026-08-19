@@ -129,11 +129,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
         return filtered;
     }
 
-    /**
-     * Run them all.
-     * @return What was checked, for the final log line
-     * @throws ValidationException If any of them fail
-     */
     @SuppressWarnings("PMD.CognitiveComplexity")
     private String run() throws ValidationException {
         final List<Violation> results = new ArrayList<>(0);
@@ -200,11 +195,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
         return new Summary(files, resources).toString();
     }
 
-    /**
-     * Provider of validators, the one that was set or the default one.
-     * @param env Maven environment for the default provider
-     * @return The provider
-     */
     private ValidatorsProvider validators(final MavenEnvironment env) {
         final ValidatorsProvider prov;
         if (this.provider == null) {
@@ -215,13 +205,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
         return prov;
     }
 
-    /**
-     * Submit validators to executor.
-     * @param env Maven environment
-     * @param files List of files to validate
-     * @param validators Validators to use
-     * @return List of futures
-     */
     private Collection<Future<Collection<Violation>>> submit(
         final MavenEnvironment env, final Collection<File> files,
         final Collection<ResourceValidator> validators
@@ -238,10 +221,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
         return futures;
     }
 
-    /**
-     * Timeout value for timeout.
-     * @return Timeout value
-     */
     private long timeoutValue() {
         final String clear = this.clearTimeout();
         final long res;
@@ -255,10 +234,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
         return res;
     }
 
-    /**
-     * Time unit for timeout.
-     * @return Time unit
-     */
     private TimeUnit timeoutUnits() {
         final String clear = this.clearTimeout();
         final TimeUnit unit;
@@ -274,10 +249,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
         return unit;
     }
 
-    /**
-     * Clear timeout string.
-     * @return Cleaned timeout
-     */
     private String clearTimeout() {
         final String clear;
         if (this.timeout == null) {

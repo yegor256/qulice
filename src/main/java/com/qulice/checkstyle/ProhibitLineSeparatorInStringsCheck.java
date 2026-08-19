@@ -72,13 +72,6 @@ public final class ProhibitLineSeparatorInStringsCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks if the literal source text contains an unescaped
-     * {@code \n} or {@code \r} escape sequence.
-     * @param text Raw source text of the string literal, including quotes
-     *  (e.g. {@code "\n"} or {@code "a\\nb"})
-     * @return True if the literal embeds a line separator escape
-     */
     private static boolean hasLineSeparator(final String text) {
         final Matcher matcher =
             ProhibitLineSeparatorInStringsCheck.ESCAPE.matcher(text);

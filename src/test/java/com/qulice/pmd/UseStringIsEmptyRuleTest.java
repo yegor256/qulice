@@ -86,12 +86,6 @@ final class UseStringIsEmptyRuleTest {
         ).assertOk();
     }
 
-    /**
-     * Constructs StringContains matcher for error message.
-     * @param file File name
-     * @param line Line number
-     * @return StringContains matcher
-     */
     private static Matcher<String> containsMatcher(
         final String file, final int line
     ) {

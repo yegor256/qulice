@@ -68,22 +68,11 @@ final class JnaBinding {
         return answer;
     }
 
-    /**
-     * Does this type declare JNA's interface as its supertype?
-     * @param type The CLASS_DEF or INTERFACE_DEF node
-     * @return TRUE if it does
-     */
     private static boolean mapped(final DetailAST type) {
         return JnaBinding.declares(type, TokenTypes.EXTENDS_CLAUSE)
             || JnaBinding.declares(type, TokenTypes.IMPLEMENTS_CLAUSE);
     }
 
-    /**
-     * Does this clause of the type name JNA's interface?
-     * @param type The CLASS_DEF or INTERFACE_DEF node
-     * @param clause The token of the clause to look into
-     * @return TRUE if it does
-     */
     private static boolean declares(final DetailAST type, final int clause) {
         final DetailAST names = type.findFirstToken(clause);
         final boolean answer;
@@ -96,11 +85,6 @@ final class JnaBinding {
         return answer;
     }
 
-    /**
-     * Is this name the one of a JNA interface?
-     * @param name The IDENT or DOT node of a supertype
-     * @return TRUE if it is
-     */
     private static boolean library(final DetailAST name) {
         final String text = FullIdent.createFullIdent(name).getText();
         return JnaBinding.LIBRARIES.stream().anyMatch(
@@ -110,12 +94,6 @@ final class JnaBinding {
         );
     }
 
-    /**
-     * Does the file that holds this node import this interface?
-     * @param node The node to start the walk from
-     * @param known Canonical name of the interface
-     * @return TRUE if it does
-     */
     private static boolean imported(final DetailAST node, final String known) {
         DetailAST root = node;
         while (root.getParent() != null) {
@@ -126,12 +104,6 @@ final class JnaBinding {
         );
     }
 
-    /**
-     * Does this node import this interface?
-     * @param node The node of a top-level declaration
-     * @param known Canonical name of the interface
-     * @return TRUE if it does
-     */
     private static boolean importing(final DetailAST node, final String known) {
         return node.getType() == TokenTypes.IMPORT
             && JnaBinding.brings(
@@ -139,31 +111,15 @@ final class JnaBinding {
             );
     }
 
-    /**
-     * Does this imported name bring this interface in?
-     * @param text The name of the import
-     * @param known Canonical name of the interface
-     * @return TRUE if it does
-     */
     private static boolean brings(final String text, final String known) {
         return known.equals(text)
             || String.format("%s.*", JnaBinding.pack(known)).equals(text);
     }
 
-    /**
-     * Simple name of this canonical name.
-     * @param known Canonical name of an interface
-     * @return The name without its package
-     */
     private static String simple(final String known) {
         return known.substring(known.lastIndexOf('.') + 1);
     }
 
-    /**
-     * Package of this canonical name.
-     * @param known Canonical name of an interface
-     * @return The name without its last part
-     */
     private static String pack(final String known) {
         return known.substring(0, known.lastIndexOf('.'));
     }

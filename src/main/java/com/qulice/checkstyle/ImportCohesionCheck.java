@@ -52,13 +52,6 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
         }
     }
 
-    /**
-     * Perform check for empty lines and comments inside imports.
-     * @param first Line number where import occurred first
-     * @param last Line number where import occurred first
-     * @param lines All file line by line
-     * @return True if check is failed
-     */
     private boolean check(final int first, final int last,
         final FileText lines
     ) {

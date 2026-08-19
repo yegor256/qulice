@@ -101,11 +101,6 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Get qualified class name from given class Ast.
-     * @param classast Class to get qualified class name
-     * @return Qualified class name of a class
-     */
     private String qualifiedClassName(final DetailAST classast) {
         String outer = null;
         if (!this.classes.isEmpty()) {
@@ -118,15 +113,6 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
         );
     }
 
-    /**
-     * Calculate qualified class name(package + class name) laying inside given
-     * outer class.
-     * @param pack Package name, empty string on default package
-     * @param outer Qualified name(package + class) of outer
-     *  class, null if doesn't exist
-     * @param name Class name
-     * @return Qualified class name(package + class name)
-     */
     private static String getQualifiedClassName(
         final String pack,
         final String outer,
@@ -158,11 +144,6 @@ public final class ProhibitNonFinalClassesCheck extends AbstractCheck {
         return qualified;
     }
 
-    /**
-     * Get class name from qualified name.
-     * @param qualified Qualified class name
-     * @return Class Name
-     */
     private static String getClassNameFromQualifiedName(
         final String qualified
     ) {

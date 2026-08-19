@@ -102,13 +102,6 @@ public final class JavadocTagsCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Find a text in lines, by going up.
-     * @param lines List of lines to check
-     * @param start Start searching from this line number
-     * @param text Text to find
-     * @return Line number with found text, or -1 if it wasn't found
-     */
     private static int findTrimmedTextUp(
         final String[] lines,
         final int start,
@@ -124,34 +117,14 @@ public final class JavadocTagsCheck extends AbstractCheck {
         return found;
     }
 
-    /**
-     * Find javadoc starting comment.
-     * @param lines List of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found starting comment or -1 otherwise
-     */
     private static int findCommentStart(final String[] lines, final int start) {
         return JavadocTagsCheck.findTrimmedTextUp(lines, start, "/**");
     }
 
-    /**
-     * Find javadoc ending comment.
-     * @param lines List of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found ending comment, or -1 if it wasn't found
-     */
     private static int findCommentEnd(final String[] lines, final int start) {
         return JavadocTagsCheck.findTrimmedTextUp(lines, start, "*/");
     }
 
-    /**
-     * Check if the tag text matches the format from pattern.
-     * @param lines List of all lines
-     * @param start Line number where AST starts
-     * @param cstart Line number where comment starts
-     * @param cend Line number where comment ends
-     * @param tag Name of the tag
-     */
     private void findProhibited(
         final String[] lines,
         final int start,
@@ -170,14 +143,6 @@ public final class JavadocTagsCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Find given tag in comment lines.
-     * @param lines Lines to search for the tag
-     * @param start Starting line number
-     * @param end Ending line number
-     * @param tag Name of the tag to look for
-     * @return Line number with found tag or -1 otherwise
-     */
     private List<Integer> findTagLineNum(
         final String[] lines,
         final int start,

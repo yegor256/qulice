@@ -311,20 +311,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return Charset.forName(this.charset);
     }
 
-    /**
-     * Collect source directories declared by the Maven project.
-     *
-     * <p>Uses compile and test source roots together with declared resources
-     * so that a project configuring {@code <sourceDirectory>} or
-     * {@code <testSourceDirectory>} in its POM is honored. Falls back to
-     * {@code src} under the basedir when the project exposes no directories,
-     * which preserves the historical behavior for minimal stubs. Roots that
-     * live under the project's build directory (e.g.
-     * {@code target/generated-sources/...}) are filtered out, since those
-     * are generated build outputs and not user-authored code (issue #1560).
-     *
-     * @return Absolute directories to scan for files
-     */
     private Collection<File> sources() {
         final Collection<File> dirs = new ArrayList<>(0);
         final Build build = this.iproject.getBuild();
@@ -341,11 +327,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return dirs;
     }
 
-    /**
-     * Resolve the project's build directory.
-     * @param build Build descriptor, may be null
-     * @return Canonical build directory, or null if not declared
-     */
     @Nullable
     private File buildDirectory(@Nullable final Build build) {
         File dir = null;
@@ -355,12 +336,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return dir;
     }
 
-    /**
-     * Add resolved roots to the given collection.
-     * @param dirs Collection to fill
-     * @param roots Source roots, may be null
-     * @param output Build output directory, may be null
-     */
     private void addRoots(final Collection<File> dirs,
         final List<String> roots, @Nullable final File output) {
         if (roots != null) {
@@ -379,12 +354,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         }
     }
 
-    /**
-     * Add resolved resource directories to the given collection.
-     * @param dirs Collection to fill
-     * @param resources Resources, may be null
-     * @param output Build output directory, may be null
-     */
     private void addResources(final Collection<File> dirs,
         final List<Resource> resources, @Nullable final File output) {
         if (resources != null) {
@@ -403,12 +372,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         }
     }
 
-    /**
-     * Check that the file does not live inside the given parent.
-     * @param file Candidate
-     * @param parent Possibly enclosing directory, may be null
-     * @return True when the file is outside the parent
-     */
     private static boolean outside(final File file,
         @Nullable final File parent) {
         boolean answer = true;
@@ -427,11 +390,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return answer;
     }
 
-    /**
-     * Resolve a directory path against the project basedir.
-     * @param path Absolute or relative path
-     * @return Absolute file
-     */
     private File resolve(final String path) {
         final File file = new File(path);
         final File resolved;

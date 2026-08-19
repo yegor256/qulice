@@ -72,10 +72,6 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks if class to be instantiated is nested and unqualified.
-     * @param expr EXPR LITERAL_NEW node that needs to be checked
-     */
     private void visitNewExpression(final DetailAST expr) {
         final DetailAST child = expr.getFirstChild();
         if (child != null
@@ -85,10 +81,6 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * If provided class is top-level, scans it for nested classes.
-     * @param node Class-like AST node
-     */
     private void scanForNestedClassesIfNecessary(final DetailAST node) {
         if (!this.root) {
             this.root = true;
@@ -96,10 +88,6 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Scans class for all nested sub-classes.
-     * @param node Class-like AST node that needs to be checked
-     */
     private void scanClass(final DetailAST node) {
         final DetailAST content = node.findFirstToken(TokenTypes.OBJBLOCK);
         if (content == null) {
@@ -119,11 +107,6 @@ public final class QualifyInnerClassCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Returns class name.
-     * @param clazz Class-like AST node
-     * @return Class name
-     */
     private static String getClassName(final DetailAST clazz) {
         for (
             DetailAST child = clazz.getFirstChild();

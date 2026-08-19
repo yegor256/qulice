@@ -92,13 +92,6 @@ final class Release {
         return flags;
     }
 
-    /**
-     * The flags a given trio of Maven properties asks for.
-     * @param release Name of the property holding the release level
-     * @param source Name of the property holding the source level
-     * @param target Name of the property holding the target level
-     * @return Source-level flags, empty when neither release nor source is set
-     */
     private List<String> pinned(
         final String release, final String source, final String target
     ) {
@@ -117,17 +110,6 @@ final class Release {
         return flags;
     }
 
-    /**
-     * The {@code -target} level to forward alongside {@code -source}.
-     *
-     * <p>Reads the given property, falling back to the given source level when
-     * the project does not pin a target of its own, so that {@code javac}'s
-     * requirement of {@code target >= source} is always met.</p>
-     *
-     * @param property Name of the property holding the target level
-     * @param fallback The source level to use when no target is pinned
-     * @return The target level
-     */
     private int target(final String property, final int fallback) {
         int level = Release.major(this.env.param(property, ""));
         if (level < 0) {
@@ -136,11 +118,6 @@ final class Release {
         return level;
     }
 
-    /**
-     * Parse a Java version string into its major number.
-     * @param value Version, e.g. {@code "8"}, {@code "1.8"} or {@code "17"}
-     * @return The major version, or {@code -1} if it cannot be parsed
-     */
     private static int major(final String value) {
         int result = -1;
         if (value != null) {

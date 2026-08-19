@@ -69,11 +69,6 @@ public final class RedundantSuperConstructorCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Find the enclosing {@code CLASS_DEF} of the given constructor node.
-     * @param ctor Constructor node
-     * @return The CLASS_DEF, or null if the enclosing type is not a class
-     */
     private static DetailAST enclosingClass(final DetailAST ctor) {
         DetailAST result = null;
         final DetailAST block = ctor.getParent();
@@ -86,12 +81,6 @@ public final class RedundantSuperConstructorCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Report any direct {@code super(...)} call inside the constructor body.
-     * Nested anonymous class bodies and lambdas are skipped because their
-     * {@code super(...)} calls belong to a different enclosing class.
-     * @param node Root of the constructor body subtree
-     */
     private void reportSuperCalls(final DetailAST node) {
         for (DetailAST child = node.getFirstChild();
             child != null; child = child.getNextSibling()) {

@@ -94,40 +94,20 @@ public final class DiamondOperatorCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks if diamond is not required.
-     * @param node Node
-     * @return True if not array
-     */
     private static boolean validUsage(final DetailAST node) {
         return DiamondOperatorCheck.isNotObjectBlock(node)
             && DiamondOperatorCheck.isNotArray(node)
             && !DiamondOperatorCheck.isInitUsingDiamond(node);
     }
 
-    /**
-     * Checks if node is not array.
-     * @param node Node
-     * @return True if not array
-     */
     private static boolean isNotArray(final DetailAST node) {
         return node.findFirstToken(TokenTypes.ARRAY_DECLARATOR) == null;
     }
 
-    /**
-     * Checks if node is object block.
-     * @param node Node
-     * @return True if not object block
-     */
     private static boolean isNotObjectBlock(final DetailAST node) {
         return node.getLastChild().getType() != TokenTypes.OBJBLOCK;
     }
 
-    /**
-     * Checks if node has initialization with diamond operator.
-     * @param node Node
-     * @return True if not object block
-     */
     private static boolean isInitUsingDiamond(final DetailAST node) {
         final DetailAST init = node.findFirstToken(TokenTypes.ELIST);
         boolean typed = false;
@@ -143,11 +123,6 @@ public final class DiamondOperatorCheck extends AbstractCheck {
         return typed;
     }
 
-    /**
-     * Checks if node has initialization with diamond operator.
-     * @param node Node
-     * @return True if not object block
-     */
     private static DetailAST secondChild(final DetailAST node) {
         DetailAST result = null;
         if (node != null) {
@@ -159,24 +134,12 @@ public final class DiamondOperatorCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Checks if node contains empty set of type parameters and
-     * comprises angle brackets only (<>).
-     * @param node Node of type arguments
-     * @return True if node contains angle brackets only
-     */
     private static boolean isDiamondOperatorUsed(final DetailAST node) {
         return node != null && node.getChildCount() == 2
             && node.getFirstChild().getType() == TokenTypes.GENERIC_START
             && node.getLastChild().getType() == TokenTypes.GENERIC_END;
     }
 
-    /**
-     * Returns the first child node of a specified type.
-     * @param node AST subtree to process
-     * @param type Type of token
-     * @return Child node of specified type OR NULL!
-     */
     private static DetailAST findFirstChildNodeOfType(
         final DetailAST node, final int type
     ) {

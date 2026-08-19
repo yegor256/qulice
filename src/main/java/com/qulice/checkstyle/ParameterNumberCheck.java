@@ -46,16 +46,6 @@ public final class ParameterNumberCheck
         }
     }
 
-    /**
-     * May this node keep its long list of parameters?
-     *
-     * <p>A constructor may, when it takes no more parameters than the
-     * number of attributes of its class. A method may, when it is
-     * private or when it belongs to a JNA binding.</p>
-     *
-     * @param ast The CTOR_DEF or METHOD_DEF node
-     * @return TRUE if the check has to stay silent about it
-     */
     private static boolean tolerated(final DetailAST ast) {
         final boolean answer;
         if (ast.getType() == TokenTypes.CTOR_DEF) {
@@ -69,26 +59,11 @@ public final class ParameterNumberCheck
         return answer;
     }
 
-    /**
-     * How many parameters does this constructor take?
-     * @param ctor The CTOR_DEF node
-     * @return Number of parameters
-     */
     private static int parameters(final DetailAST ctor) {
         return ctor.findFirstToken(TokenTypes.PARAMETERS)
             .getChildCount(TokenTypes.PARAMETER_DEF);
     }
 
-    /**
-     * How many attributes does the class of this constructor have?
-     *
-     * <p>Static fields stay out of the count, since they belong to the
-     * class and not to its objects. Components of a record count in, as
-     * they are the attributes the canonical constructor has to take.</p>
-     *
-     * @param ctor The CTOR_DEF node
-     * @return Number of attributes
-     */
     private static long attributes(final DetailAST ctor) {
         final DetailAST block = ctor.getParent();
         return ParameterNumberCheck.components(block.getParent())
@@ -99,11 +74,6 @@ public final class ParameterNumberCheck
             ).count();
     }
 
-    /**
-     * How many components does this type declare, if it is a record?
-     * @param type The node of the type declaration
-     * @return Number of record components
-     */
     private static int components(final DetailAST type) {
         final DetailAST components = type.findFirstToken(TokenTypes.RECORD_COMPONENTS);
         final int count;

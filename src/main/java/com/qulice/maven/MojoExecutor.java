@@ -121,12 +121,6 @@ public final class MojoExecutor {
         return xpp;
     }
 
-    /**
-     * Create descriptor.
-     * @param plugin The plugin
-     * @param goal Maven plugin goal to execute
-     * @return The descriptor
-     */
     private MojoDescriptor descriptor(final Plugin plugin, final String goal) {
         try {
             return new DefaultMavenPluginManagerHelper(this.manager)
@@ -141,11 +135,6 @@ public final class MojoExecutor {
         }
     }
 
-    /**
-     * Create mojo.
-     * @param execution The execution
-     * @return The mojo
-     */
     private Mojo mojo(final MojoExecution execution) {
         final Mojo mojo;
         try {
@@ -160,12 +149,6 @@ public final class MojoExecutor {
         return mojo;
     }
 
-    /**
-     * Convert a single value into an Xpp3Dom node.
-     * @param name Name of the node
-     * @param value Value to convert
-     * @return The Xpp3Dom node
-     */
     private Xpp3Dom toNode(final String name, final Object value) {
         final Xpp3Dom node;
         if (value instanceof String) {
@@ -193,12 +176,6 @@ public final class MojoExecutor {
         return node;
     }
 
-    /**
-     * Append a collection item to its parent node.
-     * @param parent Parent node receiving the item
-     * @param name Name used for the item when it is not a Properties map
-     * @param item The item to append
-     */
     private void appendItem(
         final Xpp3Dom parent, final String name, final Object item
     ) {
@@ -215,12 +192,6 @@ public final class MojoExecutor {
         }
     }
 
-    /**
-     * Recursively convert PLEXUS config to Xpp3Dom.
-     * @param config The config to convert
-     * @return The Xpp3Dom document
-     * @see #execute(String,String,Properties)
-     */
     private Xpp3Dom toXppDom(final PlexusConfiguration config) {
         final Xpp3Dom result = new Xpp3Dom(config.getName());
         result.setValue(config.getValue(null));

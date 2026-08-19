@@ -54,10 +54,6 @@ public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks methods in current class have no protected modifier.
-     * @param ast DetailAST of CLASS_DEF
-     */
     private void checkMethods(final DetailAST ast) {
         final DetailAST objblock = ast.findFirstToken(TokenTypes.OBJBLOCK);
         for (final DetailAST method
@@ -83,12 +79,6 @@ public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Search for all children of given type.
-     * @param base Parent node to start from
-     * @param type Node type
-     * @return Iterable
-     */
     private static Iterable<DetailAST> findAllChildren(final DetailAST base,
         final int type) {
         final List<DetailAST> children = new ArrayList<>(base.getChildCount());
