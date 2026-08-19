@@ -395,62 +395,36 @@
     -->
     <exclude name="ExceptionAsFlowControl"/>
     <!--
-    ExcessiveParameterList is excluded from the bulk import here and
-    re-enabled below with a violationSuppressXPath that ignores
-    constructors. The rule only special-cases private constructors, so a
-    public value object with many immutable attributes gets blamed for a
-    parameter count that tracks its field count, not its complexity; the
-    rule stays active for methods, where a long parameter list is a
-    design smell worth reporting.
+    ExcessiveParameterList is excluded because it only special-cases
+    private constructors, so a public value object with many immutable
+    attributes gets blamed for a parameter count that tracks its field
+    count, not its complexity. Exempting constructors through a
+    violationSuppressXPath is not an option: PMD consults the
+    @SuppressWarnings suppressor before the XPath one, so a redundant
+    @SuppressWarnings("PMD.ExcessiveParameterList") on a constructor is
+    credited with the suppression and never reported by
+    UnnecessaryWarningSuppression. We use our own
+    ExcessiveParameterListRule instead, which skips every constructor and
+    stays active for methods, where a long parameter list is a design
+    smell worth reporting.
     Downstream: https://github.com/yegor256/qulice/issues/1763
+    Downstream: https://github.com/yegor256/qulice/issues/1775
     -->
     <exclude name="ExcessiveParameterList"/>
     <!--
-    TooManyFields is re-enabled below with a violationSuppressXPath that
-    ignores classes extending org.apache.maven.plugin.AbstractMojo.
+    TooManyFields is excluded because it counts the fields of a Maven
+    Mojo, which declares one field per @Parameter it exposes to users of
+    the plugin goal. Exempting such classes through a
+    violationSuppressXPath is not an option either, for the same reason
+    as above: a redundant @SuppressWarnings("PMD.TooManyFields") on a
+    Mojo would be credited with the suppression and never reported by
+    UnnecessaryWarningSuppression. We use our own TooManyFieldsRule
+    instead, which skips classes extending
+    org.apache.maven.plugin.AbstractMojo.
     Downstream: https://github.com/yegor256/qulice/issues/1767
+    Downstream: https://github.com/yegor256/qulice/issues/1775
     -->
     <exclude name="TooManyFields"/>
-  </rule>
-  <rule ref="category/java/design.xml/ExcessiveParameterList">
-    <properties>
-      <property name="violationSuppressXPath" value=".[parent::ConstructorDeclaration]"/>
-    </properties>
-  </rule>
-  <!--
-  TooManyFields asks a class to keep few fields, but a Maven Mojo
-  declares one field per @Parameter it exposes to users of the plugin
-  goal, since the Maven Plugin API requires each configurable parameter
-  as a directly annotated field on the Mojo. That count tracks the
-  number of options the goal accepts, not the cohesion of the class, so
-  the suppression below skips classes extending
-  org.apache.maven.plugin.AbstractMojo. Qulice runs PMD without an
-  auxiliary classpath, so the superclass never resolves to a type and
-  the name in the extends clause is trusted only when it is fully
-  qualified or when the file imports it from its own package.
-  Downstream: https://github.com/yegor256/qulice/issues/1767
-  -->
-  <rule ref="category/java/design.xml/TooManyFields">
-    <properties>
-      <property name="violationSuppressXPath">
-        <value><![CDATA[
-          .[
-            ExtendsList
-              /ClassType[
-                @SimpleName = 'AbstractMojo'
-                and (
-                  @PackageQualifier = 'org.apache.maven.plugin'
-                  or ancestor::CompilationUnit
-                    /ImportDeclaration[
-                      @ImportedName = 'org.apache.maven.plugin.AbstractMojo'
-                      or @ImportedName = 'org.apache.maven.plugin'
-                    ]
-                )
-              ]
-          ]
-        ]]></value>
-      </property>
-    </properties>
   </rule>
   <rule ref="category/java/documentation.xml">
     <!--
@@ -628,6 +602,32 @@
       their method count beyond any useful threshold. Types that extend
       com.sun.jna.Library are skipped too, since they mirror a native
       library method by method.
+    </description>
+    <priority>3</priority>
+  </rule>
+  <rule name="ExcessiveParameterList" message="Avoid long parameter lists ({0} parameters - threshold is {1})." language="java" class="com.qulice.pmd.rules.ExcessiveParameterListRule">
+    <description>
+      Methods with numerous parameters are a challenge to maintain and
+      increase the risk of bugs, since callers have to match arguments to
+      parameters by position. Unlike PMD's ExcessiveParameterList rule,
+      which exempts private constructors only, this variant skips every
+      constructor: a value object with many immutable attributes gets a
+      parameter count that tracks its field count rather than its
+      complexity, and it has nowhere else to accept those attributes.
+    </description>
+    <priority>3</priority>
+  </rule>
+  <rule name="TooManyFields" message="Too many fields" language="java" class="com.qulice.pmd.rules.TooManyFieldsRule">
+    <description>
+      Classes that have too many fields can become unwieldy and could be
+      redesigned to have fewer fields, possibly through grouping related
+      fields in new objects. Like PMD's TooManyFields rule, this variant
+      counts the fields declared in the body of the class and skips the
+      static and the final ones, since those are constants rather than
+      state. Unlike it, classes extending
+      org.apache.maven.plugin.AbstractMojo are not checked at all, since a
+      Maven Mojo declares one field per @Parameter it exposes to users of
+      the plugin goal.
     </description>
     <priority>3</priority>
   </rule>

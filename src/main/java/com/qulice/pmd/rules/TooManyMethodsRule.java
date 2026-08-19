@@ -5,12 +5,11 @@
 package com.qulice.pmd.rules;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import net.sourceforge.pmd.lang.java.ast.ASTAnnotation;
 import net.sourceforge.pmd.lang.java.ast.ASTClassDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTClassType;
-import net.sourceforge.pmd.lang.java.ast.ASTCompilationUnit;
-import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTTypeDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ModifierOwner;
@@ -45,12 +44,11 @@ public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
     private static final int MAX = 10;
 
     /**
-     * Canonical names of the JNA interfaces that mark a type as a native
-     * binding.
+     * The JNA interfaces that mark a type as a native binding.
      */
-    private static final Collection<String> LIBRARIES = Set.of(
-        "com.sun.jna.Library",
-        "com.sun.jna.win32.StdCallLibrary"
+    private static final Collection<NamedSupertype> LIBRARIES = List.of(
+        new NamedSupertype("com.sun.jna.Library"),
+        new NamedSupertype("com.sun.jna.win32.StdCallLibrary")
     );
 
     /**
@@ -112,35 +110,8 @@ public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
 
     private static boolean jna(final ASTClassType parent) {
         return TooManyMethodsRule.LIBRARIES.stream().anyMatch(
-            known -> TooManyMethodsRule.simple(known)
-                .equals(parent.getSimpleName())
-                && (TooManyMethodsRule.pack(known)
-                    .equals(parent.getPackageQualifier())
-                    || TooManyMethodsRule.imported(parent.getRoot(), known))
+            known -> known.matches(parent)
         );
-    }
-
-    private static boolean imported(
-        final ASTCompilationUnit unit, final String known) {
-        return unit.children(ASTImportDeclaration.class).any(
-            imported -> TooManyMethodsRule.brings(imported, known)
-        );
-    }
-
-    private static boolean brings(
-        final ASTImportDeclaration imported, final String known) {
-        return known.equals(imported.getImportedName())
-            || imported.isImportOnDemand()
-            && TooManyMethodsRule.pack(known)
-                .equals(imported.getImportedName());
-    }
-
-    private static String simple(final String known) {
-        return known.substring(known.lastIndexOf('.') + 1);
-    }
-
-    private static String pack(final String known) {
-        return known.substring(0, known.lastIndexOf('.'));
     }
 
     private static boolean tested(final ASTClassDeclaration type) {
