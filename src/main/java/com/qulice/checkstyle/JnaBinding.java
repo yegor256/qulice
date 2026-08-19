@@ -7,39 +7,35 @@ package com.qulice.checkstyle;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * A method of a JNA binding.
  *
- * <p>A type that extends {@code com.sun.jna.Library} transcribes a native
+ * <p>A type that extends {@code com.sun.jna.Library}, or its Windows
+ * flavour {@code com.sun.jna.win32.StdCallLibrary}, transcribes a native
  * library function by function. The name of every method and the length of
  * its parameter list come from the native side, so its author has no say in
  * either of them and the checks that judge them have nothing to say here.
  *
- * <p>Qulice runs Checkstyle on one file at a time, so {@code Library} is
- * never resolved to a class. The name in the {@code extends} or
- * {@code implements} clause is therefore trusted only when it is fully
- * qualified or when the file imports it from {@code com.sun.jna}.
+ * <p>Qulice runs Checkstyle on one file at a time, so neither of the two
+ * interfaces is ever resolved to a class. The name in the {@code extends}
+ * or {@code implements} clause is therefore trusted only when it is fully
+ * qualified or when the file imports it from its own package.
  *
  * @since 1.0
  */
 final class JnaBinding {
 
     /**
-     * Package of the JNA interface that marks a type as a native binding.
+     * Canonical names of the JNA interfaces that mark a type as a native
+     * binding.
      */
-    private static final String PACKAGE = "com.sun.jna";
-
-    /**
-     * Simple name of that interface.
-     */
-    private static final String LIBRARY = "Library";
-
-    /**
-     * Canonical name of that interface.
-     */
-    private static final String QUALIFIED =
-        JnaBinding.PACKAGE + '.' + JnaBinding.LIBRARY;
+    private static final Collection<String> LIBRARIES = Set.of(
+        "com.sun.jna.Library",
+        "com.sun.jna.win32.StdCallLibrary"
+    );
 
     /**
      * The node of the method declaration.
@@ -101,48 +97,74 @@ final class JnaBinding {
     }
 
     /**
-     * Is this name the one of JNA's interface?
+     * Is this name the one of a JNA interface?
      * @param name The IDENT or DOT node of a supertype
      * @return TRUE if it is
      */
     private static boolean library(final DetailAST name) {
         final String text = FullIdent.createFullIdent(name).getText();
-        return JnaBinding.QUALIFIED.equals(text)
-            || JnaBinding.LIBRARY.equals(text) && JnaBinding.imported(name);
+        return JnaBinding.LIBRARIES.stream().anyMatch(
+            known -> known.equals(text)
+                || JnaBinding.simple(known).equals(text)
+                && JnaBinding.imported(name, known)
+        );
     }
 
     /**
-     * Does the file that holds this node import JNA's interface?
+     * Does the file that holds this node import this interface?
      * @param node The node to start the walk from
+     * @param known Canonical name of the interface
      * @return TRUE if it does
      */
-    private static boolean imported(final DetailAST node) {
+    private static boolean imported(final DetailAST node, final String known) {
         DetailAST root = node;
         while (root.getParent() != null) {
             root = root.getParent();
         }
-        return new ChildStream(root).children().anyMatch(JnaBinding::importing);
+        return new ChildStream(root).children().anyMatch(
+            child -> JnaBinding.importing(child, known)
+        );
     }
 
     /**
-     * Does this node import JNA's interface?
+     * Does this node import this interface?
      * @param node The node of a top-level declaration
+     * @param known Canonical name of the interface
      * @return TRUE if it does
      */
-    private static boolean importing(final DetailAST node) {
+    private static boolean importing(final DetailAST node, final String known) {
         return node.getType() == TokenTypes.IMPORT
-            && JnaBinding.jna(
-                FullIdent.createFullIdentBelow(node).getText()
+            && JnaBinding.brings(
+                FullIdent.createFullIdentBelow(node).getText(), known
             );
     }
 
     /**
-     * Does this imported name bring JNA's interface in?
+     * Does this imported name bring this interface in?
      * @param text The name of the import
+     * @param known Canonical name of the interface
      * @return TRUE if it does
      */
-    private static boolean jna(final String text) {
-        return JnaBinding.QUALIFIED.equals(text)
-            || String.format("%s.*", JnaBinding.PACKAGE).equals(text);
+    private static boolean brings(final String text, final String known) {
+        return known.equals(text)
+            || String.format("%s.*", JnaBinding.pack(known)).equals(text);
+    }
+
+    /**
+     * Simple name of this canonical name.
+     * @param known Canonical name of an interface
+     * @return The name without its package
+     */
+    private static String simple(final String known) {
+        return known.substring(known.lastIndexOf('.') + 1);
+    }
+
+    /**
+     * Package of this canonical name.
+     * @param known Canonical name of an interface
+     * @return The name without its last part
+     */
+    private static String pack(final String known) {
+        return known.substring(0, known.lastIndexOf('.'));
     }
 }

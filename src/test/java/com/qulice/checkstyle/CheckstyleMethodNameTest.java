@@ -50,7 +50,13 @@ final class CheckstyleMethodNameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"JnaMappedLibrary.java", "JnaDirectBinding.java"})
+    @ValueSource(
+        strings = {
+            "JnaMappedLibrary.java",
+            "JnaDirectBinding.java",
+            "JnaStdCallBinding.java"
+        }
+    )
     void acceptsNativeNamesInJnaBinding(final String file) throws Exception {
         MatcherAssert.assertThat(
             "native names in a JNA binding should not be reported",
