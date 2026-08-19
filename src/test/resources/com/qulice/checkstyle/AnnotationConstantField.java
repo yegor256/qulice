@@ -55,7 +55,7 @@ public final class AnnotationConstantField {
      * @since 1.0
      */
     @SuppressWarnings(AnnotationConstantField.TEXT4)
-    private static final class Inner {
+    private final class Inner {
 
         /**
          * Random source.

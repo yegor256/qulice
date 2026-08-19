@@ -4,8 +4,6 @@
  */
 package com.qulice.maven;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
@@ -17,7 +15,6 @@ import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.charset.Charset;
-import java.security.PrivilegedAction;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -165,8 +162,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
-        final URLClassLoader loader =
-            new DefaultMavenEnvironment.PrivilegedClassLoader(urls).run();
+        final URLClassLoader loader = new PrivilegedClassLoader(urls).run();
         for (final URL url : loader.getURLs()) {
             Logger.debug(this, "Classpath: %s", url);
         }
@@ -233,7 +229,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public boolean exclude(final String check, final String name) {
         return Iterables.any(
             this.excludes(check),
-            new DefaultMavenEnvironment.PathPredicate(name)
+            new PathPredicate(name)
         );
     }
 
@@ -242,7 +238,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return Collections2.filter(
             Collections2.transform(
                 this.exc,
-                new DefaultMavenEnvironment.CheckerExcludes(checker)
+                new CheckerExcludes(checker)
             ),
             Predicates.notNull()
         );
@@ -445,104 +441,5 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
             resolved = new File(this.basedir(), path);
         }
         return resolved;
-    }
-
-    /**
-     * Creates URL ClassLoader in privileged block.
-     * @since 0.1
-     */
-    private static final class PrivilegedClassLoader implements
-        PrivilegedAction<URLClassLoader> {
-
-        /**
-         * URLs for class loading.
-         */
-        private final List<URL> urls;
-
-        /**
-         * Constructor.
-         * @param urls URLs for class loading
-         */
-        private PrivilegedClassLoader(final List<URL> urls) {
-            this.urls = urls;
-        }
-
-        @Override
-        public URLClassLoader run() {
-            return new URLClassLoader(
-                this.urls.toArray(new URL[0]),
-                Thread.currentThread().getContextClassLoader()
-            );
-        }
-    }
-
-    /**
-     * Checks if two paths are equal.
-     * @since 0.1
-     */
-    private static class PathPredicate implements Predicate<String> {
-
-        /**
-         * Path to match.
-         */
-        private final String name;
-
-        /**
-         * Constructor.
-         * @param name Path to match
-         */
-        PathPredicate(final String name) {
-            this.name = name;
-        }
-
-        @Override
-        public boolean apply(@Nullable final String input) {
-            return input != null
-                && FilenameUtils.normalize(this.name, true).matches(input);
-        }
-    }
-
-    /**
-     * Converts a checker exclude into exclude param.
-     *
-     * <p>E.g. "checkstyle:.*" will become ".*".
-     *
-     * @since 0.1
-     */
-    private static class CheckerExcludes implements Function<String, String> {
-
-        /**
-         * All checkers.
-         */
-        private static final String ALL = "*";
-
-        /**
-         * Name of checker.
-         */
-        private final String checker;
-
-        /**
-         * Constructor.
-         * @param checker Name of checker
-         */
-        CheckerExcludes(final String checker) {
-            this.checker = checker;
-        }
-
-        @Nullable
-        @Override
-        public String apply(@Nullable final String input) {
-            String result = null;
-            if (input != null) {
-                final String[] exclude = input.split(":", 2);
-                final String check = exclude[0];
-                final boolean appropriate = CheckerExcludes.ALL.equals(check)
-                    || this.checker.equals(check);
-                if (appropriate && exclude.length > 1) {
-                    result = exclude[1];
-                }
-            }
-            return result;
-        }
     }
 }

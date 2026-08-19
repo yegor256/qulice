@@ -4,7 +4,6 @@
  */
 package com.qulice.checkstyle;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -54,7 +53,7 @@ public final class LineRanges {
     public boolean inRange(final int line) {
         return !this.lines.isEmpty()
             && FluentIterable.from(this.lines)
-            .anyMatch(new LineRanges.LineWithAny(line));
+            .anyMatch(new LineWithAny(line));
     }
 
     /**
@@ -82,31 +81,5 @@ public final class LineRanges {
      */
     public void clear() {
         this.lines.clear();
-    }
-
-    /**
-     * Predicate to determine if a given line is within range of any of
-     * the line ranges.
-     * @since 0.1
-     */
-    private static final class LineWithAny implements Predicate<LineRange> {
-
-        /**
-         * The given line.
-         */
-        private final int given;
-
-        /**
-         * Default constructor.
-         * @param line The given line to check against all the line ranges
-         */
-        private LineWithAny(final int line) {
-            this.given = line;
-        }
-
-        @Override
-        public boolean apply(final LineRange range) {
-            return range != null && range.within(this.given);
-        }
     }
 }

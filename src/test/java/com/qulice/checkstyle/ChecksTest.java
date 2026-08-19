@@ -235,6 +235,7 @@ final class ChecksTest {
             "SingleSpaceSeparatorCheck",
             "SimpleStringSplitCheck",
             "ProhibitFieldsInTestClassesCheck",
+            "ProhibitStaticNestedClassesCheck",
             "ParameterNumberCheck"
         ).map(s -> String.format("ChecksTest/%s", s));
     }
