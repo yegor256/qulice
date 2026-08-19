@@ -4,60 +4,63 @@
  */
 package com.qulice.pmd;
 
-import com.qulice.spi.Environment;
-import com.qulice.spi.Violation;
-import java.io.File;
-import java.util.Collections;
-import java.util.stream.Collectors;
-import org.cactoos.text.TextOf;
-import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test case for ExcessiveParameterList rule wiring in qulice ruleset.
- * The rule is suppressed on constructors but stays active on methods.
+ * Test case for {@link PmdValidator}'s handling of the
+ * {@code ExcessiveParameterList} rule, which skips constructors but stays
+ * active on methods, and which lets
+ * {@code UnnecessaryWarningSuppression} report a suppression left on a
+ * constructor.
+ * Regression test for https://github.com/yegor256/qulice/issues/1763
+ * and https://github.com/yegor256/qulice/issues/1775
  * @since 1.0
  */
 final class PmdExcessiveParameterListTest {
 
     @Test
     void doesNotFireOnConstructorWithManyParameters() throws Exception {
-        final String file = "ExcessiveParameterListInConstructor.java";
-        final Environment.Mock mock = new Environment.Mock();
-        final String name = String.format("src/main/java/foo/%s", file);
-        final Environment env = mock.withFile(
-            name,
-            new TextOf(
-                this.getClass().getResourceAsStream(file)
-            ).asString()
-        );
-        MatcherAssert.assertThat(
-            "ExcessiveParameterList must not fire on a constructor with many parameters",
-            new PmdValidator(env).validate(
-                Collections.singletonList(new File(env.basedir(), name))
-            ).stream().map(Violation::name).collect(Collectors.toList()),
-            Matchers.not(Matchers.hasItem("ExcessiveParameterList"))
-        );
+        new PmdAssert(
+            "ExcessiveParameterListInConstructor.java",
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString("(ExcessiveParameterList)")
+            )
+        ).assertOk();
     }
 
     @Test
     void firesOnMethodWithManyParameters() throws Exception {
-        final String file = "ExcessiveParameterListInMethod.java";
-        final Environment.Mock mock = new Environment.Mock();
-        final String name = String.format("src/main/java/foo/%s", file);
-        final Environment env = mock.withFile(
-            name,
-            new TextOf(
-                this.getClass().getResourceAsStream(file)
-            ).asString()
-        );
-        MatcherAssert.assertThat(
-            "ExcessiveParameterList must fire on a method with many parameters",
-            new PmdValidator(env).validate(
-                Collections.singletonList(new File(env.basedir(), name))
-            ).stream().map(Violation::name).collect(Collectors.toList()),
-            Matchers.hasItem("ExcessiveParameterList")
-        );
+        new PmdAssert(
+            "ExcessiveParameterListInMethod.java",
+            Matchers.is(false),
+            Matchers.containsString("(ExcessiveParameterList)")
+        ).assertOk();
+    }
+
+    @Test
+    void reportsRedundantSuppressionOnConstructor() throws Exception {
+        new PmdAssert(
+            "ExcessiveParameterListSuppressedInConstructor.java",
+            Matchers.is(false),
+            Matchers.containsString("(UnnecessaryWarningSuppression)")
+        ).assertOk();
+    }
+
+    @Test
+    void honoursSuppressionOnMethod() throws Exception {
+        new PmdAssert(
+            "ExcessiveParameterListSuppressedInMethod.java",
+            Matchers.any(Boolean.class),
+            Matchers.allOf(
+                Matchers.not(
+                    Matchers.containsString("(ExcessiveParameterList)")
+                ),
+                Matchers.not(
+                    Matchers.containsString("(UnnecessaryWarningSuppression)")
+                )
+            )
+        ).assertOk();
     }
 }
