@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 515.908686611
+  seconds: 528.893098117
   version: 0.61.1
   what: judges-summary
-  when: 2026-08-18 07:34:16.540441209 Z
+  when: 2026-08-19 07:34:56.924967913 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63001,17 +63001,17 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1115
+  assignees_were_scanned: 1508
   earliest_issue_was_found: 1
-  events_were_scanned: 17905320599
+  events_were_scanned: 13501749324
   issues_were_scanned: 867
-  labels_were_scanned: 0
+  labels_were_scanned: 673
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
   min_pull_was_found: 1538
   repository: 9580168
-  types_were_scanned: 1683
+  types_were_scanned: 0
   what: iterate
   where: github
 - _id: 11295
@@ -70681,6 +70681,7 @@
   _time: 2026-08-18 07:27:14.218759712 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1730.
+  is_human: 1
   issue: 1730
   label: bug
   repository: 9580168
@@ -70693,6 +70694,7 @@
   _time: 2026-08-18 07:27:15.122339211 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1734.
+  is_human: 1
   issue: 1734
   label: bug
   repository: 9580168
@@ -70705,6 +70707,7 @@
   _time: 2026-08-18 07:27:15.570253614 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1736.
+  is_human: 1
   issue: 1736
   label: bug
   repository: 9580168
@@ -70717,6 +70720,7 @@
   _time: 2026-08-18 07:27:16.435960515 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1741.
+  is_human: 1
   issue: 1741
   label: bug
   repository: 9580168
@@ -70729,6 +70733,7 @@
   _time: 2026-08-18 07:27:16.946544197 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1742.
+  is_human: 1
   issue: 1742
   label: bug
   repository: 9580168
@@ -70741,6 +70746,7 @@
   _time: 2026-08-18 07:27:17.351739075 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1745.
+  is_human: 1
   issue: 1745
   label: bug
   repository: 9580168
@@ -70753,6 +70759,7 @@
   _time: 2026-08-18 07:27:17.832113867 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1746.
+  is_human: 1
   issue: 1746
   label: bug
   repository: 9580168
@@ -70760,3 +70767,65 @@
   when: 2026-08-16 04:51:17.000000000 Z
   where: github
   who: 526301
+- _id: 11787
+  _job: 32227727821
+  _time: 2026-08-19 07:26:54.400681231 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: renovate/error-prone-monorepo
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1670 has been "pull-was-closed".
+  failed_builds: 3
+  files: 1
+  hoc: 6
+  issue: 1670
+  repository: 9580168
+  succeeded_builds: 9
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-08-18 18:49:17.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11788
+  _job: 32227727821
+  _time: 2026-08-19 07:27:06.923449560 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: version-up
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1723 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1723
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-08-18 18:49:05.000000000 Z
+  where: github
+  who: 526301
+- _id: 11789
+  _job: 32227727821
+  _time: 2026-08-19 07:34:40.169352915 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  total_active_contributors: 4
+  total_commits: 2683
+  total_contributors: 59
+  total_files: 808
+  total_forks: 124
+  total_issues: 928
+  total_pulls: 839
+  total_releases: 102
+  total_repositories: 1
+  total_stars: 323
+  what: dimensions-of-terrain
+  when: 2026-08-19 07:34:40.186620255 Z
