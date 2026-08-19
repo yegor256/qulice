@@ -405,10 +405,51 @@
     Downstream: https://github.com/yegor256/qulice/issues/1763
     -->
     <exclude name="ExcessiveParameterList"/>
+    <!--
+    TooManyFields is re-enabled below with a violationSuppressXPath that
+    ignores classes extending org.apache.maven.plugin.AbstractMojo.
+    Downstream: https://github.com/yegor256/qulice/issues/1767
+    -->
+    <exclude name="TooManyFields"/>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
     <properties>
       <property name="violationSuppressXPath" value=".[parent::ConstructorDeclaration]"/>
+    </properties>
+  </rule>
+  <!--
+  TooManyFields asks a class to keep few fields, but a Maven Mojo
+  declares one field per @Parameter it exposes to users of the plugin
+  goal, since the Maven Plugin API requires each configurable parameter
+  as a directly annotated field on the Mojo. That count tracks the
+  number of options the goal accepts, not the cohesion of the class, so
+  the suppression below skips classes extending
+  org.apache.maven.plugin.AbstractMojo. Qulice runs PMD without an
+  auxiliary classpath, so the superclass never resolves to a type and
+  the name in the extends clause is trusted only when it is fully
+  qualified or when the file imports it from its own package.
+  Downstream: https://github.com/yegor256/qulice/issues/1767
+  -->
+  <rule ref="category/java/design.xml/TooManyFields">
+    <properties>
+      <property name="violationSuppressXPath">
+        <value><![CDATA[
+          .[
+            ExtendsList
+              /ClassType[
+                @SimpleName = 'AbstractMojo'
+                and (
+                  @PackageQualifier = 'org.apache.maven.plugin'
+                  or ancestor::CompilationUnit
+                    /ImportDeclaration[
+                      @ImportedName = 'org.apache.maven.plugin.AbstractMojo'
+                      or @ImportedName = 'org.apache.maven.plugin'
+                    ]
+                )
+              ]
+          ]
+        ]]></value>
+      </property>
     </properties>
   </rule>
   <rule ref="category/java/documentation.xml">
