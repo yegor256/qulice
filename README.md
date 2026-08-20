@@ -27,12 +27,12 @@ Three directories are left alone by [Checkstyle], [PMD], and
   [ErrorProne] by default, together with all their subdirectories, and
   you don't need an `<exclude>` for any of them:
 
-  * `src/test/resources` holds fixtures of your tests, which [Maven]
-    never compiles and which quite often are broken on purpose;
-  * `src/site` holds the sources of your [Maven] site, where a `.java`
-    file illustrates the documentation instead of shipping;
-  * `src/it` holds whole projects of their own, the ones
-    [maven-invoker-plugin][invoker] builds, each with its own POM.
+* `src/test/resources` holds fixtures of your tests, which [Maven]
+  never compiles and which quite often are broken on purpose;
+* `src/site` holds the sources of your [Maven] site, where a `.java`
+  file illustrates the documentation instead of shipping;
+* `src/it` holds whole projects of their own, the ones
+  [maven-invoker-plugin][invoker] builds, each with its own POM.
 
 An entire bug pattern can be switched off for the whole project with
   an `-Xep` flag of your own:
