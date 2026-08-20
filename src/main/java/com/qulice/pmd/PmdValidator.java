@@ -6,6 +6,7 @@ package com.qulice.pmd;
 
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
+import com.qulice.spi.Fixture;
 import com.qulice.spi.Relative;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
@@ -83,6 +84,9 @@ public final class PmdValidator implements ResourceValidator {
         for (final File file : files) {
             final String name = new Relative(this.env.basedir(), file).path();
             if (this.env.exclude("pmd", name)) {
+                continue;
+            }
+            if (new Fixture(name).yes()) {
                 continue;
             }
             if (!name.toLowerCase(Locale.ROOT).endsWith(".java")) {

@@ -615,6 +615,7 @@
             <pomInclude>pmd-duplicate-string-literals-violations/pom.xml</pomInclude>
             <pomInclude>dependency-not-matches-exclude/pom.xml</pomInclude>
             <pomInclude>binary-files/pom.xml</pomInclude>
+            <pomInclude>test-resources-excluded/pom.xml</pomInclude>
           </pomIncludes>
         </configuration>
       </plugin>
@@ -732,10 +733,7 @@
                 <exclude>
                   errorprone:/src/main/java/com/qulice/maven/MojoExecutor.java
                 </exclude>
-                <exclude>checkstyle:/src/test/resources/.*</exclude>
                 <exclude>errorprone:/src/test/java/.*</exclude>
-                <exclude>errorprone:/src/test/resources/.*</exclude>
-                <exclude>pmd:/src/test/resources/.*</exclude>
                 <exclude>checkstyle:/src/it/.*</exclude>
                 <exclude>pmd:/src/it/.*</exclude>
               </excludes>

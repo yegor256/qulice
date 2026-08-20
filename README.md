@@ -23,6 +23,12 @@ Suppress individual checks with `@SuppressWarnings("CheckName")` (the
   `errorprone:` exclude, e.g.
   `<exclude>errorprone:.*/generated/.*</exclude>`.
 
+Files in `src/test/resources`, and in its subdirectories, are left
+  alone by [Checkstyle], [PMD], and [ErrorProne] by default: they are
+  fixtures of your tests, [Maven] compiles none of the `.java` ones, and
+  quite often they are broken on purpose.
+You don't need an `<exclude>` for them.
+
 An entire bug pattern can be switched off for the whole project with
   an `-Xep` flag of your own:
 
