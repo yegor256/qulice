@@ -616,6 +616,7 @@
             <pomInclude>dependency-not-matches-exclude/pom.xml</pomInclude>
             <pomInclude>binary-files/pom.xml</pomInclude>
             <pomInclude>test-resources-excluded/pom.xml</pomInclude>
+            <pomInclude>ignored-dirs/pom.xml</pomInclude>
           </pomIncludes>
         </configuration>
       </plugin>
@@ -733,8 +734,6 @@
                 <exclude>
                   errorprone:/src/main/java/com/qulice/maven/MojoExecutor.java
                 </exclude>
-                <exclude>checkstyle:/src/it/.*</exclude>
-                <exclude>pmd:/src/it/.*</exclude>
               </excludes>
             </configuration>
           </plugin>
