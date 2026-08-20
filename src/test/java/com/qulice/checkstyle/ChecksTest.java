@@ -4,6 +4,7 @@
  */
 package com.qulice.checkstyle;
 
+import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
@@ -68,9 +69,11 @@ final class ChecksTest {
             collector.eventCount() == violations.length
                 && Arrays.stream(violations).allMatch(
                     line -> {
-                        final String[] sectors = line.split(":");
+                        final List<String> sectors =
+                            Splitter.on(':').splitToList(line);
                         return collector.has(
-                            Integer.valueOf(sectors[0]), sectors[1].trim()
+                            Integer.valueOf(sectors.get(0)),
+                            sectors.get(1).trim()
                         );
                     }
                 ),

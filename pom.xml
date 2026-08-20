@@ -616,6 +616,7 @@
             <pomInclude>dependency-not-matches-exclude/pom.xml</pomInclude>
             <pomInclude>binary-files/pom.xml</pomInclude>
             <pomInclude>test-resources-excluded/pom.xml</pomInclude>
+            <pomInclude>ignored-dirs/pom.xml</pomInclude>
           </pomIncludes>
         </configuration>
       </plugin>
@@ -727,13 +728,6 @@
             <groupId>com.qulice</groupId>
             <artifactId>qulice-maven-plugin</artifactId>
             <version>${project.version}</version>
-            <configuration>
-              <excludes combine.children="append">
-                <exclude>errorprone:/src/test/java/.*</exclude>
-                <exclude>checkstyle:/src/it/.*</exclude>
-                <exclude>pmd:/src/it/.*</exclude>
-              </excludes>
-            </configuration>
           </plugin>
         </plugins>
       </build>

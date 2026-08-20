@@ -6,9 +6,9 @@ package com.qulice.maven;
 
 import com.qulice.spi.Environment;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import org.apache.maven.monitor.logging.DefaultLog;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.DefaultPlexusContainer;
@@ -49,7 +49,7 @@ public final class MavenEnvironmentMocker {
      */
     public MavenEnvironmentMocker() throws IOException {
         this.prj = new MavenProjectMocker();
-        this.ass = new LinkedList<>();
+        this.ass = new ArrayList<>(0);
         this.ienv = new Environment.Mock();
         try {
             this.container = new DefaultPlexusContainer();

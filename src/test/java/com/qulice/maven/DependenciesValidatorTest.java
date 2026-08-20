@@ -5,6 +5,7 @@
 package com.qulice.maven;
 
 import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
@@ -13,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
@@ -325,10 +327,10 @@ final class DependenciesValidatorTest {
 
     private static MavenEnvironment envWithUnused(final Path src,
         final File jar, final String coord) throws Exception {
-        final String[] parts = coord.split(":");
+        final List<String> parts = Splitter.on(':').splitToList(coord);
         final ArtifactStub artifact = new ArtifactStub();
-        artifact.setGroupId(parts[0]);
-        artifact.setArtifactId(parts[1]);
+        artifact.setGroupId(parts.get(0));
+        artifact.setArtifactId(parts.get(1));
         artifact.setScope(DependenciesValidatorTest.SCOPE);
         artifact.setVersion("1.0.0");
         artifact.setType(DependenciesValidatorTest.TYPE);
