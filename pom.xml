@@ -728,14 +728,6 @@
             <groupId>com.qulice</groupId>
             <artifactId>qulice-maven-plugin</artifactId>
             <version>${project.version}</version>
-            <configuration>
-              <excludes combine.children="append">
-                <!-- generated class -->
-                <exclude>
-                  errorprone:/src/main/java/com/qulice/maven/MojoExecutor.java
-                </exclude>
-              </excludes>
-            </configuration>
           </plugin>
         </plugins>
       </build>
