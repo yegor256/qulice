@@ -7,7 +7,7 @@ package com.qulice.errorprone;
 import com.google.common.base.Splitter;
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
-import com.qulice.spi.Fixture;
+import com.qulice.spi.Ignored;
 import com.qulice.spi.Relative;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
@@ -220,7 +220,7 @@ public final class ErrorProneValidator implements ResourceValidator {
             if (this.env.exclude("errorprone", name)) {
                 continue;
             }
-            if (new Fixture(name).yes()) {
+            if (new Ignored(name).yes()) {
                 continue;
             }
             if (!name.endsWith(".java")) {

@@ -10,26 +10,33 @@ import java.io.File;
 import java.util.Collections;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
- * Test case for {@link PmdValidator} and the test resources of a
- * project, which it must leave alone without being told to.
+ * Test case for {@link PmdValidator} and the directories Qulice ignores
+ * by default, which it must leave alone without being told to.
  *
  * <p>The same source in {@code src/main/java} does produce violations,
  * as {@link PmdValidatorTest} shows.</p>
  *
  * @since 1.0
  */
-final class PmdTestResourcesTest {
+final class PmdIgnoredTest {
 
-    @Test
-    void ignoresJavaFilesInTestResources() throws Exception {
-        final String file = "src/test/resources/com/qulice/Main.java";
+    @ParameterizedTest
+    @ValueSource(
+        strings = {
+            "src/test/resources/com/qulice/Main.java",
+            "src/site/apt/Main.java",
+            "src/it/violations/src/main/java/foo/Main.java"
+        }
+    )
+    void ignoresJavaFilesInIgnoredDirectories(final String file) throws Exception {
         final Environment env = new Environment.Mock()
             .withFile(file, "class Main { int x = 0; }");
         MatcherAssert.assertThat(
-            "Java file under src/test/resources must not be checked",
+            String.format("%s must not be checked", file),
             new PmdValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             ),
@@ -37,13 +44,19 @@ final class PmdTestResourcesTest {
         );
     }
 
-    @Test
-    void keepsTestResourcesOutOfTheFileList() throws Exception {
-        final String file = "src/test/resources/foo/bar/Main.java";
+    @ParameterizedTest
+    @ValueSource(
+        strings = {
+            "src/test/resources/foo/bar/Main.java",
+            "src/site/resources/Main.java",
+            "src/it/foo/Main.java"
+        }
+    )
+    void keepsIgnoredFilesOutOfTheFileList(final String file) throws Exception {
         final Environment env = new Environment.Mock()
             .withFile(file, "class Main { int x = 0; }");
         MatcherAssert.assertThat(
-            "Test resource must not even reach the list of sources",
+            String.format("%s must not even reach the list of sources", file),
             new PmdValidator(env).getNonExcludedFiles(
                 Collections.singletonList(new File(env.basedir(), file))
             ),
