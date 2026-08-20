@@ -729,10 +729,6 @@
             <version>${project.version}</version>
             <configuration>
               <excludes combine.children="append">
-                <!-- generated class -->
-                <exclude>
-                  errorprone:/src/main/java/com/qulice/maven/MojoExecutor.java
-                </exclude>
                 <exclude>errorprone:/src/test/java/.*</exclude>
                 <exclude>checkstyle:/src/it/.*</exclude>
                 <exclude>pmd:/src/it/.*</exclude>

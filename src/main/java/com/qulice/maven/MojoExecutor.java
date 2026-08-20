@@ -25,7 +25,6 @@ import org.apache.maven.plugin.PluginResolutionException;
 import org.apache.maven.plugin.descriptor.MojoDescriptor;
 import org.apache.maven.reporting.exec.DefaultMavenPluginManagerHelper;
 import org.codehaus.plexus.configuration.PlexusConfiguration;
-import org.codehaus.plexus.configuration.PlexusConfigurationException;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 
 /**
@@ -66,7 +65,7 @@ public final class MojoExecutor {
     public void execute(final String coords, final String goal,
         final Properties config) throws ValidationException {
         final Plugin plugin = new Plugin();
-        final String[] sectors = coords.split(":");
+        final String[] sectors = coords.split(":", -1);
         plugin.setGroupId(sectors[0]);
         plugin.setArtifactId(sectors[1]);
         plugin.setVersion(sectors[2]);
@@ -119,6 +118,38 @@ public final class MojoExecutor {
             );
         }
         return xpp;
+    }
+
+    /**
+     * Recursively convert a Plexus configuration to Xpp3Dom.
+     *
+     * <p>Both {@code getValue()} and {@code getAttribute()} are read
+     * through their two-argument, default-taking forms on purpose. Two
+     * jars on the classpath of a Maven build ship
+     * {@link PlexusConfiguration}: {@code plexus-container-default}, where
+     * the one-argument forms are declared {@code throws
+     * PlexusConfigurationException}, and {@code org.eclipse.sisu.plexus},
+     * where they are not. Whichever of the two {@code javac} sees first
+     * decides whether a {@code catch} of that exception compiles at all,
+     * so calling the one-argument forms makes this class compile or fail
+     * depending on the order of the classpath. The two-argument forms
+     * throw nothing in either jar, and lose nothing here: the names come
+     * from {@code getAttributeNames()}, so every attribute asked for is
+     * present.</p>
+     *
+     * @param config The config to convert
+     * @return The Xpp3Dom document
+     */
+    Xpp3Dom toXppDom(final PlexusConfiguration config) {
+        final Xpp3Dom result = new Xpp3Dom(config.getName());
+        result.setValue(config.getValue(null));
+        for (final String name : config.getAttributeNames()) {
+            result.setAttribute(name, config.getAttribute(name, null));
+        }
+        for (final PlexusConfiguration child : config.getChildren()) {
+            result.addChild(this.toXppDom(child));
+        }
+        return result;
     }
 
     private MojoDescriptor descriptor(final Plugin plugin, final String goal) {
@@ -190,21 +221,5 @@ public final class MojoExecutor {
         } else if (item != null) {
             parent.addChild(this.toNode(name, item));
         }
-    }
-
-    private Xpp3Dom toXppDom(final PlexusConfiguration config) {
-        final Xpp3Dom result = new Xpp3Dom(config.getName());
-        result.setValue(config.getValue(null));
-        for (final String name : config.getAttributeNames()) {
-            try {
-                result.setAttribute(name, config.getAttribute(name));
-            } catch (final PlexusConfigurationException ex) {
-                throw new IllegalArgumentException(ex);
-            }
-        }
-        for (final PlexusConfiguration child : config.getChildren()) {
-            result.addChild(this.toXppDom(child));
-        }
-        return result;
     }
 }
