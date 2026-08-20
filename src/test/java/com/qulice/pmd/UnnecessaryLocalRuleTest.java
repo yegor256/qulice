@@ -26,11 +26,6 @@ final class UnnecessaryLocalRuleTest {
      */
     private static final String RULE = "UnnecessaryLocalRule";
 
-    /**
-     * Path template for the fixture file in the mock environment.
-     */
-    private static final String PATH = "src/main/java/foo/%s";
-
     @Test
     void detectsUnnecessaryLocalVariableOnReturn() throws Exception {
         MatcherAssert.assertThat(
@@ -131,7 +126,7 @@ final class UnnecessaryLocalRuleTest {
     }
 
     private List<String> violations(final String file) throws Exception {
-        final String name = String.format(UnnecessaryLocalRuleTest.PATH, file);
+        final String name = String.format("src/main/java/foo/%s", file);
         final Environment env = new Environment.Mock().withFile(
             name,
             new TextOf(this.getClass().getResourceAsStream(file)).asString()

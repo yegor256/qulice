@@ -5,7 +5,6 @@
 package com.qulice.maven;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 import org.hamcrest.MatcherAssert;
@@ -32,10 +31,8 @@ final class MojoExecutorTest {
         dep.put("version", "1.7");
         final Properties wrapper = new Properties();
         wrapper.put("dependency", dep);
-        final List<Properties> deps = new LinkedList<>();
-        deps.add(wrapper);
         final Properties config = new Properties();
-        config.put("ignoredDependencies", deps);
+        config.put("ignoredDependencies", List.of(wrapper));
         MatcherAssert.assertThat(
             "Dependency details cannot be rendered as toString()",
             new MojoExecutor(null, null)
@@ -57,10 +54,8 @@ final class MojoExecutorTest {
         final Properties entry = new Properties();
         entry.put("groupId", "org.example");
         entry.put("artifactId", "sample");
-        final List<Properties> items = new LinkedList<>();
-        items.add(entry);
         final Properties config = new Properties();
-        config.put("items", items);
+        config.put("items", List.of(entry));
         MatcherAssert.assertThat(
             "All keys of nested Properties must appear as children",
             new MojoExecutor(null, null)
