@@ -4,11 +4,11 @@
  */
 package com.qulice.pmd;
 
-import com.google.common.base.Joiner;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collections;
+import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -26,18 +26,9 @@ final class PmdInnerClassConstantsTest {
         final String file = "src/main/java/foo/Foo.java";
         final Environment env = new Environment.Mock().withFile(
             file,
-            Joiner.on('\n').join(
-                "package foo;",
-                "interface Foo {",
-                "  final class Bar implements Foo {",
-                "    private static final Pattern TEST =",
-                "      Pattern.compile(\"hey\");",
-                "    String doSomething() {",
-                "      return Foo.Bar.TEST.toString();",
-                "    }",
-                "  }",
-                "}"
-            )
+            new TextOf(
+                this.getClass().getResourceAsStream("InnerClassConstants.java")
+            ).asString()
         );
         MatcherAssert.assertThat(
             "Private constant in inner class is not a violation",
