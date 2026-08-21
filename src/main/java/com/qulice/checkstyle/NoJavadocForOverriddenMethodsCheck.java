@@ -10,6 +10,8 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+import java.util.Arrays;
+import java.util.regex.Pattern;
 
 /**
  * Checks that there is no Javadoc for inherited methods.
@@ -19,6 +21,13 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * @since 0.16
  */
 public final class NoJavadocForOverriddenMethodsCheck extends AbstractCheck {
+
+    /**
+     * Javadoc deprecation block tag.
+     */
+    private static final Pattern DEPRECATED = Pattern.compile(
+        "^\\s*(?:\\*|/\\*\\*)?\\s*@deprecated(?:\\s|\\*/|$)"
+    );
 
     /**
      * Default constructor.
@@ -52,7 +61,12 @@ public final class NoJavadocForOverriddenMethodsCheck extends AbstractCheck {
             final TextBlock javadoc = contents.getJavadocBefore(
                 ast.getLineNo()
             );
-            if (javadoc != null) {
+            if (
+                javadoc != null
+                    && Arrays.stream(javadoc.getText()).noneMatch(
+                        line -> DEPRECATED.matcher(line).find()
+                    )
+            ) {
                 log(ast, "Overridden methods should not have Javadoc");
             }
         }
