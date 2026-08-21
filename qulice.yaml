@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 810.559916422
+  seconds: 629.298184722
   version: 0.61.1
   what: judges-summary
-  when: 2026-08-20 07:41:45.996390707 Z
+  when: 2026-08-21 07:39:34.275500421 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63001,17 +63001,17 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 0
+  assignees_were_scanned: 533
   earliest_issue_was_found: 1
-  events_were_scanned: 13566186154
+  events_were_scanned: 18254694562
   issues_were_scanned: 867
-  labels_were_scanned: 843
+  labels_were_scanned: 936
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
   min_pull_was_found: 1538
   repository: 9580168
-  types_were_scanned: 0
+  types_were_scanned: 487
   what: iterate
   where: github
 - _id: 11295
@@ -69377,7 +69377,7 @@
   total_releases_published: 5
   total_reviews_submitted: 25
   what: quantity-of-deliverables
-  when: 2026-08-13 07:48:13.479804491 Z
+  when: &144 2026-08-13 07:48:13.479804491 Z
 - _id: 11705
   _job: 31679202331
   _time: 2026-08-13 07:59:51.636365389 Z
@@ -69636,7 +69636,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   since: *143
   what: quality-of-service
-  when: 2026-08-13 08:00:59.129135354 Z
+  when: &145 2026-08-13 08:00:59.129135354 Z
 - _id: 11721
   _job: 31781189176
   _time: 2026-08-14 07:46:56.699624958 Z
@@ -70648,20 +70648,6 @@
   total_stars: 323
   what: dimensions-of-terrain
   when: 2026-08-17 07:47:58.899664579 Z
-- _id: 11779
-  _job: 87418
-  _time: 2026-08-17 07:48:52.762197825 Z
-  _version: 0.19.16/0.61.1/0.17.21
-  analyzers: 18
-  text: |-
-    The average number of builds per week (221.2) is increasing (R=0.16).
-    The average number of commits per week (12.0) is staying still.
-    The average issue cycle time (2w3d) is decreasing (R=-0.45).
-    The average pull cycle time (6d3h) is staying still.
-    The average number of releases per month (3.1) is increasing (R=0.23).
-    The average monthly turnover (34.0 developers) is increasing (R=0.36).
-  what: assessment
-  when: 2026-08-17 07:48:52.784369169 Z
 - _id: 11780
   _job: 32111300562
   _time: 2026-08-18 07:27:14.218759712 Z
@@ -71116,6 +71102,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   branch: renovate/guava-monorepo
   details: The missing pull yegor256/qulice#1750 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1750
   repository: 9580168
   what: pull-was-opened
@@ -71128,6 +71115,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   branch: renovate/com.puppycrawl.tools-checkstyle-14.x
   details: The missing pull yegor256/qulice#1751 has been opened by @renovate[bot].
+  is_human: 0
   issue: 1751
   repository: 9580168
   what: pull-was-opened
@@ -71139,6 +71127,7 @@
   _time: 2026-08-20 07:29:42.840894984 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The missing issue yegor256/qulice#1752 has been opened by @yegor256.
+  is_human: 1
   issue: 1752
   repository: 9580168
   what: issue-was-opened
@@ -71151,6 +71140,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   branch: '1752'
   details: The missing pull yegor256/qulice#1753 has been opened by @yegor256.
+  is_human: 1
   issue: 1753
   repository: 9580168
   what: pull-was-opened
@@ -71162,6 +71152,7 @@
   _time: 2026-08-20 07:29:44.257095189 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The missing issue yegor256/qulice#1754 has been opened by @yegor256.
+  is_human: 1
   issue: 1754
   repository: 9580168
   what: issue-was-opened
@@ -71174,6 +71165,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   branch: '1754'
   details: The missing pull yegor256/qulice#1755 has been opened by @yegor256.
+  is_human: 1
   issue: 1755
   repository: 9580168
   what: pull-was-opened
@@ -71185,6 +71177,7 @@
   _time: 2026-08-20 07:29:45.730815368 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The missing issue yegor256/qulice#1756 has been opened by @yegor256.
+  is_human: 1
   issue: 1756
   repository: 9580168
   what: issue-was-opened
@@ -71197,6 +71190,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   branch: '1756'
   details: The missing pull yegor256/qulice#1757 has been opened by @yegor256.
+  is_human: 1
   issue: 1757
   repository: 9580168
   what: pull-was-opened
@@ -71208,6 +71202,7 @@
   _time: 2026-08-20 07:29:47.140486823 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The missing issue yegor256/qulice#1758 has been opened by @yegor256.
+  is_human: 1
   issue: 1758
   repository: 9580168
   what: issue-was-opened
@@ -71220,6 +71215,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   branch: '1758'
   details: The missing pull yegor256/qulice#1759 has been opened by @yegor256.
+  is_human: 1
   issue: 1759
   repository: 9580168
   what: pull-was-opened
@@ -71232,6 +71228,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   branch: version-up
   details: The missing pull yegor256/qulice#1760 has been opened by @github-actions[bot].
+  is_human: 0
   issue: 1760
   repository: 9580168
   what: pull-was-opened
@@ -71243,6 +71240,7 @@
   _time: 2026-08-20 07:29:49.937112089 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The missing issue yegor256/qulice#1761 has been opened by @yegor256.
+  is_human: 1
   issue: 1761
   repository: 9580168
   what: issue-was-opened
@@ -71255,6 +71253,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   branch: '1761'
   details: The missing pull yegor256/qulice#1762 has been opened by @yegor256.
+  is_human: 1
   issue: 1762
   repository: 9580168
   what: pull-was-opened
@@ -71266,6 +71265,7 @@
   _time: 2026-08-20 07:29:51.401419877 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The missing issue yegor256/qulice#1763 has been opened by @yegor256.
+  is_human: 1
   issue: 1763
   repository: 9580168
   what: issue-was-opened
@@ -71278,6 +71278,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   branch: '1763'
   details: The missing pull yegor256/qulice#1764 has been opened by @yegor256.
+  is_human: 1
   issue: 1764
   repository: 9580168
   what: pull-was-opened
@@ -71289,6 +71290,7 @@
   _time: 2026-08-20 07:29:52.910158721 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The missing issue yegor256/qulice#1765 has been opened by @yegor256.
+  is_human: 1
   issue: 1765
   repository: 9580168
   what: issue-was-opened
@@ -71301,6 +71303,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   branch: claude/qulice-issue-1765-8p5is8
   details: The missing pull yegor256/qulice#1766 has been opened by @yegor256.
+  is_human: 1
   issue: 1766
   repository: 9580168
   what: pull-was-opened
@@ -71322,8 +71325,10 @@
   failed_builds: 0
   files: 2
   hoc: 4
+  is_human: 1
   issue: 1750
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71345,9 +71350,11 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1751
   repository: 9580168
   review: 2026-08-18 16:48:39.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71369,9 +71376,11 @@
   failed_builds: 0
   files: 3
   hoc: 147
+  is_human: 1
   issue: 1753
   repository: 9580168
   review: 2026-08-18 16:29:10.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71393,9 +71402,11 @@
   failed_builds: 0
   files: 4
   hoc: 250
+  is_human: 1
   issue: 1755
   repository: 9580168
   review: 2026-08-18 16:44:25.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71417,9 +71428,11 @@
   failed_builds: 0
   files: 7
   hoc: 234
+  is_human: 1
   issue: 1757
   repository: 9580168
   review: 2026-08-18 17:00:44.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71441,9 +71454,11 @@
   failed_builds: 0
   files: 15
   hoc: 454
+  is_human: 1
   issue: 1759
   repository: 9580168
   review: 2026-08-18 17:24:45.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71465,6 +71480,7 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 0
   issue: 1760
   repository: 9580168
   succeeded_builds: 0
@@ -71488,9 +71504,11 @@
   failed_builds: 0
   files: 10
   hoc: 269
+  is_human: 1
   issue: 1762
   repository: 9580168
   review: 2026-08-18 20:12:19.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71512,9 +71530,11 @@
   failed_builds: 0
   files: 4
   hoc: 119
+  is_human: 1
   issue: 1764
   repository: 9580168
   review: 2026-08-19 05:54:08.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71536,9 +71556,11 @@
   failed_builds: 0
   files: 4
   hoc: 220
+  is_human: 1
   issue: 1766
   repository: 9580168
   review: 2026-08-19 06:09:49.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71560,8 +71582,10 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1769
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -71583,9 +71607,11 @@
   failed_builds: 0
   files: 29
   hoc: 1269
+  is_human: 1
   issue: 1771
   repository: 9580168
   review: 2026-08-19 08:59:51.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71607,8 +71633,10 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1772
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71630,8 +71658,10 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1773
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71653,9 +71683,11 @@
   failed_builds: 0
   files: 91
   hoc: 2117
+  is_human: 1
   issue: 1776
   repository: 9580168
   review: 2026-08-19 13:55:40.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71677,9 +71709,11 @@
   failed_builds: 0
   files: 12
   hoc: 661
+  is_human: 1
   issue: 1777
   repository: 9580168
   review: 2026-08-19 14:19:39.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71701,9 +71735,11 @@
   failed_builds: 0
   files: 17
   hoc: 443
+  is_human: 1
   issue: 1778
   repository: 9580168
   review: 2026-08-20 05:03:01.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71725,9 +71761,11 @@
   failed_builds: 0
   files: 21
   hoc: 631
+  is_human: 1
   issue: 1779
   repository: 9580168
   review: 2026-08-20 05:31:24.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71749,9 +71787,11 @@
   failed_builds: 0
   files: 9
   hoc: 74
+  is_human: 1
   issue: 1780
   repository: 9580168
   review: 2026-08-20 07:12:20.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -71764,6 +71804,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1730 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1730
   repository: 9580168
   what: issue-was-assigned
@@ -71776,6 +71817,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1734 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1734
   repository: 9580168
   what: issue-was-assigned
@@ -71788,6 +71830,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1736 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1736
   repository: 9580168
   what: issue-was-assigned
@@ -71800,6 +71843,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1741 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1741
   repository: 9580168
   what: issue-was-assigned
@@ -71812,6 +71856,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1742 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1742
   repository: 9580168
   what: issue-was-assigned
@@ -71824,6 +71869,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1745 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1745
   repository: 9580168
   what: issue-was-assigned
@@ -71836,6 +71882,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1746 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1746
   repository: 9580168
   what: issue-was-assigned
@@ -71848,6 +71895,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1754 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1754
   repository: 9580168
   what: issue-was-assigned
@@ -71860,6 +71908,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1763 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1763
   repository: 9580168
   what: issue-was-assigned
@@ -71872,6 +71921,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1765 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1765
   repository: 9580168
   what: issue-was-assigned
@@ -71884,6 +71934,7 @@
   _version: 0.19.16/0.61.1/0.17.21
   assigner: 526301
   details: yegor256/qulice#1775 was assigned to @yegor256 by @yegor256.
+  is_human: 1
   issue: 1775
   repository: 9580168
   what: issue-was-assigned
@@ -71894,5 +71945,393 @@
   _job: 32344059600
   _time: 2026-08-20 07:41:45.860219914 Z
   _version: 0.19.16/0.61.1/0.17.21
+  total_active_contributors: 4
+  total_commits: 2693
+  total_contributors: 59
+  total_files: 862
+  total_forks: 124
+  total_issues: 931
+  total_pulls: 849
+  total_releases: 104
+  total_repositories: 1
+  total_stars: 323
   what: dimensions-of-terrain
   when: 2026-08-20 07:41:45.891062343 Z
+- _id: 11857
+  _job: 87852
+  _time: 2026-08-20 07:42:16.641270093 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  analyzers: 18
+  text: |-
+    The average number of builds per week (224.5) is increasing (R=0.14).
+    The average number of commits per week (12.2) is staying still.
+    The average issue cycle time (2w2d) is decreasing (R=-0.47).
+    The average pull cycle time (5d19h) is staying still.
+    The average number of releases per month (3.2) is increasing (R=0.22).
+    The average monthly turnover (34.0 developers) is increasing (R=0.36).
+  what: assessment
+  when: 2026-08-20 07:42:16.691861525 Z
+- _id: 11858
+  _job: 32458746676
+  _time: 2026-08-21 07:29:20.596189164 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  since: *144
+  total_builds_ran: 1190
+  total_commits_pushed: 38
+  total_hoc_committed: 10108
+  total_issues_created: 52
+  total_pulls_submitted: 32
+  total_releases_published: 6
+  total_reviews_submitted: 34
+  what: quantity-of-deliverables
+  when: 2026-08-21 07:29:20.587947775 Z
+- _id: 11859
+  _job: 32458746676
+  _time: 2026-08-21 07:30:24.460292740 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The missing issue yegor256/qulice#1767 has been opened by @yegor256.
+  issue: 1767
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-08-19 06:16:05.000000000 Z
+  where: github
+  who: 526301
+- _id: 11860
+  _job: 32458746676
+  _time: 2026-08-21 07:30:24.882831809 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: '1767'
+  details: The missing pull yegor256/qulice#1768 has been opened by @yegor256.
+  issue: 1768
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-08-19 06:23:52.000000000 Z
+  where: github
+  who: 526301
+- _id: 11861
+  _job: 32458746676
+  _time: 2026-08-21 07:30:29.535685333 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: '1767'
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1768 has been "pull-was-merged".
+  failed_builds: 0
+  files: 4
+  hoc: 175
+  issue: 1768
+  repository: 9580168
+  review: 2026-08-19 06:23:58.000000000 Z
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-08-19 06:28:10.000000000 Z
+  where: github
+  who: 526301
+- _id: 11862
+  _job: 32458746676
+  _time: 2026-08-21 07:30:37.212706634 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: claude/pom-generated-class-exclusion-0as8f7
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1781 has been "pull-was-merged".
+  failed_builds: 0
+  files: 3
+  hoc: 114
+  issue: 1781
+  repository: 9580168
+  review: 2026-08-20 07:13:02.000000000 Z
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-08-20 07:38:40.000000000 Z
+  where: github
+  who: 526301
+- _id: 11863
+  _job: 32458746676
+  _time: 2026-08-21 07:38:40.941641205 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 29139614
+  comments: 3
+  details: The pull request yegor256/qulice#1751 with 2 HoC created by @renovate[bot]
+    was reviewed by @yegor256 after 0h51m and 0 comments.
+  hoc: 2
+  issue: 1751
+  repository: 9580168
+  review_comments: 0
+  seconds: 3080
+  what: code-was-reviewed
+  when: 2026-08-18 16:48:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 11864
+  _job: 32458746676
+  _time: 2026-08-21 07:38:42.094191087 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1753 with 147 HoC created by @yegor256
+    was reviewed by @copilot after 0h0m and 0 comments.
+  hoc: 147
+  issue: 1753
+  repository: 9580168
+  review_comments: 0
+  seconds: 7
+  what: code-was-reviewed
+  when: 2026-08-18 16:29:10.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11865
+  _job: 32458746676
+  _time: 2026-08-21 07:38:43.312868781 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1755 with 250 HoC created by @yegor256
+    was reviewed by @copilot after 0h0m and 0 comments.
+  hoc: 250
+  issue: 1755
+  repository: 9580168
+  review_comments: 0
+  seconds: 5
+  what: code-was-reviewed
+  when: 2026-08-18 16:44:25.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11866
+  _job: 32458746676
+  _time: 2026-08-21 07:38:44.494438396 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1757 with 234 HoC created by @yegor256
+    was reviewed by @copilot after 0h0m and 0 comments.
+  hoc: 234
+  issue: 1757
+  repository: 9580168
+  review_comments: 0
+  seconds: 6
+  what: code-was-reviewed
+  when: 2026-08-18 17:00:44.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11867
+  _job: 32458746676
+  _time: 2026-08-21 07:38:45.597385132 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1759 with 454 HoC created by @yegor256
+    was reviewed by @copilot after 0h0m and 0 comments.
+  hoc: 454
+  issue: 1759
+  repository: 9580168
+  review_comments: 0
+  seconds: 5
+  what: code-was-reviewed
+  when: 2026-08-18 17:24:45.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11868
+  _job: 32458746676
+  _time: 2026-08-21 07:38:47.548405080 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1762 with 269 HoC created by @yegor256
+    was reviewed by @copilot after 0h0m and 0 comments.
+  hoc: 269
+  issue: 1762
+  repository: 9580168
+  review_comments: 0
+  seconds: 6
+  what: code-was-reviewed
+  when: 2026-08-18 20:12:19.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11869
+  _job: 32458746676
+  _time: 2026-08-21 07:38:48.704514814 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1764 with 119 HoC created by @yegor256
+    was reviewed by @copilot after 0h0m and 0 comments.
+  hoc: 119
+  issue: 1764
+  repository: 9580168
+  review_comments: 0
+  seconds: 5
+  what: code-was-reviewed
+  when: 2026-08-19 05:54:08.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11870
+  _job: 32458746676
+  _time: 2026-08-21 07:38:49.928094120 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1766 with 220 HoC created by @yegor256
+    was reviewed by @copilot after 0h4m and 0 comments.
+  hoc: 220
+  issue: 1766
+  repository: 9580168
+  review_comments: 0
+  seconds: 254
+  what: code-was-reviewed
+  when: 2026-08-19 06:09:49.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11871
+  _job: 32458746676
+  _time: 2026-08-21 07:38:51.465019305 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1771 with 1269 HoC created by @yegor256
+    was reviewed by @copilot after 0h0m and 0 comments.
+  hoc: 1269
+  issue: 1771
+  repository: 9580168
+  review_comments: 0
+  seconds: 7
+  what: code-was-reviewed
+  when: 2026-08-19 08:59:51.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11872
+  _job: 32458746676
+  _time: 2026-08-21 07:38:53.514088844 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1776 with 2117 HoC created by @yegor256
+    was reviewed by @copilot after 0h14m and 0 comments.
+  hoc: 2117
+  issue: 1776
+  repository: 9580168
+  review_comments: 0
+  seconds: 872
+  what: code-was-reviewed
+  when: 2026-08-19 13:55:40.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11873
+  _job: 32458746676
+  _time: 2026-08-21 07:38:54.346267740 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1777 with 661 HoC created by @yegor256
+    was reviewed by @copilot after 0h23m and 0 comments.
+  hoc: 661
+  issue: 1777
+  repository: 9580168
+  review_comments: 0
+  seconds: 1406
+  what: code-was-reviewed
+  when: 2026-08-19 14:19:39.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11874
+  _job: 32458746676
+  _time: 2026-08-21 07:38:55.103824917 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1778 with 443 HoC created by @yegor256
+    was reviewed by @copilot after 11h39m and 0 comments.
+  hoc: 443
+  issue: 1778
+  repository: 9580168
+  review_comments: 0
+  seconds: 41971
+  what: code-was-reviewed
+  when: 2026-08-20 05:03:01.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11875
+  _job: 32458746676
+  _time: 2026-08-21 07:38:55.917098383 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1779 with 631 HoC created by @yegor256
+    was reviewed by @copilot after 0h3m and 0 comments.
+  hoc: 631
+  issue: 1779
+  repository: 9580168
+  review_comments: 0
+  seconds: 218
+  what: code-was-reviewed
+  when: 2026-08-20 05:31:24.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11876
+  _job: 32458746676
+  _time: 2026-08-21 07:38:56.664902217 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1780 with 74 HoC created by @yegor256
+    was reviewed by @copilot after 1h25m and 0 comments.
+  hoc: 74
+  issue: 1780
+  repository: 9580168
+  review_comments: 0
+  seconds: 5143
+  what: code-was-reviewed
+  when: 2026-08-20 07:12:20.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11877
+  _job: 32458746676
+  _time: 2026-08-21 07:38:57.134236898 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1768 with 175 HoC created by @yegor256
+    was reviewed by @copilot after 0h0m and 0 comments.
+  hoc: 175
+  issue: 1768
+  repository: 9580168
+  review_comments: 0
+  seconds: 6
+  what: code-was-reviewed
+  when: 2026-08-19 06:23:58.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11878
+  _job: 32458746676
+  _time: 2026-08-21 07:38:57.248966219 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1781 with 114 HoC created by @yegor256
+    was reviewed by @copilot after 1h22m and 0 comments.
+  hoc: 114
+  issue: 1781
+  repository: 9580168
+  review_comments: 0
+  seconds: 4973
+  what: code-was-reviewed
+  when: 2026-08-20 07:13:02.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11879
+  _job: 32458746676
+  _time: 2026-08-21 07:39:25.496395531 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  since: *145
+  what: quality-of-service
+  when: 2026-08-21 07:39:25.486564814 Z
