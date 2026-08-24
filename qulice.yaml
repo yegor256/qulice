@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 574.815160122
+  seconds: 647.04283003
   version: 0.61.1
   what: judges-summary
-  when: 2026-08-23 07:33:16.788731048 Z
+  when: 2026-08-24 07:47:42.355906404 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63001,17 +63001,17 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 782
+  assignees_were_scanned: 864
   earliest_issue_was_found: 1
-  events_were_scanned: 18483800231
+  events_were_scanned: 18589329777
   issues_were_scanned: 867
-  labels_were_scanned: 1706
+  labels_were_scanned: 0
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
   min_pull_was_found: 1538
   repository: 9580168
-  types_were_scanned: 695
+  types_were_scanned: 773
   what: iterate
   where: github
 - _id: 11295
@@ -72373,3 +72373,67 @@
     The average monthly turnover (34.0 developers) is increasing (R=0.36).
   what: assessment
   when: 2026-08-22 07:35:52.134254446 Z
+- _id: 11882
+  _job: 32702203733
+  _time: 2026-08-24 07:39:00.498745605 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1754.
+  issue: 1754
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-18 16:44:41.000000000 Z
+  where: github
+  who: 526301
+- _id: 11883
+  _job: 32702203733
+  _time: 2026-08-24 07:39:02.290880241 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1763.
+  issue: 1763
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-19 05:48:18.000000000 Z
+  where: github
+  who: 526301
+- _id: 11884
+  _job: 32702203733
+  _time: 2026-08-24 07:39:02.770930170 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1765.
+  issue: 1765
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-19 05:57:17.000000000 Z
+  where: github
+  who: 526301
+- _id: 11885
+  _job: 32702203733
+  _time: 2026-08-24 07:39:04.888897469 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1775.
+  issue: 1775
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-08-19 13:36:17.000000000 Z
+  where: github
+  who: 526301
+- _id: 11886
+  _job: 32702203733
+  _time: 2026-08-24 07:47:24.398517074 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  total_active_contributors: 4
+  total_commits: 2693
+  total_contributors: 59
+  total_files: 862
+  total_forks: 124
+  total_issues: 931
+  total_pulls: 849
+  total_releases: 104
+  total_repositories: 1
+  total_stars: 323
+  what: dimensions-of-terrain
+  when: 2026-08-24 07:47:24.409166108 Z
