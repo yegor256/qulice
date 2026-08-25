@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Checks node/closing curly brackets to be the last symbols on the line.
  *
- * <p>This is how a correct curly bracket structure should look like:
+ * <p>This is how a correct curly bracket structure should look like:</p>
  *
  * <pre>
  * String[] array = new String[] {
@@ -22,7 +22,7 @@ import java.util.List;
  * };
  * </pre>
  *
- * <p>or
+ * <p>or</p>
  *
  * <pre>
  * String[] array = new String[] {"first", "second"};
@@ -30,7 +30,7 @@ import java.util.List;
  *
  * <p>The motivation for such formatting is simple - we want to see the entire
  * block as fast as possible. When you look at a block of code you should be
- * able to see where it starts and where it ends.
+ * able to see where it starts and where it ends.</p>
  *
  * @since 0.6
  */

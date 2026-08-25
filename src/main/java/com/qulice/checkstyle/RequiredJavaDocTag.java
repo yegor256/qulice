@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 /**
  * Check the required JavaDoc tag in the lines.
  *
- * <p>Correct format is the following (of a class javadoc):
+ * <p>Correct format is the following (of a class javadoc):</p>
  *
  * <pre>
  * &#47;**

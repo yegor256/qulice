@@ -17,23 +17,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * (static or instance) from inside a constructor is forbidden,
  * including as the right-hand side of a field assignment
  * (e.g. {@code this.bar = Foo.createBar()}) or as a nested argument
- * to a {@code new} expression.
+ * to a {@code new} expression.</p>
  *
  * <p>A constructor whose only statement is a delegating
  * {@code this(...)} or {@code super(...)} call is exempt: such a
  * constructor performs no work of its own, and the method-call
  * arguments to the delegate (e.g. {@code this(System.currentTimeMillis())})
- * are accepted as a sanctioned factory-style entry point.
+ * are accepted as a sanctioned factory-style entry point.</p>
  *
  * <p>Method calls nested inside lambda bodies or anonymous class bodies
  * are not considered constructor code, because they are not executed
  * at construction time: only the lambda object or the anonymous class
- * instance is created. Such subtrees are skipped.
+ * instance is created. Such subtrees are skipped.</p>
  *
  * <p>Defensive array copy idioms — {@code Arrays.copyOf(...)} and
  * {@code <expr>.clone()} — are also tolerated, since there is no
  * method-call-free way to defensively copy an array field at
- * construction time (Effective Java item 50).
+ * construction time (Effective Java item 50).</p>
  *
  * @since 0.24
  */

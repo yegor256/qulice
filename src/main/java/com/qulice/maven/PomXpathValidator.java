@@ -16,7 +16,7 @@ import org.apache.commons.io.FileUtils;
 /**
  * Check pom.xml with XPath validation queries.
  *
- * <p>Restrictions:
+ * <p>Restrictions:</p>
  *
  * <ol>
  * <li>Each xpath component should contains namespace prefix pom:</li>

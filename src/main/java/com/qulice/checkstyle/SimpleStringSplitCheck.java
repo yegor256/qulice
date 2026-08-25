@@ -16,13 +16,13 @@ import java.util.Optional;
  * <p>For anything beyond the fastpath, String.split builds a fresh Pattern
  * on every call, which is wasteful in tight loops. Extract the regex into a
  * private static final Pattern field and use Pattern.split(CharSequence)
- * instead.
+ * instead.</p>
  *
  * <p>The JDK fastpath accepts only a one-char string whose sole character is
  * not a regex meta character, or a two-char string whose first character is
- * a backslash and whose second character is not an ASCII letter or digit.
+ * a backslash and whose second character is not an ASCII letter or digit.</p>
  *
- * <p>Examples that are flagged:
+ * <p>Examples that are flagged:</p>
  *
  * <pre>
  * "abxxdexxzy".split("xx");
@@ -30,7 +30,7 @@ import java.util.Optional;
  * "abxxdexxzy".split(".");
  * </pre>
  *
- * <p>Examples that are accepted:
+ * <p>Examples that are accepted:</p>
  *
  * <pre>
  * "abxdexzy".split("x");
@@ -41,7 +41,7 @@ import java.util.Optional;
  *
  * <p>The check only reports calls whose first argument is a string literal:
  * when the regex is a variable the optimization cannot be determined from
- * the AST alone.
+ * the AST alone.</p>
  *
  * @since 0.24
  */

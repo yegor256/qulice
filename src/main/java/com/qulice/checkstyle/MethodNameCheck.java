@@ -13,10 +13,10 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * method, while a method of a type that extends {@code com.sun.jna.Library}
  * carries the name of a native function, spelled the way the library that
  * exports it spells it. Renaming it breaks the binding, so the check stays
- * silent there.
+ * silent there.</p>
  *
  * <p>Its messages come from the bundle of the stock check, since the two
- * report the very same things and one wording for them is enough.
+ * report the very same things and one wording for them is enough.</p>
  *
  * @since 1.0
  */

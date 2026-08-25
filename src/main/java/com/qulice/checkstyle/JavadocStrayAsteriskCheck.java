@@ -17,11 +17,11 @@ import java.util.Locale;
  * {@code *} appended to the last line of its text, instead of {@code </p>}
  * or nothing at all. Javadoc renders that asterisk as literal text, right
  * after the sentence. See
- * <a href="https://github.com/yegor256/qulice/issues/1783">#1783</a>.
+ * <a href="https://github.com/yegor256/qulice/issues/1783">#1783</a>.</p>
  *
  * <p>The following Javadoc will be reported as a violation, since the last
  * line of the paragraph ends with an asterisk that belongs to no comment
- * delimiter:
+ * delimiter:</p>
  * <pre>
  * &#47;**
  *  * &lt;p&gt;The sentinel is not a real expression kind, it is
@@ -29,7 +29,7 @@ import java.util.Locale;
  *  *&#47;
  * </pre>
  *
- * <p>And this is how it should be written instead:
+ * <p>And this is how it should be written instead:</p>
  * <pre>
  * &#47;**
  *  * &lt;p&gt;The sentinel is not a real expression kind, it is
@@ -40,7 +40,7 @@ import java.util.Locale;
  * <p>The asterisks that open the comment, prefix its lines, and close it are
  * not touched. Lines inside a {@code <pre>...</pre>} block or a
  * {@code {@snippet ...}} block are skipped, since an asterisk may legally
- * end a line of example code there.
+ * end a line of example code there.</p>
  *
  * @since 0.73.4
  */

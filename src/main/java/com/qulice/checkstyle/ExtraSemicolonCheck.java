@@ -13,7 +13,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * of a class, interface, record, method or constructor declaration.
  *
  * <p>Such semicolons form empty declarations that carry no meaning and
- * clutter the code, for example:
+ * clutter the code, for example:</p>
  *
  * <pre>
  * class Semicolons {
@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * direct child of an {@code OBJBLOCK} (a class, interface or record
  * body) or of the root {@code COMPILATION_UNIT}. Enum bodies are
  * excluded because the {@code ;} separator between enum constants and
- * member declarations is mandated by the Java grammar.
+ * member declarations is mandated by the Java grammar.</p>
  *
  * @since 0.24
  */

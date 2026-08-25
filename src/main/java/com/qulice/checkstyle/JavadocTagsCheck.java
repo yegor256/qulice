@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  * {@code author} or {@code version} tags and has a properly formatted
  * {@code since} tag.
  *
- * <p>Correct format is the following (of a class javadoc):
+ * <p>Correct format is the following (of a class javadoc):</p>
  *
  * <pre>
  * &#47;**

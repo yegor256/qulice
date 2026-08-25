@@ -16,17 +16,17 @@ import java.util.regex.Pattern;
  * <p>Some developers add an empty line after the opening brace of a
  * class, interface or enum for aesthetic reasons, while others consider it
  * wasted vertical space. This check enforces the presence of such a blank
- * line so that the style is consistent across the whole codebase.
+ * line so that the style is consistent across the whole codebase.</p>
  *
  * <p>The following code will be reported as a violation because the first
- * member is not preceded by an empty line:
+ * member is not preceded by an empty line:</p>
  * <pre>
  * class Foo {
  *     private int bar;
  * }
  * </pre>
  *
- * <p>Empty type bodies and one-line declarations are not reported.
+ * <p>Empty type bodies and one-line declarations are not reported.</p>
  *
  * @since 0.24
  */

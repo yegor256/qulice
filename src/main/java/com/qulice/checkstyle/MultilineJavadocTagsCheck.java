@@ -12,7 +12,7 @@ import org.cactoos.text.Sub;
 /**
  * Check indents in multi line JavaDoc tags.
  *
- * <p>This is how you should format javadoc tags that need a few lines:
+ * <p>This is how you should format javadoc tags that need a few lines:</p>
  *
  * <pre>
  * &#47;**
@@ -30,7 +30,7 @@ import org.cactoos.text.Sub;
  *
  * <p>Keep in mind that all free-text information should go <b>before</b>
  * javadoc tags, or else it will treated as part of the latest tag and
- * qulice will complain.
+ * qulice will complain.</p>
  *
  * @since 0.3
  */

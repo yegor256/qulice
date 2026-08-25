@@ -12,9 +12,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Check for empty lines inside Javadoc.
  *
  * <p>You can't have an empty line at the beginning or at the end of Javadoc,
- * and two consecutive empty lines are not allowed anywhere inside it.
+ * and two consecutive empty lines are not allowed anywhere inside it.</p>
  *
- * <p>The following red lines in class Javadoc will be reported as violations.
+ * <p>The following red lines in class Javadoc will be reported as violations.</p>
  * <pre>
  * &#47;**
  *  <span style="color:red" >*</span>

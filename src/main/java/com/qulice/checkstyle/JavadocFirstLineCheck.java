@@ -13,9 +13,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>You can't have a description on the same line as the opening
  * {@code /**}. Either keep the whole Javadoc on a single line, or move
- * the text to a new line under the opening.
+ * the text to a new line under the opening.</p>
  *
- * <p>The following red line will be reported as a violation.
+ * <p>The following red line will be reported as a violation.</p>
  * <pre>
  * <span style="color:red" >&#47;** Some text</span>
  *  *&#47;

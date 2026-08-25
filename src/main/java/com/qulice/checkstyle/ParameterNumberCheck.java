@@ -17,15 +17,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * is a symptom of a class with too many attributes, and the class is what
  * has to be blamed, not its constructor. That's why a constructor with no
  * more parameters than the number of attributes of its class passes here,
- * no matter how big the limit is.
+ * no matter how big the limit is.</p>
  *
  * <p>A private method passes too. It is invisible outside its class, its
  * parameters belong to no contract anybody else can see, and wrapping them
- * into a new type only to satisfy the limit buys nothing.
+ * into a new type only to satisfy the limit buys nothing.</p>
  *
  * <p>So does a method of a JNA binding, whose parameter list repeats the
  * signature of a native function and cannot be shortened without breaking
- * the mapping.
+ * the mapping.</p>
  *
  * @since 1.0
  */

@@ -17,13 +17,13 @@ import java.util.regex.Pattern;
  * <p>Classes from the {@code java.lang} package are imported implicitly,
  * so qualifying them with their package name adds nothing. A field whose
  * type is written with the {@code java.lang.} prefix should instead be
- * declared as {@code private final String name}, in both code and Javadoc.
+ * declared as {@code private final String name}, in both code and Javadoc.</p>
  *
  * <p>Unlike a plain line-based regular expression, this check ignores the
  * prefix when it appears inside a string literal or a text block. A string
  * constant that happens to contain the {@code java.lang.} substring is data,
  * not a type reference, and must not be reported. See
- * <a href="https://github.com/yegor256/qulice/issues/1703">#1703</a>.
+ * <a href="https://github.com/yegor256/qulice/issues/1703">#1703</a>.</p>
  *
  * @since 0.24
  */

@@ -11,7 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Checks node/closing brackets to be the last symbols on the line.
  *
- * <p>This is how a correct bracket structure should look like:
+ * <p>This is how a correct bracket structure should look like:</p>
  *
  * <pre>
  * String text = String.format(
@@ -26,10 +26,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>The motivation for such formatting is simple - we want to see the entire
  * block as fast as possible. When you look at a block of code you should be
  * able to see where it starts and where it ends. In exactly the same way
- * we organize curled brackets.
+ * we organize curled brackets.</p>
  *
  * <p>In other words, when you open a bracket and can't close it at the same
- * line - you should leave it as the last symbol at this line.
+ * line - you should leave it as the last symbol at this line.</p>
  *
  * @since 0.3
  */

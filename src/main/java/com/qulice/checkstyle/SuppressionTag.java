@@ -17,7 +17,7 @@ import java.util.Collection;
  * one to the other. A tag that influences
  * no violation of its check suppresses nothing and lingers as a lie about
  * the code, which is what {@link Suppressions} finds with the help of this
- * class.
+ * class.</p>
  *
  * @since 1.0
  */
@@ -73,7 +73,7 @@ final class SuppressionTag {
      * <p>The filters match the captured name against the fully qualified
      * class name of the check, which the name is a substring of, so the
      * same test decides here whether an event belongs to the suppressed
-     * check.
+     * check.</p>
      *
      * @param events Events collected with the nearby filters removed
      * @return True if no event of the check falls in the influence range
