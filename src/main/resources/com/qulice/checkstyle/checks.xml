@@ -491,6 +491,12 @@
     <module name="com.qulice.checkstyle.JavadocEmptyLineCheck"/>
     <module name="com.qulice.checkstyle.JavadocEmptyLineBeforeTagCheck"/>
     <module name="com.qulice.checkstyle.JavadocCompactParagraphCheck"/>
+    <!--
+    This one makes sure that no line of a Javadoc block ends with a stray
+    asterisk, which Javadoc renders as literal text.
+    See https://github.com/yegor256/qulice/issues/1783
+    -->
+    <module name="com.qulice.checkstyle.JavadocStrayAsteriskCheck"/>
     <module name="com.qulice.checkstyle.JavadocFirstLineCheck"/>
     <module name="com.qulice.checkstyle.JavadocNoIndentCheck"/>
     <module name="com.qulice.checkstyle.DiamondOperatorCheck"/>
