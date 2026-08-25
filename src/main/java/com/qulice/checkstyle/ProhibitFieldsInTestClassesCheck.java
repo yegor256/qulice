@@ -22,11 +22,11 @@ import java.util.regex.Pattern;
  * are ignored, because they represent compile-time constants or
  * shared fixtures rather than per-test state. Fields declared on
  * nested helper types (stubs, fakes, recorders) are not flagged,
- * because they belong to the helper, not to the test class.
+ * because they belong to the helper, not to the test class.</p>
  *
  * <p>See also
  * <a href="http://www.yegor256.com/2015/05/25/unit-test-scaffolding.html">
- * Unit Test Scaffolding</a>.
+ * Unit Test Scaffolding</a>.</p>
  *
  * @since 0.24
  */

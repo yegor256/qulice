@@ -22,7 +22,7 @@ import net.sourceforge.pmd.lang.java.types.JTypeMirror;
  * the same six are recognised when the operands are swapped. Comparisons
  * against {@code 1} such as {@code length() == 1} or {@code length() > 1}
  * describe single-character strings and have no {@code isEmpty()}
- * counterpart, so they are left alone.
+ * counterpart, so they are left alone.</p>
  *
  * @since 0.18
  */

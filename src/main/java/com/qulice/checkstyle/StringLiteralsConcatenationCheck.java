@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Checks for not using concatenation of string literals in any form.
  *
- * <p>The following constructs are prohibited:
+ * <p>The following constructs are prohibited:</p>
  *
  * <pre>
  * String a = "done in " + time + " seconds";
@@ -26,10 +26,10 @@ import java.util.List;
  * difficult to understand how the text will look after concatenation,
  * especially if the text is long and there are more than a few {@code +}
  * operators. Second, you won't be able to translate your text to other
- * languages later, if you don't have solid string literals.
+ * languages later, if you don't have solid string literals.</p>
  *
  * <p>There are two alternatives to concatenation: {@link StringBuilder}
- * and {@link String#format(String,Object[])}.
+ * and {@link String#format(String,Object[])}.</p>
  *
  * @since 0.3
  */

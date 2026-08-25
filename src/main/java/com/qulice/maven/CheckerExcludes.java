@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 /**
  * Converts a checker exclude into exclude param.
  *
- * <p>E.g. "checkstyle:.*" will become ".*".
+ * <p>E.g. "checkstyle:.*" will become ".*".</p>
  *
  * @since 0.1
  */

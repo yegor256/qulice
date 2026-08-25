@@ -19,11 +19,11 @@ import java.util.Set;
  * (for example {@code MyClass.staticMethod()}), not through
  * {@code this.staticMethod()}. Accessing a static member through an instance
  * reference is misleading because it looks like a polymorphic call while the
- * dispatch is actually resolved statically at compile time.
+ * dispatch is actually resolved statically at compile time.</p>
  *
  * <p>This check scans every class, enum and interface in the file, collects
  * the names of all declared static methods and fields, and reports every
- * {@code this.name} expression where {@code name} is in that set.
+ * {@code this.name} expression where {@code name} is in that set.</p>
  *
  * @since 0.24
  */

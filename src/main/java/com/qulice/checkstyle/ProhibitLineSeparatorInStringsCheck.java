@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * Prohibits hard-coded line separator escape sequences inside string literals.
  *
  * <p>The following constructs are prohibited, because {@code \n} and
- * {@code \r} are OS dependent line separators:
+ * {@code \r} are OS dependent line separators:</p>
  *
  * <pre>
  * String a = "first\nsecond";
@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  *
  * <p>These strings should be rewritten using
  * {@link System#lineSeparator()} or {@link String#format(String, Object[])}
- * with the {@code %n} directive, for example:
+ * with the {@code %n} directive, for example:</p>
  *
  * <pre>
  * String a = "first" + System.lineSeparator() + "second";

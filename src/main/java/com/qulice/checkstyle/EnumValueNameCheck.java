@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
  * <p>Since enum constants are effectively {@code public static final}
  * references, they must follow the same upper-case, underscore-separated
  * naming convention. Names like {@code anyName} or {@code MixedCase} are
- * forbidden.
+ * forbidden.</p>
  *
  * @since 0.24
  */

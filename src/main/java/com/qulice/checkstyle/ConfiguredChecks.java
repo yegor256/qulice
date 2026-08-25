@@ -22,7 +22,7 @@ import org.cactoos.scalar.Unchecked;
  * checks suppresses nothing at all, which is what
  * {@link UnknownSuppressionCheck} reports. Both the short name of a
  * module and its name with the {@code Check} suffix count as enabled,
- * since either of them matches the class name of the check.
+ * since either of them matches the class name of the check.</p>
  *
  * @since 1.0
  */
@@ -40,7 +40,7 @@ final class ConfiguredChecks {
      *
      * <p>The filters capture the name as {@code \w+}, which holds no
      * regular expression metacharacter, so their pattern matching comes
-     * down to a search for the name inside the name of a check.
+     * down to a search for the name inside the name of a check.</p>
      *
      * @param name Name from a {@code @checkstyle} suppression comment
      * @return True if the name matches at least one enabled check

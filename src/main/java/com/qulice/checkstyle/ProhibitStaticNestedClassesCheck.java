@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  * default {@code *Test.java}, {@code *IT.java}, {@code *ITCase.java})
  * are inspected, since fake/stub helpers nested inside test classes
  * are a normal pattern (see
- * {@link ProhibitFieldsInTestClassesCheck}).
+ * {@link ProhibitFieldsInTestClassesCheck}).</p>
  *
  * @since 0.73.4
  */

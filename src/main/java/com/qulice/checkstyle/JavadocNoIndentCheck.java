@@ -14,7 +14,7 @@ import java.util.Locale;
  *
  * <p>Every line of a Javadoc comment must have exactly one space between the
  * leading asterisk and the first word of the text. Extra spaces, used to
- * push a paragraph line to the right, are not allowed:
+ * push a paragraph line to the right, are not allowed:</p>
  *
  * <pre>
  * &#47;**
@@ -26,7 +26,7 @@ import java.util.Locale;
  * <p>Lines inside a {@code <pre>} block or a {@code @snippet} block are left
  * alone, since the indentation there is semantically meaningful and has to be
  * preserved as written. Block tags and their wrapped continuation lines are
- * also left alone, since their indentation is governed by other checks.
+ * also left alone, since their indentation is governed by other checks.</p>
  *
  * @since 0.74
  */

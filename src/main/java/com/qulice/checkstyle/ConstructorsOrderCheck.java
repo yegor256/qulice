@@ -18,7 +18,7 @@ import java.util.List;
  * A secondary constructor delegates, as its first statement, to another
  * constructor in the same class. The rule requires the primary constructor
  * to be declared after all secondary ones, so that the delegation chain
- * reads top-down towards the primary.
+ * reads top-down towards the primary.</p>
  *
  * @since 0.24
  */

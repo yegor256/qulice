@@ -17,12 +17,12 @@ import java.util.Set;
  * flavour {@code com.sun.jna.win32.StdCallLibrary}, transcribes a native
  * library function by function. The name of every method and the length of
  * its parameter list come from the native side, so its author has no say in
- * either of them and the checks that judge them have nothing to say here.
+ * either of them and the checks that judge them have nothing to say here.</p>
  *
  * <p>Qulice runs Checkstyle on one file at a time, so neither of the two
  * interfaces is ever resolved to a class. The name in the {@code extends}
  * or {@code implements} clause is therefore trusted only when it is fully
- * qualified or when the file imports it from its own package.
+ * qualified or when the file imports it from its own package.</p>
  *
  * @since 1.0
  */

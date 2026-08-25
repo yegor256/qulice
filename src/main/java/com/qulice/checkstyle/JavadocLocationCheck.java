@@ -13,10 +13,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * and that no annotation is placed above the javadoc.
  *
  * <p>You can't have empty lines between javadoc block and
- * a class/method/variable. They should stay together, always.
+ * a class/method/variable. They should stay together, always.</p>
  *
  * <p>Annotations must be placed after the javadoc, not before it,
- * so that the javadoc stays next to the subject it describes.
+ * so that the javadoc stays next to the subject it describes.</p>
  *
  * @since 0.3
  */

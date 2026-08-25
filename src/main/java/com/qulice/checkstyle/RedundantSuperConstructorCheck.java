@@ -17,7 +17,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * the {@link Object} constructor, which the compiler inserts on its own.
  * The explicit call is therefore redundant and is most often a sign
  * of confusion between class extension and interface implementation,
- * for example:
+ * for example:</p>
  *
  * <pre>
  * public class NewAgent implements Agent {
@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * <p>The rule only applies to constructors of {@code class} declarations.
  * It does not apply to records or enums, where {@code super(...)}
- * either targets a fixed superclass or is illegal.
+ * either targets a fixed superclass or is illegal.</p>
  *
  * @since 0.24
  */

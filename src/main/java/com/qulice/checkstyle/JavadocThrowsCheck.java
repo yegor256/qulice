@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * not declare is misleading. The same applies when the tag names a
  * different type than what the signature throws, for example when the
  * javadoc says {@code @throws IOException} but the signature declares
- * {@code throws Exception}. Both examples below are rejected:
+ * {@code throws Exception}. Both examples below are rejected:</p>
  *
  * <pre>
  * &#47;**
@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
  *
  * <p>Types are compared by their simple name, so a javadoc that uses a
  * fully qualified name (e.g. {@code java.io.IOException}) still
- * matches a signature that uses the unqualified form, and vice-versa.
+ * matches a signature that uses the unqualified form, and vice-versa.</p>
  *
  * @since 0.24.1
  */

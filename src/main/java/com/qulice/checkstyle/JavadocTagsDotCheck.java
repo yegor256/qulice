@@ -13,9 +13,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@code @return} Javadoc tags.
  *
  * <p>For consistency, descriptions of these tags must not end with
- * a period.
+ * a period.</p>
  *
- * <p>Valid:
+ * <p>Valid:</p>
  *
  * <pre>
  * &#47;**
@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  *&#47;
  * </pre>
  *
- * <p>Invalid:
+ * <p>Invalid:</p>
  *
  * <pre>
  * &#47;**

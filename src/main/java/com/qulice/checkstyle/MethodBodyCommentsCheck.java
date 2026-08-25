@@ -17,7 +17,7 @@ import java.util.Arrays;
  * need to use
  * a comment inside a method - your code needs refactoring. Either move that
  * comment to a method javadoc block or add a logging mechanism with the same
- * text.
+ * text.</p>
  *
  * @since 0.3
  */

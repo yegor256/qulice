@@ -13,7 +13,7 @@ import java.io.File;
  *
  * <p>All {@code import} instructions shall stay together, without any empty
  * lines between them. If you need to separate them because the list is too
- * big - it's time to refactor the class and make is smaller.
+ * big - it's time to refactor the class and make is smaller.</p>
  *
  * @since 0.3
  */

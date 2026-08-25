@@ -12,7 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that method and constructor declarations do not span multiple
  * lines when the entire signature can fit on one line within the limit.
  *
- * <p>This is how a correct declaration looks like:
+ * <p>This is how a correct declaration looks like:</p>
  *
  * <pre>
  * public Foo(final int max) throws IOException {
@@ -20,7 +20,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </pre>
  *
- * <p>And this is what will be reported:
+ * <p>And this is what will be reported:</p>
  *
  * <pre>
  * public Foo(final int max)
@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * href="https://www.yegor256.com/2014/04/27/typical-mistakes-in-java-code.html#indentation">this
  * article</a>: one should put as much as possible on one line within the
  * configured limit (80 by default). See <a
- * href="https://github.com/yegor256/qulice/issues/647">#647</a>.
+ * href="https://github.com/yegor256/qulice/issues/647">#647</a>.</p>
  *
  * @since 0.24
  */

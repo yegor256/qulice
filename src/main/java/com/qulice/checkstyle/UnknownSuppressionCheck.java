@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  * suppresses nothing and stays in the source as a lie about the code.
  * PMD reports the same mistake in {@code @SuppressWarnings} annotations.
  * The other half, a suppression that names an enabled check but covers no
- * violation of it, is reported by {@link UnusedSuppressions}.
+ * violation of it, is reported by {@link UnusedSuppressions}.</p>
  *
  * @since 1.0
  */

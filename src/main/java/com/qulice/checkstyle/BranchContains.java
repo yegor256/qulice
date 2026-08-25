@@ -15,7 +15,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * However, this method was deprecated in upstream due to unintended too
  * deep scanning. It is recommended to write traversal implementation
  * for your needs by yourself to avoid unexpected side effects. So here follows it's
- * simple implementation.
+ * simple implementation.</p>
  *
  * @since 1.0
  */

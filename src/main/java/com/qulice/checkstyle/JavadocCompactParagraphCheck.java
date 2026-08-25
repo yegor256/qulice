@@ -14,14 +14,16 @@ import java.util.Locale;
  *
  * <p>The built-in {@code JavadocParagraph} module governs the blank lines
  * around {@code <p>}, but nothing stops the tag from sitting alone on its
- * own line. This check keeps {@code <p>} glued to the text it opens and,
- * when {@code </p>} is used at all, glued to the text it closes. So a line
- * whose trimmed content ends with {@code <p>}, or whose trimmed content
- * starts with {@code </p>}, is reported as a violation. See
- * <a href="https://github.com/yegor256/qulice/issues/1709">#1709</a>.
+ * own line. This check keeps {@code <p>} glued to the text it opens and
+ * {@code </p>} glued to the text it closes, while
+ * {@link JavadocUnclosedParagraphCheck} is the one that insists on the
+ * closing tag being there. So a line whose trimmed content ends with
+ * {@code <p>}, or whose trimmed content starts with {@code </p>}, is
+ * reported as a violation. See
+ * <a href="https://github.com/yegor256/qulice/issues/1709">#1709</a>.</p>
  *
  * <p>The following Javadoc will be reported as a violation, since the
- * opening tag ends a line and the closing tag starts a line:
+ * opening tag ends a line and the closing tag starts a line:</p>
  * <pre>
  * &#47;**
  *  <span style="color:red" >* &lt;p&gt;</span>
@@ -30,7 +32,7 @@ import java.util.Locale;
  *  *&#47;
  * </pre>
  *
- * <p>And this is how it should be written instead:
+ * <p>And this is how it should be written instead:</p>
  * <pre>
  * &#47;**
  *  * &lt;p&gt;An example of how to configure the check is:&lt;/p&gt;
@@ -39,7 +41,7 @@ import java.util.Locale;
  *
  * <p>Lines inside a {@code <pre>...</pre>} block or a {@code {@snippet ...}}
  * block are skipped, since a literal {@code <p>} or {@code </p>} may appear
- * there as example content rather than as a real tag.
+ * there as example content rather than as a real tag.</p>
  *
  * @since 0.73.3
  */

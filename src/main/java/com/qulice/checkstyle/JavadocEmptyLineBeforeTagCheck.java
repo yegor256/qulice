@@ -16,11 +16,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * If the body contains more than one paragraph (separated by empty Javadoc
  * lines), then an empty Javadoc line is required right before the first
  * at-clause. See
- * <a href="https://github.com/yegor256/qulice/issues/708">#708</a>.
+ * <a href="https://github.com/yegor256/qulice/issues/708">#708</a>.</p>
  *
  * <p>The following Javadoc will be reported as a violation, since its body
  * is a single paragraph and yet it is separated from the at-clauses by an
- * empty line:
+ * empty line:</p>
  * <pre>
  * &#47;**
  *  * Just one line here.
@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  *
  * <p>And this one will be reported too, since its body has more than one
- * paragraph but there is no empty line before the at-clauses:
+ * paragraph but there is no empty line before the at-clauses:</p>
  * <pre>
  * &#47;**
  *  * First line.

@@ -16,11 +16,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * has no users outside of it. Its name, the names of its parameters and
  * its body say everything a reader needs, while a Javadoc block above it
  * only repeats them and then rots, staying behind after the method is
- * renamed or its contract changes.
+ * renamed or its contract changes.</p>
  *
  * <p>Private constructors are not affected, since a constructor is not
  * a method and its Javadoc often carries the only explanation of why
- * the class must not be instantiated.
+ * the class must not be instantiated.</p>
  *
  * @since 0.73.4
  */

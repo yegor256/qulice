@@ -86,7 +86,7 @@ public interface Environment {
      *
      * <p>The pattern matching scheme used is wildcard matching. The characters
      * '?' and '*' represents single or multiple wildcard characters,
-     * respectively. Pattern matching is case sensitive.
+     * respectively. Pattern matching is case sensitive.</p>
      *
      * @param pattern File name pattern
      * @return Collection of files, matching the specified pattern
