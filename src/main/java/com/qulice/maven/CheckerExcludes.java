@@ -17,11 +17,6 @@ import javax.annotation.Nullable;
 final class CheckerExcludes implements Function<String, String> {
 
     /**
-     * All checkers.
-     */
-    private static final String ALL = "*";
-
-    /**
      * Name of checker.
      */
     private final String checker;
@@ -41,7 +36,7 @@ final class CheckerExcludes implements Function<String, String> {
         if (input != null) {
             final String[] exclude = input.split(":", 2);
             final String check = exclude[0];
-            final boolean appropriate = CheckerExcludes.ALL.equals(check)
+            final boolean appropriate = "*".equals(check)
                 || this.checker.equals(check);
             if (appropriate && exclude.length > 1) {
                 result = exclude[1];

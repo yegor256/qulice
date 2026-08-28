@@ -59,16 +59,6 @@ public final class JavadocUnclosedParagraphCheck extends AbstractCheck {
         "Opening paragraph tag <p> must be closed with </p>";
 
     /**
-     * Opening tag.
-     */
-    private static final String OPEN = "<p>";
-
-    /**
-     * Closing tag.
-     */
-    private static final String CLOSE = "</p>";
-
-    /**
      * Default constructor.
      */
     public JavadocUnclosedParagraphCheck() {
@@ -144,7 +134,7 @@ public final class JavadocUnclosedParagraphCheck extends AbstractCheck {
         final int start) {
         int open = start;
         for (int idx = 0; idx < low.length(); idx += 1) {
-            if (low.startsWith(JavadocUnclosedParagraphCheck.OPEN, idx)) {
+            if (low.startsWith("<p>", idx)) {
                 if (open >= 0) {
                     this.log(
                         doc.getStartLineNo() + open,
@@ -152,7 +142,7 @@ public final class JavadocUnclosedParagraphCheck extends AbstractCheck {
                     );
                 }
                 open = pos;
-            } else if (low.startsWith(JavadocUnclosedParagraphCheck.CLOSE, idx)) {
+            } else if (low.startsWith("</p>", idx)) {
                 open = -1;
             }
         }

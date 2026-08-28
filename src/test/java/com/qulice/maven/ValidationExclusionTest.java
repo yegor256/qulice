@@ -35,11 +35,6 @@ final class ValidationExclusionTest {
     private static final String TEMP_SUB = "excl";
 
     /**
-     * Java files extension.
-     */
-    private static final String JAVA_EXT = ".java";
-
-    /**
      * DefaultMavenEnvironment can exclude a path from PMD validation.
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
@@ -150,9 +145,7 @@ final class ValidationExclusionTest {
     }
 
     private static File java(final Path dir, final String resource) throws Exception {
-        final File file = File.createTempFile(
-            "Test", ValidationExclusionTest.JAVA_EXT, dir.toFile()
-        );
+        final File file = File.createTempFile("Test", ".java", dir.toFile());
         FileUtils.writeStringToFile(
             file,
             new TextOf(

@@ -28,11 +28,6 @@ import org.cactoos.text.Joined;
 public final class CascadeIndentationCheck extends AbstractFileSetCheck {
 
     /**
-     * Exact indentation increase difference.
-     */
-    private static final int LINE_INDENT_DIFF = 4;
-
-    /**
      * Default constructor.
      */
     public CascadeIndentationCheck() {
@@ -65,8 +60,7 @@ public final class CascadeIndentationCheck extends AbstractFileSetCheck {
         final int previous, final boolean closer) {
         final String message;
         if (current > previous
-            && current != previous
-            + CascadeIndentationCheck.LINE_INDENT_DIFF) {
+            && current != previous + 4) {
             message = String.format(
                 new Joined(
                     "",

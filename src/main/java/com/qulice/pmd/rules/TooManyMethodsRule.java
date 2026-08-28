@@ -20,9 +20,10 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  * PMD built-in {@code TooManyMethods} rule, this implementation counts
  * only public and protected methods, because private and package-private
  * ones are implementation detail and say nothing about how large the
- * contract of the class is. Methods annotated with {@code @Override} are
- * skipped too, since a supertype dictates them and the class has no say
- * in how many of them there are. Test classes are skipped altogether, since
+ * contract of the class is, and reports a class that exposes more than
+ * ten of them. Methods annotated with {@code @Override} are skipped too,
+ * since a supertype dictates them and the class has no say in how many
+ * of them there are. Test classes are skipped altogether, since
  * one assertion per test method inflates their method count beyond any
  * useful threshold. JNA bindings are skipped too: a type that extends
  * {@code com.sun.jna.Library}, or its Windows flavour
@@ -37,11 +38,6 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  * @since 1.0
  */
 public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
-
-    /**
-     * The largest number of public and protected methods a class may have.
-     */
-    private static final int MAX = 10;
 
     /**
      * The JNA interfaces that mark a type as a native binding.
@@ -86,7 +82,7 @@ public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
     public Object visit(final ASTClassDeclaration type, final Object data) {
         if (!TooManyMethodsRule.tested(type)
             && !TooManyMethodsRule.binding(type)
-            && TooManyMethodsRule.exposed(type) > TooManyMethodsRule.MAX) {
+            && TooManyMethodsRule.exposed(type) > 10) {
             this.asCtx(data).addViolation(type);
         }
         return data;

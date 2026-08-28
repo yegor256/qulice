@@ -23,21 +23,6 @@ import org.junit.jupiter.api.Test;
 final class CheckstyleTextFileTest {
 
     /**
-     * Name of property to set to change location of the license.
-     */
-    private static final String LICENSE_PROP = "license";
-
-    /**
-     * Directory with classes.
-     */
-    private static final String DIRECTORY = "src/main/java/foo";
-
-    /**
-     * License text.
-     */
-    private static final String LICENSE = "Hello.";
-
-    /**
      * CheckstyleValidator reports a tab character in a non-Java text file
      * such as JavaScript. See https://github.com/yegor256/qulice/issues/521.
      * @throws Exception when error.
@@ -158,12 +143,12 @@ final class CheckstyleTextFileTest {
         final String content) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
         final Environment env = mock.withParam(
-            CheckstyleTextFileTest.LICENSE_PROP,
+            "license",
             String.format(
                 "file:%s",
                 new License().savePackageInfo(
-                    new File(mock.basedir(), CheckstyleTextFileTest.DIRECTORY)
-                ).withLines(CheckstyleTextFileTest.LICENSE)
+                    new File(mock.basedir(), "src/main/java/foo")
+                ).withLines("Hello.")
                     .withEol(String.valueOf('\n')).file()
             )
         ).withFile(String.format("src/main/resources/%s", file), content);

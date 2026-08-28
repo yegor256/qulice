@@ -13,8 +13,9 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  * Rule to check that a class does not declare too many fields. Like the PMD
  * built-in {@code TooManyFields} rule, this implementation counts the
  * fields declared in the body of the class, skipping the static and the
- * final ones, since those are constants rather than state. Unlike the
- * built-in rule, it skips a class that extends
+ * final ones, since those are constants rather than state, and reports a
+ * class that declares more than fifteen of them. Unlike the built-in
+ * rule, it skips a class that extends
  * {@code org.apache.maven.plugin.AbstractMojo}: a Maven Mojo declares one
  * field per {@code @Parameter} it exposes to users of the plugin goal,
  * because the Maven Plugin API requires each configurable parameter as a
@@ -28,11 +29,6 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  * @since 1.0
  */
 public final class TooManyFieldsRule extends AbstractJavaRulechainRule {
-
-    /**
-     * The largest number of non-static non-final fields a class may declare.
-     */
-    private static final int MAX = 15;
 
     /**
      * The base class of every Maven Mojo.
@@ -51,7 +47,7 @@ public final class TooManyFieldsRule extends AbstractJavaRulechainRule {
     @Override
     public Object visit(final ASTClassDeclaration type, final Object data) {
         if (!TooManyFieldsRule.MOJO.matches(type.getSuperClassTypeNode())
-            && TooManyFieldsRule.state(type) > TooManyFieldsRule.MAX) {
+            && TooManyFieldsRule.state(type) > 15) {
             this.asCtx(data).addViolation(type);
         }
         return data;

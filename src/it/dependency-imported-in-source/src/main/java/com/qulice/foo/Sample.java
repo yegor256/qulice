@@ -19,7 +19,7 @@ public final class Sample {
 
     /**
      * Return the "not found" constant.
-     * @return Inlined constant value
+     * @return The {@value #NOT_FOUND} index
      * @checkstyle NonStaticMethod (2 lines)
      */
     public int missing() {

@@ -48,16 +48,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         Pattern.compile("(\\*/|@|[^\\s\\*])");
 
     /**
-     * Multiline finished at end of comment.
-     */
-    private static final String END_JAVADOC = "*/";
-
-    /**
-     * Multiline finished at next Javadoc.
-     */
-    private static final String NEXT_TAG = "@";
-
-    /**
      * Default constructor.
      */
     public JavadocParameterOrderCheck() {
@@ -163,8 +153,7 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
             if (multiline.find()) {
                 remindex = lines.length;
                 final String lfin = multiline.group(1);
-                if (!JavadocParameterOrderCheck.NEXT_TAG.equals(lfin)
-                    && !JavadocParameterOrderCheck.END_JAVADOC.equals(lfin)) {
+                if (!"@".equals(lfin) && !"*/".equals(lfin)) {
                     tags.add(new JavadocTag(line, column, paramone, paramtwo));
                 }
             }

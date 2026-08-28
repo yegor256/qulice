@@ -47,12 +47,6 @@ import java.util.Locale;
 public final class JavadocStrayAsteriskCheck extends AbstractCheck {
 
     /**
-     * Message about a line ending with a stray asterisk.
-     */
-    private static final String MSG =
-        "Javadoc line must not end with a stray asterisk";
-
-    /**
      * Default constructor.
      */
     public JavadocStrayAsteriskCheck() {
@@ -113,7 +107,7 @@ public final class JavadocStrayAsteriskCheck extends AbstractCheck {
             } else if (body.endsWith("*")) {
                 this.log(
                     doc.getStartLineNo() + pos,
-                    JavadocStrayAsteriskCheck.MSG
+                    "Javadoc line must not end with a stray asterisk"
                 );
             }
         }
