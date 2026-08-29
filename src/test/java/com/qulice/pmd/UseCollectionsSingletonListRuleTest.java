@@ -15,19 +15,13 @@ import org.junit.jupiter.api.Test;
  */
 final class UseCollectionsSingletonListRuleTest {
 
-    /**
-     * Error message produced by the rule.
-     */
-    private static final String MESSAGE =
-        "Use Collections.singletonList instead of Arrays.asList with a single non-array argument";
-
     @Test
     void detectsArraysAsListWithSingleScalar() throws Exception {
         new PmdAssert(
             "ArraysAsListSingleScalar.java",
             new IsEqual<>(false),
             Matchers.containsString(
-                UseCollectionsSingletonListRuleTest.MESSAGE
+                "Use Collections.singletonList instead of Arrays.asList with a single non-array argument"
             )
         ).assertOk();
     }

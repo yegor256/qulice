@@ -81,4 +81,17 @@ public final class AnnotationConstant {
     public String other() {
         return String.valueOf(this.dat);
     }
+
+    /**
+     * All texts together, so that no constant is used only once.
+     * @return All of them
+     */
+    public static String all() {
+        return String.format(
+            "%s%s%s%s%s%s",
+            AnnotationConstant.TEXT1, AnnotationConstant.TEXT2,
+            AnnotationConstant.TEXT3, AnnotationConstant.TEXT4,
+            AnnotationConstant.TEXT5, AnnotationConstant.TEXT6
+        );
+    }
 }

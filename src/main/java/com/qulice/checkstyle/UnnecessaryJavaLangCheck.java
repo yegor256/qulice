@@ -38,11 +38,6 @@ public final class UnnecessaryJavaLangCheck extends AbstractCheck {
         Pattern.compile("\\bjava\\.lang\\.[A-Z]");
 
     /**
-     * Line-separator character embedded in the text of a text-block node.
-     */
-    private static final char EOL = '\n';
-
-    /**
      * Mutable copy of the file lines, with the contents of string literals
      * and text blocks blanked out so the pattern cannot match inside them.
      */
@@ -113,7 +108,7 @@ public final class UnnecessaryJavaLangCheck extends AbstractCheck {
         final String text = ast.getText();
         int span = 0;
         for (int pos = 0; pos < text.length(); ++pos) {
-            if (text.charAt(pos) == UnnecessaryJavaLangCheck.EOL) {
+            if (text.charAt(pos) == '\n') {
                 ++span;
             }
         }

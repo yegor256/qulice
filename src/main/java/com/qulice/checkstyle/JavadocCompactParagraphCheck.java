@@ -48,18 +48,6 @@ import java.util.Locale;
 public final class JavadocCompactParagraphCheck extends AbstractCheck {
 
     /**
-     * Message about an opening tag that ends a line.
-     */
-    private static final String MSG_OPEN =
-        "Opening paragraph tag <p> must be followed by text on the same line";
-
-    /**
-     * Message about a closing tag that starts a line.
-     */
-    private static final String MSG_CLOSE =
-        "Closing paragraph tag </p> must be preceded by text on the same line";
-
-    /**
      * Default constructor.
      */
     public JavadocCompactParagraphCheck() {
@@ -129,10 +117,16 @@ public final class JavadocCompactParagraphCheck extends AbstractCheck {
 
     private void report(final int pos, final String body) {
         if (body.endsWith("<p>")) {
-            this.log(pos + 1, JavadocCompactParagraphCheck.MSG_OPEN);
+            this.log(
+                pos + 1,
+                "Opening paragraph tag <p> must be followed by text on the same line"
+            );
         }
         if (body.startsWith("</p>")) {
-            this.log(pos + 1, JavadocCompactParagraphCheck.MSG_CLOSE);
+            this.log(
+                pos + 1,
+                "Closing paragraph tag </p> must be preceded by text on the same line"
+            );
         }
     }
 

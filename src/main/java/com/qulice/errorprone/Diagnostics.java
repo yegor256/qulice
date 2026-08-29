@@ -45,11 +45,6 @@ final class Diagnostics {
     );
 
     /**
-     * Check name for a diagnostic that carries no bracketed name of its own.
-     */
-    private static final String JAVAC = "javac";
-
-    /**
      * Name of the validator to attribute the violations to.
      */
     private final String validator;
@@ -114,6 +109,6 @@ final class Diagnostics {
     }
 
     private static String check(final String name) {
-        return Optional.ofNullable(name).orElse(Diagnostics.JAVAC);
+        return Optional.ofNullable(name).orElse("javac");
     }
 }

@@ -19,3 +19,5 @@ assert log.text.contains('Violations.java[49]: Lists.newArrayList should be init
 assert !log.text.contains('Got an exception - java.lang.NullPointerException')
 assert log.text.findAll('SomeTest.java .+ (JavadocMethodCheck)').isEmpty()
 assert !log.text.contains('IndentationChecks.java[49]: method call rparen at indentation level 12')
+assert log.text.contains('Constants.java[12]: Private constant "ONCE" is used only once, inline it (SingleUseConstantCheck)')
+assert !log.text.contains('Private constant "TWICE" is used only once')

@@ -39,11 +39,6 @@ final class DependenciesValidatorTest {
         ProjectDependencyAnalyzer.class.getName();
 
     /**
-     * Plexus hint.
-     */
-    private static final String HINT = "default";
-
-    /**
      * Compile scope.
      */
     private static final String SCOPE = "compile";
@@ -320,7 +315,7 @@ final class DependenciesValidatorTest {
     ) throws Exception {
         return new MavenEnvironmentMocker().inPlexus(
             DependenciesValidatorTest.ROLE,
-            DependenciesValidatorTest.HINT,
+            "default",
             new FakeProjectDependencyAnalyzer(analysis)
         ).mock();
     }

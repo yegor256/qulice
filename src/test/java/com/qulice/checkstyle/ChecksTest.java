@@ -192,6 +192,7 @@ final class ChecksTest {
             "NoJavadocForOverriddenMethodsCheck",
             "NonStaticMethodCheck",
             "ConstantUsageCheck",
+            "SingleUseConstantCheck",
             "JavadocEmptyLineCheck",
             "JavadocEmptyLineBeforeTagCheck",
             "JavadocCompactParagraphCheck",

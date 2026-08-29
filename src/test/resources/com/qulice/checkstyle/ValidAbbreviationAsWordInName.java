@@ -16,6 +16,14 @@ public class ValidAbbreviationAsWordInName extends SomeClass {
      */
     private static final String CONST_VALUE = "foo";
 
+    /**
+     * The constant, so that it is not used only once.
+     * @return The constant
+     */
+    public static String constant() {
+        return ValidAbbreviationAsWordInName.CONST_VALUE;
+    }
+
     @Override
     public final String UPPERCASE() {
         return ValidAbbreviationAsWordInName.CONST_VALUE;

@@ -33,12 +33,6 @@ import java.util.Locale;
 public final class JavadocNoIndentCheck extends AbstractCheck {
 
     /**
-     * Message about the extra indentation.
-     */
-    private static final String MESSAGE =
-        "Extra indentation is not allowed in Javadoc";
-
-    /**
      * Default constructor.
      */
     public JavadocNoIndentCheck() {
@@ -99,7 +93,10 @@ public final class JavadocNoIndentCheck extends AbstractCheck {
             }
             if (!region && !tagged
                 && JavadocNoIndentCheck.overIndented(body)) {
-                this.log(pos + 1, JavadocNoIndentCheck.MESSAGE);
+                this.log(
+                    pos + 1,
+                    "Extra indentation is not allowed in Javadoc"
+                );
             }
             pre = JavadocNoIndentCheck.nextPre(pre, line);
             depth = JavadocNoIndentCheck.nextDepth(depth, line);

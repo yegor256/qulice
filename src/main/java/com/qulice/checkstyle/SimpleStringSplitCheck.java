@@ -48,11 +48,6 @@ import java.util.Optional;
 public final class SimpleStringSplitCheck extends AbstractCheck {
 
     /**
-     * Regex meta characters the JDK fastpath refuses for a one-char pattern.
-     */
-    private static final String META = ".$|()[{^?*+\\";
-
-    /**
      * Default constructor.
      */
     public SimpleStringSplitCheck() {
@@ -137,7 +132,7 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
         final boolean result;
         final int len = regex.length();
         if (len == 1) {
-            result = SimpleStringSplitCheck.META.indexOf(regex.charAt(0)) < 0;
+            result = ".$|()[{^?*+\\".indexOf(regex.charAt(0)) < 0;
         } else if (len == 2 && regex.charAt(0) == '\\') {
             result = !SimpleStringSplitCheck.isAsciiAlphanumeric(regex.charAt(1));
         } else {

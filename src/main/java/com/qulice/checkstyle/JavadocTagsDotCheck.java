@@ -38,12 +38,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public final class JavadocTagsDotCheck extends AbstractCheck {
 
     /**
-     * Message reported when a tag description ends with a dot.
-     */
-    private static final String MESSAGE =
-        "No dot allowed at the end of a '@param' or '@return' Javadoc tag";
-
-    /**
      * Default constructor.
      */
     public JavadocTagsDotCheck() {
@@ -103,7 +97,10 @@ public final class JavadocTagsDotCheck extends AbstractCheck {
             final String content = JavadocTagsDotCheck.stripMarker(lines[pos]);
             if (!content.isEmpty()) {
                 if (content.endsWith(".")) {
-                    this.log(pos + 1, JavadocTagsDotCheck.MESSAGE);
+                    this.log(
+                        pos + 1,
+                        "No dot allowed at the end of a '@param' or '@return' Javadoc tag"
+                    );
                 }
                 break;
             }

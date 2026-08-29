@@ -472,6 +472,12 @@
     <module name="com.qulice.checkstyle.SimpleStringSplitCheck"/>
     <module name="com.qulice.checkstyle.JavadocLocationCheck"/>
     <module name="com.qulice.checkstyle.ConstantUsageCheck"/>
+    <!--
+    A private constant that is mentioned only once is an indirection
+    that pays for nothing, it belongs inside its only usage.
+    See https://github.com/yegor256/qulice/issues/1787
+    -->
+    <module name="com.qulice.checkstyle.SingleUseConstantCheck"/>
     <module name="com.qulice.checkstyle.NonStaticMethodCheck">
       <property name="excludeFileNamePattern" value=".*(Test|IT|ITCase)\.java"/>
     </module>

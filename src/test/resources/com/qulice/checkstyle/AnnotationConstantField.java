@@ -51,6 +51,18 @@ public final class AnnotationConstantField {
     }
 
     /**
+     * All texts together, so that no constant is used only once.
+     * @return All of them
+     */
+    public static String all() {
+        return String.format(
+            "%s%s%s%s",
+            AnnotationConstantField.TEXT1, AnnotationConstantField.TEXT2,
+            AnnotationConstantField.TEXT3, AnnotationConstantField.TEXT4
+        );
+    }
+
+    /**
      * Some inner class.
      * @since 1.0
      */
