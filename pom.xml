@@ -134,6 +134,11 @@
         <version>9.10.1</version>
       </dependency>
       <dependency>
+        <groupId>net.sf.saxon</groupId>
+        <artifactId>Saxon-HE</artifactId>
+        <version>12.10</version>
+      </dependency>
+      <dependency>
         <groupId>com.google.errorprone</groupId>
         <artifactId>error_prone_annotations</artifactId>
         <version>2.50.0</version>
@@ -278,7 +283,7 @@
     <dependency>
       <groupId>net.sourceforge.pmd</groupId>
       <artifactId>pmd-core</artifactId>
-      <version>7.26.0</version>
+      <version>7.27.0</version>
       <exclusions>
         <exclusion>
           <groupId>org.ow2.asm</groupId>
@@ -297,7 +302,7 @@
     <dependency>
       <groupId>net.sourceforge.pmd</groupId>
       <artifactId>pmd-java</artifactId>
-      <version>7.26.0</version>
+      <version>7.27.0</version>
       <exclusions>
         <exclusion>
           <groupId>org.checkerframework</groupId>
