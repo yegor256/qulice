@@ -193,6 +193,7 @@ final class ChecksTest {
             "NonStaticMethodCheck",
             "ConstantUsageCheck",
             "SingleUseConstantCheck",
+            "FullyQualifiedTypeCheck",
             "JavadocEmptyLineCheck",
             "JavadocEmptyLineBeforeTagCheck",
             "JavadocCompactParagraphCheck",

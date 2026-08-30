@@ -18,6 +18,8 @@ import com.qulice.spi.Relative;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -190,7 +192,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         final Properties props = new Properties();
         props.setProperty("cache.file", cache.getPath());
         final Configuration config;
-        try (java.io.InputStream stream = this.getClass().getResourceAsStream("checks.xml")) {
+        try (InputStream stream = this.getClass().getResourceAsStream("checks.xml")) {
             if (stream == null) {
                 throw new IllegalStateException(
                     "Checkstyle configuration file 'checks.xml' not found in classpath."
@@ -201,7 +203,7 @@ public final class CheckstyleValidator implements ResourceValidator {
                 new PropertiesExpander(props),
                 ConfigurationLoader.IgnoredModulesOptions.OMIT
             );
-        } catch (final CheckstyleException | java.io.IOException ex) {
+        } catch (final CheckstyleException | IOException ex) {
             throw new IllegalStateException("Failed to load config", ex);
         }
         if (this.level() < CheckstyleValidator.MINIMUM) {

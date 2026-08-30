@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import org.apache.maven.model.Build;
+import org.apache.maven.model.Resource;
 import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -294,8 +295,7 @@ final class DefaultMavenEnvironmentTest {
             StandardCharsets.UTF_8
         );
         final Build build = new Build();
-        final org.apache.maven.model.Resource resource =
-            new org.apache.maven.model.Resource();
+        final Resource resource = new Resource();
         resource.setDirectory(assets.toAbsolutePath().toString());
         build.addResource(resource);
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();

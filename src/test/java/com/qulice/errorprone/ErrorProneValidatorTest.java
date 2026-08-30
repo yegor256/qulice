@@ -7,6 +7,8 @@ package com.qulice.errorprone;
 import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -50,7 +52,7 @@ final class ErrorProneValidatorTest {
             file,
             "package com.qulice; final class Clean { int square(final int num) { return num * num; } }"
         );
-        final java.util.Collection<Violation> violations =
+        final Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             );
@@ -79,7 +81,7 @@ final class ErrorProneValidatorTest {
                 "}"
             )
         );
-        final java.util.Collection<Violation> violations =
+        final Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             );
@@ -113,7 +115,7 @@ final class ErrorProneValidatorTest {
                 "}"
             )
         );
-        final java.util.Collection<Violation> violations =
+        final Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             );
@@ -141,9 +143,9 @@ final class ErrorProneValidatorTest {
         );
         final Environment env = new Environment.Mock()
             .withFile(main, body).withFile(test, body);
-        final java.util.Collection<Violation> violations =
+        final Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
-                java.util.Arrays.asList(
+                Arrays.asList(
                     new File(env.basedir(), main), new File(env.basedir(), test)
                 )
             );
@@ -172,9 +174,9 @@ final class ErrorProneValidatorTest {
         final Environment env = new Environment.Mock()
             .withTestdir("src/mock/java")
             .withFile(main, body).withFile(mock, body);
-        final java.util.Collection<Violation> violations =
+        final Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
-                java.util.Arrays.asList(
+                Arrays.asList(
                     new File(env.basedir(), main), new File(env.basedir(), mock)
                 )
             );
@@ -203,9 +205,9 @@ final class ErrorProneValidatorTest {
         final Environment env = new Environment.Mock()
             .withTestdir("src/mock/java")
             .withFile(test, body).withFile(mock, body);
-        final java.util.Collection<Violation> violations =
+        final Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
-                java.util.Arrays.asList(
+                Arrays.asList(
                     new File(env.basedir(), test), new File(env.basedir(), mock)
                 )
             );
@@ -292,7 +294,7 @@ final class ErrorProneValidatorTest {
                 "}"
             )
         );
-        final java.util.Collection<Violation> violations =
+        final Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             );
@@ -325,7 +327,7 @@ final class ErrorProneValidatorTest {
                     "}"
                 )
             );
-        final java.util.Collection<Violation> violations =
+        final Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             );
@@ -387,7 +389,7 @@ final class ErrorProneValidatorTest {
                     "}"
                 )
             );
-        final java.util.Collection<Violation> violations =
+        final Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
                 Collections.singletonList(new File(env.basedir(), file))
             );
@@ -410,9 +412,9 @@ final class ErrorProneValidatorTest {
             .withParam("maven.compiler.testRelease", "17")
             .withFile(main, ErrorProneValidatorTest.ancient("Old"))
             .withFile(test, ErrorProneValidatorTest.modern("OldTest"));
-        final java.util.Collection<Violation> violations =
+        final Collection<Violation> violations =
             new ErrorProneValidator(env).validate(
-                java.util.Arrays.asList(
+                Arrays.asList(
                     new File(env.basedir(), main), new File(env.basedir(), test)
                 )
             );

@@ -3,6 +3,8 @@
  */
 package foo;
 
+import java.util.Random;
+
 /**
  * Simple.
  * @since 1.0
@@ -72,7 +74,7 @@ public final class AnnotationConstantField {
         /**
          * Random source.
          */
-        private final java.util.Random rnd = new java.util.Random();
+        private final Random rnd = new Random();
 
         /**
          * Returns dummy.

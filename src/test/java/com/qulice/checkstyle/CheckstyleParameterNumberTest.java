@@ -65,7 +65,6 @@ final class CheckstyleParameterNumberTest {
     @ValueSource(
         strings = {
             "JnaMappedLibrary.java",
-            "JnaDirectBinding.java",
             "JnaStdCallBinding.java"
         }
     )
@@ -73,6 +72,26 @@ final class CheckstyleParameterNumberTest {
         MatcherAssert.assertThat(
             "long parameter list in a JNA binding should not be reported",
             this.runValidation(file, true),
+            Matchers.not(
+                Matchers.hasItem(
+                    new ViolationMatcher("", file, "", "ParameterNumberCheck")
+                )
+            )
+        );
+    }
+
+    /**
+     * A JNA binding is recognized by the fully qualified name of the
+     * interface it implements too, even though FullyQualifiedTypeCheck
+     * asks for that name to be imported and reports the file for it.
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    void acceptsManyParametersInQualifiedJnaBinding() throws Exception {
+        final String file = "JnaDirectBinding.java";
+        MatcherAssert.assertThat(
+            "long parameter list in a qualified JNA binding should not be reported",
+            this.runValidation(file, false),
             Matchers.not(
                 Matchers.hasItem(
                     new ViolationMatcher("", file, "", "ParameterNumberCheck")

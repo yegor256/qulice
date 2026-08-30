@@ -51,7 +51,7 @@ final class CheckstyleBannedApiTest {
         final String file = "DoNotUseCharEncoding.java";
         final String name = "RegexpSinglelineCheck";
         MatcherAssert.assertThat(
-            "8 violations should be found",
+            "9 violations should be found",
             this.runValidation(file, false),
             new IsIterableContainingInOrder<>(
                 new ListOf<>(
@@ -62,6 +62,10 @@ final class CheckstyleBannedApiTest {
                     new ViolationMatcher(message, file, "23", name),
                     new ViolationMatcher(message, file, "24", name),
                     new ViolationMatcher(message, file, "25", name),
+                    new ViolationMatcher(
+                        "is redundant, import it and use",
+                        file, "26", "FullyQualifiedTypeCheck"
+                    ),
                     new ViolationMatcher(message, file, "26", name)
                 )
             )
