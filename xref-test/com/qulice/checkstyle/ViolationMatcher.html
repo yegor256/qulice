@@ -82,26 +82,16 @@
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>          description.appendText(<span class="jxr_string">"doesn't match"</span>);
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>      }
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">     * Check name matches.</em>
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">     * @param item Item to check</em>
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">     * @return True if check name matches</em>
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> checkMatches(<strong class="jxr_keyword">final</strong> Violation item) {
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.check.isEmpty()
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>              || !<strong class="jxr_keyword">this</strong>.check.isEmpty() &amp;&amp; item.name().equals(<strong class="jxr_keyword">this</strong>.check);
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> checkMatches(<strong class="jxr_keyword">final</strong> Violation item) {
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.check.isEmpty()
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>              || !<strong class="jxr_keyword">this</strong>.check.isEmpty() &amp;&amp; item.name().equals(<strong class="jxr_keyword">this</strong>.check);
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>      }
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> lineMatches(<strong class="jxr_keyword">final</strong> Violation item) {
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.line.isEmpty()
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>              || !<strong class="jxr_keyword">this</strong>.line.isEmpty() &amp;&amp; item.lines().equals(<strong class="jxr_keyword">this</strong>.line);
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>      }
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">     * Check that given line matches.</em>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     * @param item Item to check</em>
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">     * @return True if line matches</em>
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> lineMatches(<strong class="jxr_keyword">final</strong> Violation item) {
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.line.isEmpty()
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>              || !<strong class="jxr_keyword">this</strong>.line.isEmpty() &amp;&amp; item.lines().equals(<strong class="jxr_keyword">this</strong>.line);
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>      }
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  }
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

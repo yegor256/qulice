@@ -94,24 +94,18 @@
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>          ).assertOk();
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>      }
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">     * Constructs StringContains matcher for error message.</em>
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     * @param file File name</em>
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     * @param line Line number</em>
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">     * @return StringContains matcher</em>
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Matcher&lt;String&gt; containsMatcher(
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">final</strong> String file, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> line
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>      ) {
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> StringContains(
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>              String.format(
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>                 <span class="jxr_string">"PMD: %1$s[%2$d-%2$d]: %3$s (UseStringIsEmptyRule)"</span>,
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>                 file, line,
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>                 <span class="jxr_string">"Use String.isEmpty() when checking for empty string"</span>
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>             )
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>         );
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>     }
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> }
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Matcher&lt;String&gt; containsMatcher(
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">final</strong> String file, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> line
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>      ) {
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> StringContains(
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>              String.format(
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>                  <span class="jxr_string">"PMD: %1$s[%2$d-%2$d]: %3$s (UseStringIsEmptyRule)"</span>,
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>                  file, line,
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>                  <span class="jxr_string">"Use String.isEmpty() when checking for empty string"</span>
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>              )
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>          );
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>      }
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

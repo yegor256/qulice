@@ -20,7 +20,7 @@
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> * Checks that method and constructor declarations do not span multiple</em>
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> * lines when the entire signature can fit on one line within the limit.</em>
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;This is how a correct declaration looks like:</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;This is how a correct declaration looks like:&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> * &lt;pre&gt;</em>
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> * public Foo(final int max) throws IOException {</em>
@@ -28,7 +28,7 @@
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> * }</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;And this is what will be reported:</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;And this is what will be reported:&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * &lt;pre&gt;</em>
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * public Foo(final int max)</em>
@@ -41,7 +41,7 @@
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> * href="<a href="https://www.yegor256.com/2014/04/27/typical-mistakes-in-java-code.html" target="alexandria_uri">https://www.yegor256.com/2014/04/27/typical-mistakes-in-java-code.html</a>#indentation"&gt;this</em>
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> * article&lt;/a&gt;: one should put as much as possible on one line within the</em>
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment"> * configured limit (80 by default). See &lt;a</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> * href="<a href="https://github.com/yegor256/qulice/issues/647" target="alexandria_uri">https://github.com/yegor256/qulice/issues/647</a>"&gt;#647&lt;/a&gt;.</em>
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment"> * href="<a href="https://github.com/yegor256/qulice/issues/647" target="alexandria_uri">https://github.com/yegor256/qulice/issues/647</a>"&gt;#647&lt;/a&gt;.&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  <em class="jxr_javadoccomment"> * @since 0.24</em>
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  <em class="jxr_javadoccomment"> */</em>
@@ -92,72 +92,55 @@
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>          }
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>      }
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">     * Checks whether the joined declaration fits on one line.</em>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     * @param start First non-annotation token of the declaration</em>
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">     * @param end Token that terminates the declaration (SLIST or SEMI)</em>
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> verify(<strong class="jxr_keyword">final</strong> DetailAST start, <strong class="jxr_keyword">final</strong> DetailAST end) {
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>          <strong class="jxr_keyword">final</strong> String[] lines = <strong class="jxr_keyword">this</strong>.getLines();
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> first = start.getLineNo();
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> last = end.getLineNo();
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> col = start.getColumnNo();
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>          <strong class="jxr_keyword">final</strong> StringBuilder joined = <strong class="jxr_keyword">new</strong> StringBuilder(
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>              lines[first - 1].substring(col).trim()
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>          );
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> idx = first; idx &lt; last; idx += 1) {
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>             <strong class="jxr_keyword">final</strong> String trimmed = lines[idx].trim();
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>             <strong class="jxr_keyword">if</strong> (!trimmed.isEmpty()) {
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>                 joined.append(' ').append(trimmed);
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>             }
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>         }
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>         <strong class="jxr_keyword">if</strong> (col + joined.length() &lt;= <strong class="jxr_keyword">this</strong>.max) {
-<a class="jxr_linenumber" name="L107" href="#L107">107</a>             <strong class="jxr_keyword">this</strong>.log(
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>                 first,
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>                 <span class="jxr_string">"Method declaration can be placed on a single line"</span>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>             );
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>         }
-<a class="jxr_linenumber" name="L112" href="#L112">112</a>     }
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> 
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment">     * Returns the first child of the method/constructor that is not an</em>
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">     * annotation (i.e., the first keyword or type of the signature).</em>
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">     * @param def METHOD_DEF or CTOR_DEF node</em>
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">     * @return First non-annotation child token, or null if absent</em>
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L120" href="#L120">120</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> DetailAST head(<strong class="jxr_keyword">final</strong> DetailAST def) {
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>         <strong class="jxr_keyword">final</strong> DetailAST modifiers = def.findFirstToken(TokenTypes.MODIFIERS);
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>         DetailAST child = modifiers.getFirstChild();
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>         <strong class="jxr_keyword">while</strong> (child != <strong class="jxr_keyword">null</strong> &amp;&amp; child.getType() == TokenTypes.ANNOTATION) {
-<a class="jxr_linenumber" name="L124" href="#L124">124</a>             child = child.getNextSibling();
-<a class="jxr_linenumber" name="L125" href="#L125">125</a>         }
-<a class="jxr_linenumber" name="L126" href="#L126">126</a>         <strong class="jxr_keyword">final</strong> DetailAST result;
-<a class="jxr_linenumber" name="L127" href="#L127">127</a>         <strong class="jxr_keyword">if</strong> (child == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L128" href="#L128">128</a>             DetailAST fallback = def.findFirstToken(TokenTypes.TYPE);
-<a class="jxr_linenumber" name="L129" href="#L129">129</a>             <strong class="jxr_keyword">if</strong> (fallback == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L130" href="#L130">130</a>                 fallback = def.findFirstToken(TokenTypes.IDENT);
-<a class="jxr_linenumber" name="L131" href="#L131">131</a>             }
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>             result = fallback;
-<a class="jxr_linenumber" name="L133" href="#L133">133</a>         } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>             result = child;
-<a class="jxr_linenumber" name="L135" href="#L135">135</a>         }
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">return</strong> result;
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>     }
-<a class="jxr_linenumber" name="L138" href="#L138">138</a> 
-<a class="jxr_linenumber" name="L139" href="#L139">139</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L140" href="#L140">140</a> <em class="jxr_javadoccomment">     * Returns the token that closes the declaration: the opening brace</em>
-<a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">     * of the body, or the terminating semicolon for abstract methods.</em>
-<a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">     * @param def METHOD_DEF or CTOR_DEF node</em>
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">     * @return SLIST or SEMI child, or null if neither is present</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L145" href="#L145">145</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> DetailAST tail(<strong class="jxr_keyword">final</strong> DetailAST def) {
-<a class="jxr_linenumber" name="L146" href="#L146">146</a>         DetailAST end = def.findFirstToken(TokenTypes.SLIST);
-<a class="jxr_linenumber" name="L147" href="#L147">147</a>         <strong class="jxr_keyword">if</strong> (end == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L148" href="#L148">148</a>             end = def.findFirstToken(TokenTypes.SEMI);
-<a class="jxr_linenumber" name="L149" href="#L149">149</a>         }
-<a class="jxr_linenumber" name="L150" href="#L150">150</a>         <strong class="jxr_keyword">return</strong> end;
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>     }
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> }
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> verify(<strong class="jxr_keyword">final</strong> DetailAST start, <strong class="jxr_keyword">final</strong> DetailAST end) {
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>          <strong class="jxr_keyword">final</strong> String[] lines = <strong class="jxr_keyword">this</strong>.getLines();
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> first = start.getLineNo();
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> last = end.getLineNo();
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> col = start.getColumnNo();
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          <strong class="jxr_keyword">final</strong> StringBuilder joined = <strong class="jxr_keyword">new</strong> StringBuilder(
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>              lines[first - 1].substring(col).trim()
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>          );
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>          <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> idx = first; idx &lt; last; idx += 1) {
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>              <strong class="jxr_keyword">final</strong> String trimmed = lines[idx].trim();
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>              <strong class="jxr_keyword">if</strong> (!trimmed.isEmpty()) {
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>                  joined.append(' ').append(trimmed);
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>              }
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>         }
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>         <strong class="jxr_keyword">if</strong> (col + joined.length() &lt;= <strong class="jxr_keyword">this</strong>.max) {
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>             <strong class="jxr_keyword">this</strong>.log(
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>                 first,
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>                 <span class="jxr_string">"Method declaration can be placed on a single line"</span>
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>             );
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         }
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>     }
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> DetailAST head(<strong class="jxr_keyword">final</strong> DetailAST def) {
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>         <strong class="jxr_keyword">final</strong> DetailAST modifiers = def.findFirstToken(TokenTypes.MODIFIERS);
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>         DetailAST child = modifiers.getFirstChild();
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>         <strong class="jxr_keyword">while</strong> (child != <strong class="jxr_keyword">null</strong> &amp;&amp; child.getType() == TokenTypes.ANNOTATION) {
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>             child = child.getNextSibling();
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>         }
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>         <strong class="jxr_keyword">final</strong> DetailAST result;
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>         <strong class="jxr_keyword">if</strong> (child == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>             DetailAST fallback = def.findFirstToken(TokenTypes.TYPE);
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>             <strong class="jxr_keyword">if</strong> (fallback == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>                 fallback = def.findFirstToken(TokenTypes.IDENT);
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>             }
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>             result = fallback;
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>         } <strong class="jxr_keyword">else</strong> {
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>             result = child;
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>         }
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>         <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>     }
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> 
+<a class="jxr_linenumber" name="L128" href="#L128">128</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> DetailAST tail(<strong class="jxr_keyword">final</strong> DetailAST def) {
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>         DetailAST end = def.findFirstToken(TokenTypes.SLIST);
+<a class="jxr_linenumber" name="L130" href="#L130">130</a>         <strong class="jxr_keyword">if</strong> (end == <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>             end = def.findFirstToken(TokenTypes.SEMI);
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>         }
+<a class="jxr_linenumber" name="L133" href="#L133">133</a>         <strong class="jxr_keyword">return</strong> end;
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>     }
+<a class="jxr_linenumber" name="L135" href="#L135">135</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

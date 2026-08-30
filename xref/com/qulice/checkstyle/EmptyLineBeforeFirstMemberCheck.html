@@ -24,17 +24,17 @@
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Some developers add an empty line after the opening brace of a</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> * class, interface or enum for aesthetic reasons, while others consider it</em>
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> * wasted vertical space. This check enforces the presence of such a blank</em>
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * line so that the style is consistent across the whole codebase.</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * line so that the style is consistent across the whole codebase.&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;The following code will be reported as a violation because the first</em>
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> * member is not preceded by an empty line:</em>
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> * member is not preceded by an empty line:&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * &lt;pre&gt;</em>
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> * class Foo {</em>
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> *     private int bar;</em>
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * }</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * &lt;/pre&gt;</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> *</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Empty type bodies and one-line declarations are not reported.</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Empty type bodies and one-line declarations are not reported.&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * @since 0.24</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> */</em>
@@ -80,24 +80,20 @@
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          }
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>      }
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">     * Check the body between curly braces of the given object block.</em>
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">     * @param block OBJBLOCK node whose body must be inspected</em>
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> visitBlock(<strong class="jxr_keyword">final</strong> DetailAST block) {
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>          <strong class="jxr_keyword">final</strong> DetailAST left = block.findFirstToken(TokenTypes.LCURLY);
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>          <strong class="jxr_keyword">final</strong> DetailAST right = block.findFirstToken(TokenTypes.RCURLY);
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>          <strong class="jxr_keyword">if</strong> (left != <strong class="jxr_keyword">null</strong> &amp;&amp; right != <strong class="jxr_keyword">null</strong>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>              &amp;&amp; right.getLineNo() - left.getLineNo() &gt;= 2
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>              &amp;&amp; !EmptyLineBeforeFirstMemberCheck.BLANK
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>                  .matcher(<strong class="jxr_keyword">this</strong>.getLines()[left.getLineNo()]).find()) {
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>              <strong class="jxr_keyword">this</strong>.log(
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>                  left.getLineNo() + 1,
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>                  <span class="jxr_string">"Expected empty line before first member"</span>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>              );
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>          }
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>      }
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  }
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> visitBlock(<strong class="jxr_keyword">final</strong> DetailAST block) {
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>          <strong class="jxr_keyword">final</strong> DetailAST left = block.findFirstToken(TokenTypes.LCURLY);
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>          <strong class="jxr_keyword">final</strong> DetailAST right = block.findFirstToken(TokenTypes.RCURLY);
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">if</strong> (left != <strong class="jxr_keyword">null</strong> &amp;&amp; right != <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>              &amp;&amp; right.getLineNo() - left.getLineNo() &gt;= 2
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>              &amp;&amp; !EmptyLineBeforeFirstMemberCheck.BLANK
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>                  .matcher(<strong class="jxr_keyword">this</strong>.getLines()[left.getLineNo()]).find()) {
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>              <strong class="jxr_keyword">this</strong>.log(
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>                  left.getLineNo() + 1,
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>                  <span class="jxr_string">"Expected empty line before first member"</span>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>              );
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>          }
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>      }
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

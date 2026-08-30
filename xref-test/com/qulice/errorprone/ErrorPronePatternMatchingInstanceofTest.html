@@ -93,34 +93,27 @@
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>          );
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>      }
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     * Run the validator over the sample file with the given source level and</em>
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">     * return the names of the checks that produced violations.</em>
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     * @param source Value for {@code maven.compiler.source}, or {@code null}</em>
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     * @return Names of the checks that fired</em>
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">     * @throws IOException If some IO problem</em>
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>      <strong class="jxr_keyword">private</strong> Collection&lt;String&gt; checks(<strong class="jxr_keyword">final</strong> String source) <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">final</strong> Environment.Mock mock = <strong class="jxr_keyword">new</strong> Environment.Mock();
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>          <strong class="jxr_keyword">if</strong> (source != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>              mock.withParam(<span class="jxr_string">"maven.compiler.source"</span>, source);
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>          }
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">final</strong> Environment env = mock.withFile(
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>             ErrorPronePatternMatchingInstanceofTest.FILE,
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>             ErrorPronePatternMatchingInstanceofTest.SOURCE
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>         );
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>         <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; violations = <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>             Collections.singletonList(
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>                 <strong class="jxr_keyword">new</strong> File(env.basedir(), ErrorPronePatternMatchingInstanceofTest.FILE)
-<a class="jxr_linenumber" name="L107" href="#L107">107</a>             )
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>         );
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>         <strong class="jxr_keyword">final</strong> Collection&lt;String&gt; names = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(violations.size());
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Violation violation : violations) {
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>             names.add(violation.name());
-<a class="jxr_linenumber" name="L112" href="#L112">112</a>         }
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>         <strong class="jxr_keyword">return</strong> names;
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>     }
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> }
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>      <strong class="jxr_keyword">private</strong> Collection&lt;String&gt; checks(<strong class="jxr_keyword">final</strong> String source) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>          <strong class="jxr_keyword">final</strong> Environment.Mock mock = <strong class="jxr_keyword">new</strong> Environment.Mock();
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">if</strong> (source != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>              mock.withParam(<span class="jxr_string">"maven.compiler.source"</span>, source);
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>          }
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>          <strong class="jxr_keyword">final</strong> Environment env = mock.withFile(
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>              ErrorPronePatternMatchingInstanceofTest.FILE,
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>              ErrorPronePatternMatchingInstanceofTest.SOURCE
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>          );
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>          <strong class="jxr_keyword">final</strong> Collection&lt;Violation&gt; violations = <strong class="jxr_keyword">new</strong> ErrorProneValidator(env).validate(
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>              Collections.singletonList(
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>                  <strong class="jxr_keyword">new</strong> File(env.basedir(), ErrorPronePatternMatchingInstanceofTest.FILE)
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>             )
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>         );
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>         <strong class="jxr_keyword">final</strong> Collection&lt;String&gt; names = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(violations.size());
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">final</strong> Violation violation : violations) {
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>             names.add(violation.name());
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>         }
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         <strong class="jxr_keyword">return</strong> names;
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>     }
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

@@ -30,11 +30,11 @@
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment"> * are ignored, because they represent compile-time constants or</em>
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * shared fixtures rather than per-test state. Fields declared on</em>
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> * nested helper types (stubs, fakes, recorders) are not flagged,</em>
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * because they belong to the helper, not to the test class.</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> * because they belong to the helper, not to the test class.&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;See also</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * &lt;a href="<a href="http://www.yegor256.com/2015/05/25/unit-test-scaffolding.html" target="alexandria_uri">http://www.yegor256.com/2015/05/25/unit-test-scaffolding.html</a>"&gt;</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * Unit Test Scaffolding&lt;/a&gt;.</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * Unit Test Scaffolding&lt;/a&gt;.&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * @since 0.24</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> */</em>
@@ -98,68 +98,39 @@
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>          }
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>      }
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  <em class="jxr_javadoccomment">     * Is this VARIABLE_DEF an instance field of the top-level type</em>
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>  <em class="jxr_javadoccomment">     * that is neither static nor annotated? Fields of nested or</em>
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  <em class="jxr_javadoccomment">     * anonymous types are not considered, because they belong to a</em>
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  <em class="jxr_javadoccomment">     * helper rather than to the test class itself.</em>
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  <em class="jxr_javadoccomment">     * @param node Variable definition node</em>
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  <em class="jxr_javadoccomment">     * @return True if the field should be flagged</em>
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isUnannotatedInstanceField(<strong class="jxr_keyword">final</strong> DetailAST node) {
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>         <strong class="jxr_keyword">boolean</strong> flag = false;
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>         <strong class="jxr_keyword">final</strong> DetailAST parent = node.getParent();
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>         <strong class="jxr_keyword">if</strong> (parent != <strong class="jxr_keyword">null</strong> &amp;&amp; parent.getType() == TokenTypes.OBJBLOCK
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>             &amp;&amp; ProhibitFieldsInTestClassesCheck.isTopLevelType(parent.getParent())) {
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>             <strong class="jxr_keyword">final</strong> DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
-<a class="jxr_linenumber" name="L107" href="#L107">107</a>             flag = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == <strong class="jxr_keyword">null</strong>
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>                 &amp;&amp; modifiers.findFirstToken(TokenTypes.ANNOTATION) == <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>         }
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>         <strong class="jxr_keyword">return</strong> flag;
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>     }
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> 
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">     * Is this AST node a type declaration that sits at the top level</em>
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment">     * of the compilation unit (i.e. its parent is not an</em>
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">     * {@code OBJBLOCK} of an enclosing type, and it is not the body</em>
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> <em class="jxr_javadoccomment">     * of an anonymous inner class spawned by {@code LITERAL_NEW})?</em>
-<a class="jxr_linenumber" name="L118" href="#L118">118</a> <em class="jxr_javadoccomment">     * @param type Candidate type declaration node</em>
-<a class="jxr_linenumber" name="L119" href="#L119">119</a> <em class="jxr_javadoccomment">     * @return True if it is the file's top-level type</em>
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isTopLevelType(<strong class="jxr_keyword">final</strong> DetailAST type) {
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>         <strong class="jxr_keyword">return</strong> type != <strong class="jxr_keyword">null</strong>
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>             &amp;&amp; ProhibitFieldsInTestClassesCheck.isTypeDef(type)
-<a class="jxr_linenumber" name="L124" href="#L124">124</a>             &amp;&amp; ProhibitFieldsInTestClassesCheck.hasTopLevelParent(type);
-<a class="jxr_linenumber" name="L125" href="#L125">125</a>     }
-<a class="jxr_linenumber" name="L126" href="#L126">126</a> 
-<a class="jxr_linenumber" name="L127" href="#L127">127</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> <em class="jxr_javadoccomment">     * Is this AST node a class, enum, record, or interface declaration?</em>
-<a class="jxr_linenumber" name="L129" href="#L129">129</a> <em class="jxr_javadoccomment">     * @param type Candidate node</em>
-<a class="jxr_linenumber" name="L130" href="#L130">130</a> <em class="jxr_javadoccomment">     * @return True if it is one of the four type-defining tokens</em>
-<a class="jxr_linenumber" name="L131" href="#L131">131</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isTypeDef(<strong class="jxr_keyword">final</strong> DetailAST type) {
-<a class="jxr_linenumber" name="L133" href="#L133">133</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> kind = type.getType();
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>         <strong class="jxr_keyword">return</strong> kind == TokenTypes.CLASS_DEF
-<a class="jxr_linenumber" name="L135" href="#L135">135</a>             || kind == TokenTypes.ENUM_DEF
-<a class="jxr_linenumber" name="L136" href="#L136">136</a>             || kind == TokenTypes.RECORD_DEF
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>             || kind == TokenTypes.INTERFACE_DEF;
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>     }
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> 
-<a class="jxr_linenumber" name="L140" href="#L140">140</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L141" href="#L141">141</a> <em class="jxr_javadoccomment">     * Is the parent of this type node such that the type is at the top</em>
-<a class="jxr_linenumber" name="L142" href="#L142">142</a> <em class="jxr_javadoccomment">     * level of the compilation unit, i.e. not nested inside an</em>
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> <em class="jxr_javadoccomment">     * enclosing type's {@code OBJBLOCK} and not the body of an</em>
-<a class="jxr_linenumber" name="L144" href="#L144">144</a> <em class="jxr_javadoccomment">     * anonymous class created via {@code LITERAL_NEW}?</em>
-<a class="jxr_linenumber" name="L145" href="#L145">145</a> <em class="jxr_javadoccomment">     * @param type Type declaration node</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">     * @return True if the parent indicates a top-level position</em>
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L148" href="#L148">148</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> hasTopLevelParent(<strong class="jxr_keyword">final</strong> DetailAST type) {
-<a class="jxr_linenumber" name="L149" href="#L149">149</a>         <strong class="jxr_keyword">final</strong> DetailAST parent = type.getParent();
-<a class="jxr_linenumber" name="L150" href="#L150">150</a>         <strong class="jxr_keyword">return</strong> parent != <strong class="jxr_keyword">null</strong>
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>             &amp;&amp; parent.getType() != TokenTypes.OBJBLOCK
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>             &amp;&amp; parent.getType() != TokenTypes.LITERAL_NEW;
-<a class="jxr_linenumber" name="L153" href="#L153">153</a>     }
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> }
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isUnannotatedInstanceField(<strong class="jxr_keyword">final</strong> DetailAST node) {
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>          <strong class="jxr_keyword">boolean</strong> flag = false;
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>          <strong class="jxr_keyword">final</strong> DetailAST parent = node.getParent();
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">if</strong> (parent != <strong class="jxr_keyword">null</strong> &amp;&amp; parent.getType() == TokenTypes.OBJBLOCK
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>              &amp;&amp; ProhibitFieldsInTestClassesCheck.isTopLevelType(parent.getParent())) {
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>              <strong class="jxr_keyword">final</strong> DetailAST modifiers = node.findFirstToken(TokenTypes.MODIFIERS);
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>              flag = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>                 &amp;&amp; modifiers.findFirstToken(TokenTypes.ANNOTATION) == <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>         }
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>         <strong class="jxr_keyword">return</strong> flag;
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>     }
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> 
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isTopLevelType(<strong class="jxr_keyword">final</strong> DetailAST type) {
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         <strong class="jxr_keyword">return</strong> type != <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>             &amp;&amp; ProhibitFieldsInTestClassesCheck.isTypeDef(type)
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>             &amp;&amp; ProhibitFieldsInTestClassesCheck.hasTopLevelParent(type);
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>     }
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> isTypeDef(<strong class="jxr_keyword">final</strong> DetailAST type) {
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> kind = type.getType();
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>         <strong class="jxr_keyword">return</strong> kind == TokenTypes.CLASS_DEF
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>             || kind == TokenTypes.ENUM_DEF
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>             || kind == TokenTypes.RECORD_DEF
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>             || kind == TokenTypes.INTERFACE_DEF;
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>     }
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">boolean</strong> hasTopLevelParent(<strong class="jxr_keyword">final</strong> DetailAST type) {
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>         <strong class="jxr_keyword">final</strong> DetailAST parent = type.getParent();
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>         <strong class="jxr_keyword">return</strong> parent != <strong class="jxr_keyword">null</strong>
+<a class="jxr_linenumber" name="L122" href="#L122">122</a>             &amp;&amp; parent.getType() != TokenTypes.OBJBLOCK
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>             &amp;&amp; parent.getType() != TokenTypes.LITERAL_NEW;
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>     }
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

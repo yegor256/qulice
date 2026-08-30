@@ -94,7 +94,7 @@
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">     *</em>
 <a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">     * &lt;p&gt;The pattern matching scheme used is wildcard matching. The characters</em>
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">     * '?' and '*' represents single or multiple wildcard characters,</em>
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     * respectively. Pattern matching is case sensitive.</em>
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">     * respectively. Pattern matching is case sensitive.&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">     *</em>
 <a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">     * @param pattern File name pattern</em>
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">     * @return Collection of files, matching the specified pattern</em>
@@ -351,46 +351,37 @@
 <a class="jxr_linenumber" name="L343" href="#L343">343</a>             <strong class="jxr_keyword">return</strong> StandardCharsets.UTF_8;
 <a class="jxr_linenumber" name="L344" href="#L344">344</a>         }
 <a class="jxr_linenumber" name="L345" href="#L345">345</a> 
-<a class="jxr_linenumber" name="L346" href="#L346">346</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L347" href="#L347">347</a> <em class="jxr_javadoccomment">         * Creates a fresh basedir in a temporary directory.</em>
-<a class="jxr_linenumber" name="L348" href="#L348">348</a> <em class="jxr_javadoccomment">         * @return The directory</em>
-<a class="jxr_linenumber" name="L349" href="#L349">349</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L350" href="#L350">350</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> File temporary() {
-<a class="jxr_linenumber" name="L351" href="#L351">351</a>             <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L352" href="#L352">352</a>                 <strong class="jxr_keyword">final</strong> File temp = Files.createTempDirectory(<span class="jxr_string">"mock-qulice"</span>).toFile();
-<a class="jxr_linenumber" name="L353" href="#L353">353</a>                 FileUtils.forceDeleteOnExit(temp);
-<a class="jxr_linenumber" name="L354" href="#L354">354</a>                 <strong class="jxr_keyword">final</strong> File base = <strong class="jxr_keyword">new</strong> File(temp, <span class="jxr_string">"basedir"</span>);
-<a class="jxr_linenumber" name="L355" href="#L355">355</a>                 <strong class="jxr_keyword">if</strong> (!base.mkdirs()) {
-<a class="jxr_linenumber" name="L356" href="#L356">356</a>                     <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(
-<a class="jxr_linenumber" name="L357" href="#L357">357</a>                         String.format(<span class="jxr_string">"cannot create basedir at %s"</span>, base)
-<a class="jxr_linenumber" name="L358" href="#L358">358</a>                     );
-<a class="jxr_linenumber" name="L359" href="#L359">359</a>                 }
-<a class="jxr_linenumber" name="L360" href="#L360">360</a>                 <strong class="jxr_keyword">return</strong> base;
-<a class="jxr_linenumber" name="L361" href="#L361">361</a>             } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IOException ex) {
-<a class="jxr_linenumber" name="L362" href="#L362">362</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(<span class="jxr_string">"cannot create basedir"</span>, ex);
-<a class="jxr_linenumber" name="L363" href="#L363">363</a>             }
-<a class="jxr_linenumber" name="L364" href="#L364">364</a>         }
-<a class="jxr_linenumber" name="L365" href="#L365">365</a> 
-<a class="jxr_linenumber" name="L366" href="#L366">366</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L367" href="#L367">367</a> <em class="jxr_javadoccomment">         * Creates the directory of compiled classes for the given basedir.</em>
-<a class="jxr_linenumber" name="L368" href="#L368">368</a> <em class="jxr_javadoccomment">         * @param base The basedir</em>
-<a class="jxr_linenumber" name="L369" href="#L369">369</a> <em class="jxr_javadoccomment">         * @return Paths to put on the classpath</em>
-<a class="jxr_linenumber" name="L370" href="#L370">370</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L371" href="#L371">371</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Set&lt;String&gt; outputs(<strong class="jxr_keyword">final</strong> File base) {
-<a class="jxr_linenumber" name="L372" href="#L372">372</a>             <strong class="jxr_keyword">final</strong> File out = <strong class="jxr_keyword">new</strong> File(base, <span class="jxr_string">"target/classes"</span>);
-<a class="jxr_linenumber" name="L373" href="#L373">373</a>             <strong class="jxr_keyword">if</strong> (!out.mkdirs() &amp;&amp; !out.isDirectory()) {
-<a class="jxr_linenumber" name="L374" href="#L374">374</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(
-<a class="jxr_linenumber" name="L375" href="#L375">375</a>                     String.format(<span class="jxr_string">"cannot create classes dir at %s"</span>, out)
-<a class="jxr_linenumber" name="L376" href="#L376">376</a>                 );
-<a class="jxr_linenumber" name="L377" href="#L377">377</a>             }
-<a class="jxr_linenumber" name="L378" href="#L378">378</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(
-<a class="jxr_linenumber" name="L379" href="#L379">379</a>                 Collections.singleton(
-<a class="jxr_linenumber" name="L380" href="#L380">380</a>                     out.getAbsolutePath().replace(File.separatorChar, '/')
-<a class="jxr_linenumber" name="L381" href="#L381">381</a>                 )
-<a class="jxr_linenumber" name="L382" href="#L382">382</a>             );
-<a class="jxr_linenumber" name="L383" href="#L383">383</a>         }
-<a class="jxr_linenumber" name="L384" href="#L384">384</a>     }
-<a class="jxr_linenumber" name="L385" href="#L385">385</a> }
+<a class="jxr_linenumber" name="L346" href="#L346">346</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> File temporary() {
+<a class="jxr_linenumber" name="L347" href="#L347">347</a>             <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L348" href="#L348">348</a>                 <strong class="jxr_keyword">final</strong> File temp = Files.createTempDirectory(<span class="jxr_string">"mock-qulice"</span>).toFile();
+<a class="jxr_linenumber" name="L349" href="#L349">349</a>                 FileUtils.forceDeleteOnExit(temp);
+<a class="jxr_linenumber" name="L350" href="#L350">350</a>                 <strong class="jxr_keyword">final</strong> File base = <strong class="jxr_keyword">new</strong> File(temp, <span class="jxr_string">"basedir"</span>);
+<a class="jxr_linenumber" name="L351" href="#L351">351</a>                 <strong class="jxr_keyword">if</strong> (!base.mkdirs()) {
+<a class="jxr_linenumber" name="L352" href="#L352">352</a>                     <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(
+<a class="jxr_linenumber" name="L353" href="#L353">353</a>                         String.format(<span class="jxr_string">"cannot create basedir at %s"</span>, base)
+<a class="jxr_linenumber" name="L354" href="#L354">354</a>                     );
+<a class="jxr_linenumber" name="L355" href="#L355">355</a>                 }
+<a class="jxr_linenumber" name="L356" href="#L356">356</a>                 <strong class="jxr_keyword">return</strong> base;
+<a class="jxr_linenumber" name="L357" href="#L357">357</a>             } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> IOException ex) {
+<a class="jxr_linenumber" name="L358" href="#L358">358</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(<span class="jxr_string">"cannot create basedir"</span>, ex);
+<a class="jxr_linenumber" name="L359" href="#L359">359</a>             }
+<a class="jxr_linenumber" name="L360" href="#L360">360</a>         }
+<a class="jxr_linenumber" name="L361" href="#L361">361</a> 
+<a class="jxr_linenumber" name="L362" href="#L362">362</a>         <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Set&lt;String&gt; outputs(<strong class="jxr_keyword">final</strong> File base) {
+<a class="jxr_linenumber" name="L363" href="#L363">363</a>             <strong class="jxr_keyword">final</strong> File out = <strong class="jxr_keyword">new</strong> File(base, <span class="jxr_string">"target/classes"</span>);
+<a class="jxr_linenumber" name="L364" href="#L364">364</a>             <strong class="jxr_keyword">if</strong> (!out.mkdirs() &amp;&amp; !out.isDirectory()) {
+<a class="jxr_linenumber" name="L365" href="#L365">365</a>                 <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> IllegalStateException(
+<a class="jxr_linenumber" name="L366" href="#L366">366</a>                     String.format(<span class="jxr_string">"cannot create classes dir at %s"</span>, out)
+<a class="jxr_linenumber" name="L367" href="#L367">367</a>                 );
+<a class="jxr_linenumber" name="L368" href="#L368">368</a>             }
+<a class="jxr_linenumber" name="L369" href="#L369">369</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> HashSet&lt;&gt;(
+<a class="jxr_linenumber" name="L370" href="#L370">370</a>                 Collections.singleton(
+<a class="jxr_linenumber" name="L371" href="#L371">371</a>                     out.getAbsolutePath().replace(File.separatorChar, '/')
+<a class="jxr_linenumber" name="L372" href="#L372">372</a>                 )
+<a class="jxr_linenumber" name="L373" href="#L373">373</a>             );
+<a class="jxr_linenumber" name="L374" href="#L374">374</a>         }
+<a class="jxr_linenumber" name="L375" href="#L375">375</a>     }
+<a class="jxr_linenumber" name="L376" href="#L376">376</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

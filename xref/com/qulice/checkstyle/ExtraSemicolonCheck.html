@@ -21,7 +21,7 @@
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> * of a class, interface, record, method or constructor declaration.</em>
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;Such semicolons form empty declarations that carry no meaning and</em>
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * clutter the code, for example:</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment"> * clutter the code, for example:&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment"> * &lt;pre&gt;</em>
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment"> * class Semicolons {</em>
@@ -36,7 +36,7 @@
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * direct child of an {@code OBJBLOCK} (a class, interface or record</em>
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * body) or of the root {@code COMPILATION_UNIT}. Enum bodies are</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * excluded because the {@code ;} separator between enum constants and</em>
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * member declarations is mandated by the Java grammar.</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * member declarations is mandated by the Java grammar.&lt;/p&gt;</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> *</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> * @since 0.24</em>
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment"> */</em>
@@ -76,23 +76,19 @@
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>          }
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>      }
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">     * Report every {@code SEMI} token that is a direct child of the node.</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">     * @param node The parent node whose children are inspected</em>
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> reportSemis(<strong class="jxr_keyword">final</strong> DetailAST node) {
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>          <strong class="jxr_keyword">for</strong> (DetailAST child = node.getFirstChild(); child != <strong class="jxr_keyword">null</strong>;
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>              child = child.getNextSibling()) {
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>              <strong class="jxr_keyword">if</strong> (child.getType() == TokenTypes.SEMI) {
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>                  <strong class="jxr_keyword">this</strong>.log(
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>                      child.getLineNo(),
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>                      child.getColumnNo(),
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>                      <span class="jxr_string">"Unnecessary semicolon"</span>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>                  );
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>              }
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>          }
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>      }
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  }
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> reportSemis(<strong class="jxr_keyword">final</strong> DetailAST node) {
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>          <strong class="jxr_keyword">for</strong> (DetailAST child = node.getFirstChild(); child != <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>              child = child.getNextSibling()) {
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>              <strong class="jxr_keyword">if</strong> (child.getType() == TokenTypes.SEMI) {
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>                  <strong class="jxr_keyword">this</strong>.log(
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>                      child.getLineNo(),
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>                      child.getColumnNo(),
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>                      <span class="jxr_string">"Unnecessary semicolon"</span>
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>                  );
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>              }
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>          }
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>      }
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
