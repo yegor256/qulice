@@ -459,6 +459,15 @@
     <module name="com.qulice.checkstyle.UnnecessaryJavaLangCheck">
       <property name="id" value="UnnecessaryJavaLang"/>
     </module>
+    <!--
+    A package name in the middle of a statement carries nothing the
+    import block does not already hold, while it lets two files of the
+    same package spell the same type in two different ways. The
+    disambiguation cases, where the simple name is taken by an import
+    or by a type the file declares, are left alone.
+    See https://github.com/yegor256/qulice/issues/1789
+    -->
+    <module name="com.qulice.checkstyle.FullyQualifiedTypeCheck"/>
     <module name="com.qulice.checkstyle.MultilineJavadocTagsCheck"/>
     <module name="com.qulice.checkstyle.NoJavadocForOverriddenMethodsCheck"/>
     <module name="com.qulice.checkstyle.NoJavadocForPrivateMethodsCheck"/>

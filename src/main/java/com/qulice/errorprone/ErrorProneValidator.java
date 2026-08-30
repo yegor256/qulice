@@ -16,6 +16,7 @@ import com.yegor256.Result;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
+import javax.inject.Inject;
 
 /**
  * Validates source code with Google ErrorProne.
@@ -258,14 +260,14 @@ public final class ErrorProneValidator implements ResourceValidator {
                 entries.add(new File(entry).getAbsolutePath());
             }
         }
-        ErrorProneValidator.addCodeSource(entries, javax.inject.Inject.class);
+        ErrorProneValidator.addCodeSource(entries, Inject.class);
         return String.join(File.pathSeparator, entries);
     }
 
     private static void addCodeSource(
         final Set<String> entries, final Class<?> klass
     ) {
-        final java.security.CodeSource source =
+        final CodeSource source =
             klass.getProtectionDomain().getCodeSource();
         if (source != null && source.getLocation() != null) {
             new Unencoded(source.getLocation()).path().ifPresent(entries::add);
