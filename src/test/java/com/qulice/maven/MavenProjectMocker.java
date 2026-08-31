@@ -17,7 +17,14 @@ public final class MavenProjectMocker {
     /**
      * Mock of project.
      */
-    private final MavenProject project = new MavenProject();
+    private final MavenProject project;
+
+    /**
+     * Ctor.
+     */
+    public MavenProjectMocker() {
+        this.project = new MavenProject();
+    }
 
     /**
      * In this basedir.

@@ -30,12 +30,19 @@ public final class License {
     /**
      * Package name.
      */
-    private String pkg = "foo";
+    private String pkg;
 
     /**
      * Directory for package-info.java.
      */
     private File directory;
+
+    /**
+     * Ctor.
+     */
+    public License() {
+        this.pkg = "foo";
+    }
 
     /**
      * Use this EOL.

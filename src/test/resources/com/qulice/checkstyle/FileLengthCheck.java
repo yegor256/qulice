@@ -13,6 +13,13 @@ package foo;
  */
 public final class FileLengthCheck {
 
+    /**
+     * Ctor.
+     */
+    public FileLengthCheck() {
+        // nothing
+    }
+
     void method1() {
         // Intentionally empty
     }

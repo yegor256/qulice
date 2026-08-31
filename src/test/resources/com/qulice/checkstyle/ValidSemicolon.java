@@ -15,6 +15,13 @@ public final class ValidSemicolon {
     private int dat = 1;
 
     /**
+     * Ctor.
+     */
+    public ValidSemicolon() {
+        // nothing
+    }
+
+    /**
      * Method without extra semicolon in the end
      * of try-with-resources head.
      */

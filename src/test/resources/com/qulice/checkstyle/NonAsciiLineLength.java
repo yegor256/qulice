@@ -9,6 +9,13 @@ package foo;
  */
 public final class NonAsciiLineLength {
 
+    /**
+     * Ctor.
+     */
+    public NonAsciiLineLength() {
+        // nothing
+    }
+
     @Override
     public String toString() {
         final String input = "Hello, товарищ output äÄ üÜ öÖ and ßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßßß";
