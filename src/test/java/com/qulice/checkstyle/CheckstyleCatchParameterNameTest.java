@@ -36,16 +36,16 @@ final class CheckstyleCatchParameterNameTest {
                 Matchers.iterableWithSize(4),
                 Matchers.hasItems(
                     new ViolationMatcher(
-                        "Name 'ex_invalid_1' must match pattern", file, "26", name
+                        "Name 'ex_invalid_1' must match pattern", file, "33", name
                     ),
                     new ViolationMatcher(
-                        "Name '$xxx' must match pattern", file, "28", name
+                        "Name '$xxx' must match pattern", file, "35", name
                     ),
                     new ViolationMatcher(
-                        "Name '_exp' must match pattern", file, "30", name
+                        "Name '_exp' must match pattern", file, "37", name
                     ),
                     new ViolationMatcher(
-                        "Name '$xxx' must match pattern", file, "28",
+                        "Name '$xxx' must match pattern", file, "35",
                         "IllegalIdentifierNameCheck"
                     )
                 )

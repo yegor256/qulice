@@ -15,6 +15,13 @@ import org.apache.commons.io.IOUtils;
 public final class Sample {
 
     /**
+     * Ctor.
+     */
+    public Sample() {
+        // nothing to initialize
+    }
+
+    /**
      * Test method.
      * @return Stream
      * @checkstyle NonStaticMethod (2 lines)

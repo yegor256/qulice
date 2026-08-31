@@ -45,6 +45,13 @@ public final class AnnotationConstant {
     private int dat = 1;
 
     /**
+     * Ctor.
+     */
+    public AnnotationConstant() {
+        // nothing
+    }
+
+    /**
      * Some data.
      * @return Some data
      */

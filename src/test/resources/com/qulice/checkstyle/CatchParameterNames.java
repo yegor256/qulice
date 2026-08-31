@@ -18,6 +18,13 @@ public final class CatchParameterNames {
     private int counter;
 
     /**
+     * Ctor.
+     */
+    public CatchParameterNames() {
+        // nothing
+    }
+
+    /**
      * Invalid exception parameter name.
      */
     void invalidOne() {

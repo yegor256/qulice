@@ -8,6 +8,13 @@ package foo;
  */
 public final class InstanceMethodRef {
 
+    /**
+     * Ctor.
+     */
+    public InstanceMethodRef() {
+        // nothing
+    }
+
     private void start() {
         Collections.singletonList("1")
             .forEach(this::doSomething);

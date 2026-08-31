@@ -59,14 +59,14 @@ final class CheckstyleBannedApiTest {
                     new ViolationMatcher(message, file, "7", name),
                     new ViolationMatcher(message, file, "8", name),
                     new ViolationMatcher(message, file, "9", name),
-                    new ViolationMatcher(message, file, "23", name),
-                    new ViolationMatcher(message, file, "24", name),
-                    new ViolationMatcher(message, file, "25", name),
+                    new ViolationMatcher(message, file, "30", name),
+                    new ViolationMatcher(message, file, "31", name),
+                    new ViolationMatcher(message, file, "32", name),
                     new ViolationMatcher(
                         "is redundant, import it and use",
-                        file, "26", "FullyQualifiedTypeCheck"
+                        file, "33", "FullyQualifiedTypeCheck"
                     ),
-                    new ViolationMatcher(message, file, "26", name)
+                    new ViolationMatcher(message, file, "33", name)
                 )
             )
         );

@@ -15,6 +15,13 @@ import org.apache.commons.lang3.CharEncoding;
 public final class DoNotUseCharEncoding {
 
     /**
+     * Ctor.
+     */
+    public DoNotUseCharEncoding() {
+        // nothing
+    }
+
+    /**
      * Act.
      */
     public void act() {

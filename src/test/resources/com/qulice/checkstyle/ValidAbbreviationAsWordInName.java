@@ -17,6 +17,13 @@ public class ValidAbbreviationAsWordInName extends SomeClass {
     private static final String CONST_VALUE = "foo";
 
     /**
+     * Ctor.
+     */
+    public ValidAbbreviationAsWordInName() {
+        // nothing
+    }
+
+    /**
      * The constant, so that it is not used only once.
      * @return The constant
      */
@@ -34,5 +41,12 @@ public class ValidAbbreviationAsWordInName extends SomeClass {
      * @since 1.0
      */
     public class ValidInnerHtml {
+
+        /**
+         * Ctor.
+         */
+        public ValidInnerHtml() {
+            // nothing
+        }
     }
 }

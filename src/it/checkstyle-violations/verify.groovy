@@ -23,3 +23,4 @@ assert log.text.contains('Constants.java[12]: Private constant "ONCE" is used on
 assert !log.text.contains('Private constant "TWICE" is used only once')
 assert log.text.contains('Violations.java[39]: Fully qualified "java.util.ArrayList" is redundant, import it and use "ArrayList" (FullyQualifiedTypeCheck)')
 assert log.text.contains('Violations.java[49]: Fully qualified "com.google.common.collect.Lists" is redundant, import it and use "Lists" (FullyQualifiedTypeCheck)')
+assert log.text.contains('Violations.java[10]: Implicit constructor of "Violations" gets no Javadoc, declare it explicitly (ImplicitConstructorCheck)')

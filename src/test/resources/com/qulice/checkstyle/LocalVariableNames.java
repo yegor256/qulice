@@ -21,6 +21,13 @@ public final class LocalVariableNames {
     private transient int id;
 
     /**
+     * Ctor.
+     */
+    public LocalVariableNames() {
+        // nothing
+    }
+
+    /**
      * Just a valid method.
      * @param id
      *  A valid parameter with name 'id'

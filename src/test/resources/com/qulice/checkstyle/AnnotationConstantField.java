@@ -45,6 +45,13 @@ public final class AnnotationConstantField {
     private int other = 2;
 
     /**
+     * Ctor.
+     */
+    public AnnotationConstantField() {
+        // nothing
+    }
+
+    /**
      * Some data.
      * @return Some data
      */

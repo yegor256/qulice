@@ -12,6 +12,13 @@ import java.util.List;
  */
 public final class DiamondUsageNotNeeded {
 
+    /**
+     * Ctor.
+     */
+    public DiamondUsageNotNeeded() {
+        // nothing
+    }
+
     @Override
     public List<String> firstTen(final String... args) {
         return new ArrayList<String>(2);

@@ -20,6 +20,13 @@ public final class ValidDiamondsUsage {
      */
     public static final int TEN = 10;
 
+    /**
+     * Ctor.
+     */
+    public ValidDiamondsUsage() {
+        // nothing
+    }
+
     @Override
     public List<String> firstTen(final String... args) {
         final List<String> list = new ArrayList<>(args.length + 1);

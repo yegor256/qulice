@@ -15,6 +15,13 @@ public final class ValidLambdaAndGenericsAtEndOfLine {
     private final int zero = 0;
 
     /**
+     * Ctor.
+     */
+    public ValidLambdaAndGenericsAtEndOfLine() {
+        // nothing
+    }
+
+    /**
      * Main method.
      */
     public void main() {

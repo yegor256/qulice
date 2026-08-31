@@ -13,4 +13,11 @@ package foo;
     "PMD.AvoidDuplicateLiterals"
 })
 public final class AnnotationIndentation {
+
+    /**
+     * Ctor.
+     */
+    public AnnotationIndentation() {
+        // nothing
+    }
 }

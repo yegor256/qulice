@@ -18,6 +18,13 @@ public final class Sample {
     private static final int NOT_FOUND = StringUtils.INDEX_NOT_FOUND;
 
     /**
+     * Ctor.
+     */
+    public Sample() {
+        // nothing to initialize
+    }
+
+    /**
      * Return the "not found" constant.
      * @return The {@value #NOT_FOUND} index
      * @checkstyle NonStaticMethod (2 lines)

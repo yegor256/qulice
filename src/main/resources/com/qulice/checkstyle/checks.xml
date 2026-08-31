@@ -468,6 +468,15 @@
     See https://github.com/yegor256/qulice/issues/1789
     -->
     <module name="com.qulice.checkstyle.FullyQualifiedTypeCheck"/>
+    <!--
+    A class that declares no constructor gets one from the compiler, and
+    Javadoc puts it into the page with no comment on it, saying "use of
+    default constructor, which does not provide a comment". A build with
+    'failOnWarnings' breaks over it at site time. Only the classes
+    Javadoc documents are reported, since only they carry the warning.
+    See https://github.com/objectionary/eo/pull/8002
+    -->
+    <module name="com.qulice.checkstyle.ImplicitConstructorCheck"/>
     <module name="com.qulice.checkstyle.MultilineJavadocTagsCheck"/>
     <module name="com.qulice.checkstyle.NoJavadocForOverriddenMethodsCheck"/>
     <module name="com.qulice.checkstyle.NoJavadocForPrivateMethodsCheck"/>

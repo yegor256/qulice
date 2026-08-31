@@ -10,6 +10,13 @@ package foo;
 public final class BlankLinesOutsideMethodsPass {
 
     /**
+     * Ctor.
+     */
+    public BlankLinesOutsideMethodsPass() {
+        // nothing
+    }
+
+    /**
      * Method with space between anonymous innter class methods.
      */
     public void methodwithAnonymousInnerClass() {
