@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 520.908535921
+  seconds: 651.195129988
   version: 0.61.1
   what: judges-summary
-  when: 2026-08-30 07:31:49.988554781 Z
+  when: 2026-08-31 07:44:26.568697909 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63001,17 +63001,17 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 690
+  assignees_were_scanned: 782
   earliest_issue_was_found: 1
-  events_were_scanned: 14090420489
+  events_were_scanned: 14126235534
   issues_were_scanned: 867
-  labels_were_scanned: 0
+  labels_were_scanned: 673
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
   min_pull_was_found: 1538
   repository: 9580168
-  types_were_scanned: 1770
+  types_were_scanned: 0
   what: iterate
   where: github
 - _id: 11295
@@ -72459,20 +72459,6 @@
   total_stars: 323
   what: dimensions-of-terrain
   when: 2026-08-27 10:42:07.337421634 Z
-- _id: 11892
-  _job: 88940
-  _time: 2026-08-27 10:42:54.531154182 Z
-  _version: 0.19.16/0.61.1/0.17.21
-  analyzers: 18
-  text: |-
-    The average number of builds per week (246.6) is increasing (R=0.26).
-    The average number of commits per week (12.7) is staying still.
-    The average issue cycle time (2w3d) is decreasing (R=-0.48).
-    The average pull cycle time (5d23h) is staying still.
-    The average number of releases per month (3.7) is increasing (R=0.33).
-    The average monthly turnover (34.0 developers) is increasing (R=0.35).
-  what: assessment
-  when: 2026-08-27 10:42:54.550101035 Z
 - _id: 11893
   _job: 33164785714
   _time: 2026-08-28 10:50:16.466216097 Z
@@ -72981,8 +72967,10 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1790
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -73004,9 +72992,11 @@
   failed_builds: 0
   files: 1
   hoc: 9
+  is_human: 1
   issue: 1793
   repository: 9580168
   review: 2026-08-30 07:15:42.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -73018,6 +73008,7 @@
   _time: 2026-08-30 07:25:16.925977238 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1783.
+  is_human: 1
   issue: 1783
   label: bug
   repository: 9580168
@@ -73030,6 +73021,7 @@
   _time: 2026-08-30 07:25:18.050320524 Z
   _version: 0.19.16/0.61.1/0.17.21
   details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1789.
+  is_human: 1
   issue: 1789
   label: bug
   repository: 9580168
@@ -73046,6 +73038,7 @@
   details: The pull request yegor256/qulice#1793 with 9 HoC created by @yegor256 was
     reviewed by @copilot after 0h8m and 0 comments.
   hoc: 9
+  is_human: 0
   issue: 1793
   repository: 9580168
   review_comments: 0
@@ -73070,3 +73063,165 @@
   total_stars: 323
   what: dimensions-of-terrain
   when: 2026-08-30 07:31:39.192948261 Z
+- _id: 11929
+  _job: 89188
+  _time: 2026-08-30 07:32:13.491558583 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  analyzers: 18
+  text: |-
+    The average number of builds per week (242.3) is increasing (R=0.23).
+    The average number of commits per week (12.4) is staying still.
+    The average issue cycle time (2w2d) is decreasing (R=-0.51).
+    The average pull cycle time (5d21h) is decreasing (R=-0.12).
+    The average number of releases per month (3.6) is increasing (R=0.29).
+    The average monthly turnover (34.0 developers) is increasing (R=0.36).
+  what: assessment
+  when: 2026-08-30 07:32:13.515828555 Z
+- _id: 11930
+  _job: 33368807762
+  _time: 2026-08-31 07:33:39.700251894 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: claude/qulice-javadoc-checker-i0pdbi
+  details: The pull request yegor256/qulice#1797 has been opened by @yegor256.
+  event_id: 14126235534
+  event_type: PullRequestEvent
+  is_human: 1
+  issue: 1797
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-08-31 07:19:33.000000000 Z
+  where: github
+  who: 526301
+- _id: 11931
+  _job: 33368807762
+  _time: 2026-08-31 07:33:41.310145494 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  commits: 18
+  contributors:
+  - 526301
+  - 29139614
+  - 41898282
+  - 8086956
+  details: A new release "Nothing flags a fully-qualified type where an import would
+    do" has been published in yegor256/qulice by @rultor.
+  event_id: 14091686997
+  event_type: ReleaseEvent
+  hoc: 6538
+  is_human: 0
+  last_commit: 219f8c0c4bce8916b61ee87471d4aff0b994308c
+  release: 379222574
+  repository: 9580168
+  tag: 0.34.0
+  what: release-published
+  when: 2026-08-30 08:29:23.000000000 Z
+  where: github
+  who: 8086956
+- _id: 11932
+  _job: 33368807762
+  _time: 2026-08-31 07:33:43.212304413 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: version-up
+  details: The pull request yegor256/qulice#1796 has been opened by @github-actions[bot].
+  event_id: 14091659990
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1796
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-08-30 08:27:56.000000000 Z
+  where: github
+  who: 41898282
+- _id: 11933
+  _job: 33368807762
+  _time: 2026-08-31 07:33:43.664488753 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  details: The issue yegor256/qulice#1789 has been closed by @yegor256.
+  event_id: 14090721452
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1789
+  repository: 9580168
+  what: issue-was-closed
+  when: 2026-08-30 07:39:06.000000000 Z
+  where: github
+  who: 526301
+- _id: 11934
+  _job: 33368807762
+  _time: 2026-08-31 07:34:49.985966733 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: claude/qulice-issue-1789-97xvhg
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1795 has been "pull-was-merged".
+  failed_builds: 0
+  files: 15
+  hoc: 365
+  issue: 1795
+  repository: 9580168
+  review: 2026-08-30 07:38:52.000000000 Z
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-08-30 07:39:05.000000000 Z
+  where: github
+  who: 526301
+- _id: 11935
+  _job: 33368807762
+  _time: 2026-08-31 07:35:03.700108519 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: version-up
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1796 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  issue: 1796
+  repository: 9580168
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-08-31 05:51:35.000000000 Z
+  where: github
+  who: 526301
+- _id: 11936
+  _job: 33368807762
+  _time: 2026-08-31 07:44:08.363626609 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 0
+  details: The pull request yegor256/qulice#1795 with 365 HoC created by @yegor256
+    was reviewed by @copilot after 0h15m and 0 comments.
+  hoc: 365
+  issue: 1795
+  repository: 9580168
+  review_comments: 0
+  seconds: 948
+  what: code-was-reviewed
+  when: 2026-08-30 07:38:52.000000000 Z
+  where: github
+  who: 175728472
+- _id: 11937
+  _job: 33368807762
+  _time: 2026-08-31 07:44:11.356560240 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  total_active_contributors: 4
+  total_commits: 2701
+  total_contributors: 59
+  total_files: 882
+  total_forks: 124
+  total_issues: 935
+  total_pulls: 861
+  total_releases: 105
+  total_repositories: 1
+  total_stars: 323
+  what: dimensions-of-terrain
+  when: 2026-08-31 07:44:11.364914547 Z
