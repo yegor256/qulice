@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 651.195129988
+  seconds: 736.521950688
   version: 0.61.1
   what: judges-summary
-  when: 2026-08-31 07:44:26.568697909 Z
+  when: 2026-09-01 07:39:37.297069482 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63001,17 +63001,17 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 782
+  assignees_were_scanned: 864
   earliest_issue_was_found: 1
-  events_were_scanned: 14126235534
+  events_were_scanned: 19559262584
   issues_were_scanned: 867
-  labels_were_scanned: 673
+  labels_were_scanned: 843
   latest_issue_was_found: 1386
   merges_were_scanned: 0
   min_issue_was_found: 1635
   min_pull_was_found: 1538
   repository: 9580168
-  types_were_scanned: 0
+  types_were_scanned: 487
   what: iterate
   where: github
 - _id: 11295
@@ -73160,9 +73160,11 @@
   failed_builds: 0
   files: 15
   hoc: 365
+  is_human: 1
   issue: 1795
   repository: 9580168
   review: 2026-08-30 07:38:52.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -73184,8 +73186,10 @@
   failed_builds: 0
   files: 1
   hoc: 2
+  is_human: 1
   issue: 1796
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -73201,6 +73205,7 @@
   details: The pull request yegor256/qulice#1795 with 365 HoC created by @yegor256
     was reviewed by @copilot after 0h15m and 0 comments.
   hoc: 365
+  is_human: 0
   issue: 1795
   repository: 9580168
   review_comments: 0
@@ -73225,3 +73230,44 @@
   total_stars: 323
   what: dimensions-of-terrain
   when: 2026-08-31 07:44:11.364914547 Z
+- _id: 11938
+  _job: 33482117938
+  _time: 2026-09-01 07:28:31.476026923 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  branch: claude/qulice-javadoc-checker-i0pdbi
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 1
+  comments_by_reviewers: 2
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1797 has been "pull-was-merged".
+  failed_builds: 0
+  files: 36
+  hoc: 434
+  issue: 1797
+  repository: 9580168
+  review: 2026-08-31 09:07:47.000000000 Z
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-08-31 09:08:16.000000000 Z
+  where: github
+  who: 526301
+- _id: 11939
+  _job: 33482117938
+  _time: 2026-09-01 07:38:43.595520480 Z
+  _version: 0.19.16/0.61.1/0.17.21
+  author: 526301
+  comments: 3
+  details: The pull request yegor256/qulice#1797 with 434 HoC created by @yegor256
+    was reviewed by @copilot after 1h48m and 0 comments.
+  hoc: 434
+  issue: 1797
+  repository: 9580168
+  review_comments: 0
+  seconds: 6494
+  what: code-was-reviewed
+  when: 2026-08-31 09:07:47.000000000 Z
+  where: github
+  who: 175728472
