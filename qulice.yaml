@@ -3,10 +3,10 @@
   cycles: 1
   deleted: 8
   inserted: 8
-  seconds: 736.521950688
+  seconds: 464.033224043
   version: 0.61.1
   what: judges-summary
-  when: 2026-09-01 07:39:37.297069482 Z
+  when: 2026-09-02 07:36:49.074249669 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63001,17 +63001,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 864
+  assignees_were_scanned: 985
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 19559262584
+  events_were_scanned: 19734166336
   issues_were_scanned: 867
-  labels_were_scanned: 843
+  labels_were_scanned: 936
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1635
-  min_pull_was_found: 1538
+  min_issue_was_found: 1647
+  min_pull_was_found: 1539
   repository: 9580168
-  types_were_scanned: 487
+  types_were_scanned: 585
   what: iterate
   where: github
 - _id: 11295
@@ -73245,9 +73246,11 @@
   failed_builds: 0
   files: 36
   hoc: 434
+  is_human: 1
   issue: 1797
   repository: 9580168
   review: 2026-08-31 09:07:47.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -73263,6 +73266,7 @@
   details: The pull request yegor256/qulice#1797 with 434 HoC created by @yegor256
     was reviewed by @copilot after 1h48m and 0 comments.
   hoc: 434
+  is_human: 0
   issue: 1797
   repository: 9580168
   review_comments: 0
@@ -73271,3 +73275,30 @@
   when: 2026-08-31 09:07:47.000000000 Z
   where: github
   who: 175728472
+- _id: 11940
+  _job: 33603636510
+  _time: 2026-09-02 07:32:25.276486979 Z
+  _version: 0.19.16/0.61.1/0.17.22
+  total_active_contributors: 4
+  total_commits: 2707
+  total_contributors: 59
+  total_files: 890
+  total_forks: 124
+  total_issues: 936
+  total_pulls: 869
+  total_releases: 106
+  total_repositories: 1
+  total_stars: 323
+  what: dimensions-of-terrain
+  when: 2026-09-02 07:32:25.230834438 Z
+- _id: 11941
+  _job: 33603636510
+  _time: 2026-09-02 07:36:21.777359327 Z
+  _version: 0.19.16/0.61.1/0.17.22
+  details: The issue yegor256/qulice#1800 has been earlier opened by @yegor256.
+  issue: 1800
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-09-01 11:30:57.000000000 Z
+  where: github
+  who: 526301
