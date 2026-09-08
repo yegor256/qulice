@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link CheckstyleValidator}'s enforcement that a
  * fluent call opening a multi-line block must be attached to the
  * previous line, see https://github.com/yegor256/qulice/issues/670.
+ *
  * @since 0.25.1
  */
 final class CheckstyleFluentCallFormattingTest {
@@ -35,7 +36,7 @@ final class CheckstyleFluentCallFormattingTest {
             Matchers.hasItem(
                 new ViolationMatcher(
                     "A fluent call opening a multi-line block must be attached to the previous line",
-                    file, "20", "RegexpSinglelineCheck"
+                    file, "22", "RegexpSinglelineCheck"
                 )
             )
         );

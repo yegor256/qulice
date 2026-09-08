@@ -33,6 +33,7 @@ import org.codehaus.plexus.context.Context;
 
 /**
  * Environment, passed from MOJO to validators.
+ *
  * @since 0.3
  */
 @SuppressWarnings("PMD.GodClass")
@@ -246,6 +247,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set Maven Project (used mostly for unit testing).
+     *
      * @param proj The project to set
      */
     public void setProject(final MavenProject proj) {
@@ -254,6 +256,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set context.
+     *
      * @param ctx The context to set
      */
     public void setContext(final Context ctx) {
@@ -262,6 +265,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set executor.
+     *
      * @param exec The executor
      */
     public void setMojoExecutor(final MojoExecutor exec) {
@@ -270,6 +274,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set property.
+     *
      * @param name Its name
      * @param value Its value
      */
@@ -279,6 +284,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set list of regular expressions to exclude.
+     *
      * @param exprs Expressions
      */
     public void setExcludes(final Collection<String> exprs) {
@@ -288,6 +294,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set list of Xpath queries for pom.xml validation.
+     *
      * @param ass Xpath queries
      */
     public void setAssertion(final Collection<String> ass) {
@@ -297,6 +304,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set the encoding of source files.
+     *
      * @param encoding The encoding to use
      */
     public void setEncoding(final String encoding) {

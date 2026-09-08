@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 1.0
  * @checkstyle HiddenField (100 lines)
  */
@@ -29,6 +30,7 @@ public final class LocalVariableNames {
 
     /**
      * Just a valid method.
+     *
      * @param id
      *  A valid parameter with name 'id'
      * @return Some value
@@ -39,6 +41,7 @@ public final class LocalVariableNames {
 
     /**
      * Another valid method.
+     *
      * @param parametername Another parameter that's valid
      */
     static void validtwo(final int parametername) {
@@ -86,6 +89,7 @@ public final class LocalVariableNames {
 
     /**
      * Just an invalid method that test all cases.
+     *
      * @param it
      *  An invalid parameter with name 'it'
      * @return Some value

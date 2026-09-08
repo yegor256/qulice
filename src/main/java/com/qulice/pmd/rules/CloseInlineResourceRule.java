@@ -18,6 +18,7 @@ import net.sourceforge.pmd.lang.java.types.TypeTestUtil;
 /**
  * Rule to flag {@code AutoCloseable} expressions that are created inline and
  * then consumed by another expression instead of a resource boundary.
+ *
  * @since 0.27.7
  */
 public final class CloseInlineResourceRule extends AbstractJavaRulechainRule {
@@ -36,6 +37,9 @@ public final class CloseInlineResourceRule extends AbstractJavaRulechainRule {
         "java.util.stream.DoubleStream"
     );
 
+    /**
+     * Default constructor.
+     */
     public CloseInlineResourceRule() {
         super(ASTConstructorCall.class, ASTMethodCall.class);
     }
@@ -94,8 +98,7 @@ public final class CloseInlineResourceRule extends AbstractJavaRulechainRule {
     private static boolean closedDirectly(final ASTExpression expr) {
         boolean found = false;
         final Node parent = expr.getParent();
-        if (parent instanceof ASTMethodCall) {
-            final ASTMethodCall call = (ASTMethodCall) parent;
+        if (parent instanceof ASTMethodCall call) {
             found = "close".equals(call.getMethodName())
                 && expr.equals(call.getQualifier());
         }

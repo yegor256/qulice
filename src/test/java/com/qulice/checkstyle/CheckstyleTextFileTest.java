@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator} covering checks that apply to
  * non-Java text files and whitespace before closing braces.
+ *
  * @since 0.25.0
  */
 final class CheckstyleTextFileTest {
@@ -25,6 +26,7 @@ final class CheckstyleTextFileTest {
     /**
      * CheckstyleValidator reports a tab character in a non-Java text file
      * such as JavaScript. See https://github.com/yegor256/qulice/issues/521.
+     *
      * @throws Exception when error.
      */
     @Test
@@ -47,6 +49,7 @@ final class CheckstyleTextFileTest {
     /**
      * CheckstyleValidator reports missing final newline in a non-Java text
      * file such as Markdown. See https://github.com/yegor256/qulice/issues/521.
+     *
      * @throws Exception when error.
      */
     @Test
@@ -70,6 +73,7 @@ final class CheckstyleTextFileTest {
     /**
      * CheckstyleValidator rejects empty lines before closing braces.
      * See https://github.com/yegor256/qulice/issues/710.
+     *
      * @throws Exception when error.
      */
     @Test
@@ -106,6 +110,7 @@ final class CheckstyleTextFileTest {
      * CheckstyleValidator does not report a false positive when a closing
      * brace immediately follows a non-empty line.
      * See https://github.com/yegor256/qulice/issues/710.
+     *
      * @throws Exception when error.
      */
     @Test

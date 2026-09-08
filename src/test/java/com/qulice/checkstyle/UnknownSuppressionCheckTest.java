@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of
  * {@link UnknownSuppressionCheck}.
+ *
  * @since 1.0
  */
 final class UnknownSuppressionCheckTest {
@@ -35,7 +36,7 @@ final class UnknownSuppressionCheckTest {
             Matchers.hasItems(
                 new ViolationMatcher("FooBar", file, "4", name),
                 new ViolationMatcher(
-                    "ClassDataAbstractionCoupling", file, "11", name
+                    "ClassDataAbstractionCoupling", file, "12", name
                 )
             )
         );

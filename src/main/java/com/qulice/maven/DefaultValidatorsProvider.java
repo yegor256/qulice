@@ -17,6 +17,7 @@ import java.util.Set;
 
 /**
  * Provider of validators.
+ *
  * @since 0.3
  */
 final class DefaultValidatorsProvider implements ValidatorsProvider {
@@ -28,6 +29,7 @@ final class DefaultValidatorsProvider implements ValidatorsProvider {
 
     /**
      * Constructor.
+     *
      * @param env Environment to use for validation
      */
     DefaultValidatorsProvider(final Environment env) {

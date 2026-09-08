@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * Listener of Checkstyle events.
+ *
  * @since 0.3
  */
 final class CheckstyleListener implements AuditListener {
@@ -37,6 +38,7 @@ final class CheckstyleListener implements AuditListener {
 
     /**
      * Public ctor.
+     *
      * @param environ The environment
      */
     CheckstyleListener(final Environment environ) {
@@ -95,6 +97,7 @@ final class CheckstyleListener implements AuditListener {
 
     /**
      * Get all events.
+     *
      * @return List of events
      */
     List<AuditEvent> events() {
@@ -104,6 +107,7 @@ final class CheckstyleListener implements AuditListener {
     /**
      * Files that Checkstyle processed, leaving out those it took from
      * its cache and never collected events for.
+     *
      * @return List of files
      */
     List<File> processed() {

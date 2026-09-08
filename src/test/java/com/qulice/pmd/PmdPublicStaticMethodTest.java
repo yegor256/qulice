@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link PmdValidator}'s rule prohibiting public
  * static methods, with the exceptions for {@code public static
  * void main} and JUnit lifecycle/parameterization hooks.
+ *
  * @since 0.25.1
  */
 final class PmdPublicStaticMethodTest {

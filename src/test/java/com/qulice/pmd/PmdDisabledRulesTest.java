@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Tests for disabled rules.
+ *
  * @since 0.16
  */
 final class PmdDisabledRulesTest {

@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
  * {@code src/main/java} package already declares
  * {@code package-info.java}. See <a href=
  * "https://github.com/yegor256/qulice/issues/865">#865</a>.
+ *
  * @since 0.25.1
  */
 final class CheckstyleJavadocPackageTest {

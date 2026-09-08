@@ -17,6 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * rule count through {@link #name()} and {@link #rules()}. The validate
  * call always returns an empty collection, so {@code CheckMojo} treats
  * the run as clean.
+ *
  * @since 0.27.0
  */
 final class FakeResourceValidator implements ResourceValidator {

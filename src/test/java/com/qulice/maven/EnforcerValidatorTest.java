@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link EnforcerValidator} class.
+ *
  * @since 0.70.0
  */
 final class EnforcerValidatorTest {
@@ -17,6 +18,7 @@ final class EnforcerValidatorTest {
     /**
      * EnforcerValidator can skip validation when the enforcer
      * check is excluded.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -35,6 +37,7 @@ final class EnforcerValidatorTest {
     /**
      * EnforcerValidator attempts to execute the plugin when the check
      * is not excluded.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test

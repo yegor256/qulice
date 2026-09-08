@@ -7,11 +7,13 @@ package foo;
  * Class with a classic switch statement that Checkstyle's
  * {@code UseEnhancedSwitch} suggests rewriting into arrow-switch syntax,
  * which only compiles under Java 14+.
+ *
  * @since 1.0
  */
 public final class EnhancedSwitch {
     /**
      * Describe the given type using a classic switch.
+     *
      * @param type The type
      * @return Human readable name
      */

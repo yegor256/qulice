@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link PmdValidator} covering JUnit assertion rules and
  * related test-class conventions.
+ *
  * @since 0.25.0
  */
 final class PmdAssertionsTest {
@@ -87,6 +88,7 @@ final class PmdAssertionsTest {
      * PmdValidator does not report UnitTestContainsTooManyAsserts when a test
      * wraps an Assertions.assertThrows call inside an assertThat to verify the
      * thrown exception's message.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -104,6 +106,7 @@ final class PmdAssertionsTest {
      * PmdValidator still reports UnitTestContainsTooManyAsserts when a test
      * has multiple asserts in addition to an assertThrows call, because only
      * assertThrows is excluded from the count.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -122,6 +125,7 @@ final class PmdAssertionsTest {
      * starts with 'verify' or 'check' but which are not JUnit/Hamcrest
      * assertions.
      * Regression test for https://github.com/yegor256/qulice/issues/1606
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -138,6 +142,7 @@ final class PmdAssertionsTest {
     /**
      * PmdValidator can allow only package private methods, marked with: Test,
      * RepeatedTest, TestFactory, TestTemplate or ParameterizedTest annotations.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -151,6 +156,7 @@ final class PmdAssertionsTest {
 
     /**
      * PmdValidator can allow only final JUnit3 test classes.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -164,6 +170,7 @@ final class PmdAssertionsTest {
 
     /**
      * PmdValidator can allow only final JUnit4 test classes.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -177,6 +184,7 @@ final class PmdAssertionsTest {
 
     /**
      * PmdValidator can allow only final JUnit5 test classes.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -190,6 +198,7 @@ final class PmdAssertionsTest {
 
     /**
      * PmdValidator can allow only final Junit test classes.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -209,6 +218,7 @@ final class PmdAssertionsTest {
     /**
      * PmdValidator can find assert() calls placed inside a lambda
      * body and not report UnitTestShouldIncludeAssert violation.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -227,6 +237,7 @@ final class PmdAssertionsTest {
      * no-argument {@code affirm()} call on an {@code Assertion} object as a
      * valid assertion and does not report UnitTestShouldIncludeAssert.
      * Regression test for https://github.com/yegor256/qulice/issues/1698
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -246,6 +257,7 @@ final class PmdAssertionsTest {
      * {@code public static void test()} entry point instead of
      * {@code @Test}-annotated methods.
      * Regression test for https://github.com/yegor256/qulice/issues/1064
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -273,6 +285,7 @@ final class PmdAssertionsTest {
      * {@link org.hamcrest.MatcherAssert#assertThat(String, boolean)} where
      * the first argument already is the message.
      * Regression test for https://github.com/yegor256/qulice/issues/1315
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -294,6 +307,7 @@ final class PmdAssertionsTest {
      * {@link org.hamcrest.MatcherAssert#assertThat(Object, org.hamcrest.Matcher)}
      * is used without a reason. Guards the fix for
      * https://github.com/yegor256/qulice/issues/1315 from over-suppressing.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test

@@ -9,6 +9,7 @@
  * the tests, not sources of the product, and neither Checkstyle, PMD nor
  * ErrorProne may complain about them, even though the project says
  * nothing about them in its {@code <excludes>}.
+ *
  * @since 1.0
  */
 package com.qulice.plugin.resources;

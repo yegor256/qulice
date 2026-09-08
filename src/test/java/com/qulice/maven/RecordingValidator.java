@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * A test fake {@link Validator} that remembers the value one
  * {@link Environment} parameter had when the validator was called.
+ *
  * @since 1.0
  */
 final class RecordingValidator implements Validator {

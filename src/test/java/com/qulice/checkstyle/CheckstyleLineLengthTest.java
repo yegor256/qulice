@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code LineLength} check and its @checkstyle suppressions.
+ *
  * @since 0.25.1
  */
 final class CheckstyleLineLengthTest {

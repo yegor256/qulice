@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
  * Test case for general {@link PmdValidator} behavior that is
  * not tied to a single PMD rule. Per-rule coverage lives in the
  * dedicated {@code Pmd*Test.java} files in this package.
+ *
  * @since 0.3
  */
 final class PmdValidatorTest {

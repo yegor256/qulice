@@ -5,6 +5,7 @@
 
 /**
  * Checkstyle checks.
+ *
  * @since 0.3
  */
 package com.qulice.checkstyle;

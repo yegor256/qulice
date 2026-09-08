@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link PmdValidator}'s tolerance of repeated string
  * literals, since the {@code AvoidDuplicateLiterals} rule is not part
  * of the ruleset.
+ *
  * @since 0.25.1
  */
 final class PmdDuplicateLiteralsTest {

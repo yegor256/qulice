@@ -29,6 +29,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 
 /**
  * Check the project and find all possible violations.
+ *
  * @since 0.3
  */
 @Mojo(
@@ -69,6 +70,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
      * Primary constructor.
+     *
      * @param svc Executors to run resource validators in
      */
     private CheckMojo(final ExecutorService svc) {
@@ -90,6 +92,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
      * Set provider of validators.
+     *
      * @param prov The provider
      */
     public void setValidatorsProvider(final ValidatorsProvider prov) {
@@ -98,6 +101,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
      * Set timeout for checks.
+     *
      * @param time Timeout value
      */
     public void setTimeout(final String time) {
@@ -106,6 +110,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
      * Filter files based on excludes.
+     *
      * @param env Maven environment
      * @param files Files to exclude
      * @param validator Validator to use

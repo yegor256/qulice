@@ -52,6 +52,7 @@ public final class ProhibitFieldsInTestClassesCheck extends AbstractCheck {
 
     /**
      * Restrict the check to files matching the given pattern.
+     *
      * @param regex Regex of file names to include
      */
     public void setIncludeFileNamePattern(final String regex) {

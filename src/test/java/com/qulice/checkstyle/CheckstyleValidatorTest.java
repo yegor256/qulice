@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
  * regression guard. Per-check coverage lives in the dedicated
  * {@code *CheckTest.java} and {@code Checkstyle*Test.java} files
  * in this package.
+ *
  * @since 0.3
  */
 final class CheckstyleValidatorTest {

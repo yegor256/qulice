@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * Test class using a compile-time constant.
+ *
  * @since 1.0
  */
 public final class Sample {
@@ -26,6 +27,7 @@ public final class Sample {
 
     /**
      * Return the "not found" constant.
+     *
      * @return The {@value #NOT_FOUND} index
      * @checkstyle NonStaticMethod (2 lines)
      */

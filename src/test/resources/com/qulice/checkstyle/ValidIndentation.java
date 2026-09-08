@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class ValidIndentation {
@@ -16,6 +17,7 @@ public final class ValidIndentation {
 
     /**
      * Ctor.
+     *
      * @param txt Name
      */
     public ValidIndentation(final String txt) {
@@ -24,6 +26,7 @@ public final class ValidIndentation {
 
     /**
      * Do something.
+     *
      * @return The size
      */
     public int doit() {

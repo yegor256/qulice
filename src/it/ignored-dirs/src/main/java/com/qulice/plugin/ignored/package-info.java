@@ -9,6 +9,7 @@
  * directories in the POM, so that Qulice walks them, and both hold a
  * Java file that breaks plenty of rules. The build must stay green
  * anyway, with no {@code <exclude>} in the POM.
+ *
  * @since 1.0
  */
 package com.qulice.plugin.ignored;

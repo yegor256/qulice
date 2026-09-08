@@ -7,12 +7,14 @@ import java.util.function.Supplier;
 
 /**
  * Simple.
+ *
  * @since 0.24.2
  */
 public final class LongLambdaInBody {
 
     /**
      * Build a supplier.
+     *
      * @return The supplier
      */
     public Supplier<Integer> build() {

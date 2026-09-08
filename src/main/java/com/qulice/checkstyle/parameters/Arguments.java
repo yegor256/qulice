@@ -13,6 +13,7 @@ import java.util.function.Consumer;
 
 /**
  * Method or constructor arguments.
+ *
  * @since 0.18.18
  */
 public class Arguments {
@@ -24,6 +25,7 @@ public class Arguments {
 
     /**
      * Secondary ctor.
+     *
      * @param node Constructor or method definition node
      */
     public Arguments(final DetailAST node) {
@@ -36,6 +38,7 @@ public class Arguments {
 
     /**
      * Primary ctor.
+     *
      * @param parameters Parameters
      */
     public Arguments(final Parameters parameters) {
@@ -44,6 +47,7 @@ public class Arguments {
 
     /**
      * Return number of arguments.
+     *
      * @return Number of arguments
      */
     public final int count() {
@@ -53,6 +57,7 @@ public class Arguments {
     /**
      * Checks for consistency the order of arguments and their Javadoc
      * parameters.
+     *
      * @param tags Javadoc parameter tags
      * @param consumer Consumer accepts JavadocTag which is located out of
      *  order

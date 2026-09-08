@@ -8,6 +8,7 @@ import com.qulice.spi.ValidationException;
 
 /**
  * Validator inside Maven.
+ *
  * @since 0.3
  */
 @FunctionalInterface
@@ -15,6 +16,7 @@ interface MavenValidator {
 
     /**
      * Validate this environment.
+     *
      * @param env The environment
      * @throws ValidationException In case of violations
      */

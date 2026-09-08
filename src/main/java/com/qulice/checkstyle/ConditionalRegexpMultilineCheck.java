@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 /**
  * Performs multiline regexp match only if a regexp condition passes.
+ *
  * @since 0.5
  */
 public final class ConditionalRegexpMultilineCheck extends
@@ -49,6 +50,7 @@ public final class ConditionalRegexpMultilineCheck extends
 
     /**
      * Condition regexp that has to match before checking the core one.
+     *
      * @param cond Regexp that has to match in file
      */
     public void setCondition(final String cond) {

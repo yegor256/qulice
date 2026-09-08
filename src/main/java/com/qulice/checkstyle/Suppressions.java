@@ -64,6 +64,7 @@ final class Suppressions implements Iterable<SuppressionTag> {
 
     /**
      * Constructor.
+     *
      * @param text Text of the source file
      */
     Suppressions(final String text) {

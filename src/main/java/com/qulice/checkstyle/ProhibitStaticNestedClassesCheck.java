@@ -46,6 +46,7 @@ public final class ProhibitStaticNestedClassesCheck extends AbstractCheck {
 
     /**
      * Do not apply this check to files matching the given pattern.
+     *
      * @param regex Regex of file names to exclude
      */
     public void setExcludeFileNamePattern(final String regex) {

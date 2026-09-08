@@ -7,6 +7,7 @@ package foo;
  * Classname contains no abbreviations.
  * Contains overridden method for which otherwise invalid uppercase use is
  * allowed.
+ *
  * @since 1.0
  */
 public class ValidAbbreviationAsWordInName extends SomeClass {
@@ -25,6 +26,7 @@ public class ValidAbbreviationAsWordInName extends SomeClass {
 
     /**
      * The constant, so that it is not used only once.
+     *
      * @return The constant
      */
     public static String constant() {
@@ -38,6 +40,7 @@ public class ValidAbbreviationAsWordInName extends SomeClass {
 
     /**
      * ValidInnerHtml example class having the abbreviation in camelcase.
+     *
      * @since 1.0
      */
     public class ValidInnerHtml {

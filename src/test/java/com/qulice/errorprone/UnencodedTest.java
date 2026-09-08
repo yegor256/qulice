@@ -13,6 +13,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Test case for {@link Unencoded}.
+ *
  * @since 1.0
  */
 final class UnencodedTest {

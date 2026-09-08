@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of
  * {@link DiamondOperatorCheck}.
+ *
  * @since 0.25.1
  */
 final class DiamondOperatorCheckTest {
@@ -34,8 +35,8 @@ final class DiamondOperatorCheckTest {
             "Two diamond violations should be found",
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher(message, file, "18", name),
-                new ViolationMatcher(message, file, "28", name)
+                new ViolationMatcher(message, file, "19", name),
+                new ViolationMatcher(message, file, "29", name)
             )
         );
     }

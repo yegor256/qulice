@@ -9,6 +9,7 @@ import java.util.function.BinaryOperator;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class CascadeAfterClosingBracket {
@@ -25,6 +26,7 @@ public final class CascadeAfterClosingBracket {
 
     /**
      * Ctor.
+     *
      * @param red Reducer
      * @param list Items
      */
@@ -36,6 +38,7 @@ public final class CascadeAfterClosingBracket {
 
     /**
      * Take it.
+     *
      * @return The value
      * @throws Exception If fails
      */

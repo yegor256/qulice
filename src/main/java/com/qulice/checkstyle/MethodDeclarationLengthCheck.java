@@ -53,6 +53,7 @@ public final class MethodDeclarationLengthCheck extends AbstractCheck {
 
     /**
      * Configure the maximum allowed length.
+     *
      * @param value New value
      */
     public void setMax(final int value) {

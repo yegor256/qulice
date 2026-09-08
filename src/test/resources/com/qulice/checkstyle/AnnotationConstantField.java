@@ -7,6 +7,7 @@ import java.util.Random;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 @SuppressWarnings(AnnotationConstantField.TEXT1)
@@ -53,6 +54,7 @@ public final class AnnotationConstantField {
 
     /**
      * Some data.
+     *
      * @return Some data
      */
     public int data() {
@@ -61,6 +63,7 @@ public final class AnnotationConstantField {
 
     /**
      * All texts together, so that no constant is used only once.
+     *
      * @return All of them
      */
     public static String all() {
@@ -73,6 +76,7 @@ public final class AnnotationConstantField {
 
     /**
      * Some inner class.
+     *
      * @since 1.0
      */
     @SuppressWarnings(AnnotationConstantField.TEXT4)
@@ -85,6 +89,7 @@ public final class AnnotationConstantField {
 
         /**
          * Returns dummy.
+         *
          * @return Dummy
          */
         public int dummy() {

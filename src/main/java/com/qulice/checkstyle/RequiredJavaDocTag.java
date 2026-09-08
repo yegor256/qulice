@@ -56,6 +56,7 @@ final class RequiredJavaDocTag {
 
     /**
      * Ctor.
+     *
      * @param cname Tag name
      * @param ptag Pattern for searching a tag in a string
      * @param patt Pattern for checking the contents of a tag in a string
@@ -75,6 +76,7 @@ final class RequiredJavaDocTag {
 
     /**
      * Check if the tag text matches the format from pattern.
+     *
      * @param lines List of all lines
      * @param start Line number where comment starts
      * @param end Line number where comment ends
@@ -148,6 +150,7 @@ final class RequiredJavaDocTag {
 
     /**
      * Logger.
+     *
      * @see com.puppycrawl.tools.checkstyle.api.AbstractCheck#log(int, String, Object...)
      * @since 0.23.1
      */
@@ -156,6 +159,7 @@ final class RequiredJavaDocTag {
 
         /**
          * Log a message that has no column information.
+         *
          * @param line The line number where the audit event was found
          * @param msg The message that describes the audit event
          * @param args The details of the message

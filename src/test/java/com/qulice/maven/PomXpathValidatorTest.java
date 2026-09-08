@@ -15,12 +15,14 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link PomXpathValidator} class.
+ *
  * @since 0.6
  */
 final class PomXpathValidatorTest {
 
     /**
      * PomXpathValidator can validate pom.xml with xpath.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test

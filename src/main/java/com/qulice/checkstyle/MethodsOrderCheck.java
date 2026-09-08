@@ -182,6 +182,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
 
         /**
          * Constructor.
+         *
          * @param type TokenType of DetailAST which represents modifier
          * @param ord Order of the modifier in class definition
          */
@@ -192,6 +193,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
 
         /**
          * TokenType.
+         *
          * @return TokenType
          */
         int getType() {
@@ -200,6 +202,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
 
         /**
          * Order of modifier.
+         *
          * @return Order number
          */
         int getOrder() {

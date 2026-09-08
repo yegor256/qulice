@@ -34,6 +34,7 @@ import org.codehaus.plexus.context.ContextException;
 
 /**
  * Validator of dependencies.
+ *
  * @since 0.3
  * @checkstyle ReturnCountCheck (100 line)
  */

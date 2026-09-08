@@ -16,12 +16,14 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link CheckMojo} class.
+ *
  * @since 0.3
  */
 final class CheckMojoTest {
 
     /**
      * CheckMojo can skip execution if "skip" flag is set.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -93,6 +95,7 @@ final class CheckMojoTest {
 
     /**
      * CheckMojo can validate a project using all provided validators.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -123,6 +126,7 @@ final class CheckMojoTest {
 
     /**
      * CheckMojo can hand the ErrorProne flags of the project to validators.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test

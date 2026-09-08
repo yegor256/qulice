@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class ValidEqualityOperatorWrap {
@@ -16,6 +17,7 @@ public final class ValidEqualityOperatorWrap {
 
     /**
      * Ctor.
+     *
      * @param val Value
      */
     public ValidEqualityOperatorWrap(final int val) {
@@ -24,6 +26,7 @@ public final class ValidEqualityOperatorWrap {
 
     /**
      * Returns something.
+     *
      * @param other Other
      * @return True if matches
      */

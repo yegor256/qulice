@@ -41,6 +41,7 @@ public final class Binary {
 
     /**
      * Ctor.
+     *
      * @param src File to inspect
      */
     public Binary(final File src) {
@@ -49,6 +50,7 @@ public final class Binary {
 
     /**
      * Is the file binary?
+     *
      * @return TRUE if the first {@value #SNIFF} bytes contain a NULL byte
      */
     public boolean yes() {

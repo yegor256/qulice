@@ -699,10 +699,10 @@
       <property name="severity" value="ignore"/>
     </module>
     <!--
-    Demands an empty Javadoc line before the at-clauses in every case, while
-    our 'JavadocEmptyLineBeforeTagCheck' asks for one only when the body
-    spans more than a single paragraph, and forbids it otherwise. Inserting
-    the line to satisfy this module makes that one report 621 violations.
+    Demands an empty Javadoc line before the at-clauses, which is exactly
+    what our 'JavadocEmptyLineBeforeTagCheck' above already demands, so
+    enabling it would report every such mistake twice.
+    See https://github.com/yegor256/qulice/issues/1810
     -->
     <module name="RequireEmptyLineBeforeBlockTagGroup">
       <property name="severity" value="ignore"/>

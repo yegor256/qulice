@@ -25,6 +25,7 @@ import org.junit.jupiter.api.io.TempDir;
 /**
  * Test case for {@link DefaultMavenEnvironment} class methods that
  * exclude files from validation.
+ *
  * @since 0.19
  */
 final class ValidationExclusionTest {
@@ -36,6 +37,7 @@ final class ValidationExclusionTest {
 
     /**
      * DefaultMavenEnvironment can exclude a path from PMD validation.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -66,6 +68,7 @@ final class ValidationExclusionTest {
 
     /**
      * DefaultMavenEnvironment can exclude a path from Checkstyle validation.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -99,6 +102,7 @@ final class ValidationExclusionTest {
 
     /**
      * DefaultMavenEnvironment can exclude a path from entire validation.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      * @todo #1457:90min Add global exclusion support to qulice.

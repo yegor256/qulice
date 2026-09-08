@@ -6,6 +6,7 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 0.24.2
  * @checkstyle NonStaticMethodCheck (1500 lines)
  * @checkstyle MethodNameCheck (1500 lines)

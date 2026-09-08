@@ -13,6 +13,7 @@ import org.junit.jupiter.api.condition.JRE;
  * Test case for {@link PmdValidator}'s support for Java record
  * classes (parsed cleanly and not flagged as public-static-method
  * violations).
+ *
  * @since 0.25.1
  */
 final class PmdRecordClassesTest {

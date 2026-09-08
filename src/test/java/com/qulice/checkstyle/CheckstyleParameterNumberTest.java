@@ -22,6 +22,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * {@code ParameterNumber} check.
+ *
  * @since 1.0
  */
 final class CheckstyleParameterNumberTest {
@@ -54,7 +55,7 @@ final class CheckstyleParameterNumberTest {
                 new ViolationMatcher(
                     "More than 3 parameters (found 4)",
                     file,
-                    "20",
+                    "22",
                     "ParameterNumberCheck"
                 )
             )
@@ -84,6 +85,7 @@ final class CheckstyleParameterNumberTest {
      * A JNA binding is recognized by the fully qualified name of the
      * interface it implements too, even though FullyQualifiedTypeCheck
      * asks for that name to be imported and reports the file for it.
+     *
      * @throws Exception If something goes wrong
      */
     @Test

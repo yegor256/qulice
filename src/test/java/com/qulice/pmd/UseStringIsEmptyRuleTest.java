@@ -15,6 +15,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Test case for {@link com.qulice.pmd.rules.UseStringIsEmptyRule}.
+ *
  * @since 0.18
  */
 final class UseStringIsEmptyRuleTest {
@@ -22,6 +23,7 @@ final class UseStringIsEmptyRuleTest {
     /**
      * UseStringIsEmpty can detect when used String.length(), when checking for
      * empty string.
+     *
      * @param file File name
      * @throws Exception If something goes wrong.
      */
@@ -52,6 +54,7 @@ final class UseStringIsEmptyRuleTest {
      * {@code isEmpty()} equivalent, such as {@code length()} checks against
      * {@code 1} (single-character strings) or the always-true
      * {@code length() >= 0}.
+     *
      * @param file File name
      * @throws Exception If something goes wrong.
      */
@@ -75,6 +78,7 @@ final class UseStringIsEmptyRuleTest {
     /**
      * UseStringIsEmpty not detect when used String[].length, when checking for
      * empty string.
+     *
      * @throws Exception If something goes wrong.
      */
     @Test

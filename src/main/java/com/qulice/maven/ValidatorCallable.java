@@ -12,6 +12,7 @@ import java.util.concurrent.Callable;
 
 /**
  * Callable for validators.
+ *
  * @since 0.1
  */
 final class ValidatorCallable implements Callable<Collection<Violation>> {
@@ -33,6 +34,7 @@ final class ValidatorCallable implements Callable<Collection<Violation>> {
 
     /**
      * Constructor.
+     *
      * @param validator Validator to use
      * @param env Maven environment
      * @param files List of files to validate

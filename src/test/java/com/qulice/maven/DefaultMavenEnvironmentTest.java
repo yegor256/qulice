@@ -20,6 +20,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Test case for {@link DefaultMavenEnvironment} class.
+ *
  * @since 0.8
  */
 final class DefaultMavenEnvironmentTest {
@@ -89,6 +90,7 @@ final class DefaultMavenEnvironmentTest {
 
     /**
      * DefaultMavenEnvironment can work with whitespaces in classpath.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -113,6 +115,7 @@ final class DefaultMavenEnvironmentTest {
      * transitive test-scope dependencies such as {@code opentest4j}
      * (see <a href="https://github.com/yegor256/qulice/issues/1691">
      * issue #1691</a>).
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -163,6 +166,7 @@ final class DefaultMavenEnvironmentTest {
      * that validators never try to read them as text
      * (see <a href="https://github.com/yegor256/qulice/issues/1264">
      * issue #1264</a>).
+     *
      * @param basedir Temporary base directory
      * @throws Exception If something wrong happens inside
      */
@@ -210,6 +214,7 @@ final class DefaultMavenEnvironmentTest {
      * {@code <sourceDirectory>} declared in the POM
      * (see <a href="https://github.com/yegor256/qulice/issues/382">
      * issue #382</a>).
+     *
      * @param basedir Temporary base directory
      * @throws Exception If something wrong happens inside
      */
@@ -245,6 +250,7 @@ final class DefaultMavenEnvironmentTest {
      * {@code <testSourceDirectory>} declared in the POM
      * (see <a href="https://github.com/yegor256/qulice/issues/382">
      * issue #382</a>).
+     *
      * @param basedir Temporary base directory
      * @throws Exception If something wrong happens inside
      */
@@ -280,6 +286,7 @@ final class DefaultMavenEnvironmentTest {
      * {@code <resources>} blocks of the POM
      * (see <a href="https://github.com/yegor256/qulice/issues/382">
      * issue #382</a>).
+     *
      * @param basedir Temporary base directory
      * @throws Exception If something wrong happens inside
      */
@@ -326,6 +333,7 @@ final class DefaultMavenEnvironmentTest {
      * them, e.g. {@code src/mock/java}
      * (see <a href="https://github.com/yegor256/qulice/issues/1742">
      * issue #1742</a>).
+     *
      * @param basedir Temporary base directory
      */
     @Test
@@ -371,6 +379,7 @@ final class DefaultMavenEnvironmentTest {
      * outputs (e.g. target/generated-sources/...) and not user-authored code
      * (see <a href="https://github.com/yegor256/qulice/issues/1560">
      * issue #1560</a>).
+     *
      * @param basedir Temporary base directory
      * @throws Exception If something wrong happens inside
      */
@@ -433,6 +442,7 @@ final class DefaultMavenEnvironmentTest {
      * {@code jacoco:report}
      * (see <a href="https://github.com/yegor256/qulice/issues/1741">
      * issue #1741</a>).
+     *
      * @param basedir Temporary base directory
      */
     @Test

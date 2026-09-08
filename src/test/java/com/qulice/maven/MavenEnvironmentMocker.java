@@ -19,6 +19,7 @@ import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Mocker of {@link MavenProject}.
+ *
  * @since 0.4
  */
 public final class MavenEnvironmentMocker {
@@ -45,6 +46,7 @@ public final class MavenEnvironmentMocker {
 
     /**
      * Public ctor.
+     *
      * @throws IOException If some IO problem inside
      */
     public MavenEnvironmentMocker() throws IOException {
@@ -60,6 +62,7 @@ public final class MavenEnvironmentMocker {
 
     /**
      * Inject this object into plexus container.
+     *
      * @param role The role
      * @param hint The hint
      * @param object The object to return
@@ -74,6 +77,7 @@ public final class MavenEnvironmentMocker {
 
     /**
      * With this project mocker.
+     *
      * @param mocker The project mocker
      * @return This object
      */
@@ -84,6 +88,7 @@ public final class MavenEnvironmentMocker {
 
     /**
      * With this file on board.
+     *
      * @param name File name related to basedir
      * @param content File content to write
      * @return This object
@@ -97,6 +102,7 @@ public final class MavenEnvironmentMocker {
 
     /**
      * With this file on board.
+     *
      * @param name File name related to basedir
      * @param bytes File content to write
      * @return This object
@@ -110,6 +116,7 @@ public final class MavenEnvironmentMocker {
 
     /**
      * With list of xpath queries to validate pom.xml.
+     *
      * @param asserts Collection of xpath queries
      * @return This object
      */
@@ -121,6 +128,7 @@ public final class MavenEnvironmentMocker {
 
     /**
      * Mock it.
+     *
      * @return The environment just mocked
      * @throws Exception If something wrong happens inside
      */

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link PmdValidator}'s tolerance of Swagger
  * annotations (no {@code RuleSetReferenceId} warnings must be
  * produced).
+ *
  * @since 0.25.1
  */
 final class PmdSwaggerAnnotationsTest {

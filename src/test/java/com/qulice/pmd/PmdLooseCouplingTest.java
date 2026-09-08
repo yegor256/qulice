@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
  * types declared with concrete collection implementations
  * such as {@code ConcurrentHashMap} or {@code HashMap} must
  * be reported (issue #734).
+ *
  * @since 0.25.1
  */
 final class PmdLooseCouplingTest {

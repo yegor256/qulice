@@ -29,6 +29,7 @@ final class ExcludingEnvironment implements Environment {
 
     /**
      * Ctor.
+     *
      * @param env Environment to delegate to
      */
     ExcludingEnvironment(final Environment env) {

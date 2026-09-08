@@ -8,6 +8,7 @@ package com.qulice.plugin.ignored;
  * A clean class that lives next to the ignored directories. It is here
  * to prove that Qulice still validates real sources, while leaving the
  * Java files in {@code src/site} and {@code src/it} alone.
+ *
  * @since 1.0
  */
 public final class Thing {
@@ -19,6 +20,7 @@ public final class Thing {
 
     /**
      * Ctor.
+     *
      * @param name Label to use
      */
     public Thing(final String name) {
@@ -27,6 +29,7 @@ public final class Thing {
 
     /**
      * Print the label.
+     *
      * @return Human-readable label
      */
     public String name() {

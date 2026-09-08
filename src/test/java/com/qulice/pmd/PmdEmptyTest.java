@@ -9,12 +9,14 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link PmdValidator} class.
+ *
  * @since 0.15
  */
 final class PmdEmptyTest {
 
     /**
      * Makes sure that empty static initializers fail with an error.
+     *
      * @throws Exception when something goes wrong
      */
     @Test
@@ -30,6 +32,7 @@ final class PmdEmptyTest {
 
     /**
      * Makes sure that empty statement blocks fail with an error.
+     *
      * @throws Exception when something goes wrong
      */
     @Test
@@ -45,6 +48,7 @@ final class PmdEmptyTest {
 
     /**
      * Makes sure that empty initializers fail with an error.
+     *
      * @throws Exception when something goes wrong
      */
     @Test
@@ -60,6 +64,7 @@ final class PmdEmptyTest {
 
     /**
      * Makes sure that empty statement not in a loop fail with an error.
+     *
      * @throws Exception when something goes wrong
      */
     @Test
@@ -75,6 +80,7 @@ final class PmdEmptyTest {
 
     /**
      * Makes sure that empty synchronized statements fail with an error.
+     *
      * @throws Exception when something goes wrong
      */
     @Test
@@ -90,6 +96,7 @@ final class PmdEmptyTest {
 
     /**
      * Makes sure that empty switch statements fail with an error.
+     *
      * @throws Exception when something goes wrong
      */
     @Test
@@ -105,6 +112,7 @@ final class PmdEmptyTest {
 
     /**
      * Makes sure that empty finally blocks fail with an error.
+     *
      * @throws Exception when something goes wrong
      */
     @Test
@@ -118,6 +126,7 @@ final class PmdEmptyTest {
 
     /**
      * Makes sure that empty while statements fail with an error.
+     *
      * @throws Exception when something goes wrong
      */
     @Test
@@ -131,6 +140,7 @@ final class PmdEmptyTest {
 
     /**
      * Makes sure that empty if blocks fail with an error.
+     *
      * @throws Exception when something goes wrong
      */
     @Test
@@ -144,6 +154,7 @@ final class PmdEmptyTest {
 
     /**
      * Makes sure that empty catch blocks fail with an error.
+     *
      * @throws Exception when something goes wrong
      */
     @Test

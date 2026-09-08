@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class ValidLambdaIndentation {
@@ -18,6 +19,7 @@ public final class ValidLambdaIndentation {
 
     /**
      * Ctor.
+     *
      * @param value Value
      */
     public ValidLambdaIndentation(final float value) {
@@ -30,6 +32,7 @@ public final class ValidLambdaIndentation {
 
     /**
      * Ctor.
+     *
      * @param wrapped Wrapped
      */
     private ValidLambdaIndentation(final Supplier<Supplier<Float>> wrapped) {
@@ -38,6 +41,7 @@ public final class ValidLambdaIndentation {
 
     /**
      * Value.
+     *
      * @return Float
      */
     public Float val() {
@@ -46,6 +50,7 @@ public final class ValidLambdaIndentation {
 
     /**
      * Boxed.
+     *
      * @param <T> Type
      * @since 1.0
      */
@@ -58,6 +63,7 @@ public final class ValidLambdaIndentation {
 
         /**
          * Ctor.
+         *
          * @param spr Supplier
          */
         Boxed(final Supplier<T> spr) {
@@ -66,6 +72,7 @@ public final class ValidLambdaIndentation {
 
         /**
          * Value.
+         *
          * @return Value
          */
         public T value() {

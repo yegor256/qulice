@@ -10,6 +10,7 @@ import org.apache.maven.project.MavenProject;
 
 /**
  * Mocker of {@link MavenProject}.
+ *
  * @since 0.4
  */
 public final class MavenProjectMocker {
@@ -28,6 +29,7 @@ public final class MavenProjectMocker {
 
     /**
      * In this basedir.
+     *
      * @param dir The directory
      * @return This object
      */
@@ -42,6 +44,7 @@ public final class MavenProjectMocker {
 
     /**
      * Mock it.
+     *
      * @return The mock
      * @throws Exception If something wrong happens inside
      */

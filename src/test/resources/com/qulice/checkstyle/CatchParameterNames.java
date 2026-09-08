@@ -8,6 +8,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class CatchParameterNames {

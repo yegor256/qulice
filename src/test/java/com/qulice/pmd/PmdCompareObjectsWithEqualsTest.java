@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link PmdValidator}'s handling of the
  * {@code CompareObjectsWithEquals} rule.
+ *
  * @since 1.0
  */
 final class PmdCompareObjectsWithEqualsTest {

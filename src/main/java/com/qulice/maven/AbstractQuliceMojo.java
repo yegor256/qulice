@@ -20,6 +20,7 @@ import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Abstract mojo.
+ *
  * @since 0.3
  */
 public abstract class AbstractQuliceMojo extends AbstractMojo
@@ -88,6 +89,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * The source encoding.
+     *
      * @parameter expression="${project.build.sourceEncoding}" required="true"
      */
     @Parameter(property = "encoding", defaultValue = "${project.build.sourceEncoding}")
@@ -105,6 +107,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Set Maven Project (used mostly for unit testing).
+     *
      * @param proj The project to set
      */
     public final void setProject(final MavenProject proj) {
@@ -113,6 +116,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Set skip option (mostly for unit testing).
+     *
      * @param skp The "skip" option
      */
     public final void setSkip(final boolean skp) {
@@ -121,6 +125,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Set asserts option.
+     *
      * @param val Asserts to use
      */
     public final void setAsserts(final Collection<String> val) {
@@ -130,6 +135,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Set excludes.
+     *
      * @param exprs Expressions
      */
     public final void setExcludes(final Collection<String> exprs) {
@@ -139,6 +145,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Set extra ErrorProne flags.
+     *
      * @param flags Flags, e.g. {@code -Xep:UnicodeInCode:OFF}
      */
     public final void setErrorprone(final Collection<String> flags) {
@@ -148,6 +155,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Set source code encoding.
+     *
      * @param encoding Source code encoding
      */
     public void setEncoding(final String encoding) {
@@ -190,6 +198,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Current maven session.
+     *
      * @return Current maven session
      */
     public final MavenSession session() {
@@ -198,6 +207,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Do the real execution.
+     *
      * @return What was done, as the middle of the final log line, e.g.
      *  {@code "checked 42 .java files against 385 rules"}
      * @throws MojoFailureException If some failure inside
@@ -206,6 +216,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Get the environment.
+     *
      * @return The environment
      */
     protected final MavenEnvironment env() {

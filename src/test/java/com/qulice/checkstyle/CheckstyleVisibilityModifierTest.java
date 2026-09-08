@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code VisibilityModifier} check.
+ *
  * @since 0.28.0
  */
 final class CheckstyleVisibilityModifierTest {
@@ -44,13 +45,13 @@ final class CheckstyleVisibilityModifierTest {
                     new ViolationMatcher(
                         "Variable 'dir' must be private and have accessor methods.",
                         CheckstyleVisibilityModifierTest.FILE,
-                        "18",
+                        "19",
                         CheckstyleVisibilityModifierTest.NAME
                     ),
                     new ViolationMatcher(
                         "Variable 'charset' must be private and have accessor methods.",
                         CheckstyleVisibilityModifierTest.FILE,
-                        "24",
+                        "25",
                         CheckstyleVisibilityModifierTest.NAME
                     )
                 )
@@ -67,7 +68,7 @@ final class CheckstyleVisibilityModifierTest {
                 new ViolationMatcher(
                     "Variable 'extra' must be private and have accessor methods.",
                     CheckstyleVisibilityModifierTest.FILE,
-                    "29",
+                    "30",
                     CheckstyleVisibilityModifierTest.NAME
                 )
             )

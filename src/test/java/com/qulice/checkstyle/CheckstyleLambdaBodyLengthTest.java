@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code LambdaBodyLength} check.
+ *
  * @since 0.25.1
  */
 final class CheckstyleLambdaBodyLengthTest {
@@ -33,7 +34,7 @@ final class CheckstyleLambdaBodyLengthTest {
             Matchers.hasItem(
                 new ViolationMatcher(
                     "Lambda body length is 25 lines (max allowed is 20).",
-                    file, "19", "LambdaBodyLengthCheck"
+                    file, "21", "LambdaBodyLengthCheck"
                 )
             )
         );

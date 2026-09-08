@@ -56,6 +56,7 @@ final class Diagnostics {
 
     /**
      * Constructor.
+     *
      * @param validator Name of the validator reporting these diagnostics
      * @param fallback File to blame when a diagnostic names no position
      */
@@ -66,6 +67,7 @@ final class Diagnostics {
 
     /**
      * Read the diagnostics out of the compiler's output.
+     *
      * @param output Combined stdout/stderr of the forked process
      * @return Violations, one per diagnostic line
      */

@@ -10,42 +10,49 @@ import lombok.ToString;
 
 /**
  * Validation result.
+ *
  * @since 0.17
  */
 public interface Violation extends Comparable<Violation> {
 
     /**
      * Name of the validator that generated this violation information.
+     *
      * @return Name of the validator
      */
     String validator();
 
     /**
      * Name of the failed check.
+     *
      * @return Name of the failed check
      */
     String name();
 
     /**
      * Validated file.
+     *
      * @return Validated file
      */
     String file();
 
     /**
      * Lines with the problem.
+     *
      * @return Lines with the problem
      */
     String lines();
 
     /**
      * Validation message.
+     *
      * @return Validation message
      */
     String message();
 
     /**
      * Default validation result.
+     *
      * @since 0.1
      */
     @EqualsAndHashCode
@@ -91,6 +98,7 @@ public interface Violation extends Comparable<Violation> {
 
         /**
          * Constructor.
+         *
          * @param vldtr Name of the validator
          * @param name Name of the failed check
          * @param file Validated file

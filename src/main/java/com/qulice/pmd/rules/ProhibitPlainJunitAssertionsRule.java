@@ -14,6 +14,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
 
 /**
  * Rule to check plain assertions in JUnit tests.
+ *
  * @since 0.17
  */
 public final class ProhibitPlainJunitAssertionsRule

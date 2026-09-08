@@ -9,6 +9,7 @@ import java.util.Collection;
 
 /**
  * Predicate for excluded dependencies.
+ *
  * @since 0.1
  */
 final class ExcludePredicate implements Predicate<String> {
@@ -20,6 +21,7 @@ final class ExcludePredicate implements Predicate<String> {
 
     /**
      * Constructor.
+     *
      * @param excludes List of excludes
      */
     ExcludePredicate(final Collection<String> excludes) {

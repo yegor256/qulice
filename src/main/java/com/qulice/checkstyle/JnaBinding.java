@@ -44,6 +44,7 @@ final class JnaBinding {
 
     /**
      * Ctor.
+     *
      * @param method The METHOD_DEF node
      */
     JnaBinding(final DetailAST method) {
@@ -52,6 +53,7 @@ final class JnaBinding {
 
     /**
      * Is this method a part of a JNA binding?
+     *
      * @return TRUE if the type that declares it maps a native library
      */
     boolean is() {

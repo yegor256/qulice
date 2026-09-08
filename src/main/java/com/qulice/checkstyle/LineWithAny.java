@@ -9,6 +9,7 @@ import com.google.common.base.Predicate;
 /**
  * Predicate to determine if a given line is within range of any of
  * the line ranges.
+ *
  * @since 0.1
  */
 final class LineWithAny implements Predicate<LineRange> {
@@ -20,6 +21,7 @@ final class LineWithAny implements Predicate<LineRange> {
 
     /**
      * Default constructor.
+     *
      * @param line The given line to check against all the line ranges
      */
     LineWithAny(final int line) {
