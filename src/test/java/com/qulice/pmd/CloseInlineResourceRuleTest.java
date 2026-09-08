@@ -27,11 +27,6 @@ final class CloseInlineResourceRuleTest {
      */
     private static final String RULE = "CloseInlineResourceRule";
 
-    /**
-     * Path template for the fixture file in the mock environment.
-     */
-    private static final String PATH = "src/main/java/foo/%s";
-
     @Test
     void detectsCloseableInsideMethodChain() throws Exception {
         MatcherAssert.assertThat(
@@ -63,7 +58,7 @@ final class CloseInlineResourceRuleTest {
     }
 
     private List<String> violations(final String file) throws Exception {
-        final String name = String.format(CloseInlineResourceRuleTest.PATH, file);
+        final String name = String.format("src/main/java/foo/%s", file);
         final Environment env = new Environment.Mock().withFile(
             name,
             new TextOf(this.getClass().getResourceAsStream(file)).asString()
