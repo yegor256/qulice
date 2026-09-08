@@ -190,31 +190,34 @@
 <a class="jxr_linenumber" name="L182" href="#L182">182</a> 
 <a class="jxr_linenumber" name="L183" href="#L183">183</a>         <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L184" href="#L184">184</a> <em class="jxr_javadoccomment">         * Constructor.</em>
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> <em class="jxr_javadoccomment">         * @param type TokenType of DetailAST which represents modifier</em>
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> <em class="jxr_javadoccomment">         * @param ord Order of the modifier in class definition</em>
-<a class="jxr_linenumber" name="L187" href="#L187">187</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L188" href="#L188">188</a>         Modifiers(<strong class="jxr_keyword">final</strong> Integer type, <strong class="jxr_keyword">final</strong> Integer ord) {
-<a class="jxr_linenumber" name="L189" href="#L189">189</a>             <strong class="jxr_keyword">this</strong>.type = type;
-<a class="jxr_linenumber" name="L190" href="#L190">190</a>             <strong class="jxr_keyword">this</strong>.order = ord;
-<a class="jxr_linenumber" name="L191" href="#L191">191</a>         }
-<a class="jxr_linenumber" name="L192" href="#L192">192</a> 
-<a class="jxr_linenumber" name="L193" href="#L193">193</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L194" href="#L194">194</a> <em class="jxr_javadoccomment">         * TokenType.</em>
-<a class="jxr_linenumber" name="L195" href="#L195">195</a> <em class="jxr_javadoccomment">         * @return TokenType</em>
-<a class="jxr_linenumber" name="L196" href="#L196">196</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L197" href="#L197">197</a>         <strong class="jxr_keyword">int</strong> getType() {
-<a class="jxr_linenumber" name="L198" href="#L198">198</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.type;
-<a class="jxr_linenumber" name="L199" href="#L199">199</a>         }
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> 
-<a class="jxr_linenumber" name="L201" href="#L201">201</a>         <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">         * Order of modifier.</em>
-<a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">         * @return Order number</em>
-<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">         */</em>
-<a class="jxr_linenumber" name="L205" href="#L205">205</a>         <strong class="jxr_keyword">int</strong> getOrder() {
-<a class="jxr_linenumber" name="L206" href="#L206">206</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.order;
-<a class="jxr_linenumber" name="L207" href="#L207">207</a>         }
-<a class="jxr_linenumber" name="L208" href="#L208">208</a>     }
-<a class="jxr_linenumber" name="L209" href="#L209">209</a> }
+<a class="jxr_linenumber" name="L185" href="#L185">185</a> <em class="jxr_javadoccomment">         *</em>
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> <em class="jxr_javadoccomment">         * @param type TokenType of DetailAST which represents modifier</em>
+<a class="jxr_linenumber" name="L187" href="#L187">187</a> <em class="jxr_javadoccomment">         * @param ord Order of the modifier in class definition</em>
+<a class="jxr_linenumber" name="L188" href="#L188">188</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>         Modifiers(<strong class="jxr_keyword">final</strong> Integer type, <strong class="jxr_keyword">final</strong> Integer ord) {
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>             <strong class="jxr_keyword">this</strong>.type = type;
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>             <strong class="jxr_keyword">this</strong>.order = ord;
+<a class="jxr_linenumber" name="L192" href="#L192">192</a>         }
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> 
+<a class="jxr_linenumber" name="L194" href="#L194">194</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> <em class="jxr_javadoccomment">         * TokenType.</em>
+<a class="jxr_linenumber" name="L196" href="#L196">196</a> <em class="jxr_javadoccomment">         *</em>
+<a class="jxr_linenumber" name="L197" href="#L197">197</a> <em class="jxr_javadoccomment">         * @return TokenType</em>
+<a class="jxr_linenumber" name="L198" href="#L198">198</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L199" href="#L199">199</a>         <strong class="jxr_keyword">int</strong> getType() {
+<a class="jxr_linenumber" name="L200" href="#L200">200</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.type;
+<a class="jxr_linenumber" name="L201" href="#L201">201</a>         }
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> 
+<a class="jxr_linenumber" name="L203" href="#L203">203</a>         <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">         * Order of modifier.</em>
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">         *</em>
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">         * @return Order number</em>
+<a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">         */</em>
+<a class="jxr_linenumber" name="L208" href="#L208">208</a>         <strong class="jxr_keyword">int</strong> getOrder() {
+<a class="jxr_linenumber" name="L209" href="#L209">209</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">this</strong>.order;
+<a class="jxr_linenumber" name="L210" href="#L210">210</a>         }
+<a class="jxr_linenumber" name="L211" href="#L211">211</a>     }
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>

@@ -69,79 +69,81 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  <em class="jxr_javadoccomment">     * Constructor.</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">     * @param env Environment to read the Maven properties from</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     * @param batch Name of the batch being compiled</em>
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>      <a name="Release" href="../../../com/qulice/errorprone/Release.html#Release">Release</a>(<strong class="jxr_keyword">final</strong> <a name="Environment" href="../../../com/qulice/spi/Environment.html#Environment">Environment</a> env, <strong class="jxr_keyword">final</strong> String batch) {
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">this</strong>.env = env;
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>          <strong class="jxr_keyword">this</strong>.batch = batch;
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>      }
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>      <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">     * The source-level flags to append to the {@code javac} command line.</em>
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">     * @return Source-level flags, possibly empty</em>
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>      List&lt;String&gt; flags() {
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>          List&lt;String&gt; flags = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(0);
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>          <strong class="jxr_keyword">if</strong> (!Batches.MAIN.equals(<strong class="jxr_keyword">this</strong>.batch)) {
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>              flags = <strong class="jxr_keyword">this</strong>.pinned(
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>                  <span class="jxr_string">"maven.compiler.testRelease"</span>,
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>                  <span class="jxr_string">"maven.compiler.testSource"</span>,
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>                  <span class="jxr_string">"maven.compiler.testTarget"</span>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>              );
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>          }
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>          <strong class="jxr_keyword">if</strong> (flags.isEmpty()) {
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>              flags = <strong class="jxr_keyword">this</strong>.pinned(
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>                  <span class="jxr_string">"maven.compiler.release"</span>,
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>                  <span class="jxr_string">"maven.compiler.source"</span>,
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>                  <span class="jxr_string">"maven.compiler.target"</span>
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>              );
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>          }
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>          <strong class="jxr_keyword">return</strong> flags;
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>      }
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>      <strong class="jxr_keyword">private</strong> List&lt;String&gt; pinned(
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          <strong class="jxr_keyword">final</strong> String release, <strong class="jxr_keyword">final</strong> String source, <strong class="jxr_keyword">final</strong> String target
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>      ) {
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>          <strong class="jxr_keyword">final</strong> List&lt;String&gt; flags = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(4);
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>          <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> rel = Release.major(<strong class="jxr_keyword">this</strong>.env.param(release, <span class="jxr_string">""</span>));
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> level = Release.major(<strong class="jxr_keyword">this</strong>.env.param(source, <span class="jxr_string">""</span>));
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>         <strong class="jxr_keyword">if</strong> (rel &gt;= 0) {
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>             flags.add(<span class="jxr_string">"--release"</span>);
-<a class="jxr_linenumber" name="L103" href="#L103">103</a>             flags.add(String.valueOf(rel));
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (level &gt;= 0) {
-<a class="jxr_linenumber" name="L105" href="#L105">105</a>             flags.add(<span class="jxr_string">"-source"</span>);
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>             flags.add(String.valueOf(level));
-<a class="jxr_linenumber" name="L107" href="#L107">107</a>             flags.add(<span class="jxr_string">"-target"</span>);
-<a class="jxr_linenumber" name="L108" href="#L108">108</a>             flags.add(String.valueOf(<strong class="jxr_keyword">this</strong>.target(target, level)));
-<a class="jxr_linenumber" name="L109" href="#L109">109</a>         }
-<a class="jxr_linenumber" name="L110" href="#L110">110</a>         <strong class="jxr_keyword">return</strong> flags;
-<a class="jxr_linenumber" name="L111" href="#L111">111</a>     }
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> 
-<a class="jxr_linenumber" name="L113" href="#L113">113</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> target(<strong class="jxr_keyword">final</strong> String property, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> fallback) {
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>         <strong class="jxr_keyword">int</strong> level = Release.major(<strong class="jxr_keyword">this</strong>.env.param(property, <span class="jxr_string">""</span>));
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>         <strong class="jxr_keyword">if</strong> (level &lt; 0) {
-<a class="jxr_linenumber" name="L116" href="#L116">116</a>             level = fallback;
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>         }
-<a class="jxr_linenumber" name="L118" href="#L118">118</a>         <strong class="jxr_keyword">return</strong> level;
-<a class="jxr_linenumber" name="L119" href="#L119">119</a>     }
-<a class="jxr_linenumber" name="L120" href="#L120">120</a> 
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> major(<strong class="jxr_keyword">final</strong> String value) {
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>         <strong class="jxr_keyword">int</strong> result = -1;
-<a class="jxr_linenumber" name="L123" href="#L123">123</a>         <strong class="jxr_keyword">if</strong> (value != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L124" href="#L124">124</a>             String txt = value.trim();
-<a class="jxr_linenumber" name="L125" href="#L125">125</a>             <strong class="jxr_keyword">if</strong> (txt.startsWith(<span class="jxr_string">"1."</span>)) {
-<a class="jxr_linenumber" name="L126" href="#L126">126</a>                 txt = txt.substring(2);
-<a class="jxr_linenumber" name="L127" href="#L127">127</a>             }
-<a class="jxr_linenumber" name="L128" href="#L128">128</a>             <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L129" href="#L129">129</a>                 result = Integer.parseInt(txt);
-<a class="jxr_linenumber" name="L130" href="#L130">130</a>             } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> NumberFormatException ex) {
-<a class="jxr_linenumber" name="L131" href="#L131">131</a>                 result = -1;
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>             }
-<a class="jxr_linenumber" name="L133" href="#L133">133</a>         }
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>         <strong class="jxr_keyword">return</strong> result;
-<a class="jxr_linenumber" name="L135" href="#L135">135</a>     }
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> }
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">     * @param env Environment to read the Maven properties from</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">     * @param batch Name of the batch being compiled</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      <a name="Release" href="../../../com/qulice/errorprone/Release.html#Release">Release</a>(<strong class="jxr_keyword">final</strong> <a name="Environment" href="../../../com/qulice/spi/Environment.html#Environment">Environment</a> env, <strong class="jxr_keyword">final</strong> String batch) {
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>          <strong class="jxr_keyword">this</strong>.env = env;
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>          <strong class="jxr_keyword">this</strong>.batch = batch;
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>      }
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">     * The source-level flags to append to the {@code javac} command line.</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">     * @return Source-level flags, possibly empty</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>      List&lt;String&gt; flags() {
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>          List&lt;String&gt; flags = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(0);
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>          <strong class="jxr_keyword">if</strong> (!Batches.MAIN.equals(<strong class="jxr_keyword">this</strong>.batch)) {
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>              flags = <strong class="jxr_keyword">this</strong>.pinned(
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>                  <span class="jxr_string">"maven.compiler.testRelease"</span>,
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>                  <span class="jxr_string">"maven.compiler.testSource"</span>,
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>                  <span class="jxr_string">"maven.compiler.testTarget"</span>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>              );
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>          }
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>          <strong class="jxr_keyword">if</strong> (flags.isEmpty()) {
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>              flags = <strong class="jxr_keyword">this</strong>.pinned(
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>                  <span class="jxr_string">"maven.compiler.release"</span>,
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>                  <span class="jxr_string">"maven.compiler.source"</span>,
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>                  <span class="jxr_string">"maven.compiler.target"</span>
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>              );
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>          }
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>          <strong class="jxr_keyword">return</strong> flags;
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>      }
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>      <strong class="jxr_keyword">private</strong> List&lt;String&gt; pinned(
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>          <strong class="jxr_keyword">final</strong> String release, <strong class="jxr_keyword">final</strong> String source, <strong class="jxr_keyword">final</strong> String target
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>      ) {
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">final</strong> List&lt;String&gt; flags = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;(4);
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> rel = Release.major(<strong class="jxr_keyword">this</strong>.env.param(release, <span class="jxr_string">""</span>));
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>         <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> level = Release.major(<strong class="jxr_keyword">this</strong>.env.param(source, <span class="jxr_string">""</span>));
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>         <strong class="jxr_keyword">if</strong> (rel &gt;= 0) {
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>             flags.add(<span class="jxr_string">"--release"</span>);
+<a class="jxr_linenumber" name="L105" href="#L105">105</a>             flags.add(String.valueOf(rel));
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>         } <strong class="jxr_keyword">else</strong> <strong class="jxr_keyword">if</strong> (level &gt;= 0) {
+<a class="jxr_linenumber" name="L107" href="#L107">107</a>             flags.add(<span class="jxr_string">"-source"</span>);
+<a class="jxr_linenumber" name="L108" href="#L108">108</a>             flags.add(String.valueOf(level));
+<a class="jxr_linenumber" name="L109" href="#L109">109</a>             flags.add(<span class="jxr_string">"-target"</span>);
+<a class="jxr_linenumber" name="L110" href="#L110">110</a>             flags.add(String.valueOf(<strong class="jxr_keyword">this</strong>.target(target, level)));
+<a class="jxr_linenumber" name="L111" href="#L111">111</a>         }
+<a class="jxr_linenumber" name="L112" href="#L112">112</a>         <strong class="jxr_keyword">return</strong> flags;
+<a class="jxr_linenumber" name="L113" href="#L113">113</a>     }
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> 
+<a class="jxr_linenumber" name="L115" href="#L115">115</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">int</strong> target(<strong class="jxr_keyword">final</strong> String property, <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> fallback) {
+<a class="jxr_linenumber" name="L116" href="#L116">116</a>         <strong class="jxr_keyword">int</strong> level = Release.major(<strong class="jxr_keyword">this</strong>.env.param(property, <span class="jxr_string">""</span>));
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>         <strong class="jxr_keyword">if</strong> (level &lt; 0) {
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>             level = fallback;
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>         }
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>         <strong class="jxr_keyword">return</strong> level;
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>     }
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> 
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">int</strong> major(<strong class="jxr_keyword">final</strong> String value) {
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>         <strong class="jxr_keyword">int</strong> result = -1;
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>         <strong class="jxr_keyword">if</strong> (value != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>             String txt = value.trim();
+<a class="jxr_linenumber" name="L127" href="#L127">127</a>             <strong class="jxr_keyword">if</strong> (txt.startsWith(<span class="jxr_string">"1."</span>)) {
+<a class="jxr_linenumber" name="L128" href="#L128">128</a>                 txt = txt.substring(2);
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>             }
+<a class="jxr_linenumber" name="L130" href="#L130">130</a>             <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>                 result = Integer.parseInt(txt);
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>             } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> NumberFormatException ex) {
+<a class="jxr_linenumber" name="L133" href="#L133">133</a>                 result = -1;
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>             }
+<a class="jxr_linenumber" name="L135" href="#L135">135</a>         }
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>         <strong class="jxr_keyword">return</strong> result;
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>     }
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> }
 </pre>
 <hr/>
 <div id="footer">© 2011–2026 <a href="https://www.qulice.com">Qulice.com</a></div>
