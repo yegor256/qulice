@@ -21,6 +21,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  * https://github.com/yegor256/qulice/issues/1647,
  * https://github.com/yegor256/qulice/issues/1656
  * and https://github.com/yegor256/qulice/issues/1667
+ *
  * @since 1.0
  */
 final class PmdTooManyMethodsTest {

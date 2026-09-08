@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * Checks that final class doesn't contain protected methods unless they are
  * overriding protected methods from superclass.
+ *
  * @since 0.6
  */
 public final class ProtectedMethodInFinalClassCheck extends AbstractCheck {

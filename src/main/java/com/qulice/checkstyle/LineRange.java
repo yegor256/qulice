@@ -8,6 +8,7 @@ package com.qulice.checkstyle;
  * Represent a line range. For example, a Java method can be described by an
  * instance of this class. The alpha line could be the method definition and
  * the omega line could be the end closing bracket.
+ *
  * @since 0.16
  */
 public final class LineRange {
@@ -24,6 +25,7 @@ public final class LineRange {
 
     /**
      * Default constructor.
+     *
      * @param first The alpha line number
      * @param last The omega line number
      */
@@ -34,6 +36,7 @@ public final class LineRange {
 
     /**
      * Is the given line number within range.
+     *
      * @param line The given line number to check
      * @return True if the given line number is within this range
      */
@@ -45,6 +48,7 @@ public final class LineRange {
      * Is the given range entirely within the LineRange. Example, given a
      * LineRange of [10, 50], the given range of [12,48] should be within
      * side that. And the method should return true.
+     *
      * @param range The given LineRange to check
      * @return True if the given is entirely within this LineRange
      */
@@ -55,6 +59,7 @@ public final class LineRange {
 
     /**
      * Get the alpha line number.
+     *
      * @return The alpha line number
      */
     public int first() {
@@ -63,6 +68,7 @@ public final class LineRange {
 
     /**
      * Get the omega line number.
+     *
      * @return The omega line number
      */
     public int last() {

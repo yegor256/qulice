@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link PmdValidator}'s short-circuit when every
  * source file is excluded (issue #759). PMD must not be invoked
  * on the excluded file and must report no violations.
+ *
  * @since 0.25.1
  */
 final class PmdExclusionTest {

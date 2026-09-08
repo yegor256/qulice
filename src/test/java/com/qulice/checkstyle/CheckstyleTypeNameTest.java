@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code TypeName} check.
+ *
  * @since 0.73.2
  */
 final class CheckstyleTypeNameTest {
@@ -34,7 +35,7 @@ final class CheckstyleTypeNameTest {
                 new ViolationMatcher(
                     "must match pattern",
                     file,
-                    "10",
+                    "11",
                     "TypeNameCheck"
                 )
             )

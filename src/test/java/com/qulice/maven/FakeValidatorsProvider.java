@@ -12,6 +12,7 @@ import java.util.Set;
 /**
  * FakeValidatorsProvides.
  * A mock to ValidatorsProvides.
+ *
  * @since 0.24.1
  */
 final class FakeValidatorsProvider implements ValidatorsProvider {

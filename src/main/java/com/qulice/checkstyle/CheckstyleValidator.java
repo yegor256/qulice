@@ -30,6 +30,7 @@ import org.xml.sax.InputSource;
 
 /**
  * Validator with Checkstyle.
+ *
  * @since 0.3
  */
 public final class CheckstyleValidator implements ResourceValidator {
@@ -78,6 +79,7 @@ public final class CheckstyleValidator implements ResourceValidator {
 
     /**
      * Constructor.
+     *
      * @param env Environment to use
      */
     public CheckstyleValidator(final Environment env) {
@@ -143,6 +145,7 @@ public final class CheckstyleValidator implements ResourceValidator {
 
     /**
      * Filters out excluded files from further validation.
+     *
      * @param files Files to validate
      * @return List of relevant files
      */

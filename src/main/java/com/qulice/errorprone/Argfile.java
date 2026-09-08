@@ -38,6 +38,7 @@ public final class Argfile {
 
     /**
      * Constructor.
+     *
      * @param place Target file path
      * @param args Tokens to write
      */
@@ -48,6 +49,7 @@ public final class Argfile {
 
     /**
      * Write the argfile and return its path.
+     *
      * @return The path of the just-written argfile
      */
     public File save() {

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
  * non-transient fields (the {@code BeanMembersShouldSerialize} /
  * {@code NonTransientFieldInSerializableClass} rule is disabled
  * for qulice-style code).
+ *
  * @since 0.25.1
  */
 final class PmdTransientFieldsTest {

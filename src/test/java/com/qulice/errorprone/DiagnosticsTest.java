@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Diagnostics}.
+ *
  * @since 1.0
  */
 final class DiagnosticsTest {

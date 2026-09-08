@@ -98,6 +98,7 @@ public final class ErrorProneValidator implements ResourceValidator {
 
     /**
      * Constructor.
+     *
      * @param env Environment to use
      */
     public ErrorProneValidator(final Environment env) {

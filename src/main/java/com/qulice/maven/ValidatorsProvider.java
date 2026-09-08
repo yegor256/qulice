@@ -11,12 +11,14 @@ import java.util.Set;
 
 /**
  * Provider of validators.
+ *
  * @since 0.3
  */
 interface ValidatorsProvider {
 
     /**
      * Get a collection of internal validators.
+     *
      * @return List of them
      * @see CheckMojo#execute()
      */
@@ -24,6 +26,7 @@ interface ValidatorsProvider {
 
     /**
      * Get a collection of external validators.
+     *
      * @return List of them
      * @see CheckMojo#execute()
      */
@@ -31,6 +34,7 @@ interface ValidatorsProvider {
 
     /**
      * Get a collection of external validators.
+     *
      * @return List of them
      * @see CheckMojo#execute()
      */

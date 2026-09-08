@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of
  * {@link SingleLineCommentCheck}.
+ *
  * @since 0.25.1
  */
 final class SingleLineCommentCheckTest {

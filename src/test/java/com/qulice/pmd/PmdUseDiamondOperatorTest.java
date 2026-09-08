@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link PmdValidator}'s handling of the
  * {@code UseDiamondOperator} rule.
+ *
  * @since 1.0
  */
 final class PmdUseDiamondOperatorTest {

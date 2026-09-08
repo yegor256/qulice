@@ -7,6 +7,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 
 /**
  * Mojo with parameters injected by Maven.
+ *
  * @since 1.0
  */
 public abstract class MavenParameters {

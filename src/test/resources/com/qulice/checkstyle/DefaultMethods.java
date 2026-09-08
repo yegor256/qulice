@@ -8,18 +8,21 @@ import java.util.function.Consumer;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public interface DefaultMethods {
 
     /**
      * Some data.
+     *
      * @return Some data
      */
     List<String> data();
 
     /**
      * Some default method.
+     *
      * @param action Value to print
      */
     default void forEach(final Consumer<String> action) {

@@ -16,6 +16,7 @@ import org.codehaus.plexus.context.Context;
 /**
  * FakeMavenEnvironment.
  * A mock to MavenEnvironment.
+ *
  * @since 0.24.1
  */
 final class FakeMavenEnvironment implements MavenEnvironment {

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link PmdValidator}'s rule that static fields and
  * methods must be accessed via the class name, not via an instance
  * or {@code this}.
+ *
  * @since 0.25.1
  */
 final class PmdStaticAccessTest {

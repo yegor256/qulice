@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link com.qulice.pmd.rules.CloseInlineResourceRule}.
+ *
  * @since 0.27.7
  */
 final class CloseInlineResourceRuleTest {

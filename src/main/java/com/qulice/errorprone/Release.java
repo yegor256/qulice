@@ -61,6 +61,7 @@ final class Release {
 
     /**
      * Constructor.
+     *
      * @param env Environment to read the Maven properties from
      * @param batch Name of the batch being compiled
      */
@@ -71,6 +72,7 @@ final class Release {
 
     /**
      * The source-level flags to append to the {@code javac} command line.
+     *
      * @return Source-level flags, possibly empty
      */
     List<String> flags() {

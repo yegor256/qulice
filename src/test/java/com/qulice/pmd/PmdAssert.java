@@ -15,6 +15,7 @@ import org.hamcrest.MatcherAssert;
 
 /**
  * PMD Validator assertions.
+ *
  * @since 0.16
  */
 final class PmdAssert {
@@ -36,6 +37,7 @@ final class PmdAssert {
 
     /**
      * Constructor.
+     *
      * @param file File to validate
      * @param result Expected build status
      * @param matcher Matcher that needs to match
@@ -52,6 +54,7 @@ final class PmdAssert {
 
     /**
      * Validates given file against PMD.
+     *
      * @throws Exception In case of error.
      */
     void assertOk() throws Exception {

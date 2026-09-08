@@ -14,48 +14,56 @@ import org.codehaus.plexus.context.Context;
 
 /**
  * Environment, passed from MOJO to validators.
+ *
  * @since 0.3
  */
 interface MavenEnvironment extends Environment {
 
     /**
      * Get project.
+     *
      * @return The project
      */
     MavenProject project();
 
     /**
      * Get properties.
+     *
      * @return The properties
      */
     Properties properties();
 
     /**
      * Get context.
+     *
      * @return The context
      */
     Context context();
 
     /**
      * Get plugin configuration properties.
+     *
      * @return The props
      */
     Properties config();
 
     /**
      * Get MOJO executor.
+     *
      * @return The executor
      */
     MojoExecutor executor();
 
     /**
      * Get xpath queries for pom.xml validation.
+     *
      * @return The asserts
      */
     Collection<String> asserts();
 
     /**
      * Wrapper of maven environment.
+     *
      * @since 0.1
      */
     final class Wrap implements MavenEnvironment {
@@ -72,6 +80,7 @@ interface MavenEnvironment extends Environment {
 
         /**
          * Public ctor.
+         *
          * @param penv Parent env
          * @param pmenv Parent maven env
          */

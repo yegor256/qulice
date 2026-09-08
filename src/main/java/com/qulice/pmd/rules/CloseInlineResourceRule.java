@@ -18,6 +18,7 @@ import net.sourceforge.pmd.lang.java.types.TypeTestUtil;
 /**
  * Rule to flag {@code AutoCloseable} expressions that are created inline and
  * then consumed by another expression instead of a resource boundary.
+ *
  * @since 0.27.7
  */
 public final class CloseInlineResourceRule extends AbstractJavaRulechainRule {

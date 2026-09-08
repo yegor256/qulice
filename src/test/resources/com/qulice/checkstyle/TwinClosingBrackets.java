@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class TwinClosingBrackets {
@@ -25,6 +26,7 @@ public final class TwinClosingBrackets {
 
     /**
      * Ctor.
+     *
      * @param masks Globs
      * @param names Files
      */
@@ -36,6 +38,7 @@ public final class TwinClosingBrackets {
 
     /**
      * Filter them.
+     *
      * @return The files
      */
     public Collection<String> filtered() {

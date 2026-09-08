@@ -8,6 +8,7 @@ import java.util.Locale;
 
 /**
  * Allows short English words as method names.
+ *
  * @since 1.0
  */
 public final class ShortMethodNames {
@@ -19,6 +20,7 @@ public final class ShortMethodNames {
 
     /**
      * Ctor.
+     *
      * @param txt The text
      */
     public ShortMethodNames(final String txt) {
@@ -27,6 +29,7 @@ public final class ShortMethodNames {
 
     /**
      * The text as a string.
+     *
      * @return The text
      */
     public String as() {
@@ -35,6 +38,7 @@ public final class ShortMethodNames {
 
     /**
      * The character at the given position.
+     *
      * @param position The position
      * @return The character
      */
@@ -44,6 +48,7 @@ public final class ShortMethodNames {
 
     /**
      * The text sorted by the given comparator.
+     *
      * @param order The comparator
      * @return The text
      */
@@ -53,6 +58,7 @@ public final class ShortMethodNames {
 
     /**
      * Move forward.
+     *
      * @return The text
      */
     public String go() {
@@ -61,6 +67,7 @@ public final class ShortMethodNames {
 
     /**
      * The identity of this object.
+     *
      * @return The text
      */
     public String id() {
@@ -69,6 +76,7 @@ public final class ShortMethodNames {
 
     /**
      * Is the text present in the given line?
+     *
      * @param line The line
      * @return True if present
      */
@@ -78,6 +86,7 @@ public final class ShortMethodNames {
 
     /**
      * Is the text empty?
+     *
      * @return True if empty
      */
     public boolean is() {
@@ -86,6 +95,7 @@ public final class ShortMethodNames {
 
     /**
      * The text itself.
+     *
      * @return The text
      */
     public String it() {
@@ -94,6 +104,7 @@ public final class ShortMethodNames {
 
     /**
      * The text of the given length.
+     *
      * @param length The length
      * @return The text
      */
@@ -103,6 +114,7 @@ public final class ShortMethodNames {
 
     /**
      * React on the given event.
+     *
      * @param event The event
      * @return The text
      */
@@ -112,6 +124,7 @@ public final class ShortMethodNames {
 
     /**
      * The text or the given alternative.
+     *
      * @param alternative The alternative
      * @return The text
      */
@@ -121,6 +134,7 @@ public final class ShortMethodNames {
 
     /**
      * The text converted to the given charset.
+     *
      * @param charset The charset
      * @return The text
      */
@@ -130,6 +144,7 @@ public final class ShortMethodNames {
 
     /**
      * The text in upper case.
+     *
      * @return The text
      */
     public String up() {

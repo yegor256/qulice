@@ -16,6 +16,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
 
 /**
  * Rule to check unnecessary local variables.
+ *
  * @since 0.4
  */
 public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link ValidatorsProvider} class.
+ *
  * @since 0.3
  */
 final class DefaultValidatorsProviderTest {

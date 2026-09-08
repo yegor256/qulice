@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Simple test of the Main class.
+ *
  * @since 1.0
  */
 final class MainTest {

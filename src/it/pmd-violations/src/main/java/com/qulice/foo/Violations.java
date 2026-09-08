@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 /**
  * Sample class.
+ *
  * @since 1.0
  */
 public final class Violations {
@@ -19,6 +20,7 @@ public final class Violations {
 
     /**
      * Calculate square of a number.
+     *
      * @param num The number
      * @return The square
      * @checkstyle NonStaticMethod (2 lines)
@@ -29,6 +31,7 @@ public final class Violations {
 
     /**
      * Returns Foo.
+     *
      * @return Foo
      * @checkstyle NonStaticMethod (2 lines)
      */
@@ -39,6 +42,7 @@ public final class Violations {
 
     /**
      * Returns Foo again.
+     *
      * @return Foo
      * @checkstyle NonStaticMethod (2 lines)
      */
@@ -50,6 +54,7 @@ public final class Violations {
 
     /**
      * Prints something.
+     *
      * @checkstyle NonStaticMethod (2 lines)
      */
     public void print() {
@@ -68,6 +73,7 @@ public final class Violations {
 
         /**
          * Constructor.
+         *
          * @param name Name
          */
         Foo(final String name) {

@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
  * Regression test for {@link UseStringIsEmptyRule}: the rule
  * must not throw a {@code NullPointerException} when it
  * encounters a pattern-matching expression.
+ *
  * @since 0.25.1
  */
 final class PmdUseStringIsEmptyNpeTest {

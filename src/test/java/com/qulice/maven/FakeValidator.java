@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * A test fake {@link Validator} that records how many times
  * {@link #validate(Environment)} was invoked and reports a configurable
  * name through {@link #name()}.
+ *
  * @since 0.27.0
  */
 final class FakeValidator implements Validator {

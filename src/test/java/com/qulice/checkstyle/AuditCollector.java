@@ -32,6 +32,7 @@ final class AuditCollector {
 
     /**
      * How many messages do we have?
+     *
      * @return Amount of messages reported
      */
     int eventCount() {
@@ -40,6 +41,7 @@ final class AuditCollector {
 
     /**
      * Do we have this message for this line?
+     *
      * @param line The number of the line
      * @param msg The message we're looking for
      * @return This message was reported for the give line?
@@ -57,6 +59,7 @@ final class AuditCollector {
 
     /**
      * Returns full summary.
+     *
      * @return The test summary of all events
      */
     String summary() {

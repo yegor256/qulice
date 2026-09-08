@@ -13,6 +13,7 @@ import java.util.function.Consumer;
 
 /**
  * Class, interface, constructor or method generic type parameters.
+ *
  * @since 0.18.18
  */
 public class TypeParameters {
@@ -24,6 +25,7 @@ public class TypeParameters {
 
     /**
      * Secondary ctor.
+     *
      * @param node Class, interface, constructor or method definition node
      */
     public TypeParameters(final DetailAST node) {
@@ -36,6 +38,7 @@ public class TypeParameters {
 
     /**
      * Primary ctor.
+     *
      * @param parameters Parameters
      */
     public TypeParameters(final Parameters parameters) {
@@ -44,6 +47,7 @@ public class TypeParameters {
 
     /**
      * Return number of arguments.
+     *
      * @return Number of arguments
      */
     public final int count() {
@@ -53,6 +57,7 @@ public class TypeParameters {
     /**
      * Checks for consistency the order of generic type parameters and
      * their Javadoc parameters.
+     *
      * @param tags Javadoc parameter tags
      * @param consumer Consumer accepts JavadocTag which is located out of
      *  order

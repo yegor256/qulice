@@ -8,6 +8,7 @@ package com.qulice.plugin.binary;
  * A clean class that lives next to binary resources. Used only to prove
  * that qulice still validates real sources while silently ignoring the
  * binary blobs in {@code src/main/resources}.
+ *
  * @since 0.24
  */
 public final class Thing {
@@ -19,6 +20,7 @@ public final class Thing {
 
     /**
      * Ctor.
+     *
      * @param name Label to use
      */
     public Thing(final String name) {
@@ -27,6 +29,7 @@ public final class Thing {
 
     /**
      * Print the label.
+     *
      * @return Human-readable label
      */
     public String name() {

@@ -27,12 +27,14 @@ import org.xml.sax.InputSource;
 
 /**
  * Integration test case for all checkstyle checks.
+ *
  * @since 0.3
  */
 final class ChecksTest {
 
     /**
      * Test checkstyle for true positive.
+     *
      * @param dir Directory where test scripts are located
      * @param name The name of the Invalid*.java file
      * @throws Exception If something goes wrong
@@ -83,6 +85,7 @@ final class ChecksTest {
 
     /**
      * Test checkstyle for true negative.
+     *
      * @param dir Directory where test scripts are located
      * @param name The name of the Valid*.java file
      * @throws Exception If something goes wrong

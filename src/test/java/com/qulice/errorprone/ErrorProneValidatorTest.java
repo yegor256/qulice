@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link ErrorProneValidator}.
+ *
  * @since 1.0
  */
 final class ErrorProneValidatorTest {

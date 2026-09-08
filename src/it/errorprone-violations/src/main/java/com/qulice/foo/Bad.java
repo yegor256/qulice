@@ -6,6 +6,7 @@ package com.qulice.foo;
 
 /**
  * Sample class that contains an ErrorProne SelfAssignment violation.
+ *
  * @since 1.0
  */
 public final class Bad {
@@ -17,6 +18,7 @@ public final class Bad {
 
     /**
      * Setter that assigns the field to itself.
+     *
      * @param val New value
      */
     public void set(final int val) {
@@ -25,6 +27,7 @@ public final class Bad {
 
     /**
      * Getter for the stored value.
+     *
      * @return The value
      */
     public int value() {

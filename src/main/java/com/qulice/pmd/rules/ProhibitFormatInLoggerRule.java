@@ -18,6 +18,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  * supports printf-style format strings as the message argument, so
  * pre-formatting with {@code String.format} is unnecessary and should be
  * inlined into the Logger call.
+ *
  * @since 0.26.0
  */
 public final class ProhibitFormatInLoggerRule

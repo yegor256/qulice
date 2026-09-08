@@ -10,6 +10,7 @@ import org.apache.commons.io.IOUtils;
 
 /**
  * Test class.
+ *
  * @since 1.0
  */
 public final class Sample {
@@ -23,6 +24,7 @@ public final class Sample {
 
     /**
      * Test method.
+     *
      * @return Stream
      * @checkstyle NonStaticMethod (2 lines)
      */

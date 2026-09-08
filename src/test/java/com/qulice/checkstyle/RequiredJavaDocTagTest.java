@@ -16,6 +16,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Test case for {@link RequiredJavaDocTag} class.
+ *
  * @since 0.23.1
  */
 final class RequiredJavaDocTagTest {

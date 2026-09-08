@@ -62,6 +62,7 @@ final class UnusedSuppressions {
 
     /**
      * Constructor.
+     *
      * @param env Environment to use
      */
     UnusedSuppressions(final Environment env) {
@@ -70,6 +71,7 @@ final class UnusedSuppressions {
 
     /**
      * Find the suppressions that cover no violation.
+     *
      * @param files Files the primary run processed, cache aside
      * @return Violations, one per dead suppression
      */

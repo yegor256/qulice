@@ -35,6 +35,7 @@ public final class Relative {
 
     /**
      * Ctor.
+     *
      * @param base Base directory
      * @param target Target file
      */
@@ -45,6 +46,7 @@ public final class Relative {
 
     /**
      * Path of the target file relative to the base directory.
+     *
      * @return Relative path starting with a forward slash, or the
      *  absolute path of the file if it is not under the base directory
      */

@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class ValidLiteralComparisonCheck {
@@ -16,6 +17,7 @@ public final class ValidLiteralComparisonCheck {
 
     /**
      * Constructor.
+     *
      * @param txt Some text
      */
     public ValidLiteralCheck(final String txt) {

@@ -11,6 +11,7 @@ import java.util.Set;
 
 /**
  * Mocker of ValidatorsProvider.
+ *
  * @since 0.4
  */
 final class ValidatorsProviderMocker {
@@ -32,6 +33,7 @@ final class ValidatorsProviderMocker {
 
     /**
      * With this external validator.
+     *
      * @param validator The validator
      * @return This object
      */
@@ -42,6 +44,7 @@ final class ValidatorsProviderMocker {
 
     /**
      * With this external resource validator.
+     *
      * @param validator The validator
      * @return This object
      */
@@ -52,6 +55,7 @@ final class ValidatorsProviderMocker {
 
     /**
      * With this external validator.
+     *
      * @param validator The validator
      * @return This object
      */
@@ -62,6 +66,7 @@ final class ValidatorsProviderMocker {
 
     /**
      * Mock it.
+     *
      * @return The provider
      */
     ValidatorsProvider mock() {

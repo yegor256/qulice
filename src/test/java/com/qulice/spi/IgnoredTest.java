@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Test case for {@link Ignored}.
+ *
  * @since 1.0
  */
 final class IgnoredTest {

@@ -5,6 +5,7 @@
 
 /**
  * Maven plugin.
+ *
  * @since 0.3
  */
 package com.qulice.maven;

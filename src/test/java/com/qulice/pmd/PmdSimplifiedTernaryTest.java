@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link PmdValidator}'s handling of the
  * {@code SimplifiedTernary} rule.
+ *
  * @since 0.25.1
  */
 final class PmdSimplifiedTernaryTest {

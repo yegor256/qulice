@@ -8,6 +8,7 @@ import java.util.Collection;
 
 /**
  * Sample class for testing ConditionalRegexpMultilineCheck suppression.
+ *
  * @since 1.0
  */
 public final class SuppressConditionalRegexpMultilineInComment {
@@ -19,6 +20,7 @@ public final class SuppressConditionalRegexpMultilineInComment {
 
     /**
      * Primary constructor.
+     *
      * @param sze Size to store
      */
     public SuppressConditionalRegexpMultilineInComment(final int sze) {
@@ -27,6 +29,7 @@ public final class SuppressConditionalRegexpMultilineInComment {
 
     /**
      * Build a collection without size.
+     *
      * @return An empty collection sized to this object
      * @checkstyle ConditionalRegexpMultilineCheck (5 lines)
      */

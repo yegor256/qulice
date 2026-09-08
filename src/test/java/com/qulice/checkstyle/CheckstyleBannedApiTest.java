@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
  * API usages such as Guava {@code Lists.newArrayList()} with no
  * size, Apache Commons {@code CharEncoding}, and interface type
  * parameter naming.
+ *
  * @since 0.25.1
  */
 final class CheckstyleBannedApiTest {
@@ -59,14 +60,14 @@ final class CheckstyleBannedApiTest {
                     new ViolationMatcher(message, file, "7", name),
                     new ViolationMatcher(message, file, "8", name),
                     new ViolationMatcher(message, file, "9", name),
-                    new ViolationMatcher(message, file, "30", name),
                     new ViolationMatcher(message, file, "31", name),
                     new ViolationMatcher(message, file, "32", name),
+                    new ViolationMatcher(message, file, "33", name),
                     new ViolationMatcher(
                         "is redundant, import it and use",
-                        file, "33", "FullyQualifiedTypeCheck"
+                        file, "34", "FullyQualifiedTypeCheck"
                     ),
-                    new ViolationMatcher(message, file, "33", name)
+                    new ViolationMatcher(message, file, "34", name)
                 )
             )
         );
@@ -81,7 +82,7 @@ final class CheckstyleBannedApiTest {
             Matchers.hasItem(
                 new ViolationMatcher(
                     "Name 'wRoNg' must match pattern", file,
-                    "11", "InterfaceTypeParameterNameCheck"
+                    "12", "InterfaceTypeParameterNameCheck"
                 )
             )
         );
@@ -98,10 +99,10 @@ final class CheckstyleBannedApiTest {
             "cannot find all java.lang. violations",
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher(message, file, "10", name),
-                new ViolationMatcher(message, file, "18", name),
-                new ViolationMatcher(message, file, "23", name),
-                new ViolationMatcher(message, file, "25", name)
+                new ViolationMatcher(message, file, "11", name),
+                new ViolationMatcher(message, file, "19", name),
+                new ViolationMatcher(message, file, "25", name),
+                new ViolationMatcher(message, file, "27", name)
             )
         );
     }
@@ -118,8 +119,8 @@ final class CheckstyleBannedApiTest {
             this.runValidation(file, false),
             Matchers.not(
                 Matchers.anyOf(
-                    Matchers.hasItem(new ViolationMatcher(message, file, "43", name)),
-                    Matchers.hasItem(new ViolationMatcher(message, file, "52", name))
+                    Matchers.hasItem(new ViolationMatcher(message, file, "47", name)),
+                    Matchers.hasItem(new ViolationMatcher(message, file, "57", name))
                 )
             )
         );

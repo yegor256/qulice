@@ -35,6 +35,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  * {@code @SuppressWarnings("PMD.TooManyMethods")} visible to
  * {@code UnnecessaryWarningSuppression}, which PMD credits to the
  * annotation whenever the annotation suppressor runs first.
+ *
  * @since 1.0
  */
 public final class TooManyMethodsRule extends AbstractJavaRulechainRule {

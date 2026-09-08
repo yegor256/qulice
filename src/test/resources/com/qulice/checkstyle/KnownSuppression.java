@@ -10,6 +10,7 @@ package foo;
 /**
  * Sample class mentioning @checkstyle in prose and suppressing
  * a configured check by its short name and by its full name.
+ *
  * @since 1.0
  */
 public interface KnownSuppression {

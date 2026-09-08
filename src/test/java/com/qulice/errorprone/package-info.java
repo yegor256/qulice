@@ -5,6 +5,7 @@
 
 /**
  * Test cases for ErrorProne validator.
+ *
  * @since 1.0
  */
 package com.qulice.errorprone;

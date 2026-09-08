@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class NestedClosingBrackets {
@@ -25,6 +26,7 @@ public final class NestedClosingBrackets {
 
     /**
      * Ctor.
+     *
      * @param masks Globs
      * @param names Files
      */
@@ -36,6 +38,7 @@ public final class NestedClosingBrackets {
 
     /**
      * Filter them.
+     *
      * @return The files
      */
     public Collection<String> filtered() {
@@ -48,6 +51,7 @@ public final class NestedClosingBrackets {
 
     /**
      * Join them.
+     *
      * @return The text
      */
     public String joined() {

@@ -24,6 +24,7 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 /**
  * Environment.
+ *
  * @since 0.3
  */
 @SuppressWarnings("PMD.TooManyMethods")
@@ -31,18 +32,21 @@ public interface Environment {
 
     /**
      * Get project's basedir.
+     *
      * @return The directory
      */
     File basedir();
 
     /**
      * Get directory to keep temporary files in.
+     *
      * @return The directory
      */
     File tempdir();
 
     /**
      * Get directory where {@code .class} files are stored.
+     *
      * @return The directory
      */
     File outdir();
@@ -63,6 +67,7 @@ public interface Environment {
 
     /**
      * Get parameter by name, and return default if it's not set.
+     *
      * @param name The name of parameter
      * @param value Default value to return as default
      * @return The value
@@ -71,12 +76,14 @@ public interface Environment {
 
     /**
      * Get classloader for this project.
+     *
      * @return The classloader
      */
     ClassLoader classloader();
 
     /**
      * Get list of paths in classpath.
+     *
      * @return The collection of paths
      */
     Collection<String> classpath();
@@ -95,6 +102,7 @@ public interface Environment {
 
     /**
      * Shall this item be excluded from report?
+     *
      * @param check Name of the check that is asking
      * @param name File or any other item, which is subject of validation
      * @return TRUE if it should be ignored
@@ -106,6 +114,7 @@ public interface Environment {
      * Each list element will contain exactly one exclude pattern which,
      * depending on the plugin that uses the excludes might be either wildcard
      * (CodeNarc) pattern or regex pattern (FindBugs).
+     *
      * @param checker Name of the checker that is asking (pmd, codenarc ...)
      * @return Exclude patterns
      */
@@ -113,12 +122,14 @@ public interface Environment {
 
     /**
      * Encoding for the files.
+     *
      * @return Source files charset
      */
     Charset encoding();
 
     /**
      * Mock of {@link Environment}.
+     *
      * @since 0.1
      */
     final class Mock implements Environment {
@@ -157,6 +168,7 @@ public interface Environment {
 
         /**
          * Constructor with a ready basedir.
+         *
          * @param base The basedir
          */
         private Mock(final File base) {
@@ -165,6 +177,7 @@ public interface Environment {
 
         /**
          * Primary constructor.
+         *
          * @param base The basedir
          * @param dirs Directories to put on the classpath
          */
@@ -178,6 +191,7 @@ public interface Environment {
         /**
          * With this extra test source root, the way
          * {@code build-helper-maven-plugin} would add one.
+         *
          * @param path Directory name, related to basedir
          * @return This object
          */
@@ -188,6 +202,7 @@ public interface Environment {
 
         /**
          * With this param and its value.
+         *
          * @param name Param name
          * @param value Param value
          * @return This object
@@ -200,6 +215,7 @@ public interface Environment {
 
         /**
          * With this file on board.
+         *
          * @param name File name related to basedir
          * @param content File content to write
          * @return This object
@@ -217,6 +233,7 @@ public interface Environment {
 
         /**
          * With this file on board.
+         *
          * @param name File name related to basedir
          * @param bytes File content to write
          * @return This object
@@ -230,6 +247,7 @@ public interface Environment {
 
         /**
          * With exclude patterns.
+         *
          * @param excludes Exclude patterns
          * @return This object
          */
@@ -240,6 +258,7 @@ public interface Environment {
 
         /**
          * With default classpath.
+         *
          * @return This object
          */
         public Environment.Mock withDefaultClasspath() {

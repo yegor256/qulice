@@ -11,6 +11,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * Checks that constant, declared as private field of class is used more than
  * once.
+ *
  * @since 0.3
  */
 public final class ConstantUsageCheck extends AbstractCheck {

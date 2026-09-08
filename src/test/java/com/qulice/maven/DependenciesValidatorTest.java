@@ -28,6 +28,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Test case for {@link DependenciesValidator} class.
+ *
  * @since 0.3
  */
 final class DependenciesValidatorTest {
@@ -50,6 +51,7 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can pass on when no violations are found.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -63,6 +65,7 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can catch dependency problems.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -89,6 +92,7 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can ignore runtime scope dependencies.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -114,6 +118,7 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can exclude used undeclared dependencies.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -146,6 +151,7 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can exclude unused declared dependencies.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -181,6 +187,7 @@ final class DependenciesValidatorTest {
      * dependency is actually referenced by an {@code import} in source, which
      * is the typical shape of false positives caused by annotations with
      * source retention or inlined compile-time constants (see issue #782).
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -215,6 +222,7 @@ final class DependenciesValidatorTest {
     /**
      * Static imports must also count as evidence that a dependency is used,
      * since inlined constants are referenced via {@code import static}.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -246,6 +254,7 @@ final class DependenciesValidatorTest {
 
     /**
      * Wildcard imports must cover any class inside the imported package.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -278,6 +287,7 @@ final class DependenciesValidatorTest {
     /**
      * Without any matching import, an "unused declared" compile-scope
      * dependency must still fail the build even when sources exist.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */

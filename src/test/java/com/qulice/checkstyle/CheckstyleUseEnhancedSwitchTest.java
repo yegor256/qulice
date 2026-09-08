@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
  * stock {@code UseEnhancedSwitch} check. The check suggests arrow-switch
  * syntax, a Java 14+ feature, so it must be disabled when the project targets
  * an older Java (issue #1694).
+ *
  * @since 1.0
  */
 final class CheckstyleUseEnhancedSwitchTest {

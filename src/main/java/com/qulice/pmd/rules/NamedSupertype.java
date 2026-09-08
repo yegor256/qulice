@@ -15,6 +15,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTImportDeclaration;
  * never resolves to a type and only the name written in the clause is
  * available. That name is trusted when it is fully qualified, or when the
  * file imports the type, either directly or on demand from its package.
+ *
  * @since 1.0
  */
 final class NamedSupertype {
@@ -26,6 +27,7 @@ final class NamedSupertype {
 
     /**
      * Constructor.
+     *
      * @param name Canonical name of the type
      */
     NamedSupertype(final String name) {
@@ -34,6 +36,7 @@ final class NamedSupertype {
 
     /**
      * Does the given clause name this very type?
+     *
      * @param clause Type named in an extends or implements clause,
      *  may be NULL when the clause is absent
      * @return TRUE if the clause names this type

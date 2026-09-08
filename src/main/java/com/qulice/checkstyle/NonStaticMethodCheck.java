@@ -50,6 +50,7 @@ public final class NonStaticMethodCheck extends AbstractCheck {
 
     /**
      * Exclude files matching given pattern.
+     *
      * @param excl Regexp of classes to exclude
      */
     public void setExcludeFileNamePattern(final String excl) {

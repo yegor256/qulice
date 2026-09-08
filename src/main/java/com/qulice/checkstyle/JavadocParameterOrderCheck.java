@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 /**
  * Checks method parameters order to comply with what is defined in method
  * javadoc.
+ *
  * @since 0.18.10
  */
 @SuppressWarnings("PMD.LongVariable")

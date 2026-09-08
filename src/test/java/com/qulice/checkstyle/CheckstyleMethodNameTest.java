@@ -22,6 +22,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code MethodName} check.
+ *
  * @since 0.28.0
  */
 final class CheckstyleMethodNameTest {
@@ -43,7 +44,7 @@ final class CheckstyleMethodNameTest {
             CheckstyleMethodNameTest.violations(file),
             Matchers.hasItem(
                 new ViolationMatcher(
-                    "Name 'zz' must match pattern", file, "29", "MethodNameCheck"
+                    "Name 'zz' must match pattern", file, "32", "MethodNameCheck"
                 )
             )
         );
@@ -79,7 +80,7 @@ final class CheckstyleMethodNameTest {
                 new ViolationMatcher(
                     "Name 'GetLastError' must match pattern",
                     file,
-                    "16",
+                    "18",
                     "MethodNameCheck"
                 )
             )

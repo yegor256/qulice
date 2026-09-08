@@ -10,6 +10,7 @@ import org.apache.commons.io.FilenameUtils;
 
 /**
  * Checks if two paths are equal.
+ *
  * @since 0.1
  */
 final class PathPredicate implements Predicate<String> {
@@ -21,6 +22,7 @@ final class PathPredicate implements Predicate<String> {
 
     /**
      * Constructor.
+     *
      * @param name Path to match
      */
     PathPredicate(final String name) {

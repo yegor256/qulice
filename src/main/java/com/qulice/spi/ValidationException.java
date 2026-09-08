@@ -6,6 +6,7 @@ package com.qulice.spi;
 
 /**
  * Exception thrown by a validator, if it fails.
+ *
  * @since 0.3
  */
 public final class ValidationException extends Exception {
@@ -17,6 +18,7 @@ public final class ValidationException extends Exception {
 
     /**
      * Public ctor.
+     *
      * @param cause The cause of exception
      */
     public ValidationException(final Throwable cause) {
@@ -25,6 +27,7 @@ public final class ValidationException extends Exception {
 
     /**
      * Public ctor.
+     *
      * @param text The text of the exception
      */
     public ValidationException(final String text) {
@@ -33,6 +36,7 @@ public final class ValidationException extends Exception {
 
     /**
      * Primary ctor.
+     *
      * @param text The text of the exception
      * @param cause The cause of exception
      */

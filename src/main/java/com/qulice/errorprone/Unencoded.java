@@ -32,6 +32,7 @@ final class Unencoded {
 
     /**
      * Constructor.
+     *
      * @param url URL of a classpath entry
      */
     Unencoded(final URL url) {
@@ -40,6 +41,7 @@ final class Unencoded {
 
     /**
      * Absolute path of the file this URL points at.
+     *
      * @return The path, or empty if the URL is not a local file
      */
     Optional<String> path() {

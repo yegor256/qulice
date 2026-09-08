@@ -13,6 +13,7 @@ import org.cactoos.text.Joined;
 
 /**
  * Builder of {@code LICENSE.txt} content.
+ *
  * @since 0.4
  */
 public final class License {
@@ -46,6 +47,7 @@ public final class License {
 
     /**
      * Use this EOL.
+     *
      * @param txt What to use as end-of-line character
      * @return This object
      */
@@ -56,6 +58,7 @@ public final class License {
 
     /**
      * Use this text (lines).
+     *
      * @param lns The lines to use
      * @return This object
      */
@@ -67,6 +70,7 @@ public final class License {
 
     /**
      * Use this package name.
+     *
      * @param name The name of package
      * @return This object
      */
@@ -77,6 +81,7 @@ public final class License {
 
     /**
      * Save package-info.java into this folder.
+     *
      * @param dir The folder to save to
      * @return This object
      */
@@ -87,6 +92,7 @@ public final class License {
 
     /**
      * Make a file.
+     *
      * @return The location of LICENSE.txt
      * @throws IOException If something wrong happens inside
      */

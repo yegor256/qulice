@@ -16,6 +16,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * Users may have a different understanding of your method
  * based on whether they examine the method in the supertype
  * or the subtype and it may cause confusion.
+ *
  * @since 0.16
  */
 public final class NoJavadocForOverriddenMethodsCheck extends AbstractCheck {

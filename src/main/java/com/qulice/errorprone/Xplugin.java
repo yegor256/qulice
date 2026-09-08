@@ -68,6 +68,7 @@ public final class Xplugin {
 
     /**
      * Constructor.
+     *
      * @param flags ErrorProne flags of the project, if any, separated by
      *  whitespace or commas
      */

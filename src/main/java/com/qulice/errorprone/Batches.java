@@ -77,6 +77,7 @@ public final class Batches {
 
     /**
      * Constructor.
+     *
      * @param env Environment that knows the source roots
      * @param sources Java source files to split
      */
@@ -87,6 +88,7 @@ public final class Batches {
 
     /**
      * Split the sources, one batch per source root.
+     *
      * @return Batches by name, in compilation order, none of them empty
      */
     public Map<String, List<File>> split() {

@@ -17,6 +17,7 @@ import java.util.Locale;
 
 /**
  * Validates source code with PMD.
+ *
  * @since 0.3
  */
 public final class PmdValidator implements ResourceValidator {
@@ -28,6 +29,7 @@ public final class PmdValidator implements ResourceValidator {
 
     /**
      * Constructor.
+     *
      * @param env Environment to use
      */
     public PmdValidator(final Environment env) {
@@ -76,6 +78,7 @@ public final class PmdValidator implements ResourceValidator {
 
     /**
      * Filters out excluded files from further validation.
+     *
      * @param files Files to validate
      * @return Relevant source files
      */

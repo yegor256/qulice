@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code HiddenField} check.
+ *
  * @since 0.25.1
  */
 final class CheckstyleHiddenFieldTest {
@@ -34,13 +35,13 @@ final class CheckstyleHiddenFieldTest {
             Matchers.allOf(
                 Matchers.hasItem(
                     new ViolationMatcher(
-                        "'number' hides a field.", file, "29", name
+                        "'number' hides a field.", file, "32", name
                     )
                 ),
                 Matchers.not(
                     Matchers.hasItem(
                         new ViolationMatcher(
-                            "'number' hides a field.", file, "20", name
+                            "'number' hides a field.", file, "22", name
                         )
                     )
                 )
@@ -56,7 +57,7 @@ final class CheckstyleHiddenFieldTest {
             this.runValidation(file, false),
             Matchers.hasItems(
                 new ViolationMatcher(
-                    "'test' hides a field.", file, "18", "HiddenFieldCheck"
+                    "'test' hides a field.", file, "20", "HiddenFieldCheck"
                 )
             )
         );

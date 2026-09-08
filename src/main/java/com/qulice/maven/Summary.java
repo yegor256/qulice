@@ -37,6 +37,7 @@ final class Summary {
 
     /**
      * Constructor.
+     *
      * @param files Files handed to the validators
      * @param validators Validators that read them
      */

@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Creates URL ClassLoader in privileged block.
+ *
  * @since 0.1
  */
 final class PrivilegedClassLoader implements PrivilegedAction<URLClassLoader> {
@@ -22,6 +23,7 @@ final class PrivilegedClassLoader implements PrivilegedAction<URLClassLoader> {
 
     /**
      * Constructor.
+     *
      * @param urls URLs for class loading
      */
     PrivilegedClassLoader(final List<URL> urls) {

@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Checks that constructor, declared as private class is used more than once.
+ *
  * @since 0.3
  */
 public final class ProhibitUnusedPrivateConstructorCheck extends AbstractCheck {

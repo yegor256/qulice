@@ -23,6 +23,7 @@ import org.cactoos.text.Joined;
  * since every one of them closes exactly one more nesting level and thus
  * must be shallower than the one above it.
  * All other cases must cause a failure.
+ *
  * @since 0.3
  */
 public final class CascadeIndentationCheck extends AbstractFileSetCheck {

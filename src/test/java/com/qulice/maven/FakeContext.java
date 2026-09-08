@@ -13,6 +13,7 @@ import org.codehaus.plexus.context.ContextException;
 /**
  * FakeContext.
  * A mock to a context.
+ *
  * @since 0.24.1
  */
 final class FakeContext implements Context {

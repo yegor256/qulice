@@ -11,6 +11,7 @@ import org.cactoos.map.MapOf;
 
 /**
  * Better to use diamond operator where possible.
+ *
  * @since 1.0
  */
 public final class ValidDiamondsUsage {
@@ -56,12 +57,14 @@ public final class ValidDiamondsUsage {
 
     /**
      * Simple interface, used as wrapper.
+     *
      * @since 1.0
      */
     interface SimpleInterface {
 
         /**
          * Inner class with generic parameter.
+         *
          * @param <E> Generic parameter
          * @since 1.0
          */

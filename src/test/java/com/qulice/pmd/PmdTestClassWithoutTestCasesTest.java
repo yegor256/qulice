@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
  * {@code io.github.artsok.RepeatedIfExceptionsTest} annotation
  * as a test method, so the class is not flagged under
  * {@code TestClassWithoutTestCases}.
+ *
  * @since 0.25.1
  */
 final class PmdTestClassWithoutTestCasesTest {

@@ -23,6 +23,7 @@ final class CheckerExcludes implements Function<String, String> {
 
     /**
      * Constructor.
+     *
      * @param checker Name of checker
      */
     CheckerExcludes(final String checker) {

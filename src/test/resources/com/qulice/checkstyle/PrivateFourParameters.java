@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Class with a private method of four parameters.
+ *
  * @since 1.0
  */
 public final class PrivateFourParameters {
@@ -16,6 +17,7 @@ public final class PrivateFourParameters {
 
     /**
      * Ctor.
+     *
      * @param num The base
      */
     public PrivateFourParameters(final int num) {
@@ -24,6 +26,7 @@ public final class PrivateFourParameters {
 
     /**
      * Sum of a few numbers.
+     *
      * @return The sum
      */
     public int total() {

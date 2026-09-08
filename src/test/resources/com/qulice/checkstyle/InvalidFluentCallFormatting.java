@@ -7,11 +7,13 @@ import java.util.stream.Stream;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class InvalidFluentCallFormatting {
     /**
      * Returns something.
+     *
      * @return Something
      */
     public String make() {

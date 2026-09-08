@@ -29,6 +29,7 @@ import org.codehaus.plexus.util.xml.Xpp3Dom;
 
 /**
  * Executor of plugins.
+ *
  * @since 0.3
  */
 public final class MojoExecutor {
@@ -45,6 +46,7 @@ public final class MojoExecutor {
 
     /**
      * Public ctor.
+     *
      * @param mngr The manager
      * @param sesn Maven session
      */
@@ -56,6 +58,7 @@ public final class MojoExecutor {
 
     /**
      * Find and configure a mojo.
+     *
      * @param coords Maven coordinates,
      *  e.g. "com.qulice:maven-qulice-plugin:1.0"
      * @param goal Maven plugin goal to execute
@@ -105,6 +108,7 @@ public final class MojoExecutor {
 
     /**
      * Recursively convert Properties to Xpp3Dom.
+     *
      * @param config The config to convert
      * @param name High-level name of it
      * @return The Xpp3Dom document

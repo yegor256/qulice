@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code NoWhitespaceBefore} check.
+ *
  * @since 0.25.1
  */
 final class CheckstyleNoWhitespaceBeforeTest {
@@ -33,7 +34,7 @@ final class CheckstyleNoWhitespaceBeforeTest {
             Matchers.hasItem(
                 new ViolationMatcher(
                     "',' is preceded with whitespace",
-                    file, "21", "NoWhitespaceBeforeCheck"
+                    file, "23", "NoWhitespaceBeforeCheck"
                 )
             )
         );

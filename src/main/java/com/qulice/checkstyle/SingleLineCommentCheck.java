@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 /**
  * C++ style inline comment is not allowed.
  * Use //-style comment instead.
+ *
  * @since 0.18
  */
 public final class SingleLineCommentCheck extends AbstractCheck {
@@ -102,6 +103,7 @@ public final class SingleLineCommentCheck extends AbstractCheck {
      * The parameter is set from the checks.xml file
      * {@code <module name="com.qulice.checkstyle.SingleLineCommentCheck"/>} and
      * {@code <property name="format" value=" this regexp "/>} property
+     *
      * @param fmt Validatig regexp
      */
     public void setFormat(final String fmt) {
@@ -114,6 +116,7 @@ public final class SingleLineCommentCheck extends AbstractCheck {
      * {@code <module name="com.qulice.checkstyle.SingleLineCommentCheck"/>} and
      * {@code <property name="message" value="This comment is not allowed."/>}
      * property
+     *
      * @param msg Error message
      */
     public void setMessage(final String msg) {

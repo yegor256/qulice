@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link PmdValidator}'s handling of the
  * {@code UnnecessaryFinalModifier} rule.
+ *
  * @since 0.25.1
  */
 final class PmdUnnecessaryFinalModifierTest {

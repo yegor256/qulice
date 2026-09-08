@@ -41,6 +41,7 @@ final class SuppressionTag {
 
     /**
      * Constructor.
+     *
      * @param check Name of the suppressed check
      * @param first First line of the influence range, and of the comment
      * @param last Last line of the influence range
@@ -53,6 +54,7 @@ final class SuppressionTag {
 
     /**
      * Name of the suppressed check.
+     *
      * @return The name
      */
     String check() {
@@ -61,6 +63,7 @@ final class SuppressionTag {
 
     /**
      * Line of the comment, where a violation about it belongs.
+     *
      * @return Line number
      */
     int line() {

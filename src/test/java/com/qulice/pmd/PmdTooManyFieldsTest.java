@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
  * Mojo.
  * Regression test for https://github.com/yegor256/qulice/issues/1767
  * and https://github.com/yegor256/qulice/issues/1775
+ *
  * @since 1.0
  */
 final class PmdTooManyFieldsTest {

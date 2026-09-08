@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of
  * {@link EnumValueNameCheck}.
+ *
  * @since 0.25.1
  */
 final class EnumValueNameCheckTest {
@@ -42,15 +43,15 @@ final class EnumValueNameCheckTest {
             Matchers.hasItems(
                 new ViolationMatcher(
                     "Enum value anyName must match pattern",
-                    file, "16", name
+                    file, "17", name
                 ),
                 new ViolationMatcher(
                     "Enum value MixedCase must match pattern",
-                    file, "21", name
+                    file, "22", name
                 ),
                 new ViolationMatcher(
                     "Enum value lowercase must match pattern",
-                    file, "26", name
+                    file, "27", name
                 )
             )
         );

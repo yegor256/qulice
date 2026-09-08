@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link com.qulice.pmd.rules.UseCollectionsSingletonListRule}.
+ *
  * @since 0.26.0
  */
 final class UseCollectionsSingletonListRuleTest {

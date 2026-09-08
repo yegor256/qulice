@@ -5,14 +5,12 @@ package com.qulice.checkstyle;
 
 /**
  * Single-paragraph class Javadoc.
- *
  * @since 0.27.0
  */
 public final class Invalid {
 
     /**
      * Single-paragraph field Javadoc.
-     *
      * @since 0.27.0
      */
     private static final int X = 0;
@@ -20,7 +18,7 @@ public final class Invalid {
     /**
      * First paragraph of the Javadoc.
      *
-     * <p>Second paragraph of the Javadoc.
+     * <p>Second paragraph of the Javadoc.</p>
      * @since 0.27.0
      */
     public Invalid() {
@@ -28,7 +26,6 @@ public final class Invalid {
 
     /**
      * Single-paragraph method Javadoc.
-     *
      * @param param Some value
      * @return The same value
      */
@@ -39,7 +36,7 @@ public final class Invalid {
     /**
      * First paragraph of the Javadoc.
      *
-     * <p>Second paragraph.
+     * <p>Second paragraph.</p>
      * @param param Some value
      * @return The same value
      */

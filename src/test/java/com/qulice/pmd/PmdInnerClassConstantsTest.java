@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link PmdValidator}'s handling of private
  * constants that are used only from within an inner class —
  * they must not be reported as unused.
+ *
  * @since 0.25.1
  */
 final class PmdInnerClassConstantsTest {

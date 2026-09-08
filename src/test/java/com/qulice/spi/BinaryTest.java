@@ -15,6 +15,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Test case for {@link Binary}.
+ *
  * @since 0.24
  */
 final class BinaryTest {

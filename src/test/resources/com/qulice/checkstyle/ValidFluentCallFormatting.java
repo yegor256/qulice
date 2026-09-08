@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class ValidFluentCallFormatting {
@@ -19,6 +20,7 @@ public final class ValidFluentCallFormatting {
 
     /**
      * Ctor.
+     *
      * @param sep Separator
      */
     public ValidFluentCallFormatting(final String sep) {
@@ -27,6 +29,7 @@ public final class ValidFluentCallFormatting {
 
     /**
      * Returns something.
+     *
      * @return Something
      */
     public String make() {
@@ -38,6 +41,7 @@ public final class ValidFluentCallFormatting {
 
     /**
      * Returns something else.
+     *
      * @return Something else
      */
     public String pick() {

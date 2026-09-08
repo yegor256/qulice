@@ -23,6 +23,7 @@ import org.cactoos.list.ListOf;
 
 /**
  * Validates source files via <code>PmdValidator</code>.
+ *
  * @since 0.3
  */
 final class SourceValidator {
@@ -39,6 +40,7 @@ final class SourceValidator {
 
     /**
      * Creates new instance of <code>SourceValidator</code>.
+     *
      * @param charset Source files encoding
      */
     SourceValidator(final Charset charset) {
@@ -48,6 +50,7 @@ final class SourceValidator {
 
     /**
      * Performs validation of the input source files.
+     *
      * @param sources Input source files
      * @param path Base path
      * @return Collection of violations
@@ -81,6 +84,7 @@ final class SourceValidator {
     /**
      * How many rules the ruleset holds, once PMD has resolved the
      * categories it refers to and taken the exclusions out.
+     *
      * @return The number of rules
      */
     int rules() {

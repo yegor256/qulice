@@ -13,6 +13,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Test case for {@link Relative}.
+ *
  * @since 0.24
  */
 final class RelativeTest {

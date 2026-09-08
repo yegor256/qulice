@@ -13,6 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  * Test case for {@link PmdValidator}'s rejection of unicode
  * characters inside method names under the
  * {@code MethodNamingConventions} rule.
+ *
  * @since 0.25.1
  */
 final class PmdMethodNamingConventionsTest {

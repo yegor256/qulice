@@ -11,6 +11,7 @@ import org.cactoos.text.UncheckedText;
 
 /**
  * Represents one PMD error (usually it will be violation).
+ *
  * @since 1.0
  */
 public interface PmdError {
@@ -18,6 +19,7 @@ public interface PmdError {
     /**
      * Returns error name which is short, fixed, human-readable category of
      * the error.
+     *
      * @return Error name
      */
     String name();
@@ -25,6 +27,7 @@ public interface PmdError {
     /**
      * Returns file name which caused this error.
      * May return sentinel value if file information is not available.
+     *
      * @return File name
      */
     String fileName();
@@ -32,18 +35,21 @@ public interface PmdError {
     /**
      * Returns formatted line range which cause this error.
      * May return sentinel value if line information is not available.
+     *
      * @return Formatted line range
      */
     String lines();
 
     /**
      * Returns error description.
+     *
      * @return Description
      */
     String description();
 
     /**
      * PmdError backed by a RuleViolation.
+     *
      * @since 1.0
      */
     final class OfRuleViolation implements PmdError {
@@ -55,6 +61,7 @@ public interface PmdError {
 
         /**
          * Creates a new PmdError, representing given RuleViolation.
+         *
          * @param violation Internal RuleViolation
          */
         public OfRuleViolation(final RuleViolation violation) {
@@ -87,6 +94,7 @@ public interface PmdError {
 
     /**
      * PmdError backed by a ProcessingError.
+     *
      * @since 1.0
      */
     final class OfProcessingError implements PmdError {
@@ -98,6 +106,7 @@ public interface PmdError {
 
         /**
          * Creates a new PmdError, representing given ProcessingError.
+         *
          * @param error Internal ProcessingError
          */
         public OfProcessingError(final Report.ProcessingError error) {
@@ -133,6 +142,7 @@ public interface PmdError {
 
     /**
      * PmdError backed by a ConfigError.
+     *
      * @since 1.0
      */
     final class OfConfigError implements PmdError {
@@ -144,6 +154,7 @@ public interface PmdError {
 
         /**
          * Creates a new PmdError, representing given ConfigurationError.
+         *
          * @param error Internal ConfigurationError
          */
         public OfConfigError(final Report.ConfigurationError error) {

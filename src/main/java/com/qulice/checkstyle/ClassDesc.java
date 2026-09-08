@@ -6,6 +6,7 @@ package com.qulice.checkstyle;
 
 /**
  * Maintains information about class' ctors.
+ *
  * @since 0.1
  */
 final class ClassDesc {
@@ -27,6 +28,7 @@ final class ClassDesc {
 
     /**
      * Create a new ClassDesc instance.
+     *
      * @param qualified Qualified class name(with package)
      * @param asfinal Indicates if the class declared as final
      * @param asabstract Indicates if the class declared as
@@ -42,6 +44,7 @@ final class ClassDesc {
 
     /**
      * Get qualified class name.
+     *
      * @return Qualified class name
      */
     String getQualified() {
@@ -50,6 +53,7 @@ final class ClassDesc {
 
     /**
      * Is class declared as final.
+     *
      * @return True if class is declared as final
      */
     boolean isAsfinal() {
@@ -58,6 +62,7 @@ final class ClassDesc {
 
     /**
      * Is class declared as abstract.
+     *
      * @return True if class is declared as final
      */
     boolean isDeclaredAsAbstract() {

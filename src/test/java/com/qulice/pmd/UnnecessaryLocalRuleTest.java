@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for UnnecessaryLocalRule.
+ *
  * @since 0.24
  */
 final class UnnecessaryLocalRuleTest {

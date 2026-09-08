@@ -13,6 +13,7 @@ import java.util.Iterator;
  * Represents a set of LineRange objects. For example, an instance of this class
  * could represent all the line ranges for methods in a given Java source code
  * file.
+ *
  * @since 0.16
  */
 public final class LineRanges {
@@ -31,6 +32,7 @@ public final class LineRanges {
 
     /**
      * Adds a line range to the collection.
+     *
      * @param line The line range to add to the collection
      */
     public void add(final LineRange line) {
@@ -39,6 +41,7 @@ public final class LineRanges {
 
     /**
      * Returns an iterator for this collection.
+     *
      * @return Iterator pointing to the internal collections elements
      */
     public Iterator<LineRange> iterator() {
@@ -47,6 +50,7 @@ public final class LineRanges {
 
     /**
      * Detects if the given line number is within any of the line ranges.
+     *
      * @param line The given line number to check
      * @return True if the given line number is within any line range
      */
@@ -59,6 +63,7 @@ public final class LineRanges {
     /**
      * Gets the subset of LineRanges that are within all given ranges. Does
      * not return null; instead, returns empty range if there are no matches.
+     *
      * @param ranges The ranges to filter on
      * @return Returns all LineRange elements that are within range
      */

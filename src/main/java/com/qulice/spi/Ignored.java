@@ -56,6 +56,7 @@ public final class Ignored {
 
     /**
      * Ctor.
+     *
      * @param file Path of the file, the way {@link Relative} makes it
      */
     public Ignored(final String file) {
@@ -64,6 +65,7 @@ public final class Ignored {
 
     /**
      * Is this file ignored?
+     *
      * @return TRUE if the file is inside one of the ignored directories
      */
     public boolean yes() {
