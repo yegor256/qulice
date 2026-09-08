@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.6" size="1321457">
+<fb version="0.19.6" size="1321704">
   <f>
     <added t="I">8</added>
     <cycles t="I">2</cycles>
     <deleted t="I">8</deleted>
     <inserted t="I">8</inserted>
-    <seconds t="F">344.373955827</seconds>
+    <seconds t="F">415.73104969</seconds>
     <version t="S">0.61.1</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-09-07T07:39:40Z</when>
+    <when t="T">2026-09-08T07:33:20Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -70018,18 +70018,18 @@
     <_job t="I">30193714385</_job>
     <_time t="T">2026-07-26T07:58:33Z</_time>
     <_version t="S">0.19.9/0.60.2/0.17.17</_version>
-    <assignees_were_scanned t="I">533</assignees_were_scanned>
-    <closures_were_checked t="I">1395</closures_were_checked>
+    <assignees_were_scanned t="I">782</assignees_were_scanned>
+    <closures_were_checked t="I">1168</closures_were_checked>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
     <events_were_scanned t="I">20220439180</events_were_scanned>
     <issues_were_scanned t="I">867</issues_were_scanned>
-    <labels_were_scanned t="I">673</labels_were_scanned>
+    <labels_were_scanned t="I">936</labels_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
     <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1660</min_issue_was_found>
-    <min_pull_was_found t="I">1543</min_pull_was_found>
+    <min_issue_was_found t="I">1664</min_issue_was_found>
+    <min_pull_was_found t="I">1545</min_pull_was_found>
     <repository t="I">9580168</repository>
-    <types_were_scanned t="I">941</types_were_scanned>
+    <types_were_scanned t="I">1248</types_were_scanned>
     <what t="S">iterate</what>
     <where t="S">github</where>
   </f>
@@ -81143,21 +81143,6 @@
     <when t="T">2026-08-30T07:31:39Z</when>
   </f>
   <f>
-    <_id t="I">11929</_id>
-    <_job t="I">89188</_job>
-    <_time t="T">2026-08-30T07:32:13Z</_time>
-    <_version t="S">0.19.16/0.61.1/0.17.21</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (242.3) is increasing (R=0.23).
-The average number of commits per week (12.4) is staying still.
-The average issue cycle time (2w2d) is decreasing (R=-0.51).
-The average pull cycle time (5d21h) is decreasing (R=-0.12).
-The average number of releases per month (3.6) is increasing (R=0.29).
-The average monthly turnover (34.0 developers) is increasing (R=0.36).</text>
-    <what t="S">assessment</what>
-    <when t="T">2026-08-30T07:32:13Z</when>
-  </f>
-  <f>
     <_id t="I">11930</_id>
     <_job t="I">33368807762</_job>
     <_time t="T">2026-08-31T07:33:39Z</_time>
@@ -81762,5 +81747,36 @@ The average monthly turnover (31.0 developers) is increasing (R=0.15).</text>
     <when t="T">2026-09-01T11:45:48Z</when>
     <where t="S">github</where>
     <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11960</_id>
+    <_job t="I">91060</_job>
+    <_time t="T">2026-09-07T07:40:02Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.22</_version>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (246.2) is increasing (R=0.27).
+The average number of commits per week (12.4) is staying still.
+The average issue cycle time (2w2d) is decreasing (R=-0.56).
+The average pull cycle time (6d10h) is staying still.
+The average number of releases per month (3.7) is increasing (R=0.32).
+The average monthly turnover (30.0 developers) is increasing (R=0.15).</text>
+    <what t="S">assessment</what>
+    <when t="T">2026-09-07T07:40:02Z</when>
+  </f>
+  <f>
+    <_id t="I">11961</_id>
+    <_job t="I">91060</_job>
+    <_time t="T">2026-09-07T07:40:21Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.22</_version>
+    <ac t="I">68</ac>
+    <cost_of_qod t="F">3.6635158880436225</cost_of_qod>
+    <ev t="I">1443</ev>
+    <pv t="I">57936</pv>
+    <qod t="I">394</qod>
+    <qod_per_day t="F">44.41080904994545</qod_per_day>
+    <qod_per_sec t="F">1.281524334288957e-05</qod_per_sec>
+    <start t="T">2025-09-16T05:20:41Z</start>
+    <what t="S">earned-value</what>
+    <when t="T">2026-09-07T07:40:21Z</when>
   </f>
 </fb>
