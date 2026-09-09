@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 415.73104969
+  seconds: 288.892257168
   version: 0.61.1
   what: judges-summary
-  when: 2026-09-08 07:33:20.691079322 Z
+  when: 2026-09-09 07:32:08.751297075 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -62898,18 +62898,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 782
-  closures_were_checked: 1168
+  assignees_were_scanned: 985
+  closures_were_checked: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 20220439180
+  events_were_scanned: 14650840615
   issues_were_scanned: 867
-  labels_were_scanned: 936
+  labels_were_scanned: 1706
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1664
-  min_pull_was_found: 1545
+  min_issue_was_found: 1671
+  min_pull_was_found: 1547
   repository: 9580168
-  types_were_scanned: 1248
+  types_were_scanned: 1770
   what: iterate
   where: github
 - _id: 11295
@@ -73470,3 +73470,148 @@
   start: *12
   what: earned-value
   when: 2026-09-07 07:40:21.949223881 Z
+- _id: 11962
+  _job: 34323832034
+  _time: 2026-09-09 07:28:18.476592566 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 4
+  total_commits: 2723
+  total_contributors: 59
+  total_files: 894
+  total_forks: 124
+  total_issues: 937
+  total_pulls: 875
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 323
+  what: dimensions-of-terrain
+  when: 2026-09-09 07:28:18.423166739 Z
+- _id: 11963
+  _job: 34323832034
+  _time: 2026-09-09 07:29:46.269492830 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  details: The issue yegor256/qulice#1810 has been earlier opened by @yegor256.
+  is_human: 1
+  issue: 1810
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-09-08 12:30:42.000000000 Z
+  where: github
+  who: 526301
+- _id: 11964
+  _job: 34323832034
+  _time: 2026-09-09 07:31:09.355808088 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: claude/qulice-issue-1800-bg1vr7
+  details: The missing pull yegor256/qulice#1801 has been opened by @yegor256.
+  is_human: 1
+  issue: 1801
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-01 12:42:46.000000000 Z
+  where: github
+  who: 526301
+- _id: 11965
+  _job: 34323832034
+  _time: 2026-09-09 07:31:10.077452867 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  details: The missing pull yegor256/qulice#1802 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1802
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-01 12:43:15.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11966
+  _job: 34323832034
+  _time: 2026-09-09 07:31:10.771538223 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: version-up
+  details: The missing pull yegor256/qulice#1803 has been opened by @github-actions[bot].
+  is_human: 0
+  issue: 1803
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-01 13:39:23.000000000 Z
+  where: github
+  who: 41898282
+- _id: 11967
+  _job: 34323832034
+  _time: 2026-09-09 07:31:11.478662124 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/crate-ci-typos-1.x
+  details: The missing pull yegor256/qulice#1804 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1804
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-01 20:04:26.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11968
+  _job: 34323832034
+  _time: 2026-09-09 07:31:12.194650637 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.checkerframework-checker-qual-4.x
+  details: The missing pull yegor256/qulice#1805 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1805
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-01 20:04:31.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11969
+  _job: 34323832034
+  _time: 2026-09-09 07:31:13.037963680 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.projectlombok-lombok-1.x
+  details: The missing pull yegor256/qulice#1806 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1806
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-01 23:55:01.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11970
+  _job: 34323832034
+  _time: 2026-09-09 07:31:13.856733925 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  details: The missing pull yegor256/qulice#1807 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1807
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-02 07:38:19.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11971
+  _job: 34323832034
+  _time: 2026-09-09 07:31:14.509249344 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven.plugins-maven-compiler-plugin-3.x
+  details: The missing pull yegor256/qulice#1808 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1808
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-03 01:31:40.000000000 Z
+  where: github
+  who: 29139614
+- _id: 11972
+  _job: 34323832034
+  _time: 2026-09-09 07:31:15.467565439 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/slf4j-monorepo
+  details: The missing pull yegor256/qulice#1809 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1809
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-05 07:29:21.000000000 Z
+  where: github
+  who: 29139614
