@@ -171,6 +171,24 @@ The `com.qulice.pmd.rules` package adds custom `AbstractJavaRule`
   rules with known false-positive defects filed in the upstream
   tracker.
 
+A few questions can't be answered by looking at one file at a time,
+  and [Checkstyle] shows a module one file at a time, keeping the
+  unchanged ones in its cache.
+Qulice answers them itself, right after [Checkstyle] has finished,
+  and reports the findings as ordinary [Checkstyle] violations.
+`UnusedSuppressions` runs [Checkstyle] a second time without the
+  suppression filters, to catch a `@checkstyle` comment that covers
+  no violation at all.
+`UnusedPackagePrivateClasses` parses every `.java` file of the
+  project and reports, as `UnusedPackagePrivateClassCheck`, each
+  top-level class, interface, enum, record or annotation that is
+  declared without `public` and that no other type of its own
+  package mentions: such a class is visible to its package only, so
+  nothing in the project can reach it and it should be deleted.
+Test classes are left alone, since JUnit finds them by itself, and
+  so are the files an `<exclude>` covers — although what such a file
+  mentions still counts as a usage.
+
 ## How to contribute
 
 Fork repository, make changes, send us a pull request.

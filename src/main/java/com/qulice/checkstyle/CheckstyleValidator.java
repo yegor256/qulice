@@ -130,6 +130,9 @@ public final class CheckstyleValidator implements ResourceValidator {
             results.addAll(
                 new UnusedSuppressions(this.env).validate(this.listener.processed())
             );
+            results.addAll(
+                new UnusedPackagePrivateClasses(this.env).validate(files)
+            );
         }
         return results;
     }
