@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 288.892257168
+  seconds: 688.566471467
   version: 0.61.1
   what: judges-summary
-  when: 2026-09-09 07:32:08.751297075 Z
+  when: 2026-09-10 07:38:50.882103184 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -62898,18 +62898,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 985
-  closures_were_checked: 0
+  assignees_were_scanned: 1508
+  closures_were_checked: 1395
   earliest_issue_was_found: 1
-  events_were_scanned: 14650840615
+  events_were_scanned: 20648621543
   issues_were_scanned: 867
-  labels_were_scanned: 1706
+  labels_were_scanned: 673
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1671
-  min_pull_was_found: 1547
+  min_issue_was_found: 1676
+  min_pull_was_found: 1550
   repository: 9580168
-  types_were_scanned: 1770
+  types_were_scanned: 487
   what: iterate
   where: github
 - _id: 11295
@@ -73283,20 +73283,6 @@
   when: 2026-09-01 11:46:51.000000000 Z
   where: github
   who: 526301
-- _id: 11951
-  _job: 90756
-  _time: 2026-09-05 07:28:12.194017457 Z
-  _version: 0.19.16/0.61.1/0.17.22
-  analyzers: 18
-  text: |-
-    The average number of builds per week (246.2) is increasing (R=0.27).
-    The average number of commits per week (12.4) is staying still.
-    The average issue cycle time (2w2d) is decreasing (R=-0.56).
-    The average pull cycle time (5d21h) is staying still.
-    The average number of releases per month (3.7) is increasing (R=0.32).
-    The average monthly turnover (31.0 developers) is increasing (R=0.15).
-  what: assessment
-  when: 2026-09-05 07:28:12.215457033 Z
 - _id: 11952
   _job: 34095993930
   _time: 2026-09-07 07:34:12.205554563 Z
@@ -73615,3 +73601,237 @@
   when: 2026-09-05 07:29:21.000000000 Z
   where: github
   who: 29139614
+- _id: 11973
+  _job: 91543
+  _time: 2026-09-09 07:32:31.625941871 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (241.2) is increasing (R=0.31).
+    The average number of commits per week (12.1) is increasing (R=0.12).
+    The average issue cycle time (2w2d) is decreasing (R=-0.60).
+    The average pull cycle time (6d11h) is decreasing (R=-0.10).
+    The average number of releases per month (3.5) is increasing (R=0.37).
+    The average monthly turnover (30.0 developers) is increasing (R=0.14).
+  what: assessment
+  when: 2026-09-09 07:32:31.647043093 Z
+- _id: 11974
+  _job: 34449914055
+  _time: 2026-09-10 07:28:19.303955044 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: claude/qulice-issue-1800-bg1vr7
+  comments: 2
+  comments_appreciated: 0
+  comments_by_author: 2
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1801 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 20
+  is_human: 1
+  issue: 1801
+  repository: 9580168
+  review: 2026-09-01 12:44:26.000000000 Z
+  review_comments: 0
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-01 12:49:25.000000000 Z
+  where: github
+  who: 526301
+- _id: 11975
+  _job: 34449914055
+  _time: 2026-09-10 07:28:40.815798762 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1802 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1802
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-01 12:49:39.000000000 Z
+  where: github
+  who: 526301
+- _id: 11976
+  _job: 34449914055
+  _time: 2026-09-10 07:28:53.272786224 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: version-up
+  comments: 1
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1803 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1803
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-03 06:17:21.000000000 Z
+  where: github
+  who: 526301
+- _id: 11977
+  _job: 34449914055
+  _time: 2026-09-10 07:28:56.590258447 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/crate-ci-typos-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1804 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1804
+  repository: 9580168
+  review: 2026-09-02 02:55:24.000000000 Z
+  review_comments: 0
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-02 10:57:35.000000000 Z
+  where: github
+  who: 8086956
+- _id: 11978
+  _job: 34449914055
+  _time: 2026-09-10 07:29:10.486310137 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.checkerframework-checker-qual-4.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1805 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1805
+  repository: 9580168
+  review: 2026-09-02 02:55:22.000000000 Z
+  review_comments: 0
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-02 08:55:01.000000000 Z
+  where: github
+  who: 8086956
+- _id: 11979
+  _job: 34449914055
+  _time: 2026-09-10 07:29:25.032468690 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.projectlombok-lombok-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1806 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 4
+  is_human: 0
+  issue: 1806
+  repository: 9580168
+  review: 2026-09-02 02:55:19.000000000 Z
+  review_comments: 0
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-02 03:50:31.000000000 Z
+  where: github
+  who: 8086956
+- _id: 11980
+  _job: 34449914055
+  _time: 2026-09-10 07:29:51.147470431 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  comments: 1
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1807 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1807
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-03 06:17:18.000000000 Z
+  where: github
+  who: 526301
+- _id: 11981
+  _job: 34449914055
+  _time: 2026-09-10 07:30:03.380566703 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven.plugins-maven-compiler-plugin-3.x
+  comments: 1
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1808 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1808
+  repository: 9580168
+  review_comments: 0
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-03 06:17:15.000000000 Z
+  where: github
+  who: 526301
+- _id: 11982
+  _job: 34449914055
+  _time: 2026-09-10 07:31:18.552886210 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 4
+  total_commits: 2723
+  total_contributors: 59
+  total_files: 894
+  total_forks: 124
+  total_issues: 937
+  total_pulls: 875
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 323
+  what: dimensions-of-terrain
+  when: 2026-09-10 07:31:18.478004660 Z
