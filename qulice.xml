@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.6" size="1329773">
+<fb version="0.19.6" size="1331304">
   <f>
     <added t="I">8</added>
     <cycles t="I">2</cycles>
     <deleted t="I">8</deleted>
+    <error t="S">deadlock; recursive locking</error>
     <inserted t="I">8</inserted>
-    <seconds t="F">345.312860685</seconds>
+    <seconds t="F">574.448757216</seconds>
     <version t="S">0.61.1</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-09-11T07:31:50Z</when>
+    <when t="T">2026-09-12T07:32:17Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -70018,18 +70019,18 @@
     <_job t="I">30193714385</_job>
     <_time t="T">2026-07-26T07:58:33Z</_time>
     <_version t="S">0.19.9/0.60.2/0.17.17</_version>
-    <assignees_were_scanned t="I">533</assignees_were_scanned>
-    <closures_were_checked t="I">1168</closures_were_checked>
+    <assignees_were_scanned t="I">782</assignees_were_scanned>
+    <closures_were_checked t="I">0</closures_were_checked>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">20750765459</events_were_scanned>
+    <events_were_scanned t="I">20882932090</events_were_scanned>
     <issues_were_scanned t="I">867</issues_were_scanned>
-    <labels_were_scanned t="I">936</labels_were_scanned>
+    <labels_were_scanned t="I">1706</labels_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
     <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1683</min_issue_was_found>
-    <min_pull_was_found t="I">1552</min_pull_was_found>
+    <min_issue_was_found t="I">1686</min_issue_was_found>
+    <min_pull_was_found t="I">1554</min_pull_was_found>
     <repository t="I">9580168</repository>
-    <types_were_scanned t="I">695</types_were_scanned>
+    <types_were_scanned t="I">848</types_were_scanned>
     <what t="S">iterate</what>
     <where t="S">github</where>
   </f>
@@ -82242,5 +82243,104 @@ The average monthly turnover (31.0 developers) is increasing (R=0.13).</text>
     <when t="T">2026-09-08T15:28:04Z</when>
     <where t="S">github</where>
     <who t="I">41898282</who>
+  </f>
+  <f>
+    <_id t="I">11988</_id>
+    <_job t="I">34680516407</_job>
+    <_time t="T">2026-09-12T07:23:15Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.23</_version>
+    <since t="T">2026-09-05T07:22:33Z</since>
+    <total_builds_ran t="I">230</total_builds_ran>
+    <total_commits_pushed t="I">6</total_commits_pushed>
+    <total_hoc_committed t="I">1631</total_hoc_committed>
+    <total_issues_created t="I">9</total_issues_created>
+    <total_pulls_submitted t="I">7</total_pulls_submitted>
+    <total_releases_published t="I">1</total_releases_published>
+    <total_reviews_submitted t="I">5</total_reviews_submitted>
+    <what t="S">quantity-of-deliverables</what>
+    <when t="T">2026-09-12T07:23:15Z</when>
+  </f>
+  <f>
+    <_id t="I">11989</_id>
+    <_job t="I">34680516407</_job>
+    <_time t="T">2026-09-12T07:23:45Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.23</_version>
+    <branch t="S">claude/charming-darwin-1tyz55</branch>
+    <comments t="I">2</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">2</comments_by_author>
+    <comments_by_reviewers t="I">0</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1811 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">336</files>
+    <hoc t="I">958</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1811</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-09-08T14:35:54Z</review>
+    <review_comments t="I">0</review_comments>
+    <succeeded_builds t="I">12</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-09-08T14:36:04Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">11990</_id>
+    <_job t="I">34680516407</_job>
+    <_time t="T">2026-09-12T07:23:57Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.23</_version>
+    <branch t="S">renovate/zerocracy-judges-action-0.x</branch>
+    <comments t="I">3</comments>
+    <comments_appreciated t="I">1</comments_appreciated>
+    <comments_by_author t="I">0</comments_by_author>
+    <comments_by_reviewers t="I">3</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1812 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">1</files>
+    <hoc t="I">2</hoc>
+    <is_human t="I">0</is_human>
+    <issue t="I">1812</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-09-08T16:38:33Z</review>
+    <review_comments t="I">0</review_comments>
+    <succeeded_builds t="I">12</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-09-08T16:54:50Z</when>
+    <where t="S">github</where>
+    <who t="I">8086956</who>
+  </f>
+  <f>
+    <_id t="I">11991</_id>
+    <_job t="I">34680516407</_job>
+    <_time t="T">2026-09-12T07:25:12Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.23</_version>
+    <total_active_contributors t="I">4</total_active_contributors>
+    <total_commits t="I">2727</total_commits>
+    <total_contributors t="I">59</total_contributors>
+    <total_files t="I">898</total_files>
+    <total_forks t="I">124</total_forks>
+    <total_issues t="I">938</total_issues>
+    <total_pulls t="I">878</total_pulls>
+    <total_releases t="I">107</total_releases>
+    <total_repositories t="I">1</total_repositories>
+    <total_stars t="I">324</total_stars>
+    <what t="S">dimensions-of-terrain</what>
+    <when t="T">2026-09-12T07:25:12Z</when>
+  </f>
+  <f>
+    <_id t="I">11992</_id>
+    <_job t="I">34680516407</_job>
+    <_time t="T">2026-09-12T07:27:47Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.23</_version>
+    <since t="T">2026-09-05T07:24:53Z</since>
+    <what t="S">quality-of-service</what>
+    <when t="T">2026-09-12T07:27:47Z</when>
   </f>
 </fb>
