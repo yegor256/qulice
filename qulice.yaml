@@ -2,12 +2,11 @@
 - added: 8
   cycles: 2
   deleted: 8
-  error: deadlock; recursive locking
   inserted: 8
-  seconds: 811.675613219
+  seconds: 522.961562302
   version: 0.61.1
   what: judges-summary
-  when: 2026-09-15 07:43:12.157158341 Z
+  when: 2026-09-16 07:37:31.178139386 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -62899,18 +62898,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 533
-  closures_were_checked: 0
+  assignees_were_scanned: 782
+  closures_were_checked: 1395
   earliest_issue_was_found: 1
-  events_were_scanned: 15046027257
+  events_were_scanned: 15102199825
   issues_were_scanned: 867
-  labels_were_scanned: 1706
+  labels_were_scanned: 673
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1699
-  min_pull_was_found: 1562
+  min_issue_was_found: 1703
+  min_pull_was_found: 1565
   repository: 9580168
-  types_were_scanned: 0
+  types_were_scanned: 585
   what: iterate
   where: github
 - _id: 11295
@@ -73948,20 +73947,6 @@
   since: *151
   what: quality-of-service
   when: 2026-09-12 07:27:47.442598896 Z
-- _id: 11993
-  _job: 92032
-  _time: 2026-09-12 07:32:42.894048099 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (240.9) is increasing (R=0.29).
-    The average number of commits per week (12.0) is increasing (R=0.10).
-    The average issue cycle time (2w2d) is decreasing (R=-0.60).
-    The average pull cycle time (6d6h) is decreasing (R=-0.12).
-    The average number of releases per month (3.6) is increasing (R=0.36).
-    The average monthly turnover (31.0 developers) is increasing (R=0.13).
-  what: assessment
-  when: 2026-09-12 07:32:42.915348394 Z
 - _id: 11994
   _job: 34745078432
   _time: 2026-09-13 07:27:01.662159408 Z
@@ -74093,6 +74078,7 @@
   issue: 1815
   repository: 9580168
   review: 2026-09-10 20:01:57.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -74118,6 +74104,7 @@
   issue: 1816
   repository: 9580168
   review: 2026-09-11 08:38:47.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -74143,6 +74130,7 @@
   issue: 1817
   repository: 9580168
   review: 2026-09-11 08:38:45.000000000 Z
+  review_comments: 0
   succeeded_builds: 12
   suggestions: 0
   what: pull-was-merged
@@ -74168,6 +74156,7 @@
   issue: 1818
   repository: 9580168
   review: 2026-09-13 16:50:51.000000000 Z
+  review_comments: 0
   succeeded_builds: 11
   suggestions: 0
   what: pull-was-merged
@@ -74190,3 +74179,121 @@
   total_stars: 324
   what: dimensions-of-terrain
   when: 2026-09-15 07:40:41.277379484 Z
+- _id: 12007
+  _job: 92718
+  _time: 2026-09-15 07:46:47.989053353 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (242.5) is increasing (R=0.30).
+    The average number of commits per week (11.8) is increasing (R=0.12).
+    The average issue cycle time (2w2d) is decreasing (R=-0.60).
+    The average pull cycle time (6d5h) is decreasing (R=-0.14).
+    The average number of releases per month (3.6) is increasing (R=0.38).
+    The average monthly turnover (34.0 developers) is staying still.
+  what: assessment
+  when: 2026-09-15 07:46:48.009590997 Z
+- _id: 12008
+  _job: 35068628693
+  _time: 2026-09-16 07:28:53.304237900 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/crate-ci-typos-1.x
+  details: The pull request yegor256/qulice#1822 has been opened by @renovate[bot].
+  event_id: 15102199825
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1822
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-15 21:30:09.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12009
+  _job: 35068628693
+  _time: 2026-09-16 07:28:54.697838182 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  comments: 3
+  commits: 1
+  details: The pull request yegor256/qulice#1821 has been reviewed by @yegor256 with
+    2 HoC and 3 comments.
+  event_id: 15055131447
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1821
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-09-15 08:56:45.000000000 Z
+  where: github
+  who: 526301
+- _id: 12010
+  _job: 35068628693
+  _time: 2026-09-16 07:28:55.722386511 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.cactoos-cactoos-0.x
+  details: The pull request yegor256/qulice#1821 has been opened by @renovate[bot].
+  event_id: 15050895492
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1821
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-15 07:44:47.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12011
+  _job: 35068628693
+  _time: 2026-09-16 07:28:55.904719069 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/com.yegor256-jaxec-0.x
+  details: The pull request yegor256/qulice#1820 has been opened by @renovate[bot].
+  event_id: 15050890978
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1820
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-15 07:44:42.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12012
+  _job: 35068628693
+  _time: 2026-09-16 07:29:43.304337655 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.cactoos-cactoos-0.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1821 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1821
+  repository: 9580168
+  review: 2026-09-15 08:56:42.000000000 Z
+  review_comments: 0
+  succeeded_builds: 11
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-15 09:18:41.000000000 Z
+  where: github
+  who: 8086956
+- _id: 12013
+  _job: 35068628693
+  _time: 2026-09-16 07:32:18.993974478 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1819.
+  is_human: 1
+  issue: 1819
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-09-15 06:11:28.000000000 Z
+  where: github
+  who: 526301
