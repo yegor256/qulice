@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 522.961562302
+  seconds: 309.511153938
   version: 0.61.1
   what: judges-summary
-  when: 2026-09-16 07:37:31.178139386 Z
+  when: 2026-09-17 07:34:28.918086191 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -62898,18 +62898,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 782
-  closures_were_checked: 1395
+  assignees_were_scanned: 985
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 15102199825
+  events_were_scanned: 21279841354
   issues_were_scanned: 867
-  labels_were_scanned: 673
+  labels_were_scanned: 936
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1703
-  min_pull_was_found: 1565
+  min_issue_was_found: 1705
+  min_pull_was_found: 1571
   repository: 9580168
-  types_were_scanned: 585
+  types_were_scanned: 773
   what: iterate
   where: github
 - _id: 11295
@@ -74297,3 +74297,65 @@
   when: 2026-09-15 06:11:28.000000000 Z
   where: github
   who: 526301
+- _id: 12014
+  _job: 35194682591
+  _time: 2026-09-17 07:29:23.740305606 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  comments: 3
+  commits: 1
+  details: The pull request yegor256/qulice#1822 has been reviewed by @yegor256 with
+    2 HoC and 3 comments.
+  event_id: 15129588664
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1822
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-09-16 08:38:18.000000000 Z
+  where: github
+  who: 526301
+- _id: 12015
+  _job: 35194682591
+  _time: 2026-09-17 07:29:54.390033012 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/crate-ci-typos-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1822 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1822
+  repository: 9580168
+  review: 2026-09-16 08:38:16.000000000 Z
+  review_comments: 0
+  succeeded_builds: 11
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-16 08:56:20.000000000 Z
+  where: github
+  who: 8086956
+- _id: 12016
+  _job: 35194682591
+  _time: 2026-09-17 07:30:41.741558247 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 4
+  total_commits: 2730
+  total_contributors: 59
+  total_files: 898
+  total_forks: 124
+  total_issues: 939
+  total_pulls: 882
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 324
+  what: dimensions-of-terrain
+  when: 2026-09-17 07:30:41.667256770 Z
