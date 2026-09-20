@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 305.100764241
+  seconds: 499.416988453
   version: 0.61.1
   what: judges-summary
-  when: 2026-09-19 07:28:39.317785423 Z
+  when: 2026-09-20 07:32:59.877195564 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -62898,18 +62898,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 533
-  closures_were_checked: 1395
+  assignees_were_scanned: 782
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 15320382451
+  events_were_scanned: 21602591971
   issues_were_scanned: 867
-  labels_were_scanned: 673
+  labels_were_scanned: 936
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1710
-  min_pull_was_found: 1577
+  min_issue_was_found: 1717
+  min_pull_was_found: 1579
   repository: 9580168
-  types_were_scanned: 1248
+  types_were_scanned: 1770
   what: iterate
   where: github
 - _id: 11295
@@ -74165,20 +74165,6 @@
   total_stars: 324
   what: dimensions-of-terrain
   when: 2026-09-15 07:40:41.277379484 Z
-- _id: 12007
-  _job: 92718
-  _time: 2026-09-15 07:46:47.989053353 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (242.5) is increasing (R=0.30).
-    The average number of commits per week (11.8) is increasing (R=0.12).
-    The average issue cycle time (2w2d) is decreasing (R=-0.60).
-    The average pull cycle time (6d5h) is decreasing (R=-0.14).
-    The average number of releases per month (3.6) is increasing (R=0.38).
-    The average monthly turnover (34.0 developers) is staying still.
-  what: assessment
-  when: 2026-09-15 07:46:48.009590997 Z
 - _id: 12008
   _job: 35068628693
   _time: 2026-09-16 07:28:53.304237900 Z
@@ -74410,3 +74396,193 @@
   since: *153
   what: quality-of-service
   when: 2026-09-19 07:28:25.785634402 Z
+- _id: 12022
+  _job: 93762
+  _time: 2026-09-19 07:29:06.038046247 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (240.1) is increasing (R=0.27).
+    The average number of commits per week (11.5) is increasing (R=0.10).
+    The average issue cycle time (2w) is decreasing (R=-0.56).
+    The average pull cycle time (5d17h) is decreasing (R=-0.14).
+    The average number of releases per month (3.4) is increasing (R=0.34).
+    The average monthly turnover (34.0 developers) is staying still.
+  what: assessment
+  when: 2026-09-19 07:29:06.062386260 Z
+- _id: 12023
+  _job: 35496731423
+  _time: 2026-09-20 07:24:46.236151902 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  comments: 3
+  commits: 1
+  details: The pull request yegor256/qulice#1824 has been reviewed by @yegor256 with
+    2 HoC and 3 comments.
+  event_id: 15338838344
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1824
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-09-19 08:33:34.000000000 Z
+  where: github
+  who: 526301
+- _id: 12024
+  _job: 35496731423
+  _time: 2026-09-20 07:24:47.127754792 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  comments: 3
+  commits: 1
+  details: The pull request yegor256/qulice#1825 has been reviewed by @yegor256 with
+    22 HoC and 3 comments.
+  event_id: 15338836953
+  event_type: PullRequestReviewEvent
+  files: 11
+  hoc: 22
+  is_human: 1
+  issue: 1825
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-09-19 08:33:31.000000000 Z
+  where: github
+  who: 526301
+- _id: 12025
+  _job: 35496731423
+  _time: 2026-09-20 07:24:47.696097613 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/ubuntu-26.x
+  details: The pull request yegor256/qulice#1825 has been opened by @renovate[bot].
+  event_id: 15337464948
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1825
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-19 07:30:28.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12026
+  _job: 35496731423
+  _time: 2026-09-20 07:24:48.166066951 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  details: The pull request yegor256/qulice#1824 has been opened by @renovate[bot].
+  event_id: 15337462031
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1824
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-19 07:30:20.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12027
+  _job: 35496731423
+  _time: 2026-09-20 07:25:29.744047715 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1824 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1824
+  repository: 9580168
+  review: 2026-09-19 08:33:33.000000000 Z
+  review_comments: 0
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-19 10:27:37.000000000 Z
+  where: github
+  who: 8086956
+- _id: 12028
+  _job: 35496731423
+  _time: 2026-09-20 07:25:46.772511928 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/ubuntu-26.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1825 has been "pull-was-merged".
+  failed_builds: 0
+  files: 11
+  hoc: 22
+  is_human: 0
+  issue: 1825
+  repository: 9580168
+  review: 2026-09-19 08:33:30.000000000 Z
+  review_comments: 0
+  succeeded_builds: 11
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-19 09:14:23.000000000 Z
+  where: github
+  who: 8086956
+- _id: 12029
+  _job: 35496731423
+  _time: 2026-09-20 07:26:49.929840977 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 4
+  total_commits: 2734
+  total_contributors: 59
+  total_files: 898
+  total_forks: 124
+  total_issues: 939
+  total_pulls: 885
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 325
+  what: dimensions-of-terrain
+  when: 2026-09-20 07:26:49.858715331 Z
+- _id: 12030
+  _job: 35496731423
+  _time: 2026-09-20 07:27:05.697684558 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  details: The missing pull yegor256/qulice#1823 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1823
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-09-17 07:36:14.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12031
+  _job: 35496731423
+  _time: 2026-09-20 07:29:16.339560584 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1823 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1823
+  repository: 9580168
+  review: 2026-09-17 16:36:19.000000000 Z
+  succeeded_builds: 11
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-17 17:01:10.000000000 Z
+  where: github
+  who: 8086956
