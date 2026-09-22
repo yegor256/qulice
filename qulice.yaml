@@ -1,12 +1,12 @@
 ---
 - added: 8
-  cycles: 1
+  cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 642.323581633
+  seconds: 521.341776944
   version: 0.61.1
   what: judges-summary
-  when: 2026-09-21 07:48:24.119082042 Z
+  when: 2026-09-22 07:37:10.716011056 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63393,18 +63393,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 864
-  closures_were_checked: 1395
+  assignees_were_scanned: 1115
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 21639610557
+  events_were_scanned: 21771237187
   issues_were_scanned: 0
-  labels_were_scanned: 1092
+  labels_were_scanned: 0
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1727
-  min_pull_was_found: 1580
+  min_issue_was_found: 1732
+  min_pull_was_found: 1582
   repository: 9580168
-  types_were_scanned: 0
+  types_were_scanned: 585
   what: iterate
   where: github
 - _id: 11295
@@ -74936,20 +74936,6 @@
   since: *153
   what: quality-of-service
   when: 2026-09-19 07:28:25.785634402 Z
-- _id: 12022
-  _job: 93762
-  _time: 2026-09-19 07:29:06.038046247 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (240.1) is increasing (R=0.27).
-    The average number of commits per week (11.5) is increasing (R=0.10).
-    The average issue cycle time (2w) is decreasing (R=-0.56).
-    The average pull cycle time (5d17h) is decreasing (R=-0.14).
-    The average number of releases per month (3.4) is increasing (R=0.34).
-    The average monthly turnover (34.0 developers) is staying still.
-  what: assessment
-  when: 2026-09-19 07:29:06.062386260 Z
 - _id: 12023
   _job: 35496731423
   _time: 2026-09-20 07:24:46.236151902 Z
@@ -75169,6 +75155,7 @@
   details: The pull request yegor256/qulice#1617 with 288 HoC created by @ghx5t-sol
     was reviewed by @edmoffo after 624h57m and 3 comments.
   hoc: 288
+  is_human: 1
   issue: 1617
   repository: 9580168
   review_comments: 3
@@ -75186,6 +75173,7 @@
   details: The pull request yegor256/qulice#1791 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 92h10m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1791
   repository: 9580168
   review_comments: 0
@@ -75203,6 +75191,7 @@
   details: The pull request yegor256/qulice#1801 with 20 HoC created by @yegor256
     was reviewed by @copilot after 0h1m and 0 comments.
   hoc: 20
+  is_human: 0
   issue: 1801
   repository: 9580168
   review_comments: 0
@@ -75220,6 +75209,7 @@
   details: The pull request yegor256/qulice#1804 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 6h50m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1804
   repository: 9580168
   review_comments: 0
@@ -75237,6 +75227,7 @@
   details: The pull request yegor256/qulice#1805 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 6h50m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1805
   repository: 9580168
   review_comments: 0
@@ -75254,6 +75245,7 @@
   details: The pull request yegor256/qulice#1806 with 4 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 3h0m and 0 comments.
   hoc: 4
+  is_human: 1
   issue: 1806
   repository: 9580168
   review_comments: 0
@@ -75271,6 +75263,7 @@
   details: The pull request yegor256/qulice#1811 with 958 HoC created by @yegor256
     was reviewed by @copilot after 1h38m and 0 comments.
   hoc: 958
+  is_human: 0
   issue: 1811
   repository: 9580168
   review_comments: 0
@@ -75288,6 +75281,7 @@
   details: The pull request yegor256/qulice#1812 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 2h1m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1812
   repository: 9580168
   review_comments: 0
@@ -75305,6 +75299,7 @@
   details: The pull request yegor256/qulice#1815 with 665 HoC created by @yegor256
     was reviewed by @copilot after 0h47m and 0 comments.
   hoc: 665
+  is_human: 0
   issue: 1815
   repository: 9580168
   review_comments: 0
@@ -75322,6 +75317,7 @@
   details: The pull request yegor256/qulice#1816 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h5m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1816
   repository: 9580168
   review_comments: 0
@@ -75339,6 +75335,7 @@
   details: The pull request yegor256/qulice#1817 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h5m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1817
   repository: 9580168
   review_comments: 0
@@ -75356,6 +75353,7 @@
   details: The pull request yegor256/qulice#1818 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 3h24m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1818
   repository: 9580168
   review_comments: 0
@@ -75373,6 +75371,7 @@
   details: The pull request yegor256/qulice#1821 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h11m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1821
   repository: 9580168
   review_comments: 0
@@ -75390,6 +75389,7 @@
   details: The pull request yegor256/qulice#1822 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 11h8m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1822
   repository: 9580168
   review_comments: 0
@@ -75407,6 +75407,7 @@
   details: The pull request yegor256/qulice#1824 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h3m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1824
   repository: 9580168
   review_comments: 0
@@ -75424,6 +75425,7 @@
   details: The pull request yegor256/qulice#1825 with 22 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 1h3m and 0 comments.
   hoc: 22
+  is_human: 1
   issue: 1825
   repository: 9580168
   review_comments: 0
@@ -75441,6 +75443,7 @@
   details: The pull request yegor256/qulice#1823 with 2 HoC created by @renovate[bot]
     was reviewed by @yegor256 after 9h0m and 0 comments.
   hoc: 2
+  is_human: 1
   issue: 1823
   repository: 9580168
   review_comments: 0
@@ -75454,6 +75457,7 @@
   _time: 2026-09-21 07:47:50.100463478 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1592 has been "issue-was-closed".
+  is_human: 1
   issue: 1592
   repository: 9580168
   what: issue-was-closed
@@ -75465,6 +75469,7 @@
   _time: 2026-09-21 07:47:51.212563885 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1654 has been "issue-was-closed".
+  is_human: 1
   issue: 1654
   repository: 9580168
   what: issue-was-closed
@@ -75476,6 +75481,7 @@
   _time: 2026-09-21 07:47:52.110313503 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1671 has been "issue-was-closed".
+  is_human: 1
   issue: 1671
   repository: 9580168
   what: issue-was-closed
@@ -75487,6 +75493,7 @@
   _time: 2026-09-21 07:47:53.047067085 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1683 has been "issue-was-closed".
+  is_human: 1
   issue: 1683
   repository: 9580168
   what: issue-was-closed
@@ -75498,6 +75505,7 @@
   _time: 2026-09-21 07:47:54.041202294 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1685 has been "issue-was-closed".
+  is_human: 1
   issue: 1685
   repository: 9580168
   what: issue-was-closed
@@ -75509,6 +75517,7 @@
   _time: 2026-09-21 07:47:55.080226592 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1686 has been "issue-was-closed".
+  is_human: 1
   issue: 1686
   repository: 9580168
   what: issue-was-closed
@@ -75520,6 +75529,7 @@
   _time: 2026-09-21 07:47:56.067175328 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1690 has been "issue-was-closed".
+  is_human: 1
   issue: 1690
   repository: 9580168
   what: issue-was-closed
@@ -75531,6 +75541,7 @@
   _time: 2026-09-21 07:47:57.036387785 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1691 has been "issue-was-closed".
+  is_human: 1
   issue: 1691
   repository: 9580168
   what: issue-was-closed
@@ -75542,6 +75553,7 @@
   _time: 2026-09-21 07:47:57.945724428 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1692 has been "issue-was-closed".
+  is_human: 1
   issue: 1692
   repository: 9580168
   what: issue-was-closed
@@ -75553,6 +75565,7 @@
   _time: 2026-09-21 07:47:58.918763998 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1694 has been "issue-was-closed".
+  is_human: 1
   issue: 1694
   repository: 9580168
   what: issue-was-closed
@@ -75564,6 +75577,7 @@
   _time: 2026-09-21 07:47:59.852899921 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1698 has been "issue-was-closed".
+  is_human: 1
   issue: 1698
   repository: 9580168
   what: issue-was-closed
@@ -75575,6 +75589,7 @@
   _time: 2026-09-21 07:48:00.789856653 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1699 has been "issue-was-closed".
+  is_human: 1
   issue: 1699
   repository: 9580168
   what: issue-was-closed
@@ -75586,6 +75601,7 @@
   _time: 2026-09-21 07:48:01.724608944 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1700 has been "issue-was-closed".
+  is_human: 1
   issue: 1700
   repository: 9580168
   what: issue-was-closed
@@ -75597,6 +75613,7 @@
   _time: 2026-09-21 07:48:02.648382453 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1703 has been "issue-was-closed".
+  is_human: 1
   issue: 1703
   repository: 9580168
   what: issue-was-closed
@@ -75608,6 +75625,7 @@
   _time: 2026-09-21 07:48:03.579691443 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1704 has been "issue-was-closed".
+  is_human: 1
   issue: 1704
   repository: 9580168
   what: issue-was-closed
@@ -75619,6 +75637,7 @@
   _time: 2026-09-21 07:48:04.586143775 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1705 has been "issue-was-closed".
+  is_human: 1
   issue: 1705
   repository: 9580168
   what: issue-was-closed
@@ -75630,6 +75649,7 @@
   _time: 2026-09-21 07:48:05.479430814 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1706 has been "issue-was-closed".
+  is_human: 1
   issue: 1706
   repository: 9580168
   what: issue-was-closed
@@ -75641,6 +75661,7 @@
   _time: 2026-09-21 07:48:06.276940371 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1708 has been "issue-was-closed".
+  is_human: 1
   issue: 1708
   repository: 9580168
   what: issue-was-closed
@@ -75652,6 +75673,7 @@
   _time: 2026-09-21 07:48:07.273643454 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1709 has been "issue-was-closed".
+  is_human: 1
   issue: 1709
   repository: 9580168
   what: issue-was-closed
@@ -75663,6 +75685,7 @@
   _time: 2026-09-21 07:48:08.253009139 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1710 has been "issue-was-closed".
+  is_human: 1
   issue: 1710
   repository: 9580168
   what: issue-was-closed
@@ -75674,6 +75697,7 @@
   _time: 2026-09-21 07:48:09.172880786 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1716 has been "issue-was-closed".
+  is_human: 1
   issue: 1716
   repository: 9580168
   what: issue-was-closed
@@ -75685,6 +75709,7 @@
   _time: 2026-09-21 07:48:10.384887329 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1717 has been "issue-was-closed".
+  is_human: 1
   issue: 1717
   repository: 9580168
   what: issue-was-closed
@@ -75696,6 +75721,7 @@
   _time: 2026-09-21 07:48:11.275911265 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1741 has been "issue-was-closed".
+  is_human: 1
   issue: 1741
   repository: 9580168
   what: issue-was-closed
@@ -75707,6 +75733,7 @@
   _time: 2026-09-21 07:48:12.267094736 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1742 has been "issue-was-closed".
+  is_human: 1
   issue: 1742
   repository: 9580168
   what: issue-was-closed
@@ -75718,6 +75745,7 @@
   _time: 2026-09-21 07:48:13.319371299 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1745 has been "issue-was-closed".
+  is_human: 1
   issue: 1745
   repository: 9580168
   what: issue-was-closed
@@ -75729,6 +75757,7 @@
   _time: 2026-09-21 07:48:14.317538284 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1746 has been "issue-was-closed".
+  is_human: 1
   issue: 1746
   repository: 9580168
   what: issue-was-closed
@@ -75740,6 +75769,7 @@
   _time: 2026-09-21 07:48:15.325803736 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1752 has been "issue-was-closed".
+  is_human: 1
   issue: 1752
   repository: 9580168
   what: issue-was-closed
@@ -75751,6 +75781,7 @@
   _time: 2026-09-21 07:48:16.190743989 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1754 has been "issue-was-closed".
+  is_human: 1
   issue: 1754
   repository: 9580168
   what: issue-was-closed
@@ -75762,6 +75793,7 @@
   _time: 2026-09-21 07:48:17.158601377 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1756 has been "issue-was-closed".
+  is_human: 1
   issue: 1756
   repository: 9580168
   what: issue-was-closed
@@ -75773,6 +75805,7 @@
   _time: 2026-09-21 07:48:18.117538172 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1758 has been "issue-was-closed".
+  is_human: 1
   issue: 1758
   repository: 9580168
   what: issue-was-closed
@@ -75784,6 +75817,7 @@
   _time: 2026-09-21 07:48:18.936085335 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1761 has been "issue-was-closed".
+  is_human: 1
   issue: 1761
   repository: 9580168
   what: issue-was-closed
@@ -75795,6 +75829,7 @@
   _time: 2026-09-21 07:48:19.716441695 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1763 has been "issue-was-closed".
+  is_human: 1
   issue: 1763
   repository: 9580168
   what: issue-was-closed
@@ -75806,6 +75841,7 @@
   _time: 2026-09-21 07:48:20.625673094 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1765 has been "issue-was-closed".
+  is_human: 1
   issue: 1765
   repository: 9580168
   what: issue-was-closed
@@ -75817,6 +75853,7 @@
   _time: 2026-09-21 07:48:21.469755632 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1767 has been "issue-was-closed".
+  is_human: 1
   issue: 1767
   repository: 9580168
   what: issue-was-closed
@@ -75828,6 +75865,7 @@
   _time: 2026-09-21 07:48:22.391261780 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1783 has been "issue-was-closed".
+  is_human: 1
   issue: 1783
   repository: 9580168
   what: issue-was-closed
@@ -75839,6 +75877,7 @@
   _time: 2026-09-21 07:48:22.834795761 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1800 has been "issue-was-closed".
+  is_human: 1
   issue: 1800
   repository: 9580168
   what: issue-was-closed
@@ -75850,6 +75889,7 @@
   _time: 2026-09-21 07:48:23.253278140 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1810 has been "issue-was-closed".
+  is_human: 1
   issue: 1810
   repository: 9580168
   what: issue-was-closed
@@ -75861,9 +75901,50 @@
   _time: 2026-09-21 07:48:23.670326208 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: Apparently, yegor256/qulice#1814 has been "issue-was-closed".
+  is_human: 1
   issue: 1814
   repository: 9580168
   what: issue-was-closed
   when: 2026-09-10 20:01:56.000000000 Z
   where: github
   who: 526301
+- _id: 12089
+  _job: 94151
+  _time: 2026-09-21 07:48:50.985389408 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (240.1) is increasing (R=0.27).
+    The average number of commits per week (11.5) is increasing (R=0.10).
+    The average issue cycle time (1w2d) is decreasing (R=-0.39).
+    The average pull cycle time (5d15h) is decreasing (R=-0.14).
+    The average number of releases per month (3.4) is increasing (R=0.34).
+    The average monthly turnover (34.0 developers) is staying still.
+  what: assessment
+  when: 2026-09-21 07:48:51.006594556 Z
+- _id: 12090
+  _job: 35699689208
+  _time: 2026-09-22 07:29:08.884728768 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/com.yegor256-jaxec-0.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1820 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1820
+  repository: 9580168
+  review: 2026-09-21 17:01:47.000000000 Z
+  review_comments: 0
+  succeeded_builds: 12
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-09-21 17:37:12.000000000 Z
+  where: github
+  who: 8086956
