@@ -2,12 +2,11 @@
 - added: 8
   cycles: 2
   deleted: 8
-  error: deadlock; recursive locking
   inserted: 8
-  seconds: 328.91031042
+  seconds: 483.685332471
   version: 0.61.1
   what: judges-summary
-  when: 2026-09-28 07:48:06.877803238 Z
+  when: 2026-09-29 07:42:20.482368980 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63394,18 +63393,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 0
-  closures_were_checked: 1395
+  assignees_were_scanned: 690
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 22317695299
+  events_were_scanned: 15972951991
   issues_were_scanned: 0
-  labels_were_scanned: 1092
+  labels_were_scanned: 0
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1756
-  min_pull_was_found: 1594
+  min_issue_was_found: 1761
+  min_pull_was_found: 1596
   repository: 9580168
-  types_were_scanned: 487
+  types_were_scanned: 695
   what: iterate
   where: github
 - _id: 11295
@@ -75969,20 +75968,6 @@
   total_stars: 326
   what: dimensions-of-terrain
   when: 2026-09-25 07:35:47.348948747 Z
-- _id: 12095
-  _job: 94760
-  _time: 2026-09-25 07:38:29.302276040 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (244.4) is increasing (R=0.26).
-    The average number of commits per week (11.8) is staying still.
-    The average issue cycle time (1w2d) is decreasing (R=-0.39).
-    The average pull cycle time (5d16h) is decreasing (R=-0.15).
-    The average number of releases per month (3.6) is increasing (R=0.33).
-    The average monthly turnover (34.0 developers) is staying still.
-  what: assessment
-  when: 2026-09-25 07:38:29.319842164 Z
 - _id: 12096
   _job: 36226635431
   _time: 2026-09-26 07:24:53.838390031 Z
@@ -76034,3 +76019,31 @@
   total_stars: 326
   what: dimensions-of-terrain
   when: 2026-09-28 07:44:04.890983089 Z
+- _id: 12100
+  _job: 95667
+  _time: 2026-09-28 07:48:29.901014570 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (241.7) is increasing (R=0.24).
+    The average number of commits per week (11.7) is staying still.
+    The average issue cycle time (1w2d) is decreasing (R=-0.39).
+    The average pull cycle time (5d17h) is decreasing (R=-0.15).
+    The average number of releases per month (3.4) is increasing (R=0.29).
+    The average monthly turnover (34.0 developers) is staying still.
+  what: assessment
+  when: 2026-09-28 07:48:29.920279342 Z
+- _id: 12101
+  _job: 95667
+  _time: 2026-09-28 07:48:57.271783978 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  ac: 68
+  cost_of_qod: 4.274793243511956
+  ev: 1782
+  pv: 17615
+  qod: 417
+  qod_per_day: 10.927486662642895
+  qod_per_sec: 1.2803195726749704e-05
+  start: *12
+  what: earned-value
+  when: 2026-09-28 07:48:57.272012460 Z
