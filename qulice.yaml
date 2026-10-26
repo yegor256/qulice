@@ -2,11 +2,12 @@
 - added: 8
   cycles: 2
   deleted: 8
+  error: deadlock; recursive locking
   inserted: 8
-  seconds: 446.102389145
+  seconds: 181.803082173
   version: 0.61.1
   what: judges-summary
-  when: 2026-10-25 07:33:27.724962921 Z
+  when: 2026-10-26 07:43:55.824973556 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63393,18 +63394,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 864
-  closures_were_checked: 0
+  assignees_were_scanned: 985
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 25000471471
+  events_were_scanned: 18195734573
   issues_were_scanned: 0
-  labels_were_scanned: 843
+  labels_were_scanned: 936
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1584
-  min_pull_was_found: 1651
+  min_issue_was_found: 1592
+  min_pull_was_found: 1652
   repository: 9580168
-  types_were_scanned: 695
+  types_were_scanned: 773
   what: iterate
   where: github
 - _id: 11295
@@ -76415,7 +76416,7 @@
   _version: 0.19.16/0.61.1/0.17.23
   since: *161
   what: quality-of-service
-  when: 2026-10-19 07:42:28.953131798 Z
+  when: &163 2026-10-19 07:42:28.953131798 Z
 - _id: 12141
   _job: 100812
   _time: 2026-10-20 07:34:01.688078865 Z
@@ -76462,20 +76463,6 @@
   total_stars: 328
   what: dimensions-of-terrain
   when: 2026-10-22 07:36:50.658179830 Z
-- _id: 12145
-  _job: 101162
-  _time: 2026-10-22 07:40:35.386911589 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (256.6) is increasing (R=0.15).
-    The average number of commits per week (12.4) is staying still.
-    The average issue cycle time (1w2d) is decreasing (R=-0.39).
-    The average pull cycle time (5d9h) is decreasing (R=-0.17).
-    The average number of releases per month (3.4) is increasing (R=0.17).
-    The average monthly turnover (33.0 developers) is decreasing (R=-0.36).
-  what: assessment
-  when: 2026-10-22 07:40:35.408560489 Z
 - _id: 12146
   _job: 40073964404
   _time: 2026-10-24 07:25:59.228787916 Z
@@ -76536,3 +76523,40 @@
   total_stars: 328
   what: dimensions-of-terrain
   when: 2026-10-25 07:27:43.697497733 Z
+- _id: 12150
+  _job: 102092
+  _time: 2026-10-25 07:33:51.252697385 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (251.3) is increasing (R=0.12).
+    The average number of commits per week (12.1) is staying still.
+    The average issue cycle time (1w2d) is decreasing (R=-0.39).
+    The average pull cycle time (5d) is decreasing (R=-0.15).
+    The average number of releases per month (3.3) is increasing (R=0.14).
+    The average monthly turnover (33.0 developers) is decreasing (R=-0.36).
+  what: assessment
+  when: 2026-10-25 07:33:51.274256123 Z
+- _id: 12151
+  _job: 40287185215
+  _time: 2026-10-26 07:41:59.314305754 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 3
+  total_commits: 2767
+  total_contributors: 59
+  total_files: 898
+  total_forks: 125
+  total_issues: 939
+  total_pulls: 909
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 328
+  what: dimensions-of-terrain
+  when: 2026-10-26 07:41:59.259494373 Z
+- _id: 12152
+  _job: 40287185215
+  _time: 2026-10-26 07:43:37.378308221 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  since: *163
+  what: quality-of-service
+  when: 2026-10-26 07:43:37.367901955 Z
