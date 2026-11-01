@@ -11,7 +11,6 @@ import com.jcabi.log.Logger;
 import com.qulice.spi.Binary;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.charset.Charset;
@@ -134,16 +133,10 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     @Override
     public Collection<String> classpath() {
         final Collection<String> paths = new ArrayList<>(0);
-        final String blank = "%20";
-        final String whitespace = " ";
         try {
             for (final String name
                 : this.iproject.getTestClasspathElements()) {
-                paths.add(
-                    name.replace(
-                        File.separatorChar, '/'
-                    ).replaceAll(whitespace, blank)
-                );
+                paths.add(name.replace(File.separatorChar, '/'));
             }
         } catch (final DependencyResolutionRequiredException ex) {
             throw new IllegalStateException("Failed to read classpath", ex);
@@ -156,9 +149,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         final List<URL> urls = new ArrayList<>(0);
         for (final String path : this.classpath()) {
             try {
-                urls.add(
-                    URI.create(String.format("file:///%s", path)).toURL()
-                );
+                urls.add(new File(path).toURI().toURL());
             } catch (final MalformedURLException ex) {
                 throw new IllegalStateException("Failed to build URL", ex);
             }

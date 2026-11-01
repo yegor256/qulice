@@ -109,6 +109,57 @@ final class DefaultMavenEnvironmentTest {
     }
 
     /**
+     * DefaultMavenEnvironment.classloader() should load resources from a
+     * classpath directory whose name has spaces and URL-reserved characters
+     * (see <a href="https://github.com/yegor256/qulice/issues/1851">
+     * issue #1851</a>).
+     *
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void loadsResourcesFromPathWithReservedCharacters(
+        @TempDir final Path basedir
+    ) throws Exception {
+        final Path dir = basedir.resolve("jorg smith [4]");
+        Files.createDirectories(dir);
+        Files.writeString(dir.resolve("wat.txt"), "e", StandardCharsets.UTF_8);
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub();
+        project.setTestClasspathElements(
+            Collections.singletonList(dir.toAbsolutePath().toString())
+        );
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Classloader cannot miss a resource under a path with spaces",
+            env.classloader().getResource("wat.txt"),
+            Matchers.notNullValue()
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.classpath() should return paths exactly as
+     * they are on disk, without percent-encoding, since javac reads them
+     * as file names
+     * (see <a href="https://github.com/yegor256/qulice/issues/1851">
+     * issue #1851</a>).
+     */
+    @Test
+    void keepsSpacesInClasspathUnencoded() {
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub();
+        project.setTestClasspathElements(
+            Collections.singletonList("/xyq y/q z.jar")
+        );
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Classpath cannot percent-encode spaces in paths",
+            env.classpath(),
+            Matchers.contains("/xyq y/q z.jar")
+        );
+    }
+
+    /**
      * DefaultMavenEnvironment.classpath() should return the fully-resolved
      * test classpath (compile + runtime + test scope, transitives included)
      * so that ErrorProne, which compiles test sources too, can access
