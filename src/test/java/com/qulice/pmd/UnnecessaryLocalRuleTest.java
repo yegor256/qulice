@@ -126,6 +126,54 @@ final class UnnecessaryLocalRuleTest {
         );
     }
 
+    @Test
+    void doesNotFireWhenInliningLeavesResourceUnclosed() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should not fire when inlining the local would violate CloseInlineResourceRule",
+            this.violations("UnnecessaryLocalKeepsResourceOutOfArgument.java"),
+            Matchers.allOf(
+                Matchers.not(Matchers.hasItem(UnnecessaryLocalRuleTest.RULE)),
+                Matchers.not(Matchers.hasItem("CloseInlineResourceRule"))
+            )
+        );
+    }
+
+    @Test
+    void detectsResourceLocalReturnedDirectly() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should fire on a resource local that is only returned",
+            this.violations("UnnecessaryLocalReturnedResource.java"),
+            Matchers.hasItem(UnnecessaryLocalRuleTest.RULE)
+        );
+    }
+
+    @Test
+    void detectsResourceLocalOpenedWithoutResourceArgument() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should fire on a resource local whose inlined opening call CloseInlineResourceRule accepts",
+            this.violations("UnnecessaryLocalOpenedResource.java"),
+            Matchers.hasItem(UnnecessaryLocalRuleTest.RULE)
+        );
+    }
+
+    @Test
+    void detectsLocalOfResourceTypeAllowedInline() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should fire on a local of a resource type that CloseInlineResourceRule allows inline",
+            this.violations("UnnecessaryLocalAllowedResource.java"),
+            Matchers.hasItem(UnnecessaryLocalRuleTest.RULE)
+        );
+    }
+
+    @Test
+    void detectsResourceLocalPassedToAnotherLocal() throws Exception {
+        MatcherAssert.assertThat(
+            "UnnecessaryLocalRule should fire on a resource local that only initializes another local",
+            this.violations("UnnecessaryLocalResourcePassedToLocal.java"),
+            Matchers.hasItem(UnnecessaryLocalRuleTest.RULE)
+        );
+    }
+
     private List<String> violations(final String file) throws Exception {
         final String name = String.format("src/main/java/foo/%s", file);
         final Environment env = new Environment.Mock().withFile(

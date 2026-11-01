@@ -46,7 +46,7 @@ public final class CloseInlineResourceRule extends AbstractJavaRulechainRule {
 
     @Override
     public Object visit(final ASTConstructorCall call, final Object data) {
-        if (CloseInlineResourceRule.leaksInline(call)) {
+        if (CloseInlineResourceRule.leaks(call, call)) {
             this.asCtx(data).addViolation(call);
         }
         return data;
@@ -54,20 +54,39 @@ public final class CloseInlineResourceRule extends AbstractJavaRulechainRule {
 
     @Override
     public Object visit(final ASTMethodCall call, final Object data) {
-        if (CloseInlineResourceRule.leaksInline(call)
-            && CloseInlineResourceRule.hasCloseableArgument(call)) {
+        if (CloseInlineResourceRule.leaks(call, call)) {
             this.asCtx(data).addViolation(call);
         }
         return data;
     }
 
-    private static boolean leaksInline(final ASTExpression expr) {
+    /**
+     * Checks whether this rule would report the expression if it stood
+     * at the given place.
+     *
+     * @param expr The expression that creates the resource
+     * @param place The expression that the resource would replace
+     * @return True if the resource would leak inline at that place
+     * @todo #1819:45min Check the resources nested in the expression too.
+     *  Inlining {@code final String line = new BufferedReader(src).readLine()}
+     *  moves {@code new BufferedReader(src)} out of the variable declarator,
+     *  so this rule reports it, while UnnecessaryLocalRule still demands
+     *  the inlining, because this method looks only at the outer call.
+     */
+    static boolean leaks(final ASTExpression expr, final ASTExpression place) {
         boolean result = false;
         if (CloseInlineResourceRule.closeable(expr)
-            && !CloseInlineResourceRule.allowed(expr)) {
-            result = CloseInlineResourceRule.unmanagedInline(expr);
+            && !CloseInlineResourceRule.allowed(expr)
+            && CloseInlineResourceRule.reported(expr)) {
+            result = CloseInlineResourceRule.unmanagedInline(place);
         }
         return result;
+    }
+
+    private static boolean reported(final ASTExpression expr) {
+        return expr instanceof ASTConstructorCall
+            || expr instanceof ASTMethodCall call
+            && CloseInlineResourceRule.hasCloseableArgument(call);
     }
 
     private static boolean closeable(final ASTExpression expr) {

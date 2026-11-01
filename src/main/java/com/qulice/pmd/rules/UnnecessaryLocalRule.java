@@ -76,7 +76,10 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
                 .toList();
             if (UnnecessaryLocalRule.hasReturnOrArguments(uses)
                 && !UnnecessaryLocalSkips.acrossBoundary(block, name, uses.size())
-                && !UnnecessaryLocalSkips.interveningCall(variable, uses.get(0))) {
+                && !UnnecessaryLocalSkips.interveningCall(variable, uses.get(0))
+                && !CloseInlineResourceRule.leaks(
+                    variable.getInitializer(), uses.get(0)
+                )) {
                 result = name;
             }
         }
