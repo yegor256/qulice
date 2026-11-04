@@ -185,30 +185,33 @@ public final class MojoExecutor {
     }
 
     private Xpp3Dom toNode(final String name, final Object value) {
-        final Xpp3Dom node;
-        if (value instanceof String) {
-            node = new Xpp3Dom(name);
-            node.setValue(String.class.cast(value));
-        } else if (value instanceof String[]) {
-            node = new Xpp3Dom(name);
-            for (final String val : String[].class.cast(value)) {
-                final Xpp3Dom row = new Xpp3Dom(name);
-                row.setValue(val);
-                node.addChild(row);
+        return switch (value) {
+            case final String text -> {
+                final Xpp3Dom node = new Xpp3Dom(name);
+                node.setValue(text);
+                yield node;
             }
-        } else if (value instanceof Collection) {
-            node = new Xpp3Dom(name);
-            for (final Object item : Collection.class.cast(value)) {
-                this.appendItem(node, name, item);
+            case final String[] texts -> {
+                final Xpp3Dom node = new Xpp3Dom(name);
+                for (final String val : texts) {
+                    final Xpp3Dom row = new Xpp3Dom(name);
+                    row.setValue(val);
+                    node.addChild(row);
+                }
+                yield node;
             }
-        } else if (value instanceof Properties) {
-            node = this.toXppDom(Properties.class.cast(value), name);
-        } else {
-            throw new IllegalArgumentException(
+            case final Collection<?> items -> {
+                final Xpp3Dom node = new Xpp3Dom(name);
+                for (final Object item : items) {
+                    this.appendItem(node, name, item);
+                }
+                yield node;
+            }
+            case final Properties props -> this.toXppDom(props, name);
+            case null, default -> throw new IllegalArgumentException(
                 String.format("Invalid properties value at '%s'", name)
             );
-        }
-        return node;
+        };
     }
 
     private void appendItem(
