@@ -35,7 +35,13 @@ import java.util.Set;
  * Checkstyle class of that very name. In both of them the simple name
  * is taken by something else in the file and the qualified name is the
  * only name left. A name that two imports of the file bring in is taken
- * by both of them and stays alone as well.</p>
+ * by both of them and stays alone as well. The same holds when the file
+ * already says the simple name unqualified somewhere, since a
+ * single-type import of a rival type of that name would shadow every
+ * such use, the way an import of {@code cache.base.Logged} would shadow
+ * the same-package {@code Logged} a test calls through
+ * {@code new Logged(...)}; a name a type-import-on-demand may bind is
+ * also said unqualified, and is left alone for the same reason.</p>
  *
  * <p>A name counts as a type name when it starts with a capital letter,
  * has a small one after it, and stands behind at least two package
@@ -71,11 +77,20 @@ public final class FullyQualifiedTypeCheck extends AbstractCheck {
     private final Map<String, String> imports;
 
     /**
+     * Simple names the file already says unqualified, the way a
+     * constructor call of a same-package type does. A single-type import
+     * of a rival type of such a name would shadow them all and change
+     * their meaning, which is why their qualified spellings stay.
+     */
+    private final Set<String> used;
+
+    /**
      * Default constructor.
      */
     public FullyQualifiedTypeCheck() {
         this.taken = new HashSet<>(0);
         this.imports = new HashMap<>(0);
+        this.used = new HashSet<>(0);
     }
 
     @Override
@@ -97,6 +112,7 @@ public final class FullyQualifiedTypeCheck extends AbstractCheck {
     public void beginTree(final DetailAST root) {
         this.taken.clear();
         this.imports.clear();
+        this.used.clear();
         this.scan(root);
     }
 
@@ -128,6 +144,7 @@ public final class FullyQualifiedTypeCheck extends AbstractCheck {
 
     private boolean free(final String simple, final String full) {
         return !this.taken.contains(simple)
+            && !this.used.contains(simple)
             || full.equals(this.imports.get(simple));
     }
 
@@ -139,12 +156,20 @@ public final class FullyQualifiedTypeCheck extends AbstractCheck {
             );
         } else if (FullyQualifiedTypeCheck.DECLARATIONS.contains(type)) {
             this.taken.add(node.findFirstToken(TokenTypes.IDENT).getText());
+        } else if (type == TokenTypes.IDENT
+            && !FullyQualifiedTypeCheck.dotted(node)) {
+            this.used.add(node.getText());
         }
         DetailAST child = node.getFirstChild();
         while (child != null) {
             this.scan(child);
             child = child.getNextSibling();
         }
+    }
+
+    private static boolean dotted(final DetailAST node) {
+        return node.getParent().getType() == TokenTypes.DOT
+            && node.getPreviousSibling() != null;
     }
 
     private void remember(final List<String> names) {
