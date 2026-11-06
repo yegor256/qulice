@@ -351,8 +351,7 @@ final class DependenciesValidatorTest {
                 String.valueOf('\n'),
                 "package com.example;",
                 "import com.latin.Tool;",
-                "// caf".concat(String.valueOf((char) 0xE9))
-                    .concat(" lives in a windows-1252 comment"),
+                "// café lives in a windows-1252 comment",
                 "public class Latin {}",
                 ""
             ).getBytes(Charset.forName("windows-1252"))
