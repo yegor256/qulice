@@ -4,17 +4,25 @@
   "extends": [
     "config:base"
   ],
-  "platformAutomerge": false,
   "packageRules": [
     {
-      "matchManagers": ["maven"],
-      "matchPackageNames": ["com.puppycrawl.tools:checkstyle"],
-      "allowedVersions": "<14.4"
+      "allowedVersions": "<14.4",
+      "matchManagers": [
+        "maven"
+      ],
+      "matchPackageNames": [
+        "com.puppycrawl.tools:checkstyle"
+      ]
     },
     {
-      "matchManagers": ["maven"],
-      "matchPackageNames": ["net.sf.saxon:Saxon-HE"],
-      "allowedVersions": "<13"
+      "allowedVersions": "<13",
+      "matchManagers": [
+        "maven"
+      ],
+      "matchPackageNames": [
+        "net.sf.saxon:Saxon-HE"
+      ]
     }
-  ]
+  ],
+  "platformAutomerge": false
 }
