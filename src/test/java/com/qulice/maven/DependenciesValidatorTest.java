@@ -9,6 +9,7 @@ import com.google.common.base.Splitter;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,9 +20,13 @@ import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.model.Build;
 import org.apache.maven.plugin.testing.stubs.ArtifactStub;
+import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
+import org.codehaus.plexus.DefaultPlexusContainer;
+import org.codehaus.plexus.PlexusContainer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -320,6 +325,53 @@ final class DependenciesValidatorTest {
         );
     }
 
+    /**
+     * DependencyValidator must read Java sources using the encoding
+     * configured in the environment, not UTF-8. A project compiled with
+     * {@code project.build.sourceEncoding=windows-1252} may legitimately
+     * hold a non-ASCII byte inside a comment; reading such a file as
+     * UTF-8 used to crash dependency validation with
+     * {@code MalformedInputException} before the imported dependency
+     * could be recognized
+     * (see <a href="https://github.com/yegor256/qulice/issues/1862">
+     * issue #1862</a>).
+     *
+     * @param dir Temporary directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void readsSourcesInConfiguredEncoding(@TempDir final Path dir)
+        throws Exception {
+        final Path src = DependenciesValidatorTest.sourceRoot(dir);
+        final Path source = src.resolve("com/example/Latin.java");
+        Files.createDirectories(source.getParent());
+        Files.write(
+            source,
+            String.join(
+                String.valueOf('\n'),
+                "package com.example;",
+                "import com.latin.Tool;",
+                "// café lives in a windows-1252 comment",
+                "public class Latin {}",
+                ""
+            ).getBytes(Charset.forName("windows-1252"))
+        );
+        Assertions.assertDoesNotThrow(
+            () -> new DependenciesValidator().validate(
+                DependenciesValidatorTest.envWithUnusedInEncoding(
+                    dir,
+                    src,
+                    DependenciesValidatorTest.jar(
+                        dir, "latin.jar", "com/latin/Tool.class"
+                    ),
+                    "com.latin:latin",
+                    Charset.forName("windows-1252")
+                )
+            ),
+            "A windows-1252 source with a non-ASCII comment must not crash dependency validation"
+        );
+    }
+
     private static MavenEnvironment envWith(
         final ProjectDependencyAnalysis analysis
     ) throws Exception {
@@ -348,6 +400,54 @@ final class DependenciesValidatorTest {
             )
         );
         env.project().addCompileSourceRoot(src.toString());
+        return env;
+    }
+
+    private static MavenEnvironment envWithUnusedInEncoding(final Path dir,
+        final Path src, final File jar, final String coord,
+        final Charset charset) throws Exception {
+        final List<String> parts = Splitter.on(':').splitToList(coord);
+        final ArtifactStub artifact = new ArtifactStub();
+        artifact.setGroupId(parts.get(0));
+        artifact.setArtifactId(parts.get(1));
+        artifact.setScope(DependenciesValidatorTest.SCOPE);
+        artifact.setVersion("1.0.0");
+        artifact.setType(DependenciesValidatorTest.TYPE);
+        artifact.setFile(jar);
+        final Set<Artifact> unused = new HashSet<>();
+        unused.add(artifact);
+        final ProjectDependencyAnalysis analysis =
+            new ProjectDependencyAnalysis(
+                Collections.emptySet(), Collections.emptySet(), unused
+            );
+        final PlexusContainer container = new DefaultPlexusContainer();
+        container.addComponent(
+            new FakeProjectDependencyAnalyzer(analysis),
+            DependenciesValidatorTest.ROLE
+        );
+        final Path target = dir.resolve("target");
+        final Build build = new Build();
+        build.setDirectory(target.toAbsolutePath().toString());
+        build.setOutputDirectory(
+            target.resolve("classes").toAbsolutePath().toString()
+        );
+        Files.createDirectories(target.resolve("classes"));
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return dir.toFile();
+            }
+
+            @Override
+            public Build getBuild() {
+                return build;
+            }
+        };
+        project.addCompileSourceRoot(src.toAbsolutePath().toString());
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setProject(project);
+        env.setContext(new FakeContext(container));
+        env.setEncoding(charset.name());
         return env;
     }
 
