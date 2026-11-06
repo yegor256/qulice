@@ -10,7 +10,7 @@ import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -146,24 +146,26 @@ final class DependenciesValidator implements MavenValidator {
 
     private static Set<String> imports(final MavenEnvironment env) {
         final Set<String> imports = new HashSet<>();
+        final Charset charset = env.encoding();
         final Collection<String> roots =
             env.project().getCompileSourceRoots();
         if (roots != null) {
             for (final String root : roots) {
                 final Path dir = Paths.get(root);
                 if (Files.isDirectory(dir)) {
-                    DependenciesValidator.scanJavaFiles(dir, imports);
+                    DependenciesValidator.scanJavaFiles(dir, imports, charset);
                 }
             }
         }
         return imports;
     }
 
-    private static void scanJavaFiles(final Path dir, final Set<String> acc) {
+    private static void scanJavaFiles(final Path dir, final Set<String> acc,
+        final Charset charset) {
         try (Stream<Path> walk = Files.walk(dir)) {
             walk
                 .filter(path -> path.toString().endsWith(".java"))
-                .forEach(path -> DependenciesValidator.readImports(path, acc));
+                .forEach(path -> readImports(path, acc, charset));
         } catch (final IOException ex) {
             throw new IllegalStateException(
                 String.format("Cannot scan source root %s", dir), ex
@@ -171,9 +173,10 @@ final class DependenciesValidator implements MavenValidator {
         }
     }
 
-    private static void readImports(final Path file, final Set<String> acc) {
+    private static void readImports(final Path file, final Set<String> acc,
+        final Charset charset) {
         try {
-            for (final String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
+            for (final String line : Files.readAllLines(file, charset)) {
                 final String trimmed = line.trim();
                 if (!trimmed.startsWith("import ")) {
                     continue;
