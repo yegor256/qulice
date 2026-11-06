@@ -4,5 +4,17 @@
   "extends": [
     "config:base"
   ],
-  "platformAutomerge": false
+  "platformAutomerge": false,
+  "packageRules": [
+    {
+      "matchManagers": ["maven"],
+      "matchPackageNames": ["com.puppycrawl.tools:checkstyle"],
+      "allowedVersions": "<14.4"
+    },
+    {
+      "matchManagers": ["maven"],
+      "matchPackageNames": ["net.sf.saxon:Saxon-HE"],
+      "allowedVersions": "<13"
+    }
+  ]
 }
