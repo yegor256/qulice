@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 199.046934705
+  seconds: 256.023227245
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-06 07:21:30.598838013 Z
+  when: 2026-11-07 07:20:38.642966734 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63393,18 +63393,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 0
-  closures_were_checked: 0
+  assignees_were_scanned: 533
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 26252448891
+  events_were_scanned: 26381309549
   issues_were_scanned: 0
-  labels_were_scanned: 843
+  labels_were_scanned: 936
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1647
-  min_pull_was_found: 1670
+  min_issue_was_found: 1654
+  min_pull_was_found: 1672
   repository: 9580168
-  types_were_scanned: 773
+  types_were_scanned: 848
   what: iterate
   where: github
 - _id: 11295
@@ -78070,3 +78070,106 @@
   total_stars: 328
   what: dimensions-of-terrain
   when: 2026-11-06 07:19:14.442329863 Z
+- _id: 12244
+  _job: 42350516797
+  _time: 2026-11-07 07:16:28.100286788 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  assigner: 526301
+  details: yegor256/qulice#410 was assigned to @yegor256 by @yegor256.
+  is_human: 1
+  issue: 410
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-11-06 12:42:31.000000000 Z
+  where: github
+  who: 526301
+- _id: 12245
+  _job: 42350516797
+  _time: 2026-11-07 07:16:54.827272940 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/net.sf.saxon-saxon-he-13.x
+  comments: 4
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1794 has been "pull-was-closed".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1794
+  repository: 9580168
+  succeeded_builds: 5
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-11-06 12:46:35.000000000 Z
+  where: github
+  who: 526301
+- _id: 12246
+  _job: 42350516797
+  _time: 2026-11-07 07:17:07.102704731 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: version-up
+  comments: 1
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1813 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1813
+  repository: 9580168
+  review: 2026-11-06 12:43:01.000000000 Z
+  succeeded_builds: 0
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-06 12:43:13.000000000 Z
+  where: github
+  who: 526301
+- _id: 12247
+  _job: 42350516797
+  _time: 2026-11-07 07:17:10.263853790 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/com.puppycrawl.tools-checkstyle-14.x
+  comments: 3
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 2
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1830 has been "pull-was-closed".
+  failed_builds: 3
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1830
+  repository: 9580168
+  succeeded_builds: 5
+  suggestions: 0
+  what: pull-was-closed
+  when: 2026-11-06 12:46:31.000000000 Z
+  where: github
+  who: 526301
+- _id: 12248
+  _job: 42350516797
+  _time: 2026-11-07 07:19:24.314516857 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  details: The issue yegor256/qulice#1862 has been earlier opened by @yegor256.
+  issue: 1862
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-11-06 12:45:52.000000000 Z
+  where: github
+  who: 526301
+- _id: 12249
+  _job: 42350516797
+  _time: 2026-11-07 07:20:35.739164567 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  what: dimensions-of-terrain
+  when: 2026-11-07 07:20:35.678084553 Z
