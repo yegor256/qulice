@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 256.023227245
+  seconds: 256.594201614
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-07 07:20:38.642966734 Z
+  when: 2026-11-08 07:20:35.334917205 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63393,18 +63393,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 533
-  closures_were_checked: 1168
+  assignees_were_scanned: 690
+  closures_were_checked: 1395
   earliest_issue_was_found: 1
-  events_were_scanned: 26381309549
+  events_were_scanned: 26508029942
   issues_were_scanned: 0
-  labels_were_scanned: 936
+  labels_were_scanned: 1092
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1654
-  min_pull_was_found: 1672
+  min_issue_was_found: 1656
+  min_pull_was_found: 1673
   repository: 9580168
-  types_were_scanned: 848
+  types_were_scanned: 941
   what: iterate
   where: github
 - _id: 11295
@@ -77496,20 +77496,6 @@
   since: *165
   what: quality-of-service
   when: 2026-11-03 07:26:27.074494695 Z
-- _id: 12215
-  _job: 104198
-  _time: 2026-11-03 07:27:22.399351052 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (254.9) is staying still.
-    The average number of commits per week (12.2) is staying still.
-    The average issue cycle time (1w2d) is decreasing (R=-0.29).
-    The average pull cycle time (4d14h) is decreasing (R=-0.11).
-    The average number of releases per month (3.3) is staying still.
-    The average monthly turnover (30.0 developers) is decreasing (R=-0.44).
-  what: assessment
-  when: 2026-11-03 07:27:22.420098717 Z
 - _id: 12216
   _job: 41791180012
   _time: 2026-11-04 07:17:58.510980502 Z
@@ -78126,6 +78112,7 @@
   issue: 1813
   repository: 9580168
   review: 2026-11-06 12:43:01.000000000 Z
+  review_comments: 0
   succeeded_builds: 0
   suggestions: 0
   what: pull-was-merged
@@ -78161,6 +78148,7 @@
   _time: 2026-11-07 07:19:24.314516857 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: The issue yegor256/qulice#1862 has been earlier opened by @yegor256.
+  is_human: 1
   issue: 1862
   repository: 9580168
   what: issue-was-opened
@@ -78171,5 +78159,55 @@
   _job: 42350516797
   _time: 2026-11-07 07:20:35.739164567 Z
   _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 5
+  total_commits: 2808
+  total_contributors: 61
+  total_files: 906
+  total_forks: 126
+  total_issues: 943
+  total_pulls: 922
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 328
   what: dimensions-of-terrain
   when: 2026-11-07 07:20:35.678084553 Z
+- _id: 12250
+  _job: 105801
+  _time: 2026-11-07 07:20:59.063231998 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (260.2) is staying still.
+    The average number of commits per week (12.6) is staying still.
+    The average issue cycle time (1w2d) is decreasing (R=-0.29).
+    The average pull cycle time (5d8h) is staying still.
+    The average number of releases per month (3.4) is staying still.
+    The average monthly turnover (29.0 developers) is decreasing (R=-0.44).
+  what: assessment
+  when: 2026-11-07 07:20:59.087507108 Z
+- _id: 12251
+  _job: 42458037935
+  _time: 2026-11-08 07:18:33.315853474 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.checkerframework-checker-qual-4.x
+  details: The missing pull yegor256/qulice#1860 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1860
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-04 09:07:10.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12252
+  _job: 42458037935
+  _time: 2026-11-08 07:18:33.947271683 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: fix/1853-fqn-same-package
+  details: The missing pull yegor256/qulice#1861 has been opened by @inf1mum.
+  is_human: 1
+  issue: 1861
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-05 16:16:12.000000000 Z
+  where: github
+  who: 8135225
