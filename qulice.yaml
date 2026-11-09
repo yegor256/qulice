@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 256.594201614
+  seconds: 198.104043048
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-08 07:20:35.334917205 Z
+  when: 2026-11-09 07:22:39.983865239 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63393,18 +63393,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 690
-  closures_were_checked: 1395
+  assignees_were_scanned: 782
+  closures_were_checked: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 26508029942
+  events_were_scanned: 26583311841
   issues_were_scanned: 0
-  labels_were_scanned: 1092
+  labels_were_scanned: 1706
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1656
-  min_pull_was_found: 1673
+  min_issue_was_found: 1658
+  min_pull_was_found: 1675
   repository: 9580168
-  types_were_scanned: 941
+  types_were_scanned: 1058
   what: iterate
   where: github
 - _id: 11295
@@ -76716,7 +76716,7 @@
   total_releases_published: 0
   total_reviews_submitted: 2
   what: quantity-of-deliverables
-  when: 2026-11-02 07:19:57.064022466 Z
+  when: &166 2026-11-02 07:19:57.064022466 Z
 - _id: 12170
   _job: 41405447555
   _time: 2026-11-02 07:20:19.361368428 Z
@@ -78000,20 +78000,6 @@
   when: 2026-11-04 08:59:26.000000000 Z
   where: github
   who: 526301
-- _id: 12240
-  _job: 104573
-  _time: 2026-11-05 07:23:13.445008973 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (254.9) is staying still.
-    The average number of commits per week (12.2) is staying still.
-    The average issue cycle time (1w2d) is decreasing (R=-0.29).
-    The average pull cycle time (4d17h) is staying still.
-    The average number of releases per month (3.3) is staying still.
-    The average monthly turnover (29.0 developers) is decreasing (R=-0.44).
-  what: assessment
-  when: 2026-11-05 07:23:13.466544371 Z
 - _id: 12241
   _job: 42179872202
   _time: 2026-11-06 07:18:28.448732379 Z
@@ -78211,3 +78197,126 @@
   when: 2026-11-05 16:16:12.000000000 Z
   where: github
   who: 8135225
+- _id: 12253
+  _job: 106615
+  _time: 2026-11-08 07:21:03.750248311 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (260.2) is staying still.
+    The average number of commits per week (12.6) is staying still.
+    The average issue cycle time (1w2d) is decreasing (R=-0.29).
+    The average pull cycle time (5d8h) is staying still.
+    The average number of releases per month (3.4) is staying still.
+    The average monthly turnover (29.0 developers) is decreasing (R=-0.44).
+  what: assessment
+  when: 2026-11-08 07:21:03.773796174 Z
+- _id: 12254
+  _job: 42578506284
+  _time: 2026-11-09 07:19:31.543683056 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  assigner: 526301
+  details: yegor256/qulice#716 was assigned to @yegor256 by @yegor256.
+  is_human: 1
+  issue: 716
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-11-02 13:44:59.000000000 Z
+  where: github
+  who: 526301
+- _id: 12255
+  _job: 42578506284
+  _time: 2026-11-09 07:19:37.426930710 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  assigner: 526301
+  details: yegor256/qulice#744 was assigned to @yegor256 by @yegor256.
+  is_human: 1
+  issue: 744
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-11-06 12:43:20.000000000 Z
+  where: github
+  who: 526301
+- _id: 12256
+  _job: 42578506284
+  _time: 2026-11-09 07:19:50.574126582 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.checkerframework-checker-qual-4.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1860 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1860
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-04 13:40:23.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12257
+  _job: 42578506284
+  _time: 2026-11-09 07:20:00.242042380 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: fix/1853-fqn-same-package
+  comments: 2
+  comments_appreciated: 0
+  comments_by_author: 1
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1861 has been "pull-was-merged".
+  failed_builds: 0
+  files: 4
+  hoc: 55
+  is_human: 1
+  issue: 1861
+  repository: 9580168
+  review: 2026-11-06 12:42:22.000000000 Z
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-06 12:42:25.000000000 Z
+  where: github
+  who: 526301
+- _id: 12258
+  _job: 42578506284
+  _time: 2026-11-09 07:20:37.483773049 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 5
+  total_commits: 2808
+  total_contributors: 61
+  total_files: 906
+  total_forks: 126
+  total_issues: 943
+  total_pulls: 922
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 328
+  what: dimensions-of-terrain
+  when: 2026-11-09 07:20:37.428742861 Z
+- _id: 12259
+  _job: 42578506284
+  _time: 2026-11-09 07:20:49.425763589 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  details: 'We found out that the user #8135225 is known in GitHub as @inf1mum.'
+  is_human: 1
+  name: inf1mum
+  what: who-has-name
+  when: 2026-11-09 07:20:49.429427168 Z
+  where: github
+  who: 8135225
+- _id: 12260
+  _job: 42578506284
+  _time: 2026-11-09 07:22:06.916743385 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  since: *166
+  what: quantity-of-deliverables
+  when: 2026-11-09 07:22:06.906310021 Z
