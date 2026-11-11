@@ -65,7 +65,7 @@ public final class NoJavadocForOverriddenMethodsCheck extends AbstractCheck {
             if (
                 javadoc != null
                     && Arrays.stream(javadoc.getText()).noneMatch(
-                        line -> DEPRECATED.matcher(line).find()
+                        line -> NoJavadocForOverriddenMethodsCheck.DEPRECATED.matcher(line).find()
                     )
             ) {
                 log(ast, "Overridden methods should not have Javadoc");
