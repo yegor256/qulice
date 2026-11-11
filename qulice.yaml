@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 207.472765421
+  seconds: 253.28421982
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-10 07:20:24.867935078 Z
+  when: 2026-11-11 07:21:52.728994765 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63393,18 +63393,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 864
-  closures_were_checked: 1168
+  assignees_were_scanned: 985
+  closures_were_checked: 1395
   earliest_issue_was_found: 1
-  events_were_scanned: 26717605440
+  events_were_scanned: 19751755530
   issues_were_scanned: 0
-  labels_were_scanned: 0
+  labels_were_scanned: 673
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1660
-  min_pull_was_found: 1678
+  min_issue_was_found: 1663
+  min_pull_was_found: 1679
   repository: 9580168
-  types_were_scanned: 1248
+  types_were_scanned: 1570
   what: iterate
   where: github
 - _id: 11295
@@ -77495,7 +77495,7 @@
   _version: 0.19.16/0.61.1/0.17.23
   since: *165
   what: quality-of-service
-  when: 2026-11-03 07:26:27.074494695 Z
+  when: &167 2026-11-03 07:26:27.074494695 Z
 - _id: 12216
   _job: 41791180012
   _time: 2026-11-04 07:17:58.510980502 Z
@@ -78360,9 +78360,136 @@
   _time: 2026-11-10 07:19:20.502554824 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: The issue yegor256/qulice#1869 has been earlier opened by @yegor256.
+  is_human: 1
   issue: 1869
   repository: 9580168
   what: issue-was-opened
   when: 2026-11-09 12:49:35.000000000 Z
   where: github
   who: 526301
+- _id: 12265
+  _job: 107425
+  _time: 2026-11-10 07:21:09.720763850 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  ac: 68
+  cost_of_qod: 2.3482471255444626
+  ev: 1089
+  pv: 16227
+  qod: 464
+  qod_per_day: 16.45033503262167
+  qod_per_sec: 1.2785351666710748e-05
+  start: *12
+  what: earned-value
+  when: 2026-11-10 07:21:09.720954308 Z
+- _id: 12266
+  _job: 42978326951
+  _time: 2026-11-11 07:18:50.663171235 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 5
+  total_commits: 2815
+  total_contributors: 61
+  total_files: 906
+  total_forks: 126
+  total_issues: 945
+  total_pulls: 927
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 329
+  what: dimensions-of-terrain
+  when: 2026-11-11 07:18:50.615455245 Z
+- _id: 12267
+  _job: 42978326951
+  _time: 2026-11-11 07:19:51.663515447 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: maintenance-policy-1859
+  details: The missing pull yegor256/qulice#1863 has been opened by @yegor256.
+  is_human: 1
+  issue: 1863
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-06 12:46:18.000000000 Z
+  where: github
+  who: 526301
+- _id: 12268
+  _job: 42978326951
+  _time: 2026-11-11 07:19:52.249422427 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: fix/1862-encoding
+  details: The missing pull yegor256/qulice#1864 has been opened by @inf1mum.
+  is_human: 1
+  issue: 1864
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-06 14:36:13.000000000 Z
+  where: github
+  who: 8135225
+- _id: 12269
+  _job: 42978326951
+  _time: 2026-11-11 07:19:52.970552567 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  details: The missing pull yegor256/qulice#1865 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1865
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-06 20:14:56.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12270
+  _job: 42978326951
+  _time: 2026-11-11 07:19:53.668632157 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  details: The missing pull yegor256/qulice#1866 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1866
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-07 18:13:43.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12271
+  _job: 42978326951
+  _time: 2026-11-11 07:19:54.570371136 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: update-dependencies-20261109
+  details: The missing pull yegor256/qulice#1867 has been opened by @yegor256.
+  is_human: 1
+  issue: 1867
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-09 12:37:46.000000000 Z
+  where: github
+  who: 526301
+- _id: 12272
+  _job: 42978326951
+  _time: 2026-11-11 07:19:55.222154518 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.eclipse.sisu-org.eclipse.sisu.plexus-1.x
+  details: The missing pull yegor256/qulice#1868 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1868
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-09 12:38:07.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12273
+  _job: 42978326951
+  _time: 2026-11-11 07:20:57.689460187 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  details: The issue yegor256/qulice#1873 has been earlier opened by @yegor256.
+  issue: 1873
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-11-11 05:26:03.000000000 Z
+  where: github
+  who: 526301
+- _id: 12274
+  _job: 42978326951
+  _time: 2026-11-11 07:21:01.223460298 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  since: *167
+  what: quality-of-service
+  when: 2026-11-11 07:21:01.215867713 Z
