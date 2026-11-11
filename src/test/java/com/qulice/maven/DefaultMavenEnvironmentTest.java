@@ -378,6 +378,101 @@ final class DefaultMavenEnvironmentTest {
     }
 
     /**
+     * DefaultMavenEnvironment.files() should list a file exactly once when
+     * the same directory is declared both as a compile source root and as
+     * a {@code <resource>} directory, otherwise every validator reports
+     * each violation once per copy of the file
+     * (see <a href="https://github.com/yegor256/qulice/issues/1873">
+     * issue #1873</a>).
+     *
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void listsFileSharedByOverlappingRootsOnce(@TempDir final Path basedir)
+        throws Exception {
+        final Path src = basedir.resolve("src/main/java");
+        Files.createDirectories(src);
+        final Path source = src.resolve("Foo.java");
+        Files.writeString(
+            source,
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Build build = new Build();
+        final Resource resource = new Resource();
+        resource.setDirectory(src.toAbsolutePath().toString());
+        build.addResource(resource);
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return basedir.toFile();
+            }
+
+            @Override
+            public Build getBuild() {
+                return build;
+            }
+        };
+        project.addCompileSourceRoot(src.toAbsolutePath().toString());
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "A file shared by overlapping roots must be listed exactly once",
+            env.files("*.java"),
+            Matchers.contains(source.toFile())
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.files() should list a file exactly once when
+     * a resource directory contains a compile source root, e.g. {@code src}
+     * declared as a {@code <resource>} next to {@code src/main/java}, since
+     * the parent root already walks over every file of the nested one
+     * (see <a href="https://github.com/yegor256/qulice/issues/1873">
+     * issue #1873</a>).
+     *
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void listsFileUnderNestedRootsOnce(@TempDir final Path basedir)
+        throws Exception {
+        final Path src = basedir.resolve("src");
+        final Path java = src.resolve("main/java");
+        Files.createDirectories(java);
+        final Path source = java.resolve("Foo.java");
+        Files.writeString(
+            source,
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Build build = new Build();
+        final Resource resource = new Resource();
+        resource.setDirectory(src.toAbsolutePath().toString());
+        build.addResource(resource);
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return basedir.toFile();
+            }
+
+            @Override
+            public Build getBuild() {
+                return build;
+            }
+        };
+        project.addCompileSourceRoot(java.toAbsolutePath().toString());
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "A file under a nested root must be listed exactly once",
+            env.files("*.java"),
+            Matchers.contains(source.toFile())
+        );
+    }
+
+    /**
      * DefaultMavenEnvironment.testdirs() should report every test source
      * root the project declares, not just {@code src/test/java}, since
      * {@code build-helper-maven-plugin:add-test-source} may add more of
