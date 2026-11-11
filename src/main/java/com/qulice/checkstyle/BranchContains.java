@@ -15,7 +15,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * However, this method was deprecated in upstream due to unintended too
  * deep scanning. It is recommended to write traversal implementation
  * for your needs by yourself to avoid unexpected side effects. So here follows it's
- * simple implementation.
+ * simple implementation.</p>
  *
  * @since 1.0
  */
@@ -28,6 +28,7 @@ class BranchContains {
 
     /**
      * Creates a decorator which is able to search in the node's subtree.
+     *
      * @param node Node which will be represented by the new BranchContains instance
      */
     BranchContains(final DetailAST node) {
@@ -38,6 +39,7 @@ class BranchContains {
      * Checks if there is a node of type `type` in this node subtree.
      * The root node itself may also match, i.e.
      * `new BranchContains(node).contains(node.getType())` is always true
+     *
      * @param type Desired type
      * @return Whether node of given type exists somewhere in the subtree
      */

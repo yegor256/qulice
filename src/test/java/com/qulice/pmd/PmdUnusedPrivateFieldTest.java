@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
  * {@code UnusedPrivateField} rule, including the suppression for
  * fields referenced through a fully-qualified outer-class path
  * inside a lambda (issue #1520).
+ *
  * @since 0.25.1
  */
 final class PmdUnusedPrivateFieldTest {

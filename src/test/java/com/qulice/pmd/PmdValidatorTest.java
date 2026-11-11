@@ -8,6 +8,7 @@ import com.qulice.spi.Environment;
 import com.qulice.spi.Violation;
 import java.io.File;
 import java.util.Collections;
+import java.util.stream.Collectors;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
  * Test case for general {@link PmdValidator} behavior that is
  * not tied to a single PMD rule. Per-rule coverage lives in the
  * dedicated {@code Pmd*Test.java} files in this package.
+ *
  * @since 0.3
  */
 final class PmdValidatorTest {
@@ -31,6 +33,30 @@ final class PmdValidatorTest {
                 Collections.singletonList(new File(env.basedir(), file))
             ),
             Matchers.not(Matchers.<Violation>empty())
+        );
+    }
+
+    @Test
+    void countsRulesItApplies() throws Exception {
+        MatcherAssert.assertThat(
+            "PMD cannot stay silent about how many rules it applies",
+            new PmdValidator(new Environment.Mock()).rules(),
+            Matchers.greaterThan(100)
+        );
+    }
+
+    @Test
+    void doesNotCrashOnNonAsciiIdentifier() throws Exception {
+        final String file = "src/main/java/Main.java";
+        final Environment env = new Environment.Mock().withFile(
+            file, "final class Main { private final Phi.Φ obj = null; }"
+        );
+        MatcherAssert.assertThat(
+            "PMD must not choke on a non-ASCII Java identifier",
+            new PmdValidator(env).validate(
+                Collections.singletonList(new File(env.basedir(), file))
+            ).stream().map(Violation::name).collect(Collectors.toList()),
+            Matchers.not(Matchers.hasItem("ProcessingError"))
         );
     }
 

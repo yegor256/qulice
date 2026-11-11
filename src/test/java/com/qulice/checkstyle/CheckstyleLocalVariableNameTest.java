@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code LocalVariableName} and {@code CatchParameterName} checks.
+ *
  * @since 0.25.1
  */
 final class CheckstyleLocalVariableNameTest {

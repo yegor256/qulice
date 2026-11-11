@@ -8,6 +8,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class CatchParameterNames {
@@ -16,6 +17,13 @@ public final class CatchParameterNames {
      * Dummy variable.
      */
     private int counter;
+
+    /**
+     * Ctor.
+     */
+    public CatchParameterNames() {
+        // nothing
+    }
 
     /**
      * Invalid exception parameter name.

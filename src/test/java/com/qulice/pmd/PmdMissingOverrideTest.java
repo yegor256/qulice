@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link PmdValidator}'s handling of the
  * {@code MissingOverride} rule when an interface method is
  * implemented without the annotation (issue #770).
+ *
  * @since 0.25.1
  */
 final class PmdMissingOverrideTest {

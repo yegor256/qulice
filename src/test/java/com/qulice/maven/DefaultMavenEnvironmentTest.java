@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import org.apache.maven.model.Build;
+import org.apache.maven.model.Resource;
 import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Test case for {@link DefaultMavenEnvironment} class.
+ *
  * @since 0.8
  */
 final class DefaultMavenEnvironmentTest {
@@ -88,6 +90,7 @@ final class DefaultMavenEnvironmentTest {
 
     /**
      * DefaultMavenEnvironment can work with whitespaces in classpath.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -106,12 +109,64 @@ final class DefaultMavenEnvironmentTest {
     }
 
     /**
+     * DefaultMavenEnvironment.classloader() should load resources from a
+     * classpath directory whose name has spaces and URL-reserved characters
+     * (see <a href="https://github.com/yegor256/qulice/issues/1851">
+     * issue #1851</a>).
+     *
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void loadsResourcesFromPathWithReservedCharacters(
+        @TempDir final Path basedir
+    ) throws Exception {
+        final Path dir = basedir.resolve("jorg smith [4]");
+        Files.createDirectories(dir);
+        Files.writeString(dir.resolve("wat.txt"), "e", StandardCharsets.UTF_8);
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub();
+        project.setTestClasspathElements(
+            Collections.singletonList(dir.toAbsolutePath().toString())
+        );
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Classloader cannot miss a resource under a path with spaces",
+            env.classloader().getResource("wat.txt"),
+            Matchers.notNullValue()
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.classpath() should return paths exactly as
+     * they are on disk, without percent-encoding, since javac reads them
+     * as file names
+     * (see <a href="https://github.com/yegor256/qulice/issues/1851">
+     * issue #1851</a>).
+     */
+    @Test
+    void keepsSpacesInClasspathUnencoded() {
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub();
+        project.setTestClasspathElements(
+            Collections.singletonList("/xyq y/q z.jar")
+        );
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Classpath cannot percent-encode spaces in paths",
+            env.classpath(),
+            Matchers.contains("/xyq y/q z.jar")
+        );
+    }
+
+    /**
      * DefaultMavenEnvironment.classpath() should return the fully-resolved
      * test classpath (compile + runtime + test scope, transitives included)
      * so that ErrorProne, which compiles test sources too, can access
      * transitive test-scope dependencies such as {@code opentest4j}
      * (see <a href="https://github.com/yegor256/qulice/issues/1691">
      * issue #1691</a>).
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -162,6 +217,7 @@ final class DefaultMavenEnvironmentTest {
      * that validators never try to read them as text
      * (see <a href="https://github.com/yegor256/qulice/issues/1264">
      * issue #1264</a>).
+     *
      * @param basedir Temporary base directory
      * @throws Exception If something wrong happens inside
      */
@@ -209,6 +265,7 @@ final class DefaultMavenEnvironmentTest {
      * {@code <sourceDirectory>} declared in the POM
      * (see <a href="https://github.com/yegor256/qulice/issues/382">
      * issue #382</a>).
+     *
      * @param basedir Temporary base directory
      * @throws Exception If something wrong happens inside
      */
@@ -244,6 +301,7 @@ final class DefaultMavenEnvironmentTest {
      * {@code <testSourceDirectory>} declared in the POM
      * (see <a href="https://github.com/yegor256/qulice/issues/382">
      * issue #382</a>).
+     *
      * @param basedir Temporary base directory
      * @throws Exception If something wrong happens inside
      */
@@ -279,6 +337,7 @@ final class DefaultMavenEnvironmentTest {
      * {@code <resources>} blocks of the POM
      * (see <a href="https://github.com/yegor256/qulice/issues/382">
      * issue #382</a>).
+     *
      * @param basedir Temporary base directory
      * @throws Exception If something wrong happens inside
      */
@@ -294,8 +353,7 @@ final class DefaultMavenEnvironmentTest {
             StandardCharsets.UTF_8
         );
         final Build build = new Build();
-        final org.apache.maven.model.Resource resource =
-            new org.apache.maven.model.Resource();
+        final Resource resource = new Resource();
         resource.setDirectory(assets.toAbsolutePath().toString());
         build.addResource(resource);
         final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
@@ -320,6 +378,41 @@ final class DefaultMavenEnvironmentTest {
     }
 
     /**
+     * DefaultMavenEnvironment.testdirs() should report every test source
+     * root the project declares, not just {@code src/test/java}, since
+     * {@code build-helper-maven-plugin:add-test-source} may add more of
+     * them, e.g. {@code src/mock/java}
+     * (see <a href="https://github.com/yegor256/qulice/issues/1742">
+     * issue #1742</a>).
+     *
+     * @param basedir Temporary base directory
+     */
+    @Test
+    void reportsEveryTestSourceRoot(@TempDir final Path basedir) {
+        final Path tests = basedir.resolve("src/test/java");
+        final Path mocks = basedir.resolve("src/mock/java");
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return basedir.toFile();
+            }
+        };
+        project.addTestCompileSourceRoot(
+            tests.toAbsolutePath().toString()
+        );
+        project.addTestCompileSourceRoot(
+            mocks.toAbsolutePath().toString()
+        );
+        env.setProject(project);
+        MatcherAssert.assertThat(
+            "Every declared test source root must be reported",
+            env.testdirs(),
+            Matchers.hasItems(tests.toFile(), mocks.toFile())
+        );
+    }
+
+    /**
      * Default source files encoding should be UFT-8.
      */
     @Test
@@ -337,6 +430,7 @@ final class DefaultMavenEnvironmentTest {
      * outputs (e.g. target/generated-sources/...) and not user-authored code
      * (see <a href="https://github.com/yegor256/qulice/issues/1560">
      * issue #1560</a>).
+     *
      * @param basedir Temporary base directory
      * @throws Exception If something wrong happens inside
      */
@@ -389,6 +483,48 @@ final class DefaultMavenEnvironmentTest {
                 Matchers.hasItem(source.toFile()),
                 Matchers.not(Matchers.hasItem(help.toFile()))
             )
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.tempdir() must not point at the directory
+     * with compiled classes, otherwise validators drop their scratch files
+     * into {@code target/classes} and they end up in the JAR and confuse
+     * {@code jacoco:report}
+     * (see <a href="https://github.com/yegor256/qulice/issues/1741">
+     * issue #1741</a>).
+     *
+     * @param basedir Temporary base directory
+     */
+    @Test
+    void keepsTempdirOutsideOutdir(@TempDir final Path basedir) {
+        final Path target = basedir.resolve("target");
+        final Build build = new Build();
+        build.setDirectory(target.toAbsolutePath().toString());
+        build.setOutputDirectory(
+            target.resolve("classes").toAbsolutePath().toString()
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setProject(
+            new MavenProjectStub() {
+                @Override
+                public File getBasedir() {
+                    return basedir.toFile();
+                }
+
+                @Override
+                public Build getBuild() {
+                    return build;
+                }
+            }
+        );
+        final Path temp = env.tempdir().toPath().toAbsolutePath();
+        MatcherAssert.assertThat(
+            "Scratch dir must be usable, under target/ and away from classes",
+            env.tempdir().isDirectory()
+                && temp.startsWith(target.toAbsolutePath())
+                && !temp.startsWith(env.outdir().toPath().toAbsolutePath()),
+            Matchers.is(true)
         );
     }
 }

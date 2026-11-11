@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 class MissingJavadocTest {

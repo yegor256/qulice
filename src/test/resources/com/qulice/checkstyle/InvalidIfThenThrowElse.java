@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Samples with an else clause after a throwing then branch.
+ *
  * @since 1.0
  */
 public final class InvalidIfThenThrowElse {
@@ -16,6 +17,7 @@ public final class InvalidIfThenThrowElse {
 
     /**
      * Constructor.
+     *
      * @param name The label
      */
     public InvalidIfThenThrowElse(final String name) {
@@ -24,6 +26,7 @@ public final class InvalidIfThenThrowElse {
 
     /**
      * Braced then-throw with else block.
+     *
      * @param num A number
      */
     public void braced(final int num) {
@@ -36,6 +39,7 @@ public final class InvalidIfThenThrowElse {
 
     /**
      * Unbraced then-throw with else block.
+     *
      * @param num A number
      */
     public void unbraced(final int num) {
@@ -48,6 +52,7 @@ public final class InvalidIfThenThrowElse {
 
     /**
      * Both branches throw, still prohibited.
+     *
      * @param num A number
      */
     public void both(final int num) {

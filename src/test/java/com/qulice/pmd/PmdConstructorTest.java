@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
  * constructor rules: fields must be initialized either outside the
  * constructor or in a single constructor, and constructors may only
  * delegate or initialize fields.
+ *
  * @since 0.25.1
  */
 final class PmdConstructorTest {

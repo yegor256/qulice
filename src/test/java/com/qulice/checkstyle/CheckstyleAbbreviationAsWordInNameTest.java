@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code AbbreviationAsWordInName} check.
+ *
  * @since 0.25.1
  */
 final class CheckstyleAbbreviationAsWordInNameTest {
@@ -44,11 +45,11 @@ final class CheckstyleAbbreviationAsWordInNameTest {
                     String.format(
                         message, "InvalidAbbreviationAsWordInNameXML"
                     ),
-                    file, "10", name
+                    file, "11", name
                 ),
                 new ViolationMatcher(
                     String.format(message, "InvalidHTML"), file,
-                    "14", name
+                    "15", name
                 )
             )
         );

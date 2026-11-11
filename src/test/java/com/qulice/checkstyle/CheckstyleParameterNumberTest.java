@@ -16,10 +16,13 @@ import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * {@code ParameterNumber} check.
+ *
  * @since 1.0
  */
 final class CheckstyleParameterNumberTest {
@@ -34,6 +37,15 @@ final class CheckstyleParameterNumberTest {
     }
 
     @Test
+    void acceptsPrivateMethodWithManyParameters() throws Exception {
+        MatcherAssert.assertThat(
+            "Private method with four parameters cannot fail",
+            this.runValidation("PrivateFourParameters.java", true),
+            Matchers.empty()
+        );
+    }
+
+    @Test
     void rejectsMethodWithTooManyParameters() throws Exception {
         final String file = "FourParameters.java";
         MatcherAssert.assertThat(
@@ -43,8 +55,48 @@ final class CheckstyleParameterNumberTest {
                 new ViolationMatcher(
                     "More than 3 parameters (found 4)",
                     file,
-                    "20",
+                    "22",
                     "ParameterNumberCheck"
+                )
+            )
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(
+        strings = {
+            "JnaMappedLibrary.java",
+            "JnaStdCallBinding.java"
+        }
+    )
+    void acceptsManyParametersInJnaBinding(final String file) throws Exception {
+        MatcherAssert.assertThat(
+            "long parameter list in a JNA binding should not be reported",
+            this.runValidation(file, true),
+            Matchers.not(
+                Matchers.hasItem(
+                    new ViolationMatcher("", file, "", "ParameterNumberCheck")
+                )
+            )
+        );
+    }
+
+    /**
+     * A JNA binding is recognized by the fully qualified name of the
+     * interface it implements too, even though FullyQualifiedTypeCheck
+     * asks for that name to be imported and reports the file for it.
+     *
+     * @throws Exception If something goes wrong
+     */
+    @Test
+    void acceptsManyParametersInQualifiedJnaBinding() throws Exception {
+        final String file = "JnaDirectBinding.java";
+        MatcherAssert.assertThat(
+            "long parameter list in a qualified JNA binding should not be reported",
+            this.runValidation(file, false),
+            Matchers.not(
+                Matchers.hasItem(
+                    new ViolationMatcher("", file, "", "ParameterNumberCheck")
                 )
             )
         );

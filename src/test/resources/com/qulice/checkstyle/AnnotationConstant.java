@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class AnnotationConstant {
@@ -45,7 +46,15 @@ public final class AnnotationConstant {
     private int dat = 1;
 
     /**
+     * Ctor.
+     */
+    public AnnotationConstant() {
+        // nothing
+    }
+
+    /**
      * Some data.
+     *
      * @return Some data
      */
     @SuppressWarnings(AnnotationConstant.TEXT1)
@@ -55,6 +64,7 @@ public final class AnnotationConstant {
 
     /**
      * Some other data.
+     *
      * @return Some other data
      */
     @SuppressWarnings(value = AnnotationConstant.TEXT2)
@@ -64,6 +74,7 @@ public final class AnnotationConstant {
 
     /**
      * Some other data.
+     *
      * @return Some other data
      */
     @SuppressWarnings({ AnnotationConstant.TEXT3, AnnotationConstant.TEXT4})
@@ -73,6 +84,7 @@ public final class AnnotationConstant {
 
     /**
      * Some other data.
+     *
      * @return Some other data
      */
     @SuppressWarnings(
@@ -80,5 +92,19 @@ public final class AnnotationConstant {
     )
     public String other() {
         return String.valueOf(this.dat);
+    }
+
+    /**
+     * All texts together, so that no constant is used only once.
+     *
+     * @return All of them
+     */
+    public static String all() {
+        return String.format(
+            "%s%s%s%s%s%s",
+            AnnotationConstant.TEXT1, AnnotationConstant.TEXT2,
+            AnnotationConstant.TEXT3, AnnotationConstant.TEXT4,
+            AnnotationConstant.TEXT5, AnnotationConstant.TEXT6
+        );
     }
 }

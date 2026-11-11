@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
  * stock {@code PatternMatchingInstanceof} check. The check suggests
  * pattern-matching {@code instanceof}, a Java 16+ feature, so it must not fire
  * when the project compiles at an older source level (issue #1716).
+ *
  * @since 1.0
  */
 final class ErrorPronePatternMatchingInstanceofTest {
@@ -85,13 +86,6 @@ final class ErrorPronePatternMatchingInstanceofTest {
         );
     }
 
-    /**
-     * Run the validator over the sample file with the given source level and
-     * return the names of the checks that produced violations.
-     * @param source Value for {@code maven.compiler.source}, or {@code null}
-     * @return Names of the checks that fired
-     * @throws IOException If some IO problem
-     */
     private Collection<String> checks(final String source) throws IOException {
         final Environment.Mock mock = new Environment.Mock();
         if (source != null) {

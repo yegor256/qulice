@@ -4,6 +4,7 @@
 package foo;
 /**
  * Allows 'id' as a method name.
+ *
  * @since 1.0
  */
 public final class IdMethodName {
@@ -15,6 +16,7 @@ public final class IdMethodName {
 
     /**
      * Ctor.
+     *
      * @param num The id value
      */
     public IdMethodName(final int num) {
@@ -23,6 +25,7 @@ public final class IdMethodName {
 
     /**
      * Returns the id of this object.
+     *
      * @return The id
      */
     public int id() {

@@ -16,15 +16,15 @@ import java.util.regex.Pattern;
  * {@code this}.
  *
  * <p>If your method doesn't need {@code this} than why it is not
- * {@code static}?
+ * {@code static}?</p>
  *
  * <p>The exception here is when method has {@code @Override} annotation. There's
  * no concept of inheritance and polymorphism for static methods even if they
- * don't need {@code this} to perform the actual work.
+ * don't need {@code this} to perform the actual work.</p>
  *
  * <p>Another exception is when method is {@code abstract} or {@code native}.
  * Such methods don't have body so detection based on {@code this} doesn't
- * make sense for them.
+ * make sense for them.</p>
  *
  * @since 0.3
  */
@@ -50,6 +50,7 @@ public final class NonStaticMethodCheck extends AbstractCheck {
 
     /**
      * Exclude files matching given pattern.
+     *
      * @param excl Regexp of classes to exclude
      */
     public void setExcludeFileNamePattern(final String excl) {
@@ -85,13 +86,6 @@ public final class NonStaticMethodCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Check that non static class method refer {@code this}. Methods that
-     * are {@code native}, {@code abstract} or annotated with {@code @Override}
-     * are excluded.  Additionally, if the method only throws an exception, it
-     * too is excluded.
-     * @param method DetailAST of method
-     */
     private void checkClassMethod(final DetailAST method) {
         final DetailAST modifiers = method
             .findFirstToken(TokenTypes.MODIFIERS);
@@ -116,11 +110,6 @@ public final class NonStaticMethodCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Determines whether a method is {@code abstract} or {@code native}.
-     * @param method Method to check
-     * @return True if method is abstract or native
-     */
     private static boolean isInAbstractOrNativeMethod(final DetailAST method) {
         final BranchContains checker = new BranchContains(
             method.findFirstToken(TokenTypes.MODIFIERS)
@@ -129,12 +118,6 @@ public final class NonStaticMethodCheck extends AbstractCheck {
             || checker.check(TokenTypes.LITERAL_NATIVE);
     }
 
-    /**
-     * Determines the number semicolons in a method excluding those in
-     * comments.
-     * @param method Method to count
-     * @return The number of semicolons in the method as an int
-     */
     @SuppressWarnings("deprecation")
     private int countSemiColons(final DetailAST method) {
         final DetailAST openingbrace = method.findFirstToken(TokenTypes.SLIST);

@@ -12,7 +12,7 @@ import org.cactoos.text.Sub;
 /**
  * Check indents in multi line JavaDoc tags.
  *
- * <p>This is how you should format javadoc tags that need a few lines:
+ * <p>This is how you should format javadoc tags that need a few lines:</p>
  *
  * <pre>
  * &#47;**
@@ -30,7 +30,7 @@ import org.cactoos.text.Sub;
  *
  * <p>Keep in mind that all free-text information should go <b>before</b>
  * javadoc tags, or else it will treated as part of the latest tag and
- * qulice will complain.
+ * qulice will complain.</p>
  *
  * @since 0.3
  */
@@ -77,12 +77,6 @@ public final class MultilineJavadocTagsCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks method's Java Doc for satisfy indentation rules.
-     * @param lines Code of the whole class
-     * @param start Start line of the Java Doc
-     * @param end End line of the Java Doc
-     */
     @SuppressWarnings("PMD.InefficientEmptyStringCheck")
     private void checkJavaDoc(final String[] lines, final int start,
         final int end) {
@@ -111,12 +105,6 @@ public final class MultilineJavadocTagsCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Find javadoc starting comment.
-     * @param lines List of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found starting comment or -1 otherwise
-     */
     private static int findCommentStart(final String[] lines, final int start) {
         return Math.max(
             MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, "/**"),
@@ -124,23 +112,10 @@ public final class MultilineJavadocTagsCheck extends AbstractCheck {
         );
     }
 
-    /**
-     * Find javadoc ending comment.
-     * @param lines List of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found ending comment, or -1 if it wasn't found
-     */
     private static int findCommentEnd(final String[] lines, final int start) {
         return MultilineJavadocTagsCheck.findTrimmedTextUp(lines, start, "*/");
     }
 
-    /**
-     * Find a text in lines, by going up.
-     * @param lines List of lines to check
-     * @param start Start searching from this line number
-     * @param text Text to find
-     * @return Line number with found text, or -1 if it wasn't found
-     */
     private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
         int found = -1;

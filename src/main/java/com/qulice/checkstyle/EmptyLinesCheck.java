@@ -17,12 +17,12 @@ import java.util.stream.StreamSupport;
  * <p>We believe that comments and empty lines are evil. If you need to use
  * an empty line in order to add a vertical separator of concepts - refactor
  * your code and make it more cohesive and readable. The bottom line is
- * that every method should look solid and do just <b>one thing</b>.
+ * that every method should look solid and do just <b>one thing</b>.</p>
  *
  * <p>This class is not thread safe. It builds a list of line ranges by visiting
  * each method definition and each anonymous inner type, keeps them in
  * instance fields until finishTree() reports and clears them, so a single
- * instance must not be shared between threads.
+ * instance must not be shared between threads.</p>
  *
  * @since 0.3
  */
@@ -112,14 +112,6 @@ public final class EmptyLinesCheck extends AbstractCheck {
         super.finishTree(root);
     }
 
-    /**
-     * If this is within a valid anonymous class, make sure that is still
-     * directly inside of a method of that anonymous inner class.
-     * Note: This implementation only checks one level deep, as nesting
-     * anonymous inner classes should never been done.
-     * @param line The line to check if it is within a method or not
-     * @return True if the line is directly inside of a method
-     */
     private boolean insideMethod(final int line) {
         return EmptyLinesCheck.linesBetweenBraces(
             line, this.methods::iterator, Integer.MIN_VALUE
@@ -128,13 +120,6 @@ public final class EmptyLinesCheck extends AbstractCheck {
         );
     }
 
-    /**
-     * Find number of lines between braces that contain a given line.
-     * @param line Line to check
-     * @param iterator Iterable of line ranges
-     * @param def Default value if line is not within ranges
-     * @return Number of lines between braces
-     */
     private static int linesBetweenBraces(final int line,
         final Iterable<LineRange> iterator, final int def) {
         return StreamSupport.stream(iterator.spliterator(), false)

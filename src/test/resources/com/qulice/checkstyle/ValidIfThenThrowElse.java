@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Samples where the if/throw/else pattern is absent.
+ *
  * @since 1.0
  */
 public final class ValidIfThenThrowElse {
@@ -16,6 +17,7 @@ public final class ValidIfThenThrowElse {
 
     /**
      * Constructor.
+     *
      * @param name The label
      */
     public ValidIfThenThrowElse(final String name) {
@@ -24,6 +26,7 @@ public final class ValidIfThenThrowElse {
 
     /**
      * Throw without any else is allowed.
+     *
      * @param num A number
      */
     public void guard(final int num) {
@@ -35,6 +38,7 @@ public final class ValidIfThenThrowElse {
 
     /**
      * Else allowed when then branch does not throw.
+     *
      * @param num A number
      */
     public void plain(final int num) {
@@ -47,6 +51,7 @@ public final class ValidIfThenThrowElse {
 
     /**
      * Throw not at the tail of the then branch: still allowed.
+     *
      * @param num A number
      */
     public void tail(final int num) {

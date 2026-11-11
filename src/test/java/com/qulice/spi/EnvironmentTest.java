@@ -14,12 +14,14 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Environment}.
+ *
  * @since 0.3
  */
 final class EnvironmentTest {
 
     /**
      * Environment interface can be mocked/instantiated with Mocker.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -36,6 +38,7 @@ final class EnvironmentTest {
 
     /**
      * EnvironmentMocker can create file.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -53,6 +56,7 @@ final class EnvironmentTest {
 
     /**
      * EnvironmentMocker can write bytearray too.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -71,6 +75,7 @@ final class EnvironmentTest {
 
     /**
      * EnvironmentMocker can set classpath for the mock.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -86,6 +91,7 @@ final class EnvironmentTest {
      * Environment.files() should skip binary files so validators never see
      * them (see <a href="https://github.com/yegor256/qulice/issues/1264">
      * issue #1264</a>).
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test
@@ -132,6 +138,7 @@ final class EnvironmentTest {
 
     /**
      * EnvironmentMocker can mock params.
+     *
      * @throws Exception If something wrong happens inside.
      */
     @Test

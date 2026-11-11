@@ -25,6 +25,7 @@ import org.junit.jupiter.api.io.TempDir;
 /**
  * Test case for {@link DefaultMavenEnvironment} class methods that
  * exclude files from validation.
+ *
  * @since 0.19
  */
 final class ValidationExclusionTest {
@@ -35,12 +36,8 @@ final class ValidationExclusionTest {
     private static final String TEMP_SUB = "excl";
 
     /**
-     * Java files extension.
-     */
-    private static final String JAVA_EXT = ".java";
-
-    /**
      * DefaultMavenEnvironment can exclude a path from PMD validation.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -71,6 +68,7 @@ final class ValidationExclusionTest {
 
     /**
      * DefaultMavenEnvironment can exclude a path from Checkstyle validation.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -104,6 +102,7 @@ final class ValidationExclusionTest {
 
     /**
      * DefaultMavenEnvironment can exclude a path from entire validation.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      * @todo #1457:90min Add global exclusion support to qulice.
@@ -149,17 +148,8 @@ final class ValidationExclusionTest {
         );
     }
 
-    /**
-     * Create a temporary Java file from resource.
-     * @param dir Directory to create the file in
-     * @param resource Resource to read the content from
-     * @return Created file with content from resource
-     * @throws Exception If something goes wrong
-     */
     private static File java(final Path dir, final String resource) throws Exception {
-        final File file = File.createTempFile(
-            "Test", ValidationExclusionTest.JAVA_EXT, dir.toFile()
-        );
+        final File file = File.createTempFile("Test", ".java", dir.toFile());
         FileUtils.writeStringToFile(
             file,
             new TextOf(

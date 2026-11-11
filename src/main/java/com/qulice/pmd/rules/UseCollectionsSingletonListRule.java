@@ -20,6 +20,7 @@ import net.sourceforge.pmd.lang.java.types.InvocationMatcher;
  * either spreads the array's elements (for reference arrays) or wraps the
  * array itself in a one-element list (for primitive arrays), and either
  * behaviour may be intentional.
+ *
  * @since 0.26.0
  */
 public final class UseCollectionsSingletonListRule

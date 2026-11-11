@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
  * The rule is suppressed inside unit-test classes (whose simple name
  * ends with Test, IT, TestCase or ITCase) but stays active in
  * production code.
+ *
  * @since 0.26.0
  */
 final class PmdAvoidUsingHardCodedIpTest {

@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
  * regression guard. Per-check coverage lives in the dedicated
  * {@code *CheckTest.java} and {@code Checkstyle*Test.java} files
  * in this package.
+ *
  * @since 0.3
  */
 final class CheckstyleValidatorTest {
@@ -78,6 +79,15 @@ final class CheckstyleValidatorTest {
     void allowsStringLiteralsOnBothSideInComparisons() throws Exception {
         Assertions.assertDoesNotThrow(
             () -> this.runValidation("ValidLiteralComparisonCheck.java", true)
+        );
+    }
+
+    @Test
+    void countsRulesItApplies() throws Exception {
+        MatcherAssert.assertThat(
+            "Checkstyle cannot stay silent about how many rules it applies",
+            new CheckstyleValidator(new Environment.Mock()).rules(),
+            Matchers.greaterThan(100)
         );
     }
 

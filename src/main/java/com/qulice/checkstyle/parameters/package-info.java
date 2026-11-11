@@ -5,6 +5,7 @@
 
 /**
  * Argument and generic type parameters.
+ *
  * @since 0.18.18
  */
 package com.qulice.checkstyle.parameters;

@@ -4,14 +4,13 @@
  */
 package com.qulice.maven;
 
-import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.jcabi.log.Logger;
 import com.qulice.spi.ValidationException;
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -35,6 +34,7 @@ import org.codehaus.plexus.context.ContextException;
 
 /**
  * Validator of dependencies.
+ *
  * @since 0.3
  * @checkstyle ReturnCountCheck (100 line)
  */
@@ -60,7 +60,7 @@ final class DependenciesValidator implements MavenValidator {
         }
         final Collection<String> unused = Collections2.filter(
             DependenciesValidator.unused(env),
-            Predicates.not(new DependenciesValidator.ExcludePredicate(excludes))
+            Predicates.not(new ExcludePredicate(excludes))
         );
         if (!unused.isEmpty()) {
             Logger.warn(
@@ -72,7 +72,7 @@ final class DependenciesValidator implements MavenValidator {
         }
         final Collection<String> used = Collections2.filter(
             DependenciesValidator.used(env),
-            Predicates.not(new DependenciesValidator.ExcludePredicate(excludes))
+            Predicates.not(new ExcludePredicate(excludes))
         );
         if (!used.isEmpty()) {
             Logger.warn(
@@ -97,11 +97,6 @@ final class DependenciesValidator implements MavenValidator {
         Logger.info(this, "No dependency problems found");
     }
 
-    /**
-     * Analyze the project.
-     * @param env The environment
-     * @return The result of analysis
-     */
     private static ProjectDependencyAnalysis analyze(
         final MavenEnvironment env) {
         try {
@@ -116,11 +111,6 @@ final class DependenciesValidator implements MavenValidator {
         }
     }
 
-    /**
-     * Find unused artifacts.
-     * @param env Environment
-     * @return Collection of unused artifacts
-     */
     private static Collection<String> used(final MavenEnvironment env) {
         final ProjectDependencyAnalysis analysis =
             DependenciesValidator.analyze(env);
@@ -131,19 +121,6 @@ final class DependenciesValidator implements MavenValidator {
         return used;
     }
 
-    /**
-     * Find unused artifacts.
-     *
-     * <p>Bytecode analysis cannot detect dependencies used only through
-     * annotations with source retention or through inlined compile-time
-     * constants. To avoid such false positives, artifacts flagged as
-     * unused by {@link ProjectDependencyAnalyzer} are cross-checked
-     * against {@code import} statements in the project's source files;
-     * any artifact referenced by an import is treated as used.</p>
-     *
-     * @param env Environment
-     * @return Collection of unused artifacts
-     */
     private static Collection<String> unused(final MavenEnvironment env) {
         final ProjectDependencyAnalysis analysis =
             DependenciesValidator.analyze(env);
@@ -167,37 +144,28 @@ final class DependenciesValidator implements MavenValidator {
         return unused;
     }
 
-    /**
-     * Collect fully-qualified imports from all Java source files
-     * in the project's compile source roots.
-     * @param env Environment
-     * @return Set of imported class names and wildcard package imports
-     */
     private static Set<String> imports(final MavenEnvironment env) {
         final Set<String> imports = new HashSet<>();
+        final Charset charset = env.encoding();
         final Collection<String> roots =
             env.project().getCompileSourceRoots();
         if (roots != null) {
             for (final String root : roots) {
                 final Path dir = Paths.get(root);
                 if (Files.isDirectory(dir)) {
-                    DependenciesValidator.scanJavaFiles(dir, imports);
+                    DependenciesValidator.scanJavaFiles(dir, imports, charset);
                 }
             }
         }
         return imports;
     }
 
-    /**
-     * Walk the given directory and collect imports from every Java file.
-     * @param dir Source root directory
-     * @param acc Accumulator to populate with imports
-     */
-    private static void scanJavaFiles(final Path dir, final Set<String> acc) {
+    private static void scanJavaFiles(final Path dir, final Set<String> acc,
+        final Charset charset) {
         try (Stream<Path> walk = Files.walk(dir)) {
             walk
                 .filter(path -> path.toString().endsWith(".java"))
-                .forEach(path -> DependenciesValidator.readImports(path, acc));
+                .forEach(path -> readImports(path, acc, charset));
         } catch (final IOException ex) {
             throw new IllegalStateException(
                 String.format("Cannot scan source root %s", dir), ex
@@ -205,15 +173,10 @@ final class DependenciesValidator implements MavenValidator {
         }
     }
 
-    /**
-     * Read import statements from a single Java source file into the
-     * given accumulator.
-     * @param file Java source file
-     * @param acc Accumulator to populate
-     */
-    private static void readImports(final Path file, final Set<String> acc) {
+    private static void readImports(final Path file, final Set<String> acc,
+        final Charset charset) {
         try {
-            for (final String line : Files.readAllLines(file, StandardCharsets.UTF_8)) {
+            for (final String line : Files.readAllLines(file, charset)) {
                 final String trimmed = line.trim();
                 if (!trimmed.startsWith("import ")) {
                     continue;
@@ -242,12 +205,6 @@ final class DependenciesValidator implements MavenValidator {
         }
     }
 
-    /**
-     * Is the given artifact referenced by any of the collected imports?
-     * @param imports Imports collected from project sources
-     * @param artifact Artifact whose JAR is inspected
-     * @return TRUE if at least one class from the JAR is imported
-     */
     private static boolean imported(final Set<String> imports,
         final Artifact artifact) {
         final File file = artifact.getFile();
@@ -271,14 +228,6 @@ final class DependenciesValidator implements MavenValidator {
         return found;
     }
 
-    /**
-     * Does the given JAR entry name represent a class imported by the
-     * project sources?
-     * @param imports Imports collected from project sources
-     * @param entry JAR entry name (e.g. "com/example/Foo.class")
-     * @return TRUE if the entry's fully-qualified class name or its
-     *  package is imported
-     */
     private static boolean matches(final Set<String> imports,
         final String entry) {
         boolean match = false;
@@ -295,37 +244,5 @@ final class DependenciesValidator implements MavenValidator {
             match = direct || wildcard;
         }
         return match;
-    }
-
-    /**
-     * Predicate for excluded dependencies.
-     * @since 0.1
-     */
-    private static class ExcludePredicate implements Predicate<String> {
-
-        /**
-         * List of excludes.
-         */
-        private final Collection<String> excludes;
-
-        /**
-         * Constructor.
-         * @param excludes List of excludes
-         */
-        ExcludePredicate(final Collection<String> excludes) {
-            this.excludes = excludes;
-        }
-
-        @Override
-        public boolean apply(final String name) {
-            boolean ignore = false;
-            for (final String exclude : this.excludes) {
-                if (name.startsWith(exclude)) {
-                    ignore = true;
-                    break;
-                }
-            }
-            return ignore;
-        }
     }
 }

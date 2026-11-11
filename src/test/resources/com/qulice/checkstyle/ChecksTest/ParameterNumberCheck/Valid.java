@@ -52,6 +52,15 @@ class Overriding {
     }
 }
 
+class PrivateMethods {
+    private int mix(final int one, final int two, final int three, final int four) {
+        return one + two + three + four;
+    }
+    private static int blend(final int one, final int two, final int three, final int four) {
+        return one * two * three * four;
+    }
+}
+
 class StaticsAndAttributes {
     private static final int LIMIT = 10;
     private final int alpha;

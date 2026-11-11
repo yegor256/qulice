@@ -4,8 +4,6 @@
  */
 package com.qulice.maven;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
@@ -13,11 +11,9 @@ import com.jcabi.log.Logger;
 import com.qulice.spi.Binary;
 import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.charset.Charset;
-import java.security.PrivilegedAction;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -36,6 +32,7 @@ import org.codehaus.plexus.context.Context;
 
 /**
  * Environment, passed from MOJO to validators.
+ *
  * @since 0.3
  */
 @SuppressWarnings("PMD.GodClass")
@@ -105,7 +102,15 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public File tempdir() {
-        return new File(this.iproject.getBuild().getOutputDirectory());
+        final File dir = new File(
+            this.iproject.getBuild().getDirectory(), "tempdir"
+        );
+        if (!dir.mkdirs() && !dir.isDirectory()) {
+            throw new IllegalStateException(
+                String.format("Cannot create tempdir at %s", dir)
+            );
+        }
+        return dir;
     }
 
     @Override
@@ -114,18 +119,24 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     @Override
+    public Collection<File> testdirs() {
+        final Collection<File> dirs = new ArrayList<>(0);
+        final List<String> roots = this.iproject.getTestCompileSourceRoots();
+        if (roots != null) {
+            for (final String root : roots) {
+                dirs.add(this.resolve(root));
+            }
+        }
+        return dirs;
+    }
+
+    @Override
     public Collection<String> classpath() {
         final Collection<String> paths = new ArrayList<>(0);
-        final String blank = "%20";
-        final String whitespace = " ";
         try {
             for (final String name
                 : this.iproject.getTestClasspathElements()) {
-                paths.add(
-                    name.replace(
-                        File.separatorChar, '/'
-                    ).replaceAll(whitespace, blank)
-                );
+                paths.add(name.replace(File.separatorChar, '/'));
             }
         } catch (final DependencyResolutionRequiredException ex) {
             throw new IllegalStateException("Failed to read classpath", ex);
@@ -138,15 +149,12 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         final List<URL> urls = new ArrayList<>(0);
         for (final String path : this.classpath()) {
             try {
-                urls.add(
-                    URI.create(String.format("file:///%s", path)).toURL()
-                );
+                urls.add(new File(path).toURI().toURL());
             } catch (final MalformedURLException ex) {
                 throw new IllegalStateException("Failed to build URL", ex);
             }
         }
-        final URLClassLoader loader =
-            new DefaultMavenEnvironment.PrivilegedClassLoader(urls).run();
+        final URLClassLoader loader = new PrivilegedClassLoader(urls).run();
         for (final URL url : loader.getURLs()) {
             Logger.debug(this, "Classpath: %s", url);
         }
@@ -213,7 +221,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public boolean exclude(final String check, final String name) {
         return Iterables.any(
             this.excludes(check),
-            new DefaultMavenEnvironment.PathPredicate(name)
+            new PathPredicate(name)
         );
     }
 
@@ -222,7 +230,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return Collections2.filter(
             Collections2.transform(
                 this.exc,
-                new DefaultMavenEnvironment.CheckerExcludes(checker)
+                new CheckerExcludes(checker)
             ),
             Predicates.notNull()
         );
@@ -230,6 +238,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set Maven Project (used mostly for unit testing).
+     *
      * @param proj The project to set
      */
     public void setProject(final MavenProject proj) {
@@ -238,6 +247,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set context.
+     *
      * @param ctx The context to set
      */
     public void setContext(final Context ctx) {
@@ -246,6 +256,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set executor.
+     *
      * @param exec The executor
      */
     public void setMojoExecutor(final MojoExecutor exec) {
@@ -254,6 +265,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set property.
+     *
      * @param name Its name
      * @param value Its value
      */
@@ -263,6 +275,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set list of regular expressions to exclude.
+     *
      * @param exprs Expressions
      */
     public void setExcludes(final Collection<String> exprs) {
@@ -272,6 +285,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set list of Xpath queries for pom.xml validation.
+     *
      * @param ass Xpath queries
      */
     public void setAssertion(final Collection<String> ass) {
@@ -281,6 +295,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     /**
      * Set the encoding of source files.
+     *
      * @param encoding The encoding to use
      */
     public void setEncoding(final String encoding) {
@@ -295,20 +310,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return Charset.forName(this.charset);
     }
 
-    /**
-     * Collect source directories declared by the Maven project.
-     *
-     * <p>Uses compile and test source roots together with declared resources
-     * so that a project configuring {@code <sourceDirectory>} or
-     * {@code <testSourceDirectory>} in its POM is honored. Falls back to
-     * {@code src} under the basedir when the project exposes no directories,
-     * which preserves the historical behavior for minimal stubs. Roots that
-     * live under the project's build directory (e.g.
-     * {@code target/generated-sources/...}) are filtered out, since those
-     * are generated build outputs and not user-authored code (issue #1560).
-     *
-     * @return Absolute directories to scan for files
-     */
     private Collection<File> sources() {
         final Collection<File> dirs = new ArrayList<>(0);
         final Build build = this.iproject.getBuild();
@@ -325,11 +326,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return dirs;
     }
 
-    /**
-     * Resolve the project's build directory.
-     * @param build Build descriptor, may be null
-     * @return Canonical build directory, or null if not declared
-     */
     @Nullable
     private File buildDirectory(@Nullable final Build build) {
         File dir = null;
@@ -339,12 +335,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return dir;
     }
 
-    /**
-     * Add resolved roots to the given collection.
-     * @param dirs Collection to fill
-     * @param roots Source roots, may be null
-     * @param output Build output directory, may be null
-     */
     private void addRoots(final Collection<File> dirs,
         final List<String> roots, @Nullable final File output) {
         if (roots != null) {
@@ -363,12 +353,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         }
     }
 
-    /**
-     * Add resolved resource directories to the given collection.
-     * @param dirs Collection to fill
-     * @param resources Resources, may be null
-     * @param output Build output directory, may be null
-     */
     private void addResources(final Collection<File> dirs,
         final List<Resource> resources, @Nullable final File output) {
         if (resources != null) {
@@ -387,12 +371,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         }
     }
 
-    /**
-     * Check that the file does not live inside the given parent.
-     * @param file Candidate
-     * @param parent Possibly enclosing directory, may be null
-     * @return True when the file is outside the parent
-     */
     private static boolean outside(final File file,
         @Nullable final File parent) {
         boolean answer = true;
@@ -411,11 +389,6 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
         return answer;
     }
 
-    /**
-     * Resolve a directory path against the project basedir.
-     * @param path Absolute or relative path
-     * @return Absolute file
-     */
     private File resolve(final String path) {
         final File file = new File(path);
         final File resolved;
@@ -425,104 +398,5 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
             resolved = new File(this.basedir(), path);
         }
         return resolved;
-    }
-
-    /**
-     * Creates URL ClassLoader in privileged block.
-     * @since 0.1
-     */
-    private static final class PrivilegedClassLoader implements
-        PrivilegedAction<URLClassLoader> {
-
-        /**
-         * URLs for class loading.
-         */
-        private final List<URL> urls;
-
-        /**
-         * Constructor.
-         * @param urls URLs for class loading
-         */
-        private PrivilegedClassLoader(final List<URL> urls) {
-            this.urls = urls;
-        }
-
-        @Override
-        public URLClassLoader run() {
-            return new URLClassLoader(
-                this.urls.toArray(new URL[0]),
-                Thread.currentThread().getContextClassLoader()
-            );
-        }
-    }
-
-    /**
-     * Checks if two paths are equal.
-     * @since 0.1
-     */
-    private static class PathPredicate implements Predicate<String> {
-
-        /**
-         * Path to match.
-         */
-        private final String name;
-
-        /**
-         * Constructor.
-         * @param name Path to match
-         */
-        PathPredicate(final String name) {
-            this.name = name;
-        }
-
-        @Override
-        public boolean apply(@Nullable final String input) {
-            return input != null
-                && FilenameUtils.normalize(this.name, true).matches(input);
-        }
-    }
-
-    /**
-     * Converts a checker exclude into exclude param.
-     *
-     * <p>E.g. "checkstyle:.*" will become ".*".
-     *
-     * @since 0.1
-     */
-    private static class CheckerExcludes implements Function<String, String> {
-
-        /**
-         * All checkers.
-         */
-        private static final String ALL = "*";
-
-        /**
-         * Name of checker.
-         */
-        private final String checker;
-
-        /**
-         * Constructor.
-         * @param checker Name of checker
-         */
-        CheckerExcludes(final String checker) {
-            this.checker = checker;
-        }
-
-        @Nullable
-        @Override
-        public String apply(@Nullable final String input) {
-            String result = null;
-            if (input != null) {
-                final String[] exclude = input.split(":", 2);
-                final String check = exclude[0];
-                final boolean appropriate = CheckerExcludes.ALL.equals(check)
-                    || this.checker.equals(check);
-                if (appropriate && exclude.length > 1) {
-                    result = exclude[1];
-                }
-            }
-            return result;
-        }
     }
 }

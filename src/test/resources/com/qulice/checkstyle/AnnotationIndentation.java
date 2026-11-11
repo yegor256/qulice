@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 @SuppressWarnings({
@@ -13,4 +14,11 @@ package foo;
     "PMD.AvoidDuplicateLiterals"
 })
 public final class AnnotationIndentation {
+
+    /**
+     * Ctor.
+     */
+    public AnnotationIndentation() {
+        // nothing
+    }
 }

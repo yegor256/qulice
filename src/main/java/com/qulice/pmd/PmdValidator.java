@@ -6,6 +6,7 @@ package com.qulice.pmd;
 
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
+import com.qulice.spi.Ignored;
 import com.qulice.spi.Relative;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
@@ -16,6 +17,7 @@ import java.util.Locale;
 
 /**
  * Validates source code with PMD.
+ *
  * @since 0.3
  */
 public final class PmdValidator implements ResourceValidator {
@@ -27,6 +29,7 @@ public final class PmdValidator implements ResourceValidator {
 
     /**
      * Constructor.
+     *
      * @param env Environment to use
      */
     public PmdValidator(final Environment env) {
@@ -68,8 +71,14 @@ public final class PmdValidator implements ResourceValidator {
         return "PMD";
     }
 
+    @Override
+    public int rules() {
+        return new SourceValidator(this.env.encoding()).rules();
+    }
+
     /**
      * Filters out excluded files from further validation.
+     *
      * @param files Files to validate
      * @return Relevant source files
      */
@@ -78,6 +87,9 @@ public final class PmdValidator implements ResourceValidator {
         for (final File file : files) {
             final String name = new Relative(this.env.basedir(), file).path();
             if (this.env.exclude("pmd", name)) {
+                continue;
+            }
+            if (new Ignored(name).yes()) {
                 continue;
             }
             if (!name.toLowerCase(Locale.ROOT).endsWith(".java")) {

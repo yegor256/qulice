@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of
  * {@link UnusedSuppressions}.
+ *
  * @since 1.0
  */
 final class UnusedSuppressionTest {

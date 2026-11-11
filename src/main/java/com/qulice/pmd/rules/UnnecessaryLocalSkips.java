@@ -23,6 +23,7 @@ import net.sourceforge.pmd.lang.java.ast.ASTVariableDeclarator;
  * Heuristics that veto an {@link UnnecessaryLocalRule} report when the local
  * is semantically required (closure capture, clock snapshot, or capture
  * before a destructive call). See issue #1607.
+ *
  * @since 0.27.7
  */
 final class UnnecessaryLocalSkips {
@@ -54,6 +55,7 @@ final class UnnecessaryLocalSkips {
      * The single use of the local is reachable only by crossing a lambda or
      * anonymous-class boundary, so the local exists to carry the value into
      * a different exception scope.
+     *
      * @param block The block enclosing the declaration
      * @param name The variable name
      * @param crossings Number of usages found when crossing find boundaries
@@ -74,6 +76,7 @@ final class UnnecessaryLocalSkips {
      * The initialiser snapshots mutable global state - a clock, a randomness
      * source, or {@code new Date()} - so inlining would change <em>when</em>
      * the value is taken.
+     *
      * @param init The initialiser expression
      * @return True if the initialiser captures fresh state
      */
@@ -100,6 +103,7 @@ final class UnnecessaryLocalSkips {
      * qualifier (e.g. {@code System.setOut(...)}) counts, since such a call may
      * reassign the field before it is read; an unrelated statement leaves the
      * read inlinable. See issues #1607, #1699, #1700 and #1710.
+     *
      * @param variable The variable declarator
      * @param use The single use of the variable
      * @return True if a statement intervenes between init and its use
@@ -121,17 +125,6 @@ final class UnnecessaryLocalSkips {
         return found;
     }
 
-    /**
-     * A statement sits between the declaration and its use inside the block
-     * that encloses the declaration. The use is measured through its nearest
-     * ancestor statement in that common block, so a use buried in an {@code
-     * if} or loop body (whose immediate block differs from the declaration's)
-     * is still compared against the intervening statements rather than being
-     * treated as adjacent. See issue #1700.
-     * @param variable The variable declarator
-     * @param use The single use of the variable
-     * @return True if a statement intervenes between init and its use
-     */
     private static boolean intervenes(
         final ASTVariableDeclarator variable,
         final ASTVariableAccess use

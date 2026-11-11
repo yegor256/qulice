@@ -3,8 +3,11 @@
  */
 package foo;
 
+import java.util.Random;
+
 /**
  * Simple.
+ *
  * @since 1.0
  */
 @SuppressWarnings(AnnotationConstantField.TEXT1)
@@ -43,7 +46,15 @@ public final class AnnotationConstantField {
     private int other = 2;
 
     /**
+     * Ctor.
+     */
+    public AnnotationConstantField() {
+        // nothing
+    }
+
+    /**
      * Some data.
+     *
      * @return Some data
      */
     public int data() {
@@ -51,19 +62,34 @@ public final class AnnotationConstantField {
     }
 
     /**
+     * All texts together, so that no constant is used only once.
+     *
+     * @return All of them
+     */
+    public static String all() {
+        return String.format(
+            "%s%s%s%s",
+            AnnotationConstantField.TEXT1, AnnotationConstantField.TEXT2,
+            AnnotationConstantField.TEXT3, AnnotationConstantField.TEXT4
+        );
+    }
+
+    /**
      * Some inner class.
+     *
      * @since 1.0
      */
     @SuppressWarnings(AnnotationConstantField.TEXT4)
-    private static final class Inner {
+    private final class Inner {
 
         /**
          * Random source.
          */
-        private final java.util.Random rnd = new java.util.Random();
+        private final Random rnd = new Random();
 
         /**
          * Returns dummy.
+         *
          * @return Dummy
          */
         public int dummy() {

@@ -13,6 +13,7 @@ import org.apache.maven.model.Plugin;
 /**
  * Check that the project has not SNAPSHOT dependencies if its own
  * status is stable.
+ *
  * @since 0.3
  */
 public final class SnapshotsValidator implements MavenValidator {
@@ -33,11 +34,6 @@ public final class SnapshotsValidator implements MavenValidator {
         }
     }
 
-    /**
-     * Check all plugins and deps.
-     * @param env Environment
-     * @throws ValidationException If fails
-     */
     private void check(final MavenEnvironment env) throws ValidationException {
         int errors = 0;
         for (final Extension ext : env.project().getBuildExtensions()) {
@@ -82,11 +78,6 @@ public final class SnapshotsValidator implements MavenValidator {
         }
     }
 
-    /**
-     * Whether this version is a snapshot?
-     * @param version The version
-     * @return TRUE if yes
-     */
     private static boolean isSnapshot(final String version) {
         return version.endsWith("-SNAPSHOT");
     }

@@ -16,12 +16,14 @@ import java.util.List;
 import net.sourceforge.pmd.PMDConfiguration;
 import net.sourceforge.pmd.PmdAnalysis;
 import net.sourceforge.pmd.lang.rule.RulePriority;
+import net.sourceforge.pmd.lang.rule.RuleSet;
 import net.sourceforge.pmd.reporting.Report;
 import net.sourceforge.pmd.reporting.RuleViolation;
 import org.cactoos.list.ListOf;
 
 /**
  * Validates source files via <code>PmdValidator</code>.
+ *
  * @since 0.3
  */
 final class SourceValidator {
@@ -38,6 +40,7 @@ final class SourceValidator {
 
     /**
      * Creates new instance of <code>SourceValidator</code>.
+     *
      * @param charset Source files encoding
      */
     SourceValidator(final Charset charset) {
@@ -47,20 +50,15 @@ final class SourceValidator {
 
     /**
      * Performs validation of the input source files.
+     *
      * @param sources Input source files
      * @param path Base path
      * @return Collection of violations
      */
     Collection<PmdError> validate(
         final Collection<File> sources, final String path) {
-        this.config.setRuleSets(new ListOf<>("com/qulice/pmd/ruleset.xml"));
-        this.config.setThreads(0);
-        this.config.setMinimumPriority(RulePriority.LOW);
-        this.config.setIgnoreIncrementalAnalysis(true);
-        this.config.setShowSuppressedViolations(true);
-        this.config.setSourceEncoding(this.encoding);
         final List<PmdError> errors = new ArrayList<>(0);
-        try (PmdAnalysis analysis = PmdAnalysis.create(this.config)) {
+        try (PmdAnalysis analysis = PmdAnalysis.create(this.configured())) {
             for (final File source : sources) {
                 Logger.debug(
                     this,
@@ -84,20 +82,31 @@ final class SourceValidator {
     }
 
     /**
-     * Tells whether a processing error should be reported as a violation.
-     * Some PMD rules crash internally with an {@link IllegalStateException}
-     * while analyzing perfectly valid Java. For example {@code
-     * UseDiamondOperator} throws {@code "overload resolution is not
-     * complete"} when it probes an overloaded method reference such as
-     * {@code BigDecimal::multiply} (see #1686). PMD itself only logs such a
-     * crash as a warning and keeps going, so it is a bug in the tool, not a
-     * problem in the code under analysis. We do the same here: log it as a
-     * warning and do not turn it into a build-breaking violation, since the
-     * user cannot fix it in their code. The full stack trace is logged too,
-     * so the crash can still be diagnosed and reported upstream.
-     * @param error The processing error to inspect
-     * @return True if it must be reported, false if it is an internal crash
+     * How many rules the ruleset holds, once PMD has resolved the
+     * categories it refers to and taken the exclusions out.
+     *
+     * @return The number of rules
      */
+    int rules() {
+        int total = 0;
+        try (PmdAnalysis analysis = PmdAnalysis.create(this.configured())) {
+            for (final RuleSet set : analysis.getRulesets()) {
+                total += set.size();
+            }
+        }
+        return total;
+    }
+
+    private PMDConfiguration configured() {
+        this.config.setRuleSets(new ListOf<>("com/qulice/pmd/ruleset.xml"));
+        this.config.setThreads(0);
+        this.config.setMinimumPriority(RulePriority.LOW);
+        this.config.setIgnoreIncrementalAnalysis(true);
+        this.config.setShowSuppressedViolations(true);
+        this.config.setSourceEncoding(this.encoding);
+        return this.config;
+    }
+
     private boolean reportable(final Report.ProcessingError error) {
         final boolean crash = SourceValidator.crashed(error.getError());
         if (crash) {
@@ -112,13 +121,6 @@ final class SourceValidator {
         return !crash;
     }
 
-    /**
-     * Tells whether a throwable is (or was caused by) an internal PMD rule
-     * crash, recognized by an {@link IllegalStateException} anywhere in its
-     * cause chain.
-     * @param error The throwable to inspect
-     * @return True if the cause chain contains an IllegalStateException
-     */
     private static boolean crashed(final Throwable error) {
         boolean crash = false;
         Throwable cause = error;
@@ -132,14 +134,6 @@ final class SourceValidator {
         return crash;
     }
 
-    /**
-     * Tells whether a violation reports a {@code @SuppressWarnings} that
-     * tries to suppress {@code PMD.UnnecessaryWarningSuppression} itself.
-     * The PMD rule cannot suppress its own violations, so suppressing it is
-     * effectively a no-op and must not be reported as unused.
-     * @param violation Violation to inspect
-     * @return True if the violation is self-referential
-     */
     private static boolean suppressesItself(final RuleViolation violation) {
         final String name = "UnnecessaryWarningSuppression";
         boolean result = false;

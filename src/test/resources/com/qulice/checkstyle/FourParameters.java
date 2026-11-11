@@ -5,12 +5,14 @@ package foo;
 
 /**
  * Class with a method of four parameters.
+ *
  * @since 1.0
  */
 public final class FourParameters {
 
     /**
      * Sum of all numbers.
+     *
      * @param one First number
      * @param two Second number
      * @param three Third number

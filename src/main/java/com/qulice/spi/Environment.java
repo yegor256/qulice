@@ -24,30 +24,50 @@ import org.apache.commons.io.filefilter.WildcardFileFilter;
 
 /**
  * Environment.
+ *
  * @since 0.3
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public interface Environment {
 
     /**
      * Get project's basedir.
+     *
      * @return The directory
      */
     File basedir();
 
     /**
      * Get directory to keep temporary files in.
+     *
      * @return The directory
      */
     File tempdir();
 
     /**
      * Get directory where {@code .class} files are stored.
+     *
      * @return The directory
      */
     File outdir();
 
     /**
+     * Get the directories the project keeps its test sources in.
+     *
+     * <p>Maven allows a project to register any number of test source
+     * roots, either through {@code <testSourceDirectory>} or through a
+     * plugin such as {@code build-helper-maven-plugin:add-test-source},
+     * which the jcabi parent POM uses for {@code src/mock/java}. A file
+     * therefore cannot be told from a main one by its path alone, and
+     * whoever needs to know has to ask for these roots.</p>
+     *
+     * @return Test source roots, absolute, possibly empty
+     */
+    Collection<File> testdirs();
+
+    /**
      * Get parameter by name, and return default if it's not set.
+     *
      * @param name The name of parameter
      * @param value Default value to return as default
      * @return The value
@@ -56,12 +76,14 @@ public interface Environment {
 
     /**
      * Get classloader for this project.
+     *
      * @return The classloader
      */
     ClassLoader classloader();
 
     /**
      * Get list of paths in classpath.
+     *
      * @return The collection of paths
      */
     Collection<String> classpath();
@@ -71,7 +93,7 @@ public interface Environment {
      *
      * <p>The pattern matching scheme used is wildcard matching. The characters
      * '?' and '*' represents single or multiple wildcard characters,
-     * respectively. Pattern matching is case sensitive.
+     * respectively. Pattern matching is case sensitive.</p>
      *
      * @param pattern File name pattern
      * @return Collection of files, matching the specified pattern
@@ -80,6 +102,7 @@ public interface Environment {
 
     /**
      * Shall this item be excluded from report?
+     *
      * @param check Name of the check that is asking
      * @param name File or any other item, which is subject of validation
      * @return TRUE if it should be ignored
@@ -91,6 +114,7 @@ public interface Environment {
      * Each list element will contain exactly one exclude pattern which,
      * depending on the plugin that uses the excludes might be either wildcard
      * (CodeNarc) pattern or regex pattern (FindBugs).
+     *
      * @param checker Name of the checker that is asking (pmd, codenarc ...)
      * @return Exclude patterns
      */
@@ -98,12 +122,14 @@ public interface Environment {
 
     /**
      * Encoding for the files.
+     *
      * @return Source files charset
      */
     Charset encoding();
 
     /**
      * Mock of {@link Environment}.
+     *
      * @since 0.1
      */
     final class Mock implements Environment {
@@ -124,6 +150,11 @@ public interface Environment {
         private final Map<String, String> params;
 
         /**
+         * Test source roots, on top of the default {@code src/test}.
+         */
+        private final Collection<File> tests;
+
+        /**
          * Exclude patterns.
          */
         private String excl;
@@ -137,6 +168,7 @@ public interface Environment {
 
         /**
          * Constructor with a ready basedir.
+         *
          * @param base The basedir
          */
         private Mock(final File base) {
@@ -145,6 +177,7 @@ public interface Environment {
 
         /**
          * Primary constructor.
+         *
          * @param base The basedir
          * @param dirs Directories to put on the classpath
          */
@@ -152,10 +185,24 @@ public interface Environment {
             this.origin = base;
             this.paths = dirs;
             this.params = new HashMap<>();
+            this.tests = new ArrayList<>(0);
+        }
+
+        /**
+         * With this extra test source root, the way
+         * {@code build-helper-maven-plugin} would add one.
+         *
+         * @param path Directory name, related to basedir
+         * @return This object
+         */
+        public Environment.Mock withTestdir(final String path) {
+            this.tests.add(new File(this.origin, path));
+            return this;
         }
 
         /**
          * With this param and its value.
+         *
          * @param name Param name
          * @param value Param value
          * @return This object
@@ -168,6 +215,7 @@ public interface Environment {
 
         /**
          * With this file on board.
+         *
          * @param name File name related to basedir
          * @param content File content to write
          * @return This object
@@ -185,6 +233,7 @@ public interface Environment {
 
         /**
          * With this file on board.
+         *
          * @param name File name related to basedir
          * @param bytes File content to write
          * @return This object
@@ -198,6 +247,7 @@ public interface Environment {
 
         /**
          * With exclude patterns.
+         *
          * @param excludes Exclude patterns
          * @return This object
          */
@@ -208,6 +258,7 @@ public interface Environment {
 
         /**
          * With default classpath.
+         *
          * @return This object
          */
         public Environment.Mock withDefaultClasspath() {
@@ -244,6 +295,13 @@ public interface Environment {
                 );
             }
             return file;
+        }
+
+        @Override
+        public Collection<File> testdirs() {
+            final Collection<File> dirs = new ArrayList<>(this.tests);
+            dirs.add(new File(this.origin, "src/test"));
+            return dirs;
         }
 
         @Override
@@ -304,10 +362,6 @@ public interface Environment {
             return StandardCharsets.UTF_8;
         }
 
-        /**
-         * Creates a fresh basedir in a temporary directory.
-         * @return The directory
-         */
         private static File temporary() {
             try {
                 final File temp = Files.createTempDirectory("mock-qulice").toFile();
@@ -324,11 +378,6 @@ public interface Environment {
             }
         }
 
-        /**
-         * Creates the directory of compiled classes for the given basedir.
-         * @param base The basedir
-         * @return Paths to put on the classpath
-         */
         private static Set<String> outputs(final File base) {
             final File out = new File(base, "target/classes");
             if (!out.mkdirs() && !out.isDirectory()) {

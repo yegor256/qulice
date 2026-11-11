@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 
 /**
  * Simple.
+ *
  * @see java.lang.Object
  * @since 1.0
  */
@@ -19,6 +20,7 @@ public final class UnnecessaryJavaLang {
 
     /**
      * Ctor.
+     *
      * @param txt Text
      * @throws java.lang.Exception If a problem occurs
      */
@@ -28,6 +30,7 @@ public final class UnnecessaryJavaLang {
 
     /**
      * Act.
+     *
      * @return Size
      */
     public int act() {
@@ -37,6 +40,7 @@ public final class UnnecessaryJavaLang {
 
     /**
      * Xpath query used as test data.
+     *
      * @return Query string
      */
     public String xpath() {
@@ -45,6 +49,7 @@ public final class UnnecessaryJavaLang {
 
     /**
      * Xpath query kept in a text block.
+     *
      * @return Query string
      */
     public String snippet() {

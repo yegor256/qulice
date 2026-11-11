@@ -13,6 +13,7 @@ import org.cactoos.text.Joined;
 
 /**
  * Builder of {@code LICENSE.txt} content.
+ *
  * @since 0.4
  */
 public final class License {
@@ -30,7 +31,7 @@ public final class License {
     /**
      * Package name.
      */
-    private String pkg = "foo";
+    private String pkg;
 
     /**
      * Directory for package-info.java.
@@ -38,7 +39,15 @@ public final class License {
     private File directory;
 
     /**
+     * Ctor.
+     */
+    public License() {
+        this.pkg = "foo";
+    }
+
+    /**
      * Use this EOL.
+     *
      * @param txt What to use as end-of-line character
      * @return This object
      */
@@ -49,6 +58,7 @@ public final class License {
 
     /**
      * Use this text (lines).
+     *
      * @param lns The lines to use
      * @return This object
      */
@@ -60,6 +70,7 @@ public final class License {
 
     /**
      * Use this package name.
+     *
      * @param name The name of package
      * @return This object
      */
@@ -70,6 +81,7 @@ public final class License {
 
     /**
      * Save package-info.java into this folder.
+     *
      * @param dir The folder to save to
      * @return This object
      */
@@ -80,6 +92,7 @@ public final class License {
 
     /**
      * Make a file.
+     *
      * @return The location of LICENSE.txt
      * @throws IOException If something wrong happens inside
      */
@@ -97,11 +110,6 @@ public final class License {
         return license;
     }
 
-    /**
-     * Save package-info.java to the directory.
-     * @param dir The directory
-     * @throws IOException If something wrong happens inside
-     */
     private void makePackageInfo(final File dir) throws IOException {
         final StringBuilder body = new StringBuilder(100);
         body.append("/*").append(this.eol);

@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of
  * {@link EmptyLinesCheck}.
+ *
  * @since 0.25.1
  */
 final class EmptyLinesCheckTest {
@@ -42,18 +43,18 @@ final class EmptyLinesCheckTest {
             "All empty lines should be found",
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher(message, file, "15", name),
-                new ViolationMatcher(message, file, "19", name),
-                new ViolationMatcher(message, file, "21", name),
-                new ViolationMatcher(message, file, "25", name),
-                new ViolationMatcher(message, file, "28", name),
-                new ViolationMatcher(message, file, "32", name),
-                new ViolationMatcher(message, file, "34", name),
-                new ViolationMatcher(message, file, "38", name),
-                new ViolationMatcher(message, file, "41", name),
-                new ViolationMatcher(message, file, "48", name),
-                new ViolationMatcher(message, file, "50", name),
-                new ViolationMatcher(message, file, "52", name)
+                new ViolationMatcher(message, file, "16", name),
+                new ViolationMatcher(message, file, "20", name),
+                new ViolationMatcher(message, file, "22", name),
+                new ViolationMatcher(message, file, "26", name),
+                new ViolationMatcher(message, file, "29", name),
+                new ViolationMatcher(message, file, "33", name),
+                new ViolationMatcher(message, file, "35", name),
+                new ViolationMatcher(message, file, "39", name),
+                new ViolationMatcher(message, file, "42", name),
+                new ViolationMatcher(message, file, "49", name),
+                new ViolationMatcher(message, file, "51", name),
+                new ViolationMatcher(message, file, "53", name)
             )
         );
     }

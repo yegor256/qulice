@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link PmdValidator}'s rule that forbids
  * {@code Files.createFile} inside tests but allows it elsewhere.
+ *
  * @since 0.25.1
  */
 final class PmdFilesCreateFileTest {

@@ -10,42 +10,49 @@ import lombok.ToString;
 
 /**
  * Validation result.
+ *
  * @since 0.17
  */
 public interface Violation extends Comparable<Violation> {
 
     /**
      * Name of the validator that generated this violation information.
+     *
      * @return Name of the validator
      */
     String validator();
 
     /**
      * Name of the failed check.
+     *
      * @return Name of the failed check
      */
     String name();
 
     /**
      * Validated file.
+     *
      * @return Validated file
      */
     String file();
 
     /**
      * Lines with the problem.
+     *
      * @return Lines with the problem
      */
     String lines();
 
     /**
      * Validation message.
+     *
      * @return Validation message
      */
     String message();
 
     /**
      * Default validation result.
+     *
      * @since 0.1
      */
     @EqualsAndHashCode
@@ -59,7 +66,7 @@ public interface Violation extends Comparable<Violation> {
         private static final Comparator<Violation> ORDER =
             Comparator.comparing(Violation::validator, String.CASE_INSENSITIVE_ORDER)
                 .thenComparing(Violation::file, String.CASE_INSENSITIVE_ORDER)
-                .thenComparing(Default::lineNumber)
+                .thenComparingInt(Default::lineNumber)
                 .thenComparing(Violation::lines)
                 .thenComparing(Violation::name)
                 .thenComparing(Violation::message);
@@ -91,6 +98,7 @@ public interface Violation extends Comparable<Violation> {
 
         /**
          * Constructor.
+         *
          * @param vldtr Name of the validator
          * @param name Name of the failed check
          * @param file Validated file
@@ -136,13 +144,6 @@ public interface Violation extends Comparable<Violation> {
             return Default.ORDER.compare(this, other);
         }
 
-        /**
-         * Numeric line number, or {@link Integer#MAX_VALUE} when the
-         * field cannot be parsed as a single integer (e.g. a range like
-         * {@code "10-12"}). Numeric ordering keeps line 9 before line 42.
-         * @param violation The violation to inspect
-         * @return Parsed line number, or {@code MAX_VALUE} as a fallback
-         */
         private static int lineNumber(final Violation violation) {
             int parsed;
             try {

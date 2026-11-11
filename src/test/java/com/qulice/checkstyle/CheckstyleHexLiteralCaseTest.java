@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code HexLiteralCase} check.
+ *
  * @since 0.25.1
  */
 final class CheckstyleHexLiteralCaseTest {
@@ -34,7 +35,7 @@ final class CheckstyleHexLiteralCaseTest {
                 new ViolationMatcher(
                     "Should use uppercase hexadecimal letters",
                     file,
-                    "18",
+                    "20",
                     "HexLiteralCaseCheck"
                 )
             )

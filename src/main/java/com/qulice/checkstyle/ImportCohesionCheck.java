@@ -13,7 +13,7 @@ import java.io.File;
  *
  * <p>All {@code import} instructions shall stay together, without any empty
  * lines between them. If you need to separate them because the list is too
- * big - it's time to refactor the class and make is smaller.
+ * big - it's time to refactor the class and make is smaller.</p>
  *
  * @since 0.3
  */
@@ -52,13 +52,6 @@ public final class ImportCohesionCheck extends AbstractFileSetCheck {
         }
     }
 
-    /**
-     * Perform check for empty lines and comments inside imports.
-     * @param first Line number where import occurred first
-     * @param last Line number where import occurred first
-     * @param lines All file line by line
-     * @return True if check is failed
-     */
     private boolean check(final int first, final int last,
         final FileText lines
     ) {

@@ -21,6 +21,7 @@ import org.junit.jupiter.params.provider.ValueSource;
  * https://github.com/yegor256/qulice/issues/1647,
  * https://github.com/yegor256/qulice/issues/1656
  * and https://github.com/yegor256/qulice/issues/1667
+ *
  * @since 1.0
  */
 final class PmdTooManyMethodsTest {
@@ -82,6 +83,34 @@ final class PmdTooManyMethodsTest {
             Matchers.not(
                 Matchers.containsString("TooManyMethods")
             )
+        ).assertOk();
+    }
+
+    @ParameterizedTest
+    @ValueSource(
+        strings = {
+            "JnaLibrary.java",
+            "JnaQualifiedLibrary.java",
+            "JnaDirectLibrary.java",
+            "StdCallLibraryMethods.java"
+        }
+    )
+    void allowsManyMethodsInJnaBinding(final String file) throws Exception {
+        new PmdAssert(
+            file,
+            Matchers.any(Boolean.class),
+            Matchers.not(
+                Matchers.containsString("TooManyMethods")
+            )
+        ).assertOk();
+    }
+
+    @Test
+    void reportsTooManyMethodsInPlainInterface() throws Exception {
+        new PmdAssert(
+            "ManyMethodsInterface.java",
+            Matchers.is(false),
+            Matchers.containsString("TooManyMethods")
         ).assertOk();
     }
 

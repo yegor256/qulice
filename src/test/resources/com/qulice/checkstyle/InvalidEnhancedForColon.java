@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class InvalidEnhancedForColon {
@@ -18,6 +19,7 @@ public final class InvalidEnhancedForColon {
 
     /**
      * Ctor.
+     *
      * @param start Starting value
      */
     public InvalidEnhancedForColon(final int start) {
@@ -26,6 +28,7 @@ public final class InvalidEnhancedForColon {
 
     /**
      * Sum with base.
+     *
      * @param numbers Numbers
      * @return Total
      */

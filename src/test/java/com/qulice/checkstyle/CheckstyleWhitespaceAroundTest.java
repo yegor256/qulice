@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code WhitespaceAround} check for the enhanced-for colon,
  * see https://github.com/yegor256/qulice/issues/721.
+ *
  * @since 0.25.1
  */
 final class CheckstyleWhitespaceAroundTest {

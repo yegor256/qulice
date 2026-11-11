@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of
  * {@link ExtraSemicolonCheck}.
+ *
  * @since 0.25.1
  */
 final class ExtraSemicolonCheckTest {
@@ -33,9 +34,9 @@ final class ExtraSemicolonCheckTest {
             "Stray semicolons after constructor, method and class must be reported",
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher(message, file, "20", name),
-                new ViolationMatcher(message, file, "28", name),
-                new ViolationMatcher(message, file, "29", name)
+                new ViolationMatcher(message, file, "21", name),
+                new ViolationMatcher(message, file, "30", name),
+                new ViolationMatcher(message, file, "31", name)
             )
         );
     }

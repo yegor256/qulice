@@ -8,7 +8,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Number of parameters, tolerant to constructors that only take attributes.
+ * Number of parameters, tolerant to constructors that only take attributes
+ * and to private methods.
  *
  * <p>The stock {@code ParameterNumber} check treats a constructor as it
  * treats a method, while a constructor has no choice: it must accept a
@@ -16,7 +17,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * is a symptom of a class with too many attributes, and the class is what
  * has to be blamed, not its constructor. That's why a constructor with no
  * more parameters than the number of attributes of its class passes here,
- * no matter how big the limit is.
+ * no matter how big the limit is.</p>
+ *
+ * <p>A private method passes too. It is invisible outside its class, its
+ * parameters belong to no contract anybody else can see, and wrapping them
+ * into a new type only to satisfy the limit buys nothing.</p>
+ *
+ * <p>So does a method of a JNA binding, whose parameter list repeats the
+ * signature of a native function and cannot be shortened without breaking
+ * the mapping.</p>
  *
  * @since 1.0
  */
@@ -32,32 +41,29 @@ public final class ParameterNumberCheck
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (ast.getType() != TokenTypes.CTOR_DEF
-            || ParameterNumberCheck.parameters(ast) > ParameterNumberCheck.attributes(ast)) {
+        if (!ParameterNumberCheck.tolerated(ast)) {
             super.visitToken(ast);
         }
     }
 
-    /**
-     * How many parameters does this constructor take?
-     * @param ctor The CTOR_DEF node
-     * @return Number of parameters
-     */
+    private static boolean tolerated(final DetailAST ast) {
+        final boolean answer;
+        if (ast.getType() == TokenTypes.CTOR_DEF) {
+            answer = ParameterNumberCheck.parameters(ast)
+                <= ParameterNumberCheck.attributes(ast);
+        } else {
+            answer = ast.findFirstToken(TokenTypes.MODIFIERS)
+                .findFirstToken(TokenTypes.LITERAL_PRIVATE) != null
+                || new JnaBinding(ast).is();
+        }
+        return answer;
+    }
+
     private static int parameters(final DetailAST ctor) {
         return ctor.findFirstToken(TokenTypes.PARAMETERS)
             .getChildCount(TokenTypes.PARAMETER_DEF);
     }
 
-    /**
-     * How many attributes does the class of this constructor have?
-     *
-     * <p>Static fields stay out of the count, since they belong to the
-     * class and not to its objects. Components of a record count in, as
-     * they are the attributes the canonical constructor has to take.</p>
-     *
-     * @param ctor The CTOR_DEF node
-     * @return Number of attributes
-     */
     private static long attributes(final DetailAST ctor) {
         final DetailAST block = ctor.getParent();
         return ParameterNumberCheck.components(block.getParent())
@@ -68,11 +74,6 @@ public final class ParameterNumberCheck
             ).count();
     }
 
-    /**
-     * How many components does this type declare, if it is a record?
-     * @param type The node of the type declaration
-     * @return Number of record components
-     */
     private static int components(final DetailAST type) {
         final DetailAST components = type.findFirstToken(TokenTypes.RECORD_COMPONENTS);
         final int count;

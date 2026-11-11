@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link Violation}.
+ *
  * @since 0.24
  */
 final class ViolationTest {

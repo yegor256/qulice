@@ -4,7 +4,6 @@
  */
 package com.qulice.checkstyle;
 
-import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,6 +13,7 @@ import java.util.Iterator;
  * Represents a set of LineRange objects. For example, an instance of this class
  * could represent all the line ranges for methods in a given Java source code
  * file.
+ *
  * @since 0.16
  */
 public final class LineRanges {
@@ -32,6 +32,7 @@ public final class LineRanges {
 
     /**
      * Adds a line range to the collection.
+     *
      * @param line The line range to add to the collection
      */
     public void add(final LineRange line) {
@@ -40,6 +41,7 @@ public final class LineRanges {
 
     /**
      * Returns an iterator for this collection.
+     *
      * @return Iterator pointing to the internal collections elements
      */
     public Iterator<LineRange> iterator() {
@@ -48,18 +50,20 @@ public final class LineRanges {
 
     /**
      * Detects if the given line number is within any of the line ranges.
+     *
      * @param line The given line number to check
      * @return True if the given line number is within any line range
      */
     public boolean inRange(final int line) {
         return !this.lines.isEmpty()
             && FluentIterable.from(this.lines)
-            .anyMatch(new LineRanges.LineWithAny(line));
+            .anyMatch(new LineWithAny(line));
     }
 
     /**
      * Gets the subset of LineRanges that are within all given ranges. Does
      * not return null; instead, returns empty range if there are no matches.
+     *
      * @param ranges The ranges to filter on
      * @return Returns all LineRange elements that are within range
      */
@@ -82,31 +86,5 @@ public final class LineRanges {
      */
     public void clear() {
         this.lines.clear();
-    }
-
-    /**
-     * Predicate to determine if a given line is within range of any of
-     * the line ranges.
-     * @since 0.1
-     */
-    private static final class LineWithAny implements Predicate<LineRange> {
-
-        /**
-         * The given line.
-         */
-        private final int given;
-
-        /**
-         * Default constructor.
-         * @param line The given line to check against all the line ranges
-         */
-        private LineWithAny(final int line) {
-            this.given = line;
-        }
-
-        @Override
-        public boolean apply(final LineRange range) {
-            return range != null && range.within(this.given);
-        }
     }
 }

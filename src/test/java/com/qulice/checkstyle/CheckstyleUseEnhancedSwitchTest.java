@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
  * stock {@code UseEnhancedSwitch} check. The check suggests arrow-switch
  * syntax, a Java 14+ feature, so it must be disabled when the project targets
  * an older Java (issue #1694).
+ *
  * @since 1.0
  */
 final class CheckstyleUseEnhancedSwitchTest {
@@ -98,12 +99,6 @@ final class CheckstyleUseEnhancedSwitchTest {
         );
     }
 
-    /**
-     * Run the validator over the sample file with the given source level.
-     * @param source Value for {@code maven.compiler.source}, or {@code null}
-     * @return Collection of violations
-     * @throws IOException If some IO problem
-     */
     private Collection<Violation> runValidation(final String source)
         throws IOException {
         final Environment.Mock mock = new Environment.Mock();

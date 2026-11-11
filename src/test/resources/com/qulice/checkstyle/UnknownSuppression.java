@@ -7,6 +7,7 @@ package foo;
 
 /**
  * Sample class suppressing a check that is absent from checks.xml.
+ *
  * @since 1.0
  * @checkstyle ClassDataAbstractionCoupling (2 lines)
  */

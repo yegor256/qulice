@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * not declare is misleading. The same applies when the tag names a
  * different type than what the signature throws, for example when the
  * javadoc says {@code @throws IOException} but the signature declares
- * {@code throws Exception}. Both examples below are rejected:
+ * {@code throws Exception}. Both examples below are rejected:</p>
  *
  * <pre>
  * &#47;**
@@ -43,7 +43,7 @@ import java.util.regex.Pattern;
  *
  * <p>Types are compared by their simple name, so a javadoc that uses a
  * fully qualified name (e.g. {@code java.io.IOException}) still
- * matches a signature that uses the unqualified form, and vice-versa.
+ * matches a signature that uses the unqualified form, and vice-versa.</p>
  *
  * @since 0.24.1
  */
@@ -110,12 +110,6 @@ public final class JavadocThrowsCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Collect simple names of the exceptions declared in the
-     * {@code throws} clause of a method or constructor.
-     * @param ast Method/constructor definition node
-     * @return Simple names of declared checked exceptions
-     */
     private static Set<String> declared(final DetailAST ast) {
         final Set<String> names = new HashSet<>(0);
         final DetailAST clause = ast.findFirstToken(TokenTypes.LITERAL_THROWS);
@@ -133,12 +127,6 @@ public final class JavadocThrowsCheck extends AbstractCheck {
         return names;
     }
 
-    /**
-     * Extract the simple name from a possibly qualified type reference
-     * as written in javadoc text.
-     * @param text Full textual type reference
-     * @return Simple name (last dot-separated segment)
-     */
     private static String simple(final String text) {
         final int dot = text.lastIndexOf('.');
         final String result;
@@ -150,12 +138,6 @@ public final class JavadocThrowsCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Walk down a DOT-chained name and return the rightmost identifier
-     * text (i.e. the simple name of a qualified reference in the AST).
-     * @param dot AST node of type {@code DOT}
-     * @return Rightmost identifier's text
-     */
     private static String rightmost(final DetailAST dot) {
         DetailAST right = dot.getLastChild();
         while (right.getType() == TokenTypes.DOT) {

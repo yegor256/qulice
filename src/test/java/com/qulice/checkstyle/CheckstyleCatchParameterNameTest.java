@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code CatchParameterName} check.
+ *
  * @since 0.25.1
  */
 final class CheckstyleCatchParameterNameTest {
@@ -36,16 +37,16 @@ final class CheckstyleCatchParameterNameTest {
                 Matchers.iterableWithSize(4),
                 Matchers.hasItems(
                     new ViolationMatcher(
-                        "Name 'ex_invalid_1' must match pattern", file, "26", name
+                        "Name 'ex_invalid_1' must match pattern", file, "34", name
                     ),
                     new ViolationMatcher(
-                        "Name '$xxx' must match pattern", file, "28", name
+                        "Name '$xxx' must match pattern", file, "36", name
                     ),
                     new ViolationMatcher(
-                        "Name '_exp' must match pattern", file, "30", name
+                        "Name '_exp' must match pattern", file, "38", name
                     ),
                     new ViolationMatcher(
-                        "Name '$xxx' must match pattern", file, "28",
+                        "Name '$xxx' must match pattern", file, "36",
                         "IllegalIdentifierNameCheck"
                     )
                 )

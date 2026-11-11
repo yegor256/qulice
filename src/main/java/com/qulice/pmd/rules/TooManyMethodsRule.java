@@ -4,9 +4,12 @@
  */
 package com.qulice.pmd.rules;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import net.sourceforge.pmd.lang.java.ast.ASTAnnotation;
 import net.sourceforge.pmd.lang.java.ast.ASTClassDeclaration;
+import net.sourceforge.pmd.lang.java.ast.ASTClassType;
 import net.sourceforge.pmd.lang.java.ast.ASTMethodDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ASTTypeDeclaration;
 import net.sourceforge.pmd.lang.java.ast.ModifierOwner;
@@ -17,23 +20,33 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
  * PMD built-in {@code TooManyMethods} rule, this implementation counts
  * only public and protected methods, because private and package-private
  * ones are implementation detail and say nothing about how large the
- * contract of the class is. Methods annotated with {@code @Override} are
- * skipped too, since a supertype dictates them and the class has no say
- * in how many of them there are. Test classes are skipped altogether, since
+ * contract of the class is, and reports a class that exposes more than
+ * ten of them. Methods annotated with {@code @Override} are skipped too,
+ * since a supertype dictates them and the class has no say in how many
+ * of them there are. Test classes are skipped altogether, since
  * one assertion per test method inflates their method count beyond any
- * useful threshold. Skipping them here instead of through a
+ * useful threshold. JNA bindings are skipped too: a type that extends
+ * {@code com.sun.jna.Library}, or its Windows flavour
+ * {@code com.sun.jna.win32.StdCallLibrary}, mirrors a native library
+ * method by method, and its size is dictated by that library rather than
+ * by its author.
+ * Skipping them here instead of through a
  * {@code violationSuppressXPath} keeps a redundant
  * {@code @SuppressWarnings("PMD.TooManyMethods")} visible to
  * {@code UnnecessaryWarningSuppression}, which PMD credits to the
  * annotation whenever the annotation suppressor runs first.
+ *
  * @since 1.0
  */
 public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
 
     /**
-     * The largest number of public and protected methods a class may have.
+     * The JNA interfaces that mark a type as a native binding.
      */
-    private static final int MAX = 10;
+    private static final Collection<NamedSupertype> LIBRARIES = List.of(
+        new NamedSupertype("com.sun.jna.Library"),
+        new NamedSupertype("com.sun.jna.win32.StdCallLibrary")
+    );
 
     /**
      * Simple-name suffixes that mark a type as a test.
@@ -69,7 +82,8 @@ public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
     @Override
     public Object visit(final ASTClassDeclaration type, final Object data) {
         if (!TooManyMethodsRule.tested(type)
-            && TooManyMethodsRule.exposed(type) > TooManyMethodsRule.MAX) {
+            && !TooManyMethodsRule.binding(type)
+            && TooManyMethodsRule.exposed(type) > 10) {
             this.asCtx(data).addViolation(type);
         }
         return data;
@@ -85,6 +99,16 @@ public final class TooManyMethodsRule extends AbstractJavaRulechainRule {
         return method.getVisibility()
             .isAtLeast(ModifierOwner.Visibility.V_PROTECTED)
             && !method.isAnnotationPresent(Override.class);
+    }
+
+    private static boolean binding(final ASTClassDeclaration type) {
+        return type.getSuperInterfaceTypeNodes().any(TooManyMethodsRule::jna);
+    }
+
+    private static boolean jna(final ASTClassType parent) {
+        return TooManyMethodsRule.LIBRARIES.stream().anyMatch(
+            known -> known.matches(parent)
+        );
     }
 
     private static boolean tested(final ASTClassDeclaration type) {

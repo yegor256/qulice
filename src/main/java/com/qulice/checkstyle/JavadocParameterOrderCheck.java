@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 /**
  * Checks method parameters order to comply with what is defined in method
  * javadoc.
+ *
  * @since 0.18.10
  */
 @SuppressWarnings("PMD.LongVariable")
@@ -46,16 +47,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
      */
     private static final Pattern MATCH_JAVADOC_MULTILINE_CONT =
         Pattern.compile("(\\*/|@|[^\\s\\*])");
-
-    /**
-     * Multiline finished at end of comment.
-     */
-    private static final String END_JAVADOC = "*/";
-
-    /**
-     * Multiline finished at next Javadoc.
-     */
-    private static final String NEXT_TAG = "@";
 
     /**
      * Default constructor.
@@ -94,11 +85,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Returns the param tags in a javadoc comment.
-     * @param comment The Javadoc comment
-     * @return The param tags found
-     */
     private static List<JavadocTag> getMethodTags(final TextBlock comment) {
         final String[] lines = comment.getText();
         final List<JavadocTag> tags = new ArrayList<>(0);
@@ -144,13 +130,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         return tags;
     }
 
-    /**
-     * Calculates column number using Javadoc tag matcher.
-     * @param matcher Found javadoc tag matcher
-     * @param line Line number of Javadoc tag in comment
-     * @param start Column number of Javadoc comment beginning
-     * @return Column number
-     */
     private static int calculateTagColumn(
         final Matcher matcher, final int line, final int start
     ) {
@@ -161,16 +140,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         return col;
     }
 
-    /**
-     * Gets multiline Javadoc tags with arguments.
-     * @param matcher Javadoc tag Matcher
-     * @param column Column number of Javadoc tag
-     * @param lines Comment text lines
-     * @param index Line number that contains the javadoc tag
-     * @param line Javadoc tag line number in file
-     * @return Javadoc tags with arguments
-     * @checkstyle ParameterNumberCheck (30 lines)
-     */
     private static List<JavadocTag> getMultilineArgTags(
         final Matcher matcher, final int column, final String[] lines,
         final int index, final int line) {
@@ -185,8 +154,7 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
             if (multiline.find()) {
                 remindex = lines.length;
                 final String lfin = multiline.group(1);
-                if (!JavadocParameterOrderCheck.NEXT_TAG.equals(lfin)
-                    && !JavadocParameterOrderCheck.END_JAVADOC.equals(lfin)) {
+                if (!"@".equals(lfin) && !"*/".equals(lfin)) {
                     tags.add(new JavadocTag(line, column, paramone, paramtwo));
                 }
             }
@@ -195,12 +163,6 @@ public final class JavadocParameterOrderCheck extends AbstractCheck {
         return tags;
     }
 
-    /**
-     * Checks method parameters order to comply with what is defined in method
-     * javadoc.
-     * @param ast The method node
-     * @param doc Javadoc text block
-     */
     private void checkParameters(final DetailAST ast, final TextBlock doc) {
         final List<JavadocTag> tags = getMethodTags(doc);
         final Arguments args = new Arguments(ast);

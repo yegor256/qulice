@@ -17,7 +17,7 @@ import java.util.Collection;
  * one to the other. A tag that influences
  * no violation of its check suppresses nothing and lingers as a lie about
  * the code, which is what {@link Suppressions} finds with the help of this
- * class.
+ * class.</p>
  *
  * @since 1.0
  */
@@ -41,6 +41,7 @@ final class SuppressionTag {
 
     /**
      * Constructor.
+     *
      * @param check Name of the suppressed check
      * @param first First line of the influence range, and of the comment
      * @param last Last line of the influence range
@@ -53,6 +54,7 @@ final class SuppressionTag {
 
     /**
      * Name of the suppressed check.
+     *
      * @return The name
      */
     String check() {
@@ -61,6 +63,7 @@ final class SuppressionTag {
 
     /**
      * Line of the comment, where a violation about it belongs.
+     *
      * @return Line number
      */
     int line() {
@@ -73,7 +76,7 @@ final class SuppressionTag {
      * <p>The filters match the captured name against the fully qualified
      * class name of the check, which the name is a substring of, so the
      * same test decides here whether an event belongs to the suppressed
-     * check.
+     * check.</p>
      *
      * @param events Events collected with the nearby filters removed
      * @return True if no event of the check falls in the influence range
@@ -82,11 +85,6 @@ final class SuppressionTag {
         return events.stream().noneMatch(this::covers);
     }
 
-    /**
-     * Does this suppression cover this event?
-     * @param event Event to check
-     * @return True if the event is of the check and in the range
-     */
     private boolean covers(final AuditEvent event) {
         return event.getSourceName().contains(this.check)
             && event.getLine() >= this.first

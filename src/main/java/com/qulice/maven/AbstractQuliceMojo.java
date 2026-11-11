@@ -20,10 +20,17 @@ import org.slf4j.impl.StaticLoggerBinder;
 
 /**
  * Abstract mojo.
+ *
  * @since 0.3
  */
 public abstract class AbstractQuliceMojo extends AbstractMojo
     implements Contextualizable {
+
+    /**
+     * Name of the parameter that carries the extra ErrorProne flags of the
+     * project down to {@code ErrorProneValidator}.
+     */
+    private static final String ERRORPRONE = "qulice.errorprone";
 
     /**
      * Environment to pass to validators.
@@ -70,7 +77,19 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     private final Collection<String> asserts;
 
     /**
+     * List of ErrorProne flags to add to the ones Qulice already passes,
+     * e.g. {@code -Xep:UnicodeInCode:OFF} to switch a bug pattern off, or
+     * {@code -Xep:OperatorPrecedence:ERROR} to switch one back on.
+     */
+    @Parameter(
+        property = AbstractQuliceMojo.ERRORPRONE,
+        required = false
+    )
+    private final Collection<String> errorprone;
+
+    /**
      * The source encoding.
+     *
      * @parameter expression="${project.build.sourceEncoding}" required="true"
      */
     @Parameter(property = "encoding", defaultValue = "${project.build.sourceEncoding}")
@@ -83,10 +102,12 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.environment = new DefaultMavenEnvironment();
         this.excludes = new ArrayList<>(0);
         this.asserts = new ArrayList<>(0);
+        this.errorprone = new ArrayList<>(0);
     }
 
     /**
      * Set Maven Project (used mostly for unit testing).
+     *
      * @param proj The project to set
      */
     public final void setProject(final MavenProject proj) {
@@ -95,6 +116,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Set skip option (mostly for unit testing).
+     *
      * @param skp The "skip" option
      */
     public final void setSkip(final boolean skp) {
@@ -103,6 +125,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Set asserts option.
+     *
      * @param val Asserts to use
      */
     public final void setAsserts(final Collection<String> val) {
@@ -112,6 +135,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Set excludes.
+     *
      * @param exprs Expressions
      */
     public final void setExcludes(final Collection<String> exprs) {
@@ -120,7 +144,18 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     }
 
     /**
+     * Set extra ErrorProne flags.
+     *
+     * @param flags Flags, e.g. {@code -Xep:UnicodeInCode:OFF}
+     */
+    public final void setErrorprone(final Collection<String> flags) {
+        this.errorprone.clear();
+        this.errorprone.addAll(flags);
+    }
+
+    /**
      * Set source code encoding.
+     *
      * @param encoding Source code encoding
      */
     public void setEncoding(final String encoding) {
@@ -134,6 +169,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     @Override
     public final void execute() throws MojoFailureException {
+        final long start = System.currentTimeMillis();
         StaticLoggerBinder.getSingleton().setMavenLog(this.getLog());
         if (this.skip) {
             this.getLog().info("Execution skipped");
@@ -146,12 +182,23 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
         this.environment.setExcludes(this.excludes);
         this.environment.setAssertion(this.asserts);
         this.environment.setEncoding(this.charset);
-        this.doExecute();
-        Logger.info(this, "Qulice quality check completed");
+        if (!this.errorprone.isEmpty()) {
+            this.environment.setProperty(
+                AbstractQuliceMojo.ERRORPRONE,
+                String.join(" ", this.errorprone)
+            );
+        }
+        Logger.info(
+            this,
+            "Qulice %s in %[ms]s",
+            this.doExecute(),
+            System.currentTimeMillis() - start
+        );
     }
 
     /**
      * Current maven session.
+     *
      * @return Current maven session
      */
     public final MavenSession session() {
@@ -160,12 +207,16 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
 
     /**
      * Do the real execution.
+     *
+     * @return What was done, as the middle of the final log line, e.g.
+     *  {@code "checked 42 .java files against 385 rules"}
      * @throws MojoFailureException If some failure inside
      */
-    protected abstract void doExecute() throws MojoFailureException;
+    protected abstract String doExecute() throws MojoFailureException;
 
     /**
      * Get the environment.
+     *
      * @return The environment
      */
     protected final MavenEnvironment env() {

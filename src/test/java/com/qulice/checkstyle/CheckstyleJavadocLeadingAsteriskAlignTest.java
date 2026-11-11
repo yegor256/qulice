@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code JavadocLeadingAsteriskAlign} check.
+ *
  * @since 0.25.1
  */
 final class CheckstyleJavadocLeadingAsteriskAlignTest {
@@ -34,7 +35,7 @@ final class CheckstyleJavadocLeadingAsteriskAlignTest {
                 new ViolationMatcher(
                     "Leading asterisk has incorrect indentation level 5, expected is 6",
                     file,
-                    "13",
+                    "14",
                     "JavadocLeadingAsteriskAlignCheck"
                 )
             )

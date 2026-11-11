@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 /**
  * Multi line comment checker.
  * Used by the checkstyle process multiple times as a singleton.
+ *
  * @since 0.23.1
  */
 public final class MultiLineCommentCheck extends AbstractCheck {
@@ -96,6 +97,7 @@ public final class MultiLineCommentCheck extends AbstractCheck {
      * The parameter is set from the checks.xml file
      * {@code <module name="com.qulice.checkstyle.MultiLineCommentCheck"/>} and
      * {@code <property name="format" value=" this regexp "/>} property
+     *
      * @param fmt Validatig regexp
      */
     public void setFormat(final String fmt) {
@@ -108,6 +110,7 @@ public final class MultiLineCommentCheck extends AbstractCheck {
      * {@code <module name="com.qulice.checkstyle.MultiLineCommentCheck"/>} and
      * {@code <property name="message" value="First sentence in a comment ..."/>}
      * property
+     *
      * @param msg Error message
      */
     public void setMessage(final String msg) {

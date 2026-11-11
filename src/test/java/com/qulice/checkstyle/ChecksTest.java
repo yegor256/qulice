@@ -4,6 +4,7 @@
  */
 package com.qulice.checkstyle;
 
+import com.google.common.base.Splitter;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
@@ -26,12 +27,14 @@ import org.xml.sax.InputSource;
 
 /**
  * Integration test case for all checkstyle checks.
+ *
  * @since 0.3
  */
 final class ChecksTest {
 
     /**
      * Test checkstyle for true positive.
+     *
      * @param dir Directory where test scripts are located
      * @param name The name of the Invalid*.java file
      * @throws Exception If something goes wrong
@@ -68,9 +71,11 @@ final class ChecksTest {
             collector.eventCount() == violations.length
                 && Arrays.stream(violations).allMatch(
                     line -> {
-                        final String[] sectors = line.split(":");
+                        final List<String> sectors =
+                            Splitter.on(':').splitToList(line);
                         return collector.has(
-                            Integer.valueOf(sectors[0]), sectors[1].trim()
+                            Integer.valueOf(sectors.get(0)),
+                            sectors.get(1).trim()
                         );
                     }
                 ),
@@ -80,6 +85,7 @@ final class ChecksTest {
 
     /**
      * Test checkstyle for true negative.
+     *
      * @param dir Directory where test scripts are located
      * @param name The name of the Valid*.java file
      * @throws Exception If something goes wrong
@@ -100,13 +106,6 @@ final class ChecksTest {
         );
     }
 
-    /**
-     * Check one file.
-     * @param dir Directory where test scripts are located
-     * @param name The name of the check
-     * @param listener The listener
-     * @throws Exception If something goes wrong inside
-     */
     private void run(
         final String dir, final String name, final AuditListener listener
     ) throws Exception {
@@ -138,30 +137,14 @@ final class ChecksTest {
         checker.destroy();
     }
 
-    /**
-     * Arguments stream of (dir, InvalidXxx.java) pairs for all checks.
-     * @return Stream of Arguments
-     */
     private static Stream<Arguments> invalids() {
         return ChecksTest.checks().flatMap(dir -> ChecksTest.files(dir, "Invalid"));
     }
 
-    /**
-     * Arguments stream of (dir, ValidXxx.java) pairs for all checks.
-     * @return Stream of Arguments
-     */
     private static Stream<Arguments> valids() {
         return ChecksTest.checks().flatMap(dir -> ChecksTest.files(dir, "Valid"));
     }
 
-    /**
-     * Find all files in the given resource directory whose name is
-     * either {@code prefix.java} or starts with {@code prefix-} and
-     * ends with {@code .java}.
-     * @param dir Resource directory (e.g. {@code ChecksTest/FooCheck})
-     * @param prefix File prefix (e.g. {@code Invalid} or {@code Valid})
-     * @return Stream of (dir, fileName) Arguments
-     */
     private static Stream<Arguments> files(
         final String dir, final String prefix
     ) {
@@ -189,10 +172,6 @@ final class ChecksTest {
         return result;
     }
 
-    /**
-     * Returns full list of checks.
-     * @return The list
-     */
     private static Stream<String> checks() {
         return Stream.of(
             "MethodsOrderCheck",
@@ -216,9 +195,14 @@ final class ChecksTest {
             "NoJavadocForOverriddenMethodsCheck",
             "NonStaticMethodCheck",
             "ConstantUsageCheck",
+            "SingleUseConstantCheck",
+            "FullyQualifiedTypeCheck",
+            "ImplicitConstructorCheck",
             "JavadocEmptyLineCheck",
             "JavadocEmptyLineBeforeTagCheck",
             "JavadocCompactParagraphCheck",
+            "JavadocStrayAsteriskCheck",
+            "JavadocUnclosedParagraphCheck",
             "JavadocFirstLineCheck",
             "JavadocNoIndentCheck",
             "JavadocTagsCheck",
@@ -235,6 +219,8 @@ final class ChecksTest {
             "SingleSpaceSeparatorCheck",
             "SimpleStringSplitCheck",
             "ProhibitFieldsInTestClassesCheck",
+            "ProhibitStaticNestedClassesCheck",
+            "NoJavadocForPrivateMethodsCheck",
             "ParameterNumberCheck"
         ).map(s -> String.format("ChecksTest/%s", s));
     }

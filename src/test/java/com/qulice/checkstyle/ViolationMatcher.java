@@ -12,6 +12,7 @@ import org.hamcrest.TypeSafeMatcher;
  * Matcher for {@link Violation} produced by {@link CheckstyleValidator}
  * in unit tests. Matches by substring of the message, suffix of the file
  * path and, optionally, exact line number and check name.
+ *
  * @since 0.1
  */
 final class ViolationMatcher extends TypeSafeMatcher<Violation> {
@@ -38,6 +39,7 @@ final class ViolationMatcher extends TypeSafeMatcher<Violation> {
 
     /**
      * Constructor.
+     *
      * @param message Message to check
      * @param file File to check
      */
@@ -47,6 +49,7 @@ final class ViolationMatcher extends TypeSafeMatcher<Violation> {
 
     /**
      * Constructor.
+     *
      * @param message Message to check
      * @param file File to check
      * @param line Line to check
@@ -74,21 +77,11 @@ final class ViolationMatcher extends TypeSafeMatcher<Violation> {
         description.appendText("doesn't match");
     }
 
-    /**
-     * Check name matches.
-     * @param item Item to check
-     * @return True if check name matches
-     */
     private boolean checkMatches(final Violation item) {
         return this.check.isEmpty()
             || !this.check.isEmpty() && item.name().equals(this.check);
     }
 
-    /**
-     * Check that given line matches.
-     * @param item Item to check
-     * @return True if line matches
-     */
     private boolean lineMatches(final Violation item) {
         return this.line.isEmpty()
             || !this.line.isEmpty() && item.lines().equals(this.line);

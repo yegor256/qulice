@@ -8,6 +8,7 @@ package foo;
 /**
  * Sample class whose suppression names a configured check but covers no
  * violation of it, so the suppression has no effect.
+ *
  * @since 1.0
  */
 public interface UnusedSuppression {

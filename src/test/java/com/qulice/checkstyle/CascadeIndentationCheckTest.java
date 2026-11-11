@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of
  * {@link CascadeIndentationCheck}.
+ *
  * @since 0.25.1
  */
 final class CascadeIndentationCheckTest {
@@ -71,6 +72,27 @@ final class CascadeIndentationCheckTest {
                     "must not be greater than the closing bracket", file
                 )
             )
+        );
+    }
+
+    @Test
+    void rejectsTwoClosingBracketsAtTheSameIndentation() throws Exception {
+        final String file = "TwinClosingBrackets.java";
+        MatcherAssert.assertThat(
+            "Two closing brackets at one indentation must be reported",
+            this.runValidation(file, false),
+            Matchers.hasItem(
+                new ViolationMatcher(
+                    "closing bracket line must be less than", file
+                )
+            )
+        );
+    }
+
+    @Test
+    void acceptsProperlyNestedClosingBrackets() throws Exception {
+        Assertions.assertDoesNotThrow(
+            () -> this.runValidation("NestedClosingBrackets.java", true)
         );
     }
 

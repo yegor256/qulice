@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Correct Javadoc for class {@link AtClauseOrder}.
+ *
  * @since 1.0
  */
 public final class ValidSingleLineCommentCheck {

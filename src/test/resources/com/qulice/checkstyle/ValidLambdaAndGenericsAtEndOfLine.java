@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class ValidLambdaAndGenericsAtEndOfLine {
@@ -13,6 +14,13 @@ public final class ValidLambdaAndGenericsAtEndOfLine {
      * Final.
      */
     private final int zero = 0;
+
+    /**
+     * Ctor.
+     */
+    public ValidLambdaAndGenericsAtEndOfLine() {
+        // nothing
+    }
 
     /**
      * Main method.

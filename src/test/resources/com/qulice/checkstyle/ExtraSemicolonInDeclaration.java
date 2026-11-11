@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Sample with unnecessary semicolons.
+ *
  * @since 1.0
  */
 public final class ExtraSemicolonInDeclaration {
@@ -21,6 +22,7 @@ public final class ExtraSemicolonInDeclaration {
 
     /**
      * Method ending with a stray semicolon.
+     *
      * @return Dummy
      */
     public int act() {

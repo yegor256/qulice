@@ -53,26 +53,12 @@ public final class ImplicitFunctionalInterfaceRule
         return null;
     }
 
-    /**
-     * Tells whether the given type is an interface that could carry a
-     * {@code @FunctionalInterface} annotation but does not, ignoring sealed
-     * interfaces that cannot be functional at all.
-     * @param node The type declaration to inspect
-     * @return True if the interface is a candidate for the annotation
-     */
     private static boolean implicit(final ASTClassDeclaration node) {
         return node.isRegularInterface()
             && !node.isAnnotationPresent(FunctionalInterface.class)
             && !node.hasModifiers(JModifier.SEALED);
     }
 
-    /**
-     * Tells whether every super-interface in the whole hierarchy of the given
-     * type has been resolved by PMD. Only when they all resolve can the total
-     * number of inherited abstract methods be trusted.
-     * @param type The interface type to inspect
-     * @return True if the entire super-interface hierarchy is resolved
-     */
     private static boolean resolved(final JClassType type) {
         boolean result = true;
         for (final JClassType parent : type.getSuperInterfaces()) {

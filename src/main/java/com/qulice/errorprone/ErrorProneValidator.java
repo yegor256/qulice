@@ -7,6 +7,7 @@ package com.qulice.errorprone;
 import com.google.common.base.Splitter;
 import com.jcabi.log.Logger;
 import com.qulice.spi.Environment;
+import com.qulice.spi.Ignored;
 import com.qulice.spi.Relative;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
@@ -15,13 +16,15 @@ import com.yegor256.Result;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.inject.Inject;
 
 /**
  * Validates source code with Google ErrorProne.
@@ -35,14 +38,22 @@ import java.util.regex.Pattern;
  * JVM hosting Maven and Qulice is unaffected, so consumers do not have to
  * touch their own {@code .mvn/jvm.config} to use this validator.</p>
  *
- * <p>Diagnostics from the forked {@code javac} are parsed from the
- * combined stdout/stderr stream. Only lines that match the standard
- * compiler diagnostic format and whose message starts with the
- * {@code [CheckName]} prefix ErrorProne always emits are converted into
- * {@link Violation}s — plain compile errors caused by the project not
- * being built yet are ignored. {@code -proc:none} is passed to keep
+ * <p>The combined stdout/stderr stream is handed to {@link Diagnostics},
+ * which turns every diagnostic it finds there into a {@link Violation} —
+ * ErrorProne findings, {@code javac} lint warnings and plain compile
+ * errors alike — and passes over the carets, symbol hints and counters
+ * the compiler prints around them. {@code -proc:none} is passed to keep
  * regular annotation processors (Lombok, Hibernate-Validator, etc.) out
  * of the ErrorProne pass.</p>
+ *
+ * <p>Which bug patterns fire is up to {@link Xplugin}, which also takes
+ * in the {@code -Xep} flags of the project, read from the
+ * {@code qulice.errorprone} parameter.</p>
+ *
+ * <p>The sources are not fed to one {@code javac} pass but to as many as
+ * the project has source roots, which is what {@link Batches} works out;
+ * the name of each batch tells the passes apart on disk, both in the
+ * argfile they read and in the directory they write classes to.</p>
  *
  * @since 1.0
  */
@@ -69,39 +80,10 @@ public final class ErrorProneValidator implements ResourceValidator {
     );
 
     /**
-     * The {@code -Xplugin} value that wires ErrorProne into the forked
-     * {@code javac}, together with the bug patterns Qulice switches off.
-     *
-     * <p>{@code InvalidBlockTag} is disabled because it rejects the
-     * {@code @checkstyle} block tags this codebase writes in Javadoc.</p>
-     *
-     * <p>{@code OperatorPrecedence} is disabled because it contradicts
-     * Checkstyle's {@code UnnecessaryParentheses}: a boolean expression
-     * that mixes {@code &&} and {@code ||} can satisfy only one of them at
-     * a time. {@code OperatorPrecedence} demands grouping parentheses
-     * around the {@code &&} operands (for example
-     * {@code (a && b) || (c && d)}), while {@code UnnecessaryParentheses}
-     * flags those very parentheses as redundant, since {@code &&} already
-     * binds tighter than {@code ||}. Keeping {@code UnnecessaryParentheses}
-     * as the single arbiter lets the terse, paren-free form pass both
-     * checks. See
-     * <a href="https://github.com/yegor256/qulice/issues/1705">#1705</a>.</p>
+     * Name of the parameter through which a project supplies ErrorProne
+     * flags of its own, e.g. {@code -Xep:UnusedVariable:OFF}.
      */
-    private static final String PLUGIN = String.join(
-        " ",
-        "-Xplugin:ErrorProne",
-        "-Xep:InvalidBlockTag:OFF",
-        "-Xep:OperatorPrecedence:OFF"
-    );
-
-    /**
-     * Standard {@code javac} diagnostic format with an ErrorProne
-     * {@code [CheckName]} prefix on the message:
-     * {@code path:line: warning|error: [Name] body}.
-     */
-    private static final Pattern DIAGNOSTIC = Pattern.compile(
-        "^(.+?):(\\d+): (?:warning|error): \\[([A-Za-z][A-Za-z0-9_]*)] (.+)$"
-    );
+    private static final String PARAM = "qulice.errorprone";
 
     /**
      * Splits a multi-line stdout block into individual lines, on any
@@ -116,6 +98,7 @@ public final class ErrorProneValidator implements ResourceValidator {
 
     /**
      * Constructor.
+     *
      * @param env Environment to use
      */
     public ErrorProneValidator(final Environment env) {
@@ -134,7 +117,17 @@ public final class ErrorProneValidator implements ResourceValidator {
             );
         } else {
             Logger.debug(this, "ErrorProne processing %d files", sources.size());
-            violations.addAll(this.parse(this.run(sources)));
+            final Diagnostics diagnostics = new Diagnostics(
+                this.name(), this.env.basedir().getAbsolutePath()
+            );
+            for (final Map.Entry<String, List<File>> batch
+                : new Batches(this.env, sources).split().entrySet()) {
+                violations.addAll(
+                    diagnostics.violations(
+                        this.run(batch.getKey(), batch.getValue())
+                    )
+                );
+            }
             Logger.debug(this, "ErrorProne processed %d files", sources.size());
         }
         return violations;
@@ -145,13 +138,15 @@ public final class ErrorProneValidator implements ResourceValidator {
         return "ErrorProne";
     }
 
-    /**
-     * Run the forked {@code javac} process with ErrorProne enabled.
-     * @param sources Java source files to feed
-     * @return Combined stdout/stderr of the process, line by line
-     */
-    private List<String> run(final List<File> sources) {
-        final Result result = new Jaxec(this.command(sources))
+    @Override
+    public int rules() {
+        return new Xplugin(
+            this.env.param(ErrorProneValidator.PARAM, "")
+        ).patterns();
+    }
+
+    private List<String> run(final String batch, final List<File> sources) {
+        final Result result = new Jaxec(this.command(batch, sources))
             .withRedirect(true)
             .withCheck(false)
             .exec();
@@ -165,17 +160,7 @@ public final class ErrorProneValidator implements ResourceValidator {
         return lines;
     }
 
-    /**
-     * Build the {@code javac} command line. To stay below the
-     * Windows {@code CreateProcess} 32 KB command-line limit even on
-     * projects with thousands of sources or long classpaths, every
-     * argument other than the launcher itself and the {@code -J}
-     * flags (which {@code javac} forbids inside argfiles) is written
-     * to a temporary argfile and passed as {@code @argfile}.
-     * @param sources Java source files to feed
-     * @return Argv
-     */
-    private List<String> command(final List<File> sources) {
+    private List<String> command(final String batch, final List<File> sources) {
         final List<String> command = new ArrayList<>(
             ErrorProneValidator.JVM_FLAGS.size() + 2
         );
@@ -183,19 +168,28 @@ public final class ErrorProneValidator implements ResourceValidator {
         for (final String flag : ErrorProneValidator.JVM_FLAGS) {
             command.add("-J".concat(flag));
         }
-        final File outdir = new File(this.env.tempdir(), "errorprone-classes");
+        final File outdir = new File(
+            this.env.tempdir(), String.format("errorprone-classes-%s", batch)
+        );
         if (!outdir.exists() && !outdir.mkdirs()) {
             throw new IllegalStateException(
                 String.format("Unable to create %s", outdir)
             );
         }
-        final List<String> args = new ArrayList<>(sources.size() + 11);
+        final List<String> args = new ArrayList<>(sources.size() + 12);
         args.add("-XDcompilePolicy=simple");
         args.add("-XDaddTypeAnnotationsToSymbol=true");
         args.add("--should-stop=ifError=FLOW");
         args.add("-proc:none");
-        args.addAll(this.release());
-        args.add(ErrorProneValidator.PLUGIN);
+        args.add("-Xlint:-options");
+        args.add("-encoding");
+        args.add(this.env.encoding().name());
+        args.addAll(new Release(this.env, batch).flags());
+        args.add(
+            new Xplugin(
+                this.env.param(ErrorProneValidator.PARAM, "")
+            ).argument()
+        );
         args.add("-processorpath");
         args.add(ErrorProneValidator.pluginClasspath());
         args.add("-d");
@@ -211,135 +205,25 @@ public final class ErrorProneValidator implements ResourceValidator {
         command.add(
             "@".concat(
                 new Argfile(
-                    new File(this.env.tempdir(), "errorprone-args.txt"), args
+                    new File(
+                        this.env.tempdir(),
+                        String.format("errorprone-args-%s.txt", batch)
+                    ),
+                    args
                 ).save().getAbsolutePath()
             )
         );
         return command;
     }
 
-    /**
-     * Translate diagnostic lines into Qulice violations, keeping only
-     * those messages prefixed by an ErrorProne bug-pattern name.
-     * @param output Combined stdout/stderr of the forked process
-     * @return Violations
-     */
-    private Collection<Violation> parse(final List<String> output) {
-        final Collection<Violation> violations = new ArrayList<>(0);
-        for (final String line : output) {
-            final Matcher matcher = ErrorProneValidator.DIAGNOSTIC.matcher(line);
-            if (matcher.matches()) {
-                final String check = matcher.group(3);
-                violations.add(
-                    new Violation.Default(
-                        this.name(),
-                        check,
-                        matcher.group(1),
-                        matcher.group(2),
-                        String.format("[%s] %s", check, matcher.group(4))
-                    )
-                );
-            }
-        }
-        return violations;
-    }
-
-    /**
-     * The {@code javac} flags that pin the forked compiler to the project's
-     * own Java source level.
-     *
-     * <p>Without them the forked {@code javac} runs at the host JDK's default
-     * language level (e.g. 21 on a JDK 21 host), so ErrorProne fires
-     * syntax-modernising checks such as {@code PatternMatchingInstanceof}
-     * even on projects that compile at {@code -source 8}, producing
-     * suggestions whose rewrite does not compile under the project's real
-     * source level. The level is derived exactly as
-     * {@code CheckstyleValidator} derives it: {@code maven.compiler.release}
-     * first, then {@code maven.compiler.source}, accepting both the modern
-     * ({@code "8"}, {@code "17"}) and legacy ({@code "1.8"}) forms. When the
-     * project pins a {@code release}, {@code --release} is forwarded;
-     * otherwise {@code -source}/{@code -target} are, which gates the language
-     * features while leaving the API surface untouched so that projects using
-     * newer library APIs under a plain {@code -source} build do not gain
-     * spurious "cannot find symbol" errors. When neither property is set the
-     * level is unknown and nothing is added, leaving the host default in
-     * place. See
-     * <a href="https://github.com/yegor256/qulice/issues/1716">#1716</a>.</p>
-     *
-     * @return Source-level flags, possibly empty
-     */
-    private List<String> release() {
-        final List<String> flags = new ArrayList<>(4);
-        final int rel = ErrorProneValidator.major(
-            this.env.param("maven.compiler.release", "")
-        );
-        final int source = ErrorProneValidator.major(
-            this.env.param("maven.compiler.source", "")
-        );
-        if (rel >= 0) {
-            flags.add("--release");
-            flags.add(String.valueOf(rel));
-        } else if (source >= 0) {
-            flags.add("-source");
-            flags.add(String.valueOf(source));
-            flags.add("-target");
-            flags.add(String.valueOf(this.target(source)));
-        }
-        return flags;
-    }
-
-    /**
-     * The {@code -target} level to forward alongside {@code -source}.
-     *
-     * <p>Reads {@code maven.compiler.target}, falling back to the given
-     * source level when the project does not pin a target of its own, so
-     * that {@code javac}'s requirement of {@code target >= source} is
-     * always met.</p>
-     *
-     * @param fallback The source level to use when no target is pinned
-     * @return The target level
-     */
-    private int target(final int fallback) {
-        int level = ErrorProneValidator.major(
-            this.env.param("maven.compiler.target", "")
-        );
-        if (level < 0) {
-            level = fallback;
-        }
-        return level;
-    }
-
-    /**
-     * Parse a Java version string into its major number.
-     * @param value Version, e.g. {@code "8"}, {@code "1.8"} or {@code "17"}
-     * @return The major version, or {@code -1} if it cannot be parsed
-     */
-    private static int major(final String value) {
-        int result = -1;
-        if (value != null) {
-            String txt = value.trim();
-            if (txt.startsWith("1.")) {
-                txt = txt.substring(2);
-            }
-            try {
-                result = Integer.parseInt(txt);
-            } catch (final NumberFormatException ex) {
-                result = -1;
-            }
-        }
-        return result;
-    }
-
-    /**
-     * Filters out non-Java and excluded files from further validation.
-     * @param files Files to validate
-     * @return List of relevant files
-     */
     private List<File> relevant(final Collection<File> files) {
         final List<File> sources = new ArrayList<>(files.size());
         for (final File file : files) {
             final String name = new Relative(this.env.basedir(), file).path();
             if (this.env.exclude("errorprone", name)) {
+                continue;
+            }
+            if (new Ignored(name).yes()) {
                 continue;
             }
             if (!name.endsWith(".java")) {
@@ -350,10 +234,6 @@ public final class ErrorProneValidator implements ResourceValidator {
         return sources;
     }
 
-    /**
-     * Resolve the {@code javac} executable from the running JDK.
-     * @return Absolute path to {@code ${java.home}/bin/javac}
-     */
     private static String javac() {
         return new File(
             new File(System.getProperty("java.home"), "bin"),
@@ -361,22 +241,6 @@ public final class ErrorProneValidator implements ResourceValidator {
         ).getAbsolutePath();
     }
 
-    /**
-     * Build the {@code -processorpath} value passed to the forked
-     * {@code javac}. Combines two sources: every URL on the
-     * {@link URLClassLoader} chain starting from the thread context
-     * classloader (the qulice plugin's own {@code ClassRealm} plus its
-     * URL-based parents, which carries ErrorProne when this code runs
-     * inside a Maven plugin execution), and the jar locations of a few
-     * classes ErrorProne needs at runtime that Maven's classworlds
-     * imports from a non-URL parent realm (notably
-     * {@link javax.inject.Inject}, which the
-     * {@code ErrorProneInjector} reads to find injectable constructors).
-     * Both are required: without the realm URLs there's no
-     * {@code error_prone_core}, without the protection-domain lookup
-     * there's no {@code javax.inject}.
-     * @return Path-separator joined list of jar paths
-     */
     private static String pluginClasspath() {
         final Set<String> entries = new LinkedHashSet<>();
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -397,22 +261,14 @@ public final class ErrorProneValidator implements ResourceValidator {
                 entries.add(new File(entry).getAbsolutePath());
             }
         }
-        ErrorProneValidator.addCodeSource(entries, javax.inject.Inject.class);
+        ErrorProneValidator.addCodeSource(entries, Inject.class);
         return String.join(File.pathSeparator, entries);
     }
 
-    /**
-     * Append the jar that contains the given class to {@code entries},
-     * resolved via {@link Class#getProtectionDomain()}. Silently ignored
-     * if the class is loaded from a non-file location (e.g. a JRT module
-     * or an exploded directory).
-     * @param entries Set to append to
-     * @param klass Class whose code source jar should be included
-     */
     private static void addCodeSource(
         final Set<String> entries, final Class<?> klass
     ) {
-        final java.security.CodeSource source =
+        final CodeSource source =
             klass.getProtectionDomain().getCodeSource();
         if (source != null && source.getLocation() != null) {
             new Unencoded(source.getLocation()).path().ifPresent(entries::add);

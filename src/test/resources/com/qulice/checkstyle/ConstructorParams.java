@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class ConstructorParams {
@@ -15,6 +16,7 @@ public final class ConstructorParams {
 
     /**
      * Constructor.
+     *
      * @param number Some nice number
      */
     public ConstructorParams(final int number) {
@@ -23,6 +25,7 @@ public final class ConstructorParams {
 
     /**
      * Add an external number to internal one.
+     *
      * @param number Number to add
      * @return Sum of numbers
      */

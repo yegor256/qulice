@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
  * {@code ArrayIsStoredDirectly} rule, including the suppression
  * when a varargs/array parameter is wrapped in a method call or
  * constructor before assignment (issue #1053).
+ *
  * @since 0.25.1
  */
 final class PmdArrayIsStoredDirectlyTest {

@@ -5,27 +5,35 @@
 package com.qulice.maven;
 
 import com.google.common.base.Joiner;
+import com.google.common.base.Splitter;
 import com.qulice.spi.Environment;
 import com.qulice.spi.ValidationException;
 import java.io.File;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.model.Build;
 import org.apache.maven.plugin.testing.stubs.ArtifactStub;
+import org.apache.maven.plugin.testing.stubs.MavenProjectStub;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalysis;
 import org.apache.maven.shared.dependency.analyzer.ProjectDependencyAnalyzer;
+import org.codehaus.plexus.DefaultPlexusContainer;
+import org.codehaus.plexus.PlexusContainer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Test case for {@link DependenciesValidator} class.
+ *
  * @since 0.3
  */
 final class DependenciesValidatorTest {
@@ -35,11 +43,6 @@ final class DependenciesValidatorTest {
      */
     private static final String ROLE =
         ProjectDependencyAnalyzer.class.getName();
-
-    /**
-     * Plexus hint.
-     */
-    private static final String HINT = "default";
 
     /**
      * Compile scope.
@@ -53,6 +56,7 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can pass on when no violations are found.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -66,6 +70,7 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can catch dependency problems.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -92,6 +97,7 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can ignore runtime scope dependencies.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -117,6 +123,7 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can exclude used undeclared dependencies.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -149,6 +156,7 @@ final class DependenciesValidatorTest {
 
     /**
      * DependencyValidator can exclude unused declared dependencies.
+     *
      * @throws Exception If something wrong happens inside
      */
     @Test
@@ -184,6 +192,7 @@ final class DependenciesValidatorTest {
      * dependency is actually referenced by an {@code import} in source, which
      * is the typical shape of false positives caused by annotations with
      * source retention or inlined compile-time constants (see issue #782).
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -218,6 +227,7 @@ final class DependenciesValidatorTest {
     /**
      * Static imports must also count as evidence that a dependency is used,
      * since inlined constants are referenced via {@code import static}.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -249,6 +259,7 @@ final class DependenciesValidatorTest {
 
     /**
      * Wildcard imports must cover any class inside the imported package.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -281,6 +292,7 @@ final class DependenciesValidatorTest {
     /**
      * Without any matching import, an "unused declared" compile-scope
      * dependency must still fail the build even when sources exist.
+     *
      * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
@@ -314,36 +326,68 @@ final class DependenciesValidatorTest {
     }
 
     /**
-     * Build a MavenEnvironment wired with a given dependency analysis.
-     * @param analysis Dependency analysis to inject
-     * @return Wired environment
+     * DependencyValidator must read Java sources using the encoding
+     * configured in the environment, not UTF-8. A project compiled with
+     * {@code project.build.sourceEncoding=windows-1252} may legitimately
+     * hold a non-ASCII byte inside a comment; reading such a file as
+     * UTF-8 used to crash dependency validation with
+     * {@code MalformedInputException} before the imported dependency
+     * could be recognized
+     * (see <a href="https://github.com/yegor256/qulice/issues/1862">
+     * issue #1862</a>).
+     *
+     * @param dir Temporary directory
      * @throws Exception If something wrong happens inside
      */
+    @Test
+    void readsSourcesInConfiguredEncoding(@TempDir final Path dir)
+        throws Exception {
+        final Path src = DependenciesValidatorTest.sourceRoot(dir);
+        final Path source = src.resolve("com/example/Latin.java");
+        Files.createDirectories(source.getParent());
+        Files.write(
+            source,
+            String.join(
+                String.valueOf('\n'),
+                "package com.example;",
+                "import com.latin.Tool;",
+                "// café lives in a windows-1252 comment",
+                "public class Latin {}",
+                ""
+            ).getBytes(Charset.forName("windows-1252"))
+        );
+        Assertions.assertDoesNotThrow(
+            () -> new DependenciesValidator().validate(
+                DependenciesValidatorTest.envWithUnusedInEncoding(
+                    dir,
+                    src,
+                    DependenciesValidatorTest.jar(
+                        dir, "latin.jar", "com/latin/Tool.class"
+                    ),
+                    "com.latin:latin",
+                    Charset.forName("windows-1252")
+                )
+            ),
+            "A windows-1252 source with a non-ASCII comment must not crash dependency validation"
+        );
+    }
+
     private static MavenEnvironment envWith(
         final ProjectDependencyAnalysis analysis
     ) throws Exception {
         return new MavenEnvironmentMocker().inPlexus(
             DependenciesValidatorTest.ROLE,
-            DependenciesValidatorTest.HINT,
+            "default",
             new FakeProjectDependencyAnalyzer(analysis)
         ).mock();
     }
 
-    /**
-     * Build a MavenEnvironment where exactly one artifact is reported as
-     * "unused declared" and the given source root is part of the project.
-     * @param src Directory containing Java sources
-     * @param jar JAR file to attach to the artifact
-     * @param coord Artifact coordinate in the form {@code groupId:artifactId}
-     * @return Wired environment
-     * @throws Exception If something wrong happens inside
-     */
     private static MavenEnvironment envWithUnused(final Path src,
         final File jar, final String coord) throws Exception {
-        final String[] parts = coord.split(":");
+        final List<String> parts = Splitter.on(':').splitToList(coord);
         final ArtifactStub artifact = new ArtifactStub();
-        artifact.setGroupId(parts[0]);
-        artifact.setArtifactId(parts[1]);
+        artifact.setGroupId(parts.get(0));
+        artifact.setArtifactId(parts.get(1));
         artifact.setScope(DependenciesValidatorTest.SCOPE);
         artifact.setVersion("1.0.0");
         artifact.setType(DependenciesValidatorTest.TYPE);
@@ -359,14 +403,54 @@ final class DependenciesValidatorTest {
         return env;
     }
 
-    /**
-     * Create a JAR file at the given path containing the given class entries.
-     * @param dir Parent directory
-     * @param name JAR file name
-     * @param entries Names of class entries to include
-     * @return The created JAR file
-     * @throws Exception If something wrong happens inside
-     */
+    private static MavenEnvironment envWithUnusedInEncoding(final Path dir,
+        final Path src, final File jar, final String coord,
+        final Charset charset) throws Exception {
+        final List<String> parts = Splitter.on(':').splitToList(coord);
+        final ArtifactStub artifact = new ArtifactStub();
+        artifact.setGroupId(parts.get(0));
+        artifact.setArtifactId(parts.get(1));
+        artifact.setScope(DependenciesValidatorTest.SCOPE);
+        artifact.setVersion("1.0.0");
+        artifact.setType(DependenciesValidatorTest.TYPE);
+        artifact.setFile(jar);
+        final Set<Artifact> unused = new HashSet<>();
+        unused.add(artifact);
+        final ProjectDependencyAnalysis analysis =
+            new ProjectDependencyAnalysis(
+                Collections.emptySet(), Collections.emptySet(), unused
+            );
+        final PlexusContainer container = new DefaultPlexusContainer();
+        container.addComponent(
+            new FakeProjectDependencyAnalyzer(analysis),
+            DependenciesValidatorTest.ROLE
+        );
+        final Path target = dir.resolve("target");
+        final Build build = new Build();
+        build.setDirectory(target.toAbsolutePath().toString());
+        build.setOutputDirectory(
+            target.resolve("classes").toAbsolutePath().toString()
+        );
+        Files.createDirectories(target.resolve("classes"));
+        final MavenProjectStub project = new MavenProjectStub() {
+            @Override
+            public File getBasedir() {
+                return dir.toFile();
+            }
+
+            @Override
+            public Build getBuild() {
+                return build;
+            }
+        };
+        project.addCompileSourceRoot(src.toAbsolutePath().toString());
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setProject(project);
+        env.setContext(new FakeContext(container));
+        env.setEncoding(charset.name());
+        return env;
+    }
+
     private static File jar(final Path dir, final String name,
         final String... entries) throws Exception {
         final File jar = dir.resolve(name).toFile();
@@ -384,25 +468,12 @@ final class DependenciesValidatorTest {
         return jar;
     }
 
-    /**
-     * Create a compile source root directory under the given temp dir.
-     * @param dir Temporary directory
-     * @return Created source root
-     * @throws Exception If something wrong happens inside
-     */
     private static Path sourceRoot(final Path dir) throws Exception {
         final Path src = dir.resolve("src").resolve("main").resolve("java");
         Files.createDirectories(src);
         return src;
     }
 
-    /**
-     * Write the given Java source file under the source root.
-     * @param src Source root
-     * @param path Relative path for the source file
-     * @param content File content
-     * @throws Exception If something wrong happens inside
-     */
     private static void writeJava(final Path src, final String path,
         final String content) throws Exception {
         final Path target = src.resolve(path);

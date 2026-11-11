@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * Abstract parameters. Is used for Generic type parameters or
  * method(constructor) arguments.
+ *
  * @since 0.18.18
  */
 public class Parameters {
@@ -23,18 +24,21 @@ public class Parameters {
 
     /**
      * Parent TokenType (TYPE_PARAMETERS or PARAMETERS).
+     *
      * @see com.puppycrawl.tools.checkstyle.api.TokenTypes
      */
     private final int parent;
 
     /**
      * Children TokenType (TYPE_PARAMETER or PARAMETER_DEF).
+     *
      * @see com.puppycrawl.tools.checkstyle.api.TokenTypes
      */
     private final int children;
 
     /**
      * Primary ctor.
+     *
      * @param node Class, interface, constructor or method definition node
      * @param parent Parent TokenType (TYPE_PARAMETERS or PARAMETERS)
      * @param children Children TokenType (TYPE_PARAMETER or PARAMETER_DEF)
@@ -49,6 +53,7 @@ public class Parameters {
 
     /**
      * Return number of arguments.
+     *
      * @return Number of parameters
      */
     public final int count() {
@@ -64,6 +69,7 @@ public class Parameters {
 
     /**
      * Return parameters for this node.
+     *
      * @return Parameters for this node
      */
     public final List<DetailAST> parameters() {

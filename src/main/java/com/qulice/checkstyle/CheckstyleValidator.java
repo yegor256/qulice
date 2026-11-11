@@ -13,10 +13,13 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.qulice.spi.Environment;
+import com.qulice.spi.Ignored;
 import com.qulice.spi.Relative;
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Violation;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -27,6 +30,7 @@ import org.xml.sax.InputSource;
 
 /**
  * Validator with Checkstyle.
+ *
  * @since 0.3
  */
 public final class CheckstyleValidator implements ResourceValidator {
@@ -75,6 +79,7 @@ public final class CheckstyleValidator implements ResourceValidator {
 
     /**
      * Constructor.
+     *
      * @param env Environment to use
      */
     public CheckstyleValidator(final Environment env) {
@@ -125,6 +130,9 @@ public final class CheckstyleValidator implements ResourceValidator {
             results.addAll(
                 new UnusedSuppressions(this.env).validate(this.listener.processed())
             );
+            results.addAll(
+                new UnusedPackagePrivateClasses(this.env).validate(files)
+            );
         }
         return results;
     }
@@ -133,8 +141,14 @@ public final class CheckstyleValidator implements ResourceValidator {
         return "Checkstyle";
     }
 
+    @Override
+    public int rules() {
+        return CheckstyleValidator.count(this.configuration());
+    }
+
     /**
      * Filters out excluded files from further validation.
+     *
      * @param files Files to validate
      * @return List of relevant files
      */
@@ -143,6 +157,9 @@ public final class CheckstyleValidator implements ResourceValidator {
         for (final File file : files) {
             final String name = new Relative(this.env.basedir(), file).path();
             if (this.env.exclude("checkstyle", name)) {
+                continue;
+            }
+            if (new Ignored(name).yes()) {
                 continue;
             }
             final int dot = name.lastIndexOf('.');
@@ -158,11 +175,6 @@ public final class CheckstyleValidator implements ResourceValidator {
         return relevant;
     }
 
-    /**
-     * Load checkstyle configuration.
-     * @return The configuration just loaded
-     * @see #validate(Collection)
-     */
     private Configuration configuration() {
         final File cache =
             new File(this.env.tempdir(), "checkstyle/checkstyle.cache");
@@ -186,7 +198,7 @@ public final class CheckstyleValidator implements ResourceValidator {
         final Properties props = new Properties();
         props.setProperty("cache.file", cache.getPath());
         final Configuration config;
-        try (java.io.InputStream stream = this.getClass().getResourceAsStream("checks.xml")) {
+        try (InputStream stream = this.getClass().getResourceAsStream("checks.xml")) {
             if (stream == null) {
                 throw new IllegalStateException(
                     "Checkstyle configuration file 'checks.xml' not found in classpath."
@@ -197,7 +209,7 @@ public final class CheckstyleValidator implements ResourceValidator {
                 new PropertiesExpander(props),
                 ConfigurationLoader.IgnoredModulesOptions.OMIT
             );
-        } catch (final CheckstyleException | java.io.IOException ex) {
+        } catch (final CheckstyleException | IOException ex) {
             throw new IllegalStateException("Failed to load config", ex);
         }
         if (this.level() < CheckstyleValidator.MINIMUM) {
@@ -206,18 +218,6 @@ public final class CheckstyleValidator implements ResourceValidator {
         return config;
     }
 
-    /**
-     * The effective Java source level of the project under validation.
-     *
-     * <p>Reads {@code maven.compiler.release} first and then falls back to
-     * {@code maven.compiler.source}, accepting both the modern ({@code "8"},
-     * {@code "17"}) and the legacy ({@code "1.8"}) forms. When neither is
-     * known, a value below {@link #MINIMUM} is returned, so that checks
-     * requiring newer language features are disabled by default rather than
-     * risking a suggestion that breaks the build.
-     *
-     * @return The source level, e.g. {@code 8}, {@code 17}, {@code 21}
-     */
     private int level() {
         int level = CheckstyleValidator.parse(
             this.env.param("maven.compiler.release", "")
@@ -236,11 +236,6 @@ public final class CheckstyleValidator implements ResourceValidator {
         return result;
     }
 
-    /**
-     * Parse a Java version string into its major number.
-     * @param value Version, e.g. {@code "8"}, {@code "1.8"} or {@code "17"}
-     * @return The major version, or {@code -1} if it cannot be parsed
-     */
     private static int parse(final String value) {
         int result = -1;
         if (value != null) {
@@ -257,12 +252,19 @@ public final class CheckstyleValidator implements ResourceValidator {
         return result;
     }
 
-    /**
-     * Remove, recursively and in place, the modules with the given names
-     * from a configuration tree.
-     * @param config Configuration to strip
-     * @param names Simple names of the modules to remove
-     */
+    private static int count(final Configuration config) {
+        int total = 0;
+        for (final Configuration child : config.getChildren()) {
+            final String name = child.getName();
+            if (child.getChildren().length > 0) {
+                total += CheckstyleValidator.count(child);
+            } else if (!name.endsWith("Filter") && !name.endsWith("Holder")) {
+                total += 1;
+            }
+        }
+        return total;
+    }
+
     private static void strip(final Configuration config,
         final Set<String> names) {
         for (final Configuration child : config.getChildren()) {

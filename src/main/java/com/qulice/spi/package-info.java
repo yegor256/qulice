@@ -5,6 +5,7 @@
 
 /**
  * Service provider interface.
+ *
  * @since 0.3
  */
 package com.qulice.spi;

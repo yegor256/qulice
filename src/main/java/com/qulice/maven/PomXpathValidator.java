@@ -16,7 +16,7 @@ import org.apache.commons.io.FileUtils;
 /**
  * Check pom.xml with XPath validation queries.
  *
- * <p>Restrictions:
+ * <p>Restrictions:</p>
  *
  * <ol>
  * <li>Each xpath component should contains namespace prefix pom:</li>
@@ -40,12 +40,6 @@ public final class PomXpathValidator implements MavenValidator {
         PomXpathValidator.validate(PomXpathValidator.pom(env), env.asserts());
     }
 
-    /**
-     * Validate pom against xpath queries.
-     * @param pom POM
-     * @param xpaths Xpath queries
-     * @throws ValidationException validation exception
-     */
     private static void validate(final XML pom, final Iterable<String> xpaths)
         throws ValidationException {
         for (final String xpath : xpaths) {
@@ -59,11 +53,6 @@ public final class PomXpathValidator implements MavenValidator {
         }
     }
 
-    /**
-     * Parse pom.xml.
-     * @param env Environment
-     * @return XML instance
-     */
     private static XML pom(final Environment env) {
         try {
             return new XMLDocument(

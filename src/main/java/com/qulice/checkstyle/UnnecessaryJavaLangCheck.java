@@ -17,13 +17,13 @@ import java.util.regex.Pattern;
  * <p>Classes from the {@code java.lang} package are imported implicitly,
  * so qualifying them with their package name adds nothing. A field whose
  * type is written with the {@code java.lang.} prefix should instead be
- * declared as {@code private final String name}, in both code and Javadoc.
+ * declared as {@code private final String name}, in both code and Javadoc.</p>
  *
  * <p>Unlike a plain line-based regular expression, this check ignores the
  * prefix when it appears inside a string literal or a text block. A string
  * constant that happens to contain the {@code java.lang.} substring is data,
  * not a type reference, and must not be reported. See
- * <a href="https://github.com/yegor256/qulice/issues/1703">#1703</a>.
+ * <a href="https://github.com/yegor256/qulice/issues/1703">#1703</a>.</p>
  *
  * @since 0.24
  */
@@ -36,11 +36,6 @@ public final class UnnecessaryJavaLangCheck extends AbstractCheck {
      */
     private static final Pattern PREFIX =
         Pattern.compile("\\bjava\\.lang\\.[A-Z]");
-
-    /**
-     * Line-separator character embedded in the text of a text-block node.
-     */
-    private static final char EOL = '\n';
 
     /**
      * Mutable copy of the file lines, with the contents of string literals
@@ -109,16 +104,11 @@ public final class UnnecessaryJavaLangCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Blank out every line spanned by a text-block content node. Those
-     * lines hold only string data, so the pattern must never match there.
-     * @param ast The {@code TEXT_BLOCK_CONTENT} node
-     */
     private void blankBlock(final DetailAST ast) {
         final String text = ast.getText();
         int span = 0;
         for (int pos = 0; pos < text.length(); ++pos) {
-            if (text.charAt(pos) == UnnecessaryJavaLangCheck.EOL) {
+            if (text.charAt(pos) == '\n') {
                 ++span;
             }
         }
@@ -131,13 +121,6 @@ public final class UnnecessaryJavaLangCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Replace with spaces a run of characters on a single line, so that
-     * the {@code java.lang.} pattern cannot match inside it.
-     * @param line One-based line number
-     * @param column Zero-based column where the run starts
-     * @param length Number of characters to blank
-     */
     private void blank(final int line, final int column, final int length) {
         final int index = line - 1;
         if (index >= 0 && index < this.lines.length) {

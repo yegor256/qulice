@@ -10,9 +10,17 @@ import org.apache.commons.lang3.CharEncoding;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class DoNotUseCharEncoding {
+
+    /**
+     * Ctor.
+     */
+    public DoNotUseCharEncoding() {
+        // nothing
+    }
 
     /**
      * Act.

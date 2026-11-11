@@ -5,6 +5,7 @@ package foo;
 
 /**
  * Class with four attributes.
+ *
  * @since 1.0
  */
 public final class FourAttributes {
@@ -31,6 +32,7 @@ public final class FourAttributes {
 
     /**
      * Constructor.
+     *
      * @param one First number
      * @param two Second number
      * @param three Third number
@@ -45,6 +47,7 @@ public final class FourAttributes {
 
     /**
      * Sum of all numbers.
+     *
      * @return The sum
      */
     public int sum() {

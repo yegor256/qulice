@@ -14,14 +14,16 @@ import java.util.Locale;
  *
  * <p>The built-in {@code JavadocParagraph} module governs the blank lines
  * around {@code <p>}, but nothing stops the tag from sitting alone on its
- * own line. This check keeps {@code <p>} glued to the text it opens and,
- * when {@code </p>} is used at all, glued to the text it closes. So a line
- * whose trimmed content ends with {@code <p>}, or whose trimmed content
- * starts with {@code </p>}, is reported as a violation. See
- * <a href="https://github.com/yegor256/qulice/issues/1709">#1709</a>.
+ * own line. This check keeps {@code <p>} glued to the text it opens and
+ * {@code </p>} glued to the text it closes, while
+ * {@link JavadocUnclosedParagraphCheck} is the one that insists on the
+ * closing tag being there. So a line whose trimmed content ends with
+ * {@code <p>}, or whose trimmed content starts with {@code </p>}, is
+ * reported as a violation. See
+ * <a href="https://github.com/yegor256/qulice/issues/1709">#1709</a>.</p>
  *
  * <p>The following Javadoc will be reported as a violation, since the
- * opening tag ends a line and the closing tag starts a line:
+ * opening tag ends a line and the closing tag starts a line:</p>
  * <pre>
  * &#47;**
  *  <span style="color:red" >* &lt;p&gt;</span>
@@ -30,7 +32,7 @@ import java.util.Locale;
  *  *&#47;
  * </pre>
  *
- * <p>And this is how it should be written instead:
+ * <p>And this is how it should be written instead:</p>
  * <pre>
  * &#47;**
  *  * &lt;p&gt;An example of how to configure the check is:&lt;/p&gt;
@@ -39,23 +41,11 @@ import java.util.Locale;
  *
  * <p>Lines inside a {@code <pre>...</pre>} block or a {@code {@snippet ...}}
  * block are skipped, since a literal {@code <p>} or {@code </p>} may appear
- * there as example content rather than as a real tag.
+ * there as example content rather than as a real tag.</p>
  *
  * @since 0.73.3
  */
 public final class JavadocCompactParagraphCheck extends AbstractCheck {
-
-    /**
-     * Message about an opening tag that ends a line.
-     */
-    private static final String MSG_OPEN =
-        "Opening paragraph tag <p> must be followed by text on the same line";
-
-    /**
-     * Message about a closing tag that starts a line.
-     */
-    private static final String MSG_CLOSE =
-        "Closing paragraph tag </p> must be preceded by text on the same line";
 
     /**
      * Default constructor.
@@ -104,12 +94,6 @@ public final class JavadocCompactParagraphCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Report every non-compact paragraph tag inside the comment body.
-     * @param lines All lines of the source file
-     * @param start First body line of the comment
-     * @param end Last body line of the comment
-     */
     private void checkParagraphs(final String[] lines, final int start,
         final int end) {
         boolean pre = false;
@@ -131,25 +115,21 @@ public final class JavadocCompactParagraphCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Log a violation for a single Javadoc body line.
-     * @param pos Zero-based index of the line
-     * @param body Trimmed body of the line, without the leading asterisk
-     */
     private void report(final int pos, final String body) {
         if (body.endsWith("<p>")) {
-            this.log(pos + 1, JavadocCompactParagraphCheck.MSG_OPEN);
+            this.log(
+                pos + 1,
+                "Opening paragraph tag <p> must be followed by text on the same line"
+            );
         }
         if (body.startsWith("</p>")) {
-            this.log(pos + 1, JavadocCompactParagraphCheck.MSG_CLOSE);
+            this.log(
+                pos + 1,
+                "Closing paragraph tag </p> must be preceded by text on the same line"
+            );
         }
     }
 
-    /**
-     * Strip the leading asterisk and surrounding blanks from a Javadoc line.
-     * @param line Raw source line
-     * @return Trimmed body of the line, without the leading asterisk
-     */
     private static String body(final String line) {
         String trimmed = line.trim();
         if (trimmed.startsWith("*")) {
@@ -158,11 +138,6 @@ public final class JavadocCompactParagraphCheck extends AbstractCheck {
         return trimmed;
     }
 
-    /**
-     * Net brace balance of a line (opening minus closing braces).
-     * @param body Trimmed body of the line
-     * @return Number of opening braces minus number of closing braces
-     */
     private static int braces(final String body) {
         int delta = 0;
         for (int pos = 0; pos < body.length(); pos += 1) {
@@ -176,12 +151,6 @@ public final class JavadocCompactParagraphCheck extends AbstractCheck {
         return delta;
     }
 
-    /**
-     * Check if node has Javadoc.
-     * @param node Node to be checked for Javadoc
-     * @param start Line number where comment starts
-     * @return True when node has Javadoc
-     */
     private static boolean isNodeHavingJavadoc(final DetailAST node,
         final int start) {
         return start > JavadocCompactParagraphCheck.getLineNoOfPreviousNode(
@@ -189,11 +158,6 @@ public final class JavadocCompactParagraphCheck extends AbstractCheck {
         );
     }
 
-    /**
-     * Returns line number of previous node.
-     * @param node Current node
-     * @return Line number of previous node
-     */
     private static int getLineNoOfPreviousNode(final DetailAST node) {
         int start = 0;
         final DetailAST previous = node.getPreviousSibling();
@@ -203,24 +167,12 @@ public final class JavadocCompactParagraphCheck extends AbstractCheck {
         return start;
     }
 
-    /**
-     * Find Javadoc starting comment.
-     * @param lines List of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found starting comment or -1 otherwise
-     */
     private static int findCommentStart(final String[] lines, final int start) {
         return JavadocCompactParagraphCheck.findTrimmedTextUp(
             lines, start, "/**"
         );
     }
 
-    /**
-     * Find Javadoc ending comment.
-     * @param lines Array of lines to check
-     * @param start Start searching from this line number
-     * @return Line number with found ending comment, or -1 if it wasn't found
-     */
     private static int findCommentEnd(final String[] lines, final int start) {
         int found = -1;
         for (int pos = start - 1; pos >= 0; pos -= 1) {
@@ -233,13 +185,6 @@ public final class JavadocCompactParagraphCheck extends AbstractCheck {
         return found;
     }
 
-    /**
-     * Find a text in lines, by going up.
-     * @param lines Array of lines to check
-     * @param start Start searching from this line number
-     * @param text Text to find
-     * @return Line number with found text, or -1 if it wasn't found
-     */
     private static int findTrimmedTextUp(final String[] lines,
         final int start, final String text) {
         int found = -1;

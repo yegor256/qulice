@@ -6,12 +6,20 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 0.24.2
  * @checkstyle NonStaticMethodCheck (1500 lines)
  * @checkstyle MethodNameCheck (1500 lines)
  * @checkstyle MethodCountCheck (1500 lines)
  */
 public final class FileLengthCheck {
+
+    /**
+     * Ctor.
+     */
+    public FileLengthCheck() {
+        // nothing
+    }
 
     void method1() {
         // Intentionally empty

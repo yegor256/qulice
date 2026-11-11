@@ -5,6 +5,7 @@
 
 /**
  * Tests of PMD validator.
+ *
  * @since 0.3
  */
 package com.qulice.pmd;

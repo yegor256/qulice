@@ -5,9 +5,17 @@ package foo;
 
 /**
  * Non-ASCII characters must not be double-counted by LineLengthCheck.
+ *
  * @since 1.0
  */
 public final class NonAsciiLineLength {
+
+    /**
+     * Ctor.
+     */
+    public NonAsciiLineLength() {
+        // nothing
+    }
 
     @Override
     public String toString() {

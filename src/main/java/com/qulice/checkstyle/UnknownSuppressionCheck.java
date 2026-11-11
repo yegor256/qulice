@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  * suppresses nothing and stays in the source as a lie about the code.
  * PMD reports the same mistake in {@code @SuppressWarnings} annotations.
  * The other half, a suppression that names an enabled check but covers no
- * violation of it, is reported by {@link UnusedSuppressions}.
+ * violation of it, is reported by {@link UnusedSuppressions}.</p>
  *
  * @since 1.0
  */
@@ -84,12 +84,6 @@ public final class UnknownSuppressionCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * How many lines of the comment precede this position?
-     * @param text Text of the comment
-     * @param position Position of the suppression inside the text
-     * @return Number of line breaks before the position
-     */
     private static int breaks(final String text, final int position) {
         int count = 0;
         for (int idx = 0; idx < position; ++idx) {

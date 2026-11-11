@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of
  * {@link IfThenThrowElseCheck}.
+ *
  * @since 0.24
  */
 final class IfThenThrowElseCheckTest {
@@ -34,9 +35,9 @@ final class IfThenThrowElseCheckTest {
             "All three if-throw-else patterns should be flagged",
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher(message, file, "30", name),
-                new ViolationMatcher(message, file, "42", name),
-                new ViolationMatcher(message, file, "54", name)
+                new ViolationMatcher(message, file, "33", name),
+                new ViolationMatcher(message, file, "46", name),
+                new ViolationMatcher(message, file, "59", name)
             )
         );
     }

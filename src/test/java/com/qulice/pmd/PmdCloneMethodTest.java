@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link PmdValidator}'s handling of PMD's
  * clone-method rules: {@code CloneMethodMustBePublic} and
  * {@code CloneMethodReturnTypeMustMatchClassName}.
+ *
  * @since 0.25.1
  */
 final class PmdCloneMethodTest {

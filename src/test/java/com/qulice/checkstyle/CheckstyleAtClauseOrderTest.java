@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for {@link CheckstyleValidator}'s handling of the
  * stock {@code AtclauseOrder} check.
+ *
  * @since 0.25.1
  */
 final class CheckstyleAtClauseOrderTest {
@@ -36,14 +37,14 @@ final class CheckstyleAtClauseOrderTest {
                 new ViolationMatcher(
                     "Javadoc comment at column 3 has parse error.",
                     file,
-                    "12",
+                    "13",
                     name
                 ),
                 new ViolationMatcher(
-                    message, file, "21", name
+                    message, file, "23", name
                 ),
                 new ViolationMatcher(
-                    message, file, "46", name
+                    message, file, "50", name
                 )
             )
         );

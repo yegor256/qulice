@@ -39,6 +39,7 @@ public final class Brackets {
 
         /**
          * Constructor.
+         *
          * @param start First param
          * @param list Second param
          * @param rest Last param

@@ -57,11 +57,6 @@ public final class ProhibitTestExpectedCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Is this a JUnit {@code @Test} annotation (short or fully-qualified)?
-     * @param ast The ANNOTATION node
-     * @return True if its simple name is {@code Test}
-     */
     private static boolean isTest(final DetailAST ast) {
         final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
         final boolean match;
@@ -76,11 +71,6 @@ public final class ProhibitTestExpectedCheck extends AbstractCheck {
         return match;
     }
 
-    /**
-     * Does this annotation have an {@code expected} member?
-     * @param ast The ANNOTATION node
-     * @return True if an {@code expected = ...} pair is present
-     */
     private static boolean hasExpected(final DetailAST ast) {
         boolean found = false;
         DetailAST child = ast.getFirstChild();

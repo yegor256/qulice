@@ -14,6 +14,7 @@ import org.apache.commons.collections.CollectionUtils;
 
 /**
  * Validate with maven-duplicate-finder-plugin.
+ *
  * @since 0.5
  * @todo #1118 ignored dependencies and resources should be placed in different parameters,
  *  and current implementation use ':' symbol as a flag if it is resource or dependency.

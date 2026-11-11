@@ -5,9 +5,17 @@ package foo;
 
 /**
  * Simple.
+ *
  * @since 1.0
  */
 public final class BlankLinesOutsideMethodsPass {
+
+    /**
+     * Ctor.
+     */
+    public BlankLinesOutsideMethodsPass() {
+        // nothing
+    }
 
     /**
      * Method with space between anonymous innter class methods.

@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * Checks the order of methods declaration.
  *
- * <p>Right order is: public, protected and private
+ * <p>Right order is: public, protected and private</p>
  *
  * @since 0.6
  */
@@ -55,10 +55,6 @@ public final class MethodsOrderCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks class definition to satisfy the rule.
-     * @param node Tree node, containing class definition (CLASS_DEF)
-     */
     private void checkClass(final DetailAST node) {
         final DetailAST obj = node.findFirstToken(TokenTypes.OBJBLOCK);
         if (obj != null) {
@@ -70,10 +66,6 @@ public final class MethodsOrderCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks order of methods.
-     * @param methods Nodes representing class methods
-     */
     private void checkOrder(final Iterable<DetailAST> methods) {
         MethodsOrderCheck.Modifiers prev = MethodsOrderCheck.Modifiers.PUB;
         for (final DetailAST method : methods) {
@@ -90,11 +82,6 @@ public final class MethodsOrderCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Get method modifier as enum {@code Modifiers}.
-     * @param method DetailAST of method
-     * @return Element of {@code Modifiers} enum
-     */
     private static MethodsOrderCheck.Modifiers getModifierType(
         final DetailAST method
     ) {
@@ -125,12 +112,6 @@ public final class MethodsOrderCheck extends AbstractCheck {
         return mod;
     }
 
-    /**
-     * Search for all children of given type.
-     * @param base Parent node to start from
-     * @param type Node type
-     * @return Iterable
-     */
     private static Iterable<DetailAST> findAllChildren(final DetailAST base,
         final int type) {
         final List<DetailAST> children = new ArrayList<>(base.getChildCount());
@@ -144,11 +125,6 @@ public final class MethodsOrderCheck extends AbstractCheck {
         return children;
     }
 
-    /**
-     * Get Modifiers enum constant by TokenType id.
-     * @param type TokenType
-     * @return Modifiers constant
-     */
     private static MethodsOrderCheck.Modifiers getByType(final int type) {
         return MethodsOrderCheck.Modifiers.mdos.get(type);
     }
@@ -206,6 +182,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
 
         /**
          * Constructor.
+         *
          * @param type TokenType of DetailAST which represents modifier
          * @param ord Order of the modifier in class definition
          */
@@ -216,6 +193,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
 
         /**
          * TokenType.
+         *
          * @return TokenType
          */
         int getType() {
@@ -224,6 +202,7 @@ public final class MethodsOrderCheck extends AbstractCheck {
 
         /**
          * Order of modifier.
+         *
          * @return Order number
          */
         int getOrder() {

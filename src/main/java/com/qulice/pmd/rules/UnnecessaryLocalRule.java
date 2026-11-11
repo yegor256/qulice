@@ -16,6 +16,7 @@ import net.sourceforge.pmd.lang.java.rule.AbstractJavaRulechainRule;
 
 /**
  * Rule to check unnecessary local variables.
+ *
  * @since 0.4
  */
 public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
@@ -75,7 +76,10 @@ public final class UnnecessaryLocalRule extends AbstractJavaRulechainRule {
                 .toList();
             if (UnnecessaryLocalRule.hasReturnOrArguments(uses)
                 && !UnnecessaryLocalSkips.acrossBoundary(block, name, uses.size())
-                && !UnnecessaryLocalSkips.interveningCall(variable, uses.get(0))) {
+                && !UnnecessaryLocalSkips.interveningCall(variable, uses.get(0))
+                && !CloseInlineResourceRule.leaks(
+                    variable.getInitializer(), uses.get(0)
+                )) {
                 result = name;
             }
         }

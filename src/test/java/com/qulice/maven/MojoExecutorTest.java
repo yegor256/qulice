@@ -5,9 +5,10 @@
 package com.qulice.maven;
 
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import org.codehaus.plexus.configuration.xml.XmlPlexusConfiguration;
+import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Test case for {@link MojoExecutor} conversion of Properties into Xpp3Dom.
+ *
  * @since 1.0
  */
 final class MojoExecutorTest {
@@ -32,10 +34,8 @@ final class MojoExecutorTest {
         dep.put("version", "1.7");
         final Properties wrapper = new Properties();
         wrapper.put("dependency", dep);
-        final List<Properties> deps = new LinkedList<>();
-        deps.add(wrapper);
         final Properties config = new Properties();
-        config.put("ignoredDependencies", deps);
+        config.put("ignoredDependencies", List.of(wrapper));
         MatcherAssert.assertThat(
             "Dependency details cannot be rendered as toString()",
             new MojoExecutor(null, null)
@@ -57,10 +57,8 @@ final class MojoExecutorTest {
         final Properties entry = new Properties();
         entry.put("groupId", "org.example");
         entry.put("artifactId", "sample");
-        final List<Properties> items = new LinkedList<>();
-        items.add(entry);
         final Properties config = new Properties();
-        config.put("items", items);
+        config.put("items", List.of(entry));
         MatcherAssert.assertThat(
             "All keys of nested Properties must appear as children",
             new MojoExecutor(null, null)
@@ -154,5 +152,58 @@ final class MojoExecutorTest {
                 .getValue(),
             Matchers.equalTo("17")
         );
+    }
+
+    /**
+     * MojoExecutor can render the attribute of the root node of a Plexus
+     * configuration (regression for the {@code getAttribute()} overload
+     * that used to compile only with some orderings of the classpath).
+     */
+    @Test
+    void rendersAttributeOfRootPlexusNode() {
+        MatcherAssert.assertThat(
+            "Attribute of the root node cannot be rendered",
+            MojoExecutorTest.rendered().getAttribute("combine.children"),
+            Matchers.equalTo("append")
+        );
+    }
+
+    /**
+     * MojoExecutor can render the attribute of a nested node of a Plexus
+     * configuration.
+     */
+    @Test
+    void rendersAttributeOfNestedPlexusNode() {
+        MatcherAssert.assertThat(
+            "Attribute of the child node cannot be rendered",
+            MojoExecutorTest.rendered()
+                .getChild("dependency")
+                .getAttribute("implementation"),
+            Matchers.equalTo("org.example.Dep")
+        );
+    }
+
+    /**
+     * MojoExecutor can render the value of a nested node of a Plexus
+     * configuration.
+     */
+    @Test
+    void rendersValueOfNestedPlexusNode() {
+        MatcherAssert.assertThat(
+            "Value of the child node cannot be rendered",
+            MojoExecutorTest.rendered().getChild("dependency").getValue(),
+            Matchers.equalTo("org.example:sample:1.0")
+        );
+    }
+
+    private static Xpp3Dom rendered() {
+        final Xpp3Dom child = new Xpp3Dom("dependency");
+        child.setAttribute("implementation", "org.example.Dep");
+        child.setValue("org.example:sample:1.0");
+        final Xpp3Dom dom = new Xpp3Dom("configuration");
+        dom.setAttribute("combine.children", "append");
+        dom.addChild(child);
+        return new MojoExecutor(null, null)
+            .toXppDom(new XmlPlexusConfiguration(dom));
     }
 }

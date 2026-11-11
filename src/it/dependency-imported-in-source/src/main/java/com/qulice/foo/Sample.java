@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * Test class using a compile-time constant.
+ *
  * @since 1.0
  */
 public final class Sample {
@@ -18,8 +19,16 @@ public final class Sample {
     private static final int NOT_FOUND = StringUtils.INDEX_NOT_FOUND;
 
     /**
+     * Ctor.
+     */
+    public Sample() {
+        // nothing to initialize
+    }
+
+    /**
      * Return the "not found" constant.
-     * @return Inlined constant value
+     *
+     * @return The {@value #NOT_FOUND} index
      * @checkstyle NonStaticMethod (2 lines)
      */
     public int missing() {

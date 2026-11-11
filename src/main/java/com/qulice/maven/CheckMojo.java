@@ -15,7 +15,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -30,6 +29,7 @@ import org.apache.maven.plugins.annotations.ResolutionScope;
 
 /**
  * Check the project and find all possible violations.
+ *
  * @since 0.3
  */
 @Mojo(
@@ -70,6 +70,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
      * Primary constructor.
+     *
      * @param svc Executors to run resource validators in
      */
     private CheckMojo(final ExecutorService svc) {
@@ -77,9 +78,9 @@ public final class CheckMojo extends AbstractQuliceMojo {
     }
 
     @Override
-    public void doExecute() throws MojoFailureException {
+    public String doExecute() throws MojoFailureException {
         try {
-            this.run();
+            return this.run();
         } catch (final ValidationException ex) {
             Logger.info(
                 this,
@@ -91,6 +92,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
      * Set provider of validators.
+     *
      * @param prov The provider
      */
     public void setValidatorsProvider(final ValidatorsProvider prov) {
@@ -99,6 +101,7 @@ public final class CheckMojo extends AbstractQuliceMojo {
 
     /**
      * Set timeout for checks.
+     *
      * @param time Timeout value
      */
     public void setTimeout(final String time) {
@@ -106,18 +109,41 @@ public final class CheckMojo extends AbstractQuliceMojo {
     }
 
     /**
-     * Run them all.
-     * @throws ValidationException If any of them fail
+     * Filter files based on excludes.
+     *
+     * @param env Maven environment
+     * @param files Files to exclude
+     * @param validator Validator to use
+     * @return Filtered files
      */
+    static Collection<File> filter(
+        final MavenEnvironment env,
+        final Collection<File> files, final ResourceValidator validator
+    ) {
+        final Collection<File> filtered = new ArrayList<>(files.size());
+        for (final File file : files) {
+            if (
+                !env.exclude(
+                    validator.name().toLowerCase(Locale.ENGLISH),
+                    file.toString()
+                )
+            ) {
+                filtered.add(file);
+            }
+        }
+        return filtered;
+    }
+
     @SuppressWarnings("PMD.CognitiveComplexity")
-    private void run() throws ValidationException {
+    private String run() throws ValidationException {
         final List<Violation> results = new ArrayList<>(0);
         final MavenEnvironment env = this.env();
         final ValidatorsProvider prov = this.validators(env);
+        final Collection<ResourceValidator> resources = prov.externalResource();
         final Collection<File> files = env.files("*.*");
         if (!files.isEmpty()) {
             final Collection<Future<Collection<Violation>>> futures =
-                this.submit(env, files, prov.externalResource());
+                this.submit(env, files, resources);
             for (final Future<Collection<Violation>> future : futures) {
                 try {
                     if ("forever".equalsIgnoreCase(this.timeout)) {
@@ -171,13 +197,9 @@ public final class CheckMojo extends AbstractQuliceMojo {
         for (final MavenValidator validator : prov.internal()) {
             validator.validate(env);
         }
+        return new Summary(files, resources).toString();
     }
 
-    /**
-     * Provider of validators, the one that was set or the default one.
-     * @param env Maven environment for the default provider
-     * @return The provider
-     */
     private ValidatorsProvider validators(final MavenEnvironment env) {
         final ValidatorsProvider prov;
         if (this.provider == null) {
@@ -188,13 +210,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
         return prov;
     }
 
-    /**
-     * Submit validators to executor.
-     * @param env Maven environment
-     * @param files List of files to validate
-     * @param validators Validators to use
-     * @return List of futures
-     */
     private Collection<Future<Collection<Violation>>> submit(
         final MavenEnvironment env, final Collection<File> files,
         final Collection<ResourceValidator> validators
@@ -204,17 +219,13 @@ public final class CheckMojo extends AbstractQuliceMojo {
         for (final ResourceValidator validator : validators) {
             futures.add(
                 this.executors.submit(
-                    new CheckMojo.ValidatorCallable(validator, env, files)
+                    new ValidatorCallable(validator, env, files)
                 )
             );
         }
         return futures;
     }
 
-    /**
-     * Timeout value for timeout.
-     * @return Timeout value
-     */
     private long timeoutValue() {
         final String clear = this.clearTimeout();
         final long res;
@@ -228,10 +239,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
         return res;
     }
 
-    /**
-     * Time unit for timeout.
-     * @return Time unit
-     */
     private TimeUnit timeoutUnits() {
         final String clear = this.clearTimeout();
         final TimeUnit unit;
@@ -247,10 +254,6 @@ public final class CheckMojo extends AbstractQuliceMojo {
         return unit;
     }
 
-    /**
-     * Clear timeout string.
-     * @return Cleaned timeout
-     */
     private String clearTimeout() {
         final String clear;
         if (this.timeout == null) {
@@ -261,75 +264,5 @@ public final class CheckMojo extends AbstractQuliceMojo {
             .toLowerCase(Locale.ENGLISH);
         }
         return clear;
-    }
-
-    /**
-     * Filter files based on excludes.
-     * @param env Maven environment
-     * @param files Files to exclude
-     * @param validator Validator to use
-     * @return Filtered files
-     */
-    private static Collection<File> filter(
-        final MavenEnvironment env,
-        final Collection<File> files, final ResourceValidator validator
-    ) {
-        final Collection<File> filtered = new ArrayList<>(files.size());
-        for (final File file : files) {
-            if (
-                !env.exclude(
-                    validator.name().toLowerCase(Locale.ENGLISH),
-                    file.toString()
-                )
-            ) {
-                filtered.add(file);
-            }
-        }
-        return filtered;
-    }
-
-    /**
-     * Callable for validators.
-     * @since 0.1
-     */
-    private static class ValidatorCallable
-        implements Callable<Collection<Violation>> {
-
-        /**
-         * Validator to use.
-         */
-        private final ResourceValidator validator;
-
-        /**
-         * Maven environment.
-         */
-        private final MavenEnvironment env;
-
-        /**
-         * List of files to validate.
-         */
-        private final Collection<File> files;
-
-        /**
-         * Constructor.
-         * @param validator Validator to use
-         * @param env Maven environment
-         * @param files List of files to validate
-         */
-        ValidatorCallable(
-            final ResourceValidator validator,
-            final MavenEnvironment env, final Collection<File> files
-        ) {
-            this.validator = validator;
-            this.env = env;
-            this.files = files;
-        }
-
-        @Override
-        public Collection<Violation> call() {
-            return this.validator.validate(
-                CheckMojo.filter(this.env, this.files, this.validator)
-            );
-        }
     }
 }

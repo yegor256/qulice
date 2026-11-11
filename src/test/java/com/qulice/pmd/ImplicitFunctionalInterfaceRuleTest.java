@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for
  * {@link com.qulice.pmd.rules.ImplicitFunctionalInterfaceRule}.
+ *
  * @since 1.0
  */
 final class ImplicitFunctionalInterfaceRuleTest {

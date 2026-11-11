@@ -5,7 +5,7 @@
 package com.qulice.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import org.cactoos.text.Joined;
 
@@ -24,7 +24,7 @@ final class AuditCollector {
     /**
      * List of events received.
      */
-    private final List<AuditEvent> events = new LinkedList<>();
+    private final List<AuditEvent> events = new ArrayList<>(0);
 
     void add(final AuditEvent event) {
         this.events.add(event);
@@ -32,6 +32,7 @@ final class AuditCollector {
 
     /**
      * How many messages do we have?
+     *
      * @return Amount of messages reported
      */
     int eventCount() {
@@ -40,6 +41,7 @@ final class AuditCollector {
 
     /**
      * Do we have this message for this line?
+     *
      * @param line The number of the line
      * @param msg The message we're looking for
      * @return This message was reported for the give line?
@@ -57,10 +59,11 @@ final class AuditCollector {
 
     /**
      * Returns full summary.
+     *
      * @return The test summary of all events
      */
     String summary() {
-        final List<String> msgs = new LinkedList<>();
+        final List<String> msgs = new ArrayList<>(0);
         for (final AuditEvent event : this.events) {
             msgs.add(
                 String.format(

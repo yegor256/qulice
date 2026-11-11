@@ -12,7 +12,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Checks that method and constructor declarations do not span multiple
  * lines when the entire signature can fit on one line within the limit.
  *
- * <p>This is how a correct declaration looks like:
+ * <p>This is how a correct declaration looks like:</p>
  *
  * <pre>
  * public Foo(final int max) throws IOException {
@@ -20,7 +20,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </pre>
  *
- * <p>And this is what will be reported:
+ * <p>And this is what will be reported:</p>
  *
  * <pre>
  * public Foo(final int max)
@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * href="https://www.yegor256.com/2014/04/27/typical-mistakes-in-java-code.html#indentation">this
  * article</a>: one should put as much as possible on one line within the
  * configured limit (80 by default). See <a
- * href="https://github.com/yegor256/qulice/issues/647">#647</a>.
+ * href="https://github.com/yegor256/qulice/issues/647">#647</a>.</p>
  *
  * @since 0.24
  */
@@ -53,6 +53,7 @@ public final class MethodDeclarationLengthCheck extends AbstractCheck {
 
     /**
      * Configure the maximum allowed length.
+     *
      * @param value New value
      */
     public void setMax(final int value) {
@@ -84,11 +85,6 @@ public final class MethodDeclarationLengthCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Checks whether the joined declaration fits on one line.
-     * @param start First non-annotation token of the declaration
-     * @param end Token that terminates the declaration (SLIST or SEMI)
-     */
     private void verify(final DetailAST start, final DetailAST end) {
         final String[] lines = this.getLines();
         final int first = start.getLineNo();
@@ -111,12 +107,6 @@ public final class MethodDeclarationLengthCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Returns the first child of the method/constructor that is not an
-     * annotation (i.e., the first keyword or type of the signature).
-     * @param def METHOD_DEF or CTOR_DEF node
-     * @return First non-annotation child token, or null if absent
-     */
     private static DetailAST head(final DetailAST def) {
         final DetailAST modifiers = def.findFirstToken(TokenTypes.MODIFIERS);
         DetailAST child = modifiers.getFirstChild();
@@ -136,12 +126,6 @@ public final class MethodDeclarationLengthCheck extends AbstractCheck {
         return result;
     }
 
-    /**
-     * Returns the token that closes the declaration: the opening brace
-     * of the body, or the terminating semicolon for abstract methods.
-     * @param def METHOD_DEF or CTOR_DEF node
-     * @return SLIST or SEMI child, or null if neither is present
-     */
     private static DetailAST tail(final DetailAST def) {
         DetailAST end = def.findFirstToken(TokenTypes.SLIST);
         if (end == null) {

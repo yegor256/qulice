@@ -5,6 +5,7 @@
 
 /**
  * PMD custom rules.
+ *
  * @since 0.4
  */
 package com.qulice.pmd.rules;

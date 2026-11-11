@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
  * Test case for {@link CheckstyleValidator}'s enforcement that
  * Javadoc {@code @param} type descriptions start with a capital
  * letter, see https://github.com/yegor256/qulice/issues/705.
+ *
  * @since 0.25.1
  */
 final class CheckstyleTypeParamDescriptionTest {
@@ -37,8 +38,8 @@ final class CheckstyleTypeParamDescriptionTest {
             "Both class and method type parameter descriptions must be reported",
             this.runValidation(file, false),
             Matchers.hasItems(
-                new ViolationMatcher(message, file, "8", name),
-                new ViolationMatcher(message, file, "15", name)
+                new ViolationMatcher(message, file, "9", name),
+                new ViolationMatcher(message, file, "17", name)
             )
         );
     }

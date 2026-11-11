@@ -6,12 +6,12 @@ package com.qulice.maven;
 
 import com.qulice.spi.ResourceValidator;
 import com.qulice.spi.Validator;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Mocker of ValidatorsProvider.
+ *
  * @since 0.4
  */
 final class ValidatorsProviderMocker {
@@ -33,6 +33,7 @@ final class ValidatorsProviderMocker {
 
     /**
      * With this external validator.
+     *
      * @param validator The validator
      * @return This object
      */
@@ -43,6 +44,7 @@ final class ValidatorsProviderMocker {
 
     /**
      * With this external resource validator.
+     *
      * @param validator The validator
      * @return This object
      */
@@ -53,6 +55,7 @@ final class ValidatorsProviderMocker {
 
     /**
      * With this external validator.
+     *
      * @param validator The validator
      * @return This object
      */
@@ -63,61 +66,14 @@ final class ValidatorsProviderMocker {
 
     /**
      * Mock it.
+     *
      * @return The provider
      */
     ValidatorsProvider mock() {
-        return new ValidatorsProviderMocker.FakeValidatorsProvider(
+        return new FakeValidatorsProvider(
             this.internal,
             this.external,
             this.rexternal
         );
-    }
-
-    /**
-     * FakeValidatorsProvides.
-     * A mock to ValidatorsProvides.
-     * @since 0.24.1
-     */
-    private static class FakeValidatorsProvider implements ValidatorsProvider {
-
-        /**
-         * Max validators.
-         */
-        private final Set<MavenValidator> intern;
-
-        /**
-         * External validators.
-         */
-        private final Set<Validator> extern;
-
-        /**
-         * Resources validators.
-         */
-        private final Set<ResourceValidator> rextern;
-
-        FakeValidatorsProvider(
-            final Set<MavenValidator> inter,
-            final Set<Validator> exter,
-            final Set<ResourceValidator> rexter
-        ) {
-            this.intern = inter;
-            this.extern = exter;
-            this.rextern = rexter;
-        }
-
-        @Override
-        public Set<MavenValidator> internal() {
-            return this.intern;
-        }
-
-        @Override
-        public Set<Validator> external() {
-            return this.extern;
-        }
-
-        @Override
-        public Collection<ResourceValidator> externalResource() {
-            return this.rextern;
-        }
     }
 }

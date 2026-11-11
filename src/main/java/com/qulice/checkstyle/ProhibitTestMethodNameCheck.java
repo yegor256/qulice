@@ -68,11 +68,6 @@ public final class ProhibitTestMethodNameCheck extends AbstractCheck {
         }
     }
 
-    /**
-     * Does this method declaration carry a JUnit {@code @Test} annotation?
-     * @param ast The METHOD_DEF node
-     * @return True if annotated with {@code @Test}
-     */
     private static boolean isTest(final DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
         boolean found = false;
@@ -90,12 +85,6 @@ public final class ProhibitTestMethodNameCheck extends AbstractCheck {
         return found;
     }
 
-    /**
-     * Is this ANNOTATION node the JUnit {@code @Test} annotation
-     * (either the short or fully-qualified form)?
-     * @param ast The ANNOTATION node
-     * @return True if its simple name is {@code Test}
-     */
     private static boolean isTestAnnotation(final DetailAST ast) {
         final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
         final boolean match;
@@ -110,24 +99,11 @@ public final class ProhibitTestMethodNameCheck extends AbstractCheck {
         return match;
     }
 
-    /**
-     * Does the name begin with a forbidden prefix?
-     * @param name The method name
-     * @return True if it starts with {@code should} or with {@code test}
-     *  but not with {@code tests}
-     */
     private static boolean startsWithForbidden(final String name) {
         return startsWithWord(name, "should")
             || startsWithWord(name, "test") && !startsWithWord(name, "tests");
     }
 
-    /**
-     * Does {@code name} start with {@code prefix} as a whole lowercase
-     * word (either equal, or followed by an uppercase/underscore boundary)?
-     * @param name The method name
-     * @param prefix The prefix to check
-     * @return True if the prefix is a word at the start of the name
-     */
     private static boolean startsWithWord(final String name, final String prefix) {
         final boolean result;
         if (name.startsWith(prefix)) {

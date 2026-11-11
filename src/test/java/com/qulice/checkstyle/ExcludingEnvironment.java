@@ -29,6 +29,7 @@ final class ExcludingEnvironment implements Environment {
 
     /**
      * Ctor.
+     *
      * @param env Environment to delegate to
      */
     ExcludingEnvironment(final Environment env) {
@@ -48,6 +49,11 @@ final class ExcludingEnvironment implements Environment {
     @Override
     public File outdir() {
         return this.origin.outdir();
+    }
+
+    @Override
+    public Collection<File> testdirs() {
+        return this.origin.testdirs();
     }
 
     @Override

@@ -6,6 +6,7 @@ package com.qulice.plugin.alpha;
 
 /**
  * Sample class.
+ *
  * @since 1.0
  */
 @SuppressWarnings("PMD.ProhibitPublicStaticMethods")
@@ -20,6 +21,7 @@ public final class Main {
 
     /**
      * Calculate square of a number.
+     *
      * @param num The number
      * @return The square
      */
