@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 337.32044974
+  seconds: 349.745610159
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-12 07:23:36.253067768 Z
+  when: 2026-11-13 07:23:14.682892710 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63393,18 +63393,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1115
-  closures_were_checked: 0
+  assignees_were_scanned: 1508
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 19851750240
+  events_were_scanned: 27009682981
   issues_were_scanned: 0
-  labels_were_scanned: 843
+  labels_were_scanned: 936
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1664
-  min_pull_was_found: 1680
+  min_issue_was_found: 1667
+  min_pull_was_found: 1681
   repository: 9580168
-  types_were_scanned: 1770
+  types_were_scanned: 0
   what: iterate
   where: github
 - _id: 11295
@@ -78301,20 +78301,6 @@
   total_reviews_submitted: 6
   what: quantity-of-deliverables
   when: 2026-11-09 07:22:06.906310021 Z
-- _id: 12261
-  _job: 106958
-  _time: 2026-11-09 07:22:59.879741864 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (260.2) is staying still.
-    The average number of commits per week (12.6) is staying still.
-    The average issue cycle time (1w) is decreasing (R=-0.20).
-    The average pull cycle time (4d20h) is staying still.
-    The average number of releases per month (3.4) is staying still.
-    The average monthly turnover (29.0 developers) is decreasing (R=-0.43).
-  what: assessment
-  when: 2026-11-09 07:22:59.901539186 Z
 - _id: 12262
   _job: 42774108553
   _time: 2026-11-10 07:18:48.674421739 Z
@@ -78593,6 +78579,7 @@
   issue: 1863
   repository: 9580168
   review: 2026-11-06 12:46:27.000000000 Z
+  review_comments: 0
   succeeded_builds: 8
   suggestions: 0
   what: pull-was-merged
@@ -78618,6 +78605,7 @@
   issue: 1864
   repository: 9580168
   review: 2026-11-11 05:51:29.000000000 Z
+  review_comments: 0
   succeeded_builds: 7
   suggestions: 0
   what: pull-was-merged
@@ -78642,6 +78630,7 @@
   is_human: 0
   issue: 1865
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 10
   suggestions: 0
   what: pull-was-merged
@@ -78666,6 +78655,7 @@
   is_human: 0
   issue: 1866
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 10
   suggestions: 0
   what: pull-was-merged
@@ -78691,6 +78681,7 @@
   issue: 1867
   repository: 9580168
   review: 2026-11-09 12:37:54.000000000 Z
+  review_comments: 0
   succeeded_builds: 8
   suggestions: 0
   what: pull-was-merged
@@ -78715,6 +78706,7 @@
   is_human: 0
   issue: 1868
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 8
   suggestions: 0
   what: pull-was-merged
@@ -78739,6 +78731,7 @@
   is_human: 0
   issue: 1876
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 8
   suggestions: 0
   what: pull-was-merged
@@ -78764,6 +78757,7 @@
   issue: 1877
   repository: 9580168
   review: 2026-11-12 02:25:21.000000000 Z
+  review_comments: 0
   succeeded_builds: 8
   suggestions: 0
   what: pull-was-merged
@@ -78825,3 +78819,156 @@
   when: 2026-11-11 03:38:48.000000000 Z
   where: github
   who: 29139614
+- _id: 12293
+  _job: 108105
+  _time: 2026-11-12 07:23:56.933034970 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (267.0) is staying still.
+    The average number of commits per week (13.1) is staying still.
+    The average issue cycle time (5d20h) is staying still.
+    The average pull cycle time (4d12h) is staying still.
+    The average number of releases per month (3.3) is staying still.
+    The average monthly turnover (33.0 developers) is decreasing (R=-0.73).
+  what: assessment
+  when: 2026-11-12 07:23:56.952700718 Z
+- _id: 12294
+  _job: 43384569050
+  _time: 2026-11-13 07:17:29.654937548 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  comments: 3
+  commits: 1
+  details: The pull request yegor256/qulice#1878 has been reviewed by @yegor256 with
+    2 HoC and 3 comments.
+  event_id: 19918606284
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1878
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-11-12 16:57:23.000000000 Z
+  where: github
+  who: 526301
+- _id: 12295
+  _job: 43384569050
+  _time: 2026-11-13 07:17:30.854880572 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  details: The pull request yegor256/qulice#1878 has been opened by @renovate[bot].
+  event_id: 19888946093
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1878
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-12 11:32:43.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12296
+  _job: 43384569050
+  _time: 2026-11-13 07:18:06.559214079 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/crate-ci-typos-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1870 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1870
+  repository: 9580168
+  review: 2026-11-10 02:22:07.000000000 Z
+  succeeded_builds: 10
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-10 02:38:27.000000000 Z
+  where: github
+  who: 8086956
+- _id: 12297
+  _job: 43384569050
+  _time: 2026-11-13 07:18:33.841279227 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1871 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1871
+  repository: 9580168
+  succeeded_builds: 10
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-10 18:26:47.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12298
+  _job: 43384569050
+  _time: 2026-11-13 07:18:43.688580927 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/crate-ci-typos-1.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1872 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1872
+  repository: 9580168
+  succeeded_builds: 10
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-11 05:05:42.000000000 Z
+  where: github
+  who: 526301
+- _id: 12299
+  _job: 43384569050
+  _time: 2026-11-13 07:18:54.120107266 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/reviewdog-action-actionlint-1.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1878 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1878
+  repository: 9580168
+  review: 2026-11-12 16:57:21.000000000 Z
+  succeeded_builds: 10
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-12 18:40:03.000000000 Z
+  where: github
+  who: 8086956
+- _id: 12300
+  _job: 43384569050
+  _time: 2026-11-13 07:23:12.574080108 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  what: dimensions-of-terrain
+  when: 2026-11-13 07:23:12.520537411 Z
