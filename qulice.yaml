@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 277.157556265
+  seconds: 266.618279873
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-15 07:20:34.940967308 Z
+  when: 2026-11-16 07:32:24.928634144 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63393,18 +63393,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 539
-  closures_were_checked: 0
+  assignees_were_scanned: 691
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 20151249510
+  events_were_scanned: 27308391845
   issues_were_scanned: 0
-  labels_were_scanned: 1706
+  labels_were_scanned: 0
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1674
-  min_pull_was_found: 1684
+  min_issue_was_found: 1676
+  min_pull_was_found: 1687
   repository: 9580168
-  types_were_scanned: 585
+  types_were_scanned: 695
   what: iterate
   where: github
 - _id: 11295
@@ -78300,7 +78300,7 @@
   total_releases_published: 0
   total_reviews_submitted: 6
   what: quantity-of-deliverables
-  when: 2026-11-09 07:22:06.906310021 Z
+  when: &168 2026-11-09 07:22:06.906310021 Z
 - _id: 12262
   _job: 42774108553
   _time: 2026-11-10 07:18:48.674421739 Z
@@ -78805,20 +78805,6 @@
   when: 2026-11-11 03:38:48.000000000 Z
   where: github
   who: 29139614
-- _id: 12293
-  _job: 108105
-  _time: 2026-11-12 07:23:56.933034970 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (267.0) is staying still.
-    The average number of commits per week (13.1) is staying still.
-    The average issue cycle time (5d20h) is staying still.
-    The average pull cycle time (4d12h) is staying still.
-    The average number of releases per month (3.3) is staying still.
-    The average monthly turnover (33.0 developers) is decreasing (R=-0.73).
-  what: assessment
-  when: 2026-11-12 07:23:56.952700718 Z
 - _id: 12294
   _job: 43384569050
   _time: 2026-11-13 07:17:29.654937548 Z
@@ -79002,3 +78988,184 @@
   total_stars: 329
   what: dimensions-of-terrain
   when: 2026-11-15 07:17:15.730169954 Z
+- _id: 12303
+  _job: 109178
+  _time: 2026-11-15 07:20:59.356212954 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (271.3) is staying still.
+    The average number of commits per week (13.4) is staying still.
+    The average issue cycle time (4d6h) is staying still.
+    The average pull cycle time (4d6h) is staying still.
+    The average number of releases per month (3.4) is staying still.
+    The average monthly turnover (33.0 developers) is decreasing (R=-0.73).
+  what: assessment
+  when: 2026-11-15 07:20:59.372321216 Z
+- _id: 12304
+  _job: 43823934262
+  _time: 2026-11-16 07:28:03.993777574 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  comments: 3
+  commits: 1
+  details: The pull request yegor256/qulice#1882 has been reviewed by @yegor256 with
+    2 HoC and 3 comments.
+  event_id: 20220513039
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1882
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-11-16 02:24:33.000000000 Z
+  where: github
+  who: 526301
+- _id: 12305
+  _job: 43823934262
+  _time: 2026-11-16 07:28:05.164100997 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  comments: 3
+  commits: 1
+  details: The pull request yegor256/qulice#1883 has been reviewed by @yegor256 with
+    2 HoC and 3 comments.
+  event_id: 20220509972
+  event_type: PullRequestReviewEvent
+  files: 1
+  hoc: 2
+  is_human: 1
+  issue: 1883
+  repository: 9580168
+  review_comments: 0
+  what: pull-was-reviewed
+  when: 2026-11-16 02:24:30.000000000 Z
+  where: github
+  who: 526301
+- _id: 12306
+  _job: 43823934262
+  _time: 2026-11-16 07:28:05.916202471 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-plugin-api-3.x
+  details: The pull request yegor256/qulice#1883 has been opened by @renovate[bot].
+  event_id: 20214652481
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1883
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-16 00:36:50.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12307
+  _job: 43823934262
+  _time: 2026-11-16 07:28:06.628748916 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-model-3.x
+  details: The pull request yegor256/qulice#1882 has been opened by @renovate[bot].
+  event_id: 20214647790
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1882
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-16 00:36:45.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12308
+  _job: 43823934262
+  _time: 2026-11-16 07:28:07.308256940 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-core-3.x
+  details: The pull request yegor256/qulice#1881 has been opened by @renovate[bot].
+  event_id: 20194602789
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1881
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-15 18:03:32.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12309
+  _job: 43823934262
+  _time: 2026-11-16 07:28:07.417672260 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-artifact-3.x
+  details: The pull request yegor256/qulice#1880 has been opened by @renovate[bot].
+  event_id: 20194598118
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1880
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-15 18:03:27.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12310
+  _job: 43823934262
+  _time: 2026-11-16 07:28:39.659149645 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  since: *168
+  total_builds_ran: 234
+  total_commits_pushed: 12
+  total_hoc_committed: 137
+  total_issues_created: 17
+  total_pulls_submitted: 15
+  total_releases_published: 0
+  total_reviews_submitted: 9
+  what: quantity-of-deliverables
+  when: 2026-11-16 07:28:39.648769795 Z
+- _id: 12311
+  _job: 43823934262
+  _time: 2026-11-16 07:29:03.806786047 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-artifact-3.x
+  comments: 0
+  comments_appreciated: 0
+  comments_by_author: 0
+  comments_by_reviewers: 0
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1880 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1880
+  repository: 9580168
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-16 00:36:17.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12312
+  _job: 43823934262
+  _time: 2026-11-16 07:30:13.649446129 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 5
+  total_commits: 2820
+  total_contributors: 61
+  total_files: 906
+  total_forks: 126
+  total_issues: 945
+  total_pulls: 937
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 329
+  what: dimensions-of-terrain
+  when: 2026-11-16 07:30:13.552557604 Z
+- _id: 12313
+  _job: 43823934262
+  _time: 2026-11-16 07:30:53.136947962 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.codehaus.plexus-plexus-xml-4.x
+  details: The missing pull yegor256/qulice#1879 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1879
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-14 20:48:59.000000000 Z
+  where: github
+  who: 29139614
