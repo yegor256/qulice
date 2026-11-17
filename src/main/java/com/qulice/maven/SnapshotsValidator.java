@@ -79,6 +79,6 @@ public final class SnapshotsValidator implements MavenValidator {
     }
 
     private static boolean isSnapshot(final String version) {
-        return version.endsWith("-SNAPSHOT");
+        return version != null && version.endsWith("-SNAPSHOT");
     }
 }
