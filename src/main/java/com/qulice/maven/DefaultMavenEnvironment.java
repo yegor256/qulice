@@ -16,6 +16,7 @@ import java.net.URLClassLoader;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Properties;
 import javax.annotation.Nullable;
@@ -193,7 +194,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     @Override
     public Collection<File> files(final String pattern) {
-        final Collection<File> files = new ArrayList<>(0);
+        final Collection<File> files = new LinkedHashSet<>(0);
         final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();
         for (final File sources : this.sources()) {
             if (sources.exists()) {
@@ -311,7 +312,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     }
 
     private Collection<File> sources() {
-        final Collection<File> dirs = new ArrayList<>(0);
+        final Collection<File> dirs = new LinkedHashSet<>(0);
         final Build build = this.iproject.getBuild();
         final File output = this.buildDirectory(build);
         this.addRoots(dirs, this.iproject.getCompileSourceRoots(), output);
@@ -391,11 +392,18 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
 
     private File resolve(final String path) {
         final File file = new File(path);
-        final File resolved;
+        final String absolute;
         if (file.isAbsolute()) {
-            resolved = file;
+            absolute = file.getAbsolutePath();
         } else {
-            resolved = new File(this.basedir(), path);
+            absolute = new File(this.basedir(), path).getAbsolutePath();
+        }
+        final String normalized = FilenameUtils.normalize(absolute, true);
+        final File resolved;
+        if (normalized == null) {
+            resolved = new File(absolute);
+        } else {
+            resolved = new File(normalized);
         }
         return resolved;
     }
