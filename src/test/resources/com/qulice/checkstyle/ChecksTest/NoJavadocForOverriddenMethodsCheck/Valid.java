@@ -20,6 +20,14 @@ public final class Valid {
     }
 
     /**
+     * @deprecated Use {@link #note()} instead.
+     */
+    @Deprecated
+    @Override
+    public void deprecated() {
+    }
+
+    /**
      * Javadoc.
      */
     public void doc() {
