@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 212.014202991
+  seconds: 208.941523731
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-18 07:22:00.707461196 Z
+  when: 2026-11-19 07:21:33.941176985 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63393,18 +63393,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 869
-  closures_were_checked: 0
+  assignees_were_scanned: 1000
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 27471350836
+  events_were_scanned: 27573099970
   issues_were_scanned: 0
-  labels_were_scanned: 843
+  labels_were_scanned: 936
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1683
-  min_pull_was_found: 1689
+  min_issue_was_found: 1685
+  min_pull_was_found: 1693
   repository: 9580168
-  types_were_scanned: 848
+  types_were_scanned: 941
   what: iterate
   where: github
 - _id: 11295
@@ -78974,20 +78974,6 @@
   total_stars: 329
   what: dimensions-of-terrain
   when: 2026-11-15 07:17:15.730169954 Z
-- _id: 12303
-  _job: 109178
-  _time: 2026-11-15 07:20:59.356212954 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (271.3) is staying still.
-    The average number of commits per week (13.4) is staying still.
-    The average issue cycle time (4d6h) is staying still.
-    The average pull cycle time (4d6h) is staying still.
-    The average number of releases per month (3.4) is staying still.
-    The average monthly turnover (33.0 developers) is decreasing (R=-0.73).
-  what: assessment
-  when: 2026-11-15 07:20:59.372321216 Z
 - _id: 12304
   _job: 43823934262
   _time: 2026-11-16 07:28:03.993777574 Z
@@ -79322,3 +79308,23 @@
   since: *169
   what: quality-of-service
   when: 2026-11-18 07:21:02.392482085 Z
+- _id: 12322
+  _job: 110012
+  _time: 2026-11-18 07:22:25.469505365 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (270.2) is staying still.
+    The average number of commits per week (13.4) is staying still.
+    The average issue cycle time (4d6h) is staying still.
+    The average pull cycle time (4d1h) is increasing (R=0.11).
+    The average number of releases per month (3.3) is staying still.
+    The average monthly turnover (33.0 developers) is decreasing (R=-0.73).
+  what: assessment
+  when: 2026-11-18 07:22:25.492409274 Z
+- _id: 12323
+  _job: 44478426519
+  _time: 2026-11-19 07:21:30.978357724 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  what: dimensions-of-terrain
+  when: 2026-11-19 07:21:30.936910247 Z
