@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 183.961180269
+  seconds: 155.521601788
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-20 07:21:01.966955030 Z
+  when: 2026-11-21 07:18:29.516749914 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63393,18 +63393,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1118
-  closures_were_checked: 1395
+  assignees_were_scanned: 1529
+  closures_were_checked: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 27677910276
+  events_were_scanned: 20759048308
   issues_were_scanned: 0
-  labels_were_scanned: 1092
+  labels_were_scanned: 1706
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1686
-  min_pull_was_found: 1695
+  min_issue_was_found: 1690
+  min_pull_was_found: 1696
   repository: 9580168
-  types_were_scanned: 1058
+  types_were_scanned: 1248
   what: iterate
   where: github
 - _id: 11295
@@ -79142,20 +79142,6 @@
   when: 2026-11-14 20:48:59.000000000 Z
   where: github
   who: 29139614
-- _id: 12314
-  _job: 109404
-  _time: 2026-11-16 07:32:51.207143628 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (270.2) is staying still.
-    The average number of commits per week (13.4) is staying still.
-    The average issue cycle time (4d6h) is staying still.
-    The average pull cycle time (4d6h) is staying still.
-    The average number of releases per month (3.3) is staying still.
-    The average monthly turnover (33.0 developers) is decreasing (R=-0.73).
-  what: assessment
-  when: 2026-11-16 07:32:51.227030373 Z
 - _id: 12315
   _job: 44037569896
   _time: 2026-11-17 07:19:03.410382702 Z
@@ -79338,3 +79324,60 @@
   total_stars: 328
   what: dimensions-of-terrain
   when: 2026-11-19 07:21:30.936910247 Z
+- _id: 12324
+  _job: 110373
+  _time: 2026-11-20 07:21:26.352960621 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (270.2) is staying still.
+    The average number of commits per week (13.4) is staying still.
+    The average issue cycle time (4d6h) is staying still.
+    The average pull cycle time (4d1h) is increasing (R=0.11).
+    The average number of releases per month (3.3) is staying still.
+    The average monthly turnover (33.0 developers) is decreasing (R=-0.73).
+  what: assessment
+  when: 2026-11-20 07:21:26.376556440 Z
+- _id: 12325
+  _job: 110373
+  _time: 2026-11-20 07:21:53.765437826 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  ac: 68
+  cost_of_qod: 2.3482471255444626
+  ev: 1115
+  pv: 16613
+  qod: 475
+  qod_per_day: 16.45033503262167
+  qod_per_sec: 1.2784049608306802e-05
+  start: *12
+  what: earned-value
+  when: 2026-11-20 07:21:53.765599789 Z
+- _id: 12326
+  _job: 44879363279
+  _time: 2026-11-21 07:16:01.262121789 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  assigner: 526301
+  details: yegor256/qulice#1136 was assigned to @yegor256 by @yegor256.
+  is_human: 1
+  issue: 1136
+  repository: 9580168
+  what: issue-was-assigned
+  when: 2026-11-20 12:17:48.000000000 Z
+  where: github
+  who: 526301
+- _id: 12327
+  _job: 44879363279
+  _time: 2026-11-21 07:16:45.025218599 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 4
+  total_commits: 2828
+  total_contributors: 61
+  total_files: 907
+  total_forks: 126
+  total_issues: 945
+  total_pulls: 939
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 328
+  what: dimensions-of-terrain
+  when: 2026-11-21 07:16:44.985132099 Z
