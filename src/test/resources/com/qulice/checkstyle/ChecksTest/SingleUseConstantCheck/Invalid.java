@@ -7,7 +7,6 @@ public final class Invalid {
     private static final int LIMIT = 42;
     private static final char SEPARATOR = ',';
     private static final String PREFIX = "a" + "b";
-    private static final Charset ENCODING = StandardCharsets.UTF_8;
     public void print() {
         System.out.println(Invalid.GREETING);
     }
@@ -19,8 +18,5 @@ public final class Invalid {
     }
     public String name() {
         return PREFIX.trim();
-    }
-    public byte[] bytes(String text) {
-        return text.getBytes(Invalid.ENCODING);
     }
 }
