@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 155.521601788
+  seconds: 237.750407018
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-21 07:18:29.516749914 Z
+  when: 2026-11-22 07:20:42.123569529 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -47433,6 +47433,7 @@
   is_human: 1
   issue: 935
   repository: 9580168
+  stale: who
   what: issue-was-opened
   when: 2018-10-10 06:18:45.000000000 Z
   where: github
@@ -47826,17 +47827,6 @@
   when: 2026-05-28 08:32:06.835509653 Z
   where: github
   who: 555864
-- _id: 10237
-  _job: 26563774854
-  _time: 2026-05-28 08:32:06.861065288 Z
-  _version: 0.19.9/0.60.2/0.17.17
-  details: 'We found out that the user #4052869 is known in GitHub as @grzechol.'
-  is_human: 1
-  name: grzechol
-  what: who-has-name
-  when: 2026-05-28 08:32:07.063014158 Z
-  where: github
-  who: 4052869
 - _id: 10238
   _job: 26563774854
   _time: 2026-05-28 08:32:07.086355453 Z
@@ -63393,18 +63383,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1529
-  closures_were_checked: 0
+  assignees_were_scanned: 0
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 20759048308
+  events_were_scanned: 27879981104
   issues_were_scanned: 0
-  labels_were_scanned: 1706
+  labels_were_scanned: 0
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1690
-  min_pull_was_found: 1696
+  min_issue_was_found: 1691
+  min_pull_was_found: 1697
   repository: 9580168
-  types_were_scanned: 1248
+  types_were_scanned: 1570
   what: iterate
   where: github
 - _id: 11295
@@ -79381,3 +79371,59 @@
   total_stars: 328
   what: dimensions-of-terrain
   when: 2026-11-21 07:16:44.985132099 Z
+- _id: 12328
+  _job: 44997433511
+  _time: 2026-11-22 07:16:49.244401584 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  details: The issue yegor256/qulice#1886 has been opened by @yegor256.
+  event_id: 20857463489
+  event_type: IssuesEvent
+  is_human: 1
+  issue: 1886
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-11-21 13:25:44.000000000 Z
+  where: github
+  who: 526301
+- _id: 12329
+  _job: 44997433511
+  _time: 2026-11-22 07:17:51.804496537 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 4
+  total_commits: 2830
+  total_contributors: 61
+  total_files: 907
+  total_forks: 126
+  total_issues: 946
+  total_pulls: 939
+  total_releases: 107
+  total_repositories: 1
+  total_stars: 328
+  what: dimensions-of-terrain
+  when: 2026-11-22 07:17:51.752018066 Z
+- _id: 12330
+  _job: 44997433511
+  _time: 2026-11-22 07:18:59.372529409 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/error-prone-monorepo
+  details: The missing pull yegor256/qulice#1884 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1884
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-18 11:58:56.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12331
+  _job: 44997433511
+  _time: 2026-11-22 07:19:00.369492411 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: '1136'
+  details: The missing pull yegor256/qulice#1885 has been opened by @yegor256.
+  is_human: 1
+  issue: 1885
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-20 12:19:59.000000000 Z
+  where: github
+  who: 526301
