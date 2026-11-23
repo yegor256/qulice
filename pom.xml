@@ -573,7 +573,7 @@
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <argLine>@{argLine} -Duser.language=en -Duser.country=US</argLine>
+          <argLine>@{argLine} -Xmx1g -XX:MaxMetaspaceSize=512m -Duser.language=en -Duser.country=US</argLine>
         </configuration>
       </plugin>
       <plugin>
