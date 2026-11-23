@@ -33,6 +33,11 @@ import java.util.regex.Pattern;
  * once-per-class cost into a per-call one. The same goes for an array,
  * which is a mutable object no matter how final its field is.</p>
  *
+ * <p>A constant that copies another field, like {@code INITIAL}
+ * capturing {@code current} at class initialization, stays where it is
+ * as well: inlining it would replace the value captured once with a
+ * live read, which may already return something else.</p>
+ *
  * <p>A constant that a Javadoc comment refers to, the way {@code {@value
  * #NAME}} and {@code {@link #NAME}} do, is left alone as well, since
  * the documentation is a usage of its own and inlining the constant
@@ -63,8 +68,6 @@ public final class SingleUseConstantCheck extends AbstractCheck {
         TokenTypes.LITERAL_TRUE,
         TokenTypes.LITERAL_FALSE,
         TokenTypes.LITERAL_NULL,
-        TokenTypes.IDENT,
-        TokenTypes.DOT,
         TokenTypes.LPAREN,
         TokenTypes.RPAREN,
         TokenTypes.UNARY_MINUS,
