@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fb version="0.19.6" size="1427112">
+<fb version="0.19.6" size="1428090">
   <f>
     <added t="I">8</added>
     <cycles t="I">2</cycles>
     <deleted t="I">8</deleted>
+    <error t="S">deadlock; recursive locking</error>
     <inserted t="I">8</inserted>
-    <seconds t="F">189.613175931</seconds>
+    <seconds t="F">187.503703502</seconds>
     <version t="S">0.61.1</version>
     <what t="S">judges-summary</what>
-    <when t="T">2026-11-23T07:23:33Z</when>
+    <when t="T">2026-11-24T07:21:17Z</when>
   </f>
   <f>
     <_id t="I">1</_id>
@@ -70501,18 +70502,18 @@
     <_job t="I">30193714385</_job>
     <_time t="T">2026-07-26T07:58:33Z</_time>
     <_version t="S">0.19.9/0.60.2/0.17.17</_version>
-    <assignees_were_scanned t="I">539</assignees_were_scanned>
-    <closures_were_checked t="I">1395</closures_were_checked>
+    <assignees_were_scanned t="I">691</assignees_were_scanned>
+    <closures_were_checked t="I">0</closures_were_checked>
     <earliest_issue_was_found t="I">1</earliest_issue_was_found>
-    <events_were_scanned t="I">28009325580</events_were_scanned>
+    <events_were_scanned t="I">28106775369</events_were_scanned>
     <issues_were_scanned t="I">0</issues_were_scanned>
-    <labels_were_scanned t="I">673</labels_were_scanned>
+    <labels_were_scanned t="I">843</labels_were_scanned>
     <latest_issue_was_found t="I">1386</latest_issue_was_found>
     <merges_were_scanned t="I">0</merges_were_scanned>
-    <min_issue_was_found t="I">1692</min_issue_was_found>
-    <min_pull_was_found t="I">1701</min_pull_was_found>
+    <min_issue_was_found t="I">1694</min_issue_was_found>
+    <min_pull_was_found t="I">1702</min_pull_was_found>
     <repository t="I">9580168</repository>
-    <types_were_scanned t="I">1770</types_were_scanned>
+    <types_were_scanned t="I">0</types_were_scanned>
     <what t="S">iterate</what>
     <where t="S">github</where>
   </f>
@@ -88207,21 +88208,6 @@
     <when t="T">2026-11-19T07:21:30Z</when>
   </f>
   <f>
-    <_id t="I">12324</_id>
-    <_job t="I">110373</_job>
-    <_time t="T">2026-11-20T07:21:26Z</_time>
-    <_version t="S">0.19.16/0.61.1/0.17.23</_version>
-    <analyzers t="I">18</analyzers>
-    <text t="S">The average number of builds per week (270.2) is staying still.
-The average number of commits per week (13.4) is staying still.
-The average issue cycle time (4d6h) is staying still.
-The average pull cycle time (4d1h) is increasing (R=0.11).
-The average number of releases per month (3.3) is staying still.
-The average monthly turnover (33.0 developers) is decreasing (R=-0.73).</text>
-    <what t="S">assessment</what>
-    <when t="T">2026-11-20T07:21:26Z</when>
-  </f>
-  <f>
     <_id t="I">12325</_id>
     <_job t="I">110373</_job>
     <_time t="T">2026-11-20T07:21:53Z</_time>
@@ -88368,6 +88354,7 @@ The average monthly turnover (33.0 developers) is decreasing (R=-0.74).</text>
     <is_human t="I">0</is_human>
     <issue t="I">1884</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">8</succeeded_builds>
     <suggestions t="I">0</suggestions>
     <what t="S">pull-was-merged</what>
@@ -88394,6 +88381,7 @@ The average monthly turnover (33.0 developers) is decreasing (R=-0.74).</text>
     <is_human t="I">1</is_human>
     <issue t="I">1885</issue>
     <repository t="I">9580168</repository>
+    <review_comments t="I">0</review_comments>
     <succeeded_builds t="I">7</succeeded_builds>
     <suggestions t="I">0</suggestions>
     <what t="S">pull-was-merged</what>
@@ -88418,5 +88406,76 @@ The average monthly turnover (33.0 developers) is decreasing (R=-0.74).</text>
     <total_stars t="I">328</total_stars>
     <what t="S">dimensions-of-terrain</what>
     <when t="T">2026-11-23T07:21:42Z</when>
+  </f>
+  <f>
+    <_id t="I">12336</_id>
+    <_job t="I">111139</_job>
+    <_time t="T">2026-11-23T07:23:57Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.23</_version>
+    <analyzers t="I">18</analyzers>
+    <text t="S">The average number of builds per week (277.2) is staying still.
+The average number of commits per week (13.7) is decreasing (R=-0.11).
+The average issue cycle time (4d7h) is staying still.
+The average pull cycle time (4d1h) is increasing (R=0.11).
+The average number of releases per month (3.4) is staying still.
+The average monthly turnover (33.0 developers) is decreasing (R=-0.74).</text>
+    <what t="S">assessment</what>
+    <when t="T">2026-11-23T07:23:57Z</when>
+  </f>
+  <f>
+    <_id t="I">12337</_id>
+    <_job t="I">45346841662</_job>
+    <_time t="T">2026-11-24T07:18:36Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.23</_version>
+    <since t="T">2026-11-16T07:28:39Z</since>
+    <total_builds_ran t="I">343</total_builds_ran>
+    <total_commits_pushed t="I">14</total_commits_pushed>
+    <total_hoc_committed t="I">295</total_hoc_committed>
+    <total_issues_created t="I">10</total_issues_created>
+    <total_pulls_submitted t="I">8</total_pulls_submitted>
+    <total_releases_published t="I">1</total_releases_published>
+    <total_reviews_submitted t="I">6</total_reviews_submitted>
+    <what t="S">quantity-of-deliverables</what>
+    <when t="T">2026-11-24T07:18:36Z</when>
+  </f>
+  <f>
+    <_id t="I">12338</_id>
+    <_job t="I">45346841662</_job>
+    <_time t="T">2026-11-24T07:18:54Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.23</_version>
+    <branch t="S">fix/744-deprecated-overridden-methods</branch>
+    <comments t="I">4</comments>
+    <comments_appreciated t="I">0</comments_appreciated>
+    <comments_by_author t="I">3</comments_by_author>
+    <comments_by_reviewers t="I">1</comments_by_reviewers>
+    <comments_resolved t="I">0</comments_resolved>
+    <comments_to_code t="I">0</comments_to_code>
+    <details t="S">Apparently, yegor256/qulice#1724 has been "pull-was-merged".</details>
+    <failed_builds t="I">0</failed_builds>
+    <files t="I">2</files>
+    <hoc t="I">24</hoc>
+    <is_human t="I">1</is_human>
+    <issue t="I">1724</issue>
+    <repository t="I">9580168</repository>
+    <review t="T">2026-11-11T05:51:34Z</review>
+    <succeeded_builds t="I">7</succeeded_builds>
+    <suggestions t="I">0</suggestions>
+    <what t="S">pull-was-merged</what>
+    <when t="T">2026-11-23T14:29:22Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
+  </f>
+  <f>
+    <_id t="I">12339</_id>
+    <_job t="I">45346841662</_job>
+    <_time t="T">2026-11-24T07:20:24Z</_time>
+    <_version t="S">0.19.16/0.61.1/0.17.23</_version>
+    <details t="S">The issue yegor256/qulice#1892 has been earlier opened by @yegor256.</details>
+    <issue t="I">1892</issue>
+    <repository t="I">9580168</repository>
+    <what t="S">issue-was-opened</what>
+    <when t="T">2026-11-23T14:20:54Z</when>
+    <where t="S">github</where>
+    <who t="I">526301</who>
   </f>
 </fb>

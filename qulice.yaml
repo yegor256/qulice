@@ -2,11 +2,12 @@
 - added: 8
   cycles: 2
   deleted: 8
+  error: deadlock; recursive locking
   inserted: 8
-  seconds: 189.613175931
+  seconds: 187.503703502
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-23 07:23:33.109973353 Z
+  when: 2026-11-24 07:21:17.518933118 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63383,18 +63384,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 539
-  closures_were_checked: 1395
+  assignees_were_scanned: 691
+  closures_were_checked: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 28009325580
+  events_were_scanned: 28106775369
   issues_were_scanned: 0
-  labels_were_scanned: 673
+  labels_were_scanned: 843
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1692
-  min_pull_was_found: 1701
+  min_issue_was_found: 1694
+  min_pull_was_found: 1702
   repository: 9580168
-  types_were_scanned: 1770
+  types_were_scanned: 0
   what: iterate
   where: github
 - _id: 11295
@@ -79077,7 +79078,7 @@
   total_releases_published: 0
   total_reviews_submitted: 9
   what: quantity-of-deliverables
-  when: 2026-11-16 07:28:39.648769795 Z
+  when: &170 2026-11-16 07:28:39.648769795 Z
 - _id: 12311
   _job: 43823934262
   _time: 2026-11-16 07:29:03.806786047 Z
@@ -79300,20 +79301,6 @@
   total_stars: 328
   what: dimensions-of-terrain
   when: 2026-11-19 07:21:30.936910247 Z
-- _id: 12324
-  _job: 110373
-  _time: 2026-11-20 07:21:26.352960621 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (270.2) is staying still.
-    The average number of commits per week (13.4) is staying still.
-    The average issue cycle time (4d6h) is staying still.
-    The average pull cycle time (4d1h) is increasing (R=0.11).
-    The average number of releases per month (3.3) is staying still.
-    The average monthly turnover (33.0 developers) is decreasing (R=-0.73).
-  what: assessment
-  when: 2026-11-20 07:21:26.376556440 Z
 - _id: 12325
   _job: 110373
   _time: 2026-11-20 07:21:53.765437826 Z
@@ -79445,6 +79432,7 @@
   is_human: 0
   issue: 1884
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 8
   suggestions: 0
   what: pull-was-merged
@@ -79469,6 +79457,7 @@
   is_human: 1
   issue: 1885
   repository: 9580168
+  review_comments: 0
   succeeded_builds: 7
   suggestions: 0
   what: pull-was-merged
@@ -79491,3 +79480,67 @@
   total_stars: 328
   what: dimensions-of-terrain
   when: 2026-11-23 07:21:42.509378601 Z
+- _id: 12336
+  _job: 111139
+  _time: 2026-11-23 07:23:57.225167415 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (277.2) is staying still.
+    The average number of commits per week (13.7) is decreasing (R=-0.11).
+    The average issue cycle time (4d7h) is staying still.
+    The average pull cycle time (4d1h) is increasing (R=0.11).
+    The average number of releases per month (3.4) is staying still.
+    The average monthly turnover (33.0 developers) is decreasing (R=-0.74).
+  what: assessment
+  when: 2026-11-23 07:23:57.247235142 Z
+- _id: 12337
+  _job: 45346841662
+  _time: 2026-11-24 07:18:36.987711649 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  since: *170
+  total_builds_ran: 343
+  total_commits_pushed: 14
+  total_hoc_committed: 295
+  total_issues_created: 10
+  total_pulls_submitted: 8
+  total_releases_published: 1
+  total_reviews_submitted: 6
+  what: quantity-of-deliverables
+  when: 2026-11-24 07:18:36.980699292 Z
+- _id: 12338
+  _job: 45346841662
+  _time: 2026-11-24 07:18:54.601633252 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: fix/744-deprecated-overridden-methods
+  comments: 4
+  comments_appreciated: 0
+  comments_by_author: 3
+  comments_by_reviewers: 1
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1724 has been "pull-was-merged".
+  failed_builds: 0
+  files: 2
+  hoc: 24
+  is_human: 1
+  issue: 1724
+  repository: 9580168
+  review: 2026-11-11 05:51:34.000000000 Z
+  succeeded_builds: 7
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-23 14:29:22.000000000 Z
+  where: github
+  who: 526301
+- _id: 12339
+  _job: 45346841662
+  _time: 2026-11-24 07:20:24.551859524 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  details: The issue yegor256/qulice#1892 has been earlier opened by @yegor256.
+  issue: 1892
+  repository: 9580168
+  what: issue-was-opened
+  when: 2026-11-23 14:20:54.000000000 Z
+  where: github
+  who: 526301
