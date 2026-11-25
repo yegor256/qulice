@@ -46,4 +46,25 @@ public final class Valid {
     public String[] variable(final String txt, final String sep) {
         return txt.split(sep);
     }
+
+    public String[] localPattern(final String txt) {
+        final Pattern sep = Pattern.compile("\\s+");
+        return sep.split("a|b");
+    }
+
+    public String[] localString(final String txt) {
+        final String sep = txt;
+        return sep.split("x");
+    }
+
+    /**
+     * The String token is split by the compiled pattern here.
+     *
+     * @param txt Some text
+     * @return Split parts
+     */
+    public String[] documented(final String txt) {
+        final Pattern token = Pattern.compile("\\s+");
+        return token.split("a|b");
+    }
 }

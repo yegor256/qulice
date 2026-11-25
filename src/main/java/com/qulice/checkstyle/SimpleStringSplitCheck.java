@@ -40,8 +40,10 @@ import java.util.Optional;
  * </pre>
  *
  * <p>The check only reports calls whose receiver is known to be a String:
- * a string literal, or an identifier declared as {@code String} in the same
- * file. Calls on other or unresolved receivers, like a precompiled
+ * a string literal, or an identifier whose nearest enclosing declaration
+ * is a {@code String} — a field, a parameter or a local variable of the
+ * enclosing method; the {@code this.field} form is resolved the same
+ * way. Calls on other or unresolved receivers, like a precompiled
  * {@code java.util.regex.Pattern}, are left alone, because their
  * {@code split} already avoids the recompilation this check targets.</p>
  *
@@ -78,7 +80,7 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         final Optional<DetailAST> literal =
-            SimpleStringSplitCheck.regexLiteral(ast, this.getLines());
+            SimpleStringSplitCheck.regexLiteral(ast);
         final Optional<String> regex = literal.flatMap(
             node -> SimpleStringSplitCheck.decode(node.getText())
         );
@@ -91,11 +93,9 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
         }
     }
 
-    private static Optional<DetailAST> regexLiteral(
-        final DetailAST call, final String... lines
-    ) {
+    private static Optional<DetailAST> regexLiteral(final DetailAST call) {
         Optional<DetailAST> result = Optional.empty();
-        if (new SplitCall(call, lines).isStringSplitCall()) {
+        if (new SplitCall(call).isStringSplitCall()) {
             result = SimpleStringSplitCheck.firstLiteralArg(call);
         }
         return result;
