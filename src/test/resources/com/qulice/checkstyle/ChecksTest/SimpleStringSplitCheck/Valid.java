@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 public final class Valid {
     private static final Pattern PATTERN = Pattern.compile("xx");
 
+    private static final Pattern SEPARATOR = Pattern.compile(",");
+
     public String[] single(final String txt) {
         return txt.split("x");
     }
@@ -31,6 +33,14 @@ public final class Valid {
 
     public String[] compiled(final String txt) {
         return Valid.PATTERN.split(txt);
+    }
+
+    public String[] byLiteral() {
+        return SEPARATOR.split("a,b");
+    }
+
+    public String[] byLiteralLimited() {
+        return SEPARATOR.split("a,b", 2);
     }
 
     public String[] variable(final String txt, final String sep) {

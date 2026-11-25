@@ -39,6 +39,12 @@ import java.util.Optional;
  * "ab.ex.zy".split("\\.");
  * </pre>
  *
+ * <p>The check only reports calls whose receiver is known to be a String:
+ * a string literal, or an identifier declared as {@code String} in the same
+ * file. Calls on other or unresolved receivers, like a precompiled
+ * {@code java.util.regex.Pattern}, are left alone, because their
+ * {@code split} already avoids the recompilation this check targets.</p>
+ *
  * <p>The check only reports calls whose first argument is a string literal:
  * when the regex is a variable the optimization cannot be determined from
  * the AST alone.</p>
@@ -72,7 +78,7 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
     @Override
     public void visitToken(final DetailAST ast) {
         final Optional<DetailAST> literal =
-            SimpleStringSplitCheck.regexLiteral(ast);
+            SimpleStringSplitCheck.regexLiteral(ast, this.getLines());
         final Optional<String> regex = literal.flatMap(
             node -> SimpleStringSplitCheck.decode(node.getText())
         );
@@ -85,23 +91,12 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
         }
     }
 
-    private static Optional<DetailAST> regexLiteral(final DetailAST call) {
+    private static Optional<DetailAST> regexLiteral(
+        final DetailAST call, final String... lines
+    ) {
         Optional<DetailAST> result = Optional.empty();
-        if (SimpleStringSplitCheck.isSplitCall(call)) {
+        if (new SplitCall(call, lines).isStringSplitCall()) {
             result = SimpleStringSplitCheck.firstLiteralArg(call);
-        }
-        return result;
-    }
-
-    private static boolean isSplitCall(final DetailAST call) {
-        final DetailAST dot = call.getFirstChild();
-        final boolean result;
-        if (dot == null || dot.getType() != TokenTypes.DOT) {
-            result = false;
-        } else {
-            final DetailAST name = dot.getLastChild();
-            result = name != null && name.getType() == TokenTypes.IDENT
-                && "split".equals(name.getText());
         }
         return result;
     }
