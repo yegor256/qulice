@@ -2,12 +2,11 @@
 - added: 8
   cycles: 2
   deleted: 8
-  error: deadlock; recursive locking
   inserted: 8
-  seconds: 187.503703502
+  seconds: 595.359409386
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-24 07:21:17.518933118 Z
+  when: 2026-11-25 07:28:22.345231481 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63384,18 +63383,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 691
-  closures_were_checked: 0
+  assignees_were_scanned: 786
+  closures_were_checked: 1395
   earliest_issue_was_found: 1
-  events_were_scanned: 28106775369
+  events_were_scanned: 28194057598
   issues_were_scanned: 0
-  labels_were_scanned: 843
+  labels_were_scanned: 1095
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1694
-  min_pull_was_found: 1702
+  min_issue_was_found: 1699
+  min_pull_was_found: 1711
   repository: 9580168
-  types_were_scanned: 0
+  types_were_scanned: 585
   what: iterate
   where: github
 - _id: 11295
@@ -79284,7 +79283,7 @@
   _version: 0.19.16/0.61.1/0.17.23
   since: *169
   what: quality-of-service
-  when: 2026-11-18 07:21:02.392482085 Z
+  when: &171 2026-11-18 07:21:02.392482085 Z
 - _id: 12323
   _job: 44478426519
   _time: 2026-11-19 07:21:30.978357724 Z
@@ -79527,6 +79526,7 @@
   issue: 1724
   repository: 9580168
   review: 2026-11-11 05:51:34.000000000 Z
+  review_comments: 0
   succeeded_builds: 7
   suggestions: 0
   what: pull-was-merged
@@ -79538,9 +79538,98 @@
   _time: 2026-11-24 07:20:24.551859524 Z
   _version: 0.19.16/0.61.1/0.17.23
   details: The issue yegor256/qulice#1892 has been earlier opened by @yegor256.
+  is_human: 1
   issue: 1892
   repository: 9580168
   what: issue-was-opened
   when: 2026-11-23 14:20:54.000000000 Z
   where: github
   who: 526301
+- _id: 12340
+  _job: 45567003730
+  _time: 2026-11-25 07:20:22.387565504 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 5
+  total_commits: 2839
+  total_contributors: 62
+  total_files: 907
+  total_forks: 126
+  total_issues: 947
+  total_pulls: 945
+  total_releases: 108
+  total_repositories: 1
+  total_stars: 328
+  what: dimensions-of-terrain
+  when: 2026-11-25 07:20:22.313874310 Z
+- _id: 12341
+  _job: 45567003730
+  _time: 2026-11-25 07:21:53.535116926 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-artifact-3.x
+  details: The missing pull yegor256/qulice#1887 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1887
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-22 13:23:07.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12342
+  _job: 45567003730
+  _time: 2026-11-25 07:21:54.911751646 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-plugin-api-3.x
+  details: The missing pull yegor256/qulice#1888 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1888
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-22 13:23:16.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12343
+  _job: 45567003730
+  _time: 2026-11-25 07:21:56.367086350 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: fix/1886-snapshot-inline
+  details: The missing pull yegor256/qulice#1889 has been opened by @inf1mum.
+  is_human: 1
+  issue: 1889
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-22 18:29:25.000000000 Z
+  where: github
+  who: 8135225
+- _id: 12344
+  _job: 45567003730
+  _time: 2026-11-25 07:21:57.580434146 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-model-3.x
+  details: The missing pull yegor256/qulice#1890 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1890
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-22 22:25:38.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12345
+  _job: 45567003730
+  _time: 2026-11-25 07:21:58.637408041 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/hibernate-validator
+  details: The missing pull yegor256/qulice#1891 has been opened by @renovate[bot].
+  is_human: 0
+  issue: 1891
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-22 22:25:48.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12346
+  _job: 45567003730
+  _time: 2026-11-25 07:23:37.466462784 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  since: *171
+  what: quality-of-service
+  when: 2026-11-25 07:23:37.457458877 Z
