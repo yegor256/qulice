@@ -28,4 +28,14 @@ public final class Invalid {
     public String[] fifth(final String txt) {
         return txt.split("|");
     }
+
+    private final String stringField = "a|b";
+
+    public String[] throughThis() {
+        return this.stringField.split("xx");
+    }
+
+    public String[] onLiteral() {
+        return "a,b".split("a|b");
+    }
 }

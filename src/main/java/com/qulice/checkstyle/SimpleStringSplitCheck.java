@@ -39,6 +39,14 @@ import java.util.Optional;
  * "ab.ex.zy".split("\\.");
  * </pre>
  *
+ * <p>The check only reports calls whose receiver is known to be a String:
+ * a string literal, or an identifier whose nearest enclosing declaration
+ * is a {@code String} — a field, a parameter or a local variable of the
+ * enclosing method; the {@code this.field} form is resolved the same
+ * way. Calls on other or unresolved receivers, like a precompiled
+ * {@code java.util.regex.Pattern}, are left alone, because their
+ * {@code split} already avoids the recompilation this check targets.</p>
+ *
  * <p>The check only reports calls whose first argument is a string literal:
  * when the regex is a variable the optimization cannot be determined from
  * the AST alone.</p>
@@ -87,21 +95,8 @@ public final class SimpleStringSplitCheck extends AbstractCheck {
 
     private static Optional<DetailAST> regexLiteral(final DetailAST call) {
         Optional<DetailAST> result = Optional.empty();
-        if (SimpleStringSplitCheck.isSplitCall(call)) {
+        if (new SplitCall(call).isStringSplitCall()) {
             result = SimpleStringSplitCheck.firstLiteralArg(call);
-        }
-        return result;
-    }
-
-    private static boolean isSplitCall(final DetailAST call) {
-        final DetailAST dot = call.getFirstChild();
-        final boolean result;
-        if (dot == null || dot.getType() != TokenTypes.DOT) {
-            result = false;
-        } else {
-            final DetailAST name = dot.getLastChild();
-            result = name != null && name.getType() == TokenTypes.IDENT
-                && "split".equals(name.getText());
         }
         return result;
     }

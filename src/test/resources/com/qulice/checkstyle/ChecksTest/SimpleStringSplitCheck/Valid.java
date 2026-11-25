@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 public final class Valid {
     private static final Pattern PATTERN = Pattern.compile("xx");
 
+    private static final Pattern SEPARATOR = Pattern.compile(",");
+
     public String[] single(final String txt) {
         return txt.split("x");
     }
@@ -33,7 +35,36 @@ public final class Valid {
         return Valid.PATTERN.split(txt);
     }
 
+    public String[] byLiteral() {
+        return SEPARATOR.split("a,b");
+    }
+
+    public String[] byLiteralLimited() {
+        return SEPARATOR.split("a,b", 2);
+    }
+
     public String[] variable(final String txt, final String sep) {
         return txt.split(sep);
+    }
+
+    public String[] localPattern(final String txt) {
+        final Pattern sep = Pattern.compile("\\s+");
+        return sep.split("a|b");
+    }
+
+    public String[] localString(final String txt) {
+        final String sep = txt;
+        return sep.split("x");
+    }
+
+    /**
+     * The String token is split by the compiled pattern here.
+     *
+     * @param txt Some text
+     * @return Split parts
+     */
+    public String[] documented(final String txt) {
+        final Pattern token = Pattern.compile("\\s+");
+        return token.split("a|b");
     }
 }
