@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 595.359409386
+  seconds: 621.683516603
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-25 07:28:22.345231481 Z
+  when: 2026-11-26 07:29:03.343071287 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63383,18 +63383,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 786
-  closures_were_checked: 1395
+  assignees_were_scanned: 869
+  closures_were_checked: 1168
   earliest_issue_was_found: 1
-  events_were_scanned: 28194057598
+  events_were_scanned: 28260575016
   issues_were_scanned: 0
-  labels_were_scanned: 1095
+  labels_were_scanned: 0
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1699
-  min_pull_was_found: 1711
+  min_issue_was_found: 1703
+  min_pull_was_found: 1713
   repository: 9580168
-  types_were_scanned: 585
+  types_were_scanned: 773
   what: iterate
   where: github
 - _id: 11295
@@ -79399,20 +79399,6 @@
   when: 2026-11-20 12:19:59.000000000 Z
   where: github
   who: 526301
-- _id: 12332
-  _job: 110984
-  _time: 2026-11-22 07:21:08.456607515 Z
-  _version: 0.19.16/0.61.1/0.17.23
-  analyzers: 18
-  text: |-
-    The average number of builds per week (270.2) is staying still.
-    The average number of commits per week (13.4) is staying still.
-    The average issue cycle time (4d7h) is staying still.
-    The average pull cycle time (4d1h) is increasing (R=0.11).
-    The average number of releases per month (3.3) is staying still.
-    The average monthly turnover (33.0 developers) is decreasing (R=-0.74).
-  what: assessment
-  when: 2026-11-22 07:21:08.478743529 Z
 - _id: 12333
   _job: 45130262385
   _time: 2026-11-23 07:20:56.399597842 Z
@@ -79633,3 +79619,146 @@
   since: *171
   what: quality-of-service
   when: 2026-11-25 07:23:37.457458877 Z
+- _id: 12347
+  _job: 111875
+  _time: 2026-11-25 07:28:50.143980507 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  analyzers: 18
+  text: |-
+    The average number of builds per week (277.9) is staying still.
+    The average number of commits per week (13.7) is decreasing (R=-0.10).
+    The average issue cycle time (4d7h) is staying still.
+    The average pull cycle time (4d10h) is increasing (R=0.14).
+    The average number of releases per month (3.4) is staying still.
+    The average monthly turnover (33.0 developers) is decreasing (R=-0.74).
+  what: assessment
+  when: 2026-11-25 07:28:50.172202763 Z
+- _id: 12348
+  _job: 45774261191
+  _time: 2026-11-26 07:19:35.172168047 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-artifact-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1887 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1887
+  repository: 9580168
+  review: 2026-11-22 16:42:09.000000000 Z
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-22 22:25:08.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12349
+  _job: 45774261191
+  _time: 2026-11-26 07:19:56.084019541 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-plugin-api-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1888 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1888
+  repository: 9580168
+  review: 2026-11-22 16:42:05.000000000 Z
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-23 06:08:27.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12350
+  _job: 45774261191
+  _time: 2026-11-26 07:20:09.551361429 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/org.apache.maven-maven-model-3.x
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1890 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 2
+  is_human: 0
+  issue: 1890
+  repository: 9580168
+  review: 2026-11-23 02:44:19.000000000 Z
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-23 03:34:30.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12351
+  _job: 45774261191
+  _time: 2026-11-26 07:20:22.719900133 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/hibernate-validator
+  comments: 3
+  comments_appreciated: 1
+  comments_by_author: 0
+  comments_by_reviewers: 3
+  comments_resolved: 0
+  comments_to_code: 0
+  details: Apparently, yegor256/qulice#1891 has been "pull-was-merged".
+  failed_builds: 0
+  files: 1
+  hoc: 4
+  is_human: 0
+  issue: 1891
+  repository: 9580168
+  review: 2026-11-23 02:44:15.000000000 Z
+  succeeded_builds: 8
+  suggestions: 0
+  what: pull-was-merged
+  when: 2026-11-23 07:25:34.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12352
+  _job: 45774261191
+  _time: 2026-11-26 07:22:05.888061829 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 5
+  total_commits: 2839
+  total_contributors: 62
+  total_files: 907
+  total_forks: 126
+  total_issues: 947
+  total_pulls: 946
+  total_releases: 108
+  total_repositories: 1
+  total_stars: 328
+  what: dimensions-of-terrain
+  when: 2026-11-26 07:22:05.834111889 Z
+- _id: 12353
+  _job: 45774261191
+  _time: 2026-11-26 07:27:52.242008843 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  details: The "bug" label was attached by @yegor256 to the issue yegor256/qulice#1886.
+  is_human: 1
+  issue: 1886
+  label: bug
+  repository: 9580168
+  what: label-was-attached
+  when: 2026-11-22 08:09:37.000000000 Z
+  where: github
+  who: 526301
