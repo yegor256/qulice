@@ -55,6 +55,24 @@ Qulice itself keeps `InvalidBlockTag`, `OperatorPrecedence` and
   character outside comments and literals, which is a defect only
   in a project whose own notation is ASCII.
 
+While `<excludes>` removes files from validation, the `qulice.includes`
+  property narrows the set of files checked to the ones it matches, e.g.
+  when working on a single module of a large project:
+
+```bash
+mvn qulice:check -Dqulice.includes=src/main/java/foo/**
+```
+
+Patterns are Ant-style, matched against paths relative to the module
+  base directory with `/` separators, e.g. `src/main/java/foo/**/*.java`
+  selects every Java file under `src/main/java/foo`, in any subfolder.
+A file stays in the scope when any pattern matches it.
+An unset or empty `qulice.includes` preserves the default scope; a
+  nonempty list matching no files empties the file-check scope, while
+  project-wide checks keep running.
+Existing validator-specific `<excludes>` keep taking precedence inside
+  the narrowed scope, with their existing regular expression syntax.
+
 Read more at [www.qulice.com].
 
 Also, read this blog post first:

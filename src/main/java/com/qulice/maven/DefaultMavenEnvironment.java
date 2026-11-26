@@ -5,6 +5,7 @@
 package com.qulice.maven;
 
 import com.google.common.base.Predicates;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.jcabi.log.Logger;
@@ -19,6 +20,7 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Pattern;
 import javax.annotation.Nullable;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -65,6 +67,11 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     private final Collection<String> exc;
 
     /**
+     * Includes, Ant-style patterns.
+     */
+    private final Collection<String> inc;
+
+    /**
      * Xpath queries for pom.xml validation.
      */
     private final Collection<String> assertion;
@@ -80,6 +87,7 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public DefaultMavenEnvironment() {
         this.iproperties = new Properties();
         this.exc = new ArrayList<>(0);
+        this.inc = new ArrayList<>(0);
         this.assertion = new ArrayList<>(0);
         this.charset = "UTF-8";
     }
@@ -196,23 +204,9 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public Collection<File> files(final String pattern) {
         final Collection<File> files = new LinkedHashSet<>(0);
         final IOFileFilter filter = WildcardFileFilter.builder().setWildcards(pattern).get();
-        for (final File sources : this.sources()) {
-            if (sources.exists()) {
-                for (final File found : FileUtils.listFiles(
-                    sources,
-                    filter,
-                    DirectoryFileFilter.INSTANCE
-                )) {
-                    if (new Binary(found).yes()) {
-                        Logger.debug(
-                            this,
-                            "Skipping binary file %s",
-                            found
-                        );
-                    } else {
-                        files.add(found);
-                    }
-                }
+        for (final File root : this.sources()) {
+            if (root.exists()) {
+                files.addAll(this.collect(root, filter));
             }
         }
         return files;
@@ -282,6 +276,19 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
     public void setExcludes(final Collection<String> exprs) {
         this.exc.clear();
         this.exc.addAll(exprs);
+    }
+
+    /**
+     * Set list of Ant-style patterns to include, e.g.
+     * {@code src/main/java/foo/**} for every Java file under that folder,
+     * matched against paths relative to the base directory; an empty
+     * list keeps the default scope.
+     *
+     * @param patterns Patterns
+     */
+    public void setIncludes(final Collection<String> patterns) {
+        this.inc.clear();
+        this.inc.addAll(patterns);
     }
 
     /**
@@ -406,5 +413,98 @@ public final class DefaultMavenEnvironment implements MavenEnvironment {
             resolved = new File(normalized);
         }
         return resolved;
+    }
+
+    private Collection<File> collect(final File root, final IOFileFilter filter) {
+        final Collection<File> collected = new ArrayList<>(0);
+        for (final File found : FileUtils.listFiles(
+            root,
+            filter,
+            DirectoryFileFilter.INSTANCE
+        )) {
+            final Binary binary = new Binary(found);
+            if (binary.yes()) {
+                Logger.debug(
+                    this,
+                    "Skipping binary file %s",
+                    found
+                );
+            } else if (this.included(found)) {
+                collected.add(found);
+            }
+        }
+        return collected;
+    }
+
+    private boolean included(final File file) {
+        boolean inside = true;
+        if (!this.inc.isEmpty()) {
+            inside = false;
+            final String relative = DefaultMavenEnvironment.relative(
+                this.basedir(), file
+            );
+            for (final String pattern : this.inc) {
+                final String regex = DefaultMavenEnvironment.antToRegex(
+                    pattern
+                );
+                if (relative.matches(regex)) {
+                    inside = true;
+                    break;
+                }
+            }
+        }
+        return inside;
+    }
+
+    private static String relative(final File base, final File file) {
+        final String parent = FilenameUtils.normalize(
+            base.getAbsolutePath(), true
+        );
+        final String path = FilenameUtils.normalize(
+            file.getAbsolutePath(), true
+        );
+        String result = path;
+        if (parent != null && path != null
+            && path.startsWith(parent.concat("/"))) {
+            result = path.substring(parent.length() + 1);
+        }
+        return result;
+    }
+
+    private static String antToRegex(final String pattern) {
+        final List<String> tokens = Splitter.on('/')
+            .omitEmptyStrings()
+            .splitToList(pattern);
+        final StringBuilder regex = new StringBuilder();
+        for (int idx = 0; idx < tokens.size(); ++idx) {
+            if ("**".equals(tokens.get(idx))) {
+                if (idx == tokens.size() - 1) {
+                    regex.append(".*");
+                } else {
+                    regex.append("(?:[^/]+/)*");
+                }
+            } else {
+                DefaultMavenEnvironment.tokenToRegex(tokens.get(idx), regex);
+                if (idx != tokens.size() - 1) {
+                    regex.append('/');
+                }
+            }
+        }
+        return regex.toString();
+    }
+
+    private static void tokenToRegex(final String token,
+        final StringBuilder regex) {
+        final int length = token.length();
+        for (int idx = 0; idx < length; ++idx) {
+            final char chr = token.charAt(idx);
+            if (chr == '*') {
+                regex.append("[^/]*");
+            } else if (chr == '?') {
+                regex.append("[^/]");
+            } else {
+                regex.append(Pattern.quote(String.valueOf(chr)));
+            }
+        }
     }
 }
