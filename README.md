@@ -59,7 +59,7 @@ While `<excludes>` removes files from validation, the `qulice.includes`
   property narrows the set of files checked to the ones it matches, e.g.
   when working on a single module of a large project:
 
-```
+```bash
 mvn qulice:check -Dqulice.includes=src/main/java/foo/**
 ```
 
