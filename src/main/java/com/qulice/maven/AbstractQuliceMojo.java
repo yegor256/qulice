@@ -68,6 +68,18 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     private final Collection<String> excludes;
 
     /**
+     * List of Ant-style patterns to include, e.g.
+     * {@code src/main/java/foo/**} for every Java file under that folder,
+     * matched against paths relative to the module base directory with
+     * {@code /} separators, to narrow the set of files passed to resource
+     * validators. An unset or empty list preserves the default scope, and
+     * the validator-specific {@code qulice.excludes} still take
+     * precedence inside it.
+     */
+    @Parameter(property = "qulice.includes", required = false)
+    private final Collection<String> includes;
+
+    /**
      * List of xpath queries to validate pom.xml.
      */
     @Parameter(
@@ -101,6 +113,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     protected AbstractQuliceMojo() {
         this.environment = new DefaultMavenEnvironment();
         this.excludes = new ArrayList<>(0);
+        this.includes = new ArrayList<>(0);
         this.asserts = new ArrayList<>(0);
         this.errorprone = new ArrayList<>(0);
     }
@@ -144,6 +157,16 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
     }
 
     /**
+     * Set includes.
+     *
+     * @param exprs Ant-style patterns
+     */
+    public final void setIncludes(final Collection<String> exprs) {
+        this.includes.clear();
+        this.includes.addAll(exprs);
+    }
+
+    /**
      * Set extra ErrorProne flags.
      *
      * @param flags Flags, e.g. {@code -Xep:UnicodeInCode:OFF}
@@ -180,6 +203,7 @@ public abstract class AbstractQuliceMojo extends AbstractMojo
             new MojoExecutor(this.manager, this.sess)
         );
         this.environment.setExcludes(this.excludes);
+        this.environment.setIncludes(this.includes);
         this.environment.setAssertion(this.asserts);
         this.environment.setEncoding(this.charset);
         if (!this.errorprone.isEmpty()) {

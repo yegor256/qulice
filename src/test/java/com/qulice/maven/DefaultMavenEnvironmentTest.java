@@ -622,4 +622,289 @@ final class DefaultMavenEnvironmentTest {
             Matchers.is(true)
         );
     }
+
+    /**
+     * DefaultMavenEnvironment.files() should keep the scope unchanged when
+     * no includes are configured, since projects without
+     * {@code qulice.includes} must keep validating every source file
+     * (see <a href="https://github.com/yegor256/qulice/issues/437">
+     * issue #437</a>).
+     *
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void keepsDefaultScopeWithoutIncludes(@TempDir final Path basedir)
+        throws Exception {
+        final Path java = basedir.resolve("src/main/java");
+        Files.createDirectories(java);
+        final Path first = Files.writeString(
+            java.resolve("Foo.java"),
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Path second = basedir.resolve("src/main/java/other/Bar.java");
+        Files.createDirectories(second.getParent());
+        Files.writeString(
+            second,
+            "class Bar {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setProject(
+            new MavenProjectStub() {
+                @Override
+                public File getBasedir() {
+                    return basedir.toFile();
+                }
+            }
+        );
+        MatcherAssert.assertThat(
+            "Without includes every source file must stay in the scope",
+            env.files("*.*"),
+            Matchers.containsInAnyOrder(first.toFile(), second.toFile())
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.files() should narrow the scope to the files
+     * matching an Ant-style include pattern, matched against paths relative
+     * to the module base directory with {@code /} separators
+     * (see <a href="https://github.com/yegor256/qulice/issues/437">
+     * issue #437</a>).
+     *
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void narrowsFilesToIncludedPattern(@TempDir final Path basedir)
+        throws Exception {
+        final Path folder = basedir.resolve("src/main/java/foo");
+        Files.createDirectories(folder);
+        final Path direct = Files.writeString(
+            folder.resolve("Foo.java"),
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Path nested = basedir.resolve("src/main/java/foo/bar/Bar.java");
+        Files.createDirectories(nested.getParent());
+        Files.writeString(
+            nested,
+            "class Bar {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Path outside = basedir.resolve("src/main/java/other/Baz.java");
+        Files.createDirectories(outside.getParent());
+        Files.writeString(
+            outside,
+            "class Baz {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setIncludes(
+            Collections.singletonList("src/main/java/foo/**/*.java")
+        );
+        env.setProject(
+            new MavenProjectStub() {
+                @Override
+                public File getBasedir() {
+                    return basedir.toFile();
+                }
+            }
+        );
+        MatcherAssert.assertThat(
+            "Only files under the include pattern must stay in the scope",
+            env.files("*.*"),
+            Matchers.containsInAnyOrder(direct.toFile(), nested.toFile())
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.files() should honor several include patterns
+     * and keep every file matching any of them
+     * (see <a href="https://github.com/yegor256/qulice/issues/437">
+     * issue #437</a>).
+     *
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void honorsMultipleIncludePatterns(@TempDir final Path basedir)
+        throws Exception {
+        final Path folder = basedir.resolve("src/main/java/foo");
+        Files.createDirectories(folder);
+        final Path first = Files.writeString(
+            folder.resolve("Foo.java"),
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Path nested = basedir.resolve("src/main/java/bar/deep/Bar.java");
+        Files.createDirectories(nested.getParent());
+        Files.writeString(
+            nested,
+            "class Bar {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Path outside = basedir.resolve("src/main/java/other/Baz.java");
+        Files.createDirectories(outside.getParent());
+        Files.writeString(
+            outside,
+            "class Baz {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setIncludes(
+            ImmutableList.of(
+                "src/main/java/foo/*.java",
+                "src/main/java/bar/**/*.java"
+            )
+        );
+        env.setProject(
+            new MavenProjectStub() {
+                @Override
+                public File getBasedir() {
+                    return basedir.toFile();
+                }
+            }
+        );
+        MatcherAssert.assertThat(
+            "Every file matching any include pattern must stay in the scope",
+            env.files("*.*"),
+            Matchers.containsInAnyOrder(first.toFile(), nested.toFile())
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment.files() should return an empty collection when
+     * a nonempty includes list matches no files
+     * (see <a href="https://github.com/yegor256/qulice/issues/437">
+     * issue #437</a>).
+     *
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void producesEmptyScopeWhenIncludesMatchNothing(
+        @TempDir final Path basedir
+    ) throws Exception {
+        final Path java = basedir.resolve("src/main/java");
+        Files.createDirectories(java);
+        Files.writeString(
+            java.resolve("Foo.java"),
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setIncludes(
+            Collections.singletonList("src/nowhere/**/*.java")
+        );
+        env.setProject(
+            new MavenProjectStub() {
+                @Override
+                public File getBasedir() {
+                    return basedir.toFile();
+                }
+            }
+        );
+        MatcherAssert.assertThat(
+            "Includes matching no files must empty the file-check scope",
+            env.files("*.*"),
+            Matchers.empty()
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment should narrow the file scope even when
+     * excludes are configured at the same time, since excludes act later,
+     * per validator
+     * (see <a href="https://github.com/yegor256/qulice/issues/437">
+     * issue #437</a>).
+     *
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void narrowsFilesWhenExcludesAlsoSet(@TempDir final Path basedir)
+        throws Exception {
+        final Path folder = basedir.resolve("src/main/java/foo");
+        Files.createDirectories(folder);
+        final Path kept = Files.writeString(
+            folder.resolve("Foo.java"),
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Path dropped = folder.resolve("Bar.java");
+        Files.writeString(
+            dropped,
+            "class Bar {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Path outside = basedir.resolve("src/main/java/other/Baz.java");
+        Files.createDirectories(outside.getParent());
+        Files.writeString(
+            outside,
+            "class Baz {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setIncludes(
+            Collections.singletonList("src/main/java/foo/**/*.java")
+        );
+        env.setExcludes(
+            Collections.singletonList("pmd:.*/foo/Bar\\.java")
+        );
+        env.setProject(
+            new MavenProjectStub() {
+                @Override
+                public File getBasedir() {
+                    return basedir.toFile();
+                }
+            }
+        );
+        MatcherAssert.assertThat(
+            "Includes must narrow the scope to the files they match",
+            env.files("*.*"),
+            Matchers.containsInAnyOrder(kept.toFile(), dropped.toFile())
+        );
+    }
+
+    /**
+     * DefaultMavenEnvironment should keep applying the validator-specific
+     * excludes to the files matched by includes
+     * (see <a href="https://github.com/yegor256/qulice/issues/437">
+     * issue #437</a>).
+     *
+     * @param basedir Temporary base directory
+     * @throws Exception If something wrong happens inside
+     */
+    @Test
+    void excludesStillApplyWhenIncludesAreSet(@TempDir final Path basedir)
+        throws Exception {
+        final Path folder = basedir.resolve("src/main/java/foo");
+        Files.createDirectories(folder);
+        final Path kept = Files.writeString(
+            folder.resolve("Foo.java"),
+            "class Foo {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final Path dropped = folder.resolve("Bar.java");
+        Files.writeString(
+            dropped,
+            "class Bar {}".concat(String.valueOf('\n')),
+            StandardCharsets.UTF_8
+        );
+        final DefaultMavenEnvironment env = new DefaultMavenEnvironment();
+        env.setIncludes(
+            Collections.singletonList("src/main/java/foo/**")
+        );
+        env.setExcludes(
+            Collections.singletonList("pmd:.*/foo/Bar\\.java")
+        );
+        MatcherAssert.assertThat(
+            "Excludes must still decide on files matched by includes",
+            env.exclude("pmd", dropped.toFile().toString())
+                && !env.exclude("pmd", kept.toFile().toString()),
+            Matchers.is(true)
+        );
+    }
 }
