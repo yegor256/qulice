@@ -3,10 +3,10 @@
   cycles: 2
   deleted: 8
   inserted: 8
-  seconds: 212.316329038
+  seconds: 295.360664645
   version: 0.61.1
   what: judges-summary
-  when: 2026-11-27 07:22:36.944153044 Z
+  when: 2026-11-28 07:21:54.082285708 Z
 - _id: 1
   _job: 17755375077
   _time: 2025-09-16 05:18:22.566594353 Z
@@ -63383,18 +63383,18 @@
   _job: 30193714385
   _time: 2026-07-26 07:58:33.865124678 Z
   _version: 0.19.9/0.60.2/0.17.17
-  assignees_were_scanned: 1001
-  closures_were_checked: 1395
+  assignees_were_scanned: 1119
+  closures_were_checked: 0
   earliest_issue_was_found: 1
-  events_were_scanned: 21398581232
+  events_were_scanned: 28472935812
   issues_were_scanned: 0
-  labels_were_scanned: 673
+  labels_were_scanned: 843
   latest_issue_was_found: 1386
   merges_were_scanned: 0
-  min_issue_was_found: 1704
-  min_pull_was_found: 1714
+  min_issue_was_found: 1705
+  min_pull_was_found: 1715
   repository: 9580168
-  types_were_scanned: 848
+  types_were_scanned: 942
   what: iterate
   where: github
 - _id: 11295
@@ -79770,5 +79770,84 @@
   _job: 45957532100
   _time: 2026-11-27 07:22:34.306298882 Z
   _version: 0.19.16/0.61.1/0.17.23
+  total_active_contributors: 5
+  total_commits: 2839
+  total_contributors: 62
+  total_files: 907
+  total_forks: 126
+  total_issues: 947
+  total_pulls: 949
+  total_releases: 108
+  total_repositories: 1
+  total_stars: 328
   what: dimensions-of-terrain
   when: 2026-11-27 07:22:34.273187251 Z
+- _id: 12356
+  _job: 46120403158
+  _time: 2026-11-28 07:17:03.398476730 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/net.sourceforge.pmd-pmd-java-7.x
+  details: The pull request yegor256/qulice#1897 has been opened by @renovate[bot].
+  event_id: 21507410947
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1897
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-27 16:00:22.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12357
+  _job: 46120403158
+  _time: 2026-11-28 07:17:03.871112957 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: renovate/net.sourceforge.pmd-pmd-core-7.x
+  details: The pull request yegor256/qulice#1896 has been opened by @renovate[bot].
+  event_id: 21472467484
+  event_type: PullRequestEvent
+  is_human: 0
+  issue: 1896
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-27 09:18:09.000000000 Z
+  where: github
+  who: 29139614
+- _id: 12358
+  _job: 46120403158
+  _time: 2026-11-28 07:19:29.121085227 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: version-up
+  details: The missing pull yegor256/qulice#1893 has been opened by @github-actions[bot].
+  is_human: 0
+  issue: 1893
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-23 16:40:06.000000000 Z
+  where: github
+  who: 41898282
+- _id: 12359
+  _job: 46120403158
+  _time: 2026-11-28 07:19:29.943834571 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: fix/1892-precompiled-split
+  details: The missing pull yegor256/qulice#1894 has been opened by @inf1mum.
+  is_human: 1
+  issue: 1894
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-25 17:38:09.000000000 Z
+  where: github
+  who: 8135225
+- _id: 12360
+  _job: 46120403158
+  _time: 2026-11-28 07:19:30.826561565 Z
+  _version: 0.19.16/0.61.1/0.17.23
+  branch: qulice-includes
+  details: The missing pull yegor256/qulice#1895 has been opened by @inf1mum.
+  is_human: 1
+  issue: 1895
+  repository: 9580168
+  what: pull-was-opened
+  when: 2026-11-26 15:39:47.000000000 Z
+  where: github
+  who: 8135225
